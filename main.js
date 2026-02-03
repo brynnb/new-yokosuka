@@ -815,11 +815,28 @@ const skyBtn = document.getElementById("sky-btn");
 // Handle Welcome Modal
 const welcomeModal = document.getElementById("welcome-modal");
 const closeModalBtn = document.getElementById("close-modal");
+const mobileWarningModal = document.getElementById("mobile-warning-modal");
+const closeMobileWarningBtn = document.getElementById("close-mobile-warning");
+
+function isMobileOrSmallScreen() {
+    return window.innerWidth < 1000 ||
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
 
 if (closeModalBtn && welcomeModal) {
     closeModalBtn.onclick = () => {
         welcomeModal.classList.add("hidden");
-        // Optionally trigger pointer lock or initial load here if desired
+
+        // Show mobile warning if on small screen or mobile device
+        if (isMobileOrSmallScreen() && mobileWarningModal) {
+            mobileWarningModal.classList.remove("hidden");
+        }
+    };
+}
+
+if (closeMobileWarningBtn && mobileWarningModal) {
+    closeMobileWarningBtn.onclick = () => {
+        mobileWarningModal.classList.add("hidden");
     };
 }
 if (skyBtn) {
