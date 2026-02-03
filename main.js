@@ -477,7 +477,19 @@ async function loadScene(prefix) {
     const filesToLoad = allFiles.filter(f => {
         if (!f.toLowerCase().endsWith('.mt5')) return false;
         const baseName = f.replace('.MT5', '').replace('.mt5', '');
-        return baseName.startsWith(prefix);
+        if (!baseName.startsWith(prefix)) return false;
+
+        // HEURISTIC: Skip characters and items when loading a world scene.
+        // These models typically lack world-positioning data and stack at (0,0,0).
+        // If a user wants to see these, they can select them individually in the sidebar.
+        const upper = f.toUpperCase();
+        if (upper.includes('_CHAR_') || upper.includes('_RYO_') || upper.includes('_ITEM_') ||
+            upper.includes('_GAC_') || upper.includes('_LIMB_') || upper.includes('_UR_') || upper.endsWith('UR.MT5') ||
+            upper.includes('_UL_') || upper.endsWith('UL.MT5')) {
+            return false;
+        }
+
+        return true;
     });
     let totalLoaded = 0;
 
@@ -704,17 +716,30 @@ function fitCameraToMeshes(meshes) {
     const diag = BABYLON.Vector3.Distance(min, max);
     const size = Math.max(diag, 0.1);
 
-    console.log(`[Viewer] Model Center: ${center.x.toFixed(2)}, ${center.y.toFixed(2)}, ${center.z.toFixed(2)}`);
-    console.log(`[Viewer] Model Size: ${size.toFixed(2)}`);
+    // HEURISTIC: For medium-sized models (buildings/chunks), place camera AT specific point
+    // This is useful for browsing world map chunks that are pre-positioned.
+    if (size >= 5 && size < 50) {
+        scene.activeCamera.position = new BABYLON.Vector3(-10, 10, 10);
+        scene.activeCamera.setTarget(center);
+        console.log(`[Viewer] Placing camera AT (-10,10,10) for size ${size.toFixed(2)}`);
+    } else {
+        // Position camera at a distance from the center, looking at it
+        // 3x closer for models under 100 (0.5 multiplier instead of 1.5)
+        let distance = size * 1.5;
+        if (size >= 5 && size < 100) {
+            distance = size * 0.5;
+        }
 
-    // Position camera at a distance from the center, looking at it
-    const distance = size * 1.5;
-    scene.activeCamera.position = new BABYLON.Vector3(
-        center.x - distance,
-        center.y + distance * 0.5,
-        center.z - distance
-    );
-    scene.activeCamera.setTarget(center);
+        // Cap max distance at 150 for giant maps
+        distance = Math.min(distance, 150);
+
+        scene.activeCamera.position = new BABYLON.Vector3(
+            center.x - distance,
+            center.y + distance * 0.5,
+            center.z + distance
+        );
+        scene.activeCamera.setTarget(center);
+    }
 
     return size;
 }

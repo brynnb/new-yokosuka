@@ -272,13 +272,16 @@ export class Mt5Loader {
             if (type >= 0x10 && type <= 0x1F) {
                 const unknown = reader.readUShort();
                 const nbStrips = reader.readUShort();
-                const poly = { strips: [], head: type, texId: currentTexIdx };
+                const poly = { strips: [], head: type, texId: currentTexIdx, hasUV: false, hasColor: false };
 
                 // Precise component detection to prevent reader desync
                 // UV: 0x11, 0x14, 0x19, 0x1C
                 const hasUV = (type === 0x11 || type === 0x14 || type === 0x19 || type === 0x1C);
                 // Color: 0x12, 0x14, 0x1A, 0x1C
                 const hasColor = (type === 0x12 || type === 0x14 || type === 0x1A || type === 0x1C);
+
+                poly.hasUV = hasUV;
+                poly.hasColor = hasColor;
 
                 for (let i = 0; i < nbStrips; i++) {
                     const stripLenRaw = reader.readShort();
@@ -400,8 +403,17 @@ export class Mt5Loader {
             console.log(`[MT5] texGroup ${texId}: ${indices.length / 3} triangles, ${positions.length / 3} vertices`);
 
             if (indices.length > 0) {
+                // HEURISTIC: Skip geometry that lacks UV coordinates.
+                // In MT5, practically all visual geometry has UVs. 
+                // Absence of UVs almost always indicates collision or trigger markers
+                // (like the 'white cylinders' or 'brown cylinders' reported by the user).
+                const groupHasUV = polys.some(p => p.hasUV);
+                if (!groupHasUV) {
+                    console.log(`[MT5] Hiding untextured collision/marker geometry (texId ${texId})`);
+                    continue;
+                }
+
                 // If the texture is missing from the cache, we hide this geometry.
-                // This addresses the user's request to hide non-textured collision cylinders.
                 if (!this.textureCache.has(texId)) {
                     console.log(`[MT5] Hiding non-textured geometry (texId ${texId})`);
                     continue;
