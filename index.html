@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shenmue Asset Viewer</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #0d0d12;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: white;
+      display: flex;
+    }
+
+    #renderCanvas {
+      width: 100%;
+      height: 100%;
+      touch-action: none;
+      display: block;
+      outline: none;
+    }
+
+
+    #sidebar {
+      width: 375px;
+      min-width: 375px;
+      flex-shrink: 0;
+      height: 100vh;
+      background: #16161d;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      z-index: 10;
+    }
+
+    #sidebar-header {
+      padding: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    h1 {
+      margin: 0 0 5px 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      background: linear-gradient(90deg, #ff8a00, #e52e71);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 0.75rem;
+      opacity: 0.5;
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+
+    #model-list {
+      flex-grow: 1;
+      overflow-y: auto;
+      min-height: 0;
+      padding: 10px;
+      list-style: none;
+      margin: 0;
+    }
+
+    #model-list::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    #model-list::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+    }
+
+    .model-row {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 5px;
+      padding: 0;
+    }
+
+    .model-item {
+      flex-grow: 1;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .model-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .model-item.active {
+      background: rgba(255, 138, 0, 0.15);
+      border-color: #ff8a00;
+      color: #ff8a00;
+    }
+
+    .scene-btn {
+      padding: 0 10px;
+      background: #e52e71;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .scene-btn:hover {
+      background: #ff2e81;
+      transform: translateY(-1px);
+    }
+
+    .scene-btn:active {
+      transform: translateY(0);
+    }
+
+    .nav-controls {
+      display: flex;
+      gap: 5px;
+    }
+
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      border-radius: 4px;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-btn:active {
+      transform: scale(0.95);
+    }
+
+    #status-bar {
+      padding: 10px 20px;
+      font-size: 0.75rem;
+      background: #0d0d12;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #888;
+    }
+
+    /* Model Grouping Styles */
+    .model-group {
+      margin-bottom: 5px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .group-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #ccc;
+      transition: all 0.2s;
+    }
+
+    .group-header:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    .group-header::before {
+      content: '▸';
+      margin-right: 8px;
+      transition: transform 0.2s;
+      display: inline-block;
+      font-size: 0.7rem;
+    }
+
+    .group-header.expanded::before {
+      transform: rotate(90deg);
+    }
+
+    .group-header.expanded {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      color: #ff8a00;
+      background: rgba(255, 138, 0, 0.05);
+    }
+
+    .group-header span {
+      flex-grow: 1;
+    }
+
+    .group-items {
+      list-style: none;
+      padding: 0 0 0 15px;
+      margin: 0;
+      background: rgba(0, 0, 0, 0.2);
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+
+    .group-items .model-item {
+      background: transparent;
+      border-radius: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      padding: 6px 10px;
+      font-size: 0.75rem;
+    }
+
+    .group-items .model-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Category Grouping Styles */
+    .category-group {
+      margin-bottom: 15px;
+    }
+
+    .category-header {
+      padding: 10px;
+      background: #1d1d26;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 0.9rem;
+      color: #ff8a00;
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+      border-left: 3px solid #ff8a00;
+    }
+
+    .category-header:hover {
+      background: #252530;
+    }
+
+    .category-header::before {
+      content: '▸';
+      margin-right: 10px;
+      transition: transform 0.2s;
+      display: inline-block;
+    }
+
+    .category-header.expanded::before {
+      transform: rotate(90deg);
+    }
+
+    .category-header.expanded {
+      background: #2d2d3a;
+    }
+
+    .category-content {
+      padding-left: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    /* Controls Overlay */
+    #controls-overlay {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 15px;
+      padding: 10px 20px;
+      background: rgba(22, 22, 29, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      z-index: 100;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .control-hint {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.8);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .control-hint kbd {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+      padding: 2px 6px;
+      min-width: 14px;
+      text-align: center;
+      color: #ff8a00;
+      font-family: inherit;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+      font-size: 0.7rem;
+    }
+
+    .control-hint span {
+      opacity: 0.6;
+    }
+
+    /* Modal Styles */
+    #welcome-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      transition: opacity 0.4s ease;
+    }
+
+    #welcome-modal.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .modal-content {
+      background: #16161d;
+      width: 95%;
+      max-width: 1000px;
+      max-height: 90vh;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      animation: modalSlide 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-main {
+      display: flex;
+      flex-direction: row;
+    }
+
+    @keyframes modalSlide {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .modal-image-container {
+      width: 45%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-top-left-radius: 20px;
+      overflow: hidden;
+    }
+
+    .modal-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .modal-body {
+      width: 55%;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    @media (max-width: 850px) {
+      .modal-main {
+        flex-direction: column;
+      }
+
+      .modal-image-container {
+        width: 100%;
+        height: 200px;
+        border-top-right-radius: 20px;
+      }
+
+      .modal-image {
+        width: 100%;
+        height: 100%;
+      }
+
+      .modal-body {
+        width: 100%;
+        padding: 30px;
+      }
+    }
+
+    .modal-body h2 {
+      margin-top: 0;
+      font-size: 1.5rem;
+      background: linear-gradient(90deg, #ff8a00, #e52e71);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .modal-body p {
+      line-height: 1.6;
+      font-size: 0.95rem;
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+
+    .modal-body a {
+      color: #ff8a00;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .modal-body a:hover {
+      color: #e52e71;
+      text-decoration: underline;
+    }
+
+    .modal-footer {
+      padding: 20px 30px;
+      background: rgba(0, 0, 0, 0.2);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.75rem;
+      color: #666;
+      line-height: 1.4;
+    }
+
+    .close-modal-btn {
+      margin-top: 10px;
+      padding: 12px 24px;
+      background: linear-gradient(90deg, #ff8a00, #e52e71);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: transform 0.2s, filter 0.2s;
+    }
+
+    .close-modal-btn:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
+
+    .github-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      font-weight: 600;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="sidebar">
+    <div id="sidebar-header">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1>Shenmue Asset Viewer</h1>
+        <div class="nav-controls">
+          <button class="nav-btn" id="prev-btn" title="Previous (Up Arrow)">↑</button>
+          <button class="nav-btn" id="next-btn" title="Next (Down Arrow)">↓</button>
+        </div>
+      </div>
+      <p class="subtitle">Extracted .MT5 Models</p>
+      <div style="display: flex; gap: 5px; margin-top: 10px;">
+        <button class="scene-btn" id="sky-btn" style="flex-grow: 1; height: 32px; background: #444;">Time: Day</button>
+      </div>
+
+    </div>
+    <ul id="model-list">
+      <!-- Models will be loaded here -->
+    </ul>
+    <div id="status-bar">
+      Status: <span id="status">Reading catalog...</span>
+    </div>
+  </div>
+  <div id="canvas-container" style="flex: 1; position: relative;">
+    <canvas id="renderCanvas"></canvas>
+    <div id="pointer-hint"
+      style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); padding: 10px 20px; background: rgba(22, 22, 29, 0.7); backdrop-filter: blur(10px); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); color: #ff8a00; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; pointer-events: none; transition: all 0.3s; z-index: 100;">
+      Click inside renderer to control view
+    </div>
+    <div id="controls-overlay" class="hidden">
+
+      <div class="control-hint"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> <span>MOVE</span></div>
+      <div class="control-hint"><kbd>SPACE</kbd> <span>UP</span></div>
+      <div class="control-hint"><kbd>SHIFT</kbd> <span>DOWN</span></div>
+      <div class="control-hint"><kbd>Q</kbd> <span>SLOW</span></div>
+      <div class="control-hint"><kbd>E</kbd> <span>FAST</span></div>
+      <div class="control-hint" id="speed-display" style="color: #ff8a00; font-weight: bold;">1.0x</div>
+    </div>
+  </div>
+
+  <div id="welcome-modal">
+    <div class="modal-content">
+      <div class="modal-main">
+        <div class="modal-image-container">
+          <img src="newyokosuka.jpeg" alt="New Yokosuka" class="modal-image">
+        </div>
+        <div class="modal-body">
+          <h2>An Online Shenmue Asset Viewer</h2>
+          <p>
+            New Yokosuka is a proof-of-concept web-based model viewer for the original Dreamcast version
+            of <a href="https://en.wikipedia.org/wiki/Shenmue" target="_blank">Shenmue</a>.
+            My ambition for this project is to extract the harbor area of Shenmue 1 along with its forklifts models to
+            recreate the daily forklift job from the original game.
+            The model extraction is complete, but the re-implementation of assets into a new game engine will be a
+            future phase of work.
+          </p>
+          <p>
+            It currently renders binary .MT5 models directly in your browser, utilizing custom parsers to process
+            scenario and map data from across the game's multiple discs.
+            The viewer imports model data into the Babylon.js engine, which allows for easy exporting into GLTF formats
+            for use in other engines, modeling software, or 3D printing.
+            While there is no dedicated export button yet, the functionality can be added on request.
+          </p>
+
+          <a href="https://github.com/brynnbateman/new-yokosuka" target="_blank" class="github-link">
+            You can see the full project information on the project's GitHub
+          </a>
+
+          <button class="close-modal-btn" id="close-modal">Enter Viewer</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        Shenmue is a registered trademark of SEGA. This project is a non-commercial, fan-made tool intended for
+        educational and research purposes only.
+        It is not affiliated with, endorsed by, or sponsored by SEGA. All original game assets, models, and related
+        content are the property of their respective trademark and copyright holders.
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/main.js"></script>
+
+</body>
+
+</html>
