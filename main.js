@@ -56,9 +56,9 @@ function updateCameraSpeed(size) {
 // Time-of-day presets with representative sky textures
 const timeOfDayPresets = [
     { name: "Day", texture: "/textures/sky/air00.png", clearColor: [0.4, 0.6, 0.9, 1] },
-    { name: "Sunset", texture: "/textures/sky/air18.png", clearColor: [0.8, 0.4, 0.2, 1] },
-    { name: "Evening", texture: "/textures/sky/air30.png", clearColor: [0.3, 0.2, 0.4, 1] },
-    { name: "Night", texture: "/textures/sky/air60.png", clearColor: [0.01, 0.01, 0.05, 1] }
+    { name: "Sunset", texture: "/textures/sky/air05.png", clearColor: [0.8, 0.4, 0.2, 1] },
+    { name: "Evening", texture: "/textures/sky/air05.png", clearColor: [0.3, 0.2, 0.4, 1] },
+    { name: "Night", texture: "/textures/sky/air25.png", clearColor: [0.01, 0.01, 0.05, 1] }
 ];
 
 // Interior scene codes (no exterior sky visible)
