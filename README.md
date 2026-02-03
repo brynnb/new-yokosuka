@@ -18,7 +18,7 @@
 
 Codenamed New Yokosuka, this is a proof-of-concept web-based model viewer for the original Dreamcast version of [Shenmue](https://en.wikipedia.org/wiki/Shenmue). My ambition for this project is to extract the harbor area of Shenmue 1 along with its forklifts models to recreate the daily forklift job from the original game. The model extraction is complete, but the re-implementation of assets into a new game engine will be a future phase of work. 
 
-It currently renders binary .MT5 models directly in your browser, utilizing custom parsers to process scenario and map data from across the game's multiple discs. The viewer imports model data into the Babylon.js engine, which allows for easy exporting into GLTF formats for use in other engines, modeling software, or 3D printing. While there is no dedicated export button yet, the functionality can be added on request.
+It currently renders binary .MT5 models directly in your browser, utilizing custom parsers to process scenario and map data from across the game's multiple discs. The viewer imports model data into the Babylon.js engine, which allows for easy exporting into GLTF formats for use in other engines, modeling software, or 3D printing.
 
 While the viewer successfully renders the vast majority of environmental models, it is currently missing several core engine features. The most prominent missing elements are proper character rendering and the automated placement of dynamic objects (decor, vehicles, doors, etc.) within maps. Additionally, some textures may show minor quality discrepancies or artifacts compared to the original Dreamcast source.
 

@@ -609,6 +609,91 @@
     #select-model-prompt.hidden {
       display: none;
     }
+
+    /* Floating Export Button */
+    #export-fab {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background: rgba(22, 22, 29, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      z-index: 150;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    #export-fab:hover {
+      background: rgba(45, 45, 60, 0.9);
+      transform: translateY(-2px);
+      border-color: #ff8a00;
+    }
+
+    #export-options-modal {
+      position: absolute;
+      bottom: 70px;
+      left: 20px;
+      background: rgba(22, 22, 29, 0.95);
+      backdrop-filter: blur(15px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 200;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      min-width: 180px;
+      animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes modalSlideUp {
+      from {
+        transform: translateY(10px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .export-option-btn {
+      padding: 10px 15px;
+      border-radius: 8px;
+      border: none;
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .export-option-btn.glb {
+      background: linear-gradient(90deg, #2e7d32, #43a047);
+    }
+
+    .export-option-btn.obj {
+      background: linear-gradient(90deg, #1565c0, #1e88e5);
+    }
+
+    .export-option-btn:hover {
+      filter: brightness(1.1);
+      transform: translateX(5px);
+    }
   </style>
 
 </head>
@@ -657,6 +742,27 @@
       <div class="control-hint"><kbd>E</kbd> <span>FAST</span></div>
       <div class="control-hint" id="speed-display" style="color: #ff8a00; font-weight: bold;">1.0x</div>
     </div>
+
+    <!-- Export Menu -->
+    <button id="export-fab">
+      <span>📥</span> Export Model
+    </button>
+
+    <div id="export-options-modal" class="hidden">
+      <div
+        style="font-size: 0.7rem; color: #888; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: bold;">
+        Select Format</div>
+      <button class="export-option-btn glb" id="export-glb-btn">
+        <span>📦</span> GLB (glTF)
+      </button>
+      <button class="export-option-btn obj" id="export-obj-btn">
+        <span>📐</span> OBJ (Geometry Only)
+      </button>
+      <button class="export-option-btn mtl" id="export-mtl-btn"
+        style="background: linear-gradient(90deg, #7b1fa2, #9c27b0);">
+        <span>🎨</span> MTL (Material Lib)
+      </button>
+    </div>
   </div>
 
   <div id="welcome-modal">
@@ -680,7 +786,6 @@
             scenario and map data from across the game's multiple discs.
             The viewer imports model data into the Babylon.js engine, which allows for easy exporting into GLTF formats
             for use in other engines, modeling software, or 3D printing.
-            While there is no dedicated export button yet, the functionality can be added on request.
           </p>
           <p style="font-weight: 500; margin-top: 10px;">
             Made by <a href="https://www.brynnbateman.com/" target="_blank">Brynn</a> - Hire me!

@@ -1,5 +1,7 @@
 import * as BABYLON from '@babylonjs/core';
 import '@babylonjs/loaders';
+import { GLTF2Export } from '@babylonjs/serializers/glTF';
+import { OBJExport } from '@babylonjs/serializers/OBJ';
 import { Mt5Loader } from './src/Mt5Loader.js';
 
 // Application State
@@ -494,7 +496,15 @@ async function loadScene(prefix) {
     }
 
     if (loadId === currentLoadId && currentMeshes.length > 0) {
-        fitCameraToMeshes(currentMeshes);
+        const size = fitCameraToMeshes(currentMeshes);
+
+        // Detect if this is an interior scene (affects sky visibility)
+        isInteriorScene = detectInteriorScene(size);
+        console.log(`[Viewer] Scene type: ${isInteriorScene ? 'Interior' : 'Exterior'} (Size: ${size.toFixed(2)})`);
+
+        // Apply time of day (handles visibility and sky)
+        applyTimeOfDay(currentTimeOfDay);
+
         updateModelVisibility();
         setStatus(`[Viewer] Loaded scene ${prefix} (${totalLoaded} models)`);
     }
@@ -626,12 +636,12 @@ async function loadModelFromUrl(filename, element) {
         currentMeshes = meshes;
 
         if (meshes.length > 0) {
-            fitCameraToMeshes(meshes);
+            const size = fitCameraToMeshes(meshes);
             setStatus(`[Viewer] Loaded ${filename}`);
 
             // Detect if this is an interior scene (affects sky visibility)
-            isInteriorScene = detectInteriorScene();
-            console.log(`[Viewer] Scene type: ${isInteriorScene ? 'Interior' : 'Exterior'}`);
+            isInteriorScene = detectInteriorScene(size);
+            console.log(`[Viewer] Scene type: ${isInteriorScene ? 'Interior' : 'Exterior'} (Size: ${size.toFixed(2)})`);
 
             // Apply time of day (handles visibility and sky)
             applyTimeOfDay(currentTimeOfDay);
@@ -683,6 +693,8 @@ function fitCameraToMeshes(meshes) {
         center.z - distance
     );
     scene.activeCamera.setTarget(center);
+
+    return size;
 }
 
 // Navigation Logic
@@ -735,8 +747,219 @@ document.getElementById('next-btn').onclick = (e) => {
     navigateModel(1);
 };
 
+// Export Handlers
+const exportModal = document.getElementById('export-options-modal');
+const exportFab = document.getElementById('export-fab');
+
+exportFab.onclick = (e) => {
+    e.stopPropagation();
+    exportModal.classList.toggle('hidden');
+};
+
+// Close modal when clicking anywhere else
+document.addEventListener('click', (e) => {
+    if (!exportModal.contains(e.target) && e.target !== exportFab) {
+        exportModal.classList.add('hidden');
+    }
+});
+
+document.getElementById('export-glb-btn').onclick = async (e) => {
+    e.stopPropagation();
+    exportModal.classList.add('hidden');
+    if (currentMeshes.length === 0) {
+        setStatus("Error: No model loaded to export");
+        return;
+    }
+
+    const filename = currentMeshes[0]._filename || "model.glb";
+    const exportName = filename.split('/').pop().replace('.MT5', '').replace('.mt5', '') + ".glb";
+
+    setStatus(`Exporting ${exportName}...`, true);
+    try {
+        // Filter out sky and other non-model meshes
+        const result = await GLTF2Export.GLBAsync(scene, exportName, {
+            shouldExportNode: (node) => {
+                return !node.name.toLowerCase().includes("sky") &&
+                    !node.name.toLowerCase().includes("light") &&
+                    !node.name.toLowerCase().includes("camera");
+            }
+        });
+
+        // The glTF exporter converts StandardMaterial to PBR internally.
+        // We can't easily catch it with an observable in the current version of the serializer without more complex setup,
+        // so instead we'll temporarily swap the materials to PBR right before export and swap back.
+        const originalMaterials = new Map();
+        scene.materials.forEach(mat => {
+            if (mat instanceof BABYLON.StandardMaterial) {
+                const pbr = new BABYLON.PBRMaterial(mat.name + "_export", scene);
+                pbr.albedoTexture = mat.diffuseTexture;
+                pbr.albedoColor = mat.diffuseColor;
+
+                // Use UNLIT mode: no PBR lighting, just show the texture as-is
+                // This prevents the foggy look in external viewers
+                pbr.unlit = true;
+
+                // Fallback for viewers that don't support KHR_materials_unlit
+                pbr.metallic = 0;
+                pbr.roughness = 1;
+
+                // Double-sided rendering (prevents backface culling issues in exported files)
+                pbr.backFaceCulling = false;
+                pbr.twoSidedLighting = true;
+
+                // Copy emissive for any glowing parts
+                pbr.emissiveColor = mat.emissiveColor;
+
+                // Copy transparency
+                pbr.alpha = mat.alpha;
+                pbr.transparencyMode = mat.transparencyMode;
+                if (mat.diffuseTexture && mat.diffuseTexture.hasAlpha) {
+                    pbr.albedoTexture.hasAlpha = true;
+                    pbr.useAlphaFromAlbedoTexture = true;
+                }
+
+                originalMaterials.set(mat, pbr);
+            }
+        });
+
+        // Temporarily apply PBR materials to meshes
+        scene.meshes.forEach(mesh => {
+            if (mesh.material && originalMaterials.has(mesh.material)) {
+                mesh.material = originalMaterials.get(mesh.material);
+            }
+        });
+
+        // Re-run export with PBR materials
+        const pbrResult = await GLTF2Export.GLBAsync(scene, exportName, {
+            shouldExportNode: (node) => {
+                return !node.name.toLowerCase().includes("sky") &&
+                    !node.name.toLowerCase().includes("light") &&
+                    !node.name.toLowerCase().includes("camera");
+            }
+        });
+
+        pbrResult.downloadFiles();
+
+        // Restore original materials
+        const reverseMap = new Map();
+        originalMaterials.forEach((pbr, std) => reverseMap.set(pbr, std));
+
+        scene.meshes.forEach(mesh => {
+            if (mesh.material && reverseMap.has(mesh.material)) {
+                const std = reverseMap.get(mesh.material);
+                mesh.material = std;
+                // Dispose the temporary PBR material
+                mesh.material.onDisposeObservable.addOnce(() => { }); // Dummy to keep referenced
+            }
+        });
+        originalMaterials.forEach(pbr => pbr.dispose());
+        setStatus(`Exported ${exportName}`);
+    } catch (err) {
+        console.error("GLB Export failed", err);
+        setStatus("Export Error: " + err.message);
+    }
+};
+
+const getExportMeshes = () => {
+    const meshesToExport = [];
+    currentMeshes.forEach(node => {
+        if (node instanceof BABYLON.Mesh) {
+            meshesToExport.push(node);
+        }
+        node.getChildMeshes().forEach(child => {
+            if (child instanceof BABYLON.Mesh) meshesToExport.push(child);
+        });
+    });
+    return [...new Set(meshesToExport)].filter(m => {
+        const name = m.name.toLowerCase();
+        return !name.includes("sky") && !name.includes("light") && !name.includes("camera");
+    });
+};
+
+const downloadFile = (content, filename) => {
+    const b = new Blob([content], { type: 'text/plain' });
+    const u = URL.createObjectURL(b);
+    const l = document.createElement('a');
+    l.href = u;
+    l.download = filename;
+    document.body.appendChild(l);
+    l.click();
+    document.body.removeChild(l);
+    setTimeout(() => URL.revokeObjectURL(u), 100);
+};
+
+document.getElementById('export-obj-btn').onclick = (e) => {
+    e.stopPropagation();
+    exportModal.classList.add('hidden');
+    if (currentMeshes.length === 0) {
+        setStatus("Error: No model loaded to export");
+        return;
+    }
+
+    const filename = currentMeshes[0]._filename || "model.obj";
+    const exportBase = filename.split('/').pop().replace('.MT5', '').replace('.mt5', '');
+
+    setStatus(`Exporting ${exportBase}.obj...`, true);
+    try {
+        const uniqueMeshes = getExportMeshes();
+        if (uniqueMeshes.length === 0) {
+            setStatus("Error: No exportable geometry found");
+            return;
+        }
+
+        const objContent = OBJExport.OBJ(uniqueMeshes, true, exportBase + ".mtl", true);
+        downloadFile(objContent, exportBase + ".obj");
+        setStatus(`Exported ${exportBase}.obj`);
+    } catch (err) {
+        console.error("OBJ Export failed", err);
+        setStatus("Export Error: " + err.message);
+    }
+};
+
+document.getElementById('export-mtl-btn').onclick = (e) => {
+    e.stopPropagation();
+    exportModal.classList.add('hidden');
+    if (currentMeshes.length === 0) {
+        setStatus("Error: No model loaded to export");
+        return;
+    }
+
+    const filename = currentMeshes[0]._filename || "model.mtl";
+    const exportBase = filename.split('/').pop().replace('.MT5', '').replace('.mt5', '');
+
+    setStatus(`Exporting ${exportBase}.mtl...`, true);
+    try {
+        const uniqueMeshes = getExportMeshes();
+        let mtlContent = "";
+        const processedMaterials = new Set();
+        uniqueMeshes.forEach(m => {
+            if (m.material && !processedMaterials.has(m.material)) {
+                mtlContent += OBJExport.MTL(m) + "\n";
+                processedMaterials.add(m.material);
+            }
+        });
+
+        if (!mtlContent) {
+            setStatus("Error: No materials found to export");
+            return;
+        }
+
+        downloadFile(mtlContent, exportBase + ".mtl");
+        setStatus(`Exported ${exportBase}.mtl`);
+    } catch (err) {
+        console.error("MTL Export failed", err);
+        setStatus("Export Error: " + err.message);
+    }
+};
+
 // Detect if the current scene is an interior (no exterior sky needed)
-function detectInteriorScene() {
+function detectInteriorScene(size = null) {
+    // HEURISTIC: If the model is small, it's likely an object/prop/character, not a world map.
+    // Small models shouldn't have a giant sky dome around them.
+    if (size !== null && size < 30) {
+        return true;
+    }
+
     for (const mesh of currentMeshes) {
         const name = (mesh._filename || mesh.name).toUpperCase();
         for (const interior of INTERIOR_SCENES) {
