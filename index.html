@@ -202,6 +202,25 @@
       }
     }
 
+    .spinner-large {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      width: 80px;
+      height: 80px;
+      border: 6px solid rgba(255, 138, 0, 0.1);
+      border-top: 6px solid #ff8a00;
+      border-radius: 50%;
+      display: none;
+      animation: spin 1s linear infinite;
+      z-index: 100;
+      filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.5));
+    }
+
+    .loading-active .spinner-large {
+      display: block;
+    }
+
     /* Model Grouping Styles */
     .model-group {
       margin-bottom: 5px;
@@ -559,6 +578,7 @@
       style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); padding: 10px 20px; background: rgba(22, 22, 29, 0.7); backdrop-filter: blur(10px); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); color: #ff8a00; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; pointer-events: none; transition: all 0.3s; z-index: 100;">
       Click inside renderer to control view
     </div>
+    <div class="spinner-large"></div>
     <div id="controls-overlay" class="hidden">
 
       <div class="control-hint"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> <span>MOVE</span></div>

@@ -7,14 +7,17 @@ const canvas = document.getElementById("renderCanvas");
 const engine = new BABYLON.Engine(canvas, true);
 const status = document.getElementById("status");
 const statusBar = document.getElementById("status-bar");
+const canvasContainer = document.getElementById("canvas-container");
 const modelList = document.getElementById("model-list");
 
 function setStatus(text, isLoading = false) {
     status.innerText = text;
     if (isLoading) {
         statusBar.classList.add("loading");
+        if (canvasContainer) canvasContainer.classList.add("loading-active");
     } else {
         statusBar.classList.remove("loading");
+        if (canvasContainer) canvasContainer.classList.remove("loading-active");
     }
 }
 
