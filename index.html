@@ -162,11 +162,44 @@
     }
 
     #status-bar {
-      padding: 10px 20px;
+      padding: 12px 20px;
       font-size: 0.75rem;
       background: #0d0d12;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       color: #888;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+    }
+
+    #status-bar.loading {
+      background: #1a1a24;
+      color: #ff8a00;
+    }
+
+    .spinner {
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(255, 138, 0, 0.2);
+      border-top: 2px solid #ff8a00;
+      border-radius: 50%;
+      display: none;
+      animation: spin 0.8s linear infinite;
+    }
+
+    #status-bar.loading .spinner {
+      display: block;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
     }
 
     /* Model Grouping Styles */
@@ -516,7 +549,8 @@
       <!-- Models will be loaded here -->
     </ul>
     <div id="status-bar">
-      Status: <span id="status">Reading catalog...</span>
+      <div class="spinner"></div>
+      <div>Status: <span id="status">Reading catalog...</span></div>
     </div>
   </div>
   <div id="canvas-container" style="flex: 1; position: relative;">

@@ -6,7 +6,17 @@ import { Mt5Loader } from './src/Mt5Loader.js';
 const canvas = document.getElementById("renderCanvas");
 const engine = new BABYLON.Engine(canvas, true);
 const status = document.getElementById("status");
+const statusBar = document.getElementById("status-bar");
 const modelList = document.getElementById("model-list");
+
+function setStatus(text, isLoading = false) {
+    status.innerText = text;
+    if (isLoading) {
+        statusBar.classList.add("loading");
+    } else {
+        statusBar.classList.remove("loading");
+    }
+}
 
 let currentMeshes = [];
 let currentLoadId = 0;
@@ -115,13 +125,13 @@ const createScene = () => {
             // Sync our yaw/pitch with current camera rotation
             yaw = camera.rotation.y;
             pitch = camera.rotation.x;
-            status.innerText = "FPS Mode - Press ESC to exit";
+            setStatus("FPS Mode - Press ESC to exit");
             if (controlsOverlay) controlsOverlay.classList.remove("hidden");
             if (pointerHint) pointerHint.classList.add("hidden");
         } else {
             // Re-enable default camera controls
             camera.attachControl(canvas, true);
-            status.innerText = "Click canvas for FPS mode";
+            setStatus("Click canvas for FPS mode");
             if (controlsOverlay) controlsOverlay.classList.add("hidden");
             if (pointerHint) pointerHint.classList.remove("hidden");
         }
@@ -156,12 +166,12 @@ const createScene = () => {
         // Speed adjustment
         if (key === "e" && isPointerLocked) {
             speedMultiplier *= 2;
-            status.innerText = `FPS Mode | Speed: ${speedMultiplier.toFixed(1)}x`;
+            setStatus(`FPS Mode | Speed: ${speedMultiplier.toFixed(1)}x`);
             if (speedDisplay) speedDisplay.innerText = `${speedMultiplier.toFixed(1)}x`;
         }
         if (key === "q" && isPointerLocked) {
             speedMultiplier *= 0.5;
-            status.innerText = `FPS Mode | Speed: ${speedMultiplier.toFixed(1)}x`;
+            setStatus(`FPS Mode | Speed: ${speedMultiplier.toFixed(1)}x`);
             if (speedDisplay) speedDisplay.innerText = `${speedMultiplier.toFixed(1)}x`;
         }
 
@@ -418,16 +428,16 @@ async function loadCatalog() {
             modelList.appendChild(catContainer);
         });
 
-        status.innerText = `Ready`;
+        setStatus(`Ready`);
     } catch (err) {
-        status.innerText = "Error loading catalog";
+        setStatus("Error loading catalog");
         console.error(err);
     }
 }
 
 async function loadScene(prefix) {
     const loadId = ++currentLoadId;
-    status.innerText = `Loading scene ${prefix}...`;
+    setStatus(`Loading scene ${prefix}...`, true);
 
     // Set current zone and scene prefix from prefix (e.g. S1_JOMO -> JOMO)
     const parts = prefix.split('_');
@@ -472,7 +482,7 @@ async function loadScene(prefix) {
             meshes.forEach(m => m._filename = filename);
             currentMeshes.push(...meshes);
             totalLoaded++;
-            status.innerText = `Loaded ${totalLoaded}/${filesToLoad.length} parts...`;
+            setStatus(`Loaded ${totalLoaded}/${filesToLoad.length} parts...`, true);
         } catch (err) {
             console.error(`Failed to load ${filename}`, err);
         }
@@ -481,7 +491,7 @@ async function loadScene(prefix) {
     if (loadId === currentLoadId && currentMeshes.length > 0) {
         fitCameraToMeshes(currentMeshes);
         updateModelVisibility();
-        status.innerText = `[Viewer] Loaded scene ${prefix} (${totalLoaded} models)`;
+        setStatus(`[Viewer] Loaded scene ${prefix} (${totalLoaded} models)`);
     }
 }
 
@@ -578,7 +588,7 @@ async function loadModelFromUrl(filename, element) {
         element.classList.add('active');
     }
 
-    status.innerText = `Loading ${filename}...`;
+    setStatus(`Loading ${filename}...`, true);
 
     // Set current zone from filename (e.g. S1_JOMO_... -> JOMO)
     const parts = filename.split('_');
@@ -612,7 +622,7 @@ async function loadModelFromUrl(filename, element) {
 
         if (meshes.length > 0) {
             fitCameraToMeshes(meshes);
-            status.innerText = `[Viewer] Loaded ${filename}`;
+            setStatus(`[Viewer] Loaded ${filename}`);
 
             // Detect if this is an interior scene (affects sky visibility)
             isInteriorScene = detectInteriorScene();
@@ -621,10 +631,10 @@ async function loadModelFromUrl(filename, element) {
             // Apply time of day (handles visibility and sky)
             applyTimeOfDay(currentTimeOfDay);
         } else {
-            status.innerText = `[Viewer] Warning: No meshes found in ${filename}`;
+            setStatus(`[Viewer] Warning: No meshes found in ${filename}`);
         }
     } catch (err) {
-        status.innerText = `Error: ${err.message}`;
+        setStatus(`Error: ${err.message}`);
         console.error(err);
     }
 }
