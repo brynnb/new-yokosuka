@@ -2,6 +2,7 @@ import * as BABYLON from '@babylonjs/core';
 import '@babylonjs/loaders';
 import { GLTF2Export } from '@babylonjs/serializers/glTF';
 import { OBJExport } from '@babylonjs/serializers/OBJ';
+import { STLExport } from '@babylonjs/serializers/stl';
 import { Mt5Loader } from './src/Mt5Loader.js';
 
 // Application State
@@ -998,6 +999,38 @@ document.getElementById('export-mtl-btn').onclick = (e) => {
         setStatus("Export Error: " + err.message);
     }
 };
+
+document.getElementById('export-stl-btn').onclick = (e) => {
+    e.stopPropagation();
+    exportModal.classList.add('hidden');
+    if (currentMeshes.length === 0) {
+        setStatus("Error: No model loaded to export");
+        return;
+    }
+
+    const filename = currentMeshes[0]._filename || "model.stl";
+    const exportBase = filename.split('/').pop().replace('.MT5', '').replace('.mt5', '');
+
+    setStatus(`Exporting ${exportBase}.stl...`, true);
+    try {
+        const uniqueMeshes = getExportMeshes();
+        if (uniqueMeshes.length === 0) {
+            setStatus("Error: No exportable geometry found");
+            return;
+        }
+
+        const stlContent = STLExport.CreateSTL(uniqueMeshes, false, exportBase, false);
+        downloadFile(stlContent, exportBase + ".stl");
+        setStatus(`Exported ${exportBase}.stl`);
+    } catch (err) {
+        console.error("STL Export failed", err);
+        setStatus("Export Error: " + err.message);
+    }
+};
+
+// USDZ export removed due to missing library support in this version
+
+// Babylon export removed
 
 // Detect if the current scene is an interior (no exterior sky needed)
 function detectInteriorScene(size = null) {

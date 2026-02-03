@@ -652,7 +652,7 @@
       gap: 10px;
       z-index: 200;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-      min-width: 180px;
+      min-width: 220px;
       animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -683,11 +683,27 @@
     }
 
     .export-option-btn.glb {
-      background: linear-gradient(90deg, #2e7d32, #43a047);
+      background: linear-gradient(90deg, #ff8a00, #e52d27);
     }
 
     .export-option-btn.obj {
-      background: linear-gradient(90deg, #1565c0, #1e88e5);
+      background: linear-gradient(90deg, #2193b0, #6dd5ed);
+    }
+
+    .export-option-btn.mtl {
+      background: linear-gradient(90deg, #7b1fa2, #9c27b0);
+    }
+
+    .export-option-btn.stl {
+      background: linear-gradient(90deg, #373331, #4b4453);
+    }
+
+    .export-option-btn.usdz {
+      background: linear-gradient(90deg, #ee0979, #ff6a00);
+    }
+
+    .export-option-btn.babylon {
+      background: linear-gradient(90deg, #00b09b, #96c93d);
     }
 
     .export-option-btn:hover {
@@ -758,9 +774,11 @@
       <button class="export-option-btn obj" id="export-obj-btn">
         <span>📐</span> OBJ (Geometry Only)
       </button>
-      <button class="export-option-btn mtl" id="export-mtl-btn"
-        style="background: linear-gradient(90deg, #7b1fa2, #9c27b0);">
+      <button class="export-option-btn mtl" id="export-mtl-btn">
         <span>🎨</span> MTL (Material Lib)
+      </button>
+      <button class="export-option-btn stl" id="export-stl-btn">
+        <span>🖨️</span> STL (3D Print)
       </button>
     </div>
   </div>
