@@ -33,6 +33,23 @@ let currentTimeOfDay = 0; // 0=Day, 1=Sunset, 2=Evening, 3=Night
 let isInteriorScene = false; // Interior scenes don't have exterior sky
 let currentZone = null;
 let currentScenePrefix = null; // Track loaded scene for time-of-day reloading
+let speedMultiplier = 1.0;
+
+function updateCameraSpeed(size) {
+    if (size < 5) {
+        speedMultiplier = 0.1;
+    } else if (size > 50) {
+        speedMultiplier = 2.0;
+    } else {
+        speedMultiplier = 0.5;
+    }
+
+    const speedDisplay = document.getElementById("speed-display");
+    if (speedDisplay) {
+        speedDisplay.innerText = `${speedMultiplier.toFixed(1)}x`;
+    }
+    console.log(`[Viewer] Camera speed set to ${speedMultiplier.toFixed(1)}x for size ${size.toFixed(2)}`);
+}
 
 
 // Time-of-day presets with representative sky textures
@@ -164,7 +181,6 @@ const createScene = () => {
 
     // Key state tracking
     const keys = {};
-    let speedMultiplier = 1.0;
 
     window.addEventListener("keydown", (e) => {
         const key = e.key.toLowerCase();
@@ -502,6 +518,9 @@ async function loadScene(prefix) {
         isInteriorScene = detectInteriorScene(size);
         console.log(`[Viewer] Scene type: ${isInteriorScene ? 'Interior' : 'Exterior'} (Size: ${size.toFixed(2)})`);
 
+        // Adjust camera speed based on scene size
+        updateCameraSpeed(size);
+
         // Apply time of day (handles visibility and sky)
         applyTimeOfDay(currentTimeOfDay);
 
@@ -642,6 +661,9 @@ async function loadModelFromUrl(filename, element) {
             // Detect if this is an interior scene (affects sky visibility)
             isInteriorScene = detectInteriorScene(size);
             console.log(`[Viewer] Scene type: ${isInteriorScene ? 'Interior' : 'Exterior'} (Size: ${size.toFixed(2)})`);
+
+            // Adjust camera speed based on model size
+            updateCameraSpeed(size);
 
             // Apply time of day (handles visibility and sky)
             applyTimeOfDay(currentTimeOfDay);
