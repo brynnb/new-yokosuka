@@ -592,6 +592,23 @@
       margin-top: 20px;
       font-weight: 600;
     }
+
+    #select-model-prompt {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 1.2rem;
+      font-weight: 500;
+      pointer-events: none;
+      z-index: 50;
+    }
+
+    #select-model-prompt.hidden {
+      display: none;
+    }
   </style>
 
 </head>
@@ -622,6 +639,10 @@
   </div>
   <div id="canvas-container" style="flex: 1; position: relative;">
     <canvas id="renderCanvas"></canvas>
+    <div id="select-model-prompt">
+      <p style="font-size: 2rem; margin-bottom: 10px;">📁</p>
+      <p>Select a model from the sidebar to view</p>
+    </div>
     <div id="pointer-hint"
       style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); padding: 10px 20px; background: rgba(22, 22, 29, 0.7); backdrop-filter: blur(10px); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); color: #ff8a00; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; pointer-events: none; transition: all 0.3s; z-index: 100;">
       Click inside renderer to control view
@@ -691,7 +712,7 @@
           This asset viewer is designed for desktop browsers and larger screen resolutions.
           You may experience limited functionality or display issues on mobile devices and smaller screens.
         </p>
-      
+
         <button class="close-modal-btn" id="close-mobile-warning">Continue Anyway</button>
       </div>
     </div>

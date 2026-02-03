@@ -9,12 +9,14 @@ const status = document.getElementById("status");
 const statusBar = document.getElementById("status-bar");
 const canvasContainer = document.getElementById("canvas-container");
 const modelList = document.getElementById("model-list");
+const selectModelPrompt = document.getElementById("select-model-prompt");
 
 function setStatus(text, isLoading = false) {
     status.innerText = text;
     if (isLoading) {
         statusBar.classList.add("loading");
         if (canvasContainer) canvasContainer.classList.add("loading-active");
+        if (selectModelPrompt) selectModelPrompt.classList.add("hidden");
     } else {
         statusBar.classList.remove("loading");
         if (canvasContainer) canvasContainer.classList.remove("loading-active");
