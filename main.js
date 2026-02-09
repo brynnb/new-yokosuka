@@ -209,6 +209,9 @@ const createScene = () => {
     }
   });
 
+  // Key state tracking
+  const keys = {};
+
   // FPS mouse look - true first person rotation
   document.addEventListener("mousemove", (e) => {
     if (!isPointerLocked) return;
@@ -225,15 +228,12 @@ const createScene = () => {
     // Apply rotation to camera
     camera.rotation.x = pitch;
     camera.rotation.y = yaw;
+
   });
 
-  // Key state tracking
-  const keys = {};
-
-  window.addEventListener("keydown", (e) => {
+  const handleKeyDown = (e) => {
     const code = e.code;
     keys[code] = true;
-
     // Speed adjustment
     if (code === "KeyE" && isPointerLocked) {
       speedMultiplier *= 2;
@@ -248,10 +248,21 @@ const createScene = () => {
         speedDisplay.innerText = `${speedMultiplier.toFixed(1)}x`;
     }
 
-    // Prevent page scrolling with space
-    if (code === "Space") e.preventDefault();
-  });
-  window.addEventListener("keyup", (e) => (keys[e.code] = false));
+    // Prevent default for keys we use
+    if (isPointerLocked && code === "Space") {
+      e.preventDefault();
+    }
+  };
+
+  const handleKeyUp = (e) => {
+    keys[e.code] = false;
+
+  };
+
+  // Use capture phase on document to intercept keys before anything can swallow them.
+  // Firefox during pointer lock may not bubble Shift to window in some configurations.
+  document.addEventListener("keydown", handleKeyDown, true);
+  document.addEventListener("keyup", handleKeyUp, true);
 
   // FPS-style WASD movement
   scene.onBeforeRenderObservable.add(() => {
@@ -280,9 +291,9 @@ const createScene = () => {
     if (keys["KeyA"]) moveVector.addInPlace(right.scale(-speed));
     if (keys["KeyD"]) moveVector.addInPlace(right.scale(speed));
 
-    // Space/Shift - Vertical movement
+    // Space/C - Vertical movement
     if (keys["Space"]) moveVector.y += speed;
-    if (keys["ShiftLeft"] || keys["ShiftRight"]) moveVector.y -= speed;
+    if (keys["KeyC"]) moveVector.y -= speed;
 
     // Apply movement
     if (moveVector.length() > 0) {
