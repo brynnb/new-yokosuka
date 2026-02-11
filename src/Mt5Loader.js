@@ -383,7 +383,7 @@ export class Mt5Loader {
                             if (!v) continue;
                             positions.push(...v.pos);
                             normals.push(...v.norm);
-                            uvs.push(p.u, p.v);
+                            uvs.push(p.v, p.u);
                             colors.push(...p.color);
 
                             vertexMap.set(key, nIdx);
