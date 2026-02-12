@@ -459,9 +459,10 @@ class CdImage():
         elif self.__mode in [2352, 2336]:
             if length == None:
                 length = self.length - self.binpointer
+            length = int(length)  # Ensure integer for Python 3 compatibility
 
             # Amount of bytes left until beginning of next sector
-            tmp = 2048 - self.binpointer % 2048
+            tmp = int(2048 - self.binpointer % 2048)
             FutureOffset = self.binpointer + length
             realLength = self.realOffset(FutureOffset) - \
                             self.realOffset(self.binpointer)
@@ -928,11 +929,12 @@ def getDummyDataTrack():
 
 
 def parse_gdi(filename, verbose=False):
+    import shlex
     filename = os.path.realpath(filename)
     dirname  = os.path.dirname(filename)
 
-    with open(filename) as f: # if i.split() removes blank lines
-        l = [i.split() for i in f.readlines() if i.split()]
+    with open(filename) as f: # shlex.split handles quoted filenames with spaces
+        l = [shlex.split(i) for i in f.readlines() if i.strip()]
     if not int(l[3][1]) == 45000:
         raise AssertionError('Invalid gdi file: track03 LBA should be 45000')
 
@@ -946,7 +948,7 @@ def parse_gdi(filename, verbose=False):
     gdi[2]['wormhole'] = [0, 45000*2048, 32*2048]
 
     if nbt > 3:
-        gdi[nbt-1]['offset'] = 2048*(gdi[nbt-1]['lba'] - get_filesize(gdi[2]['filename'])/gdi[2]['mode'] - 45000)
+        gdi[nbt-1]['offset'] = 2048*(gdi[nbt-1]['lba'] - get_filesize(gdi[2]['filename'])//gdi[2]['mode'] - 45000)
 
     if verbose:
         print('\nParsed gdi file: {}'.format(os.path.basename(filename)))
@@ -1007,6 +1009,7 @@ def _copy_buffered(f1, f2, length = None, bufsize = 1*1024*1024, closeOut = True
         f1.seek(0,2)
         length = f1.tell()
         f1.seek(tmp,0)
+    length = int(length)  # Ensure integer for Python 3 compatibility
     f2.seek(0,0)
 
     for i in range(length//bufsize):

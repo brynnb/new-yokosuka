@@ -1020,13 +1020,33 @@ function untwiddle(x, y, width) {
 
 ### Which Formats Use Twiddling?
 
-| Data Format | Twiddled? |
-|-------------|-----------|
-| TWIDDLED (0x01) | Yes |
-| TWIDDLED_MM (0x02) | Yes |
-| VQ (0x03) | Special |
-| RECTANGLE (0x09) | No |
-| STRIDE (0x0B) | No |
+| Data Format | Twiddled? | Notes |
+|-------------|-----------|-------|
+| TWIDDLED (0x01) | Yes | Square textures only |
+| TWIDDLED_MM (0x02) | Yes | With mipmaps |
+| VQ (0x03) | Special | Codebook indices are twiddled |
+| RECTANGLE (0x09) | No | Linear pixel data |
+| STRIDE (0x0B) | No | Linear with stride |
+| TWIDDLED_RECT (0x0D) | Yes (tiled) | Non-square: split into N square tiles, each twiddled |
+
+### TWIDDLED_RECTANGLE (0x0D)
+
+Non-square twiddled textures are stored as multiple square tiles:
+- **Wide (w > h)**: N tiles of h×h pixels placed left to right (e.g., 512×256 = two 256×256 tiles)
+- **Tall (h > w)**: N tiles of w×w pixels stacked vertically
+- Each tile is independently Morton-order twiddled
+- Tiles can be any power-of-two ratio (2:1, 4:1, 8:1, etc.)
+
+### Known Extraction Bug (pvmarchive.py)
+
+The `convert2dArray` method in `Shenmue-Export-Tools/PythonPVR/pvmarchive.py` has a stride bug:
+```python
+# BUG: uses height instead of width as stride
+array[y * self.height + x]  # Wrong for non-square textures
+# Should be:
+array[y * self.width + x]
+```
+For square textures (width == height) this is harmless. For non-square textures like the 512×256 sky textures, it produces visible striations and mirrored halves. The `pvr_decoder.py` module and `convert_sky_textures.py` tool in this project provide a correct implementation that re-extracts sky textures directly from the original PVR files.
 
 ---
 
@@ -1147,6 +1167,8 @@ material.specularColor = Color3.Black();  // Disable specular
 | `extract_textures.py` | Extract textures from PKF archives |
 | `extract_models.py` | Extract models from PKS archives |
 | `pack_textures.py` | Create texture pack bundles for web viewer |
+| `pvr_decoder.py` | Shared PVR texture decoding library (RECTANGLE, TWIDDLED, TWIDDLED_RECT formats with ARGB1555/RGB565/ARGB4444 color) |
+| `convert_sky_textures.py` | Batch convert sky PVR textures to PNG from original Dreamcast PVR files |
 
 ### Web Viewer
 

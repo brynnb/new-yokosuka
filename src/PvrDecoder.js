@@ -27,7 +27,6 @@ export class PvrDecoder {
         const hasAlpha = (colorFormat === 0 || colorFormat === 2);
         const hasGradientAlpha = (colorFormat === 2); // Only ARGB4444 has smooth alpha
 
-        console.log(`[PVR] Decoding ${width}x${height} format=${colorFormat} dataFormat=${dataFormat} hasAlpha=${hasAlpha} hasGradientAlpha=${hasGradientAlpha}`);
 
         let isVQ = (dataFormat === 0x03 || dataFormat === 0x04);
         let hasMipmaps = (dataFormat === 0x02 || dataFormat === 0x04 || dataFormat === 0x06 || dataFormat === 0x08);

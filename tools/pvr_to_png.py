@@ -1,37 +1,41 @@
+#!/usr/bin/env python3
+"""
+Convert Dreamcast PVR/PVRT texture files to PNG images.
+
+Supports RECTANGLE, TWIDDLED, and TWIDDLED_RECT data formats
+with ARGB1555, RGB565, and ARGB4444 color formats.
+
+Usage:
+  python3 pvr_to_png.py <pvr_file> <png_file>
+  python3 pvr_to_png.py <pvr_file>              # outputs to same name with .png extension
+"""
+
 import sys
 import os
+from pvr_decoder import convert_pvr_to_png
 
-# Add PythonPVR directory to sys.path
-sys.path.append(os.path.join(os.path.dirname(__file__), 'PythonPVR'))
 
-import png
-from pvmarchive import PvrTexture
-from bitstream import BitStream
+def main():
+    if len(sys.argv) < 2:
+        print("Usage: python3 pvr_to_png.py <pvr_file> [png_file]")
+        sys.exit(1)
 
-def convert_pvr(pvr_path, png_path):
-    bs = BitStream(pvr_path)
-    # Skip PVRT header and size fields if present to reach the color format
-    
-    # Check if starts with PVRT
-    header = bs.readUInt()
-    if header == 0x54525650: # PVRT
-        size = bs.readUInt()
-        # Next is color_format
+    pvr_path = sys.argv[1]
+    if len(sys.argv) >= 3:
+        png_path = sys.argv[2]
     else:
-        bs.seek_set(0)
-    
-    pvr = PvrTexture(bs, False, True)
-    bitmap = pvr.getBitmap()
-    
-    if not bitmap:
-        print(f"Failed to decode {pvr_path}")
-        return
-        
-    png.from_array(bitmap, 'RGBA').save(png_path)
-    print(f"Saved {png_path}")
+        png_path = os.path.splitext(pvr_path)[0] + '.png'
+
+    if not os.path.exists(pvr_path):
+        print(f"File not found: {pvr_path}")
+        sys.exit(1)
+
+    if convert_pvr_to_png(pvr_path, png_path):
+        print("Done.")
+    else:
+        print("Conversion failed.")
+        sys.exit(1)
+
 
 if __name__ == "__main__":
-    if len(sys.argv) < 3:
-        print("Usage: python3 pvr_to_png.py <pvr_file> <png_file>")
-    else:
-        convert_pvr(sys.argv[1], sys.argv[2])
+    main()

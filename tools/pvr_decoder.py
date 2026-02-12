@@ -1,27 +1,23 @@
 #!/usr/bin/env python3
 """
-Convert PVR sky textures to PNG from original Dreamcast PVR files.
+Dreamcast PVR texture decoder.
 
-Handles:
+Decodes PVR/PVRT texture files to PIL Images. Handles:
   - RECTANGLE (0x09): Linear pixel data, no twiddling
-  - TWIDDLED_RECT (0x0D): Two square halves, each Morton-order twiddled
   - TWIDDLED (0x01): Square textures, Morton-order twiddled
+  - TWIDDLED_RECT (0x0D): Non-square textures split into square twiddled tiles
 
-All sky textures use RGB565 color format.
-
-Usage:
-  python3 fix_sky_textures.py                  # Convert all air*.pvr
-  python3 fix_sky_textures.py air00.pvr        # Convert specific file(s)
+Supports color formats: ARGB1555, RGB565, ARGB4444.
 """
 
 import struct
-import sys
 import os
 from PIL import Image
 
 
 # Data format constants
 TWIDDLED = 0x01
+TWIDDLED_MM = 0x02
 RECTANGLE = 0x09
 TWIDDLED_RECT = 0x0D
 
@@ -29,6 +25,20 @@ TWIDDLED_RECT = 0x0D
 ARGB1555 = 0x00
 RGB565 = 0x01
 ARGB4444 = 0x02
+
+# Human-readable names
+DATA_FORMAT_NAMES = {
+    TWIDDLED: 'TWIDDLED',
+    TWIDDLED_MM: 'TWIDDLED_MM',
+    RECTANGLE: 'RECTANGLE',
+    TWIDDLED_RECT: 'TWIDDLED_RECT',
+}
+
+COLOR_FORMAT_NAMES = {
+    ARGB1555: 'ARGB1555',
+    RGB565: 'RGB565',
+    ARGB4444: 'ARGB4444',
+}
 
 
 def untwiddle_value(val):
@@ -89,15 +99,6 @@ def decode_color(v, color_format):
         return (255, 0, 255, 255)  # Magenta for unknown
 
 
-def read_pixels_linear(data, offset, count):
-    """Read count 16-bit little-endian values from data starting at offset."""
-    pixels = []
-    for i in range(count):
-        v = struct.unpack_from('<H', data, offset + i * 2)[0]
-        pixels.append(v)
-    return pixels
-
-
 def decode_rectangle(pixel_data, width, height, color_format):
     """Decode RECTANGLE format: linear pixel data, no twiddling."""
     img = Image.new('RGBA', (width, height))
@@ -124,7 +125,7 @@ def decode_twiddled_square(pixel_data, width, height, color_format):
 
 def decode_twiddled_rect(pixel_data, width, height, color_format):
     """Decode TWIDDLED_RECTANGLE format: N square tiles merged.
-    
+
     For wide textures (w > h): tiles of h×h placed left to right
     For tall textures (h > w): tiles of w×w placed top to bottom
     """
@@ -132,13 +133,12 @@ def decode_twiddled_rect(pixel_data, width, height, color_format):
     px = img.load()
 
     if width > height:
-        # Wide: N square tiles of height×height side by side
         tile_size = height
         num_tiles = width // tile_size
         tile_pixels = tile_size * tile_size
 
         for t in range(num_tiles):
-            tile_offset = t * tile_pixels * 2  # 2 bytes per pixel
+            tile_offset = t * tile_pixels * 2
             x_base = t * tile_size
             for y in range(tile_size):
                 for x in range(tile_size):
@@ -147,7 +147,6 @@ def decode_twiddled_rect(pixel_data, width, height, color_format):
                     px[x_base + x, y] = decode_color(v, color_format)
 
     elif height > width:
-        # Tall: N square tiles of width×width stacked vertically
         tile_size = width
         num_tiles = height // tile_size
         tile_pixels = tile_size * tile_size
@@ -162,17 +161,16 @@ def decode_twiddled_rect(pixel_data, width, height, color_format):
                     px[x, y_base + y] = decode_color(v, color_format)
 
     else:
-        # Square - just regular twiddled
         return decode_twiddled_square(pixel_data, width, height, color_format)
 
     return img
 
 
-def convert_pvr_to_png(pvr_path, png_path):
-    """Convert a PVR file to PNG."""
-    data = open(pvr_path, 'rb').read()
+def parse_pvr_header(data):
+    """Parse a PVR file and return (color_format, data_format, width, height, pixel_data).
 
-    # Parse header - check for GBIX wrapper
+    Handles both raw PVRT and GBIX-wrapped files.
+    """
     if data[:4] == b'GBIX':
         gbix_len = struct.unpack_from('<I', data, 4)[0]
         pvrt_offset = 8 + gbix_len
@@ -180,70 +178,59 @@ def convert_pvr_to_png(pvr_path, png_path):
     elif data[:4] == b'PVRT':
         pvrt = data
     else:
-        print(f"  ERROR: Unknown header in {os.path.basename(pvr_path)}")
-        return False
+        raise ValueError(f"Unknown PVR header: {data[:4]}")
 
-    # Parse PVRT header
-    length = struct.unpack_from('<I', pvrt, 4)[0]
     color_format = pvrt[8]
     data_format = pvrt[9]
     width = struct.unpack_from('<H', pvrt, 12)[0]
     height = struct.unpack_from('<H', pvrt, 14)[0]
     pixel_data = pvrt[16:]
 
-    fmt_names = {
-        TWIDDLED: 'TWIDDLED', RECTANGLE: 'RECTANGLE',
-        TWIDDLED_RECT: 'TWIDDLED_RECT'
-    }
-    fmt_name = fmt_names.get(data_format, f'0x{data_format:02x}')
-    print(f"  {os.path.basename(pvr_path)}: {width}x{height} {fmt_name}")
+    return color_format, data_format, width, height, pixel_data
 
-    # Decode based on format
+
+def decode_pvr(data):
+    """Decode PVR file data (bytes) into a PIL Image.
+
+    Returns (image, metadata_dict) where metadata contains format info.
+    """
+    color_format, data_format, width, height, pixel_data = parse_pvr_header(data)
+
+    fmt_name = DATA_FORMAT_NAMES.get(data_format, f'0x{data_format:02x}')
+    color_name = COLOR_FORMAT_NAMES.get(color_format, f'0x{color_format:02x}')
+
+    metadata = {
+        'width': width,
+        'height': height,
+        'data_format': data_format,
+        'data_format_name': fmt_name,
+        'color_format': color_format,
+        'color_format_name': color_name,
+    }
+
     if data_format == RECTANGLE:
         img = decode_rectangle(pixel_data, width, height, color_format)
     elif data_format == TWIDDLED_RECT:
         img = decode_twiddled_rect(pixel_data, width, height, color_format)
-    elif data_format == TWIDDLED:
+    elif data_format in (TWIDDLED, TWIDDLED_MM):
         img = decode_twiddled_square(pixel_data, width, height, color_format)
     else:
-        print(f"  ERROR: Unsupported data format 0x{data_format:02x}")
+        raise ValueError(f"Unsupported data format: 0x{data_format:02x}")
+
+    return img, metadata
+
+
+def convert_pvr_to_png(pvr_path, png_path):
+    """Convert a PVR file to PNG. Returns True on success."""
+    data = open(pvr_path, 'rb').read()
+
+    try:
+        img, meta = decode_pvr(data)
+    except ValueError as e:
+        print(f"  ERROR: {e} in {os.path.basename(pvr_path)}")
         return False
 
+    print(f"  {os.path.basename(pvr_path)}: {meta['width']}x{meta['height']} {meta['data_format_name']}")
     img.save(png_path)
     print(f"  -> {os.path.basename(png_path)}")
     return True
-
-
-def main():
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    project_dir = os.path.dirname(script_dir)
-    pvr_dir = os.path.join(os.path.dirname(project_dir),
-                           "Shenmue-Export-Tools", "extracted_tex")
-    png_dir = os.path.join(project_dir, "public", "textures", "sky")
-
-    if not os.path.isdir(pvr_dir):
-        print(f"PVR directory not found: {pvr_dir}")
-        print("Expected Shenmue-Export-Tools/extracted_tex alongside new-yokosuka")
-        sys.exit(1)
-
-    if len(sys.argv) > 1:
-        files = sys.argv[1:]
-    else:
-        files = sorted([f for f in os.listdir(pvr_dir) if f.startswith('air') and f.endswith('.pvr')])
-
-    print(f"Converting {len(files)} PVR files from {pvr_dir}")
-    print(f"Output to {png_dir}\n")
-
-    success = 0
-    for f in files:
-        pvr_path = f if os.path.isabs(f) else os.path.join(pvr_dir, f)
-        basename = os.path.splitext(os.path.basename(pvr_path))[0]
-        png_path = os.path.join(png_dir, basename + '.png')
-        if convert_pvr_to_png(pvr_path, png_path):
-            success += 1
-
-    print(f"\nConverted {success}/{len(files)} textures.")
-
-
-if __name__ == "__main__":
-    main()

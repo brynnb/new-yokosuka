@@ -20,7 +20,6 @@ export class Mt5Loader {
         const texOffset = reader.readUInt32();
         const modelOffset = reader.readUInt32();
 
-        console.log("[MT5] Loading Model...", { texOffset, modelOffset });
 
         this.textureCache.clear();
         this.globalVertices = [];
@@ -95,7 +94,6 @@ export class Mt5Loader {
             }
         }
 
-        console.log(`[MT5] Loaded ${nodes.length} nodes from MT5.`);
 
         return [modelRoot];
     }
@@ -178,7 +176,6 @@ export class Mt5Loader {
             reader.seek(model.vertexAddr);
 
             // Vertices are always 24 bytes: Pos(3xfloat32) + Norm(3xfloat32)
-            console.log(`[MT5] Reading ${model.nbVertex} vertices (24 bytes each) (flag: 0x${model.flag.toString(16)})`);
 
             for (let i = 0; i < model.nbVertex; i++) {
                 if (!reader.canRead(24)) break;
@@ -400,7 +397,6 @@ export class Mt5Loader {
                 }
             }
 
-            console.log(`[MT5] texGroup ${texId}: ${indices.length / 3} triangles, ${positions.length / 3} vertices`);
 
             if (indices.length > 0) {
                 // HEURISTIC: Skip geometry that lacks UV coordinates.
@@ -409,13 +405,11 @@ export class Mt5Loader {
                 // (like the 'white cylinders' or 'brown cylinders' reported by the user).
                 const groupHasUV = polys.some(p => p.hasUV);
                 if (!groupHasUV) {
-                    console.log(`[MT5] Hiding untextured collision/marker geometry (texId ${texId})`);
                     continue;
                 }
 
                 // If the texture is missing from the cache, we hide this geometry.
                 if (!this.textureCache.has(texId)) {
-                    console.log(`[MT5] Hiding non-textured geometry (texId ${texId})`);
                     continue;
                 }
 
@@ -444,7 +438,6 @@ export class Mt5Loader {
                 const hasGradientAlpha = tex._hasGradientAlpha === true;
                 const hasAnyAlpha = tex.hasAlpha === true;
 
-                console.log(`[MT5] texId ${texId}: hasGradientAlpha=${hasGradientAlpha}, hasAnyAlpha=${hasAnyAlpha}`);
 
                 if (hasGradientAlpha) {
                     // Frosted glass or other semi-transparent surface (ARGB4444)
@@ -476,7 +469,6 @@ export class Mt5Loader {
                     vd2.colors = colors;
                     vd2.applyToMesh(subMesh, true);
 
-                    console.log(`[MT5] Created double-sided glass mesh for texId ${texId} (${originalIndicesCount / 3} -> ${indices.length / 3} triangles)`);
                 } else if (hasAnyAlpha) {
                     // 1-bit alpha (punch-through transparency like fences, ARGB1555)
                     mat.diffuseTexture.hasAlpha = true;
@@ -512,7 +504,6 @@ export class Mt5Loader {
 
         const headerSize = reader.readUInt32();
         const nbTex = reader.readUInt32();
-        console.log(`[MT5] Reading ${nbTex} texture slots... (skipExisting=${skipExisting})`);
 
         const nameRequests = []; // Array of {id: Uint8Array, index: number}
         let texCounter = 0;
@@ -582,7 +573,6 @@ export class Mt5Loader {
 
         // Final step: Match IDs from the Scene Pack
         if (secondaryReader && nameRequests.length > 0) {
-            console.log(`[MT5] Resolving ${nameRequests.length} external IDs from pack (${secondaryReader.size} bytes)`);
             const secondaryView = new DataView(secondaryReader.buffer);
 
             let matchCount = 0;
@@ -592,10 +582,6 @@ export class Mt5Loader {
                 const reqLo = reqView.getUint32(4, true);
 
                 // Log the first few requests for debugging
-                if (reqIdx < 3) {
-                    const idHex = Array.from(req.id).map(b => b.toString(16).padStart(2, '0')).join('');
-                    console.log(`[MT5] Looking for ID: ${idHex} (slot ${req.index})`);
-                }
 
                 secondaryReader.seek(0);
                 let found = false;
@@ -628,12 +614,7 @@ export class Mt5Loader {
                     secondaryReader.skip(entryLen);
                 }
 
-                if (!found && reqIdx < 3) {
-                    const idHex = Array.from(req.id).map(b => b.toString(16).padStart(2, '0')).join('');
-                    console.warn(`[MT5] FAILED to find ID: ${idHex}`);
-                }
             });
-            console.log(`[MT5] Matched ${matchCount}/${nameRequests.length} textures`);
         }
     }
 }

@@ -49,9 +49,6 @@ function updateCameraSpeed(size) {
   if (speedDisplay) {
     speedDisplay.innerText = `${speedMultiplier.toFixed(1)}x`;
   }
-  console.log(
-    `[Viewer] Camera speed set to ${speedMultiplier.toFixed(1)}x for size ${size.toFixed(2)}`,
-  );
 }
 
 // Time-of-day presets with representative sky textures
@@ -114,32 +111,69 @@ async function fetchAsset(filename) {
   const localPath = isModelIndex ? `/${filename}` : `/models/${filename}`;
   const r2Path = R2_URL ? `${R2_URL}/${R2_PREFIX}/${filename}` : null;
 
-  // IF OFFLINE_MODE is false, we try R2 FIRST to verify the cloud sync
-  if (!OFFLINE_MODE && r2Path) {
-    console.log(`[Viewer] Trying R2 source for ${filename}: ${r2Path}`);
+  // Helper: verify response is actually the expected type (not an HTML SPA fallback)
+  function isValidResponse(res, forFilename) {
+    if (!res.ok) return false;
+    const ct = res.headers.get("content-type") || "";
+    // If we requested a binary file but got HTML back, Vite is serving the SPA fallback
+    if (!forFilename.endsWith(".json") && ct.includes("text/html")) return false;
+    return true;
+  }
+
+  if (OFFLINE_MODE) {
+    // Offline: try local FIRST, fall back to R2
     try {
-      const r2Res = await fetch(r2Path);
-      if (r2Res.ok) return r2Res;
+      const localRes = await fetch(localPath);
+      if (isValidResponse(localRes, filename)) return localRes;
       console.warn(
-        `[Viewer] R2 fetch failed (${r2Res.status}) for: ${r2Path}, falling back to local.`,
+        `[Viewer] Local file not found for: ${localPath}, trying R2 fallback...`,
       );
     } catch (e) {
       console.warn(
-        `[Viewer] R2 fetch network error for ${r2Path}, falling back to local:`,
+        `[Viewer] Local fetch error for ${localPath}, trying R2 fallback:`,
         e,
       );
     }
-  }
 
-  // fallback to local
-  try {
-    const localRes = await fetch(localPath);
-    if (localRes.ok) return localRes;
-    console.error(
-      `[Viewer] Local fetch also failed (${localRes.status}) for: ${localPath}`,
-    );
-  } catch (e) {
-    console.error(`[Viewer] Local fetch network error for ${localPath}:`, e);
+    // Fall back to R2 even in offline mode
+    if (r2Path) {
+      try {
+        const r2Res = await fetch(r2Path);
+        if (r2Res.ok) return r2Res;
+      } catch (e) {
+        // R2 also failed
+      }
+    }
+  } else {
+    // Online: try R2 FIRST to verify the cloud sync
+    if (r2Path) {
+      try {
+        const r2Res = await fetch(r2Path);
+        if (r2Res.ok) return r2Res;
+        console.warn(
+          `[Viewer] R2 fetch failed (${r2Res.status}) for: ${r2Path}, falling back to local.`,
+        );
+      } catch (e) {
+        console.warn(
+          `[Viewer] R2 fetch network error for ${r2Path}, falling back to local:`,
+          e,
+        );
+      }
+    }
+
+    // Fall back to local
+    try {
+      const localRes = await fetch(localPath);
+      if (isValidResponse(localRes, filename)) return localRes;
+      console.error(
+        `[Viewer] Local fetch failed for: ${localPath} (missing or HTML fallback)`,
+      );
+    } catch (e) {
+      console.error(
+        `[Viewer] Local fetch network error for ${localPath}:`,
+        e,
+      );
+    }
   }
 
   throw new Error(
@@ -411,10 +445,10 @@ async function loadCatalog() {
       .sort();
     mt5Files = files;
 
-    // Disc-based Organization Logic
+    // Scenario-based Organization Logic
     const hierarchy = {
-      s1: { title: "💽 Disc 1 (Scenario 01)", groups: {} },
-      s2: { title: "💽 Disc 2 (Scenario 02)", groups: {} },
+      s1: { title: "💽 Scenario 1 (Yokosuka)", groups: {} },
+      s2: { title: "💽 Scenario 2 (Harbor)", groups: {} },
       global: { title: "🌍 Global Library", groups: {} },
     };
 
@@ -626,10 +660,6 @@ async function loadScene(prefix) {
 
     // Detect if this is an interior scene (affects sky visibility)
     isInteriorScene = detectInteriorScene(size);
-    console.log(
-      `[Viewer] Scene type: ${isInteriorScene ? "Interior" : "Exterior"} (Size: ${size.toFixed(2)})`,
-    );
-
     // Adjust camera speed based on scene size
     updateCameraSpeed(size);
 
@@ -678,9 +708,6 @@ async function getTexturePack(filename, timeIndex = null) {
       if (response.ok) {
         timeBuffer = await response.arrayBuffer();
         texturePacks.set(timePackName, timeBuffer);
-        console.log(
-          `[Viewer] Loaded time-variant texture pack: ${timePackName}`,
-        );
       } else {
         texturePacks.set(timePackName, null);
         timeBuffer = null;
@@ -700,7 +727,6 @@ async function getTexturePack(filename, timeIndex = null) {
       if (response.ok) {
         baseBuffer = await response.arrayBuffer();
         texturePacks.set(basePackName, baseBuffer);
-        console.log(`[Viewer] Loaded base texture pack: ${basePackName}`);
       } else {
         texturePacks.set(basePackName, null);
         baseBuffer = null;
@@ -773,9 +799,6 @@ async function loadModelFromUrl(filename, element) {
 
       // Detect if this is an interior scene (affects sky visibility)
       isInteriorScene = detectInteriorScene(size);
-      console.log(
-        `[Viewer] Scene type: ${isInteriorScene ? "Interior" : "Exterior"} (Size: ${size.toFixed(2)})`,
-      );
 
       // Adjust camera speed based on model size
       updateCameraSpeed(size);
@@ -826,9 +849,6 @@ function fitCameraToMeshes(meshes) {
   if (size >= 5 && size < 50) {
     scene.activeCamera.position = new BABYLON.Vector3(-10, 10, 10);
     scene.activeCamera.setTarget(center);
-    console.log(
-      `[Viewer] Placing camera AT (-10,10,10) for size ${size.toFixed(2)}`,
-    );
   } else {
     // Position camera at a distance from the center, looking at it
     // 3x closer for models under 100 (0.5 multiplier instead of 1.5)
@@ -1200,7 +1220,6 @@ function updateModelVisibility() {
   if (!loader.scene) return;
 
   const preset = timeOfDayPresets[currentTimeOfDay];
-  console.log(`[Viewer] Time of day: ${preset.name} - showing all meshes`);
 
   // Show all meshes - time-of-day is cosmetic (sky/colors only)
   currentMeshes.forEach((mesh) => mesh.setEnabled(true));
@@ -1299,9 +1318,6 @@ if (skyBtn) {
 
     // Reload scene with new time-of-day textures if a scene is loaded
     if (currentScenePrefix) {
-      console.log(
-        `[Viewer] Reloading scene ${currentScenePrefix} with time index ${currentTimeOfDay}`,
-      );
       await loadScene(currentScenePrefix);
     }
   };
