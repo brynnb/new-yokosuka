@@ -458,37 +458,37 @@ export class Mt5Loader {
                     mat.diffuseTexture.hasAlpha = true;
                     mat.useAlphaFromDiffuseTexture = true;
                     mat.transparencyMode = BABYLON.StandardMaterial.MATERIAL_ALPHABLEND;
+
+                    // Sorting Fixes: 
+                    // 1. DISABLE depth pre-pass. It's meant for single objects but breaks
+                    //    overlapping transparency by writing to depth and blocking things behind.
+                    mat.needDepthPrePass = false;
+
+                    // 2. Enable separate culling pass. This renders backfaces then frontfaces.
+                    //    This solves the 'internal' sorting of the glass without blocking the 'external' world.
+                    mat.separateCullingPass = true;
                     mat.backFaceCulling = false;
                     mat.twoSidedLighting = true;
-                    // Use depth pre-pass: this renders depth first, then color
-                    // Allows interior to be visible through glass
-                    mat.needDepthPrePass = true;
-                    mat.alpha = 1.0;
-                    subMesh.alphaIndex = 100; // Render after opaque (alphaIndex 0)
 
-                    // CRITICAL FIX: Duplicate all triangles with reversed winding
-                    // This guarantees visibility from both sides regardless of original winding
-                    const originalIndicesCount = indices.length;
-                    for (let i = 0; i < originalIndicesCount; i += 3) {
-                        // Add reverse-wound copy of each triangle
-                        indices.push(indices[i], indices[i + 2], indices[i + 1]);
-                    }
-
-                    // Re-apply the modified vertex data with doubled triangles
-                    const vd2 = new BABYLON.VertexData();
-                    vd2.positions = positions;
-                    vd2.normals = normals;
-                    vd2.uvs = uvs;
-                    vd2.indices = indices;
-                    vd2.colors = colors;
-                    vd2.applyToMesh(subMesh, true);
+                    // ADJUST TRANSPARENCY HERE (0.0 = invisible, 1.0 = texture default)
+                    mat.alpha = 0.7;
+                    subMesh.alphaIndex = 1000; // Render far after opaque world
 
                 } else if (hasAnyAlpha) {
-                    // 1-bit alpha (punch-through transparency like fences, ARGB1555)
+                    // 1-bit alpha (punch-through transparency like fences, graffiti, ARGB1555)
                     mat.diffuseTexture.hasAlpha = true;
                     mat.useAlphaFromDiffuseTexture = true;
-                    mat.transparencyMode = BABYLON.StandardMaterial.MATERIAL_ALPHATEST;
+                    mat.transparencyMode = BABYLON.StandardMaterial.MATERIAL_ALPHATESTANDBLEND;
                     mat.alphaCutOff = 0.5;
+                    mat.backFaceCulling = false;
+                    mat.twoSidedLighting = true;
+
+                    // Restore full visibility for detail decals
+                    mat.alpha = 1.0;
+                    // Prevent z-fighting with the wall behind the graffiti
+                    mat.zOffset = -1.0;
+
+                    subMesh.alphaIndex = 500; // Render between opaque and blended
                 } else {
                     // Fully opaque solid part (RGB565 - no alpha at all)
                     mat.diffuseTexture.hasAlpha = false;
@@ -502,7 +502,7 @@ export class Mt5Loader {
                 // Only enable vertex alpha for transparent surfaces
                 // Vertex alpha being used for opaque surfaces makes them black
                 subMesh.visibility = 1.0;
-                if (mat.transparencyMode === BABYLON.StandardMaterial.MATERIAL_ALPHABLEND) {
+                if (mat.transparencyMode !== BABYLON.StandardMaterial.MATERIAL_OPAQUE) {
                     subMesh.hasVertexAlpha = true;
                 } else {
                     subMesh.hasVertexAlpha = false;

@@ -1031,13 +1031,66 @@ document.getElementById("export-glb-btn").onclick = async (e) => {
         const std = reverseMap.get(mesh.material);
         mesh.material = std;
         // Dispose the temporary PBR material
-        mesh.material.onDisposeObservable.addOnce(() => {}); // Dummy to keep referenced
+        mesh.material.onDisposeObservable.addOnce(() => { }); // Dummy to keep referenced
       }
     });
     originalMaterials.forEach((pbr) => pbr.dispose());
     setStatus(`Exported ${exportName}`);
   } catch (err) {
     console.error("GLB Export failed", err);
+    setStatus("Export Error: " + err.message);
+  }
+};
+
+document.getElementById("export-full-obj-btn").onclick = (e) => {
+  e.stopPropagation();
+  exportModal.classList.add("hidden");
+  if (currentMeshes.length === 0) {
+    setStatus("Error: No model loaded to export");
+    return;
+  }
+
+  const filename = currentMeshes[0]._filename || "model.obj";
+  const exportBase = filename
+    .split("/")
+    .pop()
+    .replace(".MT5", "")
+    .replace(".mt5", "");
+
+  setStatus(`Exporting ${exportBase} (Full)...`, true);
+  try {
+    const uniqueMeshes = getExportMeshes();
+    if (uniqueMeshes.length === 0) {
+      setStatus("Error: No exportable geometry found");
+      return;
+    }
+
+    // 1. Export OBJ
+    const objContent = OBJExport.OBJ(
+      uniqueMeshes,
+      true,
+      exportBase + ".mtl",
+      true,
+    );
+    downloadFile(objContent, exportBase + ".obj");
+
+    // 2. Export MTL
+    let mtlContent = "";
+    const processedMaterials = new Set();
+    uniqueMeshes.forEach((m) => {
+      if (m.material && !processedMaterials.has(m.material)) {
+        mtlContent += OBJExport.MTL(m) + "\n";
+        processedMaterials.add(m.material);
+      }
+    });
+
+    if (mtlContent) {
+      downloadFile(mtlContent, exportBase + ".mtl");
+    }
+
+    setStatus(`Exported ${exportBase} OBJ + MTL`);
+  } catch (err) {
+    console.error("Full OBJ Export failed", err);
     setStatus("Export Error: " + err.message);
   }
 };

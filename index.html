@@ -1,776 +1,766 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/gif" href="/favicon.gif" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>New Yokosuka - Shenmue Asset Viewer</title>
-    <style>
-      * {
-        box-sizing: border-box;
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/gif" href="/favicon.gif" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Yokosuka - Shenmue Asset Viewer</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      overflow-x: hidden;
+      background-color: #0d0d12;
+      font-family:
+        "Inter",
+        system-ui,
+        -apple-system,
+        sans-serif;
+      color: white;
+      display: flex;
+    }
+
+    #renderCanvas {
+      width: 100%;
+      height: 100%;
+      touch-action: none;
+      display: block;
+      outline: none;
+    }
+
+    #sidebar {
+      width: 375px;
+      min-width: 375px;
+      flex-shrink: 0;
+      height: 100vh;
+      background: #16161d;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      z-index: 10;
+    }
+
+    #sidebar-header {
+      padding: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    h1 {
+      margin: 0 0 5px 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      background: linear-gradient(90deg, #ff8a00, #e52e71);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 0.75rem;
+      opacity: 0.5;
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+
+    #model-list {
+      flex-grow: 1;
+      overflow-y: auto;
+      min-height: 0;
+      padding: 10px;
+      list-style: none;
+      margin: 0;
+    }
+
+    #model-list::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    #model-list::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+    }
+
+    .model-row {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 5px;
+      padding: 0;
+    }
+
+    .model-item {
+      flex-grow: 1;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .model-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .model-item.active {
+      background: rgba(255, 138, 0, 0.15);
+      border-color: #ff8a00;
+      color: #ff8a00;
+    }
+
+    .scene-btn {
+      padding: 0 10px;
+      background: #e52e71;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .scene-btn:hover {
+      background: #ff2e81;
+      transform: translateY(-1px);
+    }
+
+    .scene-btn:active {
+      transform: translateY(0);
+    }
+
+    .nav-controls {
+      display: flex;
+      gap: 5px;
+    }
+
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      border-radius: 4px;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-btn:active {
+      transform: scale(0.95);
+    }
+
+    #status-bar {
+      padding: 12px 20px;
+      font-size: 0.75rem;
+      background: #0d0d12;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #888;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+    }
+
+    #status-bar.loading {
+      background: #1a1a24;
+      color: #ff8a00;
+    }
+
+    .spinner {
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(255, 138, 0, 0.2);
+      border-top: 2px solid #ff8a00;
+      border-radius: 50%;
+      display: none;
+      animation: spin 0.8s linear infinite;
+    }
+
+    #status-bar.loading .spinner {
+      display: block;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
       }
 
-      html {
-        overflow-x: hidden;
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .spinner-large {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      width: 80px;
+      height: 80px;
+      border: 6px solid rgba(255, 138, 0, 0.1);
+      border-top: 6px solid #ff8a00;
+      border-radius: 50%;
+      display: none;
+      animation: spin 1s linear infinite;
+      z-index: 100;
+      filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.5));
+    }
+
+    .loading-active .spinner-large {
+      display: block;
+    }
+
+    /* Model Grouping Styles */
+    .model-group {
+      margin-bottom: 5px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .group-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #ccc;
+      transition: all 0.2s;
+    }
+
+    .group-header:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    .group-header::before {
+      content: "▸";
+      margin-right: 8px;
+      transition: transform 0.2s;
+      display: inline-block;
+      font-size: 0.7rem;
+    }
+
+    .group-header.expanded::before {
+      transform: rotate(90deg);
+    }
+
+    .group-header.expanded {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      color: #ff8a00;
+      background: rgba(255, 138, 0, 0.05);
+    }
+
+    .group-header span {
+      flex-grow: 1;
+    }
+
+    .group-items {
+      list-style: none;
+      padding: 0 0 0 15px;
+      margin: 0;
+      background: rgba(0, 0, 0, 0.2);
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+
+    .group-items .model-item {
+      background: transparent;
+      border-radius: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      padding: 6px 10px;
+      font-size: 0.75rem;
+    }
+
+    .group-items .model-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Category Grouping Styles */
+    .category-group {
+      margin-bottom: 15px;
+    }
+
+    .category-header {
+      padding: 10px;
+      background: #1d1d26;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 0.9rem;
+      color: #ff8a00;
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+      border-left: 3px solid #ff8a00;
+    }
+
+    .category-header:hover {
+      background: #252530;
+    }
+
+    .category-header::before {
+      content: "▸";
+      margin-right: 10px;
+      transition: transform 0.2s;
+      display: inline-block;
+    }
+
+    .category-header.expanded::before {
+      transform: rotate(90deg);
+    }
+
+    .category-header.expanded {
+      background: #2d2d3a;
+    }
+
+    .category-content {
+      padding-left: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    /* Controls Overlay */
+    #controls-overlay {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 15px;
+      padding: 10px 20px;
+      background: rgba(22, 22, 29, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      z-index: 100;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .control-hint {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.8);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .control-hint kbd {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+      padding: 2px 6px;
+      min-width: 14px;
+      text-align: center;
+      color: #ff8a00;
+      font-family: inherit;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+      font-size: 0.7rem;
+    }
+
+    .control-hint span {
+      opacity: 0.6;
+    }
+
+    /* Modal Styles */
+    #welcome-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      transition: opacity 0.4s ease;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 40px 0;
+    }
+
+    #welcome-modal.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #mobile-warning-modal,
+    #firefox-warning-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1001;
+      transition: opacity 0.4s ease;
+    }
+
+    #mobile-warning-modal.hidden,
+    #firefox-warning-modal.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #mobile-warning-modal .modal-body,
+    #firefox-warning-modal .modal-body {
+      width: 100%;
+    }
+
+    .modal-content {
+      background: #16161d;
+      width: 95%;
+      max-width: 1000px;
+      max-height: 90vh;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      animation: modalSlide 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-main {
+      display: flex;
+      flex-direction: row;
+    }
+
+    @keyframes modalSlide {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
       }
 
-      body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100vh;
-        overflow: hidden;
-        overflow-x: hidden;
-        background-color: #0d0d12;
-        font-family:
-          "Inter",
-          system-ui,
-          -apple-system,
-          sans-serif;
-        color: white;
-        display: flex;
-      }
-
-      #renderCanvas {
-        width: 100%;
-        height: 100%;
-        touch-action: none;
-        display: block;
-        outline: none;
-      }
-
-      #sidebar {
-        width: 375px;
-        min-width: 375px;
-        flex-shrink: 0;
-        height: 100vh;
-        background: #16161d;
-        border-right: 1px solid rgba(255, 255, 255, 0.1);
-        display: flex;
-        flex-direction: column;
-        z-index: 10;
-      }
-
-      #sidebar-header {
-        padding: 20px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      h1 {
-        margin: 0 0 5px 0;
-        font-size: 1.1rem;
-        font-weight: 600;
-        background: linear-gradient(90deg, #ff8a00, #e52e71);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .subtitle {
-        font-size: 0.75rem;
-        opacity: 0.5;
-        margin-bottom: 0;
-        margin-top: 0;
-      }
-
-      #model-list {
-        flex-grow: 1;
-        overflow-y: auto;
-        min-height: 0;
-        padding: 10px;
-        list-style: none;
-        margin: 0;
-      }
-
-      #model-list::-webkit-scrollbar {
-        width: 6px;
-      }
-
-      #model-list::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 3px;
-      }
-
-      .model-row {
-        display: flex;
-        gap: 5px;
-        margin-bottom: 5px;
-        padding: 0;
-      }
-
-      .model-item {
-        flex-grow: 1;
-        padding: 8px 12px;
-        background: rgba(255, 255, 255, 0.03);
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 0.8rem;
-        transition: all 0.2s;
-        border: 1px solid transparent;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      .model-item:hover {
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(255, 255, 255, 0.1);
-      }
-
-      .model-item.active {
-        background: rgba(255, 138, 0, 0.15);
-        border-color: #ff8a00;
-        color: #ff8a00;
-      }
-
-      .scene-btn {
-        padding: 0 10px;
-        background: #e52e71;
-        border: none;
-        border-radius: 6px;
-        color: white;
-        font-size: 0.7rem;
-        font-weight: 600;
-        cursor: pointer;
-        white-space: nowrap;
-        transition: all 0.2s;
-      }
-
-      .scene-btn:hover {
-        background: #ff2e81;
-        transform: translateY(-1px);
-      }
-
-      .scene-btn:active {
+      to {
         transform: translateY(0);
+        opacity: 1;
       }
+    }
 
-      .nav-controls {
-        display: flex;
-        gap: 5px;
-      }
+    .modal-image-container {
+      width: 45%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-top-left-radius: 20px;
+      overflow: hidden;
+    }
 
-      .nav-btn {
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        color: white;
-        border-radius: 4px;
-        width: 32px;
-        height: 32px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        transition: all 0.2s;
-      }
+    .modal-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
 
-      .nav-btn:hover {
-        background: rgba(255, 255, 255, 0.2);
-      }
+    .modal-body {
+      width: 55%;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
 
-      .nav-btn:active {
-        transform: scale(0.95);
-      }
-
-      #status-bar {
-        padding: 12px 20px;
-        font-size: 0.75rem;
-        background: #0d0d12;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        color: #888;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        transition: all 0.3s ease;
-      }
-
-      #status-bar.loading {
-        background: #1a1a24;
-        color: #ff8a00;
-      }
-
-      .spinner {
-        width: 14px;
-        height: 14px;
-        border: 2px solid rgba(255, 138, 0, 0.2);
-        border-top: 2px solid #ff8a00;
-        border-radius: 50%;
-        display: none;
-        animation: spin 0.8s linear infinite;
-      }
-
-      #status-bar.loading .spinner {
-        display: block;
-      }
-
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-
-      .spinner-large {
-        position: absolute;
-        bottom: 30px;
-        right: 30px;
-        width: 80px;
-        height: 80px;
-        border: 6px solid rgba(255, 138, 0, 0.1);
-        border-top: 6px solid #ff8a00;
-        border-radius: 50%;
-        display: none;
-        animation: spin 1s linear infinite;
-        z-index: 100;
-        filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.5));
-      }
-
-      .loading-active .spinner-large {
-        display: block;
-      }
-
-      /* Model Grouping Styles */
-      .model-group {
-        margin-bottom: 5px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      }
-
-      .group-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 8px 12px;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: #ccc;
-        transition: all 0.2s;
-      }
-
-      .group-header:hover {
-        background: rgba(255, 255, 255, 0.1);
-        color: white;
-      }
-
-      .group-header::before {
-        content: "▸";
-        margin-right: 8px;
-        transition: transform 0.2s;
-        display: inline-block;
-        font-size: 0.7rem;
-      }
-
-      .group-header.expanded::before {
-        transform: rotate(90deg);
-      }
-
-      .group-header.expanded {
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-        color: #ff8a00;
-        background: rgba(255, 138, 0, 0.05);
-      }
-
-      .group-header span {
-        flex-grow: 1;
-      }
-
-      .group-items {
-        list-style: none;
-        padding: 0 0 0 15px;
-        margin: 0;
-        background: rgba(0, 0, 0, 0.2);
-        border-bottom-left-radius: 6px;
-        border-bottom-right-radius: 6px;
-      }
-
-      .group-items .model-item {
-        background: transparent;
-        border-radius: 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-        padding: 6px 10px;
-        font-size: 0.75rem;
-      }
-
-      .group-items .model-item:hover {
-        background: rgba(255, 255, 255, 0.05);
-      }
-
-      .hidden {
-        display: none !important;
-      }
-
-      /* Category Grouping Styles */
-      .category-group {
-        margin-bottom: 15px;
-      }
-
-      .category-header {
-        padding: 10px;
-        background: #1d1d26;
-        border-radius: 4px;
-        cursor: pointer;
-        font-weight: bold;
-        font-size: 0.9rem;
-        color: #ff8a00;
-        display: flex;
-        align-items: center;
-        margin-bottom: 5px;
-        border-left: 3px solid #ff8a00;
-      }
-
-      .category-header:hover {
-        background: #252530;
-      }
-
-      .category-header::before {
-        content: "▸";
-        margin-right: 10px;
-        transition: transform 0.2s;
-        display: inline-block;
-      }
-
-      .category-header.expanded::before {
-        transform: rotate(90deg);
-      }
-
-      .category-header.expanded {
-        background: #2d2d3a;
-      }
-
-      .category-content {
-        padding-left: 10px;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-      }
-
-      /* Controls Overlay */
-      #controls-overlay {
-        position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 15px;
-        padding: 10px 20px;
-        background: rgba(22, 22, 29, 0.7);
-        backdrop-filter: blur(10px);
-        border-radius: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        z-index: 100;
-        pointer-events: none;
-        transition: opacity 0.3s;
-      }
-
-      .control-hint {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 0.75rem;
-        font-weight: 500;
-        color: rgba(255, 255, 255, 0.8);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      }
-
-      .control-hint kbd {
-        background: rgba(255, 255, 255, 0.15);
-        border-radius: 4px;
-        padding: 2px 6px;
-        min-width: 14px;
-        text-align: center;
-        color: #ff8a00;
-        font-family: inherit;
-        border-bottom: 2px solid rgba(0, 0, 0, 0.3);
-        font-size: 0.7rem;
-      }
-
-      .control-hint span {
-        opacity: 0.6;
-      }
-
-      /* Modal Styles */
+    @media (max-width: 850px) {
       #welcome-modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.85);
-        backdrop-filter: blur(8px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-        transition: opacity 0.4s ease;
-        overflow-y: auto;
-        overflow-x: hidden;
-        padding: 40px 0;
-      }
-
-      #welcome-modal.hidden {
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      #mobile-warning-modal,
-      #firefox-warning-modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.85);
-        backdrop-filter: blur(8px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1001;
-        transition: opacity 0.4s ease;
-      }
-
-      #mobile-warning-modal.hidden,
-      #firefox-warning-modal.hidden {
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      #mobile-warning-modal .modal-body,
-      #firefox-warning-modal .modal-body {
-        width: 100%;
+        align-items: flex-start;
+        padding: 20px 0;
       }
 
       .modal-content {
-        background: #16161d;
-        width: 95%;
-        max-width: 1000px;
-        max-height: 90vh;
-        border-radius: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        overflow-y: auto;
-        position: relative;
-        box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
-        display: flex;
-        flex-direction: column;
-        animation: modalSlide 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        max-height: none;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 0;
+        overflow: hidden;
+        flex-shrink: 0;
+        margin-bottom: 0;
+        border: none;
       }
 
       .modal-main {
-        display: flex;
-        flex-direction: row;
-      }
-
-      @keyframes modalSlide {
-        from {
-          transform: translateY(20px);
-          opacity: 0;
-        }
-
-        to {
-          transform: translateY(0);
-          opacity: 1;
-        }
+        flex-direction: column;
       }
 
       .modal-image-container {
-        width: 45%;
-        background: #ffffff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-top-left-radius: 20px;
-        overflow: hidden;
+        width: 100%;
+        height: 200px;
+        border-top-right-radius: 20px;
       }
 
       .modal-image {
         width: 100%;
         height: 100%;
-        object-fit: contain;
-        display: block;
       }
 
       .modal-body {
-        width: 55%;
-        padding: 40px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-
-      @media (max-width: 850px) {
-        #welcome-modal {
-          align-items: flex-start;
-          padding: 20px 0;
-        }
-
-        .modal-content {
-          max-height: none;
-          width: 100%;
-          max-width: 100%;
-          border-radius: 0;
-          overflow: hidden;
-          flex-shrink: 0;
-          margin-bottom: 0;
-          border: none;
-        }
-
-        .modal-main {
-          flex-direction: column;
-        }
-
-        .modal-image-container {
-          width: 100%;
-          height: 200px;
-          border-top-right-radius: 20px;
-        }
-
-        .modal-image {
-          width: 100%;
-          height: 100%;
-        }
-
-        .modal-body {
-          width: 100%;
-          padding: 30px;
-        }
-      }
-
-      .modal-body h2 {
-        margin-top: 0;
-        font-size: 1.5rem;
-        background: linear-gradient(90deg, #ff8a00, #e52e71);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .modal-body p {
-        line-height: 1.6;
-        font-size: 0.95rem;
-        color: #ccc;
-        margin-bottom: 20px;
-      }
-
-      .modal-body a {
-        color: #ff8a00;
-        text-decoration: none;
-        transition: color 0.2s;
-      }
-
-      .modal-body a:hover {
-        color: #e52e71;
-        text-decoration: underline;
-      }
-
-      .modal-footer {
-        padding: 20px 30px;
-        background: rgba(0, 0, 0, 0.2);
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-        font-size: 0.75rem;
-        color: #666;
-        line-height: 1.4;
-      }
-
-      .close-modal-btn {
-        margin-top: 10px;
-        padding: 12px 24px;
-        background: linear-gradient(90deg, #ff8a00, #e52e71);
-        border: none;
-        border-radius: 8px;
-        color: white;
-        font-weight: 600;
-        cursor: pointer;
         width: 100%;
-        transition:
-          transform 0.2s,
-          filter 0.2s;
+        padding: 30px;
+      }
+    }
+
+    .modal-body h2 {
+      margin-top: 0;
+      font-size: 1.5rem;
+      background: linear-gradient(90deg, #ff8a00, #e52e71);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .modal-body p {
+      line-height: 1.6;
+      font-size: 0.95rem;
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+
+    .modal-body a {
+      color: #ff8a00;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .modal-body a:hover {
+      color: #e52e71;
+      text-decoration: underline;
+    }
+
+    .modal-footer {
+      padding: 20px 30px;
+      background: rgba(0, 0, 0, 0.2);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.75rem;
+      color: #666;
+      line-height: 1.4;
+    }
+
+    .close-modal-btn {
+      margin-top: 10px;
+      padding: 12px 24px;
+      background: linear-gradient(90deg, #ff8a00, #e52e71);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition:
+        transform 0.2s,
+        filter 0.2s;
+    }
+
+    .close-modal-btn:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
+
+    .github-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      font-weight: 600;
+    }
+
+    #select-model-prompt {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 1.2rem;
+      font-weight: 500;
+      pointer-events: none;
+      z-index: 50;
+    }
+
+    #select-model-prompt.hidden {
+      display: none;
+    }
+
+    /* Floating Export Button */
+    #export-fab {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background: rgba(22, 22, 29, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      z-index: 150;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    #export-fab:hover {
+      background: rgba(45, 45, 60, 0.9);
+      transform: translateY(-2px);
+      border-color: #ff8a00;
+    }
+
+    #export-options-modal {
+      position: absolute;
+      bottom: 70px;
+      left: 20px;
+      background: rgba(22, 22, 29, 0.95);
+      backdrop-filter: blur(15px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 200;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      min-width: 220px;
+      animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes modalSlideUp {
+      from {
+        transform: translateY(10px);
+        opacity: 0;
       }
 
-      .close-modal-btn:hover {
-        filter: brightness(1.1);
-        transform: translateY(-1px);
+      to {
+        transform: translateY(0);
+        opacity: 1;
       }
+    }
 
-      .github-link {
-        display: block;
-        text-align: center;
-        margin-top: 20px;
-        font-weight: 600;
-      }
+    .export-option-btn {
+      padding: 10px 15px;
+      border-radius: 8px;
+      border: none;
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
 
-      #select-model-prompt {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        color: rgba(255, 255, 255, 0.5);
-        font-size: 1.2rem;
-        font-weight: 500;
-        pointer-events: none;
-        z-index: 50;
-      }
+    .export-option-btn.glb {
+      background: linear-gradient(90deg, #ff8a00, #e52d27);
+    }
 
-      #select-model-prompt.hidden {
-        display: none;
-      }
+    .export-option-btn.obj {
+      background: linear-gradient(90deg, #2193b0, #6dd5ed);
+    }
 
-      /* Floating Export Button */
-      #export-fab {
-        position: absolute;
-        bottom: 20px;
-        left: 20px;
-        padding: 10px 20px;
-        background: rgba(22, 22, 29, 0.8);
-        backdrop-filter: blur(10px);
-        border-radius: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: white;
-        font-size: 0.8rem;
-        font-weight: 600;
-        cursor: pointer;
-        z-index: 150;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        transition: all 0.2s;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      }
+    .export-option-btn.mtl {
+      background: linear-gradient(90deg, #7b1fa2, #9c27b0);
+    }
 
-      #export-fab:hover {
-        background: rgba(45, 45, 60, 0.9);
-        transform: translateY(-2px);
-        border-color: #ff8a00;
-      }
+    .export-option-btn.stl {
+      background: linear-gradient(90deg, #373331, #4b4453);
+    }
 
-      #export-options-modal {
-        position: absolute;
-        bottom: 70px;
-        left: 20px;
-        background: rgba(22, 22, 29, 0.95);
-        backdrop-filter: blur(15px);
-        border-radius: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 15px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        z-index: 200;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-        min-width: 220px;
-        animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      }
+    .export-option-btn.usdz {
+      background: linear-gradient(90deg, #ee0979, #ff6a00);
+    }
 
-      @keyframes modalSlideUp {
-        from {
-          transform: translateY(10px);
-          opacity: 0;
-        }
+    .export-option-btn.babylon {
+      background: linear-gradient(90deg, #00b09b, #96c93d);
+    }
 
-        to {
-          transform: translateY(0);
-          opacity: 1;
-        }
-      }
+    .export-option-btn:hover {
+      filter: brightness(1.1);
+      transform: translateX(5px);
+    }
+  </style>
+</head>
 
-      .export-option-btn {
-        padding: 10px 15px;
-        border-radius: 8px;
-        border: none;
-        color: white;
-        font-size: 0.8rem;
-        font-weight: 600;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        transition: all 0.2s;
-      }
-
-      .export-option-btn.glb {
-        background: linear-gradient(90deg, #ff8a00, #e52d27);
-      }
-
-      .export-option-btn.obj {
-        background: linear-gradient(90deg, #2193b0, #6dd5ed);
-      }
-
-      .export-option-btn.mtl {
-        background: linear-gradient(90deg, #7b1fa2, #9c27b0);
-      }
-
-      .export-option-btn.stl {
-        background: linear-gradient(90deg, #373331, #4b4453);
-      }
-
-      .export-option-btn.usdz {
-        background: linear-gradient(90deg, #ee0979, #ff6a00);
-      }
-
-      .export-option-btn.babylon {
-        background: linear-gradient(90deg, #00b09b, #96c93d);
-      }
-
-      .export-option-btn:hover {
-        filter: brightness(1.1);
-        transform: translateX(5px);
-      }
-    </style>
-  </head>
-
-  <body>
-    <div id="sidebar">
-      <div id="sidebar-header">
-        <div
-          style="
+<body>
+  <div id="sidebar">
+    <div id="sidebar-header">
+      <div style="
             display: flex;
             justify-content: space-between;
             align-items: center;
-          "
-        >
-          <h1>Shenmue Asset Viewer</h1>
-          <div class="nav-controls">
-            <button class="nav-btn" id="prev-btn" title="Previous (Up Arrow)">
-              ↑
-            </button>
-            <button class="nav-btn" id="next-btn" title="Next (Down Arrow)">
-              ↓
-            </button>
-          </div>
-        </div>
-        <p class="subtitle">Extracted .MT5 Models</p>
-        <div style="display: flex; gap: 5px; margin-top: 10px">
-          <button
-            class="scene-btn"
-            id="sky-btn"
-            style="flex-grow: 1; height: 32px; background: #444"
-          >
-            Time: Day
+          ">
+        <h1>Shenmue Asset Viewer</h1>
+        <div class="nav-controls">
+          <button class="nav-btn" id="prev-btn" title="Previous (Up Arrow)">
+            ↑
+          </button>
+          <button class="nav-btn" id="next-btn" title="Next (Down Arrow)">
+            ↓
           </button>
         </div>
       </div>
-      <ul id="model-list">
-        <!-- Models will be loaded here -->
-      </ul>
-      <div id="status-bar">
-        <div class="spinner"></div>
-        <div>Status: <span id="status">Reading catalog...</span></div>
+      <p class="subtitle">Extracted .MT5 Models</p>
+      <div style="display: flex; gap: 5px; margin-top: 10px">
+        <button class="scene-btn" id="sky-btn" style="flex-grow: 1; height: 32px; background: #444">
+          Time: Day
+        </button>
       </div>
     </div>
-    <div id="canvas-container" style="flex: 1; position: relative">
-      <canvas id="renderCanvas"></canvas>
-      <a
-        href="https://discord.gg/vH4GPChWKY"
-        target="_blank"
-        rel="noopener noreferrer"
-        id="discord-btn"
-        style="
+    <ul id="model-list">
+      <!-- Models will be loaded here -->
+    </ul>
+    <div id="status-bar">
+      <div class="spinner"></div>
+      <div>Status: <span id="status">Reading catalog...</span></div>
+    </div>
+  </div>
+  <div id="canvas-container" style="flex: 1; position: relative">
+    <canvas id="renderCanvas"></canvas>
+    <a href="https://discord.gg/vH4GPChWKY" target="_blank" rel="noopener noreferrer" id="discord-btn" style="
           position: absolute;
           top: 12px;
           right: 12px;
@@ -790,21 +780,19 @@
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
           transition: all 0.2s;
         "
-        onmouseover="this.style.background='#4752C4'; this.style.transform='translateY(-1px)'; this.style.boxShadow='0 6px 16px rgba(0,0,0,0.4)'"
-        onmouseout="this.style.background='#5865F2'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.3)'"
-      >
-        <svg width="20" height="15" viewBox="0 0 127.14 96.36" fill="white" xmlns="http://www.w3.org/2000/svg">
-          <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
-        </svg>
-        Join the Discord!
-      </a>
-      <div id="select-model-prompt">
-        <p style="font-size: 2rem; margin-bottom: 10px">📁</p>
-        <p>Select a model from the sidebar to view</p>
-      </div>
-      <div
-        id="pointer-hint"
-        style="
+      onmouseover="this.style.background='#4752C4'; this.style.transform='translateY(-1px)'; this.style.boxShadow='0 6px 16px rgba(0,0,0,0.4)'"
+      onmouseout="this.style.background='#5865F2'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.3)'">
+      <svg width="20" height="15" viewBox="0 0 127.14 96.36" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z" />
+      </svg>
+      Join the Discord!
+    </a>
+    <div id="select-model-prompt">
+      <p style="font-size: 2rem; margin-bottom: 10px">📁</p>
+      <p>Select a model from the sidebar to view</p>
+    </div>
+    <div id="pointer-hint" style="
           position: absolute;
           bottom: 20px;
           left: 50%;
@@ -823,198 +811,176 @@
           pointer-events: none;
           transition: all 0.3s;
           z-index: 100;
-        "
-      >
-        Click inside renderer to control view
+        ">
+      Click inside renderer to control view
+    </div>
+    <div class="spinner-large"></div>
+    <div id="controls-overlay" class="hidden">
+      <div class="control-hint">
+        <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> <span>MOVE</span>
       </div>
-      <div class="spinner-large"></div>
-      <div id="controls-overlay" class="hidden">
-        <div class="control-hint">
-          <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> <span>MOVE</span>
-        </div>
-        <div class="control-hint"><kbd>SPACE</kbd> <span>UP</span></div>
-        <div class="control-hint"><kbd>C</kbd> <span>DOWN</span></div>
-        <div class="control-hint"><kbd>Q</kbd> <span>SLOW</span></div>
-        <div class="control-hint"><kbd>E</kbd> <span>FAST</span></div>
-        <div
-          class="control-hint"
-          id="speed-display"
-          style="color: #ff8a00; font-weight: bold"
-        >
-          1.0x
-        </div>
+      <div class="control-hint"><kbd>SPACE</kbd> <span>UP</span></div>
+      <div class="control-hint"><kbd>C</kbd> <span>DOWN</span></div>
+      <div class="control-hint"><kbd>Q</kbd> <span>SLOW</span></div>
+      <div class="control-hint"><kbd>E</kbd> <span>FAST</span></div>
+      <div class="control-hint" id="speed-display" style="color: #ff8a00; font-weight: bold">
+        1.0x
       </div>
+    </div>
 
-      <!-- Export Menu -->
-      <button id="export-fab"><span>📥</span> Export Model</button>
+    <!-- Export Menu -->
+    <button id="export-fab"><span>📥</span> Export Model</button>
 
-      <div id="export-options-modal" class="hidden">
-        <div
-          style="
+    <div id="export-options-modal" class="hidden">
+      <div style="
             font-size: 0.7rem;
             color: #888;
             margin-bottom: 5px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             font-weight: bold;
-          "
-        >
-          Select Format
-        </div>
-        <button class="export-option-btn glb" id="export-glb-btn">
-          <span>📦</span> GLB (glTF)
-        </button>
-        <button class="export-option-btn obj" id="export-obj-btn">
-          <span>📐</span> OBJ (Geometry Only)
-        </button>
-        <button class="export-option-btn mtl" id="export-mtl-btn">
-          <span>🎨</span> MTL (Material Lib)
-        </button>
-        <button class="export-option-btn stl" id="export-stl-btn">
-          <span>🖨️</span> STL (3D Print)
-        </button>
+          ">
+        Select Format
       </div>
+      <button class="export-option-btn glb" id="export-glb-btn">
+        <span>📦</span> GLB (glTF)
+      </button>
+      <button class="export-option-btn obj" id="export-full-obj-btn">
+        <span>�</span> OBJ (Full: OBJ + MTL)
+      </button>
+      <button class="export-option-btn obj" id="export-obj-btn">
+        <span>📐</span> OBJ (Geometry Only)
+      </button>
+      <button class="export-option-btn mtl" id="export-mtl-btn">
+        <span>🎨</span> MTL (Material Lib)
+      </button>
+      <button class="export-option-btn stl" id="export-stl-btn">
+        <span>🖨️</span> STL (3D Print)
     </div>
+  </div>
 
-    <div id="welcome-modal">
-      <div class="modal-content">
-        <div class="modal-main">
-          <div class="modal-image-container">
-            <img
-              src="newyokosuka.jpeg"
-              alt="New Yokosuka"
-              class="modal-image"
-            />
-          </div>
-          <div class="modal-body">
-            <h2>An Online Shenmue Asset Viewer</h2>
-            <p>
-              New Yokosuka is a proof-of-concept web-based model viewer for the
-              original Dreamcast version of
-              <a href="https://en.wikipedia.org/wiki/Shenmue" target="_blank"
-                >Shenmue</a
-              >. My ambition for this project is to extract the harbor area of
-              Shenmue 1 along with its forklifts models to recreate the daily
-              forklift job from the original game. The model extraction is
-              complete, but the re-implementation of assets into a new game
-              engine will be a future phase of work.
-            </p>
-            <p>
-              It currently renders binary .MT5 models directly in your browser,
-              utilizing custom parsers to process scenario and map data from
-              across the game's multiple discs. The viewer imports model data
-              into the Babylon.js engine, which allows for easy exporting into
-              GLTF formats for use in other engines, modeling software, or 3D
-              printing.
-            </p>
-            <p style="font-weight: 500; margin-top: 10px">
-              Made by
-              <a href="https://www.brynnbateman.com/" target="_blank">Brynn</a>
-              - Hire me!
-            </p>
-
-            <a
-              href="https://github.com/brynnb/new-yokosuka"
-              target="_blank"
-              class="github-link"
-            >
-              You can see the full project information on the project's GitHub
-            </a>
-
-            <button class="close-modal-btn" id="close-modal">
-              Enter Viewer
-            </button>
-          </div>
+  <div id="welcome-modal">
+    <div class="modal-content">
+      <div class="modal-main">
+        <div class="modal-image-container">
+          <img src="newyokosuka.jpeg" alt="New Yokosuka" class="modal-image" />
         </div>
-        <div class="modal-footer">
-          Shenmue is a registered trademark of SEGA. This project is a
-          non-commercial, fan-made tool intended for educational and research
-          purposes only. It is not affiliated with, endorsed by, or sponsored by
-          SEGA. All original game assets, models, and related content are the
-          property of their respective trademark and copyright holders.
-        </div>
-      </div>
-    </div>
-
-    <script type="module" src="/main.js"></script>
-
-    <div id="mobile-warning-modal" class="hidden">
-      <div class="modal-content" style="max-width: 500px">
-        <div class="modal-body" style="text-align: center; padding: 40px">
-          <h2 style="margin-bottom: 20px">🖥️ Desktop Recommended</h2>
+        <div class="modal-body">
+          <h2>An Online Shenmue Asset Viewer</h2>
           <p>
-            This asset viewer is designed for desktop browsers and larger screen
-            resolutions. You may experience limited functionality or display
-            issues on mobile devices and smaller screens.
+            New Yokosuka is a proof-of-concept web-based model viewer for the
+            original Dreamcast version of
+            <a href="https://en.wikipedia.org/wiki/Shenmue" target="_blank">Shenmue</a>. My ambition for this project is
+            to extract the harbor area of
+            Shenmue 1 along with its forklifts models to recreate the daily
+            forklift job from the original game. The model extraction is
+            complete, but the re-implementation of assets into a new game
+            engine will be a future phase of work.
           </p>
-          <p style="margin-bottom: 25px">
-            <a
-              href="https://www.youtube.com/watch?v=MbIwqwUXzaI"
-              target="_blank"
-              style="
-                color: #ff8a00;
-                text-decoration: underline;
-                font-weight: 500;
-              "
-            >
-              View a video of it in action on Youtube!
-            </a>
+          <p>
+            It currently renders binary .MT5 models directly in your browser,
+            utilizing custom parsers to process scenario and map data from
+            across the game's multiple discs. The viewer imports model data
+            into the Babylon.js engine, which allows for easy exporting into
+            GLTF formats for use in other engines, modeling software, or 3D
+            printing.
+          </p>
+          <p style="font-weight: 500; margin-top: 10px">
+            Made by
+            <a href="https://www.brynnbateman.com/" target="_blank">Brynn</a>
+            - Hire me!
           </p>
 
-          <button class="close-modal-btn" id="close-mobile-warning">
-            Continue Anyway
+          <a href="https://github.com/brynnb/new-yokosuka" target="_blank" class="github-link">
+            You can see the full project information on the project's GitHub
+          </a>
+
+          <button class="close-modal-btn" id="close-modal">
+            Enter Viewer
           </button>
         </div>
       </div>
+      <div class="modal-footer">
+        Shenmue is a registered trademark of SEGA. This project is a
+        non-commercial, fan-made tool intended for educational and research
+        purposes only. It is not affiliated with, endorsed by, or sponsored by
+        SEGA. All original game assets, models, and related content are the
+        property of their respective trademark and copyright holders.
+      </div>
     </div>
+  </div>
 
-    <div id="firefox-warning-modal" class="hidden">
-      <div class="modal-content" style="max-width: 500px">
-        <div class="modal-body" style="text-align: center; padding: 40px">
-          <h2 style="margin-bottom: 20px">🦊 Chrome Recommended</h2>
-          <p>
-            It looks like you're using Firefox. This viewer works best in
-            <strong>Google Chrome</strong> or other Chromium-based browsers.
-          </p>
-          <p>
-            Firefox has a long-standing bug that causes cursor drift when
-            navigating around in 3D with a locked cursor, which can make the
-            viewing experience frustrating.
-          </p>
-          <p style="margin-bottom: 25px">
-            For the best experience, we recommend switching to
-            <a
-              href="https://www.google.com/chrome/"
-              target="_blank"
-              style="
+  <script type="module" src="/main.js"></script>
+
+  <div id="mobile-warning-modal" class="hidden">
+    <div class="modal-content" style="max-width: 500px">
+      <div class="modal-body" style="text-align: center; padding: 40px">
+        <h2 style="margin-bottom: 20px">🖥️ Desktop Recommended</h2>
+        <p>
+          This asset viewer is designed for desktop browsers and larger screen
+          resolutions. You may experience limited functionality or display
+          issues on mobile devices and smaller screens.
+        </p>
+        <p style="margin-bottom: 25px">
+          <a href="https://www.youtube.com/watch?v=MbIwqwUXzaI" target="_blank" style="
                 color: #ff8a00;
                 text-decoration: underline;
                 font-weight: 500;
-              "
-            >
-              Google Chrome</a
-            >.
-          </p>
+              ">
+            View a video of it in action on Youtube!
+          </a>
+        </p>
 
-          <button class="close-modal-btn" id="close-firefox-warning">
-            Continue Anyway
-          </button>
-        </div>
+        <button class="close-modal-btn" id="close-mobile-warning">
+          Continue Anyway
+        </button>
       </div>
     </div>
+  </div>
 
-    <script>
-      // Show Firefox warning modal if user is on Firefox
-      if (navigator.userAgent.toLowerCase().includes("firefox")) {
-        const firefoxModal = document.getElementById("firefox-warning-modal");
-        if (firefoxModal) firefoxModal.classList.remove("hidden");
-        const closeBtn = document.getElementById("close-firefox-warning");
-        if (closeBtn) {
-          closeBtn.addEventListener("click", () => {
-            firefoxModal.classList.add("hidden");
-          });
-        }
+  <div id="firefox-warning-modal" class="hidden">
+    <div class="modal-content" style="max-width: 500px">
+      <div class="modal-body" style="text-align: center; padding: 40px">
+        <h2 style="margin-bottom: 20px">🦊 Chrome Recommended</h2>
+        <p>
+          It looks like you're using Firefox. This viewer works best in
+          <strong>Google Chrome</strong> or other Chromium-based browsers.
+        </p>
+        <p>
+          Firefox has a long-standing bug that causes cursor drift when
+          navigating around in 3D with a locked cursor, which can make the
+          viewing experience frustrating.
+        </p>
+        <p style="margin-bottom: 25px">
+          For the best experience, we recommend switching to
+          <a href="https://www.google.com/chrome/" target="_blank" style="
+                color: #ff8a00;
+                text-decoration: underline;
+                font-weight: 500;
+              ">
+            Google Chrome</a>.
+        </p>
+
+        <button class="close-modal-btn" id="close-firefox-warning">
+          Continue Anyway
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Show Firefox warning modal if user is on Firefox
+    if (navigator.userAgent.toLowerCase().includes("firefox")) {
+      const firefoxModal = document.getElementById("firefox-warning-modal");
+      if (firefoxModal) firefoxModal.classList.remove("hidden");
+      const closeBtn = document.getElementById("close-firefox-warning");
+      if (closeBtn) {
+        closeBtn.addEventListener("click", () => {
+          firefoxModal.classList.add("hidden");
+        });
       }
-    </script>
-  </body>
+    }
+  </script>
+</body>
+
 </html>
