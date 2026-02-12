@@ -368,6 +368,9 @@ export class Mt5Loader {
 
             const colors = [];
 
+            const tex = this.textureCache.get(texId);
+            const isAlpha = tex && (tex.hasAlpha || tex._hasGradientAlpha);
+
             for (const poly of polys) {
                 for (const strip of poly.strips) {
                     const stripIndices = [];
@@ -379,7 +382,18 @@ export class Mt5Loader {
                             const v = this.globalVertices[p.idx];
                             if (!v) continue;
                             positions.push(...v.pos);
-                            normals.push(...v.norm);
+
+                            // HYBRID LIGHTING BOOST:
+                            // If the surface is opaque (like buildings/walls), we flip the normals
+                            // to correct the 'inverted normals' issue and get that nice lighting boost.
+                            // If it's an alpha surface (like flower patterns, glass, or fences), 
+                            // we keep the original normals to ensure they don't break or turn dark.
+                            if (isAlpha) {
+                                normals.push(...v.norm);
+                            } else {
+                                normals.push(-v.norm[0], -v.norm[1], -v.norm[2]);
+                            }
+
                             uvs.push(p.v, p.u);
                             colors.push(...p.color);
 
