@@ -183,6 +183,9 @@ async function fetchAsset(filename) {
 
 const createScene = () => {
   const scene = new BABYLON.Scene(engine);
+  // PREVENT Z-FIGHTING: Increase depth buffer precision for large maps
+  scene.useLogarithmicDepth = true;
+
   scene.clearColor = new BABYLON.Color4(0.02, 0.02, 0.03, 1);
   scene.ambientColor = new BABYLON.Color3(0.3, 0.3, 0.3);
 
@@ -597,6 +600,8 @@ async function loadScene(prefix) {
   currentMeshes = [];
   loader.textureCache.forEach((t) => t.dispose());
   loader.textureCache.clear();
+  loader.meshCounter = 0;
+  loader.fileIndex = 0;
 
   const filesToLoad = allFiles.filter((f) => {
     if (!f.toLowerCase().endsWith(".mt5")) return false;

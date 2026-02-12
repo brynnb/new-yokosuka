@@ -8,6 +8,8 @@ export class Mt5Loader {
         this.textureCache = new Map();
         this.globalVertices = [];
         this.vertexOffset = 0;
+        this.meshCounter = 0; // Per-file sub-mesh counter (reset each file)
+        this.fileIndex = 0;    // Scene-wide file counter (never reset within a scene)
     }
 
     async load(buffer, secondaryBuffer = null) {
@@ -24,6 +26,8 @@ export class Mt5Loader {
         this.textureCache.clear();
         this.globalVertices = [];
         this.vertexOffset = 0;
+        this.meshCounter = 0; // Reset per-file counter for each MT5 file
+        this.fileIndex++;     // Advance file index so cross-file meshes get different base offsets
 
         // Handle different secondary buffer formats:
         // - Single ArrayBuffer: legacy format
@@ -382,18 +386,7 @@ export class Mt5Loader {
                             const v = this.globalVertices[p.idx];
                             if (!v) continue;
                             positions.push(...v.pos);
-
-                            // HYBRID LIGHTING BOOST:
-                            // If the surface is opaque (like buildings/walls), we flip the normals
-                            // to correct the 'inverted normals' issue and get that nice lighting boost.
-                            // If it's an alpha surface (like flower patterns, glass, or fences), 
-                            // we keep the original normals to ensure they don't break or turn dark.
-                            if (isAlpha) {
-                                normals.push(...v.norm);
-                            } else {
-                                normals.push(-v.norm[0], -v.norm[1], -v.norm[2]);
-                            }
-
+                            normals.push(...v.norm);
                             uvs.push(p.v, p.u);
                             colors.push(...p.color);
 
@@ -404,9 +397,16 @@ export class Mt5Loader {
 
                     for (let i = 0; i < stripIndices.length - 2; i++) {
                         const a = stripIndices[i], b = stripIndices[i + 1], c = stripIndices[i + 2];
-                        // Flip winding to face outward (swap b and c from Noesis)
-                        if (i % 2 === 0) indices.push(a, b, c);
-                        else indices.push(a, c, b);
+                        if (isAlpha) {
+                            // Alpha surfaces: original winding (normals already face correct way)
+                            if (i % 2 === 0) indices.push(a, b, c);
+                            else indices.push(a, c, b);
+                        } else {
+                            // Opaque surfaces: reversed winding so front face aligns with normals
+                            // This fixes lighting AND enables proper backface culling
+                            if (i % 2 === 0) indices.push(a, c, b);
+                            else indices.push(a, b, c);
+                        }
                     }
                 }
             }
@@ -436,7 +436,7 @@ export class Mt5Loader {
 
                 const mat = new BABYLON.StandardMaterial(`mt5_mat_${texId}`, this.scene);
                 mat.useVertexColors = true;
-                mat.backFaceCulling = false;
+                mat.backFaceCulling = true;
                 mat.twoSidedLighting = true;
 
                 mat.diffuseColor = new BABYLON.Color3(1, 1, 1);
@@ -494,6 +494,13 @@ export class Mt5Loader {
                     mat.diffuseTexture.hasAlpha = false;
                     mat.useAlphaFromDiffuseTexture = false;
                     mat.transparencyMode = BABYLON.StandardMaterial.MATERIAL_OPAQUE;
+
+                    // TWO-TIER Z-FIGHTING TIE-BREAKER:
+                    // Tier 1 (fileIndex * 0.01): Separates meshes across different MT5 files
+                    //   e.g. Dojo exterior (file 0) vs interior (file 1) get different bases.
+                    // Tier 2 (meshCounter * 0.0001): Separates sub-meshes within the same file
+                    //   e.g. Summer vs Winter ground in MAP.MT5 get fine-grained offsets.
+                    mat.zOffset = -((this.fileIndex * 0.01) + (this.meshCounter++ * 0.0001));
                 }
 
                 subMesh.material = mat;
