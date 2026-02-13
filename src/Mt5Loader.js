@@ -6,10 +6,42 @@ export class Mt5Loader {
     constructor(scene) {
         this.scene = scene;
         this.textureCache = new Map();
+        this.materialCache = new Map(); // Shared across load() calls: key → StandardMaterial
         this.globalVertices = [];
         this.vertexOffset = 0;
-        this.meshCounter = 0; // Per-file sub-mesh counter (reset each file)
-        this.fileIndex = 0;    // Scene-wide file counter (never reset within a scene)
+        // Pre-built index for texture pack: Map<string, {offset, length}>
+        // Key is "hi_lo" where hi/lo are the two uint32 ID halves
+        this.texturePackIndex = null;
+    }
+
+    // Pre-index a texture pack binary for O(1) lookups.
+    // Call once per pack, store the result, pass to load() via setTexturePackIndex().
+    static buildTexturePackIndex(buffer) {
+        if (!buffer) return null;
+        const view = new DataView(buffer);
+        const index = new Map();
+        let pos = 0;
+        const size = buffer.byteLength;
+        while (pos < size - 12) {
+            const hi = view.getUint32(pos, true);
+            const lo = view.getUint32(pos + 4, true);
+            const len = view.getUint32(pos + 8, true);
+            if (len === 0 || len > 0x1000000) break;
+            const dataOffset = pos + 12;
+            const key = `${hi}_${lo}`;
+            if (!index.has(key)) {
+                index.set(key, { offset: dataOffset, length: len });
+            }
+            pos = dataOffset + len;
+        }
+        return index;
+    }
+
+    setTexturePackIndex(baseIndex, timeIndex, baseBuffer, timeBuffer) {
+        this._basePackIndex = baseIndex || null;
+        this._timePackIndex = timeIndex || null;
+        this._basePackBuffer = baseBuffer || null;
+        this._timePackBuffer = timeBuffer || null;
     }
 
     async load(buffer, secondaryBuffer = null) {
@@ -24,10 +56,9 @@ export class Mt5Loader {
 
 
         this.textureCache.clear();
+        this.materialCache.clear();
         this.globalVertices = [];
         this.vertexOffset = 0;
-        this.meshCounter = 0; // Reset per-file counter for each MT5 file
-        this.fileIndex++;     // Advance file index so cross-file meshes get different base offsets
 
         // Handle different secondary buffer formats:
         // - Single ArrayBuffer: legacy format
@@ -434,80 +465,67 @@ export class Mt5Loader {
                 vd.applyToMesh(subMesh);
                 subMesh.parent = rootMesh;
 
-                const mat = new BABYLON.StandardMaterial(`mt5_mat_${texId}`, this.scene);
-                mat.useVertexColors = true;
-                mat.backFaceCulling = true;
-                mat.twoSidedLighting = true;
-
-                mat.diffuseColor = new BABYLON.Color3(1, 1, 1);
-                mat.specularColor = new BABYLON.Color3(0, 0, 0);
-                mat.emissiveColor = new BABYLON.Color3(0.08, 0.08, 0.08);
-
                 const tex = this.textureCache.get(texId);
-                mat.diffuseTexture = tex;
-                mat.diffuseTexture.wrapU = BABYLON.Texture.MIRROR_ADDRESSMODE;
-                mat.diffuseTexture.wrapV = BABYLON.Texture.MIRROR_ADDRESSMODE;
-
-                // Check if this texture has gradient alpha (ARGB4444 format = frosted glass)
                 const hasGradientAlpha = tex._hasGradientAlpha === true;
                 const hasAnyAlpha = tex.hasAlpha === true;
 
+                // Determine transparency mode for cache key
+                let alphaMode = 'opaque';
+                if (hasGradientAlpha) alphaMode = 'blend';
+                else if (hasAnyAlpha) alphaMode = 'alphatest';
+                const matCacheKey = `${texId}_${alphaMode}`;
 
-                if (hasGradientAlpha) {
-                    // Frosted glass or other semi-transparent surface (ARGB4444)
-                    mat.diffuseTexture.hasAlpha = true;
-                    mat.useAlphaFromDiffuseTexture = true;
-                    mat.transparencyMode = BABYLON.StandardMaterial.MATERIAL_ALPHABLEND;
-
-                    // Sorting Fixes: 
-                    // 1. DISABLE depth pre-pass. It's meant for single objects but breaks
-                    //    overlapping transparency by writing to depth and blocking things behind.
-                    mat.needDepthPrePass = false;
-
-                    // 2. Enable separate culling pass. This renders backfaces then frontfaces.
-                    //    This solves the 'internal' sorting of the glass without blocking the 'external' world.
-                    mat.separateCullingPass = true;
-                    mat.backFaceCulling = false;
+                let mat = this.materialCache.get(matCacheKey);
+                if (!mat) {
+                    mat = new BABYLON.StandardMaterial(`mt5_mat_${texId}`, this.scene);
+                    mat.useVertexColors = true;
+                    mat.backFaceCulling = true;
                     mat.twoSidedLighting = true;
 
-                    // ADJUST TRANSPARENCY HERE (0.0 = invisible, 1.0 = texture default)
-                    mat.alpha = 0.7;
-                    subMesh.alphaIndex = 1000; // Render far after opaque world
+                    mat.diffuseColor = new BABYLON.Color3(1, 1, 1);
+                    mat.specularColor = new BABYLON.Color3(0, 0, 0);
+                    mat.emissiveColor = new BABYLON.Color3(0.08, 0.08, 0.08);
 
-                } else if (hasAnyAlpha) {
-                    // 1-bit alpha (punch-through transparency like fences, graffiti, ARGB1555)
-                    mat.diffuseTexture.hasAlpha = true;
-                    mat.useAlphaFromDiffuseTexture = true;
-                    mat.transparencyMode = BABYLON.StandardMaterial.MATERIAL_ALPHATESTANDBLEND;
-                    mat.alphaCutOff = 0.5;
-                    mat.backFaceCulling = false;
-                    mat.twoSidedLighting = true;
+                    mat.diffuseTexture = tex;
+                    mat.diffuseTexture.wrapU = BABYLON.Texture.MIRROR_ADDRESSMODE;
+                    mat.diffuseTexture.wrapV = BABYLON.Texture.MIRROR_ADDRESSMODE;
 
-                    // Restore full visibility for detail decals
-                    mat.alpha = 1.0;
-                    // Prevent z-fighting with the wall behind the graffiti
-                    mat.zOffset = -1.0;
+                    if (hasGradientAlpha) {
+                        mat.diffuseTexture.hasAlpha = true;
+                        mat.useAlphaFromDiffuseTexture = true;
+                        mat.transparencyMode = BABYLON.StandardMaterial.MATERIAL_ALPHABLEND;
+                        mat.needDepthPrePass = false;
+                        mat.separateCullingPass = true;
+                        mat.backFaceCulling = false;
+                        mat.twoSidedLighting = true;
+                        mat.alpha = 0.7;
+                    } else if (hasAnyAlpha) {
+                        mat.diffuseTexture.hasAlpha = true;
+                        mat.useAlphaFromDiffuseTexture = true;
+                        mat.transparencyMode = BABYLON.StandardMaterial.MATERIAL_ALPHATESTANDBLEND;
+                        mat.alphaCutOff = 0.5;
+                        mat.backFaceCulling = false;
+                        mat.twoSidedLighting = true;
+                        mat.alpha = 1.0;
+                        mat.zOffset = -1.0;
+                    } else {
+                        mat.diffuseTexture.hasAlpha = false;
+                        mat.useAlphaFromDiffuseTexture = false;
+                        mat.transparencyMode = BABYLON.StandardMaterial.MATERIAL_OPAQUE;
+                    }
 
-                    subMesh.alphaIndex = 500; // Render between opaque and blended
-                } else {
-                    // Fully opaque solid part (RGB565 - no alpha at all)
-                    mat.diffuseTexture.hasAlpha = false;
-                    mat.useAlphaFromDiffuseTexture = false;
-                    mat.transparencyMode = BABYLON.StandardMaterial.MATERIAL_OPAQUE;
-
-                    // TWO-TIER Z-FIGHTING TIE-BREAKER:
-                    // Tier 1 (fileIndex * 0.01): Separates meshes across different MT5 files
-                    //   e.g. Dojo exterior (file 0) vs interior (file 1) get different bases.
-                    // Tier 2 (meshCounter * 0.0001): Separates sub-meshes within the same file
-                    //   e.g. Summer vs Winter ground in MAP.MT5 get fine-grained offsets.
-                    mat.zOffset = -((this.fileIndex * 0.01) + (this.meshCounter++ * 0.0001));
+                    this.materialCache.set(matCacheKey, mat);
                 }
 
                 subMesh.material = mat;
                 subMesh.parent = rootMesh;
 
-                // Only enable vertex alpha for transparent surfaces
-                // Vertex alpha being used for opaque surfaces makes them black
+                // Set per-mesh properties (not shared via material)
+                if (hasGradientAlpha) {
+                    subMesh.alphaIndex = 1000;
+                } else if (hasAnyAlpha) {
+                    subMesh.alphaIndex = 500;
+                }
                 subMesh.visibility = 1.0;
                 if (mat.transparencyMode !== BABYLON.StandardMaterial.MATERIAL_OPAQUE) {
                     subMesh.hasVertexAlpha = true;
@@ -551,8 +569,7 @@ export class Mt5Loader {
                 while (reader.tell() < nodeEnd - 4) {
                     if (reader.readString(4) === "PVRT") {
                         const pvrLen = reader.readUInt32();
-                        const pvrBuffer = reader.buffer.slice(reader.tell(), reader.tell() + pvrLen);
-                        const decoder = new PvrDecoder(pvrBuffer);
+                        const decoder = new PvrDecoder(reader.buffer, reader.tell(), pvrLen);
                         const tex = decoder.decode(this.scene);
                         if (tex) this.textureCache.set(texCounter, tex);
                         break;
@@ -583,8 +600,7 @@ export class Mt5Loader {
                     continue;
                 }
                 const pvrLen = reader.readUInt32();
-                const pvrBuffer = reader.buffer.slice(reader.tell(), reader.tell() + pvrLen);
-                const decoder = new PvrDecoder(pvrBuffer);
+                const decoder = new PvrDecoder(reader.buffer, reader.tell(), pvrLen);
                 const tex = decoder.decode(this.scene);
                 if (tex) this.textureCache.set(texCounter, tex);
                 texCounter++;
@@ -594,48 +610,65 @@ export class Mt5Loader {
 
         // Final step: Match IDs from the Scene Pack
         if (secondaryReader && nameRequests.length > 0) {
-            const secondaryView = new DataView(secondaryReader.buffer);
+            // Use pre-built index if available, otherwise fall back to linear scan
+            const timeIdx = this._timePackIndex;
+            const baseIdx = this._basePackIndex;
 
-            let matchCount = 0;
-            nameRequests.forEach((req, reqIdx) => {
-                const reqView = new DataView(req.id.buffer, req.id.byteOffset, 8);
-                const reqHi = reqView.getUint32(0, true);
-                const reqLo = reqView.getUint32(4, true);
+            if (timeIdx || baseIdx) {
+                // O(1) indexed lookup path
+                for (const req of nameRequests) {
+                    const reqView = new DataView(req.id.buffer, req.id.byteOffset, 8);
+                    const reqHi = reqView.getUint32(0, true);
+                    const reqLo = reqView.getUint32(4, true);
+                    const key = `${reqHi}_${reqLo}`;
 
-                // Log the first few requests for debugging
-
-                secondaryReader.seek(0);
-                let found = false;
-                while (secondaryReader.tell() < secondaryReader.size - 12) {
-                    const entryPos = secondaryReader.tell();
-                    const entryHi = secondaryView.getUint32(entryPos, true);
-                    const entryLo = secondaryView.getUint32(entryPos + 4, true);
-                    const entryLen = secondaryView.getUint32(entryPos + 8, true);
-
-                    // Sanity check
-                    if (entryLen === 0 || entryLen > 0x1000000) {
-                        console.warn(`[MT5] Bad entry length at ${entryPos}: ${entryLen}`);
-                        break;
+                    // Try time pack first, then base pack — use the correct buffer for each
+                    let entry = timeIdx && timeIdx.get(key);
+                    let packBuffer = this._timePackBuffer;
+                    if (!entry) {
+                        entry = baseIdx && baseIdx.get(key);
+                        packBuffer = this._basePackBuffer;
                     }
-
-                    secondaryReader.seek(entryPos + 12);
-
-                    if (entryHi === reqHi && entryLo === reqLo) {
-                        const start = secondaryReader.tell();
-                        const pvrBuffer = secondaryReader.buffer.slice(start, start + entryLen);
-                        const decoder = new PvrDecoder(pvrBuffer);
+                    if (entry && packBuffer) {
+                        const decoder = new PvrDecoder(packBuffer, entry.offset, entry.length);
                         const tex = decoder.decode(this.scene);
                         if (tex) {
                             this.textureCache.set(req.index, tex);
-                            matchCount++;
-                            found = true;
                         }
-                        break;
                     }
-                    secondaryReader.skip(entryLen);
                 }
+            } else {
+                // Legacy linear scan fallback
+                const secondaryView = new DataView(secondaryReader.buffer);
+                nameRequests.forEach((req) => {
+                    const reqView = new DataView(req.id.buffer, req.id.byteOffset, 8);
+                    const reqHi = reqView.getUint32(0, true);
+                    const reqLo = reqView.getUint32(4, true);
 
-            });
+                    secondaryReader.seek(0);
+                    while (secondaryReader.tell() < secondaryReader.size - 12) {
+                        const entryPos = secondaryReader.tell();
+                        const entryHi = secondaryView.getUint32(entryPos, true);
+                        const entryLo = secondaryView.getUint32(entryPos + 4, true);
+                        const entryLen = secondaryView.getUint32(entryPos + 8, true);
+
+                        if (entryLen === 0 || entryLen > 0x1000000) break;
+
+                        secondaryReader.seek(entryPos + 12);
+
+                        if (entryHi === reqHi && entryLo === reqLo) {
+                            const start = secondaryReader.tell();
+                            const decoder = new PvrDecoder(secondaryReader.buffer, start, entryLen);
+                            const tex = decoder.decode(this.scene);
+                            if (tex) {
+                                this.textureCache.set(req.index, tex);
+                            }
+                            break;
+                        }
+                        secondaryReader.skip(entryLen);
+                    }
+                });
+            }
         }
     }
 }

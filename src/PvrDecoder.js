@@ -2,8 +2,12 @@ import * as BABYLON from '@babylonjs/core';
 import { BinaryReader } from './BinaryReader.js';
 
 export class PvrDecoder {
-    constructor(arrayBuffer) {
-        this.reader = new BinaryReader(arrayBuffer);
+    constructor(arrayBuffer, byteOffset, byteLength) {
+        if (byteOffset !== undefined && byteLength !== undefined) {
+            this.reader = new BinaryReader(arrayBuffer, byteOffset, byteLength);
+        } else {
+            this.reader = new BinaryReader(arrayBuffer);
+        }
     }
 
     decode(scene) {
@@ -105,9 +109,14 @@ export class PvrDecoder {
             dataStart += skip;
         }
 
+        // Pre-fetch twiddle LUTs for the mip dimensions
+        const maxMipDim = Math.max(mipWidth, mipHeight);
+        const twLut = PvrDecoder.getTwiddleLUT(maxMipDim);
+
         for (let y = 0; y < mipHeight; y++) {
+            const twY = twLut[y] << 1;
             for (let x = 0; x < mipWidth; x++) {
-                const twiddledIdx = this.untwiddle(x, y);
+                const twiddledIdx = twLut[x] | twY;
                 this.reader.seek(dataStart + twiddledIdx);
                 const codeIdx = this.reader.readUInt8();
                 if (codeIdx >= codebook.length) continue;
@@ -138,9 +147,17 @@ export class PvrDecoder {
             dataStart += this.calcMipmapOffset(width, height, 2);
         }
 
+        // Pre-fetch twiddle LUT if needed
+        let twLut = null;
+        if (isTwiddled) {
+            const maxDim = Math.max(width, height);
+            twLut = PvrDecoder.getTwiddleLUT(maxDim);
+        }
+
         for (let y = 0; y < height; y++) {
+            const twY = twLut ? (twLut[y] << 1) : 0;
             for (let x = 0; x < width; x++) {
-                const srcIdx = isTwiddled ? this.untwiddle(x, y) : (y * width + x);
+                const srcIdx = twLut ? (twLut[x] | twY) : (y * width + x);
                 const color = this.reader.readUInt16At(dataStart + srcIdx * 2);
                 const [r, g, b, a] = this.decodeColor(color, colorFormat);
                 const destIdx = (y * width + x) * 4;
@@ -173,10 +190,15 @@ export class PvrDecoder {
             dataStart += this.calcMipmapOffset(width, height, bpp);
         }
 
+        // Pre-fetch twiddle LUT
+        const maxDim = Math.max(width, height);
+        const twLut = PvrDecoder.getTwiddleLUT(maxDim);
+
         const rgba = new Uint8Array(width * height * 4);
         for (let y = 0; y < height; y++) {
+            const twY = twLut[y] << 1;
             for (let x = 0; x < width; x++) {
-                const twIdx = this.untwiddle(x, y);
+                const twIdx = twLut[x] | twY;
                 let palIdx;
                 if (is4bit) {
                     const byteOffset = dataStart + Math.floor(twIdx / 2);
@@ -228,6 +250,23 @@ export class PvrDecoder {
             return [255, 255, 255, 255];
         }
         return [r, g, b, a];
+    }
+
+    // Pre-computed twiddle LUT (lazily built per dimension, cached statically)
+    static _twiddleLUT = new Map();
+
+    static getTwiddleLUT(size) {
+        if (PvrDecoder._twiddleLUT.has(size)) return PvrDecoder._twiddleLUT.get(size);
+        const lut = new Uint32Array(size);
+        for (let i = 0; i < size; i++) {
+            let val = 0;
+            for (let bit = 0; bit < 10; bit++) {
+                val |= ((i >> bit) & 1) << (2 * bit);
+            }
+            lut[i] = val;
+        }
+        PvrDecoder._twiddleLUT.set(size, lut);
+        return lut;
     }
 
     untwiddle(x, y) {

@@ -605,6 +605,181 @@
       font-weight: 600;
     }
 
+    /* Lighting Debug Panel */
+    #lighting-panel {
+      position: absolute;
+      top: 50px;
+      right: 12px;
+      width: 280px;
+      max-height: calc(100vh - 70px);
+      overflow-y: auto;
+      background: rgba(22, 22, 29, 0.92);
+      backdrop-filter: blur(12px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      z-index: 150;
+      font-size: 0.72rem;
+      color: #ccc;
+      transition: opacity 0.2s;
+    }
+
+    #lighting-panel.hidden {
+      display: none;
+    }
+
+    #lighting-panel::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    #lighting-panel::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 2px;
+    }
+
+    .lp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: sticky;
+      top: 0;
+      background: rgba(22, 22, 29, 0.98);
+      border-radius: 12px 12px 0 0;
+      z-index: 1;
+    }
+
+    .lp-header h3 {
+      margin: 0;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #ff8a00;
+    }
+
+    .lp-header button {
+      background: none;
+      border: none;
+      color: #888;
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0 4px;
+    }
+
+    .lp-header button:hover {
+      color: white;
+    }
+
+    .lp-section {
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .lp-section h4 {
+      margin: 0 0 8px 0;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .lp-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .lp-row label {
+      width: 70px;
+      flex-shrink: 0;
+      font-size: 0.68rem;
+      color: #999;
+    }
+
+    .lp-row input[type="range"] {
+      flex: 1;
+      height: 4px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      outline: none;
+    }
+
+    .lp-row input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ff8a00;
+      cursor: pointer;
+    }
+
+    .lp-row input[type="color"] {
+      width: 28px;
+      height: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+      background: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .lp-row .lp-value {
+      width: 36px;
+      text-align: right;
+      font-size: 0.65rem;
+      color: #ff8a00;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .lp-copy-btn {
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0;
+      background: linear-gradient(90deg, #ff8a00, #e52e71);
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: filter 0.2s;
+    }
+
+    .lp-copy-btn:hover {
+      filter: brightness(1.1);
+    }
+
+    .lp-actions {
+      padding: 6px 14px 14px;
+    }
+
+    #lighting-toggle-btn {
+      position: absolute;
+      top: 12px;
+      right: 200px;
+      z-index: 100;
+      padding: 8px 14px;
+      background: rgba(22, 22, 29, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: all 0.2s;
+    }
+
+    #lighting-toggle-btn:hover {
+      background: rgba(45, 45, 60, 0.9);
+      border-color: #ff8a00;
+    }
+
     #select-model-prompt {
       position: absolute;
       top: 50%;
@@ -748,6 +923,9 @@
         <button class="scene-btn" id="sky-btn" style="flex-grow: 1; height: 32px; background: #444">
           Time: Day
         </button>
+        <button class="scene-btn hidden" id="season-btn" style="flex-grow: 1; height: 32px; background: #2a6e2a">
+          Season: Summer
+        </button>
       </div>
     </div>
     <ul id="model-list">
@@ -788,6 +966,114 @@
       </svg>
       Join the Discord!
     </a>
+    <button id="lighting-toggle-btn">Lighting</button>
+    <div id="lighting-panel" class="hidden">
+      <div class="lp-header">
+        <h3>Lighting Controls</h3>
+        <button id="lp-close">&times;</button>
+      </div>
+
+      <div class="lp-section">
+        <h4>Scene</h4>
+        <div class="lp-row">
+          <label>Ambient</label>
+          <input type="color" id="lp-ambient-color" value="#4d4d4d">
+        </div>
+        <div class="lp-row">
+          <label>Amb. Intensity</label>
+          <input type="range" id="lp-ambient-intensity" min="0" max="2" step="0.05" value="1">
+          <span class="lp-value" id="lp-ambient-intensity-val">1.00</span>
+        </div>
+      </div>
+
+      <div class="lp-section">
+        <h4>Hemispheric Light</h4>
+        <div class="lp-row">
+          <label>Intensity</label>
+          <input type="range" id="lp-hemi-intensity" min="0" max="3" step="0.05" value="1.2">
+          <span class="lp-value" id="lp-hemi-intensity-val">1.20</span>
+        </div>
+        <div class="lp-row">
+          <label>Sky Color</label>
+          <input type="color" id="lp-hemi-diffuse" value="#ffffff">
+        </div>
+        <div class="lp-row">
+          <label>Ground Color</label>
+          <input type="color" id="lp-hemi-ground" value="#1a1a26">
+        </div>
+        <div class="lp-row">
+          <label>Dir Y</label>
+          <input type="range" id="lp-hemi-dir-y" min="-1" max="1" step="0.1" value="1">
+          <span class="lp-value" id="lp-hemi-dir-y-val">1.0</span>
+        </div>
+      </div>
+
+      <div class="lp-section">
+        <h4>Sun (Top-Down)</h4>
+        <div class="lp-row">
+          <label>Intensity</label>
+          <input type="range" id="lp-sky-intensity" min="0" max="3" step="0.05" value="1.5">
+          <span class="lp-value" id="lp-sky-intensity-val">1.50</span>
+        </div>
+        <div class="lp-row">
+          <label>Color</label>
+          <input type="color" id="lp-sky-color" value="#ffffff">
+        </div>
+      </div>
+
+      <div class="lp-section">
+        <h4>Directional Light</h4>
+        <div class="lp-row">
+          <label>Intensity</label>
+          <input type="range" id="lp-dir-intensity" min="0" max="3" step="0.05" value="1.0">
+          <span class="lp-value" id="lp-dir-intensity-val">1.00</span>
+        </div>
+        <div class="lp-row">
+          <label>Color</label>
+          <input type="color" id="lp-dir-color" value="#ffffff">
+        </div>
+        <div class="lp-row">
+          <label>Dir X</label>
+          <input type="range" id="lp-dir-x" min="-3" max="3" step="0.1" value="-1">
+          <span class="lp-value" id="lp-dir-x-val">-1.0</span>
+        </div>
+        <div class="lp-row">
+          <label>Dir Y</label>
+          <input type="range" id="lp-dir-y" min="-3" max="3" step="0.1" value="-2">
+          <span class="lp-value" id="lp-dir-y-val">-2.0</span>
+        </div>
+        <div class="lp-row">
+          <label>Dir Z</label>
+          <input type="range" id="lp-dir-z" min="-3" max="3" step="0.1" value="-1">
+          <span class="lp-value" id="lp-dir-z-val">-1.0</span>
+        </div>
+      </div>
+
+      <div class="lp-section">
+        <h4>Fill Light (Point)</h4>
+        <div class="lp-row">
+          <label>Intensity</label>
+          <input type="range" id="lp-fill-intensity" min="0" max="3" step="0.05" value="0.8">
+          <span class="lp-value" id="lp-fill-intensity-val">0.80</span>
+        </div>
+        <div class="lp-row">
+          <label>Color</label>
+          <input type="color" id="lp-fill-color" value="#ffffff">
+        </div>
+      </div>
+
+      <div class="lp-section">
+        <h4>Material (Global)</h4>
+        <div class="lp-row">
+          <label>Emissive</label>
+          <input type="color" id="lp-emissive-color" value="#141414">
+        </div>
+      </div>
+
+      <div class="lp-actions">
+        <button class="lp-copy-btn" id="lp-copy-values">Copy Values to Clipboard</button>
+      </div>
+    </div>
     <div id="select-model-prompt">
       <p style="font-size: 2rem; margin-bottom: 10px">📁</p>
       <p>Select a model from the sidebar to view</p>

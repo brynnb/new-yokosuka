@@ -1,8 +1,13 @@
 export class BinaryReader {
-    constructor(buffer) {
-        this.view = new DataView(buffer);
+    constructor(buffer, byteOffset, byteLength) {
+        if (byteOffset !== undefined && byteLength !== undefined) {
+            this.view = new DataView(buffer, byteOffset, byteLength);
+            this.size = byteLength;
+        } else {
+            this.view = new DataView(buffer);
+            this.size = buffer.byteLength;
+        }
         this.offset = 0;
-        this.size = buffer.byteLength;
         this.buffer = buffer;
     }
 
