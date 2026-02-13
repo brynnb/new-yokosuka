@@ -1,0 +1,228 @@
+# =============================================================================
+# SCN3 (Shenmue Script v3) SLEIGH Processor Specification
+#
+# Opcode encoding (1 byte):
+#   Bits 7-6 = category:  00 = control flow (0x00-0x3F)
+#                          01 = push immediate (0x40-0x7F)
+#                          10 = operator (0x80-0xBF)
+#                          11 = control flow, flagged (0xC0-0xFF)
+#   For control (cat 00/11): bits 5-4 = operand size, bits 3-0 = command
+#   For push (cat 01):       bits 5-4 = push type, bits 3-0 = sub-index
+#   For operator (cat 10):   bits 5-0 = operator ID
+# =============================================================================
+
+define endian=little;
+define alignment=1;
+
+define space ram      type=ram_space      size=4 default;
+define space register type=register_space  size=4;
+
+define register offset=0x00 size=4 [ R14 SP MOBJ PC ];
+
+# --- Tokens ---
+define token opbyte (8)
+    op8     = (0,7)
+    cat     = (6,7)    # 0=ctrl, 1=push, 2=operator, 3=ctrl_flagged
+    szBits  = (4,5)    # operand size for control: 0=none, 1=byte, 2=short, 3=int32
+    cmdLow  = (0,3)    # command for control opcodes
+    pushTyp = (4,5)    # push sub-type: 0=last, 1=i8, 2=i16, 3=i32
+    loNib   = (0,3)    # low nibble (sub-index for push)
+;
+
+define token imm8tok (8)   imm8  = (0,7) simm8 = (0,7) signed;
+define token imm16tok (16) imm16 = (0,15) simm16 = (0,15) signed;
+define token imm32tok (32) imm32 = (0,31) simm32 = (0,31) signed;
+
+# --- Jump target subtables ---
+rel8:  addr is simm8  [ addr = inst_next + simm8;  ] { export *:4 addr; }
+rel16: addr is simm16 [ addr = inst_next + simm16; ] { export *:4 addr; }
+rel32: addr is simm32 [ addr = inst_next + simm32; ] { export *:4 addr; }
+
+# --- Macros ---
+macro push4(val) { SP = SP - 4; *:4 SP = val; }
+macro pop4(dest) { dest = *:4 SP; SP = SP + 4; }
+
+# --- External dispatch user-ops (opaque to decompiler -- no flow following) ---
+define pcodeop SCNF_dispatch;
+define pcodeop SET1_dispatch;
+define pcodeop SET2_dispatch;
+define pcodeop SET3_dispatch;
+define pcodeop SET4_dispatch;
+define pcodeop SET7_dispatch;
+
+# =============================================================================
+# 0x80-0xBF: Operators (cat=2, single byte, no operands)
+# =============================================================================
+
+:STK_TO_R14 is op8=0x80 { pop4(R14); }
+:R14_TO_STK is op8=0x81 { push4(R14); }
+
+:MOBJ_RD8 is op8=0x82 { local tmp:4 = zext(*:1 MOBJ); push4(tmp); }
+:MOBJ_RD16 is op8=0x83 { local tmp:4 = zext(*:2 MOBJ); push4(tmp); }
+:MOBJ_RD32 is op8=0x84 { local tmp:4 = *:4 MOBJ; push4(tmp); }
+
+:MOBJ_WR8 is op8=0x85 { local val:4; pop4(val); *:1 MOBJ = val:1; }
+:MOBJ_WR16 is op8=0x86 { local val:4; pop4(val); *:2 MOBJ = val:2; }
+:MOBJ_WR32 is op8=0x87 { local val:4; pop4(val); *:4 MOBJ = val; }
+
+:EQ is op8=0x88 { local a:4; local b:4; pop4(b); pop4(a); local res:4 = zext(a == b); push4(res); }
+:NE is op8=0x89 { local a:4; local b:4; pop4(b); pop4(a); local res:4 = zext(a != b); push4(res); }
+:GE is op8=0x8A { local a:4; local b:4; pop4(b); pop4(a); local res:4 = zext(a s>= b); push4(res); }
+:GT is op8=0x8B { local a:4; local b:4; pop4(b); pop4(a); local res:4 = zext(a s> b); push4(res); }
+:LE is op8=0x8C { local a:4; local b:4; pop4(b); pop4(a); local res:4 = zext(a s<= b); push4(res); }
+:LT is op8=0x8D { local a:4; local b:4; pop4(b); pop4(a); local res:4 = zext(a s< b); push4(res); }
+
+:NOT is op8=0x8E { local a:4; pop4(a); a = ~a; push4(a); }
+
+:AND_EQ is op8=0x8F { local val:4; local addr:4; pop4(val); pop4(addr); local tmp:4 = *:4 addr; tmp = tmp & val; *:4 addr = tmp; push4(tmp); }
+:OR_EQ is op8=0x90 { local val:4; local addr:4; pop4(val); pop4(addr); local tmp:4 = *:4 addr; tmp = tmp | val; *:4 addr = tmp; push4(tmp); }
+:XOR_EQ is op8=0x91 { local val:4; local addr:4; pop4(val); pop4(addr); local tmp:4 = *:4 addr; tmp = tmp ^ val; *:4 addr = tmp; push4(tmp); }
+:ADD_EQ is op8=0x92 { local val:4; local addr:4; pop4(val); pop4(addr); local tmp:4 = *:4 addr; tmp = tmp + val; *:4 addr = tmp; push4(tmp); }
+:SUB_EQ is op8=0x93 { local val:4; local addr:4; pop4(val); pop4(addr); local tmp:4 = *:4 addr; tmp = tmp - val; *:4 addr = tmp; push4(tmp); }
+:MUL_EQ is op8=0x94 { local val:4; local addr:4; pop4(val); pop4(addr); local tmp:4 = *:4 addr; tmp = tmp * val; *:4 addr = tmp; push4(tmp); }
+:DIV_EQ is op8=0x95 { local val:4; local addr:4; pop4(val); pop4(addr); local tmp:4 = *:4 addr; tmp = tmp s/ val; *:4 addr = tmp; push4(tmp); }
+:MOD_EQ is op8=0x96 { local val:4; local addr:4; pop4(val); pop4(addr); local tmp:4 = *:4 addr; tmp = tmp s% val; *:4 addr = tmp; push4(tmp); }
+:SHL_EQ is op8=0x97 { local val:4; local addr:4; pop4(val); pop4(addr); local tmp:4 = *:4 addr; tmp = tmp << val; *:4 addr = tmp; push4(tmp); }
+:SHR_EQ is op8=0x98 { local val:4; local addr:4; pop4(val); pop4(addr); local tmp:4 = *:4 addr; tmp = tmp >> val; *:4 addr = tmp; push4(tmp); }
+
+:OP_99 is op8=0x99 { }
+:OP_9A is op8=0x9A { }
+:OP_9B is op8=0x9B { }
+:OP_LNOT is op8=0x9C { local a:4; pop4(a); local res:4 = zext(a == 0); push4(res); }  # Logical NOT
+
+:F_CAST is op8=0x9D { local ival:4; pop4(ival); local fval:4 = int2float(ival); push4(fval); }
+:I_CAST is op8=0x9E { local fval:4; pop4(fval); local ival:4 = trunc(fval); push4(ival); }
+:F_LE is op8=0x9F { local a:4; local b:4; pop4(b); pop4(a); local res:4 = zext(a f<= b); push4(res); }
+:F_LT is op8=0xA0 { local a:4; local b:4; pop4(b); pop4(a); local res:4 = zext(a f< b); push4(res); }
+:F_GE is op8=0xA1 { local a:4; local b:4; pop4(b); pop4(a); local res:4 = zext(a f>= b); push4(res); }
+:F_GT is op8=0xA2 { local a:4; local b:4; pop4(b); pop4(a); local res:4 = zext(a f> b); push4(res); }
+:F_ADD is op8=0xA3 { local a:4; local b:4; pop4(b); pop4(a); local res:4 = a f+ b; push4(res); }
+:F_SUB is op8=0xA4 { local a:4; local b:4; pop4(b); pop4(a); local res:4 = a f- b; push4(res); }
+:F_MUL is op8=0xA5 { local a:4; local b:4; pop4(b); pop4(a); local res:4 = a f* b; push4(res); }
+:F_DIV is op8=0xA6 { local a:4; local b:4; pop4(b); pop4(a); local res:4 = a f/ b; push4(res); }
+
+# Integer arithmetic and bitwise operators (0xA7-0xBF)
+# These follow standard stack VM conventions: pop 2, push 1 result.
+:OP_ADD is op8=0xA7 { local a:4; local b:4; pop4(b); pop4(a); local res:4 = a + b; push4(res); }
+:OP_SUB is op8=0xA8 { local a:4; local b:4; pop4(b); pop4(a); local res:4 = a - b; push4(res); }
+:OP_MUL is op8=0xA9 { local a:4; local b:4; pop4(b); pop4(a); local res:4 = a * b; push4(res); }
+:OP_DIV is op8=0xAA { local a:4; local b:4; pop4(b); pop4(a); local res:4 = a s/ b; push4(res); }
+:OP_MOD is op8=0xAB { local a:4; local b:4; pop4(b); pop4(a); local res:4 = a s% b; push4(res); }
+:OP_AND is op8=0xAC { local a:4; local b:4; pop4(b); pop4(a); local res:4 = a & b; push4(res); }
+:OP_OR  is op8=0xAD { local a:4; local b:4; pop4(b); pop4(a); local res:4 = a | b; push4(res); }
+:OP_XOR is op8=0xAE { local a:4; local b:4; pop4(b); pop4(a); local res:4 = a ^ b; push4(res); }
+:OP_SHL is op8=0xAF { local a:4; local b:4; pop4(b); pop4(a); local res:4 = a << b; push4(res); }
+:OP_SHR is op8=0xB0 { local a:4; local b:4; pop4(b); pop4(a); local res:4 = a >> b; push4(res); }
+:OP_NEG is op8=0xB1 { local a:4; pop4(a); a = -a; push4(a); }
+:OP_LAND is op8=0xB2 { local a:4; local b:4; pop4(b); pop4(a); local res:4 = zext(a != 0 && b != 0); push4(res); }
+:OP_LOR  is op8=0xB3 { local a:4; local b:4; pop4(b); pop4(a); local res:4 = zext(a != 0 || b != 0); push4(res); }
+:OP_B4 is op8=0xB4 { local a:4; local b:4; pop4(b); pop4(a); local res:4 = a + b; push4(res); }
+:OP_B5 is op8=0xB5 { local a:4; local b:4; pop4(b); pop4(a); local res:4 = a - b; push4(res); }
+:OP_B6 is op8=0xB6 { local a:4; local b:4; pop4(b); pop4(a); local res:4 = a * b; push4(res); }
+:OP_B7 is op8=0xB7 { local a:4; local b:4; pop4(b); pop4(a); local res:4 = a s/ b; push4(res); }
+:OP_B8 is op8=0xB8 { local a:4; local b:4; pop4(b); pop4(a); local res:4 = a s% b; push4(res); }
+:OP_B9 is op8=0xB9 { local a:4; local b:4; pop4(b); pop4(a); local res:4 = a & b; push4(res); }
+:OP_BA is op8=0xBA { local a:4; local b:4; pop4(b); pop4(a); local res:4 = a | b; push4(res); }
+:OP_BB is op8=0xBB { local a:4; local b:4; pop4(b); pop4(a); local res:4 = a ^ b; push4(res); }
+:OP_BC is op8=0xBC { local a:4; local b:4; pop4(b); pop4(a); local res:4 = a << b; push4(res); }
+:OP_BD is op8=0xBD { local a:4; local b:4; pop4(b); pop4(a); local res:4 = a >> b; push4(res); }
+:OP_BE is op8=0xBE { local a:4; pop4(a); a = -a; push4(a); }
+:OP_BF is op8=0xBF { }
+
+# =============================================================================
+# 0x40-0x7F: Push Immediates (cat=1)
+# =============================================================================
+
+:PUSH_LAST loNib is cat=1 & pushTyp=0 & loNib { local val:4 = zext(loNib:1); push4(val); }
+:PUSH_I8 imm8 is cat=1 & pushTyp=1 & loNib ; imm8 { local val:4 = zext(imm8:1); push4(val); }
+:PUSH_I16 imm16 is cat=1 & pushTyp=2 & loNib ; imm16 { local val:4 = zext(imm16:2); push4(val); }
+:PUSH_I32 imm32 is cat=1 & pushTyp=3 & loNib ; imm32 { local val:4 = imm32; push4(val); }
+
+# =============================================================================
+# 0x00-0x3F (cat=0) and 0xC0-0xFF (cat=3): Control Flow & Function Calls
+# Both ranges use the same encoding: szBits(4-5) + cmdLow(0-3)
+# =============================================================================
+
+:MOBJ_SEL imm8 is (cat=0 | cat=3) & szBits=1 & cmdLow=0x0 ; imm8 { MOBJ = zext(imm8:1); }
+:MOBJ_SEL imm16 is (cat=0 | cat=3) & szBits=2 & cmdLow=0x0 ; imm16 { MOBJ = zext(imm16:2); }
+:MOBJ_SEL imm32 is (cat=0 | cat=3) & szBits=3 & cmdLow=0x0 ; imm32 { MOBJ = imm32; }
+
+:MOBJ_REF imm8 is (cat=0 | cat=3) & szBits=1 & cmdLow=0x1 ; imm8 { local ref:4 = zext(imm8:1); push4(ref); }
+:MOBJ_REF imm16 is (cat=0 | cat=3) & szBits=2 & cmdLow=0x1 ; imm16 { local ref:4 = zext(imm16:2); push4(ref); }
+:MOBJ_REF imm32 is (cat=0 | cat=3) & szBits=3 & cmdLow=0x1 ; imm32 { local val:4 = imm32; push4(val); }
+
+:MOBJ_OP imm8 is (cat=0 | cat=3) & szBits=1 & cmdLow=0x2 ; imm8 { local op:4 = zext(imm8:1); push4(op); }
+:MOBJ_OP imm16 is (cat=0 | cat=3) & szBits=2 & cmdLow=0x2 ; imm16 { local op:4 = zext(imm16:2); push4(op); }
+:MOBJ_OP imm32 is (cat=0 | cat=3) & szBits=3 & cmdLow=0x2 ; imm32 { local val:4 = imm32; push4(val); }
+
+:SP_ADD imm8 is (cat=0 | cat=3) & szBits=1 & cmdLow=0x3 ; imm8 { SP = SP + zext(imm8:1); }
+:SP_ADD imm16 is (cat=0 | cat=3) & szBits=2 & cmdLow=0x3 ; imm16 { SP = SP + zext(imm16:2); }
+:SP_ADD imm32 is (cat=0 | cat=3) & szBits=3 & cmdLow=0x3 ; imm32 { SP = SP + imm32; }
+
+:JMPX rel8 is (cat=0 | cat=3) & szBits=1 & cmdLow=0x4 ; rel8 { goto rel8; }
+:JMPX rel16 is (cat=0 | cat=3) & szBits=2 & cmdLow=0x4 ; rel16 { goto rel16; }
+:JMPX_FAR imm32 is (cat=0 | cat=3) & szBits=3 & cmdLow=0x4 ; imm32 { }
+
+:JMP rel8 is (cat=0 | cat=3) & szBits=1 & cmdLow=0x5 ; rel8 { goto rel8; }
+:JMP rel16 is (cat=0 | cat=3) & szBits=2 & cmdLow=0x5 ; rel16 { goto rel16; }
+:JMP_FAR imm32 is (cat=0 | cat=3) & szBits=3 & cmdLow=0x5 ; imm32 { }
+
+:JZ rel8 is (cat=0 | cat=3) & szBits=1 & cmdLow=0x6 ; rel8 { if (R14 == 0) goto rel8; }
+:JZ rel16 is (cat=0 | cat=3) & szBits=2 & cmdLow=0x6 ; rel16 { if (R14 == 0) goto rel16; }
+:JZ_FAR imm32 is (cat=0 | cat=3) & szBits=3 & cmdLow=0x6 ; imm32 { }
+
+:MOV_REG imm8 is (cat=0 | cat=3) & szBits=1 & cmdLow=0x7 ; imm8 { R14 = zext(imm8:1); }
+:MOV_REG imm16 is (cat=0 | cat=3) & szBits=2 & cmdLow=0x7 ; imm16 { R14 = zext(imm16:2); }
+:MOV_REG imm32 is (cat=0 | cat=3) & szBits=3 & cmdLow=0x7 ; imm32 { R14 = imm32; }
+
+:CALL_SET6 imm8 is (cat=0 | cat=3) & szBits=1 & cmdLow=0x8 ; imm8 { local idx:4 = zext(imm8:1); local ret:4 = SCNF_dispatch(idx); R14 = ret; }
+:CALL_SET6 imm16 is (cat=0 | cat=3) & szBits=2 & cmdLow=0x8 ; imm16 { local idx:4 = zext(imm16:2); local ret:4 = SCNF_dispatch(idx); R14 = ret; }
+:CALL_SET6_FAR imm32 is (cat=0 | cat=3) & szBits=3 & cmdLow=0x8 ; imm32 { }
+
+:CALL_SET1 imm8 is (cat=0 | cat=3) & szBits=1 & cmdLow=0x9 ; imm8 { local idx:4 = zext(imm8:1); local ret:4 = SET1_dispatch(idx); R14 = ret; }
+:CALL_SET1 imm16 is (cat=0 | cat=3) & szBits=2 & cmdLow=0x9 ; imm16 { local idx:4 = zext(imm16:2); local ret:4 = SET1_dispatch(idx); R14 = ret; }
+:CALL_SET1_FAR imm32 is (cat=0 | cat=3) & szBits=3 & cmdLow=0x9 ; imm32 { }
+
+:CALL_SET2 imm8 is (cat=0 | cat=3) & szBits=1 & cmdLow=0xA ; imm8 { local idx:4 = zext(imm8:1); local ret:4 = SET2_dispatch(idx); R14 = ret; }
+:CALL_SET2 imm16 is (cat=0 | cat=3) & szBits=2 & cmdLow=0xA ; imm16 { local idx:4 = zext(imm16:2); local ret:4 = SET2_dispatch(idx); R14 = ret; }
+:CALL_SET2_FAR imm32 is (cat=0 | cat=3) & szBits=3 & cmdLow=0xA ; imm32 { }
+
+:CALL_SET3 imm8 is (cat=0 | cat=3) & szBits=1 & cmdLow=0xB ; imm8 { local idx:4 = zext(imm8:1); local ret:4 = SET3_dispatch(idx); R14 = ret; }
+:CALL_SET3 imm16 is (cat=0 | cat=3) & szBits=2 & cmdLow=0xB ; imm16 { local idx:4 = zext(imm16:2); local ret:4 = SET3_dispatch(idx); R14 = ret; }
+:CALL_SET3_FAR imm32 is (cat=0 | cat=3) & szBits=3 & cmdLow=0xB ; imm32 { }
+
+:CALL_SET4 imm8 is (cat=0 | cat=3) & szBits=1 & cmdLow=0xC ; imm8 { local idx:4 = zext(imm8:1); local ret:4 = SET4_dispatch(idx); R14 = ret; }
+:CALL_SET4 imm16 is (cat=0 | cat=3) & szBits=2 & cmdLow=0xC ; imm16 { local idx:4 = zext(imm16:2); local ret:4 = SET4_dispatch(idx); R14 = ret; }
+:CALL_SET4_FAR imm32 is (cat=0 | cat=3) & szBits=3 & cmdLow=0xC ; imm32 { }
+
+:CALL_SET7 imm8 is (cat=0 | cat=3) & szBits=1 & cmdLow=0xD ; imm8 { local idx:4 = zext(imm8:1); local ret:4 = SET7_dispatch(idx); R14 = ret; }
+:CALL_SET7 imm16 is (cat=0 | cat=3) & szBits=2 & cmdLow=0xD ; imm16 { local idx:4 = zext(imm16:2); local ret:4 = SET7_dispatch(idx); R14 = ret; }
+:CALL_SET7_FAR imm32 is (cat=0 | cat=3) & szBits=3 & cmdLow=0xD ; imm32 { }
+
+# Catch-all for unmapped commands 0xE/0xF with operands
+:OP_UNK_E imm8 is (cat=0 | cat=3) & szBits=1 & cmdLow=0xE ; imm8 { }
+:OP_UNK_F imm8 is (cat=0 | cat=3) & szBits=1 & cmdLow=0xF ; imm8 { }
+:OP_UNK_E imm16 is (cat=0 | cat=3) & szBits=2 & cmdLow=0xE ; imm16 { }
+:OP_UNK_F imm16 is (cat=0 | cat=3) & szBits=2 & cmdLow=0xF ; imm16 { }
+:OP_UNK_E imm32 is (cat=0 | cat=3) & szBits=3 & cmdLow=0xE ; imm32 { }
+:OP_UNK_F imm32 is (cat=0 | cat=3) & szBits=3 & cmdLow=0xF ; imm32 { }
+
+# Size=0 no-operand control opcodes (0x00-0x0F and 0xC0-0xCF)
+# Stack effects determined by cross-referencing PC port analysis and
+# observed bytecode patterns in 42 Dreamcast scenes.
+:NOP is (cat=0 | cat=3) & szBits=0 & cmdLow=0x0 { }
+:COMMIT is (cat=0 | cat=3) & szBits=0 & cmdLow=0x1 { }                          # Commit/finalize — no stack effect
+:FRAME_RD is (cat=0 | cat=3) & szBits=0 & cmdLow=0x2 { local tmp:4 = *:4 MOBJ; push4(tmp); }  # Read from MOBJ frame — pushes 1
+:ARG_SEP is (cat=0 | cat=3) & szBits=0 & cmdLow=0x3 { }                          # Argument separator — no stack effect
+:FRAME_SETUP is (cat=0 | cat=3) & szBits=0 & cmdLow=0x4 { }                      # Call frame setup — no stack effect
+:OP_05 is (cat=0 | cat=3) & szBits=0 & cmdLow=0x5 { }                            # Nop-like
+:FRAME_RD2 is (cat=0 | cat=3) & szBits=0 & cmdLow=0x6 { local tmp:4 = *:4 MOBJ; push4(tmp); }  # Read operation — pushes 1
+:FRAME_RD3 is (cat=0 | cat=3) & szBits=0 & cmdLow=0x7 { local tmp:4 = *:4 MOBJ; push4(tmp); }  # Read operation — pushes 1
+:CALL_SETUP is (cat=0 | cat=3) & szBits=0 & cmdLow=0x8 { }                        # Call frame setup (precedes packed verb)
+:CLEANUP is (cat=0 | cat=3) & szBits=0 & cmdLow=0x9 { }                          # Cleanup paired with COMMIT
+:OP_0A is (cat=0 | cat=3) & szBits=0 & cmdLow=0xA { }                            # Nop-like
+:DISCARD is (cat=0 | cat=3) & szBits=0 & cmdLow=0xB { local tmp:4; pop4(tmp); }  # Pop and discard one value
+:TEST is (cat=0 | cat=3) & szBits=0 & cmdLow=0xC { pop4(R14); }                  # Pop to R14 (test/compare — CRITICAL for JZ)
+:OP_0D is (cat=0 | cat=3) & szBits=0 & cmdLow=0xD { }                            # Nop-like
+:OP_0E is (cat=0 | cat=3) & szBits=0 & cmdLow=0xE { }                            # Nop-like
+:OP_0F is (cat=0 | cat=3) & szBits=0 & cmdLow=0xF { }                            # Nop-like
