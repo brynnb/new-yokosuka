@@ -1,0 +1,6538 @@
+{
+  "metadata": {
+    "source": "jomo_analysis.json",
+    "tool": "extract_placements.py",
+    "total_data_transforms": 182,
+    "models_with_transforms": 7,
+    "unassociated_transforms": 166,
+    "models_with_code_calls": 26
+  },
+  "model_call_map": {
+    "MALS501G.MT5": {
+      "position_calls": 0,
+      "rotation_calls": 1,
+      "scale_calls": 0,
+      "init_calls": 0,
+      "activate_calls": 0,
+      "setup_calls": 1,
+      "call_addrs": [
+        "0x0008b1bf"
+      ]
+    },
+    "TKNH4R1G.MT5": {
+      "position_calls": 0,
+      "rotation_calls": 0,
+      "scale_calls": 0,
+      "init_calls": 0,
+      "activate_calls": 0,
+      "setup_calls": 1,
+      "call_addrs": []
+    },
+    "TTMS246G.MT5": {
+      "position_calls": 0,
+      "rotation_calls": 1,
+      "scale_calls": 0,
+      "init_calls": 0,
+      "activate_calls": 0,
+      "setup_calls": 9,
+      "call_addrs": [
+        "0x000892c7"
+      ]
+    },
+    "model_1180": {
+      "position_calls": 0,
+      "rotation_calls": 0,
+      "scale_calls": 0,
+      "init_calls": 0,
+      "activate_calls": 0,
+      "setup_calls": 1,
+      "call_addrs": []
+    },
+    "model_125": {
+      "position_calls": 0,
+      "rotation_calls": 8,
+      "scale_calls": 0,
+      "init_calls": 2,
+      "activate_calls": 2,
+      "setup_calls": 79,
+      "call_addrs": [
+        "0x0008a37b",
+        "0x0008a4d7",
+        "0x0008a8fb",
+        "0x0008a93b",
+        "0x0008ad03",
+        "0x0008adaf",
+        "0x0008af7b",
+        "0x0008d3db"
+      ]
+    },
+    "model_13652": {
+      "position_calls": 0,
+      "rotation_calls": 0,
+      "scale_calls": 0,
+      "init_calls": 0,
+      "activate_calls": 0,
+      "setup_calls": 2,
+      "call_addrs": []
+    },
+    "model_139": {
+      "position_calls": 0,
+      "rotation_calls": 0,
+      "scale_calls": 0,
+      "init_calls": 0,
+      "activate_calls": 0,
+      "setup_calls": 3,
+      "call_addrs": []
+    },
+    "model_158": {
+      "position_calls": 0,
+      "rotation_calls": 1,
+      "scale_calls": 0,
+      "init_calls": 0,
+      "activate_calls": 0,
+      "setup_calls": 5,
+      "call_addrs": [
+        "0x00089bd9"
+      ]
+    },
+    "model_16777216": {
+      "position_calls": 0,
+      "rotation_calls": 1,
+      "scale_calls": 0,
+      "init_calls": 0,
+      "activate_calls": 0,
+      "setup_calls": 1,
+      "call_addrs": [
+        "0x0008ac27"
+      ]
+    },
+    "model_16980": {
+      "position_calls": 0,
+      "rotation_calls": 0,
+      "scale_calls": 0,
+      "init_calls": 0,
+      "activate_calls": 0,
+      "setup_calls": 1,
+      "call_addrs": []
+    },
+    "model_18134": {
+      "position_calls": 0,
+      "rotation_calls": 0,
+      "scale_calls": 0,
+      "init_calls": 0,
+      "activate_calls": 0,
+      "setup_calls": 2,
+      "call_addrs": []
+    },
+    "model_20308": {
+      "position_calls": 0,
+      "rotation_calls": 0,
+      "scale_calls": 0,
+      "init_calls": 0,
+      "activate_calls": 0,
+      "setup_calls": 1,
+      "call_addrs": []
+    },
+    "model_205": {
+      "position_calls": 0,
+      "rotation_calls": 0,
+      "scale_calls": 0,
+      "init_calls": 0,
+      "activate_calls": 1,
+      "setup_calls": 2,
+      "call_addrs": []
+    },
+    "model_209": {
+      "position_calls": 0,
+      "rotation_calls": 0,
+      "scale_calls": 0,
+      "init_calls": 0,
+      "activate_calls": 0,
+      "setup_calls": 1,
+      "call_addrs": []
+    },
+    "model_212": {
+      "position_calls": 0,
+      "rotation_calls": 0,
+      "scale_calls": 0,
+      "init_calls": 0,
+      "activate_calls": 0,
+      "setup_calls": 1,
+      "call_addrs": []
+    },
+    "model_228": {
+      "position_calls": 0,
+      "rotation_calls": 0,
+      "scale_calls": 0,
+      "init_calls": 0,
+      "activate_calls": 0,
+      "setup_calls": 1,
+      "call_addrs": []
+    },
+    "model_258921341": {
+      "position_calls": 0,
+      "rotation_calls": 0,
+      "scale_calls": 0,
+      "init_calls": 0,
+      "activate_calls": 0,
+      "setup_calls": 3,
+      "call_addrs": []
+    },
+    "model_26964": {
+      "position_calls": 0,
+      "rotation_calls": 0,
+      "scale_calls": 0,
+      "init_calls": 0,
+      "activate_calls": 0,
+      "setup_calls": 1,
+      "call_addrs": []
+    },
+    "model_340": {
+      "position_calls": 0,
+      "rotation_calls": 0,
+      "scale_calls": 0,
+      "init_calls": 0,
+      "activate_calls": 0,
+      "setup_calls": 1,
+      "call_addrs": []
+    },
+    "model_3668": {
+      "position_calls": 0,
+      "rotation_calls": 0,
+      "scale_calls": 0,
+      "init_calls": 0,
+      "activate_calls": 0,
+      "setup_calls": 1,
+      "call_addrs": []
+    },
+    "model_5461": {
+      "position_calls": 0,
+      "rotation_calls": 1,
+      "scale_calls": 0,
+      "init_calls": 0,
+      "activate_calls": 0,
+      "setup_calls": 1,
+      "call_addrs": [
+        "0x00089ae3"
+      ]
+    },
+    "model_65529": {
+      "position_calls": 0,
+      "rotation_calls": 0,
+      "scale_calls": 0,
+      "init_calls": 0,
+      "activate_calls": 0,
+      "setup_calls": 4,
+      "call_addrs": []
+    },
+    "model_725": {
+      "position_calls": 0,
+      "rotation_calls": 0,
+      "scale_calls": 0,
+      "init_calls": 0,
+      "activate_calls": 0,
+      "setup_calls": 1,
+      "call_addrs": []
+    },
+    "model_7377": {
+      "position_calls": 0,
+      "rotation_calls": 2,
+      "scale_calls": 0,
+      "init_calls": 0,
+      "activate_calls": 0,
+      "setup_calls": 7,
+      "call_addrs": [
+        "0x0008b3db",
+        "0x0008b647"
+      ]
+    },
+    "model_84": {
+      "position_calls": 0,
+      "rotation_calls": 0,
+      "scale_calls": 0,
+      "init_calls": 0,
+      "activate_calls": 0,
+      "setup_calls": 4,
+      "call_addrs": []
+    },
+    "model_9169": {
+      "position_calls": 0,
+      "rotation_calls": 0,
+      "scale_calls": 1,
+      "init_calls": 0,
+      "activate_calls": 0,
+      "setup_calls": 4,
+      "call_addrs": []
+    }
+  },
+  "by_model": {
+    "DHKK3R1G.MT5": {
+      "model_file": "DHKK3R1G.MT5",
+      "instance_count": 1,
+      "has_code_calls": false,
+      "code_calls": {},
+      "instances": [
+        {
+          "offset": "0x9C328",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "scale": {
+            "x": -0.3,
+            "y": -0.635,
+            "z": 0.022
+          },
+          "nearest_model": "DHKK3R1G.MT5",
+          "model_distance": 164,
+          "nearest_slot": "DR23_000",
+          "slot_distance": 39018
+        }
+      ]
+    },
+    "MALS501G.MT5": {
+      "model_file": "MALS501G.MT5",
+      "instance_count": 1,
+      "has_code_calls": true,
+      "code_calls": {
+        "position_calls": 0,
+        "rotation_calls": 1,
+        "scale_calls": 0,
+        "init_calls": 0,
+        "activate_calls": 0,
+        "setup_calls": 1,
+        "call_addrs": [
+          "0x0008b1bf"
+        ]
+      },
+      "instances": [
+        {
+          "offset": "0x99B30",
+          "position": {
+            "x": 0.5,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "nearest_model": "MALS501G.MT5",
+          "model_distance": 86,
+          "nearest_slot": "DR23_000",
+          "slot_distance": 28786
+        }
+      ]
+    },
+    "MMA0201G.MT5": {
+      "model_file": "MMA0201G.MT5",
+      "instance_count": 2,
+      "has_code_calls": false,
+      "code_calls": {},
+      "instances": [
+        {
+          "offset": "0x99F78",
+          "position": {
+            "x": 0.6315,
+            "y": 2.5192,
+            "z": 15.771
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 15.7442
+          },
+          "nearest_model": "MMA0201G.MT5",
+          "model_distance": 116,
+          "nearest_slot": "DR23_000",
+          "slot_distance": 29882
+        },
+        {
+          "offset": "0x9A02C",
+          "position": {
+            "x": 0.5,
+            "y": 1.5,
+            "z": 1.5
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "nearest_model": "MMA0201G.MT5",
+          "model_distance": 64,
+          "nearest_slot": "DR23_000",
+          "slot_distance": 30062
+        }
+      ]
+    },
+    "OKAK301G.MT5": {
+      "model_file": "OKAK301G.MT5",
+      "instance_count": 6,
+      "has_code_calls": false,
+      "code_calls": {},
+      "instances": [
+        {
+          "offset": "0x9A204",
+          "position": {
+            "x": 0.5,
+            "y": 22.7349,
+            "z": 0.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "nearest_model": "OKAK301G.MT5",
+          "model_distance": 112,
+          "nearest_slot": "DR23_000",
+          "slot_distance": 30534
+        },
+        {
+          "offset": "0x9A21C",
+          "position": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.0
+          },
+          "scale": {
+            "x": -0.0141,
+            "y": 1.0,
+            "z": 0.5
+          },
+          "nearest_model": "OKAK301G.MT5",
+          "model_distance": 136,
+          "nearest_slot": "DR23_000",
+          "slot_distance": 30558
+        },
+        {
+          "offset": "0x9A27C",
+          "position": {
+            "x": 0.5,
+            "y": 12.8909,
+            "z": 0.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "nearest_model": "OKAK301G.MT5",
+          "model_distance": 232,
+          "nearest_slot": "DR23_000",
+          "slot_distance": 30654
+        },
+        {
+          "offset": "0x9A294",
+          "position": {
+            "x": 0.2,
+            "y": 4.0,
+            "z": 0.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 0.2,
+            "z": 0.2
+          },
+          "nearest_model": "OKAK301G.MT5",
+          "model_distance": 256,
+          "nearest_slot": "DR23_000",
+          "slot_distance": 30678
+        },
+        {
+          "offset": "0x9A2F4",
+          "position": {
+            "x": 0.5,
+            "y": 1.0,
+            "z": 0.2
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "nearest_model": "OKAK301G.MT5",
+          "model_distance": 352,
+          "nearest_slot": "DR23_000",
+          "slot_distance": 30774
+        },
+        {
+          "offset": "0x9A30C",
+          "position": {
+            "x": -0.01,
+            "y": -0.01,
+            "z": 0.0
+          },
+          "scale": {
+            "x": 0.2,
+            "y": 0.2,
+            "z": -0.02
+          },
+          "nearest_model": "OKAK301G.MT5",
+          "model_distance": 376,
+          "nearest_slot": "DR23_000",
+          "slot_distance": 30798
+        }
+      ]
+    },
+    "TOUK3I1G.MT5": {
+      "model_file": "TOUK3I1G.MT5",
+      "instance_count": 2,
+      "has_code_calls": false,
+      "code_calls": {},
+      "instances": [
+        {
+          "offset": "0x9C660",
+          "position": {
+            "x": 0.46,
+            "y": 0.89,
+            "z": 0.89
+          },
+          "scale": {
+            "x": 0.78,
+            "y": 0.82,
+            "z": 0.59
+          },
+          "nearest_model": "TOUK3I1G.MT5",
+          "model_distance": 16,
+          "nearest_slot": "DR23_000",
+          "slot_distance": 39842
+        },
+        {
+          "offset": "0x9C678",
+          "position": {
+            "x": 0.14,
+            "y": 1.1,
+            "z": 1.84
+          },
+          "scale": {
+            "x": 0.13,
+            "y": 0.39,
+            "z": 0.28
+          },
+          "nearest_model": "TOUK3I1G.MT5",
+          "model_distance": 40,
+          "nearest_slot": "DR23_000",
+          "slot_distance": 39866
+        }
+      ]
+    },
+    "TTMS246G.MT5": {
+      "model_file": "TTMS246G.MT5",
+      "instance_count": 2,
+      "has_code_calls": true,
+      "code_calls": {
+        "position_calls": 0,
+        "rotation_calls": 1,
+        "scale_calls": 0,
+        "init_calls": 0,
+        "activate_calls": 0,
+        "setup_calls": 9,
+        "call_addrs": [
+          "0x000892c7"
+        ]
+      },
+      "instances": [
+        {
+          "offset": "0x99984",
+          "position": {
+            "x": 0.005,
+            "y": 0.0,
+            "z": 0.005
+          },
+          "scale": {
+            "x": 10.9437,
+            "y": 0.75,
+            "z": -2.49
+          },
+          "nearest_model": "TTMS246G.MT5",
+          "model_distance": 328,
+          "nearest_slot": "DR23_000",
+          "slot_distance": 28358
+        },
+        {
+          "offset": "0x99AA0",
+          "position": {
+            "x": 0.5,
+            "y": 1.0,
+            "z": 0.5
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "nearest_model": "TTMS246G.MT5",
+          "model_distance": 44,
+          "nearest_slot": "DR23_000",
+          "slot_distance": 28642
+        }
+      ]
+    },
+    "TUB0210G.MT5": {
+      "model_file": "TUB0210G.MT5",
+      "instance_count": 2,
+      "has_code_calls": false,
+      "code_calls": {},
+      "instances": [
+        {
+          "offset": "0x9A074",
+          "position": {
+            "x": 0.5,
+            "y": 53.3322,
+            "z": 0.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "nearest_model": "TUB0210G.MT5",
+          "model_distance": 16,
+          "nearest_slot": "DR23_000",
+          "slot_distance": 30134
+        },
+        {
+          "offset": "0x9A0BC",
+          "position": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "scale": {
+            "x": 0.2,
+            "y": 0.2,
+            "z": 1.0
+          },
+          "nearest_model": "TUB0210G.MT5",
+          "model_distance": 56,
+          "nearest_slot": "DR23_000",
+          "slot_distance": 30206
+        }
+      ]
+    }
+  },
+  "unassociated_transforms": [
+    {
+      "offset": "0x90F6C",
+      "position": {
+        "x": 132.0,
+        "y": 45.0,
+        "z": 50.0
+      },
+      "scale": {
+        "x": 19.0,
+        "y": 52.0,
+        "z": 96.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 35680,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6940
+    },
+    {
+      "offset": "0x910D4",
+      "position": {
+        "x": 125.0,
+        "y": 45.0,
+        "z": 56.0
+      },
+      "scale": {
+        "x": 21.0,
+        "y": 45.0,
+        "z": 95.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 35320,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6580
+    },
+    {
+      "offset": "0x91108",
+      "position": {
+        "x": 0.04,
+        "y": 0.0,
+        "z": 21.0
+      },
+      "scale": {
+        "x": 45.0,
+        "y": 56.5,
+        "z": 48.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 35268,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6528
+    },
+    {
+      "offset": "0x9112C",
+      "position": {
+        "x": 1.7136,
+        "y": 0.0,
+        "z": 41.0
+      },
+      "scale": {
+        "x": 48.08,
+        "y": 83.538,
+        "z": 65.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 35232,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6492
+    },
+    {
+      "offset": "0x91150",
+      "position": {
+        "x": 2.4333,
+        "y": 0.0,
+        "z": 33.0
+      },
+      "scale": {
+        "x": 48.978,
+        "y": 82.223,
+        "z": 93.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 35196,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6456
+    },
+    {
+      "offset": "0x91174",
+      "position": {
+        "x": 1.7972,
+        "y": 0.0,
+        "z": 48.0
+      },
+      "scale": {
+        "x": 34.54,
+        "y": 86.077,
+        "z": 64.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 35160,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6420
+    },
+    {
+      "offset": "0x911BC",
+      "position": {
+        "x": 0.0183,
+        "y": 0.0,
+        "z": 20.0
+      },
+      "scale": {
+        "x": 60.0,
+        "y": 55.0,
+        "z": 52.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 35088,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6348
+    },
+    {
+      "offset": "0x911E0",
+      "position": {
+        "x": 0.0798,
+        "y": 0.0,
+        "z": 23.0
+      },
+      "scale": {
+        "x": 68.5,
+        "y": 60.0,
+        "z": 42.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 35052,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6312
+    },
+    {
+      "offset": "0x91204",
+      "position": {
+        "x": 1.2643,
+        "y": 0.0,
+        "z": 51.0
+      },
+      "scale": {
+        "x": 81.0,
+        "y": 58.0,
+        "z": 64.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 35016,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6276
+    },
+    {
+      "offset": "0x9124C",
+      "position": {
+        "x": 1.9468,
+        "y": 0.0,
+        "z": 33.0
+      },
+      "scale": {
+        "x": 62.75,
+        "y": 59.0,
+        "z": 70.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34944,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6204
+    },
+    {
+      "offset": "0x91270",
+      "position": {
+        "x": 2.2871,
+        "y": 0.0,
+        "z": 24.0
+      },
+      "scale": {
+        "x": 55.0,
+        "y": 69.0,
+        "z": 79.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34908,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6168
+    },
+    {
+      "offset": "0x91294",
+      "position": {
+        "x": 0.0249,
+        "y": 0.0,
+        "z": 25.0
+      },
+      "scale": {
+        "x": 54.0,
+        "y": 56.5,
+        "z": 58.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34872,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6132
+    },
+    {
+      "offset": "0x912B8",
+      "position": {
+        "x": 0.0236,
+        "y": 0.0,
+        "z": 20.0
+      },
+      "scale": {
+        "x": 48.3,
+        "y": 58.0,
+        "z": 54.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34836,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6096
+    },
+    {
+      "offset": "0x912DC",
+      "position": {
+        "x": 1.9167,
+        "y": 0.0,
+        "z": 45.0
+      },
+      "scale": {
+        "x": 47.704,
+        "y": 76.788,
+        "z": 60.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34800,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6060
+    },
+    {
+      "offset": "0x91300",
+      "position": {
+        "x": 1.4981,
+        "y": 0.0,
+        "z": 46.0
+      },
+      "scale": {
+        "x": 53.195,
+        "y": 88.927,
+        "z": 97.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34764,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6024
+    },
+    {
+      "offset": "0x91324",
+      "position": {
+        "x": 0.5833,
+        "y": 0.0,
+        "z": 34.0
+      },
+      "scale": {
+        "x": 39.535,
+        "y": 89.265,
+        "z": 99.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34728,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5988
+    },
+    {
+      "offset": "0x9135C",
+      "position": {
+        "x": 110.0,
+        "y": 63.0,
+        "z": 47.0
+      },
+      "scale": {
+        "x": 22.0,
+        "y": 41.0,
+        "z": 85.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34672,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5932
+    },
+    {
+      "offset": "0x91380",
+      "position": {
+        "x": 114.0,
+        "y": 73.0,
+        "z": 46.0
+      },
+      "scale": {
+        "x": 23.0,
+        "y": 41.0,
+        "z": 90.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34636,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5896
+    },
+    {
+      "offset": "0x913B4",
+      "position": {
+        "x": 1.6836,
+        "y": 0.0,
+        "z": 45.0
+      },
+      "scale": {
+        "x": 67.096,
+        "y": 56.924,
+        "z": 59.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34584,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5844
+    },
+    {
+      "offset": "0x913D8",
+      "position": {
+        "x": 1.8126,
+        "y": 0.0,
+        "z": 23.0
+      },
+      "scale": {
+        "x": 91.0,
+        "y": 60.0,
+        "z": 95.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34548,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5808
+    },
+    {
+      "offset": "0x913FC",
+      "position": {
+        "x": 0.3366,
+        "y": 0.0,
+        "z": 32.0
+      },
+      "scale": {
+        "x": 50.1,
+        "y": 54.112,
+        "z": 80.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34512,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5772
+    },
+    {
+      "offset": "0x91420",
+      "position": {
+        "x": 1.3956,
+        "y": 0.0,
+        "z": 21.0
+      },
+      "scale": {
+        "x": 62.0,
+        "y": 63.0,
+        "z": 86.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34476,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5736
+    },
+    {
+      "offset": "0x91444",
+      "position": {
+        "x": 0.0223,
+        "y": 0.0,
+        "z": 24.0
+      },
+      "scale": {
+        "x": 49.0,
+        "y": 57.5,
+        "z": 54.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34440,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5700
+    },
+    {
+      "offset": "0x91468",
+      "position": {
+        "x": 0.0327,
+        "y": 0.0,
+        "z": 20.0
+      },
+      "scale": {
+        "x": 49.0,
+        "y": 58.5,
+        "z": 50.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34404,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5664
+    },
+    {
+      "offset": "0x9148C",
+      "position": {
+        "x": 1.9319,
+        "y": 0.0,
+        "z": 35.0
+      },
+      "scale": {
+        "x": 51.0,
+        "y": 80.081,
+        "z": 47.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34368,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5628
+    },
+    {
+      "offset": "0x914B0",
+      "position": {
+        "x": 2.2963,
+        "y": 0.0,
+        "z": 33.0
+      },
+      "scale": {
+        "x": 51.819,
+        "y": 82.554,
+        "z": 87.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34332,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5592
+    },
+    {
+      "offset": "0x914D4",
+      "position": {
+        "x": 1.1599,
+        "y": 0.0,
+        "z": 43.0
+      },
+      "scale": {
+        "x": 39.535,
+        "y": 95.652,
+        "z": 71.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34296,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5556
+    },
+    {
+      "offset": "0x914F8",
+      "position": {
+        "x": 1.0387,
+        "y": 0.0,
+        "z": 21.0
+      },
+      "scale": {
+        "x": 50.158,
+        "y": 59.491,
+        "z": 88.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34260,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5520
+    },
+    {
+      "offset": "0x9151C",
+      "position": {
+        "x": 0.03,
+        "y": 0.0,
+        "z": 51.0
+      },
+      "scale": {
+        "x": 45.0,
+        "y": 54.0,
+        "z": 43.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34224,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5484
+    },
+    {
+      "offset": "0x91540",
+      "position": {
+        "x": 0.0283,
+        "y": 0.0,
+        "z": 25.0
+      },
+      "scale": {
+        "x": 51.0,
+        "y": 52.5,
+        "z": 79.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34188,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5448
+    },
+    {
+      "offset": "0x91564",
+      "position": {
+        "x": 1.4962,
+        "y": 0.0,
+        "z": 64.0
+      },
+      "scale": {
+        "x": 56.071,
+        "y": 70.459,
+        "z": 64.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34152,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5412
+    },
+    {
+      "offset": "0x915E4",
+      "position": {
+        "x": 105.0,
+        "y": 51.0,
+        "z": 44.5
+      },
+      "scale": {
+        "x": 22.0,
+        "y": 42.0,
+        "z": 84.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34024,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5284
+    },
+    {
+      "offset": "0x91618",
+      "position": {
+        "x": 0.025,
+        "y": 0.0,
+        "z": 22.0
+      },
+      "scale": {
+        "x": 47.0,
+        "y": 54.1,
+        "z": 75.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33972,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5232
+    },
+    {
+      "offset": "0x9163C",
+      "position": {
+        "x": 1.7189,
+        "y": 0.0,
+        "z": 39.0
+      },
+      "scale": {
+        "x": 60.0,
+        "y": 68.424,
+        "z": 67.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33936,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5196
+    },
+    {
+      "offset": "0x91660",
+      "position": {
+        "x": 1.9291,
+        "y": 0.0,
+        "z": 38.0
+      },
+      "scale": {
+        "x": 54.184,
+        "y": 76.428,
+        "z": 98.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33900,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5160
+    },
+    {
+      "offset": "0x91684",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 40.0
+      },
+      "scale": {
+        "x": 45.0,
+        "y": 96.103,
+        "z": 70.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33864,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5124
+    },
+    {
+      "offset": "0x916BC",
+      "position": {
+        "x": 109.0,
+        "y": 48.5,
+        "z": 44.5
+      },
+      "scale": {
+        "x": 21.0,
+        "y": 45.0,
+        "z": 84.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33808,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5068
+    },
+    {
+      "offset": "0x916F0",
+      "position": {
+        "x": 0.0119,
+        "y": 0.0,
+        "z": 20.0
+      },
+      "scale": {
+        "x": 49.5,
+        "y": 42.5,
+        "z": 75.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33756,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5016
+    },
+    {
+      "offset": "0x91714",
+      "position": {
+        "x": 0.7448,
+        "y": 0.0,
+        "z": 42.0
+      },
+      "scale": {
+        "x": 60.0,
+        "y": 68.424,
+        "z": 56.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33720,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4980
+    },
+    {
+      "offset": "0x9174C",
+      "position": {
+        "x": 111.0,
+        "y": 30.0,
+        "z": 81.103
+      },
+      "scale": {
+        "x": 36.0,
+        "y": 57.0,
+        "z": 85.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33664,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4924
+    },
+    {
+      "offset": "0x91794",
+      "position": {
+        "x": 123.0,
+        "y": 47.553,
+        "z": 52.633
+      },
+      "scale": {
+        "x": 21.0,
+        "y": 52.0,
+        "z": 90.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33592,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4852
+    },
+    {
+      "offset": "0x917C8",
+      "position": {
+        "x": 0.0247,
+        "y": 0.0,
+        "z": 18.0
+      },
+      "scale": {
+        "x": 48.0,
+        "y": 52.133,
+        "z": 53.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33540,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4800
+    },
+    {
+      "offset": "0x917EC",
+      "position": {
+        "x": 1.3195,
+        "y": 0.0,
+        "z": 35.0
+      },
+      "scale": {
+        "x": 45.0,
+        "y": 78.464,
+        "z": 68.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33504,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4764
+    },
+    {
+      "offset": "0x91810",
+      "position": {
+        "x": 1.9986,
+        "y": 0.0,
+        "z": 32.0
+      },
+      "scale": {
+        "x": 55.4,
+        "y": 84.543,
+        "z": 85.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33468,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4728
+    },
+    {
+      "offset": "0x91834",
+      "position": {
+        "x": 0.2855,
+        "y": 0.0,
+        "z": 44.0
+      },
+      "scale": {
+        "x": 41.187,
+        "y": 95.0,
+        "z": 66.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33432,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4692
+    },
+    {
+      "offset": "0x91858",
+      "position": {
+        "x": 1.2961,
+        "y": 0.0,
+        "z": 55.0
+      },
+      "scale": {
+        "x": 50.629,
+        "y": 56.424,
+        "z": 90.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33396,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4656
+    },
+    {
+      "offset": "0x9187C",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 29.0
+      },
+      "scale": {
+        "x": 30.0,
+        "y": 80.0,
+        "z": 90.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33360,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4620
+    },
+    {
+      "offset": "0x918A0",
+      "position": {
+        "x": 0.1295,
+        "y": 0.0,
+        "z": 29.0
+      },
+      "scale": {
+        "x": 47.535,
+        "y": 75.652,
+        "z": 71.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33324,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4584
+    },
+    {
+      "offset": "0x918C4",
+      "position": {
+        "x": 0.0231,
+        "y": 0.0,
+        "z": 36.0
+      },
+      "scale": {
+        "x": 52.025,
+        "y": 80.741,
+        "z": 67.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33288,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4548
+    },
+    {
+      "offset": "0x918E8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 32.0
+      },
+      "scale": {
+        "x": 45.0,
+        "y": 71.103,
+        "z": 62.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33252,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4512
+    },
+    {
+      "offset": "0x9190C",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 52.0
+      },
+      "scale": {
+        "x": 44.284,
+        "y": 81.165,
+        "z": 60.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33216,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4476
+    },
+    {
+      "offset": "0x91930",
+      "position": {
+        "x": 2.0,
+        "y": 0.0,
+        "z": 52.0
+      },
+      "scale": {
+        "x": 45.0,
+        "y": 65.0,
+        "z": 95.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33180,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4440
+    },
+    {
+      "offset": "0x919A4",
+      "position": {
+        "x": 75.0,
+        "y": 0.0,
+        "z": 61.0
+      },
+      "scale": {
+        "x": 26.0,
+        "y": 55.0,
+        "z": 45.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33064,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4324
+    },
+    {
+      "offset": "0x919E0",
+      "position": {
+        "x": 50.0,
+        "y": 0.0,
+        "z": 33.0
+      },
+      "scale": {
+        "x": 33.0,
+        "y": 49.0,
+        "z": 45.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33004,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4264
+    },
+    {
+      "offset": "0x919F8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 49.0,
+        "y": 50.0,
+        "z": 50.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 32980,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4240
+    },
+    {
+      "offset": "0x92B40",
+      "position": {
+        "x": -0.323,
+        "y": 0.0,
+        "z": -1.8162
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28556,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 130
+    },
+    {
+      "offset": "0x92B64",
+      "position": {
+        "x": -0.087,
+        "y": 0.0,
+        "z": 1.85
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28520,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 166
+    },
+    {
+      "offset": "0x92B88",
+      "position": {
+        "x": 4.515,
+        "y": 0.0,
+        "z": -1.816
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28484,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 202
+    },
+    {
+      "offset": "0x92BAC",
+      "position": {
+        "x": 6.346,
+        "y": 0.0,
+        "z": 0.015
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28448,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 238
+    },
+    {
+      "offset": "0x92BD0",
+      "position": {
+        "x": 4.515,
+        "y": 0.0,
+        "z": 1.8142
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28412,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 274
+    },
+    {
+      "offset": "0x92BF4",
+      "position": {
+        "x": 5.4,
+        "y": 0.0,
+        "z": -3.6149
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28376,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 310
+    },
+    {
+      "offset": "0x92C18",
+      "position": {
+        "x": 21.007,
+        "y": 0.0,
+        "z": 1.833
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28340,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 346
+    },
+    {
+      "offset": "0x92C3C",
+      "position": {
+        "x": 16.302,
+        "y": 0.0,
+        "z": 1.833
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28304,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 382
+    },
+    {
+      "offset": "0x92C60",
+      "position": {
+        "x": 15.345,
+        "y": 0.0,
+        "z": -0.0183
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28268,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 418
+    },
+    {
+      "offset": "0x92C84",
+      "position": {
+        "x": 15.372,
+        "y": 0.0,
+        "z": -4.555
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28232,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 454
+    },
+    {
+      "offset": "0x92CA8",
+      "position": {
+        "x": 17.218,
+        "y": 0.0,
+        "z": -1.8344
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28196,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 490
+    },
+    {
+      "offset": "0x92CCC",
+      "position": {
+        "x": 19.062,
+        "y": 0.0,
+        "z": -4.555
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28160,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 526
+    },
+    {
+      "offset": "0x92CF0",
+      "position": {
+        "x": 19.062,
+        "y": 0.0,
+        "z": -0.0141
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28124,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 562
+    },
+    {
+      "offset": "0x92D14",
+      "position": {
+        "x": 21.882,
+        "y": 0.0,
+        "z": -0.0141
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28088,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 598
+    },
+    {
+      "offset": "0x92D38",
+      "position": {
+        "x": 14.886,
+        "y": -0.219,
+        "z": 6.3261
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28052,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 634
+    },
+    {
+      "offset": "0x92D5C",
+      "position": {
+        "x": 0.901,
+        "y": 0.0,
+        "z": -0.9
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28016,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 670
+    },
+    {
+      "offset": "0x92D80",
+      "position": {
+        "x": 19.871,
+        "y": 0.0,
+        "z": 2.755
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 27980,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 706
+    },
+    {
+      "offset": "0x92DA4",
+      "position": {
+        "x": 20.911,
+        "y": 0.0,
+        "z": 5.368
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 27944,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 742
+    },
+    {
+      "offset": "0x92FF4",
+      "position": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "scale": {
+        "x": -2.2,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 27352,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 1334
+    },
+    {
+      "offset": "0x9300C",
+      "position": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 27328,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 1358
+    },
+    {
+      "offset": "0x93024",
+      "position": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 27304,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 1382
+    },
+    {
+      "offset": "0x9303C",
+      "position": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 27280,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 1406
+    },
+    {
+      "offset": "0x93054",
+      "position": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 27256,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 1430
+    },
+    {
+      "offset": "0x9306C",
+      "position": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 27232,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 1454
+    },
+    {
+      "offset": "0x93374",
+      "position": {
+        "x": 0.7469,
+        "y": 0.0,
+        "z": 0.7471
+      },
+      "scale": {
+        "x": 0.7471,
+        "y": 0.7148,
+        "z": 0.7471
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 26456,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 2230
+    },
+    {
+      "offset": "0x93390",
+      "position": {
+        "x": 0.747,
+        "y": 0.0,
+        "z": 0.7471
+      },
+      "scale": {
+        "x": 0.7471,
+        "y": 0.7109,
+        "z": 0.7471
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 26428,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 2258
+    },
+    {
+      "offset": "0x953B4",
+      "position": {
+        "x": 10.0,
+        "y": 10.0,
+        "z": 16.0
+      },
+      "scale": {
+        "x": 10.0,
+        "y": 10.0,
+        "z": 10.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 18200,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 10486
+    },
+    {
+      "offset": "0x953CC",
+      "position": {
+        "x": 16.0,
+        "y": 16.0,
+        "z": 16.0
+      },
+      "scale": {
+        "x": 16.0,
+        "y": 16.0,
+        "z": 16.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 18176,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 10510
+    },
+    {
+      "offset": "0x953E4",
+      "position": {
+        "x": 16.0,
+        "y": 11.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 16.0,
+        "y": 16.0,
+        "z": 16.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 18152,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 10534
+    },
+    {
+      "offset": "0x953FC",
+      "position": {
+        "x": 16.0,
+        "y": 16.0,
+        "z": 16.0
+      },
+      "scale": {
+        "x": 16.0,
+        "y": 16.0,
+        "z": 16.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 18128,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 10558
+    },
+    {
+      "offset": "0x95414",
+      "position": {
+        "x": 16.0,
+        "y": 16.0,
+        "z": 16.0
+      },
+      "scale": {
+        "x": 16.0,
+        "y": 16.0,
+        "z": 16.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 18104,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 10582
+    },
+    {
+      "offset": "0x95E90",
+      "position": {
+        "x": 0.3,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 0.3,
+        "z": 0.3
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 15420,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 13266
+    },
+    {
+      "offset": "0x96544",
+      "position": {
+        "x": 0.3,
+        "y": 0.1,
+        "z": 190.0
+      },
+      "scale": {
+        "x": 0.3,
+        "y": 0.3,
+        "z": 0.3
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 13704,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 14982
+    },
+    {
+      "offset": "0x96574",
+      "position": {
+        "x": 0.08,
+        "y": 0.1,
+        "z": 10.1
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 0.04,
+        "z": 0.02
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 13656,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 15030
+    },
+    {
+      "offset": "0x984C8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 14.118,
+        "y": 1.281,
+        "z": -0.058
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5636,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23050
+    },
+    {
+      "offset": "0x984E8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 15.38,
+        "y": 1.85,
+        "z": -2.2
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5604,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23082
+    },
+    {
+      "offset": "0x98508",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 17.792,
+        "y": 1.281,
+        "z": -0.058
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5572,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23114
+    },
+    {
+      "offset": "0x98528",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 19.03,
+        "y": 1.85,
+        "z": -2.31
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5540,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23146
+    },
+    {
+      "offset": "0x98548",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 17.492,
+        "y": 1.281,
+        "z": 1.856
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5508,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23178
+    },
+    {
+      "offset": "0x98568",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 22.276,
+        "y": 1.281,
+        "z": 1.83
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5476,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23210
+    },
+    {
+      "offset": "0x98588",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 20.95,
+        "y": 1.277,
+        "z": -0.246
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5444,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23242
+    },
+    {
+      "offset": "0x985A8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 22.79,
+        "y": 1.85,
+        "z": -2.31
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5412,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23274
+    },
+    {
+      "offset": "0x985C8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.772,
+        "y": 1.283,
+        "z": -1.79
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5380,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23306
+    },
+    {
+      "offset": "0x98608",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 5.75,
+        "y": 1.281,
+        "z": -1.794
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5316,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23370
+    },
+    {
+      "offset": "0x98628",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 12.912,
+        "y": 1.281,
+        "z": -0.056
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5284,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23402
+    },
+    {
+      "offset": "0x98648",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 16.198,
+        "y": 1.361,
+        "z": 2.063
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5252,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23434
+    },
+    {
+      "offset": "0x98668",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 13.2,
+        "y": 1.271,
+        "z": 1.78
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5220,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23466
+    },
+    {
+      "offset": "0x98688",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 6.06,
+        "y": 1.271,
+        "z": -1.84
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5188,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23498
+    },
+    {
+      "offset": "0x986A8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": -2.19,
+        "y": 0.45,
+        "z": -0.45
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5156,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23530
+    },
+    {
+      "offset": "0x986C8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 16.38,
+        "y": 0.75,
+        "z": 3.81
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5124,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23562
+    },
+    {
+      "offset": "0x986E8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 22.51,
+        "y": 0.45,
+        "z": -4.32
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5092,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23594
+    },
+    {
+      "offset": "0x98708",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 5.12,
+        "y": 1.271,
+        "z": -3.624
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5060,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23626
+    },
+    {
+      "offset": "0x988BC",
+      "position": {
+        "x": 0.9,
+        "y": 5.95,
+        "z": 2.26
+      },
+      "scale": {
+        "x": 0.82,
+        "y": 0.68,
+        "z": 0.87
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4624,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24062
+    },
+    {
+      "offset": "0x988D4",
+      "position": {
+        "x": 0.93,
+        "y": 0.75,
+        "z": 0.56
+      },
+      "scale": {
+        "x": -4.68,
+        "y": 1.22,
+        "z": 0.65
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4600,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24086
+    },
+    {
+      "offset": "0x988EC",
+      "position": {
+        "x": -2.17,
+        "y": 2.92,
+        "z": 0.68
+      },
+      "scale": {
+        "x": 0.9,
+        "y": 15.67,
+        "z": 1.8
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4576,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24110
+    },
+    {
+      "offset": "0x98904",
+      "position": {
+        "x": 0.9,
+        "y": 15.67,
+        "z": 1.8
+      },
+      "scale": {
+        "x": 0.75,
+        "y": 0.38,
+        "z": 0.11
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4552,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24134
+    },
+    {
+      "offset": "0x9891C",
+      "position": {
+        "x": 0.96,
+        "y": 0.77,
+        "z": 0.63
+      },
+      "scale": {
+        "x": -2.17,
+        "y": 2.92,
+        "z": 0.68
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4528,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24158
+    },
+    {
+      "offset": "0x98934",
+      "position": {
+        "x": -2.45,
+        "y": 2.94,
+        "z": 0.68
+      },
+      "scale": {
+        "x": 0.9,
+        "y": 18.86,
+        "z": 1.62
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4504,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24182
+    },
+    {
+      "offset": "0x9894C",
+      "position": {
+        "x": 0.9,
+        "y": 18.86,
+        "z": 1.62
+      },
+      "scale": {
+        "x": 0.75,
+        "y": 0.38,
+        "z": 0.11
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4480,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24206
+    },
+    {
+      "offset": "0x98964",
+      "position": {
+        "x": 0.79,
+        "y": 0.71,
+        "z": 0.61
+      },
+      "scale": {
+        "x": -2.45,
+        "y": 2.94,
+        "z": 0.68
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4456,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24230
+    },
+    {
+      "offset": "0x9897C",
+      "position": {
+        "x": 3.98,
+        "y": 3.21,
+        "z": 0.68
+      },
+      "scale": {
+        "x": 0.9,
+        "y": 18.06,
+        "z": 1.81
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4432,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24254
+    },
+    {
+      "offset": "0x98994",
+      "position": {
+        "x": 0.9,
+        "y": 22.48,
+        "z": 1.9
+      },
+      "scale": {
+        "x": 0.79,
+        "y": 0.67,
+        "z": 0.55
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4408,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24278
+    },
+    {
+      "offset": "0x989AC",
+      "position": {
+        "x": 0.96,
+        "y": 0.8,
+        "z": 0.59
+      },
+      "scale": {
+        "x": 4.36,
+        "y": 3.11,
+        "z": 0.68
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4384,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24302
+    },
+    {
+      "offset": "0x989C4",
+      "position": {
+        "x": -2.48,
+        "y": 3.38,
+        "z": 0.65
+      },
+      "scale": {
+        "x": 0.8,
+        "y": 22.75,
+        "z": 1.55
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4360,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24326
+    },
+    {
+      "offset": "0x989DC",
+      "position": {
+        "x": 0.8,
+        "y": 22.75,
+        "z": 1.55
+      },
+      "scale": {
+        "x": 0.75,
+        "y": 0.38,
+        "z": 0.11
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4336,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24350
+    },
+    {
+      "offset": "0x989F4",
+      "position": {
+        "x": 0.96,
+        "y": 0.85,
+        "z": 0.7
+      },
+      "scale": {
+        "x": -2.48,
+        "y": 3.38,
+        "z": 0.65
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4312,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24374
+    },
+    {
+      "offset": "0x98A0C",
+      "position": {
+        "x": -0.09,
+        "y": 2.86,
+        "z": 0.68
+      },
+      "scale": {
+        "x": 0.9,
+        "y": -0.91,
+        "z": 1.83
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4288,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24398
+    },
+    {
+      "offset": "0x98A24",
+      "position": {
+        "x": 0.9,
+        "y": -0.91,
+        "z": 1.83
+      },
+      "scale": {
+        "x": 0.75,
+        "y": 0.38,
+        "z": 0.11
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4264,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24422
+    },
+    {
+      "offset": "0x98A3C",
+      "position": {
+        "x": 0.79,
+        "y": 0.67,
+        "z": 0.55
+      },
+      "scale": {
+        "x": -0.09,
+        "y": 2.86,
+        "z": 0.68
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4240,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24446
+    },
+    {
+      "offset": "0x98A54",
+      "position": {
+        "x": -0.16,
+        "y": 3.15,
+        "z": 0.68
+      },
+      "scale": {
+        "x": 0.9,
+        "y": 4.23,
+        "z": 1.79
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4216,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24470
+    },
+    {
+      "offset": "0x98A6C",
+      "position": {
+        "x": 0.9,
+        "y": 10.8,
+        "z": 2.18
+      },
+      "scale": {
+        "x": 0.85,
+        "y": 0.85,
+        "z": 0.78
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4192,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24494
+    },
+    {
+      "offset": "0x98A84",
+      "position": {
+        "x": 0.79,
+        "y": 0.71,
+        "z": 0.55
+      },
+      "scale": {
+        "x": -2.35,
+        "y": 3.8,
+        "z": 0.67
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4168,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24518
+    },
+    {
+      "offset": "0x98A9C",
+      "position": {
+        "x": 0.89,
+        "y": 2.44,
+        "z": 0.67
+      },
+      "scale": {
+        "x": 0.8,
+        "y": 10.53,
+        "z": 2.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4144,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24542
+    },
+    {
+      "offset": "0x98AB4",
+      "position": {
+        "x": 0.8,
+        "y": 18.47,
+        "z": 1.82
+      },
+      "scale": {
+        "x": 0.79,
+        "y": 0.71,
+        "z": 0.55
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4120,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24566
+    },
+    {
+      "offset": "0x98ACC",
+      "position": {
+        "x": 0.79,
+        "y": 0.67,
+        "z": 0.55
+      },
+      "scale": {
+        "x": 1.02,
+        "y": 1.74,
+        "z": 0.67
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4096,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24590
+    },
+    {
+      "offset": "0x98AE4",
+      "position": {
+        "x": 4.19,
+        "y": 3.54,
+        "z": 0.63
+      },
+      "scale": {
+        "x": 0.9,
+        "y": 14.77,
+        "z": 1.88
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4072,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24614
+    },
+    {
+      "offset": "0x98AFC",
+      "position": {
+        "x": 1.0,
+        "y": 2.28,
+        "z": 2.15
+      },
+      "scale": {
+        "x": 0.79,
+        "y": 0.71,
+        "z": 0.55
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4048,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24638
+    },
+    {
+      "offset": "0x98B14",
+      "position": {
+        "x": 0.93,
+        "y": 0.95,
+        "z": 0.93
+      },
+      "scale": {
+        "x": -3.18,
+        "y": 1.83,
+        "z": 0.67
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4024,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24662
+    },
+    {
+      "offset": "0x98B2C",
+      "position": {
+        "x": -0.33,
+        "y": 0.94,
+        "z": 0.69
+      },
+      "scale": {
+        "x": 1.3,
+        "y": -2.14,
+        "z": 0.56
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4000,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24686
+    },
+    {
+      "offset": "0x98B44",
+      "position": {
+        "x": 1.3,
+        "y": 16.59,
+        "z": 0.77
+      },
+      "scale": {
+        "x": 0.93,
+        "y": 0.95,
+        "z": 0.93
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3976,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24710
+    },
+    {
+      "offset": "0x98B5C",
+      "position": {
+        "x": 0.93,
+        "y": 0.95,
+        "z": 0.93
+      },
+      "scale": {
+        "x": 4.0,
+        "y": 0.94,
+        "z": 0.69
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3952,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24734
+    },
+    {
+      "offset": "0x98B74",
+      "position": {
+        "x": -3.89,
+        "y": 0.94,
+        "z": 0.69
+      },
+      "scale": {
+        "x": 1.3,
+        "y": 22.72,
+        "z": 0.64
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3928,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24758
+    },
+    {
+      "offset": "0x98CB4",
+      "position": {
+        "x": 0.0,
+        "y": 15.3865,
+        "z": 1.85
+      },
+      "scale": {
+        "x": -0.0138,
+        "y": -0.8979,
+        "z": 1.85
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3608,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25078
+    },
+    {
+      "offset": "0x98CCC",
+      "position": {
+        "x": -2.31,
+        "y": 19.03,
+        "z": 1.85
+      },
+      "scale": {
+        "x": -2.1978,
+        "y": 22.7922,
+        "z": 1.85
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3584,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25102
+    },
+    {
+      "offset": "0x98CE4",
+      "position": {
+        "x": 0.13,
+        "y": 0.15,
+        "z": 0.16
+      },
+      "scale": {
+        "x": -2.31,
+        "y": 0.1,
+        "z": 0.12
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3560,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25126
+    },
+    {
+      "offset": "0x98CFC",
+      "position": {
+        "x": 0.2,
+        "y": 0.2,
+        "z": 0.2
+      },
+      "scale": {
+        "x": 0.18,
+        "y": 0.2,
+        "z": 0.2
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3536,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25150
+    },
+    {
+      "offset": "0x98D14",
+      "position": {
+        "x": 0.2,
+        "y": 0.15,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.2,
+        "y": 0.2,
+        "z": 0.2
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3512,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25174
+    },
+    {
+      "offset": "0x98D90",
+      "position": {
+        "x": 0.95,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "scale": {
+        "x": 0.6,
+        "y": 0.8,
+        "z": 0.9
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3388,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25298
+    },
+    {
+      "offset": "0x98DA8",
+      "position": {
+        "x": 0.15,
+        "y": 0.1,
+        "z": 0.07
+      },
+      "scale": {
+        "x": -1.0,
+        "y": 0.3,
+        "z": 0.2
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3364,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25322
+    },
+    {
+      "offset": "0x98DC0",
+      "position": {
+        "x": 0.03,
+        "y": 0.02,
+        "z": 0.014
+      },
+      "scale": {
+        "x": 0.06,
+        "y": 0.05,
+        "z": 0.04
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3340,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25346
+    },
+    {
+      "offset": "0x98DF4",
+      "position": {
+        "x": 0.6,
+        "y": 0.7,
+        "z": 0.8
+      },
+      "scale": {
+        "x": -1.0,
+        "y": 0.2,
+        "z": 0.4
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3288,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25398
+    },
+    {
+      "offset": "0x98E0C",
+      "position": {
+        "x": -1.0,
+        "y": 1.0,
+        "z": 0.27
+      },
+      "scale": {
+        "x": 0.9,
+        "y": 0.95,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3264,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25422
+    },
+    {
+      "offset": "0x98E24",
+      "position": {
+        "x": 0.3,
+        "y": 0.3,
+        "z": 0.32
+      },
+      "scale": {
+        "x": 0.28,
+        "y": 0.31,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3240,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25446
+    },
+    {
+      "offset": "0x98E3C",
+      "position": {
+        "x": 0.33,
+        "y": 1.0,
+        "z": 0.36
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 0.33,
+        "z": 0.32
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3216,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25470
+    },
+    {
+      "offset": "0x98E54",
+      "position": {
+        "x": 0.39,
+        "y": 0.36,
+        "z": 0.35
+      },
+      "scale": {
+        "x": 0.34,
+        "y": 0.31,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3192,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25494
+    },
+    {
+      "offset": "0x98E6C",
+      "position": {
+        "x": 0.308,
+        "y": 1.0,
+        "z": 0.39
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 0.39,
+        "z": 0.342
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3168,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25518
+    },
+    {
+      "offset": "0x98E84",
+      "position": {
+        "x": 0.39,
+        "y": 0.306,
+        "z": 0.224
+      },
+      "scale": {
+        "x": 0.324,
+        "y": 0.266,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3144,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25542
+    },
+    {
+      "offset": "0x98E9C",
+      "position": {
+        "x": 0.245,
+        "y": 1.0,
+        "z": 0.4
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 0.4,
+        "z": 0.315
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3120,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25566
+    },
+    {
+      "offset": "0x98EB4",
+      "position": {
+        "x": 0.32,
+        "y": 0.25,
+        "z": 0.18
+      },
+      "scale": {
+        "x": 0.27,
+        "y": 0.14,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3096,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25590
+    },
+    {
+      "offset": "0x98ECC",
+      "position": {
+        "x": 0.2,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 0.2,
+        "z": 0.18
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3072,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25614
+    },
+    {
+      "offset": "0x98F1C",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.15,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 2992,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25694
+    },
+    {
+      "offset": "0x98FCC",
+      "position": {
+        "x": 0.3,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.3,
+        "y": 0.3,
+        "z": 0.3
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 2816,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25870
+    },
+    {
+      "offset": "0x99268",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 17.0583,
+        "y": 0.8762,
+        "z": 4.3862
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 2148,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 26538
+    },
+    {
+      "offset": "0x992C8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 17.0583,
+        "y": 0.8762,
+        "z": 4.3862
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 2052,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 26634
+    },
+    {
+      "offset": "0x9949C",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 17.0583,
+        "y": 0.8762,
+        "z": 4.3862
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 1584,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 27102
+    },
+    {
+      "offset": "0x997E0",
+      "position": {
+        "x": 0.5,
+        "y": 1.0,
+        "z": 0.2
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 0.5,
+        "z": 0.5
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 748,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 27938
+    },
+    {
+      "offset": "0x9A958",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.964,
+        "y": 1.138,
+        "z": 0.5
+      },
+      "nearest_model": "SHAS502G.MT5",
+      "model_distance": 800,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 32410
+    },
+    {
+      "offset": "0x9A9B8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.944,
+        "y": 1.138,
+        "z": 1.211
+      },
+      "nearest_model": "SHAS502G.MT5",
+      "model_distance": 896,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 32506
+    },
+    {
+      "offset": "0x9AC58",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": -0.4,
+        "y": 0.3,
+        "z": 0.25
+      },
+      "nearest_model": "SHAS502G.MT5",
+      "model_distance": 1568,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 33178
+    },
+    {
+      "offset": "0x9BEC8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.45,
+        "y": -0.03,
+        "z": -0.05
+      },
+      "nearest_model": "DHKK3R1G.MT5",
+      "model_distance": 1284,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 37898
+    },
+    {
+      "offset": "0x9C0F8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": -0.3,
+        "y": -0.635,
+        "z": 0.022
+      },
+      "nearest_model": "DHKK3R1G.MT5",
+      "model_distance": 724,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 38458
+    }
+  ],
+  "all_transforms": [
+    {
+      "offset": "0x90F6C",
+      "position": {
+        "x": 132.0,
+        "y": 45.0,
+        "z": 50.0
+      },
+      "scale": {
+        "x": 19.0,
+        "y": 52.0,
+        "z": 96.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 35680,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6940
+    },
+    {
+      "offset": "0x910D4",
+      "position": {
+        "x": 125.0,
+        "y": 45.0,
+        "z": 56.0
+      },
+      "scale": {
+        "x": 21.0,
+        "y": 45.0,
+        "z": 95.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 35320,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6580
+    },
+    {
+      "offset": "0x91108",
+      "position": {
+        "x": 0.04,
+        "y": 0.0,
+        "z": 21.0
+      },
+      "scale": {
+        "x": 45.0,
+        "y": 56.5,
+        "z": 48.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 35268,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6528
+    },
+    {
+      "offset": "0x9112C",
+      "position": {
+        "x": 1.7136,
+        "y": 0.0,
+        "z": 41.0
+      },
+      "scale": {
+        "x": 48.08,
+        "y": 83.538,
+        "z": 65.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 35232,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6492
+    },
+    {
+      "offset": "0x91150",
+      "position": {
+        "x": 2.4333,
+        "y": 0.0,
+        "z": 33.0
+      },
+      "scale": {
+        "x": 48.978,
+        "y": 82.223,
+        "z": 93.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 35196,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6456
+    },
+    {
+      "offset": "0x91174",
+      "position": {
+        "x": 1.7972,
+        "y": 0.0,
+        "z": 48.0
+      },
+      "scale": {
+        "x": 34.54,
+        "y": 86.077,
+        "z": 64.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 35160,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6420
+    },
+    {
+      "offset": "0x911BC",
+      "position": {
+        "x": 0.0183,
+        "y": 0.0,
+        "z": 20.0
+      },
+      "scale": {
+        "x": 60.0,
+        "y": 55.0,
+        "z": 52.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 35088,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6348
+    },
+    {
+      "offset": "0x911E0",
+      "position": {
+        "x": 0.0798,
+        "y": 0.0,
+        "z": 23.0
+      },
+      "scale": {
+        "x": 68.5,
+        "y": 60.0,
+        "z": 42.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 35052,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6312
+    },
+    {
+      "offset": "0x91204",
+      "position": {
+        "x": 1.2643,
+        "y": 0.0,
+        "z": 51.0
+      },
+      "scale": {
+        "x": 81.0,
+        "y": 58.0,
+        "z": 64.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 35016,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6276
+    },
+    {
+      "offset": "0x9124C",
+      "position": {
+        "x": 1.9468,
+        "y": 0.0,
+        "z": 33.0
+      },
+      "scale": {
+        "x": 62.75,
+        "y": 59.0,
+        "z": 70.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34944,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6204
+    },
+    {
+      "offset": "0x91270",
+      "position": {
+        "x": 2.2871,
+        "y": 0.0,
+        "z": 24.0
+      },
+      "scale": {
+        "x": 55.0,
+        "y": 69.0,
+        "z": 79.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34908,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6168
+    },
+    {
+      "offset": "0x91294",
+      "position": {
+        "x": 0.0249,
+        "y": 0.0,
+        "z": 25.0
+      },
+      "scale": {
+        "x": 54.0,
+        "y": 56.5,
+        "z": 58.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34872,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6132
+    },
+    {
+      "offset": "0x912B8",
+      "position": {
+        "x": 0.0236,
+        "y": 0.0,
+        "z": 20.0
+      },
+      "scale": {
+        "x": 48.3,
+        "y": 58.0,
+        "z": 54.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34836,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6096
+    },
+    {
+      "offset": "0x912DC",
+      "position": {
+        "x": 1.9167,
+        "y": 0.0,
+        "z": 45.0
+      },
+      "scale": {
+        "x": 47.704,
+        "y": 76.788,
+        "z": 60.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34800,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6060
+    },
+    {
+      "offset": "0x91300",
+      "position": {
+        "x": 1.4981,
+        "y": 0.0,
+        "z": 46.0
+      },
+      "scale": {
+        "x": 53.195,
+        "y": 88.927,
+        "z": 97.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34764,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 6024
+    },
+    {
+      "offset": "0x91324",
+      "position": {
+        "x": 0.5833,
+        "y": 0.0,
+        "z": 34.0
+      },
+      "scale": {
+        "x": 39.535,
+        "y": 89.265,
+        "z": 99.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34728,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5988
+    },
+    {
+      "offset": "0x9135C",
+      "position": {
+        "x": 110.0,
+        "y": 63.0,
+        "z": 47.0
+      },
+      "scale": {
+        "x": 22.0,
+        "y": 41.0,
+        "z": 85.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34672,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5932
+    },
+    {
+      "offset": "0x91380",
+      "position": {
+        "x": 114.0,
+        "y": 73.0,
+        "z": 46.0
+      },
+      "scale": {
+        "x": 23.0,
+        "y": 41.0,
+        "z": 90.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34636,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5896
+    },
+    {
+      "offset": "0x913B4",
+      "position": {
+        "x": 1.6836,
+        "y": 0.0,
+        "z": 45.0
+      },
+      "scale": {
+        "x": 67.096,
+        "y": 56.924,
+        "z": 59.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34584,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5844
+    },
+    {
+      "offset": "0x913D8",
+      "position": {
+        "x": 1.8126,
+        "y": 0.0,
+        "z": 23.0
+      },
+      "scale": {
+        "x": 91.0,
+        "y": 60.0,
+        "z": 95.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34548,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5808
+    },
+    {
+      "offset": "0x913FC",
+      "position": {
+        "x": 0.3366,
+        "y": 0.0,
+        "z": 32.0
+      },
+      "scale": {
+        "x": 50.1,
+        "y": 54.112,
+        "z": 80.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34512,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5772
+    },
+    {
+      "offset": "0x91420",
+      "position": {
+        "x": 1.3956,
+        "y": 0.0,
+        "z": 21.0
+      },
+      "scale": {
+        "x": 62.0,
+        "y": 63.0,
+        "z": 86.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34476,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5736
+    },
+    {
+      "offset": "0x91444",
+      "position": {
+        "x": 0.0223,
+        "y": 0.0,
+        "z": 24.0
+      },
+      "scale": {
+        "x": 49.0,
+        "y": 57.5,
+        "z": 54.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34440,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5700
+    },
+    {
+      "offset": "0x91468",
+      "position": {
+        "x": 0.0327,
+        "y": 0.0,
+        "z": 20.0
+      },
+      "scale": {
+        "x": 49.0,
+        "y": 58.5,
+        "z": 50.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34404,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5664
+    },
+    {
+      "offset": "0x9148C",
+      "position": {
+        "x": 1.9319,
+        "y": 0.0,
+        "z": 35.0
+      },
+      "scale": {
+        "x": 51.0,
+        "y": 80.081,
+        "z": 47.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34368,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5628
+    },
+    {
+      "offset": "0x914B0",
+      "position": {
+        "x": 2.2963,
+        "y": 0.0,
+        "z": 33.0
+      },
+      "scale": {
+        "x": 51.819,
+        "y": 82.554,
+        "z": 87.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34332,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5592
+    },
+    {
+      "offset": "0x914D4",
+      "position": {
+        "x": 1.1599,
+        "y": 0.0,
+        "z": 43.0
+      },
+      "scale": {
+        "x": 39.535,
+        "y": 95.652,
+        "z": 71.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34296,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5556
+    },
+    {
+      "offset": "0x914F8",
+      "position": {
+        "x": 1.0387,
+        "y": 0.0,
+        "z": 21.0
+      },
+      "scale": {
+        "x": 50.158,
+        "y": 59.491,
+        "z": 88.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34260,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5520
+    },
+    {
+      "offset": "0x9151C",
+      "position": {
+        "x": 0.03,
+        "y": 0.0,
+        "z": 51.0
+      },
+      "scale": {
+        "x": 45.0,
+        "y": 54.0,
+        "z": 43.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34224,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5484
+    },
+    {
+      "offset": "0x91540",
+      "position": {
+        "x": 0.0283,
+        "y": 0.0,
+        "z": 25.0
+      },
+      "scale": {
+        "x": 51.0,
+        "y": 52.5,
+        "z": 79.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34188,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5448
+    },
+    {
+      "offset": "0x91564",
+      "position": {
+        "x": 1.4962,
+        "y": 0.0,
+        "z": 64.0
+      },
+      "scale": {
+        "x": 56.071,
+        "y": 70.459,
+        "z": 64.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34152,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5412
+    },
+    {
+      "offset": "0x915E4",
+      "position": {
+        "x": 105.0,
+        "y": 51.0,
+        "z": 44.5
+      },
+      "scale": {
+        "x": 22.0,
+        "y": 42.0,
+        "z": 84.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 34024,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5284
+    },
+    {
+      "offset": "0x91618",
+      "position": {
+        "x": 0.025,
+        "y": 0.0,
+        "z": 22.0
+      },
+      "scale": {
+        "x": 47.0,
+        "y": 54.1,
+        "z": 75.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33972,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5232
+    },
+    {
+      "offset": "0x9163C",
+      "position": {
+        "x": 1.7189,
+        "y": 0.0,
+        "z": 39.0
+      },
+      "scale": {
+        "x": 60.0,
+        "y": 68.424,
+        "z": 67.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33936,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5196
+    },
+    {
+      "offset": "0x91660",
+      "position": {
+        "x": 1.9291,
+        "y": 0.0,
+        "z": 38.0
+      },
+      "scale": {
+        "x": 54.184,
+        "y": 76.428,
+        "z": 98.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33900,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5160
+    },
+    {
+      "offset": "0x91684",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 40.0
+      },
+      "scale": {
+        "x": 45.0,
+        "y": 96.103,
+        "z": 70.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33864,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5124
+    },
+    {
+      "offset": "0x916BC",
+      "position": {
+        "x": 109.0,
+        "y": 48.5,
+        "z": 44.5
+      },
+      "scale": {
+        "x": 21.0,
+        "y": 45.0,
+        "z": 84.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33808,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5068
+    },
+    {
+      "offset": "0x916F0",
+      "position": {
+        "x": 0.0119,
+        "y": 0.0,
+        "z": 20.0
+      },
+      "scale": {
+        "x": 49.5,
+        "y": 42.5,
+        "z": 75.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33756,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 5016
+    },
+    {
+      "offset": "0x91714",
+      "position": {
+        "x": 0.7448,
+        "y": 0.0,
+        "z": 42.0
+      },
+      "scale": {
+        "x": 60.0,
+        "y": 68.424,
+        "z": 56.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33720,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4980
+    },
+    {
+      "offset": "0x9174C",
+      "position": {
+        "x": 111.0,
+        "y": 30.0,
+        "z": 81.103
+      },
+      "scale": {
+        "x": 36.0,
+        "y": 57.0,
+        "z": 85.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33664,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4924
+    },
+    {
+      "offset": "0x91794",
+      "position": {
+        "x": 123.0,
+        "y": 47.553,
+        "z": 52.633
+      },
+      "scale": {
+        "x": 21.0,
+        "y": 52.0,
+        "z": 90.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33592,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4852
+    },
+    {
+      "offset": "0x917C8",
+      "position": {
+        "x": 0.0247,
+        "y": 0.0,
+        "z": 18.0
+      },
+      "scale": {
+        "x": 48.0,
+        "y": 52.133,
+        "z": 53.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33540,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4800
+    },
+    {
+      "offset": "0x917EC",
+      "position": {
+        "x": 1.3195,
+        "y": 0.0,
+        "z": 35.0
+      },
+      "scale": {
+        "x": 45.0,
+        "y": 78.464,
+        "z": 68.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33504,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4764
+    },
+    {
+      "offset": "0x91810",
+      "position": {
+        "x": 1.9986,
+        "y": 0.0,
+        "z": 32.0
+      },
+      "scale": {
+        "x": 55.4,
+        "y": 84.543,
+        "z": 85.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33468,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4728
+    },
+    {
+      "offset": "0x91834",
+      "position": {
+        "x": 0.2855,
+        "y": 0.0,
+        "z": 44.0
+      },
+      "scale": {
+        "x": 41.187,
+        "y": 95.0,
+        "z": 66.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33432,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4692
+    },
+    {
+      "offset": "0x91858",
+      "position": {
+        "x": 1.2961,
+        "y": 0.0,
+        "z": 55.0
+      },
+      "scale": {
+        "x": 50.629,
+        "y": 56.424,
+        "z": 90.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33396,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4656
+    },
+    {
+      "offset": "0x9187C",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 29.0
+      },
+      "scale": {
+        "x": 30.0,
+        "y": 80.0,
+        "z": 90.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33360,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4620
+    },
+    {
+      "offset": "0x918A0",
+      "position": {
+        "x": 0.1295,
+        "y": 0.0,
+        "z": 29.0
+      },
+      "scale": {
+        "x": 47.535,
+        "y": 75.652,
+        "z": 71.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33324,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4584
+    },
+    {
+      "offset": "0x918C4",
+      "position": {
+        "x": 0.0231,
+        "y": 0.0,
+        "z": 36.0
+      },
+      "scale": {
+        "x": 52.025,
+        "y": 80.741,
+        "z": 67.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33288,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4548
+    },
+    {
+      "offset": "0x918E8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 32.0
+      },
+      "scale": {
+        "x": 45.0,
+        "y": 71.103,
+        "z": 62.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33252,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4512
+    },
+    {
+      "offset": "0x9190C",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 52.0
+      },
+      "scale": {
+        "x": 44.284,
+        "y": 81.165,
+        "z": 60.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33216,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4476
+    },
+    {
+      "offset": "0x91930",
+      "position": {
+        "x": 2.0,
+        "y": 0.0,
+        "z": 52.0
+      },
+      "scale": {
+        "x": 45.0,
+        "y": 65.0,
+        "z": 95.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33180,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4440
+    },
+    {
+      "offset": "0x919A4",
+      "position": {
+        "x": 75.0,
+        "y": 0.0,
+        "z": 61.0
+      },
+      "scale": {
+        "x": 26.0,
+        "y": 55.0,
+        "z": 45.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33064,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4324
+    },
+    {
+      "offset": "0x919E0",
+      "position": {
+        "x": 50.0,
+        "y": 0.0,
+        "z": 33.0
+      },
+      "scale": {
+        "x": 33.0,
+        "y": 49.0,
+        "z": 45.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 33004,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4264
+    },
+    {
+      "offset": "0x919F8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 49.0,
+        "y": 50.0,
+        "z": 50.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 32980,
+      "nearest_slot": "DR15_026",
+      "slot_distance": 4240
+    },
+    {
+      "offset": "0x92B40",
+      "position": {
+        "x": -0.323,
+        "y": 0.0,
+        "z": -1.8162
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28556,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 130
+    },
+    {
+      "offset": "0x92B64",
+      "position": {
+        "x": -0.087,
+        "y": 0.0,
+        "z": 1.85
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28520,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 166
+    },
+    {
+      "offset": "0x92B88",
+      "position": {
+        "x": 4.515,
+        "y": 0.0,
+        "z": -1.816
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28484,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 202
+    },
+    {
+      "offset": "0x92BAC",
+      "position": {
+        "x": 6.346,
+        "y": 0.0,
+        "z": 0.015
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28448,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 238
+    },
+    {
+      "offset": "0x92BD0",
+      "position": {
+        "x": 4.515,
+        "y": 0.0,
+        "z": 1.8142
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28412,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 274
+    },
+    {
+      "offset": "0x92BF4",
+      "position": {
+        "x": 5.4,
+        "y": 0.0,
+        "z": -3.6149
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28376,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 310
+    },
+    {
+      "offset": "0x92C18",
+      "position": {
+        "x": 21.007,
+        "y": 0.0,
+        "z": 1.833
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28340,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 346
+    },
+    {
+      "offset": "0x92C3C",
+      "position": {
+        "x": 16.302,
+        "y": 0.0,
+        "z": 1.833
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28304,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 382
+    },
+    {
+      "offset": "0x92C60",
+      "position": {
+        "x": 15.345,
+        "y": 0.0,
+        "z": -0.0183
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28268,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 418
+    },
+    {
+      "offset": "0x92C84",
+      "position": {
+        "x": 15.372,
+        "y": 0.0,
+        "z": -4.555
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28232,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 454
+    },
+    {
+      "offset": "0x92CA8",
+      "position": {
+        "x": 17.218,
+        "y": 0.0,
+        "z": -1.8344
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28196,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 490
+    },
+    {
+      "offset": "0x92CCC",
+      "position": {
+        "x": 19.062,
+        "y": 0.0,
+        "z": -4.555
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28160,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 526
+    },
+    {
+      "offset": "0x92CF0",
+      "position": {
+        "x": 19.062,
+        "y": 0.0,
+        "z": -0.0141
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28124,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 562
+    },
+    {
+      "offset": "0x92D14",
+      "position": {
+        "x": 21.882,
+        "y": 0.0,
+        "z": -0.0141
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28088,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 598
+    },
+    {
+      "offset": "0x92D38",
+      "position": {
+        "x": 14.886,
+        "y": -0.219,
+        "z": 6.3261
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28052,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 634
+    },
+    {
+      "offset": "0x92D5C",
+      "position": {
+        "x": 0.901,
+        "y": 0.0,
+        "z": -0.9
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 28016,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 670
+    },
+    {
+      "offset": "0x92D80",
+      "position": {
+        "x": 19.871,
+        "y": 0.0,
+        "z": 2.755
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 27980,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 706
+    },
+    {
+      "offset": "0x92DA4",
+      "position": {
+        "x": 20.911,
+        "y": 0.0,
+        "z": 5.368
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 27944,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 742
+    },
+    {
+      "offset": "0x92FF4",
+      "position": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "scale": {
+        "x": -2.2,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 27352,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 1334
+    },
+    {
+      "offset": "0x9300C",
+      "position": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 27328,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 1358
+    },
+    {
+      "offset": "0x93024",
+      "position": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 27304,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 1382
+    },
+    {
+      "offset": "0x9303C",
+      "position": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 27280,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 1406
+    },
+    {
+      "offset": "0x93054",
+      "position": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 27256,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 1430
+    },
+    {
+      "offset": "0x9306C",
+      "position": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 27232,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 1454
+    },
+    {
+      "offset": "0x93374",
+      "position": {
+        "x": 0.7469,
+        "y": 0.0,
+        "z": 0.7471
+      },
+      "scale": {
+        "x": 0.7471,
+        "y": 0.7148,
+        "z": 0.7471
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 26456,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 2230
+    },
+    {
+      "offset": "0x93390",
+      "position": {
+        "x": 0.747,
+        "y": 0.0,
+        "z": 0.7471
+      },
+      "scale": {
+        "x": 0.7471,
+        "y": 0.7109,
+        "z": 0.7471
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 26428,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 2258
+    },
+    {
+      "offset": "0x953B4",
+      "position": {
+        "x": 10.0,
+        "y": 10.0,
+        "z": 16.0
+      },
+      "scale": {
+        "x": 10.0,
+        "y": 10.0,
+        "z": 10.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 18200,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 10486
+    },
+    {
+      "offset": "0x953CC",
+      "position": {
+        "x": 16.0,
+        "y": 16.0,
+        "z": 16.0
+      },
+      "scale": {
+        "x": 16.0,
+        "y": 16.0,
+        "z": 16.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 18176,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 10510
+    },
+    {
+      "offset": "0x953E4",
+      "position": {
+        "x": 16.0,
+        "y": 11.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 16.0,
+        "y": 16.0,
+        "z": 16.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 18152,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 10534
+    },
+    {
+      "offset": "0x953FC",
+      "position": {
+        "x": 16.0,
+        "y": 16.0,
+        "z": 16.0
+      },
+      "scale": {
+        "x": 16.0,
+        "y": 16.0,
+        "z": 16.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 18128,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 10558
+    },
+    {
+      "offset": "0x95414",
+      "position": {
+        "x": 16.0,
+        "y": 16.0,
+        "z": 16.0
+      },
+      "scale": {
+        "x": 16.0,
+        "y": 16.0,
+        "z": 16.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 18104,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 10582
+    },
+    {
+      "offset": "0x95E90",
+      "position": {
+        "x": 0.3,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 0.3,
+        "z": 0.3
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 15420,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 13266
+    },
+    {
+      "offset": "0x96544",
+      "position": {
+        "x": 0.3,
+        "y": 0.1,
+        "z": 190.0
+      },
+      "scale": {
+        "x": 0.3,
+        "y": 0.3,
+        "z": 0.3
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 13704,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 14982
+    },
+    {
+      "offset": "0x96574",
+      "position": {
+        "x": 0.08,
+        "y": 0.1,
+        "z": 10.1
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 0.04,
+        "z": 0.02
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 13656,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 15030
+    },
+    {
+      "offset": "0x984C8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 14.118,
+        "y": 1.281,
+        "z": -0.058
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5636,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23050
+    },
+    {
+      "offset": "0x984E8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 15.38,
+        "y": 1.85,
+        "z": -2.2
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5604,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23082
+    },
+    {
+      "offset": "0x98508",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 17.792,
+        "y": 1.281,
+        "z": -0.058
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5572,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23114
+    },
+    {
+      "offset": "0x98528",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 19.03,
+        "y": 1.85,
+        "z": -2.31
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5540,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23146
+    },
+    {
+      "offset": "0x98548",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 17.492,
+        "y": 1.281,
+        "z": 1.856
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5508,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23178
+    },
+    {
+      "offset": "0x98568",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 22.276,
+        "y": 1.281,
+        "z": 1.83
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5476,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23210
+    },
+    {
+      "offset": "0x98588",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 20.95,
+        "y": 1.277,
+        "z": -0.246
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5444,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23242
+    },
+    {
+      "offset": "0x985A8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 22.79,
+        "y": 1.85,
+        "z": -2.31
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5412,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23274
+    },
+    {
+      "offset": "0x985C8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.772,
+        "y": 1.283,
+        "z": -1.79
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5380,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23306
+    },
+    {
+      "offset": "0x98608",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 5.75,
+        "y": 1.281,
+        "z": -1.794
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5316,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23370
+    },
+    {
+      "offset": "0x98628",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 12.912,
+        "y": 1.281,
+        "z": -0.056
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5284,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23402
+    },
+    {
+      "offset": "0x98648",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 16.198,
+        "y": 1.361,
+        "z": 2.063
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5252,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23434
+    },
+    {
+      "offset": "0x98668",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 13.2,
+        "y": 1.271,
+        "z": 1.78
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5220,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23466
+    },
+    {
+      "offset": "0x98688",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 6.06,
+        "y": 1.271,
+        "z": -1.84
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5188,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23498
+    },
+    {
+      "offset": "0x986A8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": -2.19,
+        "y": 0.45,
+        "z": -0.45
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5156,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23530
+    },
+    {
+      "offset": "0x986C8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 16.38,
+        "y": 0.75,
+        "z": 3.81
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5124,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23562
+    },
+    {
+      "offset": "0x986E8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 22.51,
+        "y": 0.45,
+        "z": -4.32
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5092,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23594
+    },
+    {
+      "offset": "0x98708",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 5.12,
+        "y": 1.271,
+        "z": -3.624
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 5060,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 23626
+    },
+    {
+      "offset": "0x988BC",
+      "position": {
+        "x": 0.9,
+        "y": 5.95,
+        "z": 2.26
+      },
+      "scale": {
+        "x": 0.82,
+        "y": 0.68,
+        "z": 0.87
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4624,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24062
+    },
+    {
+      "offset": "0x988D4",
+      "position": {
+        "x": 0.93,
+        "y": 0.75,
+        "z": 0.56
+      },
+      "scale": {
+        "x": -4.68,
+        "y": 1.22,
+        "z": 0.65
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4600,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24086
+    },
+    {
+      "offset": "0x988EC",
+      "position": {
+        "x": -2.17,
+        "y": 2.92,
+        "z": 0.68
+      },
+      "scale": {
+        "x": 0.9,
+        "y": 15.67,
+        "z": 1.8
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4576,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24110
+    },
+    {
+      "offset": "0x98904",
+      "position": {
+        "x": 0.9,
+        "y": 15.67,
+        "z": 1.8
+      },
+      "scale": {
+        "x": 0.75,
+        "y": 0.38,
+        "z": 0.11
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4552,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24134
+    },
+    {
+      "offset": "0x9891C",
+      "position": {
+        "x": 0.96,
+        "y": 0.77,
+        "z": 0.63
+      },
+      "scale": {
+        "x": -2.17,
+        "y": 2.92,
+        "z": 0.68
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4528,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24158
+    },
+    {
+      "offset": "0x98934",
+      "position": {
+        "x": -2.45,
+        "y": 2.94,
+        "z": 0.68
+      },
+      "scale": {
+        "x": 0.9,
+        "y": 18.86,
+        "z": 1.62
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4504,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24182
+    },
+    {
+      "offset": "0x9894C",
+      "position": {
+        "x": 0.9,
+        "y": 18.86,
+        "z": 1.62
+      },
+      "scale": {
+        "x": 0.75,
+        "y": 0.38,
+        "z": 0.11
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4480,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24206
+    },
+    {
+      "offset": "0x98964",
+      "position": {
+        "x": 0.79,
+        "y": 0.71,
+        "z": 0.61
+      },
+      "scale": {
+        "x": -2.45,
+        "y": 2.94,
+        "z": 0.68
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4456,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24230
+    },
+    {
+      "offset": "0x9897C",
+      "position": {
+        "x": 3.98,
+        "y": 3.21,
+        "z": 0.68
+      },
+      "scale": {
+        "x": 0.9,
+        "y": 18.06,
+        "z": 1.81
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4432,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24254
+    },
+    {
+      "offset": "0x98994",
+      "position": {
+        "x": 0.9,
+        "y": 22.48,
+        "z": 1.9
+      },
+      "scale": {
+        "x": 0.79,
+        "y": 0.67,
+        "z": 0.55
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4408,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24278
+    },
+    {
+      "offset": "0x989AC",
+      "position": {
+        "x": 0.96,
+        "y": 0.8,
+        "z": 0.59
+      },
+      "scale": {
+        "x": 4.36,
+        "y": 3.11,
+        "z": 0.68
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4384,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24302
+    },
+    {
+      "offset": "0x989C4",
+      "position": {
+        "x": -2.48,
+        "y": 3.38,
+        "z": 0.65
+      },
+      "scale": {
+        "x": 0.8,
+        "y": 22.75,
+        "z": 1.55
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4360,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24326
+    },
+    {
+      "offset": "0x989DC",
+      "position": {
+        "x": 0.8,
+        "y": 22.75,
+        "z": 1.55
+      },
+      "scale": {
+        "x": 0.75,
+        "y": 0.38,
+        "z": 0.11
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4336,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24350
+    },
+    {
+      "offset": "0x989F4",
+      "position": {
+        "x": 0.96,
+        "y": 0.85,
+        "z": 0.7
+      },
+      "scale": {
+        "x": -2.48,
+        "y": 3.38,
+        "z": 0.65
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4312,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24374
+    },
+    {
+      "offset": "0x98A0C",
+      "position": {
+        "x": -0.09,
+        "y": 2.86,
+        "z": 0.68
+      },
+      "scale": {
+        "x": 0.9,
+        "y": -0.91,
+        "z": 1.83
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4288,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24398
+    },
+    {
+      "offset": "0x98A24",
+      "position": {
+        "x": 0.9,
+        "y": -0.91,
+        "z": 1.83
+      },
+      "scale": {
+        "x": 0.75,
+        "y": 0.38,
+        "z": 0.11
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4264,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24422
+    },
+    {
+      "offset": "0x98A3C",
+      "position": {
+        "x": 0.79,
+        "y": 0.67,
+        "z": 0.55
+      },
+      "scale": {
+        "x": -0.09,
+        "y": 2.86,
+        "z": 0.68
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4240,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24446
+    },
+    {
+      "offset": "0x98A54",
+      "position": {
+        "x": -0.16,
+        "y": 3.15,
+        "z": 0.68
+      },
+      "scale": {
+        "x": 0.9,
+        "y": 4.23,
+        "z": 1.79
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4216,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24470
+    },
+    {
+      "offset": "0x98A6C",
+      "position": {
+        "x": 0.9,
+        "y": 10.8,
+        "z": 2.18
+      },
+      "scale": {
+        "x": 0.85,
+        "y": 0.85,
+        "z": 0.78
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4192,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24494
+    },
+    {
+      "offset": "0x98A84",
+      "position": {
+        "x": 0.79,
+        "y": 0.71,
+        "z": 0.55
+      },
+      "scale": {
+        "x": -2.35,
+        "y": 3.8,
+        "z": 0.67
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4168,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24518
+    },
+    {
+      "offset": "0x98A9C",
+      "position": {
+        "x": 0.89,
+        "y": 2.44,
+        "z": 0.67
+      },
+      "scale": {
+        "x": 0.8,
+        "y": 10.53,
+        "z": 2.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4144,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24542
+    },
+    {
+      "offset": "0x98AB4",
+      "position": {
+        "x": 0.8,
+        "y": 18.47,
+        "z": 1.82
+      },
+      "scale": {
+        "x": 0.79,
+        "y": 0.71,
+        "z": 0.55
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4120,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24566
+    },
+    {
+      "offset": "0x98ACC",
+      "position": {
+        "x": 0.79,
+        "y": 0.67,
+        "z": 0.55
+      },
+      "scale": {
+        "x": 1.02,
+        "y": 1.74,
+        "z": 0.67
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4096,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24590
+    },
+    {
+      "offset": "0x98AE4",
+      "position": {
+        "x": 4.19,
+        "y": 3.54,
+        "z": 0.63
+      },
+      "scale": {
+        "x": 0.9,
+        "y": 14.77,
+        "z": 1.88
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4072,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24614
+    },
+    {
+      "offset": "0x98AFC",
+      "position": {
+        "x": 1.0,
+        "y": 2.28,
+        "z": 2.15
+      },
+      "scale": {
+        "x": 0.79,
+        "y": 0.71,
+        "z": 0.55
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4048,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24638
+    },
+    {
+      "offset": "0x98B14",
+      "position": {
+        "x": 0.93,
+        "y": 0.95,
+        "z": 0.93
+      },
+      "scale": {
+        "x": -3.18,
+        "y": 1.83,
+        "z": 0.67
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4024,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24662
+    },
+    {
+      "offset": "0x98B2C",
+      "position": {
+        "x": -0.33,
+        "y": 0.94,
+        "z": 0.69
+      },
+      "scale": {
+        "x": 1.3,
+        "y": -2.14,
+        "z": 0.56
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 4000,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24686
+    },
+    {
+      "offset": "0x98B44",
+      "position": {
+        "x": 1.3,
+        "y": 16.59,
+        "z": 0.77
+      },
+      "scale": {
+        "x": 0.93,
+        "y": 0.95,
+        "z": 0.93
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3976,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24710
+    },
+    {
+      "offset": "0x98B5C",
+      "position": {
+        "x": 0.93,
+        "y": 0.95,
+        "z": 0.93
+      },
+      "scale": {
+        "x": 4.0,
+        "y": 0.94,
+        "z": 0.69
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3952,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24734
+    },
+    {
+      "offset": "0x98B74",
+      "position": {
+        "x": -3.89,
+        "y": 0.94,
+        "z": 0.69
+      },
+      "scale": {
+        "x": 1.3,
+        "y": 22.72,
+        "z": 0.64
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3928,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 24758
+    },
+    {
+      "offset": "0x98CB4",
+      "position": {
+        "x": 0.0,
+        "y": 15.3865,
+        "z": 1.85
+      },
+      "scale": {
+        "x": -0.0138,
+        "y": -0.8979,
+        "z": 1.85
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3608,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25078
+    },
+    {
+      "offset": "0x98CCC",
+      "position": {
+        "x": -2.31,
+        "y": 19.03,
+        "z": 1.85
+      },
+      "scale": {
+        "x": -2.1978,
+        "y": 22.7922,
+        "z": 1.85
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3584,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25102
+    },
+    {
+      "offset": "0x98CE4",
+      "position": {
+        "x": 0.13,
+        "y": 0.15,
+        "z": 0.16
+      },
+      "scale": {
+        "x": -2.31,
+        "y": 0.1,
+        "z": 0.12
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3560,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25126
+    },
+    {
+      "offset": "0x98CFC",
+      "position": {
+        "x": 0.2,
+        "y": 0.2,
+        "z": 0.2
+      },
+      "scale": {
+        "x": 0.18,
+        "y": 0.2,
+        "z": 0.2
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3536,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25150
+    },
+    {
+      "offset": "0x98D14",
+      "position": {
+        "x": 0.2,
+        "y": 0.15,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.2,
+        "y": 0.2,
+        "z": 0.2
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3512,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25174
+    },
+    {
+      "offset": "0x98D90",
+      "position": {
+        "x": 0.95,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "scale": {
+        "x": 0.6,
+        "y": 0.8,
+        "z": 0.9
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3388,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25298
+    },
+    {
+      "offset": "0x98DA8",
+      "position": {
+        "x": 0.15,
+        "y": 0.1,
+        "z": 0.07
+      },
+      "scale": {
+        "x": -1.0,
+        "y": 0.3,
+        "z": 0.2
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3364,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25322
+    },
+    {
+      "offset": "0x98DC0",
+      "position": {
+        "x": 0.03,
+        "y": 0.02,
+        "z": 0.014
+      },
+      "scale": {
+        "x": 0.06,
+        "y": 0.05,
+        "z": 0.04
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3340,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25346
+    },
+    {
+      "offset": "0x98DF4",
+      "position": {
+        "x": 0.6,
+        "y": 0.7,
+        "z": 0.8
+      },
+      "scale": {
+        "x": -1.0,
+        "y": 0.2,
+        "z": 0.4
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3288,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25398
+    },
+    {
+      "offset": "0x98E0C",
+      "position": {
+        "x": -1.0,
+        "y": 1.0,
+        "z": 0.27
+      },
+      "scale": {
+        "x": 0.9,
+        "y": 0.95,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3264,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25422
+    },
+    {
+      "offset": "0x98E24",
+      "position": {
+        "x": 0.3,
+        "y": 0.3,
+        "z": 0.32
+      },
+      "scale": {
+        "x": 0.28,
+        "y": 0.31,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3240,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25446
+    },
+    {
+      "offset": "0x98E3C",
+      "position": {
+        "x": 0.33,
+        "y": 1.0,
+        "z": 0.36
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 0.33,
+        "z": 0.32
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3216,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25470
+    },
+    {
+      "offset": "0x98E54",
+      "position": {
+        "x": 0.39,
+        "y": 0.36,
+        "z": 0.35
+      },
+      "scale": {
+        "x": 0.34,
+        "y": 0.31,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3192,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25494
+    },
+    {
+      "offset": "0x98E6C",
+      "position": {
+        "x": 0.308,
+        "y": 1.0,
+        "z": 0.39
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 0.39,
+        "z": 0.342
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3168,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25518
+    },
+    {
+      "offset": "0x98E84",
+      "position": {
+        "x": 0.39,
+        "y": 0.306,
+        "z": 0.224
+      },
+      "scale": {
+        "x": 0.324,
+        "y": 0.266,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3144,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25542
+    },
+    {
+      "offset": "0x98E9C",
+      "position": {
+        "x": 0.245,
+        "y": 1.0,
+        "z": 0.4
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 0.4,
+        "z": 0.315
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3120,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25566
+    },
+    {
+      "offset": "0x98EB4",
+      "position": {
+        "x": 0.32,
+        "y": 0.25,
+        "z": 0.18
+      },
+      "scale": {
+        "x": 0.27,
+        "y": 0.14,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3096,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25590
+    },
+    {
+      "offset": "0x98ECC",
+      "position": {
+        "x": 0.2,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 0.2,
+        "z": 0.18
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 3072,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25614
+    },
+    {
+      "offset": "0x98F1C",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.15,
+        "z": 1.0
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 2992,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25694
+    },
+    {
+      "offset": "0x98FCC",
+      "position": {
+        "x": 0.3,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.3,
+        "y": 0.3,
+        "z": 0.3
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 2816,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 25870
+    },
+    {
+      "offset": "0x99268",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 17.0583,
+        "y": 0.8762,
+        "z": 4.3862
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 2148,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 26538
+    },
+    {
+      "offset": "0x992C8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 17.0583,
+        "y": 0.8762,
+        "z": 4.3862
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 2052,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 26634
+    },
+    {
+      "offset": "0x9949C",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 17.0583,
+        "y": 0.8762,
+        "z": 4.3862
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 1584,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 27102
+    },
+    {
+      "offset": "0x997E0",
+      "position": {
+        "x": 0.5,
+        "y": 1.0,
+        "z": 0.2
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 0.5,
+        "z": 0.5
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 748,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 27938
+    },
+    {
+      "offset": "0x99984",
+      "position": {
+        "x": 0.005,
+        "y": 0.0,
+        "z": 0.005
+      },
+      "scale": {
+        "x": 10.9437,
+        "y": 0.75,
+        "z": -2.49
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 328,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 28358
+    },
+    {
+      "offset": "0x99AA0",
+      "position": {
+        "x": 0.5,
+        "y": 1.0,
+        "z": 0.5
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 0.5,
+        "z": 0.5
+      },
+      "nearest_model": "TTMS246G.MT5",
+      "model_distance": 44,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 28642
+    },
+    {
+      "offset": "0x99B30",
+      "position": {
+        "x": 0.5,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 0.5,
+        "z": 0.5
+      },
+      "nearest_model": "MALS501G.MT5",
+      "model_distance": 86,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 28786
+    },
+    {
+      "offset": "0x99F78",
+      "position": {
+        "x": 0.6315,
+        "y": 2.5192,
+        "z": 15.771
+      },
+      "scale": {
+        "x": 0.5,
+        "y": 0.5,
+        "z": 15.7442
+      },
+      "nearest_model": "MMA0201G.MT5",
+      "model_distance": 116,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 29882
+    },
+    {
+      "offset": "0x9A02C",
+      "position": {
+        "x": 0.5,
+        "y": 1.5,
+        "z": 1.5
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 0.5,
+        "z": 0.5
+      },
+      "nearest_model": "MMA0201G.MT5",
+      "model_distance": 64,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 30062
+    },
+    {
+      "offset": "0x9A074",
+      "position": {
+        "x": 0.5,
+        "y": 53.3322,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 0.5,
+        "z": 0.5
+      },
+      "nearest_model": "TUB0210G.MT5",
+      "model_distance": 16,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 30134
+    },
+    {
+      "offset": "0x9A0BC",
+      "position": {
+        "x": 0.5,
+        "y": 0.5,
+        "z": 0.5
+      },
+      "scale": {
+        "x": 0.2,
+        "y": 0.2,
+        "z": 1.0
+      },
+      "nearest_model": "TUB0210G.MT5",
+      "model_distance": 56,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 30206
+    },
+    {
+      "offset": "0x9A204",
+      "position": {
+        "x": 0.5,
+        "y": 22.7349,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 0.5,
+        "z": 0.5
+      },
+      "nearest_model": "OKAK301G.MT5",
+      "model_distance": 112,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 30534
+    },
+    {
+      "offset": "0x9A21C",
+      "position": {
+        "x": 0.5,
+        "y": 0.5,
+        "z": 0.0
+      },
+      "scale": {
+        "x": -0.0141,
+        "y": 1.0,
+        "z": 0.5
+      },
+      "nearest_model": "OKAK301G.MT5",
+      "model_distance": 136,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 30558
+    },
+    {
+      "offset": "0x9A27C",
+      "position": {
+        "x": 0.5,
+        "y": 12.8909,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 0.5,
+        "z": 0.5
+      },
+      "nearest_model": "OKAK301G.MT5",
+      "model_distance": 232,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 30654
+    },
+    {
+      "offset": "0x9A294",
+      "position": {
+        "x": 0.2,
+        "y": 4.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 0.2,
+        "z": 0.2
+      },
+      "nearest_model": "OKAK301G.MT5",
+      "model_distance": 256,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 30678
+    },
+    {
+      "offset": "0x9A2F4",
+      "position": {
+        "x": 0.5,
+        "y": 1.0,
+        "z": 0.2
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 0.5,
+        "z": 0.5
+      },
+      "nearest_model": "OKAK301G.MT5",
+      "model_distance": 352,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 30774
+    },
+    {
+      "offset": "0x9A30C",
+      "position": {
+        "x": -0.01,
+        "y": -0.01,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.2,
+        "y": 0.2,
+        "z": -0.02
+      },
+      "nearest_model": "OKAK301G.MT5",
+      "model_distance": 376,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 30798
+    },
+    {
+      "offset": "0x9A958",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.964,
+        "y": 1.138,
+        "z": 0.5
+      },
+      "nearest_model": "SHAS502G.MT5",
+      "model_distance": 800,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 32410
+    },
+    {
+      "offset": "0x9A9B8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.944,
+        "y": 1.138,
+        "z": 1.211
+      },
+      "nearest_model": "SHAS502G.MT5",
+      "model_distance": 896,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 32506
+    },
+    {
+      "offset": "0x9AC58",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": -0.4,
+        "y": 0.3,
+        "z": 0.25
+      },
+      "nearest_model": "SHAS502G.MT5",
+      "model_distance": 1568,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 33178
+    },
+    {
+      "offset": "0x9BEC8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.45,
+        "y": -0.03,
+        "z": -0.05
+      },
+      "nearest_model": "DHKK3R1G.MT5",
+      "model_distance": 1284,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 37898
+    },
+    {
+      "offset": "0x9C0F8",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": -0.3,
+        "y": -0.635,
+        "z": 0.022
+      },
+      "nearest_model": "DHKK3R1G.MT5",
+      "model_distance": 724,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 38458
+    },
+    {
+      "offset": "0x9C328",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": -0.3,
+        "y": -0.635,
+        "z": 0.022
+      },
+      "nearest_model": "DHKK3R1G.MT5",
+      "model_distance": 164,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 39018
+    },
+    {
+      "offset": "0x9C660",
+      "position": {
+        "x": 0.46,
+        "y": 0.89,
+        "z": 0.89
+      },
+      "scale": {
+        "x": 0.78,
+        "y": 0.82,
+        "z": 0.59
+      },
+      "nearest_model": "TOUK3I1G.MT5",
+      "model_distance": 16,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 39842
+    },
+    {
+      "offset": "0x9C678",
+      "position": {
+        "x": 0.14,
+        "y": 1.1,
+        "z": 1.84
+      },
+      "scale": {
+        "x": 0.13,
+        "y": 0.39,
+        "z": 0.28
+      },
+      "nearest_model": "TOUK3I1G.MT5",
+      "model_distance": 40,
+      "nearest_slot": "DR23_000",
+      "slot_distance": 39866
+    }
+  ]
+}

@@ -1,0 +1,484 @@
+ 0517 "Cutscene Viewer"
+  The below decompilation was so good, that I was able to almost use it directly as-is with the SDK I produced, and can replicate it entirely! We can now look at modifying this code so that it can play any other cutscene we want :) You can see that here.
+
+
+
+#include "0517.h"
+
+void FUN_0517_runtime__entrypoint(void)
+{
+  HLib_Task_t *EVNT;
+  astruct_86 *EVNT_params;
+  int MOTI;
+ 
+  EVNT = HLib::EnqueueTaskWithParameter(DebugSelector_EVNT_Callback,'\x04',0xb,0xc,0x544e5645);
+  EVNT_params = (astruct_86 *)HLib::GetTaskParameterPointer(EVNT);
+  EVNT_params->pTASK = EVNT;
+  MOTI = ReadMotiFromDirectory(SCENE,AREA,"0517A.MOT");
+  EVNT_params->MOTI_memblock = MOTI;
+  EVNT_params->scene_num = 0;
+  EVNT_params->cur_state = 0;
+  LoadWCONDBin();
+  EnqueueLoad(&INT_0517_runtime__0c348e04,(astruct_166 *)EVNT_params->pTASK);
+  return;
+}
+
+
+
+void DebugSelector_EVNT_Callback(astruct_86 *evt_ctx)
+
+{
+  ushort controllerData;
+  undefined2 extraout_var;
+  undefined2 *puVar2;
+  int iVar1;
+  short state;
+ 
+  state = evt_ctx->cur_state;
+  if (state == 1) {
+    HandleStartCutsceneState(evt_ctx);
+  }
+  else if (state < 2) {
+    if (state == 0) {
+      controllerData = EVT_GetControllerInput(0,1);
+      iVar1 = CONCAT22(extraout_var,controllerData);
+      if (iVar1 == 0x400) {
+        evt_ctx->cur_state = 1;
+        StartCutscene((int)(short)evt_ctx->scene_num);
+      }
+      else {
+        puVar2 = &evt_ctx->scene_num;
+        if (iVar1 == 0x40) {
+          state = *puVar2;
+          *puVar2 = state + -1;
+          if ((short)(state + -1) < 0) {
+            *puVar2 = 4;
+          }
+        }
+        else if (iVar1 == 0x80) {
+          puVar2 = &evt_ctx->scene_num;
+          state = *puVar2;
+          *puVar2 = state + 1;
+          if (4 < (short)(state + 1)) {
+            *puVar2 = 0;
+          }
+        }
+      }
+      switch(evt_ctx->scene_num) {
+      case 0:
+        set_debug_screen_text_position(2,4);
+        debug_log_to_screen("0517A000.c\n");
+        break;
+      case 1:
+        set_debug_screen_text_position(2,4);
+        debug_log_to_screen("0517A011.c\n");
+        break;
+      case 2:
+        set_debug_screen_text_position(2,4);
+        debug_log_to_screen("0517A012.c\n");
+        break;
+      case 3:
+        set_debug_screen_text_position(2,4);
+        debug_log_to_screen("0517A014.c\n");
+        break;
+      case 4:
+        set_debug_screen_text_position(2,4);
+        debug_log_to_screen("0517A015.c\n");
+      }
+      set_debug_screen_text_position(2,5);
+      debug_log_to_screen("seqdata%x.avb\n",(int)(short)evt_ctx->scene_num);
+    }
+  }
+  else if (state == 3) {
+    AllocateEventStorageWrapper(evt_ctx);
+  }
+  return;
+}
+
+
+
+void HandleStartCutsceneState(astruct_86 *evt_ctx)
+
+{
+  HLib_Task_t *EVNT;
+  astruct_89 *ppaVar2;
+  float uVar3;
+ 
+  EVNT = HLib::EnqueueTaskWithParameter
+                   (SetCharacterFlagsAndHandleTaskDestroy,'\x04',0xb,8,0x544e5645);
+  ppaVar2 = (astruct_89 *)HLib::GetTaskParameterPointer(EVNT);
+  ppaVar2->field0_0x0 = evt_ctx;
+  ppaVar2->field1_0x4 = 0;
+  if (evt_ctx->scene_num == 3) {
+    pHRam0c348e18 =
+         HLib::EnqueueTaskWithoutParameter
+                   (FUN_0517_runtime__0c348760_fsca_wrapper3,'\x04',0xb,0x544e5645);
+                    // WARNING: Read-only address (ram,0x0c348e18) is written
+  }
+  FUN_0c1b0ce0();
+  if (evt_ctx->scene_num == 4) {
+    FUN_0c1afdc0(1,0,0);
+  }
+  else {
+    FUN_0c1afdc0(1,0,0);
+  }
+  FUN_0c1b0b40();
+  FUN_0c093d20();
+  FUN_0517_runtime__0c3488e0();
+  FUN_0c1542c0((int)(short)evt_ctx->scene_num);
+  evt_ctx->cur_state = 2;
+  return;
+}
+
+
+
+void StartCutscene(int scene_num)
+
+{
+  undefined4 *tmp_AFS;
+  char *sceneDirectory;
+  uint uVar1;
+  uint uVar2;
+  char *cutsceneID;
+  int iVar3;
+  undefined auStack40 [5];
+  undefined local_23;
+ 
+  FUN_0c171e80((astruct_193 *)auStack40);
+  local_23 = 0;
+  tmp_AFS = Shenmue::evl_AFS_Utils(0,IsLoaded,"KWW1",(uint *)0x0,0);
+  if (tmp_AFS != (undefined4 *)0x0) {
+    Shenmue::evl_AFS_Utils(0,IsLoaded_6,"KWW1",(uint *)0x0,0);
+  }
+  tmp_AFS = Shenmue::evl_AFS_Utils(0,IsLoaded,"KWA1",(uint *)0x0,0);
+  if (tmp_AFS != (undefined4 *)0x0) {
+    Shenmue::evl_AFS_Utils(0,IsLoaded_6,"KWA1",(uint *)0x0,0);
+  }
+  tmp_AFS = Shenmue::evl_AFS_Utils(0,IsLoaded,"KWA2",(uint *)0x0,0);
+  if (tmp_AFS != (undefined4 *)0x0) {
+    Shenmue::evl_AFS_Utils(0,IsLoaded_6,"KWA2",(uint *)0x0,0);
+  }
+  if (scene_num == 0) {
+    auStack40[4] = 8;
+    sceneDirectory = Shenmue::Filepath_Generator(SceneDirectory);
+    Shenmue::evl_AFS_Utils(0,MOUNT_AFS_PARTITION,sceneDirectory,(uint *)"KWW1",0);
+    Shenmue::evl_AFS_Utils(0,NewLoadPAK,(char *)0x0,(uint *)0x0,0);
+    cutsceneID = "KWW1";
+    iVar3 = scene_num;
+  }
+  else {
+    if ((scene_num < 0) || (2 < scene_num)) {
+      auStack40[4] = 0x12;
+      sceneDirectory = Shenmue::Filepath_Generator(SceneDirectory);
+      cutsceneID = "KWA2";
+    }
+    else {
+      auStack40[4] = 0x12;
+      sceneDirectory = Shenmue::Filepath_Generator(SceneDirectory);
+      cutsceneID = "KWA1";
+    }
+    Shenmue::evl_AFS_Utils(0,MOUNT_AFS_PARTITION,sceneDirectory,(uint *)cutsceneID,0);
+    Shenmue::evl_AFS_Utils(0,NewLoadPAK,(char *)0x0,(uint *)0x0,0);
+    iVar3 = 0;
+  }
+  Shenmue::evl_AFS_Utils(2,WAIT_PAK_LOAD,cutsceneID,(uint *)0x0,iVar3);
+  FUN_0c171e00((astruct_193 *)auStack40);
+  FUN_0c118220();
+  if (scene_num == 1) {
+    FUN_0c0939a0(2,0);
+  }
+  else {
+    if (scene_num == 3) {
+      uVar2 = 0;
+      FUN_0c094520(0xc,0);
+      uVar1 = 0x3134316c;
+    }
+    else {
+      if (scene_num != 4) {
+        FUN_0c0c1120(1);
+        FUN_0c0c01c0(0,2);
+        FUN_0c0c0020(0,1);
+        return;
+      }
+      uVar2 = 0;
+      FUN_0c094520(0xc,0);
+      uVar1 = 0x3135316c;
+    }
+    FUN_0c0c1cc0(uVar1,uVar2);
+    FUN_0c118000();
+  }
+  return;
+}
+
+
+
+void SetCharacterFlagsAndHandleTaskDestroy(astruct_86 *evt_ctx)
+
+{
+  int iVar1;
+ 
+  iVar1 = FUN_0c1542c0(-1);
+  if (iVar1 == 0) {
+    SetCharacterFlags();
+    *(undefined2 *)&evt_ctx->pTASK->field_0xa = 0;
+    if (*(short *)&evt_ctx->pTASK->field_0x8 == 3) {
+      FUN_0c0540e0((HLib_Task_t *)0x7f148d12);
+    }
+    if (*(short *)&evt_ctx->pTASK->field_0x8 == 0) {
+      FUN_0c093d20();
+      SetTaskDestroyCallback((HLib_Task_t *)evt_ctx->pTASK->taskCallback,(undefined *)0x1e);
+    }
+    else {
+      FUN_0c093d20();
+    }
+    FUN_0c054200();
+  }
+  return;
+}
+
+
+
+// WARNING: Removing unreachable block (ram,0x0c34878c)
+// WARNING: Removing unreachable block (ram,0x0c348790)
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+void FUN_0517_runtime__0c348760_fsca_wrapper3(ulonglong param_1)
+
+{
+  ulonglong in_dr0;
+  ulonglong uVar1;
+  undefined4 in_fr3;
+  uint uVar2;
+  char in_FPSCR_PR;
+  char cVar3;
+ 
+  if (DAT_0517_runtime__0c348e10 == 0xb4) {
+    _DAT_0517_runtime__0c348e0c = _DAT_0517_runtime__0c348e0c & 0xffff0000ffffffff;
+  }
+  else {
+    cVar3 = '\0';
+    if (in_FPSCR_PR == '\0') {
+      uVar2 = (uint)((float)(DAT_0517_runtime__0c348e10 * 0x2000) / 45.0);
+    }
+    else {
+      uVar2 = (uint)((double)(in_dr0 & 0xffffffff00000000 |
+                             (ulonglong)(uint)(float)(DAT_0517_runtime__0c348e10 * 0x2000)) /
+                    (double)CONCAT44(45.0,in_fr3));
+    }
+    uVar1 = fsca_wrapper3((int)param_1,(int)(param_1 >> 0x20),uVar2 & 0xffff);
+    if (cVar3 == '\0') {
+      _DAT_0517_runtime__0c348e0c = _DAT_0517_runtime__0c348e0c & 0xffffffff00000000 | uVar1 >> 0x20
+      ;
+      uVar1 = _DAT_0517_runtime__0c348e0c;
+    }
+    _DAT_0517_runtime__0c348e0c = uVar1;
+    FUN_0c093320(0x30353861);
+    FUN_0c093320(0x32353861);
+    FUN_0c093320(0x34353861);
+    FUN_0c093320(0x36353861);
+    _DAT_0517_runtime__0c348e0c =
+         CONCAT24(DAT_0517_runtime__0c348e10 + 4,_DAT_0517_runtime__0c348e0c);
+    _DAT_0517_runtime__0c348e0c =
+         _DAT_0517_runtime__0c348e0c & 0xffff000000000000 | (ulonglong)_DAT_0517_runtime__0c348e0c;
+  }
+  return;
+}
+
+
+
+void LoadWCONDBin(void)
+
+{
+  char *path;
+ 
+  EV_SetPlayerControlFlags(0);
+  FUN_0c1a93c0(1,(uint *)"0517");
+  path = Shenmue::Filepath_Generator(SceneDirectory);
+  LoadFile_Wrapper(path,"W_COND.BIN");
+  return;
+}
+
+
+
+void AllocateEventStorageWrapper(astruct_86 *param_1)
+
+{
+  FUN_0517_runtime__0c348c60(&INT_0517_runtime__0c348e04);
+  FUN_0c1a93c0(0,(uint *)"0517");
+  FUN_0c0e9320(param_1->MOTI_memblock);
+  FUN_0c054220(param_1->pTASK);
+  FUN_0c093e60(SCENE,0x4151574b,0);
+  return;
+}
+
+
+
+void FUN_0517_runtime__0c3488e0(void)
+
+{
+  SetCharaFlags1_Wrapper(0x5f4f5952);
+  SetCharaFlags1_Wrapper(0x5f4e4953);
+  SetCharaFlags_Wrapper(0x38383961);
+  SetCharaFlags_Wrapper(0x30393961);
+  SetCharaFlags_Wrapper(0x32393961);
+  SetCharaFlags_Wrapper(0x34393961);
+  SetCharaFlags_Wrapper(0x30343861);
+  SetCharaFlags_Wrapper(0x32343861);
+  SetCharaFlags_Wrapper(0x34343861);
+  SetCharaFlags_Wrapper(0x38343861);
+  return;
+}
+
+
+
+void SetCharacterFlags(void)
+
+{
+  SetCharacterFlags_Wrapper(0x5f4f5952);
+  SetCharacterFlags_Wrapper(0x5f4e4953);
+  SetCharacterFlags2_Wrapper(0x38383961);
+  SetCharacterFlags2_Wrapper(0x30393961);
+  SetCharacterFlags2_Wrapper(0x32393961);
+  SetCharacterFlags2_Wrapper(0x34393961);
+  SetCharacterFlags2_Wrapper(0x30343861);
+  SetCharacterFlags2_Wrapper(0x32343861);
+  SetCharacterFlags2_Wrapper(0x34343861);
+  SetCharacterFlags2_Wrapper(0x38343861);
+  return;
+}
+
+
+
+void SetCharaFlags1_Wrapper(int param_1)
+
+{
+  astruct_51 *paVar1;
+ 
+  paVar1 = FindMTWK_ForCEWP();
+  SetCEWPFlags((int)paVar1,6,2);
+  EV_UnknownFunc(param_1);
+  return;
+}
+
+
+
+void SetCharacterFlags_Wrapper(int param_1)
+
+{
+  astruct_51 *paVar1;
+ 
+  paVar1 = FindMTWK_ForCEWP();
+  SetCEWPFlags((int)paVar1,6,0);
+  EV_UnknownFunc(param_1);
+  return;
+}
+
+
+
+void SetCharaFlags_Wrapper(int param_1)
+
+{
+  EV_UnknownFunc(param_1);
+  return;
+}
+
+
+
+void SetCharacterFlags2_Wrapper(int param_1)
+
+{
+  EV_UnknownFunc(param_1);
+  return;
+}
+
+
+
+void EnqueueLoad(undefined4 param_1,astruct_166 *param_2)
+
+{
+                    // WARNING: Read-only address (ram,0x0c348e1c) is written
+                    // WARNING: Read-only address (ram,0x0c348e20) is written
+  uRam0c348e20 = 0;
+                    // WARNING: Read-only address (ram,0x0c348e24) is written
+  uRam0c348e24 = 0;
+  uRam0c348e1c = param_1;
+  paRam0c348e28 = param_2;
+                    // WARNING: Read-only address (ram,0x0c348e28) is written
+  EV_NPC_NewLoadSw(0);
+  FUN_0c1003a0();
+  if (param_2 != (astruct_166 *)0x0) {
+    SetTaskDestroyCallback((HLib_Task_t *)param_2,(undefined *)0x0);
+  }
+  HLib::EnqueueTaskWithoutParameter(FUN_0517_runtime__LOAD_Callback,'\x06',0xb,0x64616f6c);
+  return;
+}
+
+
+
+// WARNING: Removing unreachable block (ram,0x0c348bc0)
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+void FUN_0517_runtime__LOAD_Callback(void)
+
+{
+  int iVar1;
+  undefined4 uVar2;
+ 
+  iVar1 = FUN_0c1005e0(_DAT_89023216);
+  if (iVar1 != 0) {
+    FUN_0517_runtime__0c348ce0(_DAT_89023216);
+    uVar2 = EV_DispUpHandModel();
+    LoadHandsMaybe(uVar2);
+                    // WARNING: Read-only address (ram,0x0c348e24) is written
+    puRam0c348e1c = &DAT_8902321a;
+                    // WARNING: Read-only address (ram,0x0c348e1c) is written
+                    // WARNING: Read-only address (ram,0x0c348e20) is written
+    uRam0c348e20 = 0;
+    if (_DAT_8902321a == -1) {
+                    // WARNING: Read-only address (ram,0x0c348e24) is written
+      uRam0c348e24 = 1;
+      FUN_0c054880((undefined4 *)&DAT_8d193210);
+                    // WARNING: Read-only address (ram,0x0c348e1c) is written
+                    // WARNING: Read-only address (ram,0x0c348e20) is written
+                    // WARNING: Read-only address (ram,0x0c348e24) is written
+      HLib::TaskCleanupCurrentTask();
+    }
+  }
+  return;
+}
+
+
+
+void FUN_0517_runtime__0c348c60(int *param_1)
+
+{
+  bool bVar1;
+  int iVar2;
+  undefined3 extraout_var;
+ 
+  iVar2 = *param_1;
+  while (iVar2 != -1) {
+    bVar1 = EV_IsCharacterExist(param_1);
+    if (CONCAT31(extraout_var,bVar1) != 0) {
+      FUN_0c100100(*param_1);
+      FUN_0c1007e0(*param_1);
+    }
+    param_1 = param_1 + 1;
+    iVar2 = *param_1;
+  }
+  return;
+}
+
+
+
+void FUN_0517_runtime__0c348ce0(int param_1)
+
+{
+  EV_EnableCharDisplay();
+  FUN_0c077280();
+  FUN_0c077280();
+  FUN_0c092520();
+  EV_UnknownFunc(param_1);
+  return;
+}
+

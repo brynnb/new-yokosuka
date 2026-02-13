@@ -1,0 +1,63 @@
+from https://www.shenmuedojo.com/forum/index.php?threads/shenmue-ii-scripts-with-sample-decompilations.4287/
+
+If you haven't already read up on all of the GameJam beta stuff that was released last night, I'd strongly recommend doing that and then coming back here as some of it is kind of related (even if it's just a beta!).
+
+
+As everyone likely already knows by now, Shenmue heavily uses "scripts" to implement most of the game logic and flow. These scripts are basically tiny programs which are ran only when necessary and hold all of the logic necessary for whatever the script is for. PCGamer commented on these during their interview with d3t developer Noel Austin, who informed them that the scripts were a vital part of the original codebase and proved to be troublesome with regard to porting to modern consoles/platforms.
+
+There's a part of that interview, however, which has plagued my brain for a long time:
+
+    In Shenmue 1 the game logic is all written in a scripting language. For Shenmue 2 they got rid of it and wrote the logic in C code directly.
+
+
+The thing is, the Shenmue which we have come to know and love is not what it started off like. We know that the game(s) originally started development on the SEGA Saturn, but towards the end of development was moved over to the Dreamcast. There is also a lot of evidence that points to both of the games originally being just one single game, instead of what was released in the end. This implies that all of the logic had to have existed in the same format at some point.
+
+During my first month or so investigating the d3t ports, back in 2018, before we'd decided to not bother reversing any Dreamcast code for the purposes of the Unreal project I had started, I had done some preliminary research attempting to note any big differences between the d3t port and the Dreamcast original releases. It was during that research that it was obvious to me that both games on the Dreamcast used scripts for the majority of the game logic. Some analysis some people from this forum years ago when looking at the Dreamcast games expressed their thoughts that the game might have used scripts, but nobody had ever really gotten anywhere with it all.
+
+With that being known, I decided to include the Xbox version in my brief comparisons and this time I found that although the scripts were present on the disc, they were never actually used at all. The reason for this is pretty simple, the "scripting language" is actually just regular Dreamcast code, just compiled separately to everything else.. but with key knowledge about the engine and a huge table of functions under its belt.
+
+When tasked with porting to the Xbox, AM2 had a problem - their "scripts" were all incompatible with the processor of the Xbox. This led them to decide to completely remove them as "scripts" and just directly include them inside the main executable on the disc.
+
+So Shenmue I AND II both use scripts to control the flow of the game and implement some mechanics... but only on the Dreamcast versions.. and as the d3t ports are "based on" a large majority of the Xbox codebase, this means that, poetically, only Shenmue I by d3t uses scripting. Just like the Xbox version of Shenmue II, Shenmue II by d3t does not use the scripts that the game uses and instead has them baked directly into the executable.
+
+
+Armed with this knowledge, it wasn't long when I'd finally started the core work of reverse engineering the d3t ports to get some progress with the scripting. The scripts had access to about 467 "event functions" which can do anything from creating characters, showing subtitles on-screen, playing audio, cutscenes and a lot more. One such function is the ability to print debug messages to the screen or to a developers' workstation/PC/development environment. Some people may have seen this already through MiscTools, but I quickly not only found the debug messages, but created a method to finally re-enable them after all of these years:
+
+_____
+
+Shenmue II's debug logging tends to be all written in English, but Shenmue I's debug logging can have a lot of Japanese strings!
+
+Code:
+
+[SM1|Event|SCENE-1|MAP-JOMO|Fri Mar  8 01:56:18 2019]: [EVENT] 強制睡眠ＯＦＦ
+    強制睡眠ＯＦＦ
+[SM1|Event|SCENE-1|MAP-JOMO|Fri Mar  8 01:56:18 2019]: [EVENT] AKIRA_ROOM_ 1
+    AKIRA_ROOM_ %d
+[SM1|Event|SCENE-1|MAP-JOMO|Fri Mar  8 01:56:18 2019]: [EVENT] JOMO SA Auth Ready!!
+    JOMO SA Auth Ready!!
+[SM1|Event|SCENE-1|MAP-JOMO|Fri Mar  8 01:56:18 2019]: [EVENT] ふくちゃんロック終了
+    ふくちゃんロック終了
+[SM1|Event|SCENE-1|MAP-JOMO|Fri Mar  8 01:56:18 2019]: [EVENT] いねさんロック終了
+    いねさんロック終了
+[SM1|Event|SCENE-1|MAP-JOMO|Fri Mar  8 01:56:25 2019]: [EVENT] 寝るオーサ 0
+    寝るオーサ %d
+[SM1|Event|SCENE-1|MAP-JOMO|Fri Mar  8 01:56:29 2019]: [EVENT] 強制睡眠リセット
+    強制睡眠リセット
+[SM1|Event|SCENE-1|MAP-JOMO|Fri Mar  8 01:56:30 2019]: [EVENT] 起きるオーサ 0
+    起きるオーサ %d
+[SM1|Event|SCENE-1|MAP-JOMO|Fri Mar  8 01:56:38 2019]: [EVENT] ふくちゃんハイモデル解放。
+    ふくちゃんハイモデル解放。
+[SM1|Event|SCENE-1|MAP-JOMO|Fri Mar  8 01:56:38 2019]: [EVENT] いねさんハイモデル解放。
+    いねさんハイモデル解放。
+[SM1|Event|SCENE-1|MAP-JOMO|Fri Mar  8 01:56:38 2019]: [EVENT] 強制睡眠ＯＮ
+    強制睡眠ＯＮ
+
+
+Lucky Hit in Shenmue II also has extensive debug output.
+
+
+Since I managed to re-enable the debug logging this quickly and so easily on the Dreamcast versions, especially in such a short amount of time, I decided to go all out and see if I can figure out a way to disassemble, decompile and compile the scripts themselves. This would allow us to do basically anything that AM2 were able to do.. and considering that everything from Lucky Hit, to Duck Racing, QTEs etc are amongst the things that are implemented by these scripts, that basically means the possibilities are endless.
+
+After roughly a month of on-and-off work, I successfully executed the first ever custom scripts (which also run natively on Dreamcast hardware). A week or so of tweaks and fixes and we finally have something which should work for all use cases and builds. I have produced an SDK and documentation and put everything together in a repository, everything from updating the SDK to small sample code to show how to use it all is provided and I intend to help anyone who is interested in this and update it as is necessary.
+
+I'll leave you all with some early decompilations of big scripts to show you the extent of what we have here... but this essentially amounts to us having complete control over Shenmue II on Dreamcast, we can implement anything we want, from the main menu, to whole mechanics.. including (but not limited to) the potential of porting Shenmue I to Shenmue II, implementing an online mode (or even an entirely custom and new disc), new mechanics, cutscenes and a lot more!

@@ -7,6 +7,82 @@ import { fitCameraToMeshes, detectInteriorScene, updateCameraSpeed } from "./sce
 import { timeOfDayPresets, seasonPresets } from "./constants.js";
 import { Mt5Loader } from "./Mt5Loader.js";
 
+// Apply placement data from extracted MAPINFO.BIN structures.
+// Moves proxy models from origin to their correct world-space positions.
+// For models with multiple placements, clones are created.
+async function applyPlacements(prefix, meshes) {
+  const placementUrl = `/data/placements/${prefix}.json`;
+  let data;
+  try {
+    const res = await fetch(placementUrl);
+    if (!res.ok) return; // No placement data for this scene — that's fine
+    data = await res.json();
+  } catch {
+    return;
+  }
+
+  const placements = data.placements;
+  if (!placements || placements.length === 0) return;
+
+  // Build a lookup: model suffix (e.g. "BHKK3BRG.MT5") -> list of root meshes
+  const meshByModel = new Map();
+  for (const root of meshes) {
+    const fn = root._filename || "";
+    // Filename format: "S2_JOMO_BHKK3BRG.MT5" — extract the model suffix
+    const parts = fn.split("_");
+    const suffix = parts.length >= 3 ? parts.slice(2).join("_") : fn;
+    if (!meshByModel.has(suffix)) meshByModel.set(suffix, []);
+    meshByModel.get(suffix).push(root);
+  }
+
+  // Group placements by proxy_model
+  const placementsByModel = new Map();
+  for (const p of placements) {
+    const key = p.proxy_model; // e.g. "BHKK3BRG.MT5"
+    if (!placementsByModel.has(key)) placementsByModel.set(key, []);
+    placementsByModel.get(key).push(p);
+  }
+
+  const newMeshes = []; // Cloned meshes to add to state.currentMeshes
+
+  for (const [modelName, modelPlacements] of placementsByModel) {
+    const roots = meshByModel.get(modelName);
+    if (!roots || roots.length === 0) continue;
+
+    // First placement: move the existing mesh
+    const first = modelPlacements[0];
+    const root = roots[0];
+
+    // Unfreeze if already frozen (we freeze after placement)
+    if (root.unfreezeWorldMatrix) root.unfreezeWorldMatrix();
+
+    root.position.x = -first.position[0];
+    root.position.y = first.position[1];
+    root.position.z = first.position[2];
+
+    // Additional placements: clone the mesh
+    for (let i = 1; i < modelPlacements.length; i++) {
+      const p = modelPlacements[i];
+      const clone = root.clone(root.name + "_clone_" + i, null);
+      if (clone) {
+        clone.position.x = -p.position[0];
+        clone.position.y = p.position[1];
+        clone.position.z = p.position[2];
+        clone._filename = root._filename;
+        newMeshes.push(clone);
+      }
+    }
+  }
+
+  // Add cloned meshes to the main mesh list
+  if (newMeshes.length > 0) {
+    meshes.push(...newMeshes);
+    console.log(`[Placement] Applied ${placements.length} placements, created ${newMeshes.length} clones`);
+  } else if (placements.length > 0) {
+    console.log(`[Placement] Applied ${placements.length} placements`);
+  }
+}
+
 // Freeze world matrices and materials on static geometry for rendering performance.
 // This prevents Babylon.js from recalculating transforms and material dirty flags every frame.
 function freezeLoadedMeshes(meshes) {
@@ -181,6 +257,9 @@ export async function loadScene(prefix) {
   }
 
   if (loadId === state.currentLoadId && state.currentMeshes.length > 0) {
+    // TODO: Placement disabled until data is verified
+    // await applyPlacements(prefix, state.currentMeshes);
+
     const size = fitCameraToMeshes(state.currentMeshes);
 
     // Detect if this is an interior scene (affects sky visibility)

@@ -1,0 +1,2895 @@
+
+
+#include "VEND.h"
+
+void FUN_VEND_EV3__0c348000(undefined4 param_1)
+
+{
+  FUN_VEND_EV3__0c34c120(EV_InitVend,param_1);
+  return;
+}
+
+
+
+void EV_InitVend(float param_1,undefined4 *param_2)
+
+{
+  HLib_Task_t *pHVar1;
+  HLib_Task_t *pHVar2;
+  HLib_Task_t **ppHVar3;
+  HLib_Task_t *pHVar4;
+  char *pcVar5;
+  undefined *callbackFn;
+ 
+  debug_log_to_file_REMOVED("@@@              EV_InitVend( ) \n");
+  EV_EventSetUpHelpIcon(0x19,0);
+  pHVar1 = HLib::EnqueueTaskWithParameter(FUN_VEND_EV3__0c3483e0,'\x03',0xb,4,0x544e5645);
+  pHVar2 = HLib::EnqueueTaskWithParameter(EVT_InitVend,'\x04',0xb,0xac,0x544e5645);
+  ppHVar3 = (HLib_Task_t **)HLib::GetTaskParameterPointer(pHVar1);
+  pHVar4 = (HLib_Task_t *)HLib::GetTaskParameterPointer(pHVar2);
+  *ppHVar3 = pHVar4;
+  pHVar4[1].field43_0x34 = (undefined *)pHVar1;
+  pHVar4[1].field44_0x38 = pHVar2;
+  if (param_2 == (undefined4 *)0x0) {
+    callbackFn = (undefined *)0xffffffff;
+  }
+  else {
+    callbackFn = (undefined *)*param_2;
+  }
+  pHVar4[2].taskCallback = callbackFn;
+  FUN_VEND_EV3__0c348d60(param_1,(void **)pHVar4);
+  debug_log_to_file_REMOVED("EV_MOUNT_AFS_PARTITION in ET_InitVend\n");
+  pcVar5 = Shenmue::Filepath_Generator(PackDirectory);
+  GLOBAL_AFS_PARTITION = Shenmue::evl_AFS_Utils(1,MOUNT_AFS_PARTITION,pcVar5,(uint *)"VEND.afs",0);
+  *(undefined4 *)&pHVar4[2].field_0x20 = 0;
+  FUN_VEND_EV3__0c349940
+            ((HLib_Task_t *)&DAT_00000003,(HLib_Task_t *)ET_AbortVend,pHVar4,
+             (HLib_Task_t *)&DAT_00007530);
+  return;
+}
+
+
+
+void ET_AbortVend(int *param_1)
+
+{
+  debug_log_to_file_REMOVED("@@@    EV_AbortVend( ) @\n");
+  EV_KillVend(param_1);
+  return;
+}
+
+
+
+void EV_KillVend(int *param_1)
+
+{
+  undefined4 *puVar1;
+  int iVar2;
+  undefined4 uVar3;
+  AFSUtilMode Mode;
+  uint *puVar4;
+  undefined4 in_fr5;
+  undefined4 in_fr4;
+  ulonglong in_dr6;
+  uint in_fr9;
+  undefined4 in_fr8;
+  undefined4 in_fr11;
+  undefined4 in_fr10;
+ 
+  debug_log_to_file_REMOVED("@@@     EV_KillVend( ) \n");
+  if (GLOBAL_AFS_PARTITION == (char *)0xffffffff) goto LAB_VEND_EV3__0c348278;
+  puVar1 = Shenmue::evl_AFS_Utils(0,WAIT_PAK_LOAD,(char *)0x0,(uint *)0x0,0);
+  if (puVar1 == (undefined4 *)0x0) {
+    if (param_1[0x26] == 4) {
+      debug_log_to_file_REMOVED("Do EV_FREE_PAKFILE_AFS\n");
+      puVar4 = *(uint **)(&DAT_VEND_EV3__0c34ee14 + param_1[0x1b] * 8);
+      uVar3 = *(undefined4 *)(&DAT_VEND_EV3__0c34ee18 + param_1[0x1b] * 8);
+      Mode = FREE_PAKFILE_AFS;
+      goto LAB_VEND_EV3__0c348240;
+    }
+  }
+  else {
+    debug_log_to_file_REMOVED
+              ("Cancel(EV_DESTROY_PAKFILE_AFS) read in ET_KillVend no:%d\n",
+               *(undefined4 *)(&DAT_VEND_EV3__0c34ee14 + param_1[0x1b] * 8),
+               *(undefined4 *)(&DAT_VEND_EV3__0c34ee18 + param_1[0x1b] * 8));
+    puVar4 = *(uint **)(&DAT_VEND_EV3__0c34ee14 + param_1[0x1b] * 8);
+    uVar3 = *(undefined4 *)(&DAT_VEND_EV3__0c34ee18 + param_1[0x1b] * 8);
+    Mode = DESTROY_PAKFILE_AFS;
+LAB_VEND_EV3__0c348240:
+    Shenmue::evl_AFS_Utils(0,Mode,GLOBAL_AFS_PARTITION,puVar4,uVar3);
+  }
+  param_1[0x26] = 5;
+  debug_log_to_file_REMOVED("EV_UNMOUNT_AFS_PARTITION in ET_KillVend\n");
+  Shenmue::evl_AFS_Utils(1,UNMOUNT_AFS_PARTITION,GLOBAL_AFS_PARTITION,(uint *)0x0,0);
+  GLOBAL_AFS_PARTITION = (char *)0xffffffff;
+LAB_VEND_EV3__0c348278:
+  debug_log_to_file_REMOVED("EV_DispUpHandModel False in ET_KillVend\n");
+  EV_DispUpHandModel();
+  FUN_0c0935e0(in_fr5,in_fr9,in_dr6,'\0',0,0);
+  debug_log_to_file_REMOVED("EV_DisableCharDisplay ID_HAND in ET_KillVend\n");
+  EV_DisableCharDisplay(0x646e6863);
+  debug_log_to_file_REMOVED("EV_FreeData Real Hand in ET_KillVend\n");
+  iVar2 = EV_DispUpHandModel();
+  FUN_0c0aef40(in_fr5,in_fr9,in_dr6,iVar2);
+  iVar2 = EV_DispUpHandModel();
+  FUN_0c0aef40(in_fr5,in_fr9,in_dr6,iVar2);
+  debug_log_to_file_REMOVED("Do ET_KillVend\n");
+  FUN_VEND_EV3__0c348e80(in_fr5,in_fr4,in_fr9,in_fr8,in_fr11,in_fr10,in_dr6,param_1);
+  debug_log_to_file_REMOVED("Do EV_HLKillOtherHierarchyTask\n");
+  EV_HLKillOtherHierarchyTask((HLib_Task_t *)param_1[0x1d]);
+  debug_log_to_file_REMOVED("Do EV_HLKillOtherHierarchyTask\n");
+  EV_HLKillOtherHierarchyTask((HLib_Task_t *)param_1[0x1c]);
+  SetShenmueGameFlags(0xc,0x227,0);
+  EV_SetPlayerControlFlags(1);
+  debug_log_to_file_REMOVED("Do EV_NPC_NewLoadSw\n");
+  EV_NPC_NewLoadSw(1);
+  FUN_VEND_EV3__0c34b240(8,0xff,0,0,0,0,0,0,0,(undefined *)0xf);
+  debug_log_to_file_REMOVED("Do ET_AB_EndEvent\n");
+  FUN_VEND_EV3__0c349aa0(3);
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c3483e0(void)
+
+{
+  return;
+}
+
+
+
+void EVT_InitVend(undefined4 param_1,uint param_2,ulonglong param_3)
+
+{
+  undefined4 uVar1;
+ 
+  debug_log_to_file_REMOVED("@@@      EVT_InitVend( )  \n");
+  FUN_VEND_EV3__0c349c40(3,4);
+  uVar1 = EV_DispUpHandModel();
+  LoadHandsMaybe(uVar1);
+  uVar1 = EV_DispUpHandModel();
+  LoadHandsMaybe(uVar1);
+  EV_DispUpHandModel();
+  FUN_0c0935e0(param_1,param_2,param_3,'\x01',2,0);
+  FUN_0c0917e0((char *)0x5f4f5952,0x4e48494a);
+  FUN_0c0917e0((char *)0x484d5544,0x4e48494a);
+  FUN_0c0917e0((char *)0x646e6863,0x484d5544);
+  FUN_0c0913c0(0x646e6863,0x38000000,(astruct_58 **)&DAT_VEND_EV3__0c34ee70,0);
+  SetShenmueGameFlags(0xc,0x227,1);
+  EV_SetPlayerControlFlags(0);
+  FUN_0c090ea0(0x38000000,(double *)&DAT_VEND_EV3__0c34ee58);
+  FUN_0c0913c0(0x484d5544,0x38000000,(astruct_58 **)&DAT_VEND_EV3__0c34ee64,0);
+  FUN_VEND_EV3__0c34a200(0x3f800000,0,0x5f4f5952,0xf003,0x40000000,(undefined *)0x0);
+  SetDestroyCallbackOnCurrentTask_Wrapper(EVT_CheckVend);
+  return;
+}
+
+
+
+void EVT_CheckVend(int param_1)
+
+{
+  ushort uVar1;
+  undefined2 extraout_var;
+  int curr_money;
+  undefined *puVar3;
+  uint in_fr7;
+  undefined4 in_fr9;
+  undefined4 in_fr8;
+  undefined4 in_fr11;
+  undefined4 in_fr10;
+ 
+  debug_log_to_file_REMOVED("@@@    EVT_CheckVend ( ) \n");
+  uVar1 = Shenmue::get_controller_input(1);
+  if ((CONCAT22(extraout_var,uVar1) == 0x400) || (*(int *)(param_1 + 0x78) != -1)) {
+    curr_money = Shenmue::GetPlayerStats(2);
+    if (curr_money < 5) {
+      puVar3 = (undefined *)
+               FUN_VEND_EV3__0c349520(in_fr7,CONCAT44(in_fr8,in_fr9),CONCAT44(in_fr10,in_fr11));
+      SetDestroyCallbackOnCurrentTask_Wrapper(EVT_VendEnd);
+      HLib::UpdateActiveTask(puVar3);
+    }
+    else {
+      puVar3 = (undefined *)FUN_VEND_EV3__0c3490a0(in_fr7,in_fr9,in_fr8,in_fr11,in_fr10);
+      SetDestroyCallbackOnCurrentTask_Wrapper(EVT_InitSelect);
+      HLib::UpdateActiveTask(puVar3);
+    }
+  }
+  return;
+}
+
+
+
+void EVT_InitSelect(undefined4 param_1,uint param_2,undefined4 param_3,ulonglong param_4,
+                   undefined8 param_5,int param_6)
+
+{
+  int iVar1;
+  ulonglong *puVar2;
+  undefined8 uVar3;
+  ulonglong uVar4;
+  double dVar5;
+  undefined4 uVar6;
+  ulonglong uVar7;
+  int iVar8;
+  char in_FPSCR_SZ;
+ 
+  iVar1 = param_6 + 4;
+  debug_log_to_file_REMOVED("@@@  EVT_InitSelect( ) \n");
+  FUN_VEND_EV3__0c348c20();
+  iVar8 = *(int *)(param_6 + 0x6c) * 0xc;
+  EV_DisableCharDisplay(0x5f4f5952);
+  EV_DispUpHandModel();
+  FUN_0c0935e0(param_1,param_2,param_4,'\x01',0,0);
+  uVar6 = (undefined4)param_4;
+  EV_DispUpHandModel();
+  FUN_0c0936e0(0,0x15,(int *)&DAT_VEND_EV3__0c34ee08);
+  EV_DispUpHandModel();
+  FUN_0c0935a0(0,(uint *)&DAT_VEND_EV3__0c34eb44,0);
+  EV_EnableCharDisplay(0x646e6863);
+  FUN_0c0931c0();
+  if (in_FPSCR_SZ == '\0') {
+    uVar3 = 0xbe3e76c93cf5c28f;
+    uVar7 = CONCAT44(0.427,uVar6);
+  }
+  else {
+    uVar3 = 0x3cf5c28fbe3e76c9;
+    uVar7 = 0x11e43eda9fbe;
+  }
+  FUN_VEND_EV3__0c34a3c0
+            ((int)uVar3,(int)((ulonglong)uVar3 >> 0x20),(int)uVar7,(uint)(uVar7 >> 0x20),
+             CONCAT44(param_3,param_2),param_5,0x646e6863,0x484d5544,(undefined *)0x0);
+  if (in_FPSCR_SZ == '\0') {
+    uVar4 = 0x41c947ae00000000;
+    uVar7 = uVar7 & 0xffffffff;
+  }
+  else {
+    uVar4 = 0x41c947ae;
+    uVar7 = 0x3f00000000000000;
+  }
+  FUN_VEND_EV3__0c34a560
+            ((uint)uVar4,(uint)(uVar4 >> 0x20),(uint)(uVar7 >> 0x20),0x646e6863,0x484d5544,
+             (undefined *)0x0);
+  if (in_FPSCR_SZ == '\0') {
+    uVar4 = uVar4 & 0xffffffff | (ulonglong)*(uint *)(iVar1 + iVar8) << 0x20;
+  }
+  else {
+    uVar4 = *(ulonglong *)(iVar1 + iVar8);
+  }
+  if (in_FPSCR_SZ == '\0') {
+    uVar4 = uVar4 & 0xffffffff00000000 | (ulonglong)*(uint *)(iVar1 + iVar8 + 4);
+  }
+  puVar2 = (ulonglong *)(iVar1 + iVar8 + 8);
+  if (in_FPSCR_SZ == '\0') {
+    uVar7 = uVar7 & 0xffffffff | (ulonglong)*(uint *)puVar2 << 0x20;
+  }
+  else {
+    uVar7 = *puVar2;
+  }
+  FUN_VEND_EV3__0c34a3c0
+            ((int)uVar4,(int)(uVar4 >> 0x20),(int)uVar7,(uint)(uVar7 >> 0x20),
+             CONCAT44(param_3,param_2),param_5,0x484d5544,0x4e48494a,(undefined *)0x0);
+  if (in_FPSCR_SZ == '\0') {
+    uVar7 = uVar4;
+  }
+  dVar5 = (double)(uVar7 & 0xffffffff);
+  if (in_FPSCR_SZ == '\0') {
+    dVar5 = 0.0;
+  }
+  FUN_VEND_EV3__0c34a560(SUB84(dVar5,0),0,0,0x484d5544,0x4e48494a,(undefined *)0x0);
+  *(undefined4 *)(param_6 + 0x98) = 1;
+  *(undefined4 *)(param_6 + 0x9c) = 0;
+  FUN_VEND_EV3__0c349e00(dVar5,0x44d,0x484d5544,0x484d5544,0,0,(undefined *)0x0);
+  FUN_VEND_EV3__0c3495c0();
+  SetDestroyCallbackOnCurrentTask_Wrapper(EVT_SelectJuice);
+  return;
+}
+
+
+
+void EVT_SelectJuice(int *mw)
+
+{
+  ushort uVar1;
+  undefined2 extraout_var;
+  undefined *puVar3;
+  code *pcVar4;
+  int iVar5;
+  int *piVar6;
+  int iVar2;
+ 
+  piVar6 = mw + 1;
+  uVar1 = Shenmue::get_controller_input(1);
+  iVar2 = CONCAT22(extraout_var,uVar1);
+  if (iVar2 == 0x400) {
+    mw[0x26] = 2;
+    mw[0x27] = 0;
+    puVar3 = FUN_VEND_EV3__0c349400((double *)(piVar6 + mw[0x1b] * 3),0xfffffffb);
+    debug_log_to_file_REMOVED
+              ("Load Can data in EVT_SelectJuice no:%d/%d\n",
+               *(undefined4 *)(&DAT_VEND_EV3__0c34ee14 + mw[0x1b] * 8),
+               *(undefined4 *)(&DAT_VEND_EV3__0c34ee18 + mw[0x1b] * 8));
+    Shenmue::evl_AFS_Utils
+              (0,IsLoaded_8,GLOBAL_AFS_PARTITION,*(uint **)(&DAT_VEND_EV3__0c34ee14 + mw[0x1b] * 8),
+               *(undefined4 *)(&DAT_VEND_EV3__0c34ee18 + mw[0x1b] * 8));
+    DAT_VEND_EV3__0c34ee94 = mw[0x1b];
+    FUN_VEND_EV3__0c3498c0
+              ((HLib_Task_t *)FUN_VEND_EV3__0c349680,(HLib_Task_t *)&DAT_VEND_EV3__0c34ee94,
+               (HLib_Task_t *)(puVar3 + -5),(HLib_Task_t *)(puVar3 + -7));
+    SetDestroyCallbackOnCurrentTask_Wrapper(EVT_DrinkJuice);
+    HLib::UpdateActiveTask(puVar3);
+    return;
+  }
+  if (iVar2 == 0x200) {
+    debug_log_to_file_REMOVED("Put B button at selecting Can\n");
+    debug_log_to_file_REMOVED("ET_AbortVend at B-button cancel.\n");
+    ET_AbortVend(mw);
+    return;
+  }
+  iVar5 = mw[0x1b];
+  if (iVar2 == 0x8000) {
+    pcVar4 = FUN_VEND_EV3__0c348c60;
+  }
+  else if (iVar2 == 0x4000) {
+    pcVar4 = FUN_VEND_EV3__0c348ca0;
+  }
+  else {
+    if (iVar2 != 0x1000) {
+      if (iVar2 == 0x2000) {
+        FUN_VEND_EV3__0c348ce0((int)piVar6);
+      }
+      goto LAB_VEND_EV3__0c3488cc;
+    }
+    pcVar4 = FUN_VEND_EV3__0c348cc0;
+  }
+  (*pcVar4)(piVar6);
+LAB_VEND_EV3__0c3488cc:
+  if ((((iVar2 == 0x8000) || (iVar2 == 0x4000)) || (iVar2 == 0x1000)) || (iVar2 == 0x2000)) {
+    debug_log_to_file_REMOVED("Can No:mw->cbtn=%d\n",mw[0x1b]);
+  }
+  if (iVar5 != mw[0x1b]) {
+    puVar3 = (undefined *)
+             FUN_VEND_EV3__0c349340
+                       ((double *)(piVar6 + mw[0x1b] * 3),(double *)(piVar6 + iVar5 * 3),1,0);
+    HLib::UpdateActiveTask(puVar3);
+  }
+  return;
+}
+
+
+
+void EVT_DrinkJuice(int param_1)
+
+{
+  int iVar1;
+  undefined *puVar2;
+  uint in_fr7;
+  undefined4 in_fr6;
+  undefined4 in_fr9;
+  undefined4 in_fr8;
+  undefined4 in_fr11;
+  undefined4 in_fr10;
+ 
+  debug_log_to_file_REMOVED("@@@     EVT_DrinkJuice( ) \n");
+  Shenmue::evl_AFS_Utils(0,NewLoadPAK,(char *)0x0,(uint *)0x0,0);
+  *(undefined4 *)(param_1 + 0x98) = 4;
+  iVar1 = *(int *)(param_1 + 0x6c) * 8;
+  debug_log_to_file_REMOVED
+            ("Loading can done in EVT_SelectJuice no:%d\n",
+             *(undefined4 *)(&DAT_VEND_EV3__0c34ee14 + iVar1),
+             *(undefined4 *)(&DAT_VEND_EV3__0c34ee18 + iVar1));
+  puVar2 = (undefined *)FUN_VEND_EV3__0c349140(in_fr7,in_fr9,in_fr8,in_fr11,in_fr10);
+  puVar2 = FUN_VEND_EV3__0c349240(in_fr7,in_fr6,in_fr9,in_fr8,in_fr11,in_fr10,puVar2);
+  FUN_VEND_EV3__0c34b240(0x10,0,0,0,0,0xff,0,0,0,puVar2 + -0x10);
+  SetDestroyCallbackOnCurrentTask_Wrapper(EVT_VendEnd);
+  HLib::UpdateActiveTask(puVar2);
+  return;
+}
+
+
+
+void EVT_VendEnd(int *param_1)
+
+{
+  debug_log_to_file_REMOVED("@@@             EVT_VendEnd( ) \n");
+  debug_log_to_file_REMOVED("Do EV_EventSetUpHelpIcon\n");
+  EV_EventSetUpHelpIcon(0,0);
+  debug_log_to_file_REMOVED("EntryNumber is %d\n",ENTRY);
+  if (ENTRY == 99) {
+    SetDestroyCallbackOnCurrentTask_Wrapper(EVT_InitVend);
+  }
+  else {
+    EV_KillVend(param_1);
+  }
+  return;
+}
+
+void FUN_VEND_EV3__0c348b20(float param_1,int param_2)
+
+{
+  double *pdVar1;
+  int iVar2;
+  float fVar3;
+  float fVar4;
+  double in_dr0;
+  double dVar5;
+  undefined4 in_fr3;
+  double dVar6;
+  float in_xf0;
+  int iVar7;
+  char in_FPSCR_PR;
+  char in_FPSCR_SZ;
+  float local_20;
+  float fStack28;
+  float local_18;
+ 
+  *(undefined4 *)(param_2 + 0x60) = 8;
+  *(undefined4 *)(param_2 + 100) = 6;
+  *(undefined4 *)(param_2 + 0x68) = 3;
+  if (in_FPSCR_SZ == '\0') {
+    dVar6 = (double)CONCAT44(0x40000000,in_fr3);
+    in_dr0 = (double)((ulonglong)in_dr0 & 0xffffffff00000000 | 0x3db020c5);
+    pdVar1 = (double *)&DAT_VEND_EV3__0c348bf8;
+    local_20 = in_xf0;
+  }
+  else {
+    dVar6 = 1.466833945973356e-11;
+    local_20 = 0.015;
+    pdVar1 = (double *)&DAT_VEND_EV3__0c348c00;
+  }
+  if (in_FPSCR_PR == '\0') {
+    dVar6 = (double)((ulonglong)dVar6 & 0xffffffff |
+                    (ulonglong)(uint)((float)((ulonglong)dVar6 >> 0x20) * SUB84(in_dr0,0)) << 0x20);
+  }
+  else {
+    dVar6 = dVar6 * in_dr0;
+  }
+  if (in_FPSCR_PR == '\0') {
+    dVar5 = (double)((ulonglong)in_dr0 & 0xffffffff00000000 |
+                    (ulonglong)(uint)(0.0 - (float)((ulonglong)dVar6 >> 0x20)));
+  }
+  else {
+    dVar5 = (double)((ulonglong)in_dr0 & 0xffffffff00000000) - dVar6;
+  }
+  if (in_FPSCR_SZ == '\0') {
+    dVar6 = (double)((ulonglong)dVar6 & 0xffffffff | (ulonglong)*(uint *)pdVar1 << 0x20);
+    pdVar1 = (double *)((int)pdVar1 + 4);
+  }
+  else {
+    dVar6 = *pdVar1;
+    pdVar1 = pdVar1 + 1;
+  }
+  if (in_FPSCR_PR == '\0') {
+    fVar3 = SUB84(dVar5,0) - (float)((ulonglong)dVar6 >> 0x20);
+  }
+  else {
+    fVar3 = SUB84(dVar5 - dVar6,0);
+  }
+  if (in_FPSCR_SZ == '\0') {
+    fStack28 = *(float *)pdVar1;
+    local_18 = *(float *)((int)pdVar1 + 4);
+    local_20 = fVar3;
+  }
+  else {
+    fStack28 = SUB84(*pdVar1,0);
+    local_18 = SUB84(pdVar1[1],0);
+  }
+  iVar2 = 0;
+  if (in_FPSCR_SZ == '\0') {
+    param_1 = 0.086;
+    dVar6 = (double)(ulonglong)(uint)local_20;
+  }
+  do {
+    iVar7 = iVar2 * 0xc;
+    fVar3 = SUB84(dVar6,0);
+    if (iVar2 < *(int *)(param_2 + 100)) {
+      fVar4 = (float)iVar2;
+      dVar6 = (double)((ulonglong)dVar6 & 0xffffffff);
+      if (in_FPSCR_PR == '\0') {
+        fVar3 = fVar4 * param_1 + fVar3;
+      }
+      *(float *)(iVar7 + param_2) = fVar3;
+      if (in_FPSCR_PR == '\0') {
+        dVar5 = (double)CONCAT44(fVar4,fStack28 + 0.0);
+      }
+      else {
+        dVar5 = (double)CONCAT44(fVar4,fStack28) + (double)(ulonglong)(uint)param_1;
+      }
+      *(int *)(iVar7 + param_2 + 4) = SUB84(dVar5,0);
+    }
+    else {
+      fVar4 = (float)((iVar2 - *(int *)(param_2 + 0x60)) + *(int *)(param_2 + 100));
+      if (in_FPSCR_PR == '\0') {
+        fVar3 = fVar4 * param_1 + fVar3;
+      }
+      *(float *)(iVar7 + param_2) = fVar3;
+      dVar6 = (double)((ulonglong)dVar6 & 0xffffffff | 0x3e99999a00000000);
+      if (in_FPSCR_PR == '\0') {
+        dVar5 = (double)CONCAT44(fVar4,fStack28 - 0.3);
+      }
+      else {
+        dVar5 = (double)CONCAT44(fVar4,fStack28) - dVar6;
+      }
+      *(int *)(param_2 + 4 + iVar7) = SUB84(dVar5,0);
+    }
+    if (in_FPSCR_PR == '\0') {
+      fVar3 = local_18 + 0.0;
+    }
+    else {
+      fVar3 = SUB84((double)((ulonglong)dVar5 & 0xffffffff00000000 | (ulonglong)(uint)local_18) +
+                    (double)(ulonglong)(uint)param_1,0);
+    }
+    *(float *)(iVar7 + param_2 + 8) = fVar3;
+    iVar2 = iVar2 + 1;
+  } while (iVar2 < *(int *)(param_2 + 0x60));
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c348c20(void)
+
+{
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c348c60(int param_1)
+
+{
+  int iVar1;
+ 
+  iVar1 = *(int *)(param_1 + 0x68);
+  if ((iVar1 != *(int *)(param_1 + 100) + -1) && (iVar1 < *(int *)(param_1 + 0x60) + -1)) {
+    *(int *)(param_1 + 0x68) = iVar1 + 1;
+  }
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c348ca0(int param_1)
+
+{
+  int iVar1;
+ 
+  iVar1 = *(int *)(param_1 + 0x68);
+  if ((0 < iVar1) && (iVar1 != *(int *)(param_1 + 100))) {
+    *(int *)(param_1 + 0x68) = iVar1 + -1;
+  }
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c348cc0(int param_1)
+
+{
+  if (*(int *)(param_1 + 100) <= *(int *)(param_1 + 0x68)) {
+    *(int *)(param_1 + 0x68) =
+         (*(int *)(param_1 + 0x68) - *(int *)(param_1 + 0x60)) + *(int *)(param_1 + 100);
+  }
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c348ce0(int param_1)
+
+{
+  int iVar1;
+  int iVar2;
+ 
+  iVar2 = *(int *)(param_1 + 100);
+  if ((*(int *)(param_1 + 0x68) < iVar2) &&
+     (iVar1 = (*(int *)(param_1 + 0x68) - iVar2) + *(int *)(param_1 + 0x60),
+     *(int *)(param_1 + 0x68) = iVar1, iVar1 < iVar2)) {
+    *(int *)(param_1 + 0x68) = iVar2;
+  }
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c348d60(float param_1,void **param_2)
+
+{
+  bool bVar1;
+  void *pvVar2;
+  char *pcVar3;
+  undefined3 extraout_var;
+  double dStack52;
+  astruct_58 *apaStack40 [4];
+ 
+  pvVar2 = FUN_VEND_EV3__0c34c220(param_1,(HLib_Task_t *)param_2[0x1d],&DAT_VEND_EV3__0c34e55c);
+  *param_2 = pvVar2;
+  FUN_VEND_EV3__0c348b20(param_1,(int)(param_2 + 1));
+  pcVar3 = Shenmue::Filepath_Generator(PackDirectory);
+  Shenmue::evl_AFS_Utils(0,MOUNT_AFS_PARTITION,pcVar3,(uint *)&DAT_VEND_EV3__0c34e8c8,0);
+  Shenmue::evl_AFS_Utils(0,NewLoadPAK,(char *)0x0,(uint *)0x0,0);
+  Shenmue::evl_AFS_Utils(2,Unk4,"VEND",(uint *)0x0,0);
+  Shenmue::evl_AFS_Utils(2,WAIT_PAK_LOAD,"VEND",(uint *)0x0,0);
+  Shenmue::LoadCutscene("0109E000");
+  EV_EnableCharDisplay(0x4e48494a);
+  bVar1 = EV_IsCharacterExist(param_2[0x1e]);
+  if (CONCAT31(extraout_var,bVar1) != 0) {
+    EV_DisableCharDisplay(param_2[0x1e]);
+    FUN_0c0910a0((int)param_2[0x1e],-1,&dStack52,0x40000000);
+    FUN_0c091720((uint *)apaStack40,0x40000000);
+    FUN_0c090ea0(0x78000000,&dStack52);
+    FUN_0c0913c0(0x4e48494a,0x78000000,apaStack40,0);
+  }
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c348e80
+               (undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
+               undefined4 param_5,undefined4 param_6,ulonglong param_7,int *param_8)
+
+{
+  bool bVar1;
+  undefined3 extraout_var;
+ 
+  debug_log_to_file_REMOVED("Do EV_EnableCharDisplay\n",0xc02073c);
+  EV_EnableCharDisplay(0x5f4f5952);
+  debug_log_to_file_REMOVED("Do EV_DisableCharDisplay\n");
+  EV_DisableCharDisplay(0x4e48494a);
+  debug_log_to_file_REMOVED("Do EV_IsCharacterExist\n");
+  bVar1 = EV_IsCharacterExist(param_8[0x1e]);
+  if (CONCAT31(extraout_var,bVar1) != 0) {
+    debug_log_to_file_REMOVED("Do EV_EnableCharDisplay\n");
+    EV_EnableCharDisplay(param_8[0x1e]);
+  }
+  Shenmue::evl_AFS_Utils(0,IsLoaded_6,"VEND",(uint *)0x0,0);
+  debug_log_to_file_REMOVED("Do ET_AT_KillWork\n");
+  FUN_VEND_EV3__0c34c320(param_1,param_2,param_3,param_4,param_5,param_6,param_7,*param_8);
+  return;
+}
+
+
+
+void ET_SetHandUpYubiWait(int param_1)
+
+{
+  if (*(int *)(param_1 + 0x2c8) == 2) {
+    *(undefined4 *)(param_1 + 0x2c8) = 3;
+    debug_log_to_file_REMOVED("EVVendHand_END in ET_SetHandUpYubiWait\n");
+    EV_HLKillOtherHierarchyTask(*(HLib_Task_t **)(param_1 + 4));
+  }
+  if (*(int *)(param_1 + 0x2c8) == 4) {
+    debug_log_to_file_REMOVED("EVVendHand_ERROR in ET_SetHandUpYubiWait\n");
+    EV_HLKillOtherHierarchyTask(*(HLib_Task_t **)(param_1 + 4));
+  }
+  if (*(int *)(param_1 + 0x2c0) < *(int *)(param_1 + 0x2c4)) {
+    EV_DispUpHandModel();
+    FUN_0c0935a0(*(int *)(param_1 + 0xc),(uint *)(param_1 + 0x10),
+                 (short)*(undefined4 *)(param_1 + 700));
+    *(undefined4 *)(param_1 + 0x2c8) = 2;
+    HLib::UpdateActiveTask(*(undefined **)(undefined4 *)(param_1 + 700));
+  }
+  *(int *)(param_1 + 0x2c4) = *(int *)(param_1 + 0x2c4) + 1;
+  return;
+}
+
+
+
+int FUN_VEND_EV3__0c349000
+              (undefined4 param_1,undefined4 param_2,undefined4 *param_3,int param_4,int param_5)
+
+{
+  HLib_Task_t *pHVar1;
+  void *pvVar2;
+ 
+  pHVar1 = HLib::EnqueueTaskWithParameter(ET_SetHandUpYubiWait,'\x03',0xb,0x2cc,0x544e5645);
+  pvVar2 = HLib::GetTaskParameterPointer(pHVar1);
+  *(HLib_Task_t **)((int)pvVar2 + 4) = pHVar1;
+  FUN_VEND_EV3__0c34e4a8((undefined4 *)((int)pvVar2 + 0x10),param_3,0x54);
+  *(undefined4 *)((int)pvVar2 + 8) = param_1;
+  *(undefined4 *)((int)pvVar2 + 0xc) = param_2;
+  *(int *)((int)pvVar2 + 700) = param_4;
+  *(int *)((int)pvVar2 + 0x2c0) = param_5;
+  *(undefined4 *)((int)pvVar2 + 0x2c8) = 0;
+  *(undefined4 *)((int)pvVar2 + 0x2c4) = 0;
+  return param_5 + param_4;
+}
+
+
+
+// WARNING: Could not reconcile some variable overlaps
+
+undefined4
+FUN_VEND_EV3__0c3490a0
+          (uint param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5)
+
+{
+  undefined8 *puVar1;
+  undefined8 uVar2;
+  double dVar3;
+  double dVar4;
+  ulonglong in_dr12;
+  undefined4 in_PR;
+  char in_FPSCR_SZ;
+  undefined8 local_14;
+ 
+  if (in_FPSCR_SZ == '\0') {
+    puVar1 = (undefined8 *)((int)&local_14 + 4);
+    local_14 = in_dr12 & 0xffffffff00000000 | (ulonglong)(uint)local_14;
+  }
+  else {
+    puVar1 = &local_14;
+    local_14 = in_dr12;
+  }
+  *(undefined4 *)((int)puVar1 + -4) = in_PR;
+  if (in_FPSCR_SZ == '\0') {
+    uVar2 = 0x3d204c063f63d838;
+  }
+  else {
+    uVar2 = 0x3f63d8383d204c06;
+  }
+  dVar3 = (double)(in_dr12 & 0xffffffff);
+  dVar4 = dVar3;
+  if (in_FPSCR_SZ == '\0') {
+    dVar4 = (double)(ulonglong)param_1;
+  }
+  FUN_VEND_EV3__0c34a960
+            ((int)uVar2,(int)((ulonglong)uVar2 >> 0x20),SUB84(dVar4,0),0,CONCAT44(param_3,param_2),
+             CONCAT44(param_5,param_4),0x5f4f5952,0x4e48494a,(undefined *)0x0);
+  if (in_FPSCR_SZ == '\0') {
+    dVar3 = (double)((ulonglong)dVar3 & 0xffffffff00000000 | 0x3f800000);
+  }
+  FUN_VEND_EV3__0c34a200
+            (SUB84(dVar3,0),(int)((ulonglong)dVar3 >> 0x20),0x5f4f5952,0x13c1,0x40000000,
+             (undefined *)0x0);
+  *(undefined4 *)((int)puVar1 + -0xc) = 0;
+  *(undefined4 *)((int)puVar1 + -8) = 0;
+  FUN_VEND_EV3__0c349e00
+            (dVar3,0x44f,0x4e48494a,0x4e48494a,0,*(undefined4 *)((int)puVar1 + -0xc),
+             *(undefined **)((int)puVar1 + -8));
+  FUN_VEND_EV3__0c34ac20
+            (SUB84(dVar3,0),(int)((ulonglong)dVar3 >> 0x20),SUB84(dVar4,0),
+             (int)((ulonglong)dVar4 >> 0x20),param_2,param_3,param_4,param_5,0xbf,(undefined *)0x7d)
+  ;
+  return 0xaa;
+}
+
+
+
+// WARNING: Could not reconcile some variable overlaps
+
+undefined4
+FUN_VEND_EV3__0c349140
+          (uint param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5)
+
+{
+  undefined8 *puVar1;
+  undefined8 uVar2;
+  double dVar3;
+  double dVar4;
+  uint uVar5;
+  ulonglong in_dr12;
+  undefined4 in_PR;
+  char in_FPSCR_SZ;
+  undefined8 local_20;
+ 
+  if (in_FPSCR_SZ == '\0') {
+    puVar1 = (undefined8 *)((int)&local_20 + 4);
+    local_20 = in_dr12 & 0xffffffff00000000 | (ulonglong)(uint)local_20;
+  }
+  else {
+    puVar1 = &local_20;
+    local_20 = in_dr12;
+  }
+  *(undefined4 *)((int)puVar1 + -4) = in_PR;
+  *(undefined **)((int)puVar1 + -0x10) = &DAT_VEND_EV3__0c34ee88;
+  *(undefined4 *)((int)puVar1 + -0xc) = 0x52;
+  *(undefined4 *)((int)puVar1 + -8) = 0;
+  FUN_VEND_EV3__0c34b620
+            (0x4e414348,0x5f4f5952,0xe,(undefined4 *)&DAT_VEND_EV3__0c34ee7c,
+             *(undefined4 **)((int)puVar1 + -0x10),*(undefined **)((int)puVar1 + -0xc),
+             *(int *)((int)puVar1 + -8));
+  uVar5 = (uint)in_dr12;
+  FUN_VEND_EV3__0c34b780(0x646e6863,(undefined *)0x0,1);
+  FUN_VEND_EV3__0c34b780(0x5f4f5952,(undefined *)0x0,0);
+  FUN_VEND_EV3__0c34b780(0x4e414348,(undefined *)0x52,0);
+  if (in_FPSCR_SZ == '\0') {
+    uVar2 = 0x3d204c063f63d838;
+  }
+  else {
+    uVar2 = 0x3f63d8383d204c06;
+  }
+  dVar3 = (double)(ulonglong)uVar5;
+  dVar4 = dVar3;
+  if (in_FPSCR_SZ == '\0') {
+    dVar4 = (double)(ulonglong)param_1;
+  }
+  FUN_VEND_EV3__0c34a960
+            ((int)uVar2,(int)((ulonglong)uVar2 >> 0x20),SUB84(dVar4,0),0,CONCAT44(param_3,param_2),
+             CONCAT44(param_5,param_4),0x5f4f5952,0x4e48494a,(undefined *)0x0);
+  if (in_FPSCR_SZ == '\0') {
+    dVar3 = (double)((ulonglong)dVar3 & 0xffffffff00000000 | 0x3f800000);
+  }
+  FUN_VEND_EV3__0c34a200
+            (SUB84(dVar3,0),(int)((ulonglong)dVar3 >> 0x20),0x5f4f5952,0x13c4,0x40000000,
+             (undefined *)0x0);
+  *(undefined4 *)((int)puVar1 + -0x10) = 0;
+  *(undefined4 *)((int)puVar1 + -0xc) = 0;
+  FUN_VEND_EV3__0c349e00
+            (dVar3,0x450,0x4e48494a,0x4e48494a,0,*(undefined4 *)((int)puVar1 + -0x10),
+             *(undefined **)((int)puVar1 + -0xc));
+  FUN_VEND_EV3__0c34ac20
+            (SUB84(dVar3,0),(int)((ulonglong)dVar3 >> 0x20),SUB84(dVar4,0),
+             (int)((ulonglong)dVar4 >> 0x20),param_2,param_3,param_4,param_5,0xc6,(undefined *)0x50)
+  ;
+  FUN_VEND_EV3__0c34ac20
+            (SUB84(dVar3,0),(int)((ulonglong)dVar3 >> 0x20),SUB84(dVar4,0),
+             (int)((ulonglong)dVar4 >> 0x20),param_2,param_3,param_4,param_5,0xc4,(undefined *)0x122
+            );
+  return 0xaa;
+}
+
+
+
+undefined *
+FUN_VEND_EV3__0c349240
+          (undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
+          undefined4 param_5,undefined4 param_6,undefined *param_7)
+
+{
+  undefined *puVar1;
+  undefined4 uVar2;
+  undefined4 uVar3;
+ 
+  puVar1 = param_7 + 0x2b2;
+  FUN_VEND_EV3__0c34b620(0x4e414348,0x5f4f5952,0xe,(undefined4 *)0x0,(undefined4 *)0x0,puVar1,1);
+  FUN_VEND_EV3__0c34b780(0x4e414348,puVar1,1);
+  uVar3 = 0;
+  uVar2 = 0x3f800000;
+  FUN_VEND_EV3__0c34a200(0x3f800000,0,0x5f4f5952,0x13c2,0,param_7);
+  FUN_VEND_EV3__0c349e00((double)CONCAT44(uVar3,uVar2),0x451,0x4e48494a,0x4e48494a,0,0,param_7);
+  FUN_VEND_EV3__0c349e00
+            ((double)CONCAT44(uVar3,uVar2),0x452,0x4e48494a,0x4e48494a,0,0,param_7 + 0x23f);
+  FUN_VEND_EV3__0c34ac20
+            (uVar2,uVar3,param_1,param_2,param_3,param_4,param_5,param_6,0xc0,param_7 + 0xd2);
+  FUN_VEND_EV3__0c34ac20
+            (uVar2,uVar3,param_1,param_2,param_3,param_4,param_5,param_6,0xc0,param_7 + 0x122);
+  FUN_VEND_EV3__0c34ac20
+            (uVar2,uVar3,param_1,param_2,param_3,param_4,param_5,param_6,0xc0,param_7 + 0x1d6);
+  FUN_VEND_EV3__0c34ac20(uVar2,uVar3,param_1,param_2,param_3,param_4,param_5,param_6,0xc5,puVar1);
+  return param_7 + 0x2fd;
+}
+
+
+
+int FUN_VEND_EV3__0c349340(double *param_1,double *param_2,int param_3,int param_4)
+
+{
+  double *pdVar1;
+  int iVar2;
+  float fVar3;
+  float fVar4;
+  double in_dr0;
+  double dVar5;
+  float fVar6;
+  double in_dr4;
+  double in_dr6;
+  undefined8 in_dr8;
+  undefined8 in_dr10;
+  double in_xd0;
+  int extraout_FPUL;
+  char in_FPSCR_PR;
+  char in_FPSCR_SZ;
+ 
+  iVar2 = 0;
+  do {
+    if (in_FPSCR_SZ == '\0') {
+      in_dr0 = (double)((ulonglong)in_dr0 & 0xffffffff00000000 | (ulonglong)*(uint *)param_1);
+      pdVar1 = (double *)((int)param_1 + 4);
+      in_dr4 = (double)((ulonglong)in_dr4 & 0xffffffff | (ulonglong)*(uint *)param_2 << 0x20);
+    }
+    else {
+      in_xd0 = *param_1;
+      pdVar1 = param_1 + 1;
+      in_dr4 = *param_2;
+    }
+    fVar4 = (float)((ulonglong)in_dr4 >> 0x20);
+    if (in_FPSCR_PR == '\0') {
+      fVar3 = SUB84(in_dr0,0) - fVar4;
+    }
+    else {
+      fVar3 = SUB84(in_dr0 - in_dr4,0);
+    }
+    if (in_FPSCR_SZ == '\0') {
+      fVar6 = (float)(&DAT_VEND_EV3__0c34e994)[iVar2];
+      dVar5 = (double)CONCAT44(fVar3,fVar3);
+    }
+    else {
+      fVar6 = (float)((ulonglong)*(undefined8 *)(&DAT_VEND_EV3__0c34e994 + iVar2) >> 0x20);
+      dVar5 = in_xd0;
+    }
+    if (in_FPSCR_PR == '\0') {
+      in_dr4 = (double)((ulonglong)in_dr4 & 0xffffffff |
+                       (ulonglong)(uint)((float)((ulonglong)dVar5 >> 0x20) * fVar6 + fVar4) << 0x20)
+      ;
+    }
+    if (in_FPSCR_SZ == '\0') {
+      dVar5 = (double)((ulonglong)dVar5 & 0xffffffff00000000 | (ulonglong)*(uint *)pdVar1);
+      in_dr4 = (double)((ulonglong)in_dr4 & 0xffffffff00000000 |
+                       (ulonglong)*(uint *)((int)param_2 + 4));
+    }
+    else {
+      in_xd0 = *pdVar1;
+    }
+    if (in_FPSCR_PR == '\0') {
+      fVar4 = SUB84(dVar5,0) - SUB84(in_dr4,0);
+    }
+    else {
+      fVar4 = SUB84(dVar5 - in_dr4,0);
+    }
+    dVar5 = in_xd0;
+    if (in_FPSCR_SZ == '\0') {
+      dVar5 = (double)CONCAT44(fVar4,fVar4);
+    }
+    if (in_FPSCR_PR == '\0') {
+      in_dr4 = (double)((ulonglong)in_dr4 & 0xffffffff00000000 |
+                       (ulonglong)
+                       (uint)((float)((ulonglong)dVar5 >> 0x20) * fVar6 + SUB84(in_dr4,0)));
+    }
+    if (in_FPSCR_SZ == '\0') {
+      dVar5 = (double)((ulonglong)dVar5 & 0xffffffff00000000 | (ulonglong)*(uint *)(param_1 + 1));
+      in_dr6 = (double)((ulonglong)in_dr6 & 0xffffffff | (ulonglong)*(uint *)(param_2 + 1) << 0x20);
+    }
+    else {
+      in_xd0 = param_1[1];
+      in_dr6 = param_2[1];
+    }
+    fVar4 = (float)((ulonglong)in_dr6 >> 0x20);
+    if (in_FPSCR_PR == '\0') {
+      fVar3 = SUB84(dVar5,0) - fVar4;
+    }
+    else {
+      fVar3 = SUB84(dVar5 - in_dr6,0);
+    }
+    in_dr0 = in_xd0;
+    if (in_FPSCR_SZ == '\0') {
+      in_dr0 = (double)CONCAT44(fVar3,fVar3);
+    }
+    if (in_FPSCR_PR == '\0') {
+      in_dr6 = (double)((ulonglong)in_dr6 & 0xffffffff |
+                       (ulonglong)(uint)((float)((ulonglong)in_dr0 >> 0x20) * fVar6 + fVar4) << 0x20
+                       );
+    }
+    FUN_VEND_EV3__0c34a3c0
+              (SUB84(in_dr4,0),(int)((ulonglong)in_dr4 >> 0x20),SUB84(in_dr6,0),
+               (uint)((ulonglong)in_dr6 >> 0x20),in_dr8,in_dr10,0x484d5544,0x4e48494a,
+               (undefined *)(iVar2 + param_4));
+    iVar2 = iVar2 + param_3;
+  } while (iVar2 < 8);
+  FUN_VEND_EV3__0c34e4ee();
+  return extraout_FPUL + param_4;
+}
+
+
+
+undefined * FUN_VEND_EV3__0c349400(double *param_1,undefined4 param_2)
+
+{
+  undefined **ppuVar1;
+  int iVar2;
+  undefined *puVar3;
+  double in_dr0;
+  double dVar4;
+  undefined4 in_fr3;
+  double dVar5;
+  undefined4 in_fr5;
+  undefined4 in_fr4;
+  undefined4 in_fr7;
+  undefined4 in_fr6;
+  undefined4 in_fr9;
+  undefined4 in_fr8;
+  undefined4 in_fr11;
+  undefined4 in_fr10;
+  double in_xd0;
+  undefined4 in_PR;
+  char in_FPSCR_PR;
+  char in_FPSCR_SZ;
+  undefined4 local_2c;
+  undefined4 uStack40;
+  uint local_24;
+  undefined4 uStack32;
+  undefined4 uStack28;
+  float local_18;
+  undefined4 uStack20;
+ 
+  if (in_FPSCR_SZ == '\0') {
+    uStack32 = *(undefined4 *)param_1;
+    in_dr0 = (double)((ulonglong)in_dr0 & 0xffffffff00000000 |
+                     (ulonglong)*(uint *)((int)param_1 + 4));
+    dVar5 = (double)CONCAT44(0x3cf5c28f,in_fr3);
+    ppuVar1 = (undefined **)&DAT_VEND_EV3__0c3494e0;
+  }
+  else {
+    uStack32 = SUB84(*param_1,0);
+    in_xd0 = param_1[1];
+    dVar5 = 1.292369657680313e-19;
+    ppuVar1 = &PTR_FUN_VEND_EV3__0c34af60_VEND_EV3__0c3494e4;
+  }
+  if (in_FPSCR_PR == '\0') {
+    dVar4 = (double)((ulonglong)in_dr0 & 0xffffffff00000000 |
+                    (ulonglong)(uint)(SUB84(in_dr0,0) - (float)((ulonglong)dVar5 >> 0x20)));
+  }
+  else {
+    dVar4 = in_dr0 - dVar5;
+  }
+  if (in_FPSCR_SZ == '\0') {
+    uStack28 = SUB84(dVar4,0);
+  }
+  else {
+    uStack28 = SUB84(in_xd0,0);
+  }
+  if (in_FPSCR_SZ == '\0') {
+    local_18 = *(float *)(param_1 + 1);
+    dVar4 = (double)((ulonglong)dVar4 & 0xffffffff00000000 | (ulonglong)(uint)local_18);
+    uStack20 = in_PR;
+  }
+  else {
+    in_xd0 = param_1[1];
+    local_18 = SUB84(in_xd0,0);
+    uStack20 = (undefined4)((ulonglong)in_xd0 >> 0x20);
+  }
+  local_2c = uStack32;
+  uStack40 = uStack28;
+  local_24 = (uint)local_18;
+  if (in_FPSCR_SZ == '\0') {
+    dVar4 = (double)((ulonglong)dVar4 & 0xffffffff00000000 | (ulonglong)(uint)local_18);
+    dVar5 = (double)((ulonglong)dVar5 & 0xffffffff | ZEXT48(*ppuVar1) << 0x20);
+  }
+  else {
+    in_xd0 = (double)CONCAT44(uStack32,local_18);
+    dVar5 = *(double *)ppuVar1;
+  }
+  if (in_FPSCR_PR == '\0') {
+    local_18 = SUB84(dVar4,0) - (float)((ulonglong)dVar5 >> 0x20);
+  }
+  else {
+    local_18 = SUB84(dVar4 - dVar5,0);
+  }
+  if (in_FPSCR_SZ != '\0') {
+    local_18 = SUB84(in_xd0,0);
+    uStack20 = (undefined4)((ulonglong)in_xd0 >> 0x20);
+  }
+  FUN_VEND_EV3__0c34af60(param_2,&DAT_0000000a);
+  iVar2 = FUN_VEND_EV3__0c349340((double *)&local_2c,param_1,1,7);
+  FUN_VEND_EV3__0c349000(0x646e6863,0,(undefined4 *)&DAT_VEND_EV3__0c34ec28,5,5);
+  iVar2 = FUN_VEND_EV3__0c349340((double *)&uStack32,(double *)&local_2c,4,iVar2);
+  puVar3 = (undefined *)FUN_VEND_EV3__0c349340((double *)&local_2c,(double *)&uStack32,4,iVar2);
+  FUN_VEND_EV3__0c34b780(0x5f4f5952,(undefined *)0x0,1);
+  FUN_VEND_EV3__0c349e00
+            ((double)CONCAT44(in_fr4,in_fr5),0x44e,0x4e48494a,0x4e48494a,0,0,(undefined *)0x0);
+  FUN_VEND_EV3__0c34ac20(in_fr5,in_fr4,in_fr7,in_fr6,in_fr9,in_fr8,in_fr11,in_fr10,0xbe,puVar3 + -2)
+  ;
+  FUN_VEND_EV3__0c34ac20(in_fr5,in_fr4,in_fr7,in_fr6,in_fr9,in_fr8,in_fr11,in_fr10,0xc1,puVar3);
+  return puVar3;
+}
+
+
+
+// WARNING: Could not reconcile some variable overlaps
+
+undefined4 FUN_VEND_EV3__0c349520(uint param_1,undefined8 param_2,undefined8 param_3)
+
+{
+  undefined8 *puVar1;
+  undefined8 uVar2;
+  double dVar3;
+  uint uVar4;
+  ulonglong in_dr12;
+  undefined4 in_PR;
+  char in_FPSCR_SZ;
+  undefined8 local_14;
+ 
+  if (in_FPSCR_SZ == '\0') {
+    puVar1 = (undefined8 *)((int)&local_14 + 4);
+    local_14 = in_dr12 & 0xffffffff00000000 | (ulonglong)(uint)local_14;
+  }
+  else {
+    puVar1 = &local_14;
+    local_14 = in_dr12;
+  }
+  *(undefined4 *)((int)puVar1 + -4) = in_PR;
+  FUN_VEND_EV3__0c34af60(0,&DAT_0000000a);
+  uVar4 = (uint)in_dr12;
+  FUN_VEND_EV3__0c34cb80(&LAB_VEND_EV3__0c34e9b4,(undefined *)0x1e,0x3c);
+  if (in_FPSCR_SZ == '\0') {
+    uVar2 = 0x3d204c063f63d838;
+  }
+  else {
+    uVar2 = 0x3f63d8383d204c06;
+  }
+  dVar3 = (double)(ulonglong)uVar4;
+  if (in_FPSCR_SZ == '\0') {
+    uVar4 = param_1;
+  }
+  FUN_VEND_EV3__0c34a960
+            ((int)uVar2,(int)((ulonglong)uVar2 >> 0x20),uVar4,0,param_2,param_3,0x5f4f5952,
+             0x4e48494a,(undefined *)0x0);
+  if (in_FPSCR_SZ == '\0') {
+    dVar3 = (double)((ulonglong)dVar3 & 0xffffffff00000000 | 0x3f800000);
+  }
+  FUN_VEND_EV3__0c34a200
+            (SUB84(dVar3,0),(int)((ulonglong)dVar3 >> 0x20),0x5f4f5952,0x13c1,0x40000000,
+             (undefined *)0x0);
+  *(undefined4 *)((int)puVar1 + -0xc) = 0;
+  *(undefined4 *)((int)puVar1 + -8) = 0;
+  FUN_VEND_EV3__0c349e00
+            (dVar3,0x44f,0x4e48494a,0x4e48494a,0,*(undefined4 *)((int)puVar1 + -0xc),
+             *(undefined **)((int)puVar1 + -8));
+  return 0x5a;
+}
+
+
+
+undefined4 FUN_VEND_EV3__0c3495c0(void)
+
+{
+  int iVar1;
+  float extraout_fr1;
+  float fVar2;
+  undefined4 extraout_fr0;
+  undefined4 uVar3;
+  double in_dr2;
+  double dVar4;
+  float fVar5;
+  char in_FPSCR_PR;
+  char in_FPSCR_SZ;
+  undefined4 local_38;
+  float fStack52;
+  undefined4 local_30;
+  undefined4 uStack44;
+ 
+  iVar1 = 0;
+  do {
+    uVar3 = SUB84(in_dr2,0);
+    FUN_0c091920();
+    if (in_FPSCR_SZ == '\0') {
+      (&DAT_VEND_EV3__0c34eeb8)[iVar1 * 3] = local_38;
+      (&DAT_VEND_EV3__0c34eebc)[iVar1 * 3] = fStack52;
+      dVar4 = (double)CONCAT44(local_30,uVar3);
+      fVar2 = fStack52;
+    }
+    else {
+      *(ulonglong *)(&DAT_VEND_EV3__0c34eeb8 + iVar1 * 3) = CONCAT44(fStack52,local_38);
+      *(ulonglong *)(&DAT_VEND_EV3__0c34eebc + iVar1 * 3) = CONCAT44(local_30,fStack52);
+      dVar4 = (double)CONCAT44(uStack44,local_30);
+      fVar2 = extraout_fr1;
+    }
+    fVar5 = (float)((ulonglong)dVar4 >> 0x20);
+    if (in_FPSCR_SZ == '\0') {
+      (&DAT_VEND_EV3__0c34eec0)[iVar1 * 3] = fVar5;
+      fVar2 = 0.1;
+    }
+    else {
+      *(double *)(&DAT_VEND_EV3__0c34eec0 + iVar1 * 3) = dVar4;
+    }
+    if (in_FPSCR_PR == '\0') {
+      in_dr2 = (double)((ulonglong)dVar4 & 0xffffffff | (ulonglong)(uint)(fVar5 + fVar2) << 0x20);
+    }
+    else {
+      in_dr2 = dVar4 + (double)CONCAT44(extraout_fr0,fVar2);
+    }
+    uVar3 = (undefined4)((ulonglong)in_dr2 >> 0x20);
+    local_30 = uVar3;
+    if (in_FPSCR_SZ != '\0') {
+      local_30 = SUB84(in_dr2,0);
+      uStack44 = uVar3;
+    }
+    FUN_0c091920();
+    iVar1 = iVar1 + 1;
+  } while (iVar1 < 8);
+  return 0;
+}
+
+
+
+void FUN_VEND_EV3__0c349680(int *param_1)
+
+{
+  int iVar1;
+ 
+  iVar1 = 0;
+  do {
+    if (*param_1 == param_1[iVar1 + 1]) {
+      if (*param_1 == param_1[iVar1 + 1]) {
+        debug_log_to_file_REMOVED("@@@   part == lamp[%d]\n",iVar1);
+      }
+    }
+    else {
+      FUN_0c091920();
+    }
+    iVar1 = iVar1 + 1;
+  } while (iVar1 < 8);
+  return;
+}
+
+
+
+HLib_Task_t *
+FUN_VEND_EV3__0c3498c0
+          (HLib_Task_t *param_1,HLib_Task_t *param_2,HLib_Task_t *param_3,HLib_Task_t *param_4)
+
+{
+  HLib_Task_t *pHVar1;
+  HLib_Task_t **ppHVar2;
+ 
+  if ((int)param_4 <= (int)param_3) {
+    param_4 = (HLib_Task_t *)((int)&param_3->taskCallback + 1);
+  }
+  pHVar1 = (HLib_Task_t *)0x0;
+  if ((param_1 != (HLib_Task_t *)0x0) && (((uint)param_1 & 1) == 0)) {
+    pHVar1 = HLib::EnqueueTaskWithParameter(&LAB_VEND_EV3__0c349800,'\x03',0xb,0x1c,0x544e5645);
+    ppHVar2 = (HLib_Task_t **)HLib::GetTaskParameterPointer(pHVar1);
+    *ppHVar2 = pHVar1;
+    ppHVar2[1] = param_3;
+    ppHVar2[2] = param_4;
+    ppHVar2[4] = (HLib_Task_t *)0x0;
+    ppHVar2[3] = (HLib_Task_t *)0x0;
+    ppHVar2[5] = param_1;
+    ppHVar2[6] = param_2;
+    pHVar1 = param_4;
+  }
+  return pHVar1;
+}
+
+
+
+void FUN_VEND_EV3__0c349940
+               (HLib_Task_t *param_1,HLib_Task_t *param_2,HLib_Task_t *param_3,HLib_Task_t *param_4)
+
+{
+  HLib_Task_t *pHVar1;
+  HLib_Task_t **ppHVar2;
+  HLib_Task_t *pHVar3;
+  undefined *puVar4;
+ 
+  pHVar1 = HLib::EnqueueTaskWithParameter(&LAB_VEND_EV3__0c349b00,'\x04',0xb,0x1c,0x74726261);
+  ppHVar2 = (HLib_Task_t **)HLib::GetTaskParameterPointer(pHVar1);
+  *(HLib_Task_t ***)((int)param_1 * 4 + 0xc34ef20) = ppHVar2;
+  pHVar3 = (HLib_Task_t *)FUN_0c11d100((uint)param_1);
+  ppHVar2[1] = pHVar3;
+  *ppHVar2 = pHVar1;
+  ppHVar2[2] = param_1;
+  ppHVar2[3] = param_2;
+  ppHVar2[4] = param_3;
+  ppHVar2[5] = param_4;
+  if (param_1 == (HLib_Task_t *)&DAT_00000002) {
+    ppHVar2[6] = (HLib_Task_t *)&DAT_0c020190;
+  }
+  else if ((int)param_1 < 3) {
+    if (param_1 != (HLib_Task_t *)&DAT_00000001) {
+      puVar4 = ppHVar2[6]->taskCallback;
+      goto LAB_VEND_EV3__0c349a28;
+    }
+    ppHVar2[6] = (HLib_Task_t *)&DAT_0c020180;
+  }
+  else {
+    if (param_1 != (HLib_Task_t *)&DAT_00000003) {
+      puVar4 = ppHVar2[6]->taskCallback;
+      goto LAB_VEND_EV3__0c349a28;
+    }
+    ppHVar2[6] = (HLib_Task_t *)&DAT_0c0201a0;
+  }
+  puVar4 = ppHVar2[6]->taskCallback;
+LAB_VEND_EV3__0c349a28:
+  if (((uint)puVar4 & 2) != 0) {
+    debug_log_to_file_REMOVED("-----------------------------------------------------\n\n");
+    debug_log_to_file_REMOVED("               Error : (Event Leak)                  \n\n");
+    debug_log_to_file_REMOVED("-----------------------------------------------------\n\n");
+  }
+  ppHVar2[6]->taskCallback = (undefined *)0x2;
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c349aa0(int param_1)
+
+{
+  HLib_Task_t **ppHVar1;
+ 
+  ppHVar1 = *(HLib_Task_t ***)(param_1 * 4 + 0xc34ef20);
+  if (ppHVar1 != (HLib_Task_t **)0x0) {
+    FUN_0c093e20();
+    ppHVar1[6]->taskCallback = (undefined *)0x0;
+    HLib::FreeTask(*ppHVar1);
+    *(undefined4 *)(param_1 * 4 + 0xc34ef20) = 0;
+  }
+  return;
+}
+
+
+
+uint FUN_VEND_EV3__0c349c40(int param_1,uint param_2)
+
+{
+  uint uVar1;
+  uint *puVar2;
+  int iVar3;
+ 
+  iVar3 = *(int *)(param_1 * 4 + 0xc34ef20);
+  uVar1 = 0;
+  if (iVar3 != 0) {
+    puVar2 = *(uint **)(iVar3 + 0x18);
+    uVar1 = *puVar2;
+    *puVar2 = param_2 | uVar1;
+  }
+  return uVar1;
+}
+
+
+
+uint FUN_VEND_EV3__0c349c80(int param_1,uint param_2)
+
+{
+  uint uVar1;
+  uint *puVar2;
+  int iVar3;
+ 
+  iVar3 = *(int *)(param_1 * 4 + 0xc34ef20);
+  uVar1 = 0;
+  if (iVar3 != 0) {
+    puVar2 = *(uint **)(iVar3 + 0x18);
+    uVar1 = *puVar2;
+    *puVar2 = ~param_2 & uVar1;
+  }
+  return uVar1;
+}
+
+
+
+void FUN_VEND_EV3__0c349d40(double param_1,int *param_2)
+
+{
+  int iVar1;
+ 
+  if (param_2[1] < 0) {
+    if (param_2[1] == -2) {
+      FUN_0c06d180(1);
+    }
+    FUN_0c069dc0(param_2[4]);
+    FUN_0c06c580(param_1,(void *)0x0);
+    iVar1 = *param_2;
+  }
+  else {
+    if (param_2[5] < 0) {
+      FUN_0c0684c0(1);
+    }
+    if ((param_2[2] == -1) && (param_2[3] == -1)) {
+      FUN_0c068500(param_1,param_2[1],0,0);
+      iVar1 = *param_2;
+    }
+    else {
+      FUN_0c068500(param_1,param_2[1],param_2[2],param_2[3]);
+      iVar1 = *param_2;
+    }
+  }
+  if (iVar1 != 0) {
+    HLib::TaskCleanupCurrentTask();
+  }
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c349e00
+               (double param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
+               undefined4 param_5,undefined4 param_6,undefined *param_7)
+
+{
+  HLib_Task_t *TASK;
+  undefined4 *puVar1;
+  int local_3c;
+  undefined4 local_38;
+  undefined4 local_34;
+  undefined4 local_30;
+  undefined4 local_2c;
+  undefined4 local_28;
+  undefined4 local_24;
+ 
+  local_24 = param_5;
+  if (param_7 == (undefined *)0x0) {
+    local_3c = 0;
+    local_28 = param_6;
+    local_38 = param_2;
+    local_34 = param_3;
+    local_30 = param_4;
+    local_2c = param_5;
+    FUN_VEND_EV3__0c349d40(param_1,&local_3c);
+  }
+  else {
+    TASK = HLib::EnqueueTaskWithParameter(FUN_VEND_EV3__0c349d40,'\x06',0xb,0x18,0x544e5645);
+    if (0 < (int)param_7) {
+      SetTaskDestroyCallback(TASK,param_7);
+    }
+    puVar1 = (undefined4 *)HLib::GetTaskParameterPointer(TASK);
+    *puVar1 = 1;
+    puVar1[1] = param_2;
+    puVar1[2] = param_3;
+    puVar1[3] = param_4;
+    puVar1[4] = local_24;
+    puVar1[5] = param_6;
+  }
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c349fc0(undefined4 param_1,int *param_2)
+
+{
+  astruct_51 *paVar1;
+  uint uVar2;
+  undefined4 uVar3;
+  double dVar4;
+  char in_FPSCR_SZ;
+ 
+  if (-1 < param_2[5]) {
+    if ((param_2[5] & 0x40000000U) == 0) {
+      paVar1 = FindMTWK_ForCEWP(param_2[1]);
+      FUN_0c0ef460((int)paVar1,0x47,2,0);
+      uVar2 = param_2[5];
+    }
+    else {
+      paVar1 = FindMTWK_ForCEWP(param_2[1]);
+      FUN_0c0ef460((int)paVar1,0x47,0,0);
+      uVar2 = param_2[5];
+    }
+    if ((uVar2 & 0x20000000) == 0) {
+      paVar1 = FindMTWK_ForCEWP(param_2[1]);
+      FUN_0c0ef460((int)paVar1,0x45,2,0);
+      uVar2 = param_2[5];
+    }
+    else {
+      paVar1 = FindMTWK_ForCEWP(param_2[1]);
+      FUN_0c0ef460((int)paVar1,0x45,0,0);
+      uVar2 = param_2[5];
+    }
+    if ((uVar2 & 0x4000000) == 0) {
+      paVar1 = FindMTWK_ForCEWP(param_2[1]);
+      SetCEWPFlags((int)paVar1,0xe,2);
+      uVar2 = param_2[5];
+    }
+    else {
+      paVar1 = FindMTWK_ForCEWP(param_2[1]);
+      SetCEWPFlags((int)paVar1,0xe,0);
+      uVar2 = param_2[5];
+    }
+    if ((uVar2 & 0x2000000) == 0) {
+      paVar1 = FindMTWK_ForCEWP(param_2[1]);
+      SetCEWPFlags((int)paVar1,0x11,0);
+      uVar2 = param_2[5];
+    }
+    else {
+      paVar1 = FindMTWK_ForCEWP(param_2[1]);
+      SetCEWPFlags((int)paVar1,0x11,2);
+      uVar2 = param_2[5];
+    }
+    if ((uVar2 & 0x1000000) != 0) {
+      paVar1 = FindMTWK_ForCEWP(param_2[1]);
+      FUN_0c0ef460((int)paVar1,0x42,0,0);
+    }
+    uVar2 = param_2[5];
+    if ((uVar2 & 0x800000) != 0) {
+      paVar1 = FindMTWK_ForCEWP(param_2[1]);
+      FUN_0c0ef460((int)paVar1,0x42,2,0);
+      uVar2 = param_2[5];
+    }
+    if ((uVar2 & 0x10000000) == 0) {
+      paVar1 = FindMTWK_ForCEWP(param_2[1]);
+      FUN_0c0f4700((int)paVar1,1);
+      paVar1 = FindMTWK_ForCEWP(param_2[1]);
+      SetCEWPFlags((int)paVar1,0,0);
+    }
+    else {
+      paVar1 = FindMTWK_ForCEWP(param_2[1]);
+      FUN_0c0f4700((int)paVar1,0);
+      paVar1 = FindMTWK_ForCEWP(param_2[1]);
+      SetCEWPFlags((int)paVar1,0,2);
+    }
+  }
+  paVar1 = FindMTWK_ForCEWP(param_2[1]);
+  FUN_0c0ee5e0((int)paVar1,(short)param_2[2],0);
+  paVar1 = FindMTWK_ForCEWP(param_2[1]);
+  if (in_FPSCR_SZ == '\0') {
+    dVar4 = (double)CONCAT44(param_2[3],param_1);
+  }
+  else {
+    dVar4 = *(double *)(param_2 + 3);
+  }
+  FUN_0c0eebe0(dVar4,(int)paVar1,0);
+  uVar3 = SUB84(dVar4,0);
+  paVar1 = FindMTWK_ForCEWP(param_2[1]);
+  if (in_FPSCR_SZ != '\0') {
+    uVar3 = (undefined4)*(undefined8 *)(param_2 + 4);
+  }
+  FUN_0c0eec60(uVar3,uVar3,(int)paVar1,0);
+  if (*param_2 != 0) {
+    HLib::TaskCleanupCurrentTask();
+  }
+  return;
+}
+
+int FUN_VEND_EV3__0c34a200
+              (undefined4 param_1,undefined4 param_2,undefined4 param_3,uint param_4,
+              undefined4 param_5,undefined *param_6)
+
+{
+  undefined2 uVar1;
+  HLib_Task_t *TASK;
+  undefined4 *puVar2;
+  undefined2 extraout_var;
+  undefined8 *puVar3;
+  undefined *puVar4;
+  undefined8 in_dr0;
+  undefined4 uVar5;
+  undefined4 in_fr3;
+  double dVar6;
+  ulonglong in_dr12;
+  undefined8 in_xd4;
+  undefined8 in_xd12;
+  undefined4 in_PR;
+  int iVar7;
+  char in_FPSCR_PR;
+  char in_FPSCR_SZ;
+  int aiStack76 [10];
+  undefined8 uStack36;
+ 
+  uVar5 = (undefined4)((ulonglong)in_dr0 >> 0x20);
+  if (in_FPSCR_SZ == '\0') {
+    puVar3 = (undefined8 *)((int)&uStack36 + 4);
+    uStack36 = in_dr12 & 0xffffffff00000000 | (ulonglong)(uint)uStack36;
+  }
+  else {
+    puVar3 = &uStack36;
+    uStack36 = in_dr12;
+  }
+  if (in_FPSCR_SZ == '\0') {
+    puVar4 = (undefined *)((int)puVar3 + -4);
+    *(int *)((int)puVar3 + -4) = (int)in_dr12;
+  }
+  else {
+    puVar4 = (undefined *)((int)puVar3 + -8);
+    *(undefined8 *)((int)puVar3 + -8) = in_xd12;
+  }
+  *(undefined4 *)(puVar4 + -4) = in_PR;
+  if (in_FPSCR_SZ == '\0') {
+    in_xd4 = in_xd12;
+  }
+  dVar6 = (double)CONCAT44(param_2,param_1);
+  if (param_6 == (undefined *)0x0) {
+    *(undefined4 *)(puVar4 + -0x1c) = 0;
+    *(undefined4 *)(puVar4 + -0x18) = param_3;
+    *(uint *)(puVar4 + -0x14) = param_4;
+    if (in_FPSCR_SZ == '\0') {
+      *(undefined4 *)(puVar4 + -0x10) = param_2;
+    }
+    else {
+      *(double *)(puVar4 + -0x10) = dVar6;
+    }
+    if (in_FPSCR_SZ == '\0') {
+      *(undefined4 *)(puVar4 + -0xc) = param_1;
+    }
+    else {
+      *(undefined8 *)(puVar4 + -0xc) = in_xd4;
+    }
+    *(undefined4 *)(puVar4 + -8) = param_5;
+    FUN_VEND_EV3__0c349fc0(param_1,(int *)(puVar4 + -0x1c));
+  }
+  else {
+    *(undefined4 *)(puVar4 + -0x20) = 0x544e5645;
+    TASK = HLib::EnqueueTaskWithParameter
+                     (FUN_VEND_EV3__0c349fc0,'\x06',0xb,0x18,*(int *)(puVar4 + -0x20));
+    if (0 < (int)param_6) {
+      uVar5 = SetTaskDestroyCallback(TASK,param_6);
+    }
+    puVar2 = (undefined4 *)HLib::GetTaskParameterPointer(TASK);
+    *puVar2 = 1;
+    puVar2[1] = param_3;
+    puVar2[2] = param_4;
+    if (in_FPSCR_SZ == '\0') {
+      puVar2[3] = (int)((ulonglong)dVar6 >> 0x20);
+    }
+    else {
+      *(double *)(puVar2 + 3) = dVar6;
+    }
+    if (in_FPSCR_SZ == '\0') {
+      puVar2[4] = SUB84(dVar6,0);
+    }
+    else {
+      *(undefined8 *)(puVar2 + 4) = in_xd4;
+    }
+    puVar2[5] = param_5;
+  }
+  uVar1 = FUN_0c0ee5a0(param_4 & 0xffff);
+  if (in_FPSCR_PR == '\0') {
+    dVar6 = (double)CONCAT44(((float)CONCAT22(extraout_var,uVar1) -
+                             (float)((ulonglong)dVar6 >> 0x20)) / SUB84(dVar6,0),in_fr3);
+  }
+  else {
+    dVar6 = ((double)CONCAT22(extraout_var,uVar1) - dVar6) / dVar6;
+  }
+  if (in_FPSCR_PR == '\0') {
+    iVar7 = (int)((float)(int)param_6 + (float)((ulonglong)dVar6 >> 0x20));
+  }
+  else {
+    iVar7 = (int)((double)CONCAT44(uVar5,(float)(int)param_6) + dVar6);
+  }
+  return iVar7;
+}
+
+
+
+void FUN_VEND_EV3__0c34a300
+               (ulonglong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+               int *param_5)
+
+{
+  uint extraout_r0;
+  int iVar1;
+  ulonglong uStack48;
+  uint auStack36 [4];
+ 
+  if (param_5[1] == param_5[2]) {
+    FUN_0c0910a0(param_5[1],-1,&uStack48,0x40000000);
+    FUN_0c091720(auStack36,0x40000000);
+    FUN_0c092740(param_1,param_2,param_3,param_4,&uStack48,auStack36,param_5 + 3);
+    FUN_0c090ea0(0x78000000,(double *)(param_5 + 3));
+    iVar1 = *param_5;
+  }
+  else {
+    FUN_0c0918a0();
+    FUN_0c0917e0((char *)param_5[1],param_5[2]);
+    FUN_0c090ea0(0x38000000,(double *)(param_5 + 3));
+    FUN_0c0917e0((char *)param_5[1],extraout_r0);
+    iVar1 = *param_5;
+  }
+  if (iVar1 != 0) {
+    HLib::TaskCleanupCurrentTask();
+  }
+  return;
+}
+
+void FUN_VEND_EV3__0c34a3c0
+               (undefined4 param_1,undefined4 param_2,undefined4 param_3,uint param_4,
+               undefined8 param_5,undefined8 param_6,undefined4 param_7,undefined4 param_8,
+               undefined *param_9)
+
+{
+  HLib_Task_t *TASK;
+  undefined4 *puVar1;
+  undefined8 *puVar2;
+  undefined *puVar3;
+  ulonglong in_dr12;
+  undefined8 uVar4;
+  ulonglong in_dr14;
+  ulonglong uVar5;
+  undefined8 in_xd4;
+  undefined8 in_xd12;
+  undefined4 in_PR;
+  char in_FPSCR_SZ;
+  int aiStack80 [12];
+  undefined8 uStack32;
+ 
+  if (in_FPSCR_SZ == '\0') {
+    puVar2 = (undefined8 *)((int)&uStack32 + 4);
+    uStack32 = in_dr12 & 0xffffffff00000000 | (ulonglong)(uint)uStack32;
+  }
+  else {
+    puVar2 = &uStack32;
+    uStack32 = in_dr12;
+  }
+  if (in_FPSCR_SZ == '\0') {
+    *(int *)((int)puVar2 + -4) = (int)in_dr12;
+    puVar3 = (undefined *)((int)puVar2 + -8);
+    *(int *)((int)puVar2 + -8) = (int)(in_dr14 >> 0x20);
+  }
+  else {
+    *(undefined8 *)((int)puVar2 + -8) = in_xd12;
+    puVar3 = (undefined *)((int)puVar2 + -0x10);
+    *(ulonglong *)((int)puVar2 + -0x10) = in_dr14;
+  }
+  *(undefined4 *)(puVar3 + -4) = in_PR;
+  if (in_FPSCR_SZ == '\0') {
+    in_xd4 = in_xd12;
+  }
+  uVar4 = CONCAT44(param_2,param_1);
+  if (in_FPSCR_SZ == '\0') {
+    uVar5 = in_dr14 & 0xffffffff | (ulonglong)param_4 << 0x20;
+  }
+  else {
+    uVar5 = CONCAT44(param_4,param_3);
+  }
+  if (param_9 == (undefined *)0x0) {
+    *(undefined4 *)(puVar3 + -0x1c) = 0;
+    *(undefined4 *)(puVar3 + -0x18) = param_7;
+    *(undefined4 *)(puVar3 + -0x14) = param_8;
+    if (in_FPSCR_SZ == '\0') {
+      *(undefined4 *)(puVar3 + -0x10) = param_2;
+    }
+    else {
+      *(undefined8 *)(puVar3 + -0x10) = uVar4;
+    }
+    if (in_FPSCR_SZ == '\0') {
+      *(undefined4 *)(puVar3 + -0xc) = param_1;
+    }
+    else {
+      *(undefined8 *)(puVar3 + -0xc) = in_xd4;
+    }
+    if (in_FPSCR_SZ == '\0') {
+      *(int *)(puVar3 + -8) = (int)(uVar5 >> 0x20);
+    }
+    else {
+      *(ulonglong *)(puVar3 + -8) = uVar5;
+    }
+    FUN_VEND_EV3__0c34a300
+              (CONCAT44(param_2,param_1),CONCAT44(param_4,param_3),param_5,param_6,
+               (int *)(puVar3 + -0x1c));
+  }
+  else {
+    *(undefined4 *)(puVar3 + -0x20) = 0x544e5645;
+    TASK = HLib::EnqueueTaskWithParameter
+                     (FUN_VEND_EV3__0c34a300,'\x06',0xb,0x18,*(int *)(puVar3 + -0x20));
+    if (0 < (int)param_9) {
+      SetTaskDestroyCallback(TASK,param_9);
+    }
+    puVar1 = (undefined4 *)HLib::GetTaskParameterPointer(TASK);
+    *puVar1 = 1;
+    puVar1[1] = param_7;
+    puVar1[2] = param_8;
+    if (in_FPSCR_SZ == '\0') {
+      puVar1[3] = (int)((ulonglong)uVar4 >> 0x20);
+    }
+    else {
+      *(undefined8 *)(puVar1 + 3) = uVar4;
+    }
+    if (in_FPSCR_SZ == '\0') {
+      puVar1[4] = (int)uVar4;
+    }
+    else {
+      *(undefined8 *)(puVar1 + 4) = in_xd4;
+    }
+    if (in_FPSCR_SZ == '\0') {
+      puVar1[5] = (int)(uVar5 >> 0x20);
+    }
+    else {
+      *(ulonglong *)(puVar1 + 5) = uVar5;
+    }
+  }
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c34a4a0(int *param_1)
+
+{
+  uint extraout_r0;
+  int iVar1;
+  astruct_58 *local_20;
+  int local_1c;
+  int local_18;
+ 
+  if (param_1[1] == param_1[2]) {
+    FUN_0c091720((uint *)&local_20,0);
+    local_20 = (astruct_58 *)((int)&local_20->field0_0x0 + param_1[3]);
+    local_1c = local_1c + param_1[4];
+    local_18 = local_18 + param_1[5];
+    FUN_0c0913c0(param_1[1],0x38000000,&local_20,0);
+    iVar1 = *param_1;
+  }
+  else {
+    FUN_0c0918a0();
+    FUN_0c0917e0((char *)param_1[1],param_1[2]);
+    FUN_0c0913c0(param_1[1],0x38000000,(astruct_58 **)(param_1 + 3),0);
+    FUN_0c0917e0((char *)param_1[1],extraout_r0);
+    iVar1 = *param_1;
+  }
+  if (iVar1 != 0) {
+    HLib::TaskCleanupCurrentTask();
+  }
+  return;
+}
+
+
+
+// WARNING: Could not reconcile some variable overlaps
+
+void FUN_VEND_EV3__0c34a560
+               (uint param_1,uint param_2,uint param_3,undefined4 param_4,undefined4 param_5,
+               undefined *param_6)
+
+{
+  HLib_Task_t *TASK;
+  undefined4 *puVar1;
+  double *pdVar2;
+  undefined8 *puVar3;
+  undefined *puVar4;
+  float fVar5;
+  double in_dr0;
+  double dVar6;
+  double in_dr2;
+  double dVar7;
+  float fVar8;
+  ulonglong in_dr12;
+  ulonglong uVar9;
+  undefined8 in_dr14;
+  undefined8 in_xd12;
+  undefined4 in_PR;
+  uint uVar10;
+  char in_FPSCR_PR;
+  char in_FPSCR_SZ;
+  int aiStack80 [12];
+  undefined8 uStack32;
+ 
+  if (in_FPSCR_SZ == '\0') {
+    puVar3 = (undefined8 *)((int)&uStack32 + 4);
+    uStack32 = in_dr12 & 0xffffffff00000000 | (ulonglong)(uint)uStack32;
+  }
+  else {
+    puVar3 = &uStack32;
+    uStack32 = in_dr12;
+  }
+  if (in_FPSCR_SZ == '\0') {
+    *(int *)((int)puVar3 + -4) = (int)in_dr12;
+    puVar4 = (undefined *)((int)puVar3 + -8);
+    *(int *)((int)puVar3 + -8) = (int)((ulonglong)in_dr14 >> 0x20);
+  }
+  else {
+    *(undefined8 *)((int)puVar3 + -8) = in_xd12;
+    puVar4 = (undefined *)((int)puVar3 + -0x10);
+    *(undefined8 *)((int)puVar3 + -0x10) = in_dr14;
+  }
+  *(undefined4 *)(puVar4 + -4) = in_PR;
+  uVar9 = CONCAT44(param_2,param_1);
+  if (param_6 == (undefined *)0x0) {
+    *(undefined4 *)(puVar4 + -0x1c) = 0;
+    *(undefined4 *)(puVar4 + -0x18) = param_4;
+    *(undefined4 *)(puVar4 + -0x14) = param_5;
+    if (in_FPSCR_SZ == '\0') {
+      in_dr2 = (double)((ulonglong)in_dr2 & 0xffffffff00000000 | 0x46000000);
+      pdVar2 = (double *)&DAT_VEND_EV3__0c34a670;
+      in_dr0 = (double)((ulonglong)in_dr0 & 0xffffffff00000000 | (ulonglong)param_2);
+    }
+    else {
+      pdVar2 = (double *)&DAT_VEND_EV3__0c34a674;
+    }
+    if (in_FPSCR_PR == '\0') {
+      dVar6 = (double)((ulonglong)in_dr0 & 0xffffffff00000000 |
+                      (ulonglong)(uint)(SUB84(in_dr0,0) * SUB84(in_dr2,0)));
+    }
+    else {
+      dVar6 = in_dr0 * in_dr2;
+    }
+    if (in_FPSCR_SZ == '\0') {
+      dVar7 = (double)((ulonglong)in_dr2 & 0xffffffff | (ulonglong)*(uint *)pdVar2 << 0x20);
+    }
+    else {
+      dVar7 = *pdVar2;
+    }
+    fVar8 = (float)((ulonglong)dVar7 >> 0x20);
+    if (in_FPSCR_PR == '\0') {
+      fVar5 = SUB84(dVar6,0) / fVar8;
+      dVar6 = (double)((ulonglong)dVar6 & 0xffffffff00000000 | (ulonglong)(uint)fVar5);
+      uVar10 = (uint)fVar5;
+    }
+    else {
+      dVar6 = dVar6 / dVar7;
+      uVar10 = (uint)dVar6;
+    }
+    *(uint *)(puVar4 + -0x10) = uVar10 & 0xffff;
+    if (in_FPSCR_SZ == '\0') {
+      dVar6 = (double)((ulonglong)dVar6 & 0xffffffff00000000 | (ulonglong)param_1);
+    }
+    if (in_FPSCR_PR == '\0') {
+      fVar5 = (SUB84(dVar6,0) * SUB84(dVar7,0)) / fVar8;
+      dVar6 = (double)((ulonglong)dVar6 & 0xffffffff00000000 | (ulonglong)(uint)fVar5);
+      uVar10 = (uint)fVar5;
+    }
+    else {
+      dVar6 = (dVar6 * dVar7) / dVar7;
+      uVar10 = (uint)dVar6;
+    }
+    *(uint *)(puVar4 + -0xc) = uVar10 & 0xffff;
+    if (in_FPSCR_SZ == '\0') {
+      dVar6 = (double)((ulonglong)dVar6 & 0xffffffff00000000 | (ulonglong)param_3);
+    }
+    if (in_FPSCR_PR == '\0') {
+      uVar10 = (uint)((SUB84(dVar6,0) * SUB84(dVar7,0)) / fVar8);
+    }
+    else {
+      uVar10 = (uint)((dVar6 * dVar7) / dVar7);
+    }
+    *(uint *)(puVar4 + -8) = uVar10 & 0xffff;
+    FUN_VEND_EV3__0c34a4a0((int *)(puVar4 + -0x1c));
+  }
+  else {
+    *(undefined4 *)(puVar4 + -0x20) = 0x544e5645;
+    TASK = HLib::EnqueueTaskWithParameter
+                     (FUN_VEND_EV3__0c34a4a0,'\x06',0xb,0x18,*(int *)(puVar4 + -0x20));
+    if (0 < (int)param_6) {
+      in_dr0 = (double)SetTaskDestroyCallback(TASK,param_6);
+    }
+    puVar1 = (undefined4 *)HLib::GetTaskParameterPointer(TASK);
+    *puVar1 = 1;
+    puVar1[1] = param_4;
+    puVar1[2] = param_5;
+    if (in_FPSCR_SZ == '\0') {
+      in_dr2 = (double)((ulonglong)in_dr2 & 0xffffffff00000000 | 0x46000000);
+      pdVar2 = (double *)&DAT_VEND_EV3__0c34a670;
+      in_dr0 = (double)((ulonglong)in_dr0 & 0xffffffff00000000 | uVar9 >> 0x20);
+    }
+    else {
+      pdVar2 = (double *)&DAT_VEND_EV3__0c34a674;
+    }
+    if (in_FPSCR_PR == '\0') {
+      dVar6 = (double)((ulonglong)in_dr0 & 0xffffffff00000000 |
+                      (ulonglong)(uint)(SUB84(in_dr0,0) * SUB84(in_dr2,0)));
+    }
+    else {
+      dVar6 = in_dr0 * in_dr2;
+    }
+    if (in_FPSCR_SZ == '\0') {
+      dVar7 = (double)((ulonglong)in_dr2 & 0xffffffff | (ulonglong)*(uint *)pdVar2 << 0x20);
+    }
+    else {
+      dVar7 = *pdVar2;
+    }
+    fVar8 = (float)((ulonglong)dVar7 >> 0x20);
+    if (in_FPSCR_PR == '\0') {
+      fVar5 = SUB84(dVar6,0) / fVar8;
+      dVar6 = (double)((ulonglong)dVar6 & 0xffffffff00000000 | (ulonglong)(uint)fVar5);
+      uVar10 = (uint)fVar5;
+    }
+    else {
+      dVar6 = dVar6 / dVar7;
+      uVar10 = (uint)dVar6;
+    }
+    puVar1[3] = uVar10 & 0xffff;
+    if (in_FPSCR_SZ == '\0') {
+      dVar6 = (double)((ulonglong)dVar6 & 0xffffffff00000000 | uVar9 & 0xffffffff);
+    }
+    if (in_FPSCR_PR == '\0') {
+      fVar5 = (SUB84(dVar6,0) * SUB84(dVar7,0)) / fVar8;
+      dVar6 = (double)((ulonglong)dVar6 & 0xffffffff00000000 | (ulonglong)(uint)fVar5);
+      uVar10 = (uint)fVar5;
+    }
+    else {
+      dVar6 = (dVar6 * dVar7) / dVar7;
+      uVar10 = (uint)dVar6;
+    }
+    puVar1[4] = uVar10 & 0xffff;
+    if (in_FPSCR_SZ == '\0') {
+      dVar6 = (double)((ulonglong)dVar6 & 0xffffffff00000000 | (ulonglong)param_3);
+    }
+    if (in_FPSCR_PR == '\0') {
+      uVar10 = (uint)((SUB84(dVar6,0) * SUB84(dVar7,0)) / fVar8);
+    }
+    else {
+      uVar10 = (uint)((dVar6 * dVar7) / dVar7);
+    }
+    puVar1[5] = uVar10 & 0xffff;
+  }
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c34a800
+               (ulonglong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+               int *param_5)
+
+{
+  double *pdVar1;
+  uint extraout_r0;
+  int iVar2;
+  double in_dr0;
+  double dVar3;
+  undefined4 in_fr3;
+  double dVar4;
+  uint uVar5;
+  char in_FPSCR_PR;
+  char in_FPSCR_SZ;
+  undefined8 uStack52;
+  undefined4 uStack44;
+  astruct_58 *local_28;
+  uint local_24;
+  undefined4 local_20;
+ 
+  if (param_5[1] == param_5[2]) {
+    dVar3 = (double)FUN_0c0910a0(param_5[1],-1,&uStack52,0x40000000);
+    FUN_0c091720((uint *)&local_28,0x40000000);
+    FUN_0c092740(param_1,param_2,param_3,param_4,&uStack52,(uint *)&local_28,param_5 + 3);
+    FUN_0c090ea0(0x78000000,(double *)(param_5 + 3));
+    FUN_0c091720((uint *)&local_28,0);
+    if (in_FPSCR_SZ == '\0') {
+      dVar3 = (double)((ulonglong)dVar3 & 0xffffffff00000000 | (ulonglong)(uint)param_5[6]);
+      dVar4 = (double)CONCAT44(0x46000000,in_fr3);
+      pdVar1 = (double *)&DAT_VEND_EV3__0c34a944;
+    }
+    else {
+      dVar4 = 85899363840.0;
+      pdVar1 = (double *)&DAT_VEND_EV3__0c34a948;
+    }
+    if (in_FPSCR_PR == '\0') {
+      dVar3 = (double)((ulonglong)dVar3 & 0xffffffff00000000 |
+                      (ulonglong)(uint)(SUB84(dVar3,0) * (float)((ulonglong)dVar4 >> 0x20)));
+    }
+    else {
+      dVar3 = dVar3 * dVar4;
+    }
+    if (in_FPSCR_SZ == '\0') {
+      dVar4 = (double)((ulonglong)dVar4 & 0xffffffff | (ulonglong)*(uint *)pdVar1 << 0x20);
+    }
+    else {
+      dVar4 = *pdVar1;
+    }
+    if (in_FPSCR_PR == '\0') {
+      uVar5 = (uint)(SUB84(dVar3,0) / (float)((ulonglong)dVar4 >> 0x20));
+    }
+    else {
+      uVar5 = (uint)(dVar3 / dVar4);
+    }
+    local_24 = (uVar5 & 0xffff) + local_24;
+    FUN_0c0913c0(param_5[1],0x38000000,&local_28,0);
+    iVar2 = *param_5;
+  }
+  else {
+    local_28 = (astruct_58 *)0x0;
+    if (in_FPSCR_SZ == '\0') {
+      in_dr0 = (double)((ulonglong)in_dr0 & 0xffffffff00000000 | (ulonglong)(uint)param_5[6]);
+      dVar3 = (double)CONCAT44(0x46000000,in_fr3);
+      pdVar1 = (double *)&DAT_VEND_EV3__0c34a944;
+    }
+    else {
+      dVar3 = 85899363840.0;
+      pdVar1 = (double *)&DAT_VEND_EV3__0c34a948;
+    }
+    if (in_FPSCR_PR == '\0') {
+      dVar4 = (double)((ulonglong)in_dr0 & 0xffffffff00000000 |
+                      (ulonglong)(uint)(SUB84(in_dr0,0) * (float)((ulonglong)dVar3 >> 0x20)));
+    }
+    else {
+      dVar4 = in_dr0 * dVar3;
+    }
+    if (in_FPSCR_SZ == '\0') {
+      dVar3 = (double)((ulonglong)dVar3 & 0xffffffff | (ulonglong)*(uint *)pdVar1 << 0x20);
+    }
+    else {
+      dVar3 = *pdVar1;
+    }
+    if (in_FPSCR_PR == '\0') {
+      local_24 = (uint)(SUB84(dVar4,0) / (float)((ulonglong)dVar3 >> 0x20));
+    }
+    else {
+      local_24 = (uint)(dVar4 / dVar3);
+    }
+    local_24 = local_24 & 0xffff;
+    local_20 = 0;
+    FUN_0c0918a0();
+    FUN_0c0917e0((char *)param_5[1],param_5[2]);
+    FUN_0c0910a0(param_5[1],-1,&uStack52,0);
+    if (in_FPSCR_SZ == '\0') {
+      param_5[4] = uStack52._4_4_;
+    }
+    else {
+      *(ulonglong *)(param_5 + 4) = CONCAT44(uStack44,uStack52._4_4_);
+    }
+    FUN_0c090ea0(0x38000000,(double *)(param_5 + 3));
+    FUN_0c0913c0(param_5[1],0x38000000,&local_28,0);
+    FUN_0c0917e0((char *)param_5[1],extraout_r0);
+    iVar2 = *param_5;
+  }
+  if (iVar2 != 0) {
+    HLib::TaskCleanupCurrentTask();
+  }
+  return;
+}
+
+
+void FUN_VEND_EV3__0c34a960
+               (undefined4 param_1,undefined4 param_2,undefined4 param_3,uint param_4,
+               undefined8 param_5,undefined8 param_6,undefined4 param_7,undefined4 param_8,
+               undefined *param_9)
+
+{
+  HLib_Task_t *TASK;
+  undefined4 *puVar1;
+  undefined8 *puVar2;
+  undefined *puVar3;
+  ulonglong in_dr12;
+  undefined8 uVar4;
+  ulonglong in_dr14;
+  ulonglong uVar5;
+  undefined8 in_xd0;
+  undefined8 in_xd4;
+  undefined8 in_xd12;
+  undefined4 in_PR;
+  char in_FPSCR_SZ;
+  int aiStack84 [13];
+  undefined8 uStack32;
+ 
+  if (in_FPSCR_SZ == '\0') {
+    puVar2 = (undefined8 *)((int)&uStack32 + 4);
+    uStack32 = in_dr12 & 0xffffffff00000000 | (ulonglong)(uint)uStack32;
+  }
+  else {
+    puVar2 = &uStack32;
+    uStack32 = in_dr12;
+  }
+  if (in_FPSCR_SZ == '\0') {
+    *(int *)((int)puVar2 + -4) = (int)in_dr12;
+    puVar3 = (undefined *)((int)puVar2 + -8);
+    *(int *)((int)puVar2 + -8) = (int)(in_dr14 >> 0x20);
+  }
+  else {
+    *(undefined8 *)((int)puVar2 + -8) = in_xd12;
+    puVar3 = (undefined *)((int)puVar2 + -0x10);
+    *(ulonglong *)((int)puVar2 + -0x10) = in_dr14;
+  }
+  *(undefined4 *)(puVar3 + -4) = in_PR;
+  if (in_FPSCR_SZ == '\0') {
+    in_xd4 = in_xd12;
+  }
+  uVar4 = CONCAT44(param_2,param_1);
+  if (in_FPSCR_SZ == '\0') {
+    uVar5 = in_dr14 & 0xffffffff | (ulonglong)param_4 << 0x20;
+  }
+  else {
+    uVar5 = CONCAT44(param_4,param_3);
+  }
+  if (param_9 == (undefined *)0x0) {
+    *(undefined4 *)(puVar3 + -0x20) = 0;
+    *(undefined4 *)(puVar3 + -0x1c) = param_7;
+    *(undefined4 *)(puVar3 + -0x18) = param_8;
+    if (in_FPSCR_SZ == '\0') {
+      *(undefined4 *)(puVar3 + -0x14) = param_2;
+    }
+    else {
+      *(undefined8 *)(puVar3 + -0x14) = uVar4;
+    }
+    if (in_FPSCR_SZ == '\0') {
+      *(undefined4 *)(puVar3 + -0x10) = 0;
+    }
+    else {
+      *(undefined8 *)(puVar3 + -0x10) = in_xd0;
+    }
+    if (in_FPSCR_SZ == '\0') {
+      *(undefined4 *)(puVar3 + -0xc) = param_1;
+    }
+    else {
+      *(undefined8 *)(puVar3 + -0xc) = in_xd4;
+    }
+    if (in_FPSCR_SZ == '\0') {
+      *(int *)(puVar3 + -8) = (int)(uVar5 >> 0x20);
+    }
+    else {
+      *(ulonglong *)(puVar3 + -8) = uVar5;
+    }
+    FUN_VEND_EV3__0c34a800
+              (CONCAT44(param_2,param_1),CONCAT44(param_4,param_3),param_5,param_6,
+               (int *)(puVar3 + -0x20));
+  }
+  else {
+    *(undefined4 *)(puVar3 + -0x24) = 0x544e5645;
+    TASK = HLib::EnqueueTaskWithParameter
+                     (FUN_VEND_EV3__0c34a800,'\x06',0xb,0x1c,*(int *)(puVar3 + -0x24));
+    if (0 < (int)param_9) {
+      SetTaskDestroyCallback(TASK,param_9);
+    }
+    puVar1 = (undefined4 *)HLib::GetTaskParameterPointer(TASK);
+    *puVar1 = 1;
+    puVar1[1] = param_7;
+    puVar1[2] = param_8;
+    if (in_FPSCR_SZ == '\0') {
+      puVar1[3] = (int)((ulonglong)uVar4 >> 0x20);
+    }
+    else {
+      *(undefined8 *)(puVar1 + 3) = uVar4;
+    }
+    if (in_FPSCR_SZ == '\0') {
+      puVar1[4] = 0;
+    }
+    else {
+      *(undefined8 *)(puVar1 + 4) = in_xd0;
+    }
+    if (in_FPSCR_SZ == '\0') {
+      puVar1[5] = (int)uVar4;
+    }
+    else {
+      *(undefined8 *)(puVar1 + 5) = in_xd4;
+    }
+    if (in_FPSCR_SZ == '\0') {
+      puVar1[6] = (int)(uVar5 >> 0x20);
+    }
+    else {
+      *(ulonglong *)(puVar1 + 6) = uVar5;
+    }
+  }
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c34abe0
+               (undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
+               undefined4 param_5,undefined4 param_6,undefined4 param_7,undefined4 param_8,
+               int *param_9)
+
+{
+  FUN_0c164600(param_1,param_2,param_3,param_4,param_5,param_6,param_7,param_8,param_9[1]);
+  if (*param_9 != 0) {
+    HLib::TaskCleanupCurrentTask();
+  }
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c34ac20
+               (undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
+               undefined4 param_5,undefined4 param_6,undefined4 param_7,undefined4 param_8,
+               undefined4 param_9,undefined *param_10)
+
+{
+  HLib_Task_t *TASK;
+  undefined4 *puVar1;
+  int local_20;
+  undefined4 local_1c;
+ 
+  if (param_10 == (undefined *)0x0) {
+    local_20 = 0;
+    local_1c = param_9;
+    FUN_VEND_EV3__0c34abe0
+              (param_1,param_2,param_3,param_4,param_5,param_6,param_7,param_8,&local_20);
+  }
+  else {
+    TASK = HLib::EnqueueTaskWithParameter(FUN_VEND_EV3__0c34abe0,'\x06',0xb,8,0x544e5645);
+    if (0 < (int)param_10) {
+      SetTaskDestroyCallback(TASK,param_10);
+    }
+    puVar1 = (undefined4 *)HLib::GetTaskParameterPointer(TASK);
+    *puVar1 = 1;
+    puVar1[1] = param_9;
+  }
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c34af20(int *param_1)
+
+{
+  SetPlayerCashOrMoney(param_1[1],2);
+  if (*param_1 != 0) {
+    HLib::TaskCleanupCurrentTask();
+  }
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c34af60(undefined4 param_1,undefined *param_2)
+
+{
+  HLib_Task_t *TASK;
+  undefined4 *puVar1;
+  int local_20;
+  undefined4 local_1c;
+ 
+  if (param_2 == (undefined *)0x0) {
+    local_20 = 0;
+    local_1c = param_1;
+    FUN_VEND_EV3__0c34af20(&local_20);
+  }
+  else {
+    TASK = HLib::EnqueueTaskWithParameter(FUN_VEND_EV3__0c34af20,'\x06',0xb,8,0x544e5645);
+    if (0 < (int)param_2) {
+      SetTaskDestroyCallback(TASK,param_2);
+    }
+    puVar1 = (undefined4 *)HLib::GetTaskParameterPointer(TASK);
+    *puVar1 = 1;
+    puVar1[1] = param_1;
+  }
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c34b1c0(int *param_1)
+
+{
+  FUN_0c093d20();
+  if (*param_1 != 0) {
+    HLib::TaskCleanupCurrentTask();
+  }
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c34b240
+               (undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
+               undefined4 param_5,undefined4 param_6,undefined4 param_7,undefined4 param_8,
+               undefined4 param_9,undefined *param_10)
+
+{
+  HLib_Task_t *TASK;
+  undefined4 *puVar1;
+  int local_4c;
+  undefined4 local_48;
+  undefined4 local_44;
+  undefined4 local_40;
+  undefined4 local_3c;
+  undefined4 local_38;
+  undefined4 local_34;
+  undefined4 local_30;
+  undefined4 local_2c;
+  undefined4 local_28;
+  undefined4 local_24;
+ 
+  local_24 = param_4;
+  if (param_10 == (undefined *)0x0) {
+    local_4c = 0;
+    local_38 = param_5;
+    local_34 = param_6;
+    local_30 = param_7;
+    local_2c = param_8;
+    local_28 = param_9;
+    local_48 = param_1;
+    local_44 = param_2;
+    local_40 = param_3;
+    local_3c = param_4;
+    FUN_VEND_EV3__0c34b1c0(&local_4c);
+  }
+  else {
+    TASK = HLib::EnqueueTaskWithParameter(FUN_VEND_EV3__0c34b1c0,'\x06',0xb,0x28,0x544e5645);
+    if (0 < (int)param_10) {
+      SetTaskDestroyCallback(TASK,param_10);
+    }
+    puVar1 = (undefined4 *)HLib::GetTaskParameterPointer(TASK);
+    *puVar1 = 1;
+    puVar1[1] = param_1;
+    puVar1[2] = param_2;
+    puVar1[3] = param_3;
+    puVar1[4] = local_24;
+    puVar1[5] = param_5;
+    puVar1[6] = param_6;
+    puVar1[7] = param_7;
+    puVar1[8] = param_8;
+    puVar1[9] = param_9;
+  }
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c34b5a0(int *param_1)
+
+{
+  int iVar1;
+ 
+  if (param_1[10] == 0) {
+    FUN_0c091240();
+  }
+  else {
+    if (param_1[10] != 1) {
+      iVar1 = *param_1;
+      goto LAB_VEND_EV3__0c34b5ec;
+    }
+    EV_FIXO_Related();
+  }
+  iVar1 = *param_1;
+LAB_VEND_EV3__0c34b5ec:
+  if (iVar1 != 0) {
+    HLib::TaskCleanupCurrentTask();
+  }
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c34b620
+               (undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 *param_4,
+               undefined4 *param_5,undefined *param_6,int param_7)
+
+{
+  HLib_Task_t *TASK;
+  undefined4 *puVar1;
+  int local_58;
+  undefined4 local_54;
+  undefined4 local_50;
+  undefined4 local_4c;
+  undefined4 local_48;
+  undefined4 local_44;
+  undefined4 local_40;
+  undefined4 local_3c;
+  undefined4 local_38;
+  undefined4 local_34;
+  int local_30;
+  undefined4 local_2c;
+  undefined4 local_28;
+  undefined4 local_24;
+ 
+  local_2c = param_1;
+  local_28 = param_2;
+  local_24 = param_3;
+  if (param_6 == (undefined *)0x0) {
+    local_58 = 0;
+    local_30 = param_7;
+    if (param_7 != 1) {
+      local_48 = *param_4;
+      local_44 = param_4[1];
+      local_40 = param_4[2];
+      local_3c = *param_5;
+      local_38 = param_5[1];
+      local_34 = param_5[2];
+      local_4c = param_3;
+    }
+    local_54 = param_1;
+    local_50 = param_2;
+    FUN_VEND_EV3__0c34b5a0(&local_58);
+  }
+  else {
+    TASK = HLib::EnqueueTaskWithParameter(FUN_VEND_EV3__0c34b5a0,'\x06',0xb,0x2c,0x544e5645);
+    if (0 < (int)param_6) {
+      SetTaskDestroyCallback(TASK,param_6);
+    }
+    puVar1 = (undefined4 *)HLib::GetTaskParameterPointer(TASK);
+    *puVar1 = 1;
+    puVar1[1] = local_2c;
+    puVar1[2] = local_28;
+    puVar1[10] = param_7;
+    if (param_7 != 1) {
+      puVar1[3] = local_24;
+      puVar1[4] = *param_4;
+      puVar1[5] = param_4[1];
+      puVar1[6] = param_4[2];
+      puVar1[7] = *param_5;
+      puVar1[8] = param_5[1];
+      puVar1[9] = param_5[2];
+    }
+  }
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c34b720(int *param_1)
+
+{
+  int iVar1;
+ 
+  if (param_1[2] == 0) {
+    EV_EnableCharDisplay(param_1[1]);
+    iVar1 = *param_1;
+  }
+  else {
+    EV_DisableCharDisplay(param_1[1]);
+    iVar1 = *param_1;
+  }
+  if (iVar1 != 0) {
+    HLib::TaskCleanupCurrentTask();
+  }
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c34b780(undefined4 param_1,undefined *param_2,undefined4 param_3)
+
+{
+  HLib_Task_t *TASK;
+  undefined4 *puVar1;
+  int local_28;
+  undefined4 local_24;
+  undefined4 local_20;
+ 
+  if (param_2 == (undefined *)0x0) {
+    local_28 = 0;
+    local_24 = param_1;
+    local_20 = param_3;
+    FUN_VEND_EV3__0c34b720(&local_28);
+  }
+  else {
+    TASK = HLib::EnqueueTaskWithParameter(FUN_VEND_EV3__0c34b720,'\x06',0xb,0xc,0x544e5645);
+    if (0 < (int)param_2) {
+      SetTaskDestroyCallback(TASK,param_2);
+    }
+    puVar1 = (undefined4 *)HLib::GetTaskParameterPointer(TASK);
+    *puVar1 = 1;
+    puVar1[1] = param_1;
+    puVar1[2] = param_3;
+  }
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c34c120(undefined4 param_1,undefined4 param_2)
+
+{
+  HLib_Task_t *TASK;
+  undefined4 *puVar1;
+ 
+  EV_SetPlayerControlFlags(0);
+  TASK = HLib::EnqueueTaskWithParameter(FUN_VEND_EV3__0c34c1a0,'\x06',0xb,0x10,0x544e5645);
+  puVar1 = (undefined4 *)HLib::GetTaskParameterPointer(TASK);
+  SetTaskDestroyCallback(TASK,&DAT_00000003);
+  *puVar1 = param_1;
+  puVar1[1] = param_2;
+  puVar1[2] = 0;
+  puVar1[3] = 0;
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c34c1a0(undefined **param_1)
+
+{
+  undefined *puVar1;
+ 
+  if (param_1[3] == (undefined *)0x0) {
+    EV_NPC_NewLoadSw(0);
+    puVar1 = (undefined *)FUN_0c1003a0();
+    param_1[3] = puVar1;
+  }
+  else {
+    (*(code *)*param_1)(param_1[1]);
+    HLib::TaskCleanupCurrentTask();
+  }
+  return;
+}
+
+
+
+void * FUN_VEND_EV3__0c34c220(undefined4 param_1,HLib_Task_t *param_2,undefined4 param_3)
+
+{
+  HLib_Task_t *pHVar1;
+  void *pvVar2;
+  undefined4 uVar3;
+  int iVar4;
+  int iVar5;
+ 
+  pHVar1 = HLib::EnqueueTaskWithParameter(&LAB_VEND_EV3__0c34c400,'\x06',0xb,0x45c,0x544e5645);
+  pvVar2 = HLib::GetTaskParameterPointer(pHVar1);
+  SetTaskDestroyCallback(param_2,(undefined *)0x0);
+  EV_SetPlayerControlFlags(0);
+  EV_FinishLoading();
+  *(HLib_Task_t **)((int)pvVar2 + 0x440) = pHVar1;
+  *(HLib_Task_t **)((int)pvVar2 + 0x444) = param_2;
+  *(undefined4 *)((int)pvVar2 + 0x448) = param_3;
+  *(undefined4 *)((int)pvVar2 + 0x44c) = 0;
+  *(undefined4 *)((int)pvVar2 + 0x450) = 0;
+  uVar3 = FUN_0c06f220();
+  *(undefined4 *)((int)pvVar2 + 0x454) = uVar3;
+  uVar3 = FUN_0c0fdac0();
+  *(undefined4 *)((int)pvVar2 + 0x458) = uVar3;
+  FUN_0c1163a0(param_1,4);
+  FUN_0c1163a0(param_1,2);
+  if (*(int *)((int)pvVar2 + 0x458) != 0) {
+    EV_NPC_NewLoadSw(0);
+  }
+  FUN_0c1003a0();
+  iVar4 = 0x1d;
+  do {
+    iVar5 = iVar4 * 0x20;
+    iVar4 = iVar4 + -1;
+    *(undefined4 *)(iVar5 + (int)pvVar2) = 0;
+  } while (-1 < iVar4);
+  return pvVar2;
+}
+
+
+
+void FUN_VEND_EV3__0c34c320
+               (undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
+               undefined4 param_5,undefined4 param_6,ulonglong param_7,int param_8)
+
+{
+  int iVar1;
+ 
+  iVar1 = *(int *)(param_8 + 0x44c);
+  while (0 < iVar1) {
+    FUN_VEND_EV3__0c34c6a0
+              (param_3,param_4,param_5,param_6,CONCAT44(param_2,param_1),param_7,param_8);
+    iVar1 = *(int *)(param_8 + 0x44c);
+  }
+  iVar1 = *(int *)(param_8 + 0x450);
+  while (0 < iVar1) {
+    FUN_VEND_EV3__0c34c880(param_8);
+    iVar1 = *(int *)(param_8 + 0x450);
+  }
+  FUN_0c06f220();
+  EV_NPC_NewLoadSw(*(undefined4 *)(param_8 + 0x458));
+  FUN_0c1163a0(param_1,5);
+  FUN_0c1163a0(param_1,3);
+  FUN_0c069dc0(0);
+  FUN_0c06d180(1);
+  FUN_0c06c580((double)CONCAT44(param_2,param_1),(void *)0x0);
+  EV_FinishLoading();
+  EV_SetPlayerControlFlags(1);
+  HLib::FreeTask(*(HLib_Task_t **)(param_8 + 0x440));
+  return;
+}
+
+
+
+undefined4 FUN_VEND_EV3__0c34c460(int param_1,char *param_2)
+
+{
+  bool bVar1;
+  undefined3 extraout_var;
+  undefined *puVar2;
+  astruct_51 *paVar3;
+  undefined4 uVar4;
+  undefined4 extraout_r0;
+  undefined4 *puVar5;
+  int iVar6;
+ 
+  if (*(int *)(param_1 + 0x44c) < 0x1e) {
+    iVar6 = *(int *)(param_1 + 0x44c) * 0x20;
+    puVar5 = (undefined4 *)(param_1 + iVar6);
+    iVar6 = *(int *)(iVar6 + param_1);
+    if (iVar6 == 1) {
+      puVar2 = FUN_0c1006e0((int)param_2);
+      if (&DAT_00000001 < puVar2) {
+        debug_log_to_file_REMOVED
+                  ("%c%c%c%c : %d\n",(uint)param_2 & 0xff,(uint)param_2 >> 8 & 0xff,
+                   (uint)param_2 >> 0x10 & 0xff,(uint)param_2 >> 0x18,puVar2);
+      }
+      if (puVar2 != &DAT_00000001) {
+        return 0;
+      }
+    }
+    else {
+      if (iVar6 != 0) {
+        if (iVar6 != 2) {
+          return 1;
+        }
+        puVar5[5] = 1;
+        puVar5[4] = 1;
+        paVar3 = FindMTWK_ForCEWP((int)param_2);
+        uVar4 = FUN_0c0f1320((int)paVar3);
+        puVar5[7] = uVar4;
+        FUN_0c0918a0();
+        puVar5[3] = extraout_r0;
+        FUN_0c092520();
+        EV_UnknownFunc(param_2);
+        FUN_0c077280();
+        FUN_0c077280();
+        FUN_0c077280();
+        FUN_0c0917e0(param_2,0xffffffff);
+        FUN_0c0595a0();
+        paVar3 = FindMTWK_ForCEWP((int)param_2);
+        FUN_0c0f4700((int)paVar3,1);
+        paVar3 = FindMTWK_ForCEWP((int)param_2);
+        SetCEWPFlags((int)paVar3,0,0);
+        paVar3 = FindMTWK_ForCEWP((int)param_2);
+        SetCEWPFlags((int)paVar3,3,2);
+        paVar3 = FindMTWK_ForCEWP((int)param_2);
+        FUN_0c0f1360((int)paVar3,3);
+        paVar3 = FindMTWK_ForCEWP((int)param_2);
+        FUN_0c0f1440((int)paVar3,7,0);
+        paVar3 = FindMTWK_ForCEWP((int)param_2);
+        FUN_0c0ef460((int)paVar3,0x42,2,0);
+        paVar3 = FindMTWK_ForCEWP((int)param_2);
+        FUN_0c0ef460((int)paVar3,0x45,2,0);
+        paVar3 = FindMTWK_ForCEWP((int)param_2);
+        FUN_0c0ef460((int)paVar3,0x47,2,0);
+        *(int *)(param_1 + 0x44c) = *(int *)(param_1 + 0x44c) + 1;
+        *puVar5 = 3;
+        return 1;
+      }
+      puVar5[2] = param_2;
+      bVar1 = EV_IsCharacterExist(param_2);
+      if (CONCAT31(extraout_var,bVar1) == 0) {
+        FUN_0c0ffe80((int)param_2);
+        puVar5[1] = 1;
+        *puVar5 = 1;
+        return 0;
+      }
+      puVar5[1] = 0;
+    }
+    *puVar5 = 2;
+  }
+  return 0;
+}
+
+
+
+void FUN_VEND_EV3__0c34c6a0
+               (undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
+               undefined8 param_5,ulonglong param_6,int param_7)
+
+{
+  bool bVar1;
+  undefined3 extraout_var;
+  astruct_51 *paVar2;
+  int iVar3;
+  char *pcVar4;
+  int iVar5;
+ 
+  if (0 < *(int *)(param_7 + 0x44c)) {
+    iVar3 = *(int *)(param_7 + 0x44c) + -1;
+    *(int *)(param_7 + 0x44c) = iVar3;
+    iVar3 = iVar3 * 0x20;
+    iVar5 = param_7 + iVar3;
+    *(undefined4 *)(iVar3 + param_7) = 0;
+    pcVar4 = *(char **)(iVar5 + 8);
+    bVar1 = EV_IsCharacterExist(pcVar4);
+    if (CONCAT31(extraout_var,bVar1) != 0) {
+      FUN_0c0595a0();
+      paVar2 = FindMTWK_ForCEWP((int)pcVar4);
+      FUN_0c0f4700((int)paVar2,1);
+      paVar2 = FindMTWK_ForCEWP((int)pcVar4);
+      SetCEWPFlags((int)paVar2,0,0);
+      paVar2 = FindMTWK_ForCEWP((int)pcVar4);
+      SetCEWPFlags((int)paVar2,3,2);
+      paVar2 = FindMTWK_ForCEWP((int)pcVar4);
+      FUN_0c0f1360((int)paVar2,*(uint *)(iVar5 + 0x1c));
+      paVar2 = FindMTWK_ForCEWP((int)pcVar4);
+      FUN_0c0f1440((int)paVar2,5,0);
+      paVar2 = FindMTWK_ForCEWP((int)pcVar4);
+      FUN_0c0ef460((int)paVar2,0x42,2,0);
+      paVar2 = FindMTWK_ForCEWP((int)pcVar4);
+      FUN_0c0ef460((int)paVar2,0x45,2,0);
+      paVar2 = FindMTWK_ForCEWP((int)pcVar4);
+      FUN_0c0ef460((int)paVar2,0x47,2,0);
+      paVar2 = FindMTWK_ForCEWP((int)pcVar4);
+      FUN_0c0ee5e0((int)paVar2,0xf003,0);
+      FUN_0c092520();
+      EV_UnknownFunc(pcVar4);
+      FUN_0c077280();
+      FUN_0c0917e0(pcVar4,*(uint *)(iVar5 + 0xc));
+      paVar2 = FindMTWK_ForCEWP((int)pcVar4);
+      FUN_0c0e0880(param_1,param_2,param_3,param_4,param_5,param_6,(int)paVar2,(undefined4 *)0x0,0);
+      if (*(int *)(iVar5 + 0x14) != 0) {
+        FUN_0c077280();
+      }
+      if (*(int *)(iVar5 + 0x10) != 0) {
+        FUN_0c077280();
+      }
+      if (*(int *)(iVar5 + 4) != 0) {
+        FUN_0c1007e0((int)pcVar4);
+      }
+      iVar3 = FUN_0c1001a0((int)pcVar4);
+      if (iVar3 != 0) {
+        FUN_0c100100((int)pcVar4);
+      }
+    }
+  }
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c34c880(int param_1)
+
+{
+  if (0 < *(int *)(param_1 + 0x450)) {
+    *(int *)(param_1 + 0x450) = *(int *)(param_1 + 0x450) + -1;
+  }
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c34cb80(undefined4 param_1,undefined *param_2,undefined4 param_3)
+
+{
+  HLib_Task_t *TASK;
+  undefined4 *puVar1;
+ 
+  TASK = HLib::EnqueueTaskWithParameter(&LAB_VEND_EV3__0c34cb00,'\x06',0xb,8,0x544e5645);
+  if (param_2 != (undefined *)0x0) {
+    SetTaskDestroyCallback(TASK,param_2);
+  }
+  puVar1 = (undefined4 *)HLib::GetTaskParameterPointer(TASK);
+  *puVar1 = param_1;
+  puVar1[1] = param_3;
+  return;
+}
+
+
+
+void FUN_VEND_EV3__0c34e4a8(undefined4 *param_1,undefined4 *param_2,int param_3)
+
+{
+  undefined4 *puVar1;
+  undefined4 uVar2;
+  undefined4 uVar3;
+  undefined4 uVar4;
+  undefined4 uVar5;
+  undefined4 *puVar6;
+  undefined4 *puVar7;
+ 
+  uVar3 = param_2[1];
+  uVar5 = param_2[2];
+  puVar7 = param_2 + 3;
+  *param_1 = *param_2;
+  param_1[1] = uVar3;
+  puVar1 = param_1 + -1;
+  do {
+    puVar6 = puVar1;
+    puVar6[3] = uVar5;
+    uVar3 = *puVar7;
+    uVar2 = puVar7[1];
+    if (param_3 == 1) {
+      puVar6[4] = uVar3;
+      puVar6[5] = uVar2;
+      return;
+    }
+    uVar4 = puVar7[2];
+    uVar5 = puVar7[3];
+    puVar7 = puVar7 + 4;
+    puVar6[4] = uVar3;
+    param_3 = param_3 + -2;
+    puVar6[5] = uVar2;
+    puVar6[6] = uVar4;
+    puVar1 = puVar6 + 4;
+  } while (param_3 != 0);
+  puVar6[7] = uVar5;
+  return;
+}
+
+
+undefined4 FUN_VEND_EV3__0c34e4ee(void)
+
+{
+  undefined4 in_r0;
+ 
+  return in_r0;
+}
+
+_______
+
+ Look at how nice the output is. This snippet^ of code is responsible for checking whether the player has enough money to buy a drink and if not, it'll quit the interaction entirely or proceed if the user has enough.
+
+ ______
+
+void EVT_CheckVend(int param_1)
+{
+  ushort uVar1;
+  undefined2 extraout_var;
+  int curr_money;
+  undefined *puVar3;
+  uint in_fr7;
+  undefined4 in_fr9;
+  undefined4 in_fr8;
+  undefined4 in_fr11;
+  undefined4 in_fr10;
+ 
+  debug_log_to_file_REMOVED("@@@    EVT_CheckVend ( ) \n");
+  uVar1 = Shenmue::get_controller_input(1);
+  if ((CONCAT22(extraout_var,uVar1) == 0x400) || (*(int *)(param_1 + 0x78) != -1)) {
+    curr_money = Shenmue::GetPlayerStats(2);
+    if (curr_money < 5) {
+      puVar3 = (undefined *)
+               FUN_VEND_EV3__0c349520(in_fr7,CONCAT44(in_fr8,in_fr9),CONCAT44(in_fr10,in_fr11));
+      SetDestroyCallbackOnCurrentTask_Wrapper(EVT_VendEnd);
+      HLib::UpdateActiveTask(puVar3);
+    }
+    else {
+      puVar3 = (undefined *)FUN_VEND_EV3__0c3490a0(in_fr7,in_fr9,in_fr8,in_fr11,in_fr10);
+      SetDestroyCallbackOnCurrentTask_Wrapper(EVT_InitSelect);
+      HLib::UpdateActiveTask(puVar3);
+    }
+  }
+  return;
+}
+

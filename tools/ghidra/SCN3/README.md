@@ -118,45 +118,106 @@ The SCN3 VM is a **stack-based bytecode interpreter**:
 | `0x80-0xBF` | Operators | `F_ADD`, `EQ`, `MOBJ_RD32`, `STK_TO_R14` |
 | `0xC0-0xFF` | Invalid | — |
 
-### Key Function Sets
+### Semantic Transpilation (The "Rosetta Stone" Layer)
 
-| Set | Call Opcode | Count | Purpose |
-|-----|-------------|-------|---------|
-| SET3 | `CALL_SET3` | 466 | General Shenmue engine functions (object placement, animation, etc.) |
-| SET6 | `CALL_SET6` | 47 | SCNF scene functions |
-| SET2 | `CALL_SET2` | 5 | Memory operations (memset, memcpy) |
+After Ghidra exports the raw bytecode to JSON, we use a semantic transpiler to reconstruct human-readable source code. This process has been calibrated against leaked developer source code (`0154_1.C` and `SEQCONV.C`) to achieve near-perfect reconstruction.
+
+### 1. SCN3 to Python (`scn3_to_python.py`)
+Converts `MAPINFO.BIN` logic into Python scripts.
+- **Resolves Function Sets**: Maps `CALL_SET` indices to actual engine labels (`entity_setup`, `scnf_camera`). Phase 5 expanded the verb dictionaries to cover 100+ Set 7 ops, 19 Set 6 ops, and 25 Set 4 ops.
+- **Recovers Data Types**: Automatically detects IEEE 754 floats, 4-char character IDs (`ID_Ryo`), and `0xAA3DXXXX` dialogue IDs.
+- **Identifies Patterns**: Detects the "Entity Lifecycle" (`init` -> `activate` -> `setup`).
+
+```bash
+python3 scn3_to_python.py output.json decompiled.py
+```
+
+### 2. Cinematic SEQ Decompiler (`seq_decompiler.py`)
+Decompiles `SEQDATA.AUTH` files back into reconstructured C source code.
+- **Header Parsing**: Decodes `TRCK` and `ASEQ` container structures.
+- **Spline Recovery**: Reconstructs `FCVKEYt` cubic spline arrays for camera and movement paths.
+- **String Table Mapping**: Reassociates voice and sound effect paths with their numeric IDs.
+
+```bash
+python3 seq_decompiler.py SEQDATA1.AUTH reconstructed.c
+```
+
+### 3. Entity ID Database (`entity_id_database.py`)
+Scans all `MAPINFO.BIN` files to build a comprehensive registry of 4-character `MAKE_ID` tags.
+- **Binary Scanning**: Detects 32-bit little-endian ASCII identifiers at 4-byte alignment.
+- **Context Filtering**: Rejects tags embedded in longer ASCII strings to reduce false positives.
+- **Cross-Scene Tracking**: Maps each unique ID to every scene it appears in.
+
+```bash
+python3 entity_id_database.py extracted_disc2_v2/data/SCENE entity_ids.json
+```
+
+### 4. Asset Placement Extractor (`extract_placements.py`)
+Extracts object placement data from SCN3 analysis JSON for Babylon.js import.
+- **Code Call Mapping**: Tracks which models receive `set_position`, `set_rotation`, and `entity_setup` calls.
+- **Data Transform Extraction**: Recovers scale+position float sextuplets from the DATA section.
+- **Model Association**: Correlates transforms with nearby model references by offset proximity.
+
+```bash
+python3 extract_placements.py jomo_analysis.json jomo_placements.json
+```
+
+### 5. Interactive Spline Extractor (`extract_splines.py`)
+Detects and extracts `FCVKEYt` spline data from `MAPINFO.BIN` files.
+- **Heuristic Detection**: Finds spline channels by validating monotonic time arrays and reasonable value ranges.
+- **Group Classification**: Identifies camera paths (8ch), movement paths (9ch), position paths (3ch), and transform paths (6ch).
+- **Path Sampling**: Generates sampled XYZ path points for direct Babylon.js import.
+
+```bash
+python3 extract_splines.py extracted_files/data/SCENE/02/JOMO/MAPINFO.BIN jomo_splines.json
+```
+
+### 6. Multi-Scene Bulk Analyzer (`bulk_analyze.sh`)
+Bulk-processes all primary game scenes through the full pipeline.
+- **Ghidra Analysis**: Runs headless analysis on each scene's `MAPINFO.BIN`.
+- **Python Post-Processing**: Chains transpilation, placement extraction, and spline extraction.
+- **Global Database**: Builds a cross-scene entity ID database and combined manifest.
+
+```bash
+./bulk_analyze.sh extracted_disc2_v2/data/SCENE ./analysis_output
+./bulk_analyze.sh extracted_disc2_v2/data/SCENE ./analysis_output --all  # All 42 scenes
+```
+
+## Function Set Architecture
+
+Through Rosetta Stone analysis of leaked source, we have resolved the primary engine APIs used by the VM:
+
+| Set | API Label | Description |
+|-----|-----------|-------------|
+| **Set 1** | `stVOICE` | Voice and dialogue playback. |
+| **Set 3** | `sm_` | High-level game state (Inventory, Flags, Event Scheduling). |
+| **Set 4** | `ext_` | MT5 Model loading and direct scene placement. |
+| **Set 6** | `SCNF` | Scene Control (Camera paths, tracking, transitions). |
+| **Set 7** | `entity_` | Lower-level entity manipulation (Rotation, Position, Visibility). |
 
 ## File Structure
 
 ```
 SCN3/
-├── data/languages/
-│   ├── SCN3.slaspec      # SLEIGH processor spec (instruction definitions)
-│   ├── SCN3.pspec        # Processor spec (registers, memory defaults)
-│   ├── SCN3.cspec        # Compiler spec (calling conventions, stack)
-│   └── SCN3.ldefs        # Language definition (registers processor with Ghidra)
-├── ghidra_scripts/
-│   ├── SCN3Loader.py     # Pre-script: parse MAPINFO.BIN, map SCN3 sections
-│   └── ExportSCN3Analysis.py  # Post-script: decompile & export to JSON
-├── install.sh            # Copy language files into Ghidra
-├── analyze.sh            # One-command headless analysis wrapper
-├── extension.properties  # Ghidra extension metadata
-├── Module.manifest       # Ghidra module manifest
+├── scn3_to_python.py     # Semantic transpiler for MAPINFO.BIN
+├── seq_decompiler.py     # Decompiler for SEQDATA.AUTH cutscenes
+├── entity_id_database.py # MAKE_ID registry builder (scans all scenes)
+├── extract_placements.py # Asset placement extractor (JSON for Babylon.js)
+├── extract_splines.py    # FCVKEYt spline extractor (NPC paths, camera paths)
+├── SCN3_RESEARCH.md      # Detailed VM architecture notes
+├── SEQ_RESEARCH.md       # Cinematic sequence format notes
+├── data/languages/       # Ghidra processor specification (SLEIGH)
+├── ghidra_scripts/       # Ghidra automation scripts
+├── install.sh            # Setup script
+├── analyze.sh            # Single-scene headless analysis wrapper
+├── bulk_analyze.sh       # Multi-scene bulk analysis pipeline
 └── README.md
 ```
 
-## Next Steps
-
-Once the basic decompilation works:
-
-1. **Identify SET3 function signatures** — Which function numbers correspond to "place object at position"? Cross-reference with the HD remaster executable.
-2. **Map MOBJ slots to models** — Track MOBJ_SEL → model string table index correlation.
-3. **Extract parent-child relationships** — Nested MOBJ operations likely define hierarchy.
-4. **Generate placement JSON** — Automatically produce position data for the web viewer.
-
 ## References
 
-- [wulinshu.com — Shenmue Script](https://wulinshu.com/wiki/index.php/Shenmue_Script) — Opcode documentation
+- [wulinshu.com — Shenmue Script](https://wulinshu.com/wiki/index.php/Shenmue_Script) — Initial opcode documentation
+- **Leaked SEQCONV.C / 0154_1.C** — The foundation for our "Rosetta Stone" reconstruction.
 - [ShenmueDKSharp](https://github.com/Shenmue-Mods/ShenmueDKSharp) — C# Shenmue file parsing library
 - [Ghidra SLEIGH docs](https://ghidra.re/ghidra_docs/languages/html/sleigh.html) — Processor spec language reference
 - [Creating a Ghidra processor for V8](https://swarm.ptsecurity.com/creating-a-ghidra-processor-module-in-sleigh-using-v8-bytecode-as-an-example/) — Similar custom VM processor walkthrough

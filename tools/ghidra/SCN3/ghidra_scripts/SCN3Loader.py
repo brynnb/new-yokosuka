@@ -148,6 +148,103 @@ def run():
             sym_table.addExternalEntryPoint(entry_addr)
             println("  Set entry point at 0x%X" % code_offset)
 
+            # ---- Function boundary discovery ----
+            # SCN3 bytecode is one monolithic program, NOT a collection of
+            # separate functions. Jumps (JMP/JMPX/JZ) are all intra-program
+            # control flow (if/else/while/switch). Creating a function at
+            # every jump target produces 22K+ tiny fragments -- wrong.
+            #
+            # Real function boundaries are:
+            #   1. MOBJ_SEL instructions that follow an unconditional jump
+            #      (new entity handler block after previous block ends)
+            #   2. Code after end-sentinel CALL_SET7 ops (0xFFF8/0xFFFB/0xFFFF)
+            #   3. The main entry point (already set above)
+            code_bytes = data[code_file_off:code_file_off + actual_code_size]
+            func_boundaries = set()
+
+            def _byte(offset):
+                b = code_bytes[offset]
+                return ord(b) if isinstance(b, str) else b
+
+            prev_was_uncond_jump = False
+            prev_was_end_sentinel = False
+            pc = 0
+            while pc < actual_code_size:
+                op = _byte(pc)
+                cat = (op >> 6) & 3
+                sz = (op >> 4) & 3
+                cmd = op & 0xF
+                addr = full_code_start + pc
+
+                if cat == 1:
+                    # Push immediate
+                    operand_sizes = {0: 0, 1: 1, 2: 2, 3: 4}
+                    prev_was_uncond_jump = False
+                    prev_was_end_sentinel = False
+                    pc += 1 + operand_sizes.get(sz, 0)
+                    continue
+
+                if cat == 2:
+                    # Operator (single byte)
+                    prev_was_uncond_jump = False
+                    prev_was_end_sentinel = False
+                    pc += 1
+                    continue
+
+                # cat 0 or 3: control flow
+                if sz == 0:
+                    # No-operand control opcode
+                    prev_was_uncond_jump = False
+                    prev_was_end_sentinel = False
+                    pc += 1
+                    continue
+
+                operand_sizes = {1: 1, 2: 2, 3: 4}
+                op_sz = operand_sizes.get(sz, 0)
+                if pc + 1 + op_sz > actual_code_size:
+                    break
+
+                # Check if this is a MOBJ_SEL after an unconditional jump
+                if cmd == 0x0 and (prev_was_uncond_jump or prev_was_end_sentinel):
+                    func_boundaries.add(addr)
+
+                # Check if this is a CALL_SET7 with end sentinel operand
+                is_end_sentinel = False
+                if cmd == 0xD:  # CALL_SET7
+                    if op_sz == 1:
+                        val = _byte(pc + 1)
+                    elif op_sz == 2:
+                        val = struct.unpack_from('<H', code_bytes, pc + 1)[0]
+                    elif op_sz == 4:
+                        val = struct.unpack_from('<I', code_bytes, pc + 1)[0]
+                    else:
+                        val = 0
+                    if val in (0xFFF8, 0xFFFB, 0xFFFF, 0xFFFD, 0xFFFE):
+                        is_end_sentinel = True
+
+                # Track state for next iteration
+                prev_was_uncond_jump = cmd in (0x4, 0x5)  # JMPX or JMP
+                prev_was_end_sentinel = is_end_sentinel
+
+                # If this was an end sentinel, the NEXT instruction is a boundary
+                if is_end_sentinel:
+                    next_addr = full_code_start + pc + 1 + op_sz
+                    if next_addr < full_code_start + actual_code_size:
+                        func_boundaries.add(next_addr)
+
+                pc += 1 + op_sz
+
+            # Don't duplicate the main entry point
+            func_boundaries.discard(code_offset)
+
+            func_count = 0
+            for target in sorted(func_boundaries):
+                target_addr = addr_space.getAddress(target)
+                sym_table.addExternalEntryPoint(target_addr)
+                func_count += 1
+
+            println("  Found %d natural function boundaries (MOBJ_SEL-after-jump + end-sentinels)" % func_count)
+
     # Map data section
     if data_offset > 0 and data_offset < total_size:
         data_file_off = scn3_start + data_offset
