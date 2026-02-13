@@ -433,7 +433,12 @@ export function initToggleButtons() {
 
       // Reload scene with new time-of-day textures if a scene is loaded
       if (state.currentScenePrefix) {
+        const cam = state.scene.activeCamera;
+        const savedPos = cam.position.clone();
+        const savedRot = cam.rotation.clone();
         await loadScene(state.currentScenePrefix);
+        cam.position.copyFrom(savedPos);
+        cam.rotation.copyFrom(savedRot);
       }
     };
   }
@@ -444,7 +449,12 @@ export function initToggleButtons() {
       state.currentSeason = (state.currentSeason + 1) % seasonPresets.length;
       // Must reload scene because variant files are skipped at load time.
       if (state.currentScenePrefix) {
+        const cam = state.scene.activeCamera;
+        const savedPos = cam.position.clone();
+        const savedRot = cam.rotation.clone();
         await loadScene(state.currentScenePrefix);
+        cam.position.copyFrom(savedPos);
+        cam.rotation.copyFrom(savedRot);
       } else {
         updateModelVisibility();
       }
