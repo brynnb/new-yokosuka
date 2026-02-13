@@ -1,0 +1,8 @@
+openjdk version "25.0.2" 2026-01-20 LTS
+OpenJDK Runtime Environment Temurin-25.0.2+10 (build 25.0.2+10-LTS)
+OpenJDK 64-Bit Server VM Temurin-25.0.2+10 (build 25.0.2+10-LTS, mixed mode)
+Exception in thread "main" ghidra.util.exception.InvalidInputException: Bad argument: -nohl
+	at ghidra.app.util.headless.AnalyzeHeadless.parseOptions(AnalyzeHeadless.java:422)
+	at ghidra.app.util.headless.AnalyzeHeadless.launch(AnalyzeHeadless.java:187)
+	at ghidra.GhidraLauncher.launch(GhidraLauncher.java:81)
+	at ghidra.Ghidra.main(Ghidra.java:54)

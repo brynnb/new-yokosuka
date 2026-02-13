@@ -1,0 +1,15 @@
+openjdk version "25.0.2" 2026-01-20 LTS
+OpenJDK Runtime Environment Temurin-25.0.2+10 (build 25.0.2+10-LTS)
+OpenJDK 64-Bit Server VM Temurin-25.0.2+10 (build 25.0.2+10-LTS, mixed mode)
+Exception in thread "main" ghidra.app.plugin.processors.sleigh.SleighException: Errors compiling /Users/brynnbateman/Downloads/ghidra_12.0.3_PUBLIC/Ghidra/Processors/SCN3/data/languages/SCN3.slaspec -- please check log messages for details
+	at ghidra.app.plugin.processors.sleigh.SleighLanguage.reloadLanguage(SleighLanguage.java:474)
+	at ghidra.app.plugin.processors.sleigh.SleighLanguage.initialize(SleighLanguage.java:141)
+	at ghidra.app.plugin.processors.sleigh.SleighLanguage.<init>(SleighLanguage.java:106)
+	at ghidra.app.plugin.processors.sleigh.SleighLanguageProvider.getLanguage(SleighLanguageProvider.java:133)
+	at ghidra.program.util.DefaultLanguageService$LanguageInfo.getLanguage(DefaultLanguageService.java:341)
+	at ghidra.program.util.DefaultLanguageService.getLanguage(DefaultLanguageService.java:64)
+	at ghidra.app.util.headless.HeadlessOptions.setLanguageAndCompiler(HeadlessOptions.java:413)
+	at ghidra.app.util.headless.AnalyzeHeadless.parseOptions(AnalyzeHeadless.java:435)
+	at ghidra.app.util.headless.AnalyzeHeadless.launch(AnalyzeHeadless.java:187)
+	at ghidra.GhidraLauncher.launch(GhidraLauncher.java:81)
+	at ghidra.Ghidra.main(Ghidra.java:54)
