@@ -1,0 +1,49 @@
+name: Deploy New Yokosuka
+
+on:
+  push:
+    branches: [ main ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to Server
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          cat << 'EOF' > ~/.ssh/deploy_key
+          ${{ secrets.DEPLOY_SSH_KEY }}
+          EOF
+          chmod 600 ~/.ssh/deploy_key
+          SSH_OPTS="-o StrictHostKeyChecking=no -i ~/.ssh/deploy_key"
+          HOST="ubuntu@54.68.252.253"
+          APP_DIR="/home/ubuntu/app/new-yokosuka"
+
+          # Upload frontend
+          ssh $SSH_OPTS $HOST "mkdir -p $APP_DIR/dist"
+          tar czf - -C dist . | ssh $SSH_OPTS $HOST "cd $APP_DIR/dist && tar xzf -"
+
+          # Reload Caddy
+          ssh $SSH_OPTS $HOST "sudo systemctl reload caddy"
+
+          rm -f ~/.ssh/deploy_key
