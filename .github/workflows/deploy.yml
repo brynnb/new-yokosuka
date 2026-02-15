@@ -30,14 +30,17 @@ jobs:
         env:
           DEPLOY_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
         run: |
-          # Robust SSH key handling via ssh-agent
+          # Self-healing SSH key logic
           eval $(ssh-agent -s)
           
-          # Debug: check if secret is set and has correct header
-          if [ -z "$DEPLOY_KEY" ]; then echo "ERROR: DEPLOY_SSH_KEY is empty!"; exit 1; fi
-          echo "Key header: $(echo "$DEPLOY_KEY" | head -n 1 | cut -c 1-15)..."
-          
-          echo "$DEPLOY_KEY" | tr -d '\r' | ssh-add -
+          # Detect missing headers and wrap if necessary
+          CLEAN_KEY=$(echo "$DEPLOY_KEY" | tr -d '\r')
+          if [[ ! "$CLEAN_KEY" == *"BEGIN"* ]]; then
+            echo "Healed missing SSH headers"
+            (echo "-----BEGIN OPENSSH PRIVATE KEY-----"; echo "$CLEAN_KEY"; echo "-----END OPENSSH PRIVATE KEY-----") | ssh-add -
+          else
+            echo "$CLEAN_KEY" | ssh-add -
+          fi
           
           SSH_OPTS="-o StrictHostKeyChecking=no"
           HOST="ubuntu@54.68.252.253"
