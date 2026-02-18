@@ -109,6 +109,11 @@ export function initUIHandlers() {
   }
 
   window.addEventListener("keydown", (e) => {
+    // If we are in FPS mode (pointer locked), do not navigate the list
+    if (document.pointerLockElement === state.canvas) {
+      return;
+    }
+
     if (e.key === "ArrowUp") {
       e.preventDefault();
       navigateModel(-1);

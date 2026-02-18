@@ -129,7 +129,14 @@ export function createScene() {
     }
 
     // Prevent default for keys we use
-    if (isPointerLocked && code === "Space") {
+    if (
+      isPointerLocked &&
+      (code === "Space" ||
+        code === "ArrowUp" ||
+        code === "ArrowDown" ||
+        code === "ArrowLeft" ||
+        code === "ArrowRight")
+    ) {
       e.preventDefault();
     }
   };
@@ -164,12 +171,12 @@ export function createScene() {
     let moveVector = BABYLON.Vector3.Zero();
 
     // W/S - Forward/Backward
-    if (keys["KeyW"]) moveVector.addInPlace(forwardFlat.scale(speed));
-    if (keys["KeyS"]) moveVector.addInPlace(forwardFlat.scale(-speed));
+    if (keys["KeyW"] || keys["ArrowUp"]) moveVector.addInPlace(forwardFlat.scale(speed));
+    if (keys["KeyS"] || keys["ArrowDown"]) moveVector.addInPlace(forwardFlat.scale(-speed));
 
     // A/D - Strafe Left/Right
-    if (keys["KeyA"]) moveVector.addInPlace(right.scale(-speed));
-    if (keys["KeyD"]) moveVector.addInPlace(right.scale(speed));
+    if (keys["KeyA"] || keys["ArrowLeft"]) moveVector.addInPlace(right.scale(-speed));
+    if (keys["KeyD"] || keys["ArrowRight"]) moveVector.addInPlace(right.scale(speed));
 
     // Space/C - Vertical movement
     if (keys["Space"]) moveVector.y += speed;
