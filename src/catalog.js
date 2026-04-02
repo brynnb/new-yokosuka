@@ -416,6 +416,9 @@ export async function loadCatalog() {
     });
 
     setStatus(`Ready`);
+
+    // Auto-load Hazuki Residence Exterior (BETD) on startup
+    loadScene("S1_BETD");
   } catch (err) {
     setStatus("Error loading catalog");
     console.error(err);
