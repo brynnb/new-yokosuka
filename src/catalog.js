@@ -1,3 +1,4 @@
+import * as BABYLON from "@babylonjs/core";
 import state from "./state.js";
 import { setStatus, getModelList } from "./ui.js";
 import { fetchAsset, getTexturePack } from "./assetLoader.js";
@@ -418,7 +419,29 @@ export async function loadCatalog() {
     setStatus(`Ready`);
 
     // Auto-load Hazuki Residence Exterior (BETD) on startup
-    loadScene("S1_BETD");
+    await loadScene("S1_BETD");
+
+    // Override camera to a closer default view for the initial load
+    if (state.scene && state.scene.activeCamera && state.currentMeshes.length > 0) {
+      let min = new BABYLON.Vector3(Infinity, Infinity, Infinity);
+      let max = new BABYLON.Vector3(-Infinity, -Infinity, -Infinity);
+      state.currentMeshes.forEach((m) => {
+        const b = m.getHierarchyBoundingVectors(true);
+        if (b.min.x !== Infinity && !isNaN(b.min.x)) {
+          min = BABYLON.Vector3.Minimize(min, b.min);
+          max = BABYLON.Vector3.Maximize(max, b.max);
+        }
+      });
+      const center = BABYLON.Vector3.Center(min, max);
+      const size = BABYLON.Vector3.Distance(min, max);
+      const distance = size * 0.15;
+      state.scene.activeCamera.position = new BABYLON.Vector3(
+        center.x - distance,
+        center.y + distance * 0.4,
+        center.z + distance,
+      );
+      state.scene.activeCamera.setTarget(center);
+    }
   } catch (err) {
     setStatus("Error loading catalog");
     console.error(err);
