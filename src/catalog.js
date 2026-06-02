@@ -13,6 +13,8 @@ import { Mt5Loader } from "./Mt5Loader.js";
 function freezeLoadedMeshes(meshes) {
   const frozenMats = new Set();
   for (const root of meshes) {
+    if (root._mt5CharacterRig) continue;
+
     // Freeze the root and all children
     const allNodes = [root, ...root.getDescendants(false)];
     for (const node of allNodes) {

@@ -44,6 +44,29 @@ export class Mt5Loader {
         this._timePackBuffer = timeBuffer || null;
     }
 
+    static readFourCC(value) {
+        return String.fromCharCode(
+            value & 0xff,
+            (value >> 8) & 0xff,
+            (value >> 16) & 0xff,
+            (value >> 24) & 0xff,
+        ).replace(/\0/g, "");
+    }
+
+    static isCharacterRig(nodes) {
+        if (nodes.length < 20) return false;
+
+        const rootTag = Mt5Loader.readFourCC(nodes[0]?.unk1 || 0);
+        if (!/^[A-Z0-9]{3}M$/.test(rootTag)) return false;
+
+        const firstModelNode = nodes.find(node => node.model);
+        if (!firstModelNode) return false;
+
+        const firstModelRotX = Math.round(firstModelNode.rot.x / (Math.PI / 2));
+        const firstModelRotZ = Math.round(firstModelNode.rot.z / (Math.PI / 2));
+        return firstModelRotX === 1 && firstModelRotZ === 1;
+    }
+
     async load(buffer, secondaryBuffer = null) {
         const reader = new BinaryReader(buffer);
         const signature = reader.readString(4);
@@ -106,6 +129,15 @@ export class Mt5Loader {
         this.readNode(reader, nodes);
 
         const modelRoot = new BABYLON.TransformNode(`mt5_file_root_${Math.random().toString(36).substr(2, 9)}`, this.scene);
+        modelRoot._mt5Nodes = nodes;
+
+        const isCharacterRig = Mt5Loader.isCharacterRig(nodes);
+        modelRoot._mt5CharacterRig = isCharacterRig;
+        if (isCharacterRig) {
+            // Full character rigs are authored with the assembled body height on source Z.
+            // Keep bone-local transforms intact and convert the rig root into Babylon Y-up.
+            modelRoot.rotation.x = -Math.PI / 2;
+        }
 
         // Apply Hierarchy and Transformations
         for (const node of nodes) {
