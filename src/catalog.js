@@ -157,6 +157,7 @@ export async function loadScene(prefix) {
         meshes.forEach((m) => m.dispose());
         return;
       }
+      if (meshes.length === 0) return;
 
       meshes.forEach((m) => (m._filename = filename));
       state.currentMeshes.push(...meshes);
@@ -197,6 +198,8 @@ export async function loadScene(prefix) {
     freezeLoadedMeshes(state.currentMeshes);
 
     setStatus(`[Viewer] Loaded scene ${prefix} (${totalLoaded} models)`);
+  } else if (loadId === state.currentLoadId) {
+    setStatus(`[Viewer] Warning: No visual geometry found in scene ${prefix}`);
   }
 }
 

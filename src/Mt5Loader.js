@@ -130,7 +130,11 @@ export class Mt5Loader {
         }
 
 
-        return [modelRoot];
+        const hasRenderableGeometry = modelRoot
+            .getDescendants(false)
+            .some(node => typeof node.getTotalVertices === "function" && node.getTotalVertices() > 0);
+
+        return hasRenderableGeometry ? [modelRoot] : [];
     }
 
     readNode(reader, nodes) {
@@ -453,11 +457,6 @@ export class Mt5Loader {
                     continue;
                 }
 
-                // If the texture is missing from the cache, we hide this geometry.
-                if (!this.textureCache.has(texId)) {
-                    continue;
-                }
-
                 const subMesh = new BABYLON.Mesh(`mt5_tex_${texId}`, this.scene);
                 const vd = new BABYLON.VertexData();
                 vd.positions = positions; vd.normals = normals; vd.uvs = uvs; vd.indices = indices;
@@ -466,11 +465,11 @@ export class Mt5Loader {
                 subMesh.parent = rootMesh;
 
                 const tex = this.textureCache.get(texId);
-                const hasGradientAlpha = tex._hasGradientAlpha === true;
-                const hasAnyAlpha = tex.hasAlpha === true;
+                const hasGradientAlpha = tex?._hasGradientAlpha === true;
+                const hasAnyAlpha = tex?.hasAlpha === true;
 
                 // Determine transparency mode for cache key
-                let alphaMode = 'opaque';
+                let alphaMode = tex ? 'opaque' : 'missing';
                 if (hasGradientAlpha) alphaMode = 'blend';
                 else if (hasAnyAlpha) alphaMode = 'alphatest';
                 const matCacheKey = `${texId}_${alphaMode}`;
@@ -486,9 +485,16 @@ export class Mt5Loader {
                     mat.specularColor = new BABYLON.Color3(0, 0, 0);
                     mat.emissiveColor = new BABYLON.Color3(0.08, 0.08, 0.08);
 
-                    mat.diffuseTexture = tex;
-                    mat.diffuseTexture.wrapU = BABYLON.Texture.MIRROR_ADDRESSMODE;
-                    mat.diffuseTexture.wrapV = BABYLON.Texture.MIRROR_ADDRESSMODE;
+                    if (!tex) {
+                        mat.diffuseColor = new BABYLON.Color3(0.65, 0.65, 0.65);
+                        mat.emissiveColor = new BABYLON.Color3(0.05, 0.05, 0.05);
+                        mat.backFaceCulling = false;
+                        mat.transparencyMode = BABYLON.StandardMaterial.MATERIAL_OPAQUE;
+                    } else {
+                        mat.diffuseTexture = tex;
+                        mat.diffuseTexture.wrapU = BABYLON.Texture.MIRROR_ADDRESSMODE;
+                        mat.diffuseTexture.wrapV = BABYLON.Texture.MIRROR_ADDRESSMODE;
+                    }
 
                     if (hasGradientAlpha) {
                         mat.diffuseTexture.hasAlpha = true;
@@ -508,7 +514,7 @@ export class Mt5Loader {
                         mat.twoSidedLighting = true;
                         mat.alpha = 1.0;
                         mat.zOffset = -1.0;
-                    } else {
+                    } else if (tex) {
                         mat.diffuseTexture.hasAlpha = false;
                         mat.useAlphaFromDiffuseTexture = false;
                         mat.transparencyMode = BABYLON.StandardMaterial.MATERIAL_OPAQUE;
@@ -672,4 +678,3 @@ export class Mt5Loader {
         }
     }
 }
-
