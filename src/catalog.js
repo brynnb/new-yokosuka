@@ -27,6 +27,28 @@ function freezeLoadedMeshes(meshes) {
   }
 }
 
+function setLoaderTexturePackIndex(secondaryBuffer) {
+  if (!secondaryBuffer) {
+    state.loader.setTexturePackIndex(null, null, null, null);
+    return;
+  }
+
+  if (secondaryBuffer.base !== undefined || secondaryBuffer.time !== undefined) {
+    const baseIdx = Mt5Loader.buildTexturePackIndex(secondaryBuffer.base);
+    const timeIdx = Mt5Loader.buildTexturePackIndex(secondaryBuffer.time);
+    state.loader.setTexturePackIndex(baseIdx, timeIdx, secondaryBuffer.base, secondaryBuffer.time);
+    return;
+  }
+
+  if (secondaryBuffer instanceof ArrayBuffer) {
+    const baseIdx = Mt5Loader.buildTexturePackIndex(secondaryBuffer);
+    state.loader.setTexturePackIndex(baseIdx, null, secondaryBuffer, null);
+    return;
+  }
+
+  state.loader.setTexturePackIndex(null, null, null, null);
+}
+
 async function loadMetadata() {
   try {
     const mapsResponse = await fetch("/data/maps.csv");
@@ -125,18 +147,7 @@ export async function loadScene(prefix) {
   if (loadId !== state.currentLoadId) return;
 
   // Pre-index texture packs for O(1) lookups (instead of linear scan per file)
-  if (secondaryBuffer) {
-    if (secondaryBuffer.base !== undefined || secondaryBuffer.time !== undefined) {
-      const baseIdx = Mt5Loader.buildTexturePackIndex(secondaryBuffer.base);
-      const timeIdx = Mt5Loader.buildTexturePackIndex(secondaryBuffer.time);
-      state.loader.setTexturePackIndex(baseIdx, timeIdx, secondaryBuffer.base, secondaryBuffer.time);
-    } else if (secondaryBuffer instanceof ArrayBuffer) {
-      const baseIdx = Mt5Loader.buildTexturePackIndex(secondaryBuffer);
-      state.loader.setTexturePackIndex(baseIdx, null, secondaryBuffer, null);
-    }
-  } else {
-    state.loader.setTexturePackIndex(null, null, null, null);
-  }
+  setLoaderTexturePackIndex(secondaryBuffer);
 
   // Parallel fetch with concurrency limit
   const CONCURRENCY = 6;
@@ -244,6 +255,7 @@ export async function loadModelFromUrl(filename, element) {
     const buffer = await modelRes.arrayBuffer();
     if (loadId !== state.currentLoadId) return;
 
+    setLoaderTexturePackIndex(secondaryBuffer);
     const meshes = await state.loader.load(buffer, secondaryBuffer);
     if (loadId !== state.currentLoadId) {
       meshes.forEach((m) => m.dispose());
