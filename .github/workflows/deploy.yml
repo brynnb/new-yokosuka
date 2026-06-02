@@ -24,6 +24,9 @@ jobs:
         run: npm install
 
       - name: Build project
+        env:
+          VITE_ASSET_URL: https://pub-04034701bf7545f291744990c97678b9.r2.dev
+          VITE_OFFLINE_ASSETS: "false"
         run: npm run build
 
       - name: Deploy to Server
