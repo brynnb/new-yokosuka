@@ -50,7 +50,7 @@ jobs:
           APP_DIR="/home/ubuntu/app/new-yokosuka"
 
           # Upload frontend
-          ssh $SSH_OPTS $HOST "mkdir -p $APP_DIR/dist"
+          ssh $SSH_OPTS $HOST "sudo rm -rf $APP_DIR/dist && mkdir -p $APP_DIR/dist && sudo chown -R ubuntu:ubuntu $APP_DIR"
           tar czf - -C dist . | ssh $SSH_OPTS $HOST "cd $APP_DIR/dist && tar xzf -"
 
           # Reload Caddy
