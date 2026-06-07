@@ -1,0 +1,15 @@
+{
+  "name": "new-yokosuka-viewer-test",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lab": "npm --prefix .. run dev -- --host 127.0.0.1 --port 5174",
+    "screenshot:ryu": "node render-ryu.mjs",
+    "screenshot:obj": "node render-wudecon-obj.mjs",
+    "screenshot:world": "node render-ryo-world.mjs"
+  },
+  "dependencies": {
+    "gl": "^8.1.6",
+    "pngjs": "^7.0.0"
+  }
+}

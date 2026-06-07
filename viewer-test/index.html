@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Character Transform Lab</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        background: #181a1f;
+        color: #e8eaed;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        overflow: hidden;
+      }
+
+      .app {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 360px;
+        height: 100vh;
+      }
+
+      .viewport {
+        position: relative;
+        min-width: 0;
+        background: #c8c8c2;
+      }
+
+      #renderCanvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+        outline: none;
+      }
+
+      .status {
+        position: absolute;
+        left: 12px;
+        bottom: 12px;
+        padding: 7px 9px;
+        border: 1px solid rgb(0 0 0 / 0.16);
+        border-radius: 6px;
+        background: rgb(245 245 240 / 0.86);
+        color: #1f242b;
+        font-size: 12px;
+        line-height: 1.35;
+        white-space: pre;
+      }
+
+      .panel {
+        min-height: 0;
+        overflow: auto;
+        border-left: 1px solid #2d323a;
+        background: #20242b;
+      }
+
+      .panel-inner {
+        display: grid;
+        gap: 14px;
+        padding: 14px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 650;
+        letter-spacing: 0;
+      }
+
+      fieldset {
+        display: grid;
+        gap: 9px;
+        margin: 0;
+        padding: 11px;
+        border: 1px solid #363c45;
+        border-radius: 6px;
+        background: #252a32;
+      }
+
+      legend {
+        padding: 0 4px;
+        color: #cdd4dc;
+        font-size: 12px;
+        font-weight: 650;
+      }
+
+      label {
+        display: grid;
+        gap: 4px;
+        color: #dce1e7;
+        font-size: 12px;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .switch-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      select,
+      input,
+      button,
+      textarea {
+        min-height: 30px;
+        border: 1px solid #454c57;
+        border-radius: 6px;
+        background: #171a20;
+        color: #f1f3f6;
+        font: inherit;
+        font-size: 12px;
+      }
+
+      select,
+      input[type="number"],
+      textarea {
+        width: 100%;
+        padding: 6px 7px;
+      }
+
+      input[type="checkbox"] {
+        width: 17px;
+        min-height: 17px;
+        accent-color: #8fb9ff;
+      }
+
+      input[type="range"] {
+        width: 100%;
+      }
+
+      button {
+        cursor: pointer;
+        padding: 6px 8px;
+      }
+
+      button:hover {
+        background: #222832;
+      }
+
+      .buttons {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(82px, 1fr));
+        gap: 8px;
+      }
+
+      .node-list {
+        display: grid;
+        max-height: 220px;
+        overflow: auto;
+        border: 1px solid #343a43;
+        border-radius: 6px;
+        background: #191d23;
+      }
+
+      .node-button {
+        display: grid;
+        grid-template-columns: 58px 1fr;
+        gap: 8px;
+        width: 100%;
+        min-height: 28px;
+        border: 0;
+        border-bottom: 1px solid #2a3038;
+        border-radius: 0;
+        background: transparent;
+        color: #dfe5eb;
+        text-align: left;
+      }
+
+      .node-button.is-selected {
+        background: #2e4160;
+      }
+
+      .node-button span:first-child {
+        color: #9fb2ca;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      }
+
+      textarea {
+        min-height: 120px;
+        resize: vertical;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <main class="viewport">
+        <canvas id="renderCanvas"></canvas>
+        <div id="status" class="status">Loading...</div>
+      </main>
+      <aside class="panel">
+        <div class="panel-inner">
+          <h1>Character Transform Lab</h1>
+
+          <fieldset>
+            <legend>Asset</legend>
+            <label>
+              Model
+              <select id="modelSelect"></select>
+            </label>
+            <div class="buttons">
+              <button id="reloadButton" type="button">Reload</button>
+              <button id="frameButton" type="button">Frame</button>
+              <button id="worldButton" type="button">World</button>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Presets</legend>
+            <label>
+              Mode
+              <select id="presetSelect"></select>
+            </label>
+            <div class="buttons">
+              <button id="copyButton" type="button">Copy Settings</button>
+              <button id="shotButton" type="button">Save PNG</button>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Motion</legend>
+            <label>
+              Sequence
+              <select id="motionSequence"></select>
+            </label>
+            <label>
+              Interpretation
+              <select id="motionInterpretation">
+                <option value="compat">Compat channels</option>
+                <option value="tracks">Motion tracks</option>
+              </select>
+            </label>
+            <label>
+              Target
+              <select id="motionTarget">
+                <option value="node-index">Node index</option>
+                <option value="flag-low-byte">MT5 flag ID</option>
+              </select>
+            </label>
+            <label>
+              Frame
+              <input id="motionFrame" type="range" min="0" max="1" step="0.1" value="0" />
+            </label>
+            <label class="switch-row">
+              Stable limb filter
+              <input id="motionStableFilter" type="checkbox" />
+            </label>
+            <div class="buttons">
+              <button id="motionPlayButton" type="button">Play</button>
+              <button id="motionRestButton" type="button">Rest</button>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Hierarchy</legend>
+            <label class="switch-row">
+              Parent children through MT5 node tree
+              <input id="useHierarchy" type="checkbox" checked />
+            </label>
+            <label class="switch-row">
+              Apply node rotations
+              <input id="useRotations" type="checkbox" checked />
+            </label>
+            <label class="switch-row">
+              Apply node positions
+              <input id="usePositions" type="checkbox" checked />
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Model Pivot</legend>
+            <label>
+              Geometry offset
+              <select id="pivotMode">
+                <option value="none">None</option>
+                <option value="center">Rotate around model center</option>
+                <option value="center-inverse">Inverse model center</option>
+              </select>
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Root Rotation</legend>
+            <div class="row">
+              <label>
+                X
+                <input id="rootX" type="number" step="1" value="-90" />
+              </label>
+              <label>
+                Y
+                <input id="rootY" type="number" step="1" value="0" />
+              </label>
+              <label>
+                Z
+                <input id="rootZ" type="number" step="1" value="0" />
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Position Signs</legend>
+            <div class="row">
+              <label>
+                X
+                <select id="posSignX">
+                  <option value="-1">-</option>
+                  <option value="1">+</option>
+                </select>
+              </label>
+              <label>
+                Y
+                <select id="posSignY">
+                  <option value="1">+</option>
+                  <option value="-1">-</option>
+                </select>
+              </label>
+              <label>
+                Z
+                <select id="posSignZ">
+                  <option value="1">+</option>
+                  <option value="-1">-</option>
+                </select>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Rotation</legend>
+            <label>
+              Order
+              <select id="rotOrder">
+                <option value="babylon">Babylon Euler</option>
+                <option value="xyz">XYZ quaternion</option>
+                <option value="xzy">XZY quaternion</option>
+                <option value="yxz">YXZ quaternion</option>
+                <option value="yzx">YZX quaternion</option>
+                <option value="zxy">ZXY quaternion</option>
+                <option value="zyx">ZYX quaternion</option>
+              </select>
+            </label>
+            <div class="row">
+              <label>
+                X
+                <select id="rotSignX">
+                  <option value="1">+</option>
+                  <option value="-1">-</option>
+                </select>
+              </label>
+              <label>
+                Y
+                <select id="rotSignY">
+                  <option value="-1">-</option>
+                  <option value="1">+</option>
+                </select>
+              </label>
+              <label>
+                Z
+                <select id="rotSignZ">
+                  <option value="-1">-</option>
+                  <option value="1">+</option>
+                </select>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Debug</legend>
+            <label>
+              Ryo Head Atlas
+              <select id="ryoHeadAtlasMode">
+                <option value="project-cw-auto-legacy-region" selected>Project CW legacy auto region</option>
+                <option value="project-cw-hairline">Project CW hairline repair</option>
+                <option value="project-cw-scalp-hair">Project CW scalp hair repair</option>
+                <option value="project-cw-scalp-strip-hair">Project CW strip scalp hair repair</option>
+                <option value="project-cw-sideproject">Project CW side/back projection</option>
+                <option value="project-cw-sideproject-flipu">Project CW side/back projection flipped</option>
+                <option value="project-cw">Project CW</option>
+                <option value="project-cw-auto">Project CW auto bounds</option>
+                <option value="project-cw-auto-legacy-bounds">Project CW legacy auto bounds</option>
+                <option value="project-cw-raw-region">Project CW by raw region</option>
+                <option value="obj-raw">OBJ raw UVs</option>
+                <option value="project-cw-obj-side">OBJ side UVs</option>
+                <option value="project-upright">Project upright</option>
+                <option value="raw-face">Raw face half</option>
+              </select>
+            </label>
+            <label>
+              Texture UV
+              <select id="textureCoordinateMode">
+                <option value="viewer" selected>Viewer swap</option>
+                <option value="pc">PC raw U/V</option>
+                <option value="pc-flipv">PC raw flip V</option>
+                <option value="pc-flipu">PC raw flip U</option>
+                <option value="pc-flipuv">PC raw flip U/V</option>
+                <option value="source-rotate-cw">Rotate 90 CW</option>
+                <option value="source-rotate-ccw">Rotate 90 CCW</option>
+                <option value="source-rotate-180">Rotate 180</option>
+              </select>
+            </label>
+            <label class="switch-row">
+              Backface culling
+              <input id="backFaceCulling" type="checkbox" />
+            </label>
+            <label class="switch-row">
+              Strip winding sign
+              <input id="stripWindingSign" type="checkbox" />
+            </label>
+            <label class="switch-row">
+              Mirror resize
+              <input id="mirrorResize" type="checkbox" checked />
+            </label>
+            <label class="switch-row">
+              Show selected node axes
+              <input id="showAxes" type="checkbox" checked />
+            </label>
+            <label class="switch-row">
+              Dim unselected parts
+              <input id="dimUnselected" type="checkbox" />
+            </label>
+            <div id="nodeList" class="node-list"></div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Settings</legend>
+            <textarea id="settingsText" readonly></textarea>
+          </fieldset>
+        </div>
+      </aside>
+    </div>
+
+    <script type="module" src="./character-lab.js"></script>
+  </body>
+</html>

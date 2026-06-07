@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Head Parts Compare</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        background: #181b20;
+        color: #eceff3;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        overflow: hidden;
+      }
+
+      .app {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 340px;
+        height: 100vh;
+      }
+
+      .viewport {
+        position: relative;
+        min-width: 0;
+        background: #c4c5bf;
+      }
+
+      #renderCanvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+        outline: none;
+      }
+
+      .status {
+        position: absolute;
+        left: 12px;
+        bottom: 12px;
+        max-width: min(520px, calc(100% - 24px));
+        padding: 7px 9px;
+        border: 1px solid rgb(0 0 0 / 0.18);
+        border-radius: 6px;
+        background: rgb(246 246 241 / 0.88);
+        color: #20242a;
+        font-size: 12px;
+        line-height: 1.35;
+        white-space: pre-wrap;
+      }
+
+      .side-label {
+        position: absolute;
+        top: 12px;
+        padding: 6px 8px;
+        border: 1px solid rgb(0 0 0 / 0.16);
+        border-radius: 6px;
+        background: rgb(246 246 241 / 0.86);
+        color: #20242a;
+        font-size: 12px;
+        font-weight: 650;
+      }
+
+      .side-label.left {
+        left: 12px;
+      }
+
+      .side-label.right {
+        right: 12px;
+      }
+
+      .panel {
+        min-height: 0;
+        overflow: auto;
+        border-left: 1px solid #2d333c;
+        background: #20242b;
+      }
+
+      .panel-inner {
+        display: grid;
+        gap: 14px;
+        padding: 14px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 650;
+        letter-spacing: 0;
+      }
+
+      fieldset {
+        display: grid;
+        gap: 9px;
+        margin: 0;
+        padding: 11px;
+        border: 1px solid #363d47;
+        border-radius: 6px;
+        background: #252a32;
+      }
+
+      legend {
+        padding: 0 4px;
+        color: #cdd4dc;
+        font-size: 12px;
+        font-weight: 650;
+      }
+
+      label {
+        color: #dce1e7;
+        font-size: 12px;
+      }
+
+      .check-row,
+      .switch-row {
+        display: grid;
+        grid-template-columns: 18px minmax(0, 1fr);
+        align-items: center;
+        gap: 8px;
+      }
+
+      .check-row code {
+        color: #9fb2ca;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      }
+
+      .buttons {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .wide-buttons {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .uv-node {
+        display: grid;
+        gap: 8px;
+        padding-top: 8px;
+        border-top: 1px solid #323945;
+      }
+
+      .uv-node:first-of-type {
+        padding-top: 0;
+        border-top: 0;
+      }
+
+      .uv-title {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 8px;
+        min-width: 0;
+      }
+
+      .uv-title code {
+        color: #9fb2ca;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      }
+
+      .uv-title span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .uv-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .uv-grid label {
+        display: grid;
+        gap: 4px;
+      }
+
+      .uv-checks {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      select,
+      input[type="number"],
+      button {
+        min-height: 30px;
+        border: 1px solid #454d58;
+        border-radius: 6px;
+        background: #171a20;
+        color: #f1f3f6;
+        font: inherit;
+        font-size: 12px;
+      }
+
+      select {
+        width: 100%;
+        padding: 6px 7px;
+      }
+
+      input[type="number"] {
+        width: 100%;
+        padding: 6px 7px;
+      }
+
+      button {
+        cursor: pointer;
+        padding: 6px 8px;
+      }
+
+      button:hover {
+        background: #222832;
+      }
+
+      input[type="checkbox"] {
+        width: 17px;
+        min-height: 17px;
+        margin: 0;
+        accent-color: #8fb9ff;
+      }
+
+      .hint {
+        margin: 0;
+        color: #aeb9c5;
+        font-size: 12px;
+        line-height: 1.4;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <main class="viewport">
+        <canvas id="renderCanvas"></canvas>
+        <div class="side-label left">Ryo</div>
+        <div class="side-label right">Fuku-san</div>
+        <div id="status" class="status">Loading...</div>
+      </main>
+      <aside class="panel">
+        <div class="panel-inner">
+          <h1>Head Parts Compare</h1>
+
+          <fieldset>
+            <legend>View</legend>
+            <div class="buttons">
+              <button id="frontButton" type="button">Front</button>
+              <button id="sideButton" type="button">Side</button>
+              <button id="angleButton" type="button">Angle</button>
+            </div>
+            <div class="wide-buttons">
+              <button id="frameButton" type="button">Frame</button>
+              <button id="resetButton" type="button">Reset</button>
+            </div>
+            <label class="switch-row">
+              <input id="showBody" type="checkbox" />
+              <span>Show body meshes</span>
+            </label>
+            <label class="switch-row">
+              <input id="backFaceCulling" type="checkbox" />
+              <span>Backface culling</span>
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Ryo Atlas</legend>
+            <label>
+              <select id="ryoHeadAtlasMode">
+                <option value="project-cw-obj-side">Project CW + OBJ side</option>
+                <option value="project-cw">Project CW</option>
+                <option value="project-cw-auto">Project CW auto bounds</option>
+                <option value="obj-raw">OBJ raw UVs</option>
+                <option value="project-cw-raw-region">Project CW raw region</option>
+              </select>
+            </label>
+          </fieldset>
+
+          <fieldset id="ryoParts">
+            <legend>Ryo Head Pieces</legend>
+          </fieldset>
+
+          <fieldset id="ryoUvControls">
+            <legend>Ryo UV Per Piece</legend>
+          </fieldset>
+
+          <div class="wide-buttons">
+            <button id="resetUvButton" type="button">Reset UV</button>
+            <button id="copySettingsButton" type="button">Copy Settings</button>
+          </div>
+
+          <fieldset id="fukuParts">
+            <legend>Fuku-san Head Pieces</legend>
+          </fieldset>
+
+          <p class="hint">Drag to orbit. Scroll to zoom. Toggle pieces on either character to compare the head split.</p>
+        </div>
+      </aside>
+    </div>
+
+    <script type="module" src="./head-parts.js"></script>
+  </body>
+</html>
