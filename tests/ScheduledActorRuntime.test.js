@@ -27,6 +27,118 @@ import {
   updateScheduledActorDebugSelectionProxy,
 } from "../play/characters/ScheduledActorRuntime.js";
 
+async function activityStreamingHarness(t, { network = new Map(), beforeBuild = null } = {}) {
+  const engine = new BABYLON.NullEngine();
+  const scene = new BABYLON.Scene(engine);
+  const built = [];
+  const runtime = new ScheduledActorRuntime({
+    scene, state: { currentMeshes: [] }, getActiveWorldId: () => "dobuita",
+    networkState: { configure() {}, stateFor: id => network.get(id) },
+  });
+  t.after(() => { runtime.clear(); scene.dispose(); engine.dispose(); });
+  t.mock.method(runtime, "prefetchModel", async () => {});
+  t.mock.method(runtime, "loadModel", async (_definition, model) => {
+    await beforeBuild?.(model);
+    const root = new BABYLON.TransformNode(model.modelCode, scene);
+    root.metadata = { scheduledActorGroundOffset: 0 };
+    root.setEnabled(false);
+    runtime.state.currentMeshes.push(root);
+    const renderRoot = new BABYLON.TransformNode(`${model.modelCode}_body`, scene);
+    renderRoot.parent = root;
+    const result = { ...model, root, renderRoot, standingRenderPosition: renderRoot.position.clone() };
+    built.push(result);
+    return result;
+  });
+  await runtime.load([
+    { actorCode: "ONE", modelCode: "ONE_M", authoritative: true, modelOverrides: [{ modelCode: "ONE_L" }] },
+    { actorCode: "TWO", modelCode: "TWO_M", authoritative: true },
+  ], null, "dobuita");
+  return { runtime, built };
+}
+
+test("script preparation loads only its absent resident and preserves world visibility", async t => {
+  const { runtime, built } = await activityStreamingHarness(t);
+  assert.equal(built.length, 0);
+  assert.throws(() => runtime.beginActivityActors({}, ["ONE"]), /loaded=0, enabled=0/);
+  await runtime.prepareActivityActors(["ONE"]);
+  assert.deepEqual(built.map(model => model.modelCode), ["ONE_M"]);
+  assert.equal(built[0].root.isEnabled(), false);
+  assert.equal(runtime.activityActorOwners.size, 0);
+  const owner = {};
+  assert.equal(runtime.beginActivityActors(owner, ["ONE"])[0].model, built[0]);
+  assert.equal(built[0].root.isEnabled(), true);
+  runtime.endActivityActors(owner);
+  assert.equal(built[0].root.isEnabled(), false);
+  await runtime.prepareActivityActors(["ONE"]);
+  assert.equal(built.length, 1, "replays reuse the resident cache");
+});
+
+test("script preparation preserves the resident's active authored variant", async t => {
+  const network = new Map([["ONE", {
+    worldId: "dobuita", x: 0, y: 0, z: 0, yaw: 0, modelOverrideCode: "ONE_L",
+  }]]);
+  const { runtime, built } = await activityStreamingHarness(t, { network });
+  await runtime.prepareActivityActors(["ONE"]);
+  assert.deepEqual(built.map(model => model.modelCode), ["ONE_L"]);
+  const owner = {};
+  assert.equal(runtime.beginActivityActors(owner, ["ONE"])[0].model, built[0]);
+  runtime.endActivityActors(owner);
+  assert.equal(built[0].root.isEnabled(), true);
+});
+
+test("cancelled preparation does not poison a shared model request or its retry", async t => {
+  const gate = Promise.withResolvers();
+  const started = Promise.withResolvers();
+  const { runtime, built } = await activityStreamingHarness(t, { beforeBuild: async () => {
+    started.resolve();
+    await gate.promise;
+  } });
+  const controller = new AbortController();
+  const cancelled = runtime.prepareActivityActors(["ONE"], { signal: controller.signal });
+  await started.promise;
+  const concurrent = runtime.prepareActivityActors(["ONE"]);
+  controller.abort();
+  gate.resolve();
+  await assert.rejects(cancelled, { name: "AbortError" });
+  assert.equal(await concurrent, true);
+  assert.equal(built.length, 1);
+  assert.equal(built[0].root.isEnabled(), false);
+  assert.equal(runtime.activityActorOwners.size, 0);
+  assert.equal(await runtime.prepareActivityActors(["ONE"]), true);
+});
+
+test("changing worlds disposes a late script-prepared body", async t => {
+  const gate = Promise.withResolvers();
+  const started = Promise.withResolvers();
+  const { runtime, built } = await activityStreamingHarness(t, { beforeBuild: async () => {
+    started.resolve();
+    await gate.promise;
+  } });
+  const pending = runtime.prepareActivityActors(["ONE"]);
+  await started.promise;
+  runtime.clear();
+  gate.resolve();
+  await assert.rejects(pending, { name: "AbortError" });
+  assert.equal(built[0].root.isDisposed(), true);
+  assert.deepEqual(runtime.entries, []);
+  assert.equal(runtime.activityActorOwners.size, 0);
+});
+
+test("script model failures and invalid selections remain explicit and retryable", async t => {
+  let fail = true;
+  const { runtime, built } = await activityStreamingHarness(t, { beforeBuild: () => {
+    if (fail) throw new Error("test model failed");
+  } });
+  await assert.rejects(runtime.prepareActivityActors(["ONE"]), /test model failed/);
+  assert.equal(runtime.entries[0].pendingModels.size, 0);
+  assert.equal(runtime.activityActorOwners.size, 0);
+  fail = false;
+  await runtime.prepareActivityActors(["ONE"]);
+  assert.equal(built.length, 1);
+  await assert.rejects(runtime.prepareActivityActors(["MISSING"]), /not unique/);
+  await assert.rejects(runtime.prepareActivityActors(["ONE", "one"]), /unique list/);
+});
+
 test("scheduled model streaming follows current presence and never shows the wrong variant", async t => {
   const engine = new BABYLON.NullEngine();
   const scene = new BABYLON.Scene(engine);
@@ -633,7 +745,7 @@ test("scheduled actors fade while between the player and camera", () => {
   engine.dispose();
 });
 
-test("scheduled actors restore opaque materials when camera fading is disabled", () => {
+test("scheduled actors restore materials for cutscenes and resume camera fading afterward", () => {
   const engine = new BABYLON.NullEngine();
   const scene = new BABYLON.Scene(engine);
   try {
@@ -646,9 +758,13 @@ test("scheduled actors restore opaque materials when camera fading is disabled",
     const material = new BABYLON.StandardMaterial("actor", scene);
     const mesh = BABYLON.MeshBuilder.CreateBox("actor_mesh", {}, scene);
     mesh.material = material;
-    const model = { renderMeshes: [mesh] };
-    setScheduledActorCameraFade(model, true);
-    assert.notEqual(mesh.material, material);
+    const proxy = BABYLON.MeshBuilder.CreateBox("occlusion", {
+      width: 0.75, height: 2, depth: 0.5,
+    }, scene);
+    proxy.position.z = 2;
+    proxy.computeWorldMatrix(true);
+    const model = { renderMeshes: [mesh], occlusionMesh: proxy };
+    let cutsceneActive = false;
 
     const runtime = new ScheduledActorRuntime({
       scene,
@@ -658,15 +774,25 @@ test("scheduled actors restore opaque materials when camera fading is disabled",
       bundledCharacterModels: {},
       bundledCharacterTextures: {},
       suppressDetachedCharacterVariants() {},
-      getActiveWorldId: () => "op00",
-      getCameraFadeEnabled: () => false,
+      getActiveWorldId: () => "yamanose",
+      getCameraOcclusionTarget: () => BABYLON.Vector3.Zero(),
+      getCameraFadeEnabled: () => !cutsceneActive,
     });
     runtime.entries = [{ defaultModel: model, models: new Map() }];
     runtime.updateEntry = () => {};
+    camera.computeWorldMatrix(true);
+    runtime.update(0);
+    assert.notEqual(mesh.material, material);
+    assert.equal(mesh.material.alpha, 0.5);
+    cutsceneActive = true;
     runtime.update(0);
 
     assert.equal(mesh.material, material);
     assert.equal(model.cameraFadeState, null);
+    cutsceneActive = false;
+    runtime.update(0);
+    assert.notEqual(mesh.material, material);
+    assert.equal(mesh.material.alpha, 0.5);
   } finally {
     scene.dispose();
     engine.dispose();

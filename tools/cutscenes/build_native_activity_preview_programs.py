@@ -4,8 +4,10 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import hashlib
 import json
+from collections import Counter
 from pathlib import Path
 from typing import Any
 
@@ -72,8 +74,65 @@ def constant(value: int, source: str) -> dict[str, Any]:
     }
 
 
+def startup_sound_actions(
+    program: dict[str, Any],
+    function_id: str,
+    expected_offsets: list[str],
+    routes: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Retain reviewed, unconditional owner audio before its first timing boundary.
+
+    A command lookup is not a timeline. Follow the entry's control-flow edges,
+    stopping at branches, calls, waits or AUTH playback, rather than sorting
+    file offsets and accidentally moving conditional/later music to startup.
+    The reviewed offset list makes an incomplete extraction fail closed.
+    """
+    owner = next(fn for fn in program["functions"] if fn["id"] == function_id)
+    blocks = {block["id"]: block for block in owner["blocks"]}
+    block_id = owner["entryBlock"]
+    visited = set()
+    commands = []
+    boundary = False
+    while block_id not in visited and not boundary:
+        visited.add(block_id)
+        block = blocks[block_id]
+        for action in block["actions"]:
+            arguments = action.get("arguments", [])
+            if action["kind"] in {
+                "directCall", "childCoroutineLaunch", "runtimeInterfaceCall",
+                "coroutineContinuationTransfer",
+            } or (
+                action.get("semanticId") == "native-operation-0050-aseq-activity-control"
+                and len(arguments) == 1
+            ):
+                boundary = True
+                break
+            if action.get("semanticId") != "sound-command-dispatch":
+                continue
+            if len(arguments) != 3 or any(arg.get("kind") != "constant" for arg in arguments):
+                raise ValueError("startup sound command must have three constant arguments")
+            word, *args = [require_word(arg["value"], "sound argument") for arg in arguments]
+            command_hex = word.to_bytes(4, "little").hex()
+            matches = [route for route in routes if (
+                route["commandHex"].lower() == command_hex
+                and route["exactArguments"] == args
+                and action["callFileOffset"] in route["callFileOffsets"]
+                and route["kind"] in {"music", "native-control-no-output"}
+            )]
+            if len(matches) != 1:
+                raise ValueError(f"unresolved startup sound command at {action['callFileOffset']}")
+            commands.append(copy.deepcopy(action))
+        if len(block["successors"]) != 1:
+            break
+        block_id = block["successors"][0]
+    if not expected_offsets or [action["callFileOffset"] for action in commands] != expected_offsets:
+        raise ValueError("reviewed startup sound commands are not an unconditional owner prefix")
+    return commands
+
+
 def activity_preview_function(
     activities: list[tuple[int, int | None, int | None]],
+    startup_commands: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     sequence = len(activities) > 1
     entry = "$activity-sequence" if sequence else "$activity-preview"
@@ -90,7 +149,7 @@ def activity_preview_function(
             if index + 1 < len(activities)
             else complete
         )
-        bind_actions = []
+        bind_actions = copy.deepcopy(startup_commands or []) if index == 0 else []
         if primary is not None and secondary is not None:
             bind_actions.append({
                 "kind": "engineOperation",
@@ -270,12 +329,36 @@ def build(routes: dict[str, Any]) -> dict[str, Any]:
         evidence_activities = list({
             activity["activityId"]: activity for activity in activities
         }.values())
+        startup_commands = []
+        startup_evidence = []
+        if startup := route.get("startupSound"):
+            owner_path = PROJECT_ROOT / startup["program"]
+            owner_program = json.loads(owner_path.read_text())
+            if (
+                owner_program["area"] != route["area"]
+                or owner_program["disc"] != manifest["source"]["disc"]
+                or owner_program["mapinfoSha256"] != startup["mapinfoSha256"]
+            ):
+                raise ValueError(f"{cutscene_id}: startup sound owner source changed")
+            startup_commands = startup_sound_actions(
+                owner_program, startup["function"], startup["callFileOffsets"],
+                manifest.get("ownerAudioCommands", []),
+            )
+            startup_evidence.append({
+                "kind": "unconditional-owner-startup-sound",
+                **startup,
+                "sha256": sha256(owner_path),
+            })
+        function = activity_preview_function(bindings, startup_commands)
+        action_kinds = Counter(
+            action["kind"] for block in function["blocks"] for action in block["actions"]
+        )
         programs.append({
             "id": program_id,
             "disc": manifest.get("source", {}).get("disc", 1),
             "area": require_text(route.get("area"), f"{cutscene_id} area").upper(),
             "entryFunction": entry_function,
-            "functions": [activity_preview_function(bindings)],
+            "functions": [function],
             "scriptedInteractions": [],
             "operation013eStaticBindings": [{
                 "slot": slot,
@@ -332,16 +415,12 @@ def build(routes: dict[str, Any]) -> dict[str, Any]:
                 "sha256": sha256(manifest_path),
                 "archiveMember": activity["archiveMember"],
                 "activitySha256": activity["sha256"],
-            } for activity in evidence_activities],
+            } for activity in evidence_activities] + startup_evidence,
             "summary": {
                 "functionCount": 1,
                 "blockCount": len(activities) * 4 + 1,
-                "actionCount": len(activities) * 4 + len(unique_bindings),
-                "actionKinds": {
-                    "engineOperation": len(activities) * 2 + len(unique_bindings),
-                    "runtimeInterfaceCall": len(activities),
-                    "coroutineContinuationTransfer": len(activities),
-                },
+                "actionCount": sum(action_kinds.values()),
+                "actionKinds": dict(action_kinds),
             },
             "selector": {"cutsceneId": cutscene_id},
         })

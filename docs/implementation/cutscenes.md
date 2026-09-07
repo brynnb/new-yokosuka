@@ -6,6 +6,11 @@ available for development. Run the cutscene Playwright suites against the Vite
 development server: their helper opens the internal selector through its source
 module, not a public menu button.
 
+The current selector uses generated preview programs over original AUTH data.
+These share the native program runtime but are not complete original room-owner
+scripts. A working preview does not establish branching, realtime interstitial,
+attachment, or persistent-state fidelity for the full original scene.
+
 This document describes how Shenmue cutscenes should be recovered, packaged,
 and played in the browser. A cutscene is treated as compiled native scene data,
 not as a list of hand-placed recreations.
@@ -39,6 +44,20 @@ bank, the native `M_TORI` object-motion bank, and both SCROLL resources. Native
 playback order is `0, 1, 2, 3, 6, 4, 5`; its two operation-`0x0098` writes are
 preserved as numbered MAP01/MAP02 visibility state.
 
+The vision's original owner starts `BGM019.SND` with sound command
+`A82B0000` at `MAPINFO.BIN` offset `0x192`, before the first AUTH. The preview
+compiler retains that command and the following verified no-output control
+through the route's `startupSound` declaration. It follows the owner's
+unconditional entry blocks, validates the exact arguments against
+`ownerAudioCommands`, and rejects commands beyond a branch, call, wait, or
+activity boundary. Merely registering a music filename does not start it.
+Playback uses the existing native room-music transaction: one track across all
+seven shots, released on completion, failure, or cancellation. This preserves
+startup ordering, not the full original owner's fade/interstitial timing.
+`tests/e2e/cutscene-music.spec.js` checks the real audio element's advancing
+playback time across a shot change and its release on cancellation; the
+interpreter integration tests also cover complete playback and startup failure.
+
 `M_TORI.MOTN` must not be passed through the humanoid MOTN decoder. Its eight
 `TMN_TAK_*` sequences use the engine's TMNM object-motion route (operation
 `0x00ec`) and a node-oriented stream. The shared TMNM presentation selects the
@@ -61,18 +80,41 @@ boundaries.
 
 ## Data ownership
 
+### Package soundtrack lifetime
+
+A package's default `startActivity: true` music cue begins with its first AUTH
+and stays owned by the enclosing native program across subsequent activities.
+An explicit `activitySlot` cue still belongs to that individual activity and
+can replace the package soundtrack. Completion, failure, cancellation, and
+world teardown release the music; replay starts a fresh stream.
+
+CATA1 demonstrates why these lifetimes differ: the hash-verified JU00 script
+starts `BGM051` with operation `0x006c`, arguments `[17576, 0, 0]`
+(`A8440000`), at `0x21fd2` in first-activity callback `0x21e8c`. Its next two
+callbacks contain no music-start command. Previously, shared activity cleanup
+stopped the package cue and the next AUTH restarted it. The existing package
+music runtime now preserves that cue through normal nested activity completion;
+rollback and final program cleanup still reset it. This is a shared ownership
+rule, not a kitten-specific override. The preview retains its existing looping
+render, not the original callback's full sound-control/interstitial timing.
+See `tools/evidence/cata1-native-lifecycle.json` for source hashes and offsets.
+
 ### Known scene-fidelity limits
 
 - Fuku-san's letter (TGMA) uses the exact `FUB_F` face and face table with the
   `FUB_M` body. Native FUB TALK deformation remains unrecovered, so the declared
   neutral face fallback does not borrow incompatible FUK talk poses. Voice timing
   and the shared facial presentation still run.
-- Kitten care (CATA1) plays its ordered AUTH activities with shared object identity
-  and FIXO attachments. Native realtime interstitial logic and final persistent
-  CATM/BOX1 gameplay-state replay remain incomplete; attachment support itself is
-  no longer a missing primitive.
+- Kitten care (CATA1) has an ordered AUTH preview, but its package does not yet
+  wire the recovered FIXO hand attachments into the shared attachment runtime.
+  Native realtime interstitial logic and final persistent CATM/BOX1
+  gameplay-state replay also remain incomplete. The shared attachment primitive
+  exists; scene-specific extraction and registration are still required.
 - Nozomi rescue presents the cinematic sequence, not the intervening interactive
   fights. A playable preview does not establish complete native gameplay fidelity.
+- BEBF's nightmare preview still omits its original owner's music dispatch.
+  Its `BGM129` command mapping exists, but unlike OP02 its startup commands have
+  not yet been carried into the preview. A mapping alone is not playback proof.
 
 For current capability priorities, run
 `python3 -m tools.cutscenes.audit_player_cutscene_capabilities` and inspect
@@ -115,6 +157,17 @@ Every four-character AUTH actor tag must have exactly one runtime category:
 - attached/carried object;
 - visual-effect actor; or
 - explicitly unsupported native actor.
+
+Scheduled residents remain lazily loaded according to server presence during
+ordinary exploration. Before a cutscene acquires them, AUTH preparation asks
+the scheduled-actor runtime to load the required existing resident bodies. This
+also covers offline previews and actors currently outside the world. It reuses
+the world's model queue/cache, preserves an already active authored variant,
+and leaves newly prepared bodies hidden until ownership begins. It must not
+create duplicate activity-only NPCs or select an arbitrary loaded variant.
+Resident preparation is repeated on replay even when AUTH/face assets are cached,
+because those bodies belong to the current world visit. Cancellation leaves a
+successful cached body unowned; world disposal aborts and discards late models.
 
 Ordinary character and object model selection comes from `CHARA.CHRT`.
 `DefImage` records map an image name to a model, while a `Character` record's
@@ -237,14 +290,14 @@ while its source fields preserve the evidence needed to reproduce it.
 Cutscene runtime code is divided by responsibility:
 
 - `play/config/cutscenes.js` is the user-facing catalog. An entry selects a
-  compiled owner program and its package. It contains no loaders, authored
-  playback order, or Babylon objects.
+  compiled program (currently a generated preview) and its package. It contains
+  no loaders, authored playback order, or Babylon objects.
 - `play/cutscenes/nativeCutscenePackages.js` is the immutable package registry
   data. It joins generated manifests, bundled asset URLs, actor definitions,
   presentation resources, environment metadata, and music cues.
 - `NativeCutscenePackageRuntime` builds the shared actor, camera, audio, face,
   hand, object, attachment, and map-layer adapters from a package definition.
-  The compiled owner is the only sequencing authority; every AUTH invocation
+  The selected compiled program is the sequencing authority; every AUTH invocation
   acquires an activity sublease from the package's independently stored
   resources.
 - `NativeCutsceneDirector` owns selection, gameplay-control acquisition,
@@ -281,11 +334,104 @@ A `CutsceneSession` should own the complete presentation lifecycle:
 6. stop or roll back cleanly on errors or world changes; and
 7. enter the configured normal world after completion.
 
+### Loading and failure ownership
+
+World preparation and selected-program preparation are separate operations.
+`NativeCutscenePackageRuntime.loadWorld()` acquires the environment resources;
+`prepareCutscene()` prewarms the selected program's activity dependencies before
+playback. Generated preview metadata supplies its exact clip set. Original
+owner programs are resolved through their reachable functions, child calls,
+and native resource bindings. Whole-archive prewarming is reserved for explicit
+diagnostics: an unavailable clip from an unrelated scene must not block the
+selected one. Multi-shot programs still prepare their complete selected set so
+shot transitions do not initiate animation, FACE, or HAND loading.
+
+The preview and director reserve cancellable startup ownership before awaiting
+physics, world, avatar, or package preparation. Cancellation settles the menu
+without a startup-error message and prevents a late result from acquiring
+gameplay controls. Non-abortable work must settle before a replacement mutates
+the same package; cancelling a promise is not equivalent to disposing resources
+that another loader is still constructing.
+
+Parallel presentation preparation waits for all siblings before reporting an
+error. Reusable successfully prepared FACE/HAND entries remain owned by their
+caches. An incomplete hand pair is different: neither side is published until
+both validate, and a failure disposes every newly created side. Rejected cache
+entries are evicted so a corrected asset or transient request can be retried.
+
+### Bounded browser validation
+
+Run the representative loading inventory against local Vite with restored
+runtime assets and a WebGL-capable browser:
+
+```sh
+npx playwright test tests/e2e/cutscene-loading.spec.js --project=chromium --headed --workers=1
+```
+
+It exercises D0W0's independent scene variants, OP02's multi-shot program, and
+CATA1's known-incomplete preview through the internal selector. Each test
+requires an actual presentation lease and an advancing timeline, captures
+rendered frames, then cancels back to the menu. Network failures without an HTTP
+response are recorded alongside HTTP errors and runtime exceptions. Screenshots
+and per-scene JSON records are local artifacts under `tests/reports/`.
+
+These are launch/progress/cancellation checks, not full-scene completion or
+visual-fidelity certification. Use `tests/e2e/cutscene-preview.spec.js` with
+`NY_E2E_CUTSCENE_ID` for a complete playback check. Review captured frames before
+claiming actors, attachments, or effects are visibly correct; parser and
+simulated-presentation reports cannot establish that.
+
+#### Observed browser inventory — 2026-09-07
+
+Checked on the public client baseline `5c76c81d` with the loading-reliability
+changes, local Vite, restored runtime assets, and headed Chromium using hardware
+WebGL2. These are short samples, not complete playback runs or loading-speed
+benchmarks. The initial strict suite reported one pass and two failures. The
+actor-loading and soundtrack-lifetime follow-ups now pass all three launch
+checks and both cross-activity music checks. Failures are not marked expected
+or skipped; verified browser media-range cancellations remain in the reports.
+
+| Selection | Observed result | Remaining issue |
+| --- | --- | --- |
+| `S1-D0W0-01` — Yamagishi's Advice | Follow-up passes: `YAMA:75e8096a55de` starts with zero loaded models; preparation loads its exact `YMG_L` body. Yamagishi is visible on the park bench, AUTH advances from frame 15 to 118, and cancellation returns to the selector without browser/asset errors. | Short sample only; later shots and full completion were not verified. No actor-specific model override or duplicate NPC was added. |
+| `S1-OP02-00` — Opening Vision | All seven selected AUTHs prepared; rendered frames reviewed; music advances across the first AUTH boundary and stops on cancellation without browser/asset errors. | Later activities and full completion were not verified in the browser. |
+| `S1-CATA1-01` — Megumi and the Kitten | Follow-up passes: three AUTHs prepared, rendered frames reviewed, `BGM051` advances from 0.71 to 105.06 seconds across the first AUTH boundary without restarting, and cancellation stops it at 108.54 seconds. | The original aborted requests are verified HTTP 206 Ogg range changes with healthy playback, not a missing asset. Full completion and the attachment/interstitial limitations above remain unverified/incomplete. |
+
+The debug panel currently formats absent aggregate program-time fields as
+`Track undefined` / `NaN`. The browser test observes accepted updates on the
+actual AUTH runtime instead; it does not substitute a simulated presentation.
+It imports the exact runtime module URLs observed on the page, preserving Vite
+version queries so instrumentation cannot accidentally observe a duplicate class.
+
+Yamagishi's failure was deferred residency, not ambiguous source mapping. His
+definition is `authoritative: true`, `modelCode: YMG_L`, with no model overrides;
+without a server snapshot his entry had `defaultModel: null` and `models.size: 0`.
+The acquisition error now reports loaded/enabled counts so these cases are
+distinguishable. `tests/e2e/cutscene-loading.spec.js` records preparation and
+selection and asserts reuse of that exact resident.
+
+CATA1's pre-fix browser run recorded music start → stop → start at the first
+AUTH boundary (playback time reset to 0.16 seconds). The fixed run records one
+start and one stop on cancellation. Its Ogg requests read the header, tail,
+then buffered ranges; some return `net::ERR_ABORTED` despite status 206 and
+healthy, unmuted playback (`readyState: 4`, no media error). Tests classify only
+the observed playing track's range aborts after verifying clock progress and
+owned cleanup, retaining the request details; HTTP errors and other unverified
+failures still fail. Reports are under `tests/reports/kitten-music-verified/`.
+The next content-facing work is the known CATA1 attachment/interstitial gap.
+
 While a cutscene owns presentation, ordinary gameplay must not compete with
 it. Disable controller simulation, gameplay camera updates, automatic room
 events, camera-proximity NPC fading, multiplayer presence publication, and
 durable location persistence. A cutscene-only room must never become a saved
 login location.
+
+Camera-proximity fading follows the director's active ownership as well as
+the world's `cutsceneOnly` flag. CATA1 borrows normal Yamanose, so checking the
+flag alone incorrectly made Megumi transparent in close-ups. The character
+assembly supplies the existing scheduled-actor fade gate; that runtime restores
+the original materials while disabled and resumes normal fading after release.
+Authored texture transparency (for example hair cutouts) remains intact.
 
 Normal `/play` worlds inherit `season`, `seasonIndex`, `weather`, and
 `weatherIndex` from the server world-state snapshot. A cutscene may override
@@ -303,6 +449,23 @@ switch them without reloading the area. Snow surface models are controlled by
 `weather: snow`, not merely by `season: winter`; winter can be clear, rainy,
 overcast, or snowy. A composition references existing canonical filenames and
 does not create another copy of their binaries.
+
+The shared MT5 loader applies `updateModelVisibility(sceneState)` when its
+resident roots finish loading, before they are returned for world activation.
+The same function still handles subsequent gameplay/viewer environment changes
+and preserves individual-model inspection. Do not rely on a clock change to
+initialize new geometry: CATA1's initial `currentSeason: 0` previously left both
+`MAP08`/`MAP09` and `MAP10`/`MAP11` enabled because all variants loaded but the
+environment value had not changed. This was a shared initial-load omission, not
+an alternate cutscene season rule.
+
+`tests/e2e/cutscene-environment.spec.js` checks CATA1's initial composition,
+switches summer → winter → summer through the live environment runtime, and
+follows authored playback into the second AUTH close-up. The 2026-09-07 headed
+run verified one enabled model per variant pair, Megumi's original opaque
+materials, and restoration of the gameplay fade gate after cancellation.
+Reviewed screenshots and state records are in
+`tests/reports/kitten-environment-verified/` (local, ignored artifacts).
 
 Precipitation collision belongs to physical world geometry, not camera state.
 After seasonal composition is resolved, `/play` snapshots the active map
@@ -738,9 +901,11 @@ activity package. The generated
 `tools/evidence/native-cutscene-package-readiness.json` joins exact
 operation-`0x013e` slot and pointer identities to their archive member and
 parsed payload, then records separate owner, payload, motion, audio, and
-package gates. Only registered and runtime-tested bindings are marked
-`production`; parsed but incomplete tracks remain `research-only` with their
-first concrete dependency blockers.
+package gates. Its current `production` / `registered-and-runtime-tested`
+labels mean a binding is packaged without a listed blocker, not that a browser
+run was observed. Treat them as packaging diagnostics, check recorded input
+hashes for freshness, and use browser results separately. Parsed but incomplete
+tracks retain their concrete dependency blockers.
 
 `tools/lib/NativeAseqActivityPack.mjs` is the shared deterministic compiler for
 archive-backed AUTH activity families. A package may reference a canonical
@@ -790,8 +955,9 @@ the following:
 
 ## Canonical ownership
 
-Every selectable native cutscene now enters through a compiled owner program.
-The program holds the scene lease and is the sole sequencing authority. An
+Every selectable native cutscene enters through a compiled program. Current
+selectors use generated preview programs rather than the complete original
+room owners. The program holds the scene lease and sequences activities. An
 AUTH call acquires an activity sublease by its native binding; the package
 retains actors and prepared resources across activity boundaries where native
 ownership requires it.
@@ -803,8 +969,9 @@ BEBF's owner order remains:
 60, 61, 62, 60, 63, 62
 ```
 
-OP00 likewise follows the 24 exact owner calls recovered from MAPINFO rather
-than an independently maintained browser playback order.
+OP00's generated preview retains the 24 selected AUTH calls recovered from
+MAPINFO. Preserving that sequence is not proof that every original owner
+operation executes during the preview.
 
 ## Removed surface
 

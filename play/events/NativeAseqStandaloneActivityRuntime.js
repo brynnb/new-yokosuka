@@ -18,12 +18,28 @@ export class NativeAseqStandaloneActivityRuntime {
     this.onComplete = onComplete;
     this.onStopped = onStopped;
     this.active = null;
+    this.pendingStart = null;
   }
 
-  async start({ id, activity } = {}) {
+  async start({ id, activity } = {}, { signal } = {}) {
     if (!id || !activity) throw new TypeError("AUTH standalone scene is required");
-    if (this.active) this.stop("restarted");
-    const started = await this.activityRuntime.startActivity(activity);
+    if (this.active || this.pendingStart) this.stop("restarted");
+    const controller = new AbortController();
+    const startSignal = signal ? AbortSignal.any([signal, controller.signal]) : controller.signal;
+    this.pendingStart = controller;
+    let started;
+    try {
+      startSignal.throwIfAborted();
+      started = await this.activityRuntime.startActivity(activity, { signal: startSignal });
+      // Even an adapter which cannot cancel its underlying work must release
+      // the exact late result rather than publishing a stopped scene as active.
+      if (startSignal.aborted) {
+        this.activityRuntime.stopActivity({ reason: "start-cancelled", activity: started });
+        startSignal.throwIfAborted();
+      }
+    } finally {
+      if (this.pendingStart === controller) this.pendingStart = null;
+    }
     this.active = {
       id,
       activity: { ...started, slot: activity.slot },
@@ -70,6 +86,7 @@ export class NativeAseqStandaloneActivityRuntime {
   }
 
   stop(reason = "stopped") {
+    this.pendingStart?.abort(new DOMException(String(reason), "AbortError"));
     const active = this.active;
     if (!active) return true;
     if (!this.#finish(reason)) return false;

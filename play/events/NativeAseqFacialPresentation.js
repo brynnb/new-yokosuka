@@ -188,7 +188,13 @@ export class NativeAseqFacialPresentation {
     const requested = [...new Set((actorTags || []).map(
       value => String(value || "").toUpperCase(),
     ))].filter(actorTag => this.definitions.has(actorTag));
-    await Promise.all(requested.map(actorTag => this.#prepareActor(actorTag)));
+    // Keep cache population within preparation, even when another actor fails.
+    // Callers may roll the package back as soon as this promise rejects.
+    const results = await Promise.allSettled(requested.map(
+      actorTag => this.#prepareActor(actorTag),
+    ));
+    const failed = results.find(result => result.status === "rejected");
+    if (failed) throw failed.reason;
     return true;
   }
 

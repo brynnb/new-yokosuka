@@ -38,6 +38,12 @@
       "worldId": "op02",
       "area": "OP02",
       "manifest": "play/assets/introduction/op02/manifest.json",
+      "startupSound": {
+        "program": "play/assets/introduction/op02/cutscene-program.generated.json",
+        "function": "0x7c",
+        "mapinfoSha256": "5463ad11cf2ed99764160795be2e1576a874d8c928b8ccc9db437ad32b25d6d0",
+        "callFileOffsets": ["0x192", "0x1aa"]
+      },
       "activities": [
         { "slot": 0 },
         { "slot": 1 },

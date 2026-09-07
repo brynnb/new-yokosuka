@@ -70,14 +70,14 @@ function hasDefinitions(value) {
 
 function createAssetLoader(definition, fetchArrayBuffer) {
   const urls = new Map(Object.entries(definition.assets));
-  return (sourcePath) => {
+  return (sourcePath, options) => {
     const url = urls.get(sourcePath);
     if (!url) {
       throw new Error(
         `cutscene package ${definition.id} asset ${sourcePath} is not bundled`,
       );
     }
-    return fetchArrayBuffer(url);
+    return fetchArrayBuffer(url, options);
   };
 }
 
@@ -328,7 +328,8 @@ export class NativeCutscenePackageRuntime {
     );
   }
 
-  async start(cutscene) {
+  async start(cutscene, { signal } = {}) {
+    signal?.throwIfAborted();
     if (this.activeCutsceneId) {
       throw new Error(`cutscene package ${this.id} is already playing`);
     }
@@ -337,7 +338,8 @@ export class NativeCutscenePackageRuntime {
       await this.playback.start({
         id: cutscene.id,
         activity: cutscene.activity,
-      });
+      }, { signal });
+      signal?.throwIfAborted();
       this.music.beginActivity(cutscene.activity);
       return true;
     } catch (error) {
@@ -387,8 +389,9 @@ export class NativeCutscenePackageRuntime {
     return this.playback.transportState?.() || Object.freeze({ active: false });
   }
 
-  async loadWorld(meshes) {
+  async loadWorld(meshes, { signal } = {}) {
     try {
+      signal?.throwIfAborted();
       // Scene objects and archive-local actors are independent, so retain the
       // parallel load. Waiting for every result before inspecting failures is
       // important: Promise.all would reject early and let the other loader
@@ -400,15 +403,36 @@ export class NativeCutscenePackageRuntime {
       ]);
       const failed = results.find(result => result.status === "rejected");
       if (failed) throw failed.reason;
+      signal?.throwIfAborted();
 
       this.mapLayers?.load(meshes);
       await this.attachedObjects?.load(meshes);
-      await this.presentation.prepareProgramAssets?.();
-      await this.activityRuntime.prepareAllActivities();
+      signal?.throwIfAborted();
     } catch (error) {
       this.clearWorld();
       throw error;
     }
+  }
+
+  async prepareCutscene(cutscene, { program, signal } = {}) {
+    signal?.throwIfAborted();
+    const selections = cutscene.program
+      ? this.activityRuntime.catalog.selectionsForProgram(
+          program,
+          cutscene.program.entryFunction,
+        )
+      : [cutscene.activity];
+    await this.presentation.prepareProgramAssets?.();
+    signal?.throwIfAborted();
+    await this.activityRuntime.prepareActivities(selections, { signal });
+    signal?.throwIfAborted();
+    // Native owners can reference actors outside the selected AUTH's tags.
+    // Prepare that declared ownership set without warming other world NPCs.
+    if (cutscene.program && this.presentation.prepareActors) {
+      await this.presentation.prepareActors({ actors: this.definition.actorTags }, { signal });
+      signal?.throwIfAborted();
+    }
+    return true;
   }
 
   beginProgram(detail = {}) {
@@ -758,13 +782,15 @@ export class NativeCutscenePackageRuntime {
     if (!this.activityRuntime) return null;
     return Object.freeze({
       acceptsActivity: detail => this.activityRuntime.acceptsActivity(detail),
-      startActivity: async (detail) => {
+      startActivity: async (detail, { signal } = {}) => {
+        signal?.throwIfAborted();
         // A native operation can mutate an actor and launch AUTH in the same
         // interpreter turn. Flush the program state before AUTH captures and
         // writes frame zero so the activity never starts from stale roots.
         if (this.programLease) this.updateProgramPresentation();
-        const activity = await this.activityRuntime.startActivity(detail);
+        const activity = await this.activityRuntime.startActivity(detail, { signal });
         try {
+          signal?.throwIfAborted();
           if (this.attachedObjects?.beginActivity(activity) === false) {
             throw new Error(
               `cutscene package ${this.id} rejected attached objects`,
@@ -788,7 +814,7 @@ export class NativeCutscenePackageRuntime {
       },
       stopActivity: (detail) => {
         const stopped = this.activityRuntime.stopActivity(detail);
-        if (stopped === true) this.#cleanupPresentation();
+        if (stopped === true) this.#cleanupPresentation({ completedActivity: true });
         return stopped;
       },
       rollbackActivity: (reason) => {
@@ -853,12 +879,14 @@ export class NativeCutscenePackageRuntime {
     else this.onStopped(reason, cutsceneId);
   }
 
-  #cleanupPresentation() {
+  #cleanupPresentation({ completedActivity = false } = {}) {
     const errors = [];
     for (const cleanup of [
       () => this.mapLayers?.end(),
       () => this.attachedObjects?.endTrack(),
-      () => this.music.reset(),
+      () => completedActivity
+        ? this.music.endActivity({ programActive: Boolean(this.programLease) })
+        : this.music.reset(),
     ]) {
       try {
         cleanup();

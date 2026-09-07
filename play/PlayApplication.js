@@ -622,6 +622,7 @@ function createPlayRuntime() {
       controller?.cameraTarget
       || actorRoot.position.add(new BABYLON.Vector3(0, 1.4, 0))
     ),
+    getCameraFadeEnabled: () => !nativeCutsceneDirector?.active,
     networkState: scheduledActorNetworkState,
     localDebug: LOCAL_DEBUG,
     remoteAvatar: {
@@ -929,6 +930,7 @@ function createPlayRuntime() {
         !nativeDialogueOverlay.active
         && !scriptEventDialoguePresenter.active
         && !nativeCutsceneDirector?.active
+        && !cutscenePreviewRuntime?.starting
       )
     ) {
       return;
@@ -949,6 +951,7 @@ function createPlayRuntime() {
     event.preventDefault();
     event.stopImmediatePropagation();
     if (stops) {
+      if (cutscenePreviewRuntime?.cancel()) return;
       if (nativeCutsceneDirector?.active) {
         nativeCutsceneDirector.stop("user-cancelled");
         return;
@@ -1676,6 +1679,7 @@ function createPlayRuntime() {
     if (disposed) return;
     disposed = true;
     lifetime.abort();
+    cutscenePreviewRuntime?.cancel("disposed");
     accountSession.connectionStatus.stop();
     // Controller reset temporarily clears the run toggle while a world is
     // loading. The user's actual choice is saved immediately when toggled, so
@@ -1834,9 +1838,10 @@ function createPlayRuntime() {
     getActiveWorld: () => worldRuntime.activeWorld,
     getController: () => controller,
     selectWorld,
+    cancelWorld: () => worldRuntime.cancel(),
     initializeWorld: initialize,
     ensureCharacter: ensureCutscenePreviewCharacter,
-    startDirector: cutscene => nativeCutsceneDirector.start(cutscene),
+    startDirector: (cutscene, options) => nativeCutsceneDirector.start(cutscene, options),
     stopDirector: reason => nativeCutsceneDirector.stop(reason),
     dialoguePersistence: nativeDialoguePersistence,
     physicsReady: forkliftPhysicsReady,

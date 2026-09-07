@@ -130,7 +130,8 @@ export class NativeProgramCutsceneRuntime {
     return Boolean(this.owner);
   }
 
-  async start(cutscene) {
+  async start(cutscene, { signal = null } = {}) {
+    if (signal?.aborted) return false;
     if (this.owner) {
       throw new Error("another native program cutscene is already active");
     }
@@ -206,24 +207,6 @@ export class NativeProgramCutsceneRuntime {
       this.getArea(),
       "active native cutscene area",
     ).toUpperCase();
-    if (activeArea !== programArea) {
-      if (!this.activateArea) {
-        throw new Error(
-          `cutscene ${cutsceneId} native area ${programArea} is not active`,
-        );
-      }
-      await this.activateArea(programArea);
-      const activatedArea = requireIdentifier(
-        this.getArea(),
-        "activated native cutscene area",
-      ).toUpperCase();
-      if (activatedArea !== programArea) {
-        throw new Error(
-          `cutscene ${cutsceneId} native area ${programArea} did not activate`,
-        );
-      }
-    }
-
     const owner = {
       cutsceneId,
       programId,
@@ -234,6 +217,35 @@ export class NativeProgramCutsceneRuntime {
       settlement: null,
       restoreArea: activeArea === programArea ? null : activeArea,
     };
+    // Area activation may become asynchronous. Reserve ownership before it,
+    // just as we do before context construction, so a stop is terminal.
+    this.owner = owner;
+    if (activeArea !== programArea) {
+      try {
+        if (!this.activateArea) {
+          throw new Error(
+            `cutscene ${cutsceneId} native area ${programArea} is not active`,
+          );
+        }
+        await this.activateArea(programArea, { signal });
+        if (this.owner !== owner) return false;
+        signal?.throwIfAborted();
+        const activatedArea = requireIdentifier(
+          this.getArea(),
+          "activated native cutscene area",
+        ).toUpperCase();
+        if (activatedArea !== programArea) {
+          throw new Error(
+            `cutscene ${cutsceneId} native area ${programArea} did not activate`,
+          );
+        }
+      } catch (error) {
+        if (this.owner !== owner) return false;
+        this.#finish(owner, false, error);
+        throw error;
+      }
+    }
+
     owner.unsubscribe = nativeRuntime.onSettled(({ kind, result } = {}) => {
       if (this.owner !== owner) return;
       if (
@@ -247,12 +259,11 @@ export class NativeProgramCutsceneRuntime {
       }
     });
     if (typeof owner.unsubscribe !== "function") {
+      this.#finish(owner, false, "invalid-settlement-subscription");
       throw new TypeError(
         "native scripted event settlement subscription is invalid",
       );
     }
-    this.owner = owner;
-
     let context;
     try {
       context = await this.createContext({ cutscene, program });
@@ -265,6 +276,10 @@ export class NativeProgramCutsceneRuntime {
     }
     if (this.owner !== owner) {
       return owner.settlement === "completed";
+    }
+    if (signal?.aborted) {
+      this.#finish(owner, false, "user-cancelled");
+      return false;
     }
     if (!context || typeof context !== "object" || Array.isArray(context)) {
       const error = new TypeError(

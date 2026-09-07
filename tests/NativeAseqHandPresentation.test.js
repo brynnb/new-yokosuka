@@ -329,3 +329,44 @@ test("OP00 Ryo hand selection follows native YKB slot-5 evidence", () => {
   assert.equal(hand.right.model.sourcePath.endsWith("/YKB_TR.MT5"), true);
   assert.equal(hand.rig.sourcePath.endsWith("/YKB_HM.BIN"), true);
 });
+
+test("a failed hand pair rolls back both sides and can be retried without orphan meshes", async () => {
+  const engine = new BABYLON.NullEngine({ renderWidth: 64, renderHeight: 64 });
+  const scene = new BABYLON.Scene(engine);
+  const definition = structuredClone(inventory.handAssets.AKIR);
+  const validRightKey = definition.right.rootRenderKey;
+  const hands = createNativeAseqHandPresentation({
+    scene,
+    actors: { activeActor: () => null },
+    definitions: { AKIR: definition },
+    loadAsset: filename => arrayBuffer(filename),
+  });
+  try {
+    // The bytes are valid; fail validation only after both real model loaders
+    // have created scene resources, exercising the successful sibling too.
+    definition.right.rootRenderKey = 32767;
+    const initialMeshes = scene.meshes.length;
+    const initialRoots = scene.transformNodes.length;
+    for (let attempt = 0; attempt < 2; attempt += 1) {
+      await assert.rejects(
+        hands.prepare({ actors: ["AKIR"] }),
+        /AKIR right HAND has an unexpected vertex count/,
+      );
+      assert.equal(hands.entries.size, 0);
+      assert.equal(hands.pending.size, 0);
+      assert.equal(scene.meshes.length, initialMeshes);
+      assert.equal(scene.transformNodes.length, initialRoots);
+    }
+    definition.right.rootRenderKey = validRightKey;
+    assert.equal(await hands.prepare({ actors: ["AKIR"] }), true);
+    const entry = hands.entries.get("AKIR");
+    assert.ok(entry.left.root && entry.right.root);
+    assert.equal(hands.pending.size, 0);
+    const preparedMeshes = scene.meshes.length;
+    await hands.prepare({ actors: ["AKIR"] });
+    assert.equal(scene.meshes.length, preparedMeshes);
+  } finally {
+    scene.dispose();
+    engine.dispose();
+  }
+});

@@ -43,15 +43,15 @@ function rootFilename(node) {
 // Zones like BETD have seasonal variants (summer/winter ground & foliage).
 // Zones like D000 have time-of-day variants (day/night building textures).
 // This function hides/shows the appropriate variant based on the active toggles.
-export function updateModelVisibility() {
-  if (!state.scene) return;
+export function updateModelVisibility(sceneState = state) {
+  if (!sceneState.scene) return;
 
-  const zoneData = zoneVariantProfile();
+  const zoneData = zoneVariantProfile(sceneState);
   const seasonBtn = globalThis.document?.getElementById("season-btn");
 
   // In single model mode, skip all variant filtering so individual files
   // can be inspected without being hidden by the variant system.
-  if (state.singleModelMode) {
+  if (sceneState.singleModelMode) {
     if (seasonBtn) seasonBtn.classList.add("hidden");
     return;
   }
@@ -61,7 +61,7 @@ export function updateModelVisibility() {
 
   if (hasSeasonGroups) {
     if (seasonBtn) seasonBtn.classList.remove("hidden");
-    const seasonPreset = seasonPresets[state.currentSeason];
+    const seasonPreset = seasonPresets[sceneState.currentSeason];
     if (seasonBtn) seasonBtn.innerText = `Season: ${seasonPreset.name}`;
   } else {
     if (seasonBtn) seasonBtn.classList.add("hidden");
@@ -72,7 +72,7 @@ export function updateModelVisibility() {
   // Hide files that always conflict (e.g. base building shells replaced by time variants)
   if (zoneData.alwaysHide) {
     for (const suffix of zoneData.alwaysHide) {
-      state.currentMeshes.forEach((mesh) => {
+      sceneState.currentMeshes.forEach((mesh) => {
         const fname = (mesh._filename || "").toUpperCase();
         if (fname.includes(`_${suffix}.`) || fname.includes(`_${suffix}_`)) {
           mesh.setEnabled(false);
@@ -82,7 +82,7 @@ export function updateModelVisibility() {
   }
 
   for (const group of zoneData.groups) {
-    const activeIndex = variantIndex(group);
+    const activeIndex = variantIndex(group, sceneState);
     if (activeIndex === null) continue;
 
     // Collect active suffixes so we don't accidentally hide a file that
@@ -94,7 +94,7 @@ export function updateModelVisibility() {
 
     // Only touch roots owned by this variant group. Other visibility owners
     // (native room state, cutscene state, and cutaways) remain intact.
-    for (const mesh of state.currentMeshes) {
+    for (const mesh of sceneState.currentMeshes) {
       const filename = (mesh._filename || "").toUpperCase();
       const controlled = [...controlledSet].some(
         suffix => matchesSuffix(filename, suffix),
@@ -110,12 +110,12 @@ export function updateModelVisibility() {
   // overlays in one MT5 root. Those cannot be selected by filename, so the
   // composition identifies the exact native texture IDs that own the faces.
   for (const group of zoneData.surfaceGroups || []) {
-    const activeIndex = variantIndex(group);
+    const activeIndex = variantIndex(group, sceneState);
     if (activeIndex === null) continue;
     const activeSet = new Set(entrySuffixes(group.variants[activeIndex]));
     const controlledSet = new Set(group.variants.flatMap(entrySuffixes));
     const assetSet = new Set(group.assets.map(asset => String(asset).toUpperCase()));
-    for (const root of state.currentMeshes) {
+    for (const root of sceneState.currentMeshes) {
       const filename = rootFilename(root);
       const ownsAsset = [...assetSet].some(
         asset => matchesSuffix(filename, asset),

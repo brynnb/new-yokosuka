@@ -121,7 +121,7 @@ export function createNativeCutsceneAssembly({
       }
     },
     onStopped: (cutscene, reason) => {
-      if (reason === "user-cancelled" || reason === "world-change") {
+      if (["user-cancelled", "world-change", "superseded", "disposed"].includes(reason)) {
         getPreviewRuntime().complete();
         return;
       }

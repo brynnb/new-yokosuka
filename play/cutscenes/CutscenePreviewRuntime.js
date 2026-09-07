@@ -15,6 +15,18 @@ export function cutsceneStopReason(reason) {
   return `${head}:${cutsceneStopReason(nested)}`;
 }
 
+function waitForPreview(promise, signal) {
+  let abort;
+  const cancelled = new Promise((_, reject) => {
+    abort = () => reject(signal.reason);
+    if (signal.aborted) abort();
+    else signal.addEventListener("abort", abort, { once: true });
+  });
+  return Promise.race([cancelled, promise]).finally(() => {
+    signal.removeEventListener("abort", abort);
+  });
+}
+
 export class CutscenePreviewRuntime {
   constructor({
     getCutscene,
@@ -22,6 +34,7 @@ export class CutscenePreviewRuntime {
     getActiveWorld,
     getController,
     selectWorld,
+    cancelWorld = () => {},
     initializeWorld,
     ensureCharacter,
     startDirector,
@@ -38,6 +51,7 @@ export class CutscenePreviewRuntime {
     this.getActiveWorld = getActiveWorld;
     this.getController = getController;
     this.selectWorld = selectWorld;
+    this.cancelWorld = cancelWorld;
     this.initializeWorld = initializeWorld;
     this.ensureCharacter = ensureCharacter;
     this.startDirector = startDirector;
@@ -49,17 +63,30 @@ export class CutscenePreviewRuntime {
     this.setStarting = setStarting;
     this.showNotice = showNotice;
     this.active = null;
+    this.startingPreview = null;
   }
 
-  async startLoaded(cutsceneId) {
+  get starting() { return this.startingPreview !== null; }
+
+  async startLoaded(cutsceneId, { signal = null } = {}) {
     const cutscene = this.getCutscene(cutsceneId);
     const world = cutscene ? this.getWorld(cutscene.worldId) : null;
     if (!cutscene || !world || this.getActiveWorld() !== world) {
       throw new Error(`Cutscene ${cutsceneId} is not loaded`);
     }
-    if (await this.startDirector(cutscene) !== true) {
-      throw new Error(`Cutscene ${cutsceneId} native runtime rejected start`);
-    }
+    // False is the director's normal cancelled-start result. Actual load or
+    // runtime failures reject and keep their original diagnostic evidence.
+    return await this.startDirector(cutscene, { signal });
+  }
+
+  cancel(reason = "user-cancelled") {
+    const preview = this.active || this.startingPreview;
+    if (!preview) return false;
+    preview.controller.abort(new DOMException(String(reason), "AbortError"));
+    if (preview.loadingWorld) this.cancelWorld();
+    this.stopDirector(reason);
+    if (this.active === preview) this.complete();
+    return true;
   }
 
   complete() {
@@ -73,7 +100,7 @@ export class CutscenePreviewRuntime {
 
   fail(cutscene, reason) {
     const preview = this.active;
-    if (!preview) return false;
+    if (!preview || preview.cutsceneId !== cutscene.id) return false;
     this.active = null;
     if (preview.dialogueSandbox) this.dialoguePersistence.endSandbox();
     preview.reject(new Error(
@@ -88,28 +115,37 @@ export class CutscenePreviewRuntime {
       this.showNotice("That cutscene is not available.");
       return false;
     }
+    if (this.startingPreview) this.cancel("superseded");
+    const request = { controller: new AbortController(), loadingWorld: true };
+    const { signal } = request.controller;
+    this.startingPreview = request;
     this.showNotice(`Loading ${cutscene.label}...`);
     this.setStarting(true);
     try {
-      const loaded = await this.selectWorld(this.getWorld(cutscene.worldId), {
+      const loaded = await waitForPreview(this.selectWorld(this.getWorld(cutscene.worldId), {
         controllerState: null,
         persistLocation: false,
-      });
+      }), signal);
+      request.loadingWorld = false;
       if (!loaded) {
         this.showNotice(`${cutscene.label} could not be loaded.`);
         return false;
       }
-      await this.ensureCharacter();
-      await this.startLoaded(cutsceneId);
+      await waitForPreview(this.ensureCharacter(), signal);
+      if (await this.startLoaded(cutsceneId, { signal }) !== true) return false;
       this.showNotice(`Playing ${cutscene.label}.`);
       return true;
     } catch (error) {
+      if (signal.aborted) return false;
       console.error(`Cutscene ${cutscene.id} stopped:`, error);
       this.stopDirector("start-failed");
       this.showNotice(`${cutscene.label} could not start.`);
       return false;
     } finally {
-      this.setStarting(false);
+      if (this.startingPreview === request) {
+        this.startingPreview = null;
+        this.setStarting(false);
+      }
     }
   }
 
@@ -121,52 +157,63 @@ export class CutscenePreviewRuntime {
     const world = cutscene ? this.getWorld(cutscene.worldId) : null;
     if (!cutscene || !world) throw new Error("That cutscene is not available.");
 
+    const preview = {
+      cutsceneId,
+      controller: new AbortController(),
+      dialogueSandbox: false,
+      loadingWorld: false,
+    };
+    const completion = new Promise((resolve, reject) => {
+      Object.assign(preview, { resolve, reject });
+    });
+    // Ownership begins before physics, world, or avatar preparation. A cancel
+    // can settle the menu immediately while underlying loaders unwind safely.
+    this.active = preview;
+    this.startingPreview = preview;
+    void completion.catch(() => {});
+    const { signal } = preview.controller;
     this.setStarting(true);
-    let completion;
     try {
-      await this.physicsReady;
+      await waitForPreview(this.physicsReady, signal);
       this.disposeMenuBackground();
       this.startPlayRuntime();
+      preview.loadingWorld = true;
       if (!this.getController()) {
-        await this.initializeWorld({
+        await waitForPreview(this.initializeWorld({
           initialWorldOverride: world,
           fetchServerState: false,
           persistInitialLocation: false,
-        });
+        }), signal);
       } else {
-        const loaded = await this.selectWorld(world, {
+        const loaded = await waitForPreview(this.selectWorld(world, {
           controllerState: null,
           persistLocation: false,
-        });
+        }), signal);
         if (!loaded) throw new Error(`${cutscene.label} could not be loaded.`);
       }
-      await this.ensureCharacter();
+      preview.loadingWorld = false;
+      await waitForPreview(this.ensureCharacter(), signal);
       if (!this.dialoguePersistence.gameplayState()) {
         this.dialoguePersistence.hydrate();
       }
       this.dialoguePersistence.beginSandbox();
-      completion = new Promise((resolve, reject) => {
-        this.active = {
-          cutsceneId,
-          dialogueSandbox: true,
-          resolve,
-          reject,
-        };
-      });
-      // The director may report failure while startLoaded is still pending.
-      // Observe that rejection now; the original promise remains the result
-      // returned to the caller when startup succeeds.
-      void completion.catch(() => {});
-      await this.startLoaded(cutsceneId);
+      preview.dialogueSandbox = true;
+      if (await this.startLoaded(cutsceneId, { signal }) !== true) {
+        if (this.active === preview) this.complete();
+      }
     } catch (error) {
-      if (this.active?.cutsceneId === cutsceneId) {
+      if (signal.aborted) return completion;
+      if (this.active === preview) {
         this.active = null;
-        this.dialoguePersistence.endSandbox();
+        if (preview.dialogueSandbox) this.dialoguePersistence.endSandbox();
       }
       this.stopDirector("start-failed");
       throw error;
     } finally {
-      this.setStarting(false);
+      if (this.startingPreview === preview) {
+        this.startingPreview = null;
+        this.setStarting(false);
+      }
     }
     return completion;
   }

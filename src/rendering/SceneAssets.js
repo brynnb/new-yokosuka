@@ -1,6 +1,6 @@
 import { fetchAsset, fetchShenmue2Asset, getTexturePack, getStandaloneTexturePack } from "../assetLoader.js";
 import { Mt5Loader } from "../Mt5Loader.js";
-import { buildHiddenSuffixes } from "../variants.js";
+import { buildHiddenSuffixes, updateModelVisibility } from "../variants.js";
 import { clearWorldSceneAssets, freezeSceneRoots } from "./SceneResources.js";
 import { spatiallyBatchMt7MapRoot } from "./SceneSpatialIndex.js";
 import { installWorldMt7MapEffect } from "./MapEffects.js";
@@ -255,6 +255,10 @@ export async function loadMt5Scene(state, prefix, options = {}) {
   }
   if (!cancelled()) {
     options.prepareRoots?.(state.currentMeshes);
+    // Keeping inactive variants resident must not make them visible. Apply
+    // the same composition rules used by live season/time updates now, even
+    // when the environment hasn't changed since the previous world load.
+    updateModelVisibility(state);
     freezeSceneRoots(state.currentMeshes);
     reportStatus(`Loaded scene ${prefix} (${totalLoaded} models)`);
   }

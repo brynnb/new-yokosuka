@@ -76,13 +76,29 @@ export class NativeAseqPresentationRuntime {
     this.faceProgramOwner = null;
   }
 
+  async prepareActors(detail, { signal } = {}) {
+    signal?.throwIfAborted();
+    if (this.actors.prepare) {
+      accepted(await this.actors.prepare(detail.actors, { signal }), "actor preparation");
+    }
+    signal?.throwIfAborted();
+    return true;
+  }
+
   async prepare(detail) {
-    const [facesPrepared, handsPrepared, clothPrepared, nodeMotionPrepared] = await Promise.all([
-      this.faces ? this.faces.prepare(detail) : true,
-      this.hands ? this.hands.prepare(detail) : true,
-      this.cloth?.prepare ? this.cloth.prepare(detail) : true,
-      this.nodeMotion ? this.nodeMotion.prepare(detail) : true,
-    ]);
+    // Rollback must not race a sibling that is still creating scene resources.
+    // Include synchronous adapter failures in the same settlement boundary.
+    const results = await Promise.allSettled([
+      () => this.faces ? this.faces.prepare(detail) : true,
+      () => this.hands ? this.hands.prepare(detail) : true,
+      () => this.cloth?.prepare ? this.cloth.prepare(detail) : true,
+      () => this.nodeMotion ? this.nodeMotion.prepare(detail) : true,
+    ].map(prepare => Promise.resolve().then(prepare)));
+    const failed = results.find(result => result.status === "rejected");
+    if (failed) throw failed.reason;
+    const [facesPrepared, handsPrepared, clothPrepared, nodeMotionPrepared] = results.map(
+      result => result.value,
+    );
     if (facesPrepared !== true) throw new Error("AUTH face preparation was rejected");
     if (handsPrepared !== true) throw new Error("AUTH hand preparation was rejected");
     if (clothPrepared !== true) throw new Error("AUTH cloth preparation was rejected");

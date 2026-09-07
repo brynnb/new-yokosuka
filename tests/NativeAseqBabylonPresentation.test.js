@@ -7,6 +7,29 @@ import {
   createNativeAseqBabylonCamera,
 } from "../play/events/NativeAseqBabylonPresentation.js";
 
+test("AUTH preparation requests only scheduled actors, excluding other ownership types", async () => {
+  const calls = [];
+  const runtime = createNativeAseqBabylonActors({
+    getPlayerModel: () => null,
+    syncPlayerTransform() {},
+    scheduledActors: {
+      prepareActivityActors: (codes, options) => (calls.push([codes, options.signal]), true),
+      beginActivityActors() {}, activityActor() {}, endActivityActors() {},
+    },
+    motionRuntime: { applyActivitySequence() {} },
+    ignoredActorTags: ["SKIP"],
+    playerActorAliases: ["AKID"],
+    sceneObjects: { actorTags: ["PROP"], begin() {}, activate() {}, end() {} },
+    packageActors: { actorTags: ["PACK"], begin() {}, end() {} },
+  });
+  const signal = new AbortController().signal;
+  assert.equal(await runtime.prepare(["AKID", "TEST", "SKIP", "PROP", "PACK"], { signal }), true);
+  assert.deepEqual(calls, [[["TEST"], signal]]);
+  runtime.program = {};
+  assert.equal(await runtime.prepare(["TEST"], { signal }), true);
+  assert.equal(calls.length, 1, "shot subleases reuse program-owned actors");
+});
+
 test("AUTH Babylon actors own exact roots and restore the player on rollback", () => {
   const engine = new BABYLON.NullEngine();
   const scene = new BABYLON.Scene(engine);

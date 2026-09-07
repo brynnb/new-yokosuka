@@ -178,6 +178,31 @@ test("stopping a native program cutscene cancels and cleans up exactly once", as
   );
 });
 
+test("stopping asynchronous area activation cannot launch a late program", async () => {
+  let release;
+  const gate = new Promise(resolve => { release = resolve; });
+  let area = "OTHER";
+  const context = playbackHarness({
+    getArea: () => area,
+    activateArea: async nextArea => {
+      // The actual room-script adapter changes area synchronously. Defer its
+      // completion to exercise the ownership gap before context preparation.
+      area = nextArea;
+      await gate;
+    },
+    restoreArea: nextArea => { area = nextArea; },
+  });
+  const pending = context.runtime.start(CUTSCENE);
+  assert.equal(context.runtime.active, true);
+  assert.equal(context.runtime.stop("user-cancelled"), true);
+  release();
+  assert.equal(await pending, false);
+  assert.equal(area, "OTHER");
+  assert.equal(context.native.calls.some(([kind]) => kind === "start"), false);
+  assert.equal(context.native.listeners.size, 0);
+  assert.deepEqual(context.stopped, [["user-cancelled", CUTSCENE.id]]);
+});
+
 test("native program failures preserve their settlement reason", async () => {
   const context = playbackHarness();
   await context.runtime.start(CUTSCENE);

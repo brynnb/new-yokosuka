@@ -1197,29 +1197,61 @@ export class ScheduledActorRuntime {
     return models.length === 1 ? models[0] : null;
   }
 
+  activityEntries(actorCodes) {
+    const normalized = Array.isArray(actorCodes)
+      ? actorCodes.map(value => String(value || "").toUpperCase())
+      : [];
+    if (!normalized.length || normalized.includes("")
+      || new Set(normalized).size !== normalized.length) {
+      throw new TypeError("scheduled activity actors must be a non-empty unique list");
+    }
+    return normalized.map(actorCode => {
+      const matches = this.entries.filter(entry => entry.definition.actorCode === actorCode);
+      if (matches.length !== 1) {
+        throw new Error(`scheduled activity actor ${actorCode} is not unique`);
+      }
+      return matches[0];
+    });
+  }
+
+  async prepareActivityActors(actorCodes, { signal } = {}) {
+    signal?.throwIfAborted();
+    const entries = this.activityEntries(actorCodes);
+    // Residents are streamed only while present in the network snapshot.
+    // A script must explicitly prepare its actors before synchronous ownership
+    // acquisition, even when those residents are off-map or offline. Reuse the
+    // world's model cache/queue; never spawn duplicate activity-only residents.
+    const results = await Promise.allSettled(entries.map(async entry => {
+      signal?.throwIfAborted();
+      entry.signal?.throwIfAborted();
+      const hasActiveModel = [...entry.models.values()].some(model => model.root.isEnabled());
+      if (!entry.defaultModel && !hasActiveModel) {
+        await this.ensureEntryModel(entry, entry.definition.modelCode || null);
+      }
+      // The model belongs to the world, not this request. Cancelling a preview
+      // leaves a successfully cached body hidden; changing worlds aborts and
+      // disposes it through ensureEntryModel's existing lifetime checks.
+      signal?.throwIfAborted();
+      entry.signal?.throwIfAborted();
+      if (!this.entries.includes(entry)) {
+        throw new DOMException("Scheduled actor world changed during preparation", "AbortError");
+      }
+    }));
+    const failed = results.find(result => result.status === "rejected");
+    if (failed) throw failed.reason;
+    return true;
+  }
+
   beginActivityActors(owner, actorCodes) {
     if (owner === null || owner === undefined) {
       throw new TypeError("scheduled activity actors require an owner");
     }
-    if (
-      !Array.isArray(actorCodes)
-      || actorCodes.length === 0
-      || new Set(actorCodes).size !== actorCodes.length
-    ) {
-      throw new TypeError("scheduled activity actors must be a non-empty unique list");
-    }
+    const entries = this.activityEntries(actorCodes);
     if ([...this.activityActorOwners.values()].includes(owner)) {
       throw new Error("scheduled activity owner is already active");
     }
-    const selected = actorCodes.map((value) => {
-      const actorCode = String(value || "").toUpperCase();
-      const matches = this.entries.filter(
-        entry => entry.definition.actorCode === actorCode,
-      );
-      if (matches.length !== 1) {
-        throw new Error(`scheduled activity actor ${actorCode} is not unique`);
-      }
-      const entry = matches[0];
+    const selected = entries.map((entry) => {
+      const actorCode = entry.definition.actorCode;
       const instanceId = entry.definition.instanceId || actorCode;
       if (this.activityActorOwners.has(instanceId)) {
         throw new Error(`scheduled activity actor ${actorCode} is already owned`);
@@ -1243,7 +1275,8 @@ export class ScheduledActorRuntime {
         || (entry.definition.activityOnly && activeModels.length !== 0)
       ) {
         throw new Error(
-          `scheduled activity actor ${actorCode} has no unique presentation model`,
+          `scheduled activity actor ${actorCode} has no unique presentation model`
+          + ` (default=${entry.defaultModel?.modelCode || "none"}, loaded=${models.length}, enabled=${activeModels.length})`,
         );
       }
       return {

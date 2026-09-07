@@ -223,6 +223,22 @@ export class NativeAseqBabylonActors {
     this.retainedActorComponents = new Map();
   }
 
+  scheduledActorCodes(actorTags) {
+    return actorTags.map(value => String(value || "").toUpperCase()).filter(value => (
+      !this.#isPlayerTag(value)
+      && !this.ignoredActorTags.has(value)
+      && !this.sceneObjectTags.has(value)
+      && !this.packageActorTags.has(value)
+    ));
+  }
+
+  async prepare(actorTags, { signal } = {}) {
+    signal?.throwIfAborted();
+    const scheduledCodes = this.scheduledActorCodes(actorTags);
+    if (scheduledCodes.length === 0 || this.program) return true;
+    return this.scheduledActors.prepareActivityActors(scheduledCodes, { signal });
+  }
+
   begin(owner, actorTags) {
     if (this.active) throw new Error("AUTH actors are already owned");
     const normalized = actorTags.map(value => String(value || "").toUpperCase());
@@ -259,14 +275,7 @@ export class NativeAseqBabylonActors {
     const hiddenPlayer = ownsPlayer ? null : captureRenderVisibility(
       this.getPlayerModel(),
     );
-    const scheduledCodes = normalized.filter(
-      value => (
-        !this.#isPlayerTag(value)
-        && !this.ignoredActorTags.has(value)
-        && !this.sceneObjectTags.has(value)
-        && !this.packageActorTags.has(value)
-      ),
-    );
+    const scheduledCodes = this.scheduledActorCodes(normalized);
     const sceneObjectCodes = normalized.filter(value => this.sceneObjectTags.has(value));
     const packageActorCodes = normalized.filter(value => this.packageActorTags.has(value));
     let scheduled = [];
@@ -407,12 +416,7 @@ export class NativeAseqBabylonActors {
     if (activePlayerTag && (!player?.root || !player?.loader || !player?.renderRoot)) {
       throw new Error("AUTH program player model is unavailable");
     }
-    const scheduledCodes = normalized.filter(value => (
-      !this.#isPlayerTag(value)
-      && !this.ignoredActorTags.has(value)
-      && !this.sceneObjectTags.has(value)
-      && !this.packageActorTags.has(value)
-    ));
+    const scheduledCodes = this.scheduledActorCodes(normalized);
     let scheduled = [];
     let sceneObjects = [];
     let packageActors = [];

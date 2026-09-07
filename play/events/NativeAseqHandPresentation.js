@@ -328,7 +328,13 @@ export class NativeAseqHandPresentation {
     const requested = [...new Set((actorTags || []).map(
       value => String(value || "").toUpperCase(),
     ))].filter(actorTag => this.definitions.has(actorTag));
-    await Promise.all(requested.map(actorTag => this.#prepareActor(actorTag)));
+    // Successful entries remain owned by the reusable cache. Wait for all
+    // actors before exposing failure so none can repopulate it after rollback.
+    const results = await Promise.allSettled(requested.map(
+      actorTag => this.#prepareActor(actorTag),
+    ));
+    const failed = results.find(result => result.status === "rejected");
+    if (failed) throw failed.reason;
     return true;
   }
 
@@ -604,10 +610,21 @@ export class NativeAseqHandPresentation {
         throw error;
       }
     };
-    const [left, right] = await Promise.all([
+    // Publish the pair atomically. A failed side disposes its own root, but
+    // its successful sibling has not entered the cache yet and must also be
+    // released. Settle both loads first so rollback cannot race a late root.
+    const sides = await Promise.allSettled([
       loadSide("left", leftBuffer),
       loadSide("right", rightBuffer),
     ]);
+    const failed = sides.find(side => side.status === "rejected");
+    if (failed) {
+      for (const side of sides) {
+        if (side.status === "fulfilled") side.value.root.dispose(false, true);
+      }
+      throw failed.reason;
+    }
+    const [left, right] = sides.map(side => side.value);
     return {
       actorTag,
       definition,

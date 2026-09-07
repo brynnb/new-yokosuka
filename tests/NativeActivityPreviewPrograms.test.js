@@ -24,6 +24,9 @@ import {
 import {
   createNativeScriptedEventRuntime,
 } from "../play/events/NativeScriptedEventRuntime.js";
+import { createNativeRoomScriptRuntime } from "../play/events/NativeRoomScriptRuntime.js";
+import { createNativeRoomMusicRuntime } from "../play/events/NativeRoomMusicRuntime.js";
+import { dispatchNativeRoomSoundCommand } from "../play/events/NativeRoomSoundCommands.js";
 
 const previewPack = JSON.parse(fs.readFileSync(
   "play/data/events/nativeActivityPreviewPrograms.generated.json",
@@ -33,6 +36,81 @@ const runtimePack = JSON.parse(fs.readFileSync(
   "play/data/events/nativeEventPrograms.generated.json",
   "utf8",
 ));
+
+for (const outcome of ["complete", "cancel", "activity-failure"]) {
+  test(`opening preview keeps source music across shots and releases it on ${outcome}`, async () => {
+    const program = previewPack.programs.find(value => value.id === "preview-s1-op02-00");
+    const manifest = JSON.parse(fs.readFileSync("play/assets/introduction/op02/manifest.json"));
+    const calls = [];
+    const music = createNativeRoomMusicRuntime({
+      playTemporaryTrack: track => (calls.push(["music-start", track]), true),
+      stopTemporaryTrack: track => (calls.push(["music-stop", track]), true),
+    });
+    const room = createNativeRoomScriptRuntime({
+      operation0050: {
+        beginProgram({ sceneState }) {
+          for (const activity of manifest.activities) {
+            sceneState.installNativeEmbeddedAuthBinding({ slot: activity.slot, activityId: activity.activityId });
+          }
+          return {};
+        },
+        updateProgram: () => true,
+        completeProgram: () => true,
+        rollbackProgram: () => true,
+        async startActivity({ slot, binding }) {
+          calls.push(["activity", slot]);
+          assert.equal(music.active?.trackId, "bgm019");
+          if (outcome === "activity-failure" && slot === 1) throw new Error("test asset failed");
+          return { slot, activityId: binding.activityId, durationFrames: 2 };
+        },
+        updateActivity: () => true,
+        stopActivity: () => true,
+        rollbackActivity: () => true,
+      },
+      scriptedScene: {
+        dispatchSoundCommand: detail => dispatchNativeRoomSoundCommand({
+          ...detail,
+          area: "OP02",
+          routes: manifest.ownerAudioCommands,
+          playMusicTrack: track => music.playSequence(track),
+        }),
+      },
+      transaction: {
+        begin: () => music.beginTransaction(),
+        commit: ({ external }) => music.endTransaction(external),
+        rollback: ({ external }) => music.endTransaction(external),
+      },
+    });
+    room.activateArea("OP02");
+    let settlement;
+    const runtime = createNativeScriptedEventRuntime({
+      programPack: { schema: "new-yokosuka-native-event-program-pack-v1", programs: [program] },
+      actorByteState: createNativeActorByteState(),
+      createExecution: detail => room.beginTransaction(detail),
+      onComplete: result => { settlement = result; },
+      onStopped: result => { settlement = result; },
+      onCancelled: result => { settlement = result; },
+    });
+    await runtime.startProgram({ programId: program.id, entryFunction: program.entryFunction, area: "OP02" });
+    for (let tick = 0; tick < 100 && !settlement; tick += 1) {
+      runtime.update(1 / 30);
+      await new Promise(resolve => setImmediate(resolve));
+      if (outcome === "cancel" && calls.filter(([kind]) => kind === "activity").length === 2) {
+        runtime.cancel("user-cancelled");
+      }
+    }
+    assert.ok(settlement, "preview settles");
+    assert.equal(settlement.status, { complete: "completed", cancel: "cancelled", "activity-failure": "stopped" }[outcome]);
+    assert.deepEqual(calls[0], ["music-start", "bgm019"]);
+    assert.deepEqual(calls.at(-1), ["music-stop", "bgm019"]);
+    assert.equal(calls.filter(([kind]) => kind === "music-start").length, 1);
+    assert.equal(calls.filter(([kind]) => kind === "music-stop").length, 1);
+    assert.equal(music.active, null);
+    if (outcome === "complete") {
+      assert.deepEqual(calls.filter(([kind]) => kind === "activity").map(([, slot]) => slot), [0, 1, 2, 3, 6, 4, 5]);
+    }
+  });
+}
 
 test("generated activity previews are ordinary canonical interpreter programs", async () => {
   assert.equal(

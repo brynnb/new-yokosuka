@@ -10,6 +10,21 @@ function requireFunction(value, label) {
   return value;
 }
 
+function waitForPreparation(promise, signal) {
+  if (!signal) return promise;
+  let abort;
+  const cancelled = new Promise((_, reject) => {
+    abort = () => reject(signal.reason);
+    if (signal.aborted) abort();
+    else signal.addEventListener("abort", abort, { once: true });
+  });
+  // Observe the adapter promise even if it aborted its caller synchronously
+  // while being constructed; a late rejection must never become unhandled.
+  return Promise.race([cancelled, promise]).finally(() => {
+    signal.removeEventListener("abort", abort);
+  });
+}
+
 export class NativeCutsceneDirector {
   constructor({
     registry,
@@ -55,14 +70,18 @@ export class NativeCutsceneDirector {
     this.worldContext = null;
     this.loadedRuntimeIds = new Set();
     this.loadingRuntimes = new Map();
+    this.startingRuntimes = new Map();
     this.worldGeneration = 0;
     this.activeCutscene = null;
+    this.pendingStart = null;
+    this.disposed = false;
     this.directActivityRuntime = null;
   }
 
   get active() {
     return Boolean(
       this.activeCutscene
+      || this.pendingStart
       || this.directActivityRuntime
       || [...this.runtimes.values()].some(runtime => runtime.active),
     );
@@ -113,34 +132,71 @@ export class NativeCutsceneDirector {
       : [];
   }
 
-  async start(cutscene) {
+  async start(cutscene, { signal: callerSignal = null } = {}) {
+    if (this.disposed) throw new Error("native cutscene director is disposed");
     if (this.activeCutscene || this.directActivityRuntime) {
       throw new Error("another native cutscene is already active");
     }
     const definition = this.registry.requireForCutscene(cutscene);
     const packageRuntime = this.#runtimeFor(definition);
-    await this.#ensureWorldLoaded(definition, packageRuntime);
-    if (this.activeCutscene || this.directActivityRuntime) {
-      throw new Error("another native cutscene became active while loading");
-    }
-    const kind = cutscene.program ? "program" : "package";
-    const runtime = kind === "program"
-      ? this.#programRuntimeFor(cutscene, packageRuntime)
-      : packageRuntime;
-    const releaseGameplay = this.acquireGameplay(cutscene);
-    if (typeof releaseGameplay !== "function") {
-      throw new Error("native cutscene gameplay ownership was not acquired");
-    }
-    const active = {
-      cutscene,
-      kind,
-      packageRuntime,
-      runtime,
-      releaseGameplay,
+    if (this.pendingStart) this.stop("superseded");
+    const controller = new AbortController();
+    const pending = { cutscene, controller };
+    this.pendingStart = pending;
+    const abortFromCaller = () => {
+      if (this.pendingStart === pending || this.activeCutscene?.controller === controller) {
+        this.stop("user-cancelled");
+      }
     };
-    this.activeCutscene = active;
+    callerSignal?.addEventListener("abort", abortFromCaller, { once: true });
+    if (callerSignal?.aborted) abortFromCaller();
+    const { signal } = controller;
+    let active = null;
     try {
-      const started = await runtime.start(cutscene);
+      signal.throwIfAborted();
+      let program = null;
+      if (cutscene.program && packageRuntime.prepareCutscene) {
+        const nativeRuntime = this.programRuntimeOptions?.getNativeRuntime?.();
+        program = nativeRuntime?.loadProgram
+          ? await waitForPreparation(nativeRuntime.loadProgram(
+              cutscene.program.programId, { signal },
+            ), signal)
+          : nativeRuntime?.program(cutscene.program.programId);
+        if (!program) throw new Error(`cutscene ${cutscene.id} native program is unavailable`);
+      }
+      await waitForPreparation(this.#ensureWorldLoaded(definition, packageRuntime, {
+        cutscene, program, signal,
+      }), signal);
+      signal.throwIfAborted();
+      if (this.activeCutscene || this.directActivityRuntime) {
+        throw new Error("another native cutscene became active while loading");
+      }
+      const kind = cutscene.program ? "program" : "package";
+      const runtime = kind === "program"
+        ? this.#programRuntimeFor(cutscene, packageRuntime)
+        : packageRuntime;
+      const releaseGameplay = this.acquireGameplay(cutscene);
+      if (typeof releaseGameplay !== "function") {
+        throw new Error("native cutscene gameplay ownership was not acquired");
+      }
+      active = { cutscene, kind, packageRuntime, runtime, releaseGameplay, controller };
+      this.activeCutscene = active;
+      this.pendingStart = null;
+      // A cancelled start can settle its caller before asynchronous adapters
+      // have released their resources. Retain that work as a package barrier
+      // so retry cannot acquire a new actor lease beneath late cleanup.
+      const starting = Promise.resolve()
+        .then(() => {
+          signal.throwIfAborted();
+          return runtime.start(cutscene, { signal });
+        })
+        .finally(() => {
+          if (this.startingRuntimes.get(definition.id) === starting) {
+            this.startingRuntimes.delete(definition.id);
+          }
+        });
+      this.startingRuntimes.set(definition.id, starting);
+      const started = await waitForPreparation(starting, signal);
       // A stop may settle an asynchronously preparing native program before
       // start() returns. That is a normal cancelled start, not a second error.
       if (this.activeCutscene !== active) return false;
@@ -149,13 +205,14 @@ export class NativeCutsceneDirector {
       }
       return true;
     } catch (error) {
+      if (signal.aborted) return false;
       const errors = [error];
       try {
-        runtime.stop("start-failed");
+        if (active) active.runtime.stop("start-failed");
       } catch (cleanupError) {
         errors.push(cleanupError);
       } finally {
-        if (this.activeCutscene === active) this.#releaseActive();
+        if (active && this.activeCutscene === active) this.#releaseActive();
       }
       if (errors.length > 1) {
         throw new AggregateError(
@@ -164,6 +221,9 @@ export class NativeCutsceneDirector {
         );
       }
       throw error;
+    } finally {
+      if (this.pendingStart === pending) this.pendingStart = null;
+      callerSignal?.removeEventListener("abort", abortFromCaller);
     }
   }
 
@@ -174,7 +234,18 @@ export class NativeCutsceneDirector {
   stop(reason = "stopped") {
     const active = this.activeCutscene;
     const errors = [];
+    const pending = this.pendingStart;
+    if (pending) {
+      this.pendingStart = null;
+      pending.controller.abort(new DOMException(String(reason), "AbortError"));
+      try {
+        this.onStopped(pending.cutscene, reason);
+      } catch (error) {
+        errors.push(error);
+      }
+    }
     if (active) {
+      active.controller?.abort(new DOMException(String(reason), "AbortError"));
       try {
         active.runtime.stop(reason);
       } catch (error) {
@@ -241,10 +312,20 @@ export class NativeCutsceneDirector {
   }
 
   clearWorld(worldId = null) {
+    if (
+      worldId === null
+      || this.pendingStart?.cutscene.worldId === worldId
+      || this.activeCutscene?.cutscene.worldId === worldId
+    ) {
+      if (this.pendingStart || this.activeCutscene) this.stop("world-change");
+    }
     const definitions = worldId === null
       ? this.registry.definitions()
       : this.registry.forWorld(worldId);
     for (const definition of definitions) {
+      this.loadingRuntimes.get(definition.id)?.controller.abort(
+        new DOMException("world-change", "AbortError"),
+      );
       if (!this.loadedRuntimeIds.has(definition.id)) continue;
       this.runtimes.get(definition.id)?.clearWorld();
       this.loadedRuntimeIds.delete(definition.id);
@@ -256,10 +337,13 @@ export class NativeCutsceneDirector {
   }
 
   dispose() {
+    this.disposed = true;
     this.stop("disposed");
     for (const runtime of this.runtimes.values()) runtime.dispose();
     this.loadedRuntimeIds.clear();
-    this.loadingRuntimes.clear();
+    for (const entry of this.loadingRuntimes.values()) {
+      entry.controller.abort(new DOMException("disposed", "AbortError"));
+    }
     this.worldGeneration += 1;
     this.worldContext = null;
   }
@@ -271,8 +355,10 @@ export class NativeCutsceneDirector {
         const activeProgram = this.activeCutscene?.kind === "program"
           ? this.activeCutscene
           : null;
+        const signal = activeProgram?.controller.signal;
         if (
-          (this.activeCutscene && !activeProgram)
+          this.pendingStart
+          || (this.activeCutscene && !activeProgram)
           || this.directActivityRuntime
         ) {
           throw new Error("another native activity is already active");
@@ -287,19 +373,21 @@ export class NativeCutsceneDirector {
           await this.#ensureWorldLoaded(
             this.#definitionForRuntime(runtime),
             runtime,
+            { signal },
           );
           const currentProgram = this.activeCutscene?.kind === "program"
             ? this.activeCutscene
             : null;
           if (
-            this.directActivityRuntime
+            this.pendingStart
+            || this.directActivityRuntime
             || (this.activeCutscene && !currentProgram)
             || currentProgram !== activeProgram
           ) {
             throw new Error("another native activity became active while loading");
           }
           this.directActivityRuntime = runtime;
-          return await runtime.nativeActivityAdapter().startActivity(detail);
+          return await runtime.nativeActivityAdapter().startActivity(detail, { signal });
         } catch (error) {
           if (this.directActivityRuntime === runtime) {
             this.directActivityRuntime = null;
@@ -436,8 +524,23 @@ export class NativeCutsceneDirector {
     return definition;
   }
 
-  async #ensureWorldLoaded(definition, runtime) {
-    if (this.loadedRuntimeIds.has(definition.id)) return;
+  async #ensureWorldLoaded(definition, runtime, {
+    cutscene = null, program = null, signal = null,
+  } = {}) {
+    signal?.throwIfAborted();
+    const starting = this.startingRuntimes.get(definition.id);
+    const insideActiveProgram = this.activeCutscene?.kind === "program"
+      && this.activeCutscene.packageRuntime === runtime;
+    if (starting && !insideActiveProgram) {
+      try {
+        await waitForPreparation(starting, signal);
+      } catch {
+        // A rejected/cancelled previous start still has to finish unwinding
+        // before a new package generation can safely acquire its resources.
+      }
+      signal?.throwIfAborted();
+      return this.#ensureWorldLoaded(definition, runtime, { cutscene, program, signal });
+    }
     const context = this.worldContext;
     if (context?.worldId !== definition.worldId) {
       throw new Error(
@@ -446,30 +549,50 @@ export class NativeCutsceneDirector {
     }
     const existing = this.loadingRuntimes.get(definition.id);
     if (existing) {
-      if (existing.generation === context.generation) return existing.promise;
       try {
-        await existing.promise;
+        await waitForPreparation(existing.promise, signal);
       } catch {
         // A superseded world load is expected to reject after rolling itself
         // back. Serialize the replacement so both generations never mutate
         // the same package runtime concurrently.
       }
-      return this.#ensureWorldLoaded(definition, runtime);
+      signal?.throwIfAborted();
+      return this.#ensureWorldLoaded(definition, runtime, { cutscene, program, signal });
     }
-    const entry = { generation: context.generation, promise: null };
+    if (!cutscene && this.loadedRuntimeIds.has(definition.id)) return;
+    const controller = new AbortController();
+    const preparationSignal = signal
+      ? AbortSignal.any([signal, controller.signal]) : controller.signal;
+    const entry = { generation: context.generation, promise: null, controller };
     entry.promise = Promise.resolve()
-      .then(() => runtime.loadWorld(context.meshes))
+      .then(async () => {
+        preparationSignal.throwIfAborted();
+        if (!this.loadedRuntimeIds.has(definition.id)) {
+          await runtime.loadWorld(context.meshes, { signal: preparationSignal });
+        }
+        preparationSignal.throwIfAborted();
+        if (cutscene && runtime.prepareCutscene) {
+          await runtime.prepareCutscene(cutscene, { program, signal: preparationSignal });
+        }
+        preparationSignal.throwIfAborted();
+      })
       .then(() => {
         if (
           this.worldContext !== context
           || this.worldGeneration !== context.generation
         ) {
-          runtime.clearWorld();
           throw new Error(
             `cutscene package ${definition.id} world changed while loading`,
           );
         }
         this.loadedRuntimeIds.add(definition.id);
+      })
+      .catch(error => {
+        // Keep this operation registered until all of its work has settled.
+        // A replacement must not have its resources cleared by an old load.
+        runtime.clearWorld();
+        this.loadedRuntimeIds.delete(definition.id);
+        throw error;
       })
       .finally(() => {
         if (this.loadingRuntimes.get(definition.id) === entry) {

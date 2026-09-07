@@ -494,6 +494,62 @@
               "actions": [
                 {
                   "kind": "engineOperation",
+                  "callFileOffset": "0x192",
+                  "operationId": 108,
+                  "operationHex": "0x006c",
+                  "arguments": [
+                    {
+                      "kind": "constant",
+                      "value": 11176,
+                      "hex": "0x00002ba8",
+                      "source": "0x184"
+                    },
+                    {
+                      "kind": "constant",
+                      "value": 0,
+                      "hex": "0x00000000",
+                      "source": "0x182"
+                    },
+                    {
+                      "kind": "constant",
+                      "value": 0,
+                      "hex": "0x00000000",
+                      "source": "0x180"
+                    }
+                  ],
+                  "adapterStatus": "proven",
+                  "semanticId": "sound-command-dispatch"
+                },
+                {
+                  "kind": "engineOperation",
+                  "callFileOffset": "0x1aa",
+                  "operationId": 108,
+                  "operationHex": "0x006c",
+                  "arguments": [
+                    {
+                      "kind": "constant",
+                      "value": 1184,
+                      "hex": "0x000004a0",
+                      "source": "0x19c"
+                    },
+                    {
+                      "kind": "constant",
+                      "value": 2,
+                      "hex": "0x00000002",
+                      "source": "0x19a"
+                    },
+                    {
+                      "kind": "constant",
+                      "value": 100,
+                      "hex": "0x00000064",
+                      "source": "0x198"
+                    }
+                  ],
+                  "adapterStatus": "proven",
+                  "semanticId": "sound-command-dispatch"
+                },
+                {
+                  "kind": "engineOperation",
                   "callFileOffset": "$activity-sequence:0:0050-start",
                   "operationId": 80,
                   "operationHex": "0x0050",
@@ -1475,59 +1531,70 @@
         {
           "kind": "exact-activity-manifest",
           "path": "play/assets/introduction/op02/manifest.json",
-          "sha256": "5c27f9bde70c5a24abb5e874772969493acdc1fcc3a9349c7bcfba7f30369028",
+          "sha256": "bbde4a9203977136b61468f4d6938cb6bcdf942d4697b7a1d481a76f92981f14",
           "archiveMember": "SEQDATA0.AUTH",
           "activitySha256": "5f8f06c137f57e245ea9b73022e49c148d4973ec2bbe83b7868ea3f6a6908fa3"
         },
         {
           "kind": "exact-activity-manifest",
           "path": "play/assets/introduction/op02/manifest.json",
-          "sha256": "5c27f9bde70c5a24abb5e874772969493acdc1fcc3a9349c7bcfba7f30369028",
+          "sha256": "bbde4a9203977136b61468f4d6938cb6bcdf942d4697b7a1d481a76f92981f14",
           "archiveMember": "SEQDATA1.AUTH",
           "activitySha256": "50d4bb03923ac6e442a0eb47ea78ff057aa740218385a47868a14399fa343ee2"
         },
         {
           "kind": "exact-activity-manifest",
           "path": "play/assets/introduction/op02/manifest.json",
-          "sha256": "5c27f9bde70c5a24abb5e874772969493acdc1fcc3a9349c7bcfba7f30369028",
+          "sha256": "bbde4a9203977136b61468f4d6938cb6bcdf942d4697b7a1d481a76f92981f14",
           "archiveMember": "SEQDATA2.AUTH",
           "activitySha256": "645e5a3ffd3bb3bd1b323c7768dd8a537d78ce5438034da49b31092b8dbea30b"
         },
         {
           "kind": "exact-activity-manifest",
           "path": "play/assets/introduction/op02/manifest.json",
-          "sha256": "5c27f9bde70c5a24abb5e874772969493acdc1fcc3a9349c7bcfba7f30369028",
+          "sha256": "bbde4a9203977136b61468f4d6938cb6bcdf942d4697b7a1d481a76f92981f14",
           "archiveMember": "SEQDATA3.AUTH",
           "activitySha256": "9a43456ff590a013ce54228d054749eb2d8fd5c4be55190579f4577528a19a50"
         },
         {
           "kind": "exact-activity-manifest",
           "path": "play/assets/introduction/op02/manifest.json",
-          "sha256": "5c27f9bde70c5a24abb5e874772969493acdc1fcc3a9349c7bcfba7f30369028",
+          "sha256": "bbde4a9203977136b61468f4d6938cb6bcdf942d4697b7a1d481a76f92981f14",
           "archiveMember": "SEQDATA6.AUTH",
           "activitySha256": "98ea8a7a95481e833bbfee9f6d2eb1c86241f953aa8f6c2db8ce245dee694653"
         },
         {
           "kind": "exact-activity-manifest",
           "path": "play/assets/introduction/op02/manifest.json",
-          "sha256": "5c27f9bde70c5a24abb5e874772969493acdc1fcc3a9349c7bcfba7f30369028",
+          "sha256": "bbde4a9203977136b61468f4d6938cb6bcdf942d4697b7a1d481a76f92981f14",
           "archiveMember": "SEQDATA4.AUTH",
           "activitySha256": "4bdd07b5be164fcbf47704017d7a6ba9107bcd1bbb585d0e6681c7af89684f75"
         },
         {
           "kind": "exact-activity-manifest",
           "path": "play/assets/introduction/op02/manifest.json",
-          "sha256": "5c27f9bde70c5a24abb5e874772969493acdc1fcc3a9349c7bcfba7f30369028",
+          "sha256": "bbde4a9203977136b61468f4d6938cb6bcdf942d4697b7a1d481a76f92981f14",
           "archiveMember": "SEQDATA5.AUTH",
           "activitySha256": "86f2c35e276ed399bbee9ab9c50ea6cd1f6217822224548a5269b413be004ffb"
+        },
+        {
+          "kind": "unconditional-owner-startup-sound",
+          "program": "play/assets/introduction/op02/cutscene-program.generated.json",
+          "function": "0x7c",
+          "mapinfoSha256": "5463ad11cf2ed99764160795be2e1576a874d8c928b8ccc9db437ad32b25d6d0",
+          "callFileOffsets": [
+            "0x192",
+            "0x1aa"
+          ],
+          "sha256": "4b3392e1e15066a402ba38134a123ec89c8d4e02d8d05b4839e9e3b231c01daf"
         }
       ],
       "summary": {
         "functionCount": 1,
         "blockCount": 29,
-        "actionCount": 28,
+        "actionCount": 30,
         "actionKinds": {
-          "engineOperation": 14,
+          "engineOperation": 16,
           "runtimeInterfaceCall": 7,
           "coroutineContinuationTransfer": 7
         }
@@ -12920,9 +12987,9 @@
       "summary": {
         "functionCount": 1,
         "blockCount": 17,
-        "actionCount": 19,
+        "actionCount": 20,
         "actionKinds": {
-          "engineOperation": 11,
+          "engineOperation": 12,
           "runtimeInterfaceCall": 4,
           "coroutineContinuationTransfer": 4
         }
@@ -13695,9 +13762,9 @@
       "summary": {
         "functionCount": 1,
         "blockCount": 17,
-        "actionCount": 19,
+        "actionCount": 20,
         "actionKinds": {
-          "engineOperation": 11,
+          "engineOperation": 12,
           "runtimeInterfaceCall": 4,
           "coroutineContinuationTransfer": 4
         }
@@ -18128,9 +18195,9 @@
       "summary": {
         "functionCount": 1,
         "blockCount": 25,
-        "actionCount": 28,
+        "actionCount": 30,
         "actionKinds": {
-          "engineOperation": 16,
+          "engineOperation": 18,
           "runtimeInterfaceCall": 6,
           "coroutineContinuationTransfer": 6
         }

@@ -86,11 +86,23 @@
     },
     "cleanupFunction": "0x2bcc4"
   },
+  "nativeMusicOwnership": {
+    "firstActivityCallback": "0x21e8c",
+    "startCall": "0x21fd2",
+    "operation": "0x006c",
+    "arguments": [17576, 0, 0],
+    "commandHex": "A8440000",
+    "bank": "BGM051.SND",
+    "bankSha256": "e62a03164f6896c31f4dba9bc2ae6d548d5bcd30d5ded1572de2302c51f6fb61",
+    "laterActivityCallbacksWithoutMusicStart": ["0x24050", "0x25958"],
+    "evidence": "The hash-matched JU00 owner program starts BGM051 in the first callback; the next two callbacks have no A8 music-start dispatch. The selector's existing package cue must survive nested AUTH completion, not restart for every member.",
+    "previewBoundary": "Retains the existing looping BGM051 render across the composite preview; original sound-control timing and realtime interstitials are not reproduced by this lifecycle fix."
+  },
   "runtimePolicy": {
     "world": "use the existing JU00 Yamanose composition and coordinate root",
     "entry": "acquire Ryo, canonical Megumi and kitten presentations, and the CHRT-bound package objects before native activity ownership",
     "objectOwnership": "each CHRT Character tag is one logical object even where tags share a model; preserve native visibility and FIXO transitions without duplicate presentation",
-    "audio": "use the exact 01CAT1 voice stream, A1_NEKO1 activity SFX bank, and BGM051 cue",
+    "audio": "use the exact 01CAT1 voice stream and A1_NEKO1 activity SFX bank; retain the BGM051 package soundtrack across AUTH boundaries and release it on completion, failure, or cancellation",
     "exit": "restore the persistent kitten and BOX1 room state, then release activity, attachment, face, audio, camera, actor, and control ownership exactly once"
   },
   "sources": [

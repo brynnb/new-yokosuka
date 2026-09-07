@@ -1,4 +1,6 @@
 import importlib.util
+import copy
+import json
 import unittest
 from pathlib import Path
 
@@ -11,6 +13,43 @@ SPEC.loader.exec_module(MODULE)
 
 
 class BuildNativeActivityPreviewProgramsTest(unittest.TestCase):
+    def op02_source(self):
+        program = json.loads((ROOT / "play/assets/introduction/op02/cutscene-program.generated.json").read_text())
+        manifest = json.loads((ROOT / "play/assets/introduction/op02/manifest.json").read_text())
+        return program, manifest["ownerAudioCommands"]
+
+    def test_startup_music_preserves_original_commands_once_before_first_shot(self):
+        program, routes = self.op02_source()
+        commands = MODULE.startup_sound_actions(program, "0x7c", ["0x192", "0x1aa"], routes)
+        self.assertEqual([arg["value"] for arg in commands[0]["arguments"]], [0x2BA8, 0, 0])
+        function = MODULE.activity_preview_function([(0, None, None), (1, None, None)], commands)
+        self.assertEqual(function["blocks"][0]["actions"][:2], commands)
+        self.assertEqual(function["blocks"][0]["actions"][2]["operationId"], 0x50)
+        self.assertEqual(len(function["blocks"][4]["actions"]), 1)
+        self.assertEqual([a["callFileOffset"] for b in function["blocks"] for a in b["actions"]
+                          if a.get("semanticId") == "sound-command-dispatch"], ["0x192", "0x1aa"])
+
+    def test_later_or_unresolved_sound_is_not_guessed_as_startup(self):
+        program, routes = self.op02_source()
+        with self.assertRaisesRegex(ValueError, "unconditional owner prefix"):
+            MODULE.startup_sound_actions(program, "0x7c", ["0x192", "0x1aa", "0x1892"], routes)
+        with self.assertRaisesRegex(ValueError, "unresolved startup"):
+            MODULE.startup_sound_actions(program, "0x7c", ["0x192", "0x1aa"], [])
+        changed = copy.deepcopy(program)
+        owner = next(fn for fn in changed["functions"] if fn["id"] == "0x7c")
+        owner["blocks"][0]["successors"].append("0x17e")
+        with self.assertRaisesRegex(ValueError, "unconditional owner prefix"):
+            MODULE.startup_sound_actions(changed, "0x7c", ["0x192", "0x1aa"], routes)
+
+    def test_dynamic_startup_command_is_rejected(self):
+        program, routes = self.op02_source()
+        owner = next(fn for fn in program["functions"] if fn["id"] == "0x7c")
+        action = next(a for b in owner["blocks"] for a in b["actions"]
+                      if a.get("callFileOffset") == "0x192")
+        action["arguments"][0]["kind"] = "frameField"
+        with self.assertRaisesRegex(ValueError, "constant arguments"):
+            MODULE.startup_sound_actions(program, "0x7c", ["0x192", "0x1aa"], routes)
+
     def test_single_activity_retains_existing_canonical_shape(self):
         function = MODULE.activity_preview_function([(1, 2, 3)])
 

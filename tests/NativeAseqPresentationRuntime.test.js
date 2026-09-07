@@ -51,6 +51,36 @@ test("AUTH presentation reset clears retained cross-shot actor state", () => {
   assert.deepEqual(calls, ["actors-reset"]);
 });
 
+test("preparation settles sibling resource loaders before exposing failure", async () => {
+  const gate = Promise.withResolvers();
+  const failure = new Error("FACE inventory mismatch");
+  const calls = [];
+  const adapter = prepare => ({
+    prepare, begin: () => true, play: () => true,
+    apply: () => true, end: () => true,
+  });
+  const { runtime } = harness({
+    faces: adapter(() => { throw failure; }),
+    hands: adapter(async () => {
+      calls.push("hand-loading");
+      await gate.promise;
+      calls.push("hand-loaded");
+      return true;
+    }),
+  });
+  const pending = runtime.prepare({ actors: ["AKIR"] }).catch(error => {
+    calls.push("rejected");
+    return error;
+  });
+  await new Promise(resolve => setImmediate(resolve));
+  assert.deepEqual(calls, ["hand-loading"]);
+  gate.resolve();
+  assert.equal(await pending, failure);
+  assert.deepEqual(calls, ["hand-loading", "hand-loaded", "rejected"]);
+  runtime.faces.prepare = () => true;
+  assert.equal(await runtime.prepare({ actors: ["AKIR"] }), true);
+});
+
 test("continuous AUTH programs retain detailed FACE ownership across shots", () => {
   const faceCalls = [];
   const faces = {

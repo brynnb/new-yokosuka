@@ -246,6 +246,172 @@ test("AUTH activity packages prewarm every shot before playback", async () => {
   assert.deepEqual(hooks, [selected.activityId]);
 });
 
+function selectionFor(record) {
+  return {
+    slot: record.slot,
+    binding: { primaryPointer: record.primaryPointer, secondaryPointer: record.secondaryPointer },
+  };
+}
+
+test("cached AUTH assets still prepare world-owned actors before each replay", async () => {
+  const { runtime, calls } = harness();
+  const actorPreparations = [];
+  runtime.presentation.prepareActors = (detail, { signal }) => {
+    actorPreparations.push({ actors: detail.actors, signal });
+    return true;
+  };
+  const selected = selectionFor(manifest.activities[0]);
+  const signal = new AbortController().signal;
+  await runtime.prepareActivities([selected], { signal });
+  await runtime.startActivity(selected, { signal });
+  runtime.rollbackActivity("test-replay");
+  await runtime.startActivity(selected, { signal });
+  runtime.rollbackActivity("test-complete");
+  assert.equal(actorPreparations.length, 3);
+  assert.ok(actorPreparations.every(record => record.signal === signal));
+  assert.deepEqual(actorPreparations[0].actors, manifest.activities[0].actors);
+  assert.equal(calls.filter(([kind]) => kind === "prepare").length, 1);
+});
+
+test("actor preparation cancellation never acquires AUTH presentation", async () => {
+  const { runtime, calls } = harness();
+  const controller = new AbortController();
+  runtime.presentation.prepareActors = () => { controller.abort(); return true; };
+  await assert.rejects(runtime.startActivity(selectionFor(manifest.activities[0]), {
+    signal: controller.signal,
+  }), { name: "AbortError" });
+  assert.equal(calls.some(([kind]) => kind === "begin"), false);
+  assert.equal(runtime.active, null);
+});
+
+test("selected AUTH preparation ignores unrelated missing shots but rejects and retries required ones", async () => {
+  const loaded = [];
+  const warmed = [];
+  const unavailablePath = `play/assets/dobuita/drauth/${manifest.activities[1].archiveMember}`;
+  let unavailable = true;
+  const runtime = createNativeAseqActivityRuntime({
+    manifest,
+    audioManifest,
+    loadAsset(path) {
+      loaded.push(path);
+      if (unavailable && path === unavailablePath) throw new Error("required AUTH download failed");
+      return fs.readFileSync(path);
+    },
+    presentation: {
+      prepare(detail) { warmed.push(detail.activityId); return true; },
+      beginActivity() { return {}; },
+      advanceActivity() { return true; },
+      endActivity() { return true; },
+    },
+  });
+  const selections = manifest.activities.map(selectionFor);
+  await runtime.prepareActivities([selections[0]]);
+  assert.equal(loaded.includes(unavailablePath), false);
+  assert.deepEqual(warmed, [manifest.activities[0].activityId]);
+  await assert.rejects(runtime.prepareActivities(selections), /required AUTH download failed/);
+  assert.equal(runtime.active, null);
+  unavailable = false;
+  await runtime.prepareActivities(selections);
+  assert.deepEqual(warmed, manifest.activities.map(record => record.activityId));
+  assert.equal(loaded.filter(path => path === unavailablePath).length, 2);
+});
+
+test("AUTH cancellation prevents further parsing and presentation and allows a clean retry", async () => {
+  const controller = new AbortController();
+  let complete;
+  let pending = true;
+  const loaded = [];
+  const warmed = [];
+  const runtime = createNativeAseqActivityRuntime({
+    manifest,
+    audioManifest,
+    loadAsset(path, { signal }) {
+      loaded.push(path);
+      if (pending) {
+        assert.equal(signal, controller.signal);
+        return new Promise(resolve => { complete = () => resolve(fs.readFileSync(path)); });
+      }
+      return fs.readFileSync(path);
+    },
+    presentation: {
+      prepare(detail) { warmed.push(detail.activityId); return true; },
+      beginActivity() { return {}; },
+      advanceActivity() { return true; },
+      endActivity() { return true; },
+    },
+  });
+  const selections = [selectionFor(manifest.activities[0])];
+  const loading = runtime.prepareActivities(selections, { signal: controller.signal });
+  controller.abort();
+  complete();
+  await assert.rejects(loading, { name: "AbortError" });
+  assert.equal(loaded.length, 1);
+  assert.deepEqual(warmed, []);
+  assert.equal(runtime.prepared.size, 0);
+  pending = false;
+  await runtime.prepareActivities(selections);
+  assert.deepEqual(warmed, [manifest.activities[0].activityId]);
+});
+
+test("selected programs preserve complete OP00 and OP02 shot dependencies", () => {
+  const pack = JSON.parse(fs.readFileSync("play/data/events/nativeEventPrograms.generated.json", "utf8"));
+  for (const [previewId, ownerId, file, count] of [
+    ["preview-s1-000", "S1-OP00-A0114", "play/assets/introduction/op00/manifest.json", 24],
+    ["preview-s1-op02-00", "S1-OP02-00", "play/assets/introduction/op02/manifest.json", 7],
+  ]) {
+    const catalog = new NativeAseqActivityCatalog(JSON.parse(fs.readFileSync(file, "utf8")));
+    const preview = catalog.selectionsForProgram(pack.programs.find(program => program.id === previewId));
+    const owner = catalog.selectionsForProgram(pack.programs.find(program => program.id === ownerId));
+    assert.equal(preview.length, count);
+    assert.equal(owner.length, count);
+    assert.deepEqual(new Set(owner.map(value => catalog.resolve(value).activityId)),
+      new Set(preview.map(value => catalog.resolve(value).activityId)));
+  }
+});
+
+test("owner dependency preparation follows all child branches without unrelated room entries", () => {
+  const catalog = new NativeAseqActivityCatalog(manifest);
+  const binding = (record, call) => ({ ...selectionFor(record).binding, slot: record.slot, callFileOffsets: [call] });
+  const program = {
+    id: "room-owner",
+    entryFunction: "entry",
+    operation013eStaticBindings: [
+      binding(manifest.activities[0], "first"),
+      binding(manifest.activities[1], "second"),
+      { slot: 90, primaryPointer: 1, secondaryPointer: 2, callFileOffsets: ["unrelated"] },
+    ],
+    functions: [
+      { id: "entry", blocks: [{ actions: [{ kind: "childCoroutineLaunch", targetFileOffsets: ["left", "right"] }] }] },
+      { id: "left", blocks: [{ actions: [{ callFileOffset: "first" }] }] },
+      { id: "right", blocks: [{ actions: [{ callFileOffset: "second" }] }] },
+      { id: "unrelated", blocks: [{ actions: [{ callFileOffset: "unrelated" }] }] },
+    ],
+  };
+  assert.deepEqual(new Set(catalog.selectionsForProgram(program).map(value => catalog.resolve(value).activityId)),
+    new Set(manifest.activities.map(record => record.activityId)));
+  program.functions[0].blocks[0].actions.push({
+    operationId: 0x0050, callFileOffset: "dynamic-start", arguments: [{ kind: "frame-field", offset: 0 }],
+  });
+  assert.throws(() => catalog.selectionsForProgram(program), /unresolved activity dependencies at dynamic-start/);
+});
+
+test("owner dependencies preserve exact embedded resource identity when slots are reused", () => {
+  const multiple = structuredClone(op02Manifest);
+  multiple.activities[1].slot = multiple.activities[0].slot;
+  const catalog = new NativeAseqActivityCatalog(multiple);
+  const chosen = multiple.activities[0];
+  const program = {
+    id: "embedded-owner", entryFunction: "entry",
+    authResourceSelection: { ownerCalls: [{ slot: chosen.slot, callFileOffset: "start", resource: { sha256: chosen.sha256 } }] },
+    functions: [{ id: "entry", blocks: [{ actions: [{
+      operationId: 0x0050, callFileOffset: "start", arguments: [{ kind: "constant", value: chosen.slot }],
+    }] }] }],
+  };
+  assert.deepEqual(catalog.selectionsForProgram(program).map(value => catalog.resolve(value).activityId), [chosen.activityId]);
+  delete program.authResourceSelection;
+  assert.throws(() => catalog.selectionsForProgram(program), /has no exact resource selection/);
+});
+
 test("AUTH activity cleans acquired presentation when its started hook rejects", async () => {
   const ended = [];
   const runtime = createNativeAseqActivityRuntime({
@@ -265,6 +431,28 @@ test("AUTH activity cleans acquired presentation when its started hook rejects",
   }), /start was rejected/);
   assert.equal(ended.length, 1);
   assert.equal(ended[0].reason, "activity-start-failed");
+});
+
+test("AUTH cancellation after presentation acquisition releases that owner before activation", async () => {
+  const controller = new AbortController();
+  const owner = {};
+  const ended = [];
+  const runtime = createNativeAseqActivityRuntime({
+    manifest,
+    audioManifest,
+    loadAsset: path => fs.readFileSync(path),
+    presentation: {
+      beginActivity() { controller.abort(); return owner; },
+      advanceActivity() { return true; },
+      endActivity(detail) { ended.push(detail); return true; },
+    },
+  });
+  await assert.rejects(runtime.startActivity(selectionFor(manifest.activities[0]), {
+    signal: controller.signal,
+  }), { name: "AbortError" });
+  assert.equal(runtime.active, null);
+  assert.equal(ended.length, 1);
+  assert.equal(ended[0].owner, owner);
 });
 
 test("AUTH activity catalog resolves only the exact native slot and pointer pair", () => {

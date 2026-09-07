@@ -187,6 +187,89 @@ export class NativeAseqActivityCatalog {
         activityId: activity.activityId,
       })));
   }
+
+  selectionsForProgram(program, entryFunction = program?.entryFunction) {
+    if (!program || !Array.isArray(program.functions)) {
+      throw new TypeError("AUTH preparation requires a resolved native program");
+    }
+    const selected = new Map();
+    const add = selection => {
+      const record = this.resolve(selection);
+      selected.set(record.activityId, selection);
+    };
+    if (program.preview) {
+      const selections = program.preview.activities
+        || (program.preview.activity ? [program.preview.activity] : []);
+      for (const selection of selections) add(selection);
+    } else {
+      // Follow both sides of branches and all child/direct calls. Preparation
+      // must cover every possible shot from this entry, not just the first
+      // frame's path, but unrelated entries in the same room are not required.
+      const functions = new Map(program.functions.map(fn => [fn.id, fn]));
+      const pending = [entryFunction];
+      const visited = new Set();
+      const actions = [];
+      while (pending.length > 0) {
+        const functionId = pending.pop();
+        if (visited.has(functionId)) continue;
+        visited.add(functionId);
+        const fn = functions.get(functionId);
+        if (!fn) throw new Error(`AUTH program ${program.id} function ${functionId} is unavailable`);
+        for (const action of fn.blocks.flatMap(block => block.actions || [])) {
+          actions.push(action);
+          if (action.kind === "directCall" || action.kind === "childCoroutineLaunch") {
+            const targets = action.targetFileOffsets || [action.targetFileOffset];
+            for (const target of targets) pending.push(target);
+          }
+        }
+      }
+      const calls = new Set(actions.map(action => action.callFileOffset));
+      for (const binding of program.operation013eStaticBindings || []) {
+        if (binding.callFileOffsets?.some(offset => calls.has(offset))) {
+          add({ slot: binding.slot, binding });
+        }
+      }
+      const embedded = [...this.activities.values()].filter(
+        record => record.binding?.kind === "map-embedded-slot",
+      );
+      const exactEmbeddedSlots = new Set();
+      for (const owner of program.authResourceSelection?.ownerCalls || []) {
+        if (!calls.has(owner.callFileOffset)) continue;
+        const record = embedded.find(value => value.slot === owner.slot
+          && value.sha256 === owner.resource?.sha256);
+        if (!record) throw new Error(`AUTH program ${program.id} embedded slot ${owner.slot} is unavailable`);
+        add({ slot: record.slot, binding: { kind: "map-embedded-slot", activityId: record.activityId } });
+        exactEmbeddedSlots.add(record.slot);
+      }
+      for (const action of actions) {
+        if (action.operationId !== 0x0050) continue;
+        const slot = action.arguments?.[0];
+        // Negative 0x0050 modes poll/cancel rather than select an activity.
+        if (slot?.kind === "constant" && (slot.value | 0) < 0) continue;
+        if (slot?.kind !== "constant") {
+          // Merely having some reachable slot installs does not establish the
+          // complete range of a dynamic selector. Require producer evidence
+          // before claiming every possible activity has been prepared.
+          throw new Error(`AUTH program ${program.id} has unresolved activity dependencies at ${action.callFileOffset}`);
+        }
+        if (exactEmbeddedSlots.has(slot.value)) continue;
+        const records = embedded.filter(record => record.slot === slot.value);
+        if (records.length > 1) {
+          throw new Error(`AUTH program ${program.id} embedded slot ${slot.value} has no exact resource selection`);
+        }
+        for (const record of records) {
+          add({ slot: record.slot, binding: { kind: "map-embedded-slot", activityId: record.activityId } });
+        }
+        if (!records.length && ![...selected.values()].some(value => value.slot === slot.value)) {
+          throw new Error(`AUTH program ${program.id} slot ${slot.value} has no reachable resource binding`);
+        }
+      }
+    }
+    if (selected.size === 0) {
+      throw new Error(`AUTH program ${program.id} selects no packaged activities`);
+    }
+    return [...selected.values()];
+  }
 }
 
 function resolveCommand(command, prepared, motionByOffset, audioCatalog) {
@@ -320,32 +403,41 @@ export class NativeAseqActivityRuntime {
     this.lastUpdateError = null;
   }
 
-  async loadExact(output) {
-    const bytes = byteView(await this.loadAsset(output.path), output.path);
+  async loadExact(output, { signal } = {}) {
+    signal?.throwIfAborted();
+    const bytes = byteView(await this.loadAsset(output.path, { signal }), output.path);
+    signal?.throwIfAborted();
     if (bytes.byteLength !== output.byteLength) {
       throw new Error(`${output.path} byte length changed`);
     }
     if (await sha256Hex(bytes) !== output.sha256) {
       throw new Error(`${output.path} SHA-256 changed`);
     }
+    signal?.throwIfAborted();
     return bytes;
   }
 
-  async prepare(record) {
+  async prepare(record, { signal } = {}) {
+    signal?.throwIfAborted();
     if (!this.prepared.has(record.activityId)) {
-      this.prepared.set(record.activityId, this.prepareUncached(record));
+      this.prepared.set(record.activityId, this.prepareUncached(record, { signal }));
     }
+    const pending = this.prepared.get(record.activityId);
     try {
-      return await this.prepared.get(record.activityId);
+      const prepared = await pending;
+      signal?.throwIfAborted();
+      return prepared;
     } catch (error) {
-      this.prepared.delete(record.activityId);
+      if (this.prepared.get(record.activityId) === pending) {
+        this.prepared.delete(record.activityId);
+      }
       throw error;
     }
   }
 
-  async prepareUncached(record) {
+  async prepareUncached(record, { signal } = {}) {
     const authOutput = this.catalog.outputs.get(record.assetPath);
-    const auth = await this.loadExact(authOutput);
+    const auth = await this.loadExact(authOutput, { signal });
     const sequence = parseAuthSequence(auth);
     const movement = parseAuthMovement(auth);
     const camera = parseAuthCamera(auth);
@@ -365,7 +457,7 @@ export class NativeAseqActivityRuntime {
       const indices = sequence.motions
         .filter(command => command.motionBank === bank)
         .map(command => command.sequenceIndex);
-      motionPackages.set(bank, MotnLoader.parse(await this.loadExact(output), {
+      motionPackages.set(bank, MotnLoader.parse(await this.loadExact(output, { signal }), {
         sequenceIndices: [...new Set(indices)],
       }));
     }
@@ -397,60 +489,94 @@ export class NativeAseqActivityRuntime {
     return Object.freeze({ ...base, frames: Object.freeze(frames) });
   }
 
-  async preparePresentation(prepared) {
+  async preparePresentation(prepared, { signal } = {}) {
+    signal?.throwIfAborted();
+    // Face/hand assets are cached per AUTH, but resident bodies are scoped to
+    // the current world visit. Recheck them even on a cached activity replay.
+    if (this.presentation.prepareActors) {
+      const accepted = await this.presentation.prepareActors(presentationDetail(prepared), { signal });
+      signal?.throwIfAborted();
+      if (accepted !== true) throw new Error(`AUTH activity ${prepared.record.activityId} actor preparation was rejected`);
+    }
     if (typeof this.presentation.prepare !== "function") return true;
     const { activityId } = prepared.record;
     if (!this.presentationPrepared.has(activityId)) {
       this.presentationPrepared.set(activityId, Promise.resolve().then(async () => {
+        signal?.throwIfAborted();
         const accepted = await this.presentation.prepare(
           presentationDetail(prepared),
         );
+        signal?.throwIfAborted();
         if (accepted !== true) {
           throw new Error(`AUTH activity ${activityId} preparation was rejected`);
         }
         return true;
       }));
     }
+    const pending = this.presentationPrepared.get(activityId);
     try {
-      return await this.presentationPrepared.get(activityId);
+      const result = await pending;
+      signal?.throwIfAborted();
+      return result;
     } catch (error) {
-      this.presentationPrepared.delete(activityId);
+      if (this.presentationPrepared.get(activityId) === pending) {
+        this.presentationPrepared.delete(activityId);
+      }
       throw error;
     }
   }
 
-  async prepareAllActivities() {
-    // Native packages contain the complete shot list up front. Parse and
-    // validate every AUTH and load its reusable presentation assets before
-    // playback so a cut never performs file, digest, motion, FACE, or HAND
-    // preparation on the render boundary.
+  async prepareActivities(selections, { signal } = {}) {
+    // Prewarm the complete selected sequence before its first frame. A package
+    // can contain unrelated scenes whose unavailable assets must not block it.
     const preparedActivities = [];
-    for (const record of this.catalog.activities.values()) {
-      preparedActivities.push(await this.prepare(record));
+    const records = new Map(selections.map(selection => {
+      const record = this.catalog.resolve(selection);
+      return [record.activityId, record];
+    }));
+    for (const record of records.values()) {
+      preparedActivities.push(await this.prepare(record, { signal }));
     }
     for (const prepared of preparedActivities) {
-      await this.preparePresentation(prepared);
+      await this.preparePresentation(prepared, { signal });
     }
+    signal?.throwIfAborted();
     return true;
   }
 
-  async startActivity({ slot, binding } = {}) {
+  async prepareAllActivities(options) {
+    // Explicit whole-package diagnostics only; normal playback selects its
+    // program's dependencies instead of warming every scene in the archive.
+    return this.prepareActivities([...this.catalog.activities.values()].map(record => ({
+      slot: record.slot,
+      binding: record.binding?.kind === "map-embedded-slot"
+        ? { kind: "map-embedded-slot", activityId: record.activityId }
+        : { primaryPointer: record.primaryPointer, secondaryPointer: record.secondaryPointer },
+    })), options);
+  }
+
+  async startActivity({ slot, binding } = {}, { signal } = {}) {
+    signal?.throwIfAborted();
     if (this.active) throw new Error("an AUTH activity is already active");
     this.lastUpdateError = null;
     const record = this.catalog.resolve({ slot, binding });
-    const prepared = await this.prepare(record);
+    const prepared = await this.prepare(record, { signal });
     const detail = presentationDetail(prepared);
     const activityPrepared = await this.onActivityPreparing?.(record);
+    signal?.throwIfAborted();
     if (activityPrepared !== undefined && activityPrepared !== true) {
       throw new Error(`AUTH activity ${record.activityId} preparation was rejected`);
     }
-    await this.preparePresentation(prepared);
+    await this.preparePresentation(prepared, { signal });
+    signal?.throwIfAborted();
     const owner = await this.presentation.beginActivity(detail);
     if (owner === null || owner === undefined || owner === false) {
       throw new Error(`AUTH activity ${record.activityId} presentation was rejected`);
     }
     try {
+      signal?.throwIfAborted();
       const activityStarted = await this.onActivityStarted?.(record);
+      signal?.throwIfAborted();
       if (activityStarted !== undefined && activityStarted !== true) {
         throw new Error(`AUTH activity ${record.activityId} start was rejected`);
       }

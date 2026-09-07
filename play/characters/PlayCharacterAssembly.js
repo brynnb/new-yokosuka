@@ -52,6 +52,7 @@ export class PlayCharacterAssembly {
     getWorld,
     getGameDate,
     getCameraOcclusionTarget,
+    getCameraFadeEnabled,
     networkState,
     localDebug,
     remoteAvatar,
@@ -100,7 +101,9 @@ export class PlayCharacterAssembly {
       getActiveWorldId: () => getWorld().id,
       getGameDate,
       getCameraOcclusionTarget,
-      getCameraFadeEnabled: () => !getWorld().cutsceneOnly,
+      // Cinematics can borrow an ordinary gameplay world (for example CATA1
+      // in Yamanose); map classification alone does not describe camera ownership.
+      getCameraFadeEnabled: () => !getWorld().cutsceneOnly && getCameraFadeEnabled?.() !== false,
       networkState,
       motionRuntime: this.motionRuntime,
       debugPickable: localDebug,

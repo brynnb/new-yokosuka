@@ -217,6 +217,263 @@ function harness({
   };
 }
 
+function preparingHarness(stage = "world") {
+  const context = harness();
+  const gate = deferred();
+  const began = deferred();
+  const signals = [];
+  const originalFactory = context.director.createPackageRuntime;
+  let preparations = 0;
+  context.director.createPackageRuntime = options => {
+    const runtime = originalFactory(options);
+    const key = stage === "world" ? "loadWorld" : "prepareCutscene";
+    const original = runtime[key];
+    runtime[key] = async (value, options) => {
+      preparations += 1;
+      signals.push(options.signal);
+      context.calls.push(["prepare-begin", preparations]);
+      if (preparations === 1) {
+        began.resolve();
+        // Deliberately ignore AbortSignal while a decoder unwinds. The
+        // director must keep replacement work serialized even in this case.
+        await gate.promise;
+      }
+      original?.(value);
+      context.calls.push(["prepare-end", preparations]);
+    };
+    return runtime;
+  };
+  return {
+    ...context, gate, began, signals,
+    cutscene: {
+      id: "loading-scene", packageId: "opening", worldId: "intro",
+      activity: { slot: 0, binding: { primaryPointer: 5, secondaryPointer: 6 } },
+    },
+  };
+}
+
+for (const stage of ["world", "selected-activity"]) {
+  test(`cancelling ${stage} preparation settles immediately and serializes retry`, async () => {
+    const context = preparingHarness(stage);
+    await context.director.loadWorld("intro", []);
+    const first = context.director.start(context.cutscene);
+    await context.began.promise;
+    assert.equal(context.director.active, true, "preparation participates in cancellation UI");
+    assert.deepEqual(context.ownership(), { acquireCount: 0, releaseCount: 0 });
+    context.director.stop("user-cancelled");
+    assert.equal(await first, false, "the caller does not wait for cancelled asset work");
+    assert.equal(context.signals[0].aborted, true);
+
+    const retry = context.director.start(context.cutscene);
+    await new Promise(resolve => setImmediate(resolve));
+    assert.equal(context.signals.length, 1, "old decoder still owns package mutations");
+    context.gate.resolve();
+    assert.equal(await retry, true);
+    assert.equal(context.signals.length, 2);
+    assert.equal(context.signals[1].aborted, false);
+    assert.deepEqual(context.ownership(), { acquireCount: 1, releaseCount: 0 });
+    assert.deepEqual(context.stopped, [[context.cutscene.id, "user-cancelled"]]);
+    const clear = context.calls.findIndex(([kind]) => kind === "clear");
+    const restart = context.calls.findIndex(([kind, count]) => kind === "prepare-begin" && count === 2);
+    assert.ok(clear >= 0 && clear < restart, "old cleanup cannot clear the retry");
+    context.director.stop();
+  });
+}
+
+test("superseding a pending cutscene prevents its late gameplay acquisition", async () => {
+  const context = preparingHarness();
+  await context.director.loadWorld("intro", []);
+  const first = context.director.start(context.cutscene);
+  await context.began.promise;
+  const secondCutscene = { ...context.cutscene, id: "replacement" };
+  const second = context.director.start(secondCutscene);
+  assert.equal(await first, false);
+  context.gate.resolve();
+  assert.equal(await second, true);
+  assert.deepEqual(context.calls.filter(([kind]) => kind === "acquire"), [["acquire", "replacement"]]);
+  assert.deepEqual(context.stopped, [[context.cutscene.id, "superseded"]]);
+  context.director.stop();
+});
+
+for (const reason of ["world-change", "disposed"]) {
+  test(`${reason} prevents late preparation from starting`, async () => {
+    const context = preparingHarness();
+    await context.director.loadWorld("intro", []);
+    const pending = context.director.start(context.cutscene);
+    await context.began.promise;
+    if (reason === "disposed") context.director.dispose();
+    else await context.director.loadWorld("street", []);
+    assert.equal(await pending, false);
+    context.gate.resolve();
+    await new Promise(resolve => setImmediate(resolve));
+    assert.equal(context.director.active, false);
+    assert.deepEqual(context.ownership(), { acquireCount: 0, releaseCount: 0 });
+    assert.deepEqual(context.stopped, [[context.cutscene.id, reason]]);
+  });
+}
+
+test("failed package preparation remains observable and permits a clean retry", async () => {
+  const context = preparingHarness();
+  await context.director.loadWorld("intro", []);
+  const pending = context.director.start(context.cutscene);
+  await context.began.promise;
+  context.gate.reject(new Error("fixture asset unavailable"));
+  await assert.rejects(pending, /fixture asset unavailable/);
+  assert.equal(context.director.active, false);
+  assert.equal(await context.director.start(context.cutscene), true);
+  assert.deepEqual(context.ownership(), { acquireCount: 1, releaseCount: 0 });
+  context.director.stop();
+});
+
+test("program-data preparation is cancellable before world resources or gameplay are acquired", async () => {
+  const context = harness({ program: true });
+  const gate = deferred();
+  let signal;
+  const originalFactory = context.director.createPackageRuntime;
+  context.director.createPackageRuntime = options => Object.assign(originalFactory(options), {
+    prepareCutscene: async () => true,
+  });
+  context.director.programRuntimeOptions.getNativeRuntime = () => ({
+    loadProgram: (_id, options) => {
+      signal = options.signal;
+      return gate.promise;
+    },
+  });
+  await context.director.loadWorld("intro", []);
+  const pending = context.director.start({
+    id: "program-scene", packageId: "opening", worldId: "intro",
+    program: { programId: "opening-owner" },
+  });
+  assert.equal(context.director.active, true);
+  context.director.stop("user-cancelled");
+  assert.equal(await pending, false);
+  assert.equal(signal.aborted, true);
+  gate.resolve({ id: "opening-owner", functions: [] });
+  await new Promise(resolve => setImmediate(resolve));
+  assert.deepEqual(context.calls, []);
+  assert.deepEqual(context.ownership(), { acquireCount: 0, releaseCount: 0 });
+});
+
+test("simultaneous caller cancellation observes a rejected preparation promise", async () => {
+  const context = harness({ program: true });
+  const caller = new AbortController();
+  const originalFactory = context.director.createPackageRuntime;
+  context.director.createPackageRuntime = options => Object.assign(originalFactory(options), {
+    prepareCutscene: async () => true,
+  });
+  context.director.programRuntimeOptions.getNativeRuntime = () => ({
+    loadProgram: () => {
+      caller.abort();
+      return Promise.reject(new Error("late cancelled download failure"));
+    },
+  });
+  await context.director.loadWorld("intro", []);
+  assert.equal(await context.director.start({
+    id: "program-scene", packageId: "opening", worldId: "intro",
+    program: { programId: "opening-owner" },
+  }, { signal: caller.signal }), false);
+  // Node's test runner reports an unhandled rejection if the already-created
+  // download promise was abandoned by a synchronous cancellation throw.
+  await new Promise(resolve => setImmediate(resolve));
+  assert.deepEqual(context.ownership(), { acquireCount: 0, releaseCount: 0 });
+});
+
+test("program cancellation reaches an AUTH activity still acquiring presentation", async () => {
+  const context = harness({ program: true });
+  await context.director.loadWorld("street", []);
+  await context.director.start({
+    id: "program-scene", packageId: "street-auth", worldId: "street",
+    program: { programId: "street-owner", entryFunction: "0x100" },
+  });
+  const gate = deferred();
+  const began = deferred();
+  let capturedSignal;
+  let latePresentation = false;
+  const runtime = context.runtimes.get("street-auth");
+  runtime.nativeActivityAdapter().startActivity = async (_detail, { signal } = {}) => {
+    capturedSignal = signal;
+    began.resolve();
+    await gate.promise;
+    signal?.throwIfAborted();
+    latePresentation = true;
+    return { activityId: "native", durationFrames: 2 };
+  };
+  const pending = context.director.nativeActivityAdapter(() => "street").startActivity({
+    slot: 0, binding: { primaryPointer: 1, secondaryPointer: 2 },
+  });
+  await began.promise;
+  context.director.stop("user-cancelled");
+  gate.resolve();
+  await assert.rejects(pending, { name: "AbortError" });
+  assert.equal(capturedSignal.aborted, true);
+  assert.equal(latePresentation, false);
+  assert.equal(context.director.directActivityRuntime, null);
+  assert.deepEqual(context.ownership(), { acquireCount: 1, releaseCount: 1 });
+});
+
+test("cancelled runtime startup remains a package barrier until adapter cleanup settles", async () => {
+  const context = harness();
+  const began = deferred();
+  const gate = deferred();
+  const originalFactory = context.director.createPackageRuntime;
+  let startCount = 0;
+  let prepareCount = 0;
+  context.director.createPackageRuntime = options => {
+    const runtime = originalFactory(options);
+    const start = runtime.start.bind(runtime);
+    runtime.prepareCutscene = async () => { prepareCount += 1; };
+    runtime.start = async (cutscene, { signal }) => {
+      startCount += 1;
+      if (startCount === 1) {
+        began.resolve();
+        await gate.promise;
+      }
+      if (signal.aborted) return false;
+      return start(cutscene);
+    };
+    return runtime;
+  };
+  const cutscene = {
+    id: "delayed-scene", packageId: "opening", worldId: "intro",
+    activity: { slot: 0, binding: { primaryPointer: 5, secondaryPointer: 6 } },
+  };
+  await context.director.loadWorld("intro", []);
+  const first = context.director.start(cutscene);
+  await began.promise;
+  context.director.stop("user-cancelled");
+  assert.equal(await first, false);
+  const retry = context.director.start(cutscene);
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(prepareCount, 1, "retry must not touch assets still owned by old start");
+  gate.resolve();
+  assert.equal(await retry, true);
+  assert.equal(prepareCount, 2);
+  assert.deepEqual(context.ownership(), { acquireCount: 2, releaseCount: 1 });
+  context.director.stop();
+});
+
+test("a starting program can launch its own nested activity without waiting on itself", async () => {
+  const context = harness({ program: true });
+  const originalFactory = context.director.createProgramRuntime;
+  context.director.createProgramRuntime = options => {
+    const runtime = originalFactory(options);
+    const start = runtime.start.bind(runtime);
+    runtime.start = async cutscene => {
+      await context.director.nativeActivityAdapter(() => "street").startActivity({
+        slot: 0, binding: { primaryPointer: 1, secondaryPointer: 2 },
+      });
+      return start(cutscene);
+    };
+    return runtime;
+  };
+  await context.director.loadWorld("street", []);
+  assert.equal(await context.director.start({
+    id: "program-scene", packageId: "street-auth", worldId: "street",
+    program: { programId: "street-owner", entryFunction: "0x100" },
+  }), true);
+  context.director.stop();
+});
+
 test("native cutscene director resolves packages and owns lifecycle once", async () => {
   const context = harness();
   const cutscene = {
@@ -430,7 +687,7 @@ test("concurrent package cutscene and exact activity starts have one winner", as
   assert.equal(await cutsceneStarting, true);
   await assert.rejects(
     activityStarting,
-    /another native activity became active while loading/,
+    /another native activity is already active/,
   );
   assert.equal(context.director.activeCutscene?.cutscene.id, "activity-scene");
   assert.equal(context.director.directActivityRuntime, null);
@@ -480,7 +737,7 @@ test("concurrent exact activity starts reserve the package once after loading", 
   assert.equal(context.director.directActivityRuntime, null);
 });
 
-test("an activity started before a program session cannot enter it after loading", async () => {
+test("a preparing program reserves ownership before unrelated activities start", async () => {
   const context = harness({ program: true });
   const loadStarted = deferred();
   const loadGate = deferred();
@@ -519,7 +776,7 @@ test("an activity started before a program session cannot enter it after loading
   assert.equal(await programStarting, true);
   await assert.rejects(
     unrelatedActivityStarting,
-    /another native activity became active while loading/,
+    /another native activity is already active/,
   );
   assert.equal(context.director.activeCutscene?.cutscene.id, "program-scene");
   assert.equal(context.director.directActivityRuntime, null);
@@ -559,7 +816,7 @@ test("same-world root replacement invalidates an in-flight package load", async 
   await context.director.loadWorld("street", newRoots);
   firstLoadGate.resolve();
 
-  await assert.rejects(staleStart, /world changed while loading/);
+  await assert.rejects(staleStart, { name: "AbortError", message: "world-change" });
   assert.deepEqual(await adapter.startActivity(detail), {
     activityId: "native",
     durationFrames: 2,

@@ -63,3 +63,22 @@ test("standalone AUTH activity delegates explicit cleanup", async () => {
   assert.equal(calls.at(-1)[1].reason, "user-cancelled");
   assert.deepEqual(stopped, [["user-cancelled", "scene-2"]]);
 });
+
+test("standalone stop cancels in-flight start and cleans a late adapter result", async () => {
+  const { calls, activityRuntime } = harness();
+  let resolve;
+  let signal;
+  activityRuntime.startActivity = (_activity, options) => {
+    signal = options.signal;
+    return new Promise(accept => { resolve = accept; });
+  };
+  const runtime = new NativeAseqStandaloneActivityRuntime({ activityRuntime });
+  const starting = runtime.start({ id: "scene-3", activity: { slot: 1, binding: {} } });
+  runtime.stop("user-cancelled");
+  assert.equal(signal.aborted, true);
+  resolve({ activityId: "AUTH/SEQ", slot: 1, durationFrames: 2 });
+  await assert.rejects(starting, { name: "AbortError" });
+  assert.equal(runtime.active, null);
+  assert.equal(runtime.pendingStart, null);
+  assert.equal(calls.at(-1)[1].reason, "start-cancelled");
+});

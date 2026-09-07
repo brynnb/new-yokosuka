@@ -8,6 +8,12 @@ import {
 import {
   createNativeSceneGameplayState,
 } from "../play/events/NativeSceneGameplayState.js";
+import {
+  createNativeAseqActivityRuntime,
+} from "../play/events/NativeAseqActivityRuntime.js";
+import {
+  createNativeCutsceneMusicRuntime,
+} from "../play/cutscenes/NativeCutsceneMusicRuntime.js";
 
 const activityManifest = JSON.parse(readFileSync(
   "play/assets/dobuita/drauth/manifest.json",
@@ -303,9 +309,13 @@ for (const failure of ["actors", "maps", "attached"]) {
   });
 }
 
-test("package world load prewarms every AUTH before playback", async () => {
+test("package world loading is separate from selected-program preparation", async () => {
   const calls = [];
+  const selected = [{ slot: 1, binding: { primaryPointer: 2, secondaryPointer: 3 } }];
+  const program = { id: "selected-owner" };
+  const signal = new AbortController().signal;
   const runtime = runtimeWith({
+    definition: { actorTags: ["AKIR", "TEST"] },
     sceneObjects: resource("scene", calls),
     packageActors: resource("actors", calls),
     scrollSprites: resource("scroll", calls),
@@ -316,10 +326,25 @@ test("package world load prewarms every AUTH before playback", async () => {
         calls.push(["presentation:prewarm"]);
         return true;
       },
+      async prepareActors(detail, options) {
+        assert.deepEqual(detail.actors, ["AKIR", "TEST"]);
+        assert.equal(options.signal, signal);
+        calls.push(["actors:prewarm-program"]);
+        return true;
+      },
     },
     activityRuntime: {
-      async prepareAllActivities() {
-        calls.push(["activities:prewarm"]);
+      catalog: {
+        selectionsForProgram(value, entry) {
+          assert.equal(value, program);
+          assert.equal(entry, "entry");
+          return selected;
+        },
+      },
+      async prepareActivities(value, options) {
+        assert.deepEqual(value, selected);
+        assert.equal(options.signal, signal);
+        calls.push(["activities:prewarm-selected"]);
         return true;
       },
     },
@@ -333,9 +358,52 @@ test("package world load prewarms every AUTH before playback", async () => {
     "scroll:load",
     "maps:load",
     "attached:load",
-    "presentation:prewarm",
-    "activities:prewarm",
   ]);
+
+  await runtime.prepareCutscene({ program: { entryFunction: "entry" } }, { program, signal });
+  assert.deepEqual(calls.slice(-3).map(([kind]) => kind), [
+    "presentation:prewarm",
+    "activities:prewarm-selected",
+    "actors:prewarm-program",
+  ]);
+});
+
+test("package selection prepares standalone activities and checks cancellation between stages", async () => {
+  const controller = new AbortController();
+  const activity = { slot: 1, binding: { primaryPointer: 2, secondaryPointer: 3 } };
+  const prepared = [];
+  let cancel = true;
+  const runtime = runtimeWith({
+    presentation: {
+      async prepareProgramAssets() {
+        if (cancel) controller.abort();
+      },
+    },
+    activityRuntime: {
+      async prepareActivities(selections) { prepared.push(selections); },
+    },
+  });
+  await assert.rejects(runtime.prepareCutscene({ activity }, { signal: controller.signal }), {
+    name: "AbortError",
+  });
+  assert.deepEqual(prepared, []);
+  cancel = false;
+  await runtime.prepareCutscene({ activity });
+  assert.deepEqual(prepared, [[activity]]);
+});
+
+test("cancelled world preparation settles loaders before clearing their resources", async () => {
+  const controller = new AbortController();
+  const pending = deferred();
+  const calls = [];
+  const sceneObjects = resource("scene", calls, () => pending.promise);
+  const runtime = runtimeWith({ sceneObjects, mapLayers: mapResource(calls) });
+  const loading = runtime.loadWorld([], { signal: controller.signal });
+  controller.abort();
+  pending.resolve();
+  await assert.rejects(loading, { name: "AbortError" });
+  assert.equal(sceneObjects.loaded, false);
+  assert.equal(calls.some(([kind]) => kind === "maps:load"), false);
 });
 
 test("program acquisition leaves package ownership closed when actors fail", () => {
@@ -511,6 +579,95 @@ test("program presentation flushes before a nested AUTH activity starts", async 
   runtime.presentation.active = false;
   runtime.rollbackProgram(owner, "test-complete");
 });
+
+test("a cancelled nested AUTH begin releases its late owner without starting music", async () => {
+  const calls = [];
+  const runtime = programRuntimeWith({ calls });
+  const controller = new AbortController();
+  const entered = deferred();
+  const pending = deferred();
+  const presentationOwner = {};
+  const released = [];
+  runtime.activityRuntime = createNativeAseqActivityRuntime({
+    manifest: activityManifest,
+    audioManifest: JSON.parse(readFileSync("public/audio/world/drauth/manifest.json", "utf8")),
+    loadAsset: path => readFileSync(path),
+    presentation: {
+      async beginActivity() {
+        entered.resolve();
+        await pending.promise;
+        return presentationOwner;
+      },
+      advanceActivity() { return true; },
+      endActivity(detail) { released.push(detail.owner); return true; },
+    },
+  });
+  runtime.music.beginActivity = () => calls.push(["music:begin"]);
+  const record = activityManifest.activities[0];
+  const starting = runtime.nativeActivityAdapter().startActivity({
+    slot: record.slot,
+    binding: { primaryPointer: record.primaryPointer, secondaryPointer: record.secondaryPointer },
+  }, { signal: controller.signal });
+  await entered.promise;
+  controller.abort();
+  pending.resolve();
+  await assert.rejects(starting, { name: "AbortError" });
+  assert.deepEqual(released, [presentationOwner]);
+  assert.equal(runtime.activityRuntime.active, null);
+  assert.equal(calls.some(([kind]) => kind === "music:begin"), false);
+});
+
+for (const exit of ["complete", "cancel", "start-failure"]) {
+  test(`nested AUTH soundtrack continues until program ${exit}, then permits replay`, async () => {
+    const calls = [];
+    const runtime = programRuntimeWith({ calls });
+    runtime.attachedObjects = null;
+    runtime.music = createNativeCutsceneMusicRuntime({
+      cues: [{ startActivity: true, trackId: "soundtrack", loop: true }],
+    }, {
+      playTemporaryTrack: track => (calls.push(["play", track]), true),
+      stopTemporaryTrack: track => (calls.push(["stop", track]), true),
+      setPlaybackPaused() {},
+    });
+    runtime.activityRuntime = {
+      active: false,
+      async startActivity(detail) { this.active = true; return detail; },
+      stopActivity() { this.active = false; return true; },
+      rollbackActivity() { this.active = false; return true; },
+    };
+    const adapter = runtime.nativeActivityAdapter();
+    const detail = {
+      program: { id: "preview-program", preview: { kind: "exact-auth-activity-sequence-v1" } },
+      sceneState: createNativeSceneGameplayState(),
+    };
+    const owner = runtime.beginProgram(detail);
+    await adapter.startActivity({ slot: 0 });
+    adapter.stopActivity({});
+    assert.equal(calls.filter(([kind]) => kind === "stop").length, 0);
+    await adapter.startActivity({ slot: 0 });
+    assert.equal(calls.filter(([kind]) => kind === "play").length, 1);
+    if (exit === "complete") {
+      adapter.stopActivity({});
+      runtime.completeProgram(owner);
+    } else if (exit === "cancel") {
+      adapter.rollbackActivity("cancelled");
+      runtime.rollbackProgram(owner, "cancelled");
+    } else {
+      adapter.stopActivity({});
+      runtime.attachedObjects = { beginActivity: () => false, endTrack() {} };
+      await assert.rejects(adapter.startActivity({ slot: 0 }), /rejected attached objects/);
+      runtime.rollbackProgram(owner, "start-failed");
+    }
+    assert.equal(calls.filter(([kind]) => kind === "stop").length, 1);
+    runtime.attachedObjects = null;
+    const replayOwner = runtime.beginProgram(detail);
+    await adapter.startActivity({ slot: 0 });
+    assert.equal(calls.filter(([kind]) => kind === "play").length, 2);
+    adapter.stopActivity({});
+    runtime.completeProgram(replayOwner);
+    assert.equal(calls.filter(([kind]) => kind === "stop").length, 2);
+  });
+}
 
 test("program ownership acquires and releases native scroll sprites transactionally", () => {
   const calls = [];
