@@ -1,0 +1,144 @@
+.vending-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 130;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background: rgb(4 8 11 / 0.74);
+  backdrop-filter: blur(6px);
+}
+
+.vending-overlay[hidden] {
+  display: none;
+}
+
+.vending-panel {
+  width: min(480px, 100%);
+  overflow: hidden;
+  color: #eef5f5;
+  background: #171b20;
+  border: 1px solid rgb(75 201 214 / 0.42);
+  border-radius: 10px;
+  box-shadow: 0 24px 80px rgb(0 0 0 / 0.62);
+}
+
+.vending-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 19px 15px;
+  background: linear-gradient(135deg, #123740, #182126);
+  border-bottom: 1px solid rgb(75 201 214 / 0.24);
+}
+
+.vending-title {
+  margin: 0;
+  font-size: 18px;
+}
+
+.vending-subtitle {
+  margin: 5px 0 0;
+  color: #9fb1b5;
+  font-size: 12px;
+}
+
+.vending-price {
+  flex: 0 0 auto;
+  color: #65d8e5;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.vending-options {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+}
+
+.vending-option {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 12px;
+  color: #edf1f2;
+  background: rgb(255 255 255 / 0.045);
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 7px;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.vending-option:hover,
+.vending-option:focus-visible {
+  background: rgb(42 159 174 / 0.16);
+  border-color: rgb(75 201 214 / 0.48);
+  outline: none;
+}
+
+.vending-option:disabled {
+  opacity: 0.52;
+  cursor: wait;
+}
+
+.vending-option-name {
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.vending-option-meta {
+  flex: 0 0 auto;
+  color: #94a3a8;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.vending-footer {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 14px;
+  background: rgb(0 0 0 / 0.16);
+  border-top: 1px solid rgb(255 255 255 / 0.08);
+}
+
+.vending-status {
+  color: #aab5b9;
+  font-size: 11px;
+}
+
+.vending-close {
+  padding: 7px 12px;
+  color: #dbe1e2;
+  background: transparent;
+  border: 1px solid rgb(255 255 255 / 0.15);
+  border-radius: 6px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.vending-close:hover {
+  color: #fff;
+  border-color: rgb(255 255 255 / 0.3);
+}
+
+@media (max-width: 560px) {
+  .vending-overlay {
+    padding: 12px;
+  }
+
+  .vending-options {
+    gap: 6px;
+    padding: 10px;
+  }
+}

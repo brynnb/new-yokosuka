@@ -1,0 +1,430 @@
+{
+  "schema": "new-yokosuka-project-actor-descriptors-v1",
+  "description": "Project-authored descriptions for native actor codes that evidence shows are generic resources or non-person controllers, not named people. These are navigation aids, never original-data names.",
+  "entries": [
+    {
+      "actorCode": "BUS_",
+      "projectDescriptor": "bus task and schedule controller",
+      "descriptorProvenance": "project-generated",
+      "evidence": [
+        "docs/research/shenmue1/d000-object-placement.md",
+        "tools/evidence/d000-runtime-instance-audit.json",
+        "play/data/shenmue1-schedule-catalog.json"
+      ]
+    },
+    {
+      "actorCode": "BUS2",
+      "projectDescriptor": "secondary bus route and schedule controller",
+      "descriptorProvenance": "project-generated",
+      "evidence": [
+        "tools/evidence/scheduled-actors-capture.json",
+        "tools/evidence/scheduled-actor-interaction-registration-evidence.json",
+        "play/data/shenmue1-schedule-catalog.json"
+      ],
+      "notes": "The captured BUS2PRG1 program contains bus routes and targets native BUSW; this descriptor does not assert a visible character model."
+    },
+    {
+      "actorCode": "ATSI",
+      "projectDescriptor": "generic fisherman dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "釣り人",
+      "evidence": ["play/data/dialogue/messages/ATSI.generated.js"]
+    },
+    {
+      "actorCode": "BOB_",
+      "projectDescriptor": "generic foreigner dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "外人",
+      "evidence": ["play/data/dialogue/messages/BOB_.generated.js"]
+    },
+    {
+      "actorCode": "CA01",
+      "projectDescriptor": "numbered non-rendered timetable program",
+      "descriptorProvenance": "project-generated",
+      "evidence": ["play/data/shenmue1-schedule-catalog.json", "tools/evidence/scheduled-actor-operation-coverage.json"],
+      "notes": "The CA abbreviation is not expanded; a car or traffic role remains unproven."
+    },
+    {
+      "actorCode": "CA02",
+      "projectDescriptor": "numbered non-rendered timetable program",
+      "descriptorProvenance": "project-generated",
+      "evidence": ["play/data/shenmue1-schedule-catalog.json", "tools/evidence/scheduled-actor-operation-coverage.json"],
+      "notes": "The CA abbreviation is not expanded; a car or traffic role remains unproven."
+    },
+    {
+      "actorCode": "CA05",
+      "projectDescriptor": "numbered non-rendered timetable program",
+      "descriptorProvenance": "project-generated",
+      "evidence": ["play/data/shenmue1-schedule-catalog.json", "tools/evidence/scheduled-actor-operation-coverage.json"],
+      "notes": "The CA abbreviation is not expanded; a car or traffic role remains unproven."
+    },
+    {
+      "actorCode": "CA06",
+      "projectDescriptor": "numbered non-rendered timetable program",
+      "descriptorProvenance": "project-generated",
+      "evidence": ["play/data/shenmue1-schedule-catalog.json", "tools/evidence/scheduled-actor-operation-coverage.json"],
+      "notes": "The CA abbreviation is not expanded; a car or traffic role remains unproven."
+    },
+    {
+      "actorCode": "CA08",
+      "projectDescriptor": "numbered non-rendered timetable program",
+      "descriptorProvenance": "project-generated",
+      "evidence": ["play/data/shenmue1-schedule-catalog.json", "tools/evidence/scheduled-actor-operation-coverage.json"],
+      "notes": "The CA abbreviation is not expanded; a car or traffic role remains unproven."
+    },
+    {
+      "actorCode": "CA09",
+      "projectDescriptor": "numbered non-rendered timetable program",
+      "descriptorProvenance": "project-generated",
+      "evidence": ["play/data/shenmue1-schedule-catalog.json", "tools/evidence/scheduled-actor-operation-coverage.json"],
+      "notes": "The CA abbreviation is not expanded; a car or traffic role remains unproven."
+    },
+    {
+      "actorCode": "CA10",
+      "projectDescriptor": "numbered non-rendered timetable program",
+      "descriptorProvenance": "project-generated",
+      "evidence": ["play/data/shenmue1-schedule-catalog.json", "tools/evidence/scheduled-actor-operation-coverage.json"],
+      "notes": "The CA abbreviation is not expanded; a car or traffic role remains unproven."
+    },
+    {
+      "actorCode": "CA14",
+      "projectDescriptor": "numbered non-rendered timetable program",
+      "descriptorProvenance": "project-generated",
+      "evidence": ["play/data/shenmue1-schedule-catalog.json", "tools/evidence/scheduled-actor-operation-coverage.json"],
+      "notes": "The CA abbreviation is not expanded; a car or traffic role remains unproven."
+    },
+    {
+      "actorCode": "CA20",
+      "projectDescriptor": "numbered non-rendered timetable program",
+      "descriptorProvenance": "project-generated",
+      "evidence": ["play/data/shenmue1-schedule-catalog.json", "tools/evidence/scheduled-actor-operation-coverage.json"],
+      "notes": "The CA abbreviation is not expanded; a car or traffic role remains unproven."
+    },
+    {
+      "actorCode": "CA22",
+      "projectDescriptor": "numbered non-rendered timetable program",
+      "descriptorProvenance": "project-generated",
+      "evidence": ["play/data/shenmue1-schedule-catalog.json", "tools/evidence/scheduled-actor-operation-coverage.json"],
+      "notes": "The CA abbreviation is not expanded; a car or traffic role remains unproven."
+    },
+    {
+      "actorCode": "CA23",
+      "projectDescriptor": "numbered non-rendered timetable program",
+      "descriptorProvenance": "project-generated",
+      "evidence": ["play/data/shenmue1-schedule-catalog.json", "tools/evidence/scheduled-actor-operation-coverage.json"],
+      "notes": "The CA abbreviation is not expanded; a car or traffic role remains unproven."
+    },
+    {
+      "actorCode": "CA24",
+      "projectDescriptor": "numbered non-rendered timetable program",
+      "descriptorProvenance": "project-generated",
+      "evidence": ["play/data/shenmue1-schedule-catalog.json", "tools/evidence/scheduled-actor-operation-coverage.json"],
+      "notes": "The CA abbreviation is not expanded; a car or traffic role remains unproven."
+    },
+    {
+      "actorCode": "CA25",
+      "projectDescriptor": "numbered non-rendered timetable program",
+      "descriptorProvenance": "project-generated",
+      "evidence": ["play/data/shenmue1-schedule-catalog.json", "tools/evidence/scheduled-actor-operation-coverage.json"],
+      "notes": "The CA abbreviation is not expanded; a car or traffic role remains unproven."
+    },
+    {
+      "actorCode": "CA27",
+      "projectDescriptor": "numbered non-rendered timetable program",
+      "descriptorProvenance": "project-generated",
+      "evidence": ["play/data/shenmue1-schedule-catalog.json", "tools/evidence/scheduled-actor-operation-coverage.json"],
+      "notes": "The CA abbreviation is not expanded; a car or traffic role remains unproven."
+    },
+    {
+      "actorCode": "CA30",
+      "projectDescriptor": "numbered non-rendered timetable program",
+      "descriptorProvenance": "project-generated",
+      "evidence": ["play/data/shenmue1-schedule-catalog.json", "tools/evidence/scheduled-actor-operation-coverage.json"],
+      "notes": "The CA abbreviation is not expanded; a car or traffic role remains unproven."
+    },
+    {
+      "actorCode": "CA34",
+      "projectDescriptor": "numbered non-rendered timetable program",
+      "descriptorProvenance": "project-generated",
+      "evidence": ["play/data/shenmue1-schedule-catalog.json", "tools/evidence/scheduled-actor-operation-coverage.json"],
+      "notes": "The CA abbreviation is not expanded; a car or traffic role remains unproven."
+    },
+    {
+      "actorCode": "CA36",
+      "projectDescriptor": "numbered non-rendered timetable program",
+      "descriptorProvenance": "project-generated",
+      "evidence": ["play/data/shenmue1-schedule-catalog.json", "tools/evidence/scheduled-actor-operation-coverage.json"],
+      "notes": "The CA abbreviation is not expanded; a car or traffic role remains unproven."
+    },
+    {
+      "actorCode": "CA38",
+      "projectDescriptor": "numbered non-rendered timetable program",
+      "descriptorProvenance": "project-generated",
+      "evidence": ["play/data/shenmue1-schedule-catalog.json", "tools/evidence/scheduled-actor-operation-coverage.json"],
+      "notes": "The CA abbreviation is not expanded; a car or traffic role remains unproven."
+    },
+    {
+      "actorCode": "CA39",
+      "projectDescriptor": "numbered non-rendered timetable program",
+      "descriptorProvenance": "project-generated",
+      "evidence": ["play/data/shenmue1-schedule-catalog.json", "tools/evidence/scheduled-actor-operation-coverage.json"],
+      "notes": "The CA abbreviation is not expanded; a car or traffic role remains unproven."
+    },
+    {
+      "actorCode": "CA42",
+      "projectDescriptor": "numbered non-rendered timetable program",
+      "descriptorProvenance": "project-generated",
+      "evidence": ["play/data/shenmue1-schedule-catalog.json", "tools/evidence/scheduled-actor-operation-coverage.json"],
+      "notes": "The CA abbreviation is not expanded; a car or traffic role remains unproven."
+    },
+    {
+      "actorCode": "CA43",
+      "projectDescriptor": "numbered non-rendered timetable program",
+      "descriptorProvenance": "project-generated",
+      "evidence": ["play/data/shenmue1-schedule-catalog.json", "tools/evidence/scheduled-actor-operation-coverage.json"],
+      "notes": "The CA abbreviation is not expanded; a car or traffic role remains unproven."
+    },
+    {
+      "actorCode": "DOOR",
+      "projectDescriptor": "generic voice-behind-door dialogue identity",
+      "descriptorProvenance": "project-generated",
+      "evidence": [
+        "play/data/dialogue/messages/DOOR.generated.js",
+        "play/dialogue/NativeDialogueSpeaker.js"
+      ]
+    },
+    {
+      "actorCode": "DORG",
+      "projectDescriptor": "generic unavailable-door response resource",
+      "descriptorProvenance": "project-generated",
+      "evidence": [
+        "play/data/dialogue/messages/DORG.generated.js",
+        "tools/evidence/dialogue-actor-resources.json"
+      ]
+    },
+    {
+      "actorCode": "EDST",
+      "projectDescriptor": "generic young-woman dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "若い女",
+      "evidence": ["play/data/dialogue/messages/EDST.generated.js"]
+    },
+    {
+      "actorCode": "GJHF",
+      "projectDescriptor": "generic foreigner dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "外人",
+      "evidence": ["play/data/dialogue/messages/GJHF.generated.js"]
+    },
+    {
+      "actorCode": "HTNK",
+      "projectDescriptor": "generic thug dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "チンピラ",
+      "evidence": ["play/data/dialogue/messages/HTNK.generated.js"]
+    },
+    {
+      "actorCode": "JOHN",
+      "projectDescriptor": "generic foreigner dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "外人",
+      "evidence": ["play/data/dialogue/messages/JOHN.generated.js"]
+    },
+    {
+      "actorCode": "KOKA",
+      "projectDescriptor": "generic worker dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "作業員",
+      "evidence": ["play/data/dialogue/messages/KOKA.generated.js"]
+    },
+    {
+      "actorCode": "KYHN",
+      "projectDescriptor": "generic boy dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "男の子",
+      "evidence": ["play/data/dialogue/messages/KYHN.generated.js"]
+    },
+    {
+      "actorCode": "KYKW",
+      "projectDescriptor": "generic young-woman dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "若い女",
+      "evidence": ["play/data/dialogue/messages/KYKW.generated.js"]
+    },
+    {
+      "actorCode": "KZKI",
+      "projectDescriptor": "generic middle-aged-woman dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "中年女",
+      "evidence": ["play/data/dialogue/messages/KZKI.generated.js"]
+    },
+    {
+      "actorCode": "MKII",
+      "projectDescriptor": "generic young-woman dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "若い女",
+      "evidence": ["play/data/dialogue/messages/MKII.generated.js"]
+    },
+    {
+      "actorCode": "MNKO",
+      "projectDescriptor": "generic woman dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "女",
+      "evidence": ["play/data/dialogue/messages/MNKO.generated.js"]
+    },
+    {
+      "actorCode": "MRSK",
+      "projectDescriptor": "generic thug dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "チンピラ",
+      "evidence": ["play/data/dialogue/messages/MRSK.generated.js"]
+    },
+    {
+      "actorCode": "MSYU",
+      "projectDescriptor": "generic foreigner dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "外人",
+      "evidence": ["play/data/dialogue/messages/MSYU.generated.js"]
+    },
+    {
+      "actorCode": "MWAK",
+      "projectDescriptor": "generic young-woman dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "若い女",
+      "evidence": ["play/data/dialogue/messages/MWAK.generated.js"]
+    },
+    {
+      "actorCode": "OGRA",
+      "projectDescriptor": "generic worker dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "作業員",
+      "evidence": ["play/data/dialogue/messages/OGRA.generated.js"]
+    },
+    {
+      "actorCode": "OKYS",
+      "projectDescriptor": "generic thug dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "チンピラ",
+      "evidence": ["play/data/dialogue/messages/OKYS.generated.js"]
+    },
+    {
+      "actorCode": "SAGB",
+      "projectDescriptor": "generic worker dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "作業員",
+      "evidence": ["play/data/dialogue/messages/SAGB.generated.js"]
+    },
+    {
+      "actorCode": "SAGC",
+      "projectDescriptor": "generic worker dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "作業員",
+      "evidence": ["play/data/dialogue/messages/SAGC.generated.js"]
+    },
+    {
+      "actorCode": "SAGD",
+      "projectDescriptor": "generic worker dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "作業員",
+      "evidence": ["play/data/dialogue/messages/SAGD.generated.js"]
+    },
+    {
+      "actorCode": "SAGE",
+      "projectDescriptor": "generic worker dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "作業員",
+      "evidence": ["play/data/dialogue/messages/SAGE.generated.js"]
+    },
+    {
+      "actorCode": "SIIN",
+      "projectDescriptor": "generic foreigner dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "外人",
+      "evidence": ["play/data/dialogue/messages/SIIN.generated.js"]
+    },
+    {
+      "actorCode": "SNJI",
+      "projectDescriptor": "generic fisherman dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "釣り人",
+      "evidence": ["play/data/dialogue/messages/SNJI.generated.js"]
+    },
+    {
+      "actorCode": "STP1",
+      "projectDescriptor": "generic young-woman dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "若い女",
+      "evidence": ["play/data/dialogue/messages/STP1.generated.js"]
+    },
+    {
+      "actorCode": "SZEN",
+      "projectDescriptor": "generic middle-aged-woman dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "中年女",
+      "evidence": ["play/data/dialogue/messages/SZEN.generated.js"]
+    },
+    {
+      "actorCode": "TDSI",
+      "projectDescriptor": "generic thug dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "チンピラ",
+      "evidence": ["play/data/dialogue/messages/TDSI.generated.js"]
+    },
+    {
+      "actorCode": "TKYM",
+      "projectDescriptor": "generic middle-aged-woman dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "中年女",
+      "evidence": ["play/data/dialogue/messages/TKYM.generated.js"]
+    },
+    {
+      "actorCode": "TMOS",
+      "projectDescriptor": "generic worker dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "作業員",
+      "evidence": ["play/data/dialogue/messages/TMOS.generated.js"]
+    },
+    {
+      "actorCode": "X25L",
+      "projectDescriptor": "generic middle-aged-woman dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "中年女",
+      "evidence": ["play/data/dialogue/messages/X25L.generated.js"]
+    },
+    {
+      "actorCode": "X26L",
+      "projectDescriptor": "generic middle-aged-woman dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "中年女",
+      "evidence": ["play/data/dialogue/messages/X26L.generated.js"]
+    },
+    {
+      "actorCode": "YBBA",
+      "projectDescriptor": "generic elderly-woman dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "老婆",
+      "evidence": ["play/data/dialogue/messages/YBBA.generated.js"]
+    },
+    {
+      "actorCode": "YNHS",
+      "projectDescriptor": "generic foreigner dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "外人",
+      "evidence": ["play/data/dialogue/messages/YNHS.generated.js"]
+    },
+    {
+      "actorCode": "YOS1",
+      "projectDescriptor": "generic middle-aged-man-C dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "中年男Ｃ",
+      "evidence": ["play/data/dialogue/messages/YOS1.generated.js"]
+    },
+    {
+      "actorCode": "YUJI",
+      "projectDescriptor": "generic worker dialogue resource",
+      "descriptorProvenance": "project-generated",
+      "sourceSpeakerLabel": "作業員",
+      "evidence": ["play/data/dialogue/messages/YUJI.generated.js"]
+    }
+  ]
+}

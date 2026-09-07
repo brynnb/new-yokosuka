@@ -1,0 +1,43 @@
+{
+  "schema": "new-yokosuka-native-hit-window-trace-v1",
+  "source": {
+    "game": "Shenmue (USA) (Disc 3)",
+    "scene": "Disc 3 arena save-state slot 2",
+    "emulator": "${FLYCAST_ROOT}/build/flycast",
+    "ryoFighterBase": "0x8cabfba0",
+    "struckFighterBase": "0x8cac1160"
+  },
+  "fighterActionFields": {
+    "hitFramesOffset": "0x294",
+    "encoding": "two unsigned 16-bit inclusive animation-frame values",
+    "defenderHealthOffset": "0x35c",
+    "healthEncoding": "maximum HP in high halfword, current HP in low halfword"
+  },
+  "moves": [
+    {
+      "id": "tigerKnuckle",
+      "motionId": "0x0318",
+      "hitFramesRaw": "0x00050004",
+      "hitFrames": [4, 5],
+      "healthBeforeRaw": "0x00780078",
+      "healthAfterRaw": "0x00780073",
+      "damage": 5,
+      "result": "hit"
+    },
+    {
+      "id": "crescentKick",
+      "motionId": "0x0366",
+      "hitFramesRaw": "0x00090007",
+      "hitFrames": [7, 9],
+      "healthBeforeRaw": "0x00780078",
+      "healthAfterRaw": "0x00780078",
+      "damage": null,
+      "result": "miss"
+    }
+  ],
+  "notes": [
+    "The action fields were stable across repeated host VBlank samples after each move began.",
+    "Tiger Knuckle contact changed current HP from 120 to 115 when the action entered its hit phase.",
+    "Crescent Kick missed in this save-state geometry, so its hit-frame fields are recovered but its damage is intentionally not inferred."
+  ]
+}

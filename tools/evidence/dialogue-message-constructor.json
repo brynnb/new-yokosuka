@@ -1,0 +1,84 @@
+{
+  "schema": "new-yokosuka-dialogue-message-constructor-evidence-v3",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "loadAddress": "0x0c010000",
+    "constructorAddress": "0x0c15b5a8"
+  },
+  "orderedMessageProgram": {
+    "messageOpcodeClass": "0x20",
+    "messageIndexEncoding": "((opcode & 0x0f) << 8) | nextByte",
+    "behavior": "append ordered presentation command",
+    "candidateSelection": false,
+    "commandRecordByteLength": 16,
+    "commandArrayAddress": "0x0c222c00",
+    "commandFields": {
+      "0x00": "cumulative presentation time float",
+      "0x04": "message record pointer",
+      "0x08": "resolved speaking participant actor",
+      "0x0c": "resolved counterpart participant actor"
+    },
+    "participantSelection": {
+      "source": "first byte of message local code",
+      "encoding": "A is participant table index 0, B is index 1",
+      "participantTable": "actor static +0x28",
+      "consumerAddress": "0x0c15c158"
+    },
+    "nonzeroDuration": {
+      "formula": "messageRecordFloatAt0x0c + 0.5",
+      "halfSecondLiteralBits": "0x3f000000"
+    },
+    "zeroDuration": {
+      "status": "implemented from exact source byte length",
+      "usesEucJpSourceByteLength": true,
+      "contentLength": "sourceByteLength - 6",
+      "piecewiseMultiplier": {
+        "sourceByteLength <= 12": 10,
+        "sourceByteLength <= 18": 5,
+        "sourceByteLength <= 24": 4,
+        "sourceByteLength > 24": 3
+      },
+      "divisor": 30
+    },
+    "orderedCommandTiming": {
+      "messageClass": "0x20",
+      "nativeCommandClass": "0x30",
+      "zeroTimeCommandClass": "0x60",
+      "zeroTimeFcCommand": "0xfc00",
+      "nativeCommandTickAdvance": 1,
+      "nativeTicksPerSecond": 30,
+      "messageFlagTwoCommandRanges": [
+        "0x014 through 0x01d",
+        "0x078 through 0x081"
+      ],
+      "messageFlagFourOpcodes": [
+        "0xf6",
+        "0xf7",
+        "0xf8"
+      ]
+    }
+  },
+  "randomBlock": {
+    "opcode": "0xe0",
+    "randomFunctionAddress": "0x0c1ce210",
+    "choiceRule": "floor(randomFloat * encodedBlockCount)",
+    "persistentHistorySlotCount": 3,
+    "historyComparison": "same ordinal E0 operation in prior construction",
+    "repeatRule": "choice == 0 ? count - 1 : choice - 1",
+    "historyCountAddressOffset": "manager+0x126c",
+    "historyArrayAddressOffset": "manager+0x1270"
+  },
+  "runtime": {
+    "randomStateModule": "play/dialogue/NativeDialogueRandomState.js",
+    "presentationModule": "play/dialogue/NativeDialoguePresentation.js",
+    "sessionModule": "play/dialogue/NativeDialogueSession.js",
+    "orderedPresentationProgramPreserved": true,
+    "externalEventsRemainExplicit": true
+  },
+  "nonClaims": [
+    "numeric presentation flags are not semantically named",
+    "source byte length is recovered from EUC-JP data, not approximated",
+    "unknown native events are not treated as successful",
+    "actor launch and proximity rules are not inferred"
+  ]
+}

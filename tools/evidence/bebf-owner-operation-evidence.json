@@ -1,0 +1,184 @@
+{
+  "schema": "new-yokosuka-bebf-owner-operation-evidence-v1",
+  "status": "exact-shared-routes-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "controlFlow": ".disc-work/dialogue/scripted-event-control-flow-index.json"
+  },
+  "routes": {
+    "0x004b": {
+      "behavior": "Converts argument zero to a Boolean and passes it to the native fog enable path, whose fixed enabled dword is 0x0c20bc54."
+    },
+    "0x0073": {
+      "behavior": "Writes argument zero unchanged to the fixed SCRL renderer control dword at 0x0c1f7128."
+    },
+    "0x006f-mode-2": {
+      "behavior": "Writes one to fixed SCRL dword 0x0c1f7130 and argument one unchanged to fixed SCRL dword 0x0c1f7134."
+    },
+    "0x00fd-mode-0": {
+      "behavior": "Resolves the tagged object, requires MOMT and FACE, finds the FACE pointer or NULL fallback in the exact eight-entry 28-byte table, and refreshes that selected table entry. Missing prerequisites or index eight are native no-ops."
+    },
+    "0x00fd-mode-1": {
+      "behavior": "Resolves the tagged object, runs the native activity query, sign-extends its byte result, and returns whether it is at least one. A missing object returns zero."
+    },
+    "0x013c-route-2-selector-3": {
+      "behavior": "Resolves argument two through the exact 32-record table and returns whether it equals the record currently installed at fixed container dword +0x34; missing records return zero."
+    }
+  },
+  "bebfCalls": [
+    {
+      "callFileOffset": "0x4b7a6",
+      "operationHex": "0x013c",
+      "argumentValues": [
+        2,
+        3,
+        615752
+      ]
+    },
+    {
+      "callFileOffset": "0x4bf96",
+      "operationHex": "0x004b",
+      "argumentValues": [
+        0
+      ]
+    },
+    {
+      "callFileOffset": "0x4bfa6",
+      "operationHex": "0x0073",
+      "argumentValues": [
+        0
+      ]
+    },
+    {
+      "callFileOffset": "0x4bfba",
+      "operationHex": "0x006f",
+      "argumentValues": [
+        2,
+        4278190080
+      ]
+    },
+    {
+      "callFileOffset": "0x4c3dc",
+      "operationHex": "0x00fd",
+      "argumentValues": [
+        1179535699,
+        0,
+        0
+      ]
+    },
+    {
+      "callFileOffset": "0x4c3f4",
+      "operationHex": "0x00fd",
+      "argumentValues": [
+        1179535699,
+        1,
+        0
+      ]
+    }
+  ],
+  "allDiscInventory": {
+    "0x004b": {
+      "callCount": 34,
+      "argumentCount": {
+        "1": 34
+      }
+    },
+    "0x0073": {
+      "callCount": 47,
+      "argumentCount": {
+        "1": 47
+      }
+    },
+    "0x006f": {
+      "callCount": 111,
+      "argumentCount": {
+        "2": 111
+      }
+    },
+    "0x00fd": {
+      "callCount": 99,
+      "argumentCount": {
+        "3": 99
+      }
+    },
+    "0x013c": {
+      "callCount": 1751,
+      "argumentCount": {
+        "2": 287,
+        "3": 1160,
+        "4": 237,
+        "5": 67
+      }
+    }
+  },
+  "verifiedRanges": {
+    "operation004b": {
+      "address": "0x0c16af2a",
+      "length": 18,
+      "sha256": "bce444c97b24167766471ecd32818508129a7340cb2e9717fc419dcd9ecd2320"
+    },
+    "fogEnable": {
+      "address": "0x0c0bf2b0",
+      "length": 44,
+      "sha256": "ae78e60665e37172cde2a3ca856f4678a9cbe0bb4f305bdb2f953a511836cc68"
+    },
+    "operation0073": {
+      "address": "0x0c16b008",
+      "length": 16,
+      "sha256": "ce93a17820370f43da49d791d383642c3a14f85a7039ccafe4f05c92553e7a28"
+    },
+    "scrollGlobalControlWrite": {
+      "address": "0x0c09b3be",
+      "length": 8,
+      "sha256": "718970fde5a10f92941aecebef9104cdfefcbe35b7a15e60eaa94e9ebf9faaf7"
+    },
+    "operation006f": {
+      "address": "0x0c16af3c",
+      "length": 204,
+      "sha256": "24d77d77d3e8c61c5bdb25f4fdce478cd1aabd9b330b382a14ff213264a60ca6"
+    },
+    "scrollModeTwoWrite": {
+      "address": "0x0c09b3a2",
+      "length": 10,
+      "sha256": "a20e7a3e6d9224aa12a4ec02e313f1fa972879460a00cab02df3bae0597265b3"
+    },
+    "operation00fd": {
+      "address": "0x0c164dfc",
+      "length": 122,
+      "sha256": "1476cf36d2e13b8fe9c3cc009f7b732fb8672494cc70801e2aa4543529efade6"
+    },
+    "faceTableIndexLookup": {
+      "address": "0x0c142544",
+      "length": 108,
+      "sha256": "c5522bf60c4cbd7b6c878f004e44adeb9a528ca8221254ecb9f1de07c1d7a6d8"
+    },
+    "faceTableRefresh": {
+      "address": "0x0c1425b0",
+      "length": 200,
+      "sha256": "bdb376cd54895bfe0c9f2f763a9581063e225b3cf416470b186b0bc679213657"
+    },
+    "faceActivityQuery": {
+      "address": "0x0c0df350",
+      "length": 50,
+      "sha256": "f0d9c5cbaab745d49a599e6a8a09fd96477cff9287b3fde4e29b93367b7c3a13"
+    },
+    "operation013c": {
+      "address": "0x0c15f484",
+      "length": 712,
+      "sha256": "3f14a8b1ff3162066eedbab80b9f120bdabe6105320c35e174e918c4cc0de353"
+    },
+    "record52Query": {
+      "address": "0x0c139aa2",
+      "length": 30,
+      "sha256": "fdf85cee63d45995368bdd79f6bed50a9be6ee7f3336293b62fc31515d2d8007"
+    }
+  },
+  "evidenceBoundary": [
+    "SCRL and FACE are executable record tags, not inferred product-level names.",
+    "Operation 0x00fd mode zero retains the native FACE-table refresh as a mandatory adapter; no facial expression meaning is invented.",
+    "Operation 0x00fd mode one retains the native object activity query as a mandatory adapter.",
+    "Only the exact routes above are promoted; other modes remain unresolved."
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "schema": "new-yokosuka-live-d000-script-engine-baseline-emulator-evidence-v1",
+  "status": "natural-savestate-and-capture-corpus-read-only-observation",
+  "liveObservation": {
+    "date": "2026-07-31",
+    "emulator": "${FLYCAST_ROOT}/build/flycast",
+    "disc": 1,
+    "savestateIndex": 2,
+    "savestateSha256": "e3d430da77844977f754363d9f90e9ac2e4963a35707cb19e3f262774186dba5",
+    "dynarec": false,
+    "inspection": "Flycast GDB remote read_memory only",
+    "guestWrites": false,
+    "artificialHandlerCalls": false,
+    "values": {
+      "0x0c20c3d4:u32": "0x00000001",
+      "0x0c225250:u8": "0x01",
+      "0x0c225251:u8": "0x01",
+      "0x0c20c48c:s32": -1,
+      "0x0c29b130:s32": 1,
+      "0x0c29b134:s32": -1,
+      "0x0c224848:u32": "0x00000000",
+      "0x0c2247cc:u32": "0x00000000",
+      "0x0c2247c8:u32": "0x00000000"
+    }
+  },
+  "captureCorpus": {
+    "source": "captures/pvr/*/ram.bin",
+    "completeRamImageCount": 531,
+    "histograms": {
+      "0x0c20c3d4:u32": {
+        "0x00000001": 409,
+        "0x00000021": 122
+      },
+      "0x0c225250:u8": {
+        "0x01": 526,
+        "0x00": 5
+      },
+      "0x0c225251:u8": {
+        "0x01": 531
+      },
+      "0x0c20c48c:s32": {
+        "-1": 531
+      },
+      "0x0c29b130:s32": {
+        "1": 391,
+        "3": 120,
+        "0": 20
+      },
+      "0x0c29b134:s32": {
+        "-1": 411,
+        "90": 90,
+        "78": 18,
+        "84": 12
+      },
+      "0x0c224848:u32": {
+        "0x00000000": 531
+      },
+      "0x0c2247cc:u32": {
+        "0x00000000": 531
+      },
+      "0x0c2247c8:u32": {
+        "0x00000000": 531
+      }
+    }
+  },
+  "momtTemporalObservation": {
+    "emulatorProfile": ".flycast-pvr/validation-momt-temporal",
+    "gdbPort": 3275,
+    "actor": "AKIR",
+    "momtPayloadAddress": "0x0c5a1b3c",
+    "sampling": "Ten read-only debugger samples with natural guest execution resumed between samples",
+    "baseWordOffset": "0x00f0",
+    "controlWordOffset": "0x00dc",
+    "baseFloatSamples": [24.0, 24.0, 30.0, 36.0, 42.0, 48.0, 54.0, 0.0, 6.0, 12.0],
+    "controlFloatSamples": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
+    "observedBehavior": "The base advances through the naturally playing motion and wraps at its cycle boundary while the control remains 1.0.",
+    "guestWrites": false,
+    "artificialHandlerCalls": false
+  },
+  "sceneContextObservation": {
+    "date": "2026-07-31",
+    "emulatorProfile": ".flycast-pvr/validation-scene-context",
+    "gdbPort": 3281,
+    "sourceStateIndex": 2,
+    "sourceStateSha256": "e3d430da77844977f754363d9f90e9ac2e4963a35707cb19e3f262774186dba5",
+    "sampling": "One read-only debugger observation at a naturally executed SCN3 operation dispatcher call",
+    "naturalOperationId": "0x0019",
+    "dispatcherEvidenceAddress": "0x0c0bb69c",
+    "dispatcherBreakpointAddress": "0x8c0bb69c",
+    "sceneContextRegister": "r9",
+    "sceneContextAddress": "0x0c46602c",
+    "sceneContextAlias": "0x8c46602c",
+    "fieldOffset": "0x0105",
+    "p0Value": "0x00",
+    "p1Value": "0x00",
+    "guestWrites": false,
+    "artificialHandlerCalls": false,
+    "emulatorExitedCleanly": true
+  },
+  "interpretationBoundary": [
+    "The profile uses the observed idle values only when a D000 room runtime is activated.",
+    "Scene byte +0x105 is stored relative to the live r9 scene context; its observed zero is a settled D000 room value, not a universal default for every room or active event.",
+    "The alternate global bit, controller mode, and secondary-index values are retained as observed active-event states, not treated as additional defaults.",
+    "No current-event control record fields are inferred from these engine-global observations.",
+    "The browser adapter copies its authored scripted-motion tick and exact request control into the low-level MOMT fields; it does not assign broader gameplay labels to them."
+  ]
+}

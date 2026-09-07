@@ -1,0 +1,152 @@
+{
+  "schema": "new-yokosuka-live-dialogue-participant-control-emulator-evidence-v1",
+  "status": "naturally-executed-motion-request-validated",
+  "commandFamily": "0x032..0x03b",
+  "provenance": {
+    "date": "2026-07-30",
+    "emulator": "Flycast",
+    "emulatorBinary": "${FLYCAST_ROOT}/build/flycast",
+    "emulatorBinarySha256": "ebb698aa5cad0b175ec6149302b49c646638ead57a95c27f7466f7d973ad3f02",
+    "disc": ".disc-work/disc1.gdi",
+    "discSha256": "91e703e5daf7f14fe42544e6947d3fd87292ce828f73efaade688e44e5194722",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "sourceState": "Shenmue (USA) (Disc 1)_7.state",
+    "sourceStateSha256": "4018b8b48e2b99bd2e20d3a3660b41682c3ff0e51f8b29bd498a892263fa83a6",
+    "isolatedStateSha256": "4018b8b48e2b99bd2e20d3a3660b41682c3ff0e51f8b29bd498a892263fa83a6",
+    "profile": ".flycast-pvr/validation-vmu-skip",
+    "autosave": false,
+    "capture": ".flycast-pvr/validation-vmu-skip/output/live-dialogue-participant-control.json",
+    "captureSha256": "61ce3dc9ad77a87fa28388e64ae72aeff79d04d18ec4eda26096119a0ef24713"
+  },
+  "route": {
+    "initialState": "authored state index 7 in Dobuita",
+    "input": "ordinary Dreamcast controller input",
+    "observedArea": "D000 Dobuita",
+    "notes": [
+      "Ryo moved naturally through the street and initiated an ordinary NPC conversation.",
+      "No handler was invoked artificially and no guest RAM was written.",
+      "Software breakpoints used cached P1 addresses; Flycast reported stopped PCs through their P0 aliases."
+    ]
+  },
+  "observation": {
+    "handlerAddress": "0x0c16175c",
+    "motionRequestCallAddress": "0x0c161810",
+    "motionRequestTargetAddress": "0x0c0fef0e",
+    "targetParticipantWord": "0x4f455248",
+    "targetParticipantFourcc": "HREO",
+    "activeParticipantWords": [
+      "0x52494b41",
+      "0x4f455248",
+      "0x47544b41",
+      "0xffffffff",
+      "0xffffffff",
+      "0xffffffff",
+      "0xffffffff",
+      "0xffffffff"
+    ],
+    "activeParticipantFourccs": [
+      "AKIR",
+      "HREO",
+      "AKTG",
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "matchedParticipantSlots": [
+      1
+    ],
+    "participantEnabledFlagsBefore": [
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "participantEnabledFlagsAtRequestReturn": [
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "participantEnabledFlagsAtHandlerEpilogue": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "selectedParticipantWordsAfter": [
+      "0x00000000",
+      "0x4f455248",
+      "0x00000000",
+      "0x00000000",
+      "0x00000000",
+      "0x00000000",
+      "0x00000000",
+      "0x00000000"
+    ],
+    "selectedParticipantFourccsAfter": [
+      null,
+      "HREO",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "participantControlFlagsAfter": [
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "actorObjectAddress": "0x0ca0c100",
+    "actorPositionBefore": [
+      -66.82120513916016,
+      0.0,
+      58.07811737060547
+    ],
+    "actorPositionAfter": [
+      -66.82120513916016,
+      0.0,
+      58.07811737060547
+    ],
+    "motionTargetPointer": "0x0c038064",
+    "motionTargetPoint": [
+      -66.82220458984375,
+      0.0,
+      58.07811737060547
+    ],
+    "motionTargetDeltaFromActor": [
+      -0.00099945068359375,
+      0.0,
+      0.0
+    ],
+    "motionControlWord": "0xffffdd9c",
+    "motionControlFlags": "0x001481a3",
+    "matchesStaticSelfOffsetContract": true,
+    "actorPositionPreservedAcrossRequest": true
+  },
+  "evidenceBoundary": [
+    "The live route proves that a naturally selected participant is passed to the native motion-point request with a target equal to its current position minus 0.001 on native X.",
+    "The request preserves the actor position, records the selected participant and control flag in its exact slot, and consumes the matching enabled flag before the handler exits.",
+    "This evidence does not assign a guessed animation name, duration, easing curve, or higher-level narrative meaning to the request."
+  ]
+}

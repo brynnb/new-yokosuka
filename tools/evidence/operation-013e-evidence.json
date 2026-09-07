@@ -1,0 +1,112 @@
+{
+  "schema": "new-yokosuka-operation-013e-evidence-v1",
+  "status": "exact-two-mode-native-contract-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 318,
+    "operationHex": "0x013e",
+    "handlerAddress": "0x0c15555a",
+    "slotCount": 70,
+    "slotRecordBytes": 20,
+    "slotTableAddress": "0x0c222588",
+    "modes": [
+      {
+        "mode": 0,
+        "argumentCount": 4,
+        "targetAddress": "0x0c1553b0",
+        "behavior": "replaces the selected slot using the two exact resource-pointer arguments and marks the slot active"
+      },
+      {
+        "mode": 1,
+        "argumentCount": 2,
+        "targetAddress": "0x0c1554fc",
+        "behavior": "releases the selected active slot when native lifecycle guards permit, then clears its 20-byte record"
+      }
+    ],
+    "provenBehavior": "Rejects slot indices outside 0..69. Mode zero forwards the slot and two authored resource pointers through the exact replacement path. Mode one follows the exact release path for that slot. Other modes are native no-ops.",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c15555a",
+        "length": 46,
+        "sha256": "10081a0da05b9ed59a67078360f62a51e607eba088f854d0988a3517477b8036"
+      },
+      "install": {
+        "address": "0x0c1553b0",
+        "length": 332,
+        "sha256": "15f8607ba7372b2b7c959d0be9d65e8455dcd526ef35d24b54230d1814439fa5"
+      },
+      "release": {
+        "address": "0x0c1554fc",
+        "length": 94,
+        "sha256": "c17d5ab4426782ee05e6482c67d1d81d686ee12faa2ae26cded12894b4cb791b"
+      },
+      "initialize": {
+        "address": "0x0c15532a",
+        "length": 122,
+        "sha256": "359c35ee54d80aec40ba5aafc6b8b17054b66fb556c6ea017becc9df3b7e456d"
+      },
+      "clearSlot": {
+        "address": "0x0c15530c",
+        "length": 30,
+        "sha256": "83a4f7a926ac0878b8f5f59a104d18f92717b3a9884f7198f766bfedde17addd"
+      }
+    }
+  },
+  "allDiscInventory": {
+    "callCount": 530,
+    "dialogueRegionCallCount": 25,
+    "areaCount": 26,
+    "modeCounts": {
+      "0": 306,
+      "1": 224
+    },
+    "dialogueModeCounts": {
+      "0": 13,
+      "1": 12
+    },
+    "argumentKindCounts": {
+      "0": {
+        "constant": 530
+      },
+      "1": {
+        "constant": 511,
+        "frame-field": 19
+      },
+      "2": {
+        "missing": 224,
+        "static-pointer": 306
+      },
+      "3": {
+        "missing": 224,
+        "static-pointer": 306
+      }
+    },
+    "dialogueArgumentKindCounts": {
+      "0": {
+        "constant": 25
+      },
+      "1": {
+        "constant": 25
+      },
+      "2": {
+        "missing": 12,
+        "static-pointer": 13
+      },
+      "3": {
+        "missing": 12,
+        "static-pointer": 13
+      }
+    }
+  },
+  "evidenceBoundary": [
+    "The two pointer operands retain exact pointer identity; no filename or gameplay role is inferred.",
+    "A mode-zero binding may execute only for a resource pair declared by the version-pinned program.",
+    "The browser state models the proven slot lifecycle, not Dreamcast allocation or reference-count internals.",
+    "Unknown modes and malformed argument shapes remain unresolved and fail closed."
+  ]
+}

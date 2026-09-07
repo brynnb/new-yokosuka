@@ -1,0 +1,163 @@
+{
+  "schema": "new-yokosuka-indexed-controller-operation-evidence-v4",
+  "status": "exact-eight-selector-native-contract-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 102,
+    "operationHex": "0x0066",
+    "argumentCount": 3,
+    "handlerAddress": "0x0c1644dc",
+    "provenSelectors": [
+      0,
+      2,
+      4,
+      5,
+      6,
+      8,
+      10,
+      11
+    ],
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c1644dc",
+        "length": 206,
+        "sha256": "42141c546b1359e4430c5712b6a4c934865b50f49b0aca5341f6ce3923aef87b"
+      },
+      "controlBitQuery": {
+        "address": "0x0c0eb0a6",
+        "length": 36,
+        "sha256": "cace4558e808ac2d85e1ab9f759d8c6820948e7fc64b91df039a9cfefdf5d310"
+      },
+      "fieldZeroWriter": {
+        "address": "0x0c0eb0dc",
+        "length": 70,
+        "sha256": "4dc8a75ba9bac80c3b8c08c4408ca5b116ce0f7fd40357eb90ab3bb742186ef3"
+      },
+      "floatWords08Writer": {
+        "address": "0x0c0eb1d0",
+        "length": 194,
+        "sha256": "518835ed7d71c8abc7a40938f0edfdf284a811c63c7889f8c7270c13360fec8c"
+      },
+      "floatWord18Writer": {
+        "address": "0x0c0eb398",
+        "length": 122,
+        "sha256": "5cf55825b05613eb189538507f2fd454410ee36a1f2a46bb79d7eaacc0a0285b"
+      },
+      "floatWord1cWriter": {
+        "address": "0x0c0eb4a8",
+        "length": 86,
+        "sha256": "b2b704c6da90d7de03ba628bceef87b722d6f2f4e0c31029b74f332791dac91c"
+      },
+      "floatWord20SharedWriter": {
+        "address": "0x0c0eb542",
+        "length": 100,
+        "sha256": "ac95761ac581f73b01f24034f9b3f450205251c20912514e7791fe066f143f81"
+      },
+      "floatWord20PointerWrapper": {
+        "address": "0x0c0eb5a6",
+        "length": 12,
+        "sha256": "0f17d285f931447a845b088c59ab6f553ca6d4a84808d6e6de67f8b050172b6b"
+      },
+      "vector52Writer": {
+        "address": "0x0c0eb714",
+        "length": 120,
+        "sha256": "41a740bbd7f43b86794edf44886ef462d1f9c220dea28266b72da5b723a31e47"
+      },
+      "fieldTenWriter": {
+        "address": "0x0c0eb848",
+        "length": 58,
+        "sha256": "5e07316bb054b0e9b0df0c6259eac3dbc7f31abcf5ce5256e18029c2407d276c"
+      },
+      "fieldElevenWriter": {
+        "address": "0x0c0eb048",
+        "length": 94,
+        "sha256": "08fe7410ee645f5390595f7016d4e2f814c5d7a1b068a8ec2b934561f836f260"
+      }
+    },
+    "dispatchTable": {
+      "0": "0x0c0eb0dc",
+      "1": "0x0c0eb1c8",
+      "2": "0x0c0eb1d0",
+      "3": "0x0c0eb390",
+      "4": "0x0c0eb398",
+      "5": "0x0c0eb4a8",
+      "6": "0x0c0eb5a6",
+      "7": "0x0c0eb63a",
+      "8": "0x0c0eb714",
+      "9": "0x0c0eb832",
+      "10": "0x0c0eb848",
+      "11": "0x0c0eb048"
+    },
+    "recordStride": 68,
+    "primaryIndexLimit": 128,
+    "mirrorIndexLimit": 32,
+    "provenBehavior": "Selector zero accepts authored values two through four, writes record dword +0x04 while preserving its prior bit 3, and mirrors/callbacks low indices. Selector two copies four float words to +0x08 through +0x14 and normalizes components one through three below native word 0x3727c5ac to zero. Selector four writes +0x18 raw while its callback normalizes absolute values below word 0x38d1b717 to zero. Selectors five and six clamp +0x1c and +0x20 respectively to minimum word 0x3c23d70b and callback with their float32 product. Selector eight copies three exact float words to +0x34 through +0x3c and, below index 32, mirrors them and invokes the native presentation callback with all signs inverted. Selector ten writes the raw argument-two word at +0x40 with the same low-index mirror/callback boundary. Selector eleven clears bit 3 of +0x04 for zero and sets it for nonzero, again mirroring and calling back below index 32."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 887,
+    "provenCallCount": 840,
+    "unresolvedCallCount": 47,
+    "dialogueRegionCallCount": 57,
+    "provenDialogueRegionCallCount": 57,
+    "selectorCounts": {
+      "0": 59,
+      "2": 153,
+      "4": 179,
+      "5": 135,
+      "6": 180,
+      "8": 18,
+      "10": 81,
+      "11": 35
+    },
+    "dialogueSelectorCounts": {
+      "0": 2,
+      "2": 11,
+      "4": 11,
+      "5": 11,
+      "6": 11,
+      "10": 11
+    },
+    "areaCount": 56,
+    "argumentKindCounts": {
+      "0": {
+        "constant": 772,
+        "frame-field": 68
+      },
+      "1": {
+        "constant": 840
+      },
+      "2": {
+        "constant": 469,
+        "frame-address": 157,
+        "frame-field": 20,
+        "static-pointer": 194
+      }
+    },
+    "dialogueArgumentKindCounts": {
+      "0": {
+        "constant": 57
+      },
+      "1": {
+        "constant": 57
+      },
+      "2": {
+        "constant": 35,
+        "static-pointer": 22
+      }
+    }
+  },
+  "evidenceBoundary": [
+    "Only selectors 0, 2, 4, 5, 6, 8, 10, and 11 are promoted.",
+    "Selectors 2, 6, and 8 retain exact frame-address or static-pointer word sources.",
+    "Selectors 4 and 5 accept both exact authored constant and frame-field scalar words; both operand kinds reach the same native fmov route.",
+    "The owning subsystem and per-index gameplay identities remain unnamed.",
+    "Low-index mirror callbacks remain mandatory explicit adapters.",
+    "Record fields retain exact numeric offsets and raw word identities.",
+    "The other 47 calls remain unresolved rather than approximated."
+  ]
+}

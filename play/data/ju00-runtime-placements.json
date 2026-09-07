@@ -1,0 +1,719 @@
+{
+  "schema": "new-yokosuka-runtime-placement-manifest-v1",
+  "area": "JU00",
+  "source": {
+    "runtimeCapture": "captures/pvr/20260724-100412-frame-18879",
+    "taggedRuntimeObjects": ".disc-work/ju00-tagged-objects.json",
+    "staticDoorTable": ".disc-work/ju00-static-doors.json",
+    "staticDoorPolicy": "all authored MAPINFO door records"
+  },
+  "placements": [
+    {
+      "model": "S1_JU00_NOBA001G.MT5",
+      "position": [
+        37.65760040283203,
+        2.5409998893737793,
+        45.009700775146484
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "NBR1",
+        "taskAddress": "0x8c567a00",
+        "callbackAddress": "0x0c2de638",
+        "modelAddress": "0x8c554b00",
+        "placementSource": "runtime-task"
+      }
+    },
+    {
+      "model": "S1_JU00_NOBA001G.MT5",
+      "position": [
+        37.64759826660156,
+        2.067199945449829,
+        46.81460189819336
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "NBR2",
+        "taskAddress": "0x8c567f20",
+        "callbackAddress": "0x0c2de638",
+        "modelAddress": "0x8c554b00",
+        "placementSource": "runtime-task"
+      }
+    },
+    {
+      "model": "S1_JU00_NOBA001G.MT5",
+      "position": [
+        32.765499114990234,
+        2.067199945449829,
+        44.400001525878906
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "NBR3",
+        "taskAddress": "0x8c568440",
+        "callbackAddress": "0x0c2de638",
+        "modelAddress": "0x8c554b00",
+        "placementSource": "runtime-task"
+      }
+    },
+    {
+      "model": "S1_JU00_NOBA001G.MT5",
+      "position": [
+        33.882999420166016,
+        2.5409998893737793,
+        42.8213996887207
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "NBR4",
+        "taskAddress": "0x8c568960",
+        "callbackAddress": "0x0c2de638",
+        "modelAddress": "0x8c554b00",
+        "placementSource": "runtime-task"
+      }
+    },
+    {
+      "model": "S1_JU00_DANM400G.MT5",
+      "position": [
+        34.6697998046875,
+        2.5999999046325684,
+        38.56560134887695
+      ],
+      "rotationDegrees": [
+        0,
+        -26.9989013671875,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "BOX1",
+        "taskAddress": "0x8c569300",
+        "callbackAddress": "0x0c2de638",
+        "modelAddress": "0x8c4aeb60",
+        "placementSource": "runtime-task"
+      }
+    },
+    {
+      "model": "S1_JU00_KC1_M.MT5",
+      "position": [
+        34.670799255371094,
+        2.615000009536743,
+        38.51959991455078
+      ],
+      "rotationDegrees": [
+        0,
+        -120.9979248046875,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "CATM",
+        "taskAddress": "0x8c569760",
+        "callbackAddress": "0x0c4c4e70",
+        "modelAddress": "0x8c4b97c0",
+        "placementSource": "runtime-task"
+      }
+    },
+    {
+      "model": "S1_JU00_ITAK300G.MT5",
+      "position": [
+        39.400901794433594,
+        4.304999828338623,
+        38.20109939575195
+      ],
+      "rotationDegrees": [
+        0,
+        60.985107421875,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "ITAK",
+        "taskAddress": "0x8c56c080",
+        "callbackAddress": "0x0c2de638",
+        "modelAddress": "0x8c4b3d20",
+        "placementSource": "runtime-task"
+      }
+    },
+    {
+      "id": "static-door-0",
+      "model": "S1_JU00_DR03_001.MT5",
+      "position": [
+        31.66427,
+        5.73816,
+        54.10421
+      ],
+      "rotationDegrees": [
+        0,
+        -179.994507,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "dor8",
+        "staticDoorIndex": 0,
+        "staticDoorType": 2,
+        "staticDoorModelIndex": 0,
+        "staticSourceOffset": "0x4f998",
+        "placementSource": "mapinfo-static-door-table",
+        "capturedActiveModel": true
+      }
+    },
+    {
+      "id": "static-door-1",
+      "model": "S1_JU00_DR00_005.MT5",
+      "position": [
+        32.114269,
+        5.73816,
+        54.089211
+      ],
+      "rotationDegrees": [
+        0,
+        -179.994507,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": null,
+        "staticDoorIndex": 1,
+        "staticDoorType": 1,
+        "staticDoorModelIndex": 1,
+        "staticSourceOffset": "0x4f9bc",
+        "placementSource": "mapinfo-static-door-table",
+        "capturedActiveModel": false
+      }
+    },
+    {
+      "id": "static-door-2",
+      "model": "S1_JU00_DR00_010.MT5",
+      "position": [
+        24.212303,
+        0.910839,
+        72.7369
+      ],
+      "rotationDegrees": [
+        0,
+        134.071655,
+        0
+      ],
+      "scale": [
+        2,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": null,
+        "staticDoorIndex": 2,
+        "staticDoorType": 1,
+        "staticDoorModelIndex": 2,
+        "staticSourceOffset": "0x4f9e0",
+        "placementSource": "mapinfo-static-door-table",
+        "capturedActiveModel": false
+      }
+    },
+    {
+      "id": "static-door-3",
+      "model": "S1_JU00_DR15_023.MT5",
+      "position": [
+        24.245352,
+        0.859881,
+        72.704903
+      ],
+      "rotationDegrees": [
+        0,
+        134.071655,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "dor1",
+        "staticDoorIndex": 3,
+        "staticDoorType": 2,
+        "staticDoorModelIndex": 3,
+        "staticSourceOffset": "0x4fa04",
+        "placementSource": "mapinfo-static-door-table",
+        "capturedActiveModel": true
+      }
+    },
+    {
+      "id": "static-door-4",
+      "model": "S1_JU00_DR00_010.MT5",
+      "position": [
+        28.821768,
+        0.961581,
+        64.784927
+      ],
+      "rotationDegrees": [
+        0,
+        15.496216,
+        0
+      ],
+      "scale": [
+        2,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": null,
+        "staticDoorIndex": 4,
+        "staticDoorType": 1,
+        "staticDoorModelIndex": 2,
+        "staticSourceOffset": "0x4fa28",
+        "placementSource": "mapinfo-static-door-table",
+        "capturedActiveModel": false
+      }
+    },
+    {
+      "id": "static-door-5",
+      "model": "S1_JU00_DR15_022.MT5",
+      "position": [
+        28.821768,
+        0.961581,
+        64.784927
+      ],
+      "rotationDegrees": [
+        0,
+        15.496216,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "dor2",
+        "staticDoorIndex": 5,
+        "staticDoorType": 2,
+        "staticDoorModelIndex": 4,
+        "staticSourceOffset": "0x4fa4c",
+        "placementSource": "mapinfo-static-door-table",
+        "capturedActiveModel": true
+      }
+    },
+    {
+      "id": "static-door-6",
+      "model": "S1_JU00_DR00_010.MT5",
+      "position": [
+        48.615913,
+        1.922171,
+        52.863117
+      ],
+      "rotationDegrees": [
+        0,
+        -113.7854,
+        0
+      ],
+      "scale": [
+        2,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": null,
+        "staticDoorIndex": 6,
+        "staticDoorType": 1,
+        "staticDoorModelIndex": 2,
+        "staticSourceOffset": "0x4fa70",
+        "placementSource": "mapinfo-static-door-table",
+        "capturedActiveModel": false
+      }
+    },
+    {
+      "id": "static-door-7",
+      "model": "S1_JU00_DR15_022.MT5",
+      "position": [
+        48.615913,
+        1.903116,
+        52.863117
+      ],
+      "rotationDegrees": [
+        0,
+        -113.7854,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "dor5",
+        "staticDoorIndex": 7,
+        "staticDoorType": 2,
+        "staticDoorModelIndex": 4,
+        "staticSourceOffset": "0x4fa94",
+        "placementSource": "mapinfo-static-door-table",
+        "capturedActiveModel": true
+      }
+    },
+    {
+      "id": "static-door-8",
+      "model": "S1_JU00_DR00_010.MT5",
+      "position": [
+        47.738293,
+        1.926357,
+        63.262829
+      ],
+      "rotationDegrees": [
+        0,
+        -44.494629,
+        0
+      ],
+      "scale": [
+        2,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": null,
+        "staticDoorIndex": 8,
+        "staticDoorType": 1,
+        "staticDoorModelIndex": 2,
+        "staticSourceOffset": "0x4fab8",
+        "placementSource": "mapinfo-static-door-table",
+        "capturedActiveModel": false
+      }
+    },
+    {
+      "id": "static-door-9",
+      "model": "S1_JU00_DR15_023.MT5",
+      "position": [
+        47.706051,
+        1.926357,
+        63.295639
+      ],
+      "rotationDegrees": [
+        0,
+        -44.494629,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "dor6",
+        "staticDoorIndex": 9,
+        "staticDoorType": 2,
+        "staticDoorModelIndex": 3,
+        "staticSourceOffset": "0x4fadc",
+        "placementSource": "mapinfo-static-door-table",
+        "capturedActiveModel": true
+      }
+    },
+    {
+      "id": "static-door-10",
+      "model": "S1_JU00_DR00_010.MT5",
+      "position": [
+        42.962852,
+        1.924001,
+        48.054562
+      ],
+      "rotationDegrees": [
+        0,
+        -14.205322,
+        0
+      ],
+      "scale": [
+        2,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": null,
+        "staticDoorIndex": 10,
+        "staticDoorType": 1,
+        "staticDoorModelIndex": 2,
+        "staticSourceOffset": "0x4fb00",
+        "placementSource": "mapinfo-static-door-table",
+        "capturedActiveModel": false
+      }
+    },
+    {
+      "id": "static-door-11",
+      "model": "S1_JU00_DR15_019.MT5",
+      "position": [
+        42.951557,
+        1.924001,
+        48.099155
+      ],
+      "rotationDegrees": [
+        0,
+        -14.205322,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "dor9",
+        "staticDoorIndex": 11,
+        "staticDoorType": 2,
+        "staticDoorModelIndex": 5,
+        "staticSourceOffset": "0x4fb24",
+        "placementSource": "mapinfo-static-door-table",
+        "capturedActiveModel": true
+      }
+    },
+    {
+      "id": "static-door-12",
+      "model": "S1_JU00_DR03_001.MT5",
+      "position": [
+        34.594669,
+        5.738156,
+        55.182808
+      ],
+      "rotationDegrees": [
+        0,
+        -179.994507,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "dor4",
+        "staticDoorIndex": 12,
+        "staticDoorType": 2,
+        "staticDoorModelIndex": 0,
+        "staticSourceOffset": "0x4fb48",
+        "placementSource": "mapinfo-static-door-table",
+        "capturedActiveModel": true
+      }
+    },
+    {
+      "id": "static-door-13",
+      "model": "S1_JU00_DR00_005.MT5",
+      "position": [
+        35.04467,
+        5.738156,
+        55.167809
+      ],
+      "rotationDegrees": [
+        0,
+        -179.994507,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": null,
+        "staticDoorIndex": 13,
+        "staticDoorType": 1,
+        "staticDoorModelIndex": 1,
+        "staticSourceOffset": "0x4fb6c",
+        "placementSource": "mapinfo-static-door-table",
+        "capturedActiveModel": false
+      }
+    },
+    {
+      "id": "static-door-14",
+      "model": "S1_JU00_DR03_001.MT5",
+      "position": [
+        34.594719,
+        3.066169,
+        55.182808
+      ],
+      "rotationDegrees": [
+        0,
+        -179.994507,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "dor7",
+        "staticDoorIndex": 14,
+        "staticDoorType": 2,
+        "staticDoorModelIndex": 0,
+        "staticSourceOffset": "0x4fb90",
+        "placementSource": "mapinfo-static-door-table",
+        "capturedActiveModel": true
+      }
+    },
+    {
+      "id": "static-door-15",
+      "model": "S1_JU00_DR00_005.MT5",
+      "position": [
+        35.04472,
+        3.066169,
+        55.167809
+      ],
+      "rotationDegrees": [
+        0,
+        -179.994507,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": null,
+        "staticDoorIndex": 15,
+        "staticDoorType": 1,
+        "staticDoorModelIndex": 1,
+        "staticSourceOffset": "0x4fbb4",
+        "placementSource": "mapinfo-static-door-table",
+        "capturedActiveModel": false
+      }
+    },
+    {
+      "id": "static-door-16",
+      "model": "S1_JU00_DR03_001.MT5",
+      "position": [
+        31.664251,
+        3.066169,
+        54.10424
+      ],
+      "rotationDegrees": [
+        0,
+        -179.994507,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "dor3",
+        "staticDoorIndex": 16,
+        "staticDoorType": 2,
+        "staticDoorModelIndex": 0,
+        "staticSourceOffset": "0x4fbd8",
+        "placementSource": "mapinfo-static-door-table",
+        "capturedActiveModel": true
+      }
+    },
+    {
+      "id": "static-door-17",
+      "model": "S1_JU00_DR00_005.MT5",
+      "position": [
+        32.11425,
+        3.066169,
+        54.089241
+      ],
+      "rotationDegrees": [
+        0,
+        -179.994507,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": null,
+        "staticDoorIndex": 17,
+        "staticDoorType": 1,
+        "staticDoorModelIndex": 1,
+        "staticSourceOffset": "0x4fbfc",
+        "placementSource": "mapinfo-static-door-table",
+        "capturedActiveModel": false
+      }
+    },
+    {
+      "id": "static-door-18",
+      "model": "S1_JU00_DR29_000.MT5",
+      "position": [
+        53.360699,
+        7.8159,
+        100.2145
+      ],
+      "rotationDegrees": [
+        0,
+        -122.612915,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "dor0",
+        "staticDoorIndex": 18,
+        "staticDoorType": 2,
+        "staticDoorModelIndex": 6,
+        "staticSourceOffset": "0x4fc20",
+        "placementSource": "mapinfo-static-door-table",
+        "capturedActiveModel": true
+      }
+    }
+  ]
+}

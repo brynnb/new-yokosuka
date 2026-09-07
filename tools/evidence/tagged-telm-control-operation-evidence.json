@@ -1,0 +1,286 @@
+{
+  "schema": "new-yokosuka-tagged-telm-control-operation-evidence-v5",
+  "status": "exact-target-resolution-modes-0-1-4-10-11-12-all-disc-inventory-binding-consumer-and-d000-dataflow",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "mapinfo": "Disc 1 D000/MAPINFO.BIN",
+    "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e"
+  },
+  "operation": {
+    "operationId": 241,
+    "operationHex": "0x00f1",
+    "handlerAddress": "0x0c1703b8",
+    "handlerSha256": "80a354c95c59ff41ba47f03f0c035986c2aee13aaa0ff5ccc4f75e649ee90748",
+    "targetArgumentIndex": 1,
+    "targetResolverAddress": "0x0c153956",
+    "targetResolverSha256": "9f17c0e1e76d43fadc6671985324c0d702b079d170f73aa16e3fdc58d4534d09",
+    "associatedRecordTag": "TELM",
+    "associatedRecordLookupAddress": "0x0c0aad5a",
+    "associatedRecordLookupSha256": "14abed9a9089fed352b450240afd7cf7dd112eca734db9e98d97a45a47aa05eb",
+    "provenBehavior": "The handler resolves argument 1 as a four-character scene object tag, then resolves that object's associated TELM record before dispatching the numeric control mode.",
+    "modeDispatch": {
+      "modeCount": 18,
+      "tableAddress": "0x0c170420",
+      "dispatchBaseAddress": "0x0c17040a",
+      "targets": [
+        {
+          "mode": 0,
+          "targetAddress": "0x0c170444"
+        },
+        {
+          "mode": 1,
+          "targetAddress": "0x0c17045e"
+        },
+        {
+          "mode": 2,
+          "targetAddress": "0x0c170474"
+        },
+        {
+          "mode": 3,
+          "targetAddress": "0x0c17048a"
+        },
+        {
+          "mode": 4,
+          "targetAddress": "0x0c170494"
+        },
+        {
+          "mode": 5,
+          "targetAddress": "0x0c1704ac"
+        },
+        {
+          "mode": 6,
+          "targetAddress": "0x0c1704ca"
+        },
+        {
+          "mode": 7,
+          "targetAddress": "0x0c1704de"
+        },
+        {
+          "mode": 8,
+          "targetAddress": "0x0c1704e2"
+        },
+        {
+          "mode": 9,
+          "targetAddress": "0x0c170516"
+        },
+        {
+          "mode": 10,
+          "targetAddress": "0x0c170524"
+        },
+        {
+          "mode": 11,
+          "targetAddress": "0x0c17052e"
+        },
+        {
+          "mode": 12,
+          "targetAddress": "0x0c17054c"
+        },
+        {
+          "mode": 13,
+          "targetAddress": "0x0c170566"
+        },
+        {
+          "mode": 14,
+          "targetAddress": "0x0c17056e"
+        },
+        {
+          "mode": 15,
+          "targetAddress": "0x0c1705b0"
+        },
+        {
+          "mode": 16,
+          "targetAddress": "0x0c1705ca"
+        },
+        {
+          "mode": 17,
+          "targetAddress": "0x0c1705da"
+        }
+      ]
+    },
+    "mode0": {
+      "targetAddress": "0x0c170444",
+      "verifiedRangeSha256": "1d658ca3d865dd94de67bf8d3102ac805a095281a3ad30fd8196a052cacf7819",
+      "helperAddress": "0x0c16fbf4",
+      "helperSha256": "5090465b96c8ea5be78089e7cd823417582213d886d1807a60bd37a4c340b5ab",
+      "controllerHandleFieldOffset": "0x0014",
+      "resolvedBindingObjectArgumentIndex": 2,
+      "bindingSelectorArgumentIndex": 3,
+      "bindingObjectFieldOffset": "0x00a8",
+      "bindingSelectorFieldOffset": "0x00ac",
+      "provenBehavior": "Mode 0 resolves argument 1's TEL_ object through the TELM controller, resolves argument 2's AKIR object through that same controller, finds TEL_'s associated TELM record, and stores the resolved AKIR pointer at offset 0x00a8 and authored selector 3 at 0x00ac.",
+      "semanticBoundary": "The operation is an exact object-to-actor visual binding; the separate controller vectors remain low-level fields."
+    },
+    "mode1": {
+      "targetAddress": "0x0c17045e",
+      "verifiedRangeSha256": "7a35dfa08584187a7946ebdb92b0e2dc70fd74653821df14f687f6a2fc5eec7c",
+      "helperAddress": "0x0c16fc32",
+      "helperSha256": "147cf879cbd20e8aff7b06ea32ef6097466ce0574d3351a5f4104175dd6b200d",
+      "controllerHandleFieldOffset": "0x0014",
+      "clearedBindingValues": [
+        0,
+        -1
+      ],
+      "provenBehavior": "Mode 1 calls the verified helper for the resolved TELM record. The helper resolves the same indexed binding record through the controller handle at offset 0x0014 and clears its adjacent fields to 0 and -1.",
+      "semanticBoundary": "The consumer proof establishes this as the corresponding visual binding detach."
+    },
+    "bindingConsumer": {
+      "updateAddress": "0x0c16bb8c",
+      "updateSha256": "f3a960d3968e7533ddb2ef13c41d4898d71542ce2d99bceb8a04c33a20fcee93",
+      "receiverSetupAddress": "0x0c16b9e0",
+      "receiverSetupSha256": "9002b331df5cc6dc0d11a23ad5017bc9c1d582005d0f9febb9b4c9451264a78c",
+      "hierarchyControlLookupAddress": "0x0c0924a0",
+      "hierarchyControlLookupSha256": "3e9c30b5de9c342c690ca8e0d9adb5f27af22426518a1d6ff7528cba5ca007c6",
+      "telephoneReceiverRenderControl": 3,
+      "telephoneSecondaryRenderControl": 0,
+      "actorBindingFieldOffset": "0x00a8",
+      "actorSelectorFieldOffset": "0x00ac",
+      "selectorRoutes": {
+        "3": {
+          "actorRenderKey": -66,
+          "ryoRuntimeMatrixIndex": 30,
+          "bodySide": "left"
+        },
+        "otherNonNegative": {
+          "actorRenderKey": -65,
+          "ryoRuntimeMatrixIndex": 36,
+          "bodySide": "right"
+        }
+      },
+      "handCorrection": {
+        "translation": [
+          0.02499999850988388,
+          0.07499999552965164,
+          0.0
+        ],
+        "rotationAxis": "z",
+        "rotationFixedTurnRaw": 16384,
+        "rotationDegrees": 90,
+        "translationRoutineAddress": "0x0c1d28e0",
+        "rotationZRoutineAddress": "0x0c1d25c0"
+      },
+      "provenBehavior": "The TELM updater resolves telephone render control 3, reads the actor pointer and selector stored by mode 0, and follows the actor model hierarchy. Selector 3 chooses signed render key -66 (Ryo runtime matrix 30, the left arm endpoint); other nonnegative selectors choose -65 (matrix 36, the right arm endpoint). It composes native translation (0.025, 0.075, 0), then a +0x4000 fixed-turn Z rotation, with that actor control matrix and installs the result on telephone control 3.",
+      "semanticBoundary": "This proves the receiver-to-hand matrix route. It does not assign higher-level meanings to every TELM state or to the mode-11/mode-12 controller vectors."
+    },
+    "mode4": {
+      "targetAddress": "0x0c170494",
+      "verifiedRangeSha256": "d3a5751c4e6a02ed30820a0f96edd8ab75f27a39fab5859a2fb2dfcc72d6dde7",
+      "primaryLinkFieldOffset": "0x0000",
+      "provenBehavior": "Mode 4 returns the resolved TELM record's 32-bit primary-link field at offset zero through the native operation result writer."
+    },
+    "mode10": {
+      "targetAddress": "0x0c170524",
+      "verifiedRangeSha256": "b3b154ff5eaa4ffe61967d48e2689008e0099334892f970a5990c24fb85196ea",
+      "primaryLinkFieldOffset": "0x0000",
+      "primaryLinkValue": -1,
+      "controllerStateFieldOffset": "0x013c",
+      "controllerStateValue": 21,
+      "controllerUpdateDispatchAddress": "0x0c16d666",
+      "controllerStateCount": 22,
+      "controllerState21HandlerAddress": "0x0c16f8a8",
+      "controllerState21HandlerSha256": "c81c9d4cd684b9376f7dd58a1834be16ca27a2847973813b7824aa932ed1a9ee",
+      "provenBehavior": "Mode 10 clears the resolved TELM record's primary link to -1 and writes controller state 21 at offset 0x013c. The controller update routine reads that exact field, dispatches 22 states, sends state 21 to the dedicated handler at 0x0c16f8a8, and writes the resulting state back to offset 0x013c.",
+      "evidenceSha256": {
+        "stateLoadAndDispatch": "6b42a9351ef8527432edde85810c15a131a84734059459543551b3f88ebb8e6f",
+        "stateWriteback": "d971c7442c28363e77bf15d65eef7ed11c940471cc15fda23692a0c82068291e"
+      },
+      "semanticBoundary": "The numeric transition and controller dataflow are exact. A higher-level name such as enable, disable, reset, or register is not assigned until state 21's observable role is independently proven."
+    },
+    "mode11": {
+      "targetAddress": "0x0c17052e",
+      "verifiedRangeSha256": "55ee15c27d225852d6b5aa3f23d5f47354c8b48bf3dae620bf2c7f464979b4c9",
+      "sourceArgumentIndex": 2,
+      "destinationFieldOffsets": [
+        "0x07bc",
+        "0x07c0",
+        "0x07c4"
+      ],
+      "provenBehavior": "Mode 11 copies the three source words from argument 2, without numeric conversion, into TELM fields 0x07bc, 0x07c0, and 0x07c4.",
+      "semanticBoundary": "The exact bit-preserving copy is proven; the vector's coordinate space and visual role remain unnamed."
+    },
+    "mode12": {
+      "targetAddress": "0x0c17054c",
+      "verifiedRangeSha256": "b6e4431cc1b5d3bcdbee13ab9a426aece2889177bb89b708c837785a92c6c70b",
+      "sourceArgumentIndex": 2,
+      "destinationFieldOffsets": [
+        "0x07c8",
+        "0x07cc",
+        "0x07d0"
+      ],
+      "provenBehavior": "Mode 12 copies the three source words from argument 2, without numeric conversion, into TELM fields 0x07c8, 0x07cc, and 0x07d0.",
+      "semanticBoundary": "The exact bit-preserving copy is proven; the vector's coordinate space and visual role remain unnamed."
+    },
+    "unresolved": [
+      "The other 12 numeric mode behaviors are not yet individually named or adapted.",
+      "Modes 11 and 12 have exact low-level copies but their complete controller semantics remain unresolved.",
+      "Controller state 21 has exact low-level dataflow but no inferred high-level action name.",
+      "This target resolution proves object identity at operation-0x00f1 consumers, not that every upstream launch tag is itself the player's clickable trigger."
+    ]
+  },
+  "d000Dataflow": {
+    "contextSetupFunctionFileOffset": "0x2c5c0",
+    "contextTargetSlot": "r9+0x02e8",
+    "incomingTargetArgumentIndex": 0,
+    "operationConsumerCallFileOffset": "0x2cb8a",
+    "operationConsumerMode": 10,
+    "launchWrapperFunctionFileOffset": "0x2c684",
+    "literalCallerFileOffset": "0x8daaa",
+    "literalTargetTag": "TEL0",
+    "literalSelector": 9998,
+    "literalPlacementFloat32": [
+      38.53300094604492,
+      0.9700000286102295,
+      9.520999908447266,
+      256.497802734375
+    ],
+    "proof": "The exact caller passes TEL0 to wrapper argument 0. The wrapper's setup helper stores it at r9+0x02e8, and the later operation-0x00f1 call passes that slot as native target argument 1.",
+    "verifiedRangeSha256": {
+      "contextSetup": "40868eedc181f7f0999881308e6f902630c9ba7a6da4d66ce585a376afa54387",
+      "operationConsumer": "1a675748b6ff50e899db57e5db512bd18464beadafdb61d59ca76c70a63db5ce",
+      "launchWrapper": "68f251ff516b26bd57afed52ef31487cb0b1a09d2529f8638f3d590f10583a65",
+      "literalCaller": "18ccbf8a9b75a329cbdff4ad1b55133f0fbf9db180b9fa6d31b567cc6e96fb93"
+    }
+  },
+  "evidenceBoundary": [
+    "The native handler proves operation-0x00f1 argument 1 is a tagged scene object with an associated TELM record.",
+    "The D000 byte ranges prove TEL0 reaches that target argument through exact generated state and wrapper dataflow.",
+    "Modes 0 and 1 exactly attach and detach TEL_ render control 3 through the resolved actor binding; modes 11 and 12 exactly copy two three-word parameter vectors.",
+    "The TELM consumer proves selector 3 uses Ryo render key -66/runtime matrix 30 with the exact native hand correction, while other nonnegative selectors use -65/matrix 36.",
+    "Mode 4 exactly returns the primary link; mode 10 clears it and enters controller state 21.",
+    "The other 12 numeric mode behaviors, the proven vectors' complete controller interpretation, and the higher-level player interaction trigger remain unresolved rather than inferred."
+  ],
+  "allDiscInventory": {
+    "authoredCallCount": 341,
+    "provenCallCount": 297,
+    "remainingUnresolvedCallCount": 44,
+    "dialogueRegionCallCount": 99,
+    "areaCount": 11,
+    "modeCounts": {
+      "0": 29,
+      "1": 32,
+      "4": 55,
+      "10": 77,
+      "11": 52,
+      "12": 52
+    },
+    "dialogueRegionModeCounts": {
+      "4": 44,
+      "10": 55
+    },
+    "argumentShapeCounts": {
+      "0:constant,constant,constant,constant": 18,
+      "0:constant,scene-field,constant,constant": 11,
+      "1:constant,constant": 21,
+      "1:constant,scene-field": 11,
+      "4:constant,scene-field": 55,
+      "10:constant,scene-field": 77,
+      "11:constant,constant,frame-address": 24,
+      "11:constant,constant,static-pointer": 6,
+      "11:constant,scene-field,frame-address": 22,
+      "12:constant,constant,frame-address": 24,
+      "12:constant,constant,static-pointer": 6,
+      "12:constant,scene-field,frame-address": 22
+    }
+  }
+}

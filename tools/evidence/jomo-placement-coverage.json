@@ -1,0 +1,146 @@
+{
+  "schema": "new-yokosuka-jomo-placement-coverage-v1",
+  "sources": {
+    "runtime": ".disc-work/jomo-runtime-placements.json",
+    "manifest": "play/data/jomo-runtime-placements.json",
+    "catalog": "public/models.json"
+  },
+  "summary": {
+    "activeRuntimeInstanceCount": 146,
+    "activeRuntimeInstanceCoveredCount": 146,
+    "missingActiveRuntimeInstanceCount": 0,
+    "staticDoorRecordCount": 18,
+    "staticDoorPlacementCoveredCount": 18,
+    "missingStaticDoorPlacementCount": 0,
+    "finalBrowserPlacementCount": 155,
+    "distinctPlacedModelCount": 105,
+    "staticMapModelCount": 9
+  },
+  "missingRuntimeInstances": [],
+  "missingStaticDoorIndices": [],
+  "staticMapModels": [
+    "S1_JOMO_MAP.MT5",
+    "S1_JOMO_MAP01.MT5",
+    "S1_JOMO_MAP02.MT5",
+    "S1_JOMO_MAP03.MT5",
+    "S1_JOMO_MAP04.MT5",
+    "S1_JOMO_MAP05.MT5",
+    "S1_JOMO_MAP06.MT5",
+    "S1_JOMO_MAP07.MT5",
+    "S1_JOMO_MAP08.MT5"
+  ],
+  "loadedResourcesWithoutInstances": [
+    {
+      "model": "S1_JOMO_BUTM409G.MT5",
+      "classification": "loaded-resource-without-world-instance"
+    },
+    {
+      "model": "S1_JOMO_CASS5RLG.MT5",
+      "classification": "loaded-resource-without-world-instance"
+    },
+    {
+      "model": "S1_JOMO_CASS5SLG.MT5",
+      "classification": "loaded-resource-without-world-instance"
+    },
+    {
+      "model": "S1_JOMO_DR01_016.MT5",
+      "classification": "covered-by-static-door-table"
+    },
+    {
+      "model": "S1_JOMO_DR15_029.MT5",
+      "classification": "covered-by-static-door-table"
+    },
+    {
+      "model": "S1_JOMO_LGWS205G.MT5",
+      "classification": "loaded-resource-without-world-instance"
+    },
+    {
+      "model": "S1_JOMO_LGWS206G.MT5",
+      "classification": "loaded-resource-without-world-instance"
+    },
+    {
+      "model": "S1_JOMO_LGWS207G.MT5",
+      "classification": "loaded-resource-without-world-instance"
+    },
+    {
+      "model": "S1_JOMO_LGWS262G.MT5",
+      "classification": "loaded-resource-without-world-instance"
+    },
+    {
+      "model": "S1_JOMO_LGWS264G.MT5",
+      "classification": "loaded-resource-without-world-instance"
+    },
+    {
+      "model": "S1_JOMO_LGWS265G.MT5",
+      "classification": "loaded-resource-without-world-instance"
+    },
+    {
+      "model": "S1_JOMO_MAP.MT5",
+      "classification": "static-map-geometry"
+    },
+    {
+      "model": "S1_JOMO_MAP01.MT5",
+      "classification": "static-map-geometry"
+    },
+    {
+      "model": "S1_JOMO_MAP02.MT5",
+      "classification": "static-map-geometry"
+    },
+    {
+      "model": "S1_JOMO_MAP03.MT5",
+      "classification": "static-map-geometry"
+    },
+    {
+      "model": "S1_JOMO_MAP04.MT5",
+      "classification": "static-map-geometry"
+    },
+    {
+      "model": "S1_JOMO_MAP06.MT5",
+      "classification": "static-map-geometry"
+    },
+    {
+      "model": "S1_JOMO_MAP07.MT5",
+      "classification": "static-map-geometry"
+    },
+    {
+      "model": "S1_JOMO_MAP08.MT5",
+      "classification": "static-map-geometry"
+    },
+    {
+      "model": "S1_JOMO_YKB_F.MT5",
+      "classification": "character-rig-resource"
+    },
+    {
+      "model": "S1_JOMO_YKB_M.MT5",
+      "classification": "character-rig-resource"
+    },
+    {
+      "model": "S1_JOMO_YKB_TL.MT5",
+      "classification": "character-rig-resource"
+    },
+    {
+      "model": "S1_JOMO_YKB_TR.MT5",
+      "classification": "character-rig-resource"
+    },
+    {
+      "model": "S1_JOMO_YKB_XL.MT5",
+      "classification": "character-rig-resource"
+    },
+    {
+      "model": "S1_JOMO_YKB_XR.MT5",
+      "classification": "character-rig-resource"
+    },
+    {
+      "model": "S1_JOMO_YKD_F.MT5",
+      "classification": "character-rig-resource"
+    },
+    {
+      "model": "S1_JOMO_YKD_TL.MT5",
+      "classification": "character-rig-resource"
+    },
+    {
+      "model": "S1_JOMO_YKD_TR.MT5",
+      "classification": "character-rig-resource"
+    }
+  ]
+}

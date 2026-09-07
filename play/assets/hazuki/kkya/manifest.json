@@ -1,0 +1,156 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/build_jomo_vision_activity_packs.mjs",
+  "source": {
+    "disc": 3,
+    "path": "extracted_disc3_v2/data/SCENE/03/JOMO/KKYA.PKS",
+    "sha256": "c5f1253ccac0592eea434af73254a0a5e73db6a3a8e24c2ad511459990b4e8a9",
+    "archiveFormat": "PAKS/IPAC",
+    "members": [
+      {
+        "name": "MAP01.MAPM",
+        "byteLength": 124684,
+        "sha256": "4cef3a7ca80924e809d5d4fb68082f5f75245df36fd91b281743f31da77dc7ec"
+      },
+      {
+        "name": "MAP02.MAPM",
+        "byteLength": 40440,
+        "sha256": "1cd0965438399a459db12a961d47121206655b939be52cc84f1c5cbab7d5b91e"
+      },
+      {
+        "name": "PNX02H6G.CHRM",
+        "byteLength": 11604,
+        "sha256": "d5a1f8ef801384d8558ec1f6ec8b2e96185a131d59027d806daa3e9ccfcc18d4"
+      },
+      {
+        "name": "SEQDATA0.AUTH",
+        "byteLength": 2148,
+        "sha256": "65f0adf42b7f25cb665949af5ff1adadafcdc5c739292f13749d7cb3ccfb83a3"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "tools/evidence/player-cutscene-owner-discovery.json",
+    "resourceName": "KKYA",
+    "variant": "",
+    "selectionRule": "exact cross-disc AUTH member selected by JOMO owner 0x4f758"
+  },
+  "sceneObjects": {
+    "HOMR": {
+      "model": "PNX02H6G",
+      "browserFilename": "S3_JOMO_PNX02H6G.MT5",
+      "assetPath": "play/assets/hazuki/kkya/PNX02H6G.CHRM",
+      "lifecycle": {
+        "kind": "auth-scoped"
+      }
+    },
+    "MAP1": {
+      "model": "MAP01",
+      "browserFilename": "S3_JOMO_MAP01.MT5",
+      "assetPath": "play/assets/hazuki/kkya/MAP01.MAPM",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "MAP2": {
+      "model": "MAP02",
+      "browserFilename": "S3_JOMO_MAP02.MT5",
+      "assetPath": "play/assets/hazuki/kkya/MAP02.MAPM",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    }
+  },
+  "actorTags": [
+    "HOMR"
+  ],
+  "motionBanks": [],
+  "outputs": [
+    {
+      "path": "play/assets/hazuki/kkya/SEQDATA0.AUTH",
+      "byteLength": 2148,
+      "sha256": "65f0adf42b7f25cb665949af5ff1adadafcdc5c739292f13749d7cb3ccfb83a3"
+    },
+    {
+      "path": "play/assets/hazuki/kkya/MAP01.MAPM",
+      "byteLength": 124684,
+      "sha256": "4cef3a7ca80924e809d5d4fb68082f5f75245df36fd91b281743f31da77dc7ec"
+    },
+    {
+      "path": "play/assets/hazuki/kkya/MAP02.MAPM",
+      "byteLength": 40440,
+      "sha256": "1cd0965438399a459db12a961d47121206655b939be52cc84f1c5cbab7d5b91e"
+    },
+    {
+      "path": "play/assets/hazuki/kkya/PNX02H6G.CHRM",
+      "byteLength": 11604,
+      "sha256": "d5a1f8ef801384d8558ec1f6ec8b2e96185a131d59027d806daa3e9ccfcc18d4"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 50,
+      "primaryPointer": 614163,
+      "secondaryPointer": 614176,
+      "activityId": "KKYA/SEQDATA0.AUTH",
+      "archiveMember": "SEQDATA0.AUTH",
+      "byteLength": 2148,
+      "sha256": "65f0adf42b7f25cb665949af5ff1adadafcdc5c739292f13749d7cb3ccfb83a3",
+      "durationFrames": 1100,
+      "durationSeconds": 36.68333435058594,
+      "frameCount": 1,
+      "commandCounts": {
+        "camera": 1,
+        "move": 1
+      },
+      "actors": [
+        "HOMR"
+      ],
+      "nativeSceneObjectStates": [
+        {
+          "actorTag": "MAP1",
+          "presented": true
+        },
+        {
+          "actorTag": "MAP2",
+          "presented": true
+        }
+      ],
+      "motions": []
+    }
+  ]
+}

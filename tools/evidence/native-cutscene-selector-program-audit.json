@@ -1,0 +1,536 @@
+{
+  "schema": "new-yokosuka-native-cutscene-selector-program-audit-v1",
+  "generatedBy": "tools/cutscenes/audit_native_cutscene_selector_programs.mjs",
+  "summary": {
+    "selectionCount": 58,
+    "programSelectionCount": 58,
+    "directActivitySelectionCount": 0,
+    "missingProgramCount": 0,
+    "blockedProgramSelectionCount": 0
+  },
+  "programSelections": [
+    {
+      "cutsceneId": "S1-HOUO-01",
+      "packageId": "houo",
+      "programId": "preview-s1-houo-01",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-TOKI-01",
+      "packageId": "toki",
+      "programId": "preview-s1-toki-01",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-OP02-00",
+      "packageId": "op02-opening",
+      "programId": "S1-OP02-00",
+      "entryFunction": "0x23c8",
+      "kind": "native-owner",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-000",
+      "packageId": "op00-opening",
+      "programId": "S1-OP00-A0114",
+      "entryFunction": "0x20350",
+      "kind": "native-owner",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-DRAUTH-01",
+      "packageId": "drauth",
+      "programId": "preview-s1-drauth-01",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-DRAUTH-02",
+      "packageId": "drauth",
+      "programId": "preview-s1-drauth-02",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-YQ14-01",
+      "packageId": "yq14",
+      "programId": "preview-s1-yq14-01",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-YQ14-02",
+      "packageId": "yq14",
+      "programId": "preview-s1-yq14-02",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-YBHN-01",
+      "packageId": "ybhn",
+      "programId": "preview-s1-ybhn-01",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-DJHN-01",
+      "packageId": "djhn",
+      "programId": "preview-s1-djhn-01",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-DJHN-02",
+      "packageId": "djhn",
+      "programId": "preview-s1-djhn-02",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-DJHN-03",
+      "packageId": "djhn",
+      "programId": "preview-s1-djhn-03",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-DJHN-04",
+      "packageId": "djhn",
+      "programId": "preview-s1-djhn-04",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-DJHN-05",
+      "packageId": "djhn",
+      "programId": "preview-s1-djhn-05",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-DJHN-06",
+      "packageId": "djhn",
+      "programId": "preview-s1-djhn-06",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-DJHN-07",
+      "packageId": "djhn",
+      "programId": "preview-s1-djhn-07",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-D0W0-01",
+      "packageId": "d0w0",
+      "programId": "preview-s1-d0w0-01",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-D0W0-02",
+      "packageId": "d0w0",
+      "programId": "preview-s1-d0w0-02",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-D0W0-03",
+      "packageId": "d0w0",
+      "programId": "preview-s1-d0w0-03",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-D0W0-04",
+      "packageId": "d0w0",
+      "programId": "preview-s1-d0w0-04",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-D0W0-05",
+      "packageId": "d0w0",
+      "programId": "preview-s1-d0w0-05",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-D0W0-06",
+      "packageId": "d0w0",
+      "programId": "preview-s1-d0w0-06",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-D0W0-07",
+      "packageId": "d0w0",
+      "programId": "preview-s1-d0w0-07",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-D0W0-08",
+      "packageId": "d0w0",
+      "programId": "preview-s1-d0w0-08",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-D0W0-09",
+      "packageId": "d0w0",
+      "programId": "preview-s1-d0w0-09",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-D0W0-10",
+      "packageId": "d0w0",
+      "programId": "preview-s1-d0w0-10",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-D0W0-11",
+      "packageId": "d0w0",
+      "programId": "preview-s1-d0w0-11",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-D0W0-12",
+      "packageId": "d0w0",
+      "programId": "preview-s1-d0w0-12",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-DNOZ-01",
+      "packageId": "dnoz-ski",
+      "programId": "preview-s1-dnoz-01",
+      "entryFunction": "$activity-sequence",
+      "kind": "exact-auth-activity-sequence-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-DNOZ-02",
+      "packageId": "dnoz",
+      "programId": "preview-s1-dnoz-02",
+      "entryFunction": "$activity-sequence",
+      "kind": "exact-auth-activity-sequence-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-TGMA-01",
+      "packageId": "tgma",
+      "programId": "preview-s1-tgma-01",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-JHW0-01",
+      "packageId": "jhw0",
+      "programId": "preview-s1-jhw0-01",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-JHW0-02",
+      "packageId": "jhw0",
+      "programId": "preview-s1-jhw0-02",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-JHW0-03",
+      "packageId": "jhw0",
+      "programId": "preview-s1-jhw0-03",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-JHW0-04",
+      "packageId": "jhw0",
+      "programId": "preview-s1-jhw0-04",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-JHW0-05",
+      "packageId": "jhw0",
+      "programId": "preview-s1-jhw0-05",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-JHW0-06",
+      "packageId": "jhw0",
+      "programId": "preview-s1-jhw0-06",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-JHW0-07",
+      "packageId": "jhw0",
+      "programId": "preview-s1-jhw0-07",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-JHW0-08",
+      "packageId": "jhw0",
+      "programId": "preview-s1-jhw0-08",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-MSKA-01",
+      "packageId": "mska",
+      "programId": "disc1-jhd0-fukusan-iwao-death-0x3aec8",
+      "entryFunction": "0x3aec8",
+      "kind": "native-owner",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-KAKG-01",
+      "packageId": "kakg",
+      "programId": "preview-s1-kakg-01",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-KAKG-02",
+      "packageId": "kakg",
+      "programId": "preview-s1-kakg-02",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-BUSS-01",
+      "packageId": "buss",
+      "programId": "preview-s1-buss-01",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-BUSS-02",
+      "packageId": "buss",
+      "programId": "preview-s1-buss-02",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-BUSS-03",
+      "packageId": "buss",
+      "programId": "preview-s1-buss-03",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-BUSS-04",
+      "packageId": "buss",
+      "programId": "preview-s1-buss-04",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-HIHY-01",
+      "packageId": "hihy",
+      "programId": "disc1-jhd0-iwao-young-ryo-memory-0x37d56",
+      "entryFunction": "0x37d56",
+      "kind": "native-owner",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-CATA1-01",
+      "packageId": "cata1",
+      "programId": "preview-s1-cata1-01",
+      "entryFunction": "$activity-sequence",
+      "kind": "exact-auth-activity-sequence-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-EVSN-01",
+      "packageId": "evsn",
+      "programId": "preview-s1-evsn-01",
+      "entryFunction": "$activity-sequence",
+      "kind": "exact-auth-activity-sequence-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-EVSN-02",
+      "packageId": "evsn",
+      "programId": "preview-s1-evsn-02",
+      "entryFunction": "$activity-sequence",
+      "kind": "exact-auth-activity-sequence-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-BEBF-01",
+      "packageId": "bebf",
+      "programId": "disc1-jomo-bebf-nightmare-owner-0x4bf5c",
+      "entryFunction": "0x4bf5c",
+      "kind": "native-owner",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-KKYA-01",
+      "packageId": "kkya",
+      "programId": "preview-s1-kkya-01",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-KKYB-01",
+      "packageId": "kkyb",
+      "programId": "preview-s1-kkyb-01",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-KKYC-01",
+      "packageId": "kkyc",
+      "programId": "preview-s1-kkyc-01",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-KKYD-01",
+      "packageId": "kkyd",
+      "programId": "preview-s1-kkyd-01",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-KKYE-01",
+      "packageId": "kkye",
+      "programId": "preview-s1-kkye-01",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-KKYF-01",
+      "packageId": "kkyf",
+      "programId": "preview-s1-kkyf-01",
+      "entryFunction": "$activity-preview",
+      "kind": "single-auth-activity-v1",
+      "available": true,
+      "unresolvedOperations": []
+    },
+    {
+      "cutsceneId": "S1-SAKR-01",
+      "packageId": "sakr",
+      "programId": "disc1-yd01-sakura-training-owner-0x2678",
+      "entryFunction": "0x2678",
+      "kind": "native-owner",
+      "available": true,
+      "unresolvedOperations": []
+    }
+  ],
+  "directActivitySelections": []
+}

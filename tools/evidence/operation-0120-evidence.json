@@ -1,0 +1,157 @@
+{
+  "schema": "new-yokosuka-operation-0120-evidence-v2",
+  "status": "exact-native-clip-layer-routes-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 288,
+    "operationHex": "0x0120",
+    "handlerAddress": "0x0c164ae6",
+    "modes": [
+      0,
+      1,
+      2
+    ],
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c164ae6",
+        "length": 120,
+        "sha256": "c4c0d89f30886d30d70949d09740256cbf25e830c8f27fe0bcbf83ce107ac7a5"
+      },
+      "singleRecordWriter": {
+        "address": "0x0c0b50ba",
+        "length": 32,
+        "sha256": "331facdc40ce326b7ffb48a6ac0e9569324a62541ef4b38cd0b693ef31f1b3ce"
+      },
+      "modeZeroBroadcast": {
+        "address": "0x0c0b50ee",
+        "length": 44,
+        "sha256": "4412ba3899edb858af91169d7300b55111b1ff54b5d78b61ec23a7c3d7db2239"
+      },
+      "modeOneQuery": {
+        "address": "0x0c0b50dc",
+        "length": 18,
+        "sha256": "91e71228fd20c22393e8887fb3b36d55799ad5f050509953c83cb804e1210e54"
+      },
+      "modeTwoQuery": {
+        "address": "0x0c1307e4",
+        "length": 22,
+        "sha256": "6393fde6eddd74b83a7e08ee67c46b0c3b8557ece34b72b015c79a81e7173fa2"
+      },
+      "modeTwoWriter": {
+        "address": "0x0c1307fa",
+        "length": 20,
+        "sha256": "16fde96b08ec3a2a7ca3029c797ddfbb462dc3c66a7979fbde33ba69e73cf228"
+      },
+      "recordTableInitializer": {
+        "address": "0x0c0b4b9c",
+        "length": 32,
+        "sha256": "aea8e8b1efb416a3e3b493d36ff0cb5bea3ab09cbe8d814d8103a342488aa41e"
+      },
+      "recordPresenceSetter": {
+        "address": "0x0c0b4bbc",
+        "length": 16,
+        "sha256": "e1fd0dc3030b43b9784e34f7888b8e9c12cb60a02ad689aa10e07aa8dad53ca8"
+      },
+      "clipLoaderRecordRoute": {
+        "address": "0x0c12f40e",
+        "length": 68,
+        "sha256": "7318996dec11ca778725ab969849001e75e72c5ebaca578aab171251535170cb"
+      },
+      "clipConsumerGate": {
+        "address": "0x0c0b4cac",
+        "length": 30,
+        "sha256": "83cc43fd5760d4074d44be2f721745b51315a8c4ac8f19bcd48b9de1b5b3dd33"
+      },
+      "mapLayerClipLoaderRoute": {
+        "address": "0x0c13023a",
+        "length": 40,
+        "sha256": "c1f82114156ed3559193041202fdaf197c2da6436224ab602e54f5480c911f4d"
+      },
+      "mapLayerClipSourceResolver": {
+        "address": "0x0c13075a",
+        "length": 38,
+        "sha256": "f5de306a4adb3709033609242bd188f17d9926695bcbf01c86a6e98d144cf321"
+      }
+    },
+    "nativeContract": {
+      "handlerTableEntry": "0x0c164ae6",
+      "integerResultWriter": "0x0c0bb358",
+      "modeZeroBroadcast": "0x0c0b50ee",
+      "modeOneQuery": "0x0c0b50dc",
+      "singleRecordWriter": "0x0c0b50ba",
+      "modeTwoQuery": "0x0c1307e4",
+      "modeTwoWriter": "0x0c1307fa",
+      "fixedRecordTable": "0x0c2020f0",
+      "recordTableInitializerBase": "0x0c2020f0",
+      "clipConsumerTable": "0x0c2020f0",
+      "clipResourceTag": "0x50494c43",
+      "clipPresenceSetter": "0x0c0b4bbc",
+      "clipActivityWriter": "0x0c0b50ba",
+      "mapLayerClipLoader": "0x0c12f378",
+      "mapLayerRecordTable": "0x0c21c768"
+    },
+    "recordCount": 32,
+    "recordStride": 20,
+    "presenceFieldOffset": 0,
+    "writtenFieldOffset": 8,
+    "provenBehavior": "Mode zero visits all 32 fixed records at 0x0c2020f0 with stride 20. A record whose dword +0x00 is nonzero receives argument one unchanged at dword +0x08; a record whose dword +0x00 is zero receives zero at dword +0x08.",
+    "clipLayerContract": {
+      "resourceTag": "CLIP",
+      "loaderAddress": "0x0c12f378",
+      "recordTableAddress": "0x0c2020f0",
+      "mapLayerRecordTableAddress": "0x0c21c768",
+      "mapLayerRecordCount": 32,
+      "mapLayerRecordStride": 96,
+      "behavior": "The native MAP-layer loader passes its exact numbered layer index to the CLIP loader. The CLIP loader clears that index's fixed record, sets dword +0x00 only when parsed CLIP data exists, and writes dword +0x08 through the same helper used by operation 0x0120. The CLIP consumer skips a record unless both dword +0x00 and dword +0x08 are nonzero."
+    },
+    "routes": [
+      {
+        "mode": 0,
+        "argumentCount": 2,
+        "behavior": "Broadcast argument one to active dword +0x08 fields and zero inactive fields, then return zero."
+      },
+      {
+        "mode": 1,
+        "argumentCount": 3,
+        "behavior": "Return the selected record's old dword +0x08, then write argument two there when dword +0x00 is nonzero or write zero otherwise."
+      },
+      {
+        "mode": 2,
+        "argumentCount": 3,
+        "behavior": "Return the selected 96-byte record's old dword +0x34, then replace it with argument two."
+      }
+    ]
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 220,
+    "provenCallCount": 220,
+    "dialogueRegionCallCount": 37,
+    "areaCount": 27,
+    "modeCounts": {
+      "0": 173,
+      "1": 35,
+      "2": 12
+    },
+    "valueCounts": {
+      "0": 111,
+      "1": 107,
+      "4294967295": 2
+    },
+    "dialogueValueCounts": {
+      "0": 19,
+      "1": 18
+    },
+    "resultComparisonCount": 3,
+    "resultTargetCount": 0
+  },
+  "evidenceBoundary": [
+    "Only the exact constant argument shapes inventoried for modes zero through two receive this semantic.",
+    "Modes zero and one own active processing of parsed CLIP data for exact numbered native MAP layers; this does not prove any broader visual-layer or arbitrary-mesh behavior.",
+    "Mode two targets the separate 32-by-96 native MAP-layer table at dword +0x34; that field's higher-level meaning remains unproved and has no Babylon adapter."
+  ]
+}

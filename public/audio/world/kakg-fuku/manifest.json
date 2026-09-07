@@ -1,0 +1,1930 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/build_kakg_fuku_audio_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/STREAM/01KAK.AFS",
+      "sha256": "e1480d24adc6921e9c17fd5a9d71828b9796f1baaf25d0e3fab6c7975c12ec76"
+    },
+    "soundBank": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/SOUND/A1_KAKGO.SND",
+      "sha256": "d3631c396d1140cc87f10b1f93ce3249553159a267b1eccb7edf23df6bc7d36d"
+    },
+    "authManifest": "play/assets/hazuki/kakg/manifest.json",
+    "resourceBindingEvidence": "tools/evidence/kakg-native-lifecycle.json"
+  },
+  "voices": [
+    {
+      "voiceId": "01KAKA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SOUND/01KAKA001.aiff",
+      "nativeMember": "01KAKA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 10240,
+      "nativeSha256": "92546b2c26891011cdd84f939a995c7299a64375001173774e96fccafe5d8390",
+      "speakerId": "AKIR",
+      "sourceText": "I feel much better now.",
+      "displayText": "I feel much better now.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-fuku/voice/01KAKA001.wav",
+      "byteLength": 40748,
+      "sha256": "18a29ffde25a0a62ae23da0c2942701655bd9c9441d2cbab02f84bc2554ef57a"
+    },
+    {
+      "voiceId": "01KAKA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SOUND/01KAKA005.aiff",
+      "nativeMember": "01KAKA005.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 8192,
+      "nativeSha256": "1a99078a6d82dccdd0a84e1553d3f42fdf052fc606d0d7a2e5794b1c6132a6ef",
+      "speakerId": "AKIR",
+      "sourceText": "I've made up my mind.",
+      "displayText": "I've made up my mind.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-fuku/voice/01KAKA005.wav",
+      "byteLength": 32556,
+      "sha256": "1d158927edadd171b5188ac4ea42de9d6a2a31d4b8b3add440711b8d5906c3f1"
+    },
+    {
+      "voiceId": "01KAKA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SOUND/01KAKA006.aiff",
+      "nativeMember": "01KAKA006.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 8192,
+      "nativeSha256": "7bbb676d127a0d20de66d0036a341f928ccce3d8a5e319a684c111778a4400f0",
+      "speakerId": "AKIR",
+      "sourceText": "Don't worry about me.",
+      "displayText": "Don't worry about me.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-fuku/voice/01KAKA006.wav",
+      "byteLength": 32556,
+      "sha256": "545dc6c265bb5ca5b7f30241a60bc782b07d18569faee90335414c20fe9d2a1d"
+    },
+    {
+      "voiceId": "01KAKA007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SOUND/01KAKA007.aiff",
+      "nativeMember": "01KAKA007.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 4096,
+      "nativeSha256": "f1121cf133148d56059fd900a3d5edc23b50448069d34c85078ba3f95e8190cb",
+      "speakerId": "AKIR",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-fuku/voice/01KAKA007.wav",
+      "byteLength": 16172,
+      "sha256": "4827b5172d269b202811c13344b2fa0c3e9d236f21100f9c60604fb543d051e1"
+    },
+    {
+      "voiceId": "01KAKA009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SOUND/01KAKA009.aiff",
+      "nativeMember": "01KAKA009.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 16384,
+      "nativeSha256": "bc2fd96ffc35db5d221e7762a995901980422721bda9dda597d530ab83c09060",
+      "speakerId": "AKIR",
+      "sourceText": "I've got a lead on the Chinese cartel.",
+      "displayText": "I've got a lead on the Chinese cartel.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-fuku/voice/01KAKA009.wav",
+      "byteLength": 65324,
+      "sha256": "09a8f8b081ac029975fbfed21b23ffb8dae0301e563d1203de340d70bc7ed294"
+    },
+    {
+      "voiceId": "01KAKA010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SOUND/01KAKA010.aiff",
+      "nativeMember": "01KAKA010.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 6144,
+      "nativeSha256": "d9804e99ef8ded19ae3c33b3a48ca9383e664d3e05ede99b13d0d958c5704bc5",
+      "speakerId": "AKIR",
+      "sourceText": "I don't know yet=@",
+      "displayText": "I don't know yet...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-fuku/voice/01KAKA010.wav",
+      "byteLength": 24364,
+      "sha256": "b591e951d4ed50f631bddc828786893f522a8d9c2689767ee6573cfc4aeb88ad"
+    },
+    {
+      "voiceId": "01KAKA011",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SOUND/01KAKA011.aiff",
+      "nativeMember": "01KAKA011.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 14336,
+      "nativeSha256": "12e392611d6df99611bbf7331331d81260d59df486bde97f2aa58515474c5001",
+      "speakerId": "AKIR",
+      "sourceText": "It's my only option.",
+      "displayText": "It's my only option.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 24
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 20
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-fuku/voice/01KAKA011.wav",
+      "byteLength": 57132,
+      "sha256": "25cbcada7247f212226cf12c647e32b936a558da07388c00c0e2d50bc185f325"
+    },
+    {
+      "voiceId": "01KAKA012",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SOUND/01KAKA012.aiff",
+      "nativeMember": "01KAKA012.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 18432,
+      "nativeSha256": "4f196e1f478a108c1e80888a6cd483761d55373e2ab631b74c60c34788806254",
+      "speakerId": "AKIR",
+      "sourceText": "My mind is made up. I must go.",
+      "displayText": "My mind is made up. I must go.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 30
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-fuku/voice/01KAKA012.wav",
+      "byteLength": 73516,
+      "sha256": "950b1fd00e47e5631fd85f3416de8a344ddae84b8a08b4ab02f76617910000f6"
+    },
+    {
+      "voiceId": "01KAKB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SOUND/01KAKB001.aiff",
+      "nativeMember": "01KAKB001.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 18432,
+      "nativeSha256": "501a62d823be8c8ffe12b704a7ec76383bac3ec864d84fbb55044d8ebff7324a",
+      "speakerId": "FUKU",
+      "sourceText": "It's been a while since＆we practiced together.",
+      "displayText": "It's been a while since\nwe practiced together.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 20
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-fuku/voice/01KAKB001.wav",
+      "byteLength": 73516,
+      "sha256": "c46efbf0a36b0e4e243fc9791ffc4b3461fa4c98c45f2cc6f0de01ac7b4b793d"
+    },
+    {
+      "voiceId": "01KAKB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SOUND/01KAKB002.aiff",
+      "nativeMember": "01KAKB002.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 16384,
+      "nativeSha256": "d2cb0d95a1b9eb14387d9c2f025a1908d03e189cc5493417219bf7e1eb727dd9",
+      "speakerId": "FUKU",
+      "sourceText": "=@Have you found something?",
+      "displayText": "...Have you found something?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 37
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-fuku/voice/01KAKB002.wav",
+      "byteLength": 65324,
+      "sha256": "f37d28fa8f5d814e0c9aa7194fb586ee0b540d6089b4ffcb039d81b7ca123bab"
+    },
+    {
+      "voiceId": "01KAKB007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SOUND/01KAKB007.aiff",
+      "nativeMember": "01KAKB007.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 12288,
+      "nativeSha256": "2a034e4c7a9bed8cb782b871dace67f4244a5a12f58aaf63626a8d28a49a1c12",
+      "speakerId": "FUKU",
+      "sourceText": "I know how you feel but=@",
+      "displayText": "I know how you feel but...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 20
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-fuku/voice/01KAKB007.wav",
+      "byteLength": 48940,
+      "sha256": "400dd0487340fb78f03280e56df79e534f0a60526a655569943bc26edaa7638b"
+    },
+    {
+      "voiceId": "01KAKB009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SOUND/01KAKB009.aiff",
+      "nativeMember": "01KAKB009.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 20480,
+      "nativeSha256": "86e6b807993cddb5a3e902dab10d66e9bc6834224d5b4067d8e35b8bf0962c8d",
+      "speakerId": "FUKU",
+      "sourceText": "But, what if something happens to you?",
+      "displayText": "But, what if something happens to you?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 30
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 26
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-fuku/voice/01KAKB009.wav",
+      "byteLength": 81708,
+      "sha256": "7b04ffe622f7362cb421d30e77398a7f7343aa4a14805c62b0615e0b3e196cec"
+    },
+    {
+      "voiceId": "01KAKB010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SOUND/01KAKB010.aiff",
+      "nativeMember": "01KAKB010.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 12288,
+      "nativeSha256": "918e6b9b1627f001f0eb4b0b52a04947b6cb7d2d441e90a41bb06679c0286170",
+      "speakerId": "FUKU",
+      "sourceText": "I'd feel responsible!",
+      "displayText": "I'd feel responsible!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-fuku/voice/01KAKB010.wav",
+      "byteLength": 48940,
+      "sha256": "6c96792d0717147d35e43b27a70b98a140cd99fbc4bcadb609da91e14d121b44"
+    },
+    {
+      "voiceId": "01KAKB011",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SOUND/01KAKB011.aiff",
+      "nativeMember": "01KAKB011.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 28672,
+      "nativeSha256": "a7f6834d60d96edfe77138228dc1bbd945a37f6f74866b4c9801d79c22e79987",
+      "speakerId": "FUKU",
+      "sourceText": "No=@Ryo-san, is that why＆you started training?",
+      "displayText": "No...Ryo-san, is that why\nyou started training?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 50
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 18
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-fuku/voice/01KAKB011.wav",
+      "byteLength": 114476,
+      "sha256": "7c7904442d9041a2775ab47c43006a78339a8154a02c438adba5ac247f090b81"
+    },
+    {
+      "voiceId": "01KAKB012",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SOUND/01KAKB012.aiff",
+      "nativeMember": "01KAKB012.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 14336,
+      "nativeSha256": "2e99a4888982cc295bc5ae522aa4bc7776ee62d473b63dfd2fa30be9586dfd32",
+      "speakerId": "FUKU",
+      "sourceText": "Oh, please=@",
+      "displayText": "Oh, please...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 23
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 24
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-fuku/voice/01KAKB012.wav",
+      "byteLength": 57132,
+      "sha256": "490251e38b310e4acfd718395d10d0eaa6aba25abf89b6bfadb5659b6ed19604"
+    },
+    {
+      "voiceId": "01KAKB013",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SOUND/01KAKB013.aiff",
+      "nativeMember": "01KAKB013.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 16384,
+      "nativeSha256": "4f95719cfba23afe3c9dda8529a1e4ac66fb35690fa61138abe4787f2e002a1a",
+      "speakerId": "FUKU",
+      "sourceText": "I'm begging you.＆Please think it over.",
+      "displayText": "I'm begging you.\nPlease think it over.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 22
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-fuku/voice/01KAKB013.wav",
+      "byteLength": 65324,
+      "sha256": "91c01f38c484c6da3476e4c50fcfbdb6077e7406f42cfb0b5a76247adbd66294"
+    },
+    {
+      "voiceId": "01KAKB015",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SOUND/01KAKB015.aiff",
+      "nativeMember": "01KAKB015.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 26624,
+      "nativeSha256": "da011a7d0f00f852b8ce04405ef92be3accb3fb48aaaf0010a957ec51528ffc1",
+      "speakerId": "FUKU",
+      "sourceText": "Are they the same ones=@＆who killed Hazuki-sensei?",
+      "displayText": "Are they the same ones...\nwho killed Hazuki-sensei?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 26
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 20
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-fuku/voice/01KAKB015.wav",
+      "byteLength": 106284,
+      "sha256": "39de14b8e8d5fe9663c0d9798d97d4d530f9fd5dfae2887f5fd17eebb7248b2a"
+    },
+    {
+      "voiceId": "01KAKB016",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SOUND/01KAKB016.aiff",
+      "nativeMember": "01KAKB016.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 28672,
+      "nativeSha256": "9bed0814f643331a477a208c1659578f6e33a43c88d3d6e4243e46d814cd38c2",
+      "speakerId": "FUKU",
+      "sourceText": "You're not thinking of going＆after them alone, are you?",
+      "displayText": "You're not thinking of going\nafter them alone, are you?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 36
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-fuku/voice/01KAKB016.wav",
+      "byteLength": 114476,
+      "sha256": "0248929760d52f739bb835ba7504ace1a6b060c9638bc371268952298fa1bd31"
+    },
+    {
+      "voiceId": "01KAKB017",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SOUND/01KAKB017.aiff",
+      "nativeMember": "01KAKB017.str",
+      "nativeIndex": 18,
+      "nativeByteLength": 14336,
+      "nativeSha256": "91d1e387e5df29c0a35f671db8d51c7d94acc32870a72715ef3f2e95f738f75f",
+      "speakerId": "FUKU",
+      "sourceText": "You'd go up against those killers?",
+      "displayText": "You'd go up against those killers?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-fuku/voice/01KAKB017.wav",
+      "byteLength": 57132,
+      "sha256": "59dcb24c1904d9514e03578552d6d31e9a7ca17b19dbc946a23f8bb541453a37"
+    },
+    {
+      "voiceId": "01KAKB018",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SOUND/01KAKB018.aiff",
+      "nativeMember": "01KAKB018.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 22528,
+      "nativeSha256": "2d9feccc99dd01d2b55ca5abf282452b3f10c5c690b7eaec8892327a2d8f2e42",
+      "speakerId": "FUKU",
+      "sourceText": "it's too dangerous=@even Sensei couldn't=@",
+      "displayText": "it's too dangerous...even Sensei couldn't...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-fuku/voice/01KAKB018.wav",
+      "byteLength": 89900,
+      "sha256": "5242d1e554f9ba91d5df95297784ad56f83e7a30480419d27195afa6c7a79a4c"
+    },
+    {
+      "voiceId": "01KAKB020",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SOUND/01KAKB020.aiff",
+      "nativeMember": "01KAKB020.str",
+      "nativeIndex": 20,
+      "nativeByteLength": 22528,
+      "nativeSha256": "05396b356bcb36b5968eabf765191ec42788f1d84e6817bc176c2f2ab80609e7",
+      "speakerId": "FUKU",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 91
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 24
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-fuku/voice/01KAKB020.wav",
+      "byteLength": 89900,
+      "sha256": "d9a62a8e3ee62bbda8a831d22ccc29a2319419f30e78958fb0cba3b6041eee52"
+    },
+    {
+      "voiceId": "01KAKB021",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SOUND/01KAKB021.aiff",
+      "nativeMember": "01KAKB021.str",
+      "nativeIndex": 21,
+      "nativeByteLength": 6144,
+      "nativeSha256": "6372f6fd0bfc8664d701317964acfb2371b2c16fc9b852fa1ce583c2ff6756b0",
+      "speakerId": "FUKU",
+      "sourceText": "Ryo-san=@",
+      "displayText": "Ryo-san...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-fuku/voice/01KAKB021.wav",
+      "byteLength": 24364,
+      "sha256": "7cf1d5669142fd586bea41bf4a8a9b9b37f11a71ef4daca324e725c69aa14e1e"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kakg-fuku/sfx/a9040000.wav",
+      "byteLength": 15308,
+      "sha256": "18d1dab246c9a3499340f72a2f819c8a9ab565a23b33d9fddfa9b94237dc6fe2"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SE/footroom/ryo1.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 19000,
+      "asset": "public/audio/world/kakg-fuku/sfx/a9040100.wav",
+      "byteLength": 9340,
+      "sha256": "2e9d08b762a6ae9cc031300c5116848fa22dafc62af341cf2f7f135b8e67b891"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SE/footroom/ryo3.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kakg-fuku/sfx/a9040200.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SE/footroom/ganashi3.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kakg-fuku/sfx/a9040300.wav",
+      "byteLength": 25804,
+      "sha256": "b445f45589f7dca74cd10ffb930d08fe60f20e43722f8414eb191cb942211a83"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SE/footroom/ganashi2.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kakg-fuku/sfx/a9040400.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KAK/SE/cloths2/friction4.aiff",
+      "playbackId": 5,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kakg-fuku/sfx/a9040500.wav",
+      "byteLength": 6612,
+      "sha256": "6c9e310fcbad52875222a3e020e9470baafa5a94d7197d4809e929753a60d361"
+    }
+  ]
+}

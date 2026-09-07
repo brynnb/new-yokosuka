@@ -1,0 +1,149 @@
+{
+  "schema": "new-yokosuka-shenmue1-secondary-motion-handler-evidence-v1",
+  "source": {
+    "executable": ".disc-work/exact/1ST_READ.BIN",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c"
+  },
+  "handlers": {
+    "0x81": {
+      "address": "0x0c135bec",
+      "role": "cyclic-angular-articulated-surface",
+      "observedModelFamilies": [
+        "SIH",
+        "SIN",
+        "HGR",
+        "MGR",
+        "SIX",
+        "SIY"
+      ],
+      "type78CollisionDispatcher": null,
+      "collisionConclusion": "The characterized handler/helper closure contains no reference to FUN_0c094934. MGR sleeve containment is owned by angular state and limits, not the KOK body proxy.",
+      "constants": {
+        "ownerMagnitudeActivationThreshold": {
+          "address": "0x0c135d14",
+          "value": 9.999999974752427e-07
+        },
+        "ownerMagnitudeScale": {
+          "address": "0x0c135d18",
+          "value": 30.0
+        },
+        "mgrPrimaryAngularScale": {
+          "address": "0x0c135d1c",
+          "value": 2.0
+        },
+        "mgrSecondaryAngularScale": {
+          "address": "0x0c135d20",
+          "value": 3.0
+        },
+        "angularApproachStep": {
+          "address": "0x0c136184",
+          "value": 0.19999998807907104
+        },
+        "secondaryPhaseStepDegrees": {
+          "address": "0x0c136188",
+          "value": -15.0
+        },
+        "primaryPhaseStepDegrees": {
+          "address": "0x0c13618c",
+          "value": 10.0
+        },
+        "turnUnitsPerDegree": {
+          "address": "0x0c136194",
+          "value": 8192.0
+        }
+      },
+      "runtimeObservation": {
+        "sourcePath": ".disc-work/op02-mgr-osag-81-runtime-capture.json",
+        "sourceSha256": "803bc8e8cf6cf7c10e89bdaf0c035741481ae410762bd54ee181716e7c14dc41",
+        "saveStateSha256": "07d91c0fa0c53d3b446f6f55b0bba5da57fba53f0b33771c70c474a77d7331f9",
+        "guestWrites": false,
+        "artificialHandlerCalls": false,
+        "sampleCount": 16,
+        "recordAddresses": [
+          "0x0c6a7c20",
+          "0x0c6a7ea0",
+          "0x0c6a7fe0",
+          "0x0c6a8120",
+          "0x0c6a8260",
+          "0x0c6a83a0",
+          "0x0c6a84e0"
+        ],
+        "observedModes": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "settledAngularAmplitudesDegrees": [
+          1.5
+        ],
+        "angularBiasesDegrees": [
+          -1.5
+        ],
+        "changedRecordOffsets": [
+          "0x010",
+          "0x014",
+          "0x018",
+          "0x020",
+          "0x024",
+          "0x028",
+          "0x030",
+          "0x034",
+          "0x038",
+          "0x040",
+          "0x044",
+          "0x048",
+          "0x050",
+          "0x054",
+          "0x058",
+          "0x05c",
+          "0x060",
+          "0x064",
+          "0x078",
+          "0x080",
+          "0x084",
+          "0x088",
+          "0x08c",
+          "0x090",
+          "0x09c",
+          "0x0a0",
+          "0x0a4",
+          "0x0a8",
+          "0x0f4"
+        ]
+      }
+    }
+  },
+  "code": {
+    "type81Handler": {
+      "start": "0x0c135bec",
+      "endExclusive": "0x0c136172",
+      "sha256": "91ec02d21015702abe681a5417dde60c730f9b8906e986265ab9da17b043b4a9"
+    },
+    "recordParentResolver": {
+      "start": "0x0c13687c",
+      "endExclusive": "0x0c1368a4",
+      "sha256": "047530cea6af4b14471600ffa760d7f45a07bed0cae7b689f3f407fae24227ea"
+    },
+    "bodyPoseInitializer": {
+      "start": "0x0c1368a4",
+      "endExclusive": "0x0c1368ce",
+      "sha256": "52727c88970179e8c7bd518417c9b2601124ca78ac8c364b93185681e5bf1e32"
+    },
+    "angularStateIntegrator": {
+      "start": "0x0c1368ce",
+      "endExclusive": "0x0c136a00",
+      "sha256": "763bb19e123311193973bb86a974a48ab96e004ab79ebcef1b56c86f580e3316"
+    },
+    "boundedPairApproach": {
+      "start": "0x0c136a00",
+      "endExclusive": "0x0c136a54",
+      "sha256": "301892318efcb5f4600b3cc5868ab5e5caaa8d3729593e6333f745fc8b5cc7b9"
+    },
+    "boundedAngularApproach": {
+      "start": "0x0c136a54",
+      "endExclusive": "0x0c136b08",
+      "sha256": "a0962cb8c648a675117aabd9d4a947c2aee5fe7281d7a78d0787edbd471396b9"
+    }
+  }
+}

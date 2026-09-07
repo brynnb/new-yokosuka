@@ -1,0 +1,36 @@
+{
+  "schema": "new-yokosuka-actor-momt-mask-operation-evidence-v1",
+  "evidenceBoundary": [
+    "Operation 0x0040 resolves argument zero as an actor and resolves that actor's associated MOMT record.",
+    "Mode one ORs argument two into the resolved record's first 32-bit word.",
+    "Mode two ANDs the inverse of argument two into the same word.",
+    "Mode zero performs no mask write; other modes perform no mask write in the verified handler.",
+    "The higher-level meanings of individual mask bits remain numeric."
+  ],
+  "executable": {
+    "filename": "1ST_READ.BIN",
+    "runtimeBase": "0x0c010000",
+    "sha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c"
+  },
+  "operation": {
+    "operationId": 64,
+    "operationHex": "0x0040",
+    "semanticId": "actor-momt-mask-control",
+    "handlerAddress": "0x0c165bde",
+    "handlerSize": 106,
+    "handlerSha256": "250fd227900a390ec599123c10914b053259812d006dff045920ca2953b3bb2a",
+    "actorArgument": 0,
+    "modeArgument": 1,
+    "maskArgument": 2,
+    "modes": {
+      "1": {
+        "operation": "bitwise OR",
+        "targetAddress": "0x0c114528"
+      },
+      "2": {
+        "operation": "bitwise AND NOT",
+        "targetAddress": "0x0c114530"
+      }
+    }
+  }
+}

@@ -1,0 +1,2412 @@
+{
+  "schema": "new-yokosuka-d000-vending-interaction-v2",
+  "source": {
+    "motion": {
+      "path": ".disc-work/exact/d000/unpacked/DJHN/M_01JUCE.MOTN",
+      "byteLength": 308232,
+      "sha256": "d8c104d9a23e0d112c3e6e6d64f77223005b95991b1bc80f88d09599ff02182f"
+    },
+    "mapinfo": {
+      "path": ".disc-work/exact/d000/MAPINFO.BIN",
+      "byteLength": 868708,
+      "sha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e"
+    },
+    "authDirectory": ".disc-work/exact/d000/unpacked/DJHN",
+    "dispatch": ".disc-work/d000-dispatch-calls.json"
+  },
+  "motionSequenceCount": 26,
+  "authoredSequences": [
+    {
+      "number": 1,
+      "source": {
+        "path": ".disc-work/exact/d000/unpacked/DJHN/SEQDATA1.AUTH",
+        "byteLength": 3828,
+        "sha256": "68c2603a2909e3d278f86715ab357c839ce0171e1d5f2f2fa298588d6a02fd86"
+      },
+      "durationFrames": 380,
+      "actors": [
+        "AKIR",
+        "YKHI"
+      ],
+      "motions": [
+        {
+          "recordOffset": "0x40",
+          "timelineFrame": 1,
+          "actorTag": "AKIR",
+          "motionId": "0x1010",
+          "motionBank": 16,
+          "sequenceNumber": 16,
+          "sequenceIndex": 15,
+          "motionName": "AKI_AT1_WANTOJIDOUHANBAIKI_0100",
+          "startFrame": 201,
+          "endFrame": 726,
+          "motionDurationFrames": 726,
+          "clippedAtStart": true,
+          "clippedAtEnd": false
+        },
+        {
+          "recordOffset": "0x58",
+          "timelineFrame": 1,
+          "actorTag": "YKHI",
+          "motionId": "0x1016",
+          "motionBank": 16,
+          "sequenceNumber": 22,
+          "sequenceIndex": 21,
+          "motionName": "JIJ_WAN_AT1_WANTOJIDOUHANBAIKI_0100",
+          "startFrame": 201,
+          "endFrame": 789,
+          "motionDurationFrames": 789,
+          "clippedAtStart": true,
+          "clippedAtEnd": false
+        }
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x98",
+          "frame": 31,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 1,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT1_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 231,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0xb0",
+          "frame": 50,
+          "actorTag": "AKIR",
+          "commandHex": "a9041500",
+          "eventIndex": 2,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT1_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 250,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0xc8",
+          "frame": 67,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 3,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT1_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 267,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0xe0",
+          "frame": 84,
+          "actorTag": "YKHI",
+          "commandHex": "a9040d00",
+          "eventIndex": 4,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT1_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 284,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0xf8",
+          "frame": 90,
+          "actorTag": "AKIR",
+          "commandHex": "ffffffff",
+          "eventIndex": 5,
+          "stop": true,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT1_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 290,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x148",
+          "frame": 120,
+          "actorTag": "AKIR",
+          "commandHex": "a9041200",
+          "eventIndex": 8,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT1_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 320,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x1a0",
+          "frame": 267,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 11,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT1_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 467,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x1b8",
+          "frame": 302,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 12,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT1_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 502,
+          "motionFrameResolved": true
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "source": {
+        "path": ".disc-work/exact/d000/unpacked/DJHN/SEQDATA2.AUTH",
+        "byteLength": 3360,
+        "sha256": "b0adb724799acc25d290362d0da136b187edd82db01b26e5613618b865d36387"
+      },
+      "durationFrames": 461,
+      "actors": [
+        "AKIR",
+        "YKHI"
+      ],
+      "motions": [
+        {
+          "recordOffset": "0x40",
+          "timelineFrame": 1,
+          "actorTag": "AKIR",
+          "motionId": "0x1011",
+          "motionBank": 16,
+          "sequenceNumber": 17,
+          "sequenceIndex": 16,
+          "motionName": "AKI_AT2A_OGORU_WANTOJIDOUHANBAIKI_0100",
+          "startFrame": 151,
+          "endFrame": 611,
+          "motionDurationFrames": 611,
+          "clippedAtStart": true,
+          "clippedAtEnd": false
+        },
+        {
+          "recordOffset": "0x58",
+          "timelineFrame": 1,
+          "actorTag": "YKHI",
+          "motionId": "0x1017",
+          "motionBank": 16,
+          "sequenceNumber": 23,
+          "sequenceIndex": 22,
+          "motionName": "JIJ_WAN_AT2A_OGORU_WANTOJIDOUHANBAIKI_0100",
+          "startFrame": 151,
+          "endFrame": 611,
+          "motionDurationFrames": 611,
+          "clippedAtStart": true,
+          "clippedAtEnd": false
+        }
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x98",
+          "frame": 34,
+          "actorTag": "AKIR",
+          "commandHex": "a9040200",
+          "eventIndex": 1,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT2A_OGORU_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 184,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0xb0",
+          "frame": 64,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 2,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT2A_OGORU_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 214,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0xc8",
+          "frame": 85,
+          "actorTag": "AKIR",
+          "commandHex": "a9041500",
+          "eventIndex": 3,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT2A_OGORU_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 235,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0xe0",
+          "frame": 88,
+          "actorTag": "AKIR",
+          "commandHex": "a9041700",
+          "eventIndex": 4,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT2A_OGORU_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 238,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x118",
+          "frame": 109,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 6,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT2A_OGORU_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 259,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x130",
+          "frame": 130,
+          "actorTag": "AKIR",
+          "commandHex": "a9041600",
+          "eventIndex": 7,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT2A_OGORU_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 280,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x168",
+          "frame": 245,
+          "actorTag": "AKIR",
+          "commandHex": "a9041700",
+          "eventIndex": 9,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT2A_OGORU_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 395,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x180",
+          "frame": 296,
+          "actorTag": "AKIR",
+          "commandHex": "a9040200",
+          "eventIndex": 10,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT2A_OGORU_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 446,
+          "motionFrameResolved": true
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "source": {
+        "path": ".disc-work/exact/d000/unpacked/DJHN/SEQDATA3.AUTH",
+        "byteLength": 11844,
+        "sha256": "e4e1bdf7774df6d3462436bfed88155abe3203cec1ef17a557e4a7d7fff8aee3"
+      },
+      "durationFrames": 2260,
+      "actors": [
+        "AKIR",
+        "YKHI"
+      ],
+      "motions": [
+        {
+          "recordOffset": "0x40",
+          "timelineFrame": 1,
+          "actorTag": "AKIR",
+          "motionId": "0x1002",
+          "motionBank": 16,
+          "sequenceNumber": 2,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "startFrame": 1,
+          "endFrame": 1755,
+          "motionDurationFrames": 1946,
+          "clippedAtStart": true,
+          "clippedAtEnd": true
+        },
+        {
+          "recordOffset": "0x58",
+          "timelineFrame": 1,
+          "actorTag": "YKHI",
+          "motionId": "0x100e",
+          "motionBank": 16,
+          "sequenceNumber": 14,
+          "sequenceIndex": 13,
+          "motionName": "JIJ_YNN_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "startFrame": 1,
+          "endFrame": 1755,
+          "motionDurationFrames": 1946,
+          "clippedAtStart": true,
+          "clippedAtEnd": true
+        },
+        {
+          "recordOffset": "0x540",
+          "timelineFrame": 1756,
+          "actorTag": "AKIR",
+          "motionId": "0x1012",
+          "motionBank": 16,
+          "sequenceNumber": 18,
+          "sequenceIndex": 17,
+          "motionName": "AKI_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "startFrame": 1500,
+          "endFrame": 1599,
+          "motionDurationFrames": 1893,
+          "clippedAtStart": true,
+          "clippedAtEnd": true
+        },
+        {
+          "recordOffset": "0x558",
+          "timelineFrame": 1756,
+          "actorTag": "YKHI",
+          "motionId": "0x1018",
+          "motionBank": 16,
+          "sequenceNumber": 24,
+          "sequenceIndex": 23,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "startFrame": 1500,
+          "endFrame": 1599,
+          "motionDurationFrames": 1764,
+          "clippedAtStart": true,
+          "clippedAtEnd": true
+        },
+        {
+          "recordOffset": "0x610",
+          "timelineFrame": 1856,
+          "actorTag": "AKIR",
+          "motionId": "0x1012",
+          "motionBank": 16,
+          "sequenceNumber": 18,
+          "sequenceIndex": 17,
+          "motionName": "AKI_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "startFrame": 1555,
+          "endFrame": 1893,
+          "motionDurationFrames": 1893,
+          "clippedAtStart": true,
+          "clippedAtEnd": false
+        },
+        {
+          "recordOffset": "0x628",
+          "timelineFrame": 1856,
+          "actorTag": "YKHI",
+          "motionId": "0x1018",
+          "motionBank": 16,
+          "sequenceNumber": 24,
+          "sequenceIndex": 23,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "startFrame": 1555,
+          "endFrame": 1764,
+          "motionDurationFrames": 1764,
+          "clippedAtStart": true,
+          "clippedAtEnd": false
+        }
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x78",
+          "frame": 103,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 0,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 103,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x90",
+          "frame": 125,
+          "actorTag": "AKIR",
+          "commandHex": "a9040e00",
+          "eventIndex": 1,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 125,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0xa8",
+          "frame": 164,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 2,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 164,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0xe0",
+          "frame": 191,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 4,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 191,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0xf8",
+          "frame": 229,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 5,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 229,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x130",
+          "frame": 380,
+          "actorTag": "YKHI",
+          "commandHex": "a9041100",
+          "eventIndex": 7,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_YNN_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 380,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x148",
+          "frame": 453,
+          "actorTag": "YKHI",
+          "commandHex": "a9040a00",
+          "eventIndex": 8,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_YNN_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 453,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x180",
+          "frame": 480,
+          "actorTag": "YKHI",
+          "commandHex": "a9040b00",
+          "eventIndex": 10,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_YNN_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 480,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x1b8",
+          "frame": 573,
+          "actorTag": "AKIR",
+          "commandHex": "a9040900",
+          "eventIndex": 12,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 573,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x1f0",
+          "frame": 628,
+          "actorTag": "AKIR",
+          "commandHex": "a9040f00",
+          "eventIndex": 14,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 628,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x288",
+          "frame": 1023,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 19,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_YNN_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 1023,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x2a0",
+          "frame": 1046,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 20,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_YNN_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 1046,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x2d8",
+          "frame": 1090,
+          "actorTag": "AKIR",
+          "commandHex": "a9040800",
+          "eventIndex": 22,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 1090,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x2e8",
+          "frame": 1090,
+          "actorTag": "YKHI",
+          "commandHex": "a9040c00",
+          "eventIndex": 23,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_YNN_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 1090,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x300",
+          "frame": 1121,
+          "actorTag": "YKHI",
+          "commandHex": "a9040b00",
+          "eventIndex": 24,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_YNN_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 1121,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x318",
+          "frame": 1152,
+          "actorTag": "AKIR",
+          "commandHex": "a9040900",
+          "eventIndex": 25,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 1152,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x370",
+          "frame": 1222,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 28,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_YNN_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 1222,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x388",
+          "frame": 1234,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 29,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_YNN_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 1234,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x460",
+          "frame": 1635,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 36,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_YNN_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 1635,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x478",
+          "frame": 1658,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 37,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_YNN_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 1658,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x490",
+          "frame": 1669,
+          "actorTag": "AKIR",
+          "commandHex": "a9041700",
+          "eventIndex": 38,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 1669,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x4a8",
+          "frame": 1681,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 39,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_YNN_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 1681,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x4c0",
+          "frame": 1696,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 40,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 1696,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x4f8",
+          "frame": 1703,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 42,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_YNN_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 1703,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x510",
+          "frame": 1716,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 43,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_YNN_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 1716,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x528",
+          "frame": 1722,
+          "actorTag": "YKHI",
+          "commandHex": "a9040400",
+          "eventIndex": 44,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_YNN_AT2_SEIKOU_TOUKIYA_YANJIHANKI_0100",
+          "motionLocalFrame": 1722,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x578",
+          "frame": 1759,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 45,
+          "stop": false,
+          "motionRecordOffset": "0x558",
+          "motionTimelineFrame": 1756,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1503,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x5b0",
+          "frame": 1798,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 47,
+          "stop": false,
+          "motionRecordOffset": "0x558",
+          "motionTimelineFrame": 1756,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1542,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x5c8",
+          "frame": 1810,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 48,
+          "stop": false,
+          "motionRecordOffset": "0x558",
+          "motionTimelineFrame": 1756,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1554,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x5e0",
+          "frame": 1828,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 49,
+          "stop": false,
+          "motionRecordOffset": "0x558",
+          "motionTimelineFrame": 1756,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1572,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x5f8",
+          "frame": 1846,
+          "actorTag": "AKIR",
+          "commandHex": "a9041500",
+          "eventIndex": 50,
+          "stop": false,
+          "motionRecordOffset": "0x540",
+          "motionTimelineFrame": 1756,
+          "motionName": "AKI_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1590,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x668",
+          "frame": 1872,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 52,
+          "stop": false,
+          "motionRecordOffset": "0x610",
+          "motionTimelineFrame": 1856,
+          "motionName": "AKI_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1571,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x6c0",
+          "frame": 1968,
+          "actorTag": "YKHI",
+          "commandHex": "a9041700",
+          "eventIndex": 55,
+          "stop": false,
+          "motionRecordOffset": "0x628",
+          "motionTimelineFrame": 1856,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1667,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x6d8",
+          "frame": 2028,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 56,
+          "stop": false,
+          "motionRecordOffset": "0x628",
+          "motionTimelineFrame": 1856,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1727,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x6f0",
+          "frame": 2032,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 57,
+          "stop": false,
+          "motionRecordOffset": "0x628",
+          "motionTimelineFrame": 1856,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1731,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x708",
+          "frame": 2048,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 58,
+          "stop": false,
+          "motionRecordOffset": "0x628",
+          "motionTimelineFrame": 1856,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1747,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x720",
+          "frame": 2064,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 59,
+          "stop": false,
+          "motionRecordOffset": "0x628",
+          "motionTimelineFrame": 1856,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1763,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x738",
+          "frame": 2086,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 60,
+          "stop": false,
+          "motionRecordOffset": "0x610",
+          "motionTimelineFrame": 1856,
+          "motionName": "AKI_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1785,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x750",
+          "frame": 2112,
+          "actorTag": "AKIR",
+          "commandHex": "a9041500",
+          "eventIndex": 61,
+          "stop": false,
+          "motionRecordOffset": "0x610",
+          "motionTimelineFrame": 1856,
+          "motionName": "AKI_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1811,
+          "motionFrameResolved": true
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "source": {
+        "path": ".disc-work/exact/d000/unpacked/DJHN/SEQDATA4.AUTH",
+        "byteLength": 8816,
+        "sha256": "f23a6627236b93ed51d4b3b7e8e52fd78c47b7a2ce1eee55becaca85e77d07df"
+      },
+      "durationFrames": 1593,
+      "actors": [
+        "AKIR",
+        "YKHI"
+      ],
+      "motions": [
+        {
+          "recordOffset": "0x40",
+          "timelineFrame": 1,
+          "actorTag": "AKIR",
+          "motionId": "0x1012",
+          "motionBank": 16,
+          "sequenceNumber": 18,
+          "sequenceIndex": 17,
+          "motionName": "AKI_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "startFrame": 301,
+          "endFrame": 1893,
+          "motionDurationFrames": 1893,
+          "clippedAtStart": true,
+          "clippedAtEnd": false
+        },
+        {
+          "recordOffset": "0x58",
+          "timelineFrame": 1,
+          "actorTag": "YKHI",
+          "motionId": "0x1018",
+          "motionBank": 16,
+          "sequenceNumber": 24,
+          "sequenceIndex": 23,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "startFrame": 301,
+          "endFrame": 1764,
+          "motionDurationFrames": 1764,
+          "clippedAtStart": true,
+          "clippedAtEnd": false
+        }
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x78",
+          "frame": 78,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 0,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 378,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x90",
+          "frame": 90,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 1,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 390,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0xa8",
+          "frame": 130,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 2,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 430,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0xe0",
+          "frame": 160,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 4,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 460,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0xf8",
+          "frame": 196,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 5,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 496,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x130",
+          "frame": 306,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 7,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 606,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x148",
+          "frame": 354,
+          "actorTag": "YKHI",
+          "commandHex": "a9041100",
+          "eventIndex": 8,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 654,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x160",
+          "frame": 376,
+          "actorTag": "YKHI",
+          "commandHex": "a9040d00",
+          "eventIndex": 9,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 676,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x178",
+          "frame": 380,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 10,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 680,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x1b0",
+          "frame": 442,
+          "actorTag": "YKHI",
+          "commandHex": "a9040100",
+          "eventIndex": 12,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 742,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x1e8",
+          "frame": 512,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 14,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 812,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x260",
+          "frame": 806,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 18,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1106,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x278",
+          "frame": 846,
+          "actorTag": "YKHI",
+          "commandHex": "a9040c00",
+          "eventIndex": 19,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1146,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x290",
+          "frame": 888,
+          "actorTag": "YKHI",
+          "commandHex": "a9040d00",
+          "eventIndex": 20,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1188,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x2c8",
+          "frame": 1056,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 22,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1356,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x2e0",
+          "frame": 1058,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 23,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1358,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x2f8",
+          "frame": 1076,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 24,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1376,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x310",
+          "frame": 1078,
+          "actorTag": "AKIR",
+          "commandHex": "a9041500",
+          "eventIndex": 25,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1378,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x328",
+          "frame": 1082,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 26,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1382,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x340",
+          "frame": 1104,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 27,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1404,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x358",
+          "frame": 1116,
+          "actorTag": "YKHI",
+          "commandHex": "a9040400",
+          "eventIndex": 28,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1416,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x370",
+          "frame": 1144,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 29,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1444,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x3e8",
+          "frame": 1366,
+          "actorTag": "YKHI",
+          "commandHex": "a9041000",
+          "eventIndex": 33,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1666,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x400",
+          "frame": 1392,
+          "actorTag": "YKHI",
+          "commandHex": "a9040d00",
+          "eventIndex": 34,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1692,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x418",
+          "frame": 1424,
+          "actorTag": "YKHI",
+          "commandHex": "a9040300",
+          "eventIndex": 35,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1724,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x430",
+          "frame": 1428,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 36,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1728,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x448",
+          "frame": 1448,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 37,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1748,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x460",
+          "frame": 1466,
+          "actorTag": "AKIR",
+          "commandHex": "a9040200",
+          "eventIndex": 38,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1766,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x478",
+          "frame": 1488,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 39,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1788,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x490",
+          "frame": 1504,
+          "actorTag": "AKIR",
+          "commandHex": "a9041500",
+          "eventIndex": 40,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT4_NOMU_JUICE_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1804,
+          "motionFrameResolved": true
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "source": {
+        "path": ".disc-work/exact/d000/unpacked/DJHN/SEQDATA5.AUTH",
+        "byteLength": 7460,
+        "sha256": "0f75af17e4270b05ce3bf4efcba870b0a45010c91d70acabc4df774b7a7e21b1"
+      },
+      "durationFrames": 1215,
+      "actors": [
+        "AKIR",
+        "YKHI"
+      ],
+      "motions": [
+        {
+          "recordOffset": "0x40",
+          "timelineFrame": 1,
+          "actorTag": "AKIR",
+          "motionId": "0x1013",
+          "motionBank": 16,
+          "sequenceNumber": 19,
+          "sequenceIndex": 18,
+          "motionName": "AKI_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "startFrame": 101,
+          "endFrame": 1315,
+          "motionDurationFrames": 1315,
+          "clippedAtStart": true,
+          "clippedAtEnd": false
+        },
+        {
+          "recordOffset": "0x58",
+          "timelineFrame": 1,
+          "actorTag": "YKHI",
+          "motionId": "0x1019",
+          "motionBank": 16,
+          "sequenceNumber": 25,
+          "sequenceIndex": 24,
+          "motionName": "JIJ_WAN_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "startFrame": 101,
+          "endFrame": 1252,
+          "motionDurationFrames": 1252,
+          "clippedAtStart": true,
+          "clippedAtEnd": false
+        }
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0xb8",
+          "frame": 172,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 2,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 272,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0xf0",
+          "frame": 224,
+          "actorTag": "AKIR",
+          "commandHex": "a9041000",
+          "eventIndex": 4,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 324,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x128",
+          "frame": 246,
+          "actorTag": "YKHI",
+          "commandHex": "a9040d00",
+          "eventIndex": 6,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 346,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x140",
+          "frame": 248,
+          "actorTag": "AKIR",
+          "commandHex": "a9040700",
+          "eventIndex": 7,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 348,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x158",
+          "frame": 260,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 8,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 360,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x190",
+          "frame": 284,
+          "actorTag": "AKIR",
+          "commandHex": "a9040800",
+          "eventIndex": 10,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 384,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x1a8",
+          "frame": 322,
+          "actorTag": "AKIR",
+          "commandHex": "a9040f00",
+          "eventIndex": 11,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 422,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x1e0",
+          "frame": 394,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 13,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 494,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x1f8",
+          "frame": 442,
+          "actorTag": "YKHI",
+          "commandHex": "a9040e00",
+          "eventIndex": 14,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 542,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x250",
+          "frame": 564,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 17,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 664,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x268",
+          "frame": 580,
+          "actorTag": "AKIR",
+          "commandHex": "a9040f00",
+          "eventIndex": 18,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 680,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x2a0",
+          "frame": 604,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 20,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 704,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x2f8",
+          "frame": 668,
+          "actorTag": "AKIR",
+          "commandHex": "a9041000",
+          "eventIndex": 23,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 768,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x310",
+          "frame": 682,
+          "actorTag": "AKIR",
+          "commandHex": "a9040700",
+          "eventIndex": 24,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 782,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x328",
+          "frame": 696,
+          "actorTag": "AKIR",
+          "commandHex": "a9040200",
+          "eventIndex": 25,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 796,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x3c0",
+          "frame": 1012,
+          "actorTag": "YKHI",
+          "commandHex": "a9041000",
+          "eventIndex": 30,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1112,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x3d8",
+          "frame": 1040,
+          "actorTag": "YKHI",
+          "commandHex": "a9040d00",
+          "eventIndex": 31,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1140,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x3f0",
+          "frame": 1074,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 32,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1174,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x408",
+          "frame": 1088,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 33,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1188,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x420",
+          "frame": 1104,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 34,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1204,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x438",
+          "frame": 1114,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 35,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1214,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x450",
+          "frame": 1116,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 36,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1216,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x468",
+          "frame": 1120,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 37,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1220,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x480",
+          "frame": 1138,
+          "actorTag": "AKIR",
+          "commandHex": "a9041500",
+          "eventIndex": 38,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1238,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x498",
+          "frame": 1168,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 39,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1268,
+          "motionFrameResolved": true
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "source": {
+        "path": ".disc-work/exact/d000/unpacked/DJHN/SEQDATA6.AUTH",
+        "byteLength": 5240,
+        "sha256": "14ade9fa18fd408a22b7c05b46d3a1914320e47c589d5a94aa2bd99058d058e9"
+      },
+      "durationFrames": 678,
+      "actors": [
+        "AKIR",
+        "YKHI"
+      ],
+      "motions": [
+        {
+          "recordOffset": "0x40",
+          "timelineFrame": 1,
+          "actorTag": "AKIR",
+          "motionId": "0x1014",
+          "motionBank": 16,
+          "sequenceNumber": 20,
+          "sequenceIndex": 19,
+          "motionName": "AKI_AT5B_OGORANAI_WANTOJIDOUHANBAIKI_0100",
+          "startFrame": 101,
+          "endFrame": 778,
+          "motionDurationFrames": 778,
+          "clippedAtStart": true,
+          "clippedAtEnd": false
+        },
+        {
+          "recordOffset": "0x58",
+          "timelineFrame": 1,
+          "actorTag": "YKHI",
+          "motionId": "0x101a",
+          "motionBank": 16,
+          "sequenceNumber": 26,
+          "sequenceIndex": 25,
+          "motionName": "JIJ_WAN_AT5B_OGORANAI_WANTOJIDOUHANBAIKI_0100",
+          "startFrame": 101,
+          "endFrame": 726,
+          "motionDurationFrames": 726,
+          "clippedAtStart": true,
+          "clippedAtEnd": false
+        }
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x138",
+          "frame": 527,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 6,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT5B_OGORANAI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 627,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x150",
+          "frame": 546,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 7,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT5B_OGORANAI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 646,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x168",
+          "frame": 558,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 8,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT5B_OGORANAI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 658,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x180",
+          "frame": 566,
+          "actorTag": "AKIR",
+          "commandHex": "a9040200",
+          "eventIndex": 9,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT5B_OGORANAI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 666,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x198",
+          "frame": 576,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 10,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT5B_OGORANAI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 676,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x1b0",
+          "frame": 590,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 11,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT5B_OGORANAI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 690,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x1c8",
+          "frame": 596,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 12,
+          "stop": false,
+          "motionRecordOffset": "0x40",
+          "motionTimelineFrame": 1,
+          "motionName": "AKI_AT5B_OGORANAI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 696,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x1e0",
+          "frame": 607,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 13,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT5B_OGORANAI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 707,
+          "motionFrameResolved": true
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "source": {
+        "path": ".disc-work/exact/d000/unpacked/DJHN/SEQDATA7.AUTH",
+        "byteLength": 5424,
+        "sha256": "857d8ced7965011235410efe8c20919b9753320665c2d639170bb47ce1f8e62c"
+      },
+      "durationFrames": 765,
+      "actors": [
+        "AKIR",
+        "YKHI"
+      ],
+      "motions": [
+        {
+          "recordOffset": "0x40",
+          "timelineFrame": 1,
+          "actorTag": "AKIR",
+          "motionId": "0x1013",
+          "motionBank": 16,
+          "sequenceNumber": 19,
+          "sequenceIndex": 18,
+          "motionName": "AKI_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "startFrame": 101,
+          "endFrame": 290,
+          "motionDurationFrames": 1315,
+          "clippedAtStart": true,
+          "clippedAtEnd": true
+        },
+        {
+          "recordOffset": "0x58",
+          "timelineFrame": 1,
+          "actorTag": "YKHI",
+          "motionId": "0x1019",
+          "motionBank": 16,
+          "sequenceNumber": 25,
+          "sequenceIndex": 24,
+          "motionName": "JIJ_WAN_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "startFrame": 101,
+          "endFrame": 290,
+          "motionDurationFrames": 1252,
+          "clippedAtStart": true,
+          "clippedAtEnd": true
+        },
+        {
+          "recordOffset": "0xd0",
+          "timelineFrame": 191,
+          "actorTag": "AKIR",
+          "motionId": "0x1013",
+          "motionBank": 16,
+          "sequenceNumber": 19,
+          "sequenceIndex": 18,
+          "motionName": "AKI_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "startFrame": 841,
+          "endFrame": 930,
+          "motionDurationFrames": 1315,
+          "clippedAtStart": true,
+          "clippedAtEnd": true
+        },
+        {
+          "recordOffset": "0xe8",
+          "timelineFrame": 191,
+          "actorTag": "YKHI",
+          "motionId": "0x1019",
+          "motionBank": 16,
+          "sequenceNumber": 25,
+          "sequenceIndex": 24,
+          "motionName": "JIJ_WAN_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "startFrame": 741,
+          "endFrame": 1252,
+          "motionDurationFrames": 1252,
+          "clippedAtStart": true,
+          "clippedAtEnd": false
+        },
+        {
+          "recordOffset": "0x158",
+          "timelineFrame": 281,
+          "actorTag": "AKIR",
+          "motionId": "0x1013",
+          "motionBank": 16,
+          "sequenceNumber": 19,
+          "sequenceIndex": 18,
+          "motionName": "AKI_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "startFrame": 831,
+          "endFrame": 1315,
+          "motionDurationFrames": 1315,
+          "clippedAtStart": true,
+          "clippedAtEnd": false
+        }
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0xb8",
+          "frame": 172,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 2,
+          "stop": false,
+          "motionRecordOffset": "0x58",
+          "motionTimelineFrame": 1,
+          "motionName": "JIJ_WAN_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 272,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x128",
+          "frame": 218,
+          "actorTag": "AKIR",
+          "commandHex": "a9041000",
+          "eventIndex": 4,
+          "stop": false,
+          "motionRecordOffset": "0xd0",
+          "motionTimelineFrame": 191,
+          "motionName": "AKI_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 868,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x140",
+          "frame": 246,
+          "actorTag": "AKIR",
+          "commandHex": "a9040200",
+          "eventIndex": 5,
+          "stop": false,
+          "motionRecordOffset": "0xd0",
+          "motionTimelineFrame": 191,
+          "motionName": "AKI_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 896,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x1d8",
+          "frame": 562,
+          "actorTag": "YKHI",
+          "commandHex": "a9041000",
+          "eventIndex": 9,
+          "stop": false,
+          "motionRecordOffset": "0xe8",
+          "motionTimelineFrame": 191,
+          "motionName": "JIJ_WAN_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1112,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x1f0",
+          "frame": 590,
+          "actorTag": "YKHI",
+          "commandHex": "a9040d00",
+          "eventIndex": 10,
+          "stop": false,
+          "motionRecordOffset": "0xe8",
+          "motionTimelineFrame": 191,
+          "motionName": "JIJ_WAN_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1140,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x208",
+          "frame": 624,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 11,
+          "stop": false,
+          "motionRecordOffset": "0xe8",
+          "motionTimelineFrame": 191,
+          "motionName": "JIJ_WAN_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1174,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x220",
+          "frame": 638,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 12,
+          "stop": false,
+          "motionRecordOffset": "0xe8",
+          "motionTimelineFrame": 191,
+          "motionName": "JIJ_WAN_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1188,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x238",
+          "frame": 654,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 13,
+          "stop": false,
+          "motionRecordOffset": "0xe8",
+          "motionTimelineFrame": 191,
+          "motionName": "JIJ_WAN_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1204,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x250",
+          "frame": 670,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 14,
+          "stop": false,
+          "motionRecordOffset": "0xe8",
+          "motionTimelineFrame": 191,
+          "motionName": "JIJ_WAN_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1220,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x268",
+          "frame": 678,
+          "actorTag": "AKIR",
+          "commandHex": "a9040200",
+          "eventIndex": 15,
+          "stop": false,
+          "motionRecordOffset": "0x158",
+          "motionTimelineFrame": 281,
+          "motionName": "AKI_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1228,
+          "motionFrameResolved": true
+        },
+        {
+          "recordOffset": "0x280",
+          "frame": 690,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 16,
+          "stop": false,
+          "motionRecordOffset": "0x158",
+          "motionTimelineFrame": 281,
+          "motionName": "AKI_AT5A_MISERU_TEGAMI_WANTOJIDOUHANBAIKI_0100",
+          "motionLocalFrame": 1240,
+          "motionFrameResolved": true
+        }
+      ]
+    }
+  ],
+  "resourceCluster": {
+    "mapinfoRange": {
+      "startOffset": "0xb1884",
+      "endOffsetExclusive": "0xb1a20"
+    },
+    "authPackages": [
+      {
+        "name": "DJHN_01",
+        "firstOffset": "0xb1884"
+      },
+      {
+        "name": "DJHN_02",
+        "firstOffset": "0xb189c"
+      },
+      {
+        "name": "DJHN_03",
+        "firstOffset": "0xb18b4"
+      },
+      {
+        "name": "DJHN_04",
+        "firstOffset": "0xb18cc"
+      },
+      {
+        "name": "DJHN_05",
+        "firstOffset": "0xb18e4"
+      },
+      {
+        "name": "DJHN_06",
+        "firstOffset": "0xb18fc"
+      },
+      {
+        "name": "DJHN_07",
+        "firstOffset": "0xb1914"
+      }
+    ],
+    "motionPackage": {
+      "name": "DJHN_MOT",
+      "offset": "0xb1a00"
+    },
+    "soundBank": {
+      "name": "a1_yanji.snd",
+      "offset": "0xb1a09",
+      "source": {
+        "path": "extracted_files/data/SCENE/01/SOUND/A1_YANJI.SND",
+        "byteLength": 135328,
+        "sha256": "a9ec9b5a7b69359da2852bf6ecfe6c5aa3bad9855458b0ace13d42606865d4b0"
+      },
+      "commandGroup": "a904",
+      "playableCommands": {
+        "first": "a9040000",
+        "last": "a9041700",
+        "count": 24
+      }
+    },
+    "followingModel": {
+      "name": "01JUCEA",
+      "offset": "0xb1a16"
+    }
+  },
+  "canAttachmentCalls": [
+    {
+      "callFileOffset": "0x89302",
+      "operationHex": "0x001f",
+      "argumentsInNativeOrder": [
+        "CAN1",
+        1
+      ]
+    },
+    {
+      "callFileOffset": "0x89392",
+      "operationHex": "0x00e6",
+      "argumentsInNativeOrder": [
+        "CAN1",
+        "AKIR",
+        18,
+        "runtime",
+        "runtime"
+      ]
+    },
+    {
+      "callFileOffset": "0x893f2",
+      "operationHex": "0x001b",
+      "argumentsInNativeOrder": [
+        "CAN1"
+      ]
+    },
+    {
+      "callFileOffset": "0x8948e",
+      "operationHex": "0x00e6",
+      "argumentsInNativeOrder": [
+        "CAN1",
+        "YKHI",
+        18,
+        "runtime",
+        "runtime"
+      ]
+    },
+    {
+      "callFileOffset": "0x89ed6",
+      "operationHex": "0x001f",
+      "argumentsInNativeOrder": [
+        "CAN1",
+        1
+      ]
+    },
+    {
+      "callFileOffset": "0x89f66",
+      "operationHex": "0x00e6",
+      "argumentsInNativeOrder": [
+        "CAN1",
+        "AKIR",
+        18,
+        "runtime",
+        "runtime"
+      ]
+    },
+    {
+      "callFileOffset": "0x8a0e2",
+      "operationHex": "0x00e6",
+      "argumentsInNativeOrder": [
+        "CAN1",
+        "YKHI",
+        18,
+        "runtime",
+        "runtime"
+      ]
+    }
+  ],
+  "cinematicCanGrip": {
+    "callFileOffset": "0x89392",
+    "parentTag": "AKIR",
+    "modelControlId": 18,
+    "translationLiteralOffsets": [
+      "0x893ac",
+      "0x893b0",
+      "0x893b4"
+    ],
+    "rotationLiteralOffsets": [
+      "0x893b8",
+      "0x893bc",
+      "0x893c0"
+    ],
+    "translation": [
+      0.10809999704360962,
+      0.019200000911951065,
+      -0.013399999588727951
+    ],
+    "rotationRaw": [
+      -4125,
+      20600,
+      -9448
+    ],
+    "scope": "DJHN cinematic CAN1 grip; browser reuse with solo M_DJUC motions is rendered-checked, not proof of the native free-roam controller's arguments"
+  },
+  "stateCalls": [
+    {
+      "callFileOffset": "0xd064",
+      "operationHex": "0x0060",
+      "argumentsInNativeOrder": [
+        2,
+        "runtime"
+      ]
+    },
+    {
+      "callFileOffset": "0xd0bc",
+      "operationHex": "0x0060",
+      "argumentsInNativeOrder": [
+        2,
+        "runtime"
+      ]
+    },
+    {
+      "callFileOffset": "0xd1ba",
+      "operationHex": "0x005f",
+      "argumentsInNativeOrder": [
+        2
+      ]
+    },
+    {
+      "callFileOffset": "0xd3ac",
+      "operationHex": "0x005f",
+      "argumentsInNativeOrder": [
+        2
+      ]
+    },
+    {
+      "callFileOffset": "0xd50c",
+      "operationHex": "0x005f",
+      "argumentsInNativeOrder": [
+        2
+      ]
+    },
+    {
+      "callFileOffset": "0xd684",
+      "operationHex": "0x005f",
+      "argumentsInNativeOrder": [
+        2
+      ]
+    },
+    {
+      "callFileOffset": "0x8c900",
+      "operationHex": "0x005f",
+      "argumentsInNativeOrder": [
+        2
+      ]
+    },
+    {
+      "callFileOffset": "0x8cbb4",
+      "operationHex": "0x0060",
+      "argumentsInNativeOrder": [
+        2,
+        "runtime"
+      ]
+    },
+    {
+      "callFileOffset": "0x8cfd0",
+      "operationHex": "0x005f",
+      "argumentsInNativeOrder": [
+        2
+      ]
+    },
+    {
+      "callFileOffset": "0x8d1d0",
+      "operationHex": "0x0060",
+      "argumentsInNativeOrder": [
+        2,
+        "runtime"
+      ]
+    }
+  ],
+  "currencyMutation": {
+    "selector": 2,
+    "unitAmount": 100,
+    "subtractRoutine": {
+      "localLoad": "0x55e2",
+      "immediate": "0xe664",
+      "arithmetic": "0x3568",
+      "writeCall": "0xd064"
+    },
+    "refundRoutine": {
+      "localLoad": "0x55e2",
+      "immediate": "0xe664",
+      "arithmetic": "0x356c",
+      "writeCall": "0xd0bc"
+    },
+    "affordabilityBranch": {
+      "loadedSelectorCall": "0xd1ba",
+      "immediate": "0xe563",
+      "comparison": "0x3457"
+    },
+    "debugLabel": "vendmachine exit is MONEY_LOCK -> %d,%d\n"
+  },
+  "exactConclusions": [
+    "ASEQ 0x0503 records identify actor, one-based MOTN sequence, and exact frame interval.",
+    "ASEQ 0x0306 records identify an authored global timeline frame, actor, exact four-byte native sound command, and event index.",
+    "ASEQ groups can contain multiple records at one frame; record type high bytes encode length and permit an exact sequential parse.",
+    "Every DJHN sound resolves to the named actor's active MOTN sequence and exact local frame by applying the authored motion timeline offset.",
+    "The ffffffff sound command is an authored stop/clear sentinel, not a playable track.",
+    "All seven DJHN AUTH files resolve every actor motion to complete M_01JUCE data.",
+    "D000 MAPINFO places DJHN_01 through DJHN_07, DJHN_MOT, and a1_yanji.snd in one resource cluster, linking the AUTH sound commands to A1_YANJI.SND.",
+    "CAN1 is enabled, attached to actor model-control 18, detached, and reattached by the native routine.",
+    "The VEND module reads global-state selector 2, checks it against 99, subtracts 100 on purchase, and adds 100 on refund.",
+    "The adjacent native diagnostic names the failed branch MONEY_LOCK, independently identifying selector 2 as the currency balance."
+  ],
+  "browserStatus": {
+    "currentlyImplemented": [
+      "server-authoritative 100-yen purchase and affordability check",
+      "atomic Yen debit, purchase ledger, and Winning Can inventory grant",
+      "source-native M_DJUC drinking motions and original can models",
+      "CAN1-equivalent attachment to AKIR model-control 18 during drinking"
+    ],
+    "unresolved": [
+      "mapping sound frames from the long DJHN cinematic motions onto the browser's separate AKI_IRERU_COIN, AKI_TORU_JUICE, and AKI_NOMU_JUICE motions",
+      "browser playback of AUTH cues remains disabled until that cross-motion mapping is proven",
+      "full AUTH camera, Yukawa, dialogue, and branch staging",
+      "native free-roam CAN1 grip arguments, pickup/release frame events and flight controller (browser uses the verified cinematic grip and separately staged release/flight)",
+      "animated native refund branch; failed server transactions never debit"
+    ]
+  },
+  "failures": [],
+  "status": "verified"
+}

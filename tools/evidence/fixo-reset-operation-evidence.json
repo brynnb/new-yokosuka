@@ -1,0 +1,82 @@
+{
+  "schema": "new-yokosuka-fixo-reset-operation-evidence-v1",
+  "status": "exact-native-handler-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 27,
+    "operationHex": "0x001b",
+    "handlerAddress": "0x0c157830",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c157830",
+        "length": 22,
+        "sha256": "8235134b6a9d88823c209a50b641e22140fe662fc5b6a601f2fe1d2dd90a2859"
+      },
+      "actorResolver": {
+        "address": "0x0c153956",
+        "length": 58,
+        "sha256": "b99d1c60ec19d8c20dec13ede36b9f81a3b04510da97159b53e03db38deba35f"
+      },
+      "associatedRecordResolver": {
+        "address": "0x0c0aad5a",
+        "length": 50,
+        "sha256": "4c5affee0a1739c5cc4b01e389b4f6af7d2f6147cd09ad667b8e103fb3466c27"
+      },
+      "fixoReset": {
+        "address": "0x0c0bebda",
+        "length": 50,
+        "sha256": "b61a134da47ef324597257aa9050c576452358e510a61b98af133d407c533694"
+      }
+    },
+    "nativeContract": {
+      "actorResolver": "0x0c153956",
+      "fixoReset": "0x0c0bebda",
+      "recordTag": "FIXO",
+      "associatedRecordResolver": "0x0c0aad5a"
+    },
+    "recordTag": "FIXO",
+    "zeroFields": {
+      "floatWords": [
+        "0x18",
+        "0x1c",
+        "0x20"
+      ],
+      "dwords": [
+        "0x24",
+        "0x28",
+        "0x2c"
+      ],
+      "words": [
+        "0x30",
+        "0x32"
+      ]
+    },
+    "provenBehavior": "Resolves argument zero as an actor, resolves its exact FIXO associated record, then zeros float-word offsets +0x18, +0x1c, and +0x20, dwords +0x24, +0x28, and +0x2c, and words +0x30 and +0x32."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 470,
+    "provenCallCount": 470,
+    "dialogueRegionCallCount": 77,
+    "areaCount": 47,
+    "actorArgumentKindCounts": {
+      "constant": 409,
+      "frame-field": 24,
+      "runtime": 7,
+      "scene-field": 30
+    },
+    "dialogueActorArgumentKindCounts": {
+      "constant": 76,
+      "scene-field": 1
+    }
+  },
+  "evidenceBoundary": [
+    "FIXO remains the exact native four-byte tag; no expanded record meaning is assigned.",
+    "The reset routine dereferences the associated-record result without a null guard, so missing actor or FIXO state is an explicit runtime prerequisite.",
+    "Runtime, frame-field, and scene-field actor bindings remain unresolved until supplied by their exact execution context."
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "schema": "new-yokosuka-dialogue-participant-facing-v1",
+  "evidenceBoundary": [
+    "The command handler, FACE component lookup, FACE target writer, and lower-family control-state transition are exact executable evidence.",
+    "Static actor SCNF +0x28 contains 12-byte float triples bounded by static participant table +0x20. The FACE consumer selects those triples by command ordinal.",
+    "Commands 0x014..0x01d select index command-0x014 and then execute the additional native control-state transition. Commands 0x078..0x081 select index command-0x078 without that transition.",
+    "Source actor-resource counts describe where command words occur in authored bytecode; they are not used as a substitute for the runtime participant identity passed to the native receiver."
+  ],
+  "executableEvidence": {
+    "filename": "1ST_READ.BIN",
+    "sha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "verifiedCodeRanges": {
+      "participantFacingCommandHandler": {
+        "runtimeAddress": "0xc16188c",
+        "size": 630,
+        "sha256": "5f7a0107100ad06ec0771a241975758dd4a241d200570a9b2b71da8555d88999"
+      },
+      "faceControllerTargetWriter": {
+        "runtimeAddress": "0xc0bc784",
+        "size": 160,
+        "sha256": "15d8708b777292a84b3fd7d8559908e5db59f5f94188066690c7bcb8338f495a"
+      },
+      "lowerFamilyControlStateTransition": {
+        "runtimeAddress": "0xc161d06",
+        "size": 166,
+        "sha256": "2c19ce2320fee23b455412bbb226416ea7ef3454af004fe00ae9641474eb555b"
+      }
+    },
+    "faceControllerTypeLiteral": {
+      "runtimeAddress": "0xc0bc81c",
+      "value": "FACE"
+    },
+    "faceControllerWriterPointer": {
+      "runtimeAddress": "0xc161b20",
+      "value": "0xc0bc784"
+    }
+  },
+  "nativeHandler": {
+    "runtimeAddress": "0xc16188c",
+    "runtimePersonFacingTableOffset": "0x2c",
+    "staticScnfFacingTableOffset": "0x28",
+    "entrySize": 12,
+    "controllerType": "FACE",
+    "families": [
+      {
+        "firstCommand": "0x14",
+        "lastCommand": "0x1d",
+        "indexExpression": "commandWord - 0x14",
+        "appliesControlStateTransition": true,
+        "transitionAddress": "0xc161d06"
+      },
+      {
+        "firstCommand": "0x78",
+        "lastCommand": "0x81",
+        "indexExpression": "commandWord - 0x78",
+        "appliesControlStateTransition": false,
+        "transitionAddress": null
+      }
+    ]
+  },
+  "summary": {
+    "resourceCount": 262,
+    "resourceWithFacingTargetsCount": 34,
+    "facingTargetCount": 65,
+    "nativeFacingCommandSiteCount": 239,
+    "nativeFacingCommandCounts": [
+      {
+        "commandWord": "0x14",
+        "targetIndex": 0,
+        "siteCount": 106,
+        "sourceActorResourceCount": 21
+      },
+      {
+        "commandWord": "0x15",
+        "targetIndex": 1,
+        "siteCount": 46,
+        "sourceActorResourceCount": 12
+      },
+      {
+        "commandWord": "0x16",
+        "targetIndex": 2,
+        "siteCount": 13,
+        "sourceActorResourceCount": 5
+      },
+      {
+        "commandWord": "0x17",
+        "targetIndex": 3,
+        "siteCount": 10,
+        "sourceActorResourceCount": 2
+      },
+      {
+        "commandWord": "0x18",
+        "targetIndex": 4,
+        "siteCount": 13,
+        "sourceActorResourceCount": 3
+      },
+      {
+        "commandWord": "0x1a",
+        "targetIndex": 6,
+        "siteCount": 9,
+        "sourceActorResourceCount": 9
+      },
+      {
+        "commandWord": "0x1b",
+        "targetIndex": 7,
+        "siteCount": 2,
+        "sourceActorResourceCount": 2
+      },
+      {
+        "commandWord": "0x1c",
+        "targetIndex": 8,
+        "siteCount": 5,
+        "sourceActorResourceCount": 4
+      },
+      {
+        "commandWord": "0x1d",
+        "targetIndex": 9,
+        "siteCount": 1,
+        "sourceActorResourceCount": 1
+      },
+      {
+        "commandWord": "0x78",
+        "targetIndex": 0,
+        "siteCount": 17,
+        "sourceActorResourceCount": 5
+      },
+      {
+        "commandWord": "0x79",
+        "targetIndex": 1,
+        "siteCount": 7,
+        "sourceActorResourceCount": 2
+      },
+      {
+        "commandWord": "0x7a",
+        "targetIndex": 2,
+        "siteCount": 1,
+        "sourceActorResourceCount": 1
+      },
+      {
+        "commandWord": "0x7d",
+        "targetIndex": 5,
+        "siteCount": 9,
+        "sourceActorResourceCount": 1
+      }
+    ]
+  }
+}

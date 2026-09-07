@@ -1,0 +1,55 @@
+{
+  "schema": "new-yokosuka-researched-flag-labels-v1",
+  "evidenceBoundary": "Aliases are project research labels for exact native bank/index pairs. They describe proven consumers, not necessarily exclusive global meanings or proven setters.",
+  "entries": [
+    {
+      "bank": 2,
+      "index": 10,
+      "alias": "B2_0010_YAMAGISHI_TESTIMONY_BODY",
+      "meaning": "Selects Yamagishi's testimony dialogue body.",
+      "setter": "unresolved",
+      "confidence": "high",
+      "evidence": [
+        "play/data/dialogue/nativeActorSelectors.generated.js",
+        "play/data/dialogue/messages/YAMA.generated.js"
+      ]
+    },
+    {
+      "bank": 2,
+      "index": 20,
+      "alias": "B2_0020_YAMAGISHI_POST_TESTIMONY_BODY",
+      "meaning": "Selects Yamagishi's post-testimony dialogue body.",
+      "setter": "unresolved on Disc 1",
+      "confidence": "high",
+      "evidence": [
+        "play/data/dialogue/nativeActorSelectors.generated.js",
+        "play/data/dialogue/messages/YAMA.generated.js"
+      ]
+    },
+    {
+      "bank": 2,
+      "index": 30,
+      "alias": "B2_0030_NOZOMI_RETROSPECTIVE_TOM_ADVANCING",
+      "meaning": "Selects Nozomi's retrospective body and Tom's advancing black-car body; Nozomi's initial black-car dialogue does not read flags 10 or 20.",
+      "setter": "unresolved on Disc 1",
+      "confidence": "high",
+      "evidence": [
+        "play/data/dialogue/nativeActorSelectors.generated.js",
+        "play/data/dialogue/messages/HRSK.generated.js",
+        "play/data/dialogue/messages/TOM_.generated.js"
+      ]
+    },
+    {
+      "bank": 2,
+      "index": 40,
+      "alias": "B2_0040_POST_TOM_CHINESE_COMMUNITY_DIALOGUE",
+      "meaning": "Selects post-Tom and Chinese-community dialogue.",
+      "setter": "unresolved on Disc 1",
+      "confidence": "high",
+      "evidence": [
+        "play/data/dialogue/nativeActorSelectors.generated.js",
+        "tools/evidence/dialogue-predicate-values.json"
+      ]
+    }
+  ]
+}

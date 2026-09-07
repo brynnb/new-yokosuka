@@ -1,0 +1,115 @@
+{
+  "schema": "new-yokosuka-operation-017a-evidence-v1",
+  "status": "exact-native-routes-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 378,
+    "operationHex": "0x017a",
+    "handlerAddress": "0x0c1636f6",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c1636f6",
+        "length": 64,
+        "sha256": "f26e3e4c9a98f08e03952464c156b7cb9b0b0b873b9a8f731ffbab3e0867a62a"
+      },
+      "modeZeroHelper": {
+        "address": "0x0c12e502",
+        "length": 348,
+        "sha256": "0a805013964b29f8c37b4962962c77dce0c9888b2d80338f5657224501b376d7"
+      },
+      "modeOneHelper": {
+        "address": "0x0c12e65e",
+        "length": 28,
+        "sha256": "a828464a8a518157344f821d4d67b81d0237ff2f2f3e81a4d38802037a96a337"
+      },
+      "modeTwoHelper": {
+        "address": "0x0c12e67a",
+        "length": 100,
+        "sha256": "c77eef6625064648ed2f4355287748050505ec3db066e4fe13e10632be79b2ad"
+      },
+      "stateReader": {
+        "address": "0x0c12e6de",
+        "length": 92,
+        "sha256": "5255b320d4c8c32fe9ee0721b37a94ab1943c15187256ab2a83a806beac76075"
+      },
+      "stateWriter": {
+        "address": "0x0c12e73a",
+        "length": 92,
+        "sha256": "d6b76b6f7dea312f087f85c6c740fd0198bbdd9872de283f4bb6c7e469e8d0fb"
+      }
+    },
+    "nativeContract": {
+      "modeZeroHelper": "0x0c12e502",
+      "modeOneHelper": "0x0c12e65e",
+      "modeTwoHelper": "0x0c12e67a"
+    },
+    "routes": [
+      {
+        "mode": 0,
+        "argumentCount": 3,
+        "forwardedArguments": [
+          1,
+          2
+        ],
+        "behavior": "Pass argument one and argument two to helper 0x0c12e502."
+      },
+      {
+        "mode": 1,
+        "argumentCount": 3,
+        "forwardedArguments": [],
+        "behavior": "Call helper 0x0c12e65e; authored arguments one and two are ignored."
+      },
+      {
+        "mode": 2,
+        "argumentCount": 3,
+        "forwardedArguments": [
+          1
+        ],
+        "behavior": "Pass argument one to helper 0x0c12e67a; authored argument two is ignored."
+      }
+    ]
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 916,
+    "provenCallCount": 915,
+    "unresolvedMalformedCallCount": 1,
+    "dialogueRegionCallCount": 49,
+    "areaCount": 60,
+    "modeCounts": {
+      "0": 338,
+      "1": 376,
+      "2": 201
+    },
+    "dialogueModeCounts": {
+      "0": 29,
+      "1": 1,
+      "2": 19
+    },
+    "argumentKindCounts": {
+      "0": {
+        "constant": 915
+      },
+      "1": {
+        "constant": 913,
+        "frame-field": 2
+      },
+      "2": {
+        "constant": 915
+      }
+    }
+  },
+  "evidenceBoundary": [
+    "The shared helper subsystem remains one mandatory injected adapter.",
+    "No gameplay-domain name is assigned to its opaque native state.",
+    "No fixed globals are assigned to browser persistence without ownership evidence.",
+    "Mode-one padding and mode-two argument two are not forwarded because the native handler ignores them.",
+    "Only the 915 exact three-argument calls with constant mode zero, one, or two are promoted.",
+    "The single zero-argument call remains unresolved.",
+    "No recovered operation result feeds a branch or stored result target."
+  ]
+}

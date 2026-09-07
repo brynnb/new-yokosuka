@@ -1,0 +1,37 @@
+{
+  "schema": "new-yokosuka-camera-state-mode-operation-evidence-v1",
+  "status": "exact-native-handler-and-camera-state-write",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c"
+  },
+  "operation": {
+    "operationId": 14,
+    "operationHex": "0x000e",
+    "handlerAddress": "0x0c156a58",
+    "handlerSampleSha256": "d1ecd8afbfef82aad58ad20e8bebd3d7c0012caebfb64f5b11e432b24badf744",
+    "cameraStateModeSelectorAddress": "0x0c09f4c6",
+    "cameraStateModeSelectorSha256": "3145d92ed2de645695f0acb686ee58d56b742954c7d3db03b534a3b51401a903",
+    "argument": {
+      "index": 0,
+      "meaning": "camera-state mode forwarded unchanged to the native camera subsystem"
+    },
+    "provenBehavior": "Forwards its first argument unchanged to the shared camera-state mode selector, which records the requested mode and performs the native mode transition."
+  },
+  "crossOperationEvidence": {
+    "operationHex": "0x0011",
+    "relationship": "The independently recovered event-camera request handler uses the same selector address with constant mode 6.",
+    "source": "tools/evidence/event-camera-operation-evidence.json"
+  },
+  "hatoConversation": {
+    "phase": "control cleanup",
+    "callFileOffset": "0x80110",
+    "requestedMode": 0
+  },
+  "evidenceBoundary": [
+    "The handler forwarding, shared selector address, requested mode value, and state-machine transition are exact.",
+    "Individual numeric modes are not assigned invented names. Only mode 6's event-camera relationship is independently proven by operation 0x0011.",
+    "Hato requests mode 0 after releasing its look point; the browser follow-camera transition contract remains unresolved."
+  ]
+}

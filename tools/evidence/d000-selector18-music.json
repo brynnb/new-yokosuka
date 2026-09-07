@@ -1,0 +1,26 @@
+{
+  "schema": "new-yokosuka-d000-selector18-music-v1",
+  "evidenceBoundary": [
+    "The D000 event installs BGM013.SND and dispatches exact AICA sequence command A8250000.",
+    "The original AICADRV.BIN renders group zero, track zero; no replacement soundtrack or guessed command mapping is used.",
+    "The 180-second browser render is a bounded presentation asset, not a claim about the native stop/fade commands that follow."
+  ],
+  "source": {
+    "disc": 1,
+    "path": "data/SCENE/01/SOUND/BGM013.SND",
+    "sha256": "0c5250def8570bef8982a1634d3eef79781960a4b8a2c745d56593a314d07cb0",
+    "driverPath": "data/SOUND/AICADRV.BIN",
+    "driverSha256": "3f88553a52a6d1af0b988ea3f41800178988350721bd7422a570dc3e4e369915",
+    "rendererSha256": "0ee5530466ebe91945a530bad4c1dd8f39b68e93959a8bb420220cacace71c39"
+  },
+  "track": {
+    "id": "dobuita-selector-18",
+    "group": 0,
+    "track": 0,
+    "commandHex": "A8250000",
+    "durationSeconds": 180.0,
+    "output": "public/music/dobuita-selector-18.ogg",
+    "byteLength": 2438729,
+    "sha256": "7e9a3cea42423d5e37e6aa025899af3defed9a7eceb25602039c7e88efa70a57"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "schema": "new-yokosuka-d000-door-1-closed-check-v1",
+  "status": "exact-control-presentation-dialogue-and-audio-route",
+  "source": {
+    "mapinfo": "Disc 1 D000/MAPINFO.BIN",
+    "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+    "dialogueArchive": "Disc 1 STREAM/SA1080.AFS",
+    "dialogueArchiveSha256": "632c862cfd6c8aa6584c0aed55a702e79031db56485f8fa7cc459b0f8d122432",
+    "soundBank": "Disc 1 SOUND/F1DOBUIT.SND",
+    "soundBankSha256": "e77a6ea473b62e6356fe9b0152ec285b6ee115ef75cd912c443852ff6ff118be",
+    "playerMotion": "Disc 1 MOTION/MOTION.BIN",
+    "playerMotionRequest": 1554,
+    "playerMotionIndex": 1553,
+    "playerMotionName": "AKI_AKANAI_HIKIDO_F"
+  },
+  "selection": {
+    "logicalDoorSelector": 1,
+    "mappedStaticDoorIndex": 78,
+    "visibleDoorIndex": 79,
+    "usesInvisibleProxy": true,
+    "model": "S1_D000_DR15_011.MT5",
+    "browserPosition": [40.704201, 0.0724, 74.147003],
+    "targetIndex": 531,
+    "regionStartFileOffset": "0x74874",
+    "dispatcherComparisonFileOffset": "0x7667c",
+    "dispatcherCallFileOffset": "0x766fa"
+  },
+  "state": {
+    "operation": "0x0051",
+    "suboperation": 11,
+    "bank": 2,
+    "bitIndex": 170,
+    "scriptIdentifier": "native.d1.d000.free_conversation.bank2.bit170"
+  },
+  "alignment": {
+    "helperFileOffsets": ["0x74df4", "0x6fba0"],
+    "actorCode": "AKIR",
+    "nativeActorXComparison": "greater-than-zero",
+    "inputDegrees": 18,
+    "requestWord": 3276,
+    "stateSelector": 0,
+    "whenNativeActorXIsPositive": {
+      "targetNative": [-40.03379821777344, 0.07999999821186066, 74.68450164794922],
+      "requestDword": 1554
+    },
+    "otherwise": {
+      "targetNative": [-40.913700103759766, 0.07999999821186066, 75.03309631347656],
+      "requestDword": 2147485202
+    }
+  },
+  "timing": {
+    "soundDelayTicks": [56, 78],
+    "dialogueDelayTicks": 120,
+    "nativeTickRate": 30,
+    "postAlignmentMomtFloatPairWrite": 1.25,
+    "reproductionBoundary": "The exact MOMT +0xf0/+0x128 write occurs only after the XMPT wait has completed. Babylon retains it as native provenance rather than mutating completed-motion internals; the consequential side-aware motion, cue delays, dialogue delay, and cleanup remain explicit."
+  },
+  "sound": {
+    "commandHex": "a9054200",
+    "group": "a905",
+    "track": 66,
+    "compositionHex": "c0df0e6d80ff",
+    "playbackId": 14,
+    "sampleId": 25,
+    "dtpkRate": "0xe500",
+    "sampleRate": 9500
+  },
+  "branches": {
+    "randomIntegerRangeInclusive": [0, 1],
+    "uniformProbability": 0.5,
+    "beforeBank2Bit170": {
+      "zero": "SA1080A003",
+      "one": "SA1080A002"
+    },
+    "afterBank2Bit170": {
+      "beforeHour10": {"zero": "SA1080A004", "one": "SA1080A005"},
+      "hours10Through20": "no-dialogue",
+      "atOrAfterHour21": {"zero": "SA1080A004", "one": "SA1080A006"}
+    }
+  }
+}

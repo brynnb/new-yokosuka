@@ -1,0 +1,301 @@
+{
+  "schema": "new-yokosuka-vending-manifest-v1",
+  "sourceGame": "Shenmue (non-Japanese Dreamcast release)",
+  "currency": "JPY",
+  "unitPrice": 100,
+  "winningCanChance": {
+    "numerator": 1,
+    "denominator": 10
+  },
+  "products": [
+    {
+      "key": "jet_cola",
+      "name": "Jet Cola",
+      "resourceCode": "COKE",
+      "temperature": "cold"
+    },
+    {
+      "key": "fruda_orange",
+      "name": "Fruda Orange",
+      "resourceCode": "FATO",
+      "temperature": "cold"
+    },
+    {
+      "key": "fruda_grape",
+      "name": "Fruda Grape",
+      "resourceCode": "FATG",
+      "temperature": "cold"
+    },
+    {
+      "key": "jet_soda",
+      "name": "Jet Soda",
+      "resourceCode": "SPRT",
+      "temperature": "cold"
+    },
+    {
+      "key": "bell_woods_coffee",
+      "name": "Bell Wood's Coffee Original Blend",
+      "resourceCode": "CAFE",
+      "temperature": "hot"
+    }
+  ],
+  "prize": {
+    "key": "winning_can",
+    "name": "Winning Can",
+    "resourceCode": "ATRK"
+  },
+  "machines": [
+    {
+      "id": "sakuragaoka-vm-0-0",
+      "worldId": "sakuragaoka",
+      "model": "S3_JD00_JIHS5KRG.MT5",
+      "objectTag": "VM_0",
+      "position": [
+        -14.3,
+        0,
+        18.6
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "interactionRadius": 10,
+      "source": "play/data/jd00-runtime-placements.json"
+    },
+    {
+      "id": "dobuita-vm-0-0",
+      "worldId": "dobuita",
+      "model": "S1_D000_OMG_JIHS5GTG.MT5",
+      "objectTag": "VM_0",
+      "position": [
+        -17.95,
+        0.0724,
+        25.969
+      ],
+      "rotationDegrees": [
+        0,
+        26.504517,
+        0
+      ],
+      "interactionRadius": 10,
+      "source": "play/data/d000-runtime-placements.json"
+    },
+    {
+      "id": "dobuita-vm-0-1",
+      "worldId": "dobuita",
+      "model": "S1_D000_OMG_JIHS5GTG.MT5",
+      "objectTag": "VM_0",
+      "position": [
+        15.99,
+        0.0724,
+        72.260063
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "interactionRadius": 10,
+      "source": "play/data/d000-runtime-placements.json"
+    },
+    {
+      "id": "dobuita-vm-0-2",
+      "worldId": "dobuita",
+      "model": "S1_D000_OMG_JIHS5GTG.MT5",
+      "objectTag": "VM_0",
+      "position": [
+        97.89,
+        0.0724,
+        96.826
+      ],
+      "rotationDegrees": [
+        0,
+        126.480103,
+        0
+      ],
+      "interactionRadius": 10,
+      "source": "play/data/d000-runtime-placements.json"
+    },
+    {
+      "id": "dobuita-vm-0-3",
+      "worldId": "dobuita",
+      "model": "S1_D000_OMG_JIHS5GTG.MT5",
+      "objectTag": "VM_0",
+      "position": [
+        108.8248,
+        0.0724,
+        74.6069
+      ],
+      "rotationDegrees": [
+        0,
+        132.506104,
+        0
+      ],
+      "interactionRadius": 10,
+      "source": "play/data/d000-runtime-placements.json"
+    },
+    {
+      "id": "dobuita-vm-1-4",
+      "worldId": "dobuita",
+      "model": "S1_D000_OMG_JIHS5GTG.MT5",
+      "objectTag": "VM_1",
+      "position": [
+        70.8,
+        0.0724,
+        56.6
+      ],
+      "rotationDegrees": [
+        0,
+        -56.964111,
+        0
+      ],
+      "interactionRadius": 10,
+      "source": "play/data/d000-runtime-placements.json"
+    },
+    {
+      "id": "mfsy-jih0-0",
+      "worldId": "mfsy",
+      "model": "S2_MFSY_JIHS5GTG.MT5",
+      "objectTag": "JIH0",
+      "position": [
+        119.69999694824219,
+        0,
+        108.5
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "interactionRadius": 10,
+      "source": "play/data/mfsy-runtime-placements.json"
+    },
+    {
+      "id": "mfsy-jih1-1",
+      "worldId": "mfsy",
+      "model": "S2_MFSY_JIHS5GTG.MT5",
+      "objectTag": "JIH1",
+      "position": [
+        -1.0080000162124634,
+        0,
+        104.76290130615234
+      ],
+      "rotationDegrees": [
+        0,
+        135,
+        0
+      ],
+      "interactionRadius": 10,
+      "source": "play/data/mfsy-runtime-placements.json"
+    },
+    {
+      "id": "ma00-jih0-0",
+      "worldId": "ma00",
+      "model": "S2_MFSY_JIHS5GTG.MT5",
+      "objectTag": "JIH0",
+      "position": [
+        119.69999694824219,
+        0,
+        108.5
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "interactionRadius": 10,
+      "source": "play/data/mfsy-runtime-placements.json"
+    },
+    {
+      "id": "ma00-jih1-1",
+      "worldId": "ma00",
+      "model": "S2_MFSY_JIHS5GTG.MT5",
+      "objectTag": "JIH1",
+      "position": [
+        -1.0080000162124634,
+        0,
+        104.76290130615234
+      ],
+      "rotationDegrees": [
+        0,
+        135,
+        0
+      ],
+      "interactionRadius": 10,
+      "source": "play/data/mfsy-runtime-placements.json"
+    },
+    {
+      "id": "ma00race-jih0-0",
+      "worldId": "ma00race",
+      "model": "S3_D000_JIHS5GTG.MT5",
+      "objectTag": "JIH0",
+      "position": [
+        119.69999694824219,
+        0,
+        108.5
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "interactionRadius": 10,
+      "source": "play/data/ma00-race-runtime-placements.json"
+    },
+    {
+      "id": "ma00race-jih2-1",
+      "worldId": "ma00race",
+      "model": "S3_D000_JIHS5GTG.MT5",
+      "objectTag": "JIH2",
+      "position": [
+        -51.900001525878906,
+        0,
+        52.599998474121094
+      ],
+      "rotationDegrees": [
+        0,
+        135,
+        0
+      ],
+      "interactionRadius": 10,
+      "source": "play/data/ma00-race-runtime-placements.json"
+    },
+    {
+      "id": "ma00race-jih3-2",
+      "worldId": "ma00race",
+      "model": "S3_D000_JIHS5GTG.MT5",
+      "objectTag": "JIH3",
+      "position": [
+        97.5999984741211,
+        0,
+        11.699999809265137
+      ],
+      "rotationDegrees": [
+        0,
+        45,
+        0
+      ],
+      "interactionRadius": 10,
+      "source": "play/data/ma00-race-runtime-placements.json"
+    },
+    {
+      "id": "ma00race-jih4-3",
+      "worldId": "ma00race",
+      "model": "S3_D000_JIHS5GTG.MT5",
+      "objectTag": "JIH4",
+      "position": [
+        -1,
+        0,
+        104.80000305175781
+      ],
+      "rotationDegrees": [
+        0,
+        135,
+        0
+      ],
+      "interactionRadius": 10,
+      "source": "play/data/ma00-race-runtime-placements.json"
+    }
+  ]
+}

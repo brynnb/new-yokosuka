@@ -1,0 +1,653 @@
+{
+  "schema": "new-yokosuka-jomo-object-action-bindings-v1",
+  "source": {
+    "sharedDispatch": "tools/evidence/jomo-shared-object-dispatch.json",
+    "selectorFamilies": "tools/evidence/shenmue-object-action-selector-families.json"
+  },
+  "method": {
+    "runtimeInputRequired": false,
+    "emulatorClicksRequired": false,
+    "jomoCallbackSelector": 11,
+    "jomoCallbackRuntimeAddress": "0x0c3d7690",
+    "jomoCoroutineRuntimeAddress": "0x0c44673c",
+    "selectorArithmetic": {
+      "loadInstruction": "0x0c446e6c",
+      "subtractInstruction": "0x0c446e72",
+      "storeInstruction": "0x0c446e74",
+      "operation0139Call": "0x0c446ea6",
+      "expression": "engineSelector = selectedCallbackSelector - 1"
+    },
+    "runtimeValidation": {
+      "objectTag": "GGB1",
+      "selectedCallbackSelector": 11,
+      "engineSelector": 10
+    },
+    "evidenceBoundary": "Only groups whose primary SCN3 callback is selector 11 are bound. Other callback families require their own native dataflow trace."
+  },
+  "summary": {
+    "boundGroupCount": 2,
+    "boundObjectCount": 37,
+    "engineSelector": 10,
+    "transformChannel": "positionX"
+  },
+  "groups": [
+    {
+      "groupIndex": 0,
+      "groupFileOffset": "0x9b700",
+      "jomoCallbackSelector": 11,
+      "jomoCallbackFunctionFileOffset": "0x11f50",
+      "engineSelectorExpression": "11 - 1",
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "objectTags": [
+        "IWWH",
+        "BMB1",
+        "BMB2",
+        "BMB4",
+        "BMB5",
+        "D1C1",
+        "D1C2",
+        "IMC1",
+        "IMC2",
+        "AKD2",
+        "AKD3",
+        "AKD4",
+        "ATS1",
+        "ATS2",
+        "ATS3",
+        "ATS4",
+        "ATS5",
+        "ATS6",
+        "ITS1",
+        "ITS2",
+        "ITS3",
+        "ITS4",
+        "ITS5",
+        "ITS6",
+        "FKWH",
+        "IKD1",
+        "IKD2"
+      ]
+    },
+    {
+      "groupIndex": 1,
+      "groupFileOffset": "0x9b780",
+      "jomoCallbackSelector": 11,
+      "jomoCallbackFunctionFileOffset": "0x11f50",
+      "engineSelectorExpression": "11 - 1",
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "objectTags": [
+        "D1C3",
+        "D1C4",
+        "TAN1",
+        "TAN2",
+        "GGB1",
+        "GGB2",
+        "IMC3",
+        "IMC4",
+        "DND1",
+        "DND2"
+      ]
+    }
+  ],
+  "objects": [
+    {
+      "objectTag": "IWWH",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9a8c0",
+      "actionId": 15,
+      "route": {
+        "nodeOrVariant": 1,
+        "nodeOrVariantHex": "0x0001",
+        "flags": 0,
+        "flagsHex": "0x0000"
+      }
+    },
+    {
+      "objectTag": "BMB1",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9a9e0",
+      "actionId": 10,
+      "route": {
+        "nodeOrVariant": 4,
+        "nodeOrVariantHex": "0x0004",
+        "flags": 3,
+        "flagsHex": "0x0003"
+      }
+    },
+    {
+      "objectTag": "BMB2",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9aa00",
+      "actionId": 11,
+      "route": {
+        "nodeOrVariant": 4,
+        "nodeOrVariantHex": "0x0004",
+        "flags": 5,
+        "flagsHex": "0x0005"
+      }
+    },
+    {
+      "objectTag": "BMB4",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9aa40",
+      "actionId": 9,
+      "route": {
+        "nodeOrVariant": 4,
+        "nodeOrVariantHex": "0x0004",
+        "flags": 3,
+        "flagsHex": "0x0003"
+      }
+    },
+    {
+      "objectTag": "BMB5",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9aa60",
+      "actionId": 20,
+      "route": {
+        "nodeOrVariant": 4,
+        "nodeOrVariantHex": "0x0004",
+        "flags": 65535,
+        "flagsHex": "0xffff"
+      }
+    },
+    {
+      "objectTag": "D1C1",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9abc0",
+      "actionId": 13,
+      "route": {
+        "nodeOrVariant": 6,
+        "nodeOrVariantHex": "0x0006",
+        "flags": 3,
+        "flagsHex": "0x0003"
+      }
+    },
+    {
+      "objectTag": "D1C2",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9abe0",
+      "actionId": 16,
+      "route": {
+        "nodeOrVariant": 6,
+        "nodeOrVariantHex": "0x0006",
+        "flags": 4,
+        "flagsHex": "0x0004"
+      }
+    },
+    {
+      "objectTag": "IMC1",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9ade0",
+      "actionId": 14,
+      "route": {
+        "nodeOrVariant": 5,
+        "nodeOrVariantHex": "0x0005",
+        "flags": 3,
+        "flagsHex": "0x0003"
+      }
+    },
+    {
+      "objectTag": "IMC2",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9ae00",
+      "actionId": 22,
+      "route": {
+        "nodeOrVariant": 5,
+        "nodeOrVariantHex": "0x0005",
+        "flags": 4,
+        "flagsHex": "0x0004"
+      }
+    },
+    {
+      "objectTag": "AKD2",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9b160",
+      "actionId": 1,
+      "route": {
+        "nodeOrVariant": 0,
+        "nodeOrVariantHex": "0x0000",
+        "flags": 3,
+        "flagsHex": "0x0003"
+      }
+    },
+    {
+      "objectTag": "AKD3",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9b180",
+      "actionId": 2,
+      "route": {
+        "nodeOrVariant": 0,
+        "nodeOrVariantHex": "0x0000",
+        "flags": 3,
+        "flagsHex": "0x0003"
+      }
+    },
+    {
+      "objectTag": "AKD4",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9b1a0",
+      "actionId": 5,
+      "route": {
+        "nodeOrVariant": 0,
+        "nodeOrVariantHex": "0x0000",
+        "flags": 3,
+        "flagsHex": "0x0003"
+      }
+    },
+    {
+      "objectTag": "ATS1",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9b1c0",
+      "actionId": 40,
+      "route": {
+        "nodeOrVariant": 0,
+        "nodeOrVariantHex": "0x0000",
+        "flags": 3,
+        "flagsHex": "0x0003"
+      }
+    },
+    {
+      "objectTag": "ATS2",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9b1e0",
+      "actionId": 41,
+      "route": {
+        "nodeOrVariant": 0,
+        "nodeOrVariantHex": "0x0000",
+        "flags": 3,
+        "flagsHex": "0x0003"
+      }
+    },
+    {
+      "objectTag": "ATS3",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9b200",
+      "actionId": 42,
+      "route": {
+        "nodeOrVariant": 0,
+        "nodeOrVariantHex": "0x0000",
+        "flags": 3,
+        "flagsHex": "0x0003"
+      }
+    },
+    {
+      "objectTag": "ATS4",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9b220",
+      "actionId": 43,
+      "route": {
+        "nodeOrVariant": 0,
+        "nodeOrVariantHex": "0x0000",
+        "flags": 3,
+        "flagsHex": "0x0003"
+      }
+    },
+    {
+      "objectTag": "ATS5",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9b240",
+      "actionId": 44,
+      "route": {
+        "nodeOrVariant": 0,
+        "nodeOrVariantHex": "0x0000",
+        "flags": 3,
+        "flagsHex": "0x0003"
+      }
+    },
+    {
+      "objectTag": "ATS6",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9b260",
+      "actionId": 45,
+      "route": {
+        "nodeOrVariant": 0,
+        "nodeOrVariantHex": "0x0000",
+        "flags": 5,
+        "flagsHex": "0x0005"
+      }
+    },
+    {
+      "objectTag": "ITS1",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9aec0",
+      "actionId": 30,
+      "route": {
+        "nodeOrVariant": 3,
+        "nodeOrVariantHex": "0x0003",
+        "flags": 3,
+        "flagsHex": "0x0003"
+      }
+    },
+    {
+      "objectTag": "ITS2",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9aee0",
+      "actionId": 31,
+      "route": {
+        "nodeOrVariant": 3,
+        "nodeOrVariantHex": "0x0003",
+        "flags": 3,
+        "flagsHex": "0x0003"
+      }
+    },
+    {
+      "objectTag": "ITS3",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9af00",
+      "actionId": 32,
+      "route": {
+        "nodeOrVariant": 3,
+        "nodeOrVariantHex": "0x0003",
+        "flags": 3,
+        "flagsHex": "0x0003"
+      }
+    },
+    {
+      "objectTag": "ITS4",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9af20",
+      "actionId": 33,
+      "route": {
+        "nodeOrVariant": 3,
+        "nodeOrVariantHex": "0x0003",
+        "flags": 3,
+        "flagsHex": "0x0003"
+      }
+    },
+    {
+      "objectTag": "ITS5",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9af40",
+      "actionId": 34,
+      "route": {
+        "nodeOrVariant": 3,
+        "nodeOrVariantHex": "0x0003",
+        "flags": 3,
+        "flagsHex": "0x0003"
+      }
+    },
+    {
+      "objectTag": "ITS6",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9af60",
+      "actionId": 35,
+      "route": {
+        "nodeOrVariant": 3,
+        "nodeOrVariantHex": "0x0003",
+        "flags": 5,
+        "flagsHex": "0x0005"
+      }
+    },
+    {
+      "objectTag": "FKWH",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9b040",
+      "actionId": 39,
+      "route": {
+        "nodeOrVariant": 2,
+        "nodeOrVariantHex": "0x0002",
+        "flags": 2,
+        "flagsHex": "0x0002"
+      }
+    },
+    {
+      "objectTag": "IKD1",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9afa0",
+      "actionId": 37,
+      "route": {
+        "nodeOrVariant": 3,
+        "nodeOrVariantHex": "0x0003",
+        "flags": 3,
+        "flagsHex": "0x0003"
+      }
+    },
+    {
+      "objectTag": "IKD2",
+      "groupIndex": 0,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9afc0",
+      "actionId": 38,
+      "route": {
+        "nodeOrVariant": 3,
+        "nodeOrVariantHex": "0x0003",
+        "flags": 6,
+        "flagsHex": "0x0006"
+      }
+    },
+    {
+      "objectTag": "D1C3",
+      "groupIndex": 1,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9ac00",
+      "actionId": 17,
+      "route": {
+        "nodeOrVariant": 6,
+        "nodeOrVariantHex": "0x0006",
+        "flags": 4,
+        "flagsHex": "0x0004"
+      }
+    },
+    {
+      "objectTag": "D1C4",
+      "groupIndex": 1,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9ac20",
+      "actionId": 17,
+      "route": {
+        "nodeOrVariant": 6,
+        "nodeOrVariantHex": "0x0006",
+        "flags": 5,
+        "flagsHex": "0x0005"
+      }
+    },
+    {
+      "objectTag": "TAN1",
+      "groupIndex": 1,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9b300",
+      "actionId": 27,
+      "route": {
+        "nodeOrVariant": 8,
+        "nodeOrVariantHex": "0x0008",
+        "flags": 4,
+        "flagsHex": "0x0004"
+      }
+    },
+    {
+      "objectTag": "TAN2",
+      "groupIndex": 1,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9b320",
+      "actionId": 27,
+      "route": {
+        "nodeOrVariant": 13,
+        "nodeOrVariantHex": "0x000d",
+        "flags": 4,
+        "flagsHex": "0x0004"
+      }
+    },
+    {
+      "objectTag": "GGB1",
+      "groupIndex": 1,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9b340",
+      "actionId": 28,
+      "route": {
+        "nodeOrVariant": 13,
+        "nodeOrVariantHex": "0x000d",
+        "flags": 4,
+        "flagsHex": "0x0004"
+      }
+    },
+    {
+      "objectTag": "GGB2",
+      "groupIndex": 1,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9b360",
+      "actionId": 28,
+      "route": {
+        "nodeOrVariant": 8,
+        "nodeOrVariantHex": "0x0008",
+        "flags": 0,
+        "flagsHex": "0x0000"
+      }
+    },
+    {
+      "objectTag": "IMC3",
+      "groupIndex": 1,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9ae20",
+      "actionId": 21,
+      "route": {
+        "nodeOrVariant": 5,
+        "nodeOrVariantHex": "0x0005",
+        "flags": 4,
+        "flagsHex": "0x0004"
+      }
+    },
+    {
+      "objectTag": "IMC4",
+      "groupIndex": 1,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9ae40",
+      "actionId": 21,
+      "route": {
+        "nodeOrVariant": 5,
+        "nodeOrVariantHex": "0x0005",
+        "flags": 0,
+        "flagsHex": "0x0000"
+      }
+    },
+    {
+      "objectTag": "DND1",
+      "groupIndex": 1,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9ac80",
+      "actionId": 29,
+      "route": {
+        "nodeOrVariant": 6,
+        "nodeOrVariantHex": "0x0006",
+        "flags": 4,
+        "flagsHex": "0x0004"
+      }
+    },
+    {
+      "objectTag": "DND2",
+      "groupIndex": 1,
+      "engineSelector": 10,
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "recordFileOffset": "0x9aca0",
+      "actionId": 29,
+      "route": {
+        "nodeOrVariant": 6,
+        "nodeOrVariantHex": "0x0006",
+        "flags": 5,
+        "flagsHex": "0x0005"
+      }
+    }
+  ]
+}

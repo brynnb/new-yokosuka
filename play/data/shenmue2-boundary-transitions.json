@@ -1,0 +1,5530 @@
+{
+  "format": "new-yokosuka-shenmue2-boundary-transitions-v1",
+  "generatedFrom": [
+    "Shenmue II MAPINFO.BIN/FLDD type -2 value 29 exit controls",
+    "Shenmue II MISC/AREATBL1.BIN destination records",
+    "Shenmue II MPK00/PROP.PROP MT7 physical door hierarchies"
+  ],
+  "worlds": [
+    {
+      "id": "s2aka3",
+      "area": "AKA3",
+      "label": "Fortune's Pier Free Stay Lodge",
+      "interior": true,
+      "prefix": "S2DC_D1_AKA3_MPK00",
+      "spawn": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "yaw": -3.141592653589793
+      }
+    },
+    {
+      "id": "s2aks0",
+      "area": "AKS0",
+      "label": "Fortune's Eatery",
+      "interior": true,
+      "prefix": "S2DC_D1_AKS0_MPK00",
+      "spawn": {
+        "position": [
+          -273,
+          100,
+          253.1999969482422
+        ],
+        "yaw": 0
+      }
+    },
+    {
+      "id": "s2aks1",
+      "area": "AKS1",
+      "label": "Blue Sky",
+      "interior": true,
+      "prefix": "S2DC_D1_AKS1_MPK00",
+      "spawn": {
+        "position": [
+          -273.1000061035156,
+          106.30000305175781,
+          253
+        ],
+        "yaw": -0.7853981633974492
+      }
+    },
+    {
+      "id": "s2akt0",
+      "area": "AKT0",
+      "label": "Gambling Warehouse 0",
+      "interior": true,
+      "prefix": "S2DC_D1_AKT0_MPK00",
+      "spawn": {
+        "position": [
+          -256.1000061035156,
+          100,
+          223
+        ],
+        "yaw": 1.5707963267948966
+      }
+    },
+    {
+      "id": "s2akt1",
+      "area": "AKT1",
+      "label": "Gambling Warehouse 1",
+      "interior": true,
+      "prefix": "S2DC_D1_AKT1_MPK00",
+      "spawn": {
+        "position": [
+          -270.6000061035156,
+          96.9000015258789,
+          264.1000061035156
+        ],
+        "yaw": 0.7853981633974492
+      }
+    },
+    {
+      "id": "s2akt2",
+      "area": "AKT2",
+      "label": "Gambling Warehouse 2",
+      "interior": true,
+      "prefix": "S2DC_D1_AKT2_MPK00",
+      "spawn": {
+        "position": [
+          -307.1000061035156,
+          100,
+          240.6999969482422
+        ],
+        "yaw": -3.141592653589793
+      }
+    },
+    {
+      "id": "s2akt3",
+      "area": "AKT3",
+      "label": "Gambling Warehouse 3",
+      "interior": true,
+      "prefix": "S2DC_D1_AKT3_MPK00",
+      "spawn": {
+        "position": [
+          -284,
+          100,
+          222.8000030517578
+        ],
+        "yaw": 0.7853981633974492
+      }
+    },
+    {
+      "id": "s2aky0",
+      "area": "AKY0",
+      "label": "Warehouse F",
+      "interior": true,
+      "prefix": "S2DC_D1_AKY0_MPK00",
+      "spawn": {
+        "position": [
+          -284.6000061035156,
+          97.30000305175781,
+          285.3999938964844
+        ],
+        "yaw": -1.5707963267948966
+      }
+    },
+    {
+      "id": "s2ar01",
+      "area": "AR01",
+      "label": "Worker's Pier Intro Area",
+      "interior": true,
+      "prefix": "S2DC_D1_AR01_MPK00",
+      "spawn": {
+        "position": [
+          -187.5,
+          100.30000305175781,
+          326
+        ],
+        "yaw": -1.5707963267948966
+      }
+    },
+    {
+      "id": "s2ara0",
+      "area": "ARA0",
+      "label": "Bar Swing",
+      "interior": true,
+      "prefix": "S2DC_D1_ARA0_MPK00",
+      "spawn": {
+        "position": [
+          -245,
+          100.30000305175781,
+          418.5
+        ],
+        "yaw": -1.5707963267948966
+      }
+    },
+    {
+      "id": "s2arc0",
+      "area": "ARC0",
+      "label": "Pigeon Cafe",
+      "interior": true,
+      "prefix": "S2DC_D1_ARC0_MPK00",
+      "spawn": {
+        "position": [
+          -243.10000610351562,
+          100,
+          394.29998779296875
+        ],
+        "yaw": -2.3649190059234444
+      }
+    },
+    {
+      "id": "s2arm0",
+      "area": "ARM0",
+      "label": "Hong Kong Souvenirs",
+      "interior": true,
+      "prefix": "S2DC_D1_ARM0_MPK00",
+      "spawn": {
+        "position": [
+          -259.5,
+          100,
+          432.6000061035156
+        ],
+        "yaw": -2.2688534590821066
+      }
+    },
+    {
+      "id": "s2arsf",
+      "area": "ARSF",
+      "label": "Rooftop Fight",
+      "interior": true,
+      "prefix": "S2DC_D1_ARSF_MPK00",
+      "spawn": {
+        "position": [
+          -266.03399658203125,
+          100.25900268554688,
+          340.00201416015625
+        ],
+        "yaw": -1.5707963267948966
+      }
+    },
+    {
+      "id": "s2arz0",
+      "area": "ARZ0",
+      "label": "General Store",
+      "interior": true,
+      "prefix": "S2DC_D1_ARZ0_MPK00",
+      "spawn": {
+        "position": [
+          -334.3999938964844,
+          100,
+          460.20001220703125
+        ],
+        "yaw": 0
+      }
+    },
+    {
+      "id": "s2wb01",
+      "area": "WB01",
+      "label": "Man Mo Temple",
+      "interior": true,
+      "prefix": "S2DC_D1_WB01_MPK00",
+      "spawn": {
+        "position": [
+          -337,
+          127,
+          257.5
+        ],
+        "yaw": -3.141592653589793
+      }
+    },
+    {
+      "id": "s2wecf",
+      "area": "WECF",
+      "label": "Moon Cafe",
+      "interior": true,
+      "prefix": "S2DC_D1_WECF_MPK00",
+      "spawn": {
+        "position": [
+          -189.10000610351562,
+          102,
+          87.30000305175781
+        ],
+        "yaw": 0
+      }
+    },
+    {
+      "id": "s2weg0",
+      "area": "WEG0",
+      "label": "Pine Game Arcade",
+      "interior": true,
+      "prefix": "S2DC_D1_WEG0_MPK00",
+      "spawn": {
+        "position": [
+          -207.8000030517578,
+          100.80000305175781,
+          83.5
+        ],
+        "yaw": 0
+      }
+    },
+    {
+      "id": "s2wem1",
+      "area": "WEM1",
+      "label": "S.I.C. Pool Hall",
+      "interior": true,
+      "prefix": "S2DC_D1_WEM1_MPK00",
+      "spawn": {
+        "position": [
+          -135.39999389648438,
+          100.5999984741211,
+          133.8000030517578
+        ],
+        "yaw": 0
+      }
+    },
+    {
+      "id": "s2wes1",
+      "area": "WES1",
+      "label": "Slot House W",
+      "interior": true,
+      "prefix": "S2DC_D1_WES1_MPK00",
+      "spawn": {
+        "position": [
+          -116.69999694824219,
+          100.80000305175781,
+          -117.69999694824219
+        ],
+        "yaw": 0
+      }
+    },
+    {
+      "id": "s2wesm",
+      "area": "WESM",
+      "label": "Specialty Shop",
+      "interior": true,
+      "prefix": "S2DC_D1_WESM_MPK00",
+      "spawn": {
+        "position": [
+          -150.39999389648438,
+          102.1500015258789,
+          96.19999694824219
+        ],
+        "yaw": -3.141592653589793
+      }
+    },
+    {
+      "id": "s2wet0",
+      "area": "WET0",
+      "label": "Tomato Convenience Store",
+      "interior": true,
+      "prefix": "S2DC_D1_WET0_MPK00",
+      "spawn": {
+        "position": [
+          -184.5,
+          100.6500015258789,
+          109.69999694824219
+        ],
+        "yaw": -1.5707963267948966
+      }
+    },
+    {
+      "id": "s2wka0",
+      "area": "WKA0",
+      "label": "Yan Tin Apartments",
+      "interior": true,
+      "prefix": "S2DC_D1_WKA0_MPK00",
+      "spawn": {
+        "position": [
+          -66.5,
+          102.55000305175781,
+          300.79998779296875
+        ],
+        "yaw": -2.356194490192345
+      }
+    },
+    {
+      "id": "s2wrs2",
+      "area": "WRS2",
+      "label": "Bar Liverpool",
+      "interior": true,
+      "prefix": "S2DC_D1_WRS2_MPK00",
+      "spawn": {
+        "position": [
+          -165.3000030517578,
+          101.19999694824219,
+          147.60000610351562
+        ],
+        "yaw": -3.141592653589793
+      }
+    },
+    {
+      "id": "s2wsg1",
+      "area": "WSG1",
+      "label": "Guang Martial Arts School",
+      "interior": true,
+      "prefix": "S2DC_D1_WSG1_MPK00",
+      "spawn": {
+        "position": [
+          -25.299999237060547,
+          98.19999694824219,
+          124.19999694824219
+        ],
+        "yaw": 1.5707963267948966
+      }
+    },
+    {
+      "id": "s2wsy0",
+      "area": "WSY0",
+      "label": "Come Over Guest House",
+      "interior": true,
+      "prefix": "S2DC_D1_WSY0_MPK00",
+      "spawn": {
+        "position": [
+          -65.19999694824219,
+          98.19999694824219,
+          124.19999694824219
+        ],
+        "yaw": 0.052442968185840044
+      }
+    },
+    {
+      "id": "s2wta0",
+      "area": "WTA0",
+      "label": "Da Yuan Apartments",
+      "interior": true,
+      "prefix": "S2DC_D1_WTA0_MPK00",
+      "spawn": {
+        "position": [
+          -245.75,
+          108.66000366210938,
+          228.60000610351562
+        ],
+        "yaw": -3.141592653589793
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "id": "s2-ak00-areatbl-89-to-aka3-1",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2ak00",
+        "entry": 89,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -246.5,
+            100,
+            269.20001220703125
+          ],
+          "right": [
+            -258.5,
+            100,
+            269.20001220703125
+          ],
+          "approach": [
+            -252.5,
+            100,
+            267.20001220703125
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2aka3",
+        "area": "AKA3",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "yaw": -3.141592653589793
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x1170",
+        "destinationRecordFileOffset": "0x1430",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-ak00-areatbl-90-to-aky0-1",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2ak00",
+        "entry": 90,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -284.1000061035156,
+            97.30000305175781,
+            291.5
+          ],
+          "right": [
+            -284.1000061035156,
+            97.30000305175781,
+            279.5
+          ],
+          "approach": [
+            -282.1000061035156,
+            97.30000305175781,
+            285.5
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2aky0",
+        "area": "AKY0",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -284.6000061035156,
+            97.30000305175781,
+            285.3999938964844
+          ],
+          "yaw": -1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x1190",
+        "destinationRecordFileOffset": "0x12d0",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-ak00-areatbl-91-to-aks1-1",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2ak00",
+        "entry": 91,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -267.1000061035156,
+            106.30000305175781,
+            252.8000030517578
+          ],
+          "right": [
+            -279.1000061035156,
+            106.30000305175781,
+            252.8000030517578
+          ],
+          "approach": [
+            -273.1000061035156,
+            106.30000305175781,
+            250.8000030517578
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2aks1",
+        "area": "AKS1",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -273.1000061035156,
+            106.30000305175781,
+            253
+          ],
+          "yaw": -0.7853981633974492
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x11d0",
+        "destinationRecordFileOffset": "0x1310",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-ak00-areatbl-93-to-akt0-1",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2ak00",
+        "entry": 93,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -258.20001220703125,
+            100,
+            217
+          ],
+          "right": [
+            -258.20001220703125,
+            100,
+            229
+          ],
+          "approach": [
+            -260.20001220703125,
+            100,
+            223
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        },
+        "nativeDoor": {
+          "model": "S2DC_D1_AK00_MPK00_PROP.MT7",
+          "groupNodeOffset": "0x99c",
+          "panelNodeOffsets": [
+            "0x9f0"
+          ],
+          "pickNodeOffsets": [
+            "0x9f0"
+          ],
+          "panelDirections": [
+            1
+          ],
+          "motion": {
+            "type": "hinged",
+            "sourceAxis": "y-rotation",
+            "sourceDirections": [
+              1
+            ]
+          },
+          "binding": "areatbl-door-nodes-to-prop-door",
+          "poseSourceFileOffset": "0x1210",
+          "controllerNodePairs": [
+            {
+              "nodeId": "R110",
+              "parentNodeId": "R010",
+              "sourceFileOffset": "0x8764"
+            }
+          ],
+          "matchDistance": 0.5049597459869395,
+          "runnerUpDistance": 12.534863205358095
+        }
+      },
+      "destination": {
+        "worldId": "s2akt0",
+        "area": "AKT0",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -256.1000061035156,
+            100,
+            223
+          ],
+          "yaw": 1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x1210",
+        "destinationRecordFileOffset": "0x1330",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-ak00-areatbl-94-to-akt1-1",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2ak00",
+        "entry": 94,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -266.79998779296875,
+            96.9000015258789,
+            263.8999938964844
+          ],
+          "right": [
+            -278.79998779296875,
+            96.9000015258789,
+            263.8999938964844
+          ],
+          "approach": [
+            -272.79998779296875,
+            96.9000015258789,
+            261.8999938964844
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2akt1",
+        "area": "AKT1",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -270.6000061035156,
+            96.9000015258789,
+            264.1000061035156
+          ],
+          "yaw": 0.7853981633974492
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x1230",
+        "destinationRecordFileOffset": "0x1370",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-ak00-areatbl-95-to-akt2-1",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2ak00",
+        "entry": 95,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -312.8999938964844,
+            100,
+            243.3000030517578
+          ],
+          "right": [
+            -300.8999938964844,
+            100,
+            243.3000030517578
+          ],
+          "approach": [
+            -306.8999938964844,
+            100,
+            245.3000030517578
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        },
+        "nativeDoor": {
+          "model": "S2DC_D1_AK00_MPK00_PROP.MT7",
+          "groupNodeOffset": "0xb94",
+          "panelNodeOffsets": [
+            "0xbe8"
+          ],
+          "pickNodeOffsets": [
+            "0xbe8"
+          ],
+          "panelDirections": [
+            1
+          ],
+          "motion": {
+            "type": "hinged",
+            "sourceAxis": "y-rotation",
+            "sourceDirections": [
+              1
+            ]
+          },
+          "binding": "areatbl-door-nodes-to-prop-door",
+          "poseSourceFileOffset": "0x1250",
+          "controllerNodePairs": [
+            {
+              "nodeId": "R112",
+              "parentNodeId": "R012",
+              "sourceFileOffset": "0x8794"
+            }
+          ],
+          "matchDistance": 0.7219649738902113,
+          "runnerUpDistance": 30.023878355618102
+        }
+      },
+      "destination": {
+        "worldId": "s2akt2",
+        "area": "AKT2",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -307.1000061035156,
+            100,
+            240.6999969482422
+          ],
+          "yaw": -3.141592653589793
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x1250",
+        "destinationRecordFileOffset": "0x13b0",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-ak00-areatbl-96-to-akt3-1",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2ak00",
+        "entry": 96,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -285.1000061035156,
+            100,
+            215.89999389648438
+          ],
+          "right": [
+            -285.1000061035156,
+            100,
+            227.89999389648438
+          ],
+          "approach": [
+            -287.1000061035156,
+            100,
+            221.89999389648438
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        },
+        "nativeDoor": {
+          "model": "S2DC_D1_AK00_MPK00_PROP.MT7",
+          "groupNodeOffset": "0xaec",
+          "panelNodeOffsets": [
+            "0xb40"
+          ],
+          "pickNodeOffsets": [
+            "0xb40"
+          ],
+          "panelDirections": [
+            1
+          ],
+          "motion": {
+            "type": "hinged",
+            "sourceAxis": "y-rotation",
+            "sourceDirections": [
+              1
+            ]
+          },
+          "binding": "areatbl-door-nodes-to-prop-door",
+          "poseSourceFileOffset": "0x1270",
+          "controllerNodePairs": [
+            {
+              "nodeId": "R113",
+              "parentNodeId": "R013",
+              "sourceFileOffset": "0x8784"
+            }
+          ],
+          "matchDistance": 0.6500161095260599,
+          "runnerUpDistance": 25.708943876734956
+        }
+      },
+      "destination": {
+        "worldId": "s2akt3",
+        "area": "AKT3",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -284,
+            100,
+            222.8000030517578
+          ],
+          "yaw": 0.7853981633974492
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x1270",
+        "destinationRecordFileOffset": "0x13f0",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-ak00-areatbl-98-to-aks0-1",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2ak00",
+        "entry": 98,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -267,
+            100,
+            252.60000610351562
+          ],
+          "right": [
+            -279,
+            100,
+            252.60000610351562
+          ],
+          "approach": [
+            -273,
+            100,
+            250.60000610351562
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2aks0",
+        "area": "AKS0",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -273,
+            100,
+            253.1999969482422
+          ],
+          "yaw": 0
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x11b0",
+        "destinationRecordFileOffset": "0x12f0",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-ak00-fldd-exit-1-to-ar02-entry-2",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2ak00",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -235.6320037841797,
+            100.16100311279297,
+            300
+          ],
+          "right": [
+            -247.6320037841797,
+            100.16100311279297,
+            300
+          ],
+          "approach": [
+            -241.6320037841797,
+            100.16100311279297,
+            298
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2ar02",
+        "area": "AR02",
+        "entry": 2,
+        "browserSpawn": {
+          "position": [
+            -242,
+            100.25,
+            317.6000061035156
+          ],
+          "yaw": 0
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/AK00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "eb3607dabdfa2d027eacee38de6bf7828d93c36d6def7d83c6b0893e7c96f2c1",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0x86d4",
+        "sourceControlPointerFileOffset": "0x8810",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0fd0",
+        "destinationRecordFileOffset": "0x1510"
+      }
+    },
+    {
+      "id": "s2-aka3-areatbl-1-to-ak00-89",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2aka3",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            6,
+            0,
+            2
+          ],
+          "right": [
+            -6,
+            0,
+            2
+          ],
+          "approach": [
+            0,
+            0,
+            0
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2ak00",
+        "area": "AK00",
+        "entry": 89,
+        "browserSpawn": {
+          "position": [
+            -252.5,
+            100,
+            267.20001220703125
+          ],
+          "yaw": -3.141592653589793
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x1430",
+        "destinationRecordFileOffset": "0x1170",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-aks0-areatbl-1-to-ak00-98",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2aks0",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -279,
+            100,
+            251.1999969482422
+          ],
+          "right": [
+            -267,
+            100,
+            251.1999969482422
+          ],
+          "approach": [
+            -273,
+            100,
+            253.1999969482422
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2ak00",
+        "area": "AK00",
+        "entry": 98,
+        "browserSpawn": {
+          "position": [
+            -273,
+            100,
+            250.60000610351562
+          ],
+          "yaw": -3.141592653589793
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x12f0",
+        "destinationRecordFileOffset": "0x11b0",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-aks1-areatbl-1-to-ak00-91",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2aks1",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -275.9284332282618,
+            106.30000305175781,
+            247.3431457505076
+          ],
+          "right": [
+            -267.44315185402326,
+            106.30000305175781,
+            255.82842712474618
+          ],
+          "approach": [
+            -273.1000061035156,
+            106.30000305175781,
+            253
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2ak00",
+        "area": "AK00",
+        "entry": 91,
+        "browserSpawn": {
+          "position": [
+            -273.1000061035156,
+            106.30000305175781,
+            250.8000030517578
+          ],
+          "yaw": -3.141592653589793
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x1310",
+        "destinationRecordFileOffset": "0x11d0",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-akt0-areatbl-1-to-ak00-93",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2akt0",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -258.1000061035156,
+            100,
+            229
+          ],
+          "right": [
+            -258.1000061035156,
+            100,
+            217
+          ],
+          "approach": [
+            -256.1000061035156,
+            100,
+            223
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2ak00",
+        "area": "AK00",
+        "entry": 93,
+        "browserSpawn": {
+          "position": [
+            -260.20001220703125,
+            100,
+            223
+          ],
+          "yaw": -1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x1330",
+        "destinationRecordFileOffset": "0x1210",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-akt1-areatbl-1-to-ak00-94",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2akt1",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -276.256860353008,
+            96.9000015258789,
+            266.9284332282618
+          ],
+          "right": [
+            -267.77157897876947,
+            96.9000015258789,
+            258.44315185402326
+          ],
+          "approach": [
+            -270.6000061035156,
+            96.9000015258789,
+            264.1000061035156
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2ak00",
+        "area": "AK00",
+        "entry": 94,
+        "browserSpawn": {
+          "position": [
+            -272.79998779296875,
+            96.9000015258789,
+            261.8999938964844
+          ],
+          "yaw": -3.141592653589793
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x1370",
+        "destinationRecordFileOffset": "0x1230",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-akt2-areatbl-1-to-ak00-95",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2akt2",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -301.1000061035156,
+            100,
+            242.6999969482422
+          ],
+          "right": [
+            -313.1000061035156,
+            100,
+            242.6999969482422
+          ],
+          "approach": [
+            -307.1000061035156,
+            100,
+            240.6999969482422
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2ak00",
+        "area": "AK00",
+        "entry": 95,
+        "browserSpawn": {
+          "position": [
+            -306.8999938964844,
+            100,
+            245.3000030517578
+          ],
+          "yaw": 0
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x13b0",
+        "destinationRecordFileOffset": "0x1250",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-akt3-areatbl-1-to-ak00-96",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2akt3",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -289.65685424949237,
+            100,
+            225.628430176504
+          ],
+          "right": [
+            -281.17157287525384,
+            100,
+            217.14314880226542
+          ],
+          "approach": [
+            -284,
+            100,
+            222.8000030517578
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2ak00",
+        "area": "AK00",
+        "entry": 96,
+        "browserSpawn": {
+          "position": [
+            -287.1000061035156,
+            100,
+            221.89999389648438
+          ],
+          "yaw": -1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x13f0",
+        "destinationRecordFileOffset": "0x1270",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-aky0-areatbl-1-to-ak00-90",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2aky0",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -282.6000061035156,
+            97.30000305175781,
+            279.3999938964844
+          ],
+          "right": [
+            -282.6000061035156,
+            97.30000305175781,
+            291.3999938964844
+          ],
+          "approach": [
+            -284.6000061035156,
+            97.30000305175781,
+            285.3999938964844
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2ak00",
+        "area": "AK00",
+        "entry": 90,
+        "browserSpawn": {
+          "position": [
+            -282.1000061035156,
+            97.30000305175781,
+            285.5
+          ],
+          "yaw": 1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x12d0",
+        "destinationRecordFileOffset": "0x1190",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-ar01-areatbl-1-to-ar02-5-generated-return",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2ar01",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -189.5,
+            100.30000305175781,
+            332
+          ],
+          "right": [
+            -189.5,
+            100.30000305175781,
+            320
+          ],
+          "approach": [
+            -187.5,
+            100.30000305175781,
+            326
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2ar02",
+        "area": "AR02",
+        "entry": 5,
+        "browserSpawn": {
+          "position": [
+            -187.5,
+            100.30000305175781,
+            326
+          ],
+          "yaw": -1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-event-return",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x1550",
+        "destinationRecordFileOffset": "0x1550",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-ar02-areatbl-5-to-ar01-1-one-way",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2ar02",
+        "entry": 5,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -185.5,
+            100.30000305175781,
+            320
+          ],
+          "right": [
+            -185.5,
+            100.30000305175781,
+            332
+          ],
+          "approach": [
+            -187.5,
+            100.30000305175781,
+            326
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2ar01",
+        "area": "AR01",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -187.5,
+            100.30000305175781,
+            326
+          ],
+          "yaw": -1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-event-entrance",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x1550",
+        "destinationRecordFileOffset": "0x1550",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-ar02-areatbl-88-to-ara0-1",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2ar02",
+        "entry": 88,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -240.6999969482422,
+            100.30000305175781,
+            424.5
+          ],
+          "right": [
+            -240.6999969482422,
+            100.30000305175781,
+            412.5
+          ],
+          "approach": [
+            -238.6999969482422,
+            100.30000305175781,
+            418.5
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        },
+        "nativeDoor": {
+          "model": "S2DC_D1_AR02_MPK00_PROP.MT7",
+          "groupNodeOffset": "0x39c",
+          "panelNodeOffsets": [
+            "0x3f0",
+            "0x498"
+          ],
+          "pickNodeOffsets": [
+            "0x3f0",
+            "0x498"
+          ],
+          "panelDirections": [
+            1,
+            -1
+          ],
+          "motion": {
+            "type": "hinged",
+            "sourceAxis": "y-rotation",
+            "sourceDirections": [
+              1,
+              -1
+            ]
+          },
+          "binding": "areatbl-door-nodes-to-prop-door",
+          "poseSourceFileOffset": "0x18d0",
+          "controllerNodePairs": [
+            {
+              "nodeId": "R220",
+              "parentNodeId": "R020",
+              "sourceFileOffset": "0x15454"
+            },
+            {
+              "nodeId": "R221",
+              "parentNodeId": "R020",
+              "sourceFileOffset": "0x15464"
+            }
+          ],
+          "matchDistance": 0.5254533489826203,
+          "runnerUpDistance": 22.563528416386628
+        }
+      },
+      "destination": {
+        "worldId": "s2ara0",
+        "area": "ARA0",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -245,
+            100.30000305175781,
+            418.5
+          ],
+          "yaw": -1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x18d0",
+        "destinationRecordFileOffset": "0x19f0",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-ar02-areatbl-89-to-arc0-1",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2ar02",
+        "entry": 89,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -241,
+            100.30000305175781,
+            402.20001220703125
+          ],
+          "right": [
+            -241,
+            100.30000305175781,
+            390.20001220703125
+          ],
+          "approach": [
+            -239,
+            100.30000305175781,
+            396.20001220703125
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        },
+        "nativeDoor": {
+          "model": "S2DC_D1_AR02_MPK00_PROP.MT7",
+          "groupNodeOffset": "0xad4",
+          "panelNodeOffsets": [
+            "0xad4"
+          ],
+          "pickNodeOffsets": [
+            "0xb28",
+            "0xbd0"
+          ],
+          "panelDirections": [
+            1
+          ],
+          "motion": {
+            "type": "paired-sliding",
+            "sourceAxis": "x",
+            "sourceDirections": [
+              1,
+              -1
+            ]
+          },
+          "binding": "areatbl-door-nodes-to-prop-door",
+          "poseSourceFileOffset": "0x18f0",
+          "controllerNodePairs": [
+            {
+              "nodeId": "R702",
+              "parentNodeId": "R002",
+              "sourceFileOffset": "0x154d4"
+            }
+          ],
+          "matchDistance": 0.3901074324459194,
+          "runnerUpDistance": 31.673310230875604
+        }
+      },
+      "destination": {
+        "worldId": "s2arc0",
+        "area": "ARC0",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -243.10000610351562,
+            100,
+            394.29998779296875
+          ],
+          "yaw": -2.3649190059234444
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x18f0",
+        "destinationRecordFileOffset": "0x1a30",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-ar02-areatbl-90-to-arm0-1",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2ar02",
+        "entry": 90,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -262.5885798630771,
+            100,
+            438.61108105897875
+          ],
+          "right": [
+            -254.87581404180054,
+            100,
+            429.41797258653327
+          ],
+          "approach": [
+            -257.20001220703125,
+            100,
+            435.29998779296875
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        },
+        "nativeDoor": {
+          "model": "S2DC_D1_AR02_MPK00_PROP.MT7",
+          "groupNodeOffset": "0x738",
+          "panelNodeOffsets": [
+            "0x78c",
+            "0x834"
+          ],
+          "pickNodeOffsets": [
+            "0x78c",
+            "0x834"
+          ],
+          "panelDirections": [
+            1,
+            -1
+          ],
+          "motion": {
+            "type": "hinged",
+            "sourceAxis": "y-rotation",
+            "sourceDirections": [
+              1,
+              -1
+            ]
+          },
+          "binding": "areatbl-door-nodes-to-prop-door",
+          "poseSourceFileOffset": "0x1910",
+          "controllerNodePairs": [
+            {
+              "nodeId": "R204",
+              "parentNodeId": "R004",
+              "sourceFileOffset": "0x15494"
+            },
+            {
+              "nodeId": "R205",
+              "parentNodeId": "R004",
+              "sourceFileOffset": "0x154a4"
+            }
+          ],
+          "matchDistance": 0.4214435257092665,
+          "runnerUpDistance": 23.394063268931575
+        }
+      },
+      "destination": {
+        "worldId": "s2arm0",
+        "area": "ARM0",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -259.5,
+            100,
+            432.6000061035156
+          ],
+          "yaw": -2.2688534590821066
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x1910",
+        "destinationRecordFileOffset": "0x1a70",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-ar02-areatbl-95-to-arz0-1-one-way",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2ar02",
+        "entry": 95,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -340.3999938964844,
+            100,
+            458.20001220703125
+          ],
+          "right": [
+            -328.3999938964844,
+            100,
+            458.20001220703125
+          ],
+          "approach": [
+            -334.3999938964844,
+            100,
+            460.20001220703125
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2arz0",
+        "area": "ARZ0",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -334.3999938964844,
+            100,
+            460.20001220703125
+          ],
+          "yaw": 0
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-event-entrance",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x19b0",
+        "destinationRecordFileOffset": "0x19b0",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-ar02-fldd-exit-2-to-ak00-entry-1",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2ar02",
+        "entry": 2,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -251.56700134277344,
+            100,
+            303.01300048828125
+          ],
+          "right": [
+            -239.56700134277344,
+            100,
+            303.01300048828125
+          ],
+          "approach": [
+            -245.56700134277344,
+            100,
+            305.01300048828125
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2ak00",
+        "area": "AK00",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -241.39999389648438,
+            100,
+            294
+          ],
+          "yaw": -3.141592653589793
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/AR02/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "a7e0cac66fdab86abeaf4ae801e474f7ea0db24472ba4a6c4cb03407d0ecd4b3",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0x153b4",
+        "sourceControlPointerFileOffset": "0x1557c",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x1510",
+        "destinationRecordFileOffset": "0x0fd0"
+      }
+    },
+    {
+      "id": "s2-ar02-fldd-exit-28-to-ar03-entry-28",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2ar02",
+        "entry": 28,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -274.9949951171875,
+            100,
+            461.5159912109375
+          ],
+          "right": [
+            -274.9949951171875,
+            100,
+            449.5159912109375
+          ],
+          "approach": [
+            -272.9949951171875,
+            100,
+            455.5159912109375
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2ar03",
+        "area": "AR03",
+        "entry": 28,
+        "browserSpawn": {
+          "position": [
+            -283,
+            100,
+            455.5
+          ],
+          "yaw": -0.7853981633974492
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/AR02/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "a7e0cac66fdab86abeaf4ae801e474f7ea0db24472ba4a6c4cb03407d0ecd4b3",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0x15324",
+        "sourceControlPointerFileOffset": "0x15564",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x1670",
+        "destinationRecordFileOffset": "0x1670"
+      }
+    },
+    {
+      "id": "s2-ar02-fldd-exit-29-to-ar03-entry-29",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2ar02",
+        "entry": 29,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -269.99700927734375,
+            100,
+            479.2250061035156
+          ],
+          "right": [
+            -269.99700927734375,
+            100,
+            467.2250061035156
+          ],
+          "approach": [
+            -267.99700927734375,
+            100,
+            473.2250061035156
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2ar03",
+        "area": "AR03",
+        "entry": 29,
+        "browserSpawn": {
+          "position": [
+            -277.1000061035156,
+            100,
+            473.29998779296875
+          ],
+          "yaw": -1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/AR02/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "a7e0cac66fdab86abeaf4ae801e474f7ea0db24472ba4a6c4cb03407d0ecd4b3",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0x15354",
+        "sourceControlPointerFileOffset": "0x1556c",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x1690",
+        "destinationRecordFileOffset": "0x1690"
+      }
+    },
+    {
+      "id": "s2-ar02-fldd-exit-82-to-arsf-entry-1",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2ar02",
+        "entry": 82,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -267.010986328125,
+            99.99500274658203,
+            346.0010070800781
+          ],
+          "right": [
+            -267.010986328125,
+            99.99500274658203,
+            334.0010070800781
+          ],
+          "approach": [
+            -265.010986328125,
+            99.99500274658203,
+            340.0010070800781
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2arsf",
+        "area": "ARSF",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -266.03399658203125,
+            100.25900268554688,
+            340.00201416015625
+          ],
+          "yaw": -1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-paired-fldd-event-seam",
+        "source": "data/SCENE/01/AR02/MAPINFO.BIN FLDD",
+        "sourceControlFileOffset": "0x153f4",
+        "destinationControlFileOffset": "0x9eb0",
+        "routeRecordFileOffset": "0x1870",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-ar03-fldd-exit-25-to-ar02-entry-25",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2ar03",
+        "entry": 25,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -283.3247620856931,
+            100,
+            450.1182076503056
+          ],
+          "right": [
+            -275.6111149216289,
+            100,
+            459.3105766283397
+          ],
+          "approach": [
+            -281,
+            100,
+            456
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2ar02",
+        "area": "AR02",
+        "entry": 25,
+        "browserSpawn": {
+          "position": [
+            -273,
+            100,
+            455.5
+          ],
+          "yaw": 1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/AR03/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "6d02372b625a16247a3d6305ea7cfc8932e410980050b47b0384a1052b8e455e",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0x10d88",
+        "sourceControlPointerFileOffset": "0x111f0",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x1610",
+        "destinationRecordFileOffset": "0x1610"
+      }
+    },
+    {
+      "id": "s2-ar03-fldd-exit-26-to-ar02-entry-26",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2ar03",
+        "entry": 26,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -270.1990051269531,
+            100,
+            465.1159973144531
+          ],
+          "right": [
+            -258.1990051269531,
+            100,
+            465.1159973144531
+          ],
+          "approach": [
+            -264.1990051269531,
+            100,
+            467.1159973144531
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2ar02",
+        "area": "AR02",
+        "entry": 26,
+        "browserSpawn": {
+          "position": [
+            -264.29998779296875,
+            100,
+            459.29998779296875
+          ],
+          "yaw": -3.141592653589793
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/AR03/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "6d02372b625a16247a3d6305ea7cfc8932e410980050b47b0384a1052b8e455e",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0x10d58",
+        "sourceControlPointerFileOffset": "0x111e8",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x1630",
+        "destinationRecordFileOffset": "0x1630"
+      }
+    },
+    {
+      "id": "s2-ar03-fldd-exit-27-to-ar02-entry-27",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2ar03",
+        "entry": 27,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -261.73699951171875,
+            100,
+            464.0450134277344
+          ],
+          "right": [
+            -261.73699951171875,
+            100,
+            476.0450134277344
+          ],
+          "approach": [
+            -263.73699951171875,
+            100,
+            470.0450134277344
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2ar02",
+        "area": "AR02",
+        "entry": 27,
+        "browserSpawn": {
+          "position": [
+            -254.8000030517578,
+            101.5,
+            470.1000061035156
+          ],
+          "yaw": 1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/AR03/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "6d02372b625a16247a3d6305ea7cfc8932e410980050b47b0384a1052b8e455e",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0x10d28",
+        "sourceControlPointerFileOffset": "0x111e0",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x1650",
+        "destinationRecordFileOffset": "0x1650"
+      }
+    },
+    {
+      "id": "s2-ar03-fldd-exit-3-to-ws00-entry-1",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2ar03",
+        "entry": 3,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -400,
+            104.05400085449219,
+            432.9989929199219
+          ],
+          "right": [
+            -400,
+            104.05400085449219,
+            420.9989929199219
+          ],
+          "approach": [
+            -398,
+            104.05400085449219,
+            426.9989929199219
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2ws00",
+        "area": "WS00",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -17.299999237060547,
+            100,
+            149.5
+          ],
+          "yaw": -1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/AR03/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "6d02372b625a16247a3d6305ea7cfc8932e410980050b47b0384a1052b8e455e",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0x11040",
+        "sourceControlPointerFileOffset": "0x11248",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x1530",
+        "destinationRecordFileOffset": "0x02d0"
+      }
+    },
+    {
+      "id": "s2-ara0-areatbl-1-to-ar02-88",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2ara0",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -243,
+            100.30000305175781,
+            412.5
+          ],
+          "right": [
+            -243,
+            100.30000305175781,
+            424.5
+          ],
+          "approach": [
+            -245,
+            100.30000305175781,
+            418.5
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        },
+        "nativeDoor": {
+          "model": "S2DC_D1_ARA0_MPK00_PROP.MT7",
+          "groupNodeOffset": "0x21c",
+          "panelNodeOffsets": [
+            "0x21c",
+            "0x2c4"
+          ],
+          "pickNodeOffsets": [
+            "0x21c",
+            "0x2c4"
+          ],
+          "panelDirections": [
+            1,
+            -1
+          ],
+          "motion": {
+            "type": "hinged",
+            "sourceAxis": "y-rotation",
+            "sourceDirections": [
+              1,
+              -1
+            ]
+          },
+          "binding": "areatbl-door-nodes-to-prop-door",
+          "poseSourceFileOffset": "0x19f0",
+          "controllerNodePairs": [
+            {
+              "nodeId": "R220",
+              "parentNodeId": "\u0000\u0000\u0000\u0000",
+              "sourceFileOffset": "0x44a4"
+            },
+            {
+              "nodeId": "R221",
+              "parentNodeId": "\u0000\u0000\u0000\u0000",
+              "sourceFileOffset": "0x44b4"
+            }
+          ],
+          "matchDistance": 1.7753230768332726,
+          "runnerUpDistance": null
+        }
+      },
+      "destination": {
+        "worldId": "s2ar02",
+        "area": "AR02",
+        "entry": 88,
+        "browserSpawn": {
+          "position": [
+            -238.6999969482422,
+            100.30000305175781,
+            418.5
+          ],
+          "yaw": 1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x19f0",
+        "destinationRecordFileOffset": "0x18d0",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-arc0-areatbl-1-to-ar02-89",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2arc0",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -237.4186908006469,
+            100,
+            391.5210210012654
+          ],
+          "right": [
+            -245.9776782707886,
+            100,
+            399.9319504080526
+          ],
+          "approach": [
+            -243.10000610351562,
+            100,
+            394.29998779296875
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        },
+        "nativeDoor": {
+          "model": "S2DC_D1_ARC0_MPK00_PROP.MT7",
+          "groupNodeOffset": "0x21c",
+          "panelNodeOffsets": [
+            "0x21c"
+          ],
+          "pickNodeOffsets": [
+            "0x270",
+            "0x318"
+          ],
+          "panelDirections": [
+            1
+          ],
+          "motion": {
+            "type": "paired-sliding",
+            "sourceAxis": "x",
+            "sourceDirections": [
+              1,
+              -1
+            ]
+          },
+          "binding": "areatbl-door-nodes-to-prop-door",
+          "poseSourceFileOffset": "0x1a30",
+          "controllerNodePairs": [
+            {
+              "nodeId": "R702",
+              "parentNodeId": "\u0000\u0000\u0000\u0000",
+              "sourceFileOffset": "0x5210"
+            }
+          ],
+          "matchDistance": 0.4951218359111761,
+          "runnerUpDistance": null
+        }
+      },
+      "destination": {
+        "worldId": "s2ar02",
+        "area": "AR02",
+        "entry": 89,
+        "browserSpawn": {
+          "position": [
+            -239,
+            100.30000305175781,
+            396.20001220703125
+          ],
+          "yaw": 1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x1a30",
+        "destinationRecordFileOffset": "0x18f0",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-arm0-areatbl-1-to-ar02-90",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2arm0",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -254.11143234395416,
+            100,
+            429.2889128375056
+          ],
+          "right": [
+            -261.8241981652307,
+            100,
+            438.4820213099511
+          ],
+          "approach": [
+            -259.5,
+            100,
+            432.6000061035156
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2ar02",
+        "area": "AR02",
+        "entry": 90,
+        "browserSpawn": {
+          "position": [
+            -257.20001220703125,
+            100,
+            435.29998779296875
+          ],
+          "yaw": 0.8727391945076874
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x1a70",
+        "destinationRecordFileOffset": "0x1910",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-arsf-fldd-exit-82-to-ar02-entry-83",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2arsf",
+        "entry": 82,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -264.03399658203125,
+            100.25900268554688,
+            334.00201416015625
+          ],
+          "right": [
+            -264.03399658203125,
+            100.25900268554688,
+            346.00201416015625
+          ],
+          "approach": [
+            -266.03399658203125,
+            100.25900268554688,
+            340.00201416015625
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2ar02",
+        "area": "AR02",
+        "entry": 83,
+        "browserSpawn": {
+          "position": [
+            -265.010986328125,
+            99.99500274658203,
+            340.0010070800781
+          ],
+          "yaw": 1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-paired-fldd-event-seam",
+        "source": "data/SCENE/01/ARSF/MAPINFO.BIN FLDD",
+        "sourceControlFileOffset": "0x9eb0",
+        "destinationControlFileOffset": "0x153f4",
+        "routeRecordFileOffset": "0x1870",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-arz0-areatbl-1-to-ar02-95-generated-return",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2arz0",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -328.3999938964844,
+            100,
+            462.20001220703125
+          ],
+          "right": [
+            -340.3999938964844,
+            100,
+            462.20001220703125
+          ],
+          "approach": [
+            -334.3999938964844,
+            100,
+            460.20001220703125
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2ar02",
+        "area": "AR02",
+        "entry": 95,
+        "browserSpawn": {
+          "position": [
+            -334.3999938964844,
+            100,
+            460.20001220703125
+          ],
+          "yaw": 0
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-event-return",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x19b0",
+        "destinationRecordFileOffset": "0x19b0",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-wb00-areatbl-3-to-wb01-99",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2wb00",
+        "entry": 3,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -342.6000061035156,
+            127,
+            261.70001220703125
+          ],
+          "right": [
+            -330.6000061035156,
+            127,
+            261.70001220703125
+          ],
+          "approach": [
+            -336.6000061035156,
+            127,
+            263.70001220703125
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2wb01",
+        "area": "WB01",
+        "entry": 99,
+        "browserSpawn": {
+          "position": [
+            -337,
+            127,
+            257.5
+          ],
+          "yaw": -3.141592653589793
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0e50",
+        "destinationRecordFileOffset": "0x0f90",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-wb00-fldd-exit-1-to-wt00-entry-2",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2wb00",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -288.2149963378906,
+            116.8489990234375,
+            274.73699951171875
+          ],
+          "right": [
+            -288.2149963378906,
+            116.8489990234375,
+            286.73699951171875
+          ],
+          "approach": [
+            -290.2149963378906,
+            116.8489990234375,
+            280.73699951171875
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2wt00",
+        "area": "WT00",
+        "entry": 2,
+        "browserSpawn": {
+          "position": [
+            -260.79998779296875,
+            115,
+            281
+          ],
+          "yaw": 1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/WB00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "69ab3d93e7d5b37a971474ca5a2637a43728faad5c886f6efd3d54b9e40e6f8c",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0x7b04",
+        "sourceControlPointerFileOffset": "0x7bc8",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0e10",
+        "destinationRecordFileOffset": "0x0970"
+      }
+    },
+    {
+      "id": "s2-wb00-fldd-exit-4-to-wn00-entry-1",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2wb00",
+        "entry": 4,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -288.2149963378906,
+            116.8499984741211,
+            274.73699951171875
+          ],
+          "right": [
+            -288.2149963378906,
+            116.8499984741211,
+            286.73699951171875
+          ],
+          "approach": [
+            -290.2149963378906,
+            116.8499984741211,
+            280.73699951171875
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2wn00",
+        "area": "WN00",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -266.5,
+            113.5999984741211,
+            270.6000061035156
+          ],
+          "yaw": -3.141592653589793
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/WB00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "69ab3d93e7d5b37a971474ca5a2637a43728faad5c886f6efd3d54b9e40e6f8c",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0x7b34",
+        "sourceControlPointerFileOffset": "0x7bd0",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0e70",
+        "destinationRecordFileOffset": "0x0b70"
+      }
+    },
+    {
+      "id": "s2-wb01-areatbl-99-to-wb00-3",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2wb01",
+        "entry": 99,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -331,
+            127,
+            259.5
+          ],
+          "right": [
+            -343,
+            127,
+            259.5
+          ],
+          "approach": [
+            -337,
+            127,
+            257.5
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2wb00",
+        "area": "WB00",
+        "entry": 3,
+        "browserSpawn": {
+          "position": [
+            -336.6000061035156,
+            127,
+            263.70001220703125
+          ],
+          "yaw": 0
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0f90",
+        "destinationRecordFileOffset": "0x0e50",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-we00-areatbl-77-to-wesm-1",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2we00",
+        "entry": 77,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -144.39999389648438,
+            102.1500015258789,
+            98.19999694824219
+          ],
+          "right": [
+            -156.39999389648438,
+            102.1500015258789,
+            98.19999694824219
+          ],
+          "approach": [
+            -150.39999389648438,
+            102.1500015258789,
+            96.19999694824219
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        },
+        "nativeDoor": {
+          "model": "S2DC_D1_WE00_MPK00_PROP.MT7",
+          "groupNodeOffset": "0x390",
+          "panelNodeOffsets": [
+            "0x390"
+          ],
+          "pickNodeOffsets": [
+            "0x3e4",
+            "0x438"
+          ],
+          "panelDirections": [
+            1
+          ],
+          "motion": {
+            "type": "paired-sliding",
+            "sourceAxis": "x",
+            "sourceDirections": [
+              1,
+              -1
+            ]
+          },
+          "binding": "areatbl-door-nodes-to-prop-door",
+          "poseSourceFileOffset": "0x06d0",
+          "controllerNodePairs": [
+            {
+              "nodeId": "R740",
+              "parentNodeId": "R040",
+              "sourceFileOffset": "0xb550"
+            }
+          ],
+          "matchDistance": 0.11178297814389936,
+          "runnerUpDistance": 35.289801542682135
+        }
+      },
+      "destination": {
+        "worldId": "s2wesm",
+        "area": "WESM",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -150.39999389648438,
+            102.1500015258789,
+            96.19999694824219
+          ],
+          "yaw": -3.141592653589793
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x06d0",
+        "destinationRecordFileOffset": "0x07b0",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-we00-areatbl-78-to-wem1-1",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2we00",
+        "entry": 78,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -184.10000610351562,
+            100.6500015258789,
+            98.0999984741211
+          ],
+          "right": [
+            -184.10000610351562,
+            100.6500015258789,
+            86.0999984741211
+          ],
+          "approach": [
+            -182.10000610351562,
+            100.6500015258789,
+            92.0999984741211
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        },
+        "nativeDoor": {
+          "model": "S2DC_D1_WE00_MPK00_PROP.MT7",
+          "groupNodeOffset": "0x780",
+          "panelNodeOffsets": [
+            "0x7d4",
+            "0x828"
+          ],
+          "pickNodeOffsets": [
+            "0x7d4",
+            "0x828"
+          ],
+          "panelDirections": [
+            -1,
+            1
+          ],
+          "motion": {
+            "type": "hinged",
+            "sourceAxis": "y-rotation",
+            "sourceDirections": [
+              -1,
+              1
+            ]
+          },
+          "binding": "fldd-entry-to-prop-door",
+          "poseSourceFileOffset": "0xb4b0",
+          "controllerNodePairs": [
+            {
+              "nodeId": "R239",
+              "parentNodeId": "R038",
+              "sourceFileOffset": "0xb5a0"
+            },
+            {
+              "nodeId": "R238",
+              "parentNodeId": "R038",
+              "sourceFileOffset": "0xb5b0"
+            }
+          ],
+          "matchDistance": 0.7750396742034498,
+          "runnerUpDistance": 9.598527426351389
+        }
+      },
+      "destination": {
+        "worldId": "s2wem1",
+        "area": "WEM1",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -135.39999389648438,
+            100.5999984741211,
+            133.8000030517578
+          ],
+          "yaw": 0
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x06f0",
+        "destinationRecordFileOffset": "0x0810",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-we00-areatbl-79-to-wes1-1",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2we00",
+        "entry": 79,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -120.0999984741211,
+            100.6500015258789,
+            110.9000015258789
+          ],
+          "right": [
+            -120.0999984741211,
+            100.6500015258789,
+            122.9000015258789
+          ],
+          "approach": [
+            -122.0999984741211,
+            100.6500015258789,
+            116.9000015258789
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2wes1",
+        "area": "WES1",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -116.69999694824219,
+            100.80000305175781,
+            -117.69999694824219
+          ],
+          "yaw": 0
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0710",
+        "destinationRecordFileOffset": "0x08d0",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-we00-areatbl-82-to-wecf-1",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2we00",
+        "entry": 82,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -189.10000610351562,
+            102,
+            92.30999755859375
+          ],
+          "right": [
+            -189.10000610351562,
+            102,
+            80.30999755859375
+          ],
+          "approach": [
+            -187.10000610351562,
+            102,
+            86.30999755859375
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        },
+        "nativeDoor": {
+          "model": "S2DC_D1_WE00_MPK00_PROP.MT7",
+          "groupNodeOffset": "0x6d8",
+          "panelNodeOffsets": [
+            "0x72c"
+          ],
+          "pickNodeOffsets": [
+            "0x72c"
+          ],
+          "panelDirections": [
+            1
+          ],
+          "motion": {
+            "type": "hinged",
+            "sourceAxis": "y-rotation",
+            "sourceDirections": [
+              1
+            ]
+          },
+          "binding": "fldd-entry-to-prop-door",
+          "poseSourceFileOffset": "0xb2c0",
+          "controllerNodePairs": [
+            {
+              "nodeId": "R119",
+              "parentNodeId": "R019",
+              "sourceFileOffset": "0xb590"
+            }
+          ],
+          "matchDistance": 0.9657054872677576,
+          "runnerUpDistance": 18.66210736335093
+        }
+      },
+      "destination": {
+        "worldId": "s2wecf",
+        "area": "WECF",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -189.10000610351562,
+            102,
+            87.30000305175781
+          ],
+          "yaw": 0
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0730",
+        "destinationRecordFileOffset": "0x0910",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-we00-areatbl-88-to-wet0-1",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2we00",
+        "entry": 88,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -184.60000610351562,
+            100.6500015258789,
+            115.69999694824219
+          ],
+          "right": [
+            -184.60000610351562,
+            100.6500015258789,
+            103.69999694824219
+          ],
+          "approach": [
+            -182.60000610351562,
+            100.6500015258789,
+            109.69999694824219
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        },
+        "nativeDoor": {
+          "model": "S2DC_D1_WE00_MPK00_PROP.MT7",
+          "groupNodeOffset": "0x4e0",
+          "panelNodeOffsets": [
+            "0x4e0"
+          ],
+          "pickNodeOffsets": [
+            "0x534",
+            "0x588"
+          ],
+          "panelDirections": [
+            1
+          ],
+          "motion": {
+            "type": "paired-sliding",
+            "sourceAxis": "x",
+            "sourceDirections": [
+              1,
+              -1
+            ]
+          },
+          "binding": "fldd-entry-to-prop-door",
+          "poseSourceFileOffset": "0xb3f0",
+          "controllerNodePairs": [
+            {
+              "nodeId": "R715",
+              "parentNodeId": "R015",
+              "sourceFileOffset": "0xb560"
+            }
+          ],
+          "matchDistance": 0.8950347900390625,
+          "runnerUpDistance": 23.82860243472325
+        }
+      },
+      "destination": {
+        "worldId": "s2wet0",
+        "area": "WET0",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -184.5,
+            100.6500015258789,
+            109.69999694824219
+          ],
+          "yaw": -1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0750",
+        "destinationRecordFileOffset": "0x0850",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-we00-areatbl-93-to-weg0-1",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2we00",
+        "entry": 93,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -200.5,
+            100.80000305175781,
+            82.4000015258789
+          ],
+          "right": [
+            -212.5,
+            100.80000305175781,
+            82.4000015258789
+          ],
+          "approach": [
+            -206.5,
+            100.80000305175781,
+            80.4000015258789
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        },
+        "nativeDoor": {
+          "model": "S2DC_D1_WE00_MPK00_PROP.MT7",
+          "groupNodeOffset": "0xdbc",
+          "panelNodeOffsets": [
+            "0xdbc"
+          ],
+          "pickNodeOffsets": [
+            "0xe10",
+            "0xe64"
+          ],
+          "panelDirections": [
+            1
+          ],
+          "motion": {
+            "type": "paired-sliding",
+            "sourceAxis": "x",
+            "sourceDirections": [
+              1,
+              -1
+            ]
+          },
+          "binding": "areatbl-door-nodes-to-prop-door",
+          "poseSourceFileOffset": "0x0770",
+          "controllerNodePairs": [
+            {
+              "nodeId": "R734",
+              "parentNodeId": "R034",
+              "sourceFileOffset": "0xb610"
+            }
+          ],
+          "matchDistance": 0.4664829031341959,
+          "runnerUpDistance": 18.60125712798774
+        }
+      },
+      "destination": {
+        "worldId": "s2weg0",
+        "area": "WEG0",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -207.8000030517578,
+            100.80000305175781,
+            83.5
+          ],
+          "yaw": 0
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0770",
+        "destinationRecordFileOffset": "0x0890",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-we00-fldd-exit-1-to-ws00-entry-3",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2we00",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -52.49399948120117,
+            100.80000305175781,
+            97.4000015258789
+          ],
+          "right": [
+            -64.49399948120117,
+            100.80000305175781,
+            97.4000015258789
+          ],
+          "approach": [
+            -58.49399948120117,
+            100.80000305175781,
+            95.4000015258789
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2ws00",
+        "area": "WS00",
+        "entry": 3,
+        "browserSpawn": {
+          "position": [
+            -58.400001525878906,
+            98.19999694824219,
+            103
+          ],
+          "yaw": 0
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/WE00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "9bc816c99d43298f5219ee87c4e1753a791add37103e13eda67063e939dc486f",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0xb310",
+        "sourceControlPointerFileOffset": "0xb63c",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0650",
+        "destinationRecordFileOffset": "0x0310"
+      }
+    },
+    {
+      "id": "s2-we00-fldd-exit-2-to-wr00-entry-2",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2we00",
+        "entry": 2,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -183.47157592701163,
+            100.6500015258789,
+            133.7558532729299
+          ],
+          "right": [
+            -191.9568573012502,
+            100.6500015258789,
+            125.27057189869132
+          ],
+          "approach": [
+            -186.3000030517578,
+            100.6500015258789,
+            128.0989990234375
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2wr00",
+        "area": "WR00",
+        "entry": 2,
+        "browserSpawn": {
+          "position": [
+            -192.6999969482422,
+            102.30000305175781,
+            137.1999969482422
+          ],
+          "yaw": 0
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/WE00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "9bc816c99d43298f5219ee87c4e1753a791add37103e13eda67063e939dc486f",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0xb340",
+        "sourceControlPointerFileOffset": "0xb644",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0670",
+        "destinationRecordFileOffset": "0x0cb0"
+      }
+    },
+    {
+      "id": "s2-we00-fldd-exit-3-to-wn00-entry-3",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2we00",
+        "entry": 3,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -242.3000030517578,
+            102.25,
+            131.0999984741211
+          ],
+          "right": [
+            -242.3000030517578,
+            102.25,
+            119.0999984741211
+          ],
+          "approach": [
+            -240.3000030517578,
+            102.25,
+            125.0999984741211
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2wn00",
+        "area": "WN00",
+        "entry": 3,
+        "browserSpawn": {
+          "position": [
+            -240.3000030517578,
+            104.69999694824219,
+            133.89999389648438
+          ],
+          "yaw": 0
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/WE00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "9bc816c99d43298f5219ee87c4e1753a791add37103e13eda67063e939dc486f",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0xb2e0",
+        "sourceControlPointerFileOffset": "0xb634",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0690",
+        "destinationRecordFileOffset": "0x0bb0"
+      }
+    },
+    {
+      "id": "s2-wecf-areatbl-1-to-we00-82",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2wecf",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -195.10000610351562,
+            102,
+            85.30000305175781
+          ],
+          "right": [
+            -183.10000610351562,
+            102,
+            85.30000305175781
+          ],
+          "approach": [
+            -189.10000610351562,
+            102,
+            87.30000305175781
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2we00",
+        "area": "WE00",
+        "entry": 82,
+        "browserSpawn": {
+          "position": [
+            -187.10000610351562,
+            102,
+            86.30999755859375
+          ],
+          "yaw": 1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0910",
+        "destinationRecordFileOffset": "0x0730",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-weg0-areatbl-1-to-we00-93",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2weg0",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -213.8000030517578,
+            100.80000305175781,
+            81.5
+          ],
+          "right": [
+            -201.8000030517578,
+            100.80000305175781,
+            81.5
+          ],
+          "approach": [
+            -207.8000030517578,
+            100.80000305175781,
+            83.5
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2we00",
+        "area": "WE00",
+        "entry": 93,
+        "browserSpawn": {
+          "position": [
+            -206.5,
+            100.80000305175781,
+            80.4000015258789
+          ],
+          "yaw": -3.141592653589793
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0890",
+        "destinationRecordFileOffset": "0x0770",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-wem1-areatbl-1-to-we00-78",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2wem1",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -141.39999389648438,
+            100.5999984741211,
+            131.8000030517578
+          ],
+          "right": [
+            -129.39999389648438,
+            100.5999984741211,
+            131.8000030517578
+          ],
+          "approach": [
+            -135.39999389648438,
+            100.5999984741211,
+            133.8000030517578
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        },
+        "nativeDoor": {
+          "model": "S2DC_D1_WEM1_MPK00_PROP.MT7",
+          "groupNodeOffset": "0x9c",
+          "panelNodeOffsets": [
+            "0xf0",
+            "0x144"
+          ],
+          "pickNodeOffsets": [
+            "0xf0",
+            "0x144"
+          ],
+          "panelDirections": [
+            1,
+            -1
+          ],
+          "motion": {
+            "type": "hinged",
+            "sourceAxis": "y-rotation",
+            "sourceDirections": [
+              1,
+              -1
+            ]
+          },
+          "binding": "fldd-entry-to-prop-door",
+          "poseSourceFileOffset": "0x1144",
+          "controllerNodePairs": [
+            {
+              "nodeId": "R238",
+              "parentNodeId": "R038",
+              "sourceFileOffset": "0x1164"
+            },
+            {
+              "nodeId": "R239",
+              "parentNodeId": "R038",
+              "sourceFileOffset": "0x1174"
+            }
+          ],
+          "matchDistance": 0.9249572765233977,
+          "runnerUpDistance": null
+        }
+      },
+      "destination": {
+        "worldId": "s2we00",
+        "area": "WE00",
+        "entry": 78,
+        "browserSpawn": {
+          "position": [
+            -182.10000610351562,
+            100.6500015258789,
+            92.0999984741211
+          ],
+          "yaw": 1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0810",
+        "destinationRecordFileOffset": "0x06f0",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-wes1-areatbl-1-to-we00-79",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2wes1",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -122.69999694824219,
+            100.80000305175781,
+            -119.69999694824219
+          ],
+          "right": [
+            -110.69999694824219,
+            100.80000305175781,
+            -119.69999694824219
+          ],
+          "approach": [
+            -116.69999694824219,
+            100.80000305175781,
+            -117.69999694824219
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2we00",
+        "area": "WE00",
+        "entry": 79,
+        "browserSpawn": {
+          "position": [
+            -122.0999984741211,
+            100.6500015258789,
+            116.9000015258789
+          ],
+          "yaw": -1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x08d0",
+        "destinationRecordFileOffset": "0x0710",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-wesm-areatbl-1-to-we00-77",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2wesm",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -144.39999389648438,
+            102.1500015258789,
+            98.19999694824219
+          ],
+          "right": [
+            -156.39999389648438,
+            102.1500015258789,
+            98.19999694824219
+          ],
+          "approach": [
+            -150.39999389648438,
+            102.1500015258789,
+            96.19999694824219
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2we00",
+        "area": "WE00",
+        "entry": 77,
+        "browserSpawn": {
+          "position": [
+            -150.39999389648438,
+            102.1500015258789,
+            96.19999694824219
+          ],
+          "yaw": -3.141592653589793
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x07b0",
+        "destinationRecordFileOffset": "0x06d0",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-wet0-areatbl-1-to-we00-88",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2wet0",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -182.5,
+            100.6500015258789,
+            103.69999694824219
+          ],
+          "right": [
+            -182.5,
+            100.6500015258789,
+            115.69999694824219
+          ],
+          "approach": [
+            -184.5,
+            100.6500015258789,
+            109.69999694824219
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        },
+        "nativeDoor": {
+          "model": "S2DC_D1_WET0_MPK00_PROP.MT7",
+          "groupNodeOffset": "0xf0",
+          "panelNodeOffsets": [
+            "0xf0"
+          ],
+          "pickNodeOffsets": [
+            "0x144",
+            "0x198"
+          ],
+          "panelDirections": [
+            1
+          ],
+          "motion": {
+            "type": "paired-sliding",
+            "sourceAxis": "x",
+            "sourceDirections": [
+              1,
+              -1
+            ]
+          },
+          "binding": "fldd-entry-to-prop-door",
+          "poseSourceFileOffset": "0xa44",
+          "controllerNodePairs": [
+            {
+              "nodeId": "R715",
+              "parentNodeId": "R015",
+              "sourceFileOffset": "0xa74"
+            }
+          ],
+          "matchDistance": 0.7549591064453125,
+          "runnerUpDistance": null
+        }
+      },
+      "destination": {
+        "worldId": "s2we00",
+        "area": "WE00",
+        "entry": 88,
+        "browserSpawn": {
+          "position": [
+            -182.60000610351562,
+            100.6500015258789,
+            109.69999694824219
+          ],
+          "yaw": 1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0850",
+        "destinationRecordFileOffset": "0x0750",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-wk00-areatbl-97-to-wka0-1-one-way",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2wk00",
+        "entry": 97,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -60.843145750507624,
+            102.55000305175781,
+            297.9715606682226
+          ],
+          "right": [
+            -69.32842712474618,
+            102.55000305175781,
+            306.4568420424611
+          ],
+          "approach": [
+            -66.5,
+            102.55000305175781,
+            300.79998779296875
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2wka0",
+        "area": "WKA0",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -66.5,
+            102.55000305175781,
+            300.79998779296875
+          ],
+          "yaw": -2.356194490192345
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-event-entrance",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0230",
+        "destinationRecordFileOffset": "0x0230",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-wk00-fldd-exit-1-to-ws00-entry-2",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2wk00",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -97.08000183105469,
+            102.25,
+            238.1790008544922
+          ],
+          "right": [
+            -97.08000183105469,
+            102.25,
+            226.1790008544922
+          ],
+          "approach": [
+            -95.08000183105469,
+            102.25,
+            232.1790008544922
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2ws00",
+        "area": "WS00",
+        "entry": 2,
+        "browserSpawn": {
+          "position": [
+            -95.19999694824219,
+            100,
+            220
+          ],
+          "yaw": -3.141592653589793
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/WK00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "c3e2ae551635f41aeb658a704b551f25f37966b9304989f77a219e51db7fcf19",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0xfd5c",
+        "sourceControlPointerFileOffset": "0xfeb4",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0090",
+        "destinationRecordFileOffset": "0x02f0"
+      }
+    },
+    {
+      "id": "s2-wk00-fldd-exit-2-to-wr00-entry-3",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2wk00",
+        "entry": 2,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -155,
+            102.25,
+            182
+          ],
+          "right": [
+            -143,
+            102.25,
+            182
+          ],
+          "approach": [
+            -149,
+            102.25,
+            184
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2wr00",
+        "area": "WR00",
+        "entry": 3,
+        "browserSpawn": {
+          "position": [
+            -149.10000610351562,
+            100,
+            174.8000030517578
+          ],
+          "yaw": -3.141592653589793
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/WK00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "c3e2ae551635f41aeb658a704b551f25f37966b9304989f77a219e51db7fcf19",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0xfd10",
+        "sourceControlPointerFileOffset": "0xfeac",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x00b0",
+        "destinationRecordFileOffset": "0x0cd0"
+      }
+    },
+    {
+      "id": "s2-wk00-fldd-exit-3-to-wt00-entry-1",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2wk00",
+        "entry": 3,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -154.5,
+            102.25,
+            277
+          ],
+          "right": [
+            -154.5,
+            102.25,
+            265
+          ],
+          "approach": [
+            -152.5,
+            102.25,
+            271
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2wt00",
+        "area": "WT00",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -164.10000610351562,
+            104.5,
+            271.5
+          ],
+          "yaw": -1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/WK00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "c3e2ae551635f41aeb658a704b551f25f37966b9304989f77a219e51db7fcf19",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0xfcc4",
+        "sourceControlPointerFileOffset": "0xfea4",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x00d0",
+        "destinationRecordFileOffset": "0x0950"
+      }
+    },
+    {
+      "id": "s2-wka0-areatbl-1-to-wk00-97-generated-return",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2wka0",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -72.15685424949238,
+            102.55000305175781,
+            303.6284149177149
+          ],
+          "right": [
+            -63.67157287525381,
+            102.55000305175781,
+            295.1431335434764
+          ],
+          "approach": [
+            -66.5,
+            102.55000305175781,
+            300.79998779296875
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2wk00",
+        "area": "WK00",
+        "entry": 97,
+        "browserSpawn": {
+          "position": [
+            -66.5,
+            102.55000305175781,
+            300.79998779296875
+          ],
+          "yaw": -2.356194490192345
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-event-return",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0230",
+        "destinationRecordFileOffset": "0x0230",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-wn00-fldd-exit-1-to-wb00-entry-1",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2wn00",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -260.3800048828125,
+            113.07499694824219,
+            270.95001220703125
+          ],
+          "right": [
+            -272.3800048828125,
+            113.07499694824219,
+            270.95001220703125
+          ],
+          "approach": [
+            -266.3800048828125,
+            113.07499694824219,
+            268.95001220703125
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2wb00",
+        "area": "WB00",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -309.29998779296875,
+            127,
+            280
+          ],
+          "yaw": -1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/WN00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "4963c6ae8adbed30a3fba985ebb7ccbc6e7b55ef20d382e0f2cda01fa2657d2b",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0x12488",
+        "sourceControlPointerFileOffset": "0x12868",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0b70",
+        "destinationRecordFileOffset": "0x0e10"
+      }
+    },
+    {
+      "id": "s2-wn00-fldd-exit-2-to-wt00-entry-3",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2wn00",
+        "entry": 2,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -260.3800048828125,
+            113.07499694824219,
+            270.95001220703125
+          ],
+          "right": [
+            -272.3800048828125,
+            113.07499694824219,
+            270.95001220703125
+          ],
+          "approach": [
+            -266.3800048828125,
+            113.07499694824219,
+            268.95001220703125
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2wt00",
+        "area": "WT00",
+        "entry": 3,
+        "browserSpawn": {
+          "position": [
+            -260.79998779296875,
+            115,
+            281
+          ],
+          "yaw": 1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/WN00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "4963c6ae8adbed30a3fba985ebb7ccbc6e7b55ef20d382e0f2cda01fa2657d2b",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0x125bc",
+        "sourceControlPointerFileOffset": "0x12890",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0b90",
+        "destinationRecordFileOffset": "0x0990"
+      }
+    },
+    {
+      "id": "s2-wn00-fldd-exit-3-to-we00-entry-3",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2wn00",
+        "entry": 3,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -246.5,
+            104.5,
+            132
+          ],
+          "right": [
+            -234.5,
+            104.5,
+            132
+          ],
+          "approach": [
+            -240.5,
+            104.5,
+            134
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2we00",
+        "area": "WE00",
+        "entry": 3,
+        "browserSpawn": {
+          "position": [
+            -229.5,
+            100.44999694824219,
+            109.5
+          ],
+          "yaw": 1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/WN00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "4963c6ae8adbed30a3fba985ebb7ccbc6e7b55ef20d382e0f2cda01fa2657d2b",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0x124d4",
+        "sourceControlPointerFileOffset": "0x12870",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0bb0",
+        "destinationRecordFileOffset": "0x0690"
+      }
+    },
+    {
+      "id": "s2-wn00-fldd-exit-4-to-wt00-entry-4",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2wn00",
+        "entry": 4,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -204.77856750416007,
+            104.625,
+            230.41085205222677
+          ],
+          "right": [
+            -213.26384887839865,
+            104.625,
+            221.9255706779882
+          ],
+          "approach": [
+            -207.60699462890625,
+            104.625,
+            224.75399780273438
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2wt00",
+        "area": "WT00",
+        "entry": 4,
+        "browserSpawn": {
+          "position": [
+            -230.1999969482422,
+            109,
+            234.1999969482422
+          ],
+          "yaw": -1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/WN00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "4963c6ae8adbed30a3fba985ebb7ccbc6e7b55ef20d382e0f2cda01fa2657d2b",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0x12530",
+        "sourceControlPointerFileOffset": "0x1287c",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0bd0",
+        "destinationRecordFileOffset": "0x09b0"
+      }
+    },
+    {
+      "id": "s2-wn00-fldd-exit-5-to-wr00-entry-1",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2wn00",
+        "entry": 5,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -203.19543151927743,
+            104.5,
+            207.43314208839823
+          ],
+          "right": [
+            -194.71015014503885,
+            104.5,
+            215.9184234626368
+          ],
+          "approach": [
+            -200.36700439453125,
+            104.5,
+            213.08999633789062
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2wr00",
+        "area": "WR00",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -189.1999969482422,
+            102.30000305175781,
+            211.3000030517578
+          ],
+          "yaw": 1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/WN00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "4963c6ae8adbed30a3fba985ebb7ccbc6e7b55ef20d382e0f2cda01fa2657d2b",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0x12570",
+        "sourceControlPointerFileOffset": "0x12888",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0bf0",
+        "destinationRecordFileOffset": "0x0c90"
+      }
+    },
+    {
+      "id": "s2-wr00-areatbl-88-to-wrs2-1",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2wr00",
+        "entry": 88,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -160.83831541684518,
+            100.80000305175781,
+            156.31127064018602
+          ],
+          "right": [
+            -172.65609723325267,
+            100.80000305175781,
+            154.22799606879875
+          ],
+          "approach": [
+            -166.39999389648438,
+            100.80000305175781,
+            153.3000030517578
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2wrs2",
+        "area": "WRS2",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -165.3000030517578,
+            101.19999694824219,
+            147.60000610351562
+          ],
+          "yaw": -3.141592653589793
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0d90",
+        "destinationRecordFileOffset": "0x0dd0",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-wr00-fldd-exit-1-to-wn00-entry-5",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2wr00",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -189.1999969482422,
+            102.25,
+            217.5
+          ],
+          "right": [
+            -189.1999969482422,
+            102.25,
+            205.5
+          ],
+          "approach": [
+            -187.1999969482422,
+            102.25,
+            211.5
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2wn00",
+        "area": "WN00",
+        "entry": 5,
+        "browserSpawn": {
+          "position": [
+            -205.1999969482422,
+            104.5,
+            214.1999969482422
+          ],
+          "yaw": -1.9634954084936211
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/WR00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "1daaa4a1eb66c1fdb19ab3e0807957e58ee3cce00e227061103f5916d0f76dd5",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0x7ec0",
+        "sourceControlPointerFileOffset": "0x8010",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0c90",
+        "destinationRecordFileOffset": "0x0bf0"
+      }
+    },
+    {
+      "id": "s2-wr00-fldd-exit-2-to-we00-entry-2",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2wr00",
+        "entry": 2,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -194.52842407298837,
+            102.25,
+            127.54215087746073
+          ],
+          "right": [
+            -186.0431426987498,
+            102.25,
+            136.0274322516993
+          ],
+          "approach": [
+            -191.6999969482422,
+            102.25,
+            133.19900512695312
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2we00",
+        "area": "WE00",
+        "entry": 2,
+        "browserSpawn": {
+          "position": [
+            -183,
+            100.6500015258789,
+            125.0999984741211
+          ],
+          "yaw": 2.356194490192344
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/WR00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "1daaa4a1eb66c1fdb19ab3e0807957e58ee3cce00e227061103f5916d0f76dd5",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0x7e90",
+        "sourceControlPointerFileOffset": "0x8008",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0cb0",
+        "destinationRecordFileOffset": "0x0670"
+      }
+    },
+    {
+      "id": "s2-wr00-fldd-exit-3-to-wk00-entry-2",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2wr00",
+        "entry": 3,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -143.1999969482422,
+            100,
+            175.6999969482422
+          ],
+          "right": [
+            -155.1999969482422,
+            100,
+            175.6999969482422
+          ],
+          "approach": [
+            -149.1999969482422,
+            100,
+            173.6999969482422
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2wk00",
+        "area": "WK00",
+        "entry": 2,
+        "browserSpawn": {
+          "position": [
+            -148.6999969482422,
+            102.25,
+            184.10000610351562
+          ],
+          "yaw": 0.7853981633974492
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/WR00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "1daaa4a1eb66c1fdb19ab3e0807957e58ee3cce00e227061103f5916d0f76dd5",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0x7e44",
+        "sourceControlPointerFileOffset": "0x8000",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0cd0",
+        "destinationRecordFileOffset": "0x00b0"
+      }
+    },
+    {
+      "id": "s2-wr00-fldd-exit-4-to-ws00-entry-4",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2wr00",
+        "entry": 4,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -138.14314880226542,
+            100,
+            162.8215667717382
+          ],
+          "right": [
+            -146.628430176504,
+            100,
+            171.30684814597677
+          ],
+          "approach": [
+            -143.8000030517578,
+            100,
+            165.64999389648438
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2ws00",
+        "area": "WS00",
+        "entry": 4,
+        "browserSpawn": {
+          "position": [
+            -58.400001525878906,
+            98.19999694824219,
+            103
+          ],
+          "yaw": 0
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/WR00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "1daaa4a1eb66c1fdb19ab3e0807957e58ee3cce00e227061103f5916d0f76dd5",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0x7e14",
+        "sourceControlPointerFileOffset": "0x7ff8",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0cf0",
+        "destinationRecordFileOffset": "0x0330"
+      }
+    },
+    {
+      "id": "s2-wrs2-areatbl-1-to-wr00-88",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2wrs2",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -159.3000030517578,
+            101.19999694824219,
+            149.60000610351562
+          ],
+          "right": [
+            -171.3000030517578,
+            101.19999694824219,
+            149.60000610351562
+          ],
+          "approach": [
+            -165.3000030517578,
+            101.19999694824219,
+            147.60000610351562
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2wr00",
+        "area": "WR00",
+        "entry": 88,
+        "browserSpawn": {
+          "position": [
+            -166.39999389648438,
+            100.80000305175781,
+            153.3000030517578
+          ],
+          "yaw": 2.967102338967802
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0dd0",
+        "destinationRecordFileOffset": "0x0d90",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-ws00-areatbl-76-to-wsg1-1",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2ws00",
+        "entry": 76,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -32,
+            98.19999694824219,
+            118.19999694824219
+          ],
+          "right": [
+            -32,
+            98.19999694824219,
+            130.1999969482422
+          ],
+          "approach": [
+            -34,
+            98.19999694824219,
+            124.19999694824219
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2wsg1",
+        "area": "WSG1",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -25.299999237060547,
+            98.19999694824219,
+            124.19999694824219
+          ],
+          "yaw": 1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x04b0",
+        "destinationRecordFileOffset": "0x0610",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-ws00-areatbl-77-to-wsy0-1-one-way",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2ws00",
+        "entry": 77,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -71.29658590995244,
+            98.19999694824219,
+            122.51726017977462
+          ],
+          "right": [
+            -59.31308371779345,
+            98.19999694824219,
+            121.88823298599009
+          ],
+          "approach": [
+            -65.19999694824219,
+            98.19999694824219,
+            124.19999694824219
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2wsy0",
+        "area": "WSY0",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -65.19999694824219,
+            98.19999694824219,
+            124.19999694824219
+          ],
+          "yaw": 0.052442968185840044
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-event-entrance",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x04d0",
+        "destinationRecordFileOffset": "0x04d0",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-ws00-areatbl-78-to-wsy0-1-one-way",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2ws00",
+        "entry": 78,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -71.29658590995244,
+            98.19999694824219,
+            122.51726017977462
+          ],
+          "right": [
+            -59.31308371779345,
+            98.19999694824219,
+            121.88823298599009
+          ],
+          "approach": [
+            -65.19999694824219,
+            98.19999694824219,
+            124.19999694824219
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2wsy0",
+        "area": "WSY0",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -65.19999694824219,
+            98.19999694824219,
+            124.19999694824219
+          ],
+          "yaw": 0.052442968185840044
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-event-entrance",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x04f0",
+        "destinationRecordFileOffset": "0x04f0",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-ws00-areatbl-79-to-wsy0-1",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2ws00",
+        "entry": 79,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -71.29658590995244,
+            98.19999694824219,
+            122.51726017977462
+          ],
+          "right": [
+            -59.31308371779345,
+            98.19999694824219,
+            121.88823298599009
+          ],
+          "approach": [
+            -65.19999694824219,
+            98.19999694824219,
+            124.19999694824219
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2wsy0",
+        "area": "WSY0",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -65,
+            98.30000305175781,
+            121.80000305175781
+          ],
+          "yaw": -3.141592653589793
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0510",
+        "destinationRecordFileOffset": "0x0570",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-ws00-fldd-exit-1-to-ar03-entry-3",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2ws00",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -18.700000762939453,
+            99.9000015258789,
+            144.3000030517578
+          ],
+          "right": [
+            -18.700000762939453,
+            99.9000015258789,
+            156.3000030517578
+          ],
+          "approach": [
+            -20.700000762939453,
+            99.9000015258789,
+            150.3000030517578
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2ar03",
+        "area": "AR03",
+        "entry": 3,
+        "browserSpawn": {
+          "position": [
+            -400,
+            104.05000305175781,
+            425.79998779296875
+          ],
+          "yaw": 1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/WS00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "286c4c174ff3380a78d9302547954c7713a3bfd3f11dba5ee019c22857685fec",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0xc960",
+        "sourceControlPointerFileOffset": "0xcdd4",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x02d0",
+        "destinationRecordFileOffset": "0x1530"
+      }
+    },
+    {
+      "id": "s2-ws00-fldd-exit-2-to-wk00-entry-1",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2ws00",
+        "entry": 2,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -89.4000015258789,
+            99.9000015258789,
+            220.6999969482422
+          ],
+          "right": [
+            -101.4000015258789,
+            99.9000015258789,
+            220.6999969482422
+          ],
+          "approach": [
+            -95.4000015258789,
+            99.9000015258789,
+            218.6999969482422
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2wk00",
+        "area": "WK00",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -95.4000015258789,
+            102.25,
+            216.39999389648438
+          ],
+          "yaw": 0
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/WS00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "286c4c174ff3380a78d9302547954c7713a3bfd3f11dba5ee019c22857685fec",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0xc898",
+        "sourceControlPointerFileOffset": "0xcdbc",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x02f0",
+        "destinationRecordFileOffset": "0x0090"
+      }
+    },
+    {
+      "id": "s2-ws00-fldd-exit-3-to-we00-entry-1",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2ws00",
+        "entry": 3,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -64.5,
+            98.19999694824219,
+            103.5
+          ],
+          "right": [
+            -52.5,
+            98.19999694824219,
+            103.5
+          ],
+          "approach": [
+            -58.5,
+            98.19999694824219,
+            105.5
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2we00",
+        "area": "WE00",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -59.5,
+            100,
+            96.9000015258789
+          ],
+          "yaw": -1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/WS00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "286c4c174ff3380a78d9302547954c7713a3bfd3f11dba5ee019c22857685fec",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0xc914",
+        "sourceControlPointerFileOffset": "0xcdcc",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0310",
+        "destinationRecordFileOffset": "0x0650"
+      }
+    },
+    {
+      "id": "s2-ws00-fldd-exit-4-to-wr00-entry-4",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2ws00",
+        "entry": 4,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -141.60000610351562,
+            98.19999694824219,
+            164.5
+          ],
+          "right": [
+            -129.60000610351562,
+            98.19999694824219,
+            164.5
+          ],
+          "approach": [
+            -135.60000610351562,
+            98.19999694824219,
+            166.5
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2wr00",
+        "area": "WR00",
+        "entry": 4,
+        "browserSpawn": {
+          "position": [
+            -149.10000610351562,
+            100,
+            174.8000030517578
+          ],
+          "yaw": -3.141592653589793
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/WS00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "286c4c174ff3380a78d9302547954c7713a3bfd3f11dba5ee019c22857685fec",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0xc8e4",
+        "sourceControlPointerFileOffset": "0xcdc4",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0330",
+        "destinationRecordFileOffset": "0x0cf0"
+      }
+    },
+    {
+      "id": "s2-wsg1-areatbl-1-to-ws00-76",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2wsg1",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -27.299999237060547,
+            98.19999694824219,
+            130.1999969482422
+          ],
+          "right": [
+            -27.299999237060547,
+            98.19999694824219,
+            118.19999694824219
+          ],
+          "approach": [
+            -25.299999237060547,
+            98.19999694824219,
+            124.19999694824219
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2ws00",
+        "area": "WS00",
+        "entry": 76,
+        "browserSpawn": {
+          "position": [
+            -34,
+            98.19999694824219,
+            124.19999694824219
+          ],
+          "yaw": -1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0610",
+        "destinationRecordFileOffset": "0x04b0",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-wsy0-areatbl-1-to-ws00-77-generated-return",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2wsy0",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -59.103407986531934,
+            98.19999694824219,
+            125.88273371670975
+          ],
+          "right": [
+            -71.08691017869093,
+            98.19999694824219,
+            126.51176091049429
+          ],
+          "approach": [
+            -65.19999694824219,
+            98.19999694824219,
+            124.19999694824219
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2ws00",
+        "area": "WS00",
+        "entry": 77,
+        "browserSpawn": {
+          "position": [
+            -65.19999694824219,
+            98.19999694824219,
+            124.19999694824219
+          ],
+          "yaw": 0.052442968185840044
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-event-return",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x04d0",
+        "destinationRecordFileOffset": "0x04d0",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-wsy0-areatbl-1-to-ws00-78-generated-return",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2wsy0",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -59.103407986531934,
+            98.19999694824219,
+            125.88273371670975
+          ],
+          "right": [
+            -71.08691017869093,
+            98.19999694824219,
+            126.51176091049429
+          ],
+          "approach": [
+            -65.19999694824219,
+            98.19999694824219,
+            124.19999694824219
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2ws00",
+        "area": "WS00",
+        "entry": 78,
+        "browserSpawn": {
+          "position": [
+            -65.19999694824219,
+            98.19999694824219,
+            124.19999694824219
+          ],
+          "yaw": 0.052442968185840044
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-event-return",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x04f0",
+        "destinationRecordFileOffset": "0x04f0",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-wsy0-areatbl-1-to-ws00-79",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2wsy0",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -59,
+            98.30000305175781,
+            123.80000305175781
+          ],
+          "right": [
+            -71,
+            98.30000305175781,
+            123.80000305175781
+          ],
+          "approach": [
+            -65,
+            98.30000305175781,
+            121.80000305175781
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        }
+      },
+      "destination": {
+        "worldId": "s2ws00",
+        "area": "WS00",
+        "entry": 79,
+        "browserSpawn": {
+          "position": [
+            -65.19999694824219,
+            98.19999694824219,
+            124.19999694824219
+          ],
+          "yaw": 0.052442968185840044
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0570",
+        "destinationRecordFileOffset": "0x0510",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-wt00-areatbl-80-to-wta0-1",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2wt00",
+        "entry": 80,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -251.8000030517578,
+            108.66000366210938,
+            230
+          ],
+          "right": [
+            -239.8000030517578,
+            108.66000366210938,
+            230
+          ],
+          "approach": [
+            -245.8000030517578,
+            108.66000366210938,
+            232
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        },
+        "nativeDoor": {
+          "model": "S2DC_D1_WT00_MPK00_PROP.MT7",
+          "groupNodeOffset": "0x3cc",
+          "panelNodeOffsets": [
+            "0x420",
+            "0x474"
+          ],
+          "pickNodeOffsets": [
+            "0x420",
+            "0x474"
+          ],
+          "panelDirections": [
+            -1,
+            1
+          ],
+          "motion": {
+            "type": "hinged",
+            "sourceAxis": "y-rotation",
+            "sourceDirections": [
+              -1,
+              1
+            ]
+          },
+          "binding": "areatbl-door-nodes-to-prop-door",
+          "poseSourceFileOffset": "0x09f0",
+          "controllerNodePairs": [
+            {
+              "nodeId": "R201",
+              "parentNodeId": "R001",
+              "sourceFileOffset": "0x176b8"
+            },
+            {
+              "nodeId": "R202",
+              "parentNodeId": "R001",
+              "sourceFileOffset": "0x176c8"
+            }
+          ],
+          "matchDistance": 0.6269982494321285,
+          "runnerUpDistance": 79.70097625200447
+        }
+      },
+      "destination": {
+        "worldId": "s2wta0",
+        "area": "WTA0",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -245.75,
+            108.66000366210938,
+            228.60000610351562
+          ],
+          "yaw": -3.141592653589793
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x09f0",
+        "destinationRecordFileOffset": "0x0af0",
+        "storyStateBypassed": true
+      }
+    },
+    {
+      "id": "s2-wt00-fldd-exit-1-to-wk00-entry-3",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2wt00",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -160,
+            104.5,
+            265.5
+          ],
+          "right": [
+            -160,
+            104.5,
+            277.5
+          ],
+          "approach": [
+            -162,
+            104.5,
+            271.5
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2wk00",
+        "area": "WK00",
+        "entry": 3,
+        "browserSpawn": {
+          "position": [
+            -144.3000030517578,
+            102.25,
+            270.6000061035156
+          ],
+          "yaw": 1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/WT00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "d0f01e57333972c509818740ba16b24a964bd096589bdb5a9b448fac5be03ae1",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0x175cc",
+        "sourceControlPointerFileOffset": "0x1785c",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0950",
+        "destinationRecordFileOffset": "0x00d0"
+      }
+    },
+    {
+      "id": "s2-wt00-fldd-exit-2-to-wb00-entry-1",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2wt00",
+        "entry": 2,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -264.8599853515625,
+            114.81900024414062,
+            286.9750061035156
+          ],
+          "right": [
+            -264.8599853515625,
+            114.81900024414062,
+            274.9750061035156
+          ],
+          "approach": [
+            -262.8599853515625,
+            114.81900024414062,
+            280.9750061035156
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2wb00",
+        "area": "WB00",
+        "entry": 1,
+        "browserSpawn": {
+          "position": [
+            -309.29998779296875,
+            127,
+            280
+          ],
+          "yaw": -1.5707963267948966
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/WT00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "d0f01e57333972c509818740ba16b24a964bd096589bdb5a9b448fac5be03ae1",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0x174a0",
+        "sourceControlPointerFileOffset": "0x17838",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0970",
+        "destinationRecordFileOffset": "0x0e10"
+      }
+    },
+    {
+      "id": "s2-wt00-fldd-exit-3-to-wn00-entry-2",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2wt00",
+        "entry": 3,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -264.8599853515625,
+            114.81900024414062,
+            286.9750061035156
+          ],
+          "right": [
+            -264.8599853515625,
+            114.81900024414062,
+            274.9750061035156
+          ],
+          "approach": [
+            -262.8599853515625,
+            114.81900024414062,
+            280.9750061035156
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2wn00",
+        "area": "WN00",
+        "entry": 2,
+        "browserSpawn": {
+          "position": [
+            -266.5,
+            113.5999984741211,
+            270.6000061035156
+          ],
+          "yaw": -3.141592653589793
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/WT00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "d0f01e57333972c509818740ba16b24a964bd096589bdb5a9b448fac5be03ae1",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0x17618",
+        "sourceControlPointerFileOffset": "0x17864",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0990",
+        "destinationRecordFileOffset": "0x0b90"
+      }
+    },
+    {
+      "id": "s2-wt00-fldd-exit-4-to-wn00-entry-4",
+      "activation": "crossing",
+      "source": {
+        "worldId": "s2wt00",
+        "entry": 4,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -223.5,
+            108.66999816894531,
+            225.75
+          ],
+          "right": [
+            -223.5,
+            108.66999816894531,
+            237.75
+          ],
+          "approach": [
+            -225.5,
+            108.66999816894531,
+            231.75
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 12
+        }
+      },
+      "destination": {
+        "worldId": "s2wn00",
+        "area": "WN00",
+        "entry": 4,
+        "browserSpawn": {
+          "position": [
+            -205.1999969482422,
+            104.5,
+            214.1999969482422
+          ],
+          "yaw": -2.7488935718910685
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-fldd-exit-areatbl-destination",
+        "source": "data/SCENE/01/WT00/MAPINFO.BIN FLDD",
+        "sourceMapinfoSha256": "d0f01e57333972c509818740ba16b24a964bd096589bdb5a9b448fac5be03ae1",
+        "sourceControlType": -2,
+        "sourceControlValue": 29,
+        "sourceControlFileOffset": "0x173e4",
+        "sourceControlPointerFileOffset": "0x17820",
+        "destinationSource": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x09b0",
+        "destinationRecordFileOffset": "0x0bd0"
+      }
+    },
+    {
+      "id": "s2-wta0-areatbl-1-to-wt00-80",
+      "activation": "interaction",
+      "source": {
+        "worldId": "s2wta0",
+        "entry": 1,
+        "shape": {
+          "kind": "directional-portal",
+          "left": [
+            -239.75,
+            108.66000366210938,
+            230.60000610351562
+          ],
+          "right": [
+            -251.75,
+            108.66000366210938,
+            230.60000610351562
+          ],
+          "approach": [
+            -245.75,
+            108.66000366210938,
+            228.60000610351562
+          ],
+          "edgePadding": 1.5,
+          "verticalTolerance": 2.5
+        },
+        "nativeDoor": {
+          "model": "S2DC_D1_WTA0_MPK00_PROP.MT7",
+          "groupNodeOffset": "0x4f8",
+          "panelNodeOffsets": [
+            "0x54c",
+            "0x5a0"
+          ],
+          "pickNodeOffsets": [
+            "0x54c",
+            "0x5a0"
+          ],
+          "panelDirections": [
+            -1,
+            1
+          ],
+          "motion": {
+            "type": "hinged",
+            "sourceAxis": "y-rotation",
+            "sourceDirections": [
+              -1,
+              1
+            ]
+          },
+          "binding": "areatbl-door-nodes-to-prop-door",
+          "poseSourceFileOffset": "0x0af0",
+          "controllerNodePairs": [
+            {
+              "nodeId": "R201",
+              "parentNodeId": "R003",
+              "sourceFileOffset": "0x3050c"
+            },
+            {
+              "nodeId": "R202",
+              "parentNodeId": "R003",
+              "sourceFileOffset": "0x3051c"
+            }
+          ],
+          "matchDistance": 0.10309670124612189,
+          "runnerUpDistance": null
+        }
+      },
+      "destination": {
+        "worldId": "s2wt00",
+        "area": "WT00",
+        "entry": 80,
+        "browserSpawn": {
+          "position": [
+            -245.8000030517578,
+            108.66000366210938,
+            232
+          ],
+          "yaw": 0
+        }
+      },
+      "evidence": {
+        "kind": "shenmue2-areatbl-door-pair",
+        "source": "data/MISC/AREATBL1.BIN",
+        "destinationTableSha256": "5b6fbc313bfc037ff56992af6fb271d5a82b60e88c06da2f42899a9d539077cf",
+        "routeRecordFileOffset": "0x0af0",
+        "destinationRecordFileOffset": "0x09f0",
+        "storyStateBypassed": true
+      }
+    }
+  ]
+}

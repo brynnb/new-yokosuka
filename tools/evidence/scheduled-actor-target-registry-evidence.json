@@ -1,0 +1,548 @@
+{
+  "schema": "new-yokosuka-scheduled-actor-target-registry-evidence-v1",
+  "generatedFrom": {
+    "captureInventory": "tools/evidence/scheduled-actor-capture-inventory.json",
+    "captureInventorySha256": "8e9a94d85ff2f92b06a4550f63bd01326fad188c3720bfc4fb766275a5a32741",
+    "scheduledActors": "tools/evidence/scheduled-actors.json",
+    "scheduledActorsSha256": "0e366e90105328845a7cea75234b44937752f013217bd486fb4611e4274a617e",
+    "executable": ".disc-work/exact/1ST_READ.BIN",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c"
+  },
+  "nativeEvidence": {
+    "lookupAddress": "0x0c0f9458",
+    "headerGlobalAddress": "0x0c217970",
+    "recordsGlobalAddress": "0x0c217974",
+    "recordCountOffset": "0x08",
+    "recordStride": 24,
+    "recordCodeOffset": "0x00",
+    "recordObjectPointerOffset": "0x04",
+    "targetSubtypeRule": "dereference record +0x04 and read the first native dword",
+    "dispatchedSubtypes": [
+      0,
+      1,
+      3
+    ]
+  },
+  "summary": {
+    "inventoryCaptureCount": 499,
+    "uniqueCaptureCount": 476,
+    "residentRegistryCaptureCount": 248,
+    "absentRegistryCaptureCount": 228,
+    "captureErrorCount": 0,
+    "targetRecordCount": 28,
+    "recordObservationCount": 6944,
+    "byteStableTargetSubtypeCount": 28,
+    "sourceTargetCodeCount": 25,
+    "exactSourceTargetSubtypeCount": 25,
+    "unresolvedSourceTargetSubtypeCount": 0
+  },
+  "targets": [
+    {
+      "targetCode": "AIDA",
+      "targetSubtype": 1,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        8
+      ],
+      "subtypeCounts": {
+        "1": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 17,
+        "operation18": 0
+      },
+      "referencedBySource": true
+    },
+    {
+      "targetCode": "ARMY",
+      "targetSubtype": 1,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        25
+      ],
+      "subtypeCounts": {
+        "1": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 3,
+        "operation18": 0
+      },
+      "referencedBySource": true
+    },
+    {
+      "targetCode": "AZIA",
+      "targetSubtype": 1,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        9
+      ],
+      "subtypeCounts": {
+        "1": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 13,
+        "operation18": 0
+      },
+      "referencedBySource": true
+    },
+    {
+      "targetCode": "BIKE",
+      "targetSubtype": 1,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        12
+      ],
+      "subtypeCounts": {
+        "1": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 1,
+        "operation18": 0
+      },
+      "referencedBySource": true
+    },
+    {
+      "targetCode": "BUSM",
+      "targetSubtype": 0,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        15
+      ],
+      "subtypeCounts": {
+        "0": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 29,
+        "operation18": 0
+      },
+      "referencedBySource": true
+    },
+    {
+      "targetCode": "BUSW",
+      "targetSubtype": 0,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        24
+      ],
+      "subtypeCounts": {
+        "0": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 42,
+        "operation18": 0
+      },
+      "referencedBySource": true
+    },
+    {
+      "targetCode": "DBEN",
+      "targetSubtype": 3,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        16
+      ],
+      "subtypeCounts": {
+        "3": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 7,
+        "operation18": 1
+      },
+      "referencedBySource": true
+    },
+    {
+      "targetCode": "FANY",
+      "targetSubtype": 3,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        26
+      ],
+      "subtypeCounts": {
+        "3": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 19,
+        "operation18": 1
+      },
+      "referencedBySource": true
+    },
+    {
+      "targetCode": "HOKU",
+      "targetSubtype": 1,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        23
+      ],
+      "subtypeCounts": {
+        "1": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 3,
+        "operation18": 0
+      },
+      "referencedBySource": true
+    },
+    {
+      "targetCode": "HOTD",
+      "targetSubtype": 1,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        11
+      ],
+      "subtypeCounts": {
+        "1": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 0,
+        "operation18": 0
+      },
+      "referencedBySource": false
+    },
+    {
+      "targetCode": "JUPI",
+      "targetSubtype": 1,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        14
+      ],
+      "subtypeCounts": {
+        "1": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 10,
+        "operation18": 0
+      },
+      "referencedBySource": true
+    },
+    {
+      "targetCode": "MARY",
+      "targetSubtype": 1,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        27
+      ],
+      "subtypeCounts": {
+        "1": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 9,
+        "operation18": 0
+      },
+      "referencedBySource": true
+    },
+    {
+      "targetCode": "MBEN",
+      "targetSubtype": 3,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        17
+      ],
+      "subtypeCounts": {
+        "3": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 11,
+        "operation18": 1
+      },
+      "referencedBySource": true
+    },
+    {
+      "targetCode": "NIKU",
+      "targetSubtype": 1,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        22
+      ],
+      "subtypeCounts": {
+        "1": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 9,
+        "operation18": 2
+      },
+      "referencedBySource": true
+    },
+    {
+      "targetCode": "PANN",
+      "targetSubtype": 1,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        18
+      ],
+      "subtypeCounts": {
+        "1": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 13,
+        "operation18": 2
+      },
+      "referencedBySource": true
+    },
+    {
+      "targetCode": "SMI1",
+      "targetSubtype": 1,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        1
+      ],
+      "subtypeCounts": {
+        "1": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 7,
+        "operation18": 0
+      },
+      "referencedBySource": true
+    },
+    {
+      "targetCode": "SPRT",
+      "targetSubtype": 1,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        20
+      ],
+      "subtypeCounts": {
+        "1": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 11,
+        "operation18": 2
+      },
+      "referencedBySource": true
+    },
+    {
+      "targetCode": "TMT1",
+      "targetSubtype": 1,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        3
+      ],
+      "subtypeCounts": {
+        "1": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 0,
+        "operation18": 0
+      },
+      "referencedBySource": false
+    },
+    {
+      "targetCode": "TMT2",
+      "targetSubtype": 1,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        6
+      ],
+      "subtypeCounts": {
+        "1": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 11,
+        "operation18": 0
+      },
+      "referencedBySource": true
+    },
+    {
+      "targetCode": "TMT3",
+      "targetSubtype": 1,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        7
+      ],
+      "subtypeCounts": {
+        "1": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 0,
+        "operation18": 0
+      },
+      "referencedBySource": false
+    },
+    {
+      "targetCode": "UOKT",
+      "targetSubtype": 1,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        19
+      ],
+      "subtypeCounts": {
+        "1": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 18,
+        "operation18": 1
+      },
+      "referencedBySource": true
+    },
+    {
+      "targetCode": "WDG1",
+      "targetSubtype": 1,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        0
+      ],
+      "subtypeCounts": {
+        "1": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 20,
+        "operation18": 0
+      },
+      "referencedBySource": true
+    },
+    {
+      "targetCode": "WDG2",
+      "targetSubtype": 1,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        4
+      ],
+      "subtypeCounts": {
+        "1": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 12,
+        "operation18": 0
+      },
+      "referencedBySource": true
+    },
+    {
+      "targetCode": "WOLD",
+      "targetSubtype": 1,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        10
+      ],
+      "subtypeCounts": {
+        "1": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 6,
+        "operation18": 0
+      },
+      "referencedBySource": true
+    },
+    {
+      "targetCode": "YAKU",
+      "targetSubtype": 1,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        21
+      ],
+      "subtypeCounts": {
+        "1": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 16,
+        "operation18": 1
+      },
+      "referencedBySource": true
+    },
+    {
+      "targetCode": "YANI",
+      "targetSubtype": 1,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        13
+      ],
+      "subtypeCounts": {
+        "1": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 17,
+        "operation18": 0
+      },
+      "referencedBySource": true
+    },
+    {
+      "targetCode": "YAO1",
+      "targetSubtype": 1,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        2
+      ],
+      "subtypeCounts": {
+        "1": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 15,
+        "operation18": 4
+      },
+      "referencedBySource": true
+    },
+    {
+      "targetCode": "YAO2",
+      "targetSubtype": 1,
+      "byteStableSubtype": true,
+      "observationCount": 248,
+      "captureCount": 248,
+      "recordIndices": [
+        5
+      ],
+      "subtypeCounts": {
+        "1": 248
+      },
+      "sourceOperationCounts": {
+        "operation17": 10,
+        "operation18": 0
+      },
+      "referencedBySource": true
+    }
+  ],
+  "unresolvedSourceTargetCodes": [],
+  "captureErrors": [],
+  "evidenceBoundary": "This proves the native registry subtype selected by operations 0x17 and 0x18 for every authored target code. It does not assign gameplay names to subtype-specific control words or synthesize uncaptured controller timing."
+}

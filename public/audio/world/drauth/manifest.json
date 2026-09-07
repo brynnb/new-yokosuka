@@ -1,0 +1,1239 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/build_drauth_audio_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/STREAM/01REV.AFS",
+      "sha256": "6bc7b263890198ba5a8f74b49f107491a1d7a139e09f1fc713524c837c753b52"
+    },
+    "soundBank": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/SOUND/A1_SENFK.SND",
+      "sha256": "cc416c5966e1a3caf8050ea577c550af0c60b662bdf1a9fb8197c085d7e2ec4f"
+    },
+    "authManifest": "play/assets/dobuita/drauth/manifest.json"
+  },
+  "voices": [
+    {
+      "voiceId": "01REVA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SOUND/01REVA001.aiff",
+      "nativeMember": "01REVA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 8192,
+      "nativeSha256": "ba88925abc5bb72c5a9a5ea322048a4e4aeda3077e351e73828ed75081cf6d01",
+      "speakerId": "AKIR",
+      "sourceText": "Hey, I know you=@",
+      "displayText": "Hey, I know you...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/drauth/voice/01REVA001.wav",
+      "byteLength": 32556,
+      "sha256": "be44ab7b6a09eafcef1e3a4a2d9a3eef7262ac25bd9b37341825a35b67b9492d"
+    },
+    {
+      "voiceId": "01REVA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SOUND/01REVA002.aiff",
+      "nativeMember": "01REVA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 4096,
+      "nativeSha256": "f3c8ffa17e36d4aa02b24927732127052b3071595b024aaf4a4373db20911df7",
+      "speakerId": "AKIR",
+      "sourceText": "What?",
+      "displayText": "What?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/drauth/voice/01REVA002.wav",
+      "byteLength": 16172,
+      "sha256": "79adb7219fa4b9024fb0279d98f5e0b309f6efa8d171e42dfd2a5977b90a4f14"
+    },
+    {
+      "voiceId": "01REVA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SOUND/01REVA003.aiff",
+      "nativeMember": "01REVA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 8192,
+      "nativeSha256": "03ea87293f68926770037764d91f69432998daaf421eed710311f78d09a7590d",
+      "speakerId": "AKIR",
+      "sourceText": "So=@?",
+      "displayText": "So...?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 16
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/drauth/voice/01REVA003.wav",
+      "byteLength": 32556,
+      "sha256": "d19ee7a16b592ca75b279c138e571e65770e318eeb47ebabae17d0a923b3e3f7"
+    },
+    {
+      "voiceId": "01REVA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SOUND/01REVA004.aiff",
+      "nativeMember": "01REVA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 14336,
+      "nativeSha256": "c77353f45df09a636195055adfd8cded68363624dfc072ec56d383fbccdd4a55",
+      "speakerId": "AKIR",
+      "sourceText": "I'm looking for a guy named Charlie.",
+      "displayText": "I'm looking for a guy named Charlie.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/drauth/voice/01REVA004.wav",
+      "byteLength": 57132,
+      "sha256": "70ede488d3e27167b31604f050b046609e3c0920b82b3085231202c729711c4b"
+    },
+    {
+      "voiceId": "01REVA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SOUND/01REVA005.aiff",
+      "nativeMember": "01REVA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 6144,
+      "nativeSha256": "200c45aa4f8eaa9834f5d9c5773f6cbf0e18a98cb54e87ad6e1b93c501ab443b",
+      "speakerId": "AKIR",
+      "sourceText": "Really?",
+      "displayText": "Really?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          }
+        ]
+      },
+      "asset": "public/audio/world/drauth/voice/01REVA005.wav",
+      "byteLength": 24364,
+      "sha256": "d632fe5f02bd724f4e1db662e460594ea2e3cd7d0086c658bcdbafc488946f7d"
+    },
+    {
+      "voiceId": "01REVB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SOUND/01REVB001.aiff",
+      "nativeMember": "01REVB001.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 16384,
+      "nativeSha256": "e64cd17b37107f624d6c0ec2df54ffcef800bff528c8681be896b71ef4196f04",
+      "speakerId": "SMTH",
+      "sourceText": "Yo, pal! What's up?",
+      "displayText": "Yo, pal! What's up?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 22
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 31
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/drauth/voice/01REVB001.wav",
+      "byteLength": 65324,
+      "sha256": "14c9ad65be5cdbd886a70f00891063ecef6bb28032253a9e0df5e53ceb53804a"
+    },
+    {
+      "voiceId": "01REVB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SOUND/01REVB002.aiff",
+      "nativeMember": "01REVB002.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 22528,
+      "nativeSha256": "479c8c4f3e9f2e187452b77511073d7a9ab6fbc0b9fc77e97e4ebdd5ab2fd850",
+      "speakerId": "SMTH",
+      "sourceText": "No. Let me apologize for before.",
+      "displayText": "No. Let me apologize for before.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 32
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 23
+          },
+          {
+            "shape": 4,
+            "durationTicks": 22
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 20
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 16
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/drauth/voice/01REVB002.wav",
+      "byteLength": 89900,
+      "sha256": "f2e1e044fa7bef93586f83455a700a1036adca846414acab9aabe1ab2004ba98"
+    },
+    {
+      "voiceId": "01REVB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SOUND/01REVB003.aiff",
+      "nativeMember": "01REVB003.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 34816,
+      "nativeSha256": "ddf2406fd5dd5fd181637b214c240edd38c2f61b822c34927b5be3bbbbb0a029",
+      "speakerId": "SMTH",
+      "sourceText": "You know, you're a good fighter.＆I was impressed!",
+      "displayText": "You know, you're a good fighter.\nI was impressed!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 55
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 41
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/drauth/voice/01REVB003.wav",
+      "byteLength": 139052,
+      "sha256": "5ead537ba97fd78551f65b70b403f105388498aa4197583341428bfbe9100e09"
+    },
+    {
+      "voiceId": "01REVB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SOUND/01REVB004.aiff",
+      "nativeMember": "01REVB004.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 22528,
+      "nativeSha256": "db73e9a31306b50da644aca41e5a5ebfa18f60feddb97dc779a2d66b2d1d662e",
+      "speakerId": "SMTH",
+      "sourceText": "Charlie?＆Yeah, he's a friend of mine.",
+      "displayText": "Charlie?\nYeah, he's a friend of mine.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 23
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 20
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/drauth/voice/01REVB004.wav",
+      "byteLength": 89900,
+      "sha256": "7d4e1b05d1f91762e1662cdefff82e7a293dc1f8175bdacd1ab1af2f4aaad7ae"
+    },
+    {
+      "voiceId": "01REVB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SOUND/01REVB005.aiff",
+      "nativeMember": "01REVB005.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 18432,
+      "nativeSha256": "e74f672468a5922b65c87b1850b7116b954dec49a950e08ae4c684e0dd9acbd0",
+      "speakerId": "SMTH",
+      "sourceText": "Yeah. You don't trust people, do ya? ",
+      "displayText": "Yeah. You don't trust people, do ya? ",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 22
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/drauth/voice/01REVB005.wav",
+      "byteLength": 73516,
+      "sha256": "ed9ec95c206f102ef915d2364112288eefa58010bfe3830a2aa5d4b9d5587064"
+    },
+    {
+      "voiceId": "01REVB006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SOUND/01REVB006.aiff",
+      "nativeMember": "01REVB006.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 16384,
+      "nativeSha256": "4b087a5c5d1406566ee65b41448bd1c3660d9d2dbe4961e969d5c6bc3d5723cb",
+      "speakerId": "SMTH",
+      "sourceText": "Come on. I'll take you to meet him.",
+      "displayText": "Come on. I'll take you to meet him.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 30
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 23
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 28
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/drauth/voice/01REVB006.wav",
+      "byteLength": 65324,
+      "sha256": "a74682fe9d7abfddc7db73227ea0fc4c6a7017a508157121b9c19e23f083e9d0"
+    },
+    {
+      "voiceId": "01REVC001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SOUND/01REVC001.aiff",
+      "nativeMember": "01REVC001.str",
+      "nativeIndex": 20,
+      "nativeByteLength": 40960,
+      "nativeSha256": "9364b62cdabe068067731e78f26355b41dcbbbf3b376023809c94511bd9191e3",
+      "speakerId": "TONY",
+      "sourceText": "Hahahaha! We gotcha. C'mon tough guy.＆Show us what you got.",
+      "displayText": "Hahahaha! We gotcha. C'mon tough guy.\nShow us what you got.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 31
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 23
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/drauth/voice/01REVC001.wav",
+      "byteLength": 163628,
+      "sha256": "8cf7ec0d7ae3c8f7aba6e7d6266902feb9fadd56851676029f56c7b1eb888479"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SE/cloths2/cloths02.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 18000,
+      "asset": "public/audio/world/drauth/sfx/a9040000.wav",
+      "byteLength": 18260,
+      "sha256": "ea49f241ad5ca261c0df9a9814307ad493a0cec18295ddfecf03e85f74081d98"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SE/foot/footstepsdirt.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/drauth/sfx/a9040100.wav",
+      "byteLength": 13980,
+      "sha256": "3e86b4f59aff5cb18bd02084bdfe6c6caa6b63a13cdeee7e22bdd0ec45e22841"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SE/cloths2/friction2.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/drauth/sfx/a9040200.wav",
+      "byteLength": 20916,
+      "sha256": "70c58a40f2a0cb7dbd1431ee497c610b51fa15fe0946d79d09230e6cccc708b6"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/drauth/sfx/a9040300.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/drauth/sfx/a9040500.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SE/footsoil/ryoashi3.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/drauth/sfx/a9040600.wav",
+      "byteLength": 3804,
+      "sha256": "f4e231e5201f0bfcbe2722390c303808b48130809461825b80b59a3e82ce8f93"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SE/footsoil/ryoashi6.aiff",
+      "playbackId": 7,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/drauth/sfx/a9040700.wav",
+      "byteLength": 12052,
+      "sha256": "e3936e0df4975dd2f4a7ee33b7d603f64e4e514601e2d03c173643de40273081"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SE/footsoil/ryoashi7.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/drauth/sfx/a9040800.wav",
+      "byteLength": 10220,
+      "sha256": "a5890240dafd43884ecced054ebea186d119a1e2d68d6a9ba85b8639bf7cf6cb"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SE/foot2/R_kon_s01.aiff",
+      "playbackId": 9,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/drauth/sfx/a9040900.wav",
+      "byteLength": 7580,
+      "sha256": "9679071716b538031bf71306c937f25c54cdab0dfd1f11779a51bb6136a51ba8"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SE/foot2/R_kon_s02.aiff",
+      "playbackId": 10,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/drauth/sfx/a9040a00.wav",
+      "byteLength": 7324,
+      "sha256": "7520924ca1b8f28790b04b057de8201a3dd02a2d652f1e4302ba6993725b9f6b"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SE/foot2/R_kon_s03.aiff",
+      "playbackId": 11,
+      "sampleId": 11,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/drauth/sfx/a9040b00.wav",
+      "byteLength": 8364,
+      "sha256": "97a3129c652e66b054e727418e2d8509cc80f2cb5dd53ea1f1d6ab7619a19136"
+    },
+    {
+      "commandHex": "a9040c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SE/foot2/R_kon_s04.aiff",
+      "playbackId": 12,
+      "sampleId": 12,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/drauth/sfx/a9040c00.wav",
+      "byteLength": 8348,
+      "sha256": "3b3c04b71b5b253519c8c723723696fc3b52ca4e87bed8b3ea23abc16e586baa"
+    },
+    {
+      "commandHex": "a9040d00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SE/foot2/R_kon_s05.aiff",
+      "playbackId": 13,
+      "sampleId": 13,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/drauth/sfx/a9040d00.wav",
+      "byteLength": 8028,
+      "sha256": "80d1d9ebacefc3057b71ede086be9a436d12c9133ffb696887ccd37290c76cdb"
+    },
+    {
+      "commandHex": "a9040e00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SE/foot2/R_kon_s07.aiff",
+      "playbackId": 14,
+      "sampleId": 14,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/drauth/sfx/a9040e00.wav",
+      "byteLength": 8036,
+      "sha256": "ee62d185f6c27f7c59e273bdeefe33d606ce48f08ec6a831a385a6ebfef7aa18"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SE/body/shoulder2.aiff",
+      "playbackId": 15,
+      "sampleId": 15,
+      "sampleRate": 14000,
+      "asset": "public/audio/world/drauth/sfx/a9040f00.wav",
+      "byteLength": 2084,
+      "sha256": "65bd6e2de30f3cd1204344139d05942bfcdb752e7b0e9703199b3c7ed8d75ab5"
+    },
+    {
+      "commandHex": "a9041000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SE/foot/sneaker1.aiff",
+      "playbackId": 16,
+      "sampleId": 16,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/drauth/sfx/a9041000.wav",
+      "byteLength": 10956,
+      "sha256": "6d2cb5b6730ad60d94a60190a579ef97fa51c0d54b9a35c1105bf342793dd63c"
+    },
+    {
+      "commandHex": "a9041100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01REV/SE/foot2/syueisuriashi2.aiff",
+      "playbackId": 17,
+      "sampleId": 17,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/drauth/sfx/a9041100.wav",
+      "byteLength": 8004,
+      "sha256": "62213f308bd9d3b13024a28a7aa2630459aa217a599fb9c30a8a2a5853299e46"
+    }
+  ]
+}

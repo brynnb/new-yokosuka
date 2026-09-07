@@ -1,0 +1,364 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/build_buss_activity_pack.mjs",
+  "source": {
+    "disc": 1,
+    "path": "extracted_files/data/SCENE/01/D000/BUSS.PKS",
+    "sha256": "9a2dfb19a2f7d134ee0b046cfaa6802861590e3918e30fa918eff6809a5be323",
+    "archiveFormat": "PAKS/IPAC",
+    "members": [
+      {
+        "name": "C85M201G.CHRM",
+        "byteLength": 12264,
+        "sha256": "c1558450e913792901ff47b337a2ac8e318039cdec6f4b7b77344d3ef9dac513"
+      },
+      {
+        "name": "M_01BUS.MOTN",
+        "byteLength": 79568,
+        "sha256": "07311441989303e7f41f88d7ff58a42ceb468ed06e752c2687d6cf7c6e1720db"
+      },
+      {
+        "name": "OGM_L.CHRM",
+        "byteLength": 30828,
+        "sha256": "440bd55341b22fe946a62bb7438f4baf61d0a4b872c6cae37a5d797534e8561a"
+      },
+      {
+        "name": "SEQDATA1.AUTH",
+        "byteLength": 3644,
+        "sha256": "3d769872346e486df965296861c502402e95e064e2da4c1f051a568c87774ba0"
+      },
+      {
+        "name": "SEQDATA2.AUTH",
+        "byteLength": 4872,
+        "sha256": "e4b254047a27493388cbef074e909ab0169652ee64ab469802abc425247e46f6"
+      },
+      {
+        "name": "SEQDATA4.AUTH",
+        "byteLength": 3836,
+        "sha256": "400c63409f2910eba206da078f80ab5ddb76a88e87e747b369bf74ecb2b7415e"
+      },
+      {
+        "name": "SEQDATA5.AUTH",
+        "byteLength": 5072,
+        "sha256": "69e81149123aecc70759b84098d4a70cfb35129ed757bda8b42ce571c4ec0fb6"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "tools/evidence/buss-native-lifecycle.json",
+    "resourceName": "BUSS",
+    "variant": "",
+    "selectionRule": "exact AUTH member selected by the native random branch for slots 16 and 17"
+  },
+  "audioManifest": "public/audio/world/buss/manifest.json",
+  "sceneObjects": {
+    "BUS_": {
+      "model": "BUSS530G",
+      "browserFilename": "S1_D000_BUSS530G.MT5",
+      "lifecycle": {
+        "kind": "auth-scoped"
+      }
+    }
+  },
+  "packageActors": {
+    "BUSS": {
+      "label": "Bus driver",
+      "modelCode": "OGM_L",
+      "browserFilename": "S1_D000_OGM_L.MT5",
+      "assetFormat": "MT5",
+      "characterScale": 1
+    }
+  },
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/dobuita/buss/M_01BUS.MOTN",
+      "byteLength": 79568,
+      "sha256": "07311441989303e7f41f88d7ff58a42ceb468ed06e752c2687d6cf7c6e1720db"
+    },
+    {
+      "bank": 2,
+      "path": "/motion/MOTION.BIN",
+      "byteLength": 1826804,
+      "sha256": "aca6a41b967b9f9f92ad847c9495e780058b8194e359bca9a9c2763b0d337b23"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/dobuita/buss/M_01BUS.MOTN",
+      "byteLength": 79568,
+      "sha256": "07311441989303e7f41f88d7ff58a42ceb468ed06e752c2687d6cf7c6e1720db"
+    },
+    {
+      "path": "/motion/MOTION.BIN",
+      "byteLength": 1826804,
+      "sha256": "aca6a41b967b9f9f92ad847c9495e780058b8194e359bca9a9c2763b0d337b23"
+    },
+    {
+      "path": "play/assets/dobuita/buss/SEQDATA1.AUTH",
+      "byteLength": 3644,
+      "sha256": "3d769872346e486df965296861c502402e95e064e2da4c1f051a568c87774ba0"
+    },
+    {
+      "path": "play/assets/dobuita/buss/SEQDATA4.AUTH",
+      "byteLength": 3836,
+      "sha256": "400c63409f2910eba206da078f80ab5ddb76a88e87e747b369bf74ecb2b7415e"
+    },
+    {
+      "path": "play/assets/dobuita/buss/SEQDATA2.AUTH",
+      "byteLength": 4872,
+      "sha256": "e4b254047a27493388cbef074e909ab0169652ee64ab469802abc425247e46f6"
+    },
+    {
+      "path": "play/assets/dobuita/buss/SEQDATA5.AUTH",
+      "byteLength": 5072,
+      "sha256": "69e81149123aecc70759b84098d4a70cfb35129ed757bda8b42ce571c4ec0fb6"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 16,
+      "primaryPointer": 716815,
+      "secondaryPointer": 716828,
+      "activityId": "BUSS/SEQDATA1.AUTH",
+      "archiveMember": "SEQDATA1.AUTH",
+      "byteLength": 3644,
+      "sha256": "3d769872346e486df965296861c502402e95e064e2da4c1f051a568c87774ba0",
+      "durationFrames": 325,
+      "durationSeconds": 10.966662406921387,
+      "frameCount": 10,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "motion": 3,
+        "sound": 8
+      },
+      "actors": [
+        "BUS_",
+        "AKIR",
+        "BUSS"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_NORU_BUS_A_0100",
+          "startFrame": 152,
+          "endFrame": 275
+        },
+        {
+          "actorTag": "BUSS",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 9,
+          "motionName": "YKI_UTS_BAS_65_LP_F",
+          "startFrame": 1,
+          "endFrame": 72
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 126,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "AKI_SUWARU_ORIRU_ETC_BUS_A_0100",
+          "startFrame": 31,
+          "endFrame": 434
+        }
+      ]
+    },
+    {
+      "slot": 16,
+      "primaryPointer": 716833,
+      "secondaryPointer": 716846,
+      "activityId": "BUSS/SEQDATA4.AUTH",
+      "archiveMember": "SEQDATA4.AUTH",
+      "byteLength": 3836,
+      "sha256": "400c63409f2910eba206da078f80ab5ddb76a88e87e747b369bf74ecb2b7415e",
+      "durationFrames": 325,
+      "durationSeconds": 10.966662406921387,
+      "frameCount": 10,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "motion": 3,
+        "sound": 8
+      },
+      "actors": [
+        "BUS_",
+        "AKIR",
+        "BUSS"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_NORU_BUS_A_0100",
+          "startFrame": 152,
+          "endFrame": 275
+        },
+        {
+          "actorTag": "BUSS",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 9,
+          "motionName": "YKI_UTS_BAS_65_LP_F",
+          "startFrame": 1,
+          "endFrame": 72
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 126,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "AKI_SUWARU_ORIRU_ETC_BUS_A_0100",
+          "startFrame": 53,
+          "endFrame": 434
+        }
+      ]
+    },
+    {
+      "slot": 17,
+      "primaryPointer": 716885,
+      "secondaryPointer": 716898,
+      "activityId": "BUSS/SEQDATA2.AUTH",
+      "archiveMember": "SEQDATA2.AUTH",
+      "byteLength": 4872,
+      "sha256": "e4b254047a27493388cbef074e909ab0169652ee64ab469802abc425247e46f6",
+      "durationFrames": 246,
+      "durationSeconds": 8.216666221618652,
+      "frameCount": 16,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "motion": 5,
+        "sound": 12
+      },
+      "actors": [
+        "BUS_",
+        "BUSS",
+        "AKIR"
+      ],
+      "motions": [
+        {
+          "actorTag": "BUSS",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "OTH_TKA_CHECKSURU_RYOUKIN_BUS_0100",
+          "startFrame": 105,
+          "endFrame": 295
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "AKI_ORIRU_WALK_BUS_0100",
+          "startFrame": 1,
+          "endFrame": 165
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 166,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 202,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 238,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        }
+      ]
+    },
+    {
+      "slot": 17,
+      "primaryPointer": 716903,
+      "secondaryPointer": 716916,
+      "activityId": "BUSS/SEQDATA5.AUTH",
+      "archiveMember": "SEQDATA5.AUTH",
+      "byteLength": 5072,
+      "sha256": "69e81149123aecc70759b84098d4a70cfb35129ed757bda8b42ce571c4ec0fb6",
+      "durationFrames": 246,
+      "durationSeconds": 8.216666221618652,
+      "frameCount": 18,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "motion": 5,
+        "sound": 14
+      },
+      "actors": [
+        "BUS_",
+        "BUSS",
+        "AKIR"
+      ],
+      "motions": [
+        {
+          "actorTag": "BUSS",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "OTH_TKA_CHECKSURU_RYOUKIN_BUS_0100",
+          "startFrame": 105,
+          "endFrame": 295
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "AKI_ORIRU_WALK_BUS_0100",
+          "startFrame": 1,
+          "endFrame": 165
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 166,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 202,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 238,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "schema": "new-yokosuka-native-activity-owner-dispositions-v1",
+  "dispositions": [
+    {
+      "candidateId": "d1:JD00:installer:0x59448",
+      "classification": "ambient-world-state",
+      "reviewedOwnerFunction": "0x58c34",
+      "reason": "The parent runs only in its exact 19:00-04:00 clock window, toggles TAXI and numbered JD00 map layers, and launches two silent 200-frame Ryo-only activities. It is nighttime taxi/world-state presentation, not a standalone player-facing cutscene.",
+      "evidence": [
+        ".disc-work/dialogue/native-event-ir.json",
+        "tools/evidence/native-clock-record-operation-evidence.json",
+        "tools/evidence/native-activity-owner-candidates.json"
+      ]
+    },
+    {
+      "candidateId": "d1:JHD0:installer:0x553c8",
+      "classification": "support-map-presentation",
+      "reviewedOwnerFunction": "0x545f8",
+      "reason": "The parent story controller launches this helper before later conversations. MPM1 and MPM2 contain byte-identical silent 335-frame Ryo-only AUTH data and alternate GWNS201G/GWNS202G map-presentation objects. They are conditional staging variants, not standalone player-facing cutscenes.",
+      "evidence": [
+        ".disc-work/dialogue/native-event-ir.json",
+        "tools/evidence/native-activity-owner-candidates.json",
+        "tools/evidence/shenmue1-scripted-scene-inventory.json"
+      ]
+    },
+    {
+      "candidateId": "d1:JU00:installer:0x4407c",
+      "classification": "room-transition-presentation",
+      "reviewedOwnerFunction": "0x43178",
+      "reason": "The parent is a clock- and room-state controller that disables interaction, runs two silent 200-frame Ryo-only activities around map-layer and GT01/GT02 gate-state changes, then restores gameplay. This is authored environmental transition presentation, not a standalone player-facing cutscene.",
+      "evidence": [
+        ".disc-work/dialogue/native-event-ir.json",
+        "tools/evidence/native-clock-record-operation-evidence.json",
+        "tools/evidence/native-activity-owner-candidates.json"
+      ]
+    },
+    {
+      "candidateId": "d1:D000:installer:0x7d3b0",
+      "classification": "nighttime-map-presentation",
+      "reviewedOwnerFunction": "0x7de84",
+      "reason": "The parent is a clock- and world-state controller for WAGK. Its three YORU activities contain only a camera and one LUV2 movement channel, while the archive contains five B0104OS map-lighting models and no actor motion, voice, or sound timeline. The owner applies scene-channel fades around the activities and restores gameplay, so these are authored nighttime lighting/presentation transitions rather than standalone player-facing cutscenes.",
+      "evidence": [
+        ".disc-work/dialogue/native-event-ir.json",
+        "tools/evidence/native-clock-record-operation-evidence.json",
+        "tools/evidence/shenmue1-scripted-scene-inventory.json",
+        "tools/evidence/native-activity-owner-candidates.json"
+      ]
+    }
+  ]
+}

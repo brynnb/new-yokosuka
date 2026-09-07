@@ -1,0 +1,134 @@
+{
+  "schema": "new-yokosuka-hndl-hndr-motion-operation-evidence-v1",
+  "status": "exact-native-motion-contract-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operations": {
+    "request": {
+      "operationId": 231,
+      "operationHex": "0x00e7",
+      "handlerAddress": "0x0c1651ca",
+      "argumentCount": 9,
+      "recordSelection": "argument one zero selects HNDL; nonzero selects HNDR",
+      "fields": {
+        "motionSelector": "argument two signed low word",
+        "startIndex": "argument three signed low word minus one",
+        "endIndex": "argument four signed low word minus one",
+        "currentIndex": "argument five signed low word minus one",
+        "flagByte": "argument six low byte with bit three cleared",
+        "positiveStepFloatWord": "argument seven raw float word when greater than zero",
+        "transitionDurationWord": "argument eight signed low word"
+      },
+      "provenBehavior": "Resolves the selected HNDL/HNDR record, selects the exact controller range for argument two, initializes and clamps the authored index interval, clears flag bit three, applies a positive playback step, and starts the optional native transition when argument eight is positive. Missing objects or records are native no-ops and a missing range produces the native zero-range controller state."
+    },
+    "control": {
+      "operationId": 233,
+      "operationHex": "0x00e9",
+      "handlerAddress": "0x0c165280",
+      "recordSelection": "argument one zero selects HNDL; nonzero selects HNDR",
+      "modes": {
+        "0": "argument three's signed-low-word truth value sets or clears the argument-four low-byte mask; direction bit one transitions clamp the opposite range endpoint to the current endpoint exactly as the native controller",
+        "1": "writes argument three's raw float word to the playback step only when it is greater than zero"
+      },
+      "provenBehavior": "Dispatches only control modes zero and one. Other modes and missing objects or records are native no-ops."
+    },
+    "nativeDependencies": {
+      "requestInitializer": "0x0c0dec66",
+      "flagController": "0x0c0dedc0",
+      "stepController": "0x0c0dee4a",
+      "controllerRangeList": "0x0c216b08"
+    }
+  },
+  "allDiscInventory": {
+    "request": {
+      "callCount": 331,
+      "dialogueRegionCallCount": 20,
+      "areaCount": 40,
+      "argumentCountCounts": {
+        "9": 331
+      },
+      "argumentKindCounts": {
+        "0": {
+          "constant": 299,
+          "frame-field": 32
+        },
+        "1": {
+          "constant": 316,
+          "frame-field": 15
+        },
+        "2": {
+          "constant": 316,
+          "frame-field": 15
+        },
+        "3": {
+          "constant": 331
+        },
+        "4": {
+          "constant": 331
+        },
+        "5": {
+          "constant": 331
+        },
+        "6": {
+          "constant": 331
+        },
+        "7": {
+          "constant": 331
+        },
+        "8": {
+          "constant": 331
+        }
+      },
+      "constantSideSelectorCounts": {
+        "0": 106,
+        "1": 210
+      }
+    },
+    "control": {
+      "callCount": 57,
+      "dialogueRegionCallCount": 0,
+      "areaCount": 15,
+      "argumentCountCounts": {
+        "4": 7,
+        "5": 50
+      },
+      "argumentKindCounts": {
+        "0": {
+          "constant": 57
+        },
+        "1": {
+          "constant": 57
+        },
+        "2": {
+          "constant": 57
+        },
+        "3": {
+          "constant": 57
+        },
+        "4": {
+          "constant": 50
+        }
+      },
+      "constantSideSelectorCounts": {
+        "0": 23,
+        "1": 34
+      },
+      "constantModeCounts": {
+        "0": 50,
+        "1": 7
+      }
+    },
+    "op00RequestCount": 4,
+    "op00ControlCount": 16
+  },
+  "evidenceBoundary": [
+    "HNDL and HNDR remain literal native associated-record tags.",
+    "Raw argument words are retained; only the native signed-word, byte, and float interpretations are applied.",
+    "Controller range lookup remains an injected record inventory rather than a guessed animation mapping.",
+    "The browser presentation adapter remains separate from this canonical controller-state contract."
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "schema": "new-yokosuka-d000-object-state-operations-v1",
+  "status": "verified",
+  "source": {
+    "ram": "captures/pvr/20260724-010057-frame-4933/ram.bin",
+    "calls": ".disc-work/d000-dispatch-calls.json"
+  },
+  "operations": {
+    "0x001f": {
+      "handlerAddress": "0x0c157e12",
+      "resolvedObjectFieldOffset": 136,
+      "mask": 4,
+      "modes": {
+        "0": "read mask",
+        "1": "set mask",
+        "2": "clear mask"
+      },
+      "handlerSha256": "985d76a38f4bb963164d4b7c467b2259e389e21b99bd07a61f02c819e5cc8790"
+    },
+    "0x00a8": {
+      "handlerAddress": "0x0c157f36",
+      "associatedObjectFieldOffset": 92,
+      "mask": 4,
+      "modes": {
+        "0": "clear mask and install one scheduler state",
+        "1": "set mask and restore the prior scheduler state",
+        "4294967295": "no matching handler branch"
+      },
+      "handlerSha256": "6291def82072ca97d2fba2efc7235d6db326ec0f3b358413bd0d38ec60bff5d6"
+    }
+  },
+  "wagkCalls": [
+    {
+      "callFileOffset": "0x7df42",
+      "operationHex": "0x001f",
+      "arguments": [
+        "WAGK",
+        2
+      ]
+    },
+    {
+      "callFileOffset": "0x7df7a",
+      "operationHex": "0x001f",
+      "arguments": [
+        "WAGK",
+        1
+      ]
+    },
+    {
+      "callFileOffset": "0x7df9e",
+      "operationHex": "0x00a8",
+      "arguments": [
+        "WAGK",
+        1
+      ]
+    },
+    {
+      "callFileOffset": "0x7e18a",
+      "operationHex": "0x00a8",
+      "arguments": [
+        "WAGK",
+        4294967295
+      ]
+    },
+    {
+      "callFileOffset": "0x7e1d2",
+      "operationHex": "0x001f",
+      "arguments": [
+        "WAGK",
+        2
+      ]
+    },
+    {
+      "callFileOffset": "0x7e20a",
+      "operationHex": "0x001f",
+      "arguments": [
+        "WAGK",
+        1
+      ]
+    },
+    {
+      "callFileOffset": "0x7e22e",
+      "operationHex": "0x00a8",
+      "arguments": [
+        "WAGK",
+        0
+      ]
+    }
+  ],
+  "semanticBoundary": "bit routes and mode effects are exact; the engine-level meaning of the two flags is not yet named",
+  "failures": []
+}

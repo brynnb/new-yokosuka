@@ -1,0 +1,1396 @@
+{
+  "schema": "new-yokosuka-dialogue-progress-state-v1",
+  "evidenceBoundary": [
+    "All code claims are tied to SHA-256-verified ranges in the exact Disc 1 executable.",
+    "Field names describe observed pointer/offset use only; unknown game semantics are not invented.",
+    "The table is runtime state, not authored dialogue content. It must be modeled to resume yielded bytecode without linear scanning.",
+    "External animation, presentation, and player-input completion conditions remain separate from bytecode control flow."
+  ],
+  "executableEvidence": {
+    "filename": "1ST_READ.BIN",
+    "runtimeBase": "0xc010000",
+    "sha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "verifiedCodeRanges": {
+      "progressTableInitializer": {
+        "runtimeAddress": "0xc158a6c",
+        "size": 314,
+        "sha256": "bcc0cd6281e1569d15f770fc5ab47aeee41ba87307a159ab3d3d76f4cef05b84"
+      },
+      "progressMetricThresholdLiteral": {
+        "runtimeAddress": "0xc158bf0",
+        "size": 4,
+        "sha256": "5eaa5c1a4fa99cf34af94ccef42ea122dbc921d2498f68c20bf9b4d5150f5083"
+      },
+      "progressIndexAllocator": {
+        "runtimeAddress": "0xc15a39a",
+        "size": 214,
+        "sha256": "f26d65ac1e74447ef726d9261696f3f1b46cb80296661deb37a918d7ae2ad0c7"
+      },
+      "fixedIdentityIndexLookup": {
+        "runtimeAddress": "0xc15ae76",
+        "size": 116,
+        "sha256": "f90b3ebc01ca1da8a589dc90d3a96e18bf853d45741a8ae5b4371e00f818864e"
+      },
+      "fixedIdentityIndexTable": {
+        "runtimeAddress": "0xc278d08",
+        "size": 1204,
+        "sha256": "5467cf1a4b2f244dcfd41162627c91e8061ac99d05e60ffc7e2576f27b933af3"
+      },
+      "conversationStartPointerSelector": {
+        "runtimeAddress": "0xc15ccf6",
+        "size": 462,
+        "sha256": "7f2f3467af0231a4abd5f9a4a2f8873d6673a224c4dcf66ada5f8b3124e78a94"
+      },
+      "lowOpcodeAndProgressHandler": {
+        "runtimeAddress": "0xc15cecc",
+        "size": 724,
+        "sha256": "0292ee19b44a9a41a8a9da9c41e9e8fd2460c7064ae0b7fe84c34a0b08c2288a"
+      },
+      "conversationUpdateProgressWrites": {
+        "runtimeAddress": "0xc15c8de",
+        "size": 262,
+        "sha256": "4a68cadc7e4bdcb74dedd28ecd9586229b4720cdc08bba38231d14ea50b39109"
+      },
+      "state5DeferredContinuationCompletion": {
+        "runtimeAddress": "0xc15cbf6",
+        "size": 188,
+        "sha256": "f52aa9eecec5016da0e7289ad8a0a44c7948bcb0f7b1842aabf742f301787433"
+      }
+    }
+  },
+  "nativeTable": {
+    "runtimeAddress": "0xc222f40",
+    "recordCount": 325,
+    "recordSize": 12,
+    "byteLength": 3900,
+    "indexSource": "runtime person record signed halfword +0x18",
+    "initialization": "the first eight bytes are zeroed and the final float is initialized from the verified 9.0 literal",
+    "fields": [
+      {
+        "offset": "0x0",
+        "size": 2,
+        "observedUse": "selected entry offset from runtime routing base +0x40"
+      },
+      {
+        "offset": "0x2",
+        "size": 2,
+        "observedUse": "continuation/start offset used by conversation resume selection"
+      },
+      {
+        "offset": "0x4",
+        "size": 2,
+        "observedUse": "authored progress boundary offset"
+      },
+      {
+        "offset": "0x6",
+        "size": 2,
+        "observedUse": "latest/resume offset within the routing stream"
+      },
+      {
+        "offset": "0x8",
+        "size": 4,
+        "type": "little-endian float32",
+        "initialValue": 9.0,
+        "initialBits": "0x41100000",
+        "observedUse": "per-record metric threshold compared during native person selection"
+      }
+    ]
+  },
+  "nativeIdentityIndex": {
+    "runtimeAddress": "0xc278d08",
+    "recordSize": 4,
+    "fixedIndexCount": 301,
+    "namedIdentityCount": 277,
+    "emptyFixedSlotCount": 24,
+    "dynamicIndexStart": 301,
+    "dynamicIndexCount": 24,
+    "dynamicCursorAddress": "0xc223e8c",
+    "dynamicIdentitiesAddress": "0xc223e90",
+    "dynamicCursorInitialValue": 23,
+    "dynamicIdentityInitialValue": "0xffffffff",
+    "entries": [
+      {
+        "index": 0,
+        "identity": "AKIR"
+      },
+      {
+        "index": 1,
+        "identity": "SORY"
+      },
+      {
+        "index": 2,
+        "identity": "IWAO"
+      },
+      {
+        "index": 3,
+        "identity": "JAKR"
+      },
+      {
+        "index": 4,
+        "identity": "FUKU"
+      },
+      {
+        "index": 5,
+        "identity": "INE_"
+      },
+      {
+        "index": 6,
+        "identity": "KISY"
+      },
+      {
+        "index": 7,
+        "identity": "TAIJ"
+      },
+      {
+        "index": 8,
+        "identity": "CHAI"
+      },
+      {
+        "index": 9,
+        "identity": "KURA"
+      },
+      {
+        "index": 10,
+        "identity": "KURB"
+      },
+      {
+        "index": 11,
+        "identity": "KAME"
+      },
+      {
+        "index": 12,
+        "identity": "JIMY"
+      },
+      {
+        "index": 13,
+        "identity": "TONY"
+      },
+      {
+        "index": 14,
+        "identity": "SMTH"
+      },
+      {
+        "index": 15,
+        "identity": "AKMI"
+      },
+      {
+        "index": 16,
+        "identity": "YOKO"
+      },
+      {
+        "index": 17,
+        "identity": "YUKK"
+      },
+      {
+        "index": 18,
+        "identity": "SYZU"
+      },
+      {
+        "index": 19,
+        "identity": "JUKY"
+      },
+      {
+        "index": 20,
+        "identity": "OISI"
+      },
+      {
+        "index": 21,
+        "identity": "NAMS"
+      },
+      {
+        "index": 22,
+        "identity": "SETA"
+      },
+      {
+        "index": 23,
+        "identity": "MTUK"
+      },
+      {
+        "index": 24,
+        "identity": "HORS"
+      },
+      {
+        "index": 25,
+        "identity": "SNKC"
+      },
+      {
+        "index": 26,
+        "identity": "YOSE"
+      },
+      {
+        "index": 27,
+        "identity": "MRIG"
+      },
+      {
+        "index": 28,
+        "identity": "NITO"
+      },
+      {
+        "index": 29,
+        "identity": "TSUC"
+      },
+      {
+        "index": 30,
+        "identity": "HATO"
+      },
+      {
+        "index": 31,
+        "identity": "ITOI"
+      },
+      {
+        "index": 32,
+        "identity": "TURU"
+      },
+      {
+        "index": 33,
+        "identity": "KURI"
+      },
+      {
+        "index": 34,
+        "identity": "AOKI"
+      },
+      {
+        "index": 35,
+        "identity": "MADA"
+      },
+      {
+        "index": 36,
+        "identity": "ETKO"
+      },
+      {
+        "index": 37,
+        "identity": "BUSS"
+      },
+      {
+        "index": 38,
+        "identity": "TOM_"
+      },
+      {
+        "index": 39,
+        "identity": "HIRA"
+      },
+      {
+        "index": 40,
+        "identity": "HISA"
+      },
+      {
+        "index": 41,
+        "identity": "YURI"
+      },
+      {
+        "index": 42,
+        "identity": "NANS"
+      },
+      {
+        "index": 43,
+        "identity": "HRKO"
+      },
+      {
+        "index": 44,
+        "identity": "AKSK"
+      },
+      {
+        "index": 45,
+        "identity": "MRUA"
+      },
+      {
+        "index": 46,
+        "identity": "HOND"
+      },
+      {
+        "index": 47,
+        "identity": "ONRR"
+      },
+      {
+        "index": 48,
+        "identity": "TATM"
+      },
+      {
+        "index": 49,
+        "identity": "KYUR"
+      },
+      {
+        "index": 50,
+        "identity": "UNO_"
+      },
+      {
+        "index": 51,
+        "identity": "KYOH"
+      },
+      {
+        "index": 52,
+        "identity": "ASDA"
+      },
+      {
+        "index": 53,
+        "identity": "YAMA"
+      },
+      {
+        "index": 54,
+        "identity": "MISM"
+      },
+      {
+        "index": 55,
+        "identity": "KOND"
+      },
+      {
+        "index": 56,
+        "identity": "RNKT"
+      },
+      {
+        "index": 57,
+        "identity": "NORK"
+      },
+      {
+        "index": 58,
+        "identity": null
+      },
+      {
+        "index": 59,
+        "identity": "YNHS"
+      },
+      {
+        "index": 60,
+        "identity": "KKBN"
+      },
+      {
+        "index": 61,
+        "identity": "YOPA"
+      },
+      {
+        "index": 62,
+        "identity": "CATM"
+      },
+      {
+        "index": 63,
+        "identity": "KJIY"
+      },
+      {
+        "index": 64,
+        "identity": null
+      },
+      {
+        "index": 65,
+        "identity": "EIIU"
+      },
+      {
+        "index": 66,
+        "identity": "PEDR"
+      },
+      {
+        "index": 67,
+        "identity": "PAUR"
+      },
+      {
+        "index": 68,
+        "identity": "TOM1"
+      },
+      {
+        "index": 69,
+        "identity": "KEBA"
+      },
+      {
+        "index": 70,
+        "identity": "KEBB"
+      },
+      {
+        "index": 71,
+        "identity": "KEBC"
+      },
+      {
+        "index": 72,
+        "identity": "KEBD"
+      },
+      {
+        "index": 73,
+        "identity": "STP1"
+      },
+      {
+        "index": 74,
+        "identity": "SAGA"
+      },
+      {
+        "index": 75,
+        "identity": "MSYU"
+      },
+      {
+        "index": 76,
+        "identity": "RYBI"
+      },
+      {
+        "index": 77,
+        "identity": "KYAS"
+      },
+      {
+        "index": 78,
+        "identity": "SIIN"
+      },
+      {
+        "index": 79,
+        "identity": "SKGK"
+      },
+      {
+        "index": 80,
+        "identity": null
+      },
+      {
+        "index": 81,
+        "identity": "KIM_"
+      },
+      {
+        "index": 82,
+        "identity": null
+      },
+      {
+        "index": 83,
+        "identity": "MIKM"
+      },
+      {
+        "index": 84,
+        "identity": "NSMR"
+      },
+      {
+        "index": 85,
+        "identity": "TKYM"
+      },
+      {
+        "index": 86,
+        "identity": "MTUR"
+      },
+      {
+        "index": 87,
+        "identity": "EDST"
+      },
+      {
+        "index": 88,
+        "identity": "MYKN"
+      },
+      {
+        "index": 89,
+        "identity": "TMNY"
+      },
+      {
+        "index": 90,
+        "identity": "MYTY"
+      },
+      {
+        "index": 91,
+        "identity": "HROT"
+      },
+      {
+        "index": 92,
+        "identity": "KYKW"
+      },
+      {
+        "index": 93,
+        "identity": "MWAK"
+      },
+      {
+        "index": 94,
+        "identity": "MKII"
+      },
+      {
+        "index": 95,
+        "identity": "HREO"
+      },
+      {
+        "index": 96,
+        "identity": "SCKO"
+      },
+      {
+        "index": 97,
+        "identity": "EIKK"
+      },
+      {
+        "index": 98,
+        "identity": "KUKT"
+      },
+      {
+        "index": 99,
+        "identity": "JOHN"
+      },
+      {
+        "index": 100,
+        "identity": null
+      },
+      {
+        "index": 101,
+        "identity": "CMAL"
+      },
+      {
+        "index": 102,
+        "identity": "SATM"
+      },
+      {
+        "index": 103,
+        "identity": "BIKA"
+      },
+      {
+        "index": 104,
+        "identity": "BIKB"
+      },
+      {
+        "index": 105,
+        "identity": "TMMR"
+      },
+      {
+        "index": 106,
+        "identity": "MEYS"
+      },
+      {
+        "index": 107,
+        "identity": "TYHG"
+      },
+      {
+        "index": 108,
+        "identity": "KJHS"
+      },
+      {
+        "index": 109,
+        "identity": "TYMK"
+      },
+      {
+        "index": 110,
+        "identity": null
+      },
+      {
+        "index": 111,
+        "identity": null
+      },
+      {
+        "index": 112,
+        "identity": "SIND"
+      },
+      {
+        "index": 113,
+        "identity": "MASR"
+      },
+      {
+        "index": 114,
+        "identity": "ONO_"
+      },
+      {
+        "index": 115,
+        "identity": "MIKI"
+      },
+      {
+        "index": 116,
+        "identity": "HATR"
+      },
+      {
+        "index": 117,
+        "identity": null
+      },
+      {
+        "index": 118,
+        "identity": "YAMO"
+      },
+      {
+        "index": 119,
+        "identity": "NOMR"
+      },
+      {
+        "index": 120,
+        "identity": "MEGM"
+      },
+      {
+        "index": 121,
+        "identity": "MAYM"
+      },
+      {
+        "index": 122,
+        "identity": "YKDM"
+      },
+      {
+        "index": 123,
+        "identity": "YOS1"
+      },
+      {
+        "index": 124,
+        "identity": "YOS2"
+      },
+      {
+        "index": 125,
+        "identity": "YOB1"
+      },
+      {
+        "index": 126,
+        "identity": "YOB2"
+      },
+      {
+        "index": 127,
+        "identity": "YJJI"
+      },
+      {
+        "index": 128,
+        "identity": "YBBA"
+      },
+      {
+        "index": 129,
+        "identity": "SUMI"
+      },
+      {
+        "index": 130,
+        "identity": "KOMN"
+      },
+      {
+        "index": 131,
+        "identity": "SAJO"
+      },
+      {
+        "index": 132,
+        "identity": null
+      },
+      {
+        "index": 133,
+        "identity": "SKMT"
+      },
+      {
+        "index": 134,
+        "identity": "KOTA"
+      },
+      {
+        "index": 135,
+        "identity": "YASU"
+      },
+      {
+        "index": 136,
+        "identity": "KAYO"
+      },
+      {
+        "index": 137,
+        "identity": null
+      },
+      {
+        "index": 138,
+        "identity": null
+      },
+      {
+        "index": 139,
+        "identity": null
+      },
+      {
+        "index": 140,
+        "identity": null
+      },
+      {
+        "index": 141,
+        "identity": "TTYA"
+      },
+      {
+        "index": 142,
+        "identity": "SOBA"
+      },
+      {
+        "index": 143,
+        "identity": "ASOU"
+      },
+      {
+        "index": 144,
+        "identity": "HINA"
+      },
+      {
+        "index": 145,
+        "identity": "YSHY"
+      },
+      {
+        "index": 146,
+        "identity": "MJNT"
+      },
+      {
+        "index": 147,
+        "identity": null
+      },
+      {
+        "index": 148,
+        "identity": "KKEN"
+      },
+      {
+        "index": 149,
+        "identity": "TKNB"
+      },
+      {
+        "index": 150,
+        "identity": "TOSK"
+      },
+      {
+        "index": 151,
+        "identity": "SERA"
+      },
+      {
+        "index": 152,
+        "identity": "HMRO"
+      },
+      {
+        "index": 153,
+        "identity": "BSJM"
+      },
+      {
+        "index": 154,
+        "identity": "BOB_"
+      },
+      {
+        "index": 155,
+        "identity": "FKSM"
+      },
+      {
+        "index": 156,
+        "identity": "KJMA"
+      },
+      {
+        "index": 157,
+        "identity": "NRSK"
+      },
+      {
+        "index": 158,
+        "identity": "ASNO"
+      },
+      {
+        "index": 159,
+        "identity": "NAKA"
+      },
+      {
+        "index": 160,
+        "identity": "NMKI"
+      },
+      {
+        "index": 161,
+        "identity": "YMGC"
+      },
+      {
+        "index": 162,
+        "identity": "KOGA"
+      },
+      {
+        "index": 163,
+        "identity": "TMRA"
+      },
+      {
+        "index": 164,
+        "identity": "MITA"
+      },
+      {
+        "index": 165,
+        "identity": "YAYI"
+      },
+      {
+        "index": 166,
+        "identity": "HTSI"
+      },
+      {
+        "index": 167,
+        "identity": "JOE_"
+      },
+      {
+        "index": 168,
+        "identity": "SAKI"
+      },
+      {
+        "index": 169,
+        "identity": "MIHO"
+      },
+      {
+        "index": 170,
+        "identity": "ENDO"
+      },
+      {
+        "index": 171,
+        "identity": "YOSI"
+      },
+      {
+        "index": 172,
+        "identity": "TKSA"
+      },
+      {
+        "index": 173,
+        "identity": "TAGW"
+      },
+      {
+        "index": 174,
+        "identity": "RYKO"
+      },
+      {
+        "index": 175,
+        "identity": "IRIE"
+      },
+      {
+        "index": 176,
+        "identity": "KURT"
+      },
+      {
+        "index": 177,
+        "identity": "HANA"
+      },
+      {
+        "index": 178,
+        "identity": "SIMZ"
+      },
+      {
+        "index": 179,
+        "identity": null
+      },
+      {
+        "index": 180,
+        "identity": "TTAY"
+      },
+      {
+        "index": 181,
+        "identity": "DICK"
+      },
+      {
+        "index": 182,
+        "identity": "MARK"
+      },
+      {
+        "index": 183,
+        "identity": "RBRT"
+      },
+      {
+        "index": 184,
+        "identity": "HARY"
+      },
+      {
+        "index": 185,
+        "identity": "JONZ"
+      },
+      {
+        "index": 186,
+        "identity": "TAKI"
+      },
+      {
+        "index": 187,
+        "identity": "HIRI"
+      },
+      {
+        "index": 188,
+        "identity": "TAKE"
+      },
+      {
+        "index": 189,
+        "identity": "AKTG"
+      },
+      {
+        "index": 190,
+        "identity": "TOKI"
+      },
+      {
+        "index": 191,
+        "identity": "KNJI"
+      },
+      {
+        "index": 192,
+        "identity": "RIKA"
+      },
+      {
+        "index": 193,
+        "identity": "STSI"
+      },
+      {
+        "index": 194,
+        "identity": "GORO"
+      },
+      {
+        "index": 195,
+        "identity": "MKMR"
+      },
+      {
+        "index": 196,
+        "identity": "TDSI"
+      },
+      {
+        "index": 197,
+        "identity": "HRNO"
+      },
+      {
+        "index": 198,
+        "identity": null
+      },
+      {
+        "index": 199,
+        "identity": "KUDO"
+      },
+      {
+        "index": 200,
+        "identity": "MURI"
+      },
+      {
+        "index": 201,
+        "identity": "FLD1"
+      },
+      {
+        "index": 202,
+        "identity": "FLD2"
+      },
+      {
+        "index": 203,
+        "identity": "FLD3"
+      },
+      {
+        "index": 204,
+        "identity": "FLD4"
+      },
+      {
+        "index": 205,
+        "identity": "FLD5"
+      },
+      {
+        "index": 206,
+        "identity": "FLD6"
+      },
+      {
+        "index": 207,
+        "identity": "FLD7"
+      },
+      {
+        "index": 208,
+        "identity": "FLD8"
+      },
+      {
+        "index": 209,
+        "identity": "FLD9"
+      },
+      {
+        "index": 210,
+        "identity": "FLDA"
+      },
+      {
+        "index": 211,
+        "identity": "FLDB"
+      },
+      {
+        "index": 212,
+        "identity": "FLDC"
+      },
+      {
+        "index": 213,
+        "identity": "FLDD"
+      },
+      {
+        "index": 214,
+        "identity": "KEBE"
+      },
+      {
+        "index": 215,
+        "identity": "KEBF"
+      },
+      {
+        "index": 216,
+        "identity": "KEBG"
+      },
+      {
+        "index": 217,
+        "identity": "KEBH"
+      },
+      {
+        "index": 218,
+        "identity": "KEBI"
+      },
+      {
+        "index": 219,
+        "identity": "KEBJ"
+      },
+      {
+        "index": 220,
+        "identity": "KEBK"
+      },
+      {
+        "index": 221,
+        "identity": "KEBL"
+      },
+      {
+        "index": 222,
+        "identity": "YOHI"
+      },
+      {
+        "index": 223,
+        "identity": "NGAI"
+      },
+      {
+        "index": 224,
+        "identity": "ITOH"
+      },
+      {
+        "index": 225,
+        "identity": "SKRD"
+      },
+      {
+        "index": 226,
+        "identity": "YJIH"
+      },
+      {
+        "index": 227,
+        "identity": "TJMA"
+      },
+      {
+        "index": 228,
+        "identity": "JONO"
+      },
+      {
+        "index": 229,
+        "identity": "UDGW"
+      },
+      {
+        "index": 230,
+        "identity": "OKYS"
+      },
+      {
+        "index": 231,
+        "identity": "ISDA"
+      },
+      {
+        "index": 232,
+        "identity": "MURA"
+      },
+      {
+        "index": 233,
+        "identity": "SNGA"
+      },
+      {
+        "index": 234,
+        "identity": "MITI"
+      },
+      {
+        "index": 235,
+        "identity": "MSTA"
+      },
+      {
+        "index": 236,
+        "identity": "MRSK"
+      },
+      {
+        "index": 237,
+        "identity": "MNWA"
+      },
+      {
+        "index": 238,
+        "identity": "HTNK"
+      },
+      {
+        "index": 239,
+        "identity": "HRSK"
+      },
+      {
+        "index": 240,
+        "identity": "NMNO"
+      },
+      {
+        "index": 241,
+        "identity": "ISYM"
+      },
+      {
+        "index": 242,
+        "identity": "KYMA"
+      },
+      {
+        "index": 243,
+        "identity": "ENKI"
+      },
+      {
+        "index": 244,
+        "identity": "NGSM"
+      },
+      {
+        "index": 245,
+        "identity": "TKHS"
+      },
+      {
+        "index": 246,
+        "identity": "HIDE"
+      },
+      {
+        "index": 247,
+        "identity": "KTRO"
+      },
+      {
+        "index": 248,
+        "identity": "KENI"
+      },
+      {
+        "index": 249,
+        "identity": "KYHN"
+      },
+      {
+        "index": 250,
+        "identity": "YMST"
+      },
+      {
+        "index": 251,
+        "identity": "SNDO"
+      },
+      {
+        "index": 252,
+        "identity": "NMTO"
+      },
+      {
+        "index": 253,
+        "identity": "KWMT"
+      },
+      {
+        "index": 254,
+        "identity": "TAEN"
+      },
+      {
+        "index": 255,
+        "identity": "SZEN"
+      },
+      {
+        "index": 256,
+        "identity": "KYSN"
+      },
+      {
+        "index": 257,
+        "identity": "SATO"
+      },
+      {
+        "index": 258,
+        "identity": "YSKT"
+      },
+      {
+        "index": 259,
+        "identity": "STAK"
+      },
+      {
+        "index": 260,
+        "identity": "IZWA"
+      },
+      {
+        "index": 261,
+        "identity": null
+      },
+      {
+        "index": 262,
+        "identity": "SGRH"
+      },
+      {
+        "index": 263,
+        "identity": "MTRI"
+      },
+      {
+        "index": 264,
+        "identity": "TERY"
+      },
+      {
+        "index": 265,
+        "identity": "YKHI"
+      },
+      {
+        "index": 266,
+        "identity": "SBNK"
+      },
+      {
+        "index": 267,
+        "identity": "DTRY"
+      },
+      {
+        "index": 268,
+        "identity": null
+      },
+      {
+        "index": 269,
+        "identity": null
+      },
+      {
+        "index": 270,
+        "identity": "RINS"
+      },
+      {
+        "index": 271,
+        "identity": "ECHO"
+      },
+      {
+        "index": 272,
+        "identity": null
+      },
+      {
+        "index": 273,
+        "identity": null
+      },
+      {
+        "index": 274,
+        "identity": "RKKI"
+      },
+      {
+        "index": 275,
+        "identity": null
+      },
+      {
+        "index": 276,
+        "identity": "GRKN"
+      },
+      {
+        "index": 277,
+        "identity": "MAGO"
+      },
+      {
+        "index": 278,
+        "identity": "CHRL"
+      },
+      {
+        "index": 279,
+        "identity": null
+      },
+      {
+        "index": 280,
+        "identity": "MORN"
+      },
+      {
+        "index": 281,
+        "identity": "HDEI"
+      },
+      {
+        "index": 282,
+        "identity": "TEYI"
+      },
+      {
+        "index": 283,
+        "identity": "TOMH"
+      },
+      {
+        "index": 284,
+        "identity": "FLDE"
+      },
+      {
+        "index": 285,
+        "identity": "FLDF"
+      },
+      {
+        "index": 286,
+        "identity": "FLDG"
+      },
+      {
+        "index": 287,
+        "identity": "TMHN"
+      },
+      {
+        "index": 288,
+        "identity": "DJUN"
+      },
+      {
+        "index": 289,
+        "identity": null
+      },
+      {
+        "index": 290,
+        "identity": "HSOA"
+      },
+      {
+        "index": 291,
+        "identity": "GJHM"
+      },
+      {
+        "index": 292,
+        "identity": "GJBM"
+      },
+      {
+        "index": 293,
+        "identity": "GJHF"
+      },
+      {
+        "index": 294,
+        "identity": "GJBF"
+      },
+      {
+        "index": 295,
+        "identity": "YUMM"
+      },
+      {
+        "index": 296,
+        "identity": "SYKU"
+      },
+      {
+        "index": 297,
+        "identity": "HTSK"
+      },
+      {
+        "index": 298,
+        "identity": "SMIK"
+      },
+      {
+        "index": 299,
+        "identity": "SNJY"
+      },
+      {
+        "index": 300,
+        "identity": "SINF"
+      }
+    ],
+    "observedBehavior": "native lookup 0x0c15ae76 maps an actor identity to its fixed index; identities absent from this table use the 24-slot runtime pool at indices 301 through 324; existing dynamic identities retain their slot, while a new identity increments and wraps the cursor before replacing that slot",
+    "zeroIndexBehavior": "the allocator treats fixed lookup result zero as unresolved, so AKIR follows the dynamic-pool path in this routine"
+  },
+  "runtimePersonFields": [
+    {
+      "offset": "0x9",
+      "size": 1,
+      "observedUse": "conversation execution state"
+    },
+    {
+      "offset": "0x18",
+      "size": 2,
+      "observedUse": "signed progress-table record index"
+    },
+    {
+      "offset": "0x40",
+      "size": 4,
+      "observedUse": "routing bytecode base pointer"
+    },
+    {
+      "offset": "0x58",
+      "size": 4,
+      "observedUse": "current/yielded bytecode pointer"
+    },
+    {
+      "offset": "0x5c",
+      "size": 4,
+      "observedUse": "deferred continuation pointer"
+    },
+    {
+      "offset": "0x60",
+      "size": 4,
+      "observedUse": "one-shot branch continuation pointer"
+    },
+    {
+      "offset": "0x64",
+      "size": 4,
+      "observedUse": "24-bit branch continuation pointer"
+    }
+  ],
+  "verifiedResumeRules": [
+    {
+      "instruction": "F2",
+      "initialReturn": "opcode + 1 unless byte at opcode + 4 is class 0x90",
+      "yieldState": 5,
+      "progressWrite": "record +0 receives (opcode + 1) minus routing base when persistence flags permit",
+      "completion": {
+        "ordinary": "advance runtime +0x58 by three bytes",
+        "deferredGuard": "runtime flags +0x1e bit 0 is set and bit 6 is clear",
+        "operand": "read a big-endian signed 24-bit displacement at routing base + record +0x02",
+        "zeroDisplacement": "clear runtime +0x5c and set +0x58 to operand end",
+        "nonzeroDisplacement": "set runtime +0x5c to operand end, set +0x58 to operand end plus displacement, and set flags +0x1e bit 7",
+        "finalMutation": "clear flags +0x1e bit 0 after either deferred result"
+      },
+      "effectiveStructuralContinuation": "opcode + 4",
+      "note": "The four-byte continuation is a two-stage native transition, not ordinary instruction fallthrough."
+    },
+    {
+      "instructionClass": "0x10",
+      "observedBehavior": [
+        "records the current offset in record +6 when execution has moved away from the selected entry",
+        "clears record +4 after recording that resume offset",
+        "may redirect to record +6, record +4 minus two, or record +2 depending current progress ordering"
+      ]
+    },
+    {
+      "instructionClass": "0x80",
+      "observedBehavior": "stores opcode +2 in runtime +0x60 before following its signed 12-bit branch"
+    },
+    {
+      "instruction": "F5",
+      "observedBehavior": "stores its signed 24-bit branch target in runtime +0x64"
+    },
+    {
+      "instruction": "F9",
+      "observedBehavior": "resumes through runtime +0x60 or +0x5c according to native flags and consumes or updates the selected continuation",
+      "staticLimit": "paths depending on an externally populated +0x5c pointer must remain explicitly dynamic"
+    }
+  ]
+}

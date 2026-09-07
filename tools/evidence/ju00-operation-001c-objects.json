@@ -1,0 +1,29 @@
+{
+  "schema": "new-yokosuka-native-operation-001c-object-evidence-v1",
+  "area": "JU00",
+  "source": {
+    "runtimeCapture": "captures/pvr/20260724-100412-frame-18879/ram.bin",
+    "taggedRuntimeObjects": ".disc-work/ju00-tagged-objects.json",
+    "executable": ".disc-work/exact/1ST_READ.BIN",
+    "operationContract": "tools/evidence/operation-001c-evidence.json"
+  },
+  "records": {
+    "CATM": {
+      "taskAddress": "0x8c569760",
+      "resolvedRecordAddress": "0x8c569780",
+      "resolvedRecordMarker": "CEWP",
+      "directWordOffsets": [20, 24, 28],
+      "directWords": [0, 22027, 0],
+      "associatedInputAddress": "0x8c569784",
+      "associatedInputModeWord": 0,
+      "associatedWordOffsets": [16, 20, 24],
+      "associatedWords": [0, 22027, 0]
+    }
+  },
+  "evidenceBoundary": [
+    "The operation 0x001c object resolver returns CATM's CEWP record at task +0x20 in this captured JU00 room state.",
+    "The direct-normal helper copies resolved-record dwords +0x14/+0x18/+0x1c.",
+    "The associated-normal helper receives resolved-record +4; its captured mode word is zero, so it copies helper-input dwords +0x10/+0x14/+0x18.",
+    "These are raw packed native words and are not interpreted as world-space coordinates."
+  ]
+}

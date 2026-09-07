@@ -1,0 +1,352 @@
+{
+  "schema": "new-yokosuka-jd00-boundary-transitions-v2",
+  "status": "verified-static-definitions-and-resident-runtime-path",
+  "source": {
+    "mapinfo": ".disc-work/mapinfo/disc1/SCENE/01/JD00/MAPINFO.BIN",
+    "mapinfoSha256": "8582ed57e13593d7622d24216ef8f93e5393b13fffd2132f70500f9e6ce2a43b",
+    "scn3FileOffset": "0x5a0",
+    "scn3StaticFileOffset": "0x78e28",
+    "eventToken": {
+      "tag": "EVNT",
+      "fileOffset": "0x8c534",
+      "payloadBytes": 180,
+      "container": "COLS/COLI 0000"
+    },
+    "residentCapture": "captures/pvr/20260726-075949-frame-24437",
+    "residentFileToPhysicalRamDelta": "0x3c6900",
+    "residentEventTokenPhysicalAddress": "0x452e34",
+    "residentFieldManagerGlobalAddress": "0x0c2020cc",
+    "residentFieldManagerAddress": "0x0c4dbda0",
+    "residentEventTokenManagerOffset": "0x10",
+    "residentEventTokenSizeManagerOffset": "0x14"
+  },
+  "coordinateConversion": {
+    "nativeActorToEventQuery": "[native X, -native Z]",
+    "nativeActorToBrowser": "browser X = -native X; browser Z = native Z",
+    "eventQueryToBrowser": "browser X = -event X; browser Z = -event Z",
+    "proof": [
+      "MEVW update 0x0c0f1608 copies the tracked object's position through 0x0c0aaf10 and calls 0x0c0b29dc.",
+      "0x0c0aaf10 copies object offsets +0x08, +0x0c, and +0x10 without adding an offset.",
+      "0x0c0b29dc negates the second horizontal component before querying EVNT.",
+      "Captured AKIR native X 16.081766 converts to the captured browser X -16.0818."
+    ]
+  },
+  "nativeRegionSelection": {
+    "eventWatcherTag": "MEVW",
+    "eventWatcherUpdateAddress": "0x0c0f1608",
+    "positionCopyAddress": "0x0c0aaf10",
+    "eventPointQueryAddress": "0x0c0b29dc",
+    "eventTableQueryAddress": "0x0c0b28f4",
+    "shapeDispatcherAddress": "0x0c08dd84",
+    "pointVsKind5Address": "0x0c08dac0",
+    "kind5Semantics": "origin plus two edge vectors defining a closed parallelogram",
+    "queryShapeKind": 0,
+    "eventShapeKind": 5,
+    "capturedEventWatcherAddress": "0x0c5aef00",
+    "capturedEventIdFieldOffset": "0x04",
+    "capturedEventFlagsFieldOffset": "0x08"
+  },
+  "selectorFlow": {
+    "selectorByteScn3StaticOffset": "0x2de",
+    "selectorByteFileOffset": "0x79106",
+    "selectorByteResidentPhysicalAddress": "0x43fa06",
+    "routeDispatchReadFileOffset": "0x5b808",
+    "readinessOperation": {
+      "operationId": 430,
+      "operationHex": "0x01ae",
+      "callFileOffset": "0x5b7d4",
+      "constantArgument": 0,
+      "meaning": "readiness/input gate; it does not return the route selector"
+    },
+    "callbackTable": {
+      "fileOffset": "0x80e18",
+      "entries": [
+        {
+          "eventId": 0,
+          "storedScn3RelativeFunction": "0x595ec",
+          "functionFileOffset": "0x59b8c",
+          "selectorWrite": null
+        },
+        {
+          "eventId": 1,
+          "storedScn3RelativeFunction": "0x595fc",
+          "functionFileOffset": "0x59b9c",
+          "selectorWrite": 3
+        },
+        {
+          "eventId": 2,
+          "storedScn3RelativeFunction": "0x59658",
+          "functionFileOffset": "0x59bf8",
+          "selectorWrite": 1
+        },
+        {
+          "eventId": 3,
+          "storedScn3RelativeFunction": "0x596b4",
+          "functionFileOffset": "0x59c54",
+          "selectorWrite": 2
+        }
+      ]
+    }
+  },
+  "routes": [
+    {
+      "id": "jd00-upper-road-to-d000-entry-1",
+      "selectorValue": 1,
+      "routeCallerFileOffset": "0x5b92a",
+      "callback": {
+        "eventId": 2,
+        "functionFileOffset": "0x59bf8",
+        "selectorWrite": 1
+      },
+      "trigger": {
+        "eventId": 2,
+        "recordFileOffset": "0x8c560",
+        "flag": 262146,
+        "flagHex": "0x00040002",
+        "kind": 5,
+        "nativeQueryShape": {
+          "origin": [
+            34.057674407958984,
+            1.0136404037475586
+          ],
+          "edgeA": [
+            0,
+            -8.670000076293945
+          ],
+          "edgeB": [
+            3.9496688842773438,
+            0
+          ]
+        },
+        "browserShape": {
+          "origin": [
+            -34.057674407958984,
+            -1.0136404037475586
+          ],
+          "edgeA": [
+            0,
+            8.670000076293945
+          ],
+          "edgeB": [
+            -3.9496688842773438,
+            0
+          ],
+          "vertices": [
+            [
+              -34.057674407958984,
+              -1.0136404037475586
+            ],
+            [
+              -34.057674407958984,
+              7.656359672546387
+            ],
+            [
+              -38.00734329223633,
+              7.656359672546387
+            ],
+            [
+              -38.00734329223633,
+              -1.0136404037475586
+            ]
+          ]
+        }
+      },
+      "destination": {
+        "scene": 1,
+        "area": "D000",
+        "entry": 1,
+        "browserWorldId": "dobuita",
+        "browserSpawn": {
+          "position": [
+            -13.229999542236328,
+            0,
+            98.86000061035156
+          ],
+          "yawRadians": 0
+        },
+        "source": "tools/evidence/d000-entry-spawns.json entry 1"
+      }
+    },
+    {
+      "id": "jd00-lower-road-to-d000-entry-11",
+      "selectorValue": 2,
+      "routeCallerFileOffset": "0x5ba16",
+      "callback": {
+        "eventId": 3,
+        "functionFileOffset": "0x59c54",
+        "selectorWrite": 2
+      },
+      "trigger": {
+        "eventId": 3,
+        "recordFileOffset": "0x8c53c",
+        "flag": 262147,
+        "flagHex": "0x00040003",
+        "kind": 5,
+        "nativeQueryShape": {
+          "origin": [
+            35.6639518737793,
+            -41.57658004760742
+          ],
+          "edgeA": [
+            2.0227737426757812,
+            -4.030223846435547
+          ],
+          "edgeB": [
+            1.8082389831542969,
+            0.8734703063964844
+          ]
+        },
+        "browserShape": {
+          "origin": [
+            -35.6639518737793,
+            41.57658004760742
+          ],
+          "edgeA": [
+            -2.0227737426757812,
+            4.030223846435547
+          ],
+          "edgeB": [
+            -1.8082389831542969,
+            -0.8734703063964844
+          ],
+          "vertices": [
+            [
+              -35.6639518737793,
+              41.57658004760742
+            ],
+            [
+              -37.68672561645508,
+              45.60680389404297
+            ],
+            [
+              -39.494964599609375,
+              44.733333587646484
+            ],
+            [
+              -37.472190856933594,
+              40.70310974121094
+            ]
+          ]
+        }
+      },
+      "destination": {
+        "scene": 1,
+        "area": "D000",
+        "entry": 11,
+        "browserWorldId": "dobuita",
+        "browserSpawn": {
+          "position": [
+            -34.27000045776367,
+            0,
+            101.19999694824219
+          ],
+          "yawRadians": 0
+        },
+        "nativeEntryTableFileOffset": "0xd3770",
+        "nativeEntryTablePosition": [
+          34.27000045776367,
+          5.312399864196777,
+          101.19999694824219
+        ]
+      }
+    },
+    {
+      "id": "jd00-yamanose-road-to-ju00-entry-0",
+      "selectorValue": 3,
+      "routeCallerFileOffset": "0x5b83e",
+      "callback": {
+        "eventId": 1,
+        "functionFileOffset": "0x59b9c",
+        "selectorWrite": 3
+      },
+      "trigger": {
+        "eventId": 1,
+        "recordFileOffset": "0x8c5a8",
+        "flag": 262145,
+        "flagHex": "0x00040001",
+        "kind": 5,
+        "nativeQueryShape": {
+          "origin": [
+            -19.130630493164062,
+            -40.21636962890625
+          ],
+          "edgeA": [
+            0,
+            -5.734134674072266
+          ],
+          "edgeB": [
+            -2.9742469787597656,
+            0
+          ]
+        },
+        "browserShape": {
+          "origin": [
+            19.130630493164062,
+            40.21636962890625
+          ],
+          "edgeA": [
+            0,
+            5.734134674072266
+          ],
+          "edgeB": [
+            2.9742469787597656,
+            0
+          ],
+          "vertices": [
+            [
+              19.130630493164062,
+              40.21636962890625
+            ],
+            [
+              19.130630493164062,
+              45.950504302978516
+            ],
+            [
+              22.104877471923828,
+              45.950504302978516
+            ],
+            [
+              22.104877471923828,
+              40.21636962890625
+            ]
+          ]
+        }
+      },
+      "destination": {
+        "scene": 1,
+        "area": "JU00",
+        "entry": 0,
+        "browserWorldId": "yamanose",
+        "browserSpawn": {
+          "position": [
+            33.478641510009766,
+            1.9100005626678467,
+            46.22956466674805
+          ],
+          "yawRadians": -1.886602123451624
+        },
+        "capture": "captures/pvr/20260726-081551-frame-34585",
+        "sourceStatus": "runtime capture; the static JU00 entry-0 table remains to be identified"
+      }
+    }
+  ],
+  "transitionHelper": {
+    "helperFileOffset": "0x5a06c",
+    "operationId": 48,
+    "operationHex": "0x0030",
+    "operationCallFileOffset": "0x5a1d6",
+    "signature": "operation 0x0030(scene, four-byte area ID, entry)"
+  },
+  "browserValidation": {
+    "reportedYamanoseCoordinate": [
+      13,
+      1,
+      42
+    ],
+    "decodedEventId": 1,
+    "decodedShapeContainsReportedPoint": false,
+    "horizontalDistanceToDecodedShape": 6.130630493164062,
+    "interpretation": "The source-backed point query contains no actor offset or radius. A native crossing capture is required to reconcile the approximate browser report; the decoded shape must not be shifted to fit it."
+  },
+  "conclusion": "JD00's three active 0x0004 EVNT kind-5 parallelograms select event IDs 1, 2, and 3. Their callback table writes selector values 3, 1, and 2 respectively, which dispatch to JU00 entry 0, D000 entry 1, and D000 entry 11."
+}

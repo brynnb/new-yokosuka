@@ -1,0 +1,842 @@
+import assert from "node:assert/strict";
+import test from "node:test";
+
+import {
+  NativeCutsceneDirector,
+} from "../play/cutscenes/NativeCutsceneDirector.js";
+import {
+  NativeCutscenePackageRegistry,
+} from "../play/cutscenes/NativeCutscenePackageRegistry.js";
+
+function packageDefinition({
+  id,
+  worldId,
+  actors = [],
+  binding = null,
+}) {
+  return {
+    id,
+    worldId,
+    actorDefinitions: actors,
+    actorTags: actors.map(actor => actor.actorCode),
+    assets: { "play/test.bin": "/test.bin" },
+    playback: { manifest: {}, binding },
+  };
+}
+
+function deferred() {
+  let resolve;
+  let reject;
+  const promise = new Promise((accept, decline) => {
+    resolve = accept;
+    reject = decline;
+  });
+  return { promise, reject, resolve };
+}
+
+function harness({
+  packageStartResult = true,
+  packageStopError = null,
+  program = false,
+  programUsesContext = false,
+  programStartResult = true,
+} = {}) {
+  const registry = new NativeCutscenePackageRegistry([
+    packageDefinition({
+      id: "opening",
+      worldId: "intro",
+      binding: { slot: 0, primaryPointer: 5, secondaryPointer: 6 },
+      actors: [{ actorCode: "AKIR", modelCode: "YKC_M" }],
+    }),
+    packageDefinition({
+      id: "street-auth",
+      worldId: "street",
+      binding: { slot: 0, primaryPointer: 1, secondaryPointer: 2 },
+      actors: [
+        { actorCode: "AKIR", modelCode: "YKC_M" },
+        { actorCode: "SMTH", modelCode: "GIB_M" },
+      ],
+    }),
+  ]);
+  const calls = [];
+  const runtimes = new Map();
+  const completed = [];
+  const stopped = [];
+  let acquireCount = 0;
+  let releaseCount = 0;
+
+  const director = new NativeCutsceneDirector({
+    registry,
+    packageRuntimeOptions: {},
+    acquireGameplay: (cutscene) => {
+      acquireCount += 1;
+      calls.push(["acquire", cutscene.id]);
+      return () => {
+        releaseCount += 1;
+        calls.push(["release", cutscene.id]);
+      };
+    },
+    onComplete: cutscene => completed.push(cutscene.id),
+    onStopped: (cutscene, reason) => stopped.push([cutscene.id, reason]),
+    programRuntimeOptions: program ? {} : null,
+    createProgramRuntime: program
+      ? ({ createContext, onComplete, onStopped }) => ({
+          active: false,
+          async start(cutscene) {
+            this.active = true;
+            if (programUsesContext) {
+              calls.push([
+                "program-context",
+                await createContext({
+                  cutscene,
+                  program: { id: cutscene.program.programId },
+                }),
+              ]);
+            }
+            calls.push(["program-start", cutscene.id]);
+            return programStartResult;
+          },
+          update(seconds) {
+            calls.push(["program-update", seconds]);
+          },
+          stop(reason) {
+            if (!this.active) return false;
+            this.active = false;
+            calls.push(["program-stop", reason]);
+            onStopped(reason, "program-scene");
+            return true;
+          },
+          finish() {
+            this.active = false;
+            onComplete("program-scene");
+          },
+          transportState: () => ({ active: true, paused: false }),
+          setPaused: () => false,
+          seekBySeconds: () => false,
+        })
+      : undefined,
+    createPackageRuntime: ({ definition, onComplete, onStopped }) => {
+      const activityAdapter = {
+            acceptsActivity: detail => (
+              detail.slot === definition.playback.binding.slot
+              && detail.binding.primaryPointer
+                === definition.playback.binding.primaryPointer
+              && detail.binding.secondaryPointer
+                === definition.playback.binding.secondaryPointer
+            ),
+            startActivity: async detail => {
+              calls.push(["activity-start", detail]);
+              return { activityId: "native", durationFrames: 2 };
+            },
+            updateActivity: detail => (calls.push(["activity-update", detail]), true),
+            stopActivity: detail => (calls.push(["activity-stop", detail]), true),
+            rollbackActivity: reason => (calls.push(["activity-rollback", reason]), true),
+          };
+      const runtime = {
+        id: definition.id,
+        active: false,
+        ownsPresentation: false,
+        programLease: null,
+        async start(cutscene) {
+          this.active = true;
+          this.ownsPresentation = true;
+          calls.push(["start", definition.id, cutscene.id]);
+          return packageStartResult;
+        },
+        update(seconds) {
+          calls.push(["update", definition.id, seconds]);
+        },
+        stop(reason) {
+          if (packageStopError) throw packageStopError;
+          if (!this.active) return true;
+          this.active = false;
+          this.ownsPresentation = false;
+          onStopped(reason, director.activeCutscene.cutscene.id);
+          return true;
+        },
+        finish(cutsceneId) {
+          this.active = false;
+          this.ownsPresentation = false;
+          onComplete(cutsceneId);
+        },
+        transportState: () => ({ active: true, paused: false }),
+        setPaused: paused => (calls.push(["paused", paused]), true),
+        seekBySeconds: seconds => (calls.push(["seek", seconds]), true),
+        loadWorld: meshes => calls.push(["load", definition.id, meshes]),
+        clearWorld: () => calls.push(["clear", definition.id]),
+        beginProgram(detail) {
+          if (this.programLease) throw new Error("program already leased");
+          this.programLease = Object.freeze({
+            packageId: definition.id,
+            programId: detail.program.id,
+          });
+          calls.push(["program-begin", definition.id, detail.program.id]);
+          return this.programLease;
+        },
+        updateProgramPresentation(lease) {
+          if (lease !== this.programLease) return false;
+          calls.push(["program-update-presentation", definition.id]);
+          return true;
+        },
+        completeProgram(lease) {
+          if (lease !== this.programLease) return false;
+          calls.push(["program-complete", definition.id, lease.programId]);
+          this.programLease = null;
+          return true;
+        },
+        rollbackProgram(lease, reason) {
+          if (lease !== this.programLease) return false;
+          calls.push([
+            "program-rollback",
+            definition.id,
+            lease.programId,
+            reason,
+          ]);
+          this.programLease = null;
+          return true;
+        },
+        nativeActivityAdapter: () => activityAdapter,
+        programContext: detail => ({
+          packageId: definition.id,
+          programId: detail.program.id,
+        }),
+        dispose: () => calls.push(["dispose", definition.id]),
+      };
+      runtimes.set(definition.id, runtime);
+      return runtime;
+    },
+  });
+  return {
+    calls,
+    completed,
+    director,
+    registry,
+    runtimes,
+    stopped,
+    ownership: () => ({ acquireCount, releaseCount }),
+  };
+}
+
+test("native cutscene director resolves packages and owns lifecycle once", async () => {
+  const context = harness();
+  const cutscene = {
+    id: "scene-1",
+    packageId: "opening",
+    worldId: "intro",
+    activity: {
+      slot: 0,
+      binding: { primaryPointer: 5, secondaryPointer: 6 },
+    },
+  };
+
+  const meshes = [{ name: "intro-root" }];
+  await context.director.loadWorld("intro", meshes);
+  await context.director.start(cutscene);
+  assert.equal(context.director.active, true);
+  assert.equal(context.director.ownsPlayerPresentation, true);
+  context.director.update(1 / 30);
+  assert.equal(context.director.togglePaused(), true);
+  assert.equal(context.director.seekBySeconds(5), true);
+  context.runtimes.get("opening").finish(cutscene.id);
+
+  assert.equal(context.director.active, false);
+  assert.deepEqual(context.completed, [cutscene.id]);
+  assert.deepEqual(context.ownership(), { acquireCount: 1, releaseCount: 1 });
+  assert.deepEqual(context.calls.slice(0, 4), [
+    ["load", "opening", meshes],
+    ["acquire", "scene-1"],
+    ["start", "opening", "scene-1"],
+    ["update", "opening", 1 / 30],
+  ]);
+});
+
+test("program cutscenes own one session while exact AUTH activities run", async () => {
+  const context = harness({ program: true });
+  const cutscene = {
+    id: "program-scene",
+    packageId: "street-auth",
+    worldId: "street",
+    program: {
+      programId: "street-owner",
+      entryFunction: "0x100",
+    },
+  };
+  await context.director.loadWorld("street", [{ name: "street-root" }]);
+  await context.director.start(cutscene);
+  const activity = context.director.nativeActivityAdapter(() => "street");
+  const detail = {
+    slot: 0,
+    binding: { primaryPointer: 1, secondaryPointer: 2 },
+  };
+
+  await activity.startActivity(detail);
+  assert.equal(activity.stopActivity({ activityId: "native" }), true);
+  assert.equal(context.director.active, true);
+  assert.deepEqual(context.ownership(), { acquireCount: 1, releaseCount: 0 });
+
+  context.director.stop("program-complete");
+  assert.equal(context.director.active, false);
+  assert.deepEqual(context.ownership(), { acquireCount: 1, releaseCount: 1 });
+  assert.deepEqual(context.stopped, [["program-scene", "program-complete"]]);
+});
+
+test("program cutscenes compose context from their resolved package runtime", async () => {
+  const context = harness({ program: true, programUsesContext: true });
+  const cutscene = {
+    id: "program-scene",
+    packageId: "street-auth",
+    worldId: "street",
+    program: {
+      programId: "street-owner",
+      entryFunction: "0x100",
+    },
+  };
+  await context.director.loadWorld("street", [{ name: "street-root" }]);
+
+  assert.equal(await context.director.start(cutscene), true);
+  assert.deepEqual(
+    context.calls.find(([kind]) => kind === "program-context"),
+    [
+      "program-context",
+      { packageId: "street-auth", programId: "street-owner" },
+    ],
+  );
+});
+
+test("program transaction ownership delegates complete and rollback exactly once", async () => {
+  const context = harness({ program: true });
+  const cutscene = {
+    id: "program-scene",
+    packageId: "street-auth",
+    worldId: "street",
+    program: {
+      programId: "street-owner",
+      entryFunction: "0x100",
+    },
+  };
+  const adapter = context.director.nativeActivityAdapter(() => "street");
+  const transaction = { program: { id: "street-owner" } };
+  await context.director.loadWorld("street", [{ name: "street-root" }]);
+  await context.director.start(cutscene);
+
+  const completedOwnership = adapter.beginProgram(transaction);
+  assert.equal(adapter.updateProgram({ ownership: completedOwnership }), true);
+  assert.equal(adapter.completeProgram({ ownership: completedOwnership }), true);
+  assert.equal(adapter.completeProgram({ ownership: completedOwnership }), false);
+
+  const rolledBackOwnership = adapter.beginProgram(transaction);
+  assert.equal(adapter.rollbackProgram({
+    ownership: rolledBackOwnership,
+    reason: "script-failed",
+  }), true);
+  assert.equal(adapter.rollbackProgram({
+    ownership: rolledBackOwnership,
+    reason: "script-failed-again",
+  }), false);
+
+  assert.deepEqual(
+    context.calls.filter(([kind]) => kind.startsWith("program-")),
+    [
+      ["program-start", "program-scene"],
+      ["program-begin", "street-auth", "street-owner"],
+      ["program-update-presentation", "street-auth"],
+      ["program-complete", "street-auth", "street-owner"],
+      ["program-begin", "street-auth", "street-owner"],
+      ["program-rollback", "street-auth", "street-owner", "script-failed"],
+    ],
+  );
+});
+
+test("one program package lease spans multiple exact AUTH activities", async () => {
+  const context = harness({ program: true });
+  const cutscene = {
+    id: "program-scene",
+    packageId: "street-auth",
+    worldId: "street",
+    program: {
+      programId: "street-owner",
+      entryFunction: "0x100",
+    },
+  };
+  const adapter = context.director.nativeActivityAdapter(() => "street");
+  const detail = {
+    slot: 0,
+    binding: { primaryPointer: 1, secondaryPointer: 2 },
+  };
+  await context.director.loadWorld("street", [{ name: "street-root" }]);
+  await context.director.start(cutscene);
+  const ownership = adapter.beginProgram({ program: { id: "street-owner" } });
+
+  for (let index = 0; index < 2; index += 1) {
+    await adapter.startActivity(detail);
+    assert.equal(adapter.stopActivity({ activityId: "native" }), true);
+  }
+  assert.equal(adapter.completeProgram({ ownership }), true);
+
+  assert.equal(
+    context.calls.filter(([kind]) => kind === "program-begin").length,
+    1,
+  );
+  assert.equal(
+    context.calls.filter(([kind]) => kind === "activity-start").length,
+    2,
+  );
+  assert.equal(
+    context.calls.filter(([kind]) => kind === "activity-stop").length,
+    2,
+  );
+  assert.equal(
+    context.calls.filter(([kind]) => kind === "program-complete").length,
+    1,
+  );
+  assert.deepEqual(context.ownership(), { acquireCount: 1, releaseCount: 0 });
+});
+
+test("concurrent package cutscene and exact activity starts have one winner", async () => {
+  const context = harness();
+  const loadStarted = deferred();
+  const loadGate = deferred();
+  const originalFactory = context.director.createPackageRuntime;
+  context.director.createPackageRuntime = (options) => {
+    const runtime = originalFactory(options);
+    if (options.definition.id === "street-auth") {
+      runtime.loadWorld = async (meshes) => {
+        context.calls.push(["load-begin", runtime.id, meshes]);
+        loadStarted.resolve();
+        await loadGate.promise;
+        context.calls.push(["load-end", runtime.id, meshes]);
+      };
+    }
+    return runtime;
+  };
+  const cutscene = {
+    id: "activity-scene",
+    packageId: "street-auth",
+    worldId: "street",
+    activity: { slot: 0, primaryPointer: 1, secondaryPointer: 2 },
+  };
+  const detail = {
+    slot: 0,
+    binding: { primaryPointer: 1, secondaryPointer: 2 },
+  };
+  const adapter = context.director.nativeActivityAdapter(() => "street");
+  await context.director.loadWorld("street", [{ name: "street-root" }]);
+
+  const cutsceneStarting = context.director.start(cutscene);
+  await loadStarted.promise;
+  const activityStarting = adapter.startActivity(detail);
+  loadGate.resolve();
+
+  assert.equal(await cutsceneStarting, true);
+  await assert.rejects(
+    activityStarting,
+    /another native activity became active while loading/,
+  );
+  assert.equal(context.director.activeCutscene?.cutscene.id, "activity-scene");
+  assert.equal(context.director.directActivityRuntime, null);
+  assert.deepEqual(context.ownership(), { acquireCount: 1, releaseCount: 0 });
+});
+
+test("concurrent exact activity starts reserve the package once after loading", async () => {
+  const context = harness();
+  const loadStarted = deferred();
+  const loadGate = deferred();
+  const originalFactory = context.director.createPackageRuntime;
+  context.director.createPackageRuntime = (options) => {
+    const runtime = originalFactory(options);
+    if (options.definition.id === "street-auth") {
+      runtime.loadWorld = async () => {
+        loadStarted.resolve();
+        await loadGate.promise;
+      };
+    }
+    return runtime;
+  };
+  const detail = {
+    slot: 0,
+    binding: { primaryPointer: 1, secondaryPointer: 2 },
+  };
+  const adapter = context.director.nativeActivityAdapter(() => "street");
+  await context.director.loadWorld("street", [{ name: "street-root" }]);
+
+  const firstStart = adapter.startActivity(detail);
+  await loadStarted.promise;
+  const secondStart = adapter.startActivity(detail);
+  loadGate.resolve();
+
+  assert.deepEqual(await firstStart, {
+    activityId: "native",
+    durationFrames: 2,
+  });
+  await assert.rejects(
+    secondStart,
+    /another native activity became active while loading/,
+  );
+  assert.equal(
+    context.calls.filter(([kind]) => kind === "activity-start").length,
+    1,
+  );
+  assert.equal(adapter.stopActivity({ activityId: "native" }), true);
+  assert.equal(context.director.directActivityRuntime, null);
+});
+
+test("an activity started before a program session cannot enter it after loading", async () => {
+  const context = harness({ program: true });
+  const loadStarted = deferred();
+  const loadGate = deferred();
+  const originalFactory = context.director.createPackageRuntime;
+  context.director.createPackageRuntime = (options) => {
+    const runtime = originalFactory(options);
+    if (options.definition.id === "street-auth") {
+      runtime.loadWorld = async () => {
+        loadStarted.resolve();
+        await loadGate.promise;
+      };
+    }
+    return runtime;
+  };
+  const cutscene = {
+    id: "program-scene",
+    packageId: "street-auth",
+    worldId: "street",
+    program: {
+      programId: "street-owner",
+      entryFunction: "0x100",
+    },
+  };
+  const detail = {
+    slot: 0,
+    binding: { primaryPointer: 1, secondaryPointer: 2 },
+  };
+  const adapter = context.director.nativeActivityAdapter(() => "street");
+  await context.director.loadWorld("street", [{ name: "street-root" }]);
+
+  const programStarting = context.director.start(cutscene);
+  await loadStarted.promise;
+  const unrelatedActivityStarting = adapter.startActivity(detail);
+  loadGate.resolve();
+
+  assert.equal(await programStarting, true);
+  await assert.rejects(
+    unrelatedActivityStarting,
+    /another native activity became active while loading/,
+  );
+  assert.equal(context.director.activeCutscene?.cutscene.id, "program-scene");
+  assert.equal(context.director.directActivityRuntime, null);
+});
+
+test("same-world root replacement invalidates an in-flight package load", async () => {
+  const context = harness();
+  const firstLoadStarted = deferred();
+  const firstLoadGate = deferred();
+  const originalFactory = context.director.createPackageRuntime;
+  context.director.createPackageRuntime = (options) => {
+    const runtime = originalFactory(options);
+    if (options.definition.id === "street-auth") {
+      let loadCount = 0;
+      runtime.loadWorld = async (meshes) => {
+        loadCount += 1;
+        context.calls.push(["generation-load", loadCount, meshes]);
+        if (loadCount === 1) {
+          firstLoadStarted.resolve();
+          await firstLoadGate.promise;
+        }
+      };
+    }
+    return runtime;
+  };
+  const adapter = context.director.nativeActivityAdapter(() => "street");
+  const detail = {
+    slot: 0,
+    binding: { primaryPointer: 1, secondaryPointer: 2 },
+  };
+  const oldRoots = [{ name: "old-street-root" }];
+  const newRoots = [{ name: "new-street-root" }];
+  await context.director.loadWorld("street", oldRoots);
+
+  const staleStart = adapter.startActivity(detail);
+  await firstLoadStarted.promise;
+  await context.director.loadWorld("street", newRoots);
+  firstLoadGate.resolve();
+
+  await assert.rejects(staleStart, /world changed while loading/);
+  assert.deepEqual(await adapter.startActivity(detail), {
+    activityId: "native",
+    durationFrames: 2,
+  });
+  assert.deepEqual(
+    context.calls.filter(([kind]) => kind === "generation-load"),
+    [
+      ["generation-load", 1, oldRoots],
+      ["generation-load", 2, newRoots],
+    ],
+  );
+  const firstClear = context.calls.findIndex(([kind]) => kind === "clear");
+  const secondLoad = context.calls.findIndex(
+    ([kind, count]) => kind === "generation-load" && count === 2,
+  );
+  assert.ok(firstClear >= 0 && firstClear < secondLoad);
+});
+
+test("a runtime that rejects start releases gameplay ownership", async () => {
+  const context = harness({ packageStartResult: false });
+  const cutscene = {
+    id: "scene-1",
+    packageId: "opening",
+    worldId: "intro",
+    activity: { slot: 0, binding: { primaryPointer: 5, secondaryPointer: 6 } },
+  };
+  await context.director.loadWorld("intro", [{ name: "intro-root" }]);
+
+  await assert.rejects(
+    context.director.start(cutscene),
+    /native runtime rejected start/,
+  );
+
+  assert.equal(context.director.active, false);
+  assert.equal(context.director.activeCutscene, null);
+  assert.deepEqual(context.ownership(), { acquireCount: 1, releaseCount: 1 });
+  assert.deepEqual(context.stopped, [["scene-1", "start-failed"]]);
+});
+
+test("a program runtime that rejects start releases gameplay ownership", async () => {
+  const context = harness({ program: true, programStartResult: false });
+  const cutscene = {
+    id: "program-scene",
+    packageId: "street-auth",
+    worldId: "street",
+    program: {
+      programId: "street-owner",
+      entryFunction: "0x100",
+    },
+  };
+  await context.director.loadWorld("street", [{ name: "street-root" }]);
+
+  await assert.rejects(
+    context.director.start(cutscene),
+    /native runtime rejected start/,
+  );
+
+  assert.equal(context.director.active, false);
+  assert.equal(context.director.activeCutscene, null);
+  assert.deepEqual(context.ownership(), { acquireCount: 1, releaseCount: 1 });
+  assert.deepEqual(context.stopped, [["program-scene", "start-failed"]]);
+});
+
+test("a start cleanup failure still releases gameplay ownership", async () => {
+  const context = harness({
+    packageStartResult: false,
+    packageStopError: new Error("rollback failed"),
+  });
+  const cutscene = {
+    id: "scene-1",
+    packageId: "opening",
+    worldId: "intro",
+    activity: { slot: 0, binding: { primaryPointer: 5, secondaryPointer: 6 } },
+  };
+  await context.director.loadWorld("intro", [{ name: "intro-root" }]);
+  await assert.rejects(context.director.start(cutscene), error => (
+    error instanceof AggregateError
+    && error.errors.some(value => /rollback failed/.test(value.message))
+  ));
+  assert.equal(context.director.activeCutscene, null);
+  assert.deepEqual(context.ownership(), { acquireCount: 1, releaseCount: 1 });
+});
+
+test("a late native program rollback releases its exact package lease", async () => {
+  const context = harness({ program: true });
+  const cutscene = {
+    id: "program-scene",
+    packageId: "street-auth",
+    worldId: "street",
+    program: { programId: "street-owner", entryFunction: "0x100" },
+  };
+  await context.director.loadWorld("street", [{ name: "street-root" }]);
+  await context.director.start(cutscene);
+  const adapter = context.director.nativeActivityAdapter(() => "street");
+  const ownership = adapter.beginProgram({ program: { id: "street-owner" } });
+
+  context.director.activeCutscene.runtime.finish();
+  assert.equal(context.director.activeCutscene, null);
+  assert.equal(adapter.rollbackProgram({ ownership, reason: "late-factory" }), true);
+  assert.equal(context.runtimes.get("street-auth").programLease, null);
+});
+
+test("package cutscenes still reject nested native activities", async () => {
+  const context = harness();
+  await context.director.loadWorld("intro", [{ name: "intro-root" }]);
+  await context.director.start({
+    id: "scene-1",
+    packageId: "opening",
+    worldId: "intro",
+    activity: { slot: 0, binding: { primaryPointer: 5, secondaryPointer: 6 } },
+  });
+  const activity = context.director.nativeActivityAdapter(() => "street");
+
+  await assert.rejects(
+    activity.startActivity({
+      slot: 0,
+      binding: { primaryPointer: 1, secondaryPointer: 2 },
+    }),
+    /another native activity is already active/,
+  );
+});
+
+test("native activity operations use the package for the active world", async () => {
+  const context = harness();
+  const adapter = context.director.nativeActivityAdapter(() => "street");
+  const detail = { slot: 0, binding: { primaryPointer: 1, secondaryPointer: 2 } };
+
+  await context.director.loadWorld("street", [{ name: "street-root" }]);
+  await adapter.startActivity(detail);
+  assert.equal(context.director.active, true);
+  assert.equal(adapter.updateActivity({ currentFrame: 1 }), true);
+  assert.equal(adapter.stopActivity({ activityId: "native" }), true);
+  assert.equal(context.director.active, false);
+  assert.deepEqual(context.calls.filter(([kind]) => kind.startsWith("activity-")), [
+    ["activity-start", detail],
+    ["activity-update", { currentFrame: 1 }],
+    ["activity-stop", { activityId: "native" }],
+  ]);
+});
+
+test("native activity operations select exact bindings among packages in one world", async () => {
+  const context = harness();
+  context.registry = new NativeCutscenePackageRegistry([
+    packageDefinition({
+      id: "street-first",
+      worldId: "street",
+      binding: { slot: 0, primaryPointer: 10, secondaryPointer: 20 },
+    }),
+    packageDefinition({
+      id: "street-second",
+      worldId: "street",
+      binding: { slot: 0, primaryPointer: 30, secondaryPointer: 40 },
+    }),
+  ]);
+  context.director.registry = context.registry;
+  const adapter = context.director.nativeActivityAdapter(() => "street");
+  const detail = {
+    slot: 0,
+    binding: { primaryPointer: 30, secondaryPointer: 40 },
+  };
+
+  await context.director.loadWorld("street", [{ name: "street-root" }]);
+  await adapter.startActivity(detail);
+
+  assert.deepEqual(
+    context.calls.filter(([kind]) => kind === "activity-start"),
+    [["activity-start", detail]],
+  );
+  assert.equal(context.runtimes.has("street-first"), true);
+  assert.equal(context.runtimes.has("street-second"), true);
+});
+
+test("native activity operations reject missing and ambiguous package bindings", async () => {
+  const context = harness();
+  const adapter = context.director.nativeActivityAdapter(() => "street");
+
+  await context.director.loadWorld("street", [{ name: "street-root" }]);
+
+  await assert.rejects(
+    adapter.startActivity({
+      slot: 0,
+      binding: { primaryPointer: 9, secondaryPointer: 9 },
+    }),
+    /0 packages for native activity binding/,
+  );
+});
+
+test("world registration lazily loads only the selected package", async () => {
+  const context = harness();
+  const meshes = [{ name: "street-root" }];
+  await context.director.loadWorld("street", meshes);
+
+  assert.deepEqual(
+    context.calls.filter(([kind]) => kind === "load"),
+    [],
+  );
+
+  const adapter = context.director.nativeActivityAdapter(() => "street");
+  const detail = {
+    slot: 0,
+    binding: { primaryPointer: 1, secondaryPointer: 2 },
+  };
+  await adapter.startActivity(detail);
+
+  assert.deepEqual(
+    context.calls.filter(([kind]) => kind === "load"),
+    [["load", "street-auth", meshes]],
+  );
+});
+
+test("an unusable co-located package cannot poison another package", async () => {
+  const context = harness();
+  context.registry = new NativeCutscenePackageRegistry([
+    packageDefinition({
+      id: "street-ready",
+      worldId: "street",
+      binding: { slot: 0, primaryPointer: 1, secondaryPointer: 2 },
+    }),
+    packageDefinition({
+      id: "street-staged",
+      worldId: "street",
+      binding: { slot: 0, primaryPointer: 3, secondaryPointer: 4 },
+    }),
+  ]);
+  context.director.registry = context.registry;
+  const originalFactory = context.director.createPackageRuntime;
+  context.director.createPackageRuntime = (options) => {
+    const runtime = originalFactory(options);
+    if (options.definition.id === "street-staged") {
+      runtime.loadWorld = async () => {
+        throw new Error("staged package lifecycle is unavailable");
+      };
+    }
+    return runtime;
+  };
+  const meshes = [{ name: "street-root" }];
+  await context.director.loadWorld("street", meshes);
+  const adapter = context.director.nativeActivityAdapter(() => "street");
+
+  await adapter.startActivity({
+    slot: 0,
+    binding: { primaryPointer: 1, secondaryPointer: 2 },
+  });
+
+  assert.deepEqual(
+    context.calls.filter(([kind]) => kind === "load"),
+    [["load", "street-ready", meshes]],
+  );
+});
+
+test("cutscene start fails before gameplay ownership when its world is absent", async () => {
+  const context = harness();
+  await assert.rejects(
+    context.director.start({
+      id: "scene-1",
+      packageId: "opening",
+      worldId: "intro",
+      activity: { slot: 0, binding: { primaryPointer: 5, secondaryPointer: 6 } },
+    }),
+    /world intro is not loaded/,
+  );
+  assert.deepEqual(context.ownership(), { acquireCount: 0, releaseCount: 0 });
+});
+
+test("cutscene package registry centralizes actors and rejects mismatched scenes", () => {
+  const { registry } = harness();
+  assert.deepEqual(
+    registry.actorDefinitionsForWorld("street").map(value => value.actorCode),
+    ["AKIR", "SMTH"],
+  );
+  assert.deepEqual(registry.actorTags(), ["AKIR", "SMTH"]);
+  assert.throws(
+    () => registry.requireForCutscene({
+      id: "bad-world",
+      packageId: "opening",
+      worldId: "street",
+    }),
+    /world does not match/,
+  );
+});

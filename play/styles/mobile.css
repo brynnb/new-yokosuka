@@ -1,0 +1,474 @@
+@media (max-width: 850px) {
+  .app,
+  .app.sidebar-collapsed {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .mobile-sidebar-pending .app .sidebar-header,
+  .mobile-sidebar-pending .app .sidebar-game-tools,
+  .mobile-sidebar-pending .app .sidebar-footer {
+    display: none;
+  }
+
+  .debug-panel {
+    right: 10px;
+    width: min(230px, calc(100vw - 20px));
+    max-height: calc(100dvh - 120px);
+  }
+
+  .mobile-sidebar-pending .app .sidebar-toggle-collapse {
+    display: none;
+  }
+
+  .mobile-sidebar-pending .app .sidebar-toggle-expand {
+    display: block;
+  }
+
+  .bottom-right-tools {
+    display: none;
+  }
+
+  .player-status-hud {
+    display: none;
+  }
+
+  .mobile-player-status {
+    display: contents;
+  }
+
+  .mobile-player-time {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    z-index: 5;
+    min-height: 40px;
+    max-width: calc(100vw - 216px);
+    padding: 0 12px;
+    overflow: hidden;
+    color: #e7eaec;
+    background: rgb(15 17 21 / 0.84);
+    border: 1px solid rgb(255 255 255 / 0.15);
+    border-radius: 8px;
+    backdrop-filter: blur(9px);
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: 0.05em;
+    line-height: 38px;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  .mobile-player-info-button {
+    position: absolute;
+    top: 10px;
+    right: 58px;
+    z-index: 7;
+    display: inline-grid;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    color: #f2f4f5;
+    background: rgb(15 17 21 / 0.84);
+    border: 1px solid rgb(255 255 255 / 0.15);
+    border-radius: 8px;
+    backdrop-filter: blur(9px);
+    cursor: pointer;
+    place-items: center;
+  }
+
+  .mobile-player-info-button svg {
+    width: 21px;
+    height: 21px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.7;
+  }
+
+  .mobile-player-info-button[aria-expanded="true"] {
+    background: rgb(19 143 160 / 0.88);
+    border-color: #58c2d1;
+  }
+
+  .player-info-overlay:not([hidden]) {
+    position: fixed;
+    inset: 0;
+    z-index: 10020;
+    display: grid;
+    padding: 18px;
+    background: rgb(4 8 11 / 0.78);
+    backdrop-filter: blur(7px);
+    place-items: center;
+  }
+
+  .player-info-panel {
+    width: min(360px, 100%);
+    overflow: hidden;
+    color: #eef5f5;
+    background: #171b20;
+    border: 1px solid rgb(75 201 214 / 0.42);
+    border-radius: 10px;
+    box-shadow: 0 24px 80px rgb(0 0 0 / 0.66);
+  }
+
+  .player-info-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 17px 14px;
+    background: linear-gradient(135deg, #123740, #182126);
+    border-bottom: 1px solid rgb(75 201 214 / 0.24);
+  }
+
+  .player-info-header h2 {
+    margin: 0;
+    font-size: 17px;
+  }
+
+  .player-info-close {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    color: #dcebed;
+    background: rgb(255 255 255 / 0.045);
+    border: 1px solid rgb(255 255 255 / 0.13);
+    border-radius: 6px;
+    cursor: pointer;
+    font: inherit;
+    font-size: 22px;
+    line-height: 1;
+  }
+
+  .player-info-close:hover,
+  .player-info-close:focus-visible {
+    color: #fff;
+    background: rgb(75 201 214 / 0.15);
+    border-color: rgb(75 201 214 / 0.45);
+    outline: none;
+  }
+
+  .player-info-details {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 9px 17px 13px;
+  }
+
+  .player-info-details > div {
+    display: grid;
+    grid-template-columns: 82px minmax(0, 1fr);
+    gap: 12px;
+    padding: 11px 0;
+    border-bottom: 1px solid rgb(255 255 255 / 0.08);
+  }
+
+  .player-info-details > div:last-child {
+    border-bottom: 0;
+  }
+
+  .player-info-details dt {
+    color: #8d9ba1;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .player-info-details dd {
+    min-width: 0;
+    margin: 0;
+    overflow-wrap: anywhere;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 750;
+    text-align: right;
+  }
+
+  .player-info-details .player-info-hp {
+    color: #9de0b8;
+  }
+
+  .player-info-details .player-info-yen {
+    color: #f2d88f;
+  }
+
+  .mobile-chat-toggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 7;
+    display: inline-grid;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    padding: 0;
+    place-items: center;
+    color: #f2f4f5;
+    background: rgb(15 17 21 / 0.84);
+    border: 1px solid rgb(255 255 255 / 0.15);
+    border-radius: 8px;
+    backdrop-filter: blur(9px);
+    font: inherit;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .mobile-chat-toggle svg {
+    display: block;
+    width: 19px;
+    height: 19px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.7;
+  }
+
+  .mobile-chat-toggle[aria-expanded="true"] {
+    background: rgb(19 143 160 / 0.88);
+    border-color: #58c2d1;
+  }
+
+  .app:not(.sidebar-collapsed) .mobile-chat-toggle {
+    display: none;
+  }
+
+  .mobile-joystick-zone {
+    position: absolute;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    left: calc(16px + env(safe-area-inset-left, 0px));
+    z-index: 5;
+    display: block;
+    width: 132px;
+    height: 132px;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .app.cinema-seated .mobile-joystick-zone {
+    display: none;
+  }
+
+  .app.cinema-seated .mobile-cinema-stand {
+    position: absolute;
+    bottom: calc(26px + env(safe-area-inset-bottom, 0px));
+    left: calc(26px + env(safe-area-inset-left, 0px));
+    z-index: 5;
+    display: inline-flex;
+    width: 112px;
+    height: 112px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: #34383d;
+    background: rgb(242 244 245 / 0.68);
+    border: 2px solid rgb(255 255 255 / 0.5);
+    border-radius: 50%;
+    box-shadow: 0 8px 24px rgb(0 0 0 / 0.34);
+    backdrop-filter: blur(8px);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+  }
+
+  .app.cinema-seated .mobile-cinema-stand:active {
+    background: rgb(216 221 224 / 0.88);
+    border-color: rgb(255 255 255 / 0.68);
+    transform: scale(0.96);
+  }
+
+  .mobile-stuck-button {
+    position: absolute;
+    top: 10px;
+    left: 58px;
+    z-index: 5;
+    display: inline-flex;
+    min-height: 40px;
+    align-items: center;
+    padding: 0 14px;
+    color: #f2f4f5;
+    background: rgb(15 17 21 / 0.84);
+    border: 1px solid rgb(255 255 255 / 0.15);
+    border-radius: 8px;
+    backdrop-filter: blur(9px);
+    font: inherit;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+  }
+
+  .mobile-stuck-button[hidden] {
+    display: none;
+  }
+
+  .mobile-stuck-button.active {
+    color: #fff;
+    background: rgb(19 143 160 / 0.9);
+    border-color: #58c2d1;
+  }
+
+  .app.forklift-mode .mobile-forklift-controls {
+    position: absolute;
+    right: calc(16px + env(safe-area-inset-right, 0px));
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .app.forklift-mode .mobile-forklift-exit {
+    position: absolute;
+    top: 58px;
+    right: 10px;
+    z-index: 5;
+    display: inline-flex;
+    width: 136px;
+    align-items: center;
+    justify-content: center;
+    color: #34383d;
+    background: rgb(242 244 245 / 0.42);
+    border-color: rgb(242 244 245 / 0.42);
+    backdrop-filter: none;
+  }
+
+  .mobile-forklift-button {
+    min-width: 66px;
+    min-height: 42px;
+    padding: 0 12px;
+    color: #f2f4f5;
+    background: rgb(15 17 21 / 0.84);
+    border: 1px solid rgb(255 255 255 / 0.15);
+    border-radius: 8px;
+    backdrop-filter: blur(9px);
+    font: inherit;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    touch-action: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+  }
+
+  .mobile-forklift-controls .mobile-forklift-button {
+    width: 96px;
+    min-width: 96px;
+    height: 96px;
+    min-height: 96px;
+    padding: 0;
+    color: #34383d;
+    background: rgb(242 244 245 / 0.42);
+    border-color: rgb(242 244 245 / 0.42);
+    backdrop-filter: none;
+  }
+
+  .mobile-forklift-button:active {
+    background: rgb(19 143 160 / 0.9);
+    border-color: #58c2d1;
+  }
+
+  .map-loading:not(.hidden) ~ .mobile-joystick-zone,
+  .map-loading:not(.hidden) ~ .mobile-cinema-stand,
+  .map-loading:not(.hidden) ~ .mobile-stuck-button,
+  .map-loading:not(.hidden) ~ .mobile-forklift-controls,
+  .map-loading:not(.hidden) ~ .mobile-forklift-exit {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .chat-panel {
+    top: 58px;
+    right: 10px;
+    bottom: auto;
+    left: 10px;
+    z-index: 6;
+    display: none;
+    width: auto;
+    height: min(360px, calc(100% - 68px));
+    background: rgb(10 12 16 / 0.9);
+  }
+
+  .chat-panel.mobile-open {
+    display: flex;
+  }
+
+  .sidebar {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 6;
+    width: min(260px, calc(100% - 20px));
+    height: calc(100dvh - 20px);
+    max-height: calc(100dvh - 20px);
+    border: 1px solid rgb(255 255 255 / 0.12);
+    border-radius: 10px;
+  }
+
+  .sidebar-toggle,
+  .app.sidebar-collapsed .sidebar-toggle {
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+  }
+
+  .app.sidebar-collapsed .sidebar-toggle,
+  .mobile-sidebar-pending .app .sidebar-toggle {
+    background: rgb(15 17 21 / 0.84);
+    border-color: rgb(255 255 255 / 0.15);
+    backdrop-filter: blur(9px);
+  }
+
+  .sidebar-header {
+    padding: 13px 52px 11px 14px;
+  }
+
+  .sidebar-header p,
+  .sidebar-footer,
+  .back-link {
+    display: none;
+  }
+
+  .app.sidebar-collapsed .sidebar,
+  .mobile-sidebar-pending .app .sidebar {
+    width: 40px;
+    height: 40px;
+    min-height: 40px;
+  }
+
+  .stuck-hint,
+  .transient-notice,
+  .forklift-tip-hint {
+    top: 62px;
+    bottom: auto;
+  }
+
+  .stuck-hint-desktop {
+    display: none;
+  }
+
+  .stuck-hint-mobile {
+    display: inline;
+  }
+}

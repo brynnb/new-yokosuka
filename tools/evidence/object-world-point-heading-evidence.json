@@ -1,0 +1,2051 @@
+{
+  "schema": "new-yokosuka-object-world-point-heading-evidence-v1",
+  "status": "exact-handler-accessors-and-all-disc-call-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "controlFlow": ".disc-work/dialogue/scripted-event-control-flow-index.json"
+  },
+  "operation": {
+    "operationId": 30,
+    "operationHex": "0x001e",
+    "handlerAddress": "0x0c1578a4",
+    "operationResultWriterAddress": "0x0c0bb342",
+    "operationResult": 0,
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c1578a4",
+        "length": 120,
+        "sha256": "83934bbed5ea0da2f8542b5172931f425dd67b512b4a4f85b46d5605a2e2f0be"
+      },
+      "directPositionRead": {
+        "address": "0x0c0aaf10",
+        "length": 34,
+        "sha256": "22d8140a65dbecc460bbb085d7f76322fdc8afdbe5de5c7402f8836eb976433f"
+      },
+      "binaryAngle": {
+        "address": "0x0c0915e0",
+        "length": 132,
+        "sha256": "2f025d2a26785ea167b85eefbec9494a2b487c15d337703c4fa74e52ba90c350"
+      },
+      "secondaryVectorOperation": {
+        "address": "0x0c15791c",
+        "length": 280,
+        "sha256": "0fca4408a6463fa75c3447c507b2345a00bea5cdfc36141999c8d5aec090a306"
+      },
+      "directSecondaryRead": {
+        "address": "0x0c0aaf80",
+        "length": 20,
+        "sha256": "d652081dec5df7f6feec12e7e2c99317606041449350cd17096c5a67e674a006"
+      },
+      "directSecondaryWrite": {
+        "address": "0x0c0aaf62",
+        "length": 20,
+        "sha256": "d92cfde68acff87673fc3751c66aa211f6e89ecfb863cc5ab48a7f6ba8c04a54"
+      }
+    },
+    "argumentCount": 4,
+    "authoredFlags": "0x38000000",
+    "authoredAuxiliaryWord": 0,
+    "directPositionOffsets": [
+      "+0x08",
+      "+0x0c",
+      "+0x10"
+    ],
+    "directSecondaryOffsets": [
+      "+0x14",
+      "+0x18",
+      "+0x1c"
+    ],
+    "provenBehavior": "Resolves argument zero, reads its direct position, subtracts that X/Z position from argument two's world point, computes the native low-16-bit binary heading, and invokes the shared operation-0x001d vector helper with [0, heading, 0]. Every authored call replaces all three direct secondary-vector components through flags 0x38000000 and reports result zero."
+  },
+  "allDiscInventory": {
+    "callCount": 58,
+    "discCounts": {
+      "1": 34,
+      "2": 12,
+      "3": 12
+    },
+    "areaCount": 11,
+    "targetKindCounts": {
+      "frame-address": 54,
+      "scene-address": 2,
+      "static-pointer": 2
+    },
+    "calls": [
+      {
+        "disc": 1,
+        "area": "DJAZ",
+        "functionFileOffset": "0x219c8",
+        "callFileOffset": "0x21bac",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 810303810,
+            "hex": "0x304c4142",
+            "ascii": "BAL0",
+            "source": "0x21b9c"
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x21b9a"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x21b98",
+            "offset": 0
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x21b94"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "DJAZ",
+        "functionFileOffset": "0x23130",
+        "callFileOffset": "0x233c8",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 810303810,
+            "hex": "0x304c4142",
+            "ascii": "BAL0",
+            "source": "0x233b8"
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x233b6"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x233b4",
+            "offset": 36
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x233b0"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "DJAZ",
+        "functionFileOffset": "0x23130",
+        "callFileOffset": "0x23560",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 961298754,
+            "hex": "0x394c4142",
+            "ascii": "BAL9",
+            "source": "0x23550"
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x2354e"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x2354c",
+            "offset": 24
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x23548"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "DJAZ",
+        "functionFileOffset": "0x27d3a",
+        "callFileOffset": "0x28578",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(r0,r14) at 0x28568",
+            "offset": 100,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x28564"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x28562",
+            "offset": 20
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x2855e"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JD00",
+        "functionFileOffset": "0x62468",
+        "callFileOffset": "0x62876",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x62866"
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x62864"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x62862",
+            "offset": 48
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x6285e"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JD00",
+        "functionFileOffset": "0x655e2",
+        "callFileOffset": "0x65692",
+        "arguments": [
+          {
+            "kind": "scene-field",
+            "source": "@(r0,r9) at 0x65682",
+            "offset": 1140
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x6567e"
+          },
+          {
+            "kind": "scene-address",
+            "source": "add at 0x6567c",
+            "offset": 648
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x65678"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JD00",
+        "functionFileOffset": "0x65730",
+        "callFileOffset": "0x657e0",
+        "arguments": [
+          {
+            "kind": "scene-field",
+            "source": "@(r0,r9) at 0x657d0",
+            "offset": 1136
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x657cc"
+          },
+          {
+            "kind": "scene-address",
+            "source": "add at 0x657ca",
+            "offset": 648
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x657c6"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JD00",
+        "functionFileOffset": "0x67fa4",
+        "callFileOffset": "0x6a6c0",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x6a6b0"
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x6a6ae"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x6a6ac",
+            "offset": 80
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x6a6a8"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x2becc",
+        "callFileOffset": "0x2bf3a",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x2bf2a"
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x2bf28"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x2bf26",
+            "offset": 12
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x2bf22"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x2c2a4",
+        "callFileOffset": "0x2c63c",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x2c62c"
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x2c62a"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x2c628",
+            "offset": 40
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x2c624"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x2c2a4",
+        "callFileOffset": "0x2c694",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x2c684"
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x2c682"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x2c680",
+            "offset": 40
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x2c67c"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x455d4",
+        "callFileOffset": "0x45682",
+        "arguments": [
+          {
+            "kind": "scene-field",
+            "source": "@r7 at 0x45672",
+            "provenance": {
+              "kind": "indexed-runtime-context-table",
+              "baseOffset": 524,
+              "baseOffsetHex": "0x20c",
+              "indexSources": [],
+              "evidenceFileOffsets": [
+                "0x4566e",
+                "0x4567a"
+              ]
+            },
+            "offset": 524,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x4566c"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x4566a",
+            "offset": 0
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x45666"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x455d4",
+        "callFileOffset": "0x45742",
+        "arguments": [
+          {
+            "kind": "scene-field",
+            "source": "@r7 at 0x45734",
+            "provenance": {
+              "kind": "indexed-runtime-context-table",
+              "baseOffset": 524,
+              "baseOffsetHex": "0x20c",
+              "indexSources": [
+                "r4 at 0x45732"
+              ],
+              "evidenceFileOffsets": [
+                "0x4572a",
+                "0x4573a"
+              ]
+            },
+            "offset": 528,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x45728"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x45726",
+            "offset": 0
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x45722"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x455d4",
+        "callFileOffset": "0x45806",
+        "arguments": [
+          {
+            "kind": "scene-field",
+            "source": "@r7 at 0x457f8",
+            "provenance": {
+              "kind": "indexed-runtime-context-table",
+              "baseOffset": 524,
+              "baseOffsetHex": "0x20c",
+              "indexSources": [
+                "r4 at 0x457f6"
+              ],
+              "evidenceFileOffsets": [
+                "0x457ee",
+                "0x457fe"
+              ]
+            },
+            "offset": 532,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x457ec"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x457ea",
+            "offset": 0
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x457e6"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x455d4",
+        "callFileOffset": "0x45852",
+        "arguments": [
+          {
+            "kind": "scene-field",
+            "source": "@r7 at 0x45844",
+            "provenance": {
+              "kind": "indexed-runtime-context-table",
+              "baseOffset": 524,
+              "baseOffsetHex": "0x20c",
+              "indexSources": [
+                "r4 at 0x45842"
+              ],
+              "evidenceFileOffsets": [
+                "0x4583a",
+                "0x4584a"
+              ]
+            },
+            "offset": 536,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x45838"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x45836",
+            "offset": 0
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x45832"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x49e78",
+        "callFileOffset": "0x4a124",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(40,r14) at 0x4a114",
+            "offset": 40
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x4a112"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x4a110",
+            "offset": 20
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x4a10c"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x49e78",
+        "callFileOffset": "0x4a4be",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(40,r14) at 0x4a4ae",
+            "offset": 40
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x4a4ac"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x4a4aa",
+            "offset": 20
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x4a4a6"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x49e78",
+        "callFileOffset": "0x4a55e",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(40,r14) at 0x4a54e",
+            "offset": 40
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x4a54c"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x4a54a",
+            "offset": 20
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x4a546"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x49e78",
+        "callFileOffset": "0x4a5ca",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(40,r14) at 0x4a5ba",
+            "offset": 40
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x4a5b8"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x4a5b6",
+            "offset": 20
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x4a5b2"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x49e78",
+        "callFileOffset": "0x4a6a0",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(40,r14) at 0x4a690",
+            "offset": 40
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x4a68e"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x4a68c",
+            "offset": 20
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x4a688"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x49e78",
+        "callFileOffset": "0x4aa7a",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(40,r14) at 0x4aa6a",
+            "offset": 40
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x4aa68"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x4aa66",
+            "offset": 20
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x4aa62"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x49e78",
+        "callFileOffset": "0x4ab1a",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(40,r14) at 0x4ab0a",
+            "offset": 40
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x4ab08"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x4ab06",
+            "offset": 20
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x4ab02"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x49e78",
+        "callFileOffset": "0x4ab86",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(40,r14) at 0x4ab76",
+            "offset": 40
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x4ab74"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x4ab72",
+            "offset": 20
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x4ab6e"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x4abb4",
+        "callFileOffset": "0x4b4b2",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(40,r14) at 0x4b4a2",
+            "offset": 40
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x4b4a0"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x4b49e",
+            "offset": 20
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x4b49a"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x4abb4",
+        "callFileOffset": "0x4b562",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(40,r14) at 0x4b552",
+            "offset": 40
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x4b550"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x4b54e",
+            "offset": 20
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x4b54a"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x4abb4",
+        "callFileOffset": "0x4b5ce",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(40,r14) at 0x4b5be",
+            "offset": 40
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x4b5bc"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x4b5ba",
+            "offset": 20
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x4b5b6"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x4abb4",
+        "callFileOffset": "0x4ba92",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(40,r14) at 0x4ba82",
+            "offset": 40
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x4ba80"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x4ba7e",
+            "offset": 20
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x4ba7a"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x4abb4",
+        "callFileOffset": "0x4bb36",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(40,r14) at 0x4bb26",
+            "offset": 40
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x4bb24"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x4bb22",
+            "offset": 20
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x4bb1e"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x4abb4",
+        "callFileOffset": "0x4bba2",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(40,r14) at 0x4bb92",
+            "offset": 40
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x4bb90"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x4bb8e",
+            "offset": 20
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x4bb8a"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x4bbd0",
+        "callFileOffset": "0x4be16",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(36,r14) at 0x4be06",
+            "offset": 36
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x4be04"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x4be02",
+            "offset": 16
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x4bdfe"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x4bbd0",
+        "callFileOffset": "0x4beb6",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(36,r14) at 0x4bea6",
+            "offset": 36
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x4bea4"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x4bea2",
+            "offset": 16
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x4be9e"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x4bbd0",
+        "callFileOffset": "0x4bf22",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(36,r14) at 0x4bf12",
+            "offset": 36
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x4bf10"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x4bf0e",
+            "offset": 16
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x4bf0a"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x4bbd0",
+        "callFileOffset": "0x4c49a",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(36,r14) at 0x4c48a",
+            "offset": 36
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x4c488"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x4c486",
+            "offset": 16
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x4c482"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x4bbd0",
+        "callFileOffset": "0x4c506",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(36,r14) at 0x4c4f6",
+            "offset": 36
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x4c4f4"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x4c4f2",
+            "offset": 16
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x4c4ee"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "DJAZ",
+        "functionFileOffset": "0x219c8",
+        "callFileOffset": "0x21bac",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 810303810,
+            "hex": "0x304c4142",
+            "ascii": "BAL0",
+            "source": "0x21b9c"
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x21b9a"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x21b98",
+            "offset": 0
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x21b94"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "DJAZ",
+        "functionFileOffset": "0x23130",
+        "callFileOffset": "0x233c8",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 810303810,
+            "hex": "0x304c4142",
+            "ascii": "BAL0",
+            "source": "0x233b8"
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x233b6"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x233b4",
+            "offset": 36
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x233b0"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "DJAZ",
+        "functionFileOffset": "0x23130",
+        "callFileOffset": "0x23560",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 961298754,
+            "hex": "0x394c4142",
+            "ascii": "BAL9",
+            "source": "0x23550"
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x2354e"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x2354c",
+            "offset": 24
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x23548"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "DJAZ",
+        "functionFileOffset": "0x27d3a",
+        "callFileOffset": "0x28578",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(r0,r14) at 0x28568",
+            "offset": 100,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x28564"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x28562",
+            "offset": 20
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x2855e"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "JU00",
+        "functionFileOffset": "0x2df14",
+        "callFileOffset": "0x2e2ac",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x2e29c"
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x2e29a"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x2e298",
+            "offset": 40
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x2e294"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "JU00",
+        "functionFileOffset": "0x2df14",
+        "callFileOffset": "0x2e304",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x2e2f4"
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x2e2f2"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x2e2f0",
+            "offset": 40
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x2e2ec"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "JU00",
+        "functionFileOffset": "0x46e68",
+        "callFileOffset": "0x46f66",
+        "arguments": [
+          {
+            "kind": "scene-field",
+            "source": "@r7 at 0x46f56",
+            "provenance": {
+              "kind": "indexed-runtime-context-table",
+              "baseOffset": 524,
+              "baseOffsetHex": "0x20c",
+              "indexSources": [],
+              "evidenceFileOffsets": [
+                "0x46f52",
+                "0x46f5e"
+              ]
+            },
+            "offset": 524,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x46f50"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x46f4e",
+            "offset": 0
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x46f4a"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "JU00",
+        "functionFileOffset": "0x46e68",
+        "callFileOffset": "0x47026",
+        "arguments": [
+          {
+            "kind": "scene-field",
+            "source": "@r7 at 0x47018",
+            "provenance": {
+              "kind": "indexed-runtime-context-table",
+              "baseOffset": 524,
+              "baseOffsetHex": "0x20c",
+              "indexSources": [
+                "r4 at 0x47016"
+              ],
+              "evidenceFileOffsets": [
+                "0x4700e",
+                "0x4701e"
+              ]
+            },
+            "offset": 528,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x4700c"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x4700a",
+            "offset": 0
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x47006"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "JU00",
+        "functionFileOffset": "0x46e68",
+        "callFileOffset": "0x470ea",
+        "arguments": [
+          {
+            "kind": "scene-field",
+            "source": "@r7 at 0x470dc",
+            "provenance": {
+              "kind": "indexed-runtime-context-table",
+              "baseOffset": 524,
+              "baseOffsetHex": "0x20c",
+              "indexSources": [
+                "r4 at 0x470da"
+              ],
+              "evidenceFileOffsets": [
+                "0x470d2",
+                "0x470e2"
+              ]
+            },
+            "offset": 532,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x470d0"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x470ce",
+            "offset": 0
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x470ca"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "JU00",
+        "functionFileOffset": "0x46e68",
+        "callFileOffset": "0x47136",
+        "arguments": [
+          {
+            "kind": "scene-field",
+            "source": "@r7 at 0x47128",
+            "provenance": {
+              "kind": "indexed-runtime-context-table",
+              "baseOffset": 524,
+              "baseOffsetHex": "0x20c",
+              "indexSources": [
+                "r4 at 0x47126"
+              ],
+              "evidenceFileOffsets": [
+                "0x4711e",
+                "0x4712e"
+              ]
+            },
+            "offset": 536,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x4711c"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x4711a",
+            "offset": 0
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x47116"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "MKSG",
+        "functionFileOffset": "0x2a034",
+        "callFileOffset": "0x2a148",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(20,r14) at 0x2a138",
+            "offset": 20
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x2a136"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x2a134",
+            "offset": 0
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x2a130"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "MS8S",
+        "functionFileOffset": "0x28198",
+        "callFileOffset": "0x28272",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x28262"
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x28260"
+          },
+          {
+            "kind": "static-pointer",
+            "value": 180056,
+            "hex": "0x0002bf58",
+            "source": "0x2825e"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x28258"
+          }
+        ]
+      },
+      {
+        "disc": 3,
+        "area": "DJAZ",
+        "functionFileOffset": "0x219c8",
+        "callFileOffset": "0x21bac",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 810303810,
+            "hex": "0x304c4142",
+            "ascii": "BAL0",
+            "source": "0x21b9c"
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x21b9a"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x21b98",
+            "offset": 0
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x21b94"
+          }
+        ]
+      },
+      {
+        "disc": 3,
+        "area": "DJAZ",
+        "functionFileOffset": "0x23130",
+        "callFileOffset": "0x233c8",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 810303810,
+            "hex": "0x304c4142",
+            "ascii": "BAL0",
+            "source": "0x233b8"
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x233b6"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x233b4",
+            "offset": 36
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x233b0"
+          }
+        ]
+      },
+      {
+        "disc": 3,
+        "area": "DJAZ",
+        "functionFileOffset": "0x23130",
+        "callFileOffset": "0x23560",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 961298754,
+            "hex": "0x394c4142",
+            "ascii": "BAL9",
+            "source": "0x23550"
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x2354e"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x2354c",
+            "offset": 24
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x23548"
+          }
+        ]
+      },
+      {
+        "disc": 3,
+        "area": "DJAZ",
+        "functionFileOffset": "0x27d3a",
+        "callFileOffset": "0x28578",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(r0,r14) at 0x28568",
+            "offset": 100,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x28564"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x28562",
+            "offset": 20
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x2855e"
+          }
+        ]
+      },
+      {
+        "disc": 3,
+        "area": "JU00",
+        "functionFileOffset": "0x2ba24",
+        "callFileOffset": "0x2bdbc",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x2bdac"
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x2bdaa"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x2bda8",
+            "offset": 40
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x2bda4"
+          }
+        ]
+      },
+      {
+        "disc": 3,
+        "area": "JU00",
+        "functionFileOffset": "0x2ba24",
+        "callFileOffset": "0x2be14",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x2be04"
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x2be02"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x2be00",
+            "offset": 40
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x2bdfc"
+          }
+        ]
+      },
+      {
+        "disc": 3,
+        "area": "JU00",
+        "functionFileOffset": "0x4477c",
+        "callFileOffset": "0x4482a",
+        "arguments": [
+          {
+            "kind": "scene-field",
+            "source": "@r7 at 0x4481a",
+            "provenance": {
+              "kind": "indexed-runtime-context-table",
+              "baseOffset": 524,
+              "baseOffsetHex": "0x20c",
+              "indexSources": [],
+              "evidenceFileOffsets": [
+                "0x44816",
+                "0x44822"
+              ]
+            },
+            "offset": 524,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x44814"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x44812",
+            "offset": 0
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x4480e"
+          }
+        ]
+      },
+      {
+        "disc": 3,
+        "area": "JU00",
+        "functionFileOffset": "0x4477c",
+        "callFileOffset": "0x448ea",
+        "arguments": [
+          {
+            "kind": "scene-field",
+            "source": "@r7 at 0x448dc",
+            "provenance": {
+              "kind": "indexed-runtime-context-table",
+              "baseOffset": 524,
+              "baseOffsetHex": "0x20c",
+              "indexSources": [
+                "r4 at 0x448da"
+              ],
+              "evidenceFileOffsets": [
+                "0x448d2",
+                "0x448e2"
+              ]
+            },
+            "offset": 528,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x448d0"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x448ce",
+            "offset": 0
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x448ca"
+          }
+        ]
+      },
+      {
+        "disc": 3,
+        "area": "JU00",
+        "functionFileOffset": "0x4477c",
+        "callFileOffset": "0x449ae",
+        "arguments": [
+          {
+            "kind": "scene-field",
+            "source": "@r7 at 0x449a0",
+            "provenance": {
+              "kind": "indexed-runtime-context-table",
+              "baseOffset": 524,
+              "baseOffsetHex": "0x20c",
+              "indexSources": [
+                "r4 at 0x4499e"
+              ],
+              "evidenceFileOffsets": [
+                "0x44996",
+                "0x449a6"
+              ]
+            },
+            "offset": 532,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x44994"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x44992",
+            "offset": 0
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x4498e"
+          }
+        ]
+      },
+      {
+        "disc": 3,
+        "area": "JU00",
+        "functionFileOffset": "0x4477c",
+        "callFileOffset": "0x449fa",
+        "arguments": [
+          {
+            "kind": "scene-field",
+            "source": "@r7 at 0x449ec",
+            "provenance": {
+              "kind": "indexed-runtime-context-table",
+              "baseOffset": 524,
+              "baseOffsetHex": "0x20c",
+              "indexSources": [
+                "r4 at 0x449ea"
+              ],
+              "evidenceFileOffsets": [
+                "0x449e2",
+                "0x449f2"
+              ]
+            },
+            "offset": 536,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x449e0"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x449de",
+            "offset": 0
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x449da"
+          }
+        ]
+      },
+      {
+        "disc": 3,
+        "area": "MFBT",
+        "functionFileOffset": "0x5b27c",
+        "callFileOffset": "0x5b708",
+        "arguments": [
+          {
+            "kind": "scene-field",
+            "source": "@(r0,r9) at 0x5b6f8",
+            "offset": 244
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x5b6f4"
+          },
+          {
+            "kind": "static-pointer",
+            "value": 404036,
+            "hex": "0x00062a44",
+            "source": "0x5b6f2"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x5b6ec"
+          }
+        ]
+      },
+      {
+        "disc": 3,
+        "area": "MFSY",
+        "functionFileOffset": "0x95bd0",
+        "callFileOffset": "0x95c54",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1598902100,
+            "hex": "0x5f4d4f54",
+            "ascii": "TOM_",
+            "source": "0x95c44"
+          },
+          {
+            "kind": "constant",
+            "value": 939524096,
+            "hex": "0x38000000",
+            "source": "0x95c42"
+          },
+          {
+            "kind": "frame-address",
+            "source": "add at 0x95c40",
+            "offset": 12
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x95c3c"
+          }
+        ]
+      }
+    ]
+  },
+  "cataDirectEntry": {
+    "disc": 1,
+    "area": "JU00",
+    "functionFileOffset": "0x2becc",
+    "callFileOffset": "0x2bf3a",
+    "arguments": [
+      {
+        "kind": "constant",
+        "value": 1380535105,
+        "hex": "0x52494b41",
+        "ascii": "AKIR",
+        "source": "0x2bf2a"
+      },
+      {
+        "kind": "constant",
+        "value": 939524096,
+        "hex": "0x38000000",
+        "source": "0x2bf28"
+      },
+      {
+        "kind": "frame-address",
+        "source": "add at 0x2bf26",
+        "offset": 12
+      },
+      {
+        "kind": "constant",
+        "value": 0,
+        "hex": "0x00000000",
+        "source": "0x2bf22"
+      }
+    ]
+  },
+  "evidenceBoundary": [
+    "The object resolver, direct position accessors, float32 X/Z subtraction, native binary-angle helper, zeroed X/Z output, and direct secondary-vector reconciliation are executable-proven.",
+    "All 58 recovered authored calls use the same full direct replacement form; no other flags or auxiliary form receives this semantic adapter.",
+    "This report names the two distinct accessor families but does not assign broader engine-wide meaning to secondary vectors."
+  ]
+}

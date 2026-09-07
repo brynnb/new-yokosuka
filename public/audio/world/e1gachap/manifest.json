@@ -1,0 +1,114 @@
+{
+  "schema": "new-yokosuka-d000-gacha-audio-pack-v1",
+  "generatedBy": "tools/build_d000_gacha_audio_pack.mjs",
+  "source": {
+    "bank": "extracted_files/data/SCENE/01/SOUND/E1GACHAP.SND",
+    "byteLength": 25784,
+    "sha256": "84538c809f1eb93b6afd52d39061b21d2009929c21f313ccef07a7ac7e406349",
+    "commandGroup": "a904",
+    "commandGroupTrackCount": 6,
+    "evidence": "tools/evidence/d000-gacha-audio.json",
+    "evidenceSha256": "51224a393556efc5657c8bdb7e58caf9f9375bb0621a25648d5d5d8a331ec5c5"
+  },
+  "decoder": {
+    "repository": "https://github.com/Preppy/dtpkdump",
+    "commit": "a323c0e7e80af05e17e5bb291a9b20e55a3f9455",
+    "command": "python DTPKDump.py -wavconv E1GACHAP.SND",
+    "wavNormalization": "remove DTPKDump's four 64-bit-size padding words"
+  },
+  "encoding": {
+    "container": "webm",
+    "codec": "opus",
+    "bitRate": 48000,
+    "variableBitRate": true,
+    "application": "lowdelay"
+  },
+  "purpose": "native D000 gacha-machine interaction effects",
+  "runtimeStatus": "A904:02 wired at its verified frame; remaining child-coroutine timings intentionally unresolved",
+  "tracks": [
+    {
+      "commandHex": "a9040000",
+      "track": 0,
+      "playbackId": 0,
+      "sampleId": 1,
+      "dtpkRate": "0xf400",
+      "sampleRate": 22050,
+      "rawVolume": 127,
+      "compositionHex": "c0df007f80ff",
+      "decodedSource": "E1GACHAP_00_00_SPD_00_Sample_01_Rate_F400.wav",
+      "byteLength": 2187,
+      "sha256": "6eadc19c6db9fd75af0c0f26796e6ceabe76b835cdcc31302a5e823f8450786e",
+      "runtimeStatus": "packaged but intentionally unwired"
+    },
+    {
+      "commandHex": "a9040100",
+      "track": 1,
+      "playbackId": 1,
+      "sampleId": 2,
+      "dtpkRate": "0xee1d",
+      "sampleRate": 16000,
+      "rawVolume": 127,
+      "compositionHex": "c0df017f80ff",
+      "decodedSource": "E1GACHAP_00_01_SPD_01_Sample_02_Rate_EE1D.wav",
+      "byteLength": 4800,
+      "sha256": "d8388e79586281181358541d8fa454a783442de5cae20ff112d165eb7aa4858f",
+      "runtimeStatus": "packaged but intentionally unwired"
+    },
+    {
+      "commandHex": "a9040200",
+      "track": 2,
+      "playbackId": 2,
+      "sampleId": 3,
+      "dtpkRate": "0xf400",
+      "sampleRate": 22050,
+      "rawVolume": 127,
+      "compositionHex": "c0df027f80ff",
+      "decodedSource": "E1GACHAP_00_02_SPD_02_Sample_03_Rate_F400.wav",
+      "byteLength": 1570,
+      "sha256": "81c48fca4eaa003c370eddcf4360862c52a491122109673dd8d8c1754feb1d24",
+      "runtimeStatus": "wired at verified authored-motion frame"
+    },
+    {
+      "commandHex": "a9040300",
+      "track": 3,
+      "playbackId": 3,
+      "sampleId": 4,
+      "dtpkRate": "0xee1d",
+      "sampleRate": 16000,
+      "rawVolume": 127,
+      "compositionHex": "c0df037f80ff",
+      "decodedSource": "E1GACHAP_00_03_SPD_03_Sample_04_Rate_EE1D.wav",
+      "byteLength": 2337,
+      "sha256": "1fda60825f89ff6377c29400a467268dd1049dcfd061a6bc0b8d20f4ffe3b54f",
+      "runtimeStatus": "packaged but intentionally unwired"
+    },
+    {
+      "commandHex": "a9040400",
+      "track": 4,
+      "playbackId": 4,
+      "sampleId": 5,
+      "dtpkRate": "0xf400",
+      "sampleRate": 22050,
+      "rawVolume": 127,
+      "compositionHex": "c0df047f80ff",
+      "decodedSource": "E1GACHAP_00_04_SPD_04_Sample_05_Rate_F400.wav",
+      "byteLength": 2774,
+      "sha256": "9a28f191826c7709098577a71b133120cb9f6023a6a080a518709469d84af809",
+      "runtimeStatus": "packaged but intentionally unwired"
+    },
+    {
+      "commandHex": "a9040500",
+      "track": 5,
+      "playbackId": 5,
+      "sampleId": 6,
+      "dtpkRate": "0xee1d",
+      "sampleRate": 16000,
+      "rawVolume": 65,
+      "compositionHex": "c0df054180ff",
+      "decodedSource": "E1GACHAP_00_05_SPD_05_Sample_06_Rate_EE1D.wav",
+      "byteLength": 1072,
+      "sha256": "51c0494d5e375795c864f89ca2bb8bdda14e77341b8ae244bc5104776adda9d1",
+      "runtimeStatus": "packaged but intentionally unwired"
+    }
+  ]
+}

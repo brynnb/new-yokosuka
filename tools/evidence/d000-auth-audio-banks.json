@@ -1,0 +1,463 @@
+{
+  "schema": "new-yokosuka-d000-auth-audio-banks-v1",
+  "status": "verified",
+  "generatedBy": "tools/audio/audit_d000_auth_audio_banks.mjs",
+  "source": {
+    "mapinfo": {
+      "D000": {
+        "path": ".disc-work/exact/d000/MAPINFO.BIN",
+        "byteLength": 868708,
+        "sha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e"
+      },
+      "YQ14": {
+        "path": "extracted_files/data/SCENE/01/YQ14/MAPINFO.BIN",
+        "byteLength": 404632,
+        "sha256": "84ba191106cbc8f882790468bd8a7054f207bf7375e32355519fb6f49bc904bf"
+      }
+    },
+    "authInventory": {
+      "path": "tools/evidence/d000-auth-audio-inventory.json",
+      "sha256": "1949835dd92d8f70ba50cbdacaa9ff833f52040d1efac88c379f6d1b3a1ff08e"
+    }
+  },
+  "method": [
+    "Require every exact source-hashed MAPINFO used by an audited family.",
+    "Verify each bank and AUTH sequence string at its exact MAPINFO resource cluster offset.",
+    "Parse the referenced DTPK bank and require every playable AUTH command in that resource family to exist in the bank.",
+    "Do not infer high-level meanings from track numbers or audition."
+  ],
+  "mappings": [
+    {
+      "family": "D0W0",
+      "status": "resource-cluster-and-command-set-verified",
+      "resourceCluster": {
+        "mapinfoSource": "D000",
+        "mapinfoRange": [
+          "0xadb11",
+          "0xadc5c"
+        ],
+        "soundBank": {
+          "value": "a1_yamaw.snd",
+          "offset": "0xadb21"
+        },
+        "sequenceResources": [
+          {
+            "value": "seqdata1.bin",
+            "offset": "0xadb60"
+          },
+          {
+            "value": "seqdata2.bin",
+            "offset": "0xadb72"
+          },
+          {
+            "value": "seqdata3.bin",
+            "offset": "0xadb84"
+          },
+          {
+            "value": "seqdata4.bin",
+            "offset": "0xadb96"
+          },
+          {
+            "value": "seqdata5.bin",
+            "offset": "0xadba8"
+          },
+          {
+            "value": "seqdata6.bin",
+            "offset": "0xadbba"
+          },
+          {
+            "value": "seqdata7.bin",
+            "offset": "0xadbcc"
+          },
+          {
+            "value": "seqdata8.bin",
+            "offset": "0xadbde"
+          },
+          {
+            "value": "seqdata9.bin",
+            "offset": "0xadbf0"
+          },
+          {
+            "value": "seqdataA.bin",
+            "offset": "0xadc02"
+          },
+          {
+            "value": "seqdataB.bin",
+            "offset": "0xadc14"
+          },
+          {
+            "value": "seqdataC.bin",
+            "offset": "0xadc26"
+          }
+        ],
+        "relatedResources": []
+      },
+      "bank": {
+        "path": "extracted_files/data/SCENE/01/SOUND/A1_YAMAW.SND",
+        "byteLength": 113932,
+        "sha256": "1a6b80bb36229239ec3a5b234968cb3e372e2269a8ead66edbe9495330d951fc",
+        "groups": [
+          {
+            "descriptorHex": "a904",
+            "trackCount": 21,
+            "playableTrackCount": 21
+          }
+        ]
+      },
+      "authFileCount": 12,
+      "soundEventCount": 188,
+      "authoredCommands": [
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9040400",
+        "a9040500",
+        "a9040600",
+        "a9040700",
+        "a9040800",
+        "a9040900",
+        "a9040a00",
+        "a9040b00",
+        "a9040c00",
+        "a9040d00",
+        "a9040e00",
+        "a9040f00",
+        "a9041000",
+        "a9041100",
+        "a9041200",
+        "a9041300",
+        "a9041400"
+      ],
+      "absentCommands": []
+    },
+    {
+      "family": "AUTH",
+      "status": "resource-cluster-and-command-set-verified",
+      "resourceCluster": {
+        "mapinfoSource": "D000",
+        "mapinfoRange": [
+          "0xaea83",
+          "0xaeae1"
+        ],
+        "soundBank": {
+          "value": "a1_telp.snd",
+          "offset": "0xaea94"
+        },
+        "sequenceResources": [
+          {
+            "value": "seqdata0.bin",
+            "offset": "0xaeac4"
+          }
+        ],
+        "relatedResources": []
+      },
+      "bank": {
+        "path": "extracted_files/data/SCENE/01/SOUND/A1_TELP.SND",
+        "byteLength": 76516,
+        "sha256": "70b37d84b73c8823bbbaaac641ee34bb462d52783c989aca35df410cc4f786d6",
+        "groups": [
+          {
+            "descriptorHex": "a904",
+            "trackCount": 13,
+            "playableTrackCount": 13
+          }
+        ]
+      },
+      "authFileCount": 1,
+      "soundEventCount": 7,
+      "authoredCommands": [
+        "a9040000",
+        "a9040100",
+        "a9040700",
+        "a9040800",
+        "a9040a00",
+        "a9040b00"
+      ],
+      "absentCommands": []
+    },
+    {
+      "family": "BUSS",
+      "status": "resource-cluster-and-command-set-verified",
+      "resourceCluster": {
+        "mapinfoSource": "D000",
+        "mapinfoRange": [
+          "0xaefed",
+          "0xaf080"
+        ],
+        "soundBank": {
+          "value": "a1_busno.snd",
+          "offset": "0xaefed"
+        },
+        "sequenceResources": [
+          {
+            "value": "seqdata1.bin",
+            "offset": "0xaf00f"
+          },
+          {
+            "value": "seqdata4.bin",
+            "offset": "0xaf021"
+          },
+          {
+            "value": "seqdata2.bin",
+            "offset": "0xaf055"
+          },
+          {
+            "value": "seqdata5.bin",
+            "offset": "0xaf067"
+          }
+        ],
+        "relatedResources": [
+          {
+            "role": "alternateBranchSoundBank",
+            "value": "a1_busno.snd",
+            "offset": "0xaf033"
+          }
+        ]
+      },
+      "bank": {
+        "path": "extracted_files/data/SCENE/01/SOUND/A1_BUSNO.SND",
+        "byteLength": 486904,
+        "sha256": "40c2e792ea21e45f4a406dff4b2b84bd3b7f172d4de2056a0d05d8a337e8b5a8",
+        "groups": [
+          {
+            "descriptorHex": "a904",
+            "trackCount": 39,
+            "playableTrackCount": 39
+          }
+        ]
+      },
+      "authFileCount": 4,
+      "soundEventCount": 42,
+      "authoredCommands": [
+        "a9040300",
+        "a9040400",
+        "a9040500",
+        "a9040900",
+        "a9040f00",
+        "a9041000",
+        "a9042400",
+        "a9042500",
+        "a9042600"
+      ],
+      "absentCommands": []
+    },
+    {
+      "family": "DJHN",
+      "status": "resource-cluster-and-command-set-verified",
+      "resourceCluster": {
+        "mapinfoSource": "D000",
+        "mapinfoRange": [
+          "0xb1873",
+          "0xb1a26"
+        ],
+        "soundBank": {
+          "value": "a1_yanji.snd",
+          "offset": "0xb1a09"
+        },
+        "sequenceResources": [
+          {
+            "value": "seqdata1.bin",
+            "offset": "0xb1935"
+          },
+          {
+            "value": "seqdata2.bin",
+            "offset": "0xb194a"
+          },
+          {
+            "value": "seqdata3.bin",
+            "offset": "0xb195f"
+          },
+          {
+            "value": "seqdata4.bin",
+            "offset": "0xb1974"
+          },
+          {
+            "value": "seqdata5.bin",
+            "offset": "0xb1989"
+          },
+          {
+            "value": "seqdata6.bin",
+            "offset": "0xb199e"
+          },
+          {
+            "value": "seqdata7.bin",
+            "offset": "0xb19b3"
+          }
+        ],
+        "relatedResources": []
+      },
+      "bank": {
+        "path": "extracted_files/data/SCENE/01/SOUND/A1_YANJI.SND",
+        "byteLength": 135328,
+        "sha256": "a9ec9b5a7b69359da2852bf6ecfe6c5aa3bad9855458b0ace13d42606865d4b0",
+        "groups": [
+          {
+            "descriptorHex": "a904",
+            "trackCount": 24,
+            "playableTrackCount": 24
+          }
+        ]
+      },
+      "authFileCount": 7,
+      "soundEventCount": 129,
+      "authoredCommands": [
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9040400",
+        "a9040500",
+        "a9040700",
+        "a9040800",
+        "a9040900",
+        "a9040a00",
+        "a9040b00",
+        "a9040c00",
+        "a9040d00",
+        "a9040e00",
+        "a9040f00",
+        "a9041000",
+        "a9041100",
+        "a9041200",
+        "a9041300",
+        "a9041400",
+        "a9041500",
+        "a9041600",
+        "a9041700"
+      ],
+      "absentCommands": []
+    },
+    {
+      "family": "YQ14",
+      "status": "resource-cluster-and-command-set-verified",
+      "resourceCluster": {
+        "mapinfoSource": "YQ14",
+        "mapinfoRange": [
+          "0x57db0",
+          "0x57e27"
+        ],
+        "soundBank": {
+          "value": "n1014_4.snd",
+          "offset": "0x57db0"
+        },
+        "sequenceResources": [],
+        "relatedResources": [
+          {
+            "role": "event",
+            "value": "E1002",
+            "offset": "0x57df6"
+          },
+          {
+            "role": "streamArchive",
+            "value": "A01114",
+            "offset": "0x57dfc"
+          },
+          {
+            "role": "roomScript",
+            "value": "M_YQ14.BIN",
+            "offset": "0x57e03"
+          },
+          {
+            "role": "eventScript",
+            "value": "M_01114.BIN",
+            "offset": "0x57e0e"
+          }
+        ]
+      },
+      "bank": {
+        "path": "extracted_files/data/SCENE/01/SOUND/N1014_4.SND",
+        "byteLength": 10924,
+        "sha256": "1ecf521427bed498340e300f493864c9e1e9ccc578ccc37825d7f4f68b59a4d4",
+        "groups": [
+          {
+            "descriptorHex": "a90f",
+            "trackCount": 5,
+            "playableTrackCount": 5
+          }
+        ]
+      },
+      "authFileCount": 2,
+      "soundEventCount": 13,
+      "authoredCommands": [
+        "a90f0000",
+        "a90f0100",
+        "a90f0200",
+        "a90f0400"
+      ],
+      "absentCommands": []
+    },
+    {
+      "family": "YBHN",
+      "status": "resource-cluster-and-command-set-verified",
+      "resourceCluster": {
+        "mapinfoSource": "D000",
+        "mapinfoRange": [
+          "0xaf881",
+          "0xaf8c8"
+        ],
+        "soundBank": {
+          "value": "a1_yobi.snd",
+          "offset": "0xaf88d"
+        },
+        "sequenceResources": [
+          {
+            "value": "seqdata0.bin",
+            "offset": "0xaf8ae"
+          }
+        ],
+        "relatedResources": [
+          {
+            "role": "music",
+            "value": "bgm018.snd",
+            "offset": "0xaf882"
+          },
+          {
+            "role": "resource",
+            "value": "YBHN",
+            "offset": "0xaf8a9"
+          },
+          {
+            "role": "archive",
+            "value": "YBHN",
+            "offset": "0xaf8bb"
+          },
+          {
+            "role": "event",
+            "value": "DR15_012",
+            "offset": "0xaf8c0"
+          }
+        ]
+      },
+      "bank": {
+        "path": "extracted_files/data/SCENE/01/SOUND/A1_YOBI.SND",
+        "byteLength": 25208,
+        "sha256": "2ae3b81c6af8e210bc7f5bc982bf8e597aea2b085b1fbd2e7b609b46910632ea",
+        "groups": [
+          {
+            "descriptorHex": "a904",
+            "trackCount": 9,
+            "playableTrackCount": 9
+          }
+        ]
+      },
+      "authFileCount": 1,
+      "soundEventCount": 15,
+      "authoredCommands": [
+        "a9040000",
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9040400",
+        "a9040500",
+        "a9040600",
+        "a9040700",
+        "a9040800"
+      ],
+      "absentCommands": []
+    }
+  ],
+  "unresolvedFamilies": [
+    "DRAUTH",
+    "YORU"
+  ],
+  "failures": []
+}

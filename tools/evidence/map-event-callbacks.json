@@ -1,0 +1,813 @@
+{
+  "schema": "new-yokosuka-map-event-callbacks-v1",
+  "generatedFrom": [
+    ".disc-work/mapinfo/disc1/SCENE/01",
+    ".disc-work/mapinfo/disc2/SCENE/02",
+    "extracted_disc3_v2/data/SCENE/03"
+  ],
+  "summary": {
+    "mapCount": 9,
+    "callbackCount": 36,
+    "literalTransitionRouteCount": 16
+  },
+  "nativeEvidence": {
+    "callbackIndexRule": "The low 16 bits of a class-4 EVNT record select the same-index entry in the map's callback table.",
+    "registrationRule": "Every emitted table is the exact static pointer and count passed to native operation 0x0001. All extracted MAPINFO files are scanned without a map-name allowlist.",
+    "localTransitionHelperSignature": "mode, entry, four-character area ID, scene; the helper reorders these into operation 0x0030(scene, area, entry)",
+    "reviewedRuntimeAndStaticTrace": "tools/evidence/jd00-d000-boundary-transition.json"
+  },
+  "maps": [
+    {
+      "disc": 1,
+      "area": "D000",
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/D000/MAPINFO.BIN",
+      "sourceSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+      "scn3FileOffset": "0x1338",
+      "callbackTableFileOffset": "0xb11cc",
+      "registration": {
+        "operation": "0x0001",
+        "callFileOffset": "0x834a6",
+        "callbackCount": 6
+      },
+      "callbacks": [
+        {
+          "eventId": 0,
+          "storedScn3RelativeFunction": "0x82180",
+          "functionFileOffset": "0x834b8",
+          "functionEndFileOffset": "0x834c8",
+          "empty": true,
+          "selectorWrite": null,
+          "transitionRoutes": []
+        },
+        {
+          "eventId": 1,
+          "storedScn3RelativeFunction": "0x82190",
+          "functionFileOffset": "0x834c8",
+          "functionEndFileOffset": "0x834d8",
+          "empty": true,
+          "selectorWrite": null,
+          "transitionRoutes": []
+        },
+        {
+          "eventId": 2,
+          "storedScn3RelativeFunction": "0x821a0",
+          "functionFileOffset": "0x834d8",
+          "functionEndFileOffset": "0x83558",
+          "empty": false,
+          "selectorWrite": null,
+          "transitionRoutes": [
+            {
+              "callFileOffset": "0x83542",
+              "helperFileOffset": "0x7ee88",
+              "mode": 1,
+              "destination": {
+                "scene": 1,
+                "area": "JD00",
+                "entry": 0
+              }
+            }
+          ]
+        },
+        {
+          "eventId": 3,
+          "storedScn3RelativeFunction": "0x82220",
+          "functionFileOffset": "0x83558",
+          "functionEndFileOffset": "0x835d8",
+          "empty": false,
+          "selectorWrite": null,
+          "transitionRoutes": [
+            {
+              "callFileOffset": "0x835c2",
+              "helperFileOffset": "0x7ee88",
+              "mode": 1,
+              "destination": {
+                "scene": 1,
+                "area": "JD00",
+                "entry": 1
+              }
+            }
+          ]
+        },
+        {
+          "eventId": 4,
+          "storedScn3RelativeFunction": "0x822a0",
+          "functionFileOffset": "0x835d8",
+          "functionEndFileOffset": "0x83658",
+          "empty": false,
+          "selectorWrite": null,
+          "transitionRoutes": [
+            {
+              "callFileOffset": "0x83642",
+              "helperFileOffset": "0x7ee88",
+              "mode": 2,
+              "destination": {
+                "scene": 1,
+                "area": "DGCT",
+                "entry": 0
+              }
+            }
+          ]
+        },
+        {
+          "eventId": 5,
+          "storedScn3RelativeFunction": "0x82320",
+          "functionFileOffset": "0x83658",
+          "functionEndFileOffset": "0x836d8",
+          "empty": false,
+          "selectorWrite": null,
+          "transitionRoutes": [
+            {
+              "callFileOffset": "0x836c2",
+              "helperFileOffset": "0x7ee88",
+              "mode": 2,
+              "destination": {
+                "scene": 1,
+                "area": "DCBN",
+                "entry": 0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "JD00",
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/JD00/MAPINFO.BIN",
+      "sourceSha256": "8582ed57e13593d7622d24216ef8f93e5393b13fffd2132f70500f9e6ce2a43b",
+      "scn3FileOffset": "0x5a0",
+      "callbackTableFileOffset": "0x80e18",
+      "registration": {
+        "operation": "0x0001",
+        "callFileOffset": "0x59b7a",
+        "callbackCount": 4
+      },
+      "callbacks": [
+        {
+          "eventId": 0,
+          "storedScn3RelativeFunction": "0x595ec",
+          "functionFileOffset": "0x59b8c",
+          "functionEndFileOffset": "0x59b9c",
+          "empty": true,
+          "selectorWrite": null,
+          "transitionRoutes": []
+        },
+        {
+          "eventId": 1,
+          "storedScn3RelativeFunction": "0x595fc",
+          "functionFileOffset": "0x59b9c",
+          "functionEndFileOffset": "0x59bf8",
+          "empty": false,
+          "selectorWrite": {
+            "scn3RelativeOffset": "0x2de",
+            "value": 3,
+            "writeFileOffset": "0x59bc6"
+          },
+          "transitionRoutes": []
+        },
+        {
+          "eventId": 2,
+          "storedScn3RelativeFunction": "0x59658",
+          "functionFileOffset": "0x59bf8",
+          "functionEndFileOffset": "0x59c54",
+          "empty": false,
+          "selectorWrite": {
+            "scn3RelativeOffset": "0x2de",
+            "value": 1,
+            "writeFileOffset": "0x59c22"
+          },
+          "transitionRoutes": []
+        },
+        {
+          "eventId": 3,
+          "storedScn3RelativeFunction": "0x596b4",
+          "functionFileOffset": "0x59c54",
+          "functionEndFileOffset": "0x59cb0",
+          "empty": false,
+          "selectorWrite": {
+            "scn3RelativeOffset": "0x2de",
+            "value": 2,
+            "writeFileOffset": "0x59c7e"
+          },
+          "transitionRoutes": []
+        }
+      ],
+      "selectorDispatch": {
+        "dispatchFunctionFileOffset": "0x5b6f8",
+        "dispatchFunctionEndFileOffset": "0x5be3c",
+        "selectorStackOffset": 4,
+        "routes": [
+          {
+            "selectorValue": 3,
+            "callFileOffset": "0x5b83e",
+            "helperFileOffset": "0x5a06c",
+            "mode": 0,
+            "destination": {
+              "scene": 1,
+              "area": "JU00",
+              "entry": 0
+            }
+          },
+          {
+            "selectorValue": 1,
+            "callFileOffset": "0x5b92a",
+            "helperFileOffset": "0x5a06c",
+            "mode": 0,
+            "destination": {
+              "scene": 1,
+              "area": "D000",
+              "entry": 1
+            }
+          },
+          {
+            "selectorValue": 2,
+            "callFileOffset": "0x5ba16",
+            "helperFileOffset": "0x5a06c",
+            "mode": 0,
+            "destination": {
+              "scene": 1,
+              "area": "D000",
+              "entry": 11
+            }
+          }
+        ]
+      }
+    },
+    {
+      "disc": 1,
+      "area": "JU00",
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/JU00/MAPINFO.BIN",
+      "sourceSha256": "3887bbf6e00eb152f7cca34d23841cc743ee7345a2db6b7d27e8303f6274924d",
+      "scn3FileOffset": "0x8",
+      "callbackTableFileOffset": "0x4fc44",
+      "registration": {
+        "operation": "0x0001",
+        "callFileOffset": "0x2118a",
+        "callbackCount": 2
+      },
+      "callbacks": [
+        {
+          "eventId": 0,
+          "storedScn3RelativeFunction": "0x21194",
+          "functionFileOffset": "0x2119c",
+          "functionEndFileOffset": "0x211ac",
+          "empty": true,
+          "selectorWrite": null,
+          "transitionRoutes": []
+        },
+        {
+          "eventId": 1,
+          "storedScn3RelativeFunction": "0x211a4",
+          "functionFileOffset": "0x211ac",
+          "functionEndFileOffset": "0x2121c",
+          "empty": false,
+          "selectorWrite": null,
+          "transitionRoutes": [
+            {
+              "callFileOffset": "0x21206",
+              "helperFileOffset": "0x4292c",
+              "mode": 1,
+              "destination": {
+                "scene": 1,
+                "area": "JD00",
+                "entry": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/D000/MAPINFO.BIN",
+      "sourceSha256": "58f1bc5d5bf8eedd2641544944e33bb25c20999945de52775ff679e87f98a884",
+      "scn3FileOffset": "0x1260",
+      "callbackTableFileOffset": "0x9a124",
+      "registration": {
+        "operation": "0x0001",
+        "callFileOffset": "0x6ab0e",
+        "callbackCount": 6
+      },
+      "callbacks": [
+        {
+          "eventId": 0,
+          "storedScn3RelativeFunction": "0x698c0",
+          "functionFileOffset": "0x6ab20",
+          "functionEndFileOffset": "0x6ab30",
+          "empty": true,
+          "selectorWrite": null,
+          "transitionRoutes": []
+        },
+        {
+          "eventId": 1,
+          "storedScn3RelativeFunction": "0x698d0",
+          "functionFileOffset": "0x6ab30",
+          "functionEndFileOffset": "0x6ab40",
+          "empty": true,
+          "selectorWrite": null,
+          "transitionRoutes": []
+        },
+        {
+          "eventId": 2,
+          "storedScn3RelativeFunction": "0x698e0",
+          "functionFileOffset": "0x6ab40",
+          "functionEndFileOffset": "0x6abc0",
+          "empty": false,
+          "selectorWrite": null,
+          "transitionRoutes": [
+            {
+              "callFileOffset": "0x6abaa",
+              "helperFileOffset": "0x672bc",
+              "mode": 1,
+              "destination": {
+                "scene": 2,
+                "area": "JD00",
+                "entry": 0
+              }
+            }
+          ]
+        },
+        {
+          "eventId": 3,
+          "storedScn3RelativeFunction": "0x69960",
+          "functionFileOffset": "0x6abc0",
+          "functionEndFileOffset": "0x6ac40",
+          "empty": false,
+          "selectorWrite": null,
+          "transitionRoutes": [
+            {
+              "callFileOffset": "0x6ac2a",
+              "helperFileOffset": "0x672bc",
+              "mode": 1,
+              "destination": {
+                "scene": 2,
+                "area": "JD00",
+                "entry": 1
+              }
+            }
+          ]
+        },
+        {
+          "eventId": 4,
+          "storedScn3RelativeFunction": "0x699e0",
+          "functionFileOffset": "0x6ac40",
+          "functionEndFileOffset": "0x6ad58",
+          "empty": false,
+          "selectorWrite": null,
+          "transitionRoutes": [
+            {
+              "callFileOffset": "0x6ad12",
+              "helperFileOffset": "0x672bc",
+              "mode": 2,
+              "destination": {
+                "scene": 2,
+                "area": "GMCT",
+                "entry": 1
+              }
+            },
+            {
+              "callFileOffset": "0x6ad42",
+              "helperFileOffset": "0x672bc",
+              "mode": 2,
+              "destination": {
+                "scene": 2,
+                "area": "DGCT",
+                "entry": 0
+              }
+            }
+          ]
+        },
+        {
+          "eventId": 5,
+          "storedScn3RelativeFunction": "0x69af8",
+          "functionFileOffset": "0x6ad58",
+          "functionEndFileOffset": "0x6add8",
+          "empty": false,
+          "selectorWrite": null,
+          "transitionRoutes": [
+            {
+              "callFileOffset": "0x6adc2",
+              "helperFileOffset": "0x672bc",
+              "mode": 2,
+              "destination": {
+                "scene": 2,
+                "area": "DCBN",
+                "entry": 0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "JD00",
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/JD00/MAPINFO.BIN",
+      "sourceSha256": "218dbd969148b157828e374d256cfd874e712069f7936b01c94b9eea906d178d",
+      "scn3FileOffset": "0x5a0",
+      "callbackTableFileOffset": "0x6b2d8",
+      "registration": {
+        "operation": "0x0001",
+        "callFileOffset": "0x5933e",
+        "callbackCount": 4
+      },
+      "callbacks": [
+        {
+          "eventId": 0,
+          "storedScn3RelativeFunction": "0x58db0",
+          "functionFileOffset": "0x59350",
+          "functionEndFileOffset": "0x59360",
+          "empty": true,
+          "selectorWrite": null,
+          "transitionRoutes": []
+        },
+        {
+          "eventId": 1,
+          "storedScn3RelativeFunction": "0x58dc0",
+          "functionFileOffset": "0x59360",
+          "functionEndFileOffset": "0x593bc",
+          "empty": false,
+          "selectorWrite": {
+            "scn3RelativeOffset": "0x2de",
+            "value": 3,
+            "writeFileOffset": "0x5938a"
+          },
+          "transitionRoutes": []
+        },
+        {
+          "eventId": 2,
+          "storedScn3RelativeFunction": "0x58e1c",
+          "functionFileOffset": "0x593bc",
+          "functionEndFileOffset": "0x59418",
+          "empty": false,
+          "selectorWrite": {
+            "scn3RelativeOffset": "0x2de",
+            "value": 1,
+            "writeFileOffset": "0x593e6"
+          },
+          "transitionRoutes": []
+        },
+        {
+          "eventId": 3,
+          "storedScn3RelativeFunction": "0x58e78",
+          "functionFileOffset": "0x59418",
+          "functionEndFileOffset": "0x59474",
+          "empty": false,
+          "selectorWrite": {
+            "scn3RelativeOffset": "0x2de",
+            "value": 2,
+            "writeFileOffset": "0x59442"
+          },
+          "transitionRoutes": []
+        }
+      ],
+      "selectorDispatch": {
+        "dispatchFunctionFileOffset": "0x5abdc",
+        "dispatchFunctionEndFileOffset": "0x5b134",
+        "selectorStackOffset": 0,
+        "routes": [
+          {
+            "selectorValue": 3,
+            "callFileOffset": "0x5ad22",
+            "helperFileOffset": "0x597d8",
+            "mode": 0,
+            "destination": {
+              "scene": 2,
+              "area": "JU00",
+              "entry": 0
+            }
+          },
+          {
+            "selectorValue": 1,
+            "callFileOffset": "0x5ad66",
+            "helperFileOffset": "0x597d8",
+            "mode": 0,
+            "destination": {
+              "scene": 2,
+              "area": "D000",
+              "entry": 1
+            }
+          },
+          {
+            "selectorValue": 2,
+            "callFileOffset": "0x5adaa",
+            "helperFileOffset": "0x597d8",
+            "mode": 0,
+            "destination": {
+              "scene": 2,
+              "area": "D000",
+              "entry": 11
+            }
+          }
+        ]
+      }
+    },
+    {
+      "disc": 2,
+      "area": "JU00",
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/JU00/MAPINFO.BIN",
+      "sourceSha256": "3a565890be5cf3a746119b63e8b5aac4cdc5396f8ea8ea3d0f35ba9fb79264c5",
+      "scn3FileOffset": "0x8",
+      "callbackTableFileOffset": "0x4b768",
+      "registration": {
+        "operation": "0x0001",
+        "callFileOffset": "0x2118a",
+        "callbackCount": 2
+      },
+      "callbacks": [
+        {
+          "eventId": 0,
+          "storedScn3RelativeFunction": "0x21194",
+          "functionFileOffset": "0x2119c",
+          "functionEndFileOffset": "0x211ac",
+          "empty": true,
+          "selectorWrite": null,
+          "transitionRoutes": []
+        },
+        {
+          "eventId": 1,
+          "storedScn3RelativeFunction": "0x211a4",
+          "functionFileOffset": "0x211ac",
+          "functionEndFileOffset": "0x2121c",
+          "empty": false,
+          "selectorWrite": null,
+          "transitionRoutes": [
+            {
+              "callFileOffset": "0x21206",
+              "helperFileOffset": "0x44570",
+              "mode": 1,
+              "destination": {
+                "scene": 2,
+                "area": "JD00",
+                "entry": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "D000",
+      "path": "extracted_disc3_v2/data/SCENE/03/D000/MAPINFO.BIN",
+      "sourceSha256": "7601567add571448c95044a1602f094f3d2aebb5e6532b7b754f8dfa6d24cb1b",
+      "scn3FileOffset": "0x1260",
+      "callbackTableFileOffset": "0x7beec",
+      "registration": {
+        "operation": "0x0001",
+        "callFileOffset": "0x6a6d2",
+        "callbackCount": 6
+      },
+      "callbacks": [
+        {
+          "eventId": 0,
+          "storedScn3RelativeFunction": "0x69484",
+          "functionFileOffset": "0x6a6e4",
+          "functionEndFileOffset": "0x6a6f4",
+          "empty": true,
+          "selectorWrite": null,
+          "transitionRoutes": []
+        },
+        {
+          "eventId": 1,
+          "storedScn3RelativeFunction": "0x69494",
+          "functionFileOffset": "0x6a6f4",
+          "functionEndFileOffset": "0x6a704",
+          "empty": true,
+          "selectorWrite": null,
+          "transitionRoutes": []
+        },
+        {
+          "eventId": 2,
+          "storedScn3RelativeFunction": "0x694a4",
+          "functionFileOffset": "0x6a704",
+          "functionEndFileOffset": "0x6a784",
+          "empty": false,
+          "selectorWrite": null,
+          "transitionRoutes": [
+            {
+              "callFileOffset": "0x6a76e",
+              "helperFileOffset": "0x66f40",
+              "mode": 1,
+              "destination": {
+                "scene": 3,
+                "area": "JD00",
+                "entry": 0
+              }
+            }
+          ]
+        },
+        {
+          "eventId": 3,
+          "storedScn3RelativeFunction": "0x69524",
+          "functionFileOffset": "0x6a784",
+          "functionEndFileOffset": "0x6a804",
+          "empty": false,
+          "selectorWrite": null,
+          "transitionRoutes": [
+            {
+              "callFileOffset": "0x6a7ee",
+              "helperFileOffset": "0x66f40",
+              "mode": 1,
+              "destination": {
+                "scene": 3,
+                "area": "JD00",
+                "entry": 1
+              }
+            }
+          ]
+        },
+        {
+          "eventId": 4,
+          "storedScn3RelativeFunction": "0x695a4",
+          "functionFileOffset": "0x6a804",
+          "functionEndFileOffset": "0x6a884",
+          "empty": false,
+          "selectorWrite": null,
+          "transitionRoutes": [
+            {
+              "callFileOffset": "0x6a86e",
+              "helperFileOffset": "0x66f40",
+              "mode": 2,
+              "destination": {
+                "scene": 3,
+                "area": "DGCT",
+                "entry": 0
+              }
+            }
+          ]
+        },
+        {
+          "eventId": 5,
+          "storedScn3RelativeFunction": "0x69624",
+          "functionFileOffset": "0x6a884",
+          "functionEndFileOffset": "0x6a904",
+          "empty": false,
+          "selectorWrite": null,
+          "transitionRoutes": [
+            {
+              "callFileOffset": "0x6a8ee",
+              "helperFileOffset": "0x66f40",
+              "mode": 2,
+              "destination": {
+                "scene": 3,
+                "area": "DCBN",
+                "entry": 0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "JD00",
+      "path": "extracted_disc3_v2/data/SCENE/03/JD00/MAPINFO.BIN",
+      "sourceSha256": "e4226a975c1ed35277eb3e6474928eeba0c10ecf4d8e293319c3f4aa76223e78",
+      "scn3FileOffset": "0x878",
+      "callbackTableFileOffset": "0x68a34",
+      "registration": {
+        "operation": "0x0001",
+        "callFileOffset": "0x596ce",
+        "callbackCount": 4
+      },
+      "callbacks": [
+        {
+          "eventId": 0,
+          "storedScn3RelativeFunction": "0x58e68",
+          "functionFileOffset": "0x596e0",
+          "functionEndFileOffset": "0x596f0",
+          "empty": true,
+          "selectorWrite": null,
+          "transitionRoutes": []
+        },
+        {
+          "eventId": 1,
+          "storedScn3RelativeFunction": "0x58e78",
+          "functionFileOffset": "0x596f0",
+          "functionEndFileOffset": "0x5974c",
+          "empty": false,
+          "selectorWrite": {
+            "scn3RelativeOffset": "0x2de",
+            "value": 3,
+            "writeFileOffset": "0x5971a"
+          },
+          "transitionRoutes": []
+        },
+        {
+          "eventId": 2,
+          "storedScn3RelativeFunction": "0x58ed4",
+          "functionFileOffset": "0x5974c",
+          "functionEndFileOffset": "0x597a8",
+          "empty": false,
+          "selectorWrite": {
+            "scn3RelativeOffset": "0x2de",
+            "value": 1,
+            "writeFileOffset": "0x59776"
+          },
+          "transitionRoutes": []
+        },
+        {
+          "eventId": 3,
+          "storedScn3RelativeFunction": "0x58f30",
+          "functionFileOffset": "0x597a8",
+          "functionEndFileOffset": "0x59804",
+          "empty": false,
+          "selectorWrite": {
+            "scn3RelativeOffset": "0x2de",
+            "value": 2,
+            "writeFileOffset": "0x597d2"
+          },
+          "transitionRoutes": []
+        }
+      ],
+      "selectorDispatch": {
+        "dispatchFunctionFileOffset": "0x5ac48",
+        "dispatchFunctionEndFileOffset": "0x5b1a8",
+        "selectorStackOffset": 0,
+        "routes": [
+          {
+            "selectorValue": 3,
+            "callFileOffset": "0x5ad8e",
+            "helperFileOffset": "0x59b68",
+            "mode": 0,
+            "destination": {
+              "scene": 3,
+              "area": "JU00",
+              "entry": 0
+            }
+          },
+          {
+            "selectorValue": 1,
+            "callFileOffset": "0x5add2",
+            "helperFileOffset": "0x59b68",
+            "mode": 0,
+            "destination": {
+              "scene": 3,
+              "area": "D000",
+              "entry": 1
+            }
+          },
+          {
+            "selectorValue": 2,
+            "callFileOffset": "0x5ae16",
+            "helperFileOffset": "0x59b68",
+            "mode": 0,
+            "destination": {
+              "scene": 3,
+              "area": "D000",
+              "entry": 11
+            }
+          }
+        ]
+      }
+    },
+    {
+      "disc": 3,
+      "area": "JU00",
+      "path": "extracted_disc3_v2/data/SCENE/03/JU00/MAPINFO.BIN",
+      "sourceSha256": "93f6d93ebc0561a1cada2ebd2e78dc4cf16f69dc10a8b9af2089bd9b51811f76",
+      "scn3FileOffset": "0x8",
+      "callbackTableFileOffset": "0x48db8",
+      "registration": {
+        "operation": "0x0001",
+        "callFileOffset": "0x2118a",
+        "callbackCount": 2
+      },
+      "callbacks": [
+        {
+          "eventId": 0,
+          "storedScn3RelativeFunction": "0x21194",
+          "functionFileOffset": "0x2119c",
+          "functionEndFileOffset": "0x211ac",
+          "empty": true,
+          "selectorWrite": null,
+          "transitionRoutes": []
+        },
+        {
+          "eventId": 1,
+          "storedScn3RelativeFunction": "0x211a4",
+          "functionFileOffset": "0x211ac",
+          "functionEndFileOffset": "0x2121c",
+          "empty": false,
+          "selectorWrite": null,
+          "transitionRoutes": [
+            {
+              "callFileOffset": "0x21206",
+              "helperFileOffset": "0x42080",
+              "mode": 1,
+              "destination": {
+                "scene": 3,
+                "area": "JD00",
+                "entry": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "unresolved": [],
+  "evidenceBoundary": "This report emits every table registered by native operation 0x0001. Maps without that operation are omitted; pointer-like static data is never promoted to a callback table. Every literal local-helper call is retained, including conditional alternatives. It does not select a story branch or infer a destination for an unresolved callback."
+}

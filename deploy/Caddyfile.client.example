@@ -1,0 +1,16 @@
+# Add these directives inside the site's existing HTTPS block. The backend is
+# deployed separately from https://github.com/brynnb/new-yokosuka-server.
+
+import /etc/caddy/new-yokosuka-cache.caddy
+
+handle /ws {
+	reverse_proxy 127.0.0.1:8084
+}
+
+handle /api/* {
+	reverse_proxy 127.0.0.1:8084
+}
+
+handle /healthz {
+	reverse_proxy 127.0.0.1:8084
+}

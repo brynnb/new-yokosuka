@@ -1,0 +1,172 @@
+{
+  "schema": "new-yokosuka-native-operation-006e-evidence-v1",
+  "status": "exact-fixed-float-exchanges-and-inert-authored-routes",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 110,
+    "operationHex": "0x006e",
+    "tableEntryAddress": "0x0c29ab98",
+    "handlerAddress": "0x0c156bc4",
+    "handlerLength": 288,
+    "handlerSha256": "7c7d61dbdc10781e058f04f8f56cf6a04fa27749a2b4916daeb3340de418598f",
+    "resultWriter": "0x0c0bb348",
+    "exchangeRoutes": {
+      "0": {
+        "helperAddress": "0x0c18805a",
+        "helperLength": 14,
+        "helperSha256": "d33dc26be0ccfb787393f4a9008e970b147bf364cc1262665a822c55f473637c",
+        "storageAddresses": [
+          "0x0c29cfbc"
+        ]
+      },
+      "1": {
+        "helperAddress": "0x0c188068",
+        "helperLength": 18,
+        "helperSha256": "cebd8ffd10e585b5f21d5b476585e1c94f9824593efb93b7df2f99a2e84ea259",
+        "storageAddresses": [
+          "0x0c29cfc0",
+          "0x0c29cfc8"
+        ]
+      },
+      "2": {
+        "helperAddress": "0x0c18807a",
+        "helperLength": 14,
+        "helperSha256": "480ef384c97813a299e1f0754e905cd16700b6a933c3dfea61c797027c8227a3",
+        "storageAddresses": [
+          "0x0c29cfcc"
+        ]
+      }
+    },
+    "inertRoutes": {
+      "5": {
+        "dispatch": "unmatched-selector-default"
+      },
+      "6": {
+        "helperAddress": "0x0c188642",
+        "helperLength": 4,
+        "helperSha256": "551572a9f87a0af199dced20f1d78fc9ddb31537c3a7ce5b747bfedb295ab1e9"
+      }
+    }
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 494,
+    "areaCount": 44,
+    "modeCounts": {
+      "0": 119,
+      "1": 99,
+      "2": 96,
+      "5": 84,
+      "6": 96
+    },
+    "argumentCountCounts": {
+      "2": 410,
+      "4": 84
+    },
+    "argumentKindCountsByMode": {
+      "0": {
+        "0": {
+          "constant": 119
+        },
+        "1": {
+          "constant": 94,
+          "runtime": 6,
+          "scene-field": 19
+        }
+      },
+      "1": {
+        "0": {
+          "constant": 99
+        },
+        "1": {
+          "constant": 74,
+          "runtime": 6,
+          "scene-field": 19
+        }
+      },
+      "2": {
+        "0": {
+          "constant": 96
+        },
+        "1": {
+          "constant": 72,
+          "runtime": 6,
+          "scene-field": 18
+        }
+      },
+      "5": {
+        "0": {
+          "constant": 84
+        },
+        "1": {
+          "constant": 84
+        },
+        "2": {
+          "constant": 84
+        },
+        "3": {
+          "constant": 84
+        }
+      },
+      "6": {
+        "0": {
+          "constant": 96
+        },
+        "1": {
+          "constant": 96
+        }
+      }
+    },
+    "resultTargetCountsByMode": {
+      "0": 31,
+      "1": 25,
+      "2": 24,
+      "5": 0,
+      "6": 0
+    },
+    "canonicalSha256": "89a364d1fa5bb450b1222a52f1f7624686cfbc25832d6a2fe80152cad403a1dc"
+  },
+  "authoredRouteSignatures": {
+    "exchangeModes": [
+      0,
+      1,
+      2
+    ],
+    "mode5": [
+      [
+        5,
+        0,
+        1,
+        0
+      ],
+      [
+        5,
+        6,
+        1,
+        0
+      ]
+    ],
+    "mode6": [
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        7
+      ]
+    ]
+  },
+  "evidenceBoundary": [
+    "Modes zero, one, and two exchange one raw float32 word with three fixed native globals and return the previous raw word.",
+    "A negative float argument performs an exact read without changing the stored word by exchanging zero and immediately restoring the prior value.",
+    "Mode one mirrors every non-query write to a second fixed native global exactly as helper 0x0c188068 does.",
+    "Authored selector five is not matched by the native dispatcher and has no observable effect; its two exact four-word signatures are retained as inert routes.",
+    "Authored selector six converts its integer argument by 1/100 and calls the exact rts/nop helper at 0x0c188642, so its two exact signatures are inert.",
+    "No scene-specific meaning is assigned to any fixed float channel or inert route."
+  ]
+}

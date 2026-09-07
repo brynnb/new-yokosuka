@@ -1,0 +1,3419 @@
+{
+  "schema": "new-yokosuka-jomo-shared-object-dispatch-v1",
+  "source": {
+    "mapinfo": ".disc-work/exact/jomo/MAPINFO.BIN",
+    "runtimeManifest": "play/data/jomo-runtime-placements.json"
+  },
+  "method": {
+    "runtimeInputRequired": false,
+    "emulatorClicksRequired": false,
+    "groupRange": [
+      "0x9b700",
+      "0x9b960"
+    ],
+    "recordRange": [
+      "0x9a800",
+      "0x9b700"
+    ],
+    "functionTableFileOffset": "0x9d160",
+    "evidenceBoundary": "Callback tokens, action IDs, offsets, selectors, and pair membership are exact. Motion type remains unresolved until the selector-to-transform dataflow is proven."
+  },
+  "summary": {
+    "groupCount": 15,
+    "groupedObjectCount": 73,
+    "decodedRecordCount": 94,
+    "pairedActionCount": 9
+  },
+  "groups": [
+    {
+      "index": 0,
+      "fileOffset": "0x9b700",
+      "callbackTokens": [
+        {
+          "rawHex": "0x000b05a9",
+          "opcode": "0x05a9",
+          "selector": 11,
+          "functionTableEntryFileOffset": "0x9d18c",
+          "functionFileOffset": "0x11f50"
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x000a05a9",
+          "opcode": "0x05a9",
+          "selector": 10,
+          "functionTableEntryFileOffset": "0x9d188",
+          "functionFileOffset": "0x11ce0"
+        },
+        {
+          "rawHex": "0x006405a9",
+          "opcode": "0x05a9",
+          "selector": 100,
+          "functionTableEntryFileOffset": "0x9d2f0",
+          "functionFileOffset": "0x58464"
+        }
+      ],
+      "objectTags": [
+        "IWWH",
+        "BMB1",
+        "BMB2",
+        "BMB4",
+        "BMB5",
+        "D1C1",
+        "D1C2",
+        "IMC1",
+        "IMC2",
+        "AKD2",
+        "AKD3",
+        "AKD4",
+        "ATS1",
+        "ATS2",
+        "ATS3",
+        "ATS4",
+        "ATS5",
+        "ATS6",
+        "ITS1",
+        "ITS2",
+        "ITS3",
+        "ITS4",
+        "ITS5",
+        "ITS6",
+        "FKWH",
+        "IKD1",
+        "IKD2"
+      ],
+      "records": {
+        "IWWH": {
+          "fileOffset": "0x9a8c0",
+          "interactionOffset": [
+            0.0,
+            0.10000000149011612,
+            0.0
+          ],
+          "actionId": 15,
+          "actionIdHex": "0x0000000f",
+          "route": {
+            "nodeOrVariant": 1,
+            "nodeOrVariantHex": "0x0001",
+            "flags": 0,
+            "flagsHex": "0x0000"
+          },
+          "rawWords": [
+            "0x48575749",
+            "0x71c74000",
+            "0x00000000",
+            "0x3dcccccd",
+            "0x00000000",
+            "0x00000004",
+            "0x0000000f",
+            "0x00000001"
+          ]
+        },
+        "BMB1": {
+          "fileOffset": "0x9a9e0",
+          "interactionOffset": [
+            0.0,
+            0.05000000074505806,
+            0.0
+          ],
+          "actionId": 10,
+          "actionIdHex": "0x0000000a",
+          "route": {
+            "nodeOrVariant": 4,
+            "nodeOrVariantHex": "0x0004",
+            "flags": 3,
+            "flagsHex": "0x0003"
+          },
+          "rawWords": [
+            "0x31424d42",
+            "0x78e34000",
+            "0x00000000",
+            "0x3d4ccccd",
+            "0x00000000",
+            "0x00000001",
+            "0x0000000a",
+            "0x00030004"
+          ]
+        },
+        "BMB2": {
+          "fileOffset": "0x9aa00",
+          "interactionOffset": [
+            0.0,
+            0.05000000074505806,
+            0.0
+          ],
+          "actionId": 11,
+          "actionIdHex": "0x0000000b",
+          "route": {
+            "nodeOrVariant": 4,
+            "nodeOrVariantHex": "0x0004",
+            "flags": 5,
+            "flagsHex": "0x0005"
+          },
+          "rawWords": [
+            "0x32424d42",
+            "0x78e34000",
+            "0x00000000",
+            "0x3d4ccccd",
+            "0x00000000",
+            "0x00000001",
+            "0x0000000b",
+            "0x00050004"
+          ]
+        },
+        "BMB4": {
+          "fileOffset": "0x9aa40",
+          "interactionOffset": [
+            0.0,
+            0.10000000149011612,
+            0.0
+          ],
+          "actionId": 9,
+          "actionIdHex": "0x00000009",
+          "route": {
+            "nodeOrVariant": 4,
+            "nodeOrVariantHex": "0x0004",
+            "flags": 3,
+            "flagsHex": "0x0003"
+          },
+          "rawWords": [
+            "0x34424d42",
+            "0x78e34000",
+            "0x00000000",
+            "0x3dcccccd",
+            "0x00000000",
+            "0x00000003",
+            "0x00000009",
+            "0x00030004"
+          ]
+        },
+        "BMB5": {
+          "fileOffset": "0x9aa60",
+          "interactionOffset": [
+            0.0,
+            0.10000000149011612,
+            0.0
+          ],
+          "actionId": 20,
+          "actionIdHex": "0x00000014",
+          "route": {
+            "nodeOrVariant": 4,
+            "nodeOrVariantHex": "0x0004",
+            "flags": 65535,
+            "flagsHex": "0xffff"
+          },
+          "rawWords": [
+            "0x35424d42",
+            "0x78e34000",
+            "0x00000000",
+            "0x3dcccccd",
+            "0x00000000",
+            "0x00000003",
+            "0x00000014",
+            "0xffff0004"
+          ]
+        },
+        "D1C1": {
+          "fileOffset": "0x9abc0",
+          "interactionOffset": [
+            0.0,
+            0.20000000298023224,
+            0.0
+          ],
+          "actionId": 13,
+          "actionIdHex": "0x0000000d",
+          "route": {
+            "nodeOrVariant": 6,
+            "nodeOrVariantHex": "0x0006",
+            "flags": 3,
+            "flagsHex": "0x0003"
+          },
+          "rawWords": [
+            "0x31433144",
+            "0x78e3c000",
+            "0x00000000",
+            "0x3e4ccccd",
+            "0x00000000",
+            "0x00000001",
+            "0x0000000d",
+            "0x00030006"
+          ]
+        },
+        "D1C2": {
+          "fileOffset": "0x9abe0",
+          "interactionOffset": [
+            0.0,
+            0.20000000298023224,
+            0.0
+          ],
+          "actionId": 16,
+          "actionIdHex": "0x00000010",
+          "route": {
+            "nodeOrVariant": 6,
+            "nodeOrVariantHex": "0x0006",
+            "flags": 4,
+            "flagsHex": "0x0004"
+          },
+          "rawWords": [
+            "0x32433144",
+            "0x78e3c000",
+            "0x00000000",
+            "0x3e4ccccd",
+            "0x00000000",
+            "0x00000001",
+            "0x00000010",
+            "0x00040006"
+          ]
+        },
+        "IMC1": {
+          "fileOffset": "0x9ade0",
+          "interactionOffset": [
+            0.0,
+            0.15000000596046448,
+            0.0
+          ],
+          "actionId": 14,
+          "actionIdHex": "0x0000000e",
+          "route": {
+            "nodeOrVariant": 5,
+            "nodeOrVariantHex": "0x0005",
+            "flags": 3,
+            "flagsHex": "0x0003"
+          },
+          "rawWords": [
+            "0x31434d49",
+            "0x55554000",
+            "0x00000000",
+            "0x3e19999a",
+            "0x00000000",
+            "0x00000001",
+            "0x0000000e",
+            "0x00030005"
+          ]
+        },
+        "IMC2": {
+          "fileOffset": "0x9ae00",
+          "interactionOffset": [
+            0.0,
+            0.15000000596046448,
+            0.0
+          ],
+          "actionId": 22,
+          "actionIdHex": "0x00000016",
+          "route": {
+            "nodeOrVariant": 5,
+            "nodeOrVariantHex": "0x0005",
+            "flags": 4,
+            "flagsHex": "0x0004"
+          },
+          "rawWords": [
+            "0x32434d49",
+            "0x5c714000",
+            "0x00000000",
+            "0x3e19999a",
+            "0x00000000",
+            "0x00000001",
+            "0x00000016",
+            "0x00040005"
+          ]
+        },
+        "AKD2": {
+          "fileOffset": "0x9b160",
+          "interactionOffset": [
+            0.0,
+            0.10000000149011612,
+            0.0
+          ],
+          "actionId": 1,
+          "actionIdHex": "0x00000001",
+          "route": {
+            "nodeOrVariant": 0,
+            "nodeOrVariantHex": "0x0000",
+            "flags": 3,
+            "flagsHex": "0x0003"
+          },
+          "rawWords": [
+            "0x32444b41",
+            "0x71c74000",
+            "0x00000000",
+            "0x3dcccccd",
+            "0x00000000",
+            "0x00000001",
+            "0x00000001",
+            "0x00030000"
+          ]
+        },
+        "AKD3": {
+          "fileOffset": "0x9b180",
+          "interactionOffset": [
+            0.0,
+            0.10000000149011612,
+            0.0
+          ],
+          "actionId": 2,
+          "actionIdHex": "0x00000002",
+          "route": {
+            "nodeOrVariant": 0,
+            "nodeOrVariantHex": "0x0000",
+            "flags": 3,
+            "flagsHex": "0x0003"
+          },
+          "rawWords": [
+            "0x33444b41",
+            "0x71c74000",
+            "0x00000000",
+            "0x3dcccccd",
+            "0x00000000",
+            "0x00000001",
+            "0x00000002",
+            "0x00030000"
+          ]
+        },
+        "AKD4": {
+          "fileOffset": "0x9b1a0",
+          "interactionOffset": [
+            0.0,
+            0.25,
+            0.0
+          ],
+          "actionId": 5,
+          "actionIdHex": "0x00000005",
+          "route": {
+            "nodeOrVariant": 0,
+            "nodeOrVariantHex": "0x0000",
+            "flags": 3,
+            "flagsHex": "0x0003"
+          },
+          "rawWords": [
+            "0x34444b41",
+            "0x71c74000",
+            "0x00000000",
+            "0x3e800000",
+            "0x00000000",
+            "0x00000001",
+            "0x00000005",
+            "0x00030000"
+          ]
+        },
+        "ATS1": {
+          "fileOffset": "0x9b1c0",
+          "interactionOffset": [
+            0.0,
+            0.11999999731779099,
+            0.0
+          ],
+          "actionId": 40,
+          "actionIdHex": "0x00000028",
+          "route": {
+            "nodeOrVariant": 0,
+            "nodeOrVariantHex": "0x0000",
+            "flags": 3,
+            "flagsHex": "0x0003"
+          },
+          "rawWords": [
+            "0x31535441",
+            "0x71c70000",
+            "0x00000000",
+            "0x3df5c28f",
+            "0x00000000",
+            "0x00000003",
+            "0x00000028",
+            "0x00030000"
+          ]
+        },
+        "ATS2": {
+          "fileOffset": "0x9b1e0",
+          "interactionOffset": [
+            0.0,
+            0.11999999731779099,
+            0.0
+          ],
+          "actionId": 41,
+          "actionIdHex": "0x00000029",
+          "route": {
+            "nodeOrVariant": 0,
+            "nodeOrVariantHex": "0x0000",
+            "flags": 3,
+            "flagsHex": "0x0003"
+          },
+          "rawWords": [
+            "0x32535441",
+            "0x71c70000",
+            "0x00000000",
+            "0x3df5c28f",
+            "0x00000000",
+            "0x00000003",
+            "0x00000029",
+            "0x00030000"
+          ]
+        },
+        "ATS3": {
+          "fileOffset": "0x9b200",
+          "interactionOffset": [
+            0.0,
+            0.11999999731779099,
+            0.0
+          ],
+          "actionId": 42,
+          "actionIdHex": "0x0000002a",
+          "route": {
+            "nodeOrVariant": 0,
+            "nodeOrVariantHex": "0x0000",
+            "flags": 3,
+            "flagsHex": "0x0003"
+          },
+          "rawWords": [
+            "0x33535441",
+            "0x71c70000",
+            "0x00000000",
+            "0x3df5c28f",
+            "0x00000000",
+            "0x00000003",
+            "0x0000002a",
+            "0x00030000"
+          ]
+        },
+        "ATS4": {
+          "fileOffset": "0x9b220",
+          "interactionOffset": [
+            0.0,
+            0.11999999731779099,
+            0.0
+          ],
+          "actionId": 43,
+          "actionIdHex": "0x0000002b",
+          "route": {
+            "nodeOrVariant": 0,
+            "nodeOrVariantHex": "0x0000",
+            "flags": 3,
+            "flagsHex": "0x0003"
+          },
+          "rawWords": [
+            "0x34535441",
+            "0x71c70000",
+            "0x00000000",
+            "0x3df5c28f",
+            "0x00000000",
+            "0x00000003",
+            "0x0000002b",
+            "0x00030000"
+          ]
+        },
+        "ATS5": {
+          "fileOffset": "0x9b240",
+          "interactionOffset": [
+            0.0,
+            0.11999999731779099,
+            0.0
+          ],
+          "actionId": 44,
+          "actionIdHex": "0x0000002c",
+          "route": {
+            "nodeOrVariant": 0,
+            "nodeOrVariantHex": "0x0000",
+            "flags": 3,
+            "flagsHex": "0x0003"
+          },
+          "rawWords": [
+            "0x35535441",
+            "0x71c70000",
+            "0x00000000",
+            "0x3df5c28f",
+            "0x00000000",
+            "0x00000003",
+            "0x0000002c",
+            "0x00030000"
+          ]
+        },
+        "ATS6": {
+          "fileOffset": "0x9b260",
+          "interactionOffset": [
+            0.0,
+            0.11999999731779099,
+            0.0
+          ],
+          "actionId": 45,
+          "actionIdHex": "0x0000002d",
+          "route": {
+            "nodeOrVariant": 0,
+            "nodeOrVariantHex": "0x0000",
+            "flags": 5,
+            "flagsHex": "0x0005"
+          },
+          "rawWords": [
+            "0x36535441",
+            "0x71c70000",
+            "0x00000000",
+            "0x3df5c28f",
+            "0x00000000",
+            "0x00000003",
+            "0x0000002d",
+            "0x00050000"
+          ]
+        },
+        "ITS1": {
+          "fileOffset": "0x9aec0",
+          "interactionOffset": [
+            0.0,
+            0.15000000596046448,
+            0.11999999731779099
+          ],
+          "actionId": 30,
+          "actionIdHex": "0x0000001e",
+          "route": {
+            "nodeOrVariant": 3,
+            "nodeOrVariantHex": "0x0003",
+            "flags": 3,
+            "flagsHex": "0x0003"
+          },
+          "rawWords": [
+            "0x31535449",
+            "0x71c7c000",
+            "0x00000000",
+            "0x3e19999a",
+            "0x3df5c28f",
+            "0x00000003",
+            "0x0000001e",
+            "0x00030003"
+          ]
+        },
+        "ITS2": {
+          "fileOffset": "0x9aee0",
+          "interactionOffset": [
+            0.0,
+            0.15000000596046448,
+            0.11999999731779099
+          ],
+          "actionId": 31,
+          "actionIdHex": "0x0000001f",
+          "route": {
+            "nodeOrVariant": 3,
+            "nodeOrVariantHex": "0x0003",
+            "flags": 3,
+            "flagsHex": "0x0003"
+          },
+          "rawWords": [
+            "0x32535449",
+            "0x71c7c000",
+            "0x00000000",
+            "0x3e19999a",
+            "0x3df5c28f",
+            "0x00000003",
+            "0x0000001f",
+            "0x00030003"
+          ]
+        },
+        "ITS3": {
+          "fileOffset": "0x9af00",
+          "interactionOffset": [
+            0.0,
+            0.15000000596046448,
+            0.11999999731779099
+          ],
+          "actionId": 32,
+          "actionIdHex": "0x00000020",
+          "route": {
+            "nodeOrVariant": 3,
+            "nodeOrVariantHex": "0x0003",
+            "flags": 3,
+            "flagsHex": "0x0003"
+          },
+          "rawWords": [
+            "0x33535449",
+            "0x71c7c000",
+            "0x00000000",
+            "0x3e19999a",
+            "0x3df5c28f",
+            "0x00000003",
+            "0x00000020",
+            "0x00030003"
+          ]
+        },
+        "ITS4": {
+          "fileOffset": "0x9af20",
+          "interactionOffset": [
+            0.0,
+            0.15000000596046448,
+            0.11999999731779099
+          ],
+          "actionId": 33,
+          "actionIdHex": "0x00000021",
+          "route": {
+            "nodeOrVariant": 3,
+            "nodeOrVariantHex": "0x0003",
+            "flags": 3,
+            "flagsHex": "0x0003"
+          },
+          "rawWords": [
+            "0x34535449",
+            "0x71c7c000",
+            "0x00000000",
+            "0x3e19999a",
+            "0x3df5c28f",
+            "0x00000003",
+            "0x00000021",
+            "0x00030003"
+          ]
+        },
+        "ITS5": {
+          "fileOffset": "0x9af40",
+          "interactionOffset": [
+            0.0,
+            0.15000000596046448,
+            0.11999999731779099
+          ],
+          "actionId": 34,
+          "actionIdHex": "0x00000022",
+          "route": {
+            "nodeOrVariant": 3,
+            "nodeOrVariantHex": "0x0003",
+            "flags": 3,
+            "flagsHex": "0x0003"
+          },
+          "rawWords": [
+            "0x35535449",
+            "0x71c7c000",
+            "0x00000000",
+            "0x3e19999a",
+            "0x3df5c28f",
+            "0x00000003",
+            "0x00000022",
+            "0x00030003"
+          ]
+        },
+        "ITS6": {
+          "fileOffset": "0x9af60",
+          "interactionOffset": [
+            0.0,
+            0.15000000596046448,
+            0.11999999731779099
+          ],
+          "actionId": 35,
+          "actionIdHex": "0x00000023",
+          "route": {
+            "nodeOrVariant": 3,
+            "nodeOrVariantHex": "0x0003",
+            "flags": 5,
+            "flagsHex": "0x0005"
+          },
+          "rawWords": [
+            "0x36535449",
+            "0x71c7c000",
+            "0x00000000",
+            "0x3e19999a",
+            "0x3df5c28f",
+            "0x00000003",
+            "0x00000023",
+            "0x00050003"
+          ]
+        },
+        "FKWH": {
+          "fileOffset": "0x9b040",
+          "interactionOffset": [
+            0.0,
+            0.10000000149011612,
+            0.0
+          ],
+          "actionId": 39,
+          "actionIdHex": "0x00000027",
+          "route": {
+            "nodeOrVariant": 2,
+            "nodeOrVariantHex": "0x0002",
+            "flags": 2,
+            "flagsHex": "0x0002"
+          },
+          "rawWords": [
+            "0x48574b46",
+            "0x71c70000",
+            "0x00000000",
+            "0x3dcccccd",
+            "0x00000000",
+            "0x00000000",
+            "0x00000027",
+            "0x00020002"
+          ]
+        },
+        "IKD1": {
+          "fileOffset": "0x9afa0",
+          "interactionOffset": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actionId": 37,
+          "actionIdHex": "0x00000025",
+          "route": {
+            "nodeOrVariant": 3,
+            "nodeOrVariantHex": "0x0003",
+            "flags": 3,
+            "flagsHex": "0x0003"
+          },
+          "rawWords": [
+            "0x31444b49",
+            "0x71c7c000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000025",
+            "0x00030003"
+          ]
+        },
+        "IKD2": {
+          "fileOffset": "0x9afc0",
+          "interactionOffset": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actionId": 38,
+          "actionIdHex": "0x00000026",
+          "route": {
+            "nodeOrVariant": 3,
+            "nodeOrVariantHex": "0x0003",
+            "flags": 6,
+            "flagsHex": "0x0006"
+          },
+          "rawWords": [
+            "0x32444b49",
+            "0x71c7c000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000026",
+            "0x00060003"
+          ]
+        }
+      },
+      "pairedActions": []
+    },
+    {
+      "index": 1,
+      "fileOffset": "0x9b780",
+      "callbackTokens": [
+        {
+          "rawHex": "0x000b05a9",
+          "opcode": "0x05a9",
+          "selector": 11,
+          "functionTableEntryFileOffset": "0x9d18c",
+          "functionFileOffset": "0x11f50"
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x000a05a9",
+          "opcode": "0x05a9",
+          "selector": 10,
+          "functionTableEntryFileOffset": "0x9d188",
+          "functionFileOffset": "0x11ce0"
+        },
+        {
+          "rawHex": "0x006405a9",
+          "opcode": "0x05a9",
+          "selector": 100,
+          "functionTableEntryFileOffset": "0x9d2f0",
+          "functionFileOffset": "0x58464"
+        }
+      ],
+      "objectTags": [
+        "D1C3",
+        "D1C4",
+        "TAN1",
+        "TAN2",
+        "GGB1",
+        "GGB2",
+        "IMC3",
+        "IMC4",
+        "DND1",
+        "DND2"
+      ],
+      "records": {
+        "D1C3": {
+          "fileOffset": "0x9ac00",
+          "interactionOffset": [
+            -0.30000001192092896,
+            0.4000000059604645,
+            0.0
+          ],
+          "actionId": 17,
+          "actionIdHex": "0x00000011",
+          "route": {
+            "nodeOrVariant": 6,
+            "nodeOrVariantHex": "0x0006",
+            "flags": 4,
+            "flagsHex": "0x0004"
+          },
+          "rawWords": [
+            "0x33433144",
+            "0x78e3c000",
+            "0xbe99999a",
+            "0x3ecccccd",
+            "0x00000000",
+            "0x00000000",
+            "0x00000011",
+            "0x00040006"
+          ]
+        },
+        "D1C4": {
+          "fileOffset": "0x9ac20",
+          "interactionOffset": [
+            0.30000001192092896,
+            0.4000000059604645,
+            0.0
+          ],
+          "actionId": 17,
+          "actionIdHex": "0x00000011",
+          "route": {
+            "nodeOrVariant": 6,
+            "nodeOrVariantHex": "0x0006",
+            "flags": 5,
+            "flagsHex": "0x0005"
+          },
+          "rawWords": [
+            "0x34433144",
+            "0x78e3c000",
+            "0x3e99999a",
+            "0x3ecccccd",
+            "0x00000000",
+            "0x00000000",
+            "0x00000011",
+            "0x00050006"
+          ]
+        },
+        "TAN1": {
+          "fileOffset": "0x9b300",
+          "interactionOffset": [
+            0.20000000298023224,
+            0.320000022649765,
+            0.0
+          ],
+          "actionId": 27,
+          "actionIdHex": "0x0000001b",
+          "route": {
+            "nodeOrVariant": 8,
+            "nodeOrVariantHex": "0x0008",
+            "flags": 4,
+            "flagsHex": "0x0004"
+          },
+          "rawWords": [
+            "0x314e4154",
+            "0x71c7c000",
+            "0x3e4ccccd",
+            "0x3ea3d70b",
+            "0x00000000",
+            "0x00000000",
+            "0x0000001b",
+            "0x00040008"
+          ]
+        },
+        "TAN2": {
+          "fileOffset": "0x9b320",
+          "interactionOffset": [
+            -0.20000000298023224,
+            0.320000022649765,
+            0.0
+          ],
+          "actionId": 27,
+          "actionIdHex": "0x0000001b",
+          "route": {
+            "nodeOrVariant": 13,
+            "nodeOrVariantHex": "0x000d",
+            "flags": 4,
+            "flagsHex": "0x0004"
+          },
+          "rawWords": [
+            "0x324e4154",
+            "0x71c7c000",
+            "0xbe4ccccd",
+            "0x3ea3d70b",
+            "0x00000000",
+            "0x00000000",
+            "0x0000001b",
+            "0x0004000d"
+          ]
+        },
+        "GGB1": {
+          "fileOffset": "0x9b340",
+          "interactionOffset": [
+            -0.30000001192092896,
+            0.44999998807907104,
+            0.0
+          ],
+          "actionId": 28,
+          "actionIdHex": "0x0000001c",
+          "route": {
+            "nodeOrVariant": 13,
+            "nodeOrVariantHex": "0x000d",
+            "flags": 4,
+            "flagsHex": "0x0004"
+          },
+          "rawWords": [
+            "0x31424747",
+            "0x71c7c000",
+            "0xbe99999a",
+            "0x3ee66666",
+            "0x00000000",
+            "0x00000000",
+            "0x0000001c",
+            "0x0004000d"
+          ]
+        },
+        "GGB2": {
+          "fileOffset": "0x9b360",
+          "interactionOffset": [
+            0.30000001192092896,
+            0.44999998807907104,
+            0.0
+          ],
+          "actionId": 28,
+          "actionIdHex": "0x0000001c",
+          "route": {
+            "nodeOrVariant": 8,
+            "nodeOrVariantHex": "0x0008",
+            "flags": 0,
+            "flagsHex": "0x0000"
+          },
+          "rawWords": [
+            "0x32424747",
+            "0x71c7c000",
+            "0x3e99999a",
+            "0x3ee66666",
+            "0x00000000",
+            "0x00000000",
+            "0x0000001c",
+            "0x00000008"
+          ]
+        },
+        "IMC3": {
+          "fileOffset": "0x9ae20",
+          "interactionOffset": [
+            -0.33000001311302185,
+            0.3499999940395355,
+            0.0
+          ],
+          "actionId": 21,
+          "actionIdHex": "0x00000015",
+          "route": {
+            "nodeOrVariant": 5,
+            "nodeOrVariantHex": "0x0005",
+            "flags": 4,
+            "flagsHex": "0x0004"
+          },
+          "rawWords": [
+            "0x33434d49",
+            "0x55554000",
+            "0xbea8f5c3",
+            "0x3eb33333",
+            "0x00000000",
+            "0x00000000",
+            "0x00000015",
+            "0x00040005"
+          ]
+        },
+        "IMC4": {
+          "fileOffset": "0x9ae40",
+          "interactionOffset": [
+            0.33000001311302185,
+            0.3499999940395355,
+            0.0
+          ],
+          "actionId": 21,
+          "actionIdHex": "0x00000015",
+          "route": {
+            "nodeOrVariant": 5,
+            "nodeOrVariantHex": "0x0005",
+            "flags": 0,
+            "flagsHex": "0x0000"
+          },
+          "rawWords": [
+            "0x34434d49",
+            "0x5c714000",
+            "0x3ea8f5c3",
+            "0x3eb33333",
+            "0x00000000",
+            "0x00000000",
+            "0x00000015",
+            "0x00000005"
+          ]
+        },
+        "DND1": {
+          "fileOffset": "0x9ac80",
+          "interactionOffset": [
+            0.5,
+            0.10000000149011612,
+            0.0
+          ],
+          "actionId": 29,
+          "actionIdHex": "0x0000001d",
+          "route": {
+            "nodeOrVariant": 6,
+            "nodeOrVariantHex": "0x0006",
+            "flags": 4,
+            "flagsHex": "0x0004"
+          },
+          "rawWords": [
+            "0x31444e44",
+            "0x78e30000",
+            "0x3f000000",
+            "0x3dcccccd",
+            "0x00000000",
+            "0x00000000",
+            "0x0000001d",
+            "0x00040006"
+          ]
+        },
+        "DND2": {
+          "fileOffset": "0x9aca0",
+          "interactionOffset": [
+            -0.5,
+            0.10000000149011612,
+            0.0
+          ],
+          "actionId": 29,
+          "actionIdHex": "0x0000001d",
+          "route": {
+            "nodeOrVariant": 6,
+            "nodeOrVariantHex": "0x0006",
+            "flags": 5,
+            "flagsHex": "0x0005"
+          },
+          "rawWords": [
+            "0x32444e44",
+            "0x78e30000",
+            "0xbf000000",
+            "0x3dcccccd",
+            "0x00000000",
+            "0x00000000",
+            "0x0000001d",
+            "0x00050006"
+          ]
+        }
+      },
+      "pairedActions": [
+        {
+          "actionId": 17,
+          "actionIdHex": "0x00000011",
+          "objectTags": [
+            "D1C3",
+            "D1C4"
+          ],
+          "records": [
+            {
+              "fileOffset": "0x9ac00",
+              "interactionOffset": [
+                -0.30000001192092896,
+                0.4000000059604645,
+                0.0
+              ],
+              "actionId": 17,
+              "actionIdHex": "0x00000011",
+              "route": {
+                "nodeOrVariant": 6,
+                "nodeOrVariantHex": "0x0006",
+                "flags": 4,
+                "flagsHex": "0x0004"
+              },
+              "rawWords": [
+                "0x33433144",
+                "0x78e3c000",
+                "0xbe99999a",
+                "0x3ecccccd",
+                "0x00000000",
+                "0x00000000",
+                "0x00000011",
+                "0x00040006"
+              ]
+            },
+            {
+              "fileOffset": "0x9ac20",
+              "interactionOffset": [
+                0.30000001192092896,
+                0.4000000059604645,
+                0.0
+              ],
+              "actionId": 17,
+              "actionIdHex": "0x00000011",
+              "route": {
+                "nodeOrVariant": 6,
+                "nodeOrVariantHex": "0x0006",
+                "flags": 5,
+                "flagsHex": "0x0005"
+              },
+              "rawWords": [
+                "0x34433144",
+                "0x78e3c000",
+                "0x3e99999a",
+                "0x3ecccccd",
+                "0x00000000",
+                "0x00000000",
+                "0x00000011",
+                "0x00050006"
+              ]
+            }
+          ]
+        },
+        {
+          "actionId": 21,
+          "actionIdHex": "0x00000015",
+          "objectTags": [
+            "IMC3",
+            "IMC4"
+          ],
+          "records": [
+            {
+              "fileOffset": "0x9ae20",
+              "interactionOffset": [
+                -0.33000001311302185,
+                0.3499999940395355,
+                0.0
+              ],
+              "actionId": 21,
+              "actionIdHex": "0x00000015",
+              "route": {
+                "nodeOrVariant": 5,
+                "nodeOrVariantHex": "0x0005",
+                "flags": 4,
+                "flagsHex": "0x0004"
+              },
+              "rawWords": [
+                "0x33434d49",
+                "0x55554000",
+                "0xbea8f5c3",
+                "0x3eb33333",
+                "0x00000000",
+                "0x00000000",
+                "0x00000015",
+                "0x00040005"
+              ]
+            },
+            {
+              "fileOffset": "0x9ae40",
+              "interactionOffset": [
+                0.33000001311302185,
+                0.3499999940395355,
+                0.0
+              ],
+              "actionId": 21,
+              "actionIdHex": "0x00000015",
+              "route": {
+                "nodeOrVariant": 5,
+                "nodeOrVariantHex": "0x0005",
+                "flags": 0,
+                "flagsHex": "0x0000"
+              },
+              "rawWords": [
+                "0x34434d49",
+                "0x5c714000",
+                "0x3ea8f5c3",
+                "0x3eb33333",
+                "0x00000000",
+                "0x00000000",
+                "0x00000015",
+                "0x00000005"
+              ]
+            }
+          ]
+        },
+        {
+          "actionId": 27,
+          "actionIdHex": "0x0000001b",
+          "objectTags": [
+            "TAN1",
+            "TAN2"
+          ],
+          "records": [
+            {
+              "fileOffset": "0x9b300",
+              "interactionOffset": [
+                0.20000000298023224,
+                0.320000022649765,
+                0.0
+              ],
+              "actionId": 27,
+              "actionIdHex": "0x0000001b",
+              "route": {
+                "nodeOrVariant": 8,
+                "nodeOrVariantHex": "0x0008",
+                "flags": 4,
+                "flagsHex": "0x0004"
+              },
+              "rawWords": [
+                "0x314e4154",
+                "0x71c7c000",
+                "0x3e4ccccd",
+                "0x3ea3d70b",
+                "0x00000000",
+                "0x00000000",
+                "0x0000001b",
+                "0x00040008"
+              ]
+            },
+            {
+              "fileOffset": "0x9b320",
+              "interactionOffset": [
+                -0.20000000298023224,
+                0.320000022649765,
+                0.0
+              ],
+              "actionId": 27,
+              "actionIdHex": "0x0000001b",
+              "route": {
+                "nodeOrVariant": 13,
+                "nodeOrVariantHex": "0x000d",
+                "flags": 4,
+                "flagsHex": "0x0004"
+              },
+              "rawWords": [
+                "0x324e4154",
+                "0x71c7c000",
+                "0xbe4ccccd",
+                "0x3ea3d70b",
+                "0x00000000",
+                "0x00000000",
+                "0x0000001b",
+                "0x0004000d"
+              ]
+            }
+          ]
+        },
+        {
+          "actionId": 28,
+          "actionIdHex": "0x0000001c",
+          "objectTags": [
+            "GGB1",
+            "GGB2"
+          ],
+          "records": [
+            {
+              "fileOffset": "0x9b340",
+              "interactionOffset": [
+                -0.30000001192092896,
+                0.44999998807907104,
+                0.0
+              ],
+              "actionId": 28,
+              "actionIdHex": "0x0000001c",
+              "route": {
+                "nodeOrVariant": 13,
+                "nodeOrVariantHex": "0x000d",
+                "flags": 4,
+                "flagsHex": "0x0004"
+              },
+              "rawWords": [
+                "0x31424747",
+                "0x71c7c000",
+                "0xbe99999a",
+                "0x3ee66666",
+                "0x00000000",
+                "0x00000000",
+                "0x0000001c",
+                "0x0004000d"
+              ]
+            },
+            {
+              "fileOffset": "0x9b360",
+              "interactionOffset": [
+                0.30000001192092896,
+                0.44999998807907104,
+                0.0
+              ],
+              "actionId": 28,
+              "actionIdHex": "0x0000001c",
+              "route": {
+                "nodeOrVariant": 8,
+                "nodeOrVariantHex": "0x0008",
+                "flags": 0,
+                "flagsHex": "0x0000"
+              },
+              "rawWords": [
+                "0x32424747",
+                "0x71c7c000",
+                "0x3e99999a",
+                "0x3ee66666",
+                "0x00000000",
+                "0x00000000",
+                "0x0000001c",
+                "0x00000008"
+              ]
+            }
+          ]
+        },
+        {
+          "actionId": 29,
+          "actionIdHex": "0x0000001d",
+          "objectTags": [
+            "DND1",
+            "DND2"
+          ],
+          "records": [
+            {
+              "fileOffset": "0x9ac80",
+              "interactionOffset": [
+                0.5,
+                0.10000000149011612,
+                0.0
+              ],
+              "actionId": 29,
+              "actionIdHex": "0x0000001d",
+              "route": {
+                "nodeOrVariant": 6,
+                "nodeOrVariantHex": "0x0006",
+                "flags": 4,
+                "flagsHex": "0x0004"
+              },
+              "rawWords": [
+                "0x31444e44",
+                "0x78e30000",
+                "0x3f000000",
+                "0x3dcccccd",
+                "0x00000000",
+                "0x00000000",
+                "0x0000001d",
+                "0x00040006"
+              ]
+            },
+            {
+              "fileOffset": "0x9aca0",
+              "interactionOffset": [
+                -0.5,
+                0.10000000149011612,
+                0.0
+              ],
+              "actionId": 29,
+              "actionIdHex": "0x0000001d",
+              "route": {
+                "nodeOrVariant": 6,
+                "nodeOrVariantHex": "0x0006",
+                "flags": 5,
+                "flagsHex": "0x0005"
+              },
+              "rawWords": [
+                "0x32444e44",
+                "0x78e30000",
+                "0xbf000000",
+                "0x3dcccccd",
+                "0x00000000",
+                "0x00000000",
+                "0x0000001d",
+                "0x00050006"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "fileOffset": "0x9b7bc",
+      "callbackTokens": [
+        {
+          "rawHex": "0x000105a9",
+          "opcode": "0x05a9",
+          "selector": 1,
+          "functionTableEntryFileOffset": "0x9d164",
+          "functionFileOffset": "0x1747c"
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x000005a9",
+          "opcode": "0x05a9",
+          "selector": 0,
+          "functionTableEntryFileOffset": "0x9d160",
+          "functionFileOffset": "0x188c4"
+        }
+      ],
+      "objectTags": [
+        "DDR1",
+        "DDR2"
+      ],
+      "records": {
+        "DDR1": {
+          "fileOffset": "0x9ac40",
+          "interactionOffset": [
+            -0.4000000059604645,
+            0.0,
+            0.25
+          ],
+          "actionId": 23,
+          "actionIdHex": "0x00000017",
+          "route": {
+            "nodeOrVariant": 6,
+            "nodeOrVariantHex": "0x0006",
+            "flags": 5,
+            "flagsHex": "0x0005"
+          },
+          "rawWords": [
+            "0x31524444",
+            "0x78e3c000",
+            "0xbecccccd",
+            "0x00000000",
+            "0x3e800000",
+            "0x00000000",
+            "0x00000017",
+            "0x00050006"
+          ]
+        },
+        "DDR2": {
+          "fileOffset": "0x9ac60",
+          "interactionOffset": [
+            -0.4000000059604645,
+            0.30000001192092896,
+            0.25
+          ],
+          "actionId": 24,
+          "actionIdHex": "0x00000018",
+          "route": {
+            "nodeOrVariant": 6,
+            "nodeOrVariantHex": "0x0006",
+            "flags": 4,
+            "flagsHex": "0x0004"
+          },
+          "rawWords": [
+            "0x32524444",
+            "0x78e3c000",
+            "0xbecccccd",
+            "0x3e99999a",
+            "0x3e800000",
+            "0x00000000",
+            "0x00000018",
+            "0x00040006"
+          ]
+        }
+      },
+      "pairedActions": []
+    },
+    {
+      "index": 3,
+      "fileOffset": "0x9b7d8",
+      "callbackTokens": [
+        {
+          "rawHex": "0x000505a9",
+          "opcode": "0x05a9",
+          "selector": 5,
+          "functionTableEntryFileOffset": "0x9d174",
+          "functionFileOffset": "0x9c3c"
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x000405a9",
+          "opcode": "0x05a9",
+          "selector": 4,
+          "functionTableEntryFileOffset": "0x9d170",
+          "functionFileOffset": "0xf736"
+        },
+        {
+          "rawHex": "0x005505a9",
+          "opcode": "0x05a9",
+          "selector": 85,
+          "functionTableEntryFileOffset": "0x9d2b4",
+          "functionFileOffset": "0x27898"
+        }
+      ],
+      "objectTags": [
+        "DDG1",
+        "DDG2",
+        "ATS7",
+        "ITVH",
+        "ITS7",
+        "BMB3"
+      ],
+      "records": {
+        "DDG1": {
+          "fileOffset": "0x9acc0",
+          "interactionOffset": [
+            0.0,
+            0.3499999940395355,
+            0.0
+          ],
+          "actionId": 18,
+          "actionIdHex": "0x00000012",
+          "route": {
+            "nodeOrVariant": 6,
+            "nodeOrVariantHex": "0x0006",
+            "flags": 5,
+            "flagsHex": "0x0005"
+          },
+          "rawWords": [
+            "0x31474444",
+            "0x78e30000",
+            "0x00000000",
+            "0x3eb33333",
+            "0x00000000",
+            "0x00000000",
+            "0x00000012",
+            "0x00050006"
+          ]
+        },
+        "DDG2": {
+          "fileOffset": "0x9ace0",
+          "interactionOffset": [
+            0.0,
+            0.46000000834465027,
+            0.0
+          ],
+          "actionId": 19,
+          "actionIdHex": "0x00000013",
+          "route": {
+            "nodeOrVariant": 6,
+            "nodeOrVariantHex": "0x0006",
+            "flags": 0,
+            "flagsHex": "0x0000"
+          },
+          "rawWords": [
+            "0x32474444",
+            "0x78e30000",
+            "0x00000000",
+            "0x3eeb851f",
+            "0x00000000",
+            "0x00000000",
+            "0x00000013",
+            "0x00000006"
+          ]
+        },
+        "ATS7": {
+          "fileOffset": "0x9b280",
+          "interactionOffset": [
+            0.0,
+            0.5550000071525574,
+            0.0
+          ],
+          "actionId": 46,
+          "actionIdHex": "0x0000002e",
+          "route": {
+            "nodeOrVariant": 0,
+            "nodeOrVariantHex": "0x0000",
+            "flags": 0,
+            "flagsHex": "0x0000"
+          },
+          "rawWords": [
+            "0x37535441",
+            "0x71c70000",
+            "0x00000000",
+            "0x3f0e147b",
+            "0x00000000",
+            "0x00000000",
+            "0x0000002e",
+            "0x00000000"
+          ]
+        },
+        "ITVH": {
+          "fileOffset": "0x9ada0",
+          "interactionOffset": [
+            0.0,
+            0.25,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 261,
+            "nodeOrVariantHex": "0x0105",
+            "flags": 0,
+            "flagsHex": "0x0000"
+          },
+          "rawWords": [
+            "0x48565449",
+            "0x6aaa6000",
+            "0x00000000",
+            "0x3e800000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000105"
+          ]
+        },
+        "ITS7": {
+          "fileOffset": "0x9af80",
+          "interactionOffset": [
+            0.0,
+            0.5550000071525574,
+            0.0
+          ],
+          "actionId": 36,
+          "actionIdHex": "0x00000024",
+          "route": {
+            "nodeOrVariant": 3,
+            "nodeOrVariantHex": "0x0003",
+            "flags": 3,
+            "flagsHex": "0x0003"
+          },
+          "rawWords": [
+            "0x37535449",
+            "0x71c7c000",
+            "0x00000000",
+            "0x3f0e147b",
+            "0x00000000",
+            "0x00000000",
+            "0x00000024",
+            "0x00030003"
+          ]
+        },
+        "BMB3": {
+          "fileOffset": "0x9aa20",
+          "interactionOffset": [
+            0.0,
+            0.25,
+            0.0
+          ],
+          "actionId": 26,
+          "actionIdHex": "0x0000001a",
+          "route": {
+            "nodeOrVariant": 4,
+            "nodeOrVariantHex": "0x0004",
+            "flags": 3,
+            "flagsHex": "0x0003"
+          },
+          "rawWords": [
+            "0x33424d42",
+            "0x78e34000",
+            "0x00000000",
+            "0x3e800000",
+            "0x00000000",
+            "0x00000000",
+            "0x0000001a",
+            "0x00030004"
+          ]
+        }
+      },
+      "pairedActions": []
+    },
+    {
+      "index": 4,
+      "fileOffset": "0x9b804",
+      "callbackTokens": [
+        {
+          "rawHex": "0x000202ab",
+          "opcode": "0x02ab",
+          "selector": 2
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x000302ab",
+          "opcode": "0x02ab",
+          "selector": 3
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        }
+      ],
+      "objectTags": [
+        "itbL",
+        "itbR",
+        "btbL",
+        "btbR",
+        "ktbL",
+        "ktbR"
+      ],
+      "records": {
+        "itbL": {
+          "fileOffset": "0x9a900",
+          "interactionOffset": [
+            -0.5,
+            0.20000000298023224,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 1,
+            "nodeOrVariantHex": "0x0001",
+            "flags": 4,
+            "flagsHex": "0x0004"
+          },
+          "rawWords": [
+            "0x4c627469",
+            "0x78e3c000",
+            "0xbf000000",
+            "0x3e4ccccd",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00040001"
+          ]
+        },
+        "itbR": {
+          "fileOffset": "0x9a920",
+          "interactionOffset": [
+            0.5,
+            0.20000000298023224,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 4,
+            "nodeOrVariantHex": "0x0004",
+            "flags": 7,
+            "flagsHex": "0x0007"
+          },
+          "rawWords": [
+            "0x52627469",
+            "0x78e3c000",
+            "0x3f000000",
+            "0x3e4ccccd",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00070004"
+          ]
+        },
+        "btbL": {
+          "fileOffset": "0x9aae0",
+          "interactionOffset": [
+            -0.5,
+            0.20000000298023224,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 4,
+            "nodeOrVariantHex": "0x0004",
+            "flags": 4,
+            "flagsHex": "0x0004"
+          },
+          "rawWords": [
+            "0x4c627462",
+            "0x78e34000",
+            "0xbf000000",
+            "0x3e4ccccd",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00040004"
+          ]
+        },
+        "btbR": {
+          "fileOffset": "0x9ab00",
+          "interactionOffset": [
+            0.5,
+            0.20000000298023224,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 6,
+            "nodeOrVariantHex": "0x0006",
+            "flags": 0,
+            "flagsHex": "0x0000"
+          },
+          "rawWords": [
+            "0x52627462",
+            "0x78e34000",
+            "0x3f000000",
+            "0x3e4ccccd",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000006"
+          ]
+        },
+        "ktbL": {
+          "fileOffset": "0x9b100",
+          "interactionOffset": [
+            -0.5,
+            0.20000000298023224,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 7,
+            "nodeOrVariantHex": "0x0007",
+            "flags": 4,
+            "flagsHex": "0x0004"
+          },
+          "rawWords": [
+            "0x4c62746b",
+            "0x78e34000",
+            "0xbf000000",
+            "0x3e4ccccd",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00040007"
+          ]
+        },
+        "ktbR": {
+          "fileOffset": "0x9b120",
+          "interactionOffset": [
+            0.5,
+            0.20000000298023224,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 0,
+            "nodeOrVariantHex": "0x0000",
+            "flags": 7,
+            "flagsHex": "0x0007"
+          },
+          "rawWords": [
+            "0x5262746b",
+            "0x78e34000",
+            "0x3f000000",
+            "0x3e4ccccd",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00070000"
+          ]
+        }
+      },
+      "pairedActions": [
+        {
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "objectTags": [
+            "itbL",
+            "itbR",
+            "btbL",
+            "btbR",
+            "ktbL",
+            "ktbR"
+          ],
+          "records": [
+            {
+              "fileOffset": "0x9a900",
+              "interactionOffset": [
+                -0.5,
+                0.20000000298023224,
+                0.0
+              ],
+              "actionId": 0,
+              "actionIdHex": "0x00000000",
+              "route": {
+                "nodeOrVariant": 1,
+                "nodeOrVariantHex": "0x0001",
+                "flags": 4,
+                "flagsHex": "0x0004"
+              },
+              "rawWords": [
+                "0x4c627469",
+                "0x78e3c000",
+                "0xbf000000",
+                "0x3e4ccccd",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00040001"
+              ]
+            },
+            {
+              "fileOffset": "0x9a920",
+              "interactionOffset": [
+                0.5,
+                0.20000000298023224,
+                0.0
+              ],
+              "actionId": 0,
+              "actionIdHex": "0x00000000",
+              "route": {
+                "nodeOrVariant": 4,
+                "nodeOrVariantHex": "0x0004",
+                "flags": 7,
+                "flagsHex": "0x0007"
+              },
+              "rawWords": [
+                "0x52627469",
+                "0x78e3c000",
+                "0x3f000000",
+                "0x3e4ccccd",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00070004"
+              ]
+            },
+            {
+              "fileOffset": "0x9aae0",
+              "interactionOffset": [
+                -0.5,
+                0.20000000298023224,
+                0.0
+              ],
+              "actionId": 0,
+              "actionIdHex": "0x00000000",
+              "route": {
+                "nodeOrVariant": 4,
+                "nodeOrVariantHex": "0x0004",
+                "flags": 4,
+                "flagsHex": "0x0004"
+              },
+              "rawWords": [
+                "0x4c627462",
+                "0x78e34000",
+                "0xbf000000",
+                "0x3e4ccccd",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00040004"
+              ]
+            },
+            {
+              "fileOffset": "0x9ab00",
+              "interactionOffset": [
+                0.5,
+                0.20000000298023224,
+                0.0
+              ],
+              "actionId": 0,
+              "actionIdHex": "0x00000000",
+              "route": {
+                "nodeOrVariant": 6,
+                "nodeOrVariantHex": "0x0006",
+                "flags": 0,
+                "flagsHex": "0x0000"
+              },
+              "rawWords": [
+                "0x52627462",
+                "0x78e34000",
+                "0x3f000000",
+                "0x3e4ccccd",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000006"
+              ]
+            },
+            {
+              "fileOffset": "0x9b100",
+              "interactionOffset": [
+                -0.5,
+                0.20000000298023224,
+                0.0
+              ],
+              "actionId": 0,
+              "actionIdHex": "0x00000000",
+              "route": {
+                "nodeOrVariant": 7,
+                "nodeOrVariantHex": "0x0007",
+                "flags": 4,
+                "flagsHex": "0x0004"
+              },
+              "rawWords": [
+                "0x4c62746b",
+                "0x78e34000",
+                "0xbf000000",
+                "0x3e4ccccd",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00040007"
+              ]
+            },
+            {
+              "fileOffset": "0x9b120",
+              "interactionOffset": [
+                0.5,
+                0.20000000298023224,
+                0.0
+              ],
+              "actionId": 0,
+              "actionIdHex": "0x00000000",
+              "route": {
+                "nodeOrVariant": 0,
+                "nodeOrVariantHex": "0x0000",
+                "flags": 7,
+                "flagsHex": "0x0007"
+              },
+              "rawWords": [
+                "0x5262746b",
+                "0x78e34000",
+                "0x3f000000",
+                "0x3e4ccccd",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00070000"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "fileOffset": "0x9b830",
+      "callbackTokens": [
+        {
+          "rawHex": "0x000d05a9",
+          "opcode": "0x05a9",
+          "selector": 13,
+          "functionTableEntryFileOffset": "0x9d194",
+          "functionFileOffset": "0x2d60"
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x000c05a9",
+          "opcode": "0x05a9",
+          "selector": 12,
+          "functionTableEntryFileOffset": "0x9d190",
+          "functionFileOffset": "0x12aa0"
+        },
+        {
+          "rawHex": "0x554b5749",
+          "opcode": "0x5749",
+          "selector": 21835
+        }
+      ],
+      "objectTags": [
+        "bkgu",
+        "ikgu"
+      ],
+      "records": {
+        "bkgu": {
+          "fileOffset": "0x9b640",
+          "interactionOffset": [
+            0.0,
+            0.10000000149011612,
+            0.0
+          ],
+          "actionId": 12,
+          "actionIdHex": "0x0000000c",
+          "route": {
+            "nodeOrVariant": 65535,
+            "nodeOrVariantHex": "0xffff",
+            "flags": 0,
+            "flagsHex": "0x0000"
+          },
+          "rawWords": [
+            "0x75676b62",
+            "0x71c7c000",
+            "0x00000000",
+            "0x3dcccccd",
+            "0x00000000",
+            "0x00000000",
+            "0x0000000c",
+            "0x0000ffff"
+          ]
+        },
+        "ikgu": {
+          "fileOffset": "0x9afe0",
+          "interactionOffset": [
+            0.0,
+            0.10000000149011612,
+            0.0
+          ],
+          "actionId": 47,
+          "actionIdHex": "0x0000002f",
+          "route": {
+            "nodeOrVariant": 2,
+            "nodeOrVariantHex": "0x0002",
+            "flags": 8,
+            "flagsHex": "0x0008"
+          },
+          "rawWords": [
+            "0x75676b69",
+            "0x71c7c000",
+            "0x00000000",
+            "0x3dcccccd",
+            "0x00000000",
+            "0x00000000",
+            "0x0000002f",
+            "0x00080002"
+          ]
+        }
+      },
+      "pairedActions": []
+    },
+    {
+      "index": 6,
+      "fileOffset": "0x9b850",
+      "callbackTokens": [
+        {
+          "rawHex": "0x002705a9",
+          "opcode": "0x05a9",
+          "selector": 39,
+          "functionTableEntryFileOffset": "0x9d1fc",
+          "functionFileOffset": "0x1a6ec"
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x002705a9",
+          "opcode": "0x05a9",
+          "selector": 39,
+          "functionTableEntryFileOffset": "0x9d1fc",
+          "functionFileOffset": "0x1a6ec"
+        }
+      ],
+      "objectTags": [
+        "IGAK",
+        "TRNE",
+        "FGAK",
+        "_pc1",
+        "_pc3",
+        "kpic",
+        "KGK1",
+        "KGK2",
+        "TGAK"
+      ],
+      "records": {
+        "IGAK": {
+          "fileOffset": "0x9a860",
+          "interactionOffset": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 1,
+            "nodeOrVariantHex": "0x0001",
+            "flags": 7,
+            "flagsHex": "0x0007"
+          },
+          "rawWords": [
+            "0x4b414749",
+            "0x71c78000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00070001"
+          ]
+        },
+        "TRNE": {
+          "fileOffset": "0x9a820",
+          "interactionOffset": [
+            0.0,
+            0.30000001192092896,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 1,
+            "nodeOrVariantHex": "0x0001",
+            "flags": 2,
+            "flagsHex": "0x0002"
+          },
+          "rawWords": [
+            "0x454e5254",
+            "0x71c78000",
+            "0x00000000",
+            "0x3e99999a",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00020001"
+          ]
+        },
+        "FGAK": {
+          "fileOffset": "0x9b000",
+          "interactionOffset": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 2,
+            "nodeOrVariantHex": "0x0002",
+            "flags": 0,
+            "flagsHex": "0x0000"
+          },
+          "rawWords": [
+            "0x4b414746",
+            "0x71c74000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000002"
+          ]
+        },
+        "_pc1": {
+          "fileOffset": "0x9b600",
+          "interactionOffset": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 9,
+            "nodeOrVariantHex": "0x0009",
+            "flags": 8,
+            "flagsHex": "0x0008"
+          },
+          "rawWords": [
+            "0x3163705f",
+            "0x71c7c000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00080009"
+          ]
+        },
+        "_pc3": {
+          "fileOffset": "0x9b620",
+          "interactionOffset": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 10,
+            "nodeOrVariantHex": "0x000a",
+            "flags": 6,
+            "flagsHex": "0x0006"
+          },
+          "rawWords": [
+            "0x3363705f",
+            "0x71c74000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x0006000a"
+          ]
+        },
+        "kpic": {
+          "fileOffset": "0x9ad40",
+          "interactionOffset": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 5,
+            "nodeOrVariantHex": "0x0005",
+            "flags": 2,
+            "flagsHex": "0x0002"
+          },
+          "rawWords": [
+            "0x6369706b",
+            "0x71c74000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00020005"
+          ]
+        },
+        "KGK1": {
+          "fileOffset": "0x9b0a0",
+          "interactionOffset": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 7,
+            "nodeOrVariantHex": "0x0007",
+            "flags": 8,
+            "flagsHex": "0x0008"
+          },
+          "rawWords": [
+            "0x314b474b",
+            "0x71c74000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00080007"
+          ]
+        },
+        "KGK2": {
+          "fileOffset": "0x9b0c0",
+          "interactionOffset": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 7,
+            "nodeOrVariantHex": "0x0007",
+            "flags": 0,
+            "flagsHex": "0x0000"
+          },
+          "rawWords": [
+            "0x324b474b",
+            "0x71c7c000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000007"
+          ]
+        },
+        "TGAK": {
+          "fileOffset": "0x9b3a0",
+          "interactionOffset": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 8,
+            "nodeOrVariantHex": "0x0008",
+            "flags": 0,
+            "flagsHex": "0x0000"
+          },
+          "rawWords": [
+            "0x4b414754",
+            "0x71c7c000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000008"
+          ]
+        }
+      },
+      "pairedActions": [
+        {
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "objectTags": [
+            "IGAK",
+            "TRNE",
+            "FGAK",
+            "_pc1",
+            "_pc3",
+            "kpic",
+            "KGK1",
+            "KGK2",
+            "TGAK"
+          ],
+          "records": [
+            {
+              "fileOffset": "0x9a860",
+              "interactionOffset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "actionId": 0,
+              "actionIdHex": "0x00000000",
+              "route": {
+                "nodeOrVariant": 1,
+                "nodeOrVariantHex": "0x0001",
+                "flags": 7,
+                "flagsHex": "0x0007"
+              },
+              "rawWords": [
+                "0x4b414749",
+                "0x71c78000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00070001"
+              ]
+            },
+            {
+              "fileOffset": "0x9a820",
+              "interactionOffset": [
+                0.0,
+                0.30000001192092896,
+                0.0
+              ],
+              "actionId": 0,
+              "actionIdHex": "0x00000000",
+              "route": {
+                "nodeOrVariant": 1,
+                "nodeOrVariantHex": "0x0001",
+                "flags": 2,
+                "flagsHex": "0x0002"
+              },
+              "rawWords": [
+                "0x454e5254",
+                "0x71c78000",
+                "0x00000000",
+                "0x3e99999a",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00020001"
+              ]
+            },
+            {
+              "fileOffset": "0x9b000",
+              "interactionOffset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "actionId": 0,
+              "actionIdHex": "0x00000000",
+              "route": {
+                "nodeOrVariant": 2,
+                "nodeOrVariantHex": "0x0002",
+                "flags": 0,
+                "flagsHex": "0x0000"
+              },
+              "rawWords": [
+                "0x4b414746",
+                "0x71c74000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000002"
+              ]
+            },
+            {
+              "fileOffset": "0x9b600",
+              "interactionOffset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "actionId": 0,
+              "actionIdHex": "0x00000000",
+              "route": {
+                "nodeOrVariant": 9,
+                "nodeOrVariantHex": "0x0009",
+                "flags": 8,
+                "flagsHex": "0x0008"
+              },
+              "rawWords": [
+                "0x3163705f",
+                "0x71c7c000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00080009"
+              ]
+            },
+            {
+              "fileOffset": "0x9b620",
+              "interactionOffset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "actionId": 0,
+              "actionIdHex": "0x00000000",
+              "route": {
+                "nodeOrVariant": 10,
+                "nodeOrVariantHex": "0x000a",
+                "flags": 6,
+                "flagsHex": "0x0006"
+              },
+              "rawWords": [
+                "0x3363705f",
+                "0x71c74000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x0006000a"
+              ]
+            },
+            {
+              "fileOffset": "0x9ad40",
+              "interactionOffset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "actionId": 0,
+              "actionIdHex": "0x00000000",
+              "route": {
+                "nodeOrVariant": 5,
+                "nodeOrVariantHex": "0x0005",
+                "flags": 2,
+                "flagsHex": "0x0002"
+              },
+              "rawWords": [
+                "0x6369706b",
+                "0x71c74000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00020005"
+              ]
+            },
+            {
+              "fileOffset": "0x9b0a0",
+              "interactionOffset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "actionId": 0,
+              "actionIdHex": "0x00000000",
+              "route": {
+                "nodeOrVariant": 7,
+                "nodeOrVariantHex": "0x0007",
+                "flags": 8,
+                "flagsHex": "0x0008"
+              },
+              "rawWords": [
+                "0x314b474b",
+                "0x71c74000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00080007"
+              ]
+            },
+            {
+              "fileOffset": "0x9b0c0",
+              "interactionOffset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "actionId": 0,
+              "actionIdHex": "0x00000000",
+              "route": {
+                "nodeOrVariant": 7,
+                "nodeOrVariantHex": "0x0007",
+                "flags": 0,
+                "flagsHex": "0x0000"
+              },
+              "rawWords": [
+                "0x324b474b",
+                "0x71c7c000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000007"
+              ]
+            },
+            {
+              "fileOffset": "0x9b3a0",
+              "interactionOffset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "actionId": 0,
+              "actionIdHex": "0x00000000",
+              "route": {
+                "nodeOrVariant": 8,
+                "nodeOrVariantHex": "0x0008",
+                "flags": 0,
+                "flagsHex": "0x0000"
+              },
+              "rawWords": [
+                "0x4b414754",
+                "0x71c7c000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000008"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "fileOffset": "0x9b888",
+      "callbackTokens": [
+        {
+          "rawHex": "0x003205a9",
+          "opcode": "0x05a9",
+          "selector": 50,
+          "functionTableEntryFileOffset": "0x9d228",
+          "functionFileOffset": "0x1c3b4"
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x003205a9",
+          "opcode": "0x05a9",
+          "selector": 50,
+          "functionTableEntryFileOffset": "0x9d228",
+          "functionFileOffset": "0x1c3b4"
+        }
+      ],
+      "objectTags": [
+        "DDZ1"
+      ],
+      "records": {
+        "DDZ1": {
+          "fileOffset": "0x9ab80",
+          "interactionOffset": [
+            0.0,
+            0.12999999523162842,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 6,
+            "nodeOrVariantHex": "0x0006",
+            "flags": 2,
+            "flagsHex": "0x0002"
+          },
+          "rawWords": [
+            "0x315a4444",
+            "0x78e30000",
+            "0x00000000",
+            "0x3e051eb8",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00020006"
+          ]
+        }
+      },
+      "pairedActions": []
+    },
+    {
+      "index": 8,
+      "fileOffset": "0x9b8a0",
+      "callbackTokens": [
+        {
+          "rawHex": "0x003105a9",
+          "opcode": "0x05a9",
+          "selector": 49,
+          "functionTableEntryFileOffset": "0x9d224",
+          "functionFileOffset": "0x1b93a"
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x003005a9",
+          "opcode": "0x05a9",
+          "selector": 48,
+          "functionTableEntryFileOffset": "0x9d220",
+          "functionFileOffset": "0x19fc8"
+        }
+      ],
+      "objectTags": [
+        "BTBO",
+        "ITBO"
+      ],
+      "records": {
+        "BTBO": {
+          "fileOffset": "0x9a980",
+          "interactionOffset": [
+            0.0,
+            0.32999998331069946,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 4,
+            "nodeOrVariantHex": "0x0004",
+            "flags": 7,
+            "flagsHex": "0x0007"
+          },
+          "rawWords": [
+            "0x4f425442",
+            "0x6aaa4000",
+            "0x00000000",
+            "0x3ea8f5c2",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00070004"
+          ]
+        },
+        "ITBO": {
+          "fileOffset": "0x9a840",
+          "interactionOffset": [
+            0.0,
+            0.25,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 1,
+            "nodeOrVariantHex": "0x0001",
+            "flags": 8,
+            "flagsHex": "0x0008"
+          },
+          "rawWords": [
+            "0x4f425449",
+            "0x71c7c000",
+            "0x00000000",
+            "0x3e800000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00080001"
+          ]
+        }
+      },
+      "pairedActions": [
+        {
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "objectTags": [
+            "BTBO",
+            "ITBO"
+          ],
+          "records": [
+            {
+              "fileOffset": "0x9a980",
+              "interactionOffset": [
+                0.0,
+                0.32999998331069946,
+                0.0
+              ],
+              "actionId": 0,
+              "actionIdHex": "0x00000000",
+              "route": {
+                "nodeOrVariant": 4,
+                "nodeOrVariantHex": "0x0004",
+                "flags": 7,
+                "flagsHex": "0x0007"
+              },
+              "rawWords": [
+                "0x4f425442",
+                "0x6aaa4000",
+                "0x00000000",
+                "0x3ea8f5c2",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00070004"
+              ]
+            },
+            {
+              "fileOffset": "0x9a840",
+              "interactionOffset": [
+                0.0,
+                0.25,
+                0.0
+              ],
+              "actionId": 0,
+              "actionIdHex": "0x00000000",
+              "route": {
+                "nodeOrVariant": 1,
+                "nodeOrVariantHex": "0x0001",
+                "flags": 8,
+                "flagsHex": "0x0008"
+              },
+              "rawWords": [
+                "0x4f425449",
+                "0x71c7c000",
+                "0x00000000",
+                "0x3e800000",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0x00080001"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "fileOffset": "0x9b8bc",
+      "callbackTokens": [
+        {
+          "rawHex": "0x002f05a9",
+          "opcode": "0x05a9",
+          "selector": 47,
+          "functionTableEntryFileOffset": "0x9d21c",
+          "functionFileOffset": "0x1ba64"
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x002e05a9",
+          "opcode": "0x05a9",
+          "selector": 46,
+          "functionTableEntryFileOffset": "0x9d218",
+          "functionFileOffset": "0x52b78"
+        }
+      ],
+      "objectTags": [
+        "IWKJ",
+        "BMKJ",
+        "KIKJ"
+      ],
+      "records": {
+        "IWKJ": {
+          "fileOffset": "0x9a880",
+          "interactionOffset": [
+            0.0,
+            0.699999988079071,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 1,
+            "nodeOrVariantHex": "0x0001",
+            "flags": 65535,
+            "flagsHex": "0xffff"
+          },
+          "rawWords": [
+            "0x4a4b5749",
+            "0x71c7c000",
+            "0x00000000",
+            "0x3f333333",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0xffff0001"
+          ]
+        },
+        "BMKJ": {
+          "fileOffset": "0x9a9a0",
+          "interactionOffset": [
+            0.0,
+            0.699999988079071,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 4,
+            "nodeOrVariantHex": "0x0004",
+            "flags": 65535,
+            "flagsHex": "0xffff"
+          },
+          "rawWords": [
+            "0x4a4b4d42",
+            "0x6aaa4000",
+            "0x00000000",
+            "0x3f333333",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0xffff0004"
+          ]
+        },
+        "KIKJ": {
+          "fileOffset": "0x9a940",
+          "interactionOffset": [
+            0.0,
+            0.699999988079071,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 4,
+            "nodeOrVariantHex": "0x0004",
+            "flags": 65535,
+            "flagsHex": "0xffff"
+          },
+          "rawWords": [
+            "0x4a4b494b",
+            "0x6aaa4000",
+            "0x00000000",
+            "0x3f333333",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0xffff0004"
+          ]
+        }
+      },
+      "pairedActions": [
+        {
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "objectTags": [
+            "IWKJ",
+            "BMKJ",
+            "KIKJ"
+          ],
+          "records": [
+            {
+              "fileOffset": "0x9a880",
+              "interactionOffset": [
+                0.0,
+                0.699999988079071,
+                0.0
+              ],
+              "actionId": 0,
+              "actionIdHex": "0x00000000",
+              "route": {
+                "nodeOrVariant": 1,
+                "nodeOrVariantHex": "0x0001",
+                "flags": 65535,
+                "flagsHex": "0xffff"
+              },
+              "rawWords": [
+                "0x4a4b5749",
+                "0x71c7c000",
+                "0x00000000",
+                "0x3f333333",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0xffff0001"
+              ]
+            },
+            {
+              "fileOffset": "0x9a9a0",
+              "interactionOffset": [
+                0.0,
+                0.699999988079071,
+                0.0
+              ],
+              "actionId": 0,
+              "actionIdHex": "0x00000000",
+              "route": {
+                "nodeOrVariant": 4,
+                "nodeOrVariantHex": "0x0004",
+                "flags": 65535,
+                "flagsHex": "0xffff"
+              },
+              "rawWords": [
+                "0x4a4b4d42",
+                "0x6aaa4000",
+                "0x00000000",
+                "0x3f333333",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0xffff0004"
+              ]
+            },
+            {
+              "fileOffset": "0x9a940",
+              "interactionOffset": [
+                0.0,
+                0.699999988079071,
+                0.0
+              ],
+              "actionId": 0,
+              "actionIdHex": "0x00000000",
+              "route": {
+                "nodeOrVariant": 4,
+                "nodeOrVariantHex": "0x0004",
+                "flags": 65535,
+                "flagsHex": "0xffff"
+              },
+              "rawWords": [
+                "0x4a4b494b",
+                "0x6aaa4000",
+                "0x00000000",
+                "0x3f333333",
+                "0x00000000",
+                "0x00000000",
+                "0x00000000",
+                "0xffff0004"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "fileOffset": "0x9b8dc",
+      "callbackTokens": [
+        {
+          "rawHex": "0x001105a9",
+          "opcode": "0x05a9",
+          "selector": 17,
+          "functionTableEntryFileOffset": "0x9d1a4",
+          "functionFileOffset": "0x1c70"
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x001005a9",
+          "opcode": "0x05a9",
+          "selector": 16,
+          "functionTableEntryFileOffset": "0x9d1a0",
+          "functionFileOffset": "0x1d3c"
+        }
+      ],
+      "objectTags": [
+        "DDYK"
+      ],
+      "records": {
+        "DDYK": {
+          "fileOffset": "0x9aba0",
+          "interactionOffset": [
+            0.0,
+            0.10000000149011612,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 6,
+            "nodeOrVariantHex": "0x0006",
+            "flags": 3,
+            "flagsHex": "0x0003"
+          },
+          "rawWords": [
+            "0x4b594444",
+            "0x78e30000",
+            "0x00000000",
+            "0x3dcccccd",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00030006"
+          ]
+        }
+      },
+      "pairedActions": []
+    },
+    {
+      "index": 11,
+      "fileOffset": "0x9b8f4",
+      "callbackTokens": [
+        {
+          "rawHex": "0x005805a9",
+          "opcode": "0x05a9",
+          "selector": 88,
+          "functionTableEntryFileOffset": "0x9d2c0",
+          "functionFileOffset": "0x3a28c"
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x005805a9",
+          "opcode": "0x05a9",
+          "selector": 88,
+          "functionTableEntryFileOffset": "0x9d2c0",
+          "functionFileOffset": "0x3a28c"
+        }
+      ],
+      "objectTags": [
+        "fbut"
+      ],
+      "records": {
+        "fbut": {
+          "fileOffset": "0x9b060",
+          "interactionOffset": [
+            0.0,
+            0.07000000029802322,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 2,
+            "nodeOrVariantHex": "0x0002",
+            "flags": 2,
+            "flagsHex": "0x0002"
+          },
+          "rawWords": [
+            "0x74756266",
+            "0x71c70000",
+            "0x00000000",
+            "0x3d8f5c29",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00020002"
+          ]
+        }
+      },
+      "pairedActions": []
+    },
+    {
+      "index": 12,
+      "fileOffset": "0x9b90c",
+      "callbackTokens": [
+        {
+          "rawHex": "0x003e05a9",
+          "opcode": "0x05a9",
+          "selector": 62,
+          "functionTableEntryFileOffset": "0x9d258",
+          "functionFileOffset": "0x1ff4c"
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x003f05a9",
+          "opcode": "0x05a9",
+          "selector": 63,
+          "functionTableEntryFileOffset": "0x9d25c",
+          "functionFileOffset": "0x1e104"
+        }
+      ],
+      "objectTags": [
+        "DDFP"
+      ],
+      "records": {
+        "DDFP": {
+          "fileOffset": "0x9ab60",
+          "interactionOffset": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 6,
+            "nodeOrVariantHex": "0x0006",
+            "flags": 2,
+            "flagsHex": "0x0002"
+          },
+          "rawWords": [
+            "0x50464444",
+            "0x78e30000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00020006"
+          ]
+        }
+      },
+      "pairedActions": []
+    },
+    {
+      "index": 13,
+      "fileOffset": "0x9b924",
+      "callbackTokens": [
+        {
+          "rawHex": "0x003705a9",
+          "opcode": "0x05a9",
+          "selector": 55,
+          "functionTableEntryFileOffset": "0x9d23c",
+          "functionFileOffset": "0x3d700"
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x003605a9",
+          "opcode": "0x05a9",
+          "selector": 54,
+          "functionTableEntryFileOffset": "0x9d238",
+          "functionFileOffset": "0x1c788"
+        }
+      ],
+      "objectTags": [
+        "IYNU"
+      ],
+      "records": {
+        "IYNU": {
+          "fileOffset": "0x9ad80",
+          "interactionOffset": [
+            0.0,
+            0.07000000029802322,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 5,
+            "nodeOrVariantHex": "0x0005",
+            "flags": 5,
+            "flagsHex": "0x0005"
+          },
+          "rawWords": [
+            "0x554e5949",
+            "0x00000000",
+            "0x00000000",
+            "0x3d8f5c29",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00050005"
+          ]
+        }
+      },
+      "pairedActions": []
+    },
+    {
+      "index": 14,
+      "fileOffset": "0x9b93c",
+      "callbackTokens": [
+        {
+          "rawHex": "0x000205a9",
+          "opcode": "0x05a9",
+          "selector": 2,
+          "functionTableEntryFileOffset": "0x9d168",
+          "functionFileOffset": "0xb87c"
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x00000000",
+          "opcode": "0x0000",
+          "selector": 0
+        },
+        {
+          "rawHex": "0x000205a9",
+          "opcode": "0x05a9",
+          "selector": 2,
+          "functionTableEntryFileOffset": "0x9d168",
+          "functionFileOffset": "0xb87c"
+        }
+      ],
+      "objectTags": [
+        "AKDG"
+      ],
+      "records": {
+        "AKDG": {
+          "fileOffset": "0x9b140",
+          "interactionOffset": [
+            0.0,
+            -0.30000001192092896,
+            0.0
+          ],
+          "actionId": 0,
+          "actionIdHex": "0x00000000",
+          "route": {
+            "nodeOrVariant": 0,
+            "nodeOrVariantHex": "0x0000",
+            "flags": 3,
+            "flagsHex": "0x0003"
+          },
+          "rawWords": [
+            "0x47444b41",
+            "0x5c71c000",
+            "0x00000000",
+            "0xbe99999a",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000",
+            "0x00030000"
+          ]
+        }
+      },
+      "pairedActions": []
+    }
+  ]
+}

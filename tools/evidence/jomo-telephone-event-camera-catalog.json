@@ -1,0 +1,932 @@
+{
+  "schema": "new-yokosuka-event-camera-catalog-v1",
+  "source": "extracted_files/data/SCENE/01/JOMO/MAPINFO.BIN",
+  "mapinfoSha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
+  "channelOrder": [
+    "positionX",
+    "positionY",
+    "positionZ",
+    "targetX",
+    "targetY",
+    "targetZ",
+    "roll",
+    "perspective"
+  ],
+  "layoutSource": {
+    "reference": "docs/reference/external/original-source-examples.md",
+    "routine": "CreateSplData",
+    "cameraOrder": "position XYZ, target XYZ, roll, perspective"
+  },
+  "ecamFileOffset": "0xbfd4c",
+  "ecamSize": 35100,
+  "records": [
+    {
+      "cameraId": "3031",
+      "cameraNumber": 3031,
+      "fileOffset": "0xc456c",
+      "recordSize": 236,
+      "flags": 96,
+      "curves": {
+        "positionX": {
+          "count": 2,
+          "times": [
+            0.0,
+            5.0
+          ],
+          "values": [
+            15.660799980163574,
+            14.64840030670166
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "positionY": {
+          "count": 2,
+          "times": [
+            0.0,
+            5.0
+          ],
+          "values": [
+            0.7225000262260437,
+            1.1797000169754028
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "positionZ": {
+          "count": 2,
+          "times": [
+            0.0,
+            5.0
+          ],
+          "values": [
+            2.4790000915527344,
+            3.241499900817871
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "targetX": {
+          "count": 2,
+          "times": [
+            0.0,
+            5.0
+          ],
+          "values": [
+            16.796100616455078,
+            15.601400375366211
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "targetY": {
+          "count": 2,
+          "times": [
+            0.0,
+            5.0
+          ],
+          "values": [
+            0.5745999813079834,
+            1.2273999452590942
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "targetZ": {
+          "count": 2,
+          "times": [
+            0.0,
+            5.0
+          ],
+          "values": [
+            1.3393000364303589,
+            1.8039000034332275
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "roll": {
+          "count": 2,
+          "times": [
+            0.0,
+            5.0
+          ],
+          "values": [
+            0.0,
+            0.0
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "perspective": {
+          "count": 2,
+          "times": [
+            0.0,
+            5.0
+          ],
+          "values": [
+            59.996299743652344,
+            69.99629974365234
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "cameraId": "3032",
+      "cameraNumber": 3032,
+      "fileOffset": "0xc4658",
+      "recordSize": 236,
+      "flags": 130656,
+      "curves": {
+        "positionX": {
+          "count": 2,
+          "times": [
+            0.0,
+            6.36667013168335
+          ],
+          "values": [
+            0.35659998655319214,
+            0.23170000314712524
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "positionY": {
+          "count": 2,
+          "times": [
+            0.0,
+            6.36667013168335
+          ],
+          "values": [
+            0.05420000106096268,
+            0.02410000003874302
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "positionZ": {
+          "count": 2,
+          "times": [
+            0.0,
+            6.36667013168335
+          ],
+          "values": [
+            -0.35040000081062317,
+            -0.44859999418258667
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "targetX": {
+          "count": 2,
+          "times": [
+            0.0,
+            6.36667013168335
+          ],
+          "values": [
+            -0.03550000116229057,
+            -0.03550000116229057
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "targetY": {
+          "count": 2,
+          "times": [
+            0.0,
+            6.36667013168335
+          ],
+          "values": [
+            0.007000000216066837,
+            0.007000000216066837
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "targetZ": {
+          "count": 2,
+          "times": [
+            0.0,
+            6.36667013168335
+          ],
+          "values": [
+            0.029600000008940697,
+            0.029600000008940697
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "roll": {
+          "count": 2,
+          "times": [
+            0.0,
+            6.36667013168335
+          ],
+          "values": [
+            0.0,
+            0.0
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "perspective": {
+          "count": 2,
+          "times": [
+            0.0,
+            6.36667013168335
+          ],
+          "values": [
+            59.996299743652344,
+            59.996299743652344
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "cameraId": "3033",
+      "cameraNumber": 3033,
+      "fileOffset": "0xc4744",
+      "recordSize": 236,
+      "flags": 96,
+      "curves": {
+        "positionX": {
+          "count": 2,
+          "times": [
+            0.0,
+            11.33329963684082
+          ],
+          "values": [
+            15.510299682617188,
+            15.736100196838379
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "positionY": {
+          "count": 2,
+          "times": [
+            0.0,
+            11.33329963684082
+          ],
+          "values": [
+            0.5203999876976013,
+            1.2329000234603882
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "positionZ": {
+          "count": 2,
+          "times": [
+            0.0,
+            11.33329963684082
+          ],
+          "values": [
+            5.683599948883057,
+            5.683000087738037
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "targetX": {
+          "count": 2,
+          "times": [
+            0.0,
+            11.33329963684082
+          ],
+          "values": [
+            16.1471004486084,
+            15.805399894714355
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "targetY": {
+          "count": 2,
+          "times": [
+            0.0,
+            11.33329963684082
+          ],
+          "values": [
+            0.7807999849319458,
+            0.7807999849319458
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "targetZ": {
+          "count": 2,
+          "times": [
+            0.0,
+            11.33329963684082
+          ],
+          "values": [
+            2.532900094985962,
+            2.490600109100342
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "roll": {
+          "count": 2,
+          "times": [
+            0.0,
+            11.33329963684082
+          ],
+          "values": [
+            0.48890000581741333,
+            0.48890000581741333
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "perspective": {
+          "count": 2,
+          "times": [
+            0.0,
+            11.33329963684082
+          ],
+          "values": [
+            59.99079895019531,
+            59.99079895019531
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "cameraId": "3034",
+      "cameraNumber": 3034,
+      "fileOffset": "0xc4830",
+      "recordSize": 236,
+      "flags": 96,
+      "curves": {
+        "positionX": {
+          "count": 2,
+          "times": [
+            0.0,
+            10.0
+          ],
+          "values": [
+            15.76609992980957,
+            15.04170036315918
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "positionY": {
+          "count": 2,
+          "times": [
+            0.0,
+            10.0
+          ],
+          "values": [
+            1.1689000129699707,
+            1.7792999744415283
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "positionZ": {
+          "count": 2,
+          "times": [
+            0.0,
+            10.0
+          ],
+          "values": [
+            3.222899913787842,
+            3.1029999256134033
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "targetX": {
+          "count": 2,
+          "times": [
+            0.0,
+            10.0
+          ],
+          "values": [
+            15.565799713134766,
+            15.843000411987305
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "targetY": {
+          "count": 2,
+          "times": [
+            0.0,
+            10.0
+          ],
+          "values": [
+            1.4674999713897705,
+            1.2211999893188477
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "targetZ": {
+          "count": 2,
+          "times": [
+            0.0,
+            10.0
+          ],
+          "values": [
+            2.36080002784729,
+            2.186800003051758
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "roll": {
+          "count": 2,
+          "times": [
+            0.0,
+            10.0
+          ],
+          "values": [
+            0.0,
+            0.0
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "perspective": {
+          "count": 2,
+          "times": [
+            0.0,
+            10.0
+          ],
+          "values": [
+            50.35580062866211,
+            50.35580062866211
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "cameraId": "3035",
+      "cameraNumber": 3035,
+      "fileOffset": "0xc491c",
+      "recordSize": 236,
+      "flags": 96,
+      "curves": {
+        "positionX": {
+          "count": 2,
+          "times": [
+            0.0,
+            7.800000190734863
+          ],
+          "values": [
+            16.074800491333008,
+            15.972700119018555
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "positionY": {
+          "count": 2,
+          "times": [
+            0.0,
+            7.800000190734863
+          ],
+          "values": [
+            1.670300006866455,
+            1.670300006866455
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "positionZ": {
+          "count": 2,
+          "times": [
+            0.0,
+            7.800000190734863
+          ],
+          "values": [
+            2.542799949645996,
+            2.638700008392334
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "targetX": {
+          "count": 2,
+          "times": [
+            0.0,
+            7.800000190734863
+          ],
+          "values": [
+            15.556599617004395,
+            15.568300247192383
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "targetY": {
+          "count": 2,
+          "times": [
+            0.0,
+            7.800000190734863
+          ],
+          "values": [
+            1.544700026512146,
+            1.544700026512146
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "targetZ": {
+          "count": 2,
+          "times": [
+            0.0,
+            7.800000190734863
+          ],
+          "values": [
+            2.094599962234497,
+            2.085700035095215
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "roll": {
+          "count": 2,
+          "times": [
+            0.0,
+            7.800000190734863
+          ],
+          "values": [
+            0.0,
+            0.0
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "perspective": {
+          "count": 2,
+          "times": [
+            0.0,
+            7.800000190734863
+          ],
+          "values": [
+            55.78310012817383,
+            55.78310012817383
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "cameraId": "3036",
+      "cameraNumber": 3036,
+      "fileOffset": "0xc4a08",
+      "recordSize": 236,
+      "flags": 96,
+      "curves": {
+        "positionX": {
+          "count": 2,
+          "times": [
+            0.0,
+            8.933329582214355
+          ],
+          "values": [
+            14.054800033569336,
+            13.408499717712402
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "positionY": {
+          "count": 2,
+          "times": [
+            0.0,
+            8.933329582214355
+          ],
+          "values": [
+            0.10920000076293945,
+            0.4000999927520752
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "positionZ": {
+          "count": 2,
+          "times": [
+            0.0,
+            8.933329582214355
+          ],
+          "values": [
+            4.730400085449219,
+            3.435699939727783
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "targetX": {
+          "count": 2,
+          "times": [
+            0.0,
+            8.933329582214355
+          ],
+          "values": [
+            15.805800437927246,
+            15.805800437927246
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "targetY": {
+          "count": 2,
+          "times": [
+            0.0,
+            8.933329582214355
+          ],
+          "values": [
+            1.1950000524520874,
+            1.1950000524520874
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "targetZ": {
+          "count": 2,
+          "times": [
+            0.0,
+            8.933329582214355
+          ],
+          "values": [
+            2.2553999423980713,
+            2.2553999423980713
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "roll": {
+          "count": 2,
+          "times": [
+            0.0,
+            8.933329582214355
+          ],
+          "values": [
+            0.0,
+            0.0
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "perspective": {
+          "count": 2,
+          "times": [
+            0.0,
+            8.933329582214355
+          ],
+          "values": [
+            57.66170120239258,
+            57.66170120239258
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "cameraId": "3037",
+      "cameraNumber": 3037,
+      "fileOffset": "0xc4af4",
+      "recordSize": 236,
+      "flags": 96,
+      "curves": {
+        "positionX": {
+          "count": 2,
+          "times": [
+            0.0,
+            10.0
+          ],
+          "values": [
+            14.510899543762207,
+            15.688899993896484
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "positionY": {
+          "count": 2,
+          "times": [
+            0.0,
+            10.0
+          ],
+          "values": [
+            1.651900053024292,
+            1.5734000205993652
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "positionZ": {
+          "count": 2,
+          "times": [
+            0.0,
+            10.0
+          ],
+          "values": [
+            -0.7735000252723694,
+            -0.7006999850273132
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "targetX": {
+          "count": 2,
+          "times": [
+            0.0,
+            10.0
+          ],
+          "values": [
+            15.763099670410156,
+            15.763099670410156
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "targetY": {
+          "count": 2,
+          "times": [
+            0.0,
+            10.0
+          ],
+          "values": [
+            0.8898000121116638,
+            0.8898000121116638
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "targetZ": {
+          "count": 2,
+          "times": [
+            0.0,
+            10.0
+          ],
+          "values": [
+            2.155600070953369,
+            2.155600070953369
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "roll": {
+          "count": 2,
+          "times": [
+            0.0,
+            10.0
+          ],
+          "values": [
+            0.0,
+            0.0
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        },
+        "perspective": {
+          "count": 2,
+          "times": [
+            0.0,
+            10.0
+          ],
+          "values": [
+            57.66170120239258,
+            57.66170120239258
+          ],
+          "slopes": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    }
+  ],
+  "evidenceBoundary": [
+    "Camera IDs, flags, counts, times, values, and slopes are decoded directly from the bounded MAPINFO ECAM node.",
+    "The channel order and parallel-array layout come from the recovered original CreateSplData source.",
+    "This catalog does not infer projection conventions, coordinate conversion, interpolation clock ownership, collision, or transition behavior."
+  ]
+}

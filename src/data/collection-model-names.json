@@ -1,0 +1,1299 @@
+{
+  "schema": "shenmue-collection-model-names-v2",
+  "source": {
+    "description": "English collection resource/name table in the US Dreamcast 1ST_READ.BIN",
+    "executable": "1ST_READ.BIN",
+    "tableStart": 2496772,
+    "tableEnd": 2500008
+  },
+  "counts": {
+    "models": 202,
+    "collectionTableNames": 167,
+    "crossReferencedNames": 1,
+    "alternateSizeModels": 34,
+    "uncataloguedGacAssets": 0
+  },
+  "items": {
+    "G_ITEM_GACG360G.MT5": {
+      "resourceCode": "GACG360",
+      "displayName": "R-360",
+      "status": "collection-table",
+      "executableOffset": 2499640
+    },
+    "G_ITEM_GACGABNG.MT5": {
+      "resourceCode": "GACGABN",
+      "displayName": "A Button",
+      "status": "collection-table",
+      "executableOffset": 2499464
+    },
+    "G_ITEM_GACGBBNG.MT5": {
+      "resourceCode": "GACGBBN",
+      "displayName": "B Button",
+      "status": "collection-table",
+      "executableOffset": 2499484
+    },
+    "G_ITEM_GACGBIRG.MT5": {
+      "resourceCode": "GACGBIR",
+      "displayName": "Mini Pool",
+      "status": "collection-table",
+      "executableOffset": 2499696
+    },
+    "G_ITEM_GACGCRYG.MT5": {
+      "resourceCode": "GACGCRY",
+      "displayName": "Cherry",
+      "status": "collection-table",
+      "executableOffset": 2499504
+    },
+    "G_ITEM_GACGDT1G.MT5": {
+      "resourceCode": "GACGDT1",
+      "displayName": "Mini Darts",
+      "status": "collection-table",
+      "executableOffset": 2499656
+    },
+    "G_ITEM_GACGJF1G.MT5": {
+      "resourceCode": "GACGJF1",
+      "displayName": "Jeffry 1",
+      "status": "collection-table",
+      "executableOffset": 2496964
+    },
+    "G_ITEM_GACGJF2G.MT5": {
+      "resourceCode": "GACGJF2",
+      "displayName": "Jeffry 2",
+      "status": "collection-table",
+      "executableOffset": 2496984
+    },
+    "G_ITEM_GACGJFAG.MT5": {
+      "resourceCode": "GACGJFA",
+      "displayName": "Kids Jeffry 1",
+      "status": "collection-table",
+      "executableOffset": 2497468
+    },
+    "G_ITEM_GACGJFBG.MT5": {
+      "resourceCode": "GACGJFB",
+      "displayName": "Kids Jeffry 2",
+      "status": "collection-table",
+      "executableOffset": 2497492
+    },
+    "G_ITEM_GACGJJ1G.MT5": {
+      "resourceCode": "GACGJJ1",
+      "displayName": "Jeffry 1 (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACGJF1",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACGJJ2G.MT5": {
+      "resourceCode": "GACGJJ2",
+      "displayName": "Jeffry 2 (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACGJF2",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACGJKAG.MT5": {
+      "resourceCode": "GACGJKA",
+      "displayName": "Kids Jacky 1",
+      "status": "collection-table",
+      "executableOffset": 2497252
+    },
+    "G_ITEM_GACGJKBG.MT5": {
+      "resourceCode": "GACGJKB",
+      "displayName": "Kids Jacky 2",
+      "status": "collection-table",
+      "executableOffset": 2497276
+    },
+    "G_ITEM_GACGSHEG.MT5": {
+      "resourceCode": "GACGSHE",
+      "displayName": "SHENMUEcontainer",
+      "status": "collection-table",
+      "executableOffset": 2499280
+    },
+    "G_ITEM_GACGSHPG.MT5": {
+      "resourceCode": "GACGSHP",
+      "displayName": "SHENMUEcontainer (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACGSHE",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACGSNAG.MT5": {
+      "resourceCode": "GACGSNA",
+      "displayName": "Kids Shun Di 1",
+      "status": "collection-table",
+      "executableOffset": 2497556
+    },
+    "G_ITEM_GACGSNBG.MT5": {
+      "resourceCode": "GACGSNB",
+      "displayName": "Kids Shun Di 2",
+      "status": "collection-table",
+      "executableOffset": 2497580
+    },
+    "G_ITEM_GACGSPHG.MT5": {
+      "resourceCode": "GACGSPH",
+      "displayName": "Mini Harrier",
+      "status": "collection-table",
+      "executableOffset": 2499592
+    },
+    "G_ITEM_GACGTRXG.MT5": {
+      "resourceCode": "GACGTRX",
+      "displayName": "Truck 1",
+      "status": "collection-table",
+      "executableOffset": 2498976
+    },
+    "G_ITEM_GACGTXXG.MT5": {
+      "resourceCode": "GACGTXX",
+      "displayName": "Truck 1 (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACGTRX",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACGWF1G.MT5": {
+      "resourceCode": "GACGWF1",
+      "displayName": "Wolf 1",
+      "status": "collection-table",
+      "executableOffset": 2496932
+    },
+    "G_ITEM_GACGWF2G.MT5": {
+      "resourceCode": "GACGWF2",
+      "displayName": "Wolf 2",
+      "status": "collection-table",
+      "executableOffset": 2496948
+    },
+    "G_ITEM_GACGXBNG.MT5": {
+      "resourceCode": "GACGXBN",
+      "displayName": "X Button",
+      "status": "collection-table",
+      "executableOffset": 2499424
+    },
+    "G_ITEM_GACGYBNG.MT5": {
+      "resourceCode": "GACGYBN",
+      "displayName": "Y Button",
+      "status": "collection-table",
+      "executableOffset": 2499444
+    },
+    "G_ITEM_GACH5BKG.MT5": {
+      "resourceCode": "GACH5BK",
+      "displayName": "Motor Scooter",
+      "status": "collection-table",
+      "executableOffset": 2498768
+    },
+    "G_ITEM_GACH5IKG.MT5": {
+      "resourceCode": "GACH5IK",
+      "displayName": "Anchor",
+      "status": "collection-table",
+      "executableOffset": 2499352
+    },
+    "G_ITEM_GACH5JKG.MT5": {
+      "resourceCode": "GACH5JK",
+      "displayName": "Mini Jukebox",
+      "status": "collection-table",
+      "executableOffset": 2499520
+    },
+    "G_ITEM_GACH5RRG.MT5": {
+      "resourceCode": "GACH5RR",
+      "displayName": "Hot Dog Truck (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACH5TR",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACH5SLG.MT5": {
+      "resourceCode": "GACH5SL",
+      "displayName": "Mini Slot Game",
+      "status": "collection-table",
+      "executableOffset": 2499544
+    },
+    "G_ITEM_GACH5TKG.MT5": {
+      "resourceCode": "GACH5TK",
+      "displayName": "Truck 4",
+      "status": "collection-table",
+      "executableOffset": 2499024
+    },
+    "G_ITEM_GACH5TRG.MT5": {
+      "resourceCode": "GACH5TR",
+      "displayName": "Hot Dog Truck",
+      "status": "collection-table",
+      "executableOffset": 2499040
+    },
+    "G_ITEM_GACH5TTG.MT5": {
+      "resourceCode": "GACH5TT",
+      "displayName": "Truck 4 (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACH5TK",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACH5UKG.MT5": {
+      "resourceCode": "GACH5UK",
+      "displayName": "Float",
+      "status": "collection-table",
+      "executableOffset": 2499408
+    },
+    "G_ITEM_GACIAA1G.MT5": {
+      "resourceCode": "GACIAA1",
+      "displayName": "Akira 1 (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACIAK1",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACIAA2G.MT5": {
+      "resourceCode": "GACIAA2",
+      "displayName": "Akira 2 (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACIAK2",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACIAK1G.MT5": {
+      "resourceCode": "GACIAK1",
+      "displayName": "Akira 1",
+      "status": "collection-table",
+      "executableOffset": 2496772
+    },
+    "G_ITEM_GACIAK2G.MT5": {
+      "resourceCode": "GACIAK2",
+      "displayName": "Akira 2",
+      "status": "collection-table",
+      "executableOffset": 2496788
+    },
+    "G_ITEM_GACIAKAG.MT5": {
+      "resourceCode": "GACIAKA",
+      "displayName": "Kids Akira 1",
+      "status": "collection-table",
+      "executableOffset": 2497204
+    },
+    "G_ITEM_GACIAKBG.MT5": {
+      "resourceCode": "GACIAKB",
+      "displayName": "Kids Akira 2",
+      "status": "collection-table",
+      "executableOffset": 2497228
+    },
+    "G_ITEM_GACIDUAG.MT5": {
+      "resourceCode": "GACIDUA",
+      "displayName": "Kids Dural S",
+      "status": "collection-table",
+      "executableOffset": 2497644
+    },
+    "G_ITEM_GACIDUBG.MT5": {
+      "resourceCode": "GACIDUB",
+      "displayName": "Kids Dural G",
+      "status": "collection-table",
+      "executableOffset": 2497668
+    },
+    "G_ITEM_GACIKA1G.MT5": {
+      "resourceCode": "GACIKA1",
+      "displayName": "Kage 1",
+      "status": "collection-table",
+      "executableOffset": 2497004
+    },
+    "G_ITEM_GACIKA2G.MT5": {
+      "resourceCode": "GACIKA2",
+      "displayName": "Kage 2",
+      "status": "collection-table",
+      "executableOffset": 2497020
+    },
+    "G_ITEM_GACIKAAG.MT5": {
+      "resourceCode": "GACIKAA",
+      "displayName": "Kids Kage 1",
+      "status": "collection-table",
+      "executableOffset": 2497516
+    },
+    "G_ITEM_GACIKABG.MT5": {
+      "resourceCode": "GACIKAB",
+      "displayName": "Kids Kage 2",
+      "status": "collection-table",
+      "executableOffset": 2497536
+    },
+    "G_ITEM_GACILIAG.MT5": {
+      "resourceCode": "GACILIA",
+      "displayName": "Kids Lion 1",
+      "status": "collection-table",
+      "executableOffset": 2497604
+    },
+    "G_ITEM_GACILIBG.MT5": {
+      "resourceCode": "GACILIB",
+      "displayName": "Kids Lion 2",
+      "status": "collection-table",
+      "executableOffset": 2497624
+    },
+    "G_ITEM_GACIWLAG.MT5": {
+      "resourceCode": "GACIWLA",
+      "displayName": "Kids Wolf 1",
+      "status": "collection-table",
+      "executableOffset": 2497428
+    },
+    "G_ITEM_GACIWLBG.MT5": {
+      "resourceCode": "GACIWLB",
+      "displayName": "Kids Wolf 2",
+      "status": "collection-table",
+      "executableOffset": 2497448
+    },
+    "G_ITEM_GACK66BG.MT5": {
+      "resourceCode": "GACK66B",
+      "displayName": "Heavy Bomb 2",
+      "status": "collection-table",
+      "executableOffset": 2498660
+    },
+    "G_ITEM_GACK66RG.MT5": {
+      "resourceCode": "GACK66R",
+      "displayName": "Heavy Bomb 3",
+      "status": "collection-table",
+      "executableOffset": 2498684
+    },
+    "G_ITEM_GACK6BKG.MT5": {
+      "resourceCode": "GACK6BK",
+      "displayName": "Motor Scooter (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACH5BK",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACK6DSG.MT5": {
+      "resourceCode": "GACK6DS",
+      "displayName": "Hornet (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACK6DY",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACK6DYG.MT5": {
+      "resourceCode": "GACK6DY",
+      "displayName": "Hornet",
+      "status": "collection-table",
+      "executableOffset": 2498896
+    },
+    "G_ITEM_GACK6HBG.MT5": {
+      "resourceCode": "GACK6HB",
+      "displayName": "Hang On 4",
+      "status": "collection-table",
+      "executableOffset": 2497992
+    },
+    "G_ITEM_GACK6HGG.MT5": {
+      "resourceCode": "GACK6HG",
+      "displayName": "Hang On 5",
+      "status": "collection-table",
+      "executableOffset": 2498012
+    },
+    "G_ITEM_GACK6HHG.MT5": {
+      "resourceCode": "GACK6HH",
+      "displayName": "Hang On 2",
+      "status": "collection-table",
+      "executableOffset": 2497952
+    },
+    "G_ITEM_GACK6HKG.MT5": {
+      "resourceCode": "GACK6HK",
+      "displayName": "Hang On G",
+      "status": "collection-table",
+      "executableOffset": 2498032
+    },
+    "G_ITEM_GACK6HOG.MT5": {
+      "resourceCode": "GACK6HO",
+      "displayName": "Hang On 1",
+      "status": "collection-table",
+      "executableOffset": 2497932
+    },
+    "G_ITEM_GACK6HYG.MT5": {
+      "resourceCode": "GACK6HY",
+      "displayName": "Hang On 3",
+      "status": "collection-table",
+      "executableOffset": 2497972
+    },
+    "G_ITEM_GACK6SPG.MT5": {
+      "resourceCode": "GACK6SP",
+      "displayName": "Space Harrier",
+      "status": "cross-referenced",
+      "executableOffset": 2498052,
+      "evidence": "Unnamed resource in the executable collection table; matched to the otherwise-unrepresented Space Harrier raffle toy in complete Shenmue I collection lists."
+    },
+    "G_ITEM_GACK6TSG.MT5": {
+      "resourceCode": "GACK6TS",
+      "displayName": "TRY-Z (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACK6TZ",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACK6TZG.MT5": {
+      "resourceCode": "GACK6TZ",
+      "displayName": "TRY-Z",
+      "status": "collection-table",
+      "executableOffset": 2497120
+    },
+    "G_ITEM_GACK6XBG.MT5": {
+      "resourceCode": "GACK6XB",
+      "displayName": "Hang On 4 (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACK6HB",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACK6XGG.MT5": {
+      "resourceCode": "GACK6XG",
+      "displayName": "Hang On 5 (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACK6HG",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACK6XHG.MT5": {
+      "resourceCode": "GACK6XH",
+      "displayName": "Hang On 2 (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACK6HH",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACK6XKG.MT5": {
+      "resourceCode": "GACK6XK",
+      "displayName": "Hang On G (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACK6HK",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACK6XOG.MT5": {
+      "resourceCode": "GACK6XO",
+      "displayName": "Hang On 1 (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACK6HO",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACK6XYG.MT5": {
+      "resourceCode": "GACK6XY",
+      "displayName": "Hang On 3 (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACK6HY",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACM400G.MT5": {
+      "resourceCode": "GACM400",
+      "displayName": "Mini QTE Title",
+      "status": "collection-table",
+      "executableOffset": 2499568
+    },
+    "G_ITEM_GACM401G.MT5": {
+      "resourceCode": "GACM401",
+      "displayName": "Wooden man",
+      "status": "collection-table",
+      "executableOffset": 2497080
+    },
+    "G_ITEM_GACO1FEG.MT5": {
+      "resourceCode": "GACO1FE",
+      "displayName": "Ferry",
+      "status": "collection-table",
+      "executableOffset": 2499368
+    },
+    "G_ITEM_GACO1FOG.MT5": {
+      "resourceCode": "GACO1FO",
+      "displayName": "Forklift",
+      "status": "collection-table",
+      "executableOffset": 2499076
+    },
+    "G_ITEM_GACO1HAG.MT5": {
+      "resourceCode": "GACO1HA",
+      "displayName": "Chip",
+      "status": "collection-table",
+      "executableOffset": 2498356
+    },
+    "G_ITEM_GACO1IRG.MT5": {
+      "resourceCode": "GACO1IR",
+      "displayName": "Big Philip",
+      "status": "collection-table",
+      "executableOffset": 2498296
+    },
+    "G_ITEM_GACO1K1G.MT5": {
+      "resourceCode": "GACO1K1",
+      "displayName": "Wagon 1",
+      "status": "collection-table",
+      "executableOffset": 2498912
+    },
+    "G_ITEM_GACO1K2G.MT5": {
+      "resourceCode": "GACO1K2",
+      "displayName": "Coupe'1",
+      "status": "collection-table",
+      "executableOffset": 2498816
+    },
+    "G_ITEM_GACO1K3G.MT5": {
+      "resourceCode": "GACO1K3",
+      "displayName": "Coupe'2",
+      "status": "collection-table",
+      "executableOffset": 2498832
+    },
+    "G_ITEM_GACO1K4G.MT5": {
+      "resourceCode": "GACO1K4",
+      "displayName": "Wagon 2",
+      "status": "collection-table",
+      "executableOffset": 2498928
+    },
+    "G_ITEM_GACO1K5G.MT5": {
+      "resourceCode": "GACO1K5",
+      "displayName": "Wagon 3",
+      "status": "collection-table",
+      "executableOffset": 2498944
+    },
+    "G_ITEM_GACO1K6G.MT5": {
+      "resourceCode": "GACO1K6",
+      "displayName": "Wagon 4",
+      "status": "collection-table",
+      "executableOffset": 2498960
+    },
+    "G_ITEM_GACO1K7G.MT5": {
+      "resourceCode": "GACO1K7",
+      "displayName": "Coupe'3",
+      "status": "collection-table",
+      "executableOffset": 2498848
+    },
+    "G_ITEM_GACO1K8G.MT5": {
+      "resourceCode": "GACO1K8",
+      "displayName": "Coupe'4",
+      "status": "collection-table",
+      "executableOffset": 2498864
+    },
+    "G_ITEM_GACO1K9G.MT5": {
+      "resourceCode": "GACO1K9",
+      "displayName": "Coupe'5",
+      "status": "collection-table",
+      "executableOffset": 2498880
+    },
+    "G_ITEM_GACO1KBG.MT5": {
+      "resourceCode": "GACO1KB",
+      "displayName": "Wooden Crate",
+      "status": "collection-table",
+      "executableOffset": 2499328
+    },
+    "G_ITEM_GACO1KJG.MT5": {
+      "resourceCode": "GACO1KJ",
+      "displayName": "Steering Wheel",
+      "status": "collection-table",
+      "executableOffset": 2499384
+    },
+    "G_ITEM_GACO1KOG.MT5": {
+      "resourceCode": "GACO1KO",
+      "displayName": "Container",
+      "status": "collection-table",
+      "executableOffset": 2499308
+    },
+    "G_ITEM_GACO1KUG.MT5": {
+      "resourceCode": "GACO1KU",
+      "displayName": "Crane",
+      "status": "collection-table",
+      "executableOffset": 2499264
+    },
+    "G_ITEM_GACO1SHG.MT5": {
+      "resourceCode": "GACO1SH",
+      "displayName": "Big Robin",
+      "status": "collection-table",
+      "executableOffset": 2498236
+    },
+    "G_ITEM_GACO1T1G.MT5": {
+      "resourceCode": "GACO1T1",
+      "displayName": "Truck 2",
+      "status": "collection-table",
+      "executableOffset": 2498992
+    },
+    "G_ITEM_GACO1T2G.MT5": {
+      "resourceCode": "GACO1T2",
+      "displayName": "Truck 3",
+      "status": "collection-table",
+      "executableOffset": 2499008
+    },
+    "G_ITEM_GACO1USG.MT5": {
+      "resourceCode": "GACO1US",
+      "displayName": "Pyonta",
+      "status": "collection-table",
+      "executableOffset": 2498424
+    },
+    "G_ITEM_GACO1YGG.MT5": {
+      "resourceCode": "GACO1YG",
+      "displayName": "Mary",
+      "status": "collection-table",
+      "executableOffset": 2498408
+    },
+    "G_ITEM_GACOCATG.MT5": {
+      "resourceCode": "GACOCAT",
+      "displayName": "Tora",
+      "status": "collection-table",
+      "executableOffset": 2498220
+    },
+    "G_ITEM_GACOCT2G.MT5": {
+      "resourceCode": "GACOCT2",
+      "displayName": "Kuro",
+      "status": "collection-table",
+      "executableOffset": 2498204
+    },
+    "G_ITEM_GACODG1G.MT5": {
+      "resourceCode": "GACODG1",
+      "displayName": "Pochi",
+      "status": "collection-table",
+      "executableOffset": 2498156
+    },
+    "G_ITEM_GACODG2G.MT5": {
+      "resourceCode": "GACODG2",
+      "displayName": "John",
+      "status": "collection-table",
+      "executableOffset": 2498172
+    },
+    "G_ITEM_GACODG3G.MT5": {
+      "resourceCode": "GACODG3",
+      "displayName": "Kelly",
+      "status": "collection-table",
+      "executableOffset": 2498188
+    },
+    "G_ITEM_GACOHA2G.MT5": {
+      "resourceCode": "GACOHA2",
+      "displayName": "Rap",
+      "status": "collection-table",
+      "executableOffset": 2498372
+    },
+    "G_ITEM_GACOHA3G.MT5": {
+      "resourceCode": "GACOHA3",
+      "displayName": "Pop",
+      "status": "collection-table",
+      "executableOffset": 2498384
+    },
+    "G_ITEM_GACOHA4G.MT5": {
+      "resourceCode": "GACOHA4",
+      "displayName": "Pip",
+      "status": "collection-table",
+      "executableOffset": 2498396
+    },
+    "G_ITEM_GACOJK1G.MT5": {
+      "resourceCode": "GACOJK1",
+      "displayName": "Jacky 1",
+      "status": "collection-table",
+      "executableOffset": 2496804
+    },
+    "G_ITEM_GACOJK2G.MT5": {
+      "resourceCode": "GACOJK2",
+      "displayName": "Jacky 2",
+      "status": "collection-table",
+      "executableOffset": 2496820
+    },
+    "G_ITEM_GACOKIRG.MT5": {
+      "resourceCode": "GACOKIR",
+      "displayName": "Little Philip",
+      "status": "collection-table",
+      "executableOffset": 2498316
+    },
+    "G_ITEM_GACOKK1G.MT5": {
+      "resourceCode": "GACOKK1",
+      "displayName": "Wagon 1 (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACO1K1",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACOKK2G.MT5": {
+      "resourceCode": "GACOKK2",
+      "displayName": "Coupe'1 (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACO1K2",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACOKK3G.MT5": {
+      "resourceCode": "GACOKK3",
+      "displayName": "Coupe'2 (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACO1K3",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACOKK4G.MT5": {
+      "resourceCode": "GACOKK4",
+      "displayName": "Wagon 2 (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACO1K4",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACOKK5G.MT5": {
+      "resourceCode": "GACOKK5",
+      "displayName": "Wagon 3 (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACO1K5",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACOKK6G.MT5": {
+      "resourceCode": "GACOKK6",
+      "displayName": "Wagon 4 (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACO1K6",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACOKK7G.MT5": {
+      "resourceCode": "GACOKK7",
+      "displayName": "Coupe'3 (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACO1K7",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACOKK8G.MT5": {
+      "resourceCode": "GACOKK8",
+      "displayName": "Coupe'4 (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACO1K8",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACOKK9G.MT5": {
+      "resourceCode": "GACOKK9",
+      "displayName": "Coupe'5 (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACO1K9",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACOKSHG.MT5": {
+      "resourceCode": "GACOKSH",
+      "displayName": "Little Robin",
+      "status": "collection-table",
+      "executableOffset": 2498256
+    },
+    "G_ITEM_GACOLA1G.MT5": {
+      "resourceCode": "GACOLA1",
+      "displayName": "Lau 1",
+      "status": "collection-table",
+      "executableOffset": 2496868
+    },
+    "G_ITEM_GACOLA2G.MT5": {
+      "resourceCode": "GACOLA2",
+      "displayName": "Lau 2",
+      "status": "collection-table",
+      "executableOffset": 2496884
+    },
+    "G_ITEM_GACOLAAG.MT5": {
+      "resourceCode": "GACOLAA",
+      "displayName": "Kids Lau 1",
+      "status": "collection-table",
+      "executableOffset": 2497348
+    },
+    "G_ITEM_GACOLABG.MT5": {
+      "resourceCode": "GACOLAB",
+      "displayName": "Kids Lau 2",
+      "status": "collection-table",
+      "executableOffset": 2497368
+    },
+    "G_ITEM_GACOOIRG.MT5": {
+      "resourceCode": "GACOOIR",
+      "displayName": "Philips",
+      "status": "collection-table",
+      "executableOffset": 2498340
+    },
+    "G_ITEM_GACOOSHG.MT5": {
+      "resourceCode": "GACOOSH",
+      "displayName": "Robins",
+      "status": "collection-table",
+      "executableOffset": 2498280
+    },
+    "G_ITEM_GACOPA1G.MT5": {
+      "resourceCode": "GACOPA1",
+      "displayName": "Pai 1",
+      "status": "collection-table",
+      "executableOffset": 2496900
+    },
+    "G_ITEM_GACOPA2G.MT5": {
+      "resourceCode": "GACOPA2",
+      "displayName": "Pai 2",
+      "status": "collection-table",
+      "executableOffset": 2496916
+    },
+    "G_ITEM_GACOPAAG.MT5": {
+      "resourceCode": "GACOPAA",
+      "displayName": "Kids Pai 1",
+      "status": "collection-table",
+      "executableOffset": 2497388
+    },
+    "G_ITEM_GACOPABG.MT5": {
+      "resourceCode": "GACOPAB",
+      "displayName": "Kids Pai 2",
+      "status": "collection-table",
+      "executableOffset": 2497408
+    },
+    "G_ITEM_GACOSA1G.MT5": {
+      "resourceCode": "GACOSA1",
+      "displayName": "Sarah 1",
+      "status": "collection-table",
+      "executableOffset": 2496836
+    },
+    "G_ITEM_GACOSA2G.MT5": {
+      "resourceCode": "GACOSA2",
+      "displayName": "Sarah 2",
+      "status": "collection-table",
+      "executableOffset": 2496852
+    },
+    "G_ITEM_GACOSAAG.MT5": {
+      "resourceCode": "GACOSAA",
+      "displayName": "Kids Sarah 1",
+      "status": "collection-table",
+      "executableOffset": 2497300
+    },
+    "G_ITEM_GACOSABG.MT5": {
+      "resourceCode": "GACOSAB",
+      "displayName": "Kids Sarah 2",
+      "status": "collection-table",
+      "executableOffset": 2497324
+    },
+    "G_ITEM_GACOTT1G.MT5": {
+      "resourceCode": "GACOTT1",
+      "displayName": "Truck 2 (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACO1T1",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACOTT2G.MT5": {
+      "resourceCode": "GACOTT2",
+      "displayName": "Truck 3 (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACO1T2",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACR016G.MT5": {
+      "resourceCode": "GACR016",
+      "displayName": "Heavy Bomb 1",
+      "status": "collection-table",
+      "executableOffset": 2498636
+    },
+    "G_ITEM_GACR0B2G.MT5": {
+      "resourceCode": "GACR0B2",
+      "displayName": "Binsbein 2",
+      "status": "collection-table",
+      "executableOffset": 2498096
+    },
+    "G_ITEM_GACR0B3G.MT5": {
+      "resourceCode": "GACR0B3",
+      "displayName": "Binsbein 3",
+      "status": "collection-table",
+      "executableOffset": 2498116
+    },
+    "G_ITEM_GACR0BNG.MT5": {
+      "resourceCode": "GACR0BN",
+      "displayName": "Binsbein 1",
+      "status": "collection-table",
+      "executableOffset": 2498076
+    },
+    "G_ITEM_GACR0GGG.MT5": {
+      "resourceCode": "GACR0GG",
+      "displayName": "Gear-o (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACRGGG",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACR0O2G.MT5": {
+      "resourceCode": "GACR0O2",
+      "displayName": "Jet Opa-opa",
+      "status": "collection-table",
+      "executableOffset": 2498548
+    },
+    "G_ITEM_GACR0OPG.MT5": {
+      "resourceCode": "GACR0OP",
+      "displayName": "Opa-opa",
+      "status": "collection-table",
+      "executableOffset": 2498532
+    },
+    "G_ITEM_GACRALFG.MT5": {
+      "resourceCode": "GACRALF",
+      "displayName": "Chao & Pian",
+      "status": "collection-table",
+      "executableOffset": 2498476
+    },
+    "G_ITEM_GACRAMYG.MT5": {
+      "resourceCode": "GACRAMY",
+      "displayName": "Amy",
+      "status": "collection-table",
+      "executableOffset": 2497868
+    },
+    "G_ITEM_GACRARXG.MT5": {
+      "resourceCode": "GACRARX",
+      "displayName": "Alex Kidd",
+      "status": "collection-table",
+      "executableOffset": 2498512
+    },
+    "G_ITEM_GACRAXXG.MT5": {
+      "resourceCode": "GACRAXX",
+      "displayName": "Alex Kidd (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACRARX",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACRBAKG.MT5": {
+      "resourceCode": "GACRBAK",
+      "displayName": "Bark",
+      "status": "collection-table",
+      "executableOffset": 2497820
+    },
+    "G_ITEM_GACRBING.MT5": {
+      "resourceCode": "GACRBIN",
+      "displayName": "Bean",
+      "status": "collection-table",
+      "executableOffset": 2497836
+    },
+    "G_ITEM_GACRBONG.MT5": {
+      "resourceCode": "GACRBON",
+      "displayName": "Bonanza Brothers",
+      "status": "collection-table",
+      "executableOffset": 2498740
+    },
+    "G_ITEM_GACRCASG.MT5": {
+      "resourceCode": "GACRCAS",
+      "displayName": "Dreamcasko",
+      "status": "collection-table",
+      "executableOffset": 2499820
+    },
+    "G_ITEM_GACRCKNG.MT5": {
+      "resourceCode": "GACRCKN",
+      "displayName": "Chicken Leg",
+      "status": "collection-table",
+      "executableOffset": 2498456
+    },
+    "G_ITEM_GACRCOBG.MT5": {
+      "resourceCode": "GACRCOB",
+      "displayName": "Coba Beach",
+      "status": "collection-table",
+      "executableOffset": 2498584
+    },
+    "G_ITEM_GACRDR1G.MT5": {
+      "resourceCode": "GACRDR1",
+      "displayName": "Dural Silver",
+      "status": "collection-table",
+      "executableOffset": 2497036
+    },
+    "G_ITEM_GACRDR2G.MT5": {
+      "resourceCode": "GACRDR2",
+      "displayName": "Dural Gold",
+      "status": "collection-table",
+      "executableOffset": 2497060
+    },
+    "G_ITEM_GACREGGG.MT5": {
+      "resourceCode": "GACREGG",
+      "displayName": "Eggman",
+      "status": "collection-table",
+      "executableOffset": 2497916
+    },
+    "G_ITEM_GACRESPG.MT5": {
+      "resourceCode": "GACRESP",
+      "displayName": "Espio",
+      "status": "collection-table",
+      "executableOffset": 2497880
+    },
+    "G_ITEM_GACRFNGG.MT5": {
+      "resourceCode": "GACRFNG",
+      "displayName": "Fang",
+      "status": "collection-table",
+      "executableOffset": 2497852
+    },
+    "G_ITEM_GACRFNNG.MT5": {
+      "resourceCode": "GACRFNN",
+      "displayName": "Fang (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACRFNG",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACRGBIG.MT5": {
+      "resourceCode": "GACRGBI",
+      "displayName": "B.B.Ultra",
+      "status": "collection-table",
+      "executableOffset": 2498136
+    },
+    "G_ITEM_GACRGGGG.MT5": {
+      "resourceCode": "GACRGGG",
+      "displayName": "Gear-o",
+      "status": "collection-table",
+      "executableOffset": 2499788
+    },
+    "G_ITEM_GACRIDAG.MT5": {
+      "resourceCode": "GACRIDA",
+      "displayName": "Aida II",
+      "status": "collection-table",
+      "executableOffset": 2498604
+    },
+    "G_ITEM_GACRLOPG.MT5": {
+      "resourceCode": "GACRLOP",
+      "displayName": "Ruber",
+      "status": "collection-table",
+      "executableOffset": 2498060
+    },
+    "G_ITEM_GACRMEGG.MT5": {
+      "resourceCode": "GACRMEG",
+      "displayName": "Megadra Brother",
+      "status": "collection-table",
+      "executableOffset": 2499764
+    },
+    "G_ITEM_GACRMETG.MT5": {
+      "resourceCode": "GACRMET",
+      "displayName": "Metal Sonic",
+      "status": "collection-table",
+      "executableOffset": 2497896
+    },
+    "G_ITEM_GACRMOBG.MT5": {
+      "resourceCode": "GACRMOB",
+      "displayName": "MOBO",
+      "status": "collection-table",
+      "executableOffset": 2498708
+    },
+    "G_ITEM_GACRMYUG.MT5": {
+      "resourceCode": "GACRMYU",
+      "displayName": "Myau",
+      "status": "collection-table",
+      "executableOffset": 2498440
+    },
+    "G_ITEM_GACRNT1G.MT5": {
+      "resourceCode": "GACRNT1",
+      "displayName": "NiGHTS 1",
+      "status": "collection-table",
+      "executableOffset": 2497692
+    },
+    "G_ITEM_GACRNT2G.MT5": {
+      "resourceCode": "GACRNT2",
+      "displayName": "NiGHTS 2",
+      "status": "collection-table",
+      "executableOffset": 2497712
+    },
+    "G_ITEM_GACRNUCG.MT5": {
+      "resourceCode": "GACRNUC",
+      "displayName": "Knuckles",
+      "status": "collection-table",
+      "executableOffset": 2497800
+    },
+    "G_ITEM_GACRPANG.MT5": {
+      "resourceCode": "GACRPAN",
+      "displayName": "Solo Wing",
+      "status": "collection-table",
+      "executableOffset": 2497136
+    },
+    "G_ITEM_GACRPOPG.MT5": {
+      "resourceCode": "GACRPOP",
+      "displayName": "Poppors",
+      "status": "collection-table",
+      "executableOffset": 2498568
+    },
+    "G_ITEM_GACRPPNG.MT5": {
+      "resourceCode": "GACRPPN",
+      "displayName": "Poppors (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACRPOP",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACRRBBG.MT5": {
+      "resourceCode": "GACRRBB",
+      "displayName": "ROBO (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACRROB",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACRRENG.MT5": {
+      "resourceCode": "GACRREN",
+      "displayName": "Rent-A-Hero",
+      "status": "collection-table",
+      "executableOffset": 2497100
+    },
+    "G_ITEM_GACRRISG.MT5": {
+      "resourceCode": "GACRRIS",
+      "displayName": "Ristar",
+      "status": "collection-table",
+      "executableOffset": 2498496
+    },
+    "G_ITEM_GACRROBG.MT5": {
+      "resourceCode": "GACRROB",
+      "displayName": "ROBO",
+      "status": "collection-table",
+      "executableOffset": 2498724
+    },
+    "G_ITEM_GACRSATG.MT5": {
+      "resourceCode": "GACRSAT",
+      "displayName": "Sataro",
+      "status": "collection-table",
+      "executableOffset": 2499804
+    },
+    "G_ITEM_GACRSHPG.MT5": {
+      "resourceCode": "GACRSHP",
+      "displayName": "Shop",
+      "status": "collection-table",
+      "executableOffset": 2498620
+    },
+    "G_ITEM_GACRSO1G.MT5": {
+      "resourceCode": "GACRSO1",
+      "displayName": "Sonic 1",
+      "status": "collection-table",
+      "executableOffset": 2497732
+    },
+    "G_ITEM_GACRSO2G.MT5": {
+      "resourceCode": "GACRSO2",
+      "displayName": "Sonic 2",
+      "status": "collection-table",
+      "executableOffset": 2497748
+    },
+    "G_ITEM_GACRSSCG.MT5": {
+      "resourceCode": "GACRSSC",
+      "displayName": "Super Sonic",
+      "status": "collection-table",
+      "executableOffset": 2497764
+    },
+    "G_ITEM_GACRTL1G.MT5": {
+      "resourceCode": "GACRTL1",
+      "displayName": "Tails",
+      "status": "collection-table",
+      "executableOffset": 2497784
+    },
+    "G_ITEM_GACS5BBG.MT5": {
+      "resourceCode": "GACS5BB",
+      "displayName": "Bus (Alternate)",
+      "status": "alternate-size-model",
+      "executableOffset": null,
+      "basedOnResourceCode": "GACS5BS",
+      "evidence": "Alternate-size model paired by resource family and matching MT5 structure; not an additional authored collection entry."
+    },
+    "G_ITEM_GACS5BSG.MT5": {
+      "resourceCode": "GACS5BS",
+      "displayName": "Bus",
+      "status": "collection-table",
+      "executableOffset": 2499064
+    },
+    "G_ITEM_GACS5EQG.MT5": {
+      "resourceCode": "GACS5EQ",
+      "displayName": "Mini QTE",
+      "status": "collection-table",
+      "executableOffset": 2499676
+    },
+    "G_ITEM_GACS5FBG.MT5": {
+      "resourceCode": "GACS5FB",
+      "displayName": "Forklift Blue",
+      "status": "collection-table",
+      "executableOffset": 2499240
+    },
+    "G_ITEM_GACS5FRG.MT5": {
+      "resourceCode": "GACS5FR",
+      "displayName": "Forklift Red",
+      "status": "collection-table",
+      "executableOffset": 2499216
+    },
+    "G_ITEM_GACS5HGG.MT5": {
+      "resourceCode": "GACS5HG",
+      "displayName": "Mini Hang On",
+      "status": "collection-table",
+      "executableOffset": 2499616
+    },
+    "G_ITEM_GACS5N1G.MT5": {
+      "resourceCode": "GACS5N1",
+      "displayName": "Forklift No.1",
+      "status": "collection-table",
+      "executableOffset": 2499096
+    },
+    "G_ITEM_GACS5N2G.MT5": {
+      "resourceCode": "GACS5N2",
+      "displayName": "Forklift No.2",
+      "status": "collection-table",
+      "executableOffset": 2499120
+    },
+    "G_ITEM_GACS5N3G.MT5": {
+      "resourceCode": "GACS5N3",
+      "displayName": "Forklift No.3",
+      "status": "collection-table",
+      "executableOffset": 2499144
+    },
+    "G_ITEM_GACS5N4G.MT5": {
+      "resourceCode": "GACS5N4",
+      "displayName": "Forklift No.4",
+      "status": "collection-table",
+      "executableOffset": 2499168
+    },
+    "G_ITEM_GACS5N5G.MT5": {
+      "resourceCode": "GACS5N5",
+      "displayName": "Forklift No.5",
+      "status": "collection-table",
+      "executableOffset": 2499192
+    },
+    "G_ITEM_KAB02FSG.MT5": {
+      "resourceCode": "KAB02FS",
+      "displayName": "Delivery Moped",
+      "status": "collection-table",
+      "executableOffset": 2498792
+    },
+    "G_ITEM_SAIK6BKG.MT5": {
+      "resourceCode": "SAIK6BK",
+      "displayName": "Dice 2",
+      "status": "collection-table",
+      "executableOffset": 2499976
+    },
+    "G_ITEM_SAIK6REG.MT5": {
+      "resourceCode": "SAIK6RE",
+      "displayName": "Dice 3",
+      "status": "collection-table",
+      "executableOffset": 2499992
+    },
+    "G_ITEM_SAIK6WHG.MT5": {
+      "resourceCode": "SAIK6WH",
+      "displayName": "Dice 1",
+      "status": "collection-table",
+      "executableOffset": 2499960
+    },
+    "G_ITEM_SPBK6BRG.MT5": {
+      "resourceCode": "SPBK6BR",
+      "displayName": "Super Ball 2",
+      "status": "collection-table",
+      "executableOffset": 2499912
+    },
+    "G_ITEM_SPBK6REG.MT5": {
+      "resourceCode": "SPBK6RE",
+      "displayName": "Super Ball 1",
+      "status": "collection-table",
+      "executableOffset": 2499888
+    },
+    "G_ITEM_SPBK6YEG.MT5": {
+      "resourceCode": "SPBK6YE",
+      "displayName": "Super Ball 3",
+      "status": "collection-table",
+      "executableOffset": 2499936
+    },
+    "G_ITEM_SYOGHG0G.MT5": {
+      "resourceCode": "SYOGHG0",
+      "displayName": "Hang On Token",
+      "status": "collection-table",
+      "executableOffset": 2499864
+    },
+    "G_ITEM_SYOGMD1G.MT5": {
+      "resourceCode": "SYOGMD1",
+      "displayName": "Matsuyama Prize",
+      "status": "collection-table",
+      "executableOffset": 2499716
+    },
+    "G_ITEM_SYOGMD5G.MT5": {
+      "resourceCode": "SYOGMD5",
+      "displayName": "Mitsuzuka Prize",
+      "status": "collection-table",
+      "executableOffset": 2499740
+    },
+    "G_ITEM_SYOGSH0G.MT5": {
+      "resourceCode": "SYOGSH0",
+      "displayName": "Harrier Token",
+      "status": "collection-table",
+      "executableOffset": 2499840
+    },
+    "G_ITEM_YKW0201G.MT5": {
+      "resourceCode": "YKW0201",
+      "displayName": "Mr.Yukawa Happi",
+      "status": "collection-table",
+      "executableOffset": 2497156
+    },
+    "G_ITEM_YWT0201G.MT5": {
+      "resourceCode": "YWT0201",
+      "displayName": "Mr.Yukawa Suit",
+      "status": "collection-table",
+      "executableOffset": 2497180
+    }
+  }
+}

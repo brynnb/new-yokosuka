@@ -1,0 +1,88 @@
+{
+  "schema": "new-yokosuka-runtime-placement-manifest-v1",
+  "source": {
+    "capture": "captures/pvr/20260726-002424-frame-178913/ram.bin",
+    "saveState": "Flycast displayed slot 6 (Lua state index 5)",
+    "area": "DGCT",
+    "coordinateConversion": "browser = [-runtimeX, runtimeY, runtimeZ]"
+  },
+  "placements": [
+    {
+      "model": "S3_DGCT_BIGM401G.MT5",
+      "position": [-0.965, 1.085, -7.4264],
+      "rotationDegrees": [-45, 0, 0],
+      "scale": [1, 1, 1],
+      "runtime": {"objectTag": "MIT1", "taskAddress": "0x8c57a4e0", "placementSource": "flycast-task"}
+    },
+    {
+      "model": "S3_DGCT_BIGM401G.MT5",
+      "position": [-1.24, 1.085, -7.4264],
+      "rotationDegrees": [-45, 0, 0],
+      "scale": [1, 1, 1],
+      "runtime": {"objectTag": "MIT2", "taskAddress": "0x8c57a940", "placementSource": "flycast-task"}
+    },
+    {
+      "model": "S3_DGCT_BIGM401G.MT5",
+      "position": [-1.515, 1.085, -7.4264],
+      "rotationDegrees": [-45, 0, 0],
+      "scale": [1, 1, 1],
+      "runtime": {"objectTag": "MIT3", "taskAddress": "0x8c57ada0", "placementSource": "flycast-task"}
+    },
+    {
+      "model": "S3_DGCT_BIGM402G.MT5",
+      "position": [-0.965, 1.9311, -7.7048],
+      "rotationDegrees": [0, 0, 0],
+      "scale": [1, 1, 1],
+      "runtime": {"objectTag": "QTL1", "taskAddress": "0x8c57b200", "placementSource": "flycast-task"}
+    },
+    {
+      "model": "S3_DGCT_BIGM402G.MT5",
+      "position": [-1.24, 1.9311, -7.7048],
+      "rotationDegrees": [0, 0, 0],
+      "scale": [1, 1, 1],
+      "runtime": {"objectTag": "QTL2", "taskAddress": "0x8c57b660", "placementSource": "flycast-task"}
+    },
+    {
+      "model": "S3_DGCT_BIGM402G.MT5",
+      "position": [-1.515, 1.9311, -7.7048],
+      "rotationDegrees": [0, 0, 0],
+      "scale": [1, 1, 1],
+      "runtime": {"objectTag": "QTL3", "taskAddress": "0x8c57bac0", "placementSource": "flycast-task"}
+    },
+    {
+      "model": "S3_DGCT_DR17_003.MT5",
+      "position": [-2.7, 0, 0.003],
+      "rotationDegrees": [0, 180, 0],
+      "scale": [1, 1, 1],
+      "runtime": {"objectTag": "CPAM", "taskAddress": "0x8c5ba640", "placementSource": "flycast-task"}
+    },
+    {
+      "model": "S3_DGCT_DARM401G.MT5",
+      "position": [-0.2, 0, -4.6],
+      "rotationDegrees": [0, -90, 0],
+      "scale": [1, 1, 1],
+      "runtime": {"objectTag": "DART", "taskAddress": "0x8c6f5540", "placementSource": "flycast-task"}
+    },
+    {
+      "model": "S3_DGCT_DARM401G.MT5",
+      "position": [-0.2, 0, -3.7],
+      "rotationDegrees": [0, -90, 0],
+      "scale": [1, 1, 1],
+      "runtime": {"objectTag": "DAR2", "taskAddress": "0x8c6f6820", "placementSource": "flycast-task"}
+    },
+    {
+      "model": "S3_DGCT_DARK310G.MT5",
+      "position": [-0.72, 1.416923, -4.599643],
+      "rotationDegrees": [0, 0, 0],
+      "scale": [1, 1, 1],
+      "runtime": {"objectTag": "DRT1", "placementSource": "browser-physical-darts-runtime"}
+    },
+    {
+      "model": "S3_DGCT_DARK310G.MT5",
+      "position": [-0.72, 1.416923, -3.699643],
+      "rotationDegrees": [0, 0, 0],
+      "scale": [1, 1, 1],
+      "runtime": {"objectTag": "DRT2", "placementSource": "browser-physical-darts-runtime"}
+    }
+  ]
+}

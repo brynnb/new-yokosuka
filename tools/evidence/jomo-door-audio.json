@@ -1,0 +1,1159 @@
+{
+  "schema": "new-yokosuka-jomo-door-audio-evidence-v3",
+  "generatedBy": "tools/audio/extract_jomo_door_audio_evidence.py",
+  "source": {
+    "mapinfo": "SCENE/01/JOMO/MAPINFO.BIN",
+    "mapinfoSha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
+    "locationBank": "F1OMOYAA.SND",
+    "locationBankSha256": "41cdccd04ef8f4835a946f3f1ada404d4f1607adbae6c4bf8da5b825d23c9abb",
+    "scn3FileOffset": "0x8",
+    "staticDataFileOffset": "0x8fda4",
+    "phaseTrace": "tools/evidence/jomo-dr23-door-phase-dispatch.csv",
+    "phaseTraceSha256": "995254a74123e9f6e37d2acef52d00b9646338c3dbc05a9b3aac09cf99eae036",
+    "pairDataflowTrace": "tools/evidence/jomo-dr23-door-model-pair-dataflow.csv",
+    "pairDataflowTraceSha256": "db6228a0e196c87d3c651aa730670118f9d8f3c7f38fdac8e319a28336f3395f"
+  },
+  "tableLayout": {
+    "logicalRecords": {
+      "staticOffset": "0x28bc",
+      "fileOffset": "0x92660",
+      "count": 18,
+      "wordsPerRecord": 13
+    },
+    "logicalMapping": {
+      "staticOffset": "0x2c64",
+      "fileOffset": "0x92a08",
+      "count": 18,
+      "wordsPerRecord": 2
+    },
+    "modelAudioRows": {
+      "staticOffset": "0x2d34",
+      "fileOffset": "0x92ad8",
+      "count": 7,
+      "wordsPerRecord": 4,
+      "fields": [
+        "typed model-code descriptor",
+        "logical action type",
+        "authored audio command 0",
+        "authored audio command 1"
+      ]
+    },
+    "placements": {
+      "staticOffset": "0x2da4",
+      "fileOffset": "0x92b48",
+      "count": 18,
+      "wordsPerRecord": 9,
+      "fields": [
+        "record type",
+        "model/audio row index",
+        "scale X",
+        "scale Y",
+        "scale Z",
+        "position X",
+        "position Y",
+        "position Z",
+        "fixed-turn Y"
+      ]
+    }
+  },
+  "nativeDataflow": {
+    "sharedInitializer": {
+      "fileOffset": "0x15af0",
+      "runtimeAddress": "0x0c3db230",
+      "installedContextPointers": {
+        "c0": "logical records",
+        "c4": "logical mapping",
+        "c8": "model/audio rows",
+        "cc": "placements"
+      }
+    },
+    "modelActionLookup": {
+      "fileOffset": "0x16d82",
+      "runtimeAddress": "0x0c3dc4c2",
+      "result": "model/audio row word 1"
+    },
+    "modelResourceLookup": {
+      "fileOffset": "0x17330",
+      "runtimeAddress": "0x0c3dca70",
+      "result": "model/audio row typed model descriptor"
+    },
+    "openingCommandReads": [
+      {
+        "fileOffset": "0x5104",
+        "runtimeAddress": "0x0c3ca844",
+        "modelAudioRowWord": 2,
+        "authoredPairIndex": 0
+      },
+      {
+        "fileOffset": "0x554c",
+        "runtimeAddress": "0x0c3cac8c",
+        "modelAudioRowWord": 2,
+        "authoredPairIndex": 0
+      },
+      {
+        "fileOffset": "0x7fb8",
+        "runtimeAddress": "0x0c3cd6f8",
+        "modelAudioRowWord": 2,
+        "authoredPairIndex": 0
+      },
+      {
+        "fileOffset": "0x9e74",
+        "runtimeAddress": "0x0c3cf5b4",
+        "modelAudioRowWord": 2,
+        "authoredPairIndex": 0
+      },
+      {
+        "fileOffset": "0xb4f4",
+        "runtimeAddress": "0x0c3d0c34",
+        "modelAudioRowWord": 2,
+        "authoredPairIndex": 0
+      },
+      {
+        "fileOffset": "0xe074",
+        "runtimeAddress": "0x0c3d37b4",
+        "modelAudioRowWord": 2,
+        "authoredPairIndex": 0
+      },
+      {
+        "fileOffset": "0x11694",
+        "runtimeAddress": "0x0c3d6dd4",
+        "modelAudioRowWord": 2,
+        "authoredPairIndex": 0
+      }
+    ],
+    "closingCommandReads": [
+      {
+        "fileOffset": "0x5ad2",
+        "runtimeAddress": "0x0c3cb212",
+        "modelAudioRowWord": 3,
+        "authoredPairIndex": 1
+      },
+      {
+        "fileOffset": "0x8500",
+        "runtimeAddress": "0x0c3cdc40",
+        "modelAudioRowWord": 3,
+        "authoredPairIndex": 1
+      },
+      {
+        "fileOffset": "0xa11c",
+        "runtimeAddress": "0x0c3cf85c",
+        "modelAudioRowWord": 3,
+        "authoredPairIndex": 1
+      },
+      {
+        "fileOffset": "0xede8",
+        "runtimeAddress": "0x0c3d4528",
+        "modelAudioRowWord": 3,
+        "authoredPairIndex": 1
+      },
+      {
+        "fileOffset": "0xfd08",
+        "runtimeAddress": "0x0c3d5448",
+        "modelAudioRowWord": 3,
+        "authoredPairIndex": 1
+      },
+      {
+        "fileOffset": "0x11984",
+        "runtimeAddress": "0x0c3d70c4",
+        "modelAudioRowWord": 3,
+        "authoredPairIndex": 1
+      }
+    ],
+    "selector11LogicalSoundReads": [
+      {
+        "readFileOffset": "0x12794",
+        "callFileOffset": "0x1280e",
+        "logicalRecordWord": 9
+      },
+      {
+        "readFileOffset": "0x128e0",
+        "callFileOffset": "0x1295a",
+        "logicalRecordWord": 9
+      }
+    ],
+    "selector12LogicalSoundReads": {
+      "readFileOffsets": [
+        "0x14694",
+        "0x147d0"
+      ],
+      "callFileOffsets": [
+        "0x143d6",
+        "0x14716",
+        "0x14852",
+        "0x14c9e"
+      ],
+      "logicalRecordWord": 9,
+      "note": "Four calls share two generated logical-word-9 read blocks through branched state-machine paths."
+    }
+  },
+  "summary": {
+    "logicalRecordCount": 18,
+    "modelAudioRowCount": 7,
+    "placementCount": 18,
+    "uniqueCommandCount": 10,
+    "uniqueCommands": [
+      "ab020200",
+      "ab020300",
+      "ab020400",
+      "ab020500",
+      "ab020000",
+      "ab020100",
+      "ab020600",
+      "ab020700",
+      "ab020800",
+      "ab020900"
+    ]
+  },
+  "modelAudioRows": [
+    {
+      "rowIndex": 0,
+      "fileOffset": "0x92ad8",
+      "modelDescriptorFileOffset": "0x92a90",
+      "modelCode": "DR15_026",
+      "model": "S1_JOMO_DR15_026.MT5",
+      "logicalActionType": 20,
+      "commands": [
+        {
+          "authoredPairIndex": 0,
+          "word": "0x000202ab",
+          "commandHex": "ab020200",
+          "group": "AB02",
+          "track": 2,
+          "semanticRole": "openingStart"
+        },
+        {
+          "authoredPairIndex": 1,
+          "word": "0x000302ab",
+          "commandHex": "ab020300",
+          "group": "AB02",
+          "track": 3,
+          "semanticRole": "closingStart"
+        }
+      ]
+    },
+    {
+      "rowIndex": 1,
+      "fileOffset": "0x92ae8",
+      "modelDescriptorFileOffset": "0x92a99",
+      "modelCode": "DR15_029",
+      "model": "S1_JOMO_DR15_029.MT5",
+      "logicalActionType": 20,
+      "commands": [
+        {
+          "authoredPairIndex": 0,
+          "word": "0x000402ab",
+          "commandHex": "ab020400",
+          "group": "AB02",
+          "track": 4,
+          "semanticRole": "openingStart"
+        },
+        {
+          "authoredPairIndex": 1,
+          "word": "0x000502ab",
+          "commandHex": "ab020500",
+          "group": "AB02",
+          "track": 5,
+          "semanticRole": "closingStart"
+        }
+      ]
+    },
+    {
+      "rowIndex": 2,
+      "fileOffset": "0x92af8",
+      "modelDescriptorFileOffset": "0x92aa2",
+      "modelCode": "DR01_015",
+      "model": "S1_JOMO_DR01_015.MT5",
+      "logicalActionType": 27,
+      "commands": [
+        {
+          "authoredPairIndex": 0,
+          "word": "0x000002ab",
+          "commandHex": "ab020000",
+          "group": "AB02",
+          "track": 0,
+          "semanticRole": "openingStart"
+        },
+        {
+          "authoredPairIndex": 1,
+          "word": "0x000102ab",
+          "commandHex": "ab020100",
+          "group": "AB02",
+          "track": 1,
+          "semanticRole": "closingStart"
+        }
+      ]
+    },
+    {
+      "rowIndex": 3,
+      "fileOffset": "0x92b08",
+      "modelDescriptorFileOffset": "0x92aab",
+      "modelCode": "DR15_028",
+      "model": "S1_JOMO_DR15_028.MT5",
+      "logicalActionType": 20,
+      "commands": [
+        {
+          "authoredPairIndex": 0,
+          "word": "0x000602ab",
+          "commandHex": "ab020600",
+          "group": "AB02",
+          "track": 6,
+          "semanticRole": "openingStart"
+        },
+        {
+          "authoredPairIndex": 1,
+          "word": "0x000702ab",
+          "commandHex": "ab020700",
+          "group": "AB02",
+          "track": 7,
+          "semanticRole": "closingStart"
+        }
+      ]
+    },
+    {
+      "rowIndex": 4,
+      "fileOffset": "0x92b18",
+      "modelDescriptorFileOffset": "0x92ab4",
+      "modelCode": "DR15_016",
+      "model": "S1_JOMO_DR15_016.MT5",
+      "logicalActionType": 15,
+      "commands": [
+        {
+          "authoredPairIndex": 0,
+          "word": "0x000802ab",
+          "commandHex": "ab020800",
+          "group": "AB02",
+          "track": 8,
+          "semanticRole": "openingStart"
+        },
+        {
+          "authoredPairIndex": 1,
+          "word": "0x000902ab",
+          "commandHex": "ab020900",
+          "group": "AB02",
+          "track": 9,
+          "semanticRole": "closingStart"
+        }
+      ]
+    },
+    {
+      "rowIndex": 5,
+      "fileOffset": "0x92b28",
+      "modelDescriptorFileOffset": "0x92abd",
+      "modelCode": "DR01_016",
+      "model": "S1_JOMO_DR01_016.MT5",
+      "logicalActionType": 30,
+      "commands": [
+        {
+          "authoredPairIndex": 0,
+          "word": "0x000002ab",
+          "commandHex": "ab020000",
+          "group": "AB02",
+          "track": 0,
+          "semanticRole": "openingStart"
+        },
+        {
+          "authoredPairIndex": 1,
+          "word": "0x000102ab",
+          "commandHex": "ab020100",
+          "group": "AB02",
+          "track": 1,
+          "semanticRole": "closingStart"
+        }
+      ]
+    },
+    {
+      "rowIndex": 6,
+      "fileOffset": "0x92b38",
+      "modelDescriptorFileOffset": "0x92ac6",
+      "modelCode": "DR23_000",
+      "model": "S1_JOMO_DR23_000.MT5",
+      "logicalActionType": 23,
+      "commands": [
+        {
+          "authoredPairIndex": 0,
+          "word": "0x000202ab",
+          "commandHex": "ab020200",
+          "group": "AB02",
+          "track": 2,
+          "semanticRole": "openingStart"
+        },
+        {
+          "authoredPairIndex": 1,
+          "word": "0x000302ab",
+          "commandHex": "ab020300",
+          "group": "AB02",
+          "track": 3,
+          "semanticRole": "closingStart"
+        }
+      ]
+    }
+  ],
+  "logicalRecords": [
+    {
+      "recordIndex": 0,
+      "fileOffset": "0x92660",
+      "logicalActionId": 0,
+      "packedObjectKeys": "0x00660067",
+      "initialSoundWords": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "recordIndex": 1,
+      "fileOffset": "0x92694",
+      "logicalActionId": 4,
+      "packedObjectKeys": "0x00680069",
+      "initialSoundWords": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "recordIndex": 2,
+      "fileOffset": "0x926c8",
+      "logicalActionId": 6,
+      "packedObjectKeys": "0x00760077",
+      "initialSoundWords": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "recordIndex": 3,
+      "fileOffset": "0x926fc",
+      "logicalActionId": 8,
+      "packedObjectKeys": "0x006e006f",
+      "initialSoundWords": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "recordIndex": 4,
+      "fileOffset": "0x92730",
+      "logicalActionId": 10,
+      "packedObjectKeys": "0x00700071",
+      "initialSoundWords": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "recordIndex": 5,
+      "fileOffset": "0x92764",
+      "logicalActionId": 12,
+      "packedObjectKeys": "0x006c006d",
+      "initialSoundWords": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "recordIndex": 6,
+      "fileOffset": "0x92798",
+      "logicalActionId": 14,
+      "packedObjectKeys": "0x00720073",
+      "initialSoundWords": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "recordIndex": 7,
+      "fileOffset": "0x927cc",
+      "logicalActionId": 16,
+      "packedObjectKeys": "0x00740075",
+      "initialSoundWords": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "recordIndex": 8,
+      "fileOffset": "0x92800",
+      "logicalActionId": 18,
+      "packedObjectKeys": "0x00640078",
+      "initialSoundWords": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "recordIndex": 9,
+      "fileOffset": "0x92834",
+      "logicalActionId": 20,
+      "packedObjectKeys": "0x00790065",
+      "initialSoundWords": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "recordIndex": 10,
+      "fileOffset": "0x92868",
+      "logicalActionId": 22,
+      "packedObjectKeys": "0x007b007b",
+      "initialSoundWords": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "recordIndex": 11,
+      "fileOffset": "0x9289c",
+      "logicalActionId": 24,
+      "packedObjectKeys": "0x007a007a",
+      "initialSoundWords": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "recordIndex": 12,
+      "fileOffset": "0x928d0",
+      "logicalActionId": 26,
+      "packedObjectKeys": "0x007c007c",
+      "initialSoundWords": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "recordIndex": 13,
+      "fileOffset": "0x92904",
+      "logicalActionId": 28,
+      "packedObjectKeys": "0x007d007d",
+      "initialSoundWords": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "recordIndex": 14,
+      "fileOffset": "0x92938",
+      "logicalActionId": 30,
+      "packedObjectKeys": "0x00830084",
+      "initialSoundWords": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "recordIndex": 15,
+      "fileOffset": "0x9296c",
+      "logicalActionId": 32,
+      "packedObjectKeys": "0x00810082",
+      "initialSoundWords": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "recordIndex": 16,
+      "fileOffset": "0x929a0",
+      "logicalActionId": 34,
+      "packedObjectKeys": "0x007f0080",
+      "initialSoundWords": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "recordIndex": 17,
+      "fileOffset": "0x929d4",
+      "logicalActionId": null,
+      "packedObjectKeys": "0x00640064",
+      "initialSoundWords": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    }
+  ],
+  "logicalMapping": [
+    {
+      "mappingIndex": 0,
+      "fileOffset": "0x92a08",
+      "mappedRecordIndex": 2
+    },
+    {
+      "mappingIndex": 1,
+      "fileOffset": "0x92a10",
+      "mappedRecordIndex": 3
+    },
+    {
+      "mappingIndex": 2,
+      "fileOffset": "0x92a18",
+      "mappedRecordIndex": 4
+    },
+    {
+      "mappingIndex": 3,
+      "fileOffset": "0x92a20",
+      "mappedRecordIndex": 13
+    },
+    {
+      "mappingIndex": 4,
+      "fileOffset": "0x92a28",
+      "mappedRecordIndex": 9
+    },
+    {
+      "mappingIndex": 5,
+      "fileOffset": "0x92a30",
+      "mappedRecordIndex": 10
+    },
+    {
+      "mappingIndex": 6,
+      "fileOffset": "0x92a38",
+      "mappedRecordIndex": 8
+    },
+    {
+      "mappingIndex": 7,
+      "fileOffset": "0x92a40",
+      "mappedRecordIndex": 11
+    },
+    {
+      "mappingIndex": 8,
+      "fileOffset": "0x92a48",
+      "mappedRecordIndex": 12
+    },
+    {
+      "mappingIndex": 9,
+      "fileOffset": "0x92a50",
+      "mappedRecordIndex": 0
+    },
+    {
+      "mappingIndex": 10,
+      "fileOffset": "0x92a58",
+      "mappedRecordIndex": 1
+    },
+    {
+      "mappingIndex": 11,
+      "fileOffset": "0x92a60",
+      "mappedRecordIndex": 6
+    },
+    {
+      "mappingIndex": 12,
+      "fileOffset": "0x92a68",
+      "mappedRecordIndex": 7
+    },
+    {
+      "mappingIndex": 13,
+      "fileOffset": "0x92a70",
+      "mappedRecordIndex": 5
+    },
+    {
+      "mappingIndex": 14,
+      "fileOffset": "0x92a78",
+      "mappedRecordIndex": 14
+    },
+    {
+      "mappingIndex": 15,
+      "fileOffset": "0x92a80",
+      "mappedRecordIndex": 15
+    },
+    {
+      "mappingIndex": 16,
+      "fileOffset": "0x92a88",
+      "mappedRecordIndex": 16
+    },
+    {
+      "mappingIndex": 17,
+      "fileOffset": "0x92a90",
+      "mappedRecordIndex": 17
+    }
+  ],
+  "placements": [
+    {
+      "placementIndex": 0,
+      "fileOffset": "0x92b48",
+      "recordType": 2,
+      "modelAudioRowIndex": 0,
+      "modelCode": "DR15_026",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "position": [
+        -0.3230000138282776,
+        0.0,
+        -1.8162000179290771
+      ],
+      "fixedTurnY": "0x00000000",
+      "rotationYDegrees": 0.0
+    },
+    {
+      "placementIndex": 1,
+      "fileOffset": "0x92b6c",
+      "recordType": 2,
+      "modelAudioRowIndex": 1,
+      "modelCode": "DR15_029",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "position": [
+        -0.08699999749660492,
+        0.0,
+        1.850000023841858
+      ],
+      "fixedTurnY": "0x00008000",
+      "rotationYDegrees": 180.0
+    },
+    {
+      "placementIndex": 2,
+      "fileOffset": "0x92b90",
+      "recordType": 2,
+      "modelAudioRowIndex": 0,
+      "modelCode": "DR15_026",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "position": [
+        4.514999866485596,
+        0.0,
+        -1.815999984741211
+      ],
+      "fixedTurnY": "0x00000000",
+      "rotationYDegrees": 0.0
+    },
+    {
+      "placementIndex": 3,
+      "fileOffset": "0x92bb4",
+      "recordType": 2,
+      "modelAudioRowIndex": 0,
+      "modelCode": "DR15_026",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "position": [
+        6.3460001945495605,
+        0.0,
+        0.014999999664723873
+      ],
+      "fixedTurnY": "0x00004000",
+      "rotationYDegrees": 90.0
+    },
+    {
+      "placementIndex": 4,
+      "fileOffset": "0x92bd8",
+      "recordType": 2,
+      "modelAudioRowIndex": 1,
+      "modelCode": "DR15_029",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "position": [
+        4.514999866485596,
+        0.0,
+        1.8142000436782837
+      ],
+      "fixedTurnY": "0x00008000",
+      "rotationYDegrees": 180.0
+    },
+    {
+      "placementIndex": 5,
+      "fileOffset": "0x92bfc",
+      "recordType": 2,
+      "modelAudioRowIndex": 5,
+      "modelCode": "DR01_016",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "position": [
+        5.400000095367432,
+        0.0,
+        -3.6149001121520996
+      ],
+      "fixedTurnY": "0x00000000",
+      "rotationYDegrees": 0.0
+    },
+    {
+      "placementIndex": 6,
+      "fileOffset": "0x92c20",
+      "recordType": 2,
+      "modelAudioRowIndex": 2,
+      "modelCode": "DR01_015",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "position": [
+        21.006999969482422,
+        0.0,
+        1.8329999446868896
+      ],
+      "fixedTurnY": "0x00000000",
+      "rotationYDegrees": 0.0
+    },
+    {
+      "placementIndex": 7,
+      "fileOffset": "0x92c44",
+      "recordType": 2,
+      "modelAudioRowIndex": 2,
+      "modelCode": "DR01_015",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "position": [
+        16.302000045776367,
+        0.0,
+        1.8329999446868896
+      ],
+      "fixedTurnY": "0x00000000",
+      "rotationYDegrees": 0.0
+    },
+    {
+      "placementIndex": 8,
+      "fileOffset": "0x92c68",
+      "recordType": 2,
+      "modelAudioRowIndex": 3,
+      "modelCode": "DR15_028",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "position": [
+        15.345000267028809,
+        0.0,
+        -0.018300000578165054
+      ],
+      "fixedTurnY": "0x00000000",
+      "rotationYDegrees": 0.0
+    },
+    {
+      "placementIndex": 9,
+      "fileOffset": "0x92c8c",
+      "recordType": 2,
+      "modelAudioRowIndex": 0,
+      "modelCode": "DR15_026",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "position": [
+        15.371999740600586,
+        0.0,
+        -4.554999828338623
+      ],
+      "fixedTurnY": "0x00000000",
+      "rotationYDegrees": 0.0
+    },
+    {
+      "placementIndex": 10,
+      "fileOffset": "0x92cb0",
+      "recordType": 2,
+      "modelAudioRowIndex": 0,
+      "modelCode": "DR15_026",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "position": [
+        17.218000411987305,
+        0.0,
+        -1.8344000577926636
+      ],
+      "fixedTurnY": "0x00004000",
+      "rotationYDegrees": 90.0
+    },
+    {
+      "placementIndex": 11,
+      "fileOffset": "0x92cd4",
+      "recordType": 2,
+      "modelAudioRowIndex": 0,
+      "modelCode": "DR15_026",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "position": [
+        19.062000274658203,
+        0.0,
+        -4.554999828338623
+      ],
+      "fixedTurnY": "0x00000000",
+      "rotationYDegrees": 0.0
+    },
+    {
+      "placementIndex": 12,
+      "fileOffset": "0x92cf8",
+      "recordType": 2,
+      "modelAudioRowIndex": 0,
+      "modelCode": "DR15_026",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "position": [
+        19.062000274658203,
+        0.0,
+        -0.014100000262260437
+      ],
+      "fixedTurnY": "0x00000000",
+      "rotationYDegrees": 0.0
+    },
+    {
+      "placementIndex": 13,
+      "fileOffset": "0x92d1c",
+      "recordType": 2,
+      "modelAudioRowIndex": 0,
+      "modelCode": "DR15_026",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "position": [
+        21.881999969482422,
+        0.0,
+        -0.014100000262260437
+      ],
+      "fixedTurnY": "0x00000000",
+      "rotationYDegrees": 0.0
+    },
+    {
+      "placementIndex": 14,
+      "fileOffset": "0x92d40",
+      "recordType": 2,
+      "modelAudioRowIndex": 4,
+      "modelCode": "DR15_016",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "position": [
+        14.88599967956543,
+        -0.21899999678134918,
+        6.326099872589111
+      ],
+      "fixedTurnY": "0x00000000",
+      "rotationYDegrees": 0.0
+    },
+    {
+      "placementIndex": 15,
+      "fileOffset": "0x92d64",
+      "recordType": 2,
+      "modelAudioRowIndex": 6,
+      "modelCode": "DR23_000",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "position": [
+        0.9010000228881836,
+        0.0,
+        -0.8999999761581421
+      ],
+      "fixedTurnY": "0x00004000",
+      "rotationYDegrees": 90.0
+    },
+    {
+      "placementIndex": 16,
+      "fileOffset": "0x92d88",
+      "recordType": 2,
+      "modelAudioRowIndex": 6,
+      "modelCode": "DR23_000",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "position": [
+        19.871000289916992,
+        0.0,
+        2.755000114440918
+      ],
+      "fixedTurnY": "0x00004000",
+      "rotationYDegrees": 90.0
+    },
+    {
+      "placementIndex": 17,
+      "fileOffset": "0x92dac",
+      "recordType": 2,
+      "modelAudioRowIndex": 6,
+      "modelCode": "DR23_000",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "position": [
+        20.910999298095703,
+        0.0,
+        5.368000030517578
+      ],
+      "fixedTurnY": "0x00004000",
+      "rotationYDegrees": 90.0
+    }
+  ],
+  "runtimePhaseTrace": {
+    "capture": "tools/evidence/jomo-dr23-door-phase-dispatch.csv",
+    "captureSha256": "995254a74123e9f6e37d2acef52d00b9646338c3dbc05a9b3aac09cf99eae036",
+    "archivedStateSha256": "847992cb6b6f4dd3a19673d13520e9587c7750ef70c7e6e39d9f82cd80ac66a7",
+    "target": {
+      "placementIndex": 17,
+      "modelAudioRowIndex": 6,
+      "modelCode": "DR23_000",
+      "model": "S1_JOMO_DR23_000.MT5",
+      "position": [
+        20.910999298095703,
+        0.0,
+        5.368000030517578
+      ]
+    },
+    "protocol": [
+      "Load the archived Hazuki wardrobe state and reposition only Ryo beside static door placement 17; do not alter the door or object-action state.",
+      "Use the retail left-trigger focus selector and press A from closed, then A from open, then A from closed again.",
+      "Trace every entry to typed-command dispatcher 0x0c17a91c in SH-4 interpreter mode."
+    ],
+    "events": [
+      {
+        "phase": "openingStart",
+        "stateBefore": "closed",
+        "emulatedCycles": 185214168064,
+        "dispatcherAddress": "0x0c17a91c",
+        "returnAddress": "0x0c0bb71e",
+        "r4Word": "0x000202ab",
+        "commandHex": "ab020200"
+      },
+      {
+        "phase": "closingStart",
+        "stateBefore": "open",
+        "emulatedCycles": 186965756728,
+        "dispatcherAddress": "0x0c17a91c",
+        "returnAddress": "0x0c0bb71e",
+        "r4Word": "0x000302ab",
+        "commandHex": "ab020300"
+      },
+      {
+        "phase": "openingStart",
+        "stateBefore": "closed",
+        "emulatedCycles": 188300311688,
+        "dispatcherAddress": "0x0c17a91c",
+        "returnAddress": "0x0c0bb71e",
+        "r4Word": "0x000202ab",
+        "commandHex": "ab020200"
+      }
+    ],
+    "conclusion": "DR23_000 pair member zero is its opening-start command and pair member one is its closing-start command. The repeated third event proves the mapping across a complete open/close cycle."
+  },
+  "runtimePairDataflow": {
+    "capture": "tools/evidence/jomo-dr23-door-model-pair-dataflow.csv",
+    "captureSha256": "db6228a0e196c87d3c651aa730670118f9d8f3c7f38fdac8e319a28336f3395f",
+    "events": [
+      {
+        "phase": "openingStart",
+        "stateBefore": "closed",
+        "emulatedCycles": 165602954544,
+        "pc": "0c3cd768",
+        "pr": "0c3cd70c",
+        "modelAudioTableBase": "0c458218",
+        "modelAudioElementIndex": 26,
+        "modelAudioRowIndex": 6,
+        "authoredPairIndex": 0,
+        "selectedMemberAddress": "0c458280",
+        "localFrameAddress": "0c498704",
+        "localFieldOffset": 4,
+        "commandHex": "ab020200",
+        "sourceReadFileOffset": "0x7fb8"
+      },
+      {
+        "phase": "closingStart",
+        "stateBefore": "open",
+        "emulatedCycles": 168045182976,
+        "pc": "0c3d54b8",
+        "pr": "0c3d545c",
+        "modelAudioTableBase": "0c458218",
+        "modelAudioElementIndex": 27,
+        "modelAudioRowIndex": 6,
+        "authoredPairIndex": 1,
+        "selectedMemberAddress": "0c458284",
+        "localFrameAddress": "0c498728",
+        "localFieldOffset": 0,
+        "commandHex": "ab020300",
+        "sourceReadFileOffset": "0xfd08"
+      }
+    ],
+    "conclusion": "The opening controller computes row * 4 + 2 and the closing controller computes row * 4 + 3 against the same model/audio table. Those are table-wide phase columns, not DR23-only slots."
+  },
+  "semanticBoundary": {
+    "proven": [
+      "Each model/audio row owns its exact ordered pair of F1OMOYAA AB02 commands.",
+      "Each placement selects one model/audio row by an exact authored table index.",
+      "The shared initializer receives all four tables and the generated room code retrieves model and action fields.",
+      "Every generated model/audio command consumer computes row * 4 + 2 for pair member zero or row * 4 + 3 for pair member one.",
+      "Synchronized retail traces label the shared field-2 route as opening start and field-3 route as closing start, so the phase schema applies to all seven rows."
+    ],
+    "unresolved": [
+      "Selector-11/12 operation-0x006c calls read logical-record word 9; the immutable records initialize words 9..12 to 0xffffffff and no static dataflow from the model/audio pair into that slot has been established."
+    ]
+  },
+  "runtimePolicy": {
+    "implementedModels": [
+      "S1_JOMO_DR15_026.MT5",
+      "S1_JOMO_DR15_029.MT5",
+      "S1_JOMO_DR01_015.MT5",
+      "S1_JOMO_DR15_028.MT5",
+      "S1_JOMO_DR15_016.MT5",
+      "S1_JOMO_DR01_016.MT5",
+      "S1_JOMO_DR23_000.MT5"
+    ],
+    "reason": "The model table schema and all generated field-2/field-3 consumers are source-validated, and synchronized retail traces prove those fields are opening-start and closing-start respectively."
+  }
+}

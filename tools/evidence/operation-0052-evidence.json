@@ -1,0 +1,32 @@
+{
+  "schema": "new-yokosuka-operation-0052-evidence-v1",
+  "status": "exact-native-indexed-table-write-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 82,
+    "operationHex": "0x0052",
+    "handlerAddress": "0x0c168efc",
+    "handlerLength": 26,
+    "helperAddress": "0x0c0a66ce",
+    "helperLength": 22,
+    "tableBasePointerGlobal": "0x0c281af8",
+    "entryStrideBytes": 12,
+    "entryPayloadOffsetBytes": 36,
+    "provenBehavior": "The helper ignores r4, computes base + 36 + index * 12, and writes the value dword."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 97,
+    "areaCount": 97,
+    "index": 32,
+    "value": 89,
+    "ignoredFrameFieldOperandCallCount": 97
+  },
+  "evidenceBoundary": [
+    "The object resolver result is observationally unused by the complete helper.",
+    "The table's gameplay-domain meaning remains unknown."
+  ]
+}

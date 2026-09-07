@@ -1,0 +1,93 @@
+{
+  "schema": "new-yokosuka-d000-door-audio-pack-v1",
+  "generatedBy": "tools/build_d000_door_audio_pack.mjs",
+  "source": {
+    "bank": "extracted_files/data/SCENE/01/SOUND/F1DOBUIT.SND",
+    "byteLength": 416968,
+    "sha256": "e77a6ea473b62e6356fe9b0152ec285b6ee115ef75cd912c443852ff6ff118be",
+    "commandGroup": "ab02",
+    "evidence": "tools/evidence/d000-door-audio.json",
+    "evidenceSha256": "c769eff7c94bb31389c06612122b91dfe867ab929b06ccfc24dd94f351be429a"
+  },
+  "decoder": {
+    "repository": "https://github.com/Preppy/dtpkdump",
+    "commit": "a323c0e7e80af05e17e5bb291a9b20e55a3f9455",
+    "command": "python DTPKDump.py -wavconv F1DOBUIT.SND",
+    "wavNormalization": "remove DTPKDump's four 64-bit-size padding words"
+  },
+  "encoding": {
+    "container": "webm",
+    "codec": "opus",
+    "bitRate": 48000,
+    "variableBitRate": true,
+    "application": "lowdelay"
+  },
+  "purpose": "native D000 logical-door state-machine effects",
+  "tracks": [
+    {
+      "commandHex": "ab022100",
+      "track": 33,
+      "playbackId": 51,
+      "sampleId": 30,
+      "dtpkRate": "0xe800",
+      "sampleRate": 11025,
+      "rawVolume": 81,
+      "compositionHex": "c0df335180ff",
+      "decodedSource": "F1DOBUIT_00_49_SPD_07_Sample_1E_Rate_E800.wav",
+      "byteLength": 4823,
+      "sha256": "b015e355d744b12fc0b82c1e3c2abc57b9cfdeb8f4b81eb2a1946d1a0646aa97"
+    },
+    {
+      "commandHex": "ab022300",
+      "track": 35,
+      "playbackId": 53,
+      "sampleId": 41,
+      "dtpkRate": "0xe800",
+      "sampleRate": 11025,
+      "rawVolume": 69,
+      "compositionHex": "c0df354580ff",
+      "decodedSource": "F1DOBUIT_00_63_SPD_12_Sample_29_Rate_E800.wav",
+      "byteLength": 5231,
+      "sha256": "4d259003240e612fbb9b2ef51ca7e300f7aa785ec5f1ee1a5f288db312b8170a"
+    },
+    {
+      "commandHex": "ab022400",
+      "track": 36,
+      "playbackId": 54,
+      "sampleId": 25,
+      "dtpkRate": "0xe81b",
+      "sampleRate": 11025,
+      "rawVolume": 69,
+      "compositionHex": "c0df364580ff",
+      "decodedSource": "F1DOBUIT_00_64_SPD_13_Sample_19_Rate_F91B.wav",
+      "byteLength": 7755,
+      "sha256": "68967f0cc47c4bb35193d19eac9fc321dadcae6002f05892a171fe74389af4a6"
+    },
+    {
+      "commandHex": "ab022800",
+      "track": 40,
+      "playbackId": 58,
+      "sampleId": 28,
+      "dtpkRate": "0xe800",
+      "sampleRate": 11025,
+      "rawVolume": 99,
+      "compositionHex": "c0df3a6380ff",
+      "decodedSource": "F1DOBUIT_01_39_SPD_58_Sample_1C_Rate_E800.wav",
+      "byteLength": 4022,
+      "sha256": "8b56d95e645d121f0d1cc5ea1d75773e7864758a167d0cdb9faca0bbfb373951"
+    },
+    {
+      "commandHex": "ab022900",
+      "track": 41,
+      "playbackId": 59,
+      "sampleId": 29,
+      "dtpkRate": "0xe800",
+      "sampleRate": 11025,
+      "rawVolume": 69,
+      "compositionHex": "c0df3b4580ff",
+      "decodedSource": "F1DOBUIT_01_40_SPD_59_Sample_1D_Rate_E800.wav",
+      "byteLength": 4563,
+      "sha256": "11cbcd356253ef0cdbc0c90b12a69ff78f0ac2b4df4e68545d30983404527ee0"
+    }
+  ]
+}

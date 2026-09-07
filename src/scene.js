@@ -21,6 +21,220 @@ export function updateCameraSpeed(size) {
   if (state.scene) {
     state.scene.useLogarithmicDepth = (size >= 50);
   }
+
+  const camera = state.scene?.activeCamera;
+  if (camera instanceof BABYLON.ArcRotateCamera) {
+    camera.lowerRadiusLimit = Math.max(0.01, size * 0.002);
+    camera.upperRadiusLimit = Math.max(10, size * 20);
+  }
+}
+
+export function setCameraPosition(camera, position) {
+  if (typeof camera?.setPosition === "function") {
+    camera.setPosition(position);
+    return;
+  }
+  if (typeof camera?.position?.copyFrom === "function") {
+    camera.position.copyFrom(position);
+    return;
+  }
+  camera.position = position.clone?.() || position;
+}
+
+export function configureAssetViewerPointerInput(camera) {
+  const pointerInput = camera?.inputs?.attached?.pointers;
+  if (pointerInput) {
+    pointerInput.buttons = [0, 2];
+    pointerInput.angularSensibilityX = 1200;
+    pointerInput.angularSensibilityY = 1200;
+    pointerInput.panningSensibility = 0;
+    pointerInput.multiTouchPanning = false;
+    pointerInput.multiTouchPanAndZoom = false;
+    pointerInput.pinchZoom = true;
+    pointerInput.pinchDeltaPercentage = 0.01;
+  }
+
+  // Babylon 9 maps right-drag to pan by default. Since this viewer disables
+  // panning, that new default made right-drag appear completely inert.
+  camera?.movement?.input?.setInteraction?.(
+    "pointer",
+    { button: 2 },
+    "rotate",
+  );
+}
+
+function setFlyingControlsVisible(active) {
+  const pointerHint = document.getElementById("pointer-hint");
+  const controlsOverlay = document.getElementById("controls-overlay");
+  const flyButton = document.getElementById("fly-controls-btn");
+
+  pointerHint?.classList.toggle("hidden", active);
+  controlsOverlay?.classList.toggle("hidden", !active);
+  if (flyButton) {
+    flyButton.classList.toggle("active", active);
+    flyButton.textContent = active ? "Flying · Esc to exit" : "Fly camera";
+    flyButton.setAttribute("aria-pressed", String(active));
+  }
+}
+
+export function flyingCameraTarget(camera, distance) {
+  const forward = camera.getDirection(BABYLON.Vector3.Forward());
+  return camera.position.add(forward.scale(distance));
+}
+
+function installAssetViewerFlyingControls(scene, orbitCamera) {
+  const flyButton = document.getElementById("fly-controls-btn");
+  if (!flyButton) return;
+
+  const flyingCamera = new BABYLON.UniversalCamera(
+    "flying-camera",
+    orbitCamera.position.clone(),
+    scene,
+  );
+  flyingCamera.minZ = orbitCamera.minZ;
+  flyingCamera.maxZ = orbitCamera.maxZ;
+  flyingCamera.keysUp = [];
+  flyingCamera.keysDown = [];
+  flyingCamera.keysLeft = [];
+  flyingCamera.keysRight = [];
+
+  const keys = {};
+  const mouseSensitivity = 0.002;
+  let pointerLockRequested = false;
+  let isFlying = false;
+  let orbitDistance = orbitCamera.radius;
+  let yaw = 0;
+  let pitch = 0;
+
+  const updateSpeedDisplay = () => {
+    const speedDisplay = document.getElementById("speed-display");
+    if (speedDisplay) {
+      speedDisplay.innerText = `${state.speedMultiplier.toFixed(1)}x`;
+    }
+  };
+
+  const beginFlying = () => {
+    orbitDistance = Math.max(orbitCamera.radius, 0.01);
+    flyingCamera.position.copyFrom(orbitCamera.position);
+    flyingCamera.setTarget(orbitCamera.getTarget());
+    yaw = flyingCamera.rotation.y;
+    pitch = flyingCamera.rotation.x;
+    orbitCamera.detachControl();
+    scene.activeCamera = flyingCamera;
+    isFlying = true;
+    setFlyingControlsVisible(true);
+    updateSpeedDisplay();
+  };
+
+  const endFlying = () => {
+    if (!isFlying) return;
+    Object.keys(keys).forEach((code) => {
+      keys[code] = false;
+    });
+    orbitCamera.setPosition(flyingCamera.position);
+    orbitCamera.setTarget(flyingCameraTarget(flyingCamera, orbitDistance));
+    scene.activeCamera = orbitCamera;
+    orbitCamera.attachControl(state.canvas, true);
+    isFlying = false;
+    setFlyingControlsVisible(false);
+  };
+
+  flyButton.addEventListener("click", () => {
+    if (isFlying) {
+      document.exitPointerLock?.();
+      return;
+    }
+    pointerLockRequested = true;
+    const request = state.canvas.requestPointerLock?.();
+    request?.catch?.(() => {
+      pointerLockRequested = false;
+    });
+  });
+
+  document.addEventListener("pointerlockchange", () => {
+    const canvasHasPointerLock = document.pointerLockElement === state.canvas;
+    if (canvasHasPointerLock && pointerLockRequested) {
+      pointerLockRequested = false;
+      beginFlying();
+    } else if (!canvasHasPointerLock) {
+      pointerLockRequested = false;
+      endFlying();
+    }
+  });
+
+  document.addEventListener("mousemove", (event) => {
+    if (!isFlying) return;
+    yaw += event.movementX * mouseSensitivity;
+    pitch += event.movementY * mouseSensitivity;
+    pitch = Math.max(
+      -Math.PI / 2 + 0.1,
+      Math.min(Math.PI / 2 - 0.1, pitch),
+    );
+    flyingCamera.rotation.x = pitch;
+    flyingCamera.rotation.y = yaw;
+  });
+
+  const handleKeyDown = (event) => {
+    if (!isFlying) return;
+    keys[event.code] = true;
+    if (event.code === "KeyE" && !event.repeat) {
+      state.speedMultiplier *= 2;
+      updateSpeedDisplay();
+    } else if (event.code === "KeyQ" && !event.repeat) {
+      state.speedMultiplier *= 0.5;
+      updateSpeedDisplay();
+    }
+    if ([
+      "Space",
+      "ArrowUp",
+      "ArrowDown",
+      "ArrowLeft",
+      "ArrowRight",
+    ].includes(event.code)) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  };
+  const handleKeyUp = (event) => {
+    keys[event.code] = false;
+  };
+  document.addEventListener("keydown", handleKeyDown, true);
+  document.addEventListener("keyup", handleKeyUp, true);
+
+  scene.onBeforeRenderObservable.add(() => {
+    if (!isFlying) return;
+
+    const speed = 0.5 * state.speedMultiplier;
+    const forward = flyingCamera.getDirection(BABYLON.Vector3.Forward());
+    const forwardFlat = new BABYLON.Vector3(
+      forward.x,
+      0,
+      forward.z,
+    ).normalize();
+    const right = new BABYLON.Vector3(
+      forwardFlat.z,
+      0,
+      -forwardFlat.x,
+    );
+    const movement = BABYLON.Vector3.Zero();
+
+    if (keys.KeyW || keys.ArrowUp) {
+      movement.addInPlace(forwardFlat.scale(speed));
+    }
+    if (keys.KeyS || keys.ArrowDown) {
+      movement.addInPlace(forwardFlat.scale(-speed));
+    }
+    if (keys.KeyA || keys.ArrowLeft) {
+      movement.addInPlace(right.scale(-speed));
+    }
+    if (keys.KeyD || keys.ArrowRight) {
+      movement.addInPlace(right.scale(speed));
+    }
+    if (keys.Space) movement.y += speed;
+    if (keys.KeyC) movement.y -= speed;
+
+    flyingCamera.position.addInPlace(movement);
+  });
 }
 
 export function createScene() {
@@ -32,161 +246,42 @@ export function createScene() {
   scene.clearColor = new BABYLON.Color4(0.02, 0.02, 0.03, 1);
   scene.ambientColor = new BABYLON.Color3(0.3, 0.3, 0.3);
 
-  // Use UniversalCamera for true FPS controls
-  const camera = new BABYLON.UniversalCamera(
+  // Orbit the selected asset. The viewer intentionally has no FPS mode,
+  // keyboard movement, or pointer lock.
+  const camera = new BABYLON.ArcRotateCamera(
     "camera",
-    new BABYLON.Vector3(0, 5, -20),
+    -Math.PI / 4,
+    Math.PI / 3,
+    20,
+    BABYLON.Vector3.Zero(),
     scene,
   );
-  camera.setTarget(BABYLON.Vector3.Zero());
-  camera.attachControl(state.canvas, true);
-
-  // Fix clipping planes
   camera.minZ = 0.1;
-  camera.maxZ = 100000; // Drastically increased for large maps
+  camera.maxZ = 100000;
+  camera.lowerBetaLimit = 0.05;
+  camera.upperBetaLimit = Math.PI - 0.05;
+  camera.lowerRadiusLimit = 0.01;
+  camera.upperRadiusLimit = 100000;
+  camera.panningSensibility = 0;
+  camera.wheelDeltaPercentage = 0.01;
+  camera.inertia = 0.75;
 
-  // Disable default keyboard controls (we'll handle them ourselves)
-  camera.keysUp = [];
-  camera.keysDown = [];
-  camera.keysLeft = [];
-  camera.keysRight = [];
+  // ArcRotate's pointer input is retained for touch gestures, but mouse
+  // rotation is restricted to the right button. Capturing left-button
+  // pointerdown prevents Babylon from starting an orbit for normal clicks.
+  configureAssetViewerPointerInput(camera);
+  camera.inputs.removeByType("ArcRotateCameraKeyboardMoveInput");
 
-  // Pointer lock state
-  let isPointerLocked = false;
-  const mouseSensitivity = 0.002;
-  let yaw = 0; // Horizontal rotation
-  let pitch = 0; // Vertical rotation
-
-  // Click to capture mouse
-  state.canvas.addEventListener("click", () => {
-    if (!isPointerLocked) {
-      state.canvas.requestPointerLock();
+  state.canvas.addEventListener("pointerdown", (event) => {
+    if (event.pointerType === "mouse" && event.button !== 2) {
+      event.stopImmediatePropagation();
     }
+  }, true);
+  state.canvas.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
   });
-
-  // Track pointer lock state
-  const controlsOverlay = document.getElementById("controls-overlay");
-  const speedDisplay = document.getElementById("speed-display");
-  const pointerHint = document.getElementById("pointer-hint");
-
-  document.addEventListener("pointerlockchange", () => {
-    isPointerLocked = document.pointerLockElement === state.canvas;
-    if (isPointerLocked) {
-      // Disable all default camera controls when pointer is locked
-      camera.detachControl();
-      // Sync our yaw/pitch with current camera rotation
-      yaw = camera.rotation.y;
-      pitch = camera.rotation.x;
-      setStatusText("FPS Mode - Press ESC to exit");
-      if (controlsOverlay) controlsOverlay.classList.remove("hidden");
-      if (pointerHint) pointerHint.classList.add("hidden");
-    } else {
-      // Re-enable default camera controls
-      camera.attachControl(state.canvas, true);
-      setStatusText("Click canvas for FPS mode");
-      if (controlsOverlay) controlsOverlay.classList.add("hidden");
-      if (pointerHint) pointerHint.classList.remove("hidden");
-    }
-  });
-
-  // Key state tracking
-  const keys = {};
-
-  // FPS mouse look - true first person rotation
-  document.addEventListener("mousemove", (e) => {
-    if (!isPointerLocked) return;
-
-    // Update yaw (left/right) and pitch (up/down)
-    // Positive movementX = mouse moved right = look right = increase yaw
-    yaw += e.movementX * mouseSensitivity;
-    // Positive movementY = mouse moved down = look down = increase pitch
-    pitch += e.movementY * mouseSensitivity;
-
-    // Clamp pitch to prevent flipping
-    pitch = Math.max(-Math.PI / 2 + 0.1, Math.min(Math.PI / 2 - 0.1, pitch));
-
-    // Apply rotation to camera
-    camera.rotation.x = pitch;
-    camera.rotation.y = yaw;
-
-  });
-
-  const handleKeyDown = (e) => {
-    const code = e.code;
-    keys[code] = true;
-    // Speed adjustment
-    if (code === "KeyE" && isPointerLocked) {
-      state.speedMultiplier *= 2;
-      setStatusText(`FPS Mode | Speed: ${state.speedMultiplier.toFixed(1)}x`);
-      if (speedDisplay)
-        speedDisplay.innerText = `${state.speedMultiplier.toFixed(1)}x`;
-    }
-    if (code === "KeyQ" && isPointerLocked) {
-      state.speedMultiplier *= 0.5;
-      setStatusText(`FPS Mode | Speed: ${state.speedMultiplier.toFixed(1)}x`);
-      if (speedDisplay)
-        speedDisplay.innerText = `${state.speedMultiplier.toFixed(1)}x`;
-    }
-
-    // Prevent default for keys we use
-    if (
-      isPointerLocked &&
-      (code === "Space" ||
-        code === "ArrowUp" ||
-        code === "ArrowDown" ||
-        code === "ArrowLeft" ||
-        code === "ArrowRight")
-    ) {
-      e.preventDefault();
-    }
-  };
-
-  const handleKeyUp = (e) => {
-    keys[e.code] = false;
-
-  };
-
-  // Use capture phase on document to intercept keys before anything can swallow them.
-  // Firefox during pointer lock may not bubble Shift to window in some configurations.
-  document.addEventListener("keydown", handleKeyDown, true);
-  document.addEventListener("keyup", handleKeyUp, true);
-
-  // FPS-style WASD movement
-  scene.onBeforeRenderObservable.add(() => {
-    if (!isPointerLocked) return; // Only move in FPS mode
-
-    const baseSpeed = 0.5;
-    const speed = baseSpeed * state.speedMultiplier;
-
-    // Get camera's forward and right vectors (on XZ plane)
-    const forward = camera.getDirection(BABYLON.Vector3.Forward());
-    const forwardFlat = new BABYLON.Vector3(
-      forward.x,
-      0,
-      forward.z,
-    ).normalize();
-    const right = new BABYLON.Vector3(forwardFlat.z, 0, -forwardFlat.x); // Perpendicular on XZ
-
-    // Movement vectors
-    let moveVector = BABYLON.Vector3.Zero();
-
-    // W/S - Forward/Backward
-    if (keys["KeyW"] || keys["ArrowUp"]) moveVector.addInPlace(forwardFlat.scale(speed));
-    if (keys["KeyS"] || keys["ArrowDown"]) moveVector.addInPlace(forwardFlat.scale(-speed));
-
-    // A/D - Strafe Left/Right
-    if (keys["KeyA"] || keys["ArrowLeft"]) moveVector.addInPlace(right.scale(-speed));
-    if (keys["KeyD"] || keys["ArrowRight"]) moveVector.addInPlace(right.scale(speed));
-
-    // Space/C - Vertical movement
-    if (keys["Space"]) moveVector.y += speed;
-    if (keys["KeyC"]) moveVector.y -= speed;
-
-    // Apply movement
-    if (moveVector.length() > 0) {
-      camera.position.addInPlace(moveVector);
-    }
-  });
+  camera.attachControl(state.canvas, true);
+  installAssetViewerFlyingControls(scene, camera);
 
   return scene;
 }
@@ -213,8 +308,11 @@ export function fitCameraToMeshes(meshes) {
 
   if (!foundMesh) {
     console.warn("[Viewer] No valid geometry found for camera target");
-    scene.activeCamera.position = new BABYLON.Vector3(0, 5, -20);
     scene.activeCamera.setTarget(BABYLON.Vector3.Zero());
+    setCameraPosition(
+      scene.activeCamera,
+      new BABYLON.Vector3(0, 5, -20),
+    );
     return;
   }
 
@@ -225,8 +323,11 @@ export function fitCameraToMeshes(meshes) {
   // HEURISTIC: For medium-sized models (buildings/chunks), place camera AT specific point
   // This is useful for browsing world map chunks that are pre-positioned.
   if (size >= 5 && size < 50) {
-    scene.activeCamera.position = new BABYLON.Vector3(-10, 10, 10);
     scene.activeCamera.setTarget(center);
+    setCameraPosition(
+      scene.activeCamera,
+      new BABYLON.Vector3(-10, 10, 10),
+    );
   } else {
     // Position camera at a distance from the center, looking at it
     // 3x closer for models under 100 (0.5 multiplier instead of 1.5)
@@ -238,12 +339,13 @@ export function fitCameraToMeshes(meshes) {
     // Cap max distance at 150 for giant maps
     distance = Math.min(distance, 150);
 
-    scene.activeCamera.position = new BABYLON.Vector3(
+    const position = new BABYLON.Vector3(
       center.x - distance,
       center.y + distance * 0.5,
       center.z + distance,
     );
     scene.activeCamera.setTarget(center);
+    setCameraPosition(scene.activeCamera, position);
   }
 
   return size;
@@ -266,10 +368,4 @@ export function detectInteriorScene(size = null) {
     }
   }
   return false;
-}
-
-// Private helper — setStatus without importing circular deps
-function setStatusText(text) {
-  const statusEl = document.getElementById("status");
-  if (statusEl) statusEl.innerText = text;
 }

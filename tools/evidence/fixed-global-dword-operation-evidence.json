@@ -1,0 +1,67 @@
+{
+  "schema": "new-yokosuka-fixed-global-dword-operation-evidence-v1",
+  "status": "exact-native-selector-contract-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 278,
+    "operationHex": "0x0116",
+    "handlerAddress": "0x0c157126",
+    "handlerLength": 92,
+    "handlerSha256": "b044e63f85ad86f03f1249ca0dba6779cc3c9cf3faba3716e10d5abc31f43224",
+    "nativeContract": {
+      "resultWriter": "0x0c0bb342",
+      "selector0Handler": "0x0c173df4",
+      "selector4Writer": "0x0c173e72",
+      "selector5Writer": "0x0c173e78",
+      "otherSelectorHandler": "0x0c173f44",
+      "selector4Address": "0x0c22478c",
+      "selector5Address": "0x0c22483c"
+    },
+    "selectors": [
+      {
+        "selector": 4,
+        "address": "0x0c22478c",
+        "width": 4,
+        "result": -1
+      },
+      {
+        "selector": 5,
+        "address": "0x0c22483c",
+        "width": 4,
+        "result": -1
+      }
+    ],
+    "provenBehavior": "Selector four writes argument one unchanged to global dword 0x0c22478c. Selector five writes it unchanged to global dword 0x0c22483c. Both return native result -1."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 558,
+    "provenCallCount": 67,
+    "remainingUnresolvedCallCount": 491,
+    "dialogueRegionCallCount": 23,
+    "areaCount": 17,
+    "selectorCounts": {
+      "4": 48,
+      "5": 19
+    },
+    "dialogueRegionSelectorCounts": {
+      "4": 16,
+      "5": 7
+    },
+    "valueArgumentKindCounts": {
+      "4:constant": 41,
+      "4:runtime": 7,
+      "5:constant": 19
+    }
+  },
+  "evidenceBoundary": [
+    "The owning subsystem and high-level meanings of both global dwords remain unnamed.",
+    "Argument one is retained as an uninterpreted 32-bit value.",
+    "Selectors -1 through 3 enter separate initialization or query paths and remain unresolved.",
+    "The seven selector-four runtime operands remain runtime-bound rather than guessed."
+  ]
+}

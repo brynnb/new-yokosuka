@@ -1,0 +1,132 @@
+{
+  "schema": "new-yokosuka-native-operation-011a-0153-015c-0193-evidence-v1",
+  "status": "exact-independent-native-contracts-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operations": [
+    {
+      "operationId": 282,
+      "operationHex": "0x011a",
+      "handlerAddress": "0x0c16b2d6",
+      "handlerLength": 14,
+      "handlerSha256": "825921ce031c544b786d1a3fe8a22e62b4f15b12ab0507de89c77ab9f92097fa",
+      "dependencies": {
+        "releaseHelper": "0x0c0b448c"
+      }
+    },
+    {
+      "operationId": 339,
+      "operationHex": "0x0153",
+      "handlerAddress": "0x0c1571ba",
+      "handlerLength": 14,
+      "handlerSha256": "efa9a44157643e738bf623ee96bf45c16d8d487183210c03ab48e72c14a585d7",
+      "dependencies": {
+        "signedFlagHelper": "0x0c14d1d2",
+        "flagGlobal": "0x0c220634"
+      }
+    },
+    {
+      "operationId": 348,
+      "operationHex": "0x015c",
+      "handlerAddress": "0x0c16b29c",
+      "handlerLength": 30,
+      "handlerSha256": "7b9d13c28207e570d8e6d44ea9b66bbce6d9eb801bf3a19e500a5093e75e9748",
+      "dependencies": {
+        "namedAcquireHelper": "0x0c0b41f0",
+        "resultWriter": "0x0c0bb342"
+      }
+    },
+    {
+      "operationId": 403,
+      "operationHex": "0x0193",
+      "handlerAddress": "0x0c16380a",
+      "handlerLength": 52,
+      "handlerSha256": "2f00efa80bd0f96bb8eed1cf2b7c368f393e59fca04c25665f6f401c47bd612e",
+      "dependencies": {
+        "advanceHelper": "0x0c180020",
+        "initializeHelper": "0x0c17ff9c"
+      }
+    }
+  ],
+  "allDiscInventory": {
+    "0x011a": {
+      "authoredCallCount": 60,
+      "dialogueRegionCallCount": 14,
+      "areaCount": 26,
+      "argumentCountCounts": {
+        "1": 60
+      },
+      "argumentKindCounts": {
+        "0": {
+          "constant": 46,
+          "frame-field": 3,
+          "scene-field": 11
+        }
+      },
+      "resultComparisonCount": 0,
+      "resultTargetCount": 0
+    },
+    "0x0153": {
+      "authoredCallCount": 156,
+      "dialogueRegionCallCount": 16,
+      "areaCount": 44,
+      "argumentCountCounts": {
+        "1": 156
+      },
+      "argumentKindCounts": {
+        "0": {
+          "constant": 156
+        }
+      },
+      "resultComparisonCount": 0,
+      "resultTargetCount": 0
+    },
+    "0x015c": {
+      "authoredCallCount": 19,
+      "dialogueRegionCallCount": 4,
+      "areaCount": 17,
+      "argumentCountCounts": {
+        "2": 19
+      },
+      "argumentKindCounts": {
+        "0": {
+          "static-pointer": 19
+        },
+        "1": {
+          "constant": 19
+        }
+      },
+      "resultComparisonCount": 0,
+      "resultTargetCount": 0
+    },
+    "0x0193": {
+      "authoredCallCount": 387,
+      "dialogueRegionCallCount": 24,
+      "areaCount": 86,
+      "argumentCountCounts": {
+        "2": 387
+      },
+      "argumentKindCounts": {
+        "0": {
+          "constant": 387
+        },
+        "1": {
+          "constant": 387
+        }
+      },
+      "resultComparisonCount": 0,
+      "resultTargetCount": 0
+    }
+  },
+  "evidenceBoundary": [
+    "The four operations are reported together only to share executable and corpus verification; they are independent runtime contracts.",
+    "Operation 0x011a forwards one word to the exact object-record release helper.",
+    "Operation 0x0153 writes one when its signed argument is negative and zero otherwise.",
+    "Operation 0x015c forwards a static name and native constant one to its acquisition helper, then writes the returned word.",
+    "Operation 0x0193 has exact mode-zero initialize, mode-one advance, and mode-two tagged-initialize routes."
+  ]
+}

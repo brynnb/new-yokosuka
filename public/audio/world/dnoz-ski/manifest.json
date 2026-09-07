@@ -1,0 +1,2516 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/build_dnoz_audio_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/STREAM/01SKI.AFS",
+      "sha256": "0c878f7ba7592f180802f408e64fc572849d4536b264a0ffc4367ac328fb8505"
+    },
+    "soundBank": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/SOUND/A1_NOZOK.SND",
+      "sha256": "82f2ddf4ce075f2175fa008217f2023d2d617c3580f71769a80f86dfa21b3eba"
+    },
+    "authManifest": "play/assets/sakuragaoka/dnoz-ski/manifest.json",
+    "resourceBindingEvidence": "tools/evidence/player-cutscene-owner-discovery.json"
+  },
+  "voices": [
+    {
+      "voiceId": "01SKIA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIA001.aiff",
+      "nativeMember": "01SKIA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 10240,
+      "nativeSha256": "81f382d8af20b576be1ed88e200d959bdc735d1154777b0976d42d05b9455d6b",
+      "speakerId": "AKIR",
+      "sourceText": "Nozomi, what's the matter?",
+      "displayText": "Nozomi, what's the matter?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIA001.wav",
+      "byteLength": 40748,
+      "sha256": "de76e666335241cd8c277e1da0d099e5d5734c0640863ed514986da9726e8149"
+    },
+    {
+      "voiceId": "01SKIA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIA002.aiff",
+      "nativeMember": "01SKIA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 4096,
+      "nativeSha256": "bb58d0f504de65c83fb5918e047815a691ca9ccaf4001a31581188f9c1baad57",
+      "speakerId": "AKIR",
+      "sourceText": "It's OK.",
+      "displayText": "It's OK.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIA002.wav",
+      "byteLength": 16172,
+      "sha256": "20c9ca855a21da0f46059de777c68412def5d8876e66c1a8f5047063b71697a2"
+    },
+    {
+      "voiceId": "01SKIA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIA003.aiff",
+      "nativeMember": "01SKIA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 8192,
+      "nativeSha256": "677f1dac54a86a2fe9cd20889f9bedc082fa75310817db7e816e619e90682bab",
+      "speakerId": "AKIR",
+      "sourceText": "Is it so important?",
+      "displayText": "Is it so important?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 16
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIA003.wav",
+      "byteLength": 32556,
+      "sha256": "36cadd1cac36f73b5fa3e1c9d1a9f44a129f2a8d22bb789ca3b91d0b0155dd81"
+    },
+    {
+      "voiceId": "01SKIA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIA005.aiff",
+      "nativeMember": "01SKIA005.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 18432,
+      "nativeSha256": "f448dac044418769311271c5a46870dd1efb492712bf46538c14c4ebbb8ef0ee",
+      "speakerId": "AKIR",
+      "sourceText": "Yes=@ but=@I can't stay long.",
+      "displayText": "Yes... but...I can't stay long.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 37
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIA005.wav",
+      "byteLength": 73516,
+      "sha256": "4912585c2278ee954f8e29809794879403009fc591b828e3ce599e52728c2390"
+    },
+    {
+      "voiceId": "01SKIA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIA006.aiff",
+      "nativeMember": "01SKIA006.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 6144,
+      "nativeSha256": "f8208a354a5d8aa0f5661a6f9f66c74a5b98ca9f6e530f27b31397609e06a791",
+      "speakerId": "AKIR",
+      "sourceText": "Nozomi=@",
+      "displayText": "Nozomi...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIA006.wav",
+      "byteLength": 24364,
+      "sha256": "cdb1fd364a161193515b3132a92f34168733328534526eb25d2517e7e6b312bb"
+    },
+    {
+      "voiceId": "01SKIA007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIA007.aiff",
+      "nativeMember": "01SKIA007.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 10240,
+      "nativeSha256": "7b31073af70cab9e42a13e68eef49a3fca7303b1b573a4c31de47d348e20b1a4",
+      "speakerId": "AKIR",
+      "sourceText": "=@has something happened?",
+      "displayText": "...has something happened?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIA007.wav",
+      "byteLength": 40748,
+      "sha256": "f928994847aa5458b0d84e1931937e44230d3e08a5d498ab5e98221f3044ce26"
+    },
+    {
+      "voiceId": "01SKIA008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIA008.aiff",
+      "nativeMember": "01SKIA008.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 10240,
+      "nativeSha256": "82bac56c12e3ae7a201d28a9e5f78448ba0644f89f0ba77e17c996431fbdd940",
+      "speakerId": "AKIR",
+      "sourceText": "So, you're leaving=@soon?",
+      "displayText": "So, you're leaving...soon?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIA008.wav",
+      "byteLength": 40748,
+      "sha256": "203c1d99f63e5c17ca6fe0a3110ed163c3e62fa6376a14d33c05916680079926"
+    },
+    {
+      "voiceId": "01SKIA009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIA009.aiff",
+      "nativeMember": "01SKIA009.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 4096,
+      "nativeSha256": "a94e33f74e6f0ee13a8b515f7e3fd5a3201761cb826970d5ca461ceea2ad9239",
+      "speakerId": "AKIR",
+      "sourceText": "=@I know.",
+      "displayText": "...I know.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIA009.wav",
+      "byteLength": 16172,
+      "sha256": "7ecfa7f0761f038982a24c136aef392c01a74b3c2d27979b2df55098880727b4"
+    },
+    {
+      "voiceId": "01SKIA010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIA010.aiff",
+      "nativeMember": "01SKIA010.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 10240,
+      "nativeSha256": "e7eb8bba7dbed97c6bb39c668e6062ce7513e57f243d9f594860db515a066ce0",
+      "speakerId": "AKIR",
+      "sourceText": "But=@right now, I=@",
+      "displayText": "But...right now, I...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIA010.wav",
+      "byteLength": 40748,
+      "sha256": "b5bd5aba3e4993dc470796f5e9de5451800c2b89e8bc0458276f1bdb4ad66ce9"
+    },
+    {
+      "voiceId": "01SKIA011",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIA011.aiff",
+      "nativeMember": "01SKIA011.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 16384,
+      "nativeSha256": "44e7ef3843da91b4aeda0118e5016059c9a009b58221c650e4b4da096e075a0e",
+      "speakerId": "AKIR",
+      "sourceText": "I don't really know=@＆how I feel=@",
+      "displayText": "I don't really know...\nhow I feel...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 3,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 21
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIA011.wav",
+      "byteLength": 65324,
+      "sha256": "7aa2bad6c5f944179a9c49c51b57f52a9c3d7097f9cbef9750b47fffc1ae9607"
+    },
+    {
+      "voiceId": "01SKIA012",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIA012.aiff",
+      "nativeMember": "01SKIA012.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 4096,
+      "nativeSha256": "7405728a987bcdb228236ef958f997750fffd7b77b3c9116b630c32a4c75375c",
+      "speakerId": "AKIR",
+      "sourceText": "I will.",
+      "displayText": "I will.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIA012.wav",
+      "byteLength": 16172,
+      "sha256": "46d12d746de57de326f16e9a991a2e272e3ea5152b12bfdde26f224079e0e4fb"
+    },
+    {
+      "voiceId": "01SKIA013",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIA013.aiff",
+      "nativeMember": "01SKIA013.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 4096,
+      "nativeSha256": "aa351c2bf918a588d3545b5f98a710ba5a8cdbfbd6fd8ee88631e562f8390141",
+      "speakerId": "AKIR",
+      "sourceText": "=@Nozomi.",
+      "displayText": "...Nozomi.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIA013.wav",
+      "byteLength": 16172,
+      "sha256": "580a795e412c8f2dd8425581c914cb4bb37c74feee92edfb9484881189f17762"
+    },
+    {
+      "voiceId": "01SKIA014",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIA014.aiff",
+      "nativeMember": "01SKIA014.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 8192,
+      "nativeSha256": "a6d5dee6ab58436579cedb2c8b2f9751561c335e72b41c84184b9a7d04f7d843",
+      "speakerId": "AKIR",
+      "sourceText": "=@don't forget to say goodbye.",
+      "displayText": "...don't forget to say goodbye.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIA014.wav",
+      "byteLength": 32556,
+      "sha256": "cc65821db7a5eed593f4efdbeebcec7f55bf1f538b0ca2f7352b7cd8f0e4fef4"
+    },
+    {
+      "voiceId": "01SKIA015",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIA015.aiff",
+      "nativeMember": "01SKIA015.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 4096,
+      "nativeSha256": "f8f58083d5dcddcacca4172f2ec1e6ef767d24092b47cbd4ffe08be3b9d28491",
+      "speakerId": "AKIR",
+      "sourceText": "See you.",
+      "displayText": "See you.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIA015.wav",
+      "byteLength": 16172,
+      "sha256": "3cb048c83670eb15ec9e327917d5a401610970c3689c72d527e57a0288345d86"
+    },
+    {
+      "voiceId": "01SKIB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIB001.aiff",
+      "nativeMember": "01SKIB001.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 4096,
+      "nativeSha256": "24fcf4e058f4f96d4c91f49b21b5b732a9f1fec8b35b1ee1724f81cdc570dd78",
+      "speakerId": "HRSK",
+      "sourceText": "Ryo=@",
+      "displayText": "Ryo...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIB001.wav",
+      "byteLength": 16172,
+      "sha256": "4746fe1f95a9b88ae01e9e7cd882c809e66dc3ce83956316a68ae9e2a3f4aa64"
+    },
+    {
+      "voiceId": "01SKIB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIB002.aiff",
+      "nativeMember": "01SKIB002.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 8192,
+      "nativeSha256": "e28d9cd9da821d69e1b386176ee59d9f2c1f83078ecd776bc606e4087d79f85b",
+      "speakerId": "HRSK",
+      "sourceText": "Sorry to call you out=@",
+      "displayText": "Sorry to call you out...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 17
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIB002.wav",
+      "byteLength": 32556,
+      "sha256": "6e818175824d334b430cccbec002a24f6a9b6dbefee76bdfa4b036afc1d2f3a0"
+    },
+    {
+      "voiceId": "01SKIB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIB003.aiff",
+      "nativeMember": "01SKIB003.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 10240,
+      "nativeSha256": "84350e62e49a1b5032635e6ea02c154289b00402e1bf29c7dd1c742edadd0bbe",
+      "speakerId": "HRSK",
+      "sourceText": "I had to talk with you alone=@",
+      "displayText": "I had to talk with you alone...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIB003.wav",
+      "byteLength": 40748,
+      "sha256": "e6df3f3a415c524468cbad9fe74f2722d272eef0559957d0ff5ef7827635113f"
+    },
+    {
+      "voiceId": "01SKIB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIB004.aiff",
+      "nativeMember": "01SKIB004.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 14336,
+      "nativeSha256": "17ced06e6c71e11aa601fa11cafc9cc05a46c2250a1f202d70b29ada8ba89bf6",
+      "speakerId": "HRSK",
+      "sourceText": "But=@with all the problems＆you've been having=@",
+      "displayText": "But...with all the problems\nyou've been having...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIB004.wav",
+      "byteLength": 57132,
+      "sha256": "fe69aab38a53c335acacdabed78d90c3f3d59a756770aadd7f3d95ababf0ca42"
+    },
+    {
+      "voiceId": "01SKIB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIB005.aiff",
+      "nativeMember": "01SKIB005.str",
+      "nativeIndex": 18,
+      "nativeByteLength": 18432,
+      "nativeSha256": "3e9a6fb1ab4ce729bb689786ec19b2b4566eed9f36822d42e22d121dbee4a339",
+      "speakerId": "HRSK",
+      "sourceText": "For me=@yes=@＆Do you have time to talk?",
+      "displayText": "For me...yes...\nDo you have time to talk?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 43
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIB005.wav",
+      "byteLength": 73516,
+      "sha256": "43fc32140096992ee84ac907b8386fcc040a842670f45bc0fa7b228d32507455"
+    },
+    {
+      "voiceId": "01SKIB009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIB009.aiff",
+      "nativeMember": "01SKIB009.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 14336,
+      "nativeSha256": "d6637ec99a87bb427fdc2ba10b708da7e7c59c22e1cb89f24d7cccbe6378ce5e",
+      "speakerId": "HRSK",
+      "sourceText": "I know=@you see I=@",
+      "displayText": "I know...you see I...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 30
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 16
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIB009.wav",
+      "byteLength": 57132,
+      "sha256": "edbd8a63ecac819f25a6d7b01471ae3b04c7369f3032475cd1d28035fb4dbae4"
+    },
+    {
+      "voiceId": "01SKIB010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIB010.aiff",
+      "nativeMember": "01SKIB010.str",
+      "nativeIndex": 20,
+      "nativeByteLength": 22528,
+      "nativeSha256": "48c94981d4a5ebab85f35678ae3aeb5468bb4a88140535714f8e471011e37cc5",
+      "speakerId": "HRSK",
+      "sourceText": "I'd wanted to wait until things＆settled down before I told you.",
+      "displayText": "I'd wanted to wait until things\nsettled down before I told you.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIB010.wav",
+      "byteLength": 89900,
+      "sha256": "b5580b976e49832be567cf19eef42cca6f4b5ab2961450abc3153a13064c27f9"
+    },
+    {
+      "voiceId": "01SKIB012",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIB012.aiff",
+      "nativeMember": "01SKIB012.str",
+      "nativeIndex": 21,
+      "nativeByteLength": 22528,
+      "nativeSha256": "e92250dd84332c7529716567be5a84a761496486fcb380356faef6b35184de02",
+      "speakerId": "HRSK",
+      "sourceText": "But=@I can't wait any longer.＆I just can't=@",
+      "displayText": "But...I can't wait any longer.\nI just can't...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 27
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 22
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIB012.wav",
+      "byteLength": 89900,
+      "sha256": "9642a80d33aebcc9a4bab5861b8bb8c5782d37500d3556177bce8741e75e9eb4"
+    },
+    {
+      "voiceId": "01SKIB013",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIB013.aiff",
+      "nativeMember": "01SKIB013.str",
+      "nativeIndex": 22,
+      "nativeByteLength": 16384,
+      "nativeSha256": "359a41ce5bedef20b7ea71b9e30de5a750ef0e27d3c63102dca83c29773505fb",
+      "speakerId": "HRSK",
+      "sourceText": "=@can't hold it in=@I'm sorry.",
+      "displayText": "...can't hold it in...I'm sorry.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIB013.wav",
+      "byteLength": 65324,
+      "sha256": "6c72d611a477b84b9201af5d885c67cb2b4b68696a7bdeff66b15390c0347969"
+    },
+    {
+      "voiceId": "01SKIB014",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIB014.aiff",
+      "nativeMember": "01SKIB014.str",
+      "nativeIndex": 23,
+      "nativeByteLength": 12288,
+      "nativeSha256": "56565f0602ba9e3b0c486655078211ebc076489a27cfe7bc9fdf5e603cdcee3f",
+      "speakerId": "HRSK",
+      "sourceText": "It's about my feelings for you but=@",
+      "displayText": "It's about my feelings for you but...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIB014.wav",
+      "byteLength": 48940,
+      "sha256": "c8fc42c9e25ef4d83254510fead4470638443ebc3e2017d3dd3cc036f0955e07"
+    },
+    {
+      "voiceId": "01SKIB015",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIB015.aiff",
+      "nativeMember": "01SKIB015.str",
+      "nativeIndex": 24,
+      "nativeByteLength": 22528,
+      "nativeSha256": "ff949b0bbfa3936709e38e0ea2bd255923919af70443824422679a800971a2ea",
+      "speakerId": "HRSK",
+      "sourceText": "If I don't tell you now,＆I feel like I'll miss my chance to=@",
+      "displayText": "If I don't tell you now,\nI feel like I'll miss my chance to...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 18
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIB015.wav",
+      "byteLength": 89900,
+      "sha256": "d070bd36422660d152e91895c5d1ee3a7afa464d36ea224e8431b4e302b534e5"
+    },
+    {
+      "voiceId": "01SKIB017",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIB017.aiff",
+      "nativeMember": "01SKIB017.str",
+      "nativeIndex": 25,
+      "nativeByteLength": 14336,
+      "nativeSha256": "52cd8d420411882933a6fb290d7582d85fb81403b8e6d6352044a049abb556a3",
+      "speakerId": "HRSK",
+      "sourceText": "Last night, my mom＆called from Canada.",
+      "displayText": "Last night, my mom\ncalled from Canada.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIB017.wav",
+      "byteLength": 57132,
+      "sha256": "1581f2b9adec9c9401d368ec0cd4cc21a20d77ecabf949a8c4965c809c228f1c"
+    },
+    {
+      "voiceId": "01SKIB018",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIB018.aiff",
+      "nativeMember": "01SKIB018.str",
+      "nativeIndex": 26,
+      "nativeByteLength": 16384,
+      "nativeSha256": "88147635ddf3362ae793415d5ed2dcf4f906bd19f02e2167bc081c0e21a8ceea",
+      "speakerId": "HRSK",
+      "sourceText": "My father is insisting that I return=@",
+      "displayText": "My father is insisting that I return...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 15
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIB018.wav",
+      "byteLength": 65324,
+      "sha256": "f190ca7bb2168066d54fb99b1056a8b0ce3413fc149966875534586a82f4a94a"
+    },
+    {
+      "voiceId": "01SKIB019",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIB019.aiff",
+      "nativeMember": "01SKIB019.str",
+      "nativeIndex": 27,
+      "nativeByteLength": 8192,
+      "nativeSha256": "6ddfe86dc43170bce9001655e49f6c7886d731fa323386950a85d43bbc428e37",
+      "speakerId": "HRSK",
+      "sourceText": "I don't know when=@but",
+      "displayText": "I don't know when...but",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 15
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 16
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIB019.wav",
+      "byteLength": 32556,
+      "sha256": "e00de927ef4847e48db205102e24ad295580e433d77183d1e29e3e15fe5b5f08"
+    },
+    {
+      "voiceId": "01SKIB020",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIB020.aiff",
+      "nativeMember": "01SKIB020.str",
+      "nativeIndex": 28,
+      "nativeByteLength": 18432,
+      "nativeSha256": "3b737d46d24b3e74e1919b95339c2d7eed985965bdfac078a83c4b03be288905",
+      "speakerId": "HRSK",
+      "sourceText": "I can't go without letting you＆know how I feel!",
+      "displayText": "I can't go without letting you\nknow how I feel!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 18
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIB020.wav",
+      "byteLength": 73516,
+      "sha256": "47312bae670cb570b332bacc86ed42cf225d1c85ea510778afefc27de9372c40"
+    },
+    {
+      "voiceId": "01SKIB021",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIB021.aiff",
+      "nativeMember": "01SKIB021.str",
+      "nativeIndex": 29,
+      "nativeByteLength": 4096,
+      "nativeSha256": "86c5e4901b858e670061fa5519c6053e5cb708ca02573e2d8fffbb411532e88e",
+      "speakerId": "HRSK",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIB021.wav",
+      "byteLength": 16172,
+      "sha256": "9c00fe36f06d8d885acb5530b802a3ac6ce17ce7d63b05e6ba508de9f7a238d2"
+    },
+    {
+      "voiceId": "01SKIB022",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIB022.aiff",
+      "nativeMember": "01SKIB022.str",
+      "nativeIndex": 30,
+      "nativeByteLength": 24576,
+      "nativeSha256": "ac42dc9e7b6bf3dc244698fbfe016106f0061be68c69830418389a786d8d2b09",
+      "speakerId": "HRSK",
+      "sourceText": "I understand=@ when＆you're ready, tell me=@",
+      "displayText": "I understand... when\nyou're ready, tell me...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 69
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 32
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIB022.wav",
+      "byteLength": 98092,
+      "sha256": "df86ca3b7229c567443662617c185b545b1757092dc52e0c64d3430e96d3b8ed"
+    },
+    {
+      "voiceId": "01SKIB023",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIB023.aiff",
+      "nativeMember": "01SKIB023.str",
+      "nativeIndex": 31,
+      "nativeByteLength": 16384,
+      "nativeSha256": "96cef2fd32c519b56f4d0ce4d9c30e1828f93322bc2771fc44e1e3322a179e82",
+      "speakerId": "HRSK",
+      "sourceText": "I'm sorry=@I called you out.",
+      "displayText": "I'm sorry...I called you out.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 29
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 15
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIB023.wav",
+      "byteLength": 65324,
+      "sha256": "c63618b504be1035b23e4d78ecee65470317fb88ae8cdc74d229e92c0d414324"
+    },
+    {
+      "voiceId": "01SKIB024",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIB024.aiff",
+      "nativeMember": "01SKIB024.str",
+      "nativeIndex": 32,
+      "nativeByteLength": 2048,
+      "nativeSha256": "cdb26ef33f3118730330a64d3688aa4fadf7e5ec41e2d894aec3b04cdc084bc1",
+      "speakerId": "HRSK",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/dnoz-ski/voice/01SKIB024.wav",
+      "byteLength": 7980,
+      "sha256": "b83f9ad8885623f31fd14b284d5e94adaa253457d2ae207d52548d60e63ff660"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 0,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/dnoz-ski/sfx/a9040000.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 1,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/dnoz-ski/sfx/a9040100.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SE/footsoil/ryoashi05.aiff",
+      "playbackId": 2,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/dnoz-ski/sfx/a9040200.wav",
+      "byteLength": 14884,
+      "sha256": "565ee6addd2a88dfa716c1c51c9e81d13fd0245434e9e467e3598443fb9ff75e"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SE/footsoil/ryoashi06.aiff",
+      "playbackId": 3,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/dnoz-ski/sfx/a9040300.wav",
+      "byteLength": 10844,
+      "sha256": "d0ed30ae033cbeb6d2eab49fd2056392678da0e16db5a8f948a520535a1fadfb"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SE/footsoil/ryoashi08.aiff",
+      "playbackId": 5,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/dnoz-ski/sfx/a9040500.wav",
+      "byteLength": 7068,
+      "sha256": "2180caa4409808f7319682dd24712e4b79e10545191a91bc8be3fb8d9e913499"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SE/cloths2/friction2.aiff",
+      "playbackId": 10,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/dnoz-ski/sfx/a9040a00.wav",
+      "byteLength": 20916,
+      "sha256": "70c58a40f2a0cb7dbd1431ee497c610b51fa15fe0946d79d09230e6cccc708b6"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SE/cloths2/friction4.aiff",
+      "playbackId": 11,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/dnoz-ski/sfx/a9040b00.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    }
+  ]
+}

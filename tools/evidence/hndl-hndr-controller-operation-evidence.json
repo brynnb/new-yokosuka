@@ -1,0 +1,98 @@
+{
+  "schema": "new-yokosuka-hndl-hndr-controller-operation-evidence-v1",
+  "status": "exact-native-controller-contract-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 223,
+    "operationHex": "0x00df",
+    "handlerAddress": "0x0c165190",
+    "recordTags": {
+      "zeroSideSelector": "HNDL",
+      "nonzeroSideSelector": "HNDR"
+    },
+    "gate": "The signed low byte of argument one is admitted when the primary controller exists and the mode is nonnegative, or when the secondary controller exists and the mode is nonpositive.",
+    "controllerRangeSelector": "argument three's signed low word",
+    "controllerRangeListAddress": "0x0c216b08",
+    "modeByteOffset": "record+0x0a68",
+    "enabledByteOffset": "record+0x0a69",
+    "recordFieldsClearedOnAdmission": [
+      "record+0x49 byte",
+      "record+0x4a word",
+      "record+0x0a4c dword"
+    ],
+    "selectedConfigurationMapping": {
+      "selectedConfigurationPointer": "stored unchanged in controller state",
+      "selected+0x20 dword": "controller length dword",
+      "selected+0x24 low word": "controller secondary parameter word",
+      "selected+0x28 address": "controller continuation pointer"
+    },
+    "primaryControllerOffsetsCleared": [
+      "primary+0x08",
+      "primary+0x0c",
+      "primary+0x10"
+    ],
+    "nativeDependencies": {
+      "requestGate": "0x0c0debe0",
+      "primaryControllerClear": "0x0c0dec4e",
+      "controllerRangeList": "0x0c216b08"
+    },
+    "provenBehavior": "Resolves HNDL or HNDR by argument two, applies the exact primary/secondary pointer gate, and when admitted initializes the range-table-selected controller fields from argument three while writing argument one's low byte and enabled byte one and clearing the record activity fields. It then clears three dwords in a present primary controller regardless of gate admission."
+  },
+  "allDiscInventory": {
+    "callCount": 2305,
+    "selectedCallCount": 2303,
+    "malformedCallCount": 2,
+    "dialogueRegionCallCount": 228,
+    "totalDialogueRegionCallCount": 229,
+    "areaCount": 62,
+    "argumentKindCounts": {
+      "0": {
+        "constant": 2014,
+        "frame-field": 289
+      },
+      "1": {
+        "constant": 2299,
+        "frame-field": 4
+      },
+      "2": {
+        "constant": 2303
+      },
+      "3": {
+        "constant": 2303
+      }
+    },
+    "constantModeCounts": {
+      "0": 1046,
+      "1": 1003,
+      "4294967295": 250
+    },
+    "constantSideSelectorCounts": {
+      "0": 1090,
+      "1": 1213
+    },
+    "selectorCounts": {
+      "0": 2255,
+      "2": 3,
+      "6": 1,
+      "43": 4,
+      "402": 2,
+      "407": 4,
+      "411": 11,
+      "811": 4,
+      "812": 8,
+      "851": 11
+    }
+  },
+  "evidenceBoundary": [
+    "HNDL and HNDR remain literal native record tags.",
+    "Each present runtime record must provide exact primary and secondary controller availability.",
+    "An admitted selector requires an exact range-resolution result, including an explicit no-match result.",
+    "Range-selected record fields remain neutral dword and word values.",
+    "Two zero-argument scanner detections remain malformed and unresolved."
+  ]
+}

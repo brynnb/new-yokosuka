@@ -1,0 +1,77 @@
+{
+  "schema": "new-yokosuka-operation-01a0-01b8-evidence-v1",
+  "status": "exact-unrelated-refb-control-and-transient-slot-contracts",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "verifiedRanges": {
+    "operation01a0Handler": {
+      "address": "0x0c1600ec",
+      "length": 52,
+      "sha256": "2ac56340fd812f800907bd6fdd9573d3c8b81ba9032c9e413b025493b3ebca4e"
+    },
+    "refbControlWriter": {
+      "address": "0x0c14458e",
+      "length": 80,
+      "sha256": "cd8655b8a1c0a5b0dca3c85be0c53b1e9e91933dd329770f8bf0fc661b49a01e"
+    },
+    "operation01b8Handler": {
+      "address": "0x0c16b24c",
+      "length": 50,
+      "sha256": "d8df75a2789630b15b2fe67bf3a07b467510e22a34120cd55cad4a08ff527aca"
+    },
+    "slotAllocator": {
+      "address": "0x0c17ab94",
+      "length": 90,
+      "sha256": "c8bacba87049dbc8c0192014dcea76ba342b5be7797b91443492f987fcfda420"
+    },
+    "slotRelease": {
+      "address": "0x0c17abee",
+      "length": 32,
+      "sha256": "34bc33bf9853e759661c833c1afaf0c00adc0f1b5aa6b0d19b4ebfab324abf75"
+    },
+    "operationResultWriter": {
+      "address": "0x0c0bb342",
+      "length": 6,
+      "sha256": "0e95a398fa69bff19b2b51bfecd66ebcbddc95a59adb8690eafbb32ad4cbb2c2"
+    }
+  },
+  "operation01a0": {
+    "operationId": 416,
+    "operationHex": "0x01a0",
+    "tableEntryAddress": "0x0c29b060",
+    "handlerAddress": "0x0c1600ec",
+    "recordTag": "REFB",
+    "authoredCallCount": 4,
+    "authoredModes": [
+      0,
+      2,
+      3,
+      5
+    ],
+    "provenBehavior": "Resolves argument zero, looks up its REFB associated record, writes argument one to dword +0x1c and argument two to dword +0x20, and installs the REFB callback only when dword +0x24 was zero before setting it to one. Missing objects or REFB records are exact no-ops."
+  },
+  "operation01b8": {
+    "operationId": 440,
+    "operationHex": "0x01b8",
+    "tableEntryAddress": "0x0c29b0c0",
+    "handlerAddress": "0x0c16b24c",
+    "slotCount": 16,
+    "allocationOrder": "15 down through 0",
+    "authoredCallCount": 8,
+    "areaCount": 4,
+    "authoredModes": {
+      "0": 4,
+      "1": 4
+    },
+    "provenBehavior": "Mode one allocates the highest free slot in a sixteen-entry four-byte record table, initializes its four bytes, invokes native message 0x00a5, stores argument one as a signed word, and returns the slot or -1 when full. Mode zero invokes message 0x00a6 and clears the slot-active byte when argument one is at most 15."
+  },
+  "relationship": "The operations are not a shared subsystem: 0x01a0 mutates an object-associated REFB record, while 0x01b8 owns an independent global sixteen-slot table at 0x0c224aa0.",
+  "evidenceBoundary": [
+    "The exact record fields, allocation order, bounds, result, and authored operand shapes are proven.",
+    "The high-level gameplay names of the REFB callback and transient slot messages remain intentionally unspecified."
+  ]
+}

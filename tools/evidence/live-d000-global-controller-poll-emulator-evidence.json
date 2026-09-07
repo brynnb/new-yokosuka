@@ -1,0 +1,33 @@
+{
+  "schema": "new-yokosuka-live-global-controller-poll-v1",
+  "status": "idle-path-observed",
+  "source": {
+    "emulator": "Flycast",
+    "disc": 1,
+    "stateIndex": 8,
+    "stateSha256": "a053f46062b2972f869147849a512c433a4810a7b6acb0d064ab0aba1daa46d1",
+    "profile": ".flycast-pvr/validation-owner-dispatch",
+    "transport": "built-in GDB remote stub",
+    "guestWrites": false,
+    "artificialHandlerCalls": false,
+    "inputMethod": "ordinary Dreamcast A-button pulse through Flycast Lua"
+  },
+  "nativeBoundary": {
+    "operationHex": "0x0116",
+    "selector": -1,
+    "sharedRoutineReturnAddress": "0x0c174190",
+    "resultRegister": "r13"
+  },
+  "observation": {
+    "pollCount": 300,
+    "result": -1,
+    "resultHex": "0xffffffff",
+    "nonIdleObservationCount": 0,
+    "playerPosition": [-64.72900390625, 0.0, 72.52174377441406]
+  },
+  "conclusions": [
+    "The naturally running D000 owner repeatedly reaches operation 0x0116 selector -1 and returns the native idle sentinel -1.",
+    "An ordinary A-button pulse away from the telephone book did not fabricate an event code.",
+    "This run proves the idle contract only; it does not claim that TBK1 delivery was observed."
+  ]
+}

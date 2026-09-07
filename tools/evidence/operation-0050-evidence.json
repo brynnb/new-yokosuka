@@ -1,0 +1,295 @@
+{
+  "schema": "new-yokosuka-operation-0050-evidence-v1",
+  "status": "exact-d000-start-poll-and-indexed-auth-resource-binding",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "mapinfo": "disc1/SCENE/01/D000/MAPINFO.BIN",
+    "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+    "archive": "disc1/SCENE/01/D000/DRAUTH.PKS",
+    "archiveSha256": "90ba0829312f0fc3c38a99b501c5362950ff2b6915226a5260cc2ceffd7e3537",
+    "programPack": "play/data/events/nativeEventPrograms.generated.json"
+  },
+  "operation": {
+    "operationId": 80,
+    "operationHex": "0x0050",
+    "handlerAddress": "0x0c155194",
+    "slotCount": 70,
+    "slotTableAddress": "0x0c222588",
+    "activeActivityAddress": "0x0c222b00",
+    "provenModes": [
+      {
+        "range": "0..69",
+        "behavior": "stops any current activity, selects the exact installed slot, initializes ASEQ/ACAM/AMOV/ASTR/ALIP ownership, and marks the activity active"
+      },
+      {
+        "mode": -1,
+        "behavior": "performs native terminal cleanup when applicable and returns zero when no activity is active, otherwise the active activity state byte"
+      },
+      {
+        "mode": -7,
+        "behavior": "returns the retained delayed-stop latch at activity record offset 0x3c; a normal start resets it to zero, and normal terminal cleanup leaves that zero intact"
+      },
+      {
+        "mode": -12,
+        "argumentCount": 3,
+        "dispatchTarget": "0x0c15527c",
+        "behavior": "validates argument one as a slot from zero through 69 and writes the booleanized argument two to that slot record's dword at +0x10"
+      },
+      {
+        "mode": -10,
+        "argumentCount": 1,
+        "dispatchTarget": "0x0c1552a4",
+        "behavior": "returns active activity dword +0x40 only while its state byte is one, and otherwise returns zero"
+      },
+      {
+        "mode": -9,
+        "argumentCount": 3,
+        "dispatchTarget": "0x0c155278",
+        "behavior": "branches directly to the common return without reading either trailing argument or mutating activity state"
+      },
+      {
+        "mode": -6,
+        "argumentCount": 1,
+        "dispatchTarget": "0x0c15523e",
+        "behavior": "runs the native pre-stop and terminal-stop sequence for the current activity"
+      }
+    ],
+    "d000Route": {
+      "startCall": "0x83926",
+      "startArgument": 0,
+      "pollCall": "0x83940",
+      "pollMode": -1,
+      "completionComparison": 0,
+      "postActivityLatchCall": "0x83d6a",
+      "postActivityLatchMode": -7,
+      "postActivityLatchComparison": 0
+    },
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c155194",
+        "length": 376,
+        "sha256": "596ceaba2cef2a6e5267b8d36271e18b6ae1028ec3bcb9bb7591ddbf1fd37426"
+      },
+      "activityStart": {
+        "address": "0x0c155054",
+        "length": 114,
+        "sha256": "afbb8f7000f45f3e0f609b16e61b4f5a6bf2e7b563b8ad4182e4a7185b958477"
+      },
+      "activityPreStop": {
+        "address": "0x0c1549f6",
+        "length": 42,
+        "sha256": "3d75f2a586c9a421292e41ef09365a498a70bd9245f379c1cb11b4ab7519af48"
+      },
+      "activityStop": {
+        "address": "0x0c154a20",
+        "length": 60,
+        "sha256": "63affe789d315a41ae41e9602bcbfced138ed466b6dd4b2f379641503ca68ba8"
+      },
+      "slotInstall": {
+        "address": "0x0c1553b0",
+        "length": 332,
+        "sha256": "15f8607ba7372b2b7c959d0be9d65e8455dcd526ef35d24b54230d1814439fa5"
+      },
+      "indexedAuthResolver": {
+        "address": "0x0c1399fa",
+        "length": 122,
+        "sha256": "97a043f2f0d6c1ccccff480e898afcf51e63a19c0c6345e5900d99a4def78bc1"
+      },
+      "archiveMemberLookup": {
+        "address": "0x0c139588",
+        "length": 116,
+        "sha256": "34ba130b3a892f400d28519c4df991f790eee9b46a9d750b6c4813b41dd8ff89"
+      },
+      "resultWriter": {
+        "address": "0x0c0bb342",
+        "length": 8,
+        "sha256": "c4c730e9f1762326de0349eef6a7a6fd5456051e3402a13418961a497360e47b"
+      },
+      "motionCommand": {
+        "address": "0x0c15400e",
+        "length": 530,
+        "sha256": "ffad9b5eb939291b5e226231930f4c60aec8abef3aead56b03b6a8a230cc0ec8"
+      },
+      "splineFrameTiming": {
+        "address": "0x0c154a78",
+        "length": 538,
+        "sha256": "79765333e817622e5bcbd51e424b4ace0b2c0dbdaa15f9d2c9bbdbbb7d53d4ef"
+      },
+      "activityFrameUpdater": {
+        "address": "0x0c154db0",
+        "length": 560,
+        "sha256": "8a0ef0d34f5a174b815188727439f701d162dfc3b333cb631bcefbd9a7f14d8c"
+      },
+      "activityUpdateDriver": {
+        "address": "0x0c154ca4",
+        "length": 236,
+        "sha256": "6881b9b74b2b4189a093c3eccab7e008259cb8f5d66d99eaaf769732c563303c"
+      },
+      "commandDispatchTable": {
+        "address": "0x0c299f40",
+        "length": 28,
+        "sha256": "3767e33eb20758ede3cbc11dad35567ae0e221b6e07367fd0dc7c3f8c6ff8a76"
+      }
+    },
+    "frameRuntime": {
+      "updaterAddress": "0x0c154db0",
+      "currentFrameOffset": 44,
+      "advancePerUpdate": 1,
+      "splineTimeAddress": "0x0c154a78",
+      "framesPerSecond": 30.0,
+      "currentTimeExpression": "currentFrame / 30.0",
+      "nextTimeExpression": "(currentFrame + 1) / 30.0",
+      "commandConsumption": "after advancing the current frame, consumes every authored ASEQ record whose frame is at or before the current frame"
+    },
+    "commandDispatch": [
+      {
+        "type": 0,
+        "name": "unknown-0",
+        "handlerAddress": "0x0c153aca",
+        "lifecycleModes": {
+          "start": 0,
+          "update": 1,
+          "cleanup": 2
+        }
+      },
+      {
+        "type": 1,
+        "name": "camera",
+        "handlerAddress": "0x0c153ae4",
+        "lifecycleModes": {
+          "start": 0,
+          "update": 1,
+          "cleanup": 2
+        }
+      },
+      {
+        "type": 2,
+        "name": "move",
+        "handlerAddress": "0x0c153b30",
+        "lifecycleModes": {
+          "start": 0,
+          "update": 1,
+          "cleanup": 2
+        }
+      },
+      {
+        "type": 3,
+        "name": "motion",
+        "handlerAddress": "0x0c15400e",
+        "lifecycleModes": {
+          "start": 0,
+          "update": 1,
+          "cleanup": 2
+        }
+      },
+      {
+        "type": 4,
+        "name": "effect",
+        "handlerAddress": "0x0c154220",
+        "lifecycleModes": {
+          "start": 0,
+          "update": 1,
+          "cleanup": 2
+        }
+      },
+      {
+        "type": 5,
+        "name": "voice",
+        "handlerAddress": "0x0c154260",
+        "lifecycleModes": {
+          "start": 0,
+          "update": 1,
+          "cleanup": 2
+        }
+      },
+      {
+        "type": 6,
+        "name": "sound",
+        "handlerAddress": "0x0c15453a",
+        "lifecycleModes": {
+          "start": 0,
+          "update": 1,
+          "cleanup": 2
+        }
+      }
+    ],
+    "motionInterval": {
+      "handlerAddress": "0x0c15400e",
+      "authoredStartAdjustment": -1,
+      "authoredEndAdjustment": -1,
+      "updateCountExpression": "endFrame - startFrame"
+    }
+  },
+  "resourceBinding": {
+    "installOperation": "0x013e",
+    "archiveName": "DRAUTH",
+    "selectionRule": "when the variant string is empty, the native indexed resolver iterates AUTH-extension members exactly slot-index times",
+    "slots": [
+      {
+        "slot": 0,
+        "primaryPointer": 725898,
+        "secondaryPointer": 725905,
+        "resourceName": "DRAUTH",
+        "variant": "",
+        "authOrdinal": 0,
+        "archiveMember": "SEQDATA1.AUTH",
+        "archiveMemberSha256": "1e4a1c1ce0151c59fec79d9bfc706e14990ee75edf78698713fc28d6065e3357"
+      },
+      {
+        "slot": 1,
+        "primaryPointer": 725906,
+        "secondaryPointer": 725913,
+        "resourceName": "DRAUTH",
+        "variant": "",
+        "authOrdinal": 1,
+        "archiveMember": "SEQDATA2.AUTH",
+        "archiveMemberSha256": "a410bfb4d1a82db5bf09cdb05398ad55fc078fe3f31126033f6c20b52e7c83da"
+      }
+    ],
+    "archiveMembers": [
+      {
+        "index": 0,
+        "name": "M_01REV.MOTN",
+        "extension": "MOTN",
+        "offset": 32,
+        "byteLength": 166960,
+        "sha256": "6b34ada14a17959da702129589e120ea070e37cef81ad0e97b8c797cada37211"
+      },
+      {
+        "index": 1,
+        "name": "M_ZAKO.MOTN",
+        "extension": "MOTN",
+        "offset": 167008,
+        "byteLength": 168080,
+        "sha256": "0562507487c808d2e1ad80f5e2fd2a3527172e01fd79501c64134db1ffccac3d"
+      },
+      {
+        "index": 2,
+        "name": "SEQDATA1.AUTH",
+        "extension": "AUTH",
+        "offset": 335104,
+        "byteLength": 10232,
+        "sha256": "1e4a1c1ce0151c59fec79d9bfc706e14990ee75edf78698713fc28d6065e3357"
+      },
+      {
+        "index": 3,
+        "name": "SEQDATA2.AUTH",
+        "extension": "AUTH",
+        "offset": 345344,
+        "byteLength": 7564,
+        "sha256": "a410bfb4d1a82db5bf09cdb05398ad55fc078fe3f31126033f6c20b52e7c83da"
+      }
+    ]
+  },
+  "evidenceBoundary": [
+    "Slot zero and slot one are bound by exact authored operation-0x013e calls; no actor or proximity selects them.",
+    "SEQDATA1.AUTH and SEQDATA2.AUTH follow from the hash-pinned native AUTH-extension iterator and exact IPAC dictionary order, not a filename guess.",
+    "D000's start mode zero, completion poll mode minus one, and exact post-activity delayed-stop-latch query mode minus seven are promoted here.",
+    "The hash-pinned negative-mode jump table proves OP00's minus-twelve slot flag write, minus-ten active dword query, minus-nine exact no-op, and minus-six explicit stop routes; other unpromoted negative controls remain unresolved.",
+    "The hash-pinned update driver proves offset 0x3c is set to one only when the separate offset-0x38 delayed-stop countdown expires; ordinary terminal cleanup does not set or clear it.",
+    "This evidence proves activity lifecycle and resource identity, not yet every presentation adapter needed to execute each ASEQ command.",
+    "Hash-pinned native updater and spline ranges prove one authored frame per update and an exact 30.0-frame-per-second spline clock; this is not inferred from emulator cadence.",
+    "The command dispatch table and lifecycle modes prove command ownership boundaries, while engine-specific camera, transform, rig, and audio adaptation remains Babylon presentation work."
+  ]
+}

@@ -1,0 +1,867 @@
+{
+  "schema": "new-yokosuka-dialogue-interaction-family-summary-v1",
+  "evidenceBoundary": [
+    "Families are exact normalized native function structures, not inferred conversation meanings.",
+    "Voice pointers and actor tags become typed placeholders only after their native operation family is proven.",
+    "No family membership supplies a missing trigger, actor, subtitle, camera, animation, or story predicate.",
+    "The report is a prioritization index for semantic recovery and runtime work, not a playable-dialogue catalog."
+  ],
+  "summary": {
+    "candidateCount": 1285,
+    "classifiedCandidateCount": 1278,
+    "missingFunctionCount": 7,
+    "familyCount": 276,
+    "recurringFamilyCount": 145,
+    "candidateInRecurringFamilyCount": 1147,
+    "exactSingleActorLaunchCandidateCount": 126,
+    "branchExclusiveTriggerCandidateCount": 1
+  },
+  "largestFamilies": [
+    {
+      "familyId": "5a1fecd5fc24f088",
+      "memberCount": 551,
+      "representative": {
+        "disc": 1,
+        "area": "D000",
+        "executableTargetIndex": 268,
+        "regionStartFileOffset": "0x5da60"
+      },
+      "discCounts": {
+        "1": 110,
+        "2": 42,
+        "3": 399
+      },
+      "areaCount": 8,
+      "actorTagCardinalities": {
+        "0": 551
+      },
+      "voiceCountCardinalities": {
+        "1": 500,
+        "10": 1,
+        "11": 1,
+        "13": 1,
+        "2": 20,
+        "23": 2,
+        "3": 8,
+        "4": 5,
+        "5": 4,
+        "6": 2,
+        "7": 2,
+        "8": 5
+      },
+      "completeSubtitleProvenanceCount": 550,
+      "recoveredLaunchPathCount": 551,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "b722f4068728b555",
+      "memberCount": 31,
+      "representative": {
+        "disc": 1,
+        "area": "D000",
+        "executableTargetIndex": 23,
+        "regionStartFileOffset": "0xb200"
+      },
+      "discCounts": {
+        "1": 9,
+        "2": 11,
+        "3": 11
+      },
+      "areaCount": 11,
+      "actorTagCardinalities": {
+        "0": 6,
+        "1": 25
+      },
+      "voiceCountCardinalities": {
+        "12": 6,
+        "16": 25
+      },
+      "completeSubtitleProvenanceCount": 31,
+      "recoveredLaunchPathCount": 31,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "37357cef41a7d657",
+      "memberCount": 22,
+      "representative": {
+        "disc": 1,
+        "area": "D000",
+        "executableTargetIndex": 168,
+        "regionStartFileOffset": "0x4a2a8"
+      },
+      "discCounts": {
+        "1": 6,
+        "2": 8,
+        "3": 8
+      },
+      "areaCount": 4,
+      "actorTagCardinalities": {
+        "0": 22
+      },
+      "voiceCountCardinalities": {
+        "4": 22
+      },
+      "completeSubtitleProvenanceCount": 22,
+      "recoveredLaunchPathCount": 22,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "0d605833482460fa",
+      "memberCount": 11,
+      "representative": {
+        "disc": 1,
+        "area": "D000",
+        "executableTargetIndex": 650,
+        "regionStartFileOffset": "0x817f0"
+      },
+      "discCounts": {
+        "1": 3,
+        "2": 4,
+        "3": 4
+      },
+      "areaCount": 4,
+      "actorTagCardinalities": {
+        "0": 11
+      },
+      "voiceCountCardinalities": {
+        "3": 11
+      },
+      "completeSubtitleProvenanceCount": 11,
+      "recoveredLaunchPathCount": 11,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "2a07a3ad11884895",
+      "memberCount": 11,
+      "representative": {
+        "disc": 1,
+        "area": "D000",
+        "executableTargetIndex": 648,
+        "regionStartFileOffset": "0x816e8"
+      },
+      "discCounts": {
+        "1": 3,
+        "2": 4,
+        "3": 4
+      },
+      "areaCount": 4,
+      "actorTagCardinalities": {
+        "0": 11
+      },
+      "voiceCountCardinalities": {
+        "2": 11
+      },
+      "completeSubtitleProvenanceCount": 11,
+      "recoveredLaunchPathCount": 11,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "46e93a4a4f9e39d5",
+      "memberCount": 11,
+      "representative": {
+        "disc": 1,
+        "area": "D000",
+        "executableTargetIndex": 156,
+        "regionStartFileOffset": "0x30544"
+      },
+      "discCounts": {
+        "1": 3,
+        "2": 4,
+        "3": 4
+      },
+      "areaCount": 4,
+      "actorTagCardinalities": {
+        "0": 11
+      },
+      "voiceCountCardinalities": {
+        "35": 11
+      },
+      "completeSubtitleProvenanceCount": 11,
+      "recoveredLaunchPathCount": 11,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "4bcbf81e17c0133d",
+      "memberCount": 11,
+      "representative": {
+        "disc": 1,
+        "area": "D000",
+        "executableTargetIndex": 157,
+        "regionStartFileOffset": "0x31b0c"
+      },
+      "discCounts": {
+        "1": 3,
+        "2": 4,
+        "3": 4
+      },
+      "areaCount": 4,
+      "actorTagCardinalities": {
+        "0": 11
+      },
+      "voiceCountCardinalities": {
+        "163": 11
+      },
+      "completeSubtitleProvenanceCount": 11,
+      "recoveredLaunchPathCount": 11,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "796e546205599db9",
+      "memberCount": 11,
+      "representative": {
+        "disc": 1,
+        "area": "D000",
+        "executableTargetIndex": 174,
+        "regionStartFileOffset": "0x4afe8"
+      },
+      "discCounts": {
+        "1": 3,
+        "2": 4,
+        "3": 4
+      },
+      "areaCount": 4,
+      "actorTagCardinalities": {
+        "0": 11
+      },
+      "voiceCountCardinalities": {
+        "1": 11
+      },
+      "completeSubtitleProvenanceCount": 11,
+      "recoveredLaunchPathCount": 11,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "7baa09a1e83315bb",
+      "memberCount": 11,
+      "representative": {
+        "disc": 1,
+        "area": "D000",
+        "executableTargetIndex": 158,
+        "regionStartFileOffset": "0x38270"
+      },
+      "discCounts": {
+        "1": 3,
+        "2": 4,
+        "3": 4
+      },
+      "areaCount": 4,
+      "actorTagCardinalities": {
+        "0": 11
+      },
+      "voiceCountCardinalities": {
+        "95": 11
+      },
+      "completeSubtitleProvenanceCount": 11,
+      "recoveredLaunchPathCount": 11,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "81068ade5877d3f6",
+      "memberCount": 11,
+      "representative": {
+        "disc": 1,
+        "area": "D000",
+        "executableTargetIndex": 172,
+        "regionStartFileOffset": "0x4b238"
+      },
+      "discCounts": {
+        "1": 3,
+        "2": 4,
+        "3": 4
+      },
+      "areaCount": 4,
+      "actorTagCardinalities": {
+        "0": 11
+      },
+      "voiceCountCardinalities": {
+        "63": 11
+      },
+      "completeSubtitleProvenanceCount": 11,
+      "recoveredLaunchPathCount": 11,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "c015d1d1c7f054ae",
+      "memberCount": 11,
+      "representative": {
+        "disc": 1,
+        "area": "D000",
+        "executableTargetIndex": 159,
+        "regionStartFileOffset": "0x3c462"
+      },
+      "discCounts": {
+        "1": 3,
+        "2": 4,
+        "3": 4
+      },
+      "areaCount": 4,
+      "actorTagCardinalities": {
+        "0": 11
+      },
+      "voiceCountCardinalities": {
+        "332": 11
+      },
+      "completeSubtitleProvenanceCount": 11,
+      "recoveredLaunchPathCount": 11,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "d7ef68540b515fd0",
+      "memberCount": 11,
+      "representative": {
+        "disc": 1,
+        "area": "D000",
+        "executableTargetIndex": 163,
+        "regionStartFileOffset": "0x4af2c"
+      },
+      "discCounts": {
+        "1": 3,
+        "2": 4,
+        "3": 4
+      },
+      "areaCount": 4,
+      "actorTagCardinalities": {
+        "0": 11
+      },
+      "voiceCountCardinalities": {
+        "1": 11
+      },
+      "completeSubtitleProvenanceCount": 11,
+      "recoveredLaunchPathCount": 11,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "ddcaaa8d265b7b9c",
+      "memberCount": 11,
+      "representative": {
+        "disc": 1,
+        "area": "D000",
+        "executableTargetIndex": 161,
+        "regionStartFileOffset": "0x47f40"
+      },
+      "discCounts": {
+        "1": 3,
+        "2": 4,
+        "3": 4
+      },
+      "areaCount": 4,
+      "actorTagCardinalities": {
+        "0": 11
+      },
+      "voiceCountCardinalities": {
+        "51": 11
+      },
+      "completeSubtitleProvenanceCount": 11,
+      "recoveredLaunchPathCount": 11,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "ebf30b03399d3caa",
+      "memberCount": 11,
+      "representative": {
+        "disc": 1,
+        "area": "D000",
+        "executableTargetIndex": 642,
+        "regionStartFileOffset": "0x81910"
+      },
+      "discCounts": {
+        "1": 3,
+        "2": 4,
+        "3": 4
+      },
+      "areaCount": 4,
+      "actorTagCardinalities": {
+        "0": 11
+      },
+      "voiceCountCardinalities": {
+        "4": 11
+      },
+      "completeSubtitleProvenanceCount": 11,
+      "recoveredLaunchPathCount": 11,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "ecb060cba1c1fb6f",
+      "memberCount": 11,
+      "representative": {
+        "disc": 1,
+        "area": "D000",
+        "executableTargetIndex": 173,
+        "regionStartFileOffset": "0x4a994"
+      },
+      "discCounts": {
+        "1": 3,
+        "2": 4,
+        "3": 4
+      },
+      "areaCount": 4,
+      "actorTagCardinalities": {
+        "0": 11
+      },
+      "voiceCountCardinalities": {
+        "6": 11
+      },
+      "completeSubtitleProvenanceCount": 11,
+      "recoveredLaunchPathCount": 11,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "f1a09ea999ca90be",
+      "memberCount": 11,
+      "representative": {
+        "disc": 1,
+        "area": "D000",
+        "executableTargetIndex": 167,
+        "regionStartFileOffset": "0x4a000"
+      },
+      "discCounts": {
+        "1": 3,
+        "2": 4,
+        "3": 4
+      },
+      "areaCount": 4,
+      "actorTagCardinalities": {
+        "1": 11
+      },
+      "voiceCountCardinalities": {
+        "1": 11
+      },
+      "completeSubtitleProvenanceCount": 11,
+      "recoveredLaunchPathCount": 11,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "f761d984c3672857",
+      "memberCount": 9,
+      "representative": {
+        "disc": 1,
+        "area": "DURN",
+        "executableTargetIndex": 58,
+        "regionStartFileOffset": "0x20de8"
+      },
+      "discCounts": {
+        "1": 3,
+        "2": 3,
+        "3": 3
+      },
+      "areaCount": 1,
+      "actorTagCardinalities": {
+        "2": 9
+      },
+      "voiceCountCardinalities": {
+        "1": 9
+      },
+      "completeSubtitleProvenanceCount": 9,
+      "recoveredLaunchPathCount": 9,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "1461f9d04ffabec6",
+      "memberCount": 8,
+      "representative": {
+        "disc": 1,
+        "area": "D000",
+        "executableTargetIndex": 223,
+        "regionStartFileOffset": "0x54f80"
+      },
+      "discCounts": {
+        "1": 2,
+        "2": 3,
+        "3": 3
+      },
+      "areaCount": 3,
+      "actorTagCardinalities": {
+        "0": 8
+      },
+      "voiceCountCardinalities": {
+        "1": 8
+      },
+      "completeSubtitleProvenanceCount": 8,
+      "recoveredLaunchPathCount": 8,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "5c484303f77566fc",
+      "memberCount": 8,
+      "representative": {
+        "disc": 1,
+        "area": "D000",
+        "executableTargetIndex": 647,
+        "regionStartFileOffset": "0x81604"
+      },
+      "discCounts": {
+        "1": 2,
+        "2": 3,
+        "3": 3
+      },
+      "areaCount": 3,
+      "actorTagCardinalities": {
+        "0": 8
+      },
+      "voiceCountCardinalities": {
+        "2": 8
+      },
+      "completeSubtitleProvenanceCount": 8,
+      "recoveredLaunchPathCount": 8,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "77dc13269b18b9c1",
+      "memberCount": 8,
+      "representative": {
+        "disc": 1,
+        "area": "D000",
+        "executableTargetIndex": 145,
+        "regionStartFileOffset": "0x2d3bc"
+      },
+      "discCounts": {
+        "1": 2,
+        "2": 3,
+        "3": 3
+      },
+      "areaCount": 3,
+      "actorTagCardinalities": {
+        "0": 8
+      },
+      "voiceCountCardinalities": {
+        "3": 8
+      },
+      "completeSubtitleProvenanceCount": 8,
+      "recoveredLaunchPathCount": 8,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "d3299d4b58b2f595",
+      "memberCount": 8,
+      "representative": {
+        "disc": 1,
+        "area": "DBHB",
+        "executableTargetIndex": 42,
+        "regionStartFileOffset": "0x19d28"
+      },
+      "discCounts": {
+        "1": 2,
+        "2": 3,
+        "3": 3
+      },
+      "areaCount": 3,
+      "actorTagCardinalities": {
+        "4": 8
+      },
+      "voiceCountCardinalities": {
+        "14": 8
+      },
+      "completeSubtitleProvenanceCount": 8,
+      "recoveredLaunchPathCount": 8,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "978148e5c70860bc",
+      "memberCount": 6,
+      "representative": {
+        "disc": 1,
+        "area": "DGCT",
+        "executableTargetIndex": 71,
+        "regionStartFileOffset": "0x21fd0"
+      },
+      "discCounts": {
+        "1": 2,
+        "2": 2,
+        "3": 2
+      },
+      "areaCount": 1,
+      "actorTagCardinalities": {
+        "0": 6
+      },
+      "voiceCountCardinalities": {
+        "3": 6
+      },
+      "completeSubtitleProvenanceCount": 6,
+      "recoveredLaunchPathCount": 6,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "a8efb678f1d00fc8",
+      "memberCount": 6,
+      "representative": {
+        "disc": 1,
+        "area": "D000",
+        "executableTargetIndex": 542,
+        "regionStartFileOffset": "0xb700"
+      },
+      "discCounts": {
+        "1": 2,
+        "2": 2,
+        "3": 2
+      },
+      "areaCount": 2,
+      "actorTagCardinalities": {
+        "1": 6
+      },
+      "voiceCountCardinalities": {
+        "4": 6
+      },
+      "completeSubtitleProvenanceCount": 6,
+      "recoveredLaunchPathCount": 6,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "aff3ec0666342d5b",
+      "memberCount": 6,
+      "representative": {
+        "disc": 1,
+        "area": "JHD0",
+        "executableTargetIndex": 96,
+        "regionStartFileOffset": "0x3321c"
+      },
+      "discCounts": {
+        "1": 2,
+        "2": 2,
+        "3": 2
+      },
+      "areaCount": 1,
+      "actorTagCardinalities": {
+        "0": 6
+      },
+      "voiceCountCardinalities": {
+        "1": 6
+      },
+      "completeSubtitleProvenanceCount": 6,
+      "recoveredLaunchPathCount": 6,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "d7b13d812bfe71d1",
+      "memberCount": 6,
+      "representative": {
+        "disc": 1,
+        "area": "JOMO",
+        "executableTargetIndex": 318,
+        "regionStartFileOffset": "0x7cdda"
+      },
+      "discCounts": {
+        "1": 2,
+        "2": 2,
+        "3": 2
+      },
+      "areaCount": 1,
+      "actorTagCardinalities": {
+        "1": 6
+      },
+      "voiceCountCardinalities": {
+        "9": 6
+      },
+      "completeSubtitleProvenanceCount": 2,
+      "recoveredLaunchPathCount": 6,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "573744b5bb53bcb0",
+      "memberCount": 4,
+      "representative": {
+        "disc": 1,
+        "area": "D000",
+        "executableTargetIndex": 686,
+        "regionStartFileOffset": "0x88a84"
+      },
+      "discCounts": {
+        "1": 2,
+        "2": 1,
+        "3": 1
+      },
+      "areaCount": 2,
+      "actorTagCardinalities": {
+        "0": 4
+      },
+      "voiceCountCardinalities": {
+        "1": 4
+      },
+      "completeSubtitleProvenanceCount": 4,
+      "recoveredLaunchPathCount": 4,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "00d244017a24db01",
+      "memberCount": 3,
+      "representative": {
+        "disc": 1,
+        "area": "DURN",
+        "executableTargetIndex": 73,
+        "regionStartFileOffset": "0x211d4"
+      },
+      "discCounts": {
+        "1": 1,
+        "2": 1,
+        "3": 1
+      },
+      "areaCount": 1,
+      "actorTagCardinalities": {
+        "2": 3
+      },
+      "voiceCountCardinalities": {
+        "6": 3
+      },
+      "completeSubtitleProvenanceCount": 3,
+      "recoveredLaunchPathCount": 3,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "0141af60e0864ee0",
+      "memberCount": 3,
+      "representative": {
+        "disc": 1,
+        "area": "JHD0",
+        "executableTargetIndex": 110,
+        "regionStartFileOffset": "0x33820"
+      },
+      "discCounts": {
+        "1": 1,
+        "2": 1,
+        "3": 1
+      },
+      "areaCount": 1,
+      "actorTagCardinalities": {
+        "0": 3
+      },
+      "voiceCountCardinalities": {
+        "9": 3
+      },
+      "completeSubtitleProvenanceCount": 3,
+      "recoveredLaunchPathCount": 3,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "01dee67ab39f65f6",
+      "memberCount": 3,
+      "representative": {
+        "disc": 1,
+        "area": "D000",
+        "executableTargetIndex": 531,
+        "regionStartFileOffset": "0x74874"
+      },
+      "discCounts": {
+        "1": 1,
+        "2": 1,
+        "3": 1
+      },
+      "areaCount": 1,
+      "actorTagCardinalities": {
+        "1": 3
+      },
+      "voiceCountCardinalities": {
+        "6": 3
+      },
+      "completeSubtitleProvenanceCount": 3,
+      "recoveredLaunchPathCount": 3,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "050b4a8ff4c5b1a5",
+      "memberCount": 3,
+      "representative": {
+        "disc": 1,
+        "area": "JHD0",
+        "executableTargetIndex": 102,
+        "regionStartFileOffset": "0x31950"
+      },
+      "discCounts": {
+        "1": 1,
+        "2": 1,
+        "3": 1
+      },
+      "areaCount": 1,
+      "actorTagCardinalities": {
+        "2": 3
+      },
+      "voiceCountCardinalities": {
+        "3": 3
+      },
+      "completeSubtitleProvenanceCount": 3,
+      "recoveredLaunchPathCount": 3,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "0ca13aa6526be504",
+      "memberCount": 3,
+      "representative": {
+        "disc": 1,
+        "area": "JABE",
+        "executableTargetIndex": 88,
+        "regionStartFileOffset": "0x29b5c"
+      },
+      "discCounts": {
+        "1": 1,
+        "2": 1,
+        "3": 1
+      },
+      "areaCount": 1,
+      "actorTagCardinalities": {
+        "1": 3
+      },
+      "voiceCountCardinalities": {
+        "7": 3
+      },
+      "completeSubtitleProvenanceCount": 3,
+      "recoveredLaunchPathCount": 3,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    },
+    {
+      "familyId": "0ed0619e3ad47560",
+      "memberCount": 3,
+      "representative": {
+        "disc": 1,
+        "area": "DCBN",
+        "executableTargetIndex": 54,
+        "regionStartFileOffset": "0x20540"
+      },
+      "discCounts": {
+        "1": 1,
+        "2": 1,
+        "3": 1
+      },
+      "areaCount": 1,
+      "actorTagCardinalities": {
+        "5": 3
+      },
+      "voiceCountCardinalities": {
+        "1": 3
+      },
+      "completeSubtitleProvenanceCount": 1,
+      "recoveredLaunchPathCount": 3,
+      "branchExclusiveTriggerCount": 0,
+      "runtimeReadyCount": 0
+    }
+  ],
+  "fullReport": ".disc-work/dialogue/dialogue-interaction-families.json"
+}

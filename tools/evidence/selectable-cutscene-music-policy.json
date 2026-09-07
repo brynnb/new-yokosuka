@@ -1,0 +1,73 @@
+{
+  "schema": "new-yokosuka-selectable-cutscene-music-policy-v1",
+  "evidenceBoundary": [
+    "Policies describe the reviewed native owner or callback enclosing each selectable AUTH fragment, not music inferred from scene tone or retail video.",
+    "An SND filename in a MAPINFO resource table is not by itself proof that an activity starts that track.",
+    "Package cues are emitted only when the reviewed owner proves both the selected native source and its relationship to activity start."
+  ],
+  "families": [
+    {
+      "packageId": "drauth",
+      "selectorIds": ["S1-DRAUTH-01", "S1-DRAUTH-02"],
+      "classification": "explicit-bgm",
+      "owner": {
+        "area": "D000",
+        "function": "0x84b60",
+        "installerFunction": "0x858c4",
+        "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e"
+      },
+      "timing": "owner-before-activity-branch",
+      "nativeSource": {
+        "path": "data/SCENE/01/SOUND/BGM013.SND",
+        "sha256": "0c5250def8570bef8982a1634d3eef79781960a4b8a2c745d56593a314d07cb0",
+        "commandHex": "A8250000"
+      },
+      "browserCue": {
+        "trackId": "dobuita-selector-18",
+        "startActivity": true,
+        "loop": false
+      },
+      "evidence": [
+        "tools/evidence/d000-selector18-music.json",
+        "tools/data/native-event-program-routes.json",
+        "tools/evidence/native-activity-owner-candidates.json"
+      ]
+    },
+    {
+      "packageId": "yq14",
+      "selectorIds": ["S1-YQ14-01", "S1-YQ14-02"],
+      "classification": "ambient-room-inheritance",
+      "owner": {
+        "area": "D000",
+        "function": "0x7abf4",
+        "installerFunction": "0x7a714",
+        "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e"
+      },
+      "packageCue": null,
+      "reason": "The reviewed D000 owner and installer bind the two YQ14 activities and their native dialogue/effect banks but do not install or start a BGM. YQ14 MAPINFO contains BGM041.SND as a room resource, but its legacy instruction-stream owner has no reviewed playback timing; resource presence is therefore not promoted into an activity cue.",
+      "unresolvedRoomResource": {
+        "filename": "BGM041.SND",
+        "sourceSha256": "0e06770a40f7eba5697a4c2dc1f86c87b0528365703a60bc52660ba84ee72383"
+      },
+      "evidence": [
+        "tools/evidence/native-activity-owner-candidates.json",
+        "tools/evidence/d000-auth-audio-banks.json",
+        "tools/evidence/scn3-container-encoding-evidence.json"
+      ]
+    },
+    {
+      "packageId": "djhn",
+      "selectorIds": ["S1-DJHN-01", "S1-DJHN-02", "S1-DJHN-03", "S1-DJHN-04", "S1-DJHN-05", "S1-DJHN-06", "S1-DJHN-07"],
+      "classification": "ambient-room-inheritance",
+      "owner": {
+        "area": "D000",
+        "functions": ["0x8c768", "0x8ce38"],
+        "setupFunction": "0x8bb44",
+        "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e"
+      },
+      "packageCue": null,
+      "reason": "Both reviewed owners share setup 0x8bb44, which installs A1_YANJI.SND and 01JUCEA for activity-local effects and voices but performs no BGM installation or start. The event retains the active Dobuita room music.",
+      "evidence": ["tools/evidence/djhn-native-lifecycle.json"]
+    }
+  ]
+}

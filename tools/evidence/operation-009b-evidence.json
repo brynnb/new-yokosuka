@@ -1,0 +1,33 @@
+{
+  "schema": "new-yokosuka-operation-009b-evidence-v1",
+  "generatedBy": "tools/scripting/operations/extract_operation_009b_evidence.py",
+  "sources": {
+    "executable": {
+      "path": ".disc-work/exact/1ST_READ.BIN",
+      "sha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c"
+    },
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 155,
+    "operationHex": "0x009b",
+    "handlerAddress": "0x0c166020",
+    "handlerLength": 14,
+    "handlerSha256": "5b2d222db7c10c06c680731435a07ebe98513e1b6221dc5829699eb3f5e5c9a1",
+    "releaseHelperAddress": "0x0c10bb56",
+    "releaseHelperLength": 144,
+    "releaseHelperSha256": "8f3cc5fa07c24904270749334e6a9a07151f88390d09f83ce5a624498b2296b2",
+    "provenBehavior": "The handler forwards its sole authored word unchanged to the native registry-release helper. The helper returns zero for a null or absent record and one after unlinking and releasing a matching record."
+  },
+  "inventory": {
+    "authoredCallCount": 48,
+    "areaCount": 22,
+    "argumentKindCounts": {
+      "frame-field": 30,
+      "runtime": 1,
+      "scene-field": 17
+    },
+    "resultTargetCount": 0,
+    "resultComparisonCount": 0
+  }
+}

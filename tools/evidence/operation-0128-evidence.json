@@ -1,0 +1,73 @@
+{
+  "schema": "new-yokosuka-operation-0128-evidence-v1",
+  "status": "exact-environment-preset-selection-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 296,
+    "operationHex": "0x0128",
+    "handlerAddress": "0x0c16b0a2",
+    "authoredPresetIndices": [
+      0,
+      1
+    ],
+    "outerContainerTag": "FOG ",
+    "recordPayloadOffset": 8,
+    "recordStrideBytes": 80,
+    "nestedTags": [
+      "FOG ",
+      "BACK"
+    ],
+    "fogGlobalAddresses": [
+      "0x0c20bc44",
+      "0x0c20bc48",
+      "0x0c20bc4c",
+      "0x0c20bc50",
+      "0x0c20bc54"
+    ],
+    "backgroundIndexedWordCount": 4,
+    "verifiedRanges": {
+      "operationHandler": {
+        "address": "0x0c16b0a2",
+        "length": 12,
+        "sha256": "334e73498923c77f05204a0e27e59f403d442205f56388a8b201377e65a89f81"
+      },
+      "presetSelector": {
+        "address": "0x0c16ad1e",
+        "length": 42,
+        "sha256": "65eac061137598a3091e1b0e0d4f214d06679f4c8794c89318f938e50d2de832"
+      },
+      "presetApplicator": {
+        "address": "0x0c16ac8a",
+        "length": 148,
+        "sha256": "d510aebd131734ac30dedf7e8173dc537ddc991e7ef6801f1adebc795ad123f9"
+      },
+      "tagResolver": {
+        "address": "0x0c0f279a",
+        "length": 64,
+        "sha256": "106eed1a6eed4499524a28e44ae6336c3899b82909acf0b5d6bd0aad0edc38fd"
+      }
+    },
+    "provenBehavior": "Selects the 80-byte record at outer FOG payload + 8 + index * 80, resolves its nested FOG and BACK records, installs the exact five-word fog state and four indexed background words, then applies the remaining BACK fields."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 82,
+    "areaCount": 70,
+    "presetIndexCounts": {
+      "0": 80,
+      "1": 2
+    },
+    "dialogueRegionCallCount": 0,
+    "resultConsumerCount": 0
+  },
+  "evidenceBoundary": [
+    "Only exact authored indices zero and one are promoted.",
+    "Record stride, tag traversal, fog globals, and background call sequence are executable-proven.",
+    "The browser retains the preset request as a typed presentation-state mutation until map FOG/BACK payload extraction is connected.",
+    "No unsupported index is treated as a no-op or default preset."
+  ]
+}

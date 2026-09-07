@@ -1,0 +1,56 @@
+{
+  "schema": "new-yokosuka-live-d000-event-control-emulator-evidence-v1",
+  "status": "complete",
+  "source": {
+    "emulator": "Flycast",
+    "disc": 1,
+    "stateIndex": 8,
+    "stateSha256": "a053f46062b2972f869147849a512c433a4810a7b6acb0d064ab0aba1daa46d1",
+    "transport": "built-in GDB remote stub",
+    "profile": ".flycast-pvr/validation-event-control-2",
+    "guestWrites": false,
+    "artificialHandlerCalls": false,
+    "inputMethod": "ordinary Dreamcast controller pulses through Flycast Lua"
+  },
+  "recordPath": {
+    "currentSceneOwnerGlobal": "0x0c217488",
+    "ownerAddress": "0x0c1f5300",
+    "currentEventAddress": "0x0c3c5160",
+    "payloadAddress": "0x0c4998e0"
+  },
+  "observations": [
+    {
+      "input": "neutral",
+      "rawPayloadPrefixHex": "030000000100fe0600000000000000000000808080800000",
+      "fields": {
+        "word04": 1,
+        "word08": 0,
+        "word0a": 0,
+        "byte0c": 0,
+        "byte0d": 0,
+        "byte0e": 0,
+        "byte0f": 0,
+        "word12": 32896
+      }
+    },
+    {
+      "input": "right",
+      "flycastButtonMask": "0x80",
+      "rawPayloadPrefixHex": "030000000100fe0600800080000000800000808080800000",
+      "word08": 32768,
+      "word0a": 32768
+    },
+    {
+      "input": "A",
+      "flycastButtonMask": "0x04",
+      "rawPayloadPrefixHex": "030000000100fe0600040004000000000000808080800000",
+      "word08": 1024,
+      "word0a": 1024
+    }
+  ],
+  "conclusions": [
+    "Operation 0x0031 reads fields in the live controller-event payload selected by the current scene owner.",
+    "Selector one changes with ordinary controller input and is zero after release; it is not a room type or logical interaction selector.",
+    "The phone controller's comparison against 512 is an input-mask branch. Its post-sequence neutral path requires selector-one value zero."
+  ]
+}

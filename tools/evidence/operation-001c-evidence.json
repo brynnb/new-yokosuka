@@ -1,0 +1,118 @@
+{
+  "schema": "new-yokosuka-operation-001c-evidence-v1",
+  "status": "exact-native-packed-word-routes-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 28,
+    "operationHex": "0x001c",
+    "handlerAddress": "0x0c157bdc",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c157bdc",
+        "length": 172,
+        "sha256": "e2da069c0c0a90cf873078411034d76e0da4d61e77247c57f72eaee7ef58877b"
+      },
+      "directNormalHelper": {
+        "address": "0x0c0aaf80",
+        "length": 20,
+        "sha256": "d652081dec5df7f6feec12e7e2c99317606041449350cd17096c5a67e674a006"
+      },
+      "associatedNormalHelper": {
+        "address": "0x0c0ab06a",
+        "length": 32,
+        "sha256": "42bfcbb9dc106fa7bba23af1ad229d782d03912d8ed2d02460cfbfe519ab69df"
+      },
+      "associatedSpecialHelper": {
+        "address": "0x0c11423c",
+        "length": 42,
+        "sha256": "091c5cc0d738143b9d90f880c16196c552f8fd398f22bc8f9f7ebca5914077be"
+      },
+      "directSpecialHelper": {
+        "address": "0x0c11426c",
+        "length": 70,
+        "sha256": "75b67588156d77c85cfd3b88e4838464e3a37a49a9d47f1d0e1e292911319230"
+      }
+    },
+    "nativeContract": {
+      "handlerTableEntry": "0x0c157bdc",
+      "objectResolver": "0x0c153956",
+      "specialFlag": "0x02000000",
+      "lowWordMask": "0x0000ffff",
+      "associatedFlag": "0x40000000",
+      "associatedSpecialHelper": "0x0c11423c",
+      "associatedNormalHelper": "0x0c0ab06a",
+      "directSpecialHelper": "0x0c11426c",
+      "directNormalHelper": "0x0c0aaf80"
+    },
+    "routes": [
+      {
+        "flags": "0x00000000",
+        "behavior": "Copy resolved-object dwords +0x14/+0x18/+0x1c to the destination, then retain only each low 16 bits. A missing object leaves the destination words in place before masking."
+      },
+      {
+        "flags": "0x40000000",
+        "behavior": "Obtain the associated-path three-word output and retain only each low 16 bits. A missing object emits three zero words."
+      },
+      {
+        "flags": "0x02000000",
+        "behavior": "Clear destination words zero and two, query helper 0x0c11426c from destination+4, and store only its low 16 bits in destination word one."
+      },
+      {
+        "flags": "0x42000000",
+        "behavior": "Clear destination words zero and two, query helper 0x0c11423c from destination+4, and store only its low 16 bits in destination word one."
+      }
+    ]
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 1361,
+    "provenCallCount": 1360,
+    "unresolvedDynamicFlagCount": 1,
+    "dialogueRegionCallCount": 37,
+    "areaCount": 104,
+    "flagCounts": {
+      "0x00000000": 911,
+      "0x02000000": 60,
+      "0x40000000": 152,
+      "0x42000000": 237
+    },
+    "dialogueFlagCounts": {
+      "0x00000000": 20,
+      "0x42000000": 17
+    },
+    "argumentKindCounts": {
+      "0": {
+        "constant": 384,
+        "frame-field": 252,
+        "runtime": 583,
+        "scene-field": 141
+      },
+      "1": {
+        "constant": 1,
+        "frame-address": 1234,
+        "frame-field": 8,
+        "runtime": 10,
+        "scene-address": 106,
+        "static-pointer": 1
+      },
+      "2": {
+        "constant": 1360
+      }
+    },
+    "exactAddressDestinationCount": 1340,
+    "resolvedPointerDestinationCount": 20,
+    "resultComparisonCount": 0,
+    "resultTargetCount": 0
+  },
+  "evidenceBoundary": [
+    "Only the four exact constant flag words receive this semantic; the single runtime flag remains unresolved.",
+    "The associated normal helper's configured three-word result remains low-level state rather than a guessed transform.",
+    "The two MOMT-dependent special helpers remain mandatory read-only query adapters at their exact destination+4 boundary.",
+    "No coordinate-space, rotation, animation, or gameplay-domain field names are assigned.",
+    "Frame-address and scene-address destinations retain their native address-space identity; the browser runtime does not coerce them into synthetic numeric pointers."
+  ]
+}

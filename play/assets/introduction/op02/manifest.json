@@ -1,0 +1,873 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/build_op02_opening_assets.mjs",
+  "source": {
+    "disc": 1,
+    "path": "extracted_files/data/SCENE/01/OP02/MAPINFO.BIN",
+    "byteLength": 28496,
+    "sha256": "5463ad11cf2ed99764160795be2e1576a874d8c928b8ccc9db437ad32b25d6d0",
+    "archiveFormat": "MAPINFO embedded TRCK"
+  },
+  "nativeBinding": {
+    "evidence": "tools/evidence/op02-opening-native-lifecycle.json",
+    "resourceName": "A0100",
+    "variant": "OP02 entry 00",
+    "selectionRule": "seven exact embedded TRCK resources owned by function 0x7c"
+  },
+  "audioManifest": "public/audio/world/op02/manifest.json",
+  "packageActors": {
+    "SINF": {
+      "label": "Shenhua Ling",
+      "modelCode": "MGR_M",
+      "browserFilename": "S1_OP02_MGR_M.MT5",
+      "assetPath": "play/assets/introduction/op02/models/MGR_M.CHRM",
+      "textureAssetPath": "play/assets/introduction/op02/OP02_textures.bin",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "nativeClothRuntimeMode": 4,
+      "nativeSecondaryMotionRuntimeMode": 1
+    },
+    "HAWK": {
+      "label": "Hawk",
+      "defaultModelCode": "TAK02M7G",
+      "variants": [
+        {
+          "modelCode": "TAK02M7G",
+          "browserFilename": "S1_OP02_TAK02M7G.MT5",
+          "assetPath": "play/assets/introduction/op02/models/TAK02M7G.CHRM",
+          "textureAssetPath": "play/assets/introduction/op02/OP02_textures.bin",
+          "assetFormat": "MT5"
+        },
+        {
+          "modelCode": "TAK02M8G",
+          "browserFilename": "S1_OP02_TAK02M8G.MT5",
+          "assetPath": "play/assets/introduction/op02/models/TAK02M8G.CHRM",
+          "textureAssetPath": "play/assets/introduction/op02/OP02_textures.bin",
+          "assetFormat": "MT5"
+        }
+      ]
+    }
+  },
+  "mapLayers": [
+    {
+      "nativeName": "MAP01",
+      "browserFilename": "S1_OP02_MAP01.MT5"
+    },
+    {
+      "nativeName": "MAP02",
+      "browserFilename": "S1_OP02_MAP02.MT5"
+    }
+  ],
+  "mapGeometryMasks": [
+    {
+      "browserFilename": "S1_OP02_MAP03.MT5",
+      "nodeAddress": 3344
+    }
+  ],
+  "scrollSprites": [
+    {
+      "path": "play/assets/introduction/op02/SCROLL53.SCR1",
+      "imagePath": "play/assets/introduction/op02/SCROLL53.png",
+      "nativeSlot": 1,
+      "width": 512,
+      "height": 256,
+      "horizontalWrap": "mirror",
+      "textureOffsetY": -0.2,
+      "textureNames": [
+        "air53"
+      ]
+    },
+    {
+      "path": "play/assets/introduction/op02/SCROLL67.SCR0",
+      "imagePath": "play/assets/introduction/op02/SCROLL67.png",
+      "nativeSlot": 0,
+      "width": 512,
+      "height": 320,
+      "horizontalWrap": "mirror",
+      "textureOffsetY": -0.2,
+      "textureNames": [
+        "air67",
+        "air67b"
+      ]
+    }
+  ],
+  "clothTracks": {
+    "SINF": {
+      "path": "play/assets/introduction/op02/MGR_CLOTH_TRACK.bin",
+      "modelCode": "MGR_M",
+      "controlType": -70,
+      "frameRate": 30,
+      "frameCount": 1313,
+      "firstCoordinate": [
+        2,
+        2
+      ],
+      "lastCoordinate": [
+        5,
+        57
+      ],
+      "activityOrder": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "byteLength": 2531504,
+      "sha256": "b7764ddea665263dada837cc2c447504396d32943a3632845cb2775173c2db1d",
+      "evidence": "tools/evidence/op02-mgr-cloth-track.json"
+    }
+  },
+  "nodeMotion": {
+    "actorTag": "HAWK",
+    "path": "play/assets/introduction/op02/M_TORI.MOTN",
+    "initialSequenceIndex": 1,
+    "resourceIds": [
+      57345,
+      57346,
+      57347,
+      57348,
+      57349,
+      57350,
+      57351,
+      57352
+    ],
+    "playbackKindsBySequenceIndex": [
+      "transition",
+      "loop",
+      "transition",
+      "loop",
+      "transition",
+      "transition",
+      "transition",
+      "loop"
+    ],
+    "modelCodesBySequenceIndex": [
+      "TAK02M7G",
+      "TAK02M7G",
+      "TAK02M7G",
+      "TAK02M7G",
+      "TAK02M7G",
+      "TAK02M8G",
+      "TAK02M8G",
+      "TAK02M8G"
+    ]
+  },
+  "ownerAudioCommands": [
+    {
+      "commandHex": "a82b0000",
+      "exactArguments": [
+        0,
+        0
+      ],
+      "kind": "music",
+      "trackId": "bgm019",
+      "callFileOffsets": [
+        "0x192"
+      ]
+    },
+    {
+      "commandHex": "a0040000",
+      "exactArguments": [
+        2,
+        100
+      ],
+      "kind": "native-control-no-output",
+      "constructedQueueWord": "0x00000002",
+      "byteReversedDriverWord": "0x02000000",
+      "callFileOffsets": [
+        "0x1aa"
+      ]
+    },
+    {
+      "commandHex": "a00a0000",
+      "exactArguments": [
+        2,
+        30
+      ],
+      "kind": "native-control-no-output",
+      "constructedQueueWord": "0x00000002",
+      "byteReversedDriverWord": "0x02000000",
+      "callFileOffsets": [
+        "0x1892",
+        "0x1986"
+      ]
+    }
+  ],
+  "facialAssets": {
+    "SINF": {
+      "actorTag": "SINF",
+      "bodyModelCode": "MGR_M",
+      "faceCode": "MGR",
+      "attachmentRenderKey": -67,
+      "faceRootRenderKey": 3,
+      "eyeRenderKeys": [
+        77,
+        78
+      ],
+      "model": {
+        "path": "play/assets/introduction/op02/models/MGR_F.CHRM",
+        "sourcePath": "extracted_files/data/SCENE/01/OP02/SHD2.PKS/MGR_F.CHRM",
+        "byteLength": 108220,
+        "sha256": "2b5c3c5f8408cd9819f430598fb2bcba649b0278165ce042a78366860b4bd4a6"
+      },
+      "texturePack": {
+        "path": "play/assets/introduction/op02/OP02_textures.bin",
+        "byteLength": 2605504,
+        "sha256": "39df4836e2e6006db66925516cc7877898aacb0775270f016345f404fab9189d"
+      },
+      "table": {
+        "path": "play/assets/introduction/op02/MGR_FTBL.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/OP02/SHD2.PKS/MGR_FTBL.BIN",
+        "byteLength": 41196,
+        "sha256": "a6b16ea46f2f5669361e4d27210110aef06a55951f17a81c913ea303e9af7e7a"
+      },
+      "poses": {
+        "path": "play/assets/introduction/op02/mgr-talk-poses.generated.json",
+        "byteLength": 296183,
+        "sha256": "1b023d938e42244c469679191c6be2dfc2ef5a60988d4b92c3ee07d3d487ce12",
+        "generatedBy": "tools/extract_native_face_poses.py",
+        "actorTag": "SINF"
+      }
+    }
+  },
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/introduction/op02/M_0605.MOTN",
+      "byteLength": 12240,
+      "sha256": "191697b8ae70bea123ddf990a1c1268d8df6d5ad23a1602ebcd064bf1454b0f9"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/introduction/op02/models/MAP01.MAPM",
+      "byteLength": 127556,
+      "sha256": "85a8070543471906bfbc90f49b5cf4bfc0429f97d6b410a7c4c6cf495eeb9d61"
+    },
+    {
+      "path": "play/assets/introduction/op02/models/MAP02.MAPM",
+      "byteLength": 156672,
+      "sha256": "3aa3abecf4e57bf8650aada68d5f3d95bdfc65acb4b87457581b5a446a863a27"
+    },
+    {
+      "path": "play/assets/introduction/op02/models/MGR_M.CHRM",
+      "byteLength": 238128,
+      "sha256": "a79af46067bc08d22ec55e7308d6ac9157185bcba5409de3b59fc07830435f55"
+    },
+    {
+      "path": "play/assets/introduction/op02/models/MGR_F.CHRM",
+      "byteLength": 108220,
+      "sha256": "2b5c3c5f8408cd9819f430598fb2bcba649b0278165ce042a78366860b4bd4a6"
+    },
+    {
+      "path": "play/assets/introduction/op02/models/MAP.MAPM",
+      "byteLength": 159980,
+      "sha256": "07a409ba6bfd8eab73e013c04ff3b6e2e483aa1a9cb6a99f79437cb385ebbc88"
+    },
+    {
+      "path": "play/assets/introduction/op02/models/MAP03.MAPM",
+      "byteLength": 3564,
+      "sha256": "116a7963cc4d3dcd0c40daa3e97a33af0626082ac0d2124db9456997e4b266ee"
+    },
+    {
+      "path": "play/assets/introduction/op02/models/TAK02M7G.CHRM",
+      "byteLength": 45816,
+      "sha256": "3bb785a9e35909dfddf4d0914faaf063668e848f0667fb931acbfa8a503f2e05"
+    },
+    {
+      "path": "play/assets/introduction/op02/models/TAK02M8G.CHRM",
+      "byteLength": 39976,
+      "sha256": "80dd28d41fbac62c2bb52e88a5f0fd16b9a1dba101d6bd87308b5e0d3398035b"
+    },
+    {
+      "path": "play/assets/introduction/op02/M_TORI.MOTN",
+      "byteLength": 132456,
+      "sha256": "faa2483e6bbdfb5cde0fec4a1a1aeb5530330b9e8cfec6538bbe524370b67558"
+    },
+    {
+      "path": "play/assets/introduction/op02/SCROLL53.SCR1",
+      "byteLength": 262196,
+      "sha256": "ebb90b04a8b2ff865dc4bff68996ee9745cd2c64504bc934ccd2e8454f6a719c"
+    },
+    {
+      "path": "play/assets/introduction/op02/SCROLL67.SCR0",
+      "byteLength": 327800,
+      "sha256": "2c734eef6227c75fc84859a0a6e88dbec5391dc17ac868b240b31c575e7880b0"
+    },
+    {
+      "path": "play/assets/introduction/op02/OP02_textures.bin",
+      "byteLength": 2605504,
+      "sha256": "39df4836e2e6006db66925516cc7877898aacb0775270f016345f404fab9189d"
+    },
+    {
+      "path": "play/assets/introduction/op02/MGR_FTBL.BIN",
+      "byteLength": 41196,
+      "sha256": "a6b16ea46f2f5669361e4d27210110aef06a55951f17a81c913ea303e9af7e7a"
+    },
+    {
+      "path": "play/assets/introduction/op02/mgr-talk-poses.generated.json",
+      "byteLength": 296183,
+      "sha256": "1b023d938e42244c469679191c6be2dfc2ef5a60988d4b92c3ee07d3d487ce12"
+    },
+    {
+      "path": "play/assets/introduction/op02/M_0605.MOTN",
+      "byteLength": 12240,
+      "sha256": "191697b8ae70bea123ddf990a1c1268d8df6d5ad23a1602ebcd064bf1454b0f9"
+    },
+    {
+      "path": "play/assets/introduction/op02/MGR_CLOTH_TRACK.bin",
+      "byteLength": 2531504,
+      "sha256": "b7764ddea665263dada837cc2c447504396d32943a3632845cb2775173c2db1d"
+    },
+    {
+      "path": "play/assets/introduction/op02/SEQDATA0.AUTH",
+      "byteLength": 1600,
+      "sha256": "5f8f06c137f57e245ea9b73022e49c148d4973ec2bbe83b7868ea3f6a6908fa3"
+    },
+    {
+      "path": "play/assets/introduction/op02/SEQDATA1.AUTH",
+      "byteLength": 4968,
+      "sha256": "50d4bb03923ac6e442a0eb47ea78ff057aa740218385a47868a14399fa343ee2"
+    },
+    {
+      "path": "play/assets/introduction/op02/SEQDATA2.AUTH",
+      "byteLength": 1800,
+      "sha256": "645e5a3ffd3bb3bd1b323c7768dd8a537d78ce5438034da49b31092b8dbea30b"
+    },
+    {
+      "path": "play/assets/introduction/op02/SEQDATA3.AUTH",
+      "byteLength": 2356,
+      "sha256": "9a43456ff590a013ce54228d054749eb2d8fd5c4be55190579f4577528a19a50"
+    },
+    {
+      "path": "play/assets/introduction/op02/SEQDATA4.AUTH",
+      "byteLength": 2764,
+      "sha256": "4bdd07b5be164fcbf47704017d7a6ba9107bcd1bbb585d0e6681c7af89684f75"
+    },
+    {
+      "path": "play/assets/introduction/op02/SEQDATA5.AUTH",
+      "byteLength": 1504,
+      "sha256": "86f2c35e276ed399bbee9ab9c50ea6cd1f6217822224548a5269b413be004ffb"
+    },
+    {
+      "path": "play/assets/introduction/op02/SEQDATA6.AUTH",
+      "byteLength": 2528,
+      "sha256": "98ea8a7a95481e833bbfee9f6d2eb1c86241f953aa8f6c2db8ce245dee694653"
+    }
+  ],
+  "activities": [
+    {
+      "index": 0,
+      "sourceOffset": 10388,
+      "byteLength": 1600,
+      "actors": [
+        "HAWK",
+        "AKIR"
+      ],
+      "durationFrames": 450,
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "OP02/SEQDATA0.AUTH",
+      "archiveMember": "SEQDATA0.AUTH",
+      "sha256": "5f8f06c137f57e245ea9b73022e49c148d4973ec2bbe83b7868ea3f6a6908fa3",
+      "frameCount": 1,
+      "durationSeconds": 59,
+      "browserMapVisibility": [
+        {
+          "nativeName": "MAP01",
+          "visible": true
+        },
+        {
+          "nativeName": "MAP02",
+          "visible": true
+        }
+      ],
+      "programPresentationCues": {
+        "before": [
+          {
+            "kind": "node-motion-resource",
+            "objectTag": "HAWK",
+            "resourceId": 57346,
+            "sourceCallFileOffset": "0x2ce"
+          }
+        ],
+        "frames": [],
+        "after": []
+      },
+      "motions": [],
+      "asset": {
+        "path": "play/assets/introduction/op02/SEQDATA0.AUTH",
+        "byteLength": 1600,
+        "sha256": "5f8f06c137f57e245ea9b73022e49c148d4973ec2bbe83b7868ea3f6a6908fa3"
+      }
+    },
+    {
+      "index": 1,
+      "sourceOffset": 11988,
+      "byteLength": 4968,
+      "actors": [
+        "HAWK",
+        "SINF"
+      ],
+      "durationFrames": 350,
+      "slot": 1,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "OP02/SEQDATA1.AUTH",
+      "archiveMember": "SEQDATA1.AUTH",
+      "sha256": "50d4bb03923ac6e442a0eb47ea78ff057aa740218385a47868a14399fa343ee2",
+      "frameCount": 2,
+      "durationSeconds": 11.683333396911621,
+      "browserMapVisibility": [
+        {
+          "nativeName": "MAP01",
+          "visible": true
+        },
+        {
+          "nativeName": "MAP02",
+          "visible": true
+        }
+      ],
+      "programPresentationCues": {
+        "before": [
+          {
+            "kind": "node-motion-resource",
+            "objectTag": "HAWK",
+            "resourceId": 57346,
+            "sourceCallFileOffset": "0x482"
+          }
+        ],
+        "frames": [
+          {
+            "frame": 101,
+            "cues": [
+              {
+                "kind": "node-motion-resource",
+                "objectTag": "HAWK",
+                "resourceId": 57345,
+                "sourceCallFileOffset": "0x542"
+              }
+            ]
+          },
+          {
+            "frame": 152,
+            "cues": [
+              {
+                "kind": "node-motion-resource",
+                "objectTag": "HAWK",
+                "resourceId": 57350,
+                "sourceCallFileOffset": "0x5f2"
+              }
+            ]
+          },
+          {
+            "frame": 196,
+            "cues": [
+              {
+                "kind": "node-motion-resource",
+                "objectTag": "HAWK",
+                "resourceId": 57352,
+                "sourceCallFileOffset": "0x68e"
+              }
+            ]
+          },
+          {
+            "frame": 253,
+            "cues": [
+              {
+                "kind": "node-motion-resource",
+                "objectTag": "HAWK",
+                "resourceId": 57351,
+                "sourceCallFileOffset": "0x722"
+              }
+            ]
+          },
+          {
+            "frame": 281,
+            "cues": [
+              {
+                "kind": "node-motion-resource",
+                "objectTag": "HAWK",
+                "resourceId": 57349,
+                "sourceCallFileOffset": "0x7d2"
+              }
+            ]
+          }
+        ],
+        "after": []
+      },
+      "motions": [
+        {
+          "actorTag": "SINF",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "SIN_WALK_STAND_A_NWJ",
+          "startFrame": 630,
+          "endFrame": 789
+        },
+        {
+          "actorTag": "SINF",
+          "frame": 311,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "SIN_STAND_C_NWJ",
+          "startFrame": 1,
+          "endFrame": 10
+        }
+      ],
+      "asset": {
+        "path": "play/assets/introduction/op02/SEQDATA1.AUTH",
+        "byteLength": 4968,
+        "sha256": "50d4bb03923ac6e442a0eb47ea78ff057aa740218385a47868a14399fa343ee2"
+      }
+    },
+    {
+      "index": 2,
+      "sourceOffset": 16956,
+      "byteLength": 1800,
+      "actors": [
+        "HAWK",
+        "SINF"
+      ],
+      "durationFrames": 147,
+      "slot": 2,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "OP02/SEQDATA2.AUTH",
+      "archiveMember": "SEQDATA2.AUTH",
+      "sha256": "645e5a3ffd3bb3bd1b323c7768dd8a537d78ce5438034da49b31092b8dbea30b",
+      "frameCount": 2,
+      "durationSeconds": 15.666666984558105,
+      "browserMapVisibility": [
+        {
+          "nativeName": "MAP01",
+          "visible": true
+        },
+        {
+          "nativeName": "MAP02",
+          "visible": true
+        }
+      ],
+      "programPresentationCues": {
+        "before": [],
+        "frames": [],
+        "after": []
+      },
+      "motions": [
+        {
+          "actorTag": "SINF",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "SIN_STAND_C_NWJ",
+          "startFrame": 1,
+          "endFrame": 10
+        }
+      ],
+      "asset": {
+        "path": "play/assets/introduction/op02/SEQDATA2.AUTH",
+        "byteLength": 1800,
+        "sha256": "645e5a3ffd3bb3bd1b323c7768dd8a537d78ce5438034da49b31092b8dbea30b"
+      }
+    },
+    {
+      "index": 3,
+      "sourceOffset": 18756,
+      "byteLength": 2356,
+      "actors": [
+        "HAWK",
+        "SINF"
+      ],
+      "durationFrames": 580,
+      "slot": 3,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "OP02/SEQDATA3.AUTH",
+      "archiveMember": "SEQDATA3.AUTH",
+      "sha256": "9a43456ff590a013ce54228d054749eb2d8fd5c4be55190579f4577528a19a50",
+      "frameCount": 5,
+      "durationSeconds": 24,
+      "browserMapVisibility": [
+        {
+          "nativeName": "MAP01",
+          "visible": true
+        },
+        {
+          "nativeName": "MAP02",
+          "visible": true
+        }
+      ],
+      "programPresentationCues": {
+        "before": [
+          {
+            "kind": "node-motion-resource",
+            "objectTag": "HAWK",
+            "resourceId": 57348,
+            "sourceCallFileOffset": "0x9d2"
+          }
+        ],
+        "frames": [
+          {
+            "frame": 167,
+            "cues": [
+              {
+                "kind": "node-motion-resource",
+                "objectTag": "HAWK",
+                "resourceId": 57347,
+                "sourceCallFileOffset": "0xa66"
+              }
+            ]
+          },
+          {
+            "frame": 234,
+            "cues": [
+              {
+                "kind": "node-motion-resource",
+                "objectTag": "HAWK",
+                "resourceId": 57346,
+                "sourceCallFileOffset": "0xafa"
+              }
+            ]
+          }
+        ],
+        "after": []
+      },
+      "motions": [
+        {
+          "actorTag": "SINF",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "SIN_WALK_STAND_A_NWJ",
+          "startFrame": 1,
+          "endFrame": 719
+        }
+      ],
+      "asset": {
+        "path": "play/assets/introduction/op02/SEQDATA3.AUTH",
+        "byteLength": 2356,
+        "sha256": "9a43456ff590a013ce54228d054749eb2d8fd5c4be55190579f4577528a19a50"
+      }
+    },
+    {
+      "index": 4,
+      "sourceOffset": 21112,
+      "byteLength": 2764,
+      "actors": [
+        "HAWK",
+        "SINF"
+      ],
+      "durationFrames": 530,
+      "slot": 4,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "OP02/SEQDATA4.AUTH",
+      "archiveMember": "SEQDATA4.AUTH",
+      "sha256": "4bdd07b5be164fcbf47704017d7a6ba9107bcd1bbb585d0e6681c7af89684f75",
+      "frameCount": 5,
+      "durationSeconds": 21,
+      "browserMapVisibility": [
+        {
+          "nativeName": "MAP01",
+          "visible": true
+        },
+        {
+          "nativeName": "MAP02",
+          "visible": true
+        }
+      ],
+      "programPresentationCues": {
+        "before": [
+          {
+            "kind": "node-motion-resource",
+            "objectTag": "HAWK",
+            "resourceId": 57346,
+            "sourceCallFileOffset": "0xfa6"
+          }
+        ],
+        "frames": [],
+        "after": [
+          {
+            "kind": "scroll-transition",
+            "slotIndex": 1,
+            "controlMode": 0,
+            "durationFrames": 560,
+            "sourceCallFileOffset": "0xf7e"
+          }
+        ]
+      },
+      "motions": [
+        {
+          "actorTag": "SINF",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "SIN_WALK_STAND_A_NWJ",
+          "startFrame": 261,
+          "endFrame": 262
+        },
+        {
+          "actorTag": "SINF",
+          "frame": 387,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "SIN_WALK_STAND_A_NWJ",
+          "startFrame": 262,
+          "endFrame": 789
+        }
+      ],
+      "asset": {
+        "path": "play/assets/introduction/op02/SEQDATA4.AUTH",
+        "byteLength": 2764,
+        "sha256": "4bdd07b5be164fcbf47704017d7a6ba9107bcd1bbb585d0e6681c7af89684f75"
+      }
+    },
+    {
+      "index": 5,
+      "sourceOffset": 23876,
+      "byteLength": 1504,
+      "actors": [
+        "SINF"
+      ],
+      "durationFrames": 57,
+      "slot": 5,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "OP02/SEQDATA5.AUTH",
+      "archiveMember": "SEQDATA5.AUTH",
+      "sha256": "86f2c35e276ed399bbee9ab9c50ea6cd1f6217822224548a5269b413be004ffb",
+      "frameCount": 3,
+      "durationSeconds": 1.9166669845581055,
+      "browserMapVisibility": [
+        {
+          "nativeName": "MAP01",
+          "visible": true
+        },
+        {
+          "nativeName": "MAP02",
+          "visible": true
+        }
+      ],
+      "programPresentationCues": {
+        "before": [],
+        "frames": [],
+        "after": []
+      },
+      "motions": [
+        {
+          "actorTag": "SINF",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "SIN_OHI_FURIMUKI_0605",
+          "startFrame": 100,
+          "endFrame": 126
+        }
+      ],
+      "asset": {
+        "path": "play/assets/introduction/op02/SEQDATA5.AUTH",
+        "byteLength": 1504,
+        "sha256": "86f2c35e276ed399bbee9ab9c50ea6cd1f6217822224548a5269b413be004ffb"
+      }
+    },
+    {
+      "index": 6,
+      "sourceOffset": 25380,
+      "byteLength": 2528,
+      "actors": [
+        "SINF",
+        "HAWK"
+      ],
+      "durationFrames": 243,
+      "slot": 6,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "OP02/SEQDATA6.AUTH",
+      "archiveMember": "SEQDATA6.AUTH",
+      "sha256": "98ea8a7a95481e833bbfee9f6d2eb1c86241f953aa8f6c2db8ce245dee694653",
+      "frameCount": 3,
+      "durationSeconds": 27.53333282470703,
+      "browserMapVisibility": [
+        {
+          "nativeName": "MAP01",
+          "visible": true
+        },
+        {
+          "nativeName": "MAP02",
+          "visible": true
+        }
+      ],
+      "programPresentationCues": {
+        "before": [
+          {
+            "kind": "node-motion-resource",
+            "objectTag": "HAWK",
+            "resourceId": 57346,
+            "sourceCallFileOffset": "0xc3e"
+          }
+        ],
+        "frames": [
+          {
+            "frame": 75,
+            "cues": [
+              {
+                "kind": "node-motion-resource",
+                "objectTag": "HAWK",
+                "resourceId": 57345,
+                "sourceCallFileOffset": "0xcf6"
+              }
+            ]
+          },
+          {
+            "frame": 153,
+            "cues": [
+              {
+                "kind": "node-motion-resource",
+                "objectTag": "HAWK",
+                "resourceId": 57347,
+                "sourceCallFileOffset": "0xd8a"
+              }
+            ]
+          },
+          {
+            "frame": 220,
+            "cues": [
+              {
+                "kind": "node-motion-resource",
+                "objectTag": "HAWK",
+                "resourceId": 57346,
+                "sourceCallFileOffset": "0xe1e"
+              }
+            ]
+          }
+        ],
+        "after": []
+      },
+      "motions": [
+        {
+          "actorTag": "SINF",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "SIN_WALK_STAND_A_NWJ",
+          "startFrame": 1,
+          "endFrame": 719
+        }
+      ],
+      "asset": {
+        "path": "play/assets/introduction/op02/SEQDATA6.AUTH",
+        "byteLength": 2528,
+        "sha256": "98ea8a7a95481e833bbfee9f6d2eb1c86241f953aa8f6c2db8ce245dee694653"
+      }
+    }
+  ]
+}

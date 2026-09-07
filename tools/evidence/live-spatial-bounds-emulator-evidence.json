@@ -1,0 +1,129 @@
+{
+  "schema": "new-yokosuka-live-spatial-bounds-emulator-evidence-v1",
+  "status": "naturally-executed-false-and-true-results-validated",
+  "operationId": "0x000a",
+  "provenance": {
+    "date": "2026-07-30",
+    "emulator": "Flycast",
+    "emulatorBinary": "${FLYCAST_ROOT}/build/flycast",
+    "emulatorBinarySha256": "ebb698aa5cad0b175ec6149302b49c646638ead57a95c27f7466f7d973ad3f02",
+    "disc": ".disc-work/disc1.gdi",
+    "discSha256": "91e703e5daf7f14fe42544e6947d3fd87292ce828f73efaade688e44e5194722",
+    "sourceState": "disc1_9.state",
+    "sourceStateSha256": "8e6f2549fc67a0acb0fdeabdb33568cb6b02135499cab1f26acdce71d80824aa",
+    "isolatedStateSha256": "8e6f2549fc67a0acb0fdeabdb33568cb6b02135499cab1f26acdce71d80824aa",
+    "profile": ".flycast-pvr/validation-vmu-skip",
+    "autosave": false
+  },
+  "route": {
+    "initialState": "authored state index 9 in the Yamanose cat area",
+    "input": "ordinary Dreamcast controller input",
+    "observedArea": "JHD0 Hazuki residence grounds",
+    "notes": [
+      "Ryo was moved naturally through the Hazuki gate and grounds.",
+      "No handler was invoked artificially and no guest RAM was written.",
+      "Software breakpoints used cached P1 addresses; Flycast reported stopped PCs through their P0 aliases."
+    ]
+  },
+  "observations": [
+    {
+      "expectedContainment": false,
+      "handlerAddress": "0x0c155878",
+      "handlerBreakpointAddress": "0x8c155878",
+      "argumentArrayAddress": "0x0c43cc0c",
+      "argumentWords": [
+        "0x52494b41",
+        "0x0c423990",
+        "0x0c42399c",
+        "0x00000000"
+      ],
+      "objectReference": "AKIR",
+      "translationReference": "0x00000000",
+      "sourceVectorA": [
+        -2.2634999752044678,
+        1.131500005722046,
+        -16.218799591064453
+      ],
+      "sourceVectorB": [
+        -11.271100044250488,
+        1.131500005722046,
+        -28.65959930419922
+      ],
+      "translationVector": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "normalizedXzMinimum": [
+        -11.271100044250488,
+        -28.65959930419922
+      ],
+      "normalizedXzMaximum": [
+        -2.2634999752044678,
+        -16.218799591064453
+      ],
+      "objectPosition": [
+        -3.083212375640869,
+        0.0,
+        1.0944808721542358
+      ],
+      "nativeResultArgument": 0,
+      "resultSlotAddress": "0x0c8baaec",
+      "resultSlotBefore": "0x00000000",
+      "resultSlotAfter": "0x00000000",
+      "captureSha256": "e768db643e70e907a91e82724c95b62e5f73dc6b5691c97ad4a60872d8e332bb"
+    },
+    {
+      "expectedContainment": true,
+      "handlerAddress": "0x0c155878",
+      "handlerBreakpointAddress": "0x8c155878",
+      "argumentArrayAddress": "0x0c43cbd8",
+      "argumentWords": [
+        "0x52494b41",
+        "0x0c43aa7c",
+        "0x0c43aa88",
+        "0x00000000"
+      ],
+      "objectReference": "AKIR",
+      "translationReference": "0x00000000",
+      "sourceVectorA": [
+        0.0,
+        0.0,
+        13.430299758911133
+      ],
+      "sourceVectorB": [
+        -2.0,
+        0.0,
+        9.5600004196167
+      ],
+      "translationVector": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "normalizedXzMinimum": [
+        -2.0,
+        9.5600004196167
+      ],
+      "normalizedXzMaximum": [
+        0.0,
+        13.430299758911133
+      ],
+      "objectPosition": [
+        -1.105169653892517,
+        0.10000000149011612,
+        9.931119918823242
+      ],
+      "nativeResultArgument": 1,
+      "resultSlotAddress": "0x0c8b570c",
+      "resultSlotBefore": "0x00000000",
+      "resultSlotAfter": "0xffffffff",
+      "captureSha256": "5846f5fab0beba187bf9dd29b50e6fd2566a4c6221810d09e823dc5fb4af765a"
+    }
+  ],
+  "evidenceBoundary": [
+    "These observations validate the exact zero-translation false and true paths, including the native result-writer representation.",
+    "They do not validate the optional nonzero translation-object path.",
+    "They do not assign a trigger, collision, interaction, or gameplay-domain name to operation 0x000a."
+  ]
+}

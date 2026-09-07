@@ -1,0 +1,206 @@
+{
+  "schema": "new-yokosuka-operation-01a1-evidence-v1",
+  "generatedBy": "tools/scripting/operations/extract_operation_01a1_evidence.py",
+  "sources": {
+    "executable": {
+      "path": ".disc-work/exact/1ST_READ.BIN",
+      "sha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c"
+    },
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 417,
+    "operationHex": "0x01a1",
+    "handlerAddress": "0x0c16adb0",
+    "handlerLength": 134,
+    "handlerSha256": "ffdd5f7e3a4fb7741f4e3de8be6d203812407f21b8553fbdc3b56d74aea73602",
+    "configureHelperAddress": "0x0c173c04",
+    "configureHelperLength": 250,
+    "configureHelperSha256": "80c67789a89d3f461a4974aa6c7a8e6d605e6c2fc928a4421b00a18b7666a5bb",
+    "queryHelperAddress": "0x0c173cfe",
+    "queryHelperLength": 32,
+    "queryHelperSha256": "1413b507763070240a21f889d5c165be5220b6c89efecc10450e1cd7b8c1aca0",
+    "cacheAddress": "0x0c224750",
+    "provenBehavior": "Ten-argument routes configure two four-byte channel vectors and a duration on the fixed native envelope record. Mode one retains the target quartet in the exact native cache; mode two sources its first channels from that cache when active. The one-argument -1 route returns whether the record's duration field is nonzero."
+  },
+  "inventory": {
+    "authoredCallCount": 6,
+    "areaCount": 2,
+    "argumentCounts": {
+      "1": 1,
+      "10": 5
+    },
+    "configurationRoutes": [
+      {
+        "arguments": [
+          0,
+          1,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255
+        ],
+        "callCount": 1
+      },
+      {
+        "arguments": [
+          30,
+          1,
+          0,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255
+        ],
+        "callCount": 1
+      },
+      {
+        "arguments": [
+          30,
+          2,
+          255,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "callCount": 2
+      },
+      {
+        "arguments": [
+          50,
+          1,
+          150,
+          68,
+          50,
+          0,
+          255,
+          255,
+          255,
+          255
+        ],
+        "callCount": 1
+      }
+    ],
+    "queryArguments": [
+      4294967295
+    ]
+  },
+  "calls": [
+    {
+      "disc": 1,
+      "area": "JHD0",
+      "function": "0x3856c",
+      "callFileOffset": "0x38808",
+      "arguments": [
+        30,
+        1,
+        0,
+        255,
+        255,
+        255,
+        255,
+        255,
+        255,
+        255
+      ],
+      "hasResultComparison": false
+    },
+    {
+      "disc": 1,
+      "area": "JHD0",
+      "function": "0x3856c",
+      "callFileOffset": "0x38818",
+      "arguments": [
+        4294967295
+      ],
+      "hasResultComparison": true
+    },
+    {
+      "disc": 1,
+      "area": "JHD0",
+      "function": "0x537d4",
+      "callFileOffset": "0x53aee",
+      "arguments": [
+        0,
+        1,
+        255,
+        255,
+        255,
+        255,
+        255,
+        255,
+        255,
+        255
+      ],
+      "hasResultComparison": false
+    },
+    {
+      "disc": 1,
+      "area": "JHD0",
+      "function": "0x545f8",
+      "callFileOffset": "0x54d2a",
+      "arguments": [
+        30,
+        2,
+        255,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "hasResultComparison": false
+    },
+    {
+      "disc": 1,
+      "area": "JHD0",
+      "function": "0x545f8",
+      "callFileOffset": "0x55396",
+      "arguments": [
+        30,
+        2,
+        255,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "hasResultComparison": false
+    },
+    {
+      "disc": 1,
+      "area": "YD01",
+      "function": "0x70c",
+      "callFileOffset": "0x20de",
+      "arguments": [
+        50,
+        1,
+        150,
+        68,
+        50,
+        0,
+        255,
+        255,
+        255,
+        255
+      ],
+      "hasResultComparison": false
+    }
+  ]
+}

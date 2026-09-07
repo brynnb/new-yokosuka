@@ -1,0 +1,177 @@
+{
+  "schema": "new-yokosuka-operation-0166-control-evidence-v1",
+  "status": "exact-native-routes-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 358,
+    "operationHex": "0x0166",
+    "handlerAddress": "0x0c167ab4",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c167ab4",
+        "length": 900,
+        "sha256": "35e2555cd8d69878dc2601a667ce37dfae6f8e68d9d4bdf60bf964f6883587ae"
+      },
+      "modeTwoHelper": {
+        "address": "0x0c166eec",
+        "length": 94,
+        "sha256": "3de5ead4f4f04950a2e8b2319354bf55c84a617123c3700b67dd06eff0731a41"
+      },
+      "modeThreeHelper": {
+        "address": "0x0c166f50",
+        "length": 98,
+        "sha256": "d7dc577f8dfc39637276038877793c6b444a3184f328f6081e8ef58e0dc6330f"
+      },
+      "modeThirteenHelper": {
+        "address": "0x0c1676a0",
+        "length": 44,
+        "sha256": "9e8a428af2196d5c8ee9ac8a88333ed989eb1f4c90426e35a25d1585f945744d"
+      },
+      "modeEighteenSecondHelper": {
+        "address": "0x0c166fb2",
+        "length": 188,
+        "sha256": "ce3becdf5320ca2f6c8b65ab0860c2b539b545b654b1e1fdf4d6bedd903f08f6"
+      },
+      "modeFourHelper": {
+        "address": "0x0c16706e",
+        "length": 590,
+        "sha256": "8c72743e19010fef1eee3c2784d1975ebbeb20bf220a1076d7b177ecbbdf1290"
+      },
+      "modeTwentySevenHelper": {
+        "address": "0x0c1672bc",
+        "length": 242,
+        "sha256": "d249360fae9c701705026486e5ddaaf332b78dcf8bb57f622154cfbc24e3954c"
+      },
+      "modeFiveHelper": {
+        "address": "0x0c1673ae",
+        "length": 146,
+        "sha256": "e805a4900dac74d5e336026b028b48dc168c59a3914a1d0360891711ebd3a9ef"
+      },
+      "modeSixHelper": {
+        "address": "0x0c167440",
+        "length": 174,
+        "sha256": "bade3e1c69fd1e65d58a32f99da1f2f0c749412680b79f3d48fd65d51086d2cc"
+      },
+      "modeSevenHelper": {
+        "address": "0x0c1674ee",
+        "length": 78,
+        "sha256": "8c4958c6fdea38500ebb1835a102778f5a9349f467a471151765d28ba3d880d9"
+      }
+    },
+    "nativeContract": {
+      "handlerTableEntry": "0x0c167ab4",
+      "integerResultWriter": "0x0c0bb342",
+      "modeTwoControlDword": "0x0c21bce8",
+      "modeTwoListRoot": "0x0c21bca4",
+      "modeTwoRecordRelease": "0x0c1153e6",
+      "modeTwoCleanupSelector": "0x0c21bc7c",
+      "modeTwoAuxiliaryRoot": "0x0c21bc94",
+      "modeThreeFirstListRoot": "0x0c21bca8",
+      "modeThreeRecordRelease": "0x0c1193dc",
+      "modeThreeSecondListRoot": "0x0c21bca0",
+      "modeEighteenFirstListRoot": "0x0c21bc98",
+      "modeEighteenSecondListRoot": "0x0c21bc9c",
+      "modeThirteenListRoot": "0x0c21bcac",
+      "modeEightControlDword": "0x0c21bce4",
+      "modeEightEnableCallback": "0x0c115434",
+      "actorActiveListRoot": "0x0c21bcac",
+      "actorResourceRoot": "0x0c21bc8c",
+      "actorResourceBusyDword": "0x0c21bc7c",
+      "actorResourceReadyQuery": "0x0c139348",
+      "actorResourceRequestedTag": "0x0c224420"
+    },
+    "routes": [
+      {
+        "mode": 4,
+        "argumentCount": 3,
+        "behavior": "Search the exact ordered actor-record roots for argument one, write the Boolean activation word from argument two, and move matched inactive records to the active root 0x0c21bcac. Return one."
+      },
+      {
+        "mode": 5,
+        "argumentCount": 2,
+        "behavior": "When the fixed resource root is present and neither busy nor blocked, resolve argument one's actor resource indices, issue the exact request, retain its tag at 0x0c224420, and return the request result; otherwise return zero."
+      },
+      {
+        "mode": 6,
+        "argumentCount": 2,
+        "behavior": "Return the fixed readiness query. When ready, find the active record for the retained actor tag, bind argument one and its derived attachment fields, and run the record finalizer."
+      },
+      {
+        "mode": 7,
+        "argumentCount": 2,
+        "behavior": "Find the active record whose dword +0x8c equals argument one, release its attachment, and clear dwords +0x68 and +0x6c; if none matches, run the native global resource cleanup. Return one."
+      },
+      {
+        "mode": 2,
+        "argumentCount": 2,
+        "behavior": "Store Boolean(argument one) at dword 0x0c21bce8. On zero, release the exact linked-record structure when present. Return one."
+      },
+      {
+        "mode": 3,
+        "argumentCount": 1,
+        "behavior": "Release the two exact fixed lists rooted at 0x0c21bca8 and 0x0c21bca0. Return one."
+      },
+      {
+        "mode": 8,
+        "argumentCount": 2,
+        "behavior": "Store Boolean(argument one) at dword 0x0c21bce4. Call 0x0c115434 with one only on a zero-to-one edge. Return one."
+      },
+      {
+        "mode": 13,
+        "argumentCount": 3,
+        "behavior": "Scan the ordered list at 0x0c21bcac, compare its nested object fourcc with argument one, and write argument two unchanged to the first match's dword +0x90. Return one for a match or zero otherwise."
+      },
+      {
+        "mode": 18,
+        "argumentCount": 1,
+        "behavior": "Run the exact mode-three cleanup, then the additional cleanup rooted at 0x0c21bc98 and 0x0c21bc9c. Return one."
+      },
+      {
+        "mode": 27,
+        "argumentCount": 2,
+        "behavior": "Search the three exact dynamic actor lists for argument one. On a match, unlink it, stop and release its attachment, release the record, and return its dword +0x8c. When absent, run the mode-four activation path with value one and return zero."
+      }
+    ]
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 3085,
+    "provenCallCount": 1479,
+    "dialogueRegionCallCount": 38,
+    "areaCount": 55,
+    "modeArgumentCountCounts": {
+      "2/2": 462,
+      "3/1": 43,
+      "4/3": 266,
+      "5/2": 215,
+      "6/2": 149,
+      "7/2": 128,
+      "8/2": 54,
+      "13/3": 40,
+      "18/1": 108,
+      "27/2": 14
+    },
+    "dialogueModeCounts": {
+      "2": 11,
+      "4": 6,
+      "5": 6,
+      "6": 3,
+      "7": 3,
+      "8": 3,
+      "13": 3,
+      "18": 3
+    },
+    "resultComparisonCount": 245,
+    "resultTargetCount": 227
+  },
+  "evidenceBoundary": [
+    "Only the ten exact mode and argument-count shapes listed above receive this semantic.",
+    "The gameplay-domain ownership of the linked records and fixed lists remains unknown.",
+    "Opaque release and notification calls remain mandatory low-level adapters at their exact native boundaries.",
+    "Mode zero and all other operation-0x0166 shapes remain unresolved unless separately proven."
+  ]
+}

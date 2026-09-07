@@ -1,0 +1,802 @@
+{
+  "schema": "new-yokosuka-shenmue2-compact-motion-evidence-v6",
+  "executable": {
+    "filename": "1ST_READ.BIN",
+    "byteLength": 3196456,
+    "sha256": "4004da908c85d358b3c92c888501c8e872e70afcc6141141bff05bfe9e255fe3"
+  },
+  "xboxExecutable": {
+    "filename": "Default.xbe",
+    "byteLength": 5771264,
+    "sha256": "0d4d7b27a650e05e736039039a805495f21b3adb2021e6cc1aeb47ab9ae7e4b6"
+  },
+  "nativeFunctions": {
+    "compactCurveReader": "0x8c1cda80",
+    "compactCurveSkipper": "0x8c1cddb0",
+    "halfFloatDecoder": "0x8c1ce0e0",
+    "encodedMotionResolver": "0x8c04de78",
+    "xboxCompactControllerEvaluator": "0x1abd50",
+    "xboxMotionFamilyResolver": "0x58b4c",
+    "xboxSteadyLocomotionSelector": "0x60ed3",
+    "xboxAlternateLocomotionSelector": "0x60ef0",
+    "xboxLocomotionTransitionSelector": "0x60f0d",
+    "xboxProfileSelector": "0x6129d",
+    "xboxIdleSelector": "0x612e4",
+    "xboxNpcOpcodeDispatcher": "0x5efd6",
+    "xboxNpcOpcode2dCase": "0x5f89a",
+    "xboxActorMotionLayerInstaller": "0x5be43",
+    "xboxActorMotionLayerEvaluator": "0x5bea8",
+    "xboxRequestMotionSlot": "0x5307b",
+    "xboxSetMotionSlotPlaybackPosition": "0x53359",
+    "buildCompactMotionSlotPointers": "0x8c0ef9a0",
+    "updateMotionSlots": "0x8c0ef220",
+    "dispatchMotionSlot": "0x8c1cd920",
+    "applyAllMotionSlots": "0x8c1ce2e0"
+  },
+  "format": {
+    "framesPerSecond": 30,
+    "controllerCount": 22,
+    "rootTranslationChannels": [
+      "x",
+      "y",
+      "z"
+    ],
+    "controllerRotationChannels": [
+      "rx",
+      "ry",
+      "rz"
+    ],
+    "curveCount": 69,
+    "sequenceHeaderByteLength": 78,
+    "interiorCountEncoding": "69 unsigned bytes followed by one alignment byte",
+    "keyEncoding": [
+      "uint16 value word",
+      "uint16 incoming/shared tangent word",
+      "optional uint16 outgoing tangent when value word bit zero is set"
+    ],
+    "timing": "first and last frames implicit; interior frames are uint16; the final implicit key is durationFrames - 1, matching native frame indexing",
+    "interpolation": "cubic Hermite with tangents scaled to seconds at 30 Hz"
+  },
+  "selectorEvidence": [
+    {
+      "motionId": "0x80c3",
+      "bank": "NPC.MOT",
+      "sequenceIndex": 194
+    },
+    {
+      "motionId": "0x80d1",
+      "bank": "NPC.MOT",
+      "sequenceIndex": 208
+    },
+    {
+      "motionId": "0xe024",
+      "bank": "NPC_TBL.MOT",
+      "sequenceIndex": 35
+    },
+    {
+      "motionId": "0xf03e",
+      "bank": "MOTION.MOT",
+      "sequenceIndex": 61
+    }
+  ],
+  "nativeMotionSlots": {
+    "count": 5,
+    "updateLoop": {
+      "function": "0x8c0ef220",
+      "prologueWords": [
+        "0x2f86",
+        "0x2f96",
+        "0x2fa6",
+        "0x2fb6",
+        "0x2fc6",
+        "0x2fd6",
+        "0x2fe6",
+        "0x4f22"
+      ],
+      "structureOffsets": {
+        "flags": "0x23c0",
+        "currentMotionIds": "0x2400",
+        "requestedMotionIds": "0x240a",
+        "blendCounters": "0x2428",
+        "blendDurations": "0x2432"
+      },
+      "defaultBlendFrames": 8,
+      "defaultBlendFrameInstructions": [
+        "0x8c0ef452",
+        "0x8c0ef78c"
+      ]
+    },
+    "dispatcher": {
+      "function": "0x8c1cd920",
+      "poseBufferOffsets": [
+        "0x8",
+        "0xe18",
+        "0x11a8",
+        "0x1578",
+        "0x1af8"
+      ],
+      "slot34Installer": "0x8c1ce540",
+      "slot4InstallerFlag": "input flags OR 0x4",
+      "applicationOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "conclusion": [
+        "slot 4 is a retained, separately evaluated pose buffer",
+        "slot 4 is applied after the ordinary locomotion slots",
+        "a slot-4 schedule pose must not replace the active locomotion clip",
+        "actor motion layers select native slots 1 through 4 with mask bits 0x02 through 0x10"
+      ]
+    },
+    "runtimeTrace": {
+      "filename": "s2-motion-selector-entry.csv",
+      "byteLength": 8230685,
+      "sha256": "5288f81deead0aed4c1d9496a2d73a7b34b31db3e43e927d0271c4037284945d",
+      "observations": [
+        {
+          "actorRuntimeAddress": "0x8c8869c8",
+          "slot": 4,
+          "retainedMotionId": "0x80c3",
+          "subsequentlyEvaluatedMotionId": "0xf086",
+          "cycleDelta": 170984
+        },
+        {
+          "actorRuntimeAddress": "0x8c7fd888",
+          "slot": 4,
+          "retainedMotionId": "0x80d5",
+          "subsequentlyEvaluatedMotionId": "0xe03c",
+          "cycleDelta": 665024
+        }
+      ]
+    }
+  },
+  "nativeActorMotionLayers": {
+    "opcode2dCommandWords": [
+      "opcode 0x2d",
+      "uint16 motion ID",
+      "flags"
+    ],
+    "actorLayerIndex": 1,
+    "layerRecordOffset": "0x2c0",
+    "layerRecordStride": 8,
+    "motionIdOffsetWithinLayer": 2,
+    "controllerGroupMask": "flags & 0x1e",
+    "nativeSlotBits": {
+      "0x02": 1,
+      "0x04": 2,
+      "0x08": 3,
+      "0x10": 4
+    },
+    "precedence": "earlier actor layers remove their controller-group bits from later layers before each selected native motion slot is requested",
+    "ordinaryCompactCurvePartitions": {
+      "sourceFunction": "0x8c0ef9a0",
+      "curveCountsBySlot": [
+        27,
+        9,
+        9,
+        12,
+        12
+      ],
+      "controllerIndicesBySlot": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        [
+          8,
+          9,
+          10
+        ],
+        [
+          11,
+          12,
+          13
+        ],
+        [
+          14,
+          15,
+          16,
+          17
+        ],
+        [
+          18,
+          19,
+          20,
+          21
+        ]
+      ],
+      "slot4CurveRange": [
+        57,
+        68
+      ],
+      "note": "curve indices 0..2 are root XYZ; subsequent triplets are compact controller rotations"
+    }
+  },
+  "nativeNpcSelectors": {
+    "bodyFamilyTableVirtualAddress": "0x4ec000",
+    "bodyFamilyTable": [
+      {
+        "bodyValue": 0,
+        "motionFamilyIndex": 0
+      },
+      {
+        "bodyValue": 1,
+        "motionFamilyIndex": 1
+      },
+      {
+        "bodyValue": 2,
+        "motionFamilyIndex": 2
+      },
+      {
+        "bodyValue": 3,
+        "motionFamilyIndex": 3
+      },
+      {
+        "bodyValue": 4,
+        "motionFamilyIndex": 4
+      },
+      {
+        "bodyValue": 5,
+        "motionFamilyIndex": 5
+      },
+      {
+        "bodyValue": 6,
+        "motionFamilyIndex": 6
+      },
+      {
+        "bodyValue": 7,
+        "motionFamilyIndex": 7
+      },
+      {
+        "bodyValue": 8,
+        "motionFamilyIndex": 8
+      },
+      {
+        "bodyValue": 9,
+        "motionFamilyIndex": 9
+      },
+      {
+        "bodyValue": 10,
+        "motionFamilyIndex": 10
+      },
+      {
+        "bodyValue": 11,
+        "motionFamilyIndex": 11
+      },
+      {
+        "bodyValue": 12,
+        "motionFamilyIndex": 12
+      },
+      {
+        "bodyValue": 13,
+        "motionFamilyIndex": 13
+      },
+      {
+        "bodyValue": 14,
+        "motionFamilyIndex": 14
+      },
+      {
+        "bodyValue": 15,
+        "motionFamilyIndex": 15
+      },
+      {
+        "bodyValue": 16,
+        "motionFamilyIndex": 16
+      },
+      {
+        "bodyValue": 17,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 18,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 19,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 20,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 21,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 22,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 23,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 24,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 25,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 26,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 27,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 28,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 29,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 30,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 31,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 32,
+        "motionFamilyIndex": 0
+      },
+      {
+        "bodyValue": 33,
+        "motionFamilyIndex": 1
+      },
+      {
+        "bodyValue": 34,
+        "motionFamilyIndex": 2
+      },
+      {
+        "bodyValue": 35,
+        "motionFamilyIndex": 3
+      },
+      {
+        "bodyValue": 36,
+        "motionFamilyIndex": 4
+      },
+      {
+        "bodyValue": 37,
+        "motionFamilyIndex": 5
+      },
+      {
+        "bodyValue": 38,
+        "motionFamilyIndex": 6
+      },
+      {
+        "bodyValue": 39,
+        "motionFamilyIndex": 7
+      },
+      {
+        "bodyValue": 40,
+        "motionFamilyIndex": 8
+      },
+      {
+        "bodyValue": 41,
+        "motionFamilyIndex": 9
+      },
+      {
+        "bodyValue": 42,
+        "motionFamilyIndex": 10
+      },
+      {
+        "bodyValue": 43,
+        "motionFamilyIndex": 11
+      },
+      {
+        "bodyValue": 44,
+        "motionFamilyIndex": 12
+      },
+      {
+        "bodyValue": 45,
+        "motionFamilyIndex": 13
+      },
+      {
+        "bodyValue": 46,
+        "motionFamilyIndex": 14
+      },
+      {
+        "bodyValue": 47,
+        "motionFamilyIndex": 15
+      },
+      {
+        "bodyValue": 48,
+        "motionFamilyIndex": 16
+      },
+      {
+        "bodyValue": 49,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 50,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 51,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 52,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 53,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 54,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 55,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 56,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 57,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 58,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 59,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 60,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 61,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 62,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 63,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 64,
+        "motionFamilyIndex": 0
+      },
+      {
+        "bodyValue": 65,
+        "motionFamilyIndex": 1
+      },
+      {
+        "bodyValue": 66,
+        "motionFamilyIndex": 2
+      },
+      {
+        "bodyValue": 67,
+        "motionFamilyIndex": 3
+      },
+      {
+        "bodyValue": 68,
+        "motionFamilyIndex": 4
+      },
+      {
+        "bodyValue": 69,
+        "motionFamilyIndex": 5
+      },
+      {
+        "bodyValue": 70,
+        "motionFamilyIndex": 6
+      },
+      {
+        "bodyValue": 71,
+        "motionFamilyIndex": 7
+      },
+      {
+        "bodyValue": 72,
+        "motionFamilyIndex": 8
+      },
+      {
+        "bodyValue": 73,
+        "motionFamilyIndex": 9
+      },
+      {
+        "bodyValue": 74,
+        "motionFamilyIndex": 10
+      },
+      {
+        "bodyValue": 75,
+        "motionFamilyIndex": 11
+      },
+      {
+        "bodyValue": 76,
+        "motionFamilyIndex": 12
+      },
+      {
+        "bodyValue": 77,
+        "motionFamilyIndex": 13
+      },
+      {
+        "bodyValue": 78,
+        "motionFamilyIndex": 14
+      },
+      {
+        "bodyValue": 79,
+        "motionFamilyIndex": 15
+      },
+      {
+        "bodyValue": 80,
+        "motionFamilyIndex": 16
+      },
+      {
+        "bodyValue": 81,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 82,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 83,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 84,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 85,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 86,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 87,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 88,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 89,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 90,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 91,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 92,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 93,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 94,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 95,
+        "motionFamilyIndex": 17
+      },
+      {
+        "bodyValue": 96,
+        "motionFamilyIndex": 1
+      }
+    ],
+    "steadyLocomotion": {
+      "function": "0x60ed3",
+      "tableVirtualAddress": "0x4ec158",
+      "motionIds": [
+        "0xf03e",
+        "0xf0ff",
+        "0xf07e",
+        "0xf084",
+        "0xf09e",
+        "0xf0d1",
+        "0xf060",
+        "0xf086",
+        "0xf005",
+        "0xf078",
+        "0xf058",
+        "0xf084",
+        "0xf084",
+        "0xf0a4",
+        "0xf0a6",
+        "0x0000"
+      ]
+    },
+    "alternateLocomotion": {
+      "function": "0x60ef0",
+      "tableVirtualAddress": "0x4ec178",
+      "motionIds": [
+        "0xf006",
+        "0xf006",
+        "0xf006",
+        "0xf0e6",
+        "0xf0e6",
+        "0xf0e6",
+        "0xf006",
+        "0xf006",
+        "0xf006",
+        "0xf006",
+        "0xf006",
+        "0xf006",
+        "0xf006",
+        "0xf006",
+        "0xf006",
+        "0x0000"
+      ]
+    },
+    "transition": {
+      "function": "0x60f0d",
+      "note": "jump-table selector; family 8 is model-name dependent",
+      "motionIds": [
+        "0xf03f",
+        "0xf05f",
+        "0xf07f",
+        "0xf057",
+        "0xf09f",
+        "0xf0d2",
+        "0xf061",
+        "0xf087",
+        null,
+        "0xf079",
+        "0xf059",
+        "0xf0a8",
+        "0xf0a5",
+        "0xf0a7",
+        "0xf0ea",
+        "0xf085"
+      ]
+    },
+    "profileIdle": {
+      "function": "0x612e4",
+      "tableVirtualAddress": "0x4ec588",
+      "dimensions": [
+        "modelVariant:3",
+        "ageSexCategory:6",
+        "subtype:3"
+      ],
+      "fallbackMotionId": "0x8023",
+      "motionIds": [
+        "0xe108",
+        "0x8036",
+        "0xe108",
+        "0x8036",
+        "0xe108",
+        "0xe380",
+        "0xe381",
+        "0xe381",
+        "0xe380",
+        "0x800f",
+        "0xe0f1",
+        "0x8009",
+        "0xe101",
+        "0xe101",
+        "0xe101",
+        "0x801f",
+        "0xe0df",
+        "0xe0f2",
+        "0xe0e3",
+        "0xe0e3",
+        "0xe0e3",
+        "0xe108",
+        "0xe0f5",
+        "0xe0f5",
+        "0xe0e4",
+        "0xe0e4",
+        "0xe381",
+        "0xe0e3",
+        "0xe0e3",
+        "0xe0e3",
+        "0xe0f5",
+        "0xe0f5",
+        "0xe0f5",
+        "0xe0e4",
+        "0xe0e4",
+        "0xe0e4",
+        "0xe0f7",
+        "0xe107",
+        "0xe108",
+        "0xe381",
+        "0xe380",
+        "0xe381",
+        "0xe107",
+        "0xe0f7",
+        "0xe107",
+        "0xe101",
+        "0xe101",
+        "0xe0f2",
+        "0xe0f0",
+        "0xe0f0",
+        "0xe0f0",
+        "0xe0f6",
+        "0xe0f6",
+        "0xe0f6"
+      ]
+    }
+  },
+  "banks": [
+    {
+      "filename": "NPC.MOT",
+      "byteLength": 937928,
+      "sha256": "b9773add1f519108198e3bf366b86f8f70336b1bae2a845ce39abc15158ad732",
+      "sequenceCount": 261,
+      "uniqueSequenceDataCount": 261,
+      "validSequenceCount": 261,
+      "nativeMotionIdRange": {
+        "lowerExclusive": "0x8000",
+        "upperExclusive": "0x8106",
+        "first": "0x8001",
+        "last": "0x8105"
+      },
+      "keyCount": 157339,
+      "separateOutgoingTangentKeyCount": 13763,
+      "duplicateInteriorFrameCurveCount": 0
+    },
+    {
+      "filename": "NPC_TBL.MOT",
+      "byteLength": 671836,
+      "sha256": "6ddb57ecb84adca3303de04f378ebecb70ed46e4e7867babb688a81db36d4104",
+      "sequenceCount": 951,
+      "uniqueSequenceDataCount": 210,
+      "validSequenceCount": 951,
+      "nativeMotionIdRange": {
+        "lowerExclusive": "0xe000",
+        "upperExclusive": "0xe3b8",
+        "first": "0xe001",
+        "last": "0xe3b7"
+      },
+      "keyCount": 484919,
+      "separateOutgoingTangentKeyCount": 49357,
+      "duplicateInteriorFrameCurveCount": 13
+    },
+    {
+      "filename": "MOTION.MOT",
+      "byteLength": 624528,
+      "sha256": "69e17a984c66fa8ba8eb1e0eeb6d17e6cddf7b24cad901c537a163b4c9dd9c59",
+      "sequenceCount": 304,
+      "uniqueSequenceDataCount": 293,
+      "validSequenceCount": 251,
+      "nativeMotionIdRange": {
+        "lowerExclusive": "0xf000",
+        "upperExclusive": "0xf131",
+        "first": "0xf001",
+        "last": "0xf130"
+      },
+      "keyCount": 107089,
+      "separateOutgoingTangentKeyCount": 11447,
+      "duplicateInteriorFrameCurveCount": 1
+    }
+  ]
+}

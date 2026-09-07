@@ -1,0 +1,161 @@
+{
+  "schema": "new-yokosuka-operation-017d-evidence-v1",
+  "status": "exact-native-handler-controller-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "verifiedNativeRanges": {
+    "operationHandler": {
+      "runtimeAddress": "0x0c166c2e",
+      "size": 48,
+      "sha256": "b7eff722520971ad6ae05db6ab92910f20acf7e75ab46464ed4faef1f6c7dcf2"
+    },
+    "objectRecordResolver": {
+      "runtimeAddress": "0x0c153956",
+      "size": 60,
+      "sha256": "9f17c0e1e76d43fadc6671985324c0d702b079d170f73aa16e3fdc58d4534d09"
+    },
+    "xmptRequestCore": {
+      "runtimeAddress": "0x0c0febc0",
+      "size": 432,
+      "sha256": "a1788568795b3b9e26cb339c0490d522c6509cfd60a54cb32413252d5bd52576"
+    },
+    "xmptController": {
+      "runtimeAddress": "0x0c0fd1fc",
+      "size": 2856,
+      "sha256": "76a48e543b56631a4d1d32cbdbcc8702770d62c606600136c913e82a655bd946"
+    },
+    "selectorFiveTargetHelper": {
+      "runtimeAddress": "0x0c0fdf8c",
+      "size": 446,
+      "sha256": "e62b78d3a6aa9d63fc18d40c579d87c9aeb68a7ebb7d0acc2936a0ecc2b82e80"
+    }
+  },
+  "operation": {
+    "operationId": 381,
+    "operationHex": "0x017d",
+    "argumentCount": 4,
+    "arguments": [
+      {
+        "index": 0,
+        "meaning": "actor reference"
+      },
+      {
+        "index": 1,
+        "meaning": "pointer to an exact three-float target vector"
+      },
+      {
+        "index": 2,
+        "meaning": "word copied unchanged to XMPT +0x88"
+      },
+      {
+        "index": 3,
+        "meaning": "dword copied unchanged to XMPT +0x20"
+      }
+    ],
+    "fixedRequestCoreArguments": {
+      "routeScalar": -1.0,
+      "supplementalRecordPointer": 0,
+      "selector": 5
+    },
+    "recordTag": "XMPT"
+  },
+  "selectorFiveLifecycle": {
+    "initialState": 3,
+    "routePreparationState": 3,
+    "nearRouteWaitState": 4,
+    "motionWaitState": 8,
+    "finalAlignmentState": 7,
+    "cleanupState": 11,
+    "terminalState": 0,
+    "farRouteTransition": [
+      3,
+      8
+    ],
+    "nearRouteTransition": [
+      3,
+      4,
+      8
+    ],
+    "alignmentLoop": [
+      8,
+      7,
+      8
+    ],
+    "completionTransition": [
+      8,
+      11,
+      0
+    ],
+    "selectorSpecificTargetHelperAddress": "0x0c0fdf8c",
+    "motionRequestSource": "low 16 bits of XMPT +0x20 request dword",
+    "controllerRequestWordOffset": "actor +0x66",
+    "provenBehavior": "State three invokes the selector-five target helper before choosing the native near or far route and starting motion. The far route enters wait state eight directly; the near route enters state four before state eight. State eight waits for actor +0x66 to clear, enters state seven when final alignment differs, and otherwise enters cleanup state eleven. State seven starts the final alignment and returns to state eight. State eleven performs shared cleanup and sets the record to terminal state zero."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 297,
+    "areaCount": 96,
+    "callsByDisc": {
+      "1": 90,
+      "2": 105,
+      "3": 102
+    },
+    "storedResultCount": 0,
+    "argumentShapes": [
+      {
+        "kinds": [
+          "constant",
+          "frame-address",
+          "constant",
+          "constant"
+        ],
+        "count": 6
+      },
+      {
+        "kinds": [
+          "constant",
+          "scene-address",
+          "runtime",
+          "constant"
+        ],
+        "count": 3
+      },
+      {
+        "kinds": [
+          "frame-field",
+          "scene-address",
+          "runtime",
+          "constant"
+        ],
+        "count": 96
+      },
+      {
+        "kinds": [
+          "runtime",
+          "scene-address",
+          "runtime",
+          "frame-field"
+        ],
+        "count": 96
+      },
+      {
+        "kinds": [
+          "runtime",
+          "scene-address",
+          "runtime",
+          "runtime"
+        ],
+        "count": 96
+      }
+    ]
+  },
+  "evidenceBoundary": [
+    "Only exact four-argument operation 0x017d receives this semantic.",
+    "The handler supplies null supplemental data and literal selector five independently of all authored operands.",
+    "The selector-five target helper is retained as an explicit controller obligation; its model- and motion-dependent geometry is not replaced by a guessed offset.",
+    "A request is not complete until the native state path reaches zero; operation 0x017e remains the exact active predicate."
+  ]
+}

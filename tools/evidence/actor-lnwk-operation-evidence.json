@@ -1,0 +1,71 @@
+{
+  "schema": "new-yokosuka-actor-lnwk-operation-evidence-v1",
+  "status": "exact-native-handler-dispatch-and-record-family",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c"
+  },
+  "operation": {
+    "operationId": 76,
+    "operationHex": "0x004c",
+    "handlerAddress": "0x0c1724a4",
+    "handlerSha256": "1431193cbe44431d00075483b1b2333ff253417934827ea05516a0abd68b8053",
+    "dispatcherAddress": "0x0c0ee804",
+    "dispatcherSha256": "c4be4823c77039dac44b1fb488fcc3eefe5099d1b5a3f72c746abc5162fa73b3",
+    "commandArgumentIndex": 0,
+    "actorArgumentIndex": 1,
+    "actorResolverAddress": "0x0c153956",
+    "associatedRecordResolverAddress": "0x0c0aad5a",
+    "associatedRecordTag": "LNWK",
+    "associatedRecordTagValue": "0x4b574e4c",
+    "commands": [
+      {
+        "command": 0,
+        "encodedValue": "0x4c570000",
+        "targetAddress": "0x0c0ee3ea",
+        "targetSha256": "0b86d244fb9d588ddbc101df22eb08ba3632498bb1009a6b7cf81c7c6e840d0f"
+      },
+      {
+        "command": 1,
+        "encodedValue": "0x4c570001",
+        "targetAddress": "0x0c0ee5f0",
+        "targetSha256": "9d96193554d1b86ea607508940e031a2dae1ff03ccc1e10ff009b64eb2ff24b9"
+      },
+      {
+        "command": 2,
+        "encodedValue": "0x4c570002",
+        "targetAddress": "0x0c0ee664",
+        "targetSha256": "2ef5960cc294bc15256c8562503027ff95d1c4363deb340c9e2323f564ab30a2"
+      },
+      {
+        "command": 3,
+        "encodedValue": "0x4c570003",
+        "targetAddress": "0x0c0ee75e",
+        "targetSha256": "2071cb3f2481019fdf5ad744cecab650ffb13c23361850cedd96c6399de3fa65"
+      },
+      {
+        "command": 4,
+        "encodedValue": "0x4c570004",
+        "targetAddress": "0x0c0ee7ac",
+        "targetSha256": "cdcaaed34734c0546f754304fa3e516a0e74619e5cc13e38aab6e821ad84b5ca"
+      }
+    ],
+    "provenBehavior": "Dispatches encoded LW commands 0 through 4, resolves the supplied actor, and creates, updates, advances, writes, or releases fields in that actor's associated LNWK record."
+  },
+  "allDiscScriptEvidence": {
+    "engineOperationCallCount": 153,
+    "observedEncodedCommands": [
+      "0x4c570000",
+      "0x4c570001",
+      "0x4c570002",
+      "0x4c570003"
+    ],
+    "unobservedButNativeCommand": "0x4c570004"
+  },
+  "evidenceBoundary": [
+    "The thunk, dispatcher, five command constants and targets, actor resolution, LNWK tag, and associated-record lookup are executable-proven.",
+    "LNWK is retained as the native record-family name. Its expanded gameplay meaning and several command fields remain unresolved rather than being guessed.",
+    "Operation 0x004c does not occur inside the four exact Hato conversation phase functions."
+  ]
+}

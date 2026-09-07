@@ -1,0 +1,325 @@
+{
+  "schema": "new-yokosuka-d000-gacha-audio-v1",
+  "status": "verified",
+  "generatedBy": "tools/audio/extract_d000_gacha_audio.py",
+  "source": {
+    "mapinfo": {
+      "path": ".disc-work/exact/d000/MAPINFO.BIN",
+      "byteLength": 868708,
+      "sha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e"
+    },
+    "bank": {
+      "path": "extracted_files/data/SCENE/01/SOUND/E1GACHAP.SND",
+      "byteLength": 25784,
+      "sha256": "84538c809f1eb93b6afd52d39061b21d2009929c21f313ccef07a7ac7e406349"
+    },
+    "motion": {
+      "path": "play/assets/dobuita/M_GACH.MOTN",
+      "byteLength": 6080,
+      "sha256": "3dee651e6b7b5d33c0326628133ea104ab643f75c25ceec404fdb94739ccc23b"
+    }
+  },
+  "resourceCluster": {
+    "soundBank": {
+      "name": "e1gachap.snd",
+      "fileOffset": "0xacaf6"
+    },
+    "highDetailResource": {
+      "name": "HI_GACH",
+      "fileOffset": "0xacb13"
+    }
+  },
+  "authoredMotion": {
+    "sequence": "AKI_ASOBU_GATYA",
+    "durationFrames": 540,
+    "sourceFramesPerGameTick": 1,
+    "embeddedSoundCueCount": 0
+  },
+  "orchestration": {
+    "rootFunctionFileOffset": "0x52780",
+    "rootMotionFrameGates": [
+      {
+        "motionFrame": 100,
+        "floatLiteralFileOffset": "0x52824",
+        "launchCallFileOffset": "0x52860",
+        "childFunctionFileOffset": "0x52a90"
+      },
+      {
+        "motionFrame": 170,
+        "floatLiteralFileOffset": "0x52894",
+        "launchCallFileOffset": "0x528bc",
+        "childFunctionFileOffset": "0x52c4c"
+      },
+      {
+        "motionFrame": 215,
+        "floatLiteralFileOffset": "0x528ec",
+        "launchCallFileOffset": "0x52914",
+        "childFunctionFileOffset": "0x52de4"
+      },
+      {
+        "motionFrame": 280,
+        "floatLiteralFileOffset": "0x52944",
+        "launchCallFileOffset": "0x5296c",
+        "childFunctionFileOffset": "0x52f5c"
+      },
+      {
+        "motionFrame": 300,
+        "floatLiteralFileOffset": "0x5299c",
+        "launchCallFileOffset": "0x529c4",
+        "childFunctionFileOffset": "0x52ff4"
+      },
+      {
+        "motionFrame": 310,
+        "floatLiteralFileOffset": "0x529f4",
+        "launchCallFileOffset": "0x52a1c",
+        "childFunctionFileOffset": "0x535e4"
+      }
+    ],
+    "relevantCoroutineLaunches": [
+      {
+        "sourceFunctionFileOffset": "0x52780",
+        "launchCallFileOffset": "0x52860",
+        "targetFunctionFileOffset": "0x52a90",
+        "childArgumentCount": 1
+      },
+      {
+        "sourceFunctionFileOffset": "0x52780",
+        "launchCallFileOffset": "0x528bc",
+        "targetFunctionFileOffset": "0x52c4c",
+        "childArgumentCount": 0
+      },
+      {
+        "sourceFunctionFileOffset": "0x52780",
+        "launchCallFileOffset": "0x52914",
+        "targetFunctionFileOffset": "0x52de4",
+        "childArgumentCount": 0
+      },
+      {
+        "sourceFunctionFileOffset": "0x52780",
+        "launchCallFileOffset": "0x5296c",
+        "targetFunctionFileOffset": "0x52f5c",
+        "childArgumentCount": 0
+      },
+      {
+        "sourceFunctionFileOffset": "0x52780",
+        "launchCallFileOffset": "0x529c4",
+        "targetFunctionFileOffset": "0x52ff4",
+        "childArgumentCount": 0
+      },
+      {
+        "sourceFunctionFileOffset": "0x52780",
+        "launchCallFileOffset": "0x52a1c",
+        "targetFunctionFileOffset": "0x535e4",
+        "childArgumentCount": 0
+      },
+      {
+        "sourceFunctionFileOffset": "0x52a90",
+        "launchCallFileOffset": "0x52c12",
+        "targetFunctionFileOffset": "0x553d0",
+        "childArgumentCount": 0
+      },
+      {
+        "sourceFunctionFileOffset": "0x52c4c",
+        "launchCallFileOffset": "0x52d2e",
+        "targetFunctionFileOffset": "0x54244",
+        "childArgumentCount": 1
+      },
+      {
+        "sourceFunctionFileOffset": "0x52de4",
+        "launchCallFileOffset": "0x52e70",
+        "targetFunctionFileOffset": "0x54244",
+        "childArgumentCount": 1
+      },
+      {
+        "sourceFunctionFileOffset": "0x52de4",
+        "launchCallFileOffset": "0x52ede",
+        "targetFunctionFileOffset": "0x555ac",
+        "childArgumentCount": 0
+      },
+      {
+        "sourceFunctionFileOffset": "0x52de4",
+        "launchCallFileOffset": "0x52f18",
+        "targetFunctionFileOffset": "0x55cfc",
+        "childArgumentCount": 0
+      },
+      {
+        "sourceFunctionFileOffset": "0x535e4",
+        "launchCallFileOffset": "0x539be",
+        "targetFunctionFileOffset": "0x540f0",
+        "childArgumentCount": 1
+      },
+      {
+        "sourceFunctionFileOffset": "0x535e4",
+        "launchCallFileOffset": "0x53b4a",
+        "targetFunctionFileOffset": "0x53e98",
+        "childArgumentCount": 0
+      },
+      {
+        "sourceFunctionFileOffset": "0x535e4",
+        "launchCallFileOffset": "0x53df2",
+        "targetFunctionFileOffset": "0x540f0",
+        "childArgumentCount": 1
+      }
+    ],
+    "directCallEdgeCount": 2182,
+    "coroutineLaunchCount": 575
+  },
+  "sounds": [
+    {
+      "callFileOffset": "0x53876",
+      "functionFileOffset": "0x535e4",
+      "operationHex": "0x006c",
+      "commandHex": "a9040200",
+      "launchPath": [
+        {
+          "sourceFunctionFileOffset": "0x52780",
+          "launchCallFileOffset": "0x52a1c",
+          "targetFunctionFileOffset": "0x535e4",
+          "childArgumentCount": 0
+        }
+      ],
+      "timing": {
+        "status": "verified-motion-frame",
+        "motion": "AKI_ASOBU_GATYA",
+        "motionFrame": 360,
+        "frameQueryOperationCallFileOffset": "0x537fa",
+        "frameThresholdLiteralFileOffset": "0x53830",
+        "reason": "The owning coroutine polls AKIR through operation 0x002b, yields while the returned frame is below 360, then calls operation 0x006c without another yield."
+      }
+    },
+    {
+      "callFileOffset": "0x541f6",
+      "functionFileOffset": "0x540f0",
+      "operationHex": "0x006c",
+      "commandHex": "a9040500",
+      "launchPath": [
+        {
+          "sourceFunctionFileOffset": "0x52780",
+          "launchCallFileOffset": "0x52a1c",
+          "targetFunctionFileOffset": "0x535e4",
+          "childArgumentCount": 0
+        },
+        {
+          "sourceFunctionFileOffset": "0x535e4",
+          "launchCallFileOffset": "0x539be",
+          "targetFunctionFileOffset": "0x540f0",
+          "childArgumentCount": 1
+        }
+      ],
+      "timing": {
+        "status": "unresolved-child-coroutine-timing",
+        "reason": "Reachability is exact, but the sound occurs inside a launched child. Its scheduler/yield completion has not been converted to an authored Ryo motion frame."
+      }
+    },
+    {
+      "callFileOffset": "0x54396",
+      "functionFileOffset": "0x54244",
+      "operationHex": "0x006c",
+      "commandHex": "a9040100",
+      "launchPath": [
+        {
+          "sourceFunctionFileOffset": "0x52780",
+          "launchCallFileOffset": "0x528bc",
+          "targetFunctionFileOffset": "0x52c4c",
+          "childArgumentCount": 0
+        },
+        {
+          "sourceFunctionFileOffset": "0x52c4c",
+          "launchCallFileOffset": "0x52d2e",
+          "targetFunctionFileOffset": "0x54244",
+          "childArgumentCount": 1
+        }
+      ],
+      "timing": {
+        "status": "unresolved-child-coroutine-timing",
+        "reason": "Reachability is exact, but the sound occurs inside a launched child. Its scheduler/yield completion has not been converted to an authored Ryo motion frame."
+      }
+    },
+    {
+      "callFileOffset": "0x55592",
+      "functionFileOffset": "0x553d0",
+      "operationHex": "0x006c",
+      "commandHex": "a9040000",
+      "launchPath": [
+        {
+          "sourceFunctionFileOffset": "0x52780",
+          "launchCallFileOffset": "0x52860",
+          "targetFunctionFileOffset": "0x52a90",
+          "childArgumentCount": 1
+        },
+        {
+          "sourceFunctionFileOffset": "0x52a90",
+          "launchCallFileOffset": "0x52c12",
+          "targetFunctionFileOffset": "0x553d0",
+          "childArgumentCount": 0
+        }
+      ],
+      "timing": {
+        "status": "unresolved-child-coroutine-timing",
+        "reason": "Reachability is exact, but the sound occurs inside a launched child. Its scheduler/yield completion has not been converted to an authored Ryo motion frame."
+      }
+    },
+    {
+      "callFileOffset": "0x555c6",
+      "functionFileOffset": "0x555ac",
+      "operationHex": "0x006c",
+      "commandHex": "a9040300",
+      "launchPath": [
+        {
+          "sourceFunctionFileOffset": "0x52780",
+          "launchCallFileOffset": "0x52914",
+          "targetFunctionFileOffset": "0x52de4",
+          "childArgumentCount": 0
+        },
+        {
+          "sourceFunctionFileOffset": "0x52de4",
+          "launchCallFileOffset": "0x52ede",
+          "targetFunctionFileOffset": "0x555ac",
+          "childArgumentCount": 0
+        }
+      ],
+      "timing": {
+        "status": "unresolved-child-coroutine-timing",
+        "reason": "Reachability is exact, but the sound occurs inside a launched child. Its scheduler/yield completion has not been converted to an authored Ryo motion frame."
+      }
+    },
+    {
+      "callFileOffset": "0x55cea",
+      "functionFileOffset": "0x555ac",
+      "operationHex": "0x006c",
+      "commandHex": "a9040400",
+      "launchPath": [
+        {
+          "sourceFunctionFileOffset": "0x52780",
+          "launchCallFileOffset": "0x52914",
+          "targetFunctionFileOffset": "0x52de4",
+          "childArgumentCount": 0
+        },
+        {
+          "sourceFunctionFileOffset": "0x52de4",
+          "launchCallFileOffset": "0x52ede",
+          "targetFunctionFileOffset": "0x555ac",
+          "childArgumentCount": 0
+        }
+      ],
+      "timing": {
+        "status": "unresolved-child-coroutine-timing",
+        "reason": "Reachability is exact, but the sound occurs inside a launched child. Its scheduler/yield completion has not been converted to an authored Ryo motion frame."
+      }
+    }
+  ],
+  "runtimeBoundary": {
+    "verifiedCueCommands": [
+      "a9040200"
+    ],
+    "packagedButUnwiredCommands": [
+      "a9040000",
+      "a9040100",
+      "a9040300",
+      "a9040400",
+      "a9040500"
+    ],
+    "policy": "Only cues with a mechanically proven authored-motion frame may be wired. Command identity or audition alone is not sufficient."
+  },
+  "failures": []
+}

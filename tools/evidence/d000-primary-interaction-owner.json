@@ -1,0 +1,98 @@
+{
+  "schema": "new-yokosuka-d000-primary-interaction-owner-v1",
+  "status": "exact-static-owner-and-dispatch-control-flow",
+  "source": {
+    "mapinfo": "SCENE/01/D000/MAPINFO.BIN",
+    "disc": 1,
+    "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e"
+  },
+  "mapEntry": {
+    "entryFunction": "0x8e3fc",
+    "roomInitializationFunction": "0x8d548",
+    "launchOperation": "0x0002",
+    "launchCallFileOffset": "0x8da8a",
+    "launchedFunction": "0x69b14",
+    "argumentCount": 0
+  },
+  "controller": {
+    "entryFunction": "0x69b14",
+    "poll": {
+      "operationHex": "0x0116",
+      "selector": -1,
+      "callFileOffset": "0x69be0",
+      "resultFrameOffset": 4
+    },
+    "initialization": [
+      {
+        "operationHex": "0x0139",
+        "callFileOffset": "0x69b38",
+        "arguments": [0, "YKUL", "YKUR"]
+      },
+      {
+        "operationHex": "0x0116",
+        "callFileOffset": "0x69b50",
+        "selector": 0,
+        "configurationPointer": "0x000ae3c8"
+      },
+      {
+        "operationHex": "0x0139",
+        "callFileOffset": "0x69b68",
+        "arguments": [16, "0x000ae354"]
+      }
+    ],
+    "dispatches": [
+      {
+        "eventCodes": ["TEL0", "0x00000085"],
+        "targetFunction": "0x2d8da",
+        "callFileOffset": "0x69c3a"
+      },
+      {
+        "eventCodes": ["TBK1"],
+        "guard": {
+          "operationHex": "0x0051",
+          "callFileOffsets": ["0x69c7a", "0x69c92"],
+          "arguments": [[11, 190], [11, 200]]
+        },
+        "primaryRuntimeTransitions": [0, 1],
+        "targetFunction": "0x6a49c",
+        "callFileOffset": "0x69cf6"
+      },
+      {
+        "eventCodes": ["GCH0", "GCH1", "GCH2", "GCH4", "GCH5", "GCH3"],
+        "targetFunction": "0x5614c",
+        "callFileOffset": "0x69d88"
+      },
+      {
+        "eventCodes": ["0x00000086"],
+        "primaryRuntimeTransitions": [0, 1],
+        "runtimeSelector": 19,
+        "callFileOffset": "0x69dd4"
+      }
+    ],
+    "maintenance": {
+      "statusQuery": {
+        "operationHex": "0x0116",
+        "selector": 3,
+        "callFileOffset": "0x69e14"
+      },
+      "nonTerminalStatusRangeInclusive": [0, 6],
+      "nonTerminalStatusFunction": "0x69f7c",
+      "terminalStatuses": [7, 8],
+      "terminalStatusFunction": "0x6ae6c",
+      "countdownTicks": 1,
+      "countdownCallFileOffset": "0x69e8e",
+      "loopBlock": "0x69b96"
+    }
+  },
+  "conclusions": [
+    "D000 launches 0x69b14 once from room initialization; 0x6a49c is a child dispatch target, not the persistent owner.",
+    "The owner polls operation 0x0116 selector -1, compares its exact result against authored event codes, performs branch-specific prelude and cleanup, services controller status, waits one native tick, and loops.",
+    "The telephone-book controller is dispatched only for TBK1 after two exact free-conversation queries and is wrapped by primary-runtime state transitions zero and one.",
+    "Operation 0x0139 modes zero and sixteen plus operation 0x0116 selector -1 remain explicit execution boundaries; this evidence does not assign guessed behavior to them."
+  ],
+  "evidenceBoundary": [
+    "Dispatch ownership, call sites, constants, targets, status branches, countdown, and loop edge are recovered directly from the native control-flow IR and verified SH-4 bytes.",
+    "The internal arbitration semantics of operation 0x0116 selector -1 are not inferred from the event-code comparisons.",
+    "The gameplay effects of operation 0x0139 modes zero and sixteen remain unresolved."
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "schema": "new-yokosuka-indexed-binary-record-operation-evidence-v1",
+  "status": "exact-native-indexed-write-contract-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 101,
+    "operationHex": "0x0065",
+    "handlerAddress": "0x0c16448e",
+    "handlerLength": 60,
+    "handlerSha256": "1811c42da5ffea7d6bfeb993a06df91d7a90e8a111cda2e2793d492c41035af2",
+    "nativeContract": {
+      "queryHandler": "0x0c0eb008",
+      "resultWriter": "0x0c0bb342",
+      "indexedWriter": "0x0c0eaf8e",
+      "primaryTablePointer": "0x0c28ad08",
+      "mirrorTablePointer": "0x0c28ad0c",
+      "lowIndexCallback": "0x0c1cfa50",
+      "callbackRecordTable": "0x0c22df00",
+      "classZeroBits": "0x0c2a1d70",
+      "classOneBits": "0x0c2a1d74",
+      "combinedBits": "0x0c2a1d78"
+    },
+    "indexLimit": 128,
+    "mirrorIndexLimit": 32,
+    "tableRecordStride": 68,
+    "callbackRecordStride": 176,
+    "callbackValueWordOffset": "record+0x00",
+    "callbackClassWordOffset": "record+0x02",
+    "callbackClassBit": 3,
+    "provenBehavior": "For index below 128, writes the binary value to the first dword of a 68-byte primary-table record. Below index 32 it also mirrors that dword, writes the value's low word to a 176-byte callback record, clears the index bit in two global class bitfields, conditionally restores it to the class selected by callback word +0x02 bit 3 when value is one, and writes their union to a third bitfield."
+  },
+  "allDiscInventory": {
+    "callCount": 426,
+    "dialogueRegionCallCount": 82,
+    "areaCount": 35,
+    "valueCounts": {
+      "0": 237,
+      "1": 189
+    },
+    "dialogueRegionValueCounts": {
+      "0": 47,
+      "1": 35
+    },
+    "indexArgumentKindCounts": {
+      "constant": 360,
+      "frame-field": 39,
+      "runtime": 27
+    },
+    "dialogueRegionIndexArgumentKindCounts": {
+      "constant": 80,
+      "runtime": 2
+    }
+  },
+  "evidenceBoundary": [
+    "The owning subsystem and gameplay meaning of each index remain unnamed.",
+    "Runtime indices retain the native below-128 and below-32 bounds checks.",
+    "Executing an index below 32 requires the callback record's exact class bit; it is not defaulted.",
+    "Only authored binary values zero and one are promoted even though the native writer rejects other values safely."
+  ]
+}

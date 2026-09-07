@@ -1,0 +1,106 @@
+{
+  "schema": "new-yokosuka-native-cutscene-lifecycle-v1",
+  "resource": "CATA1",
+  "disc": 1,
+  "area": "JU00",
+  "mapinfo": {
+    "path": "extracted_files/data/SCENE/01/JU00/MAPINFO.BIN",
+    "sha256": "3887bbf6e00eb152f7cca34d23841cc743ee7345a2db6b7d27e8303f6274924d"
+  },
+  "owner": {
+    "stateDispatcherFunction": "0x27554",
+    "entryFunctions": ["0x2a7f8", "0x2a934"],
+    "entryCalls": ["0x2a8aa", "0x2a9e6"],
+    "compositeOwnerFunction": "0x2aa70",
+    "activityCallbacks": ["0x21e8c", "0x24050", "0x25958"],
+    "activityInstalls": ["0x2b040", "0x2b552", "0x2b5fa"],
+    "activitySlots": [0, 0, 0],
+    "nativeExecutionOrder": [
+      { "kind": "activity", "member": "SEQDATA0.AUTH", "call": "0x2b04c" },
+      { "kind": "realtime-interstitial", "range": ["0x2b050", "0x2b54e"] },
+      { "kind": "activity", "member": "SEQDATA1.AUTH", "call": "0x2b55e" },
+      { "kind": "realtime-interstitial", "range": ["0x2b562", "0x2b5f6"] },
+      { "kind": "activity", "member": "SEQDATA2.AUTH", "call": "0x2b606" },
+      { "kind": "persistent-state-restore", "function": "0x2bcc4", "call": "0x2bb54" }
+    ],
+    "containerOperation": "0x013c",
+    "activityOperation": "0x013e"
+  },
+  "resourceCluster": {
+    "range": ["0x51ba2", "0x51bfa"],
+    "archive": "CATA1",
+    "voiceStream": "01CAT1.AFS",
+    "soundBank": "A1_NEKO1.SND",
+    "music": ["BGM051.SND"],
+    "motionBank": "M_01CAT.MOTN"
+  },
+  "dependencies": {
+    "archive": "extracted_files/data/SCENE/01/JU00/CATA1.PKS",
+    "objectBindingsArchive": "extracted_files/data/SCENE/01/JU00/CATA1.PKF",
+    "worldActors": {
+      "MEGM": { "identity": "Megumi Mishima", "modelCode": "SIA_L" }
+    },
+    "canonicalPackageActors": {
+      "CATM": {
+        "identity": "Yamanose shrine kitten",
+        "modelCode": "KC1_M",
+        "assetPath": "public/models/S3_JU00_KC1_M.MT5",
+        "sha256": "b868093989154a70522479bcd0eb1586c9f5e3e3fdc7f29f2c3707c65e8cd74e",
+        "evidence": "Disc 1 S1_JU00_KC1_M.MT5 is byte-identical to the existing canonical browser asset"
+      }
+    },
+    "sceneObjects": {
+      "NBOX": { "image": "DANM400G", "model": "DANM400G" },
+      "NBO1": { "image": "NIBOSHI", "model": "NIBM400G" },
+      "NBO2": { "image": "NIBOSHI", "model": "NIBM400G" },
+      "NBO3": { "image": "NIBOSHI", "model": "NIBM400G" },
+      "NBO4": { "image": "NIBOSHI", "model": "NIBM400G" },
+      "NBO5": { "image": "NIBOSHI", "model": "NIBM400G" },
+      "BNB1": { "image": "NIBM401G", "model": "NIBM401G" },
+      "BNB2": { "image": "NIBM401G", "model": "NIBM401G" },
+      "BNB3": { "image": "NIBM401G", "model": "NIBM401G" },
+      "ABRG": { "image": "ABURAGE", "model": "KRIS500G" }
+    },
+    "objectBindingEvidence": {
+      "archiveMember": "CHARA.CHRT",
+      "byteLength": 1144,
+      "sha256": "85e215ee00fc19bfefcced6aab278d41b9d735a5caae2ba5a45d35bb15846262",
+      "rule": "exact Character.Image to DefImage.IMAGE/Image model binding"
+    }
+  },
+  "nativeObjectTransitions": {
+    "initialHide": ["NBO1", "NBO2", "NBO3", "NBO4", "NBO5", "BNB1", "BNB2", "BNB3", "ABRG"],
+    "middleActivityHandAttachments": {
+      "actors": ["NBO1", "NBO2", "NBO3"],
+      "parent": "AKIR",
+      "controlIds": [18, 12],
+      "operation": "0x00e6",
+      "callRanges": [["0x2424e", "0x242c0"], ["0x24532", "0x245a4"]]
+    },
+    "finalActivityHandAttachment": {
+      "actor": "ABRG",
+      "parent": "AKIR",
+      "controlId": 18,
+      "operation": "0x00e6",
+      "call": "0x25b2e"
+    },
+    "cleanupFunction": "0x2bcc4"
+  },
+  "runtimePolicy": {
+    "world": "use the existing JU00 Yamanose composition and coordinate root",
+    "entry": "acquire Ryo, canonical Megumi and kitten presentations, and the CHRT-bound package objects before native activity ownership",
+    "objectOwnership": "each CHRT Character tag is one logical object even where tags share a model; preserve native visibility and FIXO transitions without duplicate presentation",
+    "audio": "use the exact 01CAT1 voice stream, A1_NEKO1 activity SFX bank, and BGM051 cue",
+    "exit": "restore the persistent kitten and BOX1 room state, then release activity, attachment, face, audio, camera, actor, and control ownership exactly once"
+  },
+  "sources": [
+    ".disc-work/dialogue/native-event-ir.json",
+    "play/data/ju00-runtime-placements.json",
+    "public/data/chars.csv",
+    "tools/evidence/native-activity-owner-candidates.json",
+    "tools/evidence/shenmue1-scripted-scene-inventory.json",
+    "tools/evidence/native-audio-bank-inventory.json"
+  ],
+  "availability": "package-candidate",
+  "productionGate": "The good-enough selector now plays all three exact activities under one composite lease, preserving CATM and CHRT object identity, AUTH visibility, exact audio, cameras, motions, and BGM051. Remaining fidelity requires the two realtime interstitials and scene-object FIXO hand-attachment projection; those are not approximated with invented transforms."
+}

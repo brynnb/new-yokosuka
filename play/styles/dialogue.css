@@ -1,0 +1,118 @@
+.dialogue-overlay {
+  position: absolute;
+  right: clamp(16px, 7vw, 120px);
+  bottom: clamp(26px, 7vh, 92px);
+  left: clamp(16px, 7vw, 120px);
+  z-index: 7;
+  display: grid;
+  justify-items: center;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.dialogue-overlay[hidden] {
+  display: none;
+}
+
+.dialogue-captions-disabled .dialogue-overlay {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.dialogue-panel {
+  width: min(760px, 100%);
+  padding: 15px 22px 17px;
+  color: #fff;
+  background:
+    linear-gradient(180deg, rgb(15 19 25 / 0.88), rgb(4 6 10 / 0.94));
+  border: 1px solid rgb(255 255 255 / 0.26);
+  border-radius: 6px;
+  box-shadow: 0 12px 38px rgb(0 0 0 / 0.58);
+  text-align: center;
+  text-shadow: 0 2px 4px #000;
+  backdrop-filter: blur(5px);
+}
+
+.dialogue-speaker {
+  display: block;
+  margin-bottom: 7px;
+  color: #f0d890;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dialogue-speaker[data-dialogue-speaker="ryo"] {
+  color: #168da0;
+}
+
+.dialogue-source,
+.dialogue-japanese {
+  margin: 0;
+  white-space: pre-line;
+}
+
+.dialogue-options {
+  display: grid;
+  gap: 9px;
+  margin-top: 4px;
+}
+
+.dialogue-options[hidden] {
+  display: none;
+}
+
+.dialogue-option {
+  width: 100%;
+  padding: 10px 14px;
+  color: #fff;
+  font: inherit;
+  font-size: clamp(16px, 1.7vw, 20px);
+  line-height: 1.25;
+  text-align: left;
+  text-shadow: 0 2px 4px #000;
+  background: rgb(17 27 34 / 0.92);
+  border: 1px solid rgb(240 216 144 / 0.42);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dialogue-option:hover,
+.dialogue-option:focus-visible {
+  background: rgb(25 82 91 / 0.96);
+  border-color: #f0d890;
+  outline: 2px solid rgb(240 216 144 / 0.35);
+  outline-offset: 1px;
+}
+
+.dialogue-option:disabled {
+  color: rgb(255 255 255 / 0.42);
+  background: rgb(17 27 34 / 0.55);
+  border-color: rgb(255 255 255 / 0.12);
+  cursor: not-allowed;
+}
+
+.dialogue-source {
+  font-size: clamp(18px, 2.1vw, 26px);
+  line-height: 1.3;
+}
+
+.dialogue-japanese {
+  margin-top: 7px;
+  color: #e5e7eb;
+  font-size: clamp(15px, 1.6vw, 20px);
+  line-height: 1.3;
+}
+
+@media (max-width: 850px) {
+  .dialogue-overlay {
+    right: 12px;
+    bottom: max(20px, env(safe-area-inset-bottom));
+    left: 12px;
+  }
+
+  .dialogue-panel {
+    padding: 12px 14px 14px;
+  }
+}

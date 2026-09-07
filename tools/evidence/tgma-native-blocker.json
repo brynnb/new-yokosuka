@@ -1,0 +1,61 @@
+{
+  "schema": "new-yokosuka-native-cutscene-blocker-v1",
+  "resource": "TGMA",
+  "disc": 1,
+  "area": "JHD0",
+  "playerFacingEntryFunction": "0x545f8",
+  "activity": {
+    "slot": 0,
+    "primaryPointer": "0x601b8",
+    "secondaryPointer": "0x601bd",
+    "archiveMember": "SEQDATA4.AUTH",
+    "sha256": "e409876e1c569cc4ad93447a6bf588dc0325b8a907c404bc4883140e1e2ab968"
+  },
+  "resolvedDependencies": {
+    "actors": ["AKIR", "FUKU"],
+    "fukuharaBodyVariant": {
+      "model": "FUB_M",
+      "mapinfoPointer": "0x601b2",
+      "ownerOperation": "0x008f at 0x54c4c",
+      "evidence": "The owner explicitly selects FUB_M immediately before opening TGMA; FUB_M is the canonical alternate Fukuhara body already packaged by the shared character asset system."
+    },
+    "motionBank": {
+      "member": "M_0139.MOTN",
+      "sha256": "5a50803db81a317670b02b69ba0d9f1ce6ba885d635cdae8106060487fa9cc78"
+    },
+    "voiceStream": {
+      "path": "extracted_files/data/SCENE/01/STREAM/A0139.AFS",
+      "sha256": "5d4284d25e61bef963dece6291eb9203b88ac6da96ff0c75d1a0916f21085655"
+    },
+    "soundBank": {
+      "path": "extracted_files/data/SCENE/01/SOUND/A1_INET2.SND",
+      "sha256": "24ad865f3ba2bed8bd8d1b7b7524513a4078718117204a8b6dc06fe18e4905e8",
+      "authoredCommandCoverage": "a9040000 through a9040a00 are present"
+    },
+    "music": "BGM009.SND"
+  },
+  "newlyResolvedDependencies": {
+    "letterAttachment": "Operation 0x00e6 at 0x2360a attaches TEGS to AKIR control 18 at activity frame 1 with exact authored translation and fixed-turn rotation.",
+    "letterPresentation": "Native presentation calls reveal TEGS at frame 350 and hide it at frame 800 independently of attachment.",
+    "letterArticulation": "Operation 0x00c9 drives HMDL keys 0x98 and 0x99 through four exact 24-frame additive hinge windows; the generated runtime evaluates these operations from bind state so seeking is deterministic.",
+    "audioAssets": "A0139.AFS and A1_INET2.SND resolve all eight voice commands and all eleven distinct playable sound commands into a hash-pinned generated audio pack.",
+    "callbackHands": "The reusable callback-presentation compiler recovers five exact operation-0x005e cues and three 19-vector tables. FUB_HM/FUB_TL/FUB_TR are now hash-pinned package assets with their actual render keys 11/6.",
+    "callbackExpressions": "The compiler recovers all twelve exact operation-0x0113 expression cues.",
+    "callbackGaze": "The compiler recovers Ryo's per-frame FUKU component-5 gaze requests over frames 466..486 and 791..803 plus native resets at 487 and 804."
+  },
+  "blockers": [],
+  "availability": "good-enough-production",
+  "productionGate": null,
+  "remainingLimits": [
+    "The exact FUB_F.MT5 and FUB_FTBL.BIN are bundled and verified against the authored FUB_M body seam.",
+    "FUB's native TALK pose output is still unrecovered. The presentation therefore retains the exact neutral FUB source face while accepting voice, gaze, and face-clip timing without applying foreign FUK deltas.",
+    "Recovering FUB's native TALK pose output will upgrade mouth, blink, and expression deformation without changing package or runtime ownership."
+  ],
+  "evidence": [
+    ".disc-work/dialogue/native-event-ir.json",
+    "tools/evidence/native-activity-owner-candidates.json",
+    "tools/evidence/native-audio-bank-inventory.json",
+    "tools/evidence/tgma-native-lifecycle.json",
+    "tools/evidence/shenmue1-scripted-scene-inventory.json"
+  ]
+}

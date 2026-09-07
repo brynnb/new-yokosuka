@@ -1,0 +1,112 @@
+{
+  "schema": "new-yokosuka-secondary-motion-control-operation-evidence-v1",
+  "status": "exact-native-float-mode-and-flag-contracts",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "verifiedRanges": {
+    "globalFloatHandler": {
+      "address": "0x0c131b76",
+      "length": 132,
+      "sha256": "255e8de92a986214eac60a7e1ed725848e6e527d466ea77cc92c0d4bd3e8096a"
+    },
+    "actorModeHandler": {
+      "address": "0x0c0adf6c",
+      "length": 38,
+      "sha256": "1d37b991b3a3291eeb0cb87138579dc2bced0657c3ae1b0e21727a737aefe5ce"
+    },
+    "actorModeWrite": {
+      "address": "0x0c0adf92",
+      "length": 32,
+      "sha256": "1c4d17e3869bb74384af8909b68ebd339c7357960db2fa1c5e2db7f128600eec"
+    },
+    "actorModeInitialize": {
+      "address": "0x0c0ae002",
+      "length": 252,
+      "sha256": "dc2b82990bdda572ba24618c3186514cd51ed2c29bbb63597abb371cca092a36"
+    },
+    "actorFlagHandler": {
+      "address": "0x0c0adfb2",
+      "length": 78,
+      "sha256": "78895146b31b9a6ed8315df09bcfed6242c8337fd8260d2bfadad7502f4c7a9a"
+    }
+  },
+  "operations": [
+    {
+      "operationId": 356,
+      "operationHex": "0x0164",
+      "handlerAddress": "0x0c131b76",
+      "authoredCallCount": 42,
+      "areaCount": 3,
+      "modeCounts": {
+        "0": 7,
+        "1": 11,
+        "2": 5,
+        "10": 4,
+        "11": 3,
+        "20": 4,
+        "21": 2,
+        "30": 4,
+        "31": 2
+      },
+      "provenBehavior": "Writes an exact float word to one of two primary globals, one of six quotient/remainder-indexed globals, or the dedicated mode-two/mode-three global."
+    },
+    {
+      "operationId": 322,
+      "operationHex": "0x0142",
+      "handlerAddress": "0x0c0adf6c",
+      "authoredCallCount": 15,
+      "dialogueRegionCallCount": 1,
+      "modeCounts": {
+        "0": 4,
+        "2": 3,
+        "4": 1,
+        "5": 2,
+        "6": 1,
+        "8": 3,
+        "9": 1
+      },
+      "provenBehavior": "Resolves the actor's secondary-motion record, writes argument one to record byte +0x06, and invokes the native record initializer. Missing actors or records are no-ops."
+    },
+    {
+      "operationId": 37,
+      "operationHex": "0x0025",
+      "handlerAddress": "0x0c0adfb2",
+      "authoredCallCount": 266,
+      "dialogueRegionCallCount": 24,
+      "maskCounts": {
+        "2": 89,
+        "4": 34,
+        "8": 143
+      },
+      "stateCounts": {
+        "0": 73,
+        "1": 193
+      },
+      "provenBehavior": "Resolves the actor's secondary-motion record and sets or clears the exact 0x02, 0x04, or 0x08 mask in record byte +0x00. Missing actors or records are no-ops."
+    }
+  ],
+  "op02Proof": {
+    "globalFloat": {
+      "mode": 2,
+      "word": "0x3d99999a"
+    },
+    "actorMode": {
+      "actorTag": "SINF",
+      "mode": 4
+    },
+    "actorFlag": {
+      "actorTag": "SINF",
+      "mask": 8,
+      "enabled": 1
+    }
+  },
+  "evidenceBoundary": [
+    "The native global float channels retain numeric mode identities.",
+    "The record is named secondary-motion because its initializer selects the same native controller templates and CLBC collision owner consumed by the recovered secondary-motion runtime.",
+    "No browser wind magnitude or cloth tuning is inferred here."
+  ]
+}

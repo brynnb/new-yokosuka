@@ -1,0 +1,42 @@
+{
+  "schema": "new-yokosuka-operation-013a-evidence-v1",
+  "status": "exact-native-object-component-write-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 314,
+    "operationHex": "0x013a",
+    "handlerAddress": "0x0c1584b0",
+    "handlerLength": 36,
+    "handlerSha256": "a39e2960c2211bb3ce10cdc3cd28950729bc5566f896201b918e5b265c47577f",
+    "objectResolver": "0x0c153956",
+    "objectFloatWordOffset": "0x48",
+    "provenBehavior": "Resolves argument zero and copies argument one's raw word to object +0x48; a missing object is a no-op."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 265,
+    "areaCount": 38,
+    "dialogueRegionCallCount": 7,
+    "staticallyResolvableOperandCallCount": 249,
+    "unresolvedRuntimeOperandCallCount": 16,
+    "firstOperandKinds": {
+      "constant": 233,
+      "frame-field": 23,
+      "runtime": 6,
+      "scene-field": 3
+    },
+    "secondOperandKinds": {
+      "constant": 200,
+      "frame-field": 43,
+      "runtime": 13,
+      "scene-field": 9
+    }
+  },
+  "evidenceBoundary": [
+    "Sixteen calls retain at least one unresolved runtime operand and fail closed until frame dataflow recovers them.",
+    "The raw float32 word is not assigned inferred units."
+  ]
+}

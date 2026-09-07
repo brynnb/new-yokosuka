@@ -1,0 +1,54 @@
+{
+  "schema": "new-yokosuka-operation-0005-evidence-v1",
+  "status": "exact-handler-current-presentation-owner-install",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 5,
+    "operationHex": "0x0005",
+    "argumentCount": 1,
+    "handlerAddress": "0x0c141bec",
+    "objectResolver": "0x0c153956",
+    "primaryRuntimeReset": "0x0c0a6a06",
+    "currentOwnerInstaller": "0x0c0f0cd8",
+    "notificationTag": "CPCT",
+    "resultWriter": "0x0c0bb342",
+    "result": 1,
+    "provenBehavior": "Resolves the sole operand through the shared object resolver, resets the primary runtime, installs the resolved object (or null) in the engine current-presentation-owner cell with the CPCT notification, and writes integer result one."
+  },
+  "inventory": {
+    "authoredCallCount": 138,
+    "areaCount": 117,
+    "argumentKinds": {
+      "constant": 26,
+      "frame-field": 111,
+      "scene-field": 1
+    },
+    "op02Calls": [
+      {
+        "functionFileOffset": "0x23c8",
+        "callFileOffset": "0x2410",
+        "argument": {
+          "kind": "frame-field",
+          "source": "@(12,r14) at 0x2406",
+          "offset": 12
+        }
+      }
+    ]
+  },
+  "verifiedNativeRanges": {
+    "operationHandler": {
+      "address": "0x0c141bec",
+      "size": 64,
+      "sha256": "685c393be9d945a10d461707100a43aa0b01de268d7bd12f6891b5f88c56b3e3"
+    },
+    "currentOwnerInstaller": {
+      "address": "0x0c0f0cd8",
+      "size": 52,
+      "sha256": "23b9d024f05704b0357a1c30f4fe99cc97cbad973669256dd1311188ca4fae94"
+    }
+  }
+}

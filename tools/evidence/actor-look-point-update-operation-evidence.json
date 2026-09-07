@@ -1,0 +1,132 @@
+{
+  "schema": "new-yokosuka-actor-look-point-update-evidence-v1",
+  "status": "exact-native-optimized-update-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 364,
+    "operationHex": "0x016c",
+    "handlerAddress": "0x0c165ed0",
+    "recordTag": {
+      "ascii": "LKPT",
+      "littleEndian": "0x54504b4c"
+    },
+    "nativeDependencies": {
+      "actorResolver": "0x0c153956",
+      "optimizedUpdate": "0x0c0ff32a",
+      "motmControllerAccessor": "0x0c113a76",
+      "recordTag": "0x54504b4c",
+      "associatedRecordResolver": "0x0c0aad5a",
+      "fullControlFallback": "0x0c0ff172",
+      "downstreamAngularUpdate": "0x0c107338"
+    },
+    "optimizedAdmission": "The resolved actor has a MOTM controller whose terminal dword at +0x260 is not one, an LKPT record exists with a nonzero active dword at +0x10, and controller dword +0x04 does not have bit 0x40 set.",
+    "optimizedBehavior": "Copies argument two's exact three-float target, or the controller default vector at +0x1ec/+0x1f0/+0x1f4 when argument two is null, into LKPT +0x00/+0x04/+0x08. For a supplied target it synchronizes LKPT words +0x0c/+0x0e with the controller selector word at +0x84 using the exact 0x8065 guard, then clears LKPT dword +0x14.",
+    "fallbackBehavior": "A missing or inactive LKPT record, or controller flag 0x40, delegates to the same full controller used by operation 0x002c. A missing actor/controller or terminal controller state one remains a native no-op.",
+    "matrixConsumer": {
+      "controllerTraversalAddress": "0x0c104954",
+      "controllerTypeCompareAddress": "0x0c104d62",
+      "requiredControllerType": 4,
+      "callbackCallAddress": "0x0c104ef8",
+      "callbackAddress": "0x0c107338",
+      "actorAngularWordOffsets": [
+        "0x86",
+        "0x90"
+      ],
+      "behavior": "The native controller traversal calls the LKPT angular update only from its exact controller-type-four branch. The callback derives and limits the two target angles, writes actor words +0x86 and +0x90, then composes those angles into the current type-four controller matrix. Controller type four occurs exactly once in every one of the executable's 21 authored controller families."
+    }
+  },
+  "allDiscInventory": {
+    "callCount": 290,
+    "dialogueRegionCallCount": 143,
+    "areaCount": 48,
+    "argumentKindCounts": {
+      "0": {
+        "constant": 196,
+        "frame-field": 72,
+        "runtime": 1,
+        "scene-field": 21
+      },
+      "1": {
+        "constant": 280,
+        "frame-field": 7,
+        "runtime": 3
+      },
+      "2": {
+        "frame-address": 287,
+        "static-pointer": 3
+      },
+      "3": {
+        "constant": 288,
+        "frame-field": 2
+      }
+    },
+    "constantSelectorCounts": {
+      "1": 25,
+      "2": 2,
+      "6": 3,
+      "10": 7,
+      "11": 16,
+      "12": 46,
+      "15": 2,
+      "16": 127,
+      "20": 39,
+      "98304": 4,
+      "98308": 3,
+      "98311": 2,
+      "98312": 2,
+      "98320": 1,
+      "98334": 1
+    },
+    "constantModeCounts": {
+      "0": 128,
+      "1": 52,
+      "2": 108
+    }
+  },
+  "verifiedRanges": {
+    "handler": {
+      "address": "0x0c165ed0",
+      "length": 38,
+      "sha256": "de9f9708a0cd56fabc37cc2994f40ca4172470f96d7e7c58d2776ed638028cf8"
+    },
+    "optimizedUpdate": {
+      "address": "0x0c0ff32a",
+      "length": 196,
+      "sha256": "47b9d7ff73b7e4eb393a7ca0ef8c188be696676ac752b3099db36f5adb5787f5"
+    },
+    "fullControlFallback": {
+      "address": "0x0c0ff172",
+      "length": 440,
+      "sha256": "d84dae8d77853517ade0db8a6ddbc5397d43ad5ebb18790ec68e46c8fdcce443"
+    },
+    "motmControllerAccessor": {
+      "address": "0x0c113a76",
+      "length": 30,
+      "sha256": "69d657beb0f052b69809a44353767e8d1d78164f4255489734802b15c7027f35"
+    },
+    "downstreamAngularUpdate": {
+      "address": "0x0c107338",
+      "length": 824,
+      "sha256": "7db98ca41b974895c860b79347fb62960a49c9fe35a3be4d101725744d9a3ab5"
+    },
+    "controllerTypeFourConsumer": {
+      "address": "0x0c104d62",
+      "length": 412,
+      "sha256": "c7c2baefc1113e0b67d3ffe0704f24e240e7ad36be51fb0eb7e9eff017d928c3"
+    }
+  },
+  "evidenceBoundary": [
+    "LKPT is the literal native record tag; the older KLPT transcription is corrected.",
+    "Operation 0x016c's optimized path ignores arguments one and three, but the fallback consumes both through the full controller.",
+    "Runtime execution may use the optimized path only when every admission field is exact.",
+    "The full-controller fallback remains an explicit stop until its callback and selector-table effects are represented.",
+    "The matrix consumer is identified by exact native controller type four, not by a guessed model, bone, or actor name.",
+    "The affected controller route is now exact; the selector-dependent angular limits and interpolation response remain unresolved.",
+    "No story meaning is inferred."
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "schema": "new-yokosuka-actor-momt-float-pair-evidence-v1",
+  "status": "exact-native-handler-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 78,
+    "operationHex": "0x004e",
+    "argumentCount": 2,
+    "handlerAddress": "0x0c165a60",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c165a60",
+        "length": 80,
+        "sha256": "6ad42809853e3e48fbd26aec0c4ccb1c1823597f51b64e38c1deb47b6276ede1"
+      },
+      "actorResolver": {
+        "address": "0x0c153956",
+        "length": 58,
+        "sha256": "b99d1c60ec19d8c20dec13ede36b9f81a3b04510da97159b53e03db38deba35f"
+      },
+      "momtAccessor": {
+        "address": "0x0c113a76",
+        "length": 30,
+        "sha256": "69d657beb0f052b69809a44353767e8d1d78164f4255489734802b15c7027f35"
+      },
+      "sceneRegistryUnlink": {
+        "address": "0x0c152e82",
+        "length": 92,
+        "sha256": "376a15375677a80e98e63068037825507f4ef8c7f750fda9d1c57189ccb7f39b"
+      }
+    },
+    "nativeContract": {
+      "actorResolver": "0x0c153956",
+      "momtAccessor": "0x0c113a76",
+      "currentSceneOwner": "0x0c217488",
+      "ownerResolver": "0x0c09766a",
+      "sceneRegistryUnlink": "0x0c152e82"
+    },
+    "recordTag": "MOMT",
+    "floatWordOffsets": [
+      "0x00f0",
+      "0x0128"
+    ],
+    "provenBehavior": "Resolves argument zero as an actor and its associated MOMT record. A present record receives argument one's exact 32-bit float word at offsets +0x00f0 and +0x0128. A missing actor is a no-op; a resolved actor without MOMT is passed to the exact current-scene registry unlink routine."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 701,
+    "provenCallCount": 701,
+    "dialogueRegionCallCount": 67,
+    "areaCount": 64,
+    "argumentKindCounts": {
+      "0": {
+        "constant": 238,
+        "frame-field": 235,
+        "runtime": 226,
+        "scene-field": 2
+      },
+      "1": {
+        "constant": 667,
+        "frame-field": 31,
+        "scene-field": 3
+      }
+    },
+    "dialogueArgumentKindCounts": {
+      "0": {
+        "constant": 32,
+        "frame-field": 27,
+        "runtime": 8
+      },
+      "1": {
+        "constant": 67
+      }
+    }
+  },
+  "evidenceBoundary": [
+    "MOMT remains an exact native record tag.",
+    "The two float fields and their authored values retain numeric low-level identities.",
+    "The no-MOMT registry unlink remains an explicit runtime adapter call.",
+    "Unestablished actor or MOMT availability remains an interpreter stop."
+  ]
+}

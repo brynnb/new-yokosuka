@@ -1,0 +1,33 @@
+{
+  "schema": "new-yokosuka-operation-012c-evidence-v1",
+  "status": "exact-complete-native-no-op-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 300,
+    "operationHex": "0x012c",
+    "tableEntryAddress": "0x0c29ae90",
+    "handlerAddress": "0x0c1731ca",
+    "handlerLength": 4,
+    "handlerBytesHex": "0b000900",
+    "handlerSha256": "551572a9f87a0af199dced20f1d78fc9ddb31537c3a7ce5b747bfedb295ab1e9",
+    "provenBehavior": "The complete handler is the SH-4 sequence rts; nop. It does not inspect r4, r5, or memory and has no result or side effect."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 352,
+    "areaCount": 96,
+    "argumentCountRoutes": {
+      "1": 1,
+      "2": 351
+    }
+  },
+  "evidenceBoundary": [
+    "Both authored argument shapes are accepted because the complete native handler cannot observe either operand.",
+    "No gameplay-domain meaning is inferred for the unused operation identifier.",
+    "The runtime executes the no-op without resolving authored operands."
+  ]
+}

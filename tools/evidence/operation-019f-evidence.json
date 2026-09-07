@@ -1,0 +1,102 @@
+{
+  "schema": "new-yokosuka-operation-019f-evidence-v1",
+  "status": "exact-native-momt-flag-route-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 415,
+    "operationHex": "0x019f",
+    "handlerAddress": "0x0c166d7c",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c166d7c",
+        "length": 136,
+        "sha256": "17c539a89ef0c174660b94f8b1c0512294dd86655e7893a216477a6332b31935"
+      },
+      "actorResolver": {
+        "address": "0x0c153956",
+        "length": 58,
+        "sha256": "b99d1c60ec19d8c20dec13ede36b9f81a3b04510da97159b53e03db38deba35f"
+      },
+      "momtControllerAccessor": {
+        "address": "0x0c113a76",
+        "length": 30,
+        "sha256": "69d657beb0f052b69809a44353767e8d1d78164f4255489734802b15c7027f35"
+      },
+      "sceneRegistryUnlink": {
+        "address": "0x0c152e82",
+        "length": 92,
+        "sha256": "376a15375677a80e98e63068037825507f4ef8c7f750fda9d1c57189ccb7f39b"
+      }
+    },
+    "nativeContract": {
+      "handlerTableEntry": "0x0c166d7c",
+      "actorResolver": "0x0c153956",
+      "momtControllerAccessor": "0x0c113a76",
+      "currentSceneOwner": "0x0c217488",
+      "ownerResolver": "0x0c09766a",
+      "sceneRegistryUnlink": "0x0c152e82",
+      "flagMask": "0x01000000",
+      "clearMask": "0xfeffffff"
+    },
+    "recordTag": "MOMT",
+    "controllerBaseOffset": "0x0014",
+    "flagsOffsetFromController": "0x0004",
+    "flagsOffsetFromRecord": "0x0018",
+    "flagMask": "0x01000000",
+    "routes": [
+      {
+        "argumentOne": 0,
+        "behavior": "Clear mask 0x01000000 in MOMT record dword +0x18."
+      },
+      {
+        "argumentOne": 1,
+        "behavior": "Set mask 0x01000000 in MOMT record dword +0x18."
+      }
+    ],
+    "missingBehavior": "A missing resolved actor is a no-op. A resolved actor without a MOMT controller is passed to the exact current-scene registry unlink routine."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 74,
+    "provenCallCount": 74,
+    "dialogueRegionCallCount": 34,
+    "areaCount": 13,
+    "modeCounts": {
+      "0": 36,
+      "1": 38
+    },
+    "dialogueModeCounts": {
+      "0": 18,
+      "1": 16
+    },
+    "argumentKindCounts": {
+      "0": {
+        "constant": 72,
+        "frame-field": 2
+      },
+      "1": {
+        "constant": 74
+      }
+    },
+    "dialogueArgumentKindCounts": {
+      "0": {
+        "constant": 34
+      },
+      "1": {
+        "constant": 34
+      }
+    },
+    "resultComparisonCount": 0,
+    "resultTargetCount": 0
+  },
+  "evidenceBoundary": [
+    "Only the two authored Boolean routes are promoted; no other argument-one values are admitted.",
+    "The literal MOMT tag, controller base +0x14, raw flags dword +0x18, and mask 0x01000000 are executable-proven.",
+    "The consumer-side meaning of bit 24 remains unknown.",
+    "The no-controller scene-registry unlink remains an exact runtime adapter rather than an inferred ownership rule."
+  ]
+}

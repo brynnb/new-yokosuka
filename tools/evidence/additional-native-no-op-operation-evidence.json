@@ -1,0 +1,55 @@
+{
+  "schema": "new-yokosuka-additional-native-no-op-operation-evidence-v1",
+  "status": "exact-complete-native-no-ops-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "provenBehavior": "Each complete handler is exactly the SH-4 sequence rts; nop and cannot inspect operands, mutate state, or produce a result.",
+  "operations": [
+    {
+      "operationId": 205,
+      "operationHex": "0x00cd",
+      "tableEntryAddress": "0x0c29ad14",
+      "handlerAddress": "0x0c155d66",
+      "handlerBytesHex": "0b000900",
+      "handlerSha256": "551572a9f87a0af199dced20f1d78fc9ddb31537c3a7ce5b747bfedb295ab1e9",
+      "authoredCallCount": 8,
+      "areaCount": 4,
+      "argumentCountRoutes": {
+        "2": 8
+      }
+    },
+    {
+      "operationId": 321,
+      "operationHex": "0x0141",
+      "tableEntryAddress": "0x0c29aee4",
+      "handlerAddress": "0x0c165800",
+      "handlerBytesHex": "0b000900",
+      "handlerSha256": "551572a9f87a0af199dced20f1d78fc9ddb31537c3a7ce5b747bfedb295ab1e9",
+      "authoredCallCount": 6,
+      "areaCount": 3,
+      "argumentCountRoutes": {
+        "2": 6
+      }
+    },
+    {
+      "operationId": 386,
+      "operationHex": "0x0182",
+      "tableEntryAddress": "0x0c29afe8",
+      "handlerAddress": "0x0c173188",
+      "handlerBytesHex": "0b000900",
+      "handlerSha256": "551572a9f87a0af199dced20f1d78fc9ddb31537c3a7ce5b747bfedb295ab1e9",
+      "authoredCallCount": 8,
+      "areaCount": 3,
+      "argumentCountRoutes": {
+        "3": 8
+      }
+    }
+  ],
+  "evidenceBoundary": [
+    "Only dispatch entries whose complete handlers are the exact four-byte return sequence are included.",
+    "Authored operands are intentionally not resolved because native code cannot observe them."
+  ]
+}

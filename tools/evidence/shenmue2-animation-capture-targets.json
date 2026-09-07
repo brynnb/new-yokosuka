@@ -1,0 +1,1208 @@
+{
+  "schema": "new-yokosuka-shenmue2-animation-capture-targets-v1",
+  "evidenceBoundary": [
+    "Candidate files contain the exact four-byte native actor code after Xbox gzip decompression; names, subtitles, and game lore are not used.",
+    "An actor-code occurrence proves that a source resource refers to that actor. It does not prove the actor is live merely by loading the containing area; story predicates may still gate creation.",
+    "Dreamcast NPC schedule records come from the existing statically decoded NPC.BIN evidence. Missing programs or area references are reported as unresolved and are not guessed.",
+    "A strict animation fixture still requires a synchronized Dreamcast RAM capture with exact actor/model binding and all native renderer solver matrices."
+  ],
+  "source": {
+    "coverageSchema": "new-yokosuka-shenmue2-animation-coverage-v1",
+    "npcEvidenceSchema": "new-yokosuka-shenmue2-xbox-npc-structure-v3",
+    "xboxRoot": ".disc-work/shenmue2-xbox-extracted/Shenmue II",
+    "safety": "Static reads and gzip decompression only; no Xbox executable was run."
+  },
+  "summary": {
+    "missingRestProfileCount": 6,
+    "directSourceTargetCount": 4,
+    "areaResourceTargetCount": 1,
+    "unresolvedNativeLocationCount": 1
+  },
+  "targets": [
+    {
+      "restProfile": "CHA",
+      "modelCode": "CHA_M",
+      "actorCodes": [
+        "CHA_"
+      ],
+      "observedMotionIds": [],
+      "requiredEvidence": "Dreamcast RAM capture with one exact listed native actor active and all 17 visible solver matrices bound; intermediate arm roots may be read directly from controller RAM",
+      "acquisitionStatus": "native-location-unresolved",
+      "bestDisc": null,
+      "bestArea": null,
+      "nativeDisc1ScheduleRecords": [],
+      "sourceCandidates": []
+    },
+    {
+      "restProfile": "HGN",
+      "modelCode": "HGN_L",
+      "actorCodes": [
+        "HGN_"
+      ],
+      "observedMotionIds": [],
+      "requiredEvidence": "Dreamcast RAM capture with one exact listed native actor active and all 17 visible solver matrices bound; intermediate arm roots may be read directly from controller RAM",
+      "acquisitionStatus": "direct-source-target-found",
+      "bestDisc": 3,
+      "bestArea": "Q300",
+      "nativeDisc1ScheduleRecords": [],
+      "sourceCandidates": [
+        {
+          "actorCode": "HGN_",
+          "source": "scene/03/npc/NPC_Q300.BIN",
+          "sourceSha256": "44d4ed3170031a21b9bd0ffb311eda773e233a153981fc139a7a2626d0812f5c",
+          "kind": "area-npc-container",
+          "disc": 3,
+          "area": "Q300",
+          "occurrenceCount": 1,
+          "firstOffsets": [
+            "0x1828"
+          ],
+          "score": 95
+        },
+        {
+          "actorCode": "HGN_",
+          "source": "scene/01/AR02/ARMWAUTH.PKS",
+          "sourceSha256": "9f5ed56436c2d34d7c4fd265e4016de20ef75657750e31a7a288226c40075d01",
+          "kind": "area-resource",
+          "disc": 1,
+          "area": "AR02",
+          "occurrenceCount": 1,
+          "firstOffsets": [
+            "0x5d2f4"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "HGN_",
+          "source": "scene/01/AR02/ARMWCOMN.PKS",
+          "sourceSha256": "ac0dc06cfbcf49ea1a2773437057c99035b4cc28b15ee1c1647e29dbafc77130",
+          "kind": "area-resource",
+          "disc": 1,
+          "area": "AR02",
+          "occurrenceCount": 1,
+          "firstOffsets": [
+            "0x13034"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "HGN_",
+          "source": "scene/01/ARSF/ARMWCOMN.PKS",
+          "sourceSha256": "ac0dc06cfbcf49ea1a2773437057c99035b4cc28b15ee1c1647e29dbafc77130",
+          "kind": "area-resource",
+          "disc": 1,
+          "area": "ARSF",
+          "occurrenceCount": 1,
+          "firstOffsets": [
+            "0x13034"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "HGN_",
+          "source": "scene/02/AR02/ARMWAUTH.PKS",
+          "sourceSha256": "9f5ed56436c2d34d7c4fd265e4016de20ef75657750e31a7a288226c40075d01",
+          "kind": "area-resource",
+          "disc": 2,
+          "area": "AR02",
+          "occurrenceCount": 1,
+          "firstOffsets": [
+            "0x5d2f4"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "HGN_",
+          "source": "scene/02/AR02/ARMWCOMN.PKS",
+          "sourceSha256": "ac0dc06cfbcf49ea1a2773437057c99035b4cc28b15ee1c1647e29dbafc77130",
+          "kind": "area-resource",
+          "disc": 2,
+          "area": "AR02",
+          "occurrenceCount": 1,
+          "firstOffsets": [
+            "0x13034"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "HGN_",
+          "source": "scene/02/ARSF/ARMWCOMN.PKS",
+          "sourceSha256": "ac0dc06cfbcf49ea1a2773437057c99035b4cc28b15ee1c1647e29dbafc77130",
+          "kind": "area-resource",
+          "disc": 2,
+          "area": "ARSF",
+          "occurrenceCount": 1,
+          "firstOffsets": [
+            "0x13034"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "HGN_",
+          "source": "scene/03/QTB4/ARMWCOMN.PKS",
+          "sourceSha256": "ac0dc06cfbcf49ea1a2773437057c99035b4cc28b15ee1c1647e29dbafc77130",
+          "kind": "area-resource",
+          "disc": 3,
+          "area": "QTB4",
+          "occurrenceCount": 1,
+          "firstOffsets": [
+            "0x13034"
+          ],
+          "score": 85
+        }
+      ]
+    },
+    {
+      "restProfile": "JOY",
+      "modelCode": "JOY_M",
+      "actorCodes": [
+        "JOY_"
+      ],
+      "observedMotionIds": [],
+      "requiredEvidence": "Dreamcast RAM capture with one exact listed native actor active and all 17 visible solver matrices bound; intermediate arm roots may be read directly from controller RAM",
+      "acquisitionStatus": "area-resource-target-found",
+      "bestDisc": 1,
+      "bestArea": "0017",
+      "nativeDisc1ScheduleRecords": [],
+      "sourceCandidates": [
+        {
+          "actorCode": "JOY_",
+          "source": "scene/01/0017/MPK00.PKS",
+          "sourceSha256": "40f52e18754769086755362def587aea80f02349fd16f8a8b9ff308fd305a7be",
+          "kind": "area-resource",
+          "disc": 1,
+          "area": "0017",
+          "occurrenceCount": 10,
+          "firstOffsets": [
+            "0x259",
+            "0x28d",
+            "0x2db",
+            "0x343",
+            "0x388"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "JOY_",
+          "source": "scene/01/AR02/0007A.PKS",
+          "sourceSha256": "5c2f7c9ecce7c40da351062b8182cb8ebfbbf7f70513d2d244e5b2f38e3020cc",
+          "kind": "area-resource",
+          "disc": 1,
+          "area": "AR02",
+          "occurrenceCount": 6,
+          "firstOffsets": [
+            "0x195",
+            "0x1ac",
+            "0x1c5",
+            "0x1db",
+            "0x1f1"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "JOY_",
+          "source": "scene/01/AR02/0140A.PKS",
+          "sourceSha256": "f819abcab0727d5d798a7685011711da121658ffd77ff65ab5d970ee5387b06d",
+          "kind": "area-resource",
+          "disc": 1,
+          "area": "AR02",
+          "occurrenceCount": 3,
+          "firstOffsets": [
+            "0x165",
+            "0x17e",
+            "0x197"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "JOY_",
+          "source": "scene/01/AR03/0076A.PKS",
+          "sourceSha256": "118ae1f2c7b7b1cf56a63fad227b360961333a6196f539abbecba81c6effd275",
+          "kind": "area-resource",
+          "disc": 1,
+          "area": "AR03",
+          "occurrenceCount": 4,
+          "firstOffsets": [
+            "0x1e9",
+            "0x202",
+            "0x21f",
+            "0x23c"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "JOY_",
+          "source": "scene/01/AR09/0076A.PKS",
+          "sourceSha256": "118ae1f2c7b7b1cf56a63fad227b360961333a6196f539abbecba81c6effd275",
+          "kind": "area-resource",
+          "disc": 1,
+          "area": "AR09",
+          "occurrenceCount": 4,
+          "firstOffsets": [
+            "0x1e9",
+            "0x202",
+            "0x21f",
+            "0x23c"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "JOY_",
+          "source": "scene/01/WEG0/SFIZ.PKS",
+          "sourceSha256": "56faefec5d107bcdb68da85a9a5aa0c03266eafd904b983a1e756c34975e8055",
+          "kind": "area-resource",
+          "disc": 1,
+          "area": "WEG0",
+          "occurrenceCount": 1,
+          "firstOffsets": [
+            "0x149"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "JOY_",
+          "source": "scene/01/WS00/0015A1.PKS",
+          "sourceSha256": "effe7d1986e2e552a80ffd112c4eec9ffb1814a6a00e73c5d116e5287ce4c4a5",
+          "kind": "area-resource",
+          "disc": 1,
+          "area": "WS00",
+          "occurrenceCount": 3,
+          "firstOffsets": [
+            "0x109",
+            "0x124",
+            "0x13f"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "JOY_",
+          "source": "scene/01/WS09/0015A1.PKS",
+          "sourceSha256": "effe7d1986e2e552a80ffd112c4eec9ffb1814a6a00e73c5d116e5287ce4c4a5",
+          "kind": "area-resource",
+          "disc": 1,
+          "area": "WS09",
+          "occurrenceCount": 3,
+          "firstOffsets": [
+            "0x109",
+            "0x124",
+            "0x13f"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "JOY_",
+          "source": "scene/01/WSY0/SLEP.PKS",
+          "sourceSha256": "b86ac1a1fe62b5659be4298f4f7189ee68b249c5a5ebcebd9f96ee03b7c17a71",
+          "kind": "area-resource",
+          "disc": 1,
+          "area": "WSY0",
+          "occurrenceCount": 1,
+          "firstOffsets": [
+            "0x1f9"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "JOY_",
+          "source": "scene/02/AB00/0175A.PKS",
+          "sourceSha256": "febd8896d4f75b769bb8952260a7eacb0f42f58ea6467cb0a4c2214a8d6ac2f4",
+          "kind": "area-resource",
+          "disc": 2,
+          "area": "AB00",
+          "occurrenceCount": 1,
+          "firstOffsets": [
+            "0xbd"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "JOY_",
+          "source": "scene/02/AK00/0175A.PKS",
+          "sourceSha256": "febd8896d4f75b769bb8952260a7eacb0f42f58ea6467cb0a4c2214a8d6ac2f4",
+          "kind": "area-resource",
+          "disc": 2,
+          "area": "AK00",
+          "occurrenceCount": 1,
+          "firstOffsets": [
+            "0xbd"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "JOY_",
+          "source": "scene/02/AK09/0175A.PKS",
+          "sourceSha256": "febd8896d4f75b769bb8952260a7eacb0f42f58ea6467cb0a4c2214a8d6ac2f4",
+          "kind": "area-resource",
+          "disc": 2,
+          "area": "AK09",
+          "occurrenceCount": 1,
+          "firstOffsets": [
+            "0xbd"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "JOY_",
+          "source": "scene/02/AR02/0140A.PKS",
+          "sourceSha256": "f819abcab0727d5d798a7685011711da121658ffd77ff65ab5d970ee5387b06d",
+          "kind": "area-resource",
+          "disc": 2,
+          "area": "AR02",
+          "occurrenceCount": 3,
+          "firstOffsets": [
+            "0x165",
+            "0x17e",
+            "0x197"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "JOY_",
+          "source": "scene/02/WEG0/SFIZ.PKS",
+          "sourceSha256": "56faefec5d107bcdb68da85a9a5aa0c03266eafd904b983a1e756c34975e8055",
+          "kind": "area-resource",
+          "disc": 2,
+          "area": "WEG0",
+          "occurrenceCount": 1,
+          "firstOffsets": [
+            "0x149"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "JOY_",
+          "source": "scene/02/WN00/0077A.PKS",
+          "sourceSha256": "1f8466a6db2c7820f21d1a5a08b50264031f53e44491520710bbb9694e4cbe91",
+          "kind": "area-resource",
+          "disc": 2,
+          "area": "WN00",
+          "occurrenceCount": 1,
+          "firstOffsets": [
+            "0x99"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "JOY_",
+          "source": "scene/02/WSY0/SLEP.PKS",
+          "sourceSha256": "b86ac1a1fe62b5659be4298f4f7189ee68b249c5a5ebcebd9f96ee03b7c17a71",
+          "kind": "area-resource",
+          "disc": 2,
+          "area": "WSY0",
+          "occurrenceCount": 1,
+          "firstOffsets": [
+            "0x1f9"
+          ],
+          "score": 85
+        }
+      ]
+    },
+    {
+      "restProfile": "SIN",
+      "modelCode": "SIN_M",
+      "actorCodes": [
+        "SIN_"
+      ],
+      "observedMotionIds": [],
+      "requiredEvidence": "Dreamcast RAM capture with one exact listed native actor active and all 17 visible solver matrices bound; intermediate arm roots may be read directly from controller RAM",
+      "acquisitionStatus": "direct-source-target-found",
+      "bestDisc": 1,
+      "bestArea": "0549",
+      "nativeDisc1ScheduleRecords": [],
+      "sourceCandidates": [
+        {
+          "actorCode": "SIN_",
+          "source": "scene/01/0549/0549.EV3",
+          "sourceSha256": "0d3c409395481905917457a555779f941a88894121c5a873c81b41bf279f618d",
+          "kind": "area-event",
+          "disc": 1,
+          "area": "0549",
+          "occurrenceCount": 3,
+          "firstOffsets": [
+            "0x974",
+            "0x9d4",
+            "0x41d8"
+          ],
+          "score": 100
+        },
+        {
+          "actorCode": "SIN_",
+          "source": "scene/01/OP02/OP02.EV3",
+          "sourceSha256": "934b53d99a51620fb1233dc67e5dba7eea9fe0260d0dcd59cc4ee033309f6b9a",
+          "kind": "area-event",
+          "disc": 1,
+          "area": "OP02",
+          "occurrenceCount": 3,
+          "firstOffsets": [
+            "0x7dc",
+            "0x83c",
+            "0xf0c"
+          ],
+          "score": 100
+        },
+        {
+          "actorCode": "SIN_",
+          "source": "scene/02/0549/0549.EV3",
+          "sourceSha256": "0d3c409395481905917457a555779f941a88894121c5a873c81b41bf279f618d",
+          "kind": "area-event",
+          "disc": 2,
+          "area": "0549",
+          "occurrenceCount": 3,
+          "firstOffsets": [
+            "0x974",
+            "0x9d4",
+            "0x41d8"
+          ],
+          "score": 100
+        },
+        {
+          "actorCode": "SIN_",
+          "source": "scene/03/0549/0549.EV3",
+          "sourceSha256": "0d3c409395481905917457a555779f941a88894121c5a873c81b41bf279f618d",
+          "kind": "area-event",
+          "disc": 3,
+          "area": "0549",
+          "occurrenceCount": 3,
+          "firstOffsets": [
+            "0x974",
+            "0x9d4",
+            "0x41d8"
+          ],
+          "score": 100
+        },
+        {
+          "actorCode": "SIN_",
+          "source": "scene/04/0504/0504.EV3",
+          "sourceSha256": "46f5b8bf5a268b7d7871004eff716a30a715a951b2cab48e9f51966f5edccf99",
+          "kind": "area-event",
+          "disc": 4,
+          "area": "0504",
+          "occurrenceCount": 10,
+          "firstOffsets": [
+            "0x308",
+            "0x6cc",
+            "0x860",
+            "0xc50",
+            "0xdac"
+          ],
+          "score": 100
+        },
+        {
+          "actorCode": "SIN_",
+          "source": "scene/04/0505/0505.EV3",
+          "sourceSha256": "5eee40b55b8993c551aa90a5cd370127c0a082d10bc83d525489b8bdc5445a7d",
+          "kind": "area-event",
+          "disc": 4,
+          "area": "0505",
+          "occurrenceCount": 3,
+          "firstOffsets": [
+            "0x46c",
+            "0x4ac",
+            "0x934"
+          ],
+          "score": 100
+        },
+        {
+          "actorCode": "SIN_",
+          "source": "scene/04/KRK2/ISTB.EV3",
+          "sourceSha256": "45260cc3df7f7c3500899b1062d04b11d9a97d7c46de486686e4f905a9978fd0",
+          "kind": "area-event",
+          "disc": 4,
+          "area": "KRK2",
+          "occurrenceCount": 3,
+          "firstOffsets": [
+            "0x324",
+            "0xcdc",
+            "0x4e08"
+          ],
+          "score": 100
+        },
+        {
+          "actorCode": "SIN_",
+          "source": "scene/04/KRK4/ISTB.EV3",
+          "sourceSha256": "45260cc3df7f7c3500899b1062d04b11d9a97d7c46de486686e4f905a9978fd0",
+          "kind": "area-event",
+          "disc": 4,
+          "area": "KRK4",
+          "occurrenceCount": 3,
+          "firstOffsets": [
+            "0x324",
+            "0xcdc",
+            "0x4e08"
+          ],
+          "score": 100
+        },
+        {
+          "actorCode": "SIN_",
+          "source": "scene/04/KWQA/MQTE.EV3",
+          "sourceSha256": "36eed203783550c90c97c89b893c5eab06e28c563f1eb083204393f4ad2ff20f",
+          "kind": "area-event",
+          "disc": 4,
+          "area": "KWQA",
+          "occurrenceCount": 14,
+          "firstOffsets": [
+            "0x90c",
+            "0xb48",
+            "0x122c",
+            "0x1424",
+            "0x1524"
+          ],
+          "score": 100
+        },
+        {
+          "actorCode": "SIN_",
+          "source": "scene/04/npc/NPC_KRN1.BIN",
+          "sourceSha256": "8c9758b9724aaa6f7aa6fb05d1a7b3b034f4919fe75a6e96670dcaf34be3e078",
+          "kind": "area-npc-container",
+          "disc": 4,
+          "area": "KRN1",
+          "occurrenceCount": 1,
+          "firstOffsets": [
+            "0x17dc"
+          ],
+          "score": 95
+        },
+        {
+          "actorCode": "SIN_",
+          "source": "scene/04/npc/NPC_KRN2.BIN",
+          "sourceSha256": "84541917af05dd99fd207445ad317193068a4097ad62631ec667f4d33ccfeb93",
+          "kind": "area-npc-container",
+          "disc": 4,
+          "area": "KRN2",
+          "occurrenceCount": 1,
+          "firstOffsets": [
+            "0x998"
+          ],
+          "score": 95
+        },
+        {
+          "actorCode": "SIN_",
+          "source": "scene/01/0549/MAPINFO.BIN",
+          "sourceSha256": "1bbf7c95982b94fc0e2e6c5ac093087d1e5e1f55c9f5817d300ce6a16df364d7",
+          "kind": "area-resource",
+          "disc": 1,
+          "area": "0549",
+          "occurrenceCount": 35,
+          "firstOffsets": [
+            "0x640",
+            "0x68c",
+            "0x904",
+            "0x954",
+            "0x978"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "SIN_",
+          "source": "scene/01/0549/MPK00.PKS",
+          "sourceSha256": "40a778e3eb05a229b325c34ea140246b1206e91b8e8f3ad27a2d6a9c0fcf5071",
+          "kind": "area-resource",
+          "disc": 1,
+          "area": "0549",
+          "occurrenceCount": 1,
+          "firstOffsets": [
+            "0xcb"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "SIN_",
+          "source": "scene/01/AR01/0005A.MOT",
+          "sourceSha256": "550c4c3172841f858240cd4f1a0ff8530801276cf960043f27e6e89b45bd0006",
+          "kind": "area-resource",
+          "disc": 1,
+          "area": "AR01",
+          "occurrenceCount": 1,
+          "firstOffsets": [
+            "0x4e9"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "SIN_",
+          "source": "scene/01/OP02/MAPINFO.BIN",
+          "sourceSha256": "3e78ccd128b08d65fe9419b2662514530513124f59d6370955c405155907d839",
+          "kind": "area-resource",
+          "disc": 1,
+          "area": "OP02",
+          "occurrenceCount": 116,
+          "firstOffsets": [
+            "0xcc",
+            "0x114",
+            "0x1e4",
+            "0x238",
+            "0x2bc"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "SIN_",
+          "source": "scene/01/OP02/MPK00.PKS",
+          "sourceSha256": "33074827e7f08766e3bc311865f3c530c22cf92a13bc00443c6994f2960b8217",
+          "kind": "area-resource",
+          "disc": 1,
+          "area": "OP02",
+          "occurrenceCount": 15,
+          "firstOffsets": [
+            "0x279",
+            "0x298",
+            "0x2af",
+            "0x2cf",
+            "0x2ed"
+          ],
+          "score": 85
+        }
+      ]
+    },
+    {
+      "restProfile": "TGY",
+      "modelCode": "TGY_M",
+      "actorCodes": [
+        "TGY_"
+      ],
+      "observedMotionIds": [],
+      "requiredEvidence": "Dreamcast RAM capture with one exact listed native actor active and all 17 visible solver matrices bound; intermediate arm roots may be read directly from controller RAM",
+      "acquisitionStatus": "direct-source-target-found",
+      "bestDisc": 3,
+      "bestArea": "QAXX",
+      "nativeDisc1ScheduleRecords": [],
+      "sourceCandidates": [
+        {
+          "actorCode": "TGY_",
+          "source": "scene/03/QAXX/BJMP.EV3",
+          "sourceSha256": "831f1e1bc748ace934e77ac44dcbbf9fb94aa869e7d500e86c34af69f0b5a9ed",
+          "kind": "area-event",
+          "disc": 3,
+          "area": "QAXX",
+          "occurrenceCount": 8,
+          "firstOffsets": [
+            "0x2b4",
+            "0x584",
+            "0x76c",
+            "0x894",
+            "0xc20"
+          ],
+          "score": 100
+        },
+        {
+          "actorCode": "TGY_",
+          "source": "scene/03/QAXX/QYUA.EV3",
+          "sourceSha256": "7db9e31c659398b7b2ddc1660567d99bb483b05377901b2a9e23c99f6224ce01",
+          "kind": "area-event",
+          "disc": 3,
+          "area": "QAXX",
+          "occurrenceCount": 3,
+          "firstOffsets": [
+            "0x3ec",
+            "0xc9c",
+            "0x9514"
+          ],
+          "score": 100
+        },
+        {
+          "actorCode": "TGY_",
+          "source": "scene/03/QDTB/QDTB.EV3",
+          "sourceSha256": "6f7c768265450889bc9e76fd94a9bf42f1317a66159a35edd0b3d7d1afe1bcdc",
+          "kind": "area-event",
+          "disc": 3,
+          "area": "QDTB",
+          "occurrenceCount": 12,
+          "firstOffsets": [
+            "0x550",
+            "0xc30",
+            "0x1174",
+            "0x1460",
+            "0x1658"
+          ],
+          "score": 100
+        },
+        {
+          "actorCode": "TGY_",
+          "source": "scene/03/QDTG/QDTG.EV3",
+          "sourceSha256": "a3845ed5675694f24fbc0b5c92137d95a2e61b6779d136f24d2559725791ba40",
+          "kind": "area-event",
+          "disc": 3,
+          "area": "QDTG",
+          "occurrenceCount": 6,
+          "firstOffsets": [
+            "0x468",
+            "0x5a4",
+            "0xc80",
+            "0xe7c",
+            "0x1450"
+          ],
+          "score": 100
+        },
+        {
+          "actorCode": "TGY_",
+          "source": "scene/03/QFRR/STEP.EV3",
+          "sourceSha256": "e10502df283d8836b0cdd4ce035c03990ce340970c92ddd3c47dcf05ea88fb94",
+          "kind": "area-event",
+          "disc": 3,
+          "area": "QFRR",
+          "occurrenceCount": 3,
+          "firstOffsets": [
+            "0x3d4",
+            "0x26e4",
+            "0x87f4"
+          ],
+          "score": 100
+        },
+        {
+          "actorCode": "TGY_",
+          "source": "scene/03/STEP/STEP.EV3",
+          "sourceSha256": "e10502df283d8836b0cdd4ce035c03990ce340970c92ddd3c47dcf05ea88fb94",
+          "kind": "area-event",
+          "disc": 3,
+          "area": "STEP",
+          "occurrenceCount": 3,
+          "firstOffsets": [
+            "0x3d4",
+            "0x26e4",
+            "0x87f4"
+          ],
+          "score": 100
+        },
+        {
+          "actorCode": "TGY_",
+          "source": "scene/01/WEG0/STREET.MOT",
+          "sourceSha256": "51db2cd49bf95657d3b5f421390fa0153d535b34e6ddc3b4b61fa91d6b6735df",
+          "kind": "area-resource",
+          "disc": 1,
+          "area": "WEG0",
+          "occurrenceCount": 16,
+          "firstOffsets": [
+            "0x36ce",
+            "0x36e6",
+            "0x3700",
+            "0x371a",
+            "0x372e"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "TGY_",
+          "source": "scene/02/AB00/ABSF.PKS",
+          "sourceSha256": "b062086a5bb0546af30a4a0734f26838ffb892d3203d6568027d2393ad8a2d6a",
+          "kind": "area-resource",
+          "disc": 2,
+          "area": "AB00",
+          "occurrenceCount": 16,
+          "firstOffsets": [
+            "0x2fc0e",
+            "0x2fc26",
+            "0x2fc40",
+            "0x2fc5a",
+            "0x2fc6e"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "TGY_",
+          "source": "scene/02/WEG0/STREET.MOT",
+          "sourceSha256": "51db2cd49bf95657d3b5f421390fa0153d535b34e6ddc3b4b61fa91d6b6735df",
+          "kind": "area-resource",
+          "disc": 2,
+          "area": "WEG0",
+          "occurrenceCount": 16,
+          "firstOffsets": [
+            "0x36ce",
+            "0x36e6",
+            "0x3700",
+            "0x371a",
+            "0x372e"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "TGY_",
+          "source": "scene/03/Q100/QSFF.PKS",
+          "sourceSha256": "7405f74351b6aee0be58f6cf08011ea4e923a6ff9ac995a552d1b4329ce852b8",
+          "kind": "area-resource",
+          "disc": 3,
+          "area": "Q100",
+          "occurrenceCount": 16,
+          "firstOffsets": [
+            "0x5294e",
+            "0x52966",
+            "0x52980",
+            "0x5299a",
+            "0x529ae"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "TGY_",
+          "source": "scene/03/Q109/QSFF.PKS",
+          "sourceSha256": "7405f74351b6aee0be58f6cf08011ea4e923a6ff9ac995a552d1b4329ce852b8",
+          "kind": "area-resource",
+          "disc": 3,
+          "area": "Q109",
+          "occurrenceCount": 16,
+          "firstOffsets": [
+            "0x5294e",
+            "0x52966",
+            "0x52980",
+            "0x5299a",
+            "0x529ae"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "TGY_",
+          "source": "scene/03/QA00/QJBT.PKS",
+          "sourceSha256": "60df91f8ed9029ba597fb3835d1c84cc04a321527d60cf400682cb5a610c8702",
+          "kind": "area-resource",
+          "disc": 3,
+          "area": "QA00",
+          "occurrenceCount": 16,
+          "firstOffsets": [
+            "0xa852e",
+            "0xa8546",
+            "0xa8560",
+            "0xa857a",
+            "0xa858e"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "TGY_",
+          "source": "scene/03/QA00/TTRP.PKF",
+          "sourceSha256": "3fbf007c9ca6496264bc37b270283ce71299b9433aac85c3d3e5e4575ae38ac4",
+          "kind": "area-resource",
+          "disc": 3,
+          "area": "QA00",
+          "occurrenceCount": 3,
+          "firstOffsets": [
+            "0x3b830",
+            "0x3bc14",
+            "0x3bc24"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "TGY_",
+          "source": "scene/03/QA00/TTRP.PKS",
+          "sourceSha256": "d70783fc01bceb40edce96ec02c0b4c58db987cc3a8a66230973059cb69cdeff",
+          "kind": "area-resource",
+          "disc": 3,
+          "area": "QA00",
+          "occurrenceCount": 81,
+          "firstOffsets": [
+            "0x1d2",
+            "0xa5ec",
+            "0xa60a",
+            "0xa628",
+            "0x38738"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "TGY_",
+          "source": "scene/03/QAXX/0217.PKS",
+          "sourceSha256": "ea4692a9608608c16aa821780232c46a9c3dc9a484be66ba4814b1cf1b04a520",
+          "kind": "area-resource",
+          "disc": 3,
+          "area": "QAXX",
+          "occurrenceCount": 64,
+          "firstOffsets": [
+            "0x477",
+            "0x497",
+            "0x4ad",
+            "0x4c6",
+            "0x55ae8"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "TGY_",
+          "source": "scene/03/QAXX/QJMP.PKS",
+          "sourceSha256": "bcc9dd0757619eba336f2ae0c6b42b89bfde3fcded3fb11b2490ad80187ba1ba",
+          "kind": "area-resource",
+          "disc": 3,
+          "area": "QAXX",
+          "occurrenceCount": 56,
+          "firstOffsets": [
+            "0x1a93",
+            "0x1aaa",
+            "0x1ace",
+            "0x1aed",
+            "0x1b14"
+          ],
+          "score": 85
+        }
+      ]
+    },
+    {
+      "restProfile": "YUA",
+      "modelCode": "YUA_M",
+      "actorCodes": [
+        "YUA_"
+      ],
+      "observedMotionIds": [],
+      "requiredEvidence": "Dreamcast RAM capture with one exact listed native actor active and all 17 visible solver matrices bound; intermediate arm roots may be read directly from controller RAM",
+      "acquisitionStatus": "direct-source-target-found",
+      "bestDisc": 2,
+      "bestArea": "0048",
+      "nativeDisc1ScheduleRecords": [],
+      "sourceCandidates": [
+        {
+          "actorCode": "YUA_",
+          "source": "scene/02/0048/0048.EV3",
+          "sourceSha256": "9e91d41ccaffbad62406b6cedf2efe084f057e31fa00e585aa1c0664411df958",
+          "kind": "area-event",
+          "disc": 2,
+          "area": "0048",
+          "occurrenceCount": 3,
+          "firstOffsets": [
+            "0x2608",
+            "0x2630",
+            "0x264c"
+          ],
+          "score": 100
+        },
+        {
+          "actorCode": "YUA_",
+          "source": "scene/02/AKY0/VSYB.EV3",
+          "sourceSha256": "3bcaa4432839ffa2679544f3654df7d09676015d0445bb25127b6b3949e27a4f",
+          "kind": "area-event",
+          "disc": 2,
+          "area": "AKY0",
+          "occurrenceCount": 4,
+          "firstOffsets": [
+            "0x614",
+            "0x868",
+            "0x9cc",
+            "0x6578"
+          ],
+          "score": 100
+        },
+        {
+          "actorCode": "YUA_",
+          "source": "scene/02/YTQB/YTQB.EV3",
+          "sourceSha256": "4227c950c86e3c664980b560807a23fd48bc8918df4f89fa6a292fce60c0a96e",
+          "kind": "area-event",
+          "disc": 2,
+          "area": "YTQB",
+          "occurrenceCount": 1,
+          "firstOffsets": [
+            "0xd834"
+          ],
+          "score": 100
+        },
+        {
+          "actorCode": "YUA_",
+          "source": "scene/03/QA11/QYSS.EV3",
+          "sourceSha256": "6831408e309394fe354b9fd10acd6d5ba9a0eaecbd71f41e9ae6fa706badd97d",
+          "kind": "area-event",
+          "disc": 3,
+          "area": "QA11",
+          "occurrenceCount": 5,
+          "firstOffsets": [
+            "0x2f0",
+            "0x4dc",
+            "0x7cc",
+            "0xa94",
+            "0x69f0"
+          ],
+          "score": 100
+        },
+        {
+          "actorCode": "YUA_",
+          "source": "scene/03/QAE6/QYSS.EV3",
+          "sourceSha256": "6831408e309394fe354b9fd10acd6d5ba9a0eaecbd71f41e9ae6fa706badd97d",
+          "kind": "area-event",
+          "disc": 3,
+          "area": "QAE6",
+          "occurrenceCount": 5,
+          "firstOffsets": [
+            "0x2f0",
+            "0x4dc",
+            "0x7cc",
+            "0xa94",
+            "0x69f0"
+          ],
+          "score": 100
+        },
+        {
+          "actorCode": "YUA_",
+          "source": "scene/03/QAXX/QYUA.EV3",
+          "sourceSha256": "7db9e31c659398b7b2ddc1660567d99bb483b05377901b2a9e23c99f6224ce01",
+          "kind": "area-event",
+          "disc": 3,
+          "area": "QAXX",
+          "occurrenceCount": 13,
+          "firstOffsets": [
+            "0x3e8",
+            "0x5ec",
+            "0x89c",
+            "0x91c",
+            "0xca0"
+          ],
+          "score": 100
+        },
+        {
+          "actorCode": "YUA_",
+          "source": "scene/03/npc/NPC_Q000.BIN",
+          "sourceSha256": "fb6d206aa38b7130cf1f31fe18cc6afa18701a8cf5aaa4a05e836418b2ec7426",
+          "kind": "area-npc-container",
+          "disc": 3,
+          "area": "Q000",
+          "occurrenceCount": 1,
+          "firstOffsets": [
+            "0x1398"
+          ],
+          "score": 95
+        },
+        {
+          "actorCode": "YUA_",
+          "source": "scene/03/npc/NPC_YUAN.BIN",
+          "sourceSha256": "4fc66bda9f55fa306aa8646886480241e515697fbe591880a993d5f2fc06df4f",
+          "kind": "area-npc-container",
+          "disc": 3,
+          "area": "YUAN",
+          "occurrenceCount": 8,
+          "firstOffsets": [
+            "0x9300",
+            "0x14ac2",
+            "0x15d6e",
+            "0x15e26",
+            "0x15e48"
+          ],
+          "score": 95
+        },
+        {
+          "actorCode": "YUA_",
+          "source": "scene/04/npc/NPC_Q000.BIN",
+          "sourceSha256": "981daceb8202a2153084b6e2e00bc4b1d23594e872774f92788d66bc7f33a3e8",
+          "kind": "area-npc-container",
+          "disc": 4,
+          "area": "Q000",
+          "occurrenceCount": 1,
+          "firstOffsets": [
+            "0x1398"
+          ],
+          "score": 95
+        },
+        {
+          "actorCode": "YUA_",
+          "source": "scene/02/0048/MAPINFO.BIN",
+          "sourceSha256": "840c3ded28d5bd671bef70eaae23b2585ed611781037abe648e35247a4bf1974",
+          "kind": "area-resource",
+          "disc": 2,
+          "area": "0048",
+          "occurrenceCount": 128,
+          "firstOffsets": [
+            "0x9ea0",
+            "0x9f10",
+            "0x9fb8",
+            "0xa118",
+            "0xa2ac"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "YUA_",
+          "source": "scene/02/0048/MPK00.PKS",
+          "sourceSha256": "baf140b3114eabc46234ef0e9bb9151dcd9f1b9285bcdee92b0f016e6bb918a6",
+          "kind": "area-resource",
+          "disc": 2,
+          "area": "0048",
+          "occurrenceCount": 4,
+          "firstOffsets": [
+            "0x86d",
+            "0x889",
+            "0x8a3",
+            "0x8bf"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "YUA_",
+          "source": "scene/02/AKY0/VSYB.PKS",
+          "sourceSha256": "a1dfe7e3cb5f17c540a12a0193dd15e9dfb6471317db413be58791b4d23f7371",
+          "kind": "area-resource",
+          "disc": 2,
+          "area": "AKY0",
+          "occurrenceCount": 117,
+          "firstOffsets": [
+            "0x526",
+            "0x540",
+            "0x557",
+            "0x81549",
+            "0x82344"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "YUA_",
+          "source": "scene/02/TOFB/0048.PKS",
+          "sourceSha256": "7826f9379a4045f768b813a9d3b3991a92e5bb432cb50fd00e53cd8b82efea22",
+          "kind": "area-resource",
+          "disc": 2,
+          "area": "TOFB",
+          "occurrenceCount": 132,
+          "firstOffsets": [
+            "0x86d",
+            "0x889",
+            "0x8a3",
+            "0x8bf",
+            "0xa4c14"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "YUA_",
+          "source": "scene/02/YTQB/0048.PKS",
+          "sourceSha256": "7826f9379a4045f768b813a9d3b3991a92e5bb432cb50fd00e53cd8b82efea22",
+          "kind": "area-resource",
+          "disc": 2,
+          "area": "YTQB",
+          "occurrenceCount": 132,
+          "firstOffsets": [
+            "0x86d",
+            "0x889",
+            "0x8a3",
+            "0x8bf",
+            "0xa4c14"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "YUA_",
+          "source": "scene/03/QA11/QYSS.PKS",
+          "sourceSha256": "4e77e129b69360c7ac01d4666e108e84cecc7c4c9d3bb2f9245fff7b9864b5d5",
+          "kind": "area-resource",
+          "disc": 3,
+          "area": "QA11",
+          "occurrenceCount": 131,
+          "firstOffsets": [
+            "0x314",
+            "0x32c",
+            "0x344",
+            "0x35d",
+            "0x50704"
+          ],
+          "score": 85
+        },
+        {
+          "actorCode": "YUA_",
+          "source": "scene/03/QAE6/QYSS.PKS",
+          "sourceSha256": "4e77e129b69360c7ac01d4666e108e84cecc7c4c9d3bb2f9245fff7b9864b5d5",
+          "kind": "area-resource",
+          "disc": 3,
+          "area": "QAE6",
+          "occurrenceCount": 131,
+          "firstOffsets": [
+            "0x314",
+            "0x32c",
+            "0x344",
+            "0x35d",
+            "0x50704"
+          ],
+          "score": 85
+        }
+      ]
+    }
+  ]
+}

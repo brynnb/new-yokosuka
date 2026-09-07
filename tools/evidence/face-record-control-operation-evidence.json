@@ -1,0 +1,106 @@
+{
+  "schema": "new-yokosuka-face-record-control-operation-evidence-v1",
+  "status": "exact-native-handler-record-writes-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 153,
+    "operationHex": "0x0099",
+    "handlerAddress": "0x0c1650c4",
+    "handlerLength": 100,
+    "handlerSha256": "7eb85f39d6684d00c233f62d7579f5c7c6aefc943b52acad1d2f2da893b603d0",
+    "writerAddress": "0x0c0bc784",
+    "writerLength": 160,
+    "writerSha256": "15d8708b777292a84b3fd7d8559908e5db59f5f94188066690c7bcb8338f495a",
+    "nativeContract": {
+      "objectResolver": "0x0c153956",
+      "recordWriter": "0x0c0bc784",
+      "recordTag": "FACE",
+      "associatedRecordLookup": "0x0c0aad5a"
+    },
+    "recordTag": "FACE",
+    "recordWrites": {
+      "modeByteOffset": "record+0x52",
+      "modeByteValue": "0x80 | mode",
+      "controlWordOffset": "record+0xc8",
+      "secondaryWordOffset": "record+0xca",
+      "secondaryWordValue": 0,
+      "vectorWordOffsets": [
+        "record+0x54",
+        "record+0x58",
+        "record+0x5c"
+      ],
+      "modeZeroResetDwordOffsets": [
+        "record+0x84",
+        "record+0x88",
+        "record+0x90",
+        "record+0x94"
+      ]
+    },
+    "modes": [
+      {
+        "mode": 0,
+        "argumentCount": 2,
+        "controlWord": 16,
+        "vector": [
+          "0x00000000",
+          "0x00000000",
+          "0x00000000"
+        ],
+        "clearsResetDwords": true
+      },
+      {
+        "mode": 1,
+        "argumentCount": 3,
+        "controlWordArgumentIndex": 2,
+        "vector": [
+          "0x00000000",
+          "0x00000000",
+          "0x00000000"
+        ],
+        "clearsResetDwords": false
+      },
+      {
+        "mode": 2,
+        "argumentCount": 4,
+        "vectorPointerArgumentIndex": 2,
+        "controlWordArgumentIndex": 3,
+        "clearsResetDwords": false
+      }
+    ],
+    "provenBehavior": "Resolves argument zero as an object, obtains its associated record tagged FACE, and writes the exact mode byte, control word, zero secondary word, and three-float request vector. Mode zero supplies control 16 and a zero vector and clears four additional record dwords; mode one supplies its control from argument two and a zero vector; mode two supplies a vector pointer and control through arguments two and three."
+  },
+  "allDiscInventory": {
+    "callCount": 914,
+    "dialogueRegionCallCount": 179,
+    "areaCount": 55,
+    "modeCounts": {
+      "0": 507,
+      "1": 2,
+      "2": 405
+    },
+    "dialogueRegionModeCounts": {
+      "0": 76,
+      "2": 103
+    },
+    "objectArgumentKindCounts": {
+      "constant": 643,
+      "frame-field": 233,
+      "runtime": 6,
+      "scene-field": 32
+    },
+    "modeTwoVectorArgumentKindCounts": {
+      "runtime": 398,
+      "static-pointer": 7
+    }
+  },
+  "evidenceBoundary": [
+    "FACE is retained only as the executable's exact four-byte associated-record tag; no expanded gameplay name is inferred.",
+    "All 914 authored calls use a statically recovered mode and the exact mode-specific argument count.",
+    "The request writer tail-enters the larger FACE-record update routine at 0x0c0bc824; this evidence proves the synchronous request writes, not every downstream controller effect."
+  ]
+}

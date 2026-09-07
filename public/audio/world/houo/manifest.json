@@ -1,0 +1,1444 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/build_houo_audio_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "extracted_disc2_v2/data/SCENE/02/STREAM/01DIS.AFS",
+      "sha256": "fbc15afc397164e88c8684b03b136562d7601f16a4bf3ac3ca49d32d97740848"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "extracted_disc2_v2/data/SCENE/02/SOUND/A1_HOUHA.SND",
+      "sha256": "4fbc8fa043f8db207ae1f099333469606702f49302687fd8d0d367d1c04342cb"
+    },
+    "authManifest": "play/assets/hazuki/houo/manifest.json",
+    "resourceBindingEvidence": "tools/evidence/player-cutscene-owner-discovery.json"
+  },
+  "voices": [
+    {
+      "voiceId": "01DISA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SOUND/01DISA001.aiff",
+      "nativeMember": "01DISA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 12288,
+      "nativeSha256": "bc8de4ecc3eeea79d4958e5b69c48c29cbc8f8173488eaba3fba32a2241bf51d",
+      "speakerId": "AKIR",
+      "sourceText": "I feel like it's pulling me in=@",
+      "displayText": "I feel like it's pulling me in...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/houo/voice/01DISA001.wav",
+      "byteLength": 48940,
+      "sha256": "1f85f59aa21df09a1bc80591f17dfde3c63bc273538e1dd8202d6da03fa1e197"
+    },
+    {
+      "voiceId": "01DISA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SOUND/01DISA002.aiff",
+      "nativeMember": "01DISA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 14336,
+      "nativeSha256": "81d5f6b429b8e49ec516c427f37d1d4a3519a7502614ab0f9287e7d4e4821029",
+      "speakerId": "AKIR",
+      "sourceText": "No, I don't think it's cursed.",
+      "displayText": "No, I don't think it's cursed.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 21
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 20
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/houo/voice/01DISA002.wav",
+      "byteLength": 57132,
+      "sha256": "2c5e4d0faab9c98dade441b5b05147fd6feb9ef4d79f439e90c30c0bdb358c4a"
+    },
+    {
+      "voiceId": "01DISA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SOUND/01DISA003.aiff",
+      "nativeMember": "01DISA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 22528,
+      "nativeSha256": "52e8ce617750047acff3df5ce1e11d75e62a80f5747d3e3e071facec6592f5b1",
+      "speakerId": "AKIR",
+      "sourceText": "I have a feeling about it＆but I can't explain=@",
+      "displayText": "I have a feeling about it\nbut I can't explain...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 15
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 28
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/houo/voice/01DISA003.wav",
+      "byteLength": 89900,
+      "sha256": "d8b38e08f77b50c587cdbb879e34c2346cbcb042fef946dfdcf7615fff3dd7c1"
+    },
+    {
+      "voiceId": "01DISA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SOUND/01DISA004.aiff",
+      "nativeMember": "01DISA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 16384,
+      "nativeSha256": "f3dd480655cadc798e2d704c61b3e7fa787a3458d45116e08daf8b2388160307",
+      "speakerId": "AKIR",
+      "sourceText": "Fuku-san, get real would you!",
+      "displayText": "Fuku-san, get real would you!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 21
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 26
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/houo/voice/01DISA004.wav",
+      "byteLength": 65324,
+      "sha256": "09c3682f3139275189a8ca2b29066cf6f20cdb64b6cfb58eb3805a9819f650f5"
+    },
+    {
+      "voiceId": "01DISA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SOUND/01DISA005.aiff",
+      "nativeMember": "01DISA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 14336,
+      "nativeSha256": "f20e16228ba8e4116f2aa2b9fab898ab73fbee0d84119b1bbecb9ee971b6e9c3",
+      "speakerId": "AKIR",
+      "sourceText": "I should take this mirror to Master Chen.",
+      "displayText": "I should take this mirror to Master Chen.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/houo/voice/01DISA005.wav",
+      "byteLength": 57132,
+      "sha256": "e1124a818e20a10b8b5bdbe3478997c2aadda83ffc08d7058ca0050ed4bd1b9c"
+    },
+    {
+      "voiceId": "01DISA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SOUND/01DISA006.aiff",
+      "nativeMember": "01DISA006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 6144,
+      "nativeSha256": "75a53cb75f5af25461256c0390dcf54b9ac88ea3c55d168c24fda6d21736cf1d",
+      "speakerId": "AKIR",
+      "sourceText": "Enough=@",
+      "displayText": "Enough...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          }
+        ]
+      },
+      "asset": "public/audio/world/houo/voice/01DISA006.wav",
+      "byteLength": 24364,
+      "sha256": "32fdb77c977559ef00376bd1253cd3cf50ecec29e69815b5d221ac262382561c"
+    },
+    {
+      "voiceId": "01DISA007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SOUND/01DISA007.aiff",
+      "nativeMember": "01DISA007.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 10240,
+      "nativeSha256": "8b34f19bcc8d201ec28ce8e58dc87ac3e01c31b32c6e155b6f146dd4c2286c2e",
+      "speakerId": "AKIR",
+      "sourceText": "Give me some time alone, OK?",
+      "displayText": "Give me some time alone, OK?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/houo/voice/01DISA007.wav",
+      "byteLength": 40748,
+      "sha256": "f226d76d6c288ecc76f06afa8edfcca43636f5ccc611ed57760fc45a4726adc3"
+    },
+    {
+      "voiceId": "01DISB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SOUND/01DISB001.aiff",
+      "nativeMember": "01DISB001.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 12288,
+      "nativeSha256": "374feba093296b69054361c2d7a54617c157248df6ac5badb8be9cfb966523cb",
+      "speakerId": "FUKU",
+      "sourceText": "Ryo-san, you found the mirror?",
+      "displayText": "Ryo-san, you found the mirror?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/houo/voice/01DISB001.wav",
+      "byteLength": 48940,
+      "sha256": "655294930f37d6d237913c4bfeac0f49b268c763fc7b9faf0a0ce2f5007dd1a4"
+    },
+    {
+      "voiceId": "01DISB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SOUND/01DISB002.aiff",
+      "nativeMember": "01DISB002.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 14336,
+      "nativeSha256": "4ac74c7c135f8ce69eda1d6764d1cdee676e8484cb73e3ae7234b70dff248bf7",
+      "speakerId": "FUKU",
+      "sourceText": "So that's the Phoenix Mirror?",
+      "displayText": "So that's the Phoenix Mirror?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/houo/voice/01DISB002.wav",
+      "byteLength": 57132,
+      "sha256": "2fbb59986df3f91c12ddae45c2c84128fe8a1dddd065292d99eb1f49eacdef33"
+    },
+    {
+      "voiceId": "01DISB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SOUND/01DISB003.aiff",
+      "nativeMember": "01DISB003.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 14336,
+      "nativeSha256": "75e03ad03c40f7adb5683817033576aac7258776648db8d25a5f88a4f9912088",
+      "speakerId": "FUKU",
+      "sourceText": "It's=@kinda creepy eh?",
+      "displayText": "It's...kinda creepy eh?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          }
+        ]
+      },
+      "asset": "public/audio/world/houo/voice/01DISB003.wav",
+      "byteLength": 57132,
+      "sha256": "7ad0d4847f7cbadf11f681873608bcf00454cfd49c6184a9b103c0f326994abd"
+    },
+    {
+      "voiceId": "01DISB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SOUND/01DISB004.aiff",
+      "nativeMember": "01DISB004.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 38912,
+      "nativeSha256": "fb7c5ace5c984039f0a57083c99d39ee52f26e626774491bfb9e2a478da9cf98",
+      "speakerId": "FUKU",
+      "sourceText": "Ryo, Ryo-san=@stop it, please.＆Ya' think it could be cursed?",
+      "displayText": "Ryo, Ryo-san...stop it, please.\nYa' think it could be cursed?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 33
+          },
+          {
+            "shape": 0,
+            "durationTicks": 40
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/houo/voice/01DISB004.wav",
+      "byteLength": 155436,
+      "sha256": "1a58b4a69bbc34be9c2fdf1882098f93cd15ec4ebc6593b74bb2a4843333ab81"
+    },
+    {
+      "voiceId": "01DISB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SOUND/01DISB005.aiff",
+      "nativeMember": "01DISB005.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 4096,
+      "nativeSha256": "e5a48340e521c42eead05e9d8f59c7056bcd82b71685b6dc9b644032950a38ba",
+      "speakerId": "FUKU",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/houo/voice/01DISB005.wav",
+      "byteLength": 16172,
+      "sha256": "1dcfa01262afbc7e485552b07d5e2ee0bfc39d9e6e14d127ea6b9490e0a0650d"
+    },
+    {
+      "voiceId": "01DISB006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SOUND/01DISB006.aiff",
+      "nativeMember": "01DISB006.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 22528,
+      "nativeSha256": "b12d2704a9927556385e56957ae976cb9b71dc0760c3ca29d3f246ead53d22d6",
+      "speakerId": "FUKU",
+      "sourceText": "Hey! See what I mean, that's dangerous!",
+      "displayText": "Hey! See what I mean, that's dangerous!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 41
+          },
+          {
+            "shape": 2,
+            "durationTicks": 22
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/houo/voice/01DISB006.wav",
+      "byteLength": 89900,
+      "sha256": "851214509e3a8adce53b1f58faeb8bfa74343db3842e3f6f15eb19811e3b9d80"
+    },
+    {
+      "voiceId": "01DISB007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SOUND/01DISB007.aiff",
+      "nativeMember": "01DISB007.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 16384,
+      "nativeSha256": "e01459ea83370ec5359755250cb43124b04225ec51c1a3676be03a0acc4d1682",
+      "speakerId": "FUKU",
+      "sourceText": "Are you possessed?!",
+      "displayText": "Are you possessed?!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 36
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 24
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/houo/voice/01DISB007.wav",
+      "byteLength": 65324,
+      "sha256": "9f358ac61f362bac6bf1c3432d1efeff56608445545cedb8802706b07d8a1458"
+    },
+    {
+      "voiceId": "01DISB008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SOUND/01DISB008.aiff",
+      "nativeMember": "01DISB008.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 14336,
+      "nativeSha256": "fde5e2df73d382d0b37890b37de754c1f6db1a07b5af85afde9a33acb5e2ef4b",
+      "speakerId": "FUKU",
+      "sourceText": "What!? I'm serious!",
+      "displayText": "What!? I'm serious!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 23
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          }
+        ]
+      },
+      "asset": "public/audio/world/houo/voice/01DISB008.wav",
+      "byteLength": 57132,
+      "sha256": "eff7c3a0b7d21825ce250689c21ed705469b509c9a4fd9da1705a053a5ea574d"
+    },
+    {
+      "voiceId": "01DISB009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SOUND/01DISB009.aiff",
+      "nativeMember": "01DISB009.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 12288,
+      "nativeSha256": "7bde5b141eb60ec1d22759959dbe10a06b1650bf96e6e53811ecf25f11b1dbb8",
+      "speakerId": "FUKU",
+      "sourceText": "Uhh sure.",
+      "displayText": "Uhh sure.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 27
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/houo/voice/01DISB009.wav",
+      "byteLength": 48940,
+      "sha256": "bfc24f5fd4b5858e63fca59aa684bfd8fbe2d1d500992182a07853581c73379b"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SE/cloths2/friction4.aiff",
+      "playbackId": 1,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/houo/sfx/a9040100.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 2,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/houo/sfx/a9040200.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 3,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/houo/sfx/a9040300.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SE/cloths2/friction2.aiff",
+      "playbackId": 4,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/houo/sfx/a9040400.wav",
+      "byteLength": 20916,
+      "sha256": "70c58a40f2a0cb7dbd1431ee497c610b51fa15fe0946d79d09230e6cccc708b6"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SE/cloths2/furimuki_f01.aiff",
+      "playbackId": 5,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/houo/sfx/a9040500.wav",
+      "byteLength": 9348,
+      "sha256": "2026b716ba3115748b89ec3ac3b6041824b6ddbba78ee708f62af1fb8dc3756a"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SE/foot2/GANASHI2.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/houo/sfx/a9040600.wav",
+      "byteLength": 8436,
+      "sha256": "9f283c3727e1170add6d7acf3f622c3eda8f0896fac4ef4ce59bdba4df5bb6b5"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SE/foot2/GANASHI3.aiff",
+      "playbackId": 7,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/houo/sfx/a9040700.wav",
+      "byteLength": 4740,
+      "sha256": "4af76a29c96ad20ae640d36f44990bee2067054e3aeb62af42bbf1ddc0aa56a6"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SE/footroom/gansuriashi02.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/houo/sfx/a9040800.wav",
+      "byteLength": 8652,
+      "sha256": "e67782f5f3e7112a2570a4abc1164e261965466aa5ce749045dd1e148fdcc272"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SE/footroom/gansuriashi2.aiff",
+      "playbackId": 9,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/houo/sfx/a9040900.wav",
+      "byteLength": 10308,
+      "sha256": "8fbcc7724fd943366567dc86b42afc07c323e253043e5da317f933527b6d5e49"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SE/foot/Itawalk2.aiff",
+      "playbackId": 10,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/houo/sfx/a9040a00.wav",
+      "byteLength": 16980,
+      "sha256": "8c1355c8eee77063c212955fe2a81214390b163ada8360a388cd2a919f0cfdbe"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01DIS/SE/cloths2/R_mouhu_nageru.aiff",
+      "playbackId": 11,
+      "sampleId": 11,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/houo/sfx/a9040b00.wav",
+      "byteLength": 21612,
+      "sha256": "5c49cb5c012c4b62f58d0b81d8f68aa02b2734dd78710011d0c69a431d5a0988"
+    }
+  ]
+}

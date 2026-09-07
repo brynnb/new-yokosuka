@@ -1,0 +1,187 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/build_jomo_vision_activity_packs.mjs",
+  "source": {
+    "disc": 3,
+    "path": "extracted_disc3_v2/data/SCENE/03/JOMO/KKYD.PKS",
+    "sha256": "639e0f6b629a83b76e7c0973bf16c7ac01d4fd806ed92e9b9a59a9400e527035",
+    "archiveFormat": "PAKS/IPAC",
+    "members": [
+      {
+        "name": "HOUM400G.CHRM",
+        "byteLength": 372,
+        "sha256": "2b366fd2919e5ecb36f27026a8df7dd917040dd24b8354529ebf069f9e6d066e"
+      },
+      {
+        "name": "MAP03.MAPM",
+        "byteLength": 156672,
+        "sha256": "3aa3abecf4e57bf8650aada68d5f3d95bdfc65acb4b87457581b5a446a863a27"
+      },
+      {
+        "name": "M_01KKY.MOTN",
+        "byteLength": 132588,
+        "sha256": "3b44ddf768fdc6c1405ab7ffca32cc7431b86b9af7b3644fe35d3b1cb0e58c18"
+      },
+      {
+        "name": "M_TORI.MOTN",
+        "byteLength": 132456,
+        "sha256": "faa2483e6bbdfb5cde0fec4a1a1aeb5530330b9e8cfec6538bbe524370b67558"
+      },
+      {
+        "name": "SEQDATA3.AUTH",
+        "byteLength": 4552,
+        "sha256": "44b6cba868f90829083deeb5e673ef8e761a777ffcea55421a29b0d8a8ef8e22"
+      },
+      {
+        "name": "SIN_F.CHRM",
+        "byteLength": 15076,
+        "sha256": "7fb76c9d3b86c780cc0d111c8c9b8011cd1123c73ef1dd5295677eb666e5d767"
+      },
+      {
+        "name": "SIN_FTBL.BIN",
+        "byteLength": 8092,
+        "sha256": "9ce6c79f85666df9d19bdce9210d975aa60ad3b6e68bd97f5770a56b090bb9e7"
+      },
+      {
+        "name": "SIN_HM.BIN",
+        "byteLength": 8632,
+        "sha256": "6245a820d3b4e69388cde3bea95f2d9b0bc3246a77e8ff2254d586e6398fc589"
+      },
+      {
+        "name": "SIN_M.CHRM",
+        "byteLength": 119772,
+        "sha256": "3c060c6f7800e055b3cdb6ada82a3a97443e5bfd7feacd9babda67653fb8a3cb"
+      },
+      {
+        "name": "SIN_TL.CHRM",
+        "byteLength": 12676,
+        "sha256": "d0c2c59ead198eef047313c5852726df5b1ffd0d903baa4e95254e7f38468be0"
+      },
+      {
+        "name": "SIN_TR.CHRM",
+        "byteLength": 12764,
+        "sha256": "6427c37fbdba8b721a0ed0580c89bc9513260f5a1a4df9d5af25fc5226b3962e"
+      },
+      {
+        "name": "TAK02M7G.CHRM",
+        "byteLength": 45816,
+        "sha256": "3bb785a9e35909dfddf4d0914faaf063668e848f0667fb931acbfa8a503f2e05"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "tools/evidence/player-cutscene-owner-discovery.json",
+    "resourceName": "KKYD",
+    "variant": "",
+    "selectionRule": "exact cross-disc AUTH member selected by JOMO owner 0x4f758"
+  },
+  "sceneObjects": {
+    "SEIZ": {
+      "model": "HOUM400G",
+      "browserFilename": "S3_JOMO_HOUM400G.MT5",
+      "assetPath": "play/assets/hazuki/kkyd/HOUM400G.CHRM",
+      "lifecycle": {
+        "kind": "auth-scoped"
+      }
+    },
+    "MAP3": {
+      "model": "MAP03",
+      "browserFilename": "S3_JOMO_MAP03.MT5",
+      "assetPath": "play/assets/hazuki/kkyd/MAP03.MAPM",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    }
+  },
+  "actorTags": [
+    "SEIZ",
+    "SINF"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/hazuki/kkyc/M_01KKY.MOTN",
+      "byteLength": 132588,
+      "sha256": "3b44ddf768fdc6c1405ab7ffca32cc7431b86b9af7b3644fe35d3b1cb0e58c18"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/hazuki/kkyc/M_01KKY.MOTN",
+      "byteLength": 132588,
+      "sha256": "3b44ddf768fdc6c1405ab7ffca32cc7431b86b9af7b3644fe35d3b1cb0e58c18"
+    },
+    {
+      "path": "play/assets/hazuki/kkyd/SEQDATA3.AUTH",
+      "byteLength": 4552,
+      "sha256": "44b6cba868f90829083deeb5e673ef8e761a777ffcea55421a29b0d8a8ef8e22"
+    },
+    {
+      "path": "play/assets/hazuki/kkyd/HOUM400G.CHRM",
+      "byteLength": 372,
+      "sha256": "2b366fd2919e5ecb36f27026a8df7dd917040dd24b8354529ebf069f9e6d066e"
+    },
+    {
+      "path": "play/assets/hazuki/kkyd/MAP03.MAPM",
+      "byteLength": 156672,
+      "sha256": "3aa3abecf4e57bf8650aada68d5f3d95bdfc65acb4b87457581b5a446a863a27"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 53,
+      "primaryPointer": 614274,
+      "secondaryPointer": 614287,
+      "activityId": "KKYD/SEQDATA3.AUTH",
+      "archiveMember": "SEQDATA3.AUTH",
+      "byteLength": 4552,
+      "sha256": "44b6cba868f90829083deeb5e673ef8e761a777ffcea55421a29b0d8a8ef8e22",
+      "durationFrames": 1260,
+      "durationSeconds": 42.016666412353516,
+      "frameCount": 1,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 1
+      },
+      "actors": [
+        "SEIZ",
+        "SINF"
+      ],
+      "nativeSceneObjectStates": [
+        {
+          "actorTag": "MAP3",
+          "presented": true
+        }
+      ],
+      "motions": [
+        {
+          "actorTag": "SINF",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "SIN_HUSIGINA_HITO_0609",
+          "startFrame": 65,
+          "endFrame": 1089
+        }
+      ]
+    }
+  ]
+}

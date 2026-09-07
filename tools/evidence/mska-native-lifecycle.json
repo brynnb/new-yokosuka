@@ -1,0 +1,51 @@
+{
+  "schema": "new-yokosuka-native-cutscene-lifecycle-v1",
+  "resource": "MSKA",
+  "disc": 1,
+  "area": "JHD0",
+  "mapinfo": {
+    "path": "extracted_files/data/SCENE/01/JHD0/MAPINFO.BIN",
+    "sha256": "e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca"
+  },
+  "owner": {
+    "playerFacingEntryFunction": "0x3aec8",
+    "parentStoryController": "0x545f8",
+    "parentLaunch": "0x54b34",
+    "containerOpen": "0x3b676",
+    "activityInstall": "0x3b69a",
+    "containerClose": "0x3b6b2",
+    "activityRelease": "0x3b810",
+    "archiveRelease": "0x3b82c",
+    "containerOperation": "0x013c",
+    "activityOperation": "0x013e",
+    "slot": 0
+  },
+  "resourceCluster": {
+    "range": ["0x5ed80", "0x5ee20"],
+    "archive": "MSKA",
+    "voiceStream": "A0125.AFS",
+    "soundBank": "A1_FUKAN.SND",
+    "musicDuringActivity": "BGM202.SND",
+    "musicAfterActivity": "BGM009.SND",
+    "motionBank": "M_0126.MOTN"
+  },
+  "dependencies": {
+    "archive": "extracted_files/data/SCENE/01/JHD0/MSKA.PKS",
+    "actors": ["AKIR", "FUKU"],
+    "sceneObjects": []
+  },
+  "runtimePolicy": {
+    "world": "use the existing JHD0 Hazuki grounds composition and coordinate root",
+    "entry": "acquire Ryo and Fuku-san presentation before the exact slot-0 activity",
+    "music": "play the exact BGM202 render for the activity; the selector exit owns restoration rather than replaying BGM009",
+    "exit": "release activity, archive, face, audio, camera, music, actor, and control ownership exactly once"
+  },
+  "sources": [
+    ".disc-work/dialogue/native-event-ir.json",
+    "tools/evidence/native-activity-owner-candidates.json",
+    "tools/evidence/shenmue1-scripted-scene-inventory.json",
+    "tools/evidence/native-audio-bank-inventory.json"
+  ],
+  "availability": "package-candidate",
+  "productionGate": "The exact activity, motion bank, A0125 stream, A1_FUKAN bank, BGM202, both actors, facial assets, world composition, and cleanup must be verified before selector registration."
+}

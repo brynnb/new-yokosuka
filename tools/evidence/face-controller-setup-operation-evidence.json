@@ -1,0 +1,49 @@
+{
+  "schema": "new-yokosuka-face-controller-setup-operation-evidence-v1",
+  "status": "exact-native-contract-and-complete-authored-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 148,
+    "operationHex": "0x0094",
+    "argumentCount": 4,
+    "handlerAddress": "0x0c165080",
+    "associatedRecordChain": [
+      "MOMT",
+      "FACE"
+    ],
+    "controllerOffset": "FACE +0x44",
+    "randomSourceAddress": "0x0c1ce1f0",
+    "provenBehavior": "Resolves argument zero, requires its MOMT and FACE records, then resets the FACE controller at +0x44. Argument one writes byte +0x00, byte +0x01 becomes one, argument three writes byte +0x03, word +0x04 clears, and signed argument two is clamped to at least one at word +0x06. Mode zero overrides word +0x06 with three. The native RNG low two bits seed word +0x08 to 60, 70, 80, or 90. Missing objects or associated records are native no-ops."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 511,
+    "areaCount": 43,
+    "dialogueRegionCallCount": 19,
+    "argumentKindCounts": {
+      "0": {
+        "constant": 355,
+        "frame-field": 156
+      },
+      "1": {
+        "constant": 511
+      },
+      "2": {
+        "constant": 509,
+        "frame-field": 2
+      },
+      "3": {
+        "constant": 511
+      }
+    }
+  },
+  "evidenceBoundary": [
+    "The FACE +0x44 field effects and random timer are executable-proven.",
+    "The high-level expression or emotion represented by mode values remains unnamed.",
+    "Browser presentation consumes this state generically; no scene-specific timing is inferred."
+  ]
+}

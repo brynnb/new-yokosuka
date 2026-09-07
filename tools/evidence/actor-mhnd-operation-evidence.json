@@ -1,0 +1,163 @@
+{
+  "schema": "new-yokosuka-actor-mhnd-operation-evidence-v1",
+  "status": "exact-native-routes-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 129,
+    "operationHex": "0x0081",
+    "handlerAddress": "0x0c164ef0",
+    "recordTag": {
+      "ascii": "MHND",
+      "littleEndian": "0x444e484d"
+    },
+    "nativeDependencies": {
+      "actorResolver": "0x0c153956",
+      "resultWriter": "0x0c0bb342",
+      "resetRoute": "0x0c0d9ad0",
+      "minusTwoRoute": "0x0c0d9b70",
+      "minusThreeRoute": "0x0c0d9bb6",
+      "generalRoute": "0x0c0d96cc",
+      "targetTable": "0x0c287ed0",
+      "recordActivator": "0x0c0aadac",
+      "recordConstructor": "0x0c0d961e",
+      "recordAllocator": "0x0c0aac90",
+      "recordTag": "0x444e484d",
+      "recordResolver": "0x0c0aad5a",
+      "resetTimingTable": "0x0c288380"
+    },
+    "dispatch": "Resolves argument zero. Argument one selects reset (-1), two unauthored routes (-2 and -3), or the general numeric channel controller. Missing actors are native no-ops.",
+    "resetBehavior": "The authored -1 route requires actor +0x40, resolves or allocates and initializes MHND, then writes state 14 and timing pointer 0x0c288380 into both scheduler records at MHND +0x110 and +0x134.",
+    "timedBehavior": "General channels 0, 1, and 2 with signed duration greater than one configure the first, second, or both 0x88-byte MHND subcontrollers. Each stores its source node, numeric channel, numeric target index, duration, a 40-byte runtime source snapshot, the exact 40-byte static target row, and twenty signed-truncating delta/duration dwords.",
+    "explicitBoundary": "The two authored duration-one calls enter direct action helpers 0x0c0d8f30/0x0c0d9044 and remain runtime stops. The native -2 and -3 routes have no authored calls."
+  },
+  "targetTable": {
+    "address": "0x0c287e80",
+    "rowIndices": [
+      -1,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "rowByteLength": 80,
+    "sha256": "07d9c66e445dbf2d1f4c7e7a68e335949000a0b5ca65da0432654843f6be46b4"
+  },
+  "allDiscInventory": {
+    "callCount": 796,
+    "dialogueRegionCallCount": 114,
+    "areaCount": 64,
+    "argumentKindCounts": {
+      "0": {
+        "constant": 514,
+        "frame-field": 264,
+        "runtime": 14,
+        "scene-field": 4
+      },
+      "1": {
+        "constant": 796
+      },
+      "2": {
+        "constant": 752,
+        "frame-field": 12,
+        "runtime": 32
+      },
+      "3": {
+        "constant": 796
+      }
+    },
+    "constantRouteSelectorCounts": {
+      "0": 246,
+      "1": 200,
+      "2": 152,
+      "4294967295": 198
+    },
+    "constantTargetIndexCounts": {
+      "0": 347,
+      "1": 24,
+      "2": 21,
+      "3": 25,
+      "4": 9,
+      "5": 9,
+      "6": 16,
+      "8": 227,
+      "10": 14,
+      "11": 1,
+      "13": 23,
+      "14": 33,
+      "4294967295": 3
+    },
+    "constantDurationCounts": {
+      "0": 200,
+      "1": 2,
+      "16": 588,
+      "20": 6
+    },
+    "routeCounts": {
+      "immediate-duration-one": 2,
+      "reset-minus-one": 198,
+      "timed-controller": 596
+    },
+    "dialogueRouteCounts": {
+      "reset-minus-one": 24,
+      "timed-controller": 90
+    }
+  },
+  "verifiedRanges": {
+    "handler": {
+      "address": "0x0c164ef0",
+      "length": 154,
+      "sha256": "f9b6bc4321182116064ae1a09a60b0b4c2a1c6fda9de944d742ddb1d1c552b41"
+    },
+    "generalController": {
+      "address": "0x0c0d96cc",
+      "length": 468,
+      "sha256": "e2886486eb237dd9e4ddda2b031875d85785aba5852dffc72aafe23fcaead907"
+    },
+    "timedSetup": {
+      "address": "0x0c0d9214",
+      "length": 346,
+      "sha256": "19be9d2c57c4cb4070b22d848bc474a399d33d1de0301183abf606f5f63a4524"
+    },
+    "subcontrollerBuilder": {
+      "address": "0x0c0d9182",
+      "length": 146,
+      "sha256": "9dc862119a1a592192072753a07d01dd0426d4a8df5aa593d672db3c0fff2ad0"
+    },
+    "recordInitializer": {
+      "address": "0x0c0d915c",
+      "length": 38,
+      "sha256": "079e0d4d92ad8c29b7ac564862022d180228c5599155e48b6f28ba472ed481e6"
+    },
+    "resetWrapper": {
+      "address": "0x0c0d9ad0",
+      "length": 6,
+      "sha256": "5d9796ad4b79c0566c5b8e62e2a03021f8d1b17924056edea8d23cc48b7cdd19"
+    },
+    "resetShared": {
+      "address": "0x0c0d9a1a",
+      "length": 188,
+      "sha256": "dab9f522314a23df0437268416d2548a2696833906febe78a7dcefec51232b0b"
+    },
+    "signedDivision": {
+      "address": "0x0c1dc294",
+      "length": 180,
+      "sha256": "68b75bf7d57e0b5bffe4cc8066380d19b6208545841b29529bc9888565db8a21"
+    }
+  }
+}

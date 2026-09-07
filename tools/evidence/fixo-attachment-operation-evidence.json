@@ -1,0 +1,198 @@
+{
+  "schema": "new-yokosuka-fixo-attachment-operation-evidence-v1",
+  "status": "exact-native-handler-and-complete-call-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 230,
+    "operationHex": "0x00e6",
+    "argumentCount": 5,
+    "handlerAddress": "0x0c1577fe",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c1577fe",
+        "length": 50,
+        "sha256": "ef4d5a4fc7a93f4c633ead0d8045ede15a2658e9ba5985bea919331cc830a11d"
+      },
+      "actorResolver": {
+        "address": "0x0c153956",
+        "length": 58,
+        "sha256": "b99d1c60ec19d8c20dec13ede36b9f81a3b04510da97159b53e03db38deba35f"
+      },
+      "attachmentHelper": {
+        "address": "0x0c0beb4a",
+        "length": 144,
+        "sha256": "c8c5d26f349dabe5db2c83f9b51af3423783b3e0d8862a32c8884b5eb4d4188a"
+      },
+      "associatedResolver": {
+        "address": "0x0c0aad5a",
+        "length": 50,
+        "sha256": "4c5affee0a1739c5cc4b01e389b4f6af7d2f6147cd09ad667b8e103fb3466c27"
+      },
+      "momtExists": {
+        "address": "0x0c114314",
+        "length": 28,
+        "sha256": "8c6e31027a4ae437740f04597870e04214c5e395e171244fd410cdf2a9235bf4"
+      },
+      "controlLookupWrapper": {
+        "address": "0x0c1140e6",
+        "length": 48,
+        "sha256": "cadf3b2d25bff7e6a6c151392c11876afef2358aedf369a64787d8267eddbf5a"
+      }
+    },
+    "nativeContract": {
+      "handlerActorResolver": "0x0c153956",
+      "handlerAttachmentHelper": "0x0c0beb4a",
+      "fixoTag": "0x4f584946",
+      "attachmentAssociatedResolver": "0x0c0aad5a",
+      "attachmentMomtExists": "0x0c114314",
+      "attachmentControlLookup": "0x0c1140e6",
+      "momtTag": "0x4d544f4d",
+      "controlLookupAssociatedResolver": "0x0c0aad5a",
+      "controlLookupSearch": "0x0c10c442"
+    },
+    "fieldWrites": [
+      {
+        "offset": "0x00",
+        "width": 12,
+        "sourceArgument": 4
+      },
+      {
+        "offset": "0x0c",
+        "width": 12,
+        "sourceArgument": 3
+      },
+      {
+        "offset": "0x18",
+        "width": 12,
+        "sourceArgument": 4
+      },
+      {
+        "offset": "0x24",
+        "width": 12,
+        "sourceArgument": 3
+      },
+      {
+        "offset": "0x30",
+        "width": 2,
+        "value": 1,
+        "when": "target MOMT and requested control both resolve"
+      },
+      {
+        "offset": "0x30",
+        "width": 2,
+        "value": 3,
+        "when": "target MOMT or requested control does not resolve"
+      },
+      {
+        "offset": "0x4c",
+        "width": 4,
+        "sourceArgument": 2,
+        "when": "target MOMT and requested control both resolve"
+      },
+      {
+        "offset": "0x50",
+        "width": 4,
+        "sourceArgument": 1
+      }
+    ],
+    "provenBehavior": "Resolves arguments zero and one as scene actors, resolves the source actor's FIXO record, installs two supplied three-float vectors into four exact duplicated ranges, binds the target actor, and selects state word one or three from exact target MOMT/control lookup results."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 569,
+    "provenCallCount": 563,
+    "incompleteCallCount": 6,
+    "dialogueRegionCallCount": 70,
+    "areaCount": 51,
+    "argumentKindCounts": [
+      {
+        "constant": 463,
+        "frame-field": 46,
+        "runtime": 12,
+        "scene-field": 42
+      },
+      {
+        "constant": 492,
+        "frame-field": 52,
+        "runtime": 7,
+        "scene-field": 12
+      },
+      {
+        "constant": 547,
+        "frame-field": 16
+      },
+      {
+        "frame-field": 13,
+        "runtime": 408,
+        "static-pointer": 142
+      },
+      {
+        "frame-field": 13,
+        "runtime": 407,
+        "static-pointer": 143
+      }
+    ],
+    "constantControlIdCounts": {
+      "0": 45,
+      "5": 4,
+      "11": 2,
+      "12": 120,
+      "18": 375,
+      "20": 1
+    },
+    "incompleteCalls": [
+      {
+        "disc": 2,
+        "area": "DSLT",
+        "dialogueRegion": false,
+        "callFileOffset": "0x28d50",
+        "arguments": []
+      },
+      {
+        "disc": 2,
+        "area": "DSLT",
+        "dialogueRegion": false,
+        "callFileOffset": "0x3154c",
+        "arguments": []
+      },
+      {
+        "disc": 3,
+        "area": "DSLT",
+        "dialogueRegion": false,
+        "callFileOffset": "0x28d50",
+        "arguments": []
+      },
+      {
+        "disc": 3,
+        "area": "DSLT",
+        "dialogueRegion": false,
+        "callFileOffset": "0x3154c",
+        "arguments": []
+      },
+      {
+        "disc": 1,
+        "area": "DSLT",
+        "dialogueRegion": false,
+        "callFileOffset": "0x28d50",
+        "arguments": []
+      },
+      {
+        "disc": 1,
+        "area": "DSLT",
+        "dialogueRegion": false,
+        "callFileOffset": "0x3154c",
+        "arguments": []
+      }
+    ]
+  },
+  "evidenceBoundary": [
+    "FIXO and MOMT remain exact native record tags.",
+    "The numeric control IDs and state words are not assigned pose or attachment names.",
+    "The six zero-argument DSLT calls remain unresolved rather than receiving fabricated operands.",
+    "Missing source FIXO state, vector data, or target controller evidence remains an explicit runtime stop."
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "schema": "new-yokosuka-scroll-sprite-control-operation-evidence-v2",
+  "status": "exact-native-all-modes-and-complete-authored-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 180,
+    "operationHex": "0x00b4",
+    "handlerAddress": "0x0c16b016",
+    "resourceTag": "SCRL",
+    "provenModes": {
+      "0": "Resolves two static strings, loads their SCRL resource, and installs it in fixed native slot zero.",
+      "1": "Resolves two static strings, loads their SCRL resource, and replaces the explicit slot-zero-through-two argument.",
+      "2": "For slot indices below three, releases an active SCRL slot; inactive slots are native no-ops.",
+      "3": "For slot indices below three, requests its timed SCRL transition when the slot is active and the global transition lock is clear.",
+      "4": "Sign-extends argument one from 16 bits and writes global dword 0x0c1f7158.",
+      "5": "Sign-extends argument one from 16 bits and writes global dword 0x0c1f715c."
+    },
+    "renderer": {
+      "address": "0x0c09a358",
+      "behavior": "Reads the live camera orientation, adds SCRL +0x48/+0x4c (globals 0x0c1f7158/0x0c1f715c), and rebuilds the projected backdrop vertices every rendered frame."
+    }
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 103,
+    "areaCount": 18,
+    "modeCounts": {
+      "0": 77,
+      "1": 2,
+      "2": 5,
+      "3": 3,
+      "4": 7,
+      "5": 9
+    },
+    "provenModeCallCount": 103
+  },
+  "evidenceBoundary": [
+    "All six authored modes are executable-proven across the complete three-disc inventory.",
+    "Mode zero's slot is fixed by the helper's literal zero; mode one rejects explicit slots at or above three.",
+    "The native renderer consumes both signed fields with the live camera orientation before rebuilding backdrop geometry; they are camera-registration angles, not inert scene state.",
+    "The exact native curved-vertex tessellation is represented by equivalent perspective-aware screen-backdrop registration; no terrain-attached OP02 special case is used."
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "schema": "new-yokosuka-native-cutscene-lifecycle-v1",
+  "resource": "DNOZ",
+  "disc": 1,
+  "area": "JD00",
+  "mapinfo": {
+    "path": "extracted_files/data/SCENE/01/JD00/MAPINFO.BIN",
+    "sha256": "8582ed57e13593d7622d24216ef8f93e5393b13fffd2132f70500f9e6ce2a43b"
+  },
+  "owner": {
+    "activityOwnerFunction": "0x5c958",
+    "directCallers": [
+      { "function": "0x5b6f8", "call": "0x5bcfe", "argument": 1 },
+      { "function": "0x76b90", "call": "0x771ba", "argument": 0 }
+    ],
+    "containerOpen": "0x5cda6",
+    "activityInstalls": ["0x5cdca", "0x5cdee"],
+    "containerClose": "0x5ce06",
+    "containerOperation": "0x013c",
+    "activityOperation": "0x013e",
+    "slots": [0, 1]
+  },
+  "resourceCluster": {
+    "range": ["0x80e48", "0x80e9d"],
+    "archive": "DNOZ",
+    "voiceStream": "01FULB.AFS",
+    "soundBank": "A1_NONAM.SND",
+    "music": "BGM068.SND",
+    "motionBank": "M_01FUL.MOTN"
+  },
+  "dependencies": {
+    "archive": "extracted_files/data/SCENE/01/JD00/DNOZ.PKS",
+    "actors": ["AKIR", "HRSK"],
+    "sceneObjects": []
+  },
+  "runtimePolicy": {
+    "world": "use the existing JD00 Sakuragaoka composition and coordinate root",
+    "entry": "the cutscene director acquires player and Nozomi presentation before one selected native activity",
+    "music": "reuse the exact hash-pinned BGM068 Sakuragaoka render for the activity lifetime",
+    "exit": "release activity, face, audio, camera, music, actor, and control ownership exactly once"
+  },
+  "sources": [
+    ".disc-work/dialogue/native-event-ir.json",
+    "tools/evidence/native-activity-owner-candidates.json",
+    "tools/evidence/shenmue1-scripted-scene-inventory.json",
+    "tools/evidence/native-audio-bank-inventory.json"
+  ],
+  "availability": "package-candidate",
+  "productionGate": "Both exact activities, the complete motion bank, exact voice stream, exact SFX bank, actors, facial assets, world composition, and cleanup must be verified before selector registration."
+}

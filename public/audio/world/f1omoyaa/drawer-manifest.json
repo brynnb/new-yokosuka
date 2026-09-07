@@ -1,0 +1,71 @@
+{
+  "schema": "new-yokosuka-jomo-drawer-audio-pack-v1",
+  "generatedBy": "tools/build_jomo_drawer_audio_pack.mjs",
+  "source": {
+    "bank": "extracted_files/data/SCENE/01/SOUND/F1OMOYAA.SND",
+    "bankSha256": "41cdccd04ef8f4835a946f3f1ada404d4f1607adbae6c4bf8da5b825d23c9abb",
+    "evidence": "tools/evidence/jomo-object-phase-callbacks.json",
+    "evidenceSha256": "b0c94d2b2b770e662d6acbe2076b50ccd99441750e1b8f66ff2135d0bd360cc1",
+    "decoder": {
+      "tool": "DTPKDump",
+      "commit": "a323c0e7e80af05e17e5bb291a9b20e55a3f9455"
+    }
+  },
+  "encoding": {
+    "container": "WebM",
+    "codec": "Opus",
+    "bitrate": "48k",
+    "application": "lowdelay"
+  },
+  "tracks": [
+    {
+      "commandHex": "a9050b00",
+      "phase": "openingStart",
+      "group": "a905",
+      "track": 11,
+      "compositionHex": "c0df086480ff",
+      "playbackId": 8,
+      "sampleId": 31,
+      "rawVolume": 100,
+      "dtpkRate": "0xe800",
+      "sampleRate": 11025,
+      "decodedSource": "F1OMOYAA_00_11_SPD_08_Sample_1F_Rate_E800.wav",
+      "asset": "a9050b00.webm",
+      "byteLength": 8079,
+      "sha256": "1bd166796d01ed74add30e181006a6f5f3280cafdac24f4a8b1d67a42b048159"
+    },
+    {
+      "commandHex": "a9050a00",
+      "phase": "closingStart",
+      "group": "a905",
+      "track": 10,
+      "compositionHex": "c0df077f80ff",
+      "playbackId": 7,
+      "sampleId": 30,
+      "rawVolume": 127,
+      "dtpkRate": "0xe800",
+      "sampleRate": 11025,
+      "decodedSource": "F1OMOYAA_00_10_SPD_07_Sample_1E_Rate_E800.wav",
+      "asset": "a9050a00.webm",
+      "byteLength": 6234,
+      "sha256": "de569669f049c75c3e3ce36513f0d4f99177df85903f12a22d72285d8fc9257c"
+    },
+    {
+      "commandHex": "a9056400",
+      "phase": "closingImpact",
+      "group": "a905",
+      "track": 100,
+      "compositionHex": "c0df387f80ff",
+      "playbackId": 56,
+      "sampleId": 32,
+      "rawVolume": 127,
+      "dtpkRate": "0xe800",
+      "sampleRate": 11025,
+      "decodedSource": "F1OMOYAA_00_97_SPD_56_Sample_20_Rate_E800.wav",
+      "asset": "a9056400.webm",
+      "byteLength": 2016,
+      "sha256": "30369a8c06560d52c28c4064fe09458730e608cc9cc570823383b2a2bb3f0b64"
+    }
+  ],
+  "runtimeStatus": "Wired to JOMO ATS1-ATS6 using the synchronized retail opening, closing-start, and closing-impact dispatch phases."
+}

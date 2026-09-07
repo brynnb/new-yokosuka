@@ -1,0 +1,448 @@
+.arcade-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.88);
+}
+
+.arcade-overlay[hidden] {
+  display: none;
+}
+
+.arcade-overlay.physical-mode {
+  display: block;
+  padding: 0;
+  background: transparent;
+  pointer-events: none;
+}
+
+.arcade-overlay.physical-mode .arcade-shell {
+  display: none;
+}
+
+.arcade-overlay.arcade-preloading {
+  position: fixed;
+  z-index: -1;
+  inset: 0 auto auto 0;
+  display: block;
+  width: 320px;
+  height: 240px;
+  padding: 0;
+  overflow: hidden;
+  background: #000;
+  pointer-events: none;
+}
+
+.arcade-overlay.arcade-preloading .arcade-shell {
+  width: 320px;
+  height: 240px;
+  border: 0;
+  box-shadow: none;
+}
+
+.arcade-overlay.cabinet-mode {
+  display: block;
+  padding: 0;
+  background: transparent;
+  pointer-events: none;
+}
+
+.arcade-shell {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  width: min(960px, 100%);
+  height: min(720px, calc(100dvh - 48px));
+  overflow: hidden;
+  color: #f7f0dc;
+  background: #121216;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.72);
+}
+
+.arcade-overlay.cabinet-mode .arcade-shell {
+  position: fixed;
+  display: block;
+  width: 1px;
+  height: 1px;
+  overflow: visible;
+  background: #000;
+  border: 0;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+.arcade-overlay.cabinet-mode .arcade-header {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: block;
+  padding: 0;
+  background: transparent;
+  pointer-events: none;
+}
+
+.arcade-overlay.cabinet-mode .arcade-header > :not(.arcade-close),
+.arcade-overlay.cabinet-mode .arcade-footer {
+  display: none;
+}
+
+.arcade-overlay.cabinet-mode .arcade-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 50%;
+  color: #fff;
+  background: rgb(9 10 13 / 0.9);
+  transform: translate(55%, -55%);
+  pointer-events: auto;
+}
+
+.arcade-overlay.cabinet-mode .arcade-emulator-frame,
+.arcade-overlay.cabinet-mode .arcade-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+}
+
+.arcade-overlay.arcade-preloading.cabinet-mode {
+  z-index: 3;
+  inset: 0;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  background: transparent;
+}
+
+.arcade-overlay.arcade-preloading.cabinet-mode .arcade-close {
+  display: none;
+}
+
+.arcade-overlay.arcade-preloading.cabinet-mode
+  .arcade-emulator-frame,
+.arcade-overlay.arcade-preloading.cabinet-mode
+  .arcade-canvas {
+  pointer-events: none;
+}
+
+.arcade-header,
+.arcade-footer {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  background: #1b1b21;
+}
+
+.arcade-header h2 {
+  flex: 1;
+  margin: 0;
+  font-size: clamp(20px, 3vw, 30px);
+}
+
+.arcade-hud-value {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.arcade-close {
+  width: 38px;
+  height: 38px;
+  color: inherit;
+  font: inherit;
+  font-size: 24px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  cursor: pointer;
+}
+
+.arcade-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  touch-action: none;
+  background: #000;
+}
+
+.arcade-emulator-frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  background: #000;
+  border: 0;
+}
+
+.arcade-canvas[hidden],
+.arcade-emulator-frame[hidden] {
+  display: none;
+}
+
+.arcade-footer {
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+
+.arcade-instructions {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.race-hud {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 5;
+  padding: 8px;
+  background: rgb(8 10 14 / 0.82);
+  border: 1px solid rgb(255 255 255 / 0.16);
+  border-radius: 7px;
+  backdrop-filter: blur(6px);
+}
+
+.race-hud[hidden] {
+  display: none;
+}
+
+.race-start {
+  min-width: 150px;
+  padding: 10px 20px;
+  color: #fff;
+  font: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  background: rgb(181 139 66 / 0.92);
+  border: 1px solid #f1d79c;
+  border-radius: 5px;
+}
+
+.race-start:hover:not(:disabled) {
+  background: rgb(205 159 77 / 0.96);
+}
+
+.race-start:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.race-timing {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 5px 18px;
+  min-width: 260px;
+  padding: 3px 6px;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+.race-timing[hidden] {
+  display: none;
+}
+
+.race-state,
+.race-timer {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.race-timer {
+  justify-self: end;
+}
+
+.race-best {
+  grid-column: 1 / -1;
+  color: rgb(255 255 255 / 0.66);
+  text-align: center;
+}
+
+.race-checkpoints {
+  display: flex;
+  grid-column: 1 / -1;
+  justify-content: center;
+  gap: 4px;
+}
+
+.race-checkpoint {
+  width: 11px;
+  height: 11px;
+  background: rgb(255 255 255 / 0.12);
+  border: 1px solid rgb(255 255 255 / 0.28);
+  border-radius: 2px;
+}
+
+.race-checkpoint.complete {
+  background: #f2c94c;
+  border-color: #ffe79a;
+}
+
+.race-restart {
+  grid-column: 1 / -1;
+  justify-self: center;
+  margin-top: 5px;
+}
+
+.race-quit {
+  grid-column: 1 / -1;
+  justify-self: center;
+  margin-top: 5px;
+  background: rgb(80 83 90 / 0.92);
+  border-color: rgb(255 255 255 / 0.42);
+}
+
+.race-quit:hover:not(:disabled) {
+  background: rgb(105 109 118 / 0.96);
+}
+
+.race-countdown {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: clamp(120px, 28vw, 300px);
+  font-weight: 900;
+  line-height: 1;
+  pointer-events: none;
+  text-shadow:
+    0 5px 0 rgb(0 0 0 / 0.45),
+    0 0 28px rgb(0 0 0 / 0.8);
+}
+
+.race-countdown[hidden] {
+  display: none;
+}
+
+@media (max-width: 850px) {
+  .arcade-overlay {
+    padding: 0;
+  }
+
+  .arcade-shell {
+    width: 100%;
+    height: 100dvh;
+    border: 0;
+  }
+
+  .arcade-header {
+    gap: 8px;
+    padding: 8px 10px;
+  }
+
+  .arcade-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px 10px;
+  }
+
+  body.arcade-active .bottom-right-tools {
+    display: none;
+  }
+
+  body.arcade-active .mobile-joystick-zone,
+  body.arcade-active .mobile-stuck-button,
+  body.arcade-active .mobile-forklift-controls,
+  body.arcade-active .mobile-forklift-exit {
+    display: none;
+  }
+
+  body.arcade-active .mobile-arcade-controls {
+    position: fixed;
+    inset: 0;
+    z-index: 140;
+    display: block;
+    pointer-events: none;
+    touch-action: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+  }
+
+  .mobile-arcade-stick {
+    position: absolute;
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+    left: calc(18px + env(safe-area-inset-left, 0px));
+    width: 132px;
+    height: 132px;
+    pointer-events: auto;
+    touch-action: none;
+  }
+
+  .mobile-arcade-button {
+    display: grid;
+    min-width: 0;
+    min-height: 0;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: #fff;
+    background: rgb(12 14 18 / 0.72);
+    border: 1px solid rgb(255 255 255 / 0.3);
+    box-shadow: 0 3px 12px rgb(0 0 0 / 0.4);
+    backdrop-filter: blur(7px);
+    font: inherit;
+    font-weight: 800;
+    touch-action: none;
+  }
+
+  .mobile-arcade-actions {
+    position: absolute;
+    right: calc(18px + env(safe-area-inset-right, 0px));
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+    display: grid;
+    grid-template-columns: repeat(2, 62px);
+    gap: 10px;
+    align-items: center;
+    pointer-events: auto;
+  }
+
+  .mobile-arcade-action {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    font-size: 15px;
+  }
+
+  .mobile-arcade-meta {
+    position: fixed;
+    top: calc(66px + env(safe-area-inset-top, 0px));
+    width: 82px;
+    height: 34px;
+    border-radius: 17px;
+    font-size: 9px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .mobile-arcade-meta[data-arcade-control="coin"] {
+    left: calc(50% - 128px);
+  }
+
+  .mobile-arcade-meta[data-arcade-control="start"] {
+    left: calc(50% - 41px);
+  }
+
+  .mobile-arcade-meta[data-arcade-control="exit"] {
+    left: calc(50% + 46px);
+  }
+
+  .mobile-arcade-button.active {
+    background: rgb(181 139 66 / 0.92);
+    border-color: #f1d79c;
+  }
+
+  .race-hud {
+    top: 58px;
+    left: 10px;
+  }
+}

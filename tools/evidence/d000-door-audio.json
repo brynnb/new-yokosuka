@@ -1,0 +1,2152 @@
+{
+  "schema": "new-yokosuka-d000-door-audio-v1",
+  "generatedBy": "tools/audio/extract_d000_door_audio.py",
+  "source": {
+    "mapinfo": "SCENE/01/D000/MAPINFO.BIN",
+    "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+    "doorLogic": "tools/evidence/d000-door-logic.json",
+    "doorLogicSha256": "27c7593000316ece3866e0d63c646368b126117f5c3d6c5eaccbfb76ef2affed",
+    "registrationRegion": [
+      "0x67900",
+      "0x68aee"
+    ],
+    "doorStateMachineRegion": [
+      "0x25098",
+      "0x273e6"
+    ],
+    "doorStateSoundCalls": [
+      {
+        "callFileOffset": "0x269ce",
+        "logicalRecordWord": 10
+      },
+      {
+        "callFileOffset": "0x26d0e",
+        "logicalRecordWord": 9
+      },
+      {
+        "callFileOffset": "0x26e4a",
+        "logicalRecordWord": 10
+      },
+      {
+        "callFileOffset": "0x27296",
+        "logicalRecordWord": 11
+      }
+    ]
+  },
+  "method": [
+    "Generated registration operation 5 receives an eight-word descriptor whose first word is the logical-door selector.",
+    "Descriptor words 4..6 are copied into logical-record words 9..11 and later passed unchanged to engine operation 0x006c.",
+    "The downward-growing SH-4 stack is reversed into native descriptor order before interpreting fields.",
+    "Captured runtime record words are used only as an independent agreement check, never as a fallback mapping."
+  ],
+  "summary": {
+    "logicalDoorCount": 65,
+    "registrationCount": 41,
+    "selectorCount": 41,
+    "runtimeCaptureAgreementCount": 41,
+    "registeredDoorCount": 41,
+    "notRegisteredInMainStateMachineSelectors": [
+      0,
+      1,
+      2,
+      25,
+      26,
+      27,
+      29,
+      31,
+      32,
+      33,
+      36,
+      37,
+      38,
+      40,
+      41,
+      42,
+      43,
+      48,
+      51,
+      52,
+      57,
+      61,
+      62,
+      64
+    ],
+    "commandSets": [
+      [
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab"
+      ],
+      [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      [
+        "0x002302ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      [
+        "0x002402ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    ]
+  },
+  "registrations": [
+    {
+      "selector": 30,
+      "callFileOffset": "0x68256",
+      "descriptorPushOffsets": [
+        "0x6824e",
+        "0x6824c",
+        "0x6824a",
+        "0x68248",
+        "0x68244",
+        "0x68240",
+        "0x6823c",
+        "0x68238"
+      ],
+      "descriptorWords": [
+        "0x0000001e",
+        "0x00000003",
+        "0x00000002",
+        "0xffffffff",
+        "0x002302ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002302ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 46,
+      "callFileOffset": "0x68322",
+      "descriptorPushOffsets": [
+        "0x6831a",
+        "0x68318",
+        "0x68316",
+        "0x68314",
+        "0x68310",
+        "0x6830c",
+        "0x68308",
+        "0x68304"
+      ],
+      "descriptorWords": [
+        "0x0000002e",
+        "0x00000003",
+        "0x00000004",
+        "0xffffffff",
+        "0x002302ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002302ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 28,
+      "callFileOffset": "0x6837a",
+      "descriptorPushOffsets": [
+        "0x68372",
+        "0x68370",
+        "0x6836e",
+        "0x6836c",
+        "0x68368",
+        "0x68364",
+        "0x68360",
+        "0x6835c"
+      ],
+      "descriptorWords": [
+        "0x0000001c",
+        "0x00000005",
+        "0x00000004",
+        "0xffffffff",
+        "0x002402ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002402ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 59,
+      "callFileOffset": "0x683a6",
+      "descriptorPushOffsets": [
+        "0x6839e",
+        "0x6839c",
+        "0x6839a",
+        "0x68398",
+        "0x68394",
+        "0x68390",
+        "0x6838c",
+        "0x68388"
+      ],
+      "descriptorWords": [
+        "0x0000003b",
+        "0x00000003",
+        "0x00000004",
+        "0xffffffff",
+        "0x002302ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002302ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 53,
+      "callFileOffset": "0x683fe",
+      "descriptorPushOffsets": [
+        "0x683f6",
+        "0x683f4",
+        "0x683f2",
+        "0x683f0",
+        "0x683ec",
+        "0x683e8",
+        "0x683e4",
+        "0x683e0"
+      ],
+      "descriptorWords": [
+        "0x00000035",
+        "0x00000004",
+        "0x00000004",
+        "0xffffffff",
+        "0x002402ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002402ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 49,
+      "callFileOffset": "0x6842a",
+      "descriptorPushOffsets": [
+        "0x68422",
+        "0x68420",
+        "0x6841e",
+        "0x6841c",
+        "0x68418",
+        "0x68414",
+        "0x68410",
+        "0x6840c"
+      ],
+      "descriptorWords": [
+        "0x00000031",
+        "0x00000003",
+        "0x00000002",
+        "0xffffffff",
+        "0x002302ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002302ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 50,
+      "callFileOffset": "0x68456",
+      "descriptorPushOffsets": [
+        "0x6844e",
+        "0x6844c",
+        "0x6844a",
+        "0x68448",
+        "0x68444",
+        "0x68440",
+        "0x6843c",
+        "0x68438"
+      ],
+      "descriptorWords": [
+        "0x00000032",
+        "0x00000005",
+        "0x00000002",
+        "0xffffffff",
+        "0x002402ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002402ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 34,
+      "callFileOffset": "0x68482",
+      "descriptorPushOffsets": [
+        "0x6847a",
+        "0x68478",
+        "0x68476",
+        "0x68474",
+        "0x68470",
+        "0x6846c",
+        "0x68468",
+        "0x68464"
+      ],
+      "descriptorWords": [
+        "0x00000022",
+        "0x00000003",
+        "0x00000002",
+        "0xffffffff",
+        "0x002302ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002302ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 56,
+      "callFileOffset": "0x684ae",
+      "descriptorPushOffsets": [
+        "0x684a6",
+        "0x684a4",
+        "0x684a2",
+        "0x684a0",
+        "0x6849c",
+        "0x68498",
+        "0x68494",
+        "0x68490"
+      ],
+      "descriptorWords": [
+        "0x00000038",
+        "0x00000005",
+        "0x00000004",
+        "0xffffffff",
+        "0x002402ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002402ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 55,
+      "callFileOffset": "0x684da",
+      "descriptorPushOffsets": [
+        "0x684d2",
+        "0x684d0",
+        "0x684ce",
+        "0x684cc",
+        "0x684c8",
+        "0x684c4",
+        "0x684c0",
+        "0x684bc"
+      ],
+      "descriptorWords": [
+        "0x00000037",
+        "0x00000005",
+        "0x00000004",
+        "0xffffffff",
+        "0x002402ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002402ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 58,
+      "callFileOffset": "0x68506",
+      "descriptorPushOffsets": [
+        "0x684fe",
+        "0x684fc",
+        "0x684fa",
+        "0x684f8",
+        "0x684f4",
+        "0x684f0",
+        "0x684ec",
+        "0x684e8"
+      ],
+      "descriptorWords": [
+        "0x0000003a",
+        "0x00000004",
+        "0x00000004",
+        "0xffffffff",
+        "0x002402ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002402ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 60,
+      "callFileOffset": "0x68532",
+      "descriptorPushOffsets": [
+        "0x6852a",
+        "0x68528",
+        "0x68526",
+        "0x68524",
+        "0x68520",
+        "0x6851c",
+        "0x68518",
+        "0x68514"
+      ],
+      "descriptorWords": [
+        "0x0000003c",
+        "0x00000004",
+        "0x00000004",
+        "0xffffffff",
+        "0x002402ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002402ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 35,
+      "callFileOffset": "0x6855e",
+      "descriptorPushOffsets": [
+        "0x68556",
+        "0x68554",
+        "0x68552",
+        "0x68550",
+        "0x6854c",
+        "0x68548",
+        "0x68544",
+        "0x68540"
+      ],
+      "descriptorWords": [
+        "0x00000023",
+        "0x00000005",
+        "0x00000004",
+        "0xffffffff",
+        "0x002402ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002402ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 39,
+      "callFileOffset": "0x6858a",
+      "descriptorPushOffsets": [
+        "0x68582",
+        "0x68580",
+        "0x6857e",
+        "0x6857c",
+        "0x68578",
+        "0x68574",
+        "0x68570",
+        "0x6856c"
+      ],
+      "descriptorWords": [
+        "0x00000027",
+        "0x00000003",
+        "0x00000002",
+        "0xffffffff",
+        "0x002302ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002302ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 54,
+      "callFileOffset": "0x685b6",
+      "descriptorPushOffsets": [
+        "0x685ae",
+        "0x685ac",
+        "0x685aa",
+        "0x685a8",
+        "0x685a4",
+        "0x685a0",
+        "0x6859c",
+        "0x68598"
+      ],
+      "descriptorWords": [
+        "0x00000036",
+        "0x00000003",
+        "0x00000002",
+        "0xffffffff",
+        "0x002302ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002302ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 63,
+      "callFileOffset": "0x685e2",
+      "descriptorPushOffsets": [
+        "0x685da",
+        "0x685d8",
+        "0x685d6",
+        "0x685d4",
+        "0x685d0",
+        "0x685cc",
+        "0x685c8",
+        "0x685c4"
+      ],
+      "descriptorWords": [
+        "0x0000003f",
+        "0x00000003",
+        "0x00000004",
+        "0xffffffff",
+        "0x002302ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002302ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 45,
+      "callFileOffset": "0x68666",
+      "descriptorPushOffsets": [
+        "0x6865e",
+        "0x6865c",
+        "0x6865a",
+        "0x68658",
+        "0x68654",
+        "0x68650",
+        "0x6864c",
+        "0x68648"
+      ],
+      "descriptorWords": [
+        "0x0000002d",
+        "0x00000006",
+        "0x00000001",
+        "0xffffffff",
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 47,
+      "callFileOffset": "0x68692",
+      "descriptorPushOffsets": [
+        "0x6868a",
+        "0x68688",
+        "0x68686",
+        "0x68684",
+        "0x68680",
+        "0x6867c",
+        "0x68678",
+        "0x68674"
+      ],
+      "descriptorWords": [
+        "0x0000002f",
+        "0x00000006",
+        "0x00000001",
+        "0xffffffff",
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 44,
+      "callFileOffset": "0x686be",
+      "descriptorPushOffsets": [
+        "0x686b6",
+        "0x686b4",
+        "0x686b2",
+        "0x686b0",
+        "0x686ac",
+        "0x686a8",
+        "0x686a4",
+        "0x686a0"
+      ],
+      "descriptorWords": [
+        "0x0000002c",
+        "0x00000007",
+        "0x00000001",
+        "0x00000006",
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab",
+        "0x594b554a"
+      ],
+      "soundCommands": [
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab"
+      ]
+    },
+    {
+      "selector": 15,
+      "callFileOffset": "0x686ea",
+      "descriptorPushOffsets": [
+        "0x686e2",
+        "0x686e0",
+        "0x686de",
+        "0x686dc",
+        "0x686d8",
+        "0x686d4",
+        "0x686d0",
+        "0x686cc"
+      ],
+      "descriptorWords": [
+        "0x0000000f",
+        "0x00000007",
+        "0x00000001",
+        "0x00000005",
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab",
+        "0x49525559"
+      ],
+      "soundCommands": [
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab"
+      ]
+    },
+    {
+      "selector": 13,
+      "callFileOffset": "0x68748",
+      "descriptorPushOffsets": [
+        "0x68740",
+        "0x6873e",
+        "0x6873c",
+        "0x6873a",
+        "0x68736",
+        "0x68732",
+        "0x6872e",
+        "0x6872a"
+      ],
+      "descriptorWords": [
+        "0x0000000d",
+        "0x00000006",
+        "0x00000001",
+        "0xffffffff",
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 11,
+      "callFileOffset": "0x68774",
+      "descriptorPushOffsets": [
+        "0x6876c",
+        "0x6876a",
+        "0x68768",
+        "0x68766",
+        "0x68762",
+        "0x6875e",
+        "0x6875a",
+        "0x68756"
+      ],
+      "descriptorWords": [
+        "0x0000000b",
+        "0x00000006",
+        "0x00000001",
+        "0xffffffff",
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 16,
+      "callFileOffset": "0x687a0",
+      "descriptorPushOffsets": [
+        "0x68798",
+        "0x68796",
+        "0x68794",
+        "0x68792",
+        "0x6878e",
+        "0x6878a",
+        "0x68786",
+        "0x68782"
+      ],
+      "descriptorWords": [
+        "0x00000010",
+        "0x00000006",
+        "0x00000001",
+        "0xffffffff",
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 14,
+      "callFileOffset": "0x687cc",
+      "descriptorPushOffsets": [
+        "0x687c4",
+        "0x687c2",
+        "0x687c0",
+        "0x687be",
+        "0x687ba",
+        "0x687b6",
+        "0x687b2",
+        "0x687ae"
+      ],
+      "descriptorWords": [
+        "0x0000000e",
+        "0x00000007",
+        "0x00000001",
+        "0x00000002",
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab",
+        "0x524f4f44"
+      ],
+      "soundCommands": [
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab"
+      ]
+    },
+    {
+      "selector": 12,
+      "callFileOffset": "0x687f8",
+      "descriptorPushOffsets": [
+        "0x687f0",
+        "0x687ee",
+        "0x687ec",
+        "0x687ea",
+        "0x687e6",
+        "0x687e2",
+        "0x687de",
+        "0x687da"
+      ],
+      "descriptorWords": [
+        "0x0000000c",
+        "0x00000007",
+        "0x00000001",
+        "0x00000001",
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab",
+        "0x524f4f44"
+      ],
+      "soundCommands": [
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab"
+      ]
+    },
+    {
+      "selector": 3,
+      "callFileOffset": "0x68824",
+      "descriptorPushOffsets": [
+        "0x6881c",
+        "0x6881a",
+        "0x68818",
+        "0x68816",
+        "0x68812",
+        "0x6880e",
+        "0x6880a",
+        "0x68806"
+      ],
+      "descriptorWords": [
+        "0x00000003",
+        "0x00000006",
+        "0x00000001",
+        "0xffffffff",
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 6,
+      "callFileOffset": "0x68850",
+      "descriptorPushOffsets": [
+        "0x68848",
+        "0x68846",
+        "0x68844",
+        "0x68842",
+        "0x6883e",
+        "0x6883a",
+        "0x68836",
+        "0x68832"
+      ],
+      "descriptorWords": [
+        "0x00000006",
+        "0x00000007",
+        "0x00000001",
+        "0x00000001",
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab",
+        "0x4f544148"
+      ],
+      "soundCommands": [
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab"
+      ]
+    },
+    {
+      "selector": 4,
+      "callFileOffset": "0x6887c",
+      "descriptorPushOffsets": [
+        "0x68874",
+        "0x68872",
+        "0x68870",
+        "0x6886e",
+        "0x6886a",
+        "0x68866",
+        "0x68862",
+        "0x6885e"
+      ],
+      "descriptorWords": [
+        "0x00000004",
+        "0x00000006",
+        "0x00000001",
+        "0xffffffff",
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 5,
+      "callFileOffset": "0x688a8",
+      "descriptorPushOffsets": [
+        "0x688a0",
+        "0x6889e",
+        "0x6889c",
+        "0x6889a",
+        "0x68896",
+        "0x68892",
+        "0x6888e",
+        "0x6888a"
+      ],
+      "descriptorWords": [
+        "0x00000005",
+        "0x00000006",
+        "0x00000001",
+        "0xffffffff",
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 10,
+      "callFileOffset": "0x688d4",
+      "descriptorPushOffsets": [
+        "0x688cc",
+        "0x688ca",
+        "0x688c8",
+        "0x688c6",
+        "0x688c2",
+        "0x688be",
+        "0x688ba",
+        "0x688b6"
+      ],
+      "descriptorWords": [
+        "0x0000000a",
+        "0x00000006",
+        "0x00000001",
+        "0xffffffff",
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 7,
+      "callFileOffset": "0x68900",
+      "descriptorPushOffsets": [
+        "0x688f8",
+        "0x688f6",
+        "0x688f4",
+        "0x688f2",
+        "0x688ee",
+        "0x688ea",
+        "0x688e6",
+        "0x688e2"
+      ],
+      "descriptorWords": [
+        "0x00000007",
+        "0x00000006",
+        "0x00000001",
+        "0xffffffff",
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 9,
+      "callFileOffset": "0x6892c",
+      "descriptorPushOffsets": [
+        "0x68924",
+        "0x68922",
+        "0x68920",
+        "0x6891e",
+        "0x6891a",
+        "0x68916",
+        "0x68912",
+        "0x6890e"
+      ],
+      "descriptorWords": [
+        "0x00000009",
+        "0x00000006",
+        "0x00000001",
+        "0xffffffff",
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 8,
+      "callFileOffset": "0x68958",
+      "descriptorPushOffsets": [
+        "0x68950",
+        "0x6894e",
+        "0x6894c",
+        "0x6894a",
+        "0x68946",
+        "0x68942",
+        "0x6893e",
+        "0x6893a"
+      ],
+      "descriptorWords": [
+        "0x00000008",
+        "0x00000006",
+        "0x00000001",
+        "0xffffffff",
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 21,
+      "callFileOffset": "0x68984",
+      "descriptorPushOffsets": [
+        "0x6897c",
+        "0x6897a",
+        "0x68978",
+        "0x68976",
+        "0x68972",
+        "0x6896e",
+        "0x6896a",
+        "0x68966"
+      ],
+      "descriptorWords": [
+        "0x00000015",
+        "0x00000006",
+        "0x00000001",
+        "0xffffffff",
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 18,
+      "callFileOffset": "0x689b0",
+      "descriptorPushOffsets": [
+        "0x689a8",
+        "0x689a6",
+        "0x689a4",
+        "0x689a2",
+        "0x6899e",
+        "0x6899a",
+        "0x68996",
+        "0x68992"
+      ],
+      "descriptorWords": [
+        "0x00000012",
+        "0x00000006",
+        "0x00000001",
+        "0xffffffff",
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 23,
+      "callFileOffset": "0x689dc",
+      "descriptorPushOffsets": [
+        "0x689d4",
+        "0x689d2",
+        "0x689d0",
+        "0x689ce",
+        "0x689ca",
+        "0x689c6",
+        "0x689c2",
+        "0x689be"
+      ],
+      "descriptorWords": [
+        "0x00000017",
+        "0x00000006",
+        "0x00000001",
+        "0xffffffff",
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 19,
+      "callFileOffset": "0x68a08",
+      "descriptorPushOffsets": [
+        "0x68a00",
+        "0x689fe",
+        "0x689fc",
+        "0x689fa",
+        "0x689f6",
+        "0x689f2",
+        "0x689ee",
+        "0x689ea"
+      ],
+      "descriptorWords": [
+        "0x00000013",
+        "0x00000006",
+        "0x00000001",
+        "0xffffffff",
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ]
+    },
+    {
+      "selector": 22,
+      "callFileOffset": "0x68a34",
+      "descriptorPushOffsets": [
+        "0x68a2c",
+        "0x68a2a",
+        "0x68a28",
+        "0x68a26",
+        "0x68a22",
+        "0x68a1e",
+        "0x68a1a",
+        "0x68a16"
+      ],
+      "descriptorWords": [
+        "0x00000016",
+        "0x00000007",
+        "0x00000001",
+        "0x00000000",
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab",
+        "0x4e4d4f4b"
+      ],
+      "soundCommands": [
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab"
+      ]
+    },
+    {
+      "selector": 17,
+      "callFileOffset": "0x68a60",
+      "descriptorPushOffsets": [
+        "0x68a58",
+        "0x68a56",
+        "0x68a54",
+        "0x68a52",
+        "0x68a4e",
+        "0x68a4a",
+        "0x68a46",
+        "0x68a42"
+      ],
+      "descriptorWords": [
+        "0x00000011",
+        "0x00000007",
+        "0x00000001",
+        "0x00000000",
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab",
+        "0x4f544d4e"
+      ],
+      "soundCommands": [
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab"
+      ]
+    },
+    {
+      "selector": 24,
+      "callFileOffset": "0x68a8c",
+      "descriptorPushOffsets": [
+        "0x68a84",
+        "0x68a82",
+        "0x68a80",
+        "0x68a7e",
+        "0x68a7a",
+        "0x68a76",
+        "0x68a72",
+        "0x68a6e"
+      ],
+      "descriptorWords": [
+        "0x00000018",
+        "0x00000007",
+        "0x00000001",
+        "0x00000000",
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab",
+        "0x4f4a4153"
+      ],
+      "soundCommands": [
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab"
+      ]
+    },
+    {
+      "selector": 20,
+      "callFileOffset": "0x68ab8",
+      "descriptorPushOffsets": [
+        "0x68ab0",
+        "0x68aae",
+        "0x68aac",
+        "0x68aaa",
+        "0x68aa6",
+        "0x68aa2",
+        "0x68a9e",
+        "0x68a9a"
+      ],
+      "descriptorWords": [
+        "0x00000014",
+        "0x00000007",
+        "0x00000001",
+        "0x00000001",
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab",
+        "0x49524948"
+      ],
+      "soundCommands": [
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab"
+      ]
+    }
+  ],
+  "doors": [
+    {
+      "selector": 0,
+      "model": "S1_D000_DR28_001.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [],
+      "runtimeCaptureAgreement": false
+    },
+    {
+      "selector": 1,
+      "model": "S1_D000_DR15_011.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [],
+      "runtimeCaptureAgreement": false
+    },
+    {
+      "selector": 2,
+      "model": "S1_D000_DR13_007.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [],
+      "runtimeCaptureAgreement": false
+    },
+    {
+      "selector": 3,
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x68824"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 4,
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x6887c"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 5,
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x688a8"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 6,
+      "model": "S1_D000_DR01_006.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab"
+      ],
+      "registrationCalls": [
+        "0x68850"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 7,
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x68900"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 8,
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x68958"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 9,
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x6892c"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 10,
+      "model": "S1_D000_DR01_006.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x688d4"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 11,
+      "model": "S1_D000_DR01_006.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x68774"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 12,
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab"
+      ],
+      "registrationCalls": [
+        "0x687f8"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 13,
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x68748"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 14,
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab"
+      ],
+      "registrationCalls": [
+        "0x687cc"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 15,
+      "model": "S1_D000_DR01_006.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab"
+      ],
+      "registrationCalls": [
+        "0x686ea"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 16,
+      "model": "S1_D000_DR01_006.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x687a0"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 17,
+      "model": "S1_D000_DR01_006.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab"
+      ],
+      "registrationCalls": [
+        "0x68a60"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 18,
+      "model": "S1_D000_DR01_006.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x689b0"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 19,
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x68a08"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 20,
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab"
+      ],
+      "registrationCalls": [
+        "0x68ab8"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 21,
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x68984"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 22,
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab"
+      ],
+      "registrationCalls": [
+        "0x68a34"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 23,
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x689dc"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 24,
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab"
+      ],
+      "registrationCalls": [
+        "0x68a8c"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 25,
+      "model": "S1_D000_DR13_010.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [],
+      "runtimeCaptureAgreement": false
+    },
+    {
+      "selector": 26,
+      "model": "S1_D000_DR01_011.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [],
+      "runtimeCaptureAgreement": false
+    },
+    {
+      "selector": 27,
+      "model": "S1_D000_DR02_014.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [],
+      "runtimeCaptureAgreement": false
+    },
+    {
+      "selector": 28,
+      "model": "S1_D000_DR15_013.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002402ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x6837a"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 29,
+      "model": "S1_D000_DR12_001.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [],
+      "runtimeCaptureAgreement": false
+    },
+    {
+      "selector": 30,
+      "model": "S1_D000_DR02_016.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002302ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x68256"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 31,
+      "model": "S1_D000_DR02_013.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [],
+      "runtimeCaptureAgreement": false
+    },
+    {
+      "selector": 32,
+      "model": "S1_D000_DR05_001.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [],
+      "runtimeCaptureAgreement": false
+    },
+    {
+      "selector": 33,
+      "model": "S1_D000_DR13_008.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [],
+      "runtimeCaptureAgreement": false
+    },
+    {
+      "selector": 34,
+      "model": "S1_D000_DR13_013.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002302ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x68482"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 35,
+      "model": "S1_D000_DR15_011.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002402ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x6855e"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 36,
+      "model": "S1_D000_DR02_012.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [],
+      "runtimeCaptureAgreement": false
+    },
+    {
+      "selector": 37,
+      "model": "S1_D000_DR02_014.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [],
+      "runtimeCaptureAgreement": false
+    },
+    {
+      "selector": 38,
+      "model": "S1_D000_DR06_008.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [],
+      "runtimeCaptureAgreement": false
+    },
+    {
+      "selector": 39,
+      "model": "S1_D000_DR01_008.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002302ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x6858a"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 40,
+      "model": "S1_D000_DR06_007.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [],
+      "runtimeCaptureAgreement": false
+    },
+    {
+      "selector": 41,
+      "model": "S1_D000_DR05_001.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [],
+      "runtimeCaptureAgreement": false
+    },
+    {
+      "selector": 42,
+      "model": "S1_D000_DR02_013.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [],
+      "runtimeCaptureAgreement": false
+    },
+    {
+      "selector": 43,
+      "model": "S1_D000_DR02_014.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [],
+      "runtimeCaptureAgreement": false
+    },
+    {
+      "selector": 44,
+      "model": "S1_D000_DR01_006.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002102ab",
+        "0x002902ab",
+        "0x002802ab"
+      ],
+      "registrationCalls": [
+        "0x686be"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 45,
+      "model": "S1_D000_DR01_006.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x68666"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 46,
+      "model": "S1_D000_DR01_007.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002302ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x68322"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 47,
+      "model": "S1_D000_DR01_006.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002102ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x68692"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 48,
+      "model": "S1_D000_DR13_009.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [],
+      "runtimeCaptureAgreement": false
+    },
+    {
+      "selector": 49,
+      "model": "S1_D000_DR01_009.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002302ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x6842a"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 50,
+      "model": "S1_D000_DR15_012.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002402ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x68456"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 51,
+      "model": "S1_D000_DR02_019.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [],
+      "runtimeCaptureAgreement": false
+    },
+    {
+      "selector": 52,
+      "model": "S1_D000_DR05_001.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [],
+      "runtimeCaptureAgreement": false
+    },
+    {
+      "selector": 53,
+      "model": "S1_D000_DR01_011.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002402ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x683fe"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 54,
+      "model": "S1_D000_DR02_017.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002302ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x685b6"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 55,
+      "model": "S1_D000_DR15_014.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002402ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x684da"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 56,
+      "model": "S1_D000_DR15_010.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002402ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x684ae"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 57,
+      "model": "S1_D000_DR01_010.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [],
+      "runtimeCaptureAgreement": false
+    },
+    {
+      "selector": 58,
+      "model": "S1_D000_DR02_018.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002402ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x68506"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 59,
+      "model": "S1_D000_DR02_015.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002302ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x683a6"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 60,
+      "model": "S1_D000_DR13_012.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002402ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x68532"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 61,
+      "model": "S1_D000_DR02_020.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [],
+      "runtimeCaptureAgreement": false
+    },
+    {
+      "selector": 62,
+      "model": "S1_D000_DR15_009.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [],
+      "runtimeCaptureAgreement": false
+    },
+    {
+      "selector": 63,
+      "model": "S1_D000_DR02_017.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0x002302ab",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [
+        "0x685e2"
+      ],
+      "runtimeCaptureAgreement": true
+    },
+    {
+      "selector": 64,
+      "model": "S1_D000_DR17_002.MT5",
+      "objectTag": null,
+      "soundCommands": [
+        "0xffffffff",
+        "0xffffffff",
+        "0xffffffff"
+      ],
+      "registrationCalls": [],
+      "runtimeCaptureAgreement": false
+    }
+  ]
+}

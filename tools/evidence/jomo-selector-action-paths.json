@@ -1,0 +1,372 @@
+{
+  "schema": "new-yokosuka-jomo-selector-action-paths-v1",
+  "source": "MAPINFO.BIN",
+  "mode11Sites": [
+    {
+      "fileOffset": "0x80ef2",
+      "runtimeAddress": "0x0c446632",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 11,
+          "hex": "0x0000000b",
+          "source": "0x80ee4"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x80ee2"
+        },
+        {
+          "kind": "constant",
+          "value": 60,
+          "hex": "0x0000003c",
+          "source": "0x80ee0"
+        }
+      ],
+      "function": null
+    },
+    {
+      "fileOffset": "0x81766",
+      "runtimeAddress": "0x0c446ea6",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 11,
+          "hex": "0x0000000b",
+          "source": "0x81758"
+        },
+        {
+          "kind": "runtime",
+          "source": "@(r0,r14) at 0x81756"
+        },
+        {
+          "kind": "runtime",
+          "source": "@(r0,r14) at 0x81752"
+        }
+      ],
+      "function": {
+        "name": "FUN_0c44673c",
+        "runtimeAddress": "0x0c44673c"
+      },
+      "incomingFunctions": [
+        {
+          "name": "FUN_0c44995c",
+          "runtimeAddress": "0x0c44995c"
+        }
+      ]
+    },
+    {
+      "fileOffset": "0x83ac4",
+      "runtimeAddress": "0x0c449204",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 11,
+          "hex": "0x0000000b",
+          "source": "0x83ab6"
+        },
+        {
+          "kind": "runtime",
+          "source": "add at 0x83ab4"
+        },
+        {
+          "kind": "constant",
+          "value": 60,
+          "hex": "0x0000003c",
+          "source": "0x83ab0"
+        }
+      ],
+      "function": null
+    },
+    {
+      "fileOffset": "0x8737c",
+      "runtimeAddress": "0x0c44cabc",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 11,
+          "hex": "0x0000000b",
+          "source": "0x8736e"
+        },
+        {
+          "kind": "constant",
+          "value": 1213683529,
+          "hex": "0x48575749",
+          "ascii": "IWWH",
+          "source": "0x8736c"
+        },
+        {
+          "kind": "constant",
+          "value": 3,
+          "hex": "0x00000003",
+          "source": "0x8736a"
+        }
+      ],
+      "function": {
+        "name": "FUN_0c44c810",
+        "runtimeAddress": "0x0c44c810"
+      },
+      "incomingFunctions": [
+        {
+          "name": "FUN_0c44995c",
+          "runtimeAddress": "0x0c44995c"
+        }
+      ]
+    },
+    {
+      "fileOffset": "0x87576",
+      "runtimeAddress": "0x0c44ccb6",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 11,
+          "hex": "0x0000000b",
+          "source": "0x87568"
+        },
+        {
+          "kind": "constant",
+          "value": 1869310057,
+          "hex": "0x6f6b6869",
+          "ascii": "ihko",
+          "source": "0x87566"
+        },
+        {
+          "kind": "constant",
+          "value": 30,
+          "hex": "0x0000001e",
+          "source": "0x87564"
+        }
+      ],
+      "function": {
+        "name": "FUN_0c44c810",
+        "runtimeAddress": "0x0c44c810"
+      },
+      "incomingFunctions": [
+        {
+          "name": "FUN_0c44995c",
+          "runtimeAddress": "0x0c44995c"
+        }
+      ]
+    }
+  ],
+  "selectors": [
+    {
+      "selector": 0,
+      "function": {
+        "name": "jomo_shared_selector_0",
+        "runtimeAddress": "0x0c3de004"
+      },
+      "reachableMode11Actions": [],
+      "visitedFunctionCount": 1
+    },
+    {
+      "selector": 1,
+      "function": {
+        "name": "jomo_shared_selector_1",
+        "runtimeAddress": "0x0c3dcbbc"
+      },
+      "reachableMode11Actions": [],
+      "visitedFunctionCount": 1
+    },
+    {
+      "selector": 2,
+      "function": {
+        "name": "jomo_shared_selector_2",
+        "runtimeAddress": "0x0c3d0fbc"
+      },
+      "reachableMode11Actions": [],
+      "visitedFunctionCount": 1
+    },
+    {
+      "selector": 4,
+      "function": {
+        "name": "jomo_shared_selector_4",
+        "runtimeAddress": "0x0c3d4e76"
+      },
+      "reachableMode11Actions": [],
+      "visitedFunctionCount": 1
+    },
+    {
+      "selector": 5,
+      "function": {
+        "name": "jomo_shared_selector_5",
+        "runtimeAddress": "0x0c3cf37c"
+      },
+      "reachableMode11Actions": [],
+      "visitedFunctionCount": 1
+    },
+    {
+      "selector": 10,
+      "function": {
+        "name": "jomo_shared_selector_10",
+        "runtimeAddress": "0x0c3d7420"
+      },
+      "reachableMode11Actions": [],
+      "visitedFunctionCount": 1
+    },
+    {
+      "selector": 11,
+      "function": {
+        "name": "jomo_shared_selector_11",
+        "runtimeAddress": "0x0c3d7690"
+      },
+      "reachableMode11Actions": [],
+      "visitedFunctionCount": 1
+    },
+    {
+      "selector": 12,
+      "function": {
+        "name": "jomo_shared_selector_12",
+        "runtimeAddress": "0x0c3d81e0"
+      },
+      "reachableMode11Actions": [],
+      "visitedFunctionCount": 1
+    },
+    {
+      "selector": 13,
+      "function": {
+        "name": "jomo_shared_selector_13",
+        "runtimeAddress": "0x0c3c84a0"
+      },
+      "reachableMode11Actions": [],
+      "visitedFunctionCount": 1
+    },
+    {
+      "selector": 16,
+      "function": {
+        "name": "jomo_shared_selector_16",
+        "runtimeAddress": "0x0c3c747c"
+      },
+      "reachableMode11Actions": [],
+      "visitedFunctionCount": 1
+    },
+    {
+      "selector": 17,
+      "function": {
+        "name": "jomo_shared_selector_17",
+        "runtimeAddress": "0x0c3c73b0"
+      },
+      "reachableMode11Actions": [],
+      "visitedFunctionCount": 1
+    },
+    {
+      "selector": 39,
+      "function": {
+        "name": "jomo_shared_selector_39",
+        "runtimeAddress": "0x0c3dfe2c"
+      },
+      "reachableMode11Actions": [],
+      "visitedFunctionCount": 1
+    },
+    {
+      "selector": 46,
+      "function": {
+        "name": "jomo_shared_selector_46",
+        "runtimeAddress": "0x0c4182b8"
+      },
+      "reachableMode11Actions": [],
+      "visitedFunctionCount": 1
+    },
+    {
+      "selector": 47,
+      "function": {
+        "name": "jomo_shared_selector_47",
+        "runtimeAddress": "0x0c3e11a4"
+      },
+      "reachableMode11Actions": [],
+      "visitedFunctionCount": 1
+    },
+    {
+      "selector": 48,
+      "function": {
+        "name": "jomo_shared_selector_48",
+        "runtimeAddress": "0x0c3df708"
+      },
+      "reachableMode11Actions": [],
+      "visitedFunctionCount": 1
+    },
+    {
+      "selector": 49,
+      "function": {
+        "name": "jomo_shared_selector_49",
+        "runtimeAddress": "0x0c3e107a"
+      },
+      "reachableMode11Actions": [],
+      "visitedFunctionCount": 1
+    },
+    {
+      "selector": 50,
+      "function": {
+        "name": "jomo_shared_selector_50",
+        "runtimeAddress": "0x0c3e1af4"
+      },
+      "reachableMode11Actions": [],
+      "visitedFunctionCount": 1
+    },
+    {
+      "selector": 54,
+      "function": {
+        "name": "jomo_shared_selector_54",
+        "runtimeAddress": "0x0c3e1ec8"
+      },
+      "reachableMode11Actions": [],
+      "visitedFunctionCount": 1
+    },
+    {
+      "selector": 55,
+      "function": {
+        "name": "jomo_shared_selector_55",
+        "runtimeAddress": "0x0c402e40"
+      },
+      "reachableMode11Actions": [],
+      "visitedFunctionCount": 1
+    },
+    {
+      "selector": 62,
+      "function": {
+        "name": "jomo_shared_selector_62",
+        "runtimeAddress": "0x0c3e568c"
+      },
+      "reachableMode11Actions": [],
+      "visitedFunctionCount": 1
+    },
+    {
+      "selector": 63,
+      "function": {
+        "name": "jomo_shared_selector_63",
+        "runtimeAddress": "0x0c3e3844"
+      },
+      "reachableMode11Actions": [],
+      "visitedFunctionCount": 30
+    },
+    {
+      "selector": 85,
+      "function": {
+        "name": "jomo_shared_selector_85",
+        "runtimeAddress": "0x0c3ecfd8"
+      },
+      "reachableMode11Actions": [],
+      "visitedFunctionCount": 1
+    },
+    {
+      "selector": 88,
+      "function": {
+        "name": "jomo_shared_selector_88",
+        "runtimeAddress": "0x0c3ff9cc"
+      },
+      "reachableMode11Actions": [],
+      "visitedFunctionCount": 1
+    },
+    {
+      "selector": 100,
+      "function": {
+        "name": "jomo_shared_selector_100",
+        "runtimeAddress": "0x0c41dba4"
+      },
+      "reachableMode11Actions": [],
+      "visitedFunctionCount": 1
+    }
+  ]
+}

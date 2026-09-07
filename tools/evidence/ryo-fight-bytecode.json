@@ -1,0 +1,5093 @@
+{
+  "schema": "new-yokosuka-fight-bytecode-v1",
+  "generatedBy": "tools/gameplay/extract_fight_bytecode.mjs",
+  "provenance": {
+    "source": "extracted_disc3_v2/data/SCENE/03/MFBT/EN_RYOU.BIN",
+    "byteLength": 7596,
+    "sha256": "2fce8a9cced82dbe30a812afdfe121f785cabc0cd98920060e0ada3b4dfc8350",
+    "globalMotionSource": "extracted_disc3_v2/data/MOTION/MOTION.BIN",
+    "globalMotionSha256": "512abe68b26a2a8bf78c8011b54faf01f9c3e0ce3e4d0b56491161eec3565dec",
+    "runtimeContainer": {
+      "signature": "FIGHT",
+      "wrapperByteLength": 52,
+      "wrappedByteLength": 7648,
+      "payloadIdentity": "EN_RYOU.BIN+0x14 through EOF exactly matches the captured runtime FIGHT payload at 0x0cabcd94"
+    }
+  },
+  "fighterKind": 0,
+  "header": {
+    "byteLength": 20,
+    "sectionOffsets": [
+      20,
+      6136,
+      7100,
+      7562
+    ],
+    "scriptOffset": 20,
+    "commandOffset": 6136,
+    "metadataOffset": 7100,
+    "trailingOffset": 7562
+  },
+  "sections": {
+    "script": {
+      "offset": 20,
+      "byteLength": 6116
+    },
+    "commands": {
+      "offset": 6136,
+      "byteLength": 964,
+      "recordSize": 20,
+      "terminatorOffset": 7096
+    },
+    "metadata": {
+      "offset": 7100,
+      "byteLength": 462
+    },
+    "trailing": {
+      "offset": 7562,
+      "byteLength": 34
+    }
+  },
+  "entryDispatch": {
+    "opcode": 71,
+    "selector": 80,
+    "branches": [
+      {
+        "fileOffset": 24,
+        "scriptRelativeOffset": 4,
+        "selector": 1,
+        "targetOffset": 152,
+        "targetFileOffset": 172
+      },
+      {
+        "fileOffset": 32,
+        "scriptRelativeOffset": 12,
+        "selector": 2,
+        "targetOffset": 1560,
+        "targetFileOffset": 1580
+      },
+      {
+        "fileOffset": 40,
+        "scriptRelativeOffset": 20,
+        "selector": 8,
+        "targetOffset": 4884,
+        "targetFileOffset": 4904
+      },
+      {
+        "fileOffset": 48,
+        "scriptRelativeOffset": 28,
+        "selector": 16,
+        "targetOffset": 2644,
+        "targetFileOffset": 2664
+      },
+      {
+        "fileOffset": 56,
+        "scriptRelativeOffset": 36,
+        "selector": 3,
+        "targetOffset": 3868,
+        "targetFileOffset": 3888
+      },
+      {
+        "fileOffset": 64,
+        "scriptRelativeOffset": 44,
+        "selector": 10,
+        "targetOffset": 4548,
+        "targetFileOffset": 4568
+      },
+      {
+        "fileOffset": 72,
+        "scriptRelativeOffset": 52,
+        "selector": 24,
+        "targetOffset": 4628,
+        "targetFileOffset": 4648
+      },
+      {
+        "fileOffset": 80,
+        "scriptRelativeOffset": 60,
+        "selector": 17,
+        "targetOffset": 928,
+        "targetFileOffset": 948
+      },
+      {
+        "fileOffset": 88,
+        "scriptRelativeOffset": 68,
+        "selector": 9,
+        "targetOffset": 928,
+        "targetFileOffset": 948
+      },
+      {
+        "fileOffset": 96,
+        "scriptRelativeOffset": 76,
+        "selector": 11,
+        "targetOffset": 928,
+        "targetFileOffset": 948
+      },
+      {
+        "fileOffset": 104,
+        "scriptRelativeOffset": 84,
+        "selector": 25,
+        "targetOffset": 928,
+        "targetFileOffset": 948
+      },
+      {
+        "fileOffset": 112,
+        "scriptRelativeOffset": 92,
+        "selector": 19,
+        "targetOffset": 928,
+        "targetFileOffset": 948
+      },
+      {
+        "fileOffset": 120,
+        "scriptRelativeOffset": 100,
+        "selector": 27,
+        "targetOffset": 928,
+        "targetFileOffset": 948
+      },
+      {
+        "fileOffset": 128,
+        "scriptRelativeOffset": 108,
+        "selector": 18,
+        "targetOffset": 2316,
+        "targetFileOffset": 2336
+      },
+      {
+        "fileOffset": 136,
+        "scriptRelativeOffset": 116,
+        "selector": 26,
+        "targetOffset": 2316,
+        "targetFileOffset": 2336
+      },
+      {
+        "fileOffset": 144,
+        "scriptRelativeOffset": 124,
+        "selector": 1296,
+        "targetOffset": 5824,
+        "targetFileOffset": 5844
+      },
+      {
+        "fileOffset": 152,
+        "scriptRelativeOffset": 132,
+        "selector": 1282,
+        "targetOffset": 5888,
+        "targetFileOffset": 5908
+      }
+    ],
+    "firstBodyFileOffset": 160
+  },
+  "commandRecordCount": 48,
+  "commandRecords": [
+    {
+      "index": 0,
+      "fileOffset": 6136,
+      "rawHex": "017f000000000000000001000000000000000000",
+      "words": [
+        25100288,
+        0,
+        256,
+        0,
+        0
+      ]
+    },
+    {
+      "index": 1,
+      "fileOffset": 6156,
+      "rawHex": "217f000000000000000001000000000000000000",
+      "words": [
+        561971200,
+        0,
+        256,
+        0,
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "fileOffset": 6176,
+      "rawHex": "117f000000000000000001000000000000000000",
+      "words": [
+        293535744,
+        0,
+        256,
+        0,
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "fileOffset": 6196,
+      "rawHex": "2000217f00000000000001010100000000000000",
+      "words": [
+        536879487,
+        0,
+        257,
+        16777216,
+        0
+      ]
+    },
+    {
+      "index": 4,
+      "fileOffset": 6216,
+      "rawHex": "1000117f00000000000001010100000000000000",
+      "words": [
+        268439935,
+        0,
+        257,
+        16777216,
+        0
+      ]
+    },
+    {
+      "index": 5,
+      "fileOffset": 6236,
+      "rawHex": "2000117f00000000000001010100000000000000",
+      "words": [
+        536875391,
+        0,
+        257,
+        16777216,
+        0
+      ]
+    },
+    {
+      "index": 6,
+      "fileOffset": 6256,
+      "rawHex": "1000217f00000000000001010100000000000000",
+      "words": [
+        268444031,
+        0,
+        257,
+        16777216,
+        0
+      ]
+    },
+    {
+      "index": 7,
+      "fileOffset": 6276,
+      "rawHex": "027f000000000000000001000000000000000000",
+      "words": [
+        41877504,
+        0,
+        256,
+        0,
+        0
+      ]
+    },
+    {
+      "index": 8,
+      "fileOffset": 6296,
+      "rawHex": "227f000000000000000001000000000000000000",
+      "words": [
+        578748416,
+        0,
+        256,
+        0,
+        0
+      ]
+    },
+    {
+      "index": 9,
+      "fileOffset": 6316,
+      "rawHex": "127f000000000000000001000000000000000000",
+      "words": [
+        310312960,
+        0,
+        256,
+        0,
+        0
+      ]
+    },
+    {
+      "index": 10,
+      "fileOffset": 6336,
+      "rawHex": "2000227f00000000000001010100000000000000",
+      "words": [
+        536879743,
+        0,
+        257,
+        16777216,
+        0
+      ]
+    },
+    {
+      "index": 11,
+      "fileOffset": 6356,
+      "rawHex": "1000127f00000000000001010100000000000000",
+      "words": [
+        268440191,
+        0,
+        257,
+        16777216,
+        0
+      ]
+    },
+    {
+      "index": 12,
+      "fileOffset": 6376,
+      "rawHex": "2000127f00000000000001010100000000000000",
+      "words": [
+        536875647,
+        0,
+        257,
+        16777216,
+        0
+      ]
+    },
+    {
+      "index": 13,
+      "fileOffset": 6396,
+      "rawHex": "1000227f00000000000001010100000000000000",
+      "words": [
+        268444287,
+        0,
+        257,
+        16777216,
+        0
+      ]
+    },
+    {
+      "index": 14,
+      "fileOffset": 6416,
+      "rawHex": "037f000000000000000001000000000000000000",
+      "words": [
+        58654720,
+        0,
+        256,
+        0,
+        0
+      ]
+    },
+    {
+      "index": 15,
+      "fileOffset": 6436,
+      "rawHex": "237f000000000000000001000000000000000000",
+      "words": [
+        595525632,
+        0,
+        256,
+        0,
+        0
+      ]
+    },
+    {
+      "index": 16,
+      "fileOffset": 6456,
+      "rawHex": "137f000000000000000001000000000000000000",
+      "words": [
+        327090176,
+        0,
+        256,
+        0,
+        0
+      ]
+    },
+    {
+      "index": 17,
+      "fileOffset": 6476,
+      "rawHex": "2000237f00000000000001010100000000000000",
+      "words": [
+        536879999,
+        0,
+        257,
+        16777216,
+        0
+      ]
+    },
+    {
+      "index": 18,
+      "fileOffset": 6496,
+      "rawHex": "1000137f00000000000001010100000000000000",
+      "words": [
+        268440447,
+        0,
+        257,
+        16777216,
+        0
+      ]
+    },
+    {
+      "index": 19,
+      "fileOffset": 6516,
+      "rawHex": "2000137f00000000000001010100000000000000",
+      "words": [
+        536875903,
+        0,
+        257,
+        16777216,
+        0
+      ]
+    },
+    {
+      "index": 20,
+      "fileOffset": 6536,
+      "rawHex": "1000237f00000000000001010100000000000000",
+      "words": [
+        268444543,
+        0,
+        257,
+        16777216,
+        0
+      ]
+    },
+    {
+      "index": 21,
+      "fileOffset": 6556,
+      "rawHex": "047f000000000000000001000000000000000000",
+      "words": [
+        75431936,
+        0,
+        256,
+        0,
+        0
+      ]
+    },
+    {
+      "index": 22,
+      "fileOffset": 6576,
+      "rawHex": "247f000000000000000001000000000000000000",
+      "words": [
+        612302848,
+        0,
+        256,
+        0,
+        0
+      ]
+    },
+    {
+      "index": 23,
+      "fileOffset": 6596,
+      "rawHex": "147f000000000000000001000000000000000000",
+      "words": [
+        343867392,
+        0,
+        256,
+        0,
+        0
+      ]
+    },
+    {
+      "index": 24,
+      "fileOffset": 6616,
+      "rawHex": "2000247f00000000000001010100000000000000",
+      "words": [
+        536880255,
+        0,
+        257,
+        16777216,
+        0
+      ]
+    },
+    {
+      "index": 25,
+      "fileOffset": 6636,
+      "rawHex": "1000147f00000000000001010100000000000000",
+      "words": [
+        268440703,
+        0,
+        257,
+        16777216,
+        0
+      ]
+    },
+    {
+      "index": 26,
+      "fileOffset": 6656,
+      "rawHex": "2000147f00000000000001010100000000000000",
+      "words": [
+        536876159,
+        0,
+        257,
+        16777216,
+        0
+      ]
+    },
+    {
+      "index": 27,
+      "fileOffset": 6676,
+      "rawHex": "1000247f00000000000001010100000000000000",
+      "words": [
+        268444799,
+        0,
+        257,
+        16777216,
+        0
+      ]
+    },
+    {
+      "index": 28,
+      "fileOffset": 6696,
+      "rawHex": "2c7f000000000000000001000000000000000000",
+      "words": [
+        746520576,
+        0,
+        256,
+        0,
+        0
+      ]
+    },
+    {
+      "index": 29,
+      "fileOffset": 6716,
+      "rawHex": "2c00017f00000000000001010100000000000000",
+      "words": [
+        738197887,
+        0,
+        257,
+        16777216,
+        0
+      ]
+    },
+    {
+      "index": 30,
+      "fileOffset": 6736,
+      "rawHex": "20002200027f0000000001010101010000000000",
+      "words": [
+        536879616,
+        41877504,
+        257,
+        16843008,
+        0
+      ]
+    },
+    {
+      "index": 31,
+      "fileOffset": 6756,
+      "rawHex": "1100027f00000000000001010100000000000000",
+      "words": [
+        285213311,
+        0,
+        257,
+        16777216,
+        0
+      ]
+    },
+    {
+      "index": 32,
+      "fileOffset": 6776,
+      "rawHex": "20001000117f0000000001010101010000000000",
+      "words": [
+        536875008,
+        293535744,
+        257,
+        16843008,
+        0
+      ]
+    },
+    {
+      "index": 33,
+      "fileOffset": 6796,
+      "rawHex": "10002000217f0000000001010101010000000000",
+      "words": [
+        268443648,
+        561971200,
+        257,
+        16843008,
+        0
+      ]
+    },
+    {
+      "index": 34,
+      "fileOffset": 6816,
+      "rawHex": "20001000127f0000000001010101010000000000",
+      "words": [
+        536875008,
+        310312960,
+        257,
+        16843008,
+        0
+      ]
+    },
+    {
+      "index": 35,
+      "fileOffset": 6836,
+      "rawHex": "10002000227f0000000001010101010000000000",
+      "words": [
+        268443648,
+        578748416,
+        257,
+        16843008,
+        0
+      ]
+    },
+    {
+      "index": 36,
+      "fileOffset": 6856,
+      "rawHex": "20001000137f0000000001010101010000000000",
+      "words": [
+        536875008,
+        327090176,
+        257,
+        16843008,
+        0
+      ]
+    },
+    {
+      "index": 37,
+      "fileOffset": 6876,
+      "rawHex": "10002000237f0000000001010101010000000000",
+      "words": [
+        268443648,
+        595525632,
+        257,
+        16843008,
+        0
+      ]
+    },
+    {
+      "index": 38,
+      "fileOffset": 6896,
+      "rawHex": "20001000147f0000000001010101010000000000",
+      "words": [
+        536875008,
+        343867392,
+        257,
+        16843008,
+        0
+      ]
+    },
+    {
+      "index": 39,
+      "fileOffset": 6916,
+      "rawHex": "10002000247f0000000001010101010000000000",
+      "words": [
+        268443648,
+        612302848,
+        257,
+        16843008,
+        0
+      ]
+    },
+    {
+      "index": 40,
+      "fileOffset": 6936,
+      "rawHex": "20002c7f00000000000001010100000000000000",
+      "words": [
+        536882303,
+        0,
+        257,
+        16777216,
+        0
+      ]
+    },
+    {
+      "index": 41,
+      "fileOffset": 6956,
+      "rawHex": "0100027f00000000000001010100000000000000",
+      "words": [
+        16777855,
+        0,
+        257,
+        16777216,
+        0
+      ]
+    },
+    {
+      "index": 42,
+      "fileOffset": 6976,
+      "rawHex": "01000200027f0000000001010105010000000000",
+      "words": [
+        16777728,
+        41877504,
+        257,
+        17105152,
+        0
+      ]
+    },
+    {
+      "index": 43,
+      "fileOffset": 6996,
+      "rawHex": "01000100027f0000000001010101010000000000",
+      "words": [
+        16777472,
+        41877504,
+        257,
+        16843008,
+        0
+      ]
+    },
+    {
+      "index": 44,
+      "fileOffset": 7016,
+      "rawHex": "010001000200027f000001010105010501000000",
+      "words": [
+        16777472,
+        33555071,
+        257,
+        17105157,
+        16777216
+      ]
+    },
+    {
+      "index": 45,
+      "fileOffset": 7036,
+      "rawHex": "0100010001000100017f01010105010501050100",
+      "words": [
+        16777472,
+        16777472,
+        25100545,
+        17105157,
+        17105152
+      ]
+    },
+    {
+      "index": 46,
+      "fileOffset": 7056,
+      "rawHex": "02000200027f0000000001010101010000000000",
+      "words": [
+        33554944,
+        41877504,
+        257,
+        16843008,
+        0
+      ]
+    },
+    {
+      "index": 47,
+      "fileOffset": 7076,
+      "rawHex": "24000100017f0000000001010105010000000000",
+      "words": [
+        603980032,
+        25100288,
+        257,
+        17105152,
+        0
+      ]
+    }
+  ],
+  "motionRequestCount": 154,
+  "motionRequests": [
+    {
+      "fileOffset": 208,
+      "scriptRelativeOffset": 188,
+      "rawRequest": 1203,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1203,
+      "motionId": 1203,
+      "sequenceIndex": 1202,
+      "fileOffsetHex": "0x000000d0",
+      "scriptRelativeOffsetHex": "0x000000bc",
+      "rawRequestHex": "0x000004b3",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x04b3",
+      "motionIdHex": "0x04b3",
+      "sequence": {
+        "index": 1202,
+        "name": "AKI_AKI_BAT_RUN_ELB_TOP_R",
+        "durationFrames": 27,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 236,
+      "scriptRelativeOffset": 216,
+      "rawRequest": 874,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 874,
+      "motionId": 874,
+      "sequenceIndex": 873,
+      "fileOffsetHex": "0x000000ec",
+      "scriptRelativeOffsetHex": "0x000000d8",
+      "rawRequestHex": "0x0000036a",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x036a",
+      "motionIdHex": "0x036a",
+      "sequence": {
+        "index": 873,
+        "name": "AKI_AKI_URAKEN_TOP",
+        "durationFrames": 18,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 336,
+      "scriptRelativeOffset": 316,
+      "rawRequest": 779,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 779,
+      "motionId": 779,
+      "sequenceIndex": 778,
+      "fileOffsetHex": "0x00000150",
+      "scriptRelativeOffsetHex": "0x0000013c",
+      "rawRequestHex": "0x0000030b",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x030b",
+      "motionIdHex": "0x030b",
+      "sequence": {
+        "index": 778,
+        "name": "DMY_AKI_AKI_CHP_MON",
+        "durationFrames": 30,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 344,
+      "scriptRelativeOffset": 324,
+      "rawRequest": 716,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 716,
+      "motionId": 716,
+      "sequenceIndex": 715,
+      "fileOffsetHex": "0x00000158",
+      "scriptRelativeOffsetHex": "0x00000144",
+      "rawRequestHex": "0x000002cc",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x02cc",
+      "motionIdHex": "0x02cc",
+      "sequence": {
+        "index": 715,
+        "name": "AKI_AKI_CHP_MON",
+        "durationFrames": 30,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 400,
+      "scriptRelativeOffset": 380,
+      "rawRequest": 793,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 793,
+      "motionId": 793,
+      "sequenceIndex": 792,
+      "fileOffsetHex": "0x00000190",
+      "scriptRelativeOffsetHex": "0x0000017c",
+      "rawRequestHex": "0x00000319",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0319",
+      "motionIdHex": "0x0319",
+      "sequence": {
+        "index": 792,
+        "name": "AKI_AKI_BATTLE_PANCH_STR",
+        "durationFrames": 21,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 452,
+      "scriptRelativeOffset": 432,
+      "rawRequest": 1007,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1007,
+      "motionId": 1007,
+      "sequenceIndex": 1006,
+      "fileOffsetHex": "0x000001c4",
+      "scriptRelativeOffsetHex": "0x000001b0",
+      "rawRequestHex": "0x000003ef",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x03ef",
+      "motionIdHex": "0x03ef",
+      "sequence": {
+        "index": 1006,
+        "name": "AKI_AKI_RIMONT_MID",
+        "durationFrames": 61,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 504,
+      "scriptRelativeOffset": 484,
+      "rawRequest": 1165,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1165,
+      "motionId": 1165,
+      "sequenceIndex": 1164,
+      "fileOffsetHex": "0x000001f8",
+      "scriptRelativeOffsetHex": "0x000001e4",
+      "rawRequestHex": "0x0000048d",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x048d",
+      "motionIdHex": "0x048d",
+      "sequence": {
+        "index": 1164,
+        "name": "AKI_AKI_KONGO_TYUKEN_A_MID",
+        "durationFrames": 22,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 512,
+      "scriptRelativeOffset": 492,
+      "rawRequest": 1545,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1545,
+      "motionId": 1545,
+      "sequenceIndex": 1544,
+      "fileOffsetHex": "0x00000200",
+      "scriptRelativeOffsetHex": "0x000001ec",
+      "rawRequestHex": "0x00000609",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0609",
+      "motionIdHex": "0x0609",
+      "sequence": {
+        "index": 1544,
+        "name": "AKI_AKI_KONGO_TYUKEN_Y_A_MID",
+        "durationFrames": 32,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 544,
+      "scriptRelativeOffset": 524,
+      "rawRequest": 1440,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1440,
+      "motionId": 1440,
+      "sequenceIndex": 1439,
+      "fileOffsetHex": "0x00000220",
+      "scriptRelativeOffsetHex": "0x0000020c",
+      "rawRequestHex": "0x000005a0",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05a0",
+      "motionIdHex": "0x05a0",
+      "sequence": {
+        "index": 1439,
+        "name": "AKI_AKI_KONGO_TYUKEN_C_MID",
+        "durationFrames": 56,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 576,
+      "scriptRelativeOffset": 556,
+      "rawRequest": 847,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 847,
+      "motionId": 847,
+      "sequenceIndex": 846,
+      "fileOffsetHex": "0x00000240",
+      "scriptRelativeOffsetHex": "0x0000022c",
+      "rawRequestHex": "0x0000034f",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x034f",
+      "motionIdHex": "0x034f",
+      "sequence": {
+        "index": 846,
+        "name": "AKI_AKI_ELBOW",
+        "durationFrames": 27,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 668,
+      "scriptRelativeOffset": 648,
+      "rawRequest": 1145,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1145,
+      "motionId": 1145,
+      "sequenceIndex": 1144,
+      "fileOffsetHex": "0x0000029c",
+      "scriptRelativeOffsetHex": "0x00000288",
+      "rawRequestHex": "0x00000479",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0479",
+      "motionIdHex": "0x0479",
+      "sequence": {
+        "index": 1144,
+        "name": "AKI_AKI_NEWAP_S1",
+        "durationFrames": 30,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 676,
+      "scriptRelativeOffset": 656,
+      "rawRequest": 1144,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1144,
+      "motionId": 1144,
+      "sequenceIndex": 1143,
+      "fileOffsetHex": "0x000002a4",
+      "scriptRelativeOffsetHex": "0x00000290",
+      "rawRequestHex": "0x00000478",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0478",
+      "motionIdHex": "0x0478",
+      "sequence": {
+        "index": 1143,
+        "name": "AKI_AKI_NEWAP",
+        "durationFrames": 24,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 732,
+      "scriptRelativeOffset": 712,
+      "rawRequest": 867,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 867,
+      "motionId": 867,
+      "sequenceIndex": 866,
+      "fileOffsetHex": "0x000002dc",
+      "scriptRelativeOffsetHex": "0x000002c8",
+      "rawRequestHex": "0x00000363",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0363",
+      "motionIdHex": "0x0363",
+      "sequence": {
+        "index": 866,
+        "name": "AKI_AKI_BATTLE_SEIKEN2_MID",
+        "durationFrames": 30,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 784,
+      "scriptRelativeOffset": 764,
+      "rawRequest": 837,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 837,
+      "motionId": 837,
+      "sequenceIndex": 836,
+      "fileOffsetHex": "0x00000310",
+      "scriptRelativeOffsetHex": "0x000002fc",
+      "rawRequestHex": "0x00000345",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0345",
+      "motionIdHex": "0x0345",
+      "sequence": {
+        "index": 836,
+        "name": "AKI_AKI_BATTLE_PNC_APR",
+        "durationFrames": 28,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 836,
+      "scriptRelativeOffset": 816,
+      "rawRequest": 268436634,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1178,
+      "motionId": 1178,
+      "sequenceIndex": 1177,
+      "fileOffsetHex": "0x00000344",
+      "scriptRelativeOffsetHex": "0x00000330",
+      "rawRequestHex": "0x1000049a",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x049a",
+      "motionIdHex": "0x049a",
+      "sequence": {
+        "index": 1177,
+        "name": "AKI_AKI_NGS_INASI",
+        "durationFrames": 36,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 876,
+      "scriptRelativeOffset": 856,
+      "rawRequest": 268436633,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1177,
+      "motionId": 1177,
+      "sequenceIndex": 1176,
+      "fileOffsetHex": "0x0000036c",
+      "scriptRelativeOffsetHex": "0x00000358",
+      "rawRequestHex": "0x10000499",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0499",
+      "motionIdHex": "0x0499",
+      "sequence": {
+        "index": 1176,
+        "name": "AKI_AKI_NGS_ENSEI",
+        "durationFrames": 40,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 908,
+      "scriptRelativeOffset": 888,
+      "rawRequest": 268436864,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1408,
+      "motionId": 1408,
+      "sequenceIndex": 1407,
+      "fileOffsetHex": "0x0000038c",
+      "scriptRelativeOffsetHex": "0x00000378",
+      "rawRequestHex": "0x10000580",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0580",
+      "motionIdHex": "0x0580",
+      "sequence": {
+        "index": 1407,
+        "name": "AKI_AKI_NGS_ENSEI_PNC",
+        "durationFrames": 38,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 940,
+      "scriptRelativeOffset": 920,
+      "rawRequest": 794,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 794,
+      "motionId": 794,
+      "sequenceIndex": 793,
+      "fileOffsetHex": "0x000003ac",
+      "scriptRelativeOffsetHex": "0x00000398",
+      "rawRequestHex": "0x0000031a",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x031a",
+      "motionIdHex": "0x031a",
+      "sequence": {
+        "index": 793,
+        "name": "AKI_AKI_BATTLE_PNC_FUK",
+        "durationFrames": 24,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 956,
+      "scriptRelativeOffset": 936,
+      "rawRequest": 792,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 792,
+      "motionId": 792,
+      "sequenceIndex": 791,
+      "fileOffsetHex": "0x000003bc",
+      "scriptRelativeOffsetHex": "0x000003a8",
+      "rawRequestHex": "0x00000318",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0318",
+      "motionIdHex": "0x0318",
+      "sequence": {
+        "index": 791,
+        "name": "AKI_AKI_BATTLE_PANCH_JAB",
+        "durationFrames": 19,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1004,
+      "scriptRelativeOffset": 984,
+      "rawRequest": 1471,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1471,
+      "motionId": 1471,
+      "sequenceIndex": 1470,
+      "fileOffsetHex": "0x000003ec",
+      "scriptRelativeOffsetHex": "0x000003d8",
+      "rawRequestHex": "0x000005bf",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05bf",
+      "motionIdHex": "0x05bf",
+      "sequence": {
+        "index": 1470,
+        "name": "AKI_AKI_COMBO_JAB_BDY",
+        "durationFrames": 16,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1028,
+      "scriptRelativeOffset": 1008,
+      "rawRequest": 870,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 870,
+      "motionId": 870,
+      "sequenceIndex": 869,
+      "fileOffsetHex": "0x00000404",
+      "scriptRelativeOffsetHex": "0x000003f0",
+      "rawRequestHex": "0x00000366",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0366",
+      "motionIdHex": "0x0366",
+      "sequence": {
+        "index": 869,
+        "name": "AKI_AKI_MAWASIGERI_TOP",
+        "durationFrames": 24,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1068,
+      "scriptRelativeOffset": 1048,
+      "rawRequest": 1472,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1472,
+      "motionId": 1472,
+      "sequenceIndex": 1471,
+      "fileOffsetHex": "0x0000042c",
+      "scriptRelativeOffsetHex": "0x00000418",
+      "rawRequestHex": "0x000005c0",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05c0",
+      "motionIdHex": "0x05c0",
+      "sequence": {
+        "index": 1471,
+        "name": "AKI_AKI_COMBO_MAWA_2",
+        "durationFrames": 27,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1096,
+      "scriptRelativeOffset": 1076,
+      "rawRequest": 1473,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1473,
+      "motionId": 1473,
+      "sequenceIndex": 1472,
+      "fileOffsetHex": "0x00000448",
+      "scriptRelativeOffsetHex": "0x00000434",
+      "rawRequestHex": "0x000005c1",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05c1",
+      "motionIdHex": "0x05c1",
+      "sequence": {
+        "index": 1472,
+        "name": "AKI_AKI_COMBO_MAWA_3",
+        "durationFrames": 42,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1156,
+      "scriptRelativeOffset": 1136,
+      "rawRequest": 1470,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1470,
+      "motionId": 1470,
+      "sequenceIndex": 1469,
+      "fileOffsetHex": "0x00000484",
+      "scriptRelativeOffsetHex": "0x00000470",
+      "rawRequestHex": "0x000005be",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05be",
+      "motionIdHex": "0x05be",
+      "sequence": {
+        "index": 1469,
+        "name": "AKI_AKI_COMBO_BDY_ELB",
+        "durationFrames": 23,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1192,
+      "scriptRelativeOffset": 1172,
+      "rawRequest": 1289,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1289,
+      "motionId": 1289,
+      "sequenceIndex": 1288,
+      "fileOffsetHex": "0x000004a8",
+      "scriptRelativeOffsetHex": "0x00000494",
+      "rawRequestHex": "0x00000509",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0509",
+      "motionIdHex": "0x0509",
+      "sequence": {
+        "index": 1288,
+        "name": "AKI_AKI_CHP_NUKE_MID",
+        "durationFrames": 32,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1208,
+      "scriptRelativeOffset": 1188,
+      "rawRequest": 1438,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1438,
+      "motionId": 1438,
+      "sequenceIndex": 1437,
+      "fileOffsetHex": "0x000004b8",
+      "scriptRelativeOffsetHex": "0x000004a4",
+      "rawRequestHex": "0x0000059e",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x059e",
+      "motionIdHex": "0x059e",
+      "sequence": {
+        "index": 1437,
+        "name": "AKI_AKI_KICK_KERIAGE",
+        "durationFrames": 32,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1236,
+      "scriptRelativeOffset": 1216,
+      "rawRequest": 648,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 648,
+      "motionId": 648,
+      "sequenceIndex": 647,
+      "fileOffsetHex": "0x000004d4",
+      "scriptRelativeOffsetHex": "0x000004c0",
+      "rawRequestHex": "0x00000288",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0288",
+      "motionIdHex": "0x0288",
+      "sequence": {
+        "index": 647,
+        "name": "DMY_AKI_AKI_URAKEN_ROLL_TOP",
+        "durationFrames": 27,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1276,
+      "scriptRelativeOffset": 1256,
+      "rawRequest": 788,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 788,
+      "motionId": 788,
+      "sequenceIndex": 787,
+      "fileOffsetHex": "0x000004fc",
+      "scriptRelativeOffsetHex": "0x000004e8",
+      "rawRequestHex": "0x00000314",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0314",
+      "motionIdHex": "0x0314",
+      "sequence": {
+        "index": 787,
+        "name": "AKI_AKI_BATTLE_KICK_LOW",
+        "durationFrames": 31,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1316,
+      "scriptRelativeOffset": 1296,
+      "rawRequest": 1472,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1472,
+      "motionId": 1472,
+      "sequenceIndex": 1471,
+      "fileOffsetHex": "0x00000524",
+      "scriptRelativeOffsetHex": "0x00000510",
+      "rawRequestHex": "0x000005c0",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05c0",
+      "motionIdHex": "0x05c0",
+      "sequence": {
+        "index": 1471,
+        "name": "AKI_AKI_COMBO_MAWA_2",
+        "durationFrames": 27,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1344,
+      "scriptRelativeOffset": 1324,
+      "rawRequest": 1473,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1473,
+      "motionId": 1473,
+      "sequenceIndex": 1472,
+      "fileOffsetHex": "0x00000540",
+      "scriptRelativeOffsetHex": "0x0000052c",
+      "rawRequestHex": "0x000005c1",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05c1",
+      "motionIdHex": "0x05c1",
+      "sequence": {
+        "index": 1472,
+        "name": "AKI_AKI_COMBO_MAWA_3",
+        "durationFrames": 42,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1360,
+      "scriptRelativeOffset": 1340,
+      "rawRequest": 789,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 789,
+      "motionId": 789,
+      "sequenceIndex": 788,
+      "fileOffsetHex": "0x00000550",
+      "scriptRelativeOffsetHex": "0x0000053c",
+      "rawRequestHex": "0x00000315",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0315",
+      "motionIdHex": "0x0315",
+      "sequence": {
+        "index": 788,
+        "name": "AKI_AKI_BATTLE_KICK_SID",
+        "durationFrames": 24,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1408,
+      "scriptRelativeOffset": 1388,
+      "rawRequest": 1147,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1147,
+      "motionId": 1147,
+      "sequenceIndex": 1146,
+      "fileOffsetHex": "0x00000580",
+      "scriptRelativeOffsetHex": "0x0000056c",
+      "rawRequestHex": "0x0000047b",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x047b",
+      "motionIdHex": "0x047b",
+      "sequence": {
+        "index": 1146,
+        "name": "AKI_AKI_BATTLE_PNC_APR2",
+        "durationFrames": 29,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1424,
+      "scriptRelativeOffset": 1404,
+      "rawRequest": 33636,
+      "requestFlags": 0,
+      "motionIdFlags": 32768,
+      "encodedMotionId": 33636,
+      "motionId": 868,
+      "sequenceIndex": 867,
+      "fileOffsetHex": "0x00000590",
+      "scriptRelativeOffsetHex": "0x0000057c",
+      "rawRequestHex": "0x00008364",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x8000",
+      "encodedMotionIdHex": "0x8364",
+      "motionIdHex": "0x0364",
+      "sequence": {
+        "index": 867,
+        "name": "AKI_AKI_KICK_BACKROLL_JUMP",
+        "durationFrames": 34,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1464,
+      "scriptRelativeOffset": 1444,
+      "rawRequest": 647,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 647,
+      "motionId": 647,
+      "sequenceIndex": 646,
+      "fileOffsetHex": "0x000005b8",
+      "scriptRelativeOffsetHex": "0x000005a4",
+      "rawRequestHex": "0x00000287",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0287",
+      "motionIdHex": "0x0287",
+      "sequence": {
+        "index": 646,
+        "name": "DMY_AKI_AKI_BATTLE_PNC_FUK",
+        "durationFrames": 24,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1504,
+      "scriptRelativeOffset": 1484,
+      "rawRequest": 659,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 659,
+      "motionId": 659,
+      "sequenceIndex": 658,
+      "fileOffsetHex": "0x000005e0",
+      "scriptRelativeOffsetHex": "0x000005cc",
+      "rawRequestHex": "0x00000293",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0293",
+      "motionIdHex": "0x0293",
+      "sequence": {
+        "index": 658,
+        "name": "DMY_AKI_AKI_ELBOW",
+        "durationFrames": 27,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1544,
+      "scriptRelativeOffset": 1524,
+      "rawRequest": 660,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 660,
+      "motionId": 660,
+      "sequenceIndex": 659,
+      "fileOffsetHex": "0x00000608",
+      "scriptRelativeOffsetHex": "0x000005f4",
+      "rawRequestHex": "0x00000294",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0294",
+      "motionIdHex": "0x0294",
+      "sequence": {
+        "index": 659,
+        "name": "DMY_AKI_AKI_BATTLE_PANCH_STR",
+        "durationFrames": 21,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1572,
+      "scriptRelativeOffset": 1552,
+      "rawRequest": 1500,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1500,
+      "motionId": 1500,
+      "sequenceIndex": 1499,
+      "fileOffsetHex": "0x00000624",
+      "scriptRelativeOffsetHex": "0x00000610",
+      "rawRequestHex": "0x000005dc",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05dc",
+      "motionIdHex": "0x05dc",
+      "sequence": {
+        "index": 1499,
+        "name": "DMY_AKI_AKI_RIMONT_MID",
+        "durationFrames": 61,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1624,
+      "scriptRelativeOffset": 1604,
+      "rawRequest": 1142,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1142,
+      "motionId": 1142,
+      "sequenceIndex": 1141,
+      "fileOffsetHex": "0x00000658",
+      "scriptRelativeOffsetHex": "0x00000644",
+      "rawRequestHex": "0x00000476",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0476",
+      "motionIdHex": "0x0476",
+      "sequence": {
+        "index": 1141,
+        "name": "AKI_AKI_KICK_BACKROLL_JUMP_S1",
+        "durationFrames": 31,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1632,
+      "scriptRelativeOffset": 1612,
+      "rawRequest": 868,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 868,
+      "motionId": 868,
+      "sequenceIndex": 867,
+      "fileOffsetHex": "0x00000660",
+      "scriptRelativeOffsetHex": "0x0000064c",
+      "rawRequestHex": "0x00000364",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0364",
+      "motionIdHex": "0x0364",
+      "sequence": {
+        "index": 867,
+        "name": "AKI_AKI_KICK_BACKROLL_JUMP",
+        "durationFrames": 34,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1656,
+      "scriptRelativeOffset": 1636,
+      "rawRequest": 895,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 895,
+      "motionId": 895,
+      "sequenceIndex": 894,
+      "fileOffsetHex": "0x00000678",
+      "scriptRelativeOffsetHex": "0x00000664",
+      "rawRequestHex": "0x0000037f",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x037f",
+      "motionIdHex": "0x037f",
+      "sequence": {
+        "index": 894,
+        "name": "AKI_AKI_KICK_BACK_MID",
+        "durationFrames": 24,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1756,
+      "scriptRelativeOffset": 1736,
+      "rawRequest": 1149,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1149,
+      "motionId": 1149,
+      "sequenceIndex": 1148,
+      "fileOffsetHex": "0x000006dc",
+      "scriptRelativeOffsetHex": "0x000006c8",
+      "rawRequestHex": "0x0000047d",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x047d",
+      "motionIdHex": "0x047d",
+      "sequence": {
+        "index": 1148,
+        "name": "AKI_AKI_KICK_SUBERI_S1",
+        "durationFrames": 39,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1764,
+      "scriptRelativeOffset": 1744,
+      "rawRequest": 1148,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1148,
+      "motionId": 1148,
+      "sequenceIndex": 1147,
+      "fileOffsetHex": "0x000006e4",
+      "scriptRelativeOffsetHex": "0x000006d0",
+      "rawRequestHex": "0x0000047c",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x047c",
+      "motionIdHex": "0x047c",
+      "sequence": {
+        "index": 1147,
+        "name": "AKI_AKI_KICK_SUBERI",
+        "durationFrames": 44,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1820,
+      "scriptRelativeOffset": 1800,
+      "rawRequest": 789,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 789,
+      "motionId": 789,
+      "sequenceIndex": 788,
+      "fileOffsetHex": "0x0000071c",
+      "scriptRelativeOffsetHex": "0x00000708",
+      "rawRequestHex": "0x00000315",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0315",
+      "motionIdHex": "0x0315",
+      "sequence": {
+        "index": 788,
+        "name": "AKI_AKI_BATTLE_KICK_SID",
+        "durationFrames": 24,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1884,
+      "scriptRelativeOffset": 1864,
+      "rawRequest": 1213,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1213,
+      "motionId": 1213,
+      "sequenceIndex": 1212,
+      "fileOffsetHex": "0x0000075c",
+      "scriptRelativeOffsetHex": "0x00000748",
+      "rawRequestHex": "0x000004bd",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x04bd",
+      "motionIdHex": "0x04bd",
+      "sequence": {
+        "index": 1212,
+        "name": "AKI_AKI_BAT_KICK_NIREN1_TOP",
+        "durationFrames": 40,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1916,
+      "scriptRelativeOffset": 1896,
+      "rawRequest": 1214,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1214,
+      "motionId": 1214,
+      "sequenceIndex": 1213,
+      "fileOffsetHex": "0x0000077c",
+      "scriptRelativeOffsetHex": "0x00000768",
+      "rawRequestHex": "0x000004be",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x04be",
+      "motionIdHex": "0x04be",
+      "sequence": {
+        "index": 1213,
+        "name": "AKI_AKI_BAT_KICK_NIREN2_TOP",
+        "durationFrames": 41,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1976,
+      "scriptRelativeOffset": 1956,
+      "rawRequest": 1438,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1438,
+      "motionId": 1438,
+      "sequenceIndex": 1437,
+      "fileOffsetHex": "0x000007b8",
+      "scriptRelativeOffsetHex": "0x000007a4",
+      "rawRequestHex": "0x0000059e",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x059e",
+      "motionIdHex": "0x059e",
+      "sequence": {
+        "index": 1437,
+        "name": "AKI_AKI_KICK_KERIAGE",
+        "durationFrames": 32,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 1984,
+      "scriptRelativeOffset": 1964,
+      "rawRequest": 1029,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1029,
+      "motionId": 1029,
+      "sequenceIndex": 1028,
+      "fileOffsetHex": "0x000007c0",
+      "scriptRelativeOffsetHex": "0x000007ac",
+      "rawRequestHex": "0x00000405",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0405",
+      "motionIdHex": "0x0405",
+      "sequence": {
+        "index": 1028,
+        "name": "AKI_AKI_KICK_KERIAGE_Y",
+        "durationFrames": 31,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 2016,
+      "scriptRelativeOffset": 1996,
+      "rawRequest": 849,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 849,
+      "motionId": 849,
+      "sequenceIndex": 848,
+      "fileOffsetHex": "0x000007e0",
+      "scriptRelativeOffsetHex": "0x000007cc",
+      "rawRequestHex": "0x00000351",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0351",
+      "motionIdHex": "0x0351",
+      "sequence": {
+        "index": 848,
+        "name": "AKI_AKI_MAEGERI",
+        "durationFrames": 27,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 2108,
+      "scriptRelativeOffset": 2088,
+      "rawRequest": 1107,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1107,
+      "motionId": 1107,
+      "sequenceIndex": 1106,
+      "fileOffsetHex": "0x0000083c",
+      "scriptRelativeOffsetHex": "0x00000828",
+      "rawRequestHex": "0x00000453",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0453",
+      "motionIdHex": "0x0453",
+      "sequence": {
+        "index": 1106,
+        "name": "AKI_AKI_KICK_ZEN_S1",
+        "durationFrames": 37,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 2116,
+      "scriptRelativeOffset": 2096,
+      "rawRequest": 1106,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1106,
+      "motionId": 1106,
+      "sequenceIndex": 1105,
+      "fileOffsetHex": "0x00000844",
+      "scriptRelativeOffsetHex": "0x00000830",
+      "rawRequestHex": "0x00000452",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0452",
+      "motionIdHex": "0x0452",
+      "sequence": {
+        "index": 1105,
+        "name": "AKI_AKI_KICK_ZEN",
+        "durationFrames": 26,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 2180,
+      "scriptRelativeOffset": 2160,
+      "rawRequest": 1439,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1439,
+      "motionId": 1439,
+      "sequenceIndex": 1438,
+      "fileOffsetHex": "0x00000884",
+      "scriptRelativeOffsetHex": "0x00000870",
+      "rawRequestHex": "0x0000059f",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x059f",
+      "motionIdHex": "0x059f",
+      "sequence": {
+        "index": 1438,
+        "name": "AKI_AKI_KICK_KKT_S1",
+        "durationFrames": 15,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 2188,
+      "scriptRelativeOffset": 2168,
+      "rawRequest": 1202,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1202,
+      "motionId": 1202,
+      "sequenceIndex": 1201,
+      "fileOffsetHex": "0x0000088c",
+      "scriptRelativeOffsetHex": "0x00000878",
+      "rawRequestHex": "0x000004b2",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x04b2",
+      "motionIdHex": "0x04b2",
+      "sequence": {
+        "index": 1201,
+        "name": "AKI_AKI_BAT_KICK_KKT_TOP",
+        "durationFrames": 33,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 2240,
+      "scriptRelativeOffset": 2220,
+      "rawRequest": 1328,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1328,
+      "motionId": 1328,
+      "sequenceIndex": 1327,
+      "fileOffsetHex": "0x000008c0",
+      "scriptRelativeOffsetHex": "0x000008ac",
+      "rawRequestHex": "0x00000530",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0530",
+      "motionIdHex": "0x0530",
+      "sequence": {
+        "index": 1327,
+        "name": "AKI_AKI_KICK_HAZ_KESA_TOP",
+        "durationFrames": 31,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 2288,
+      "scriptRelativeOffset": 2268,
+      "rawRequest": 1433,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1433,
+      "motionId": 1433,
+      "sequenceIndex": 1432,
+      "fileOffsetHex": "0x000008f0",
+      "scriptRelativeOffsetHex": "0x000008dc",
+      "rawRequestHex": "0x00000599",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0599",
+      "motionIdHex": "0x0599",
+      "sequence": {
+        "index": 1432,
+        "name": "AKI_AKI_KICK_ENSEN1_S1",
+        "durationFrames": 35,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 2296,
+      "scriptRelativeOffset": 2276,
+      "rawRequest": 1288,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1288,
+      "motionId": 1288,
+      "sequenceIndex": 1287,
+      "fileOffsetHex": "0x000008f8",
+      "scriptRelativeOffsetHex": "0x000008e4",
+      "rawRequestHex": "0x00000508",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0508",
+      "motionIdHex": "0x0508",
+      "sequence": {
+        "index": 1287,
+        "name": "AKI_AKI_KICK_ENSEN_TOP",
+        "durationFrames": 28,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 2328,
+      "scriptRelativeOffset": 2308,
+      "rawRequest": 788,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 788,
+      "motionId": 788,
+      "sequenceIndex": 787,
+      "fileOffsetHex": "0x00000918",
+      "scriptRelativeOffsetHex": "0x00000904",
+      "rawRequestHex": "0x00000314",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0314",
+      "motionIdHex": "0x0314",
+      "sequence": {
+        "index": 787,
+        "name": "AKI_AKI_BATTLE_KICK_LOW",
+        "durationFrames": 31,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 2344,
+      "scriptRelativeOffset": 2324,
+      "rawRequest": 870,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 870,
+      "motionId": 870,
+      "sequenceIndex": 869,
+      "fileOffsetHex": "0x00000928",
+      "scriptRelativeOffsetHex": "0x00000914",
+      "rawRequestHex": "0x00000366",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0366",
+      "motionIdHex": "0x0366",
+      "sequence": {
+        "index": 869,
+        "name": "AKI_AKI_MAWASIGERI_TOP",
+        "durationFrames": 24,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 2392,
+      "scriptRelativeOffset": 2372,
+      "rawRequest": 33335,
+      "requestFlags": 0,
+      "motionIdFlags": 32768,
+      "encodedMotionId": 33335,
+      "motionId": 567,
+      "sequenceIndex": 566,
+      "fileOffsetHex": "0x00000958",
+      "scriptRelativeOffsetHex": "0x00000944",
+      "rawRequestHex": "0x00008237",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x8000",
+      "encodedMotionIdHex": "0x8237",
+      "motionIdHex": "0x0237",
+      "sequence": {
+        "index": 566,
+        "name": "DMY_DMY_AKI_AKI_URAKEN_ROLL_TOP",
+        "durationFrames": 27,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 2440,
+      "scriptRelativeOffset": 2420,
+      "rawRequest": 33915,
+      "requestFlags": 0,
+      "motionIdFlags": 32768,
+      "encodedMotionId": 33915,
+      "motionId": 1147,
+      "sequenceIndex": 1146,
+      "fileOffsetHex": "0x00000988",
+      "scriptRelativeOffsetHex": "0x00000974",
+      "rawRequestHex": "0x0000847b",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x8000",
+      "encodedMotionIdHex": "0x847b",
+      "motionIdHex": "0x047b",
+      "sequence": {
+        "index": 1146,
+        "name": "AKI_AKI_BATTLE_PNC_APR2",
+        "durationFrames": 29,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 2456,
+      "scriptRelativeOffset": 2436,
+      "rawRequest": 33636,
+      "requestFlags": 0,
+      "motionIdFlags": 32768,
+      "encodedMotionId": 33636,
+      "motionId": 868,
+      "sequenceIndex": 867,
+      "fileOffsetHex": "0x00000998",
+      "scriptRelativeOffsetHex": "0x00000984",
+      "rawRequestHex": "0x00008364",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x8000",
+      "encodedMotionIdHex": "0x8364",
+      "motionIdHex": "0x0364",
+      "sequence": {
+        "index": 867,
+        "name": "AKI_AKI_KICK_BACKROLL_JUMP",
+        "durationFrames": 34,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 2496,
+      "scriptRelativeOffset": 2476,
+      "rawRequest": 33415,
+      "requestFlags": 0,
+      "motionIdFlags": 32768,
+      "encodedMotionId": 33415,
+      "motionId": 647,
+      "sequenceIndex": 646,
+      "fileOffsetHex": "0x000009c0",
+      "scriptRelativeOffsetHex": "0x000009ac",
+      "rawRequestHex": "0x00008287",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x8000",
+      "encodedMotionIdHex": "0x8287",
+      "motionIdHex": "0x0287",
+      "sequence": {
+        "index": 646,
+        "name": "DMY_AKI_AKI_BATTLE_PNC_FUK",
+        "durationFrames": 24,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 2536,
+      "scriptRelativeOffset": 2516,
+      "rawRequest": 659,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 659,
+      "motionId": 659,
+      "sequenceIndex": 658,
+      "fileOffsetHex": "0x000009e8",
+      "scriptRelativeOffsetHex": "0x000009d4",
+      "rawRequestHex": "0x00000293",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0293",
+      "motionIdHex": "0x0293",
+      "sequence": {
+        "index": 658,
+        "name": "DMY_AKI_AKI_ELBOW",
+        "durationFrames": 27,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 2576,
+      "scriptRelativeOffset": 2556,
+      "rawRequest": 33428,
+      "requestFlags": 0,
+      "motionIdFlags": 32768,
+      "encodedMotionId": 33428,
+      "motionId": 660,
+      "sequenceIndex": 659,
+      "fileOffsetHex": "0x00000a10",
+      "scriptRelativeOffsetHex": "0x000009fc",
+      "rawRequestHex": "0x00008294",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x8000",
+      "encodedMotionIdHex": "0x8294",
+      "motionIdHex": "0x0294",
+      "sequence": {
+        "index": 659,
+        "name": "DMY_AKI_AKI_BATTLE_PANCH_STR",
+        "durationFrames": 21,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 2604,
+      "scriptRelativeOffset": 2584,
+      "rawRequest": 1500,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1500,
+      "motionId": 1500,
+      "sequenceIndex": 1499,
+      "fileOffsetHex": "0x00000a2c",
+      "scriptRelativeOffsetHex": "0x00000a18",
+      "rawRequestHex": "0x000005dc",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05dc",
+      "motionIdHex": "0x05dc",
+      "sequence": {
+        "index": 1499,
+        "name": "DMY_AKI_AKI_RIMONT_MID",
+        "durationFrames": 61,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 2628,
+      "scriptRelativeOffset": 2608,
+      "rawRequest": 1472,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1472,
+      "motionId": 1472,
+      "sequenceIndex": 1471,
+      "fileOffsetHex": "0x00000a44",
+      "scriptRelativeOffsetHex": "0x00000a30",
+      "rawRequestHex": "0x000005c0",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05c0",
+      "motionIdHex": "0x05c0",
+      "sequence": {
+        "index": 1471,
+        "name": "AKI_AKI_COMBO_MAWA_2",
+        "durationFrames": 27,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 2656,
+      "scriptRelativeOffset": 2636,
+      "rawRequest": 1473,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1473,
+      "motionId": 1473,
+      "sequenceIndex": 1472,
+      "fileOffsetHex": "0x00000a60",
+      "scriptRelativeOffsetHex": "0x00000a4c",
+      "rawRequestHex": "0x000005c1",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05c1",
+      "motionIdHex": "0x05c1",
+      "sequence": {
+        "index": 1472,
+        "name": "AKI_AKI_COMBO_MAWA_3",
+        "durationFrames": 42,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 2784,
+      "scriptRelativeOffset": 2764,
+      "rawRequest": 268436607,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1151,
+      "motionId": 1151,
+      "sequenceIndex": 1150,
+      "fileOffsetHex": "0x00000ae0",
+      "scriptRelativeOffsetHex": "0x00000acc",
+      "rawRequestHex": "0x1000047f",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x047f",
+      "motionIdHex": "0x047f",
+      "sequence": {
+        "index": 1150,
+        "name": "AKI_AKI_NGS_HED_1",
+        "durationFrames": 26,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 2824,
+      "scriptRelativeOffset": 2804,
+      "rawRequest": 268436386,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 930,
+      "motionId": 930,
+      "sequenceIndex": 929,
+      "fileOffsetHex": "0x00000b08",
+      "scriptRelativeOffsetHex": "0x00000af4",
+      "rawRequestHex": "0x100003a2",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x03a2",
+      "motionIdHex": "0x03a2",
+      "sequence": {
+        "index": 929,
+        "name": "AKI_AKI_NGS_HED_2_S1",
+        "durationFrames": 49,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 2832,
+      "scriptRelativeOffset": 2812,
+      "rawRequest": 268436682,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1226,
+      "motionId": 1226,
+      "sequenceIndex": 1225,
+      "fileOffsetHex": "0x00000b10",
+      "scriptRelativeOffsetHex": "0x00000afc",
+      "rawRequestHex": "0x100004ca",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x04ca",
+      "motionIdHex": "0x04ca",
+      "sequence": {
+        "index": 1225,
+        "name": "AKI_AKI_NGS_HED_2",
+        "durationFrames": 32,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 2896,
+      "scriptRelativeOffset": 2876,
+      "rawRequest": 268436606,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1150,
+      "motionId": 1150,
+      "sequenceIndex": 1149,
+      "fileOffsetHex": "0x00000b50",
+      "scriptRelativeOffsetHex": "0x00000b3c",
+      "rawRequestHex": "0x1000047e",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x047e",
+      "motionIdHex": "0x047e",
+      "sequence": {
+        "index": 1149,
+        "name": "AKI_AKI_NGS_BKFRIP",
+        "durationFrames": 40,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 2956,
+      "scriptRelativeOffset": 2936,
+      "rawRequest": 268436660,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1204,
+      "motionId": 1204,
+      "sequenceIndex": 1203,
+      "fileOffsetHex": "0x00000b8c",
+      "scriptRelativeOffsetHex": "0x00000b78",
+      "rawRequestHex": "0x100004b4",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x04b4",
+      "motionIdHex": "0x04b4",
+      "sequence": {
+        "index": 1203,
+        "name": "AKI_AKI_NGS_JUDO_OG",
+        "durationFrames": 50,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 2996,
+      "scriptRelativeOffset": 2976,
+      "rawRequest": 268436932,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1476,
+      "motionId": 1476,
+      "sequenceIndex": 1475,
+      "fileOffsetHex": "0x00000bb4",
+      "scriptRelativeOffsetHex": "0x00000ba0",
+      "rawRequestHex": "0x100005c4",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05c4",
+      "motionIdHex": "0x05c4",
+      "sequence": {
+        "index": 1475,
+        "name": "AKI_AKI_NGS_UCH",
+        "durationFrames": 56,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 3092,
+      "scriptRelativeOffset": 3072,
+      "rawRequest": 268436374,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 918,
+      "motionId": 918,
+      "sequenceIndex": 917,
+      "fileOffsetHex": "0x00000c14",
+      "scriptRelativeOffsetHex": "0x00000c00",
+      "rawRequestHex": "0x10000396",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0396",
+      "motionIdHex": "0x0396",
+      "sequence": {
+        "index": 917,
+        "name": "AKI_AKI_NGS_SP1_ELB",
+        "durationFrames": 45,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 3136,
+      "scriptRelativeOffset": 3116,
+      "rawRequest": 268436024,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 568,
+      "motionId": 568,
+      "sequenceIndex": 567,
+      "fileOffsetHex": "0x00000c40",
+      "scriptRelativeOffsetHex": "0x00000c2c",
+      "rawRequestHex": "0x10000238",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0238",
+      "motionIdHex": "0x0238",
+      "sequence": {
+        "index": 567,
+        "name": "AKI_AKI_NGS_SP2_WAK_PED",
+        "durationFrames": 76,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 3144,
+      "scriptRelativeOffset": 3124,
+      "rawRequest": 268436375,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 919,
+      "motionId": 919,
+      "sequenceIndex": 918,
+      "fileOffsetHex": "0x00000c48",
+      "scriptRelativeOffsetHex": "0x00000c34",
+      "rawRequestHex": "0x10000397",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0397",
+      "motionIdHex": "0x0397",
+      "sequence": {
+        "index": 918,
+        "name": "AKI_AKI_NGS_SP2_WAK",
+        "durationFrames": 65,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 3184,
+      "scriptRelativeOffset": 3164,
+      "rawRequest": 268436200,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 744,
+      "motionId": 744,
+      "sequenceIndex": 743,
+      "fileOffsetHex": "0x00000c70",
+      "scriptRelativeOffsetHex": "0x00000c5c",
+      "rawRequestHex": "0x100002e8",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x02e8",
+      "motionIdHex": "0x02e8",
+      "sequence": {
+        "index": 743,
+        "name": "AKI_AKI_NGS_SP3_GJJ_CHA",
+        "durationFrames": 84,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 3200,
+      "scriptRelativeOffset": 3180,
+      "rawRequest": 268436200,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 744,
+      "motionId": 744,
+      "sequenceIndex": 743,
+      "fileOffsetHex": "0x00000c80",
+      "scriptRelativeOffsetHex": "0x00000c6c",
+      "rawRequestHex": "0x100002e8",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x02e8",
+      "motionIdHex": "0x02e8",
+      "sequence": {
+        "index": 743,
+        "name": "AKI_AKI_NGS_SP3_GJJ_CHA",
+        "durationFrames": 84,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 3208,
+      "scriptRelativeOffset": 3188,
+      "rawRequest": 268436376,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 920,
+      "motionId": 920,
+      "sequenceIndex": 919,
+      "fileOffsetHex": "0x00000c88",
+      "scriptRelativeOffsetHex": "0x00000c74",
+      "rawRequestHex": "0x10000398",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0398",
+      "motionIdHex": "0x0398",
+      "sequence": {
+        "index": 919,
+        "name": "AKI_AKI_NGS_SP3_GJJ",
+        "durationFrames": 84,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 3272,
+      "scriptRelativeOffset": 3252,
+      "rawRequest": 268436982,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1526,
+      "motionId": 1526,
+      "sequenceIndex": 1525,
+      "fileOffsetHex": "0x00000cc8",
+      "scriptRelativeOffsetHex": "0x00000cb4",
+      "rawRequestHex": "0x100005f6",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05f6",
+      "motionIdHex": "0x05f6",
+      "sequence": {
+        "index": 1525,
+        "name": "AKI_AKI_NGS_WUDE1",
+        "durationFrames": 81,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 3332,
+      "scriptRelativeOffset": 3312,
+      "rawRequest": 268436748,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1292,
+      "motionId": 1292,
+      "sequenceIndex": 1291,
+      "fileOffsetHex": "0x00000d04",
+      "scriptRelativeOffsetHex": "0x00000cf0",
+      "rawRequestHex": "0x1000050c",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x050c",
+      "motionIdHex": "0x050c",
+      "sequence": {
+        "index": 1291,
+        "name": "AKI_AKI_NGS_MAKINAGE",
+        "durationFrames": 60,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 3376,
+      "scriptRelativeOffset": 3356,
+      "rawRequest": 268436661,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1205,
+      "motionId": 1205,
+      "sequenceIndex": 1204,
+      "fileOffsetHex": "0x00000d30",
+      "scriptRelativeOffsetHex": "0x00000d1c",
+      "rawRequestHex": "0x100004b5",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x04b5",
+      "motionIdHex": "0x04b5",
+      "sequence": {
+        "index": 1204,
+        "name": "AKI_AKI_NGS_JUDO_TM",
+        "durationFrames": 57,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 3444,
+      "scriptRelativeOffset": 3424,
+      "rawRequest": 268436951,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1495,
+      "motionId": 1495,
+      "sequenceIndex": 1494,
+      "fileOffsetHex": "0x00000d74",
+      "scriptRelativeOffsetHex": "0x00000d60",
+      "rawRequestHex": "0x100005d7",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05d7",
+      "motionIdHex": "0x05d7",
+      "sequence": {
+        "index": 1494,
+        "name": "AKI_AKI_NGS_TM_HZ",
+        "durationFrames": 49,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 3500,
+      "scriptRelativeOffset": 3480,
+      "rawRequest": 268436502,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1046,
+      "motionId": 1046,
+      "sequenceIndex": 1045,
+      "fileOffsetHex": "0x00000dac",
+      "scriptRelativeOffsetHex": "0x00000d98",
+      "rawRequestHex": "0x10000416",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0416",
+      "motionIdHex": "0x0416",
+      "sequence": {
+        "index": 1045,
+        "name": "AKI_AKI_NAGE_BACK1_BD",
+        "durationFrames": 66,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 3508,
+      "scriptRelativeOffset": 3488,
+      "rawRequest": 268436877,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1421,
+      "motionId": 1421,
+      "sequenceIndex": 1420,
+      "fileOffsetHex": "0x00000db4",
+      "scriptRelativeOffsetHex": "0x00000da0",
+      "rawRequestHex": "0x1000058d",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x058d",
+      "motionIdHex": "0x058d",
+      "sequence": {
+        "index": 1420,
+        "name": "AKI_AKI_NGS_B_KERI",
+        "durationFrames": 30,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 3536,
+      "scriptRelativeOffset": 3516,
+      "rawRequest": 268502040,
+      "requestFlags": 4097,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1048,
+      "motionId": 1048,
+      "sequenceIndex": 1047,
+      "fileOffsetHex": "0x00000dd0",
+      "scriptRelativeOffsetHex": "0x00000dbc",
+      "rawRequestHex": "0x10010418",
+      "requestFlagsHex": "0x1001",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0418",
+      "motionIdHex": "0x0418",
+      "sequence": {
+        "index": 1047,
+        "name": "AKI_AKI_NAGE_YOKO1_R",
+        "durationFrames": 56,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 3560,
+      "scriptRelativeOffset": 3540,
+      "rawRequest": 268502039,
+      "requestFlags": 4097,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1047,
+      "motionId": 1047,
+      "sequenceIndex": 1046,
+      "fileOffsetHex": "0x00000de8",
+      "scriptRelativeOffsetHex": "0x00000dd4",
+      "rawRequestHex": "0x10010417",
+      "requestFlagsHex": "0x1001",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0417",
+      "motionIdHex": "0x0417",
+      "sequence": {
+        "index": 1046,
+        "name": "AKI_AKI_NAGE_YOKO1_L",
+        "durationFrames": 56,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 3604,
+      "scriptRelativeOffset": 3584,
+      "rawRequest": 268436685,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1229,
+      "motionId": 1229,
+      "sequenceIndex": 1228,
+      "fileOffsetHex": "0x00000e14",
+      "scriptRelativeOffsetHex": "0x00000e00",
+      "rawRequestHex": "0x100004cd",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x04cd",
+      "motionIdHex": "0x04cd",
+      "sequence": {
+        "index": 1228,
+        "name": "AKI_AKI_UDEKIME_L",
+        "durationFrames": 22,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 3628,
+      "scriptRelativeOffset": 3608,
+      "rawRequest": 268436387,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 931,
+      "motionId": 931,
+      "sequenceIndex": 930,
+      "fileOffsetHex": "0x00000e2c",
+      "scriptRelativeOffsetHex": "0x00000e18",
+      "rawRequestHex": "0x100003a3",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x03a3",
+      "motionIdHex": "0x03a3",
+      "sequence": {
+        "index": 930,
+        "name": "AKI_AKI_NGS_SEOI",
+        "durationFrames": 50,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 3672,
+      "scriptRelativeOffset": 3652,
+      "rawRequest": 1497,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1497,
+      "motionId": 1497,
+      "sequenceIndex": 1496,
+      "fileOffsetHex": "0x00000e58",
+      "scriptRelativeOffsetHex": "0x00000e44",
+      "rawRequestHex": "0x000005d9",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05d9",
+      "motionIdHex": "0x05d9",
+      "sequence": {
+        "index": 1496,
+        "name": "AKI_AKI_TUKAMI_NG",
+        "durationFrames": 26,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 3684,
+      "scriptRelativeOffset": 3664,
+      "rawRequest": 1508,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1508,
+      "motionId": 1508,
+      "sequenceIndex": 1507,
+      "fileOffsetHex": "0x00000e64",
+      "scriptRelativeOffsetHex": "0x00000e50",
+      "rawRequestHex": "0x000005e4",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05e4",
+      "motionIdHex": "0x05e4",
+      "sequence": {
+        "index": 1507,
+        "name": "AKI_AKI_TUKAMI_NG_LONG",
+        "durationFrames": 26,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 3692,
+      "scriptRelativeOffset": 3672,
+      "rawRequest": 382,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 382,
+      "motionId": 382,
+      "sequenceIndex": 381,
+      "fileOffsetHex": "0x00000e6c",
+      "scriptRelativeOffsetHex": "0x00000e58",
+      "rawRequestHex": "0x0000017e",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x017e",
+      "motionIdHex": "0x017e",
+      "sequence": {
+        "index": 381,
+        "name": "PG_NG_MIS_00",
+        "durationFrames": 18,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 3776,
+      "scriptRelativeOffset": 3756,
+      "rawRequest": 268436924,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1468,
+      "motionId": 1468,
+      "sequenceIndex": 1467,
+      "fileOffsetHex": "0x00000ec0",
+      "scriptRelativeOffsetHex": "0x00000eac",
+      "rawRequestHex": "0x100005bc",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05bc",
+      "motionIdHex": "0x05bc",
+      "sequence": {
+        "index": 1467,
+        "name": "AKI_AKI_TUKAMI_BODY4",
+        "durationFrames": 28,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 3816,
+      "scriptRelativeOffset": 3796,
+      "rawRequest": 268436275,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 819,
+      "motionId": 819,
+      "sequenceIndex": 818,
+      "fileOffsetHex": "0x00000ee8",
+      "scriptRelativeOffsetHex": "0x00000ed4",
+      "rawRequestHex": "0x10000333",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0333",
+      "motionIdHex": "0x0333",
+      "sequence": {
+        "index": 818,
+        "name": "AKI_AKI_TUKAMI_BODY1",
+        "durationFrames": 67,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 3836,
+      "scriptRelativeOffset": 3816,
+      "rawRequest": 268436277,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 821,
+      "motionId": 821,
+      "sequenceIndex": 820,
+      "fileOffsetHex": "0x00000efc",
+      "scriptRelativeOffsetHex": "0x00000ee8",
+      "rawRequestHex": "0x10000335",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0335",
+      "motionIdHex": "0x0335",
+      "sequence": {
+        "index": 820,
+        "name": "AKI_AKI_TUKAMI_BODY3_KICK",
+        "durationFrames": 60,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 3856,
+      "scriptRelativeOffset": 3836,
+      "rawRequest": 268436255,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 799,
+      "motionId": 799,
+      "sequenceIndex": 798,
+      "fileOffsetHex": "0x00000f10",
+      "scriptRelativeOffsetHex": "0x00000efc",
+      "rawRequestHex": "0x1000031f",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x031f",
+      "motionIdHex": "0x031f",
+      "sequence": {
+        "index": 798,
+        "name": "AKI_AKI_TUKAMI_HIZA",
+        "durationFrames": 46,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 3876,
+      "scriptRelativeOffset": 3856,
+      "rawRequest": 268436353,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 897,
+      "motionId": 897,
+      "sequenceIndex": 896,
+      "fileOffsetHex": "0x00000f24",
+      "scriptRelativeOffsetHex": "0x00000f10",
+      "rawRequestHex": "0x10000381",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0381",
+      "motionIdHex": "0x0381",
+      "sequence": {
+        "index": 896,
+        "name": "AKI_AKI_TUKAMI_SEOI_NAGE",
+        "durationFrames": 44,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 3924,
+      "scriptRelativeOffset": 3904,
+      "rawRequest": 1329,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1329,
+      "motionId": 1329,
+      "sequenceIndex": 1328,
+      "fileOffsetHex": "0x00000f54",
+      "scriptRelativeOffsetHex": "0x00000f40",
+      "rawRequestHex": "0x00000531",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0531",
+      "motionIdHex": "0x0531",
+      "sequence": {
+        "index": 1328,
+        "name": "AKI_AKI_KICK_HAZ_TOBI_TOP",
+        "durationFrames": 34,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4040,
+      "scriptRelativeOffset": 4020,
+      "rawRequest": 586,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 586,
+      "motionId": 586,
+      "sequenceIndex": 585,
+      "fileOffsetHex": "0x00000fc8",
+      "scriptRelativeOffsetHex": "0x00000fb4",
+      "rawRequestHex": "0x0000024a",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x024a",
+      "motionIdHex": "0x024a",
+      "sequence": {
+        "index": 585,
+        "name": "DMY_AKI_AKI_KICK_BEST",
+        "durationFrames": 27,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4048,
+      "scriptRelativeOffset": 4028,
+      "rawRequest": 736,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 736,
+      "motionId": 736,
+      "sequenceIndex": 735,
+      "fileOffsetHex": "0x00000fd0",
+      "scriptRelativeOffsetHex": "0x00000fbc",
+      "rawRequestHex": "0x000002e0",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x02e0",
+      "motionIdHex": "0x02e0",
+      "sequence": {
+        "index": 735,
+        "name": "AKI_AKI_KICK_BEST",
+        "durationFrames": 27,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4112,
+      "scriptRelativeOffset": 4092,
+      "rawRequest": 1431,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1431,
+      "motionId": 1431,
+      "sequenceIndex": 1430,
+      "fileOffsetHex": "0x00001010",
+      "scriptRelativeOffsetHex": "0x00000ffc",
+      "rawRequestHex": "0x00000597",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0597",
+      "motionIdHex": "0x0597",
+      "sequence": {
+        "index": 1430,
+        "name": "AKI_AKI_KICK_ABISEGERI_S1",
+        "durationFrames": 41,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4120,
+      "scriptRelativeOffset": 4100,
+      "rawRequest": 894,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 894,
+      "motionId": 894,
+      "sequenceIndex": 893,
+      "fileOffsetHex": "0x00001018",
+      "scriptRelativeOffsetHex": "0x00001004",
+      "rawRequestHex": "0x0000037e",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x037e",
+      "motionIdHex": "0x037e",
+      "sequence": {
+        "index": 893,
+        "name": "AKI_AKI_KICK_ABISEGERI",
+        "durationFrames": 52,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4180,
+      "scriptRelativeOffset": 4160,
+      "rawRequest": 1290,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1290,
+      "motionId": 1290,
+      "sequenceIndex": 1289,
+      "fileOffsetHex": "0x00001054",
+      "scriptRelativeOffsetHex": "0x00001040",
+      "rawRequestHex": "0x0000050a",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x050a",
+      "motionIdHex": "0x050a",
+      "sequence": {
+        "index": 1289,
+        "name": "AKI_AKI_ELB_ROLL_TOP",
+        "durationFrames": 40,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4188,
+      "scriptRelativeOffset": 4168,
+      "rawRequest": 619,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 619,
+      "motionId": 619,
+      "sequenceIndex": 618,
+      "fileOffsetHex": "0x0000105c",
+      "scriptRelativeOffsetHex": "0x00001048",
+      "rawRequestHex": "0x0000026b",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x026b",
+      "motionIdHex": "0x026b",
+      "sequence": {
+        "index": 618,
+        "name": "AKI_AKI_ELB_Y_ROLL_TOP",
+        "durationFrames": 41,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4236,
+      "scriptRelativeOffset": 4216,
+      "rawRequest": 1445,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1445,
+      "motionId": 1445,
+      "sequenceIndex": 1444,
+      "fileOffsetHex": "0x0000108c",
+      "scriptRelativeOffsetHex": "0x00001078",
+      "rawRequestHex": "0x000005a5",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05a5",
+      "motionIdHex": "0x05a5",
+      "sequence": {
+        "index": 1444,
+        "name": "AKI_AKI_YAG_ITIMON1_MID_S1",
+        "durationFrames": 23,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4244,
+      "scriptRelativeOffset": 4224,
+      "rawRequest": 1207,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1207,
+      "motionId": 1207,
+      "sequenceIndex": 1206,
+      "fileOffsetHex": "0x00001094",
+      "scriptRelativeOffsetHex": "0x00001080",
+      "rawRequestHex": "0x000004b7",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x04b7",
+      "motionIdHex": "0x04b7",
+      "sequence": {
+        "index": 1206,
+        "name": "AKI_AKI_YAG_ITIMON1_MID",
+        "durationFrames": 23,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4276,
+      "scriptRelativeOffset": 4256,
+      "rawRequest": 1422,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1422,
+      "motionId": 1422,
+      "sequenceIndex": 1421,
+      "fileOffsetHex": "0x000010b4",
+      "scriptRelativeOffsetHex": "0x000010a0",
+      "rawRequestHex": "0x0000058e",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x058e",
+      "motionIdHex": "0x058e",
+      "sequence": {
+        "index": 1421,
+        "name": "AKI_AKI_SOUSYOU",
+        "durationFrames": 52,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4368,
+      "scriptRelativeOffset": 4348,
+      "rawRequest": 1428,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1428,
+      "motionId": 1428,
+      "sequenceIndex": 1427,
+      "fileOffsetHex": "0x00001110",
+      "scriptRelativeOffsetHex": "0x000010fc",
+      "rawRequestHex": "0x00000594",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0594",
+      "motionIdHex": "0x0594",
+      "sequence": {
+        "index": 1427,
+        "name": "AKI_AKI_BATTLE_PNC_SHOTEI_S1",
+        "durationFrames": 35,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4376,
+      "scriptRelativeOffset": 4356,
+      "rawRequest": 1396,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1396,
+      "motionId": 1396,
+      "sequenceIndex": 1395,
+      "fileOffsetHex": "0x00001118",
+      "scriptRelativeOffsetHex": "0x00001104",
+      "rawRequestHex": "0x00000574",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0574",
+      "motionIdHex": "0x0574",
+      "sequence": {
+        "index": 1395,
+        "name": "AKI_AKI_BATTLE_PNC_SHOTEI",
+        "durationFrames": 26,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4440,
+      "scriptRelativeOffset": 4420,
+      "rawRequest": 1432,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1432,
+      "motionId": 1432,
+      "sequenceIndex": 1431,
+      "fileOffsetHex": "0x00001158",
+      "scriptRelativeOffsetHex": "0x00001144",
+      "rawRequestHex": "0x00000598",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0598",
+      "motionIdHex": "0x0598",
+      "sequence": {
+        "index": 1431,
+        "name": "AKI_AKI_KICK_BACKROLL_S1",
+        "durationFrames": 28,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4448,
+      "scriptRelativeOffset": 4428,
+      "rawRequest": 1136,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1136,
+      "motionId": 1136,
+      "sequenceIndex": 1135,
+      "fileOffsetHex": "0x00001160",
+      "scriptRelativeOffsetHex": "0x0000114c",
+      "rawRequestHex": "0x00000470",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0470",
+      "motionIdHex": "0x0470",
+      "sequence": {
+        "index": 1135,
+        "name": "AKI_AKI_KICK_BACKROLL_TOP_MISS",
+        "durationFrames": 36,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4500,
+      "scriptRelativeOffset": 4480,
+      "rawRequest": 1289,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1289,
+      "motionId": 1289,
+      "sequenceIndex": 1288,
+      "fileOffsetHex": "0x00001194",
+      "scriptRelativeOffsetHex": "0x00001180",
+      "rawRequestHex": "0x00000509",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0509",
+      "motionIdHex": "0x0509",
+      "sequence": {
+        "index": 1288,
+        "name": "AKI_AKI_CHP_NUKE_MID",
+        "durationFrames": 32,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4532,
+      "scriptRelativeOffset": 4512,
+      "rawRequest": 898,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 898,
+      "motionId": 898,
+      "sequenceIndex": 897,
+      "fileOffsetHex": "0x000011b4",
+      "scriptRelativeOffsetHex": "0x000011a0",
+      "rawRequestHex": "0x00000382",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0382",
+      "motionIdHex": "0x0382",
+      "sequence": {
+        "index": 897,
+        "name": "AKI_AKI_URAKEN_ROLL_TOP",
+        "durationFrames": 27,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4552,
+      "scriptRelativeOffset": 4532,
+      "rawRequest": 1427,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1427,
+      "motionId": 1427,
+      "sequenceIndex": 1426,
+      "fileOffsetHex": "0x000011c8",
+      "scriptRelativeOffsetHex": "0x000011b4",
+      "rawRequestHex": "0x00000593",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0593",
+      "motionIdHex": "0x0593",
+      "sequence": {
+        "index": 1426,
+        "name": "AKI_AKI_BATTLE_PUNCH_FUK_S1",
+        "durationFrames": 30,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4560,
+      "scriptRelativeOffset": 4540,
+      "rawRequest": 1133,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1133,
+      "motionId": 1133,
+      "sequenceIndex": 1132,
+      "fileOffsetHex": "0x000011d0",
+      "scriptRelativeOffsetHex": "0x000011bc",
+      "rawRequestHex": "0x0000046d",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x046d",
+      "motionIdHex": "0x046d",
+      "sequence": {
+        "index": 1132,
+        "name": "AKI_AKI_BATTLE_PANCH_FUK_MISS",
+        "durationFrames": 34,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4620,
+      "scriptRelativeOffset": 4600,
+      "rawRequest": 1443,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1443,
+      "motionId": 1443,
+      "sequenceIndex": 1442,
+      "fileOffsetHex": "0x0000120c",
+      "scriptRelativeOffsetHex": "0x000011f8",
+      "rawRequestHex": "0x000005a3",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05a3",
+      "motionIdHex": "0x05a3",
+      "sequence": {
+        "index": 1442,
+        "name": "AKI_AKI_RUN_KICK_SURA_S1",
+        "durationFrames": 40,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4628,
+      "scriptRelativeOffset": 4608,
+      "rawRequest": 1397,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1397,
+      "motionId": 1397,
+      "sequenceIndex": 1396,
+      "fileOffsetHex": "0x00001214",
+      "scriptRelativeOffsetHex": "0x00001200",
+      "rawRequestHex": "0x00000575",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0575",
+      "motionIdHex": "0x0575",
+      "sequence": {
+        "index": 1396,
+        "name": "AKI_AKI_RUN_KICK_SURA",
+        "durationFrames": 33,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4640,
+      "scriptRelativeOffset": 4620,
+      "rawRequest": 1062,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1062,
+      "motionId": 1062,
+      "sequenceIndex": 1061,
+      "fileOffsetHex": "0x00001220",
+      "scriptRelativeOffsetHex": "0x0000120c",
+      "rawRequestHex": "0x00000426",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0426",
+      "motionIdHex": "0x0426",
+      "sequence": {
+        "index": 1061,
+        "name": "AKI_AKI_KICK_BOX",
+        "durationFrames": 32,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4708,
+      "scriptRelativeOffset": 4688,
+      "rawRequest": 268436385,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 929,
+      "motionId": 929,
+      "sequenceIndex": 928,
+      "fileOffsetHex": "0x00001264",
+      "scriptRelativeOffsetHex": "0x00001250",
+      "rawRequestHex": "0x100003a1",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x03a1",
+      "motionIdHex": "0x03a1",
+      "sequence": {
+        "index": 928,
+        "name": "AKI_AKI_NGS_FROU",
+        "durationFrames": 55,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4768,
+      "scriptRelativeOffset": 4748,
+      "rawRequest": 268436393,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 937,
+      "motionId": 937,
+      "sequenceIndex": 936,
+      "fileOffsetHex": "0x000012a0",
+      "scriptRelativeOffsetHex": "0x0000128c",
+      "rawRequestHex": "0x100003a9",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x03a9",
+      "motionIdHex": "0x03a9",
+      "sequence": {
+        "index": 936,
+        "name": "AKI_AKI_NGS_MRK1_CHA",
+        "durationFrames": 32,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4784,
+      "scriptRelativeOffset": 4764,
+      "rawRequest": 268436393,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 937,
+      "motionId": 937,
+      "sequenceIndex": 936,
+      "fileOffsetHex": "0x000012b0",
+      "scriptRelativeOffsetHex": "0x0000129c",
+      "rawRequestHex": "0x100003a9",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x03a9",
+      "motionIdHex": "0x03a9",
+      "sequence": {
+        "index": 936,
+        "name": "AKI_AKI_NGS_MRK1_CHA",
+        "durationFrames": 32,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4796,
+      "scriptRelativeOffset": 4776,
+      "rawRequest": 268436995,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1539,
+      "motionId": 1539,
+      "sequenceIndex": 1538,
+      "fileOffsetHex": "0x000012bc",
+      "scriptRelativeOffsetHex": "0x000012a8",
+      "rawRequestHex": "0x10000603",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0603",
+      "motionIdHex": "0x0603",
+      "sequence": {
+        "index": 1538,
+        "name": "AKI_AKI_NGS_MRK1",
+        "durationFrames": 32,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4844,
+      "scriptRelativeOffset": 4824,
+      "rawRequest": 268436394,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 938,
+      "motionId": 938,
+      "sequenceIndex": 937,
+      "fileOffsetHex": "0x000012ec",
+      "scriptRelativeOffsetHex": "0x000012d8",
+      "rawRequestHex": "0x100003aa",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x03aa",
+      "motionIdHex": "0x03aa",
+      "sequence": {
+        "index": 937,
+        "name": "AKI_AKI_NGS_MRK2_CHA",
+        "durationFrames": 38,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 4892,
+      "scriptRelativeOffset": 4872,
+      "rawRequest": 268436996,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1540,
+      "motionId": 1540,
+      "sequenceIndex": 1539,
+      "fileOffsetHex": "0x0000131c",
+      "scriptRelativeOffsetHex": "0x00001308",
+      "rawRequestHex": "0x10000604",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0604",
+      "motionIdHex": "0x0604",
+      "sequence": {
+        "index": 1539,
+        "name": "AKI_AKI_NGS_MRK2",
+        "durationFrames": 38,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 5132,
+      "scriptRelativeOffset": 5112,
+      "rawRequest": 1045,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1045,
+      "motionId": 1045,
+      "sequenceIndex": 1044,
+      "fileOffsetHex": "0x0000140c",
+      "scriptRelativeOffsetHex": "0x000013f8",
+      "rawRequestHex": "0x00000415",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0415",
+      "motionIdHex": "0x0415",
+      "sequence": {
+        "index": 1044,
+        "name": "AKI_AKI_DASH_R",
+        "durationFrames": 14,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 5140,
+      "scriptRelativeOffset": 5120,
+      "rawRequest": 1044,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1044,
+      "motionId": 1044,
+      "sequenceIndex": 1043,
+      "fileOffsetHex": "0x00001414",
+      "scriptRelativeOffsetHex": "0x00001400",
+      "rawRequestHex": "0x00000414",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0414",
+      "motionIdHex": "0x0414",
+      "sequence": {
+        "index": 1043,
+        "name": "AKI_AKI_DASH_L",
+        "durationFrames": 14,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 5148,
+      "scriptRelativeOffset": 5128,
+      "rawRequest": 1061,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1061,
+      "motionId": 1061,
+      "sequenceIndex": 1060,
+      "fileOffsetHex": "0x0000141c",
+      "scriptRelativeOffsetHex": "0x00001408",
+      "rawRequestHex": "0x00000425",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0425",
+      "motionIdHex": "0x0425",
+      "sequence": {
+        "index": 1060,
+        "name": "AKI_AKI_DASH_F",
+        "durationFrames": 14,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 5232,
+      "scriptRelativeOffset": 5212,
+      "rawRequest": 754976132,
+      "requestFlags": 11520,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1412,
+      "motionId": 1412,
+      "sequenceIndex": 1411,
+      "fileOffsetHex": "0x00001470",
+      "scriptRelativeOffsetHex": "0x0000145c",
+      "rawRequestHex": "0x2d000584",
+      "requestFlagsHex": "0x2d00",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0584",
+      "motionIdHex": "0x0584",
+      "sequence": {
+        "index": 1411,
+        "name": "AKI_AKI_SYAGAMI_R",
+        "durationFrames": 25,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 5240,
+      "scriptRelativeOffset": 5220,
+      "rawRequest": 754976131,
+      "requestFlags": 11520,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1411,
+      "motionId": 1411,
+      "sequenceIndex": 1410,
+      "fileOffsetHex": "0x00001478",
+      "scriptRelativeOffsetHex": "0x00001464",
+      "rawRequestHex": "0x2d000583",
+      "requestFlagsHex": "0x2d00",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0583",
+      "motionIdHex": "0x0583",
+      "sequence": {
+        "index": 1410,
+        "name": "AKI_AKI_SYAGAMI_L",
+        "durationFrames": 25,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 5308,
+      "scriptRelativeOffset": 5288,
+      "rawRequest": 1477,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1477,
+      "motionId": 1477,
+      "sequenceIndex": 1476,
+      "fileOffsetHex": "0x000014bc",
+      "scriptRelativeOffsetHex": "0x000014a8",
+      "rawRequestHex": "0x000005c5",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05c5",
+      "motionIdHex": "0x05c5",
+      "sequence": {
+        "index": 1476,
+        "name": "AKI_AKI_SY_B_CHOP_01",
+        "durationFrames": 24,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 5328,
+      "scriptRelativeOffset": 5308,
+      "rawRequest": 1478,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1478,
+      "motionId": 1478,
+      "sequenceIndex": 1477,
+      "fileOffsetHex": "0x000014d0",
+      "scriptRelativeOffsetHex": "0x000014bc",
+      "rawRequestHex": "0x000005c6",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05c6",
+      "motionIdHex": "0x05c6",
+      "sequence": {
+        "index": 1477,
+        "name": "AKI_AKI_SY_B_CHOP_02",
+        "durationFrames": 32,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 5348,
+      "scriptRelativeOffset": 5328,
+      "rawRequest": 1479,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1479,
+      "motionId": 1479,
+      "sequenceIndex": 1478,
+      "fileOffsetHex": "0x000014e4",
+      "scriptRelativeOffsetHex": "0x000014d0",
+      "rawRequestHex": "0x000005c7",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05c7",
+      "motionIdHex": "0x05c7",
+      "sequence": {
+        "index": 1478,
+        "name": "AKI_AKI_SY_B_KICK_SURI",
+        "durationFrames": 27,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 5392,
+      "scriptRelativeOffset": 5372,
+      "rawRequest": 268436936,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1480,
+      "motionId": 1480,
+      "sequenceIndex": 1479,
+      "fileOffsetHex": "0x00001510",
+      "scriptRelativeOffsetHex": "0x000014fc",
+      "rawRequestHex": "0x100005c8",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05c8",
+      "motionIdHex": "0x05c8",
+      "sequence": {
+        "index": 1479,
+        "name": "AKI_AKI_SY_NGS_B_ASB",
+        "durationFrames": 56,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 5512,
+      "scriptRelativeOffset": 5492,
+      "rawRequest": 268436969,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1513,
+      "motionId": 1513,
+      "sequenceIndex": 1512,
+      "fileOffsetHex": "0x00001588",
+      "scriptRelativeOffsetHex": "0x00001574",
+      "rawRequestHex": "0x100005e9",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05e9",
+      "motionIdHex": "0x05e9",
+      "sequence": {
+        "index": 1512,
+        "name": "AKI_AKI_NGS_SY_NUKI1",
+        "durationFrames": 33,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 5524,
+      "scriptRelativeOffset": 5504,
+      "rawRequest": 268436970,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1514,
+      "motionId": 1514,
+      "sequenceIndex": 1513,
+      "fileOffsetHex": "0x00001594",
+      "scriptRelativeOffsetHex": "0x00001580",
+      "rawRequestHex": "0x100005ea",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05ea",
+      "motionIdHex": "0x05ea",
+      "sequence": {
+        "index": 1513,
+        "name": "AKI_AKI_NGS_SY_NUKI1_L",
+        "durationFrames": 33,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 5556,
+      "scriptRelativeOffset": 5536,
+      "rawRequest": 268436971,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1515,
+      "motionId": 1515,
+      "sequenceIndex": 1514,
+      "fileOffsetHex": "0x000015b4",
+      "scriptRelativeOffsetHex": "0x000015a0",
+      "rawRequestHex": "0x100005eb",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05eb",
+      "motionIdHex": "0x05eb",
+      "sequence": {
+        "index": 1514,
+        "name": "AKI_AKI_NGS_SY_NUKI2",
+        "durationFrames": 28,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 5588,
+      "scriptRelativeOffset": 5568,
+      "rawRequest": 268436972,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1516,
+      "motionId": 1516,
+      "sequenceIndex": 1515,
+      "fileOffsetHex": "0x000015d4",
+      "scriptRelativeOffsetHex": "0x000015c0",
+      "rawRequestHex": "0x100005ec",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05ec",
+      "motionIdHex": "0x05ec",
+      "sequence": {
+        "index": 1515,
+        "name": "AKI_AKI_NGS_SY_NUKI2_L",
+        "durationFrames": 33,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 5660,
+      "scriptRelativeOffset": 5640,
+      "rawRequest": 268436979,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1523,
+      "motionId": 1523,
+      "sequenceIndex": 1522,
+      "fileOffsetHex": "0x0000161c",
+      "scriptRelativeOffsetHex": "0x00001608",
+      "rawRequestHex": "0x100005f3",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05f3",
+      "motionIdHex": "0x05f3",
+      "sequence": {
+        "index": 1522,
+        "name": "AKI_AKI_NGS_SY_KT1_L",
+        "durationFrames": 50,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 5672,
+      "scriptRelativeOffset": 5652,
+      "rawRequest": 268436978,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1522,
+      "motionId": 1522,
+      "sequenceIndex": 1521,
+      "fileOffsetHex": "0x00001628",
+      "scriptRelativeOffsetHex": "0x00001614",
+      "rawRequestHex": "0x100005f2",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05f2",
+      "motionIdHex": "0x05f2",
+      "sequence": {
+        "index": 1521,
+        "name": "AKI_AKI_NGS_SY_KT1",
+        "durationFrames": 50,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 5708,
+      "scriptRelativeOffset": 5688,
+      "rawRequest": 268436981,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1525,
+      "motionId": 1525,
+      "sequenceIndex": 1524,
+      "fileOffsetHex": "0x0000164c",
+      "scriptRelativeOffsetHex": "0x00001638",
+      "rawRequestHex": "0x100005f5",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05f5",
+      "motionIdHex": "0x05f5",
+      "sequence": {
+        "index": 1524,
+        "name": "AKI_AKI_NGS_SY_KT2_L",
+        "durationFrames": 56,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 5740,
+      "scriptRelativeOffset": 5720,
+      "rawRequest": 268436980,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1524,
+      "motionId": 1524,
+      "sequenceIndex": 1523,
+      "fileOffsetHex": "0x0000166c",
+      "scriptRelativeOffsetHex": "0x00001658",
+      "rawRequestHex": "0x100005f4",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05f4",
+      "motionIdHex": "0x05f4",
+      "sequence": {
+        "index": 1523,
+        "name": "AKI_AKI_NGS_SY_KT2",
+        "durationFrames": 56,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 5760,
+      "scriptRelativeOffset": 5740,
+      "rawRequest": 1424,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1424,
+      "motionId": 1424,
+      "sequenceIndex": 1423,
+      "fileOffsetHex": "0x00001680",
+      "scriptRelativeOffsetHex": "0x0000166c",
+      "rawRequestHex": "0x00000590",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0590",
+      "motionIdHex": "0x0590",
+      "sequence": {
+        "index": 1423,
+        "name": "AKI_AKI_SY_PNC_AP",
+        "durationFrames": 25,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 5784,
+      "scriptRelativeOffset": 5764,
+      "rawRequest": 1467,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1467,
+      "motionId": 1467,
+      "sequenceIndex": 1466,
+      "fileOffsetHex": "0x00001698",
+      "scriptRelativeOffsetHex": "0x00001684",
+      "rawRequestHex": "0x000005bb",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x05bb",
+      "motionIdHex": "0x05bb",
+      "sequence": {
+        "index": 1466,
+        "name": "AKI_AKI_SY_ABISE",
+        "durationFrames": 32,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 5804,
+      "scriptRelativeOffset": 5784,
+      "rawRequest": 1423,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1423,
+      "motionId": 1423,
+      "sequenceIndex": 1422,
+      "fileOffsetHex": "0x000016ac",
+      "scriptRelativeOffsetHex": "0x00001698",
+      "rawRequestHex": "0x0000058f",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x058f",
+      "motionIdHex": "0x058f",
+      "sequence": {
+        "index": 1422,
+        "name": "AKI_AKI_SY_HARAI",
+        "durationFrames": 32,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 5828,
+      "scriptRelativeOffset": 5808,
+      "rawRequest": 1409,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1409,
+      "motionId": 1409,
+      "sequenceIndex": 1408,
+      "fileOffsetHex": "0x000016c4",
+      "scriptRelativeOffsetHex": "0x000016b0",
+      "rawRequestHex": "0x00000581",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0581",
+      "motionIdHex": "0x0581",
+      "sequence": {
+        "index": 1408,
+        "name": "AKI_AKI_BEND_DOWN",
+        "durationFrames": 28,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 5836,
+      "scriptRelativeOffset": 5816,
+      "rawRequest": 1410,
+      "requestFlags": 0,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1410,
+      "motionId": 1410,
+      "sequenceIndex": 1409,
+      "fileOffsetHex": "0x000016cc",
+      "scriptRelativeOffsetHex": "0x000016b8",
+      "rawRequestHex": "0x00000582",
+      "requestFlagsHex": "0x0000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x0582",
+      "motionIdHex": "0x0582",
+      "sequence": {
+        "index": 1409,
+        "name": "AKI_AKI_SIDESTEP_R",
+        "durationFrames": 14,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 5876,
+      "scriptRelativeOffset": 5856,
+      "rawRequest": 268436722,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1266,
+      "motionId": 1266,
+      "sequenceIndex": 1265,
+      "fileOffsetHex": "0x000016f4",
+      "scriptRelativeOffsetHex": "0x000016e0",
+      "rawRequestHex": "0x100004f2",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x04f2",
+      "motionIdHex": "0x04f2",
+      "sequence": {
+        "index": 1265,
+        "name": "AKI_AKI_UDEKIME_L_ELB",
+        "durationFrames": 28,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 5972,
+      "scriptRelativeOffset": 5952,
+      "rawRequest": 268436688,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1232,
+      "motionId": 1232,
+      "sequenceIndex": 1231,
+      "fileOffsetHex": "0x00001754",
+      "scriptRelativeOffsetHex": "0x00001740",
+      "rawRequestHex": "0x100004d0",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x04d0",
+      "motionIdHex": "0x04d0",
+      "sequence": {
+        "index": 1231,
+        "name": "AKI_AKI_UDEKIME_L_KICK_F",
+        "durationFrames": 24,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 6004,
+      "scriptRelativeOffset": 5984,
+      "rawRequest": 268436690,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1234,
+      "motionId": 1234,
+      "sequenceIndex": 1233,
+      "fileOffsetHex": "0x00001774",
+      "scriptRelativeOffsetHex": "0x00001760",
+      "rawRequestHex": "0x100004d2",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x04d2",
+      "motionIdHex": "0x04d2",
+      "sequence": {
+        "index": 1233,
+        "name": "AKI_AKI_UDEKIME_L_KICK_R",
+        "durationFrames": 27,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 6012,
+      "scriptRelativeOffset": 5992,
+      "rawRequest": 268436689,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1233,
+      "motionId": 1233,
+      "sequenceIndex": 1232,
+      "fileOffsetHex": "0x0000177c",
+      "scriptRelativeOffsetHex": "0x00001768",
+      "rawRequestHex": "0x100004d1",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x04d1",
+      "motionIdHex": "0x04d1",
+      "sequence": {
+        "index": 1232,
+        "name": "AKI_AKI_UDEKIME_L_KICK_L",
+        "durationFrames": 27,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 6044,
+      "scriptRelativeOffset": 6024,
+      "rawRequest": 268436689,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1233,
+      "motionId": 1233,
+      "sequenceIndex": 1232,
+      "fileOffsetHex": "0x0000179c",
+      "scriptRelativeOffsetHex": "0x00001788",
+      "rawRequestHex": "0x100004d1",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x04d1",
+      "motionIdHex": "0x04d1",
+      "sequence": {
+        "index": 1232,
+        "name": "AKI_AKI_UDEKIME_L_KICK_L",
+        "durationFrames": 27,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 6052,
+      "scriptRelativeOffset": 6032,
+      "rawRequest": 268436690,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1234,
+      "motionId": 1234,
+      "sequenceIndex": 1233,
+      "fileOffsetHex": "0x000017a4",
+      "scriptRelativeOffsetHex": "0x00001790",
+      "rawRequestHex": "0x100004d2",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x04d2",
+      "motionIdHex": "0x04d2",
+      "sequence": {
+        "index": 1233,
+        "name": "AKI_AKI_UDEKIME_L_KICK_R",
+        "durationFrames": 27,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 6072,
+      "scriptRelativeOffset": 6052,
+      "rawRequest": 268436687,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1231,
+      "motionId": 1231,
+      "sequenceIndex": 1230,
+      "fileOffsetHex": "0x000017b8",
+      "scriptRelativeOffsetHex": "0x000017a4",
+      "rawRequestHex": "0x100004cf",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x04cf",
+      "motionIdHex": "0x04cf",
+      "sequence": {
+        "index": 1230,
+        "name": "AKI_AKI_UDEKIME_L_KICK_B",
+        "durationFrames": 22,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 6080,
+      "scriptRelativeOffset": 6060,
+      "rawRequest": 268436723,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1267,
+      "motionId": 1267,
+      "sequenceIndex": 1266,
+      "fileOffsetHex": "0x000017c0",
+      "scriptRelativeOffsetHex": "0x000017ac",
+      "rawRequestHex": "0x100004f3",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x04f3",
+      "motionIdHex": "0x04f3",
+      "sequence": {
+        "index": 1266,
+        "name": "AKI_AKI_UDEKIME_L_HIZA",
+        "durationFrames": 37,
+        "complete": true
+      }
+    },
+    {
+      "fileOffset": 6124,
+      "scriptRelativeOffset": 6104,
+      "rawRequest": 268436722,
+      "requestFlags": 4096,
+      "motionIdFlags": 0,
+      "encodedMotionId": 1266,
+      "motionId": 1266,
+      "sequenceIndex": 1265,
+      "fileOffsetHex": "0x000017ec",
+      "scriptRelativeOffsetHex": "0x000017d8",
+      "rawRequestHex": "0x100004f2",
+      "requestFlagsHex": "0x1000",
+      "motionIdFlagsHex": "0x0000",
+      "encodedMotionIdHex": "0x04f2",
+      "motionIdHex": "0x04f2",
+      "sequence": {
+        "index": 1265,
+        "name": "AKI_AKI_UDEKIME_L_ELB",
+        "durationFrames": 28,
+        "complete": true
+      }
+    }
+  ],
+  "verifiedPaths": {
+    "tigerKnuckle": {
+      "input": "Dreamcast X",
+      "entrySelector": 1,
+      "nativeMoveCode": 0,
+      "dynamicTraceFighterBase": "0x0cabfba0",
+      "terminalOpcode": 5,
+      "terminalFileOffset": 956,
+      "motionId": 792,
+      "sequence": {
+        "index": 791,
+        "name": "AKI_AKI_BATTLE_PANCH_JAB",
+        "durationFrames": 19,
+        "complete": true
+      }
+    },
+    "crescentKick": {
+      "input": "Dreamcast A",
+      "entrySelector": 2,
+      "dynamicTraceFighterBase": "0x0cabfba0",
+      "terminalOpcode": 5,
+      "terminalFileOffset": 2344,
+      "motionId": 870,
+      "sequence": {
+        "index": 869,
+        "name": "AKI_AKI_MAWASIGERI_TOP",
+        "durationFrames": 24,
+        "complete": true
+      }
+    },
+    "bigWheelExpert": {
+      "input": "Dreamcast X+A simultaneous",
+      "entrySelector": 3,
+      "dynamicTraceFighterBase": "0x0cabfba0",
+      "terminalOpcode": 5,
+      "terminalFileOffset": 4552,
+      "motionId": 1427,
+      "sequence": {
+        "index": 1426,
+        "name": "AKI_AKI_BATTLE_PUNCH_FUK_S1",
+        "durationFrames": 30,
+        "complete": true
+      }
+    },
+    "throwAcquisition": {
+      "input": "Dreamcast B",
+      "entrySelector": 4,
+      "dynamicTraceFighterBase": "0x0cabfba0",
+      "distanceDiscriminator": {
+        "opcode": 27,
+        "fileOffset": 3660,
+        "rawFixed16_16": 91750,
+        "distance": 1.399993896484375,
+        "comparison": "opponentDistance < distance",
+        "shortRequestFileOffset": 3672,
+        "longFallbackRequestFileOffset": 3684
+      },
+      "rangeBranches": [
+        {
+          "terminalFileOffset": 3672,
+          "motionId": 1497,
+          "sequence": {
+            "index": 1496,
+            "name": "AKI_AKI_TUKAMI_NG",
+            "durationFrames": 26,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 3684,
+          "motionId": 1508,
+          "sequence": {
+            "index": 1507,
+            "name": "AKI_AKI_TUKAMI_NG_LONG",
+            "durationFrames": 26,
+            "complete": true
+          }
+        }
+      ]
+    },
+    "tigerMaelstrom": {
+      "input": [
+        "Dreamcast X",
+        "Dreamcast A",
+        "Dreamcast A",
+        "Dreamcast A"
+      ],
+      "initial": {
+        "terminalFileOffset": 956,
+        "motionId": 792,
+        "sequence": {
+          "index": 791,
+          "name": "AKI_AKI_BATTLE_PANCH_JAB",
+          "durationFrames": 19,
+          "complete": true
+        },
+        "continuationFileOffset": 964
+      },
+      "stages": [
+        {
+          "inputSelector": 2,
+          "startFileOffset": 964,
+          "terminalFileOffset": 1028,
+          "continuationFileOffset": 1036,
+          "motionId": 870,
+          "sequence": {
+            "index": 869,
+            "name": "AKI_AKI_MAWASIGERI_TOP",
+            "durationFrames": 24,
+            "complete": true
+          },
+          "instructionOffsets": [
+            964,
+            972,
+            1012,
+            1016,
+            1020,
+            1024,
+            1028
+          ]
+        },
+        {
+          "inputSelector": 2,
+          "startFileOffset": 1036,
+          "terminalFileOffset": 1068,
+          "continuationFileOffset": 1076,
+          "motionId": 1472,
+          "sequence": {
+            "index": 1471,
+            "name": "AKI_AKI_COMBO_MAWA_2",
+            "durationFrames": 27,
+            "complete": true
+          },
+          "instructionOffsets": [
+            1036,
+            1048,
+            1052,
+            1056,
+            1060,
+            1064,
+            1068
+          ]
+        },
+        {
+          "inputSelector": 2,
+          "startFileOffset": 1076,
+          "terminalFileOffset": 1096,
+          "continuationFileOffset": null,
+          "motionId": 1473,
+          "sequence": {
+            "index": 1472,
+            "name": "AKI_AKI_COMBO_MAWA_3",
+            "durationFrames": 42,
+            "complete": true
+          },
+          "instructionOffsets": [
+            1076,
+            1088,
+            1092,
+            1096
+          ]
+        }
+      ],
+      "alternateFirstContinuation": {
+        "inputSelector": 1,
+        "startFileOffset": 964,
+        "terminalFileOffset": 1004,
+        "continuationFileOffset": 1104,
+        "motionId": 1471,
+        "sequence": {
+          "index": 1470,
+          "name": "AKI_AKI_COMBO_JAB_BDY",
+          "durationFrames": 16,
+          "complete": true
+        },
+        "instructionOffsets": [
+          964,
+          984,
+          988,
+          992,
+          996,
+          1000,
+          1004
+        ]
+      }
+    }
+  },
+  "verifiedStrings": {
+    "tigerFlurry": {
+      "input": [
+        "hand",
+        "hand",
+        "hand",
+        "hand",
+        "hand",
+        "hand",
+        "hand",
+        "hand"
+      ],
+      "stages": [
+        {
+          "terminalFileOffset": 956,
+          "motionId": 792,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 791,
+            "name": "AKI_AKI_BATTLE_PANCH_JAB",
+            "durationFrames": 19,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 1004,
+          "motionId": 1471,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 1470,
+            "name": "AKI_AKI_COMBO_JAB_BDY",
+            "durationFrames": 16,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 1236,
+          "motionId": 648,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 647,
+            "name": "DMY_AKI_AKI_URAKEN_ROLL_TOP",
+            "durationFrames": 27,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 1408,
+          "motionId": 1147,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 1146,
+            "name": "AKI_AKI_BATTLE_PNC_APR2",
+            "durationFrames": 29,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 1464,
+          "motionId": 647,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 646,
+            "name": "DMY_AKI_AKI_BATTLE_PNC_FUK",
+            "durationFrames": 24,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 1504,
+          "motionId": 659,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 658,
+            "name": "DMY_AKI_AKI_ELBOW",
+            "durationFrames": 27,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 1544,
+          "motionId": 660,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 659,
+            "name": "DMY_AKI_AKI_BATTLE_PANCH_STR",
+            "durationFrames": 21,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 1572,
+          "motionId": 1500,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 1499,
+            "name": "DMY_AKI_AKI_RIMONT_MID",
+            "durationFrames": 61,
+            "complete": true
+          }
+        }
+      ]
+    },
+    "katanaRush": {
+      "input": [
+        "hand",
+        "hand",
+        "up",
+        "hand",
+        "hand"
+      ],
+      "stages": [
+        {
+          "terminalFileOffset": 956,
+          "motionId": 792,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 791,
+            "name": "AKI_AKI_BATTLE_PANCH_JAB",
+            "durationFrames": 19,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 1004,
+          "motionId": 1471,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 1470,
+            "name": "AKI_AKI_COMBO_JAB_BDY",
+            "durationFrames": 16,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 1156,
+          "motionId": 1470,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 1469,
+            "name": "AKI_AKI_COMBO_BDY_ELB",
+            "durationFrames": 23,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 1192,
+          "motionId": 1289,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 1288,
+            "name": "AKI_AKI_CHP_NUKE_MID",
+            "durationFrames": 32,
+            "complete": true
+          }
+        }
+      ]
+    },
+    "flyingKneeFourHitter": {
+      "input": [
+        "hand",
+        "hand",
+        "up",
+        "hand",
+        "leg"
+      ],
+      "stages": [
+        {
+          "terminalFileOffset": 956,
+          "motionId": 792,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 791,
+            "name": "AKI_AKI_BATTLE_PANCH_JAB",
+            "durationFrames": 19,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 1004,
+          "motionId": 1471,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 1470,
+            "name": "AKI_AKI_COMBO_JAB_BDY",
+            "durationFrames": 16,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 1156,
+          "motionId": 1470,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 1469,
+            "name": "AKI_AKI_COMBO_BDY_ELB",
+            "durationFrames": 23,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 1208,
+          "motionId": 1438,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 1437,
+            "name": "AKI_AKI_KICK_KERIAGE",
+            "durationFrames": 32,
+            "complete": true
+          }
+        }
+      ]
+    },
+    "tigersRage": {
+      "input": [
+        "hand",
+        "hand",
+        "leg"
+      ],
+      "stages": [
+        {
+          "terminalFileOffset": 956,
+          "motionId": 792,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 791,
+            "name": "AKI_AKI_BATTLE_PANCH_JAB",
+            "durationFrames": 19,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 1004,
+          "motionId": 1471,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 1470,
+            "name": "AKI_AKI_COMBO_JAB_BDY",
+            "durationFrames": 16,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 1360,
+          "motionId": 789,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 788,
+            "name": "AKI_AKI_BATTLE_KICK_SID",
+            "durationFrames": 24,
+            "complete": true
+          }
+        }
+      ]
+    },
+    "eyeOfTheTigerStorm": {
+      "input": [
+        "hand",
+        "hand",
+        "hand",
+        "leg"
+      ],
+      "stages": [
+        {
+          "terminalFileOffset": 956,
+          "motionId": 792,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 791,
+            "name": "AKI_AKI_BATTLE_PANCH_JAB",
+            "durationFrames": 19,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 1004,
+          "motionId": 1471,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 1470,
+            "name": "AKI_AKI_COMBO_JAB_BDY",
+            "durationFrames": 16,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 1236,
+          "motionId": 648,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 647,
+            "name": "DMY_AKI_AKI_URAKEN_ROLL_TOP",
+            "durationFrames": 27,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 1424,
+          "motionId": 868,
+          "motionIdFlags": 32768,
+          "sequence": {
+            "index": 867,
+            "name": "AKI_AKI_KICK_BACKROLL_JUMP",
+            "durationFrames": 34,
+            "complete": true
+          }
+        }
+      ]
+    },
+    "theReaper": {
+      "input": [
+        "hand",
+        "hand",
+        "down",
+        "leg",
+        "leg",
+        "leg"
+      ],
+      "stages": [
+        {
+          "terminalFileOffset": 956,
+          "motionId": 792,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 791,
+            "name": "AKI_AKI_BATTLE_PANCH_JAB",
+            "durationFrames": 19,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 1004,
+          "motionId": 1471,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 1470,
+            "name": "AKI_AKI_COMBO_JAB_BDY",
+            "durationFrames": 16,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 1276,
+          "motionId": 788,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 787,
+            "name": "AKI_AKI_BATTLE_KICK_LOW",
+            "durationFrames": 31,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 1316,
+          "motionId": 1472,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 1471,
+            "name": "AKI_AKI_COMBO_MAWA_2",
+            "durationFrames": 27,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 1344,
+          "motionId": 1473,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 1472,
+            "name": "AKI_AKI_COMBO_MAWA_3",
+            "durationFrames": 42,
+            "complete": true
+          }
+        }
+      ]
+    },
+    "tigerMaelstrom": {
+      "input": [
+        "hand",
+        "leg",
+        "leg",
+        "leg"
+      ],
+      "stages": [
+        {
+          "terminalFileOffset": 956,
+          "motionId": 792,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 791,
+            "name": "AKI_AKI_BATTLE_PANCH_JAB",
+            "durationFrames": 19,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 1028,
+          "motionId": 870,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 869,
+            "name": "AKI_AKI_MAWASIGERI_TOP",
+            "durationFrames": 24,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 1068,
+          "motionId": 1472,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 1471,
+            "name": "AKI_AKI_COMBO_MAWA_2",
+            "durationFrames": 27,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 1096,
+          "motionId": 1473,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 1472,
+            "name": "AKI_AKI_COMBO_MAWA_3",
+            "durationFrames": 42,
+            "complete": true
+          }
+        }
+      ]
+    },
+    "crescentCyclone": {
+      "input": [
+        "leg",
+        "leg",
+        "leg"
+      ],
+      "stages": [
+        {
+          "terminalFileOffset": 2344,
+          "motionId": 870,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 869,
+            "name": "AKI_AKI_MAWASIGERI_TOP",
+            "durationFrames": 24,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 2628,
+          "motionId": 1472,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 1471,
+            "name": "AKI_AKI_COMBO_MAWA_2",
+            "durationFrames": 27,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 2656,
+          "motionId": 1473,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 1472,
+            "name": "AKI_AKI_COMBO_MAWA_3",
+            "durationFrames": 42,
+            "complete": true
+          }
+        }
+      ]
+    },
+    "tigerClaw": {
+      "input": [
+        "leg",
+        "hand",
+        "hand",
+        "hand",
+        "hand",
+        "hand",
+        "hand"
+      ],
+      "stages": [
+        {
+          "terminalFileOffset": 2344,
+          "motionId": 870,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 869,
+            "name": "AKI_AKI_MAWASIGERI_TOP",
+            "durationFrames": 24,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 2392,
+          "motionId": 567,
+          "motionIdFlags": 32768,
+          "sequence": {
+            "index": 566,
+            "name": "DMY_DMY_AKI_AKI_URAKEN_ROLL_TOP",
+            "durationFrames": 27,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 2440,
+          "motionId": 1147,
+          "motionIdFlags": 32768,
+          "sequence": {
+            "index": 1146,
+            "name": "AKI_AKI_BATTLE_PNC_APR2",
+            "durationFrames": 29,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 2496,
+          "motionId": 647,
+          "motionIdFlags": 32768,
+          "sequence": {
+            "index": 646,
+            "name": "DMY_AKI_AKI_BATTLE_PNC_FUK",
+            "durationFrames": 24,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 2536,
+          "motionId": 659,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 658,
+            "name": "DMY_AKI_AKI_ELBOW",
+            "durationFrames": 27,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 2576,
+          "motionId": 660,
+          "motionIdFlags": 32768,
+          "sequence": {
+            "index": 659,
+            "name": "DMY_AKI_AKI_BATTLE_PANCH_STR",
+            "durationFrames": 21,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 2604,
+          "motionId": 1500,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 1499,
+            "name": "DMY_AKI_AKI_RIMONT_MID",
+            "durationFrames": 61,
+            "complete": true
+          }
+        }
+      ]
+    },
+    "whirlingFury": {
+      "input": [
+        "leg",
+        "hand",
+        "leg"
+      ],
+      "stages": [
+        {
+          "terminalFileOffset": 2344,
+          "motionId": 870,
+          "motionIdFlags": 0,
+          "sequence": {
+            "index": 869,
+            "name": "AKI_AKI_MAWASIGERI_TOP",
+            "durationFrames": 24,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 2392,
+          "motionId": 567,
+          "motionIdFlags": 32768,
+          "sequence": {
+            "index": 566,
+            "name": "DMY_DMY_AKI_AKI_URAKEN_ROLL_TOP",
+            "durationFrames": 27,
+            "complete": true
+          }
+        },
+        {
+          "terminalFileOffset": 2456,
+          "motionId": 868,
+          "motionIdFlags": 32768,
+          "sequence": {
+            "index": 867,
+            "name": "AKI_AKI_KICK_BACKROLL_JUMP",
+            "durationFrames": 34,
+            "complete": true
+          }
+        }
+      ]
+    }
+  }
+}

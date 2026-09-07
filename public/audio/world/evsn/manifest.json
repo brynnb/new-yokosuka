@@ -1,0 +1,2664 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/build_evsn_audio_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/STREAM/01NVE.AFS",
+      "sha256": "527dc9118f93248b892b73c5dc39d641b5d29869ef8434aae9c565734061a64a"
+    },
+    "soundBank": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/SOUND/A1_NZMVS.SND",
+      "sha256": "38330a2e90d09eb8f7c8b478a2bd3b8f78a5d66157b6e9638425652b6cb5dfba"
+    },
+    "authManifest": "play/assets/sakuragaoka/evsn/manifest.json",
+    "resourceBindingEvidence": "tools/evidence/evsn-native-lifecycle.json"
+  },
+  "voices": [
+    {
+      "voiceId": "01NVEA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEA001.aiff",
+      "nativeMember": "01NVEA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 10240,
+      "nativeSha256": "3fad6100abf4192b7ec4e64e81c582bd9f8e80c7a9dbb08e22a068200c281d10",
+      "speakerId": "AKIR",
+      "sourceText": "That's Nozomi's voice=@",
+      "displayText": "That's Nozomi's voice...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEA001.wav",
+      "byteLength": 40748,
+      "sha256": "e088aa3be66f29122c0f29863e524b70048e3d974d609c43b140ccd82b561c26"
+    },
+    {
+      "voiceId": "01NVEA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEA002.aiff",
+      "nativeMember": "01NVEA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 6144,
+      "nativeSha256": "e5960fc929e3d6b88063c9cf371225c0806ec738d8c6aa42e1999ce7df04eeb5",
+      "speakerId": "AKIR",
+      "sourceText": "Nozomi!",
+      "displayText": "Nozomi!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEA002.wav",
+      "byteLength": 24364,
+      "sha256": "03760be9eb55dbcc024a89febc6516921945509afaa5a21891ef8b0804953dce"
+    },
+    {
+      "voiceId": "01NVEA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEA003.aiff",
+      "nativeMember": "01NVEA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 8192,
+      "nativeSha256": "3640e7af63b5cc56ef06b92858de98cc6d83efd3e25bc8a0b99baea4325b7351",
+      "speakerId": "AKIR",
+      "sourceText": "Any time=@",
+      "displayText": "Any time...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEA003.wav",
+      "byteLength": 32556,
+      "sha256": "071b1bc5beb07bcee25a590ac88b4ee1b1c1849654764899b2c6bb83c19616dc"
+    },
+    {
+      "voiceId": "01NVEA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEA004.aiff",
+      "nativeMember": "01NVEA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 14336,
+      "nativeSha256": "2f2459fd5545006bce39bd7298fe7d189391b3d66eae94242e6dccd4bfaa111d",
+      "speakerId": "AKIR",
+      "sourceText": "Both of you, stay away from her.＆Understood?!",
+      "displayText": "Both of you, stay away from her.\nUnderstood?!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEA004.wav",
+      "byteLength": 57132,
+      "sha256": "354e225b4135d17d8243582ae6aeea2b2ad8172a3b0f36bed50691ea1b12821a"
+    },
+    {
+      "voiceId": "01NVEA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEA005.aiff",
+      "nativeMember": "01NVEA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 14336,
+      "nativeSha256": "8e24525eb67781aaf85d4262fafa68b9a743186c943a4329e2eb6ae024943a0b",
+      "speakerId": "AKIR",
+      "sourceText": "Nozomi, you gotta be more careful!",
+      "displayText": "Nozomi, you gotta be more careful!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEA005.wav",
+      "byteLength": 57132,
+      "sha256": "523e8c87b7526dd78e637cee1875abd86c4236be770cf49a8448a919ebca1170"
+    },
+    {
+      "voiceId": "01NVEA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEA006.aiff",
+      "nativeMember": "01NVEA006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 18432,
+      "nativeSha256": "529881fbb276a5c0fe7c8defeaabf87149e4ef365330148d447d05c0dd6d1624",
+      "speakerId": "AKIR",
+      "sourceText": "I know.＆But you can't reason with those guys.",
+      "displayText": "I know.\nBut you can't reason with those guys.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 26
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEA006.wav",
+      "byteLength": 73516,
+      "sha256": "b159946e91bfd3ed9c6ce4a76ff7b53992cd5918901d8265b7d77bf6fdedd909"
+    },
+    {
+      "voiceId": "01NVEA007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEA007.aiff",
+      "nativeMember": "01NVEA007.str",
+      "speakerId": "AKIR",
+      "sourceText": null,
+      "displayText": null,
+      "lipSync": null,
+      "unavailable": true,
+      "unavailableReason": "AUTH references 01NVEA007, but the exact retail 01NVE.AFS directory skips from A006 to A008",
+      "evidence": "tools/evidence/evsn-native-lifecycle.json"
+    },
+    {
+      "voiceId": "01NVEB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEB001.aiff",
+      "nativeMember": "01NVEB001.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 8192,
+      "nativeSha256": "eceefa8e616fa3d1444da8b1146e66654b1601cbbd4889e3e5db143110c735da",
+      "speakerId": "HRSK",
+      "sourceText": "Stop it! ",
+      "displayText": "Stop it! ",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEB001.wav",
+      "byteLength": 32556,
+      "sha256": "6696feb6df64c691aaa5a122e9734ddc395b78921af8546c2f43c45f12f735a1"
+    },
+    {
+      "voiceId": "01NVEB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEB002.aiff",
+      "nativeMember": "01NVEB002.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 26624,
+      "nativeSha256": "3f33d1dd2fdd86c6dd55e39cad30530ba90dcdb46140feb2da6583c1b9976914",
+      "speakerId": "HRSK",
+      "sourceText": "I don't care who you think you are.＆You can't threaten little kids.",
+      "displayText": "I don't care who you think you are.\nYou can't threaten little kids.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 20
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEB002.wav",
+      "byteLength": 106284,
+      "sha256": "f4873090426739709e2e829f75dec88fc1d618c9da1466350e6183acef82db4a"
+    },
+    {
+      "voiceId": "01NVEB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEB003.aiff",
+      "nativeMember": "01NVEB003.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 20480,
+      "nativeSha256": "db16a3a95bbe6fc8313dadfadab3ea38c9efb899d4d33757e0164c966edb3f2c",
+      "speakerId": "HRSK",
+      "sourceText": "Can't you just leave him alone?＆He's just a kid.",
+      "displayText": "Can't you just leave him alone?\nHe's just a kid.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEB003.wav",
+      "byteLength": 81708,
+      "sha256": "2c4486682a2737e2f0e0b6338c19b579746ffcafbcf90e9c71056b841e5bf4a3"
+    },
+    {
+      "voiceId": "01NVEB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEB004.aiff",
+      "nativeMember": "01NVEB004.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 8192,
+      "nativeSha256": "1beb03980c99f4e4d19b0de9b16eded780de47c32318d34bdd7e195c1cd619b4",
+      "speakerId": "HRSK",
+      "sourceText": "Get away from me!",
+      "displayText": "Get away from me!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 15
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEB004.wav",
+      "byteLength": 32556,
+      "sha256": "6308fb170a1c1ab03a2dcda39490752170ca0d740102c77fbc602ff5d180fe30"
+    },
+    {
+      "voiceId": "01NVEB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEB005.aiff",
+      "nativeMember": "01NVEB005.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 16384,
+      "nativeSha256": "9d11c035a21b3b4b91304586b9a70a8f97a70cbcc891fd2774ff85c02d390127",
+      "speakerId": "HRSK",
+      "sourceText": "Don't you dare lay a finger on me!",
+      "displayText": "Don't you dare lay a finger on me!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 21
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEB005.wav",
+      "byteLength": 65324,
+      "sha256": "ccf25088ccd902722d2a8f38c49e1e827c9da3e2e854994b97acf261a13c12d8"
+    },
+    {
+      "voiceId": "01NVEB006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEB006.aiff",
+      "nativeMember": "01NVEB006.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 6144,
+      "nativeSha256": "75ad4a6bc9a2412ef7f4f7dd252bf2bc3e0ff8a38f2f9d82dffa7523b5e96c3d",
+      "speakerId": "HRSK",
+      "sourceText": "Ryo!",
+      "displayText": "Ryo!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEB006.wav",
+      "byteLength": 24364,
+      "sha256": "edd5c063bccf48a28dcdf485a7d68fe2b0fffb0e73532402161e08242fbd6879"
+    },
+    {
+      "voiceId": "01NVEB007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEB007.aiff",
+      "nativeMember": "01NVEB007.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 8192,
+      "nativeSha256": "04d4523f04b439b2f2b7fbd5ecbc7a89a86fcc2c0028dd99e30cae910b6989d3",
+      "speakerId": "HRSK",
+      "sourceText": "Thank you, Ryo.",
+      "displayText": "Thank you, Ryo.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEB007.wav",
+      "byteLength": 32556,
+      "sha256": "3dc47c3f0efc3ca0918e9975f9cb00750f5777b197ffd9220582a1a347daf726"
+    },
+    {
+      "voiceId": "01NVEB008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEB008.aiff",
+      "nativeMember": "01NVEB008.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 12288,
+      "nativeSha256": "865840b5999bc7fd1ef5547846f5230e602cb2571223c265b2cf7389c148ddcc",
+      "speakerId": "HRSK",
+      "sourceText": "They were going to hurt him.",
+      "displayText": "They were going to hurt him.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEB008.wav",
+      "byteLength": 48940,
+      "sha256": "2417d17057c8b4138bca96d77c3961907fd29ce35c72fdc8a59cb0850b03b473"
+    },
+    {
+      "voiceId": "01NVEB009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEB009.aiff",
+      "nativeMember": "01NVEB009.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 2048,
+      "nativeSha256": "b021d3bb360e8c424e39bf2dea1e6f66fd9d2cdcd35efa96f2b0b117b363fda1",
+      "speakerId": "HRSK",
+      "sourceText": "But=@",
+      "displayText": "But...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEB009.wav",
+      "byteLength": 7980,
+      "sha256": "38c8e46144e2b8291010b21cacfd5111c7f2e4420fd24cc61f9e0f14a62f1216"
+    },
+    {
+      "voiceId": "01NVEB010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEB010.aiff",
+      "nativeMember": "01NVEB010.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 6144,
+      "nativeSha256": "82b095717a4592baee80f060f87af806dd3e0b6b2e5582f8d4fb96cc4095dadf",
+      "speakerId": "HRSK",
+      "sourceText": "OK=@",
+      "displayText": "OK...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEB010.wav",
+      "byteLength": 24364,
+      "sha256": "1e88bd689bf9d4d1ecea7b30f841c513e660523f32e4918d331493d20c19f976"
+    },
+    {
+      "voiceId": "01NVEC001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEC001.aiff",
+      "nativeMember": "01NVEC001.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 12288,
+      "nativeSha256": "7c9b48d00447cb60870fb92594b721d554c3a6308d10b1ae1525b8152db4255a",
+      "speakerId": "ENKI",
+      "sourceText": "Who do you think you are?",
+      "displayText": "Who do you think you are?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 31
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 20
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEC001.wav",
+      "byteLength": 48940,
+      "sha256": "08a2df764510414bdc5c69a75344aa2796b059bef61016c5b05a2bf34a8fa8b1"
+    },
+    {
+      "voiceId": "01NVEC002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEC002.aiff",
+      "nativeMember": "01NVEC002.str",
+      "nativeIndex": 18,
+      "nativeByteLength": 18432,
+      "nativeSha256": "e7b00b47caffd6d125f40a5a3614e611202da5ce0ccb7810a9f936c4b4daf0db",
+      "speakerId": "ENKI",
+      "sourceText": "So, you think you're pretty tough eh? ",
+      "displayText": "So, you think you're pretty tough eh? ",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 35
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 15
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEC002.wav",
+      "byteLength": 73516,
+      "sha256": "ea94b5f04a6769b41492217fedec79fcdb7214d5e87eaa355306babe76342bac"
+    },
+    {
+      "voiceId": "01NVEC003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEC003.aiff",
+      "nativeMember": "01NVEC003.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 20480,
+      "nativeSha256": "0788842055b987627709fec0f09fd4027a7919f29e90cb415639cf84739042bb",
+      "speakerId": "ENKI",
+      "sourceText": "So we's gonna teach him a lesson.",
+      "displayText": "So we's gonna teach him a lesson.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 27
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 22
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEC003.wav",
+      "byteLength": 81708,
+      "sha256": "fd83db048a528bdbfe760d6b6d8636b7aeeb8bbe240259a6088a56bb1ff1befb"
+    },
+    {
+      "voiceId": "01NVEC004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEC004.aiff",
+      "nativeMember": "01NVEC004.str",
+      "nativeIndex": 20,
+      "nativeByteLength": 20480,
+      "nativeSha256": "e395e41904692f836941827eae9ea29849b8f03c4f8143aed235a0084df745b9",
+      "speakerId": "ENKI",
+      "sourceText": "Don't fight it babe.＆We'll be gentle=@",
+      "displayText": "Don't fight it babe.\nWe'll be gentle...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 22
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 22
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEC004.wav",
+      "byteLength": 81708,
+      "sha256": "a96dab264c7ad23f2014a1c88e0ef99b762a1895ec47bd05aac5eac8baa3811a"
+    },
+    {
+      "voiceId": "01NVEC005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEC005.aiff",
+      "nativeMember": "01NVEC005.str",
+      "nativeIndex": 21,
+      "nativeByteLength": 10240,
+      "nativeSha256": "78909afc81d7db9fe9d2ce1561b3b81e398444de0c3a7807ac4be205c09e4885",
+      "speakerId": "ENKI",
+      "sourceText": "This'll be fun=@",
+      "displayText": "This'll be fun...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 18
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEC005.wav",
+      "byteLength": 40748,
+      "sha256": "b611c3548964dfcb633cc26873f30e8153f533c9f0da3910de42b6e69340da27"
+    },
+    {
+      "voiceId": "01NVEC006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEC006.aiff",
+      "nativeMember": "01NVEC006.str",
+      "nativeIndex": 22,
+      "nativeByteLength": 14336,
+      "nativeSha256": "1ec442bcbe701ff5804689fa6f123129e2359127748fd559d404b0ce4a503739",
+      "speakerId": "ENKI",
+      "sourceText": "What? Are you looking for a fight?",
+      "displayText": "What? Are you looking for a fight?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEC006.wav",
+      "byteLength": 57132,
+      "sha256": "1c7d2b29432a14d92304bd06147d1683f1f4ec26ffb6eff828a60dfabdb32197"
+    },
+    {
+      "voiceId": "01NVEC007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEC007.aiff",
+      "nativeMember": "01NVEC007.str",
+      "nativeIndex": 23,
+      "nativeByteLength": 14336,
+      "nativeSha256": "20682e034bae3cae4b643375585806f2be023575a4e30e176c4d5cc24a84df60",
+      "speakerId": "ENKI",
+      "sourceText": "Why you=@!",
+      "displayText": "Why you...!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 21
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 17
+          },
+          {
+            "shape": 3,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEC007.wav",
+      "byteLength": 57132,
+      "sha256": "6724eefe57b561318cd5ac257497cde7317202935958741cee4b3845d2d8e4b6"
+    },
+    {
+      "voiceId": "01NVEC008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEC008.aiff",
+      "nativeMember": "01NVEC008.str",
+      "nativeIndex": 24,
+      "nativeByteLength": 24576,
+      "nativeSha256": "4c05cea79c998b175b413efb89de409d981b1723f43ca10b1780e61e9f8e1457",
+      "speakerId": "ENKI",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 41
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 28
+          },
+          {
+            "shape": 3,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEC008.wav",
+      "byteLength": 98092,
+      "sha256": "69b751d932c19c7382b7f08caaa41caea8bddd31a2140cfed22f3a48aef03297"
+    },
+    {
+      "voiceId": "01NVEC009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEC009.aiff",
+      "nativeMember": "01NVEC009.str",
+      "nativeIndex": 25,
+      "nativeByteLength": 26624,
+      "nativeSha256": "4c9fed4a0f8172612cc7230455571af46de7f7d9150b1c03e4ae9a96254f9657",
+      "speakerId": "ENKI",
+      "sourceText": "=@Ye=@yeah=@OK.",
+      "displayText": "...Ye...yeah...OK.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 22
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 3,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEC009.wav",
+      "byteLength": 106284,
+      "sha256": "a7fd0f81af331927815c0a54bced63a97e4ce7f7792edb90cb883e99e0f98d99"
+    },
+    {
+      "voiceId": "01NVED001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVED001.aiff",
+      "nativeMember": "01NVED001.str",
+      "nativeIndex": 26,
+      "nativeByteLength": 14336,
+      "nativeSha256": "38b464d90aec614aaeefd110b9267a632feb007036df243d83d82caeed164de6",
+      "speakerId": "NGSM",
+      "sourceText": "Well aren't we brave!",
+      "displayText": "Well aren't we brave!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 27
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVED001.wav",
+      "byteLength": 57132,
+      "sha256": "518432b4abae5097380dd03d96ecce1eb88ef31076998d1eb414a849b0d412e0"
+    },
+    {
+      "voiceId": "01NVED002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVED002.aiff",
+      "nativeMember": "01NVED002.str",
+      "nativeIndex": 27,
+      "nativeByteLength": 16384,
+      "nativeSha256": "8bae60588706f21f6be05fc4dd6855318c65d6d60f5d005c165cae2b9b4a2849",
+      "speakerId": "NGSM",
+      "sourceText": "You must not know who we are eh?",
+      "displayText": "You must not know who we are eh?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 31
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 17
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVED002.wav",
+      "byteLength": 65324,
+      "sha256": "882ae8ea080789d121d1784d9b5593001e0518ebfbed2af0724ecb3a74a130f4"
+    },
+    {
+      "voiceId": "01NVED003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVED003.aiff",
+      "nativeMember": "01NVED003.str",
+      "nativeIndex": 28,
+      "nativeByteLength": 26624,
+      "nativeSha256": "728d9de1dcaca57f20a2c13df4205b5f1a600431b9c7e120871b8aff7a876b7c",
+      "speakerId": "NGSM",
+      "sourceText": "This little brat just hit my pal＆in the face with that toy.",
+      "displayText": "This little brat just hit my pal\nin the face with that toy.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 18
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 22
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVED003.wav",
+      "byteLength": 106284,
+      "sha256": "2ebed1dfef154e808357eb25c883e472d8350f432c1f5fd7773b42d3918a5698"
+    },
+    {
+      "voiceId": "01NVED004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVED004.aiff",
+      "nativeMember": "01NVED004.str",
+      "nativeIndex": 29,
+      "nativeByteLength": 14336,
+      "nativeSha256": "24475ba287a40a0705b21299dec5cdd3fc59ed5a745ca9d8c6efdea4ef50ba6c",
+      "speakerId": "NGSM",
+      "sourceText": "Hey, you're kinda cute babe=@",
+      "displayText": "Hey, you're kinda cute babe...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVED004.wav",
+      "byteLength": 57132,
+      "sha256": "b4184132fc987b55c3eaa3f8e3dff37e5b2256cf014816676d5faabc9a3c8fab"
+    },
+    {
+      "voiceId": "01NVED005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVED005.aiff",
+      "nativeMember": "01NVED005.str",
+      "nativeIndex": 30,
+      "nativeByteLength": 14336,
+      "nativeSha256": "c759cbbdc22a48e55151f78d67ea0601f54a93fdb2d90a69356ae2bcff8ccbff",
+      "speakerId": "NGSM",
+      "sourceText": "Wouldn't you like to party with us?",
+      "displayText": "Wouldn't you like to party with us?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVED005.wav",
+      "byteLength": 57132,
+      "sha256": "f5d981c5d4a31e0a14b1d702b53fc31eb9dc8a09e397f8250b609095acd79f8b"
+    },
+    {
+      "voiceId": "01NVED007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVED007.aiff",
+      "nativeMember": "01NVED007.str",
+      "speakerId": "NGSM",
+      "sourceText": null,
+      "displayText": null,
+      "lipSync": null,
+      "unavailable": true,
+      "unavailableReason": "AUTH references 01NVED007, but the exact retail 01NVE.AFS directory contains D001 through D005 only",
+      "evidence": "tools/evidence/evsn-native-lifecycle.json"
+    },
+    {
+      "voiceId": "01NVED008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVED008.aiff",
+      "nativeMember": "01NVED008.str",
+      "speakerId": "NGSM",
+      "sourceText": null,
+      "displayText": null,
+      "lipSync": null,
+      "unavailable": true,
+      "unavailableReason": "AUTH references 01NVED008, but the exact retail 01NVE.AFS directory contains D001 through D005 only",
+      "evidence": "tools/evidence/evsn-native-lifecycle.json"
+    },
+    {
+      "voiceId": "01NVEE001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEE001.aiff",
+      "nativeMember": "01NVEE001.str",
+      "nativeIndex": 31,
+      "nativeByteLength": 8192,
+      "nativeSha256": "2d202855b309331a1f4e89faaada8ed4ba72b0f167437287af9d6f68cc28eb4c",
+      "speakerId": "TTYA",
+      "sourceText": "T-Thanks, Ryo=@",
+      "displayText": "T-Thanks, Ryo...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/evsn/voice/01NVEE001.wav",
+      "byteLength": 32556,
+      "sha256": "0def99da4382172a1baafd4ec17d46aaaf605d6de92e3ee00e4a320282a68cdb"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SE/foot/Akirafoot1a.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/evsn/sfx/a9040000.wav",
+      "byteLength": 6332,
+      "sha256": "12d3c82be1f203dfeb45486c68f0e90c394c223d8c5b3c2af35b7f1ee3d62502"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SE/foot/Akirafoot1b.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/evsn/sfx/a9040100.wav",
+      "byteLength": 5924,
+      "sha256": "34fe02b4798ace396cdc96d0449776f5b9dcf29adf5dc7bec9858faf0c8b43f4"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SE/cloths2/cloths02.aiff",
+      "playbackId": 2,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/evsn/sfx/a9040200.wav",
+      "byteLength": 18260,
+      "sha256": "6eb5936ad7d4db5d50b4e6cbe7b0d3e66b430fef83e3a8dd6158e7f29c85480b"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SE/cloths2/friction4.aiff",
+      "playbackId": 3,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/evsn/sfx/a9040300.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 4,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/evsn/sfx/a9040400.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SE/footsoil/ryoashitsuchi4.aiff",
+      "playbackId": 5,
+      "sampleId": 11,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/evsn/sfx/a9040500.wav",
+      "byteLength": 4724,
+      "sha256": "f0ece4fb196ee8371e049f59a0208ef07fc63b15bd746cf8ef60d536f97a6cd9"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SE/footsoil/ryoashitsuchi5.aiff",
+      "playbackId": 6,
+      "sampleId": 12,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/evsn/sfx/a9040600.wav",
+      "byteLength": 3500,
+      "sha256": "b77069601e9c8b18abf0886374cbad17a565b837d0fadd21eba2deaa7ffde209"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SE/cloths2/cl03.aiff",
+      "playbackId": 7,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/evsn/sfx/a9040700.wav",
+      "byteLength": 127604,
+      "sha256": "2c13979aaaf032ee706d0353819b385a7aca4f3d3d1a6b0e480c83e7a4162737"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SE/creakse/Creak.aiff",
+      "playbackId": 8,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/evsn/sfx/a9040800.wav",
+      "byteLength": 18708,
+      "sha256": "f4682a036304d581c800f048247030f51ce1e64ebf30c9a84800c04c4cfb846d"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SE/footsoil/ryoashi05.aiff",
+      "playbackId": 9,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/evsn/sfx/a9040900.wav",
+      "byteLength": 14884,
+      "sha256": "565ee6addd2a88dfa716c1c51c9e81d13fd0245434e9e467e3598443fb9ff75e"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SE/footsoil/ryoashi08.aiff",
+      "playbackId": 10,
+      "sampleId": 8,
+      "sampleRate": 44100,
+      "asset": "public/audio/world/evsn/sfx/a9040a00.wav",
+      "byteLength": 18316,
+      "sha256": "6cc55e275086b04337ee43e8c380a4c08c50a0f8c0343788c1995df592af7de7"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SE/footsoil/ryoashi6.aiff",
+      "playbackId": 11,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/evsn/sfx/a9040b00.wav",
+      "byteLength": 12052,
+      "sha256": "e3936e0df4975dd2f4a7ee33b7d603f64e4e514601e2d03c173643de40273081"
+    },
+    {
+      "commandHex": "a9040c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SE/footsoil/ryoashi7.aiff",
+      "playbackId": 12,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/evsn/sfx/a9040c00.wav",
+      "byteLength": 10220,
+      "sha256": "a5890240dafd43884ecced054ebea186d119a1e2d68d6a9ba85b8639bf7cf6cb"
+    },
+    {
+      "commandHex": "a9040d00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SE/foot/sneaker1.aiff",
+      "playbackId": 13,
+      "sampleId": 13,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/evsn/sfx/a9040d00.wav",
+      "byteLength": 10956,
+      "sha256": "6d2cb5b6730ad60d94a60190a579ef97fa51c0d54b9a35c1105bf342793dd63c"
+    },
+    {
+      "commandHex": "a9040e00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SE/foot/sneaker5.aiff",
+      "playbackId": 14,
+      "sampleId": 14,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/evsn/sfx/a9040e00.wav",
+      "byteLength": 10804,
+      "sha256": "0334446f014be77a677e0e4e97f7e1604c7dc5b356bef53103d39acc9081f9e1"
+    }
+  ]
+}

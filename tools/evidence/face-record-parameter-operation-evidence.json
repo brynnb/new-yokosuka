@@ -1,0 +1,87 @@
+{
+  "schema": "new-yokosuka-face-record-parameter-operation-evidence-v1",
+  "status": "exact-native-guarded-writes-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 117,
+    "operationHex": "0x0075",
+    "handlerAddress": "0x0c164e76",
+    "handlerLength": 66,
+    "handlerSha256": "9410bfc330962cd0e82547d90c62ef01897c0978a988d7cb8c08b798f1f7768f",
+    "nativeContract": {
+      "objectResolver": "0x0c153956",
+      "momtPrecheck": "0x0c114314",
+      "faceResolver": "0x0c0bc538",
+      "mutator": "0x0c0bc614",
+      "momtTag": "MOMT",
+      "momtRecordLookup": "0x0c0aad5a",
+      "faceRecordLookup": "0x0c0aad5a",
+      "faceTag": "FACE",
+      "stateTableAddress": "0x0c2200f8"
+    },
+    "guards": [
+      "the resolved object has an associated MOMT record",
+      "the resolved object has an associated FACE record",
+      "FACE byte +0x31 is not 8",
+      "FACE dword +0x20 equals the first dword of the 28-byte state-table entry selected by unsigned FACE byte +0x31",
+      "FACE dword +0x20 is nonzero"
+    ],
+    "guardFailureBehavior": "Missing records or state byte 8 return without mutation. A state-table pointer mismatch first clears FACE dwords +0x20 and +0x24 and byte +0x30, then the resulting null +0x20 prevents the parameter writes.",
+    "recordWrites": [
+      {
+        "offset": "FACE+0x30",
+        "width": "byte",
+        "value": "low byte of argument one"
+      },
+      {
+        "offset": "FACE+0x2c",
+        "width": "word",
+        "value": "low word of six times argument two"
+      },
+      {
+        "offset": "FACE+0x2e",
+        "width": "word",
+        "value": "signed low word of argument three, clamped to a minimum of one"
+      },
+      {
+        "offset": "FACE+0x45",
+        "width": "byte",
+        "value": 0
+      }
+    ],
+    "provenBehavior": "Resolves an object, requires its native MOMT and FACE associated records, validates the FACE record's active pointer against the exact state table, and conditionally writes four numeric FACE fields derived from arguments one through three."
+  },
+  "allDiscInventory": {
+    "callCount": 1013,
+    "dialogueRegionCallCount": 160,
+    "areaCount": 64,
+    "argumentKindCounts": {
+      "0": {
+        "constant": 819,
+        "frame-field": 192,
+        "runtime": 2
+      },
+      "1": {
+        "constant": 1010,
+        "frame-field": 3
+      },
+      "2": {
+        "constant": 1013
+      },
+      "3": {
+        "constant": 1013
+      }
+    }
+  },
+  "evidenceBoundary": [
+    "MOMT and FACE are retained only as exact executable record tags.",
+    "All 1,013 authored calls have exactly four recovered arguments; arguments two and three are constants in every call.",
+    "The selected state-table entry is runtime state. Execution must receive that exact pointer state and must not assume the validation guard passes.",
+    "The numeric meanings of the four written fields remain deliberately unnamed."
+  ]
+}

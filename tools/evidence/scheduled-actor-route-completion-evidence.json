@@ -1,0 +1,2163 @@
+{
+  "schema": "new-yokosuka-scheduled-actor-route-completion-evidence-v1",
+  "generatedFrom": [
+    "tools/evidence/scheduled-actors.json",
+    ".disc-work/exact/1ST_READ.BIN",
+    "play/assets/scheduled-actors/M_MOBJ.BIN",
+    "tools/evidence/scheduled-actor-default-idle-evidence.json"
+  ],
+  "evidenceBoundary": "Dispatcher operation 0x35 writes its operand to actor +0x1c0. Operation-1 handler 0x0c11f948 copies its movement-controller operand to actor +0x06, resolves actor +0x1c0 into route-completion state +0xf4, and copies +0xf4 back to current state +0x06 when the route finishes. A nonzero +0x1c0 is used verbatim. Zero invokes the shared PRNG modulo four and reads one of four actor-definition halfwords at +0x7e/+0x80/+0x82/+0x84. All zero/default actors join byte-stable resident actor-definition tables recovered from the native registry; their candidate motions resolve exactly through M_MOBJ. The selected candidate order is still process-wide PRNG state and is not invented. Nonzero source values also resolve exactly through M_MOBJ.",
+  "nativeEvidence": {
+    "descriptorDispatcherAddress": "0x0c119444",
+    "operation35WriteAddress": "0x0c1197de",
+    "operation35ActorOverrideOffset": "0x1c0",
+    "operationOneHandlerAddress": "0x0c11f948",
+    "operationOneSelectionAddress": "0x0c11f966",
+    "operationOneCompletionAddress": "0x0c11faba",
+    "actorCurrentMotionStateOffset": "0x06",
+    "actorRouteCompletionStateOffset": "0xf4",
+    "actorDefinitionDefaultIdleTableOffset": "0x7c",
+    "actorDefinitionDefaultIdleCandidateCount": 4,
+    "actorDefinitionDefaultIdleCandidateWordOffsets": [
+      "0x7e",
+      "0x80",
+      "0x82",
+      "0x84"
+    ],
+    "actorDefinitionDefaultIdleSelectionRule": "candidate[processWideRandom15 % 4]",
+    "randomFunctionAddress": "0x0c1ce1f0",
+    "signedRemainderFunctionAddress": "0x0c1dc440"
+  },
+  "summary": {
+    "operationCount": 46,
+    "actorCodeCount": 14,
+    "nonzeroOverrideOperationCount": 37,
+    "zeroDefaultSelectionOperationCount": 9,
+    "exactRegisteredOverrideOperationCount": 37,
+    "unresolvedNonzeroOverrideOperationCount": 0,
+    "boundRouteOperationCount": 47,
+    "distinctOverrideMotionCount": 8,
+    "exactDefaultIdleTableOperationCount": 9,
+    "missingDefaultIdleTableOperationCount": 0,
+    "prngIndependentDefaultIdleOperationCount": 1
+  },
+  "operations": [
+    {
+      "actorCode": "ECHO",
+      "sourceVariantId": "ECHO:71d2aaa5c8170f73fe66cc94357ab5fb1b5a2a1ee8a5a55bc96fb48979bc1ae4",
+      "scheduleTableFileOffset": "0x105f0",
+      "journeyStartSecond": 7200,
+      "operationFileOffset": "0x10c3c",
+      "routeCompletionMotionOverrideId": 33604,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33604,
+        "sequenceIndex": 835,
+        "sequenceName": "OTH_DRUNK_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 10
+      },
+      "rawOperands": "44830000"
+    },
+    {
+      "actorCode": "ECHO",
+      "sourceVariantId": "ECHO:71d2aaa5c8170f73fe66cc94357ab5fb1b5a2a1ee8a5a55bc96fb48979bc1ae4",
+      "scheduleTableFileOffset": "0x105f0",
+      "journeyStartSecond": 7200,
+      "operationFileOffset": "0x10c68",
+      "routeCompletionMotionOverrideId": null,
+      "resolution": {
+        "status": "native actor-definition default-idle selection",
+        "candidateTableOffsetFromActorDefinition": "0x7c",
+        "candidateCount": 4,
+        "candidateWordOffsets": [
+          "0x7e",
+          "0x80",
+          "0x82",
+          "0x84"
+        ],
+        "selectionRule": "candidate[processWideRandom15 % 4]",
+        "candidateMotionIds": [
+          33092,
+          33104,
+          33104,
+          33092
+        ],
+        "candidates": [
+          {
+            "motionId": 33092,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 323,
+            "sequenceName": "OTH_TATI_TALK_2_LP_F",
+            "durationFrames": 150,
+            "controllerFamilyIndex": 10
+          },
+          {
+            "motionId": 33104,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 335,
+            "sequenceName": "OTH_THO_TALK_STAND_YANKII_LP_F",
+            "durationFrames": 60,
+            "controllerFamilyIndex": 10
+          },
+          {
+            "motionId": 33104,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 335,
+            "sequenceName": "OTH_THO_TALK_STAND_YANKII_LP_F",
+            "durationFrames": 60,
+            "controllerFamilyIndex": 10
+          },
+          {
+            "motionId": 33092,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 323,
+            "sequenceName": "OTH_TATI_TALK_2_LP_F",
+            "durationFrames": 150,
+            "controllerFamilyIndex": 10
+          }
+        ],
+        "unanimousNonzeroMotionId": null,
+        "tableStatus": "byte-stable exact native default-idle table"
+      },
+      "rawOperands": "00000000"
+    },
+    {
+      "actorCode": "ECHO",
+      "sourceVariantId": "ECHO:71d2aaa5c8170f73fe66cc94357ab5fb1b5a2a1ee8a5a55bc96fb48979bc1ae4",
+      "scheduleTableFileOffset": "0x105f0",
+      "journeyStartSecond": 58800,
+      "operationFileOffset": "0x1110c",
+      "routeCompletionMotionOverrideId": 33604,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33604,
+        "sequenceIndex": 835,
+        "sequenceName": "OTH_DRUNK_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 10
+      },
+      "rawOperands": "44830000"
+    },
+    {
+      "actorCode": "ECHO",
+      "sourceVariantId": "ECHO:71d2aaa5c8170f73fe66cc94357ab5fb1b5a2a1ee8a5a55bc96fb48979bc1ae4",
+      "scheduleTableFileOffset": "0x105f0",
+      "journeyStartSecond": 58800,
+      "operationFileOffset": "0x11138",
+      "routeCompletionMotionOverrideId": null,
+      "resolution": {
+        "status": "native actor-definition default-idle selection",
+        "candidateTableOffsetFromActorDefinition": "0x7c",
+        "candidateCount": 4,
+        "candidateWordOffsets": [
+          "0x7e",
+          "0x80",
+          "0x82",
+          "0x84"
+        ],
+        "selectionRule": "candidate[processWideRandom15 % 4]",
+        "candidateMotionIds": [
+          33092,
+          33104,
+          33104,
+          33092
+        ],
+        "candidates": [
+          {
+            "motionId": 33092,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 323,
+            "sequenceName": "OTH_TATI_TALK_2_LP_F",
+            "durationFrames": 150,
+            "controllerFamilyIndex": 10
+          },
+          {
+            "motionId": 33104,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 335,
+            "sequenceName": "OTH_THO_TALK_STAND_YANKII_LP_F",
+            "durationFrames": 60,
+            "controllerFamilyIndex": 10
+          },
+          {
+            "motionId": 33104,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 335,
+            "sequenceName": "OTH_THO_TALK_STAND_YANKII_LP_F",
+            "durationFrames": 60,
+            "controllerFamilyIndex": 10
+          },
+          {
+            "motionId": 33092,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 323,
+            "sequenceName": "OTH_TATI_TALK_2_LP_F",
+            "durationFrames": 150,
+            "controllerFamilyIndex": 10
+          }
+        ],
+        "unanimousNonzeroMotionId": null,
+        "tableStatus": "byte-stable exact native default-idle table"
+      },
+      "rawOperands": "00000000"
+    },
+    {
+      "actorCode": "GRKN",
+      "sourceVariantId": "GRKN:3bbf5dfbfe18be9b130fb672d96b798b457c99527f562828498173ab77658105",
+      "scheduleTableFileOffset": "0x14534",
+      "journeyStartSecond": 5400,
+      "operationFileOffset": "0x14cb0",
+      "routeCompletionMotionOverrideId": 33433,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33433,
+        "sequenceIndex": 664,
+        "sequenceName": "YKI_TATI_DRUNK_LP_F",
+        "durationFrames": 120,
+        "controllerFamilyIndex": 13
+      },
+      "rawOperands": "99820000"
+    },
+    {
+      "actorCode": "GRKN",
+      "sourceVariantId": "GRKN:3bbf5dfbfe18be9b130fb672d96b798b457c99527f562828498173ab77658105",
+      "scheduleTableFileOffset": "0x14534",
+      "journeyStartSecond": 5400,
+      "operationFileOffset": "0x14cdc",
+      "routeCompletionMotionOverrideId": null,
+      "resolution": {
+        "status": "native actor-definition default-idle selection",
+        "candidateTableOffsetFromActorDefinition": "0x7c",
+        "candidateCount": 4,
+        "candidateWordOffsets": [
+          "0x7e",
+          "0x80",
+          "0x82",
+          "0x84"
+        ],
+        "selectionRule": "candidate[processWideRandom15 % 4]",
+        "candidateMotionIds": [
+          32955,
+          33104,
+          32948,
+          32955
+        ],
+        "candidates": [
+          {
+            "motionId": 32955,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 186,
+            "sequenceName": "JIJ_TATI_TALK_2_LP_F",
+            "durationFrames": 150,
+            "controllerFamilyIndex": 7
+          },
+          {
+            "motionId": 33104,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 335,
+            "sequenceName": "OTH_THO_TALK_STAND_YANKII_LP_F",
+            "durationFrames": 60,
+            "controllerFamilyIndex": 10
+          },
+          {
+            "motionId": 32948,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 179,
+            "sequenceName": "JIJ_TALK_ACTION_OLD_LP_F",
+            "durationFrames": 95,
+            "controllerFamilyIndex": 7
+          },
+          {
+            "motionId": 32955,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 186,
+            "sequenceName": "JIJ_TATI_TALK_2_LP_F",
+            "durationFrames": 150,
+            "controllerFamilyIndex": 7
+          }
+        ],
+        "unanimousNonzeroMotionId": null,
+        "tableStatus": "byte-stable exact native default-idle table"
+      },
+      "rawOperands": "00000000"
+    },
+    {
+      "actorCode": "GRKN",
+      "sourceVariantId": "GRKN:3bbf5dfbfe18be9b130fb672d96b798b457c99527f562828498173ab77658105",
+      "scheduleTableFileOffset": "0x14534",
+      "journeyStartSecond": 58800,
+      "operationFileOffset": "0x15188",
+      "routeCompletionMotionOverrideId": 33433,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33433,
+        "sequenceIndex": 664,
+        "sequenceName": "YKI_TATI_DRUNK_LP_F",
+        "durationFrames": 120,
+        "controllerFamilyIndex": 13
+      },
+      "rawOperands": "99820000"
+    },
+    {
+      "actorCode": "GRKN",
+      "sourceVariantId": "GRKN:3bbf5dfbfe18be9b130fb672d96b798b457c99527f562828498173ab77658105",
+      "scheduleTableFileOffset": "0x14534",
+      "journeyStartSecond": 58800,
+      "operationFileOffset": "0x151b4",
+      "routeCompletionMotionOverrideId": null,
+      "resolution": {
+        "status": "native actor-definition default-idle selection",
+        "candidateTableOffsetFromActorDefinition": "0x7c",
+        "candidateCount": 4,
+        "candidateWordOffsets": [
+          "0x7e",
+          "0x80",
+          "0x82",
+          "0x84"
+        ],
+        "selectionRule": "candidate[processWideRandom15 % 4]",
+        "candidateMotionIds": [
+          32955,
+          33104,
+          32948,
+          32955
+        ],
+        "candidates": [
+          {
+            "motionId": 32955,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 186,
+            "sequenceName": "JIJ_TATI_TALK_2_LP_F",
+            "durationFrames": 150,
+            "controllerFamilyIndex": 7
+          },
+          {
+            "motionId": 33104,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 335,
+            "sequenceName": "OTH_THO_TALK_STAND_YANKII_LP_F",
+            "durationFrames": 60,
+            "controllerFamilyIndex": 10
+          },
+          {
+            "motionId": 32948,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 179,
+            "sequenceName": "JIJ_TALK_ACTION_OLD_LP_F",
+            "durationFrames": 95,
+            "controllerFamilyIndex": 7
+          },
+          {
+            "motionId": 32955,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 186,
+            "sequenceName": "JIJ_TATI_TALK_2_LP_F",
+            "durationFrames": 150,
+            "controllerFamilyIndex": 7
+          }
+        ],
+        "unanimousNonzeroMotionId": null,
+        "tableStatus": "byte-stable exact native default-idle table"
+      },
+      "rawOperands": "00000000"
+    },
+    {
+      "actorCode": "ISYM",
+      "sourceVariantId": "ISYM:35b3e8e2c85a8ea29f2e526aa835bceb58a56bd076a4e116cb1a4a983a1195dd",
+      "scheduleTableFileOffset": "0x1dffc",
+      "journeyStartSecond": 37740,
+      "operationFileOffset": "0x1e940",
+      "routeCompletionMotionOverrideId": 33217,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33217,
+        "sequenceIndex": 448,
+        "sequenceName": "SYP_ISYM_STAND_ARM_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 12
+      },
+      "rawOperands": "c1810000"
+    },
+    {
+      "actorCode": "ISYM",
+      "sourceVariantId": "ISYM:35b3e8e2c85a8ea29f2e526aa835bceb58a56bd076a4e116cb1a4a983a1195dd",
+      "scheduleTableFileOffset": "0x1dffc",
+      "journeyStartSecond": 61200,
+      "operationFileOffset": "0x1ea68",
+      "routeCompletionMotionOverrideId": 33217,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33217,
+        "sequenceIndex": 448,
+        "sequenceName": "SYP_ISYM_STAND_ARM_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 12
+      },
+      "rawOperands": "c1810000"
+    },
+    {
+      "actorCode": "ISYM",
+      "sourceVariantId": "ISYM:35b3e8e2c85a8ea29f2e526aa835bceb58a56bd076a4e116cb1a4a983a1195dd",
+      "scheduleTableFileOffset": "0x1dffc",
+      "journeyStartSecond": 61200,
+      "operationFileOffset": "0x1eaac",
+      "routeCompletionMotionOverrideId": 33217,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33217,
+        "sequenceIndex": 448,
+        "sequenceName": "SYP_ISYM_STAND_ARM_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 12
+      },
+      "rawOperands": "c1810000"
+    },
+    {
+      "actorCode": "ISYM",
+      "sourceVariantId": "ISYM:35b3e8e2c85a8ea29f2e526aa835bceb58a56bd076a4e116cb1a4a983a1195dd",
+      "scheduleTableFileOffset": "0x1dffc",
+      "journeyStartSecond": 61200,
+      "operationFileOffset": "0x1eaec",
+      "routeCompletionMotionOverrideId": 33217,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33217,
+        "sequenceIndex": 448,
+        "sequenceName": "SYP_ISYM_STAND_ARM_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 12
+      },
+      "rawOperands": "c1810000"
+    },
+    {
+      "actorCode": "ISYM",
+      "sourceVariantId": "ISYM:35b3e8e2c85a8ea29f2e526aa835bceb58a56bd076a4e116cb1a4a983a1195dd",
+      "scheduleTableFileOffset": "0x1dffc",
+      "journeyStartSecond": 85500,
+      "operationFileOffset": "0x1ec1c",
+      "routeCompletionMotionOverrideId": 33217,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33217,
+        "sequenceIndex": 448,
+        "sequenceName": "SYP_ISYM_STAND_ARM_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 12
+      },
+      "rawOperands": "c1810000"
+    },
+    {
+      "actorCode": "ISYM",
+      "sourceVariantId": "ISYM:35b3e8e2c85a8ea29f2e526aa835bceb58a56bd076a4e116cb1a4a983a1195dd",
+      "scheduleTableFileOffset": "0x1ec70",
+      "journeyStartSecond": 61200,
+      "operationFileOffset": "0x1f088",
+      "routeCompletionMotionOverrideId": 33217,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33217,
+        "sequenceIndex": 448,
+        "sequenceName": "SYP_ISYM_STAND_ARM_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 12
+      },
+      "rawOperands": "c1810000"
+    },
+    {
+      "actorCode": "ISYM",
+      "sourceVariantId": "ISYM:35b3e8e2c85a8ea29f2e526aa835bceb58a56bd076a4e116cb1a4a983a1195dd",
+      "scheduleTableFileOffset": "0x1ec70",
+      "journeyStartSecond": 61200,
+      "operationFileOffset": "0x1f0cc",
+      "routeCompletionMotionOverrideId": 33217,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33217,
+        "sequenceIndex": 448,
+        "sequenceName": "SYP_ISYM_STAND_ARM_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 12
+      },
+      "rawOperands": "c1810000"
+    },
+    {
+      "actorCode": "ISYM",
+      "sourceVariantId": "ISYM:35b3e8e2c85a8ea29f2e526aa835bceb58a56bd076a4e116cb1a4a983a1195dd",
+      "scheduleTableFileOffset": "0x1ec70",
+      "journeyStartSecond": 61200,
+      "operationFileOffset": "0x1f10c",
+      "routeCompletionMotionOverrideId": 33217,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33217,
+        "sequenceIndex": 448,
+        "sequenceName": "SYP_ISYM_STAND_ARM_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 12
+      },
+      "rawOperands": "c1810000"
+    },
+    {
+      "actorCode": "ISYM",
+      "sourceVariantId": "ISYM:35b3e8e2c85a8ea29f2e526aa835bceb58a56bd076a4e116cb1a4a983a1195dd",
+      "scheduleTableFileOffset": "0x1ec70",
+      "journeyStartSecond": 85500,
+      "operationFileOffset": "0x1f23c",
+      "routeCompletionMotionOverrideId": 33217,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33217,
+        "sequenceIndex": 448,
+        "sequenceName": "SYP_ISYM_STAND_ARM_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 12
+      },
+      "rawOperands": "c1810000"
+    },
+    {
+      "actorCode": "ISYM",
+      "sourceVariantId": "ISYM:35b3e8e2c85a8ea29f2e526aa835bceb58a56bd076a4e116cb1a4a983a1195dd",
+      "scheduleTableFileOffset": "0x1ec70",
+      "journeyStartSecond": 85500,
+      "operationFileOffset": "0x1f27c",
+      "routeCompletionMotionOverrideId": 33217,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33217,
+        "sequenceIndex": 448,
+        "sequenceName": "SYP_ISYM_STAND_ARM_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 12
+      },
+      "rawOperands": "c1810000"
+    },
+    {
+      "actorCode": "JONO",
+      "sourceVariantId": "JONO:e80ae9a6a4f57cfd1d5f905e1a2757c4af8d696459d4a62618c42f67c1d8e0d8",
+      "scheduleTableFileOffset": "0x24010",
+      "journeyStartSecond": 3600,
+      "operationFileOffset": "0x25058",
+      "routeCompletionMotionOverrideId": null,
+      "resolution": {
+        "status": "native actor-definition default-idle selection",
+        "candidateTableOffsetFromActorDefinition": "0x7c",
+        "candidateCount": 4,
+        "candidateWordOffsets": [
+          "0x7e",
+          "0x80",
+          "0x82",
+          "0x84"
+        ],
+        "selectionRule": "candidate[processWideRandom15 % 4]",
+        "candidateMotionIds": [
+          33092,
+          33104,
+          33104,
+          33092
+        ],
+        "candidates": [
+          {
+            "motionId": 33092,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 323,
+            "sequenceName": "OTH_TATI_TALK_2_LP_F",
+            "durationFrames": 150,
+            "controllerFamilyIndex": 10
+          },
+          {
+            "motionId": 33104,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 335,
+            "sequenceName": "OTH_THO_TALK_STAND_YANKII_LP_F",
+            "durationFrames": 60,
+            "controllerFamilyIndex": 10
+          },
+          {
+            "motionId": 33104,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 335,
+            "sequenceName": "OTH_THO_TALK_STAND_YANKII_LP_F",
+            "durationFrames": 60,
+            "controllerFamilyIndex": 10
+          },
+          {
+            "motionId": 33092,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 323,
+            "sequenceName": "OTH_TATI_TALK_2_LP_F",
+            "durationFrames": 150,
+            "controllerFamilyIndex": 10
+          }
+        ],
+        "unanimousNonzeroMotionId": null,
+        "tableStatus": "byte-stable exact native default-idle table"
+      },
+      "rawOperands": "00000000"
+    },
+    {
+      "actorCode": "JONO",
+      "sourceVariantId": "JONO:e80ae9a6a4f57cfd1d5f905e1a2757c4af8d696459d4a62618c42f67c1d8e0d8",
+      "scheduleTableFileOffset": "0x24010",
+      "journeyStartSecond": 69600,
+      "operationFileOffset": "0x24d9c",
+      "routeCompletionMotionOverrideId": 33433,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33433,
+        "sequenceIndex": 664,
+        "sequenceName": "YKI_TATI_DRUNK_LP_F",
+        "durationFrames": 120,
+        "controllerFamilyIndex": 13
+      },
+      "rawOperands": "99820000"
+    },
+    {
+      "actorCode": "MASR",
+      "sourceVariantId": "MASR:bded4b43e63d4d0127490d870942768be99bb26148382c77e6e9aef85e03efe8",
+      "scheduleTableFileOffset": "0x3b2c0",
+      "journeyStartSecond": 68400,
+      "operationFileOffset": "0x3bbf4",
+      "routeCompletionMotionOverrideId": 33607,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33607,
+        "sequenceIndex": 838,
+        "sequenceName": "YKI_DRUNK_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 13
+      },
+      "rawOperands": "47830000"
+    },
+    {
+      "actorCode": "MIKI",
+      "sourceVariantId": "MIKI:e2de19dc134f615cc97191b88a291af3a5c2cf4fbac42b6e4ea215c7a5e2900e",
+      "scheduleTableFileOffset": "0x42d70",
+      "journeyStartSecond": 30600,
+      "operationFileOffset": "0x43558",
+      "routeCompletionMotionOverrideId": 33282,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33282,
+        "sequenceIndex": 513,
+        "sequenceName": "SYP_TATI_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 12
+      },
+      "rawOperands": "02820000"
+    },
+    {
+      "actorCode": "MIKI",
+      "sourceVariantId": "MIKI:e2de19dc134f615cc97191b88a291af3a5c2cf4fbac42b6e4ea215c7a5e2900e",
+      "scheduleTableFileOffset": "0x42d70",
+      "journeyStartSecond": 32400,
+      "operationFileOffset": "0x435dc",
+      "routeCompletionMotionOverrideId": null,
+      "resolution": {
+        "status": "native actor-definition default-idle selection",
+        "candidateTableOffsetFromActorDefinition": "0x7c",
+        "candidateCount": 4,
+        "candidateWordOffsets": [
+          "0x7e",
+          "0x80",
+          "0x82",
+          "0x84"
+        ],
+        "selectionRule": "candidate[processWideRandom15 % 4]",
+        "candidateMotionIds": [
+          33284,
+          33208,
+          33504,
+          33503
+        ],
+        "candidates": [
+          {
+            "motionId": 33284,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 515,
+            "sequenceName": "SYP_TATI_TEKUMU_LP_F",
+            "durationFrames": 60,
+            "controllerFamilyIndex": 12
+          },
+          {
+            "motionId": 33208,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 439,
+            "sequenceName": "SYP_FKO_STAND_TALK_LP_F",
+            "durationFrames": 133,
+            "controllerFamilyIndex": 12
+          },
+          {
+            "motionId": 33504,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 735,
+            "sequenceName": "SYP_SGA_MAEGAMI_KAIWA_LP_F",
+            "durationFrames": 82,
+            "controllerFamilyIndex": 12
+          },
+          {
+            "motionId": 33503,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 734,
+            "sequenceName": "SYP_KIMONO_TATI_LP_F",
+            "durationFrames": 60,
+            "controllerFamilyIndex": 12
+          }
+        ],
+        "unanimousNonzeroMotionId": null,
+        "tableStatus": "byte-stable exact native default-idle table"
+      },
+      "rawOperands": "00000000"
+    },
+    {
+      "actorCode": "MTRI",
+      "sourceVariantId": "MTRI:e18c81dc11311f11e8b629ccf3e6b273ffa2df32844d95164a23bc5e8ad1ad71",
+      "scheduleTableFileOffset": "0x47d2c",
+      "journeyStartSecond": 59400,
+      "operationFileOffset": "0x49bd8",
+      "routeCompletionMotionOverrideId": 33433,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33433,
+        "sequenceIndex": 664,
+        "sequenceName": "YKI_TATI_DRUNK_LP_F",
+        "durationFrames": 120,
+        "controllerFamilyIndex": 13
+      },
+      "rawOperands": "99820000"
+    },
+    {
+      "actorCode": "MTRI",
+      "sourceVariantId": "MTRI:e18c81dc11311f11e8b629ccf3e6b273ffa2df32844d95164a23bc5e8ad1ad71",
+      "scheduleTableFileOffset": "0x49ce8",
+      "journeyStartSecond": 59400,
+      "operationFileOffset": "0x4b0e0",
+      "routeCompletionMotionOverrideId": 33433,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33433,
+        "sequenceIndex": 664,
+        "sequenceName": "YKI_TATI_DRUNK_LP_F",
+        "durationFrames": 120,
+        "controllerFamilyIndex": 13
+      },
+      "rawOperands": "99820000"
+    },
+    {
+      "actorCode": "NMNO",
+      "sourceVariantId": "NMNO:9c138b0ec79d0869f5b9f7db823a99ce9ca431553223de8cc5f59be6b033cd02",
+      "scheduleTableFileOffset": "0x4ec00",
+      "journeyStartSecond": 37800,
+      "operationFileOffset": "0x4f4d4",
+      "routeCompletionMotionOverrideId": 33165,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33165,
+        "sequenceIndex": 396,
+        "sequenceName": "SIN_ARI_TALK_A_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 15
+      },
+      "rawOperands": "8d810000"
+    },
+    {
+      "actorCode": "NMNO",
+      "sourceVariantId": "NMNO:9c138b0ec79d0869f5b9f7db823a99ce9ca431553223de8cc5f59be6b033cd02",
+      "scheduleTableFileOffset": "0x4ec00",
+      "journeyStartSecond": 61080,
+      "operationFileOffset": "0x4f548",
+      "routeCompletionMotionOverrideId": 33165,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33165,
+        "sequenceIndex": 396,
+        "sequenceName": "SIN_ARI_TALK_A_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 15
+      },
+      "rawOperands": "8d810000"
+    },
+    {
+      "actorCode": "NMNO",
+      "sourceVariantId": "NMNO:9c138b0ec79d0869f5b9f7db823a99ce9ca431553223de8cc5f59be6b033cd02",
+      "scheduleTableFileOffset": "0x4ec00",
+      "journeyStartSecond": 61080,
+      "operationFileOffset": "0x4f588",
+      "routeCompletionMotionOverrideId": 33165,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33165,
+        "sequenceIndex": 396,
+        "sequenceName": "SIN_ARI_TALK_A_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 15
+      },
+      "rawOperands": "8d810000"
+    },
+    {
+      "actorCode": "NMNO",
+      "sourceVariantId": "NMNO:9c138b0ec79d0869f5b9f7db823a99ce9ca431553223de8cc5f59be6b033cd02",
+      "scheduleTableFileOffset": "0x4ec00",
+      "journeyStartSecond": 86100,
+      "operationFileOffset": "0x4f604",
+      "routeCompletionMotionOverrideId": 33165,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33165,
+        "sequenceIndex": 396,
+        "sequenceName": "SIN_ARI_TALK_A_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 15
+      },
+      "rawOperands": "8d810000"
+    },
+    {
+      "actorCode": "NMNO",
+      "sourceVariantId": "NMNO:9c138b0ec79d0869f5b9f7db823a99ce9ca431553223de8cc5f59be6b033cd02",
+      "scheduleTableFileOffset": "0x4ec00",
+      "journeyStartSecond": 86100,
+      "operationFileOffset": "0x4f644",
+      "routeCompletionMotionOverrideId": 33165,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33165,
+        "sequenceIndex": 396,
+        "sequenceName": "SIN_ARI_TALK_A_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 15
+      },
+      "rawOperands": "8d810000"
+    },
+    {
+      "actorCode": "NMNO",
+      "sourceVariantId": "NMNO:9c138b0ec79d0869f5b9f7db823a99ce9ca431553223de8cc5f59be6b033cd02",
+      "scheduleTableFileOffset": "0x4f660",
+      "journeyStartSecond": 0,
+      "operationFileOffset": "0x4fb5c",
+      "routeCompletionMotionOverrideId": 33165,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33165,
+        "sequenceIndex": 396,
+        "sequenceName": "SIN_ARI_TALK_A_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 15
+      },
+      "rawOperands": "8d810000"
+    },
+    {
+      "actorCode": "NMNO",
+      "sourceVariantId": "NMNO:9c138b0ec79d0869f5b9f7db823a99ce9ca431553223de8cc5f59be6b033cd02",
+      "scheduleTableFileOffset": "0x4f660",
+      "journeyStartSecond": 0,
+      "operationFileOffset": "0x4fb9c",
+      "routeCompletionMotionOverrideId": 33165,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33165,
+        "sequenceIndex": 396,
+        "sequenceName": "SIN_ARI_TALK_A_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 15
+      },
+      "rawOperands": "8d810000"
+    },
+    {
+      "actorCode": "NMNO",
+      "sourceVariantId": "NMNO:9c138b0ec79d0869f5b9f7db823a99ce9ca431553223de8cc5f59be6b033cd02",
+      "scheduleTableFileOffset": "0x4f660",
+      "journeyStartSecond": 61200,
+      "operationFileOffset": "0x4fbe4",
+      "routeCompletionMotionOverrideId": 33165,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33165,
+        "sequenceIndex": 396,
+        "sequenceName": "SIN_ARI_TALK_A_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 15
+      },
+      "rawOperands": "8d810000"
+    },
+    {
+      "actorCode": "NMNO",
+      "sourceVariantId": "NMNO:9c138b0ec79d0869f5b9f7db823a99ce9ca431553223de8cc5f59be6b033cd02",
+      "scheduleTableFileOffset": "0x4f660",
+      "journeyStartSecond": 61200,
+      "operationFileOffset": "0x4fc24",
+      "routeCompletionMotionOverrideId": 33165,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33165,
+        "sequenceIndex": 396,
+        "sequenceName": "SIN_ARI_TALK_A_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 15
+      },
+      "rawOperands": "8d810000"
+    },
+    {
+      "actorCode": "RINS",
+      "sourceVariantId": "RINS:983eae12ef2c124ee959690aff64a732652ed870a81f7d2b4fabef8418e46cb8",
+      "scheduleTableFileOffset": "0x5736c",
+      "journeyStartSecond": 34200,
+      "operationFileOffset": "0x58814",
+      "routeCompletionMotionOverrideId": 33433,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33433,
+        "sequenceIndex": 664,
+        "sequenceName": "YKI_TATI_DRUNK_LP_F",
+        "durationFrames": 120,
+        "controllerFamilyIndex": 13
+      },
+      "rawOperands": "99820000"
+    },
+    {
+      "actorCode": "RINS",
+      "sourceVariantId": "RINS:983eae12ef2c124ee959690aff64a732652ed870a81f7d2b4fabef8418e46cb8",
+      "scheduleTableFileOffset": "0x5736c",
+      "journeyStartSecond": 34200,
+      "operationFileOffset": "0x5882c",
+      "routeCompletionMotionOverrideId": null,
+      "resolution": {
+        "status": "native actor-definition default-idle selection",
+        "candidateTableOffsetFromActorDefinition": "0x7c",
+        "candidateCount": 4,
+        "candidateWordOffsets": [
+          "0x7e",
+          "0x80",
+          "0x82",
+          "0x84"
+        ],
+        "selectionRule": "candidate[processWideRandom15 % 4]",
+        "candidateMotionIds": [
+          32949,
+          32949,
+          32949,
+          32949
+        ],
+        "candidates": [
+          {
+            "motionId": 32949,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 180,
+            "sequenceName": "JIJ_TALK_LP_F",
+            "durationFrames": 60,
+            "controllerFamilyIndex": 7
+          },
+          {
+            "motionId": 32949,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 180,
+            "sequenceName": "JIJ_TALK_LP_F",
+            "durationFrames": 60,
+            "controllerFamilyIndex": 7
+          },
+          {
+            "motionId": 32949,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 180,
+            "sequenceName": "JIJ_TALK_LP_F",
+            "durationFrames": 60,
+            "controllerFamilyIndex": 7
+          },
+          {
+            "motionId": 32949,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 180,
+            "sequenceName": "JIJ_TALK_LP_F",
+            "durationFrames": 60,
+            "controllerFamilyIndex": 7
+          }
+        ],
+        "unanimousNonzeroMotionId": 32949,
+        "tableStatus": "byte-stable exact native default-idle table"
+      },
+      "rawOperands": "00000000"
+    },
+    {
+      "actorCode": "SNKC",
+      "sourceVariantId": "SNKC:61407a2d771e1c6533d483a1c8efd654e75e281d8d6ea3f7ddf3bd619f2bf5c5",
+      "scheduleTableFileOffset": "0x6939c",
+      "journeyStartSecond": 75600,
+      "operationFileOffset": "0x6a4f0",
+      "routeCompletionMotionOverrideId": 33604,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33604,
+        "sequenceIndex": 835,
+        "sequenceName": "OTH_DRUNK_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 10
+      },
+      "rawOperands": "44830000"
+    },
+    {
+      "actorCode": "TAKI",
+      "sourceVariantId": "TAKI:291f117232648f053a4b864a8936d65a7b15f93cbaa16d0e2e790e8f54ac2abc",
+      "scheduleTableFileOffset": "0x71490",
+      "journeyStartSecond": 0,
+      "operationFileOffset": "0x73e30",
+      "routeCompletionMotionOverrideId": 33607,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33607,
+        "sequenceIndex": 838,
+        "sequenceName": "YKI_DRUNK_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 13
+      },
+      "rawOperands": "47830000"
+    },
+    {
+      "actorCode": "TAKI",
+      "sourceVariantId": "TAKI:291f117232648f053a4b864a8936d65a7b15f93cbaa16d0e2e790e8f54ac2abc",
+      "scheduleTableFileOffset": "0x71490",
+      "journeyStartSecond": 67800,
+      "operationFileOffset": "0x73d78",
+      "routeCompletionMotionOverrideId": 33607,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33607,
+        "sequenceIndex": 838,
+        "sequenceName": "YKI_DRUNK_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 13
+      },
+      "rawOperands": "47830000"
+    },
+    {
+      "actorCode": "TAKI",
+      "sourceVariantId": "TAKI:291f117232648f053a4b864a8936d65a7b15f93cbaa16d0e2e790e8f54ac2abc",
+      "scheduleTableFileOffset": "0x71490",
+      "journeyStartSecond": 67800,
+      "operationFileOffset": "0x73dc8",
+      "routeCompletionMotionOverrideId": 33607,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33607,
+        "sequenceIndex": 838,
+        "sequenceName": "YKI_DRUNK_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 13
+      },
+      "rawOperands": "47830000"
+    },
+    {
+      "actorCode": "TJMA",
+      "sourceVariantId": "TJMA:ebfdd0c73f564dd9b62a9f533fefe07b27e2e9081969c7f6c7edeb19cf7d0047",
+      "scheduleTableFileOffset": "0x75b50",
+      "journeyStartSecond": 61200,
+      "operationFileOffset": "0x75e94",
+      "routeCompletionMotionOverrideId": 33187,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33187,
+        "sequenceIndex": 418,
+        "sequenceName": "SIN_TATI_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 15
+      },
+      "rawOperands": "a3810000"
+    },
+    {
+      "actorCode": "TJMA",
+      "sourceVariantId": "TJMA:ebfdd0c73f564dd9b62a9f533fefe07b27e2e9081969c7f6c7edeb19cf7d0047",
+      "scheduleTableFileOffset": "0x75b50",
+      "journeyStartSecond": 61200,
+      "operationFileOffset": "0x75ebc",
+      "routeCompletionMotionOverrideId": 33477,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33477,
+        "sequenceIndex": 708,
+        "sequenceName": "SIN_KIMONO_TATI_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 15
+      },
+      "rawOperands": "c5820000"
+    },
+    {
+      "actorCode": "YOPA",
+      "sourceVariantId": "YOPA:df31553ab9558aacb035a5a5dfbdb8b193ac6a2048206dd881dd393e0452bb8c",
+      "scheduleTableFileOffset": "0x8df78",
+      "journeyStartSecond": 1800,
+      "operationFileOffset": "0x8f36c",
+      "routeCompletionMotionOverrideId": null,
+      "resolution": {
+        "status": "native actor-definition default-idle selection",
+        "candidateTableOffsetFromActorDefinition": "0x7c",
+        "candidateCount": 4,
+        "candidateWordOffsets": [
+          "0x7e",
+          "0x80",
+          "0x82",
+          "0x84"
+        ],
+        "selectionRule": "candidate[processWideRandom15 % 4]",
+        "candidateMotionIds": [
+          32955,
+          33104,
+          32948,
+          32955
+        ],
+        "candidates": [
+          {
+            "motionId": 32955,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 186,
+            "sequenceName": "JIJ_TATI_TALK_2_LP_F",
+            "durationFrames": 150,
+            "controllerFamilyIndex": 7
+          },
+          {
+            "motionId": 33104,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 335,
+            "sequenceName": "OTH_THO_TALK_STAND_YANKII_LP_F",
+            "durationFrames": 60,
+            "controllerFamilyIndex": 10
+          },
+          {
+            "motionId": 32948,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 179,
+            "sequenceName": "JIJ_TALK_ACTION_OLD_LP_F",
+            "durationFrames": 95,
+            "controllerFamilyIndex": 7
+          },
+          {
+            "motionId": 32955,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 186,
+            "sequenceName": "JIJ_TATI_TALK_2_LP_F",
+            "durationFrames": 150,
+            "controllerFamilyIndex": 7
+          }
+        ],
+        "unanimousNonzeroMotionId": null,
+        "tableStatus": "byte-stable exact native default-idle table"
+      },
+      "rawOperands": "00000000"
+    },
+    {
+      "actorCode": "YOPA",
+      "sourceVariantId": "YOPA:df31553ab9558aacb035a5a5dfbdb8b193ac6a2048206dd881dd393e0452bb8c",
+      "scheduleTableFileOffset": "0x8df78",
+      "journeyStartSecond": 64800,
+      "operationFileOffset": "0x8f214",
+      "routeCompletionMotionOverrideId": 33433,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33433,
+        "sequenceIndex": 664,
+        "sequenceName": "YKI_TATI_DRUNK_LP_F",
+        "durationFrames": 120,
+        "controllerFamilyIndex": 13
+      },
+      "rawOperands": "99820000"
+    },
+    {
+      "actorCode": "YUMM",
+      "sourceVariantId": "YUMM:616a869f36d0261de1cb6e24fea5557a1cab17b99a3ca9b1aca03c2242853135",
+      "scheduleTableFileOffset": "0x95d48",
+      "journeyStartSecond": 30600,
+      "operationFileOffset": "0x964f4",
+      "routeCompletionMotionOverrideId": 33282,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33282,
+        "sequenceIndex": 513,
+        "sequenceName": "SYP_TATI_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 12
+      },
+      "rawOperands": "02820000"
+    },
+    {
+      "actorCode": "YUMM",
+      "sourceVariantId": "YUMM:616a869f36d0261de1cb6e24fea5557a1cab17b99a3ca9b1aca03c2242853135",
+      "scheduleTableFileOffset": "0x95d48",
+      "journeyStartSecond": 32400,
+      "operationFileOffset": "0x96570",
+      "routeCompletionMotionOverrideId": null,
+      "resolution": {
+        "status": "native actor-definition default-idle selection",
+        "candidateTableOffsetFromActorDefinition": "0x7c",
+        "candidateCount": 4,
+        "candidateWordOffsets": [
+          "0x7e",
+          "0x80",
+          "0x82",
+          "0x84"
+        ],
+        "selectionRule": "candidate[processWideRandom15 % 4]",
+        "candidateMotionIds": [
+          33284,
+          33208,
+          33504,
+          33503
+        ],
+        "candidates": [
+          {
+            "motionId": 33284,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 515,
+            "sequenceName": "SYP_TATI_TEKUMU_LP_F",
+            "durationFrames": 60,
+            "controllerFamilyIndex": 12
+          },
+          {
+            "motionId": 33208,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 439,
+            "sequenceName": "SYP_FKO_STAND_TALK_LP_F",
+            "durationFrames": 133,
+            "controllerFamilyIndex": 12
+          },
+          {
+            "motionId": 33504,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 735,
+            "sequenceName": "SYP_SGA_MAEGAMI_KAIWA_LP_F",
+            "durationFrames": 82,
+            "controllerFamilyIndex": 12
+          },
+          {
+            "motionId": 33503,
+            "status": "exact registered M_MOBJ motion",
+            "bank": "mobj",
+            "sequenceIndex": 734,
+            "sequenceName": "SYP_KIMONO_TATI_LP_F",
+            "durationFrames": 60,
+            "controllerFamilyIndex": 12
+          }
+        ],
+        "unanimousNonzeroMotionId": null,
+        "tableStatus": "byte-stable exact native default-idle table"
+      },
+      "rawOperands": "00000000"
+    }
+  ],
+  "routeBindings": [
+    {
+      "actorCode": "ECHO",
+      "sourceVariantId": "ECHO:71d2aaa5c8170f73fe66cc94357ab5fb1b5a2a1ee8a5a55bc96fb48979bc1ae4",
+      "journeyStartSecond": 7200,
+      "overrideOperationFileOffset": "0x10c3c",
+      "routeOperationFileOffset": "0x10c44",
+      "movementControllerId": 33113,
+      "routeCompletionMotionOverrideId": 33604,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33604,
+        "sequenceIndex": 835,
+        "sequenceName": "OTH_DRUNK_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 10
+      }
+    },
+    {
+      "actorCode": "ECHO",
+      "sourceVariantId": "ECHO:71d2aaa5c8170f73fe66cc94357ab5fb1b5a2a1ee8a5a55bc96fb48979bc1ae4",
+      "journeyStartSecond": 58800,
+      "overrideOperationFileOffset": "0x1110c",
+      "routeOperationFileOffset": "0x11114",
+      "movementControllerId": 33113,
+      "routeCompletionMotionOverrideId": 33604,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33604,
+        "sequenceIndex": 835,
+        "sequenceName": "OTH_DRUNK_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 10
+      }
+    },
+    {
+      "actorCode": "GRKN",
+      "sourceVariantId": "GRKN:3bbf5dfbfe18be9b130fb672d96b798b457c99527f562828498173ab77658105",
+      "journeyStartSecond": 5400,
+      "overrideOperationFileOffset": "0x14cb0",
+      "routeOperationFileOffset": "0x14cb8",
+      "movementControllerId": 33466,
+      "routeCompletionMotionOverrideId": 33433,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33433,
+        "sequenceIndex": 664,
+        "sequenceName": "YKI_TATI_DRUNK_LP_F",
+        "durationFrames": 120,
+        "controllerFamilyIndex": 13
+      }
+    },
+    {
+      "actorCode": "GRKN",
+      "sourceVariantId": "GRKN:3bbf5dfbfe18be9b130fb672d96b798b457c99527f562828498173ab77658105",
+      "journeyStartSecond": 58800,
+      "overrideOperationFileOffset": "0x15188",
+      "routeOperationFileOffset": "0x15190",
+      "movementControllerId": 33466,
+      "routeCompletionMotionOverrideId": 33433,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33433,
+        "sequenceIndex": 664,
+        "sequenceName": "YKI_TATI_DRUNK_LP_F",
+        "durationFrames": 120,
+        "controllerFamilyIndex": 13
+      }
+    },
+    {
+      "actorCode": "ISYM",
+      "sourceVariantId": "ISYM:35b3e8e2c85a8ea29f2e526aa835bceb58a56bd076a4e116cb1a4a983a1195dd",
+      "journeyStartSecond": 37740,
+      "overrideOperationFileOffset": "0x1e940",
+      "routeOperationFileOffset": "0x1e948",
+      "movementControllerId": 33176,
+      "routeCompletionMotionOverrideId": 33217,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33217,
+        "sequenceIndex": 448,
+        "sequenceName": "SYP_ISYM_STAND_ARM_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 12
+      }
+    },
+    {
+      "actorCode": "ISYM",
+      "sourceVariantId": "ISYM:35b3e8e2c85a8ea29f2e526aa835bceb58a56bd076a4e116cb1a4a983a1195dd",
+      "journeyStartSecond": 61200,
+      "overrideOperationFileOffset": "0x1ea68",
+      "routeOperationFileOffset": "0x1ea70",
+      "movementControllerId": 33176,
+      "routeCompletionMotionOverrideId": 33217,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33217,
+        "sequenceIndex": 448,
+        "sequenceName": "SYP_ISYM_STAND_ARM_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 12
+      }
+    },
+    {
+      "actorCode": "ISYM",
+      "sourceVariantId": "ISYM:35b3e8e2c85a8ea29f2e526aa835bceb58a56bd076a4e116cb1a4a983a1195dd",
+      "journeyStartSecond": 61200,
+      "overrideOperationFileOffset": "0x1eaac",
+      "routeOperationFileOffset": "0x1eab4",
+      "movementControllerId": 33176,
+      "routeCompletionMotionOverrideId": 33217,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33217,
+        "sequenceIndex": 448,
+        "sequenceName": "SYP_ISYM_STAND_ARM_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 12
+      }
+    },
+    {
+      "actorCode": "ISYM",
+      "sourceVariantId": "ISYM:35b3e8e2c85a8ea29f2e526aa835bceb58a56bd076a4e116cb1a4a983a1195dd",
+      "journeyStartSecond": 61200,
+      "overrideOperationFileOffset": "0x1eaec",
+      "routeOperationFileOffset": "0x1eaf4",
+      "movementControllerId": 33176,
+      "routeCompletionMotionOverrideId": 33217,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33217,
+        "sequenceIndex": 448,
+        "sequenceName": "SYP_ISYM_STAND_ARM_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 12
+      }
+    },
+    {
+      "actorCode": "ISYM",
+      "sourceVariantId": "ISYM:35b3e8e2c85a8ea29f2e526aa835bceb58a56bd076a4e116cb1a4a983a1195dd",
+      "journeyStartSecond": 85500,
+      "overrideOperationFileOffset": "0x1ec1c",
+      "routeOperationFileOffset": "0x1ec24",
+      "movementControllerId": 33176,
+      "routeCompletionMotionOverrideId": 33217,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33217,
+        "sequenceIndex": 448,
+        "sequenceName": "SYP_ISYM_STAND_ARM_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 12
+      }
+    },
+    {
+      "actorCode": "ISYM",
+      "sourceVariantId": "ISYM:35b3e8e2c85a8ea29f2e526aa835bceb58a56bd076a4e116cb1a4a983a1195dd",
+      "journeyStartSecond": 85500,
+      "overrideOperationFileOffset": "0x1ec1c",
+      "routeOperationFileOffset": "0x1ec5c",
+      "movementControllerId": 33176,
+      "routeCompletionMotionOverrideId": 33217,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33217,
+        "sequenceIndex": 448,
+        "sequenceName": "SYP_ISYM_STAND_ARM_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 12
+      }
+    },
+    {
+      "actorCode": "ISYM",
+      "sourceVariantId": "ISYM:35b3e8e2c85a8ea29f2e526aa835bceb58a56bd076a4e116cb1a4a983a1195dd",
+      "journeyStartSecond": 61200,
+      "overrideOperationFileOffset": "0x1f088",
+      "routeOperationFileOffset": "0x1f090",
+      "movementControllerId": 33176,
+      "routeCompletionMotionOverrideId": 33217,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33217,
+        "sequenceIndex": 448,
+        "sequenceName": "SYP_ISYM_STAND_ARM_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 12
+      }
+    },
+    {
+      "actorCode": "ISYM",
+      "sourceVariantId": "ISYM:35b3e8e2c85a8ea29f2e526aa835bceb58a56bd076a4e116cb1a4a983a1195dd",
+      "journeyStartSecond": 61200,
+      "overrideOperationFileOffset": "0x1f0cc",
+      "routeOperationFileOffset": "0x1f0d4",
+      "movementControllerId": 33176,
+      "routeCompletionMotionOverrideId": 33217,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33217,
+        "sequenceIndex": 448,
+        "sequenceName": "SYP_ISYM_STAND_ARM_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 12
+      }
+    },
+    {
+      "actorCode": "ISYM",
+      "sourceVariantId": "ISYM:35b3e8e2c85a8ea29f2e526aa835bceb58a56bd076a4e116cb1a4a983a1195dd",
+      "journeyStartSecond": 61200,
+      "overrideOperationFileOffset": "0x1f10c",
+      "routeOperationFileOffset": "0x1f114",
+      "movementControllerId": 33176,
+      "routeCompletionMotionOverrideId": 33217,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33217,
+        "sequenceIndex": 448,
+        "sequenceName": "SYP_ISYM_STAND_ARM_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 12
+      }
+    },
+    {
+      "actorCode": "ISYM",
+      "sourceVariantId": "ISYM:35b3e8e2c85a8ea29f2e526aa835bceb58a56bd076a4e116cb1a4a983a1195dd",
+      "journeyStartSecond": 85500,
+      "overrideOperationFileOffset": "0x1f23c",
+      "routeOperationFileOffset": "0x1f244",
+      "movementControllerId": 33176,
+      "routeCompletionMotionOverrideId": 33217,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33217,
+        "sequenceIndex": 448,
+        "sequenceName": "SYP_ISYM_STAND_ARM_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 12
+      }
+    },
+    {
+      "actorCode": "ISYM",
+      "sourceVariantId": "ISYM:35b3e8e2c85a8ea29f2e526aa835bceb58a56bd076a4e116cb1a4a983a1195dd",
+      "journeyStartSecond": 85500,
+      "overrideOperationFileOffset": "0x1f27c",
+      "routeOperationFileOffset": "0x1f284",
+      "movementControllerId": 33176,
+      "routeCompletionMotionOverrideId": 33217,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33217,
+        "sequenceIndex": 448,
+        "sequenceName": "SYP_ISYM_STAND_ARM_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 12
+      }
+    },
+    {
+      "actorCode": "JONO",
+      "sourceVariantId": "JONO:e80ae9a6a4f57cfd1d5f905e1a2757c4af8d696459d4a62618c42f67c1d8e0d8",
+      "journeyStartSecond": 69600,
+      "overrideOperationFileOffset": "0x24d9c",
+      "routeOperationFileOffset": "0x24df0",
+      "movementControllerId": 33055,
+      "routeCompletionMotionOverrideId": 33433,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33433,
+        "sequenceIndex": 664,
+        "sequenceName": "YKI_TATI_DRUNK_LP_F",
+        "durationFrames": 120,
+        "controllerFamilyIndex": 13
+      }
+    },
+    {
+      "actorCode": "MASR",
+      "sourceVariantId": "MASR:bded4b43e63d4d0127490d870942768be99bb26148382c77e6e9aef85e03efe8",
+      "journeyStartSecond": 68400,
+      "overrideOperationFileOffset": "0x3bbf4",
+      "routeOperationFileOffset": "0x3bbfc",
+      "movementControllerId": 33466,
+      "routeCompletionMotionOverrideId": 33607,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33607,
+        "sequenceIndex": 838,
+        "sequenceName": "YKI_DRUNK_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 13
+      }
+    },
+    {
+      "actorCode": "MTRI",
+      "sourceVariantId": "MTRI:e18c81dc11311f11e8b629ccf3e6b273ffa2df32844d95164a23bc5e8ad1ad71",
+      "journeyStartSecond": 59400,
+      "overrideOperationFileOffset": "0x49bd8",
+      "routeOperationFileOffset": "0x49be0",
+      "movementControllerId": 33466,
+      "routeCompletionMotionOverrideId": 33433,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33433,
+        "sequenceIndex": 664,
+        "sequenceName": "YKI_TATI_DRUNK_LP_F",
+        "durationFrames": 120,
+        "controllerFamilyIndex": 13
+      }
+    },
+    {
+      "actorCode": "MTRI",
+      "sourceVariantId": "MTRI:e18c81dc11311f11e8b629ccf3e6b273ffa2df32844d95164a23bc5e8ad1ad71",
+      "journeyStartSecond": 59400,
+      "overrideOperationFileOffset": "0x49bd8",
+      "routeOperationFileOffset": "0x49bf0",
+      "movementControllerId": 33466,
+      "routeCompletionMotionOverrideId": 33433,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33433,
+        "sequenceIndex": 664,
+        "sequenceName": "YKI_TATI_DRUNK_LP_F",
+        "durationFrames": 120,
+        "controllerFamilyIndex": 13
+      }
+    },
+    {
+      "actorCode": "MTRI",
+      "sourceVariantId": "MTRI:e18c81dc11311f11e8b629ccf3e6b273ffa2df32844d95164a23bc5e8ad1ad71",
+      "journeyStartSecond": 59400,
+      "overrideOperationFileOffset": "0x49bd8",
+      "routeOperationFileOffset": "0x49c00",
+      "movementControllerId": 33466,
+      "routeCompletionMotionOverrideId": 33433,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33433,
+        "sequenceIndex": 664,
+        "sequenceName": "YKI_TATI_DRUNK_LP_F",
+        "durationFrames": 120,
+        "controllerFamilyIndex": 13
+      }
+    },
+    {
+      "actorCode": "MTRI",
+      "sourceVariantId": "MTRI:e18c81dc11311f11e8b629ccf3e6b273ffa2df32844d95164a23bc5e8ad1ad71",
+      "journeyStartSecond": 59400,
+      "overrideOperationFileOffset": "0x49bd8",
+      "routeOperationFileOffset": "0x49c10",
+      "movementControllerId": 33466,
+      "routeCompletionMotionOverrideId": 33433,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33433,
+        "sequenceIndex": 664,
+        "sequenceName": "YKI_TATI_DRUNK_LP_F",
+        "durationFrames": 120,
+        "controllerFamilyIndex": 13
+      }
+    },
+    {
+      "actorCode": "MTRI",
+      "sourceVariantId": "MTRI:e18c81dc11311f11e8b629ccf3e6b273ffa2df32844d95164a23bc5e8ad1ad71",
+      "journeyStartSecond": 59400,
+      "overrideOperationFileOffset": "0x49bd8",
+      "routeOperationFileOffset": "0x49c94",
+      "movementControllerId": 33055,
+      "routeCompletionMotionOverrideId": 33433,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33433,
+        "sequenceIndex": 664,
+        "sequenceName": "YKI_TATI_DRUNK_LP_F",
+        "durationFrames": 120,
+        "controllerFamilyIndex": 13
+      }
+    },
+    {
+      "actorCode": "MTRI",
+      "sourceVariantId": "MTRI:e18c81dc11311f11e8b629ccf3e6b273ffa2df32844d95164a23bc5e8ad1ad71",
+      "journeyStartSecond": 59400,
+      "overrideOperationFileOffset": "0x4b0e0",
+      "routeOperationFileOffset": "0x4b0e8",
+      "movementControllerId": 33466,
+      "routeCompletionMotionOverrideId": 33433,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33433,
+        "sequenceIndex": 664,
+        "sequenceName": "YKI_TATI_DRUNK_LP_F",
+        "durationFrames": 120,
+        "controllerFamilyIndex": 13
+      }
+    },
+    {
+      "actorCode": "MTRI",
+      "sourceVariantId": "MTRI:e18c81dc11311f11e8b629ccf3e6b273ffa2df32844d95164a23bc5e8ad1ad71",
+      "journeyStartSecond": 59400,
+      "overrideOperationFileOffset": "0x4b0e0",
+      "routeOperationFileOffset": "0x4b0f8",
+      "movementControllerId": 33466,
+      "routeCompletionMotionOverrideId": 33433,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33433,
+        "sequenceIndex": 664,
+        "sequenceName": "YKI_TATI_DRUNK_LP_F",
+        "durationFrames": 120,
+        "controllerFamilyIndex": 13
+      }
+    },
+    {
+      "actorCode": "MTRI",
+      "sourceVariantId": "MTRI:e18c81dc11311f11e8b629ccf3e6b273ffa2df32844d95164a23bc5e8ad1ad71",
+      "journeyStartSecond": 59400,
+      "overrideOperationFileOffset": "0x4b0e0",
+      "routeOperationFileOffset": "0x4b108",
+      "movementControllerId": 33466,
+      "routeCompletionMotionOverrideId": 33433,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33433,
+        "sequenceIndex": 664,
+        "sequenceName": "YKI_TATI_DRUNK_LP_F",
+        "durationFrames": 120,
+        "controllerFamilyIndex": 13
+      }
+    },
+    {
+      "actorCode": "MTRI",
+      "sourceVariantId": "MTRI:e18c81dc11311f11e8b629ccf3e6b273ffa2df32844d95164a23bc5e8ad1ad71",
+      "journeyStartSecond": 59400,
+      "overrideOperationFileOffset": "0x4b0e0",
+      "routeOperationFileOffset": "0x4b118",
+      "movementControllerId": 33466,
+      "routeCompletionMotionOverrideId": 33433,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33433,
+        "sequenceIndex": 664,
+        "sequenceName": "YKI_TATI_DRUNK_LP_F",
+        "durationFrames": 120,
+        "controllerFamilyIndex": 13
+      }
+    },
+    {
+      "actorCode": "MTRI",
+      "sourceVariantId": "MTRI:e18c81dc11311f11e8b629ccf3e6b273ffa2df32844d95164a23bc5e8ad1ad71",
+      "journeyStartSecond": 59400,
+      "overrideOperationFileOffset": "0x4b0e0",
+      "routeOperationFileOffset": "0x4b144",
+      "movementControllerId": 33055,
+      "routeCompletionMotionOverrideId": 33433,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33433,
+        "sequenceIndex": 664,
+        "sequenceName": "YKI_TATI_DRUNK_LP_F",
+        "durationFrames": 120,
+        "controllerFamilyIndex": 13
+      }
+    },
+    {
+      "actorCode": "NMNO",
+      "sourceVariantId": "NMNO:9c138b0ec79d0869f5b9f7db823a99ce9ca431553223de8cc5f59be6b033cd02",
+      "journeyStartSecond": 37800,
+      "overrideOperationFileOffset": "0x4f4d4",
+      "routeOperationFileOffset": "0x4f4dc",
+      "movementControllerId": 33176,
+      "routeCompletionMotionOverrideId": 33165,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33165,
+        "sequenceIndex": 396,
+        "sequenceName": "SIN_ARI_TALK_A_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 15
+      }
+    },
+    {
+      "actorCode": "NMNO",
+      "sourceVariantId": "NMNO:9c138b0ec79d0869f5b9f7db823a99ce9ca431553223de8cc5f59be6b033cd02",
+      "journeyStartSecond": 61080,
+      "overrideOperationFileOffset": "0x4f548",
+      "routeOperationFileOffset": "0x4f550",
+      "movementControllerId": 33176,
+      "routeCompletionMotionOverrideId": 33165,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33165,
+        "sequenceIndex": 396,
+        "sequenceName": "SIN_ARI_TALK_A_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 15
+      }
+    },
+    {
+      "actorCode": "NMNO",
+      "sourceVariantId": "NMNO:9c138b0ec79d0869f5b9f7db823a99ce9ca431553223de8cc5f59be6b033cd02",
+      "journeyStartSecond": 61080,
+      "overrideOperationFileOffset": "0x4f588",
+      "routeOperationFileOffset": "0x4f590",
+      "movementControllerId": 33176,
+      "routeCompletionMotionOverrideId": 33165,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33165,
+        "sequenceIndex": 396,
+        "sequenceName": "SIN_ARI_TALK_A_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 15
+      }
+    },
+    {
+      "actorCode": "NMNO",
+      "sourceVariantId": "NMNO:9c138b0ec79d0869f5b9f7db823a99ce9ca431553223de8cc5f59be6b033cd02",
+      "journeyStartSecond": 86100,
+      "overrideOperationFileOffset": "0x4f604",
+      "routeOperationFileOffset": "0x4f60c",
+      "movementControllerId": 33176,
+      "routeCompletionMotionOverrideId": 33165,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33165,
+        "sequenceIndex": 396,
+        "sequenceName": "SIN_ARI_TALK_A_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 15
+      }
+    },
+    {
+      "actorCode": "NMNO",
+      "sourceVariantId": "NMNO:9c138b0ec79d0869f5b9f7db823a99ce9ca431553223de8cc5f59be6b033cd02",
+      "journeyStartSecond": 86100,
+      "overrideOperationFileOffset": "0x4f644",
+      "routeOperationFileOffset": "0x4f64c",
+      "movementControllerId": 33176,
+      "routeCompletionMotionOverrideId": 33165,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33165,
+        "sequenceIndex": 396,
+        "sequenceName": "SIN_ARI_TALK_A_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 15
+      }
+    },
+    {
+      "actorCode": "NMNO",
+      "sourceVariantId": "NMNO:9c138b0ec79d0869f5b9f7db823a99ce9ca431553223de8cc5f59be6b033cd02",
+      "journeyStartSecond": 0,
+      "overrideOperationFileOffset": "0x4fb5c",
+      "routeOperationFileOffset": "0x4fb64",
+      "movementControllerId": 33176,
+      "routeCompletionMotionOverrideId": 33165,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33165,
+        "sequenceIndex": 396,
+        "sequenceName": "SIN_ARI_TALK_A_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 15
+      }
+    },
+    {
+      "actorCode": "NMNO",
+      "sourceVariantId": "NMNO:9c138b0ec79d0869f5b9f7db823a99ce9ca431553223de8cc5f59be6b033cd02",
+      "journeyStartSecond": 0,
+      "overrideOperationFileOffset": "0x4fb9c",
+      "routeOperationFileOffset": "0x4fba4",
+      "movementControllerId": 33176,
+      "routeCompletionMotionOverrideId": 33165,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33165,
+        "sequenceIndex": 396,
+        "sequenceName": "SIN_ARI_TALK_A_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 15
+      }
+    },
+    {
+      "actorCode": "NMNO",
+      "sourceVariantId": "NMNO:9c138b0ec79d0869f5b9f7db823a99ce9ca431553223de8cc5f59be6b033cd02",
+      "journeyStartSecond": 61200,
+      "overrideOperationFileOffset": "0x4fbe4",
+      "routeOperationFileOffset": "0x4fbec",
+      "movementControllerId": 33176,
+      "routeCompletionMotionOverrideId": 33165,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33165,
+        "sequenceIndex": 396,
+        "sequenceName": "SIN_ARI_TALK_A_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 15
+      }
+    },
+    {
+      "actorCode": "NMNO",
+      "sourceVariantId": "NMNO:9c138b0ec79d0869f5b9f7db823a99ce9ca431553223de8cc5f59be6b033cd02",
+      "journeyStartSecond": 61200,
+      "overrideOperationFileOffset": "0x4fc24",
+      "routeOperationFileOffset": "0x4fc2c",
+      "movementControllerId": 33176,
+      "routeCompletionMotionOverrideId": 33165,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33165,
+        "sequenceIndex": 396,
+        "sequenceName": "SIN_ARI_TALK_A_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 15
+      }
+    },
+    {
+      "actorCode": "RINS",
+      "sourceVariantId": "RINS:983eae12ef2c124ee959690aff64a732652ed870a81f7d2b4fabef8418e46cb8",
+      "journeyStartSecond": 34200,
+      "overrideOperationFileOffset": "0x58814",
+      "routeOperationFileOffset": "0x5881c",
+      "movementControllerId": 33466,
+      "routeCompletionMotionOverrideId": 33433,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33433,
+        "sequenceIndex": 664,
+        "sequenceName": "YKI_TATI_DRUNK_LP_F",
+        "durationFrames": 120,
+        "controllerFamilyIndex": 13
+      }
+    },
+    {
+      "actorCode": "SNKC",
+      "sourceVariantId": "SNKC:61407a2d771e1c6533d483a1c8efd654e75e281d8d6ea3f7ddf3bd619f2bf5c5",
+      "journeyStartSecond": 75600,
+      "overrideOperationFileOffset": "0x6a4f0",
+      "routeOperationFileOffset": "0x6a4f8",
+      "movementControllerId": 33466,
+      "routeCompletionMotionOverrideId": 33604,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33604,
+        "sequenceIndex": 835,
+        "sequenceName": "OTH_DRUNK_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 10
+      }
+    },
+    {
+      "actorCode": "TAKI",
+      "sourceVariantId": "TAKI:291f117232648f053a4b864a8936d65a7b15f93cbaa16d0e2e790e8f54ac2abc",
+      "journeyStartSecond": 0,
+      "overrideOperationFileOffset": "0x73e30",
+      "routeOperationFileOffset": "0x73e38",
+      "movementControllerId": 33466,
+      "routeCompletionMotionOverrideId": 33607,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33607,
+        "sequenceIndex": 838,
+        "sequenceName": "YKI_DRUNK_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 13
+      }
+    },
+    {
+      "actorCode": "TAKI",
+      "sourceVariantId": "TAKI:291f117232648f053a4b864a8936d65a7b15f93cbaa16d0e2e790e8f54ac2abc",
+      "journeyStartSecond": 67800,
+      "overrideOperationFileOffset": "0x73d78",
+      "routeOperationFileOffset": "0x73d80",
+      "movementControllerId": 33466,
+      "routeCompletionMotionOverrideId": 33607,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33607,
+        "sequenceIndex": 838,
+        "sequenceName": "YKI_DRUNK_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 13
+      }
+    },
+    {
+      "actorCode": "TAKI",
+      "sourceVariantId": "TAKI:291f117232648f053a4b864a8936d65a7b15f93cbaa16d0e2e790e8f54ac2abc",
+      "journeyStartSecond": 67800,
+      "overrideOperationFileOffset": "0x73dc8",
+      "routeOperationFileOffset": "0x73dd0",
+      "movementControllerId": 33466,
+      "routeCompletionMotionOverrideId": 33607,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33607,
+        "sequenceIndex": 838,
+        "sequenceName": "YKI_DRUNK_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 13
+      }
+    },
+    {
+      "actorCode": "TJMA",
+      "sourceVariantId": "TJMA:ebfdd0c73f564dd9b62a9f533fefe07b27e2e9081969c7f6c7edeb19cf7d0047",
+      "journeyStartSecond": 61200,
+      "overrideOperationFileOffset": "0x75e94",
+      "routeOperationFileOffset": "0x75e9c",
+      "movementControllerId": 33478,
+      "routeCompletionMotionOverrideId": 33187,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33187,
+        "sequenceIndex": 418,
+        "sequenceName": "SIN_TATI_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 15
+      }
+    },
+    {
+      "actorCode": "TJMA",
+      "sourceVariantId": "TJMA:ebfdd0c73f564dd9b62a9f533fefe07b27e2e9081969c7f6c7edeb19cf7d0047",
+      "journeyStartSecond": 61200,
+      "overrideOperationFileOffset": "0x75ebc",
+      "routeOperationFileOffset": "0x75ec4",
+      "movementControllerId": 33478,
+      "routeCompletionMotionOverrideId": 33477,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33477,
+        "sequenceIndex": 708,
+        "sequenceName": "SIN_KIMONO_TATI_LP_F",
+        "durationFrames": 60,
+        "controllerFamilyIndex": 15
+      }
+    },
+    {
+      "actorCode": "YOPA",
+      "sourceVariantId": "YOPA:df31553ab9558aacb035a5a5dfbdb8b193ac6a2048206dd881dd393e0452bb8c",
+      "journeyStartSecond": 64800,
+      "overrideOperationFileOffset": "0x8f214",
+      "routeOperationFileOffset": "0x8f21c",
+      "movementControllerId": 33113,
+      "routeCompletionMotionOverrideId": 33433,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33433,
+        "sequenceIndex": 664,
+        "sequenceName": "YKI_TATI_DRUNK_LP_F",
+        "durationFrames": 120,
+        "controllerFamilyIndex": 13
+      }
+    },
+    {
+      "actorCode": "YOPA",
+      "sourceVariantId": "YOPA:df31553ab9558aacb035a5a5dfbdb8b193ac6a2048206dd881dd393e0452bb8c",
+      "journeyStartSecond": 64800,
+      "overrideOperationFileOffset": "0x8f214",
+      "routeOperationFileOffset": "0x8f264",
+      "movementControllerId": 33113,
+      "routeCompletionMotionOverrideId": 33433,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33433,
+        "sequenceIndex": 664,
+        "sequenceName": "YKI_TATI_DRUNK_LP_F",
+        "durationFrames": 120,
+        "controllerFamilyIndex": 13
+      }
+    },
+    {
+      "actorCode": "YOPA",
+      "sourceVariantId": "YOPA:df31553ab9558aacb035a5a5dfbdb8b193ac6a2048206dd881dd393e0452bb8c",
+      "journeyStartSecond": 64800,
+      "overrideOperationFileOffset": "0x8f214",
+      "routeOperationFileOffset": "0x8f2bc",
+      "movementControllerId": 33113,
+      "routeCompletionMotionOverrideId": 33433,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33433,
+        "sequenceIndex": 664,
+        "sequenceName": "YKI_TATI_DRUNK_LP_F",
+        "durationFrames": 120,
+        "controllerFamilyIndex": 13
+      }
+    },
+    {
+      "actorCode": "YOPA",
+      "sourceVariantId": "YOPA:df31553ab9558aacb035a5a5dfbdb8b193ac6a2048206dd881dd393e0452bb8c",
+      "journeyStartSecond": 64800,
+      "overrideOperationFileOffset": "0x8f214",
+      "routeOperationFileOffset": "0x8f2d0",
+      "movementControllerId": 33113,
+      "routeCompletionMotionOverrideId": 33433,
+      "resolution": {
+        "status": "exact registered route-completion motion",
+        "bank": "mobj",
+        "motionId": 33433,
+        "sequenceIndex": 664,
+        "sequenceName": "YKI_TATI_DRUNK_LP_F",
+        "durationFrames": 120,
+        "controllerFamilyIndex": 13
+      }
+    }
+  ]
+}

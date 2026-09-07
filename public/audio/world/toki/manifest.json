@@ -1,0 +1,4062 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/build_toki_audio_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/STREAM/A0142B.AFS",
+      "sha256": "34c9e3d2cda7f4cad2b7348dd4c1c5adb65421707b5d574595a25703d0097104"
+    },
+    "soundBank": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/SOUND/A1_TOURA.SND",
+      "sha256": "8bf3e2b52098f1f1de5670690b7e06b7a1a43c94004b307c34900c12c9caa3b6"
+    },
+    "authManifest": "play/assets/dobuita/toki/manifest.json",
+    "resourceBindingEvidence": "tools/evidence/player-cutscene-owner-discovery.json"
+  },
+  "voices": [
+    {
+      "voiceId": "A0142BA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BA001.aiff",
+      "nativeMember": "A0142BA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 16384,
+      "nativeSha256": "02b407a4bcad2100b25306f9a5ae85120fcfe39a0aea4876d72036f0c02e95c5",
+      "speakerId": "AKIR",
+      "sourceText": "Excuse me, are you Xia-san?",
+      "displayText": "Excuse me, are you Xia-san?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 29
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BA001.wav",
+      "byteLength": 65324,
+      "sha256": "63dc28f2f1da99f10b380cefa3c0b19ce13330673676b191bdee26927ed9a81c"
+    },
+    {
+      "voiceId": "A0142BA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BA002.aiff",
+      "nativeMember": "A0142BA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 10240,
+      "nativeSha256": "25b3aa18760472e84cc21359b03e0ca3b10b89354e532509985442d63335a2db",
+      "speakerId": "AKIR",
+      "sourceText": "I'm Ryo Hazuki.",
+      "displayText": "I'm Ryo Hazuki.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BA002.wav",
+      "byteLength": 40748,
+      "sha256": "8ec60c6a812f0da45aec2405da5364d1d84355a5be03a6dac0810f5a1cf22eaf"
+    },
+    {
+      "voiceId": "A0142BA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BA003.aiff",
+      "nativeMember": "A0142BA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 4096,
+      "nativeSha256": "57afdc96ea8a4a1429bc8b964557ec3b56103989308fd45bd405c4176ce7149b",
+      "speakerId": "AKIR",
+      "sourceText": "Huh?",
+      "displayText": "Huh?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BA003.wav",
+      "byteLength": 16172,
+      "sha256": "7ac053783c03bdf663a0cd2a94d91279c81a01c72fef2075b90a538a96e79f9f"
+    },
+    {
+      "voiceId": "A0142BA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BA004.aiff",
+      "nativeMember": "A0142BA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 12288,
+      "nativeSha256": "cc7ecb75fe41b319c58a1b77d3a7f871434b8c5ab1a3d508ed708a8bf58383b6",
+      "speakerId": "AKIR",
+      "sourceText": "Oh=@ I remember.",
+      "displayText": "Oh... I remember.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 22
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BA004.wav",
+      "byteLength": 48940,
+      "sha256": "896d98a0a94356e25290b7d4515ccd62b1e741a8c8531d9719015cbf10dfdcca"
+    },
+    {
+      "voiceId": "A0142BA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BA005.aiff",
+      "nativeMember": "A0142BA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 10240,
+      "nativeSha256": "5b4aa702d8684e007889ff94a8b31e7c22eb007a79ccc8fce11b1d2a1d082617",
+      "speakerId": "AKIR",
+      "sourceText": "It was nothing really=@",
+      "displayText": "It was nothing really...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BA005.wav",
+      "byteLength": 40748,
+      "sha256": "90e13a8ebf16b9683d4e7f56c3b8756311a9f50f4da16071dbbac760b5b5a751"
+    },
+    {
+      "voiceId": "A0142BA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BA006.aiff",
+      "nativeMember": "A0142BA006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 20480,
+      "nativeSha256": "53ddf8585a5bd2b6ecca854d72ecc64307d5200ba2f6f1ebeeb4fa53a288649d",
+      "speakerId": "AKIR",
+      "sourceText": "Well, I have a letter＆I'd like you to translate=@",
+      "displayText": "Well, I have a letter\nI'd like you to translate...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 35
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BA006.wav",
+      "byteLength": 81708,
+      "sha256": "bf346713c1d0c70e1aba3fac955f599fd9cb320deeb5c9df127cf6fb8cd461e2"
+    },
+    {
+      "voiceId": "A0142BA007",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BA007.aiff",
+      "nativeMember": "A0142BA007.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 6144,
+      "nativeSha256": "3da2dc77068f2a4c242bd654d958d05ec6936a27c4e6d8774812f8f0631ba419",
+      "speakerId": "AKIR",
+      "sourceText": "Reversed?",
+      "displayText": "Reversed?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BA007.wav",
+      "byteLength": 24364,
+      "sha256": "4af2e34a2875ba10e954761eef414f5cf533312595bb8d6d9a3eaf238dc6bdaf"
+    },
+    {
+      "voiceId": "A0142BA008",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BA008.aiff",
+      "nativeMember": "A0142BA008.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 8192,
+      "nativeSha256": "2e60e38485a1c5d50b0e4840a6756d277e951a97f6711c9759ab7f797a304ca7",
+      "speakerId": "AKIR",
+      "sourceText": "Could you read it for me?",
+      "displayText": "Could you read it for me?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BA008.wav",
+      "byteLength": 32556,
+      "sha256": "de8d1cf441dd2767e6312763b38d6d8f91968b351cbcdf7db366144e61eef66e"
+    },
+    {
+      "voiceId": "A0142BA009",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BA009.aiff",
+      "nativeMember": "A0142BA009.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 8192,
+      "nativeSha256": "b7793fe7e380aae5336c4c6f2b95b22f58b36367eb651d095bdd39ba5823315f",
+      "speakerId": "AKIR",
+      "sourceText": "Zhu Yuan Da=@",
+      "displayText": "Zhu Yuan Da...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BA009.wav",
+      "byteLength": 32556,
+      "sha256": "e49419aeed8b0380c3eeed028500a8ced4ae9c9392b29ba962223081d47a7278"
+    },
+    {
+      "voiceId": "A0142BA010",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BA010.aiff",
+      "nativeMember": "A0142BA010.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 8192,
+      "nativeSha256": "8ea30919edd91146fb769e65ac927952163bb0f1d64446cc45db4a5e18d1d90a",
+      "speakerId": "AKIR",
+      "sourceText": "Master=@Chen=@?",
+      "displayText": "Master...Chen...?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BA010.wav",
+      "byteLength": 32556,
+      "sha256": "a0e360293d12172758d7670f15654659fb3fb9f1c0a6362d8b9eac09e9ece97b"
+    },
+    {
+      "voiceId": "A0142BA011",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BA011.aiff",
+      "nativeMember": "A0142BA011.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 8192,
+      "nativeSha256": "04ba9b12fb3860abbe5f9bb0328116039b961c4c67506f527b411ff416c25e2d",
+      "speakerId": "AKIR",
+      "sourceText": "What does it mean?",
+      "displayText": "What does it mean?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BA011.wav",
+      "byteLength": 32556,
+      "sha256": "d70d9139c3d8b8b20c966fa955adc3f538469326a96f64cec34f4f2c5616a49d"
+    },
+    {
+      "voiceId": "A0142BA012",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BA012.aiff",
+      "nativeMember": "A0142BA012.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 6144,
+      "nativeSha256": "c4f1ceeac9ad0991f10d7d6bd7f3db97c0ecc37f6127119e1421b7f22ca56c85",
+      "speakerId": "AKIR",
+      "sourceText": "I understand.=@",
+      "displayText": "I understand....",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BA012.wav",
+      "byteLength": 24364,
+      "sha256": "782add082970b4dfa85cb217abd2fe19eb32b7691f4a0a560ff4d628cdc1c64b"
+    },
+    {
+      "voiceId": "A0142BA013",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BA013.aiff",
+      "nativeMember": "A0142BA013.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 8192,
+      "nativeSha256": "d0dfe917922191ab7aecfc4a67ebf800104191ab774783c5784ea2438df163bf",
+      "speakerId": "AKIR",
+      "sourceText": "A phone number=@?",
+      "displayText": "A phone number...?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 20
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BA013.wav",
+      "byteLength": 32556,
+      "sha256": "00c47f3b82c9a81e3f04a06f0e2bfb39df769840bca9660e47c4376ac021d8eb"
+    },
+    {
+      "voiceId": "A0142BA014",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BA014.aiff",
+      "nativeMember": "A0142BA014.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 34816,
+      "nativeSha256": "deb76dc622b86670fedd89743777d3c0cecabcadbf414ab6dd3f73d932d7acc0",
+      "speakerId": "AKIR",
+      "sourceText": "0468-61-5647, right?",
+      "displayText": "0468-61-5647, right?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 24
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BA014.wav",
+      "byteLength": 139052,
+      "sha256": "e9928a3b00336322ee2b68bbdfacc87375ee3ff3daad62461335f7f81dd10427"
+    },
+    {
+      "voiceId": "A0142BA015",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BA015.aiff",
+      "nativeMember": "A0142BA015.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 4096,
+      "nativeSha256": "5e96d4b515a58a3dc6ab50b164d3554d6e04389a4cad6d911c8531eda1349280",
+      "speakerId": "AKIR",
+      "sourceText": "I've got it.",
+      "displayText": "I've got it.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BA015.wav",
+      "byteLength": 16172,
+      "sha256": "c21276dc285b6f78d8e71fb843b7eb12c88af9fe96525a05f94700515fade533"
+    },
+    {
+      "voiceId": "A0142BA016",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BA016.aiff",
+      "nativeMember": "A0142BA016.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 6144,
+      "nativeSha256": "95b7528c4e6efb1fe641d4d90f7aeb5615d36704419e2acaa5eed02d56213135",
+      "speakerId": "AKIR",
+      "sourceText": "Thank you very much.",
+      "displayText": "Thank you very much.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BA016.wav",
+      "byteLength": 24364,
+      "sha256": "2155a138a13b8b199a5a608f75f0c9c61b2e65ef5a48af6a2680ccc65f590b3d"
+    },
+    {
+      "voiceId": "A0142BB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BB001.aiff",
+      "nativeMember": "A0142BB001.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 10240,
+      "nativeSha256": "d2fb22147bc40e65f6d555050e456ce2cf341ea9bb4c5256cc5ff9fbe6c088f1",
+      "speakerId": "ASDA",
+      "sourceText": "May I help you?",
+      "displayText": "May I help you?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BB001.wav",
+      "byteLength": 40748,
+      "sha256": "39c48ee50d06f7bda65dc4121463040dc655f832b31ef74afc1d8c0efbff71b6"
+    },
+    {
+      "voiceId": "A0142BB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BB002.aiff",
+      "nativeMember": "A0142BB002.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 12288,
+      "nativeSha256": "a1bb8638f8825741c6e4a02d90cb90516789fadda74b1ba91e6f2964bd7f4132",
+      "speakerId": "ASDA",
+      "sourceText": "Yes, that's right=@",
+      "displayText": "Yes, that's right...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BB002.wav",
+      "byteLength": 48940,
+      "sha256": "aff109f153feea5a83334941fc2ec1eb474f12b4e46b87bee0caa4a0df8bce5d"
+    },
+    {
+      "voiceId": "A0142BB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BB003.aiff",
+      "nativeMember": "A0142BB003.str",
+      "nativeIndex": 18,
+      "nativeByteLength": 6144,
+      "nativeSha256": "e012a049cbb98f3adec2e4734c448ada9ada654a91847c47771c23310b7c1534",
+      "speakerId": "ASDA",
+      "sourceText": "And you are?",
+      "displayText": "And you are?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BB003.wav",
+      "byteLength": 24364,
+      "sha256": "f74a0056ef9586e32da04faa7501872d21b29c457d01ebaf26db9b6accbe0c7f"
+    },
+    {
+      "voiceId": "A0142BB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BB004.aiff",
+      "nativeMember": "A0142BB004.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 12288,
+      "nativeSha256": "994b48a970e4942334c243719b03389f28c7261f7bd59c00be0efda3754ad55e",
+      "speakerId": "ASDA",
+      "sourceText": "Ah=@Hazuki-san?",
+      "displayText": "Ah...Hazuki-san?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BB004.wav",
+      "byteLength": 48940,
+      "sha256": "4303227e6926c07abe965a2dd4aa3f62c3e04f6c517764d977b95a3fd2ef9f2d"
+    },
+    {
+      "voiceId": "A0142BB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BB005.aiff",
+      "nativeMember": "A0142BB005.str",
+      "nativeIndex": 20,
+      "nativeByteLength": 18432,
+      "nativeSha256": "a12da9a6df4ae361728595418ef20b283a311f063422d6d5112afe89f00db867",
+      "speakerId": "ASDA",
+      "sourceText": "Oh, yes. My grandson=@",
+      "displayText": "Oh, yes. My grandson...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 27
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BB005.wav",
+      "byteLength": 73516,
+      "sha256": "e8e154968e3557589a905f51e48715435fe58376fba95e6934163d82893b334f"
+    },
+    {
+      "voiceId": "A0142BB006",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BB006.aiff",
+      "nativeMember": "A0142BB006.str",
+      "nativeIndex": 21,
+      "nativeByteLength": 28672,
+      "nativeSha256": "85081d5931b98b22e188c4d5cfc526fa590f1bb74a88ee344bb1896a1b511db3",
+      "speakerId": "ASDA",
+      "sourceText": "Gao Wen told me. Thank you very much.",
+      "displayText": "Gao Wen told me. Thank you very much.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 79
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BB006.wav",
+      "byteLength": 114476,
+      "sha256": "4f3e8450ea7bacad9dfa5362e13869b84c4bbca5de8e00b95d95091a15dd7774"
+    },
+    {
+      "voiceId": "A0142BB007",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BB007.aiff",
+      "nativeMember": "A0142BB007.str",
+      "nativeIndex": 22,
+      "nativeByteLength": 16384,
+      "nativeSha256": "e175d5a3554731f04160122770d26d3c174a97ba520c10589c1760e193349283",
+      "speakerId": "ASDA",
+      "sourceText": "You helped him at Sakuragaoka.",
+      "displayText": "You helped him at Sakuragaoka.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BB007.wav",
+      "byteLength": 65324,
+      "sha256": "7eaafcdb9d2d234c194014824b6e86b326874c1472dc3c0a524ec1798f00274f"
+    },
+    {
+      "voiceId": "A0142BB008",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BB008.aiff",
+      "nativeMember": "A0142BB008.str",
+      "nativeIndex": 23,
+      "nativeByteLength": 18432,
+      "nativeSha256": "9a6960b8558b92bbb06f0163742c67d182ad9140e08a808417ee8d2a4adb8bea",
+      "speakerId": "ASDA",
+      "sourceText": "He was so excited when he told me.",
+      "displayText": "He was so excited when he told me.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BB008.wav",
+      "byteLength": 73516,
+      "sha256": "6c7d35b7a263fa79f8e2d6e1a6106c6c0a52948a049fd5674c2045043b32f4fd"
+    },
+    {
+      "voiceId": "A0142BB009",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BB009.aiff",
+      "nativeMember": "A0142BB009.str",
+      "nativeIndex": 24,
+      "nativeByteLength": 26624,
+      "nativeSha256": "0f9ed2d5d243393e6e87f9f5563cf6a33d4ab4332a899793bbd89e54687c0b00",
+      "speakerId": "ASDA",
+      "sourceText": "He now aspires to grow strong and＆brave, just like you!",
+      "displayText": "He now aspires to grow strong and\nbrave, just like you!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BB009.wav",
+      "byteLength": 106284,
+      "sha256": "de0f1fbe725e9aa5447be1edb6a779ecb83f4344f3130a7e5351c48e23c6faa9"
+    },
+    {
+      "voiceId": "A0142BB010",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BB010.aiff",
+      "nativeMember": "A0142BB010.str",
+      "nativeIndex": 25,
+      "nativeByteLength": 6144,
+      "nativeSha256": "a2c50e2f8142903b513d56466ea93b3cd26937b463d9fa86d322fcb45c7e2c6a",
+      "speakerId": "ASDA",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 26
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BB010.wav",
+      "byteLength": 24364,
+      "sha256": "0d90edbe5dfb25d01323d1260bbcf634db6b2557df0b3d153668b82d92fc86e2"
+    },
+    {
+      "voiceId": "A0142BB011",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BB011.aiff",
+      "nativeMember": "A0142BB011.str",
+      "nativeIndex": 26,
+      "nativeByteLength": 14336,
+      "nativeSha256": "20739b4ac6e8497610cfe2d0e7b39f4dadd9ea4e30ee9d6b3a470f21922d20b9",
+      "speakerId": "ASDA",
+      "sourceText": "So what brings you here?",
+      "displayText": "So what brings you here?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BB011.wav",
+      "byteLength": 57132,
+      "sha256": "eb9c854617f5286d3e09feb1435b0aff4447095937a247ae152471892c6c1435"
+    },
+    {
+      "voiceId": "A0142BB012",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BB012.aiff",
+      "nativeMember": "A0142BB012.str",
+      "nativeIndex": 27,
+      "nativeByteLength": 16384,
+      "nativeSha256": "eb5103567a2c649a0a383943125d605d0575cc979e731075e4a20a3395bb493f",
+      "speakerId": "ASDA",
+      "sourceText": "Heh? Reversed Kanji?",
+      "displayText": "Heh? Reversed Kanji?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 24
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 27
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BB012.wav",
+      "byteLength": 65324,
+      "sha256": "0c51ab07168e0efb1c56723659ac59a7ee74a385398a4a87be90cb04cf3e9a2f"
+    },
+    {
+      "voiceId": "A0142BB013",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BB013.aiff",
+      "nativeMember": "A0142BB013.str",
+      "nativeIndex": 28,
+      "nativeByteLength": 24576,
+      "nativeSha256": "2268a0fc17f89cc6938b0cc7b616c151bb9d83a6d0ec60b45c8da131d4d658fe",
+      "speakerId": "ASDA",
+      "sourceText": "Yes, but they aren't just＆reversed left to right.",
+      "displayText": "Yes, but they aren't just\nreversed left to right.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BB013.wav",
+      "byteLength": 98092,
+      "sha256": "c3281d974461fa3eb124a76f7c7f1a1c4a2d689aa2a9016b4761225acc1c2d15"
+    },
+    {
+      "voiceId": "A0142BB014",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BB014.aiff",
+      "nativeMember": "A0142BB014.str",
+      "nativeIndex": 29,
+      "nativeByteLength": 14336,
+      "nativeSha256": "80cd248d3afe801e5ff711573036061693b8451b4a92de390137acd41afeefdf",
+      "speakerId": "ASDA",
+      "sourceText": "They're written in a special style.",
+      "displayText": "They're written in a special style.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BB014.wav",
+      "byteLength": 57132,
+      "sha256": "2c247cd6ce788a2e91ad0cad5566f51c5567c05aded0e45bae4afbe3043ff0ff"
+    },
+    {
+      "voiceId": "A0142BB015",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BB015.aiff",
+      "nativeMember": "A0142BB015.str",
+      "nativeIndex": 30,
+      "nativeByteLength": 10240,
+      "nativeSha256": "f8fa4dbfc32f489c3a6395655e3eb0d4e2dca7e17b6a324fedbe5784573a7505",
+      "speakerId": "ASDA",
+      "sourceText": "Yes, of course.",
+      "displayText": "Yes, of course.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BB015.wav",
+      "byteLength": 40748,
+      "sha256": "0e52b25c4c9a4e3810b0dc48ff83305401bd8624a08b2abe0affcd09374e1351"
+    },
+    {
+      "voiceId": "A0142BB016",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BB016.aiff",
+      "nativeMember": "A0142BB016.str",
+      "nativeIndex": 31,
+      "nativeByteLength": 24576,
+      "nativeSha256": "517de9cf31486f2e5bb26e8a13c457c9a2fe24d44f7c5c1d778f300d6e74ea38",
+      "speakerId": "ASDA",
+      "sourceText": "{Beware of those=@＆who pursue the mirror=@}",
+      "displayText": "{Beware of those...\nwho pursue the mirror...}",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 27
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BB016.wav",
+      "byteLength": 98092,
+      "sha256": "8412a63a1b909b9686e56ea39fd474a234962d7e05e635771715bcc13ac35fd3"
+    },
+    {
+      "voiceId": "A0142BB017",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BB017.aiff",
+      "nativeMember": "A0142BB017.str",
+      "nativeIndex": 32,
+      "nativeByteLength": 28672,
+      "nativeSha256": "7f4963d5698541acc2c2efa78f09e701bd9c0a31b464e24a4436152f8df3f016",
+      "speakerId": "ASDA",
+      "sourceText": "{If you ever need help,＆seek the aid of Master Chen=@}",
+      "displayText": "{If you ever need help,\nseek the aid of Master Chen...}",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BB017.wav",
+      "byteLength": 114476,
+      "sha256": "dc6a706a274420f19615c05d437ec82783bd8e106ca6c8848ace0aa3247ebca1"
+    },
+    {
+      "voiceId": "A0142BB018",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BB018.aiff",
+      "nativeMember": "A0142BB018.str",
+      "nativeIndex": 33,
+      "nativeByteLength": 10240,
+      "nativeSha256": "07aff9d8de26869a6f8bd59fa583c5de625690920fc60b6e39822c688734486b",
+      "speakerId": "ASDA",
+      "sourceText": "{Zhu Yuan Da=@}",
+      "displayText": "{Zhu Yuan Da...}",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BB018.wav",
+      "byteLength": 40748,
+      "sha256": "60f07250577dbbc97987edc4adc957570b477624affd8254eb893fa2427c2a3f"
+    },
+    {
+      "voiceId": "A0142BB019",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BB019.aiff",
+      "nativeMember": "A0142BB019.str",
+      "nativeIndex": 34,
+      "nativeByteLength": 22528,
+      "nativeSha256": "f7f2ba692e7c78c3dd4f216190dd3605dc2e19ec39bc703270e4c19058943832",
+      "speakerId": "ASDA",
+      "sourceText": "Oh, there's something written＆on the back too.",
+      "displayText": "Oh, there's something written\non the back too.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 18
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 20
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BB019.wav",
+      "byteLength": 89900,
+      "sha256": "885147d5e4bc6041cf634b516b5a25096fe12a42eba3bd8e003e8d06740f95a8"
+    },
+    {
+      "voiceId": "A0142BB020",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BB020.aiff",
+      "nativeMember": "A0142BB020.str",
+      "nativeIndex": 35,
+      "nativeByteLength": 40960,
+      "nativeSha256": "a3fa84e8b852deba37cb0996773969ebed61c052f79a94355aa2b032324bc2cc",
+      "speakerId": "ASDA",
+      "sourceText": "{Tian zhi fu, Jiu tiao long,＆Di zhi mu, Wo de you=@}",
+      "displayText": "{Tian zhi fu, Jiu tiao long,\nDi zhi mu, Wo de you...}",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 29
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 18
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 40
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 21
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 31
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 18
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BB020.wav",
+      "byteLength": 163628,
+      "sha256": "36b3b66a1add359d463df4f204b0c098cdbcb5686047e7e710839c5aa53611a2"
+    },
+    {
+      "voiceId": "A0142BB021",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BB021.aiff",
+      "nativeMember": "A0142BB021.str",
+      "nativeIndex": 36,
+      "nativeByteLength": 36864,
+      "nativeSha256": "461d24e47da8076640c6ba93fab68f0220d34f83273c2778e5bd1a3d607ad422",
+      "speakerId": "ASDA",
+      "sourceText": "Father's Heaven, Nine Dragons,＆Mother's Earth, Comrades=@",
+      "displayText": "Father's Heaven, Nine Dragons,\nMother's Earth, Comrades...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 28
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 20
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BB021.wav",
+      "byteLength": 147244,
+      "sha256": "126b9c600beb67cdb3f72e55e7b18ffc31d236769c9f949a701f2a123fd0867d"
+    },
+    {
+      "voiceId": "A0142BB022",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BB022.aiff",
+      "nativeMember": "A0142BB022.str",
+      "nativeIndex": 37,
+      "nativeByteLength": 18432,
+      "nativeSha256": "877d1d8c821eaf2a4d47810359a90e83ec50d9a5a77525c28ea8990674204973",
+      "speakerId": "ASDA",
+      "sourceText": "=@I'm sorry, it doesn't make sense.",
+      "displayText": "...I'm sorry, it doesn't make sense.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 17
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BB022.wav",
+      "byteLength": 73516,
+      "sha256": "70934450aa4a36520c1aff1fcaa988778974aad3c5a7bd7c28a89ceed34c543d"
+    },
+    {
+      "voiceId": "A0142BB023",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BB023.aiff",
+      "nativeMember": "A0142BB023.str",
+      "nativeIndex": 38,
+      "nativeByteLength": 24576,
+      "nativeSha256": "c420da72da56255125c7db0e01b20fd9594eb202fb46f100fb770b8ce932865a",
+      "speakerId": "ASDA",
+      "sourceText": "But I think, this part may be＆a phone number.",
+      "displayText": "But I think, this part may be\na phone number.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 19
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BB023.wav",
+      "byteLength": 98092,
+      "sha256": "aef3df0325e5121dc673f502ad42889cf865f836a44257d78261ba7b613fe3e2"
+    },
+    {
+      "voiceId": "A0142BB024",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BB024.aiff",
+      "nativeMember": "A0142BB024.str",
+      "nativeIndex": 39,
+      "nativeByteLength": 18432,
+      "nativeSha256": "379d09f55a93198bd71c09cc1f0295359bd1718126667ebc558407822ab46c63",
+      "speakerId": "ASDA",
+      "sourceText": "These ancient characters are numbers.",
+      "displayText": "These ancient characters are numbers.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BB024.wav",
+      "byteLength": 73516,
+      "sha256": "72c9e79659c940668ba6ea978c9e8889f8f45ce3b1e0f89b8ff0a5361af91a44"
+    },
+    {
+      "voiceId": "A0142BB025",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SOUND/A0142BB025.aiff",
+      "nativeMember": "A0142BB025.str",
+      "nativeIndex": 40,
+      "nativeByteLength": 49152,
+      "nativeSha256": "a6f572e7558b4ff36fac2b621360e9c45a33ed147ef119c7f56246bdf5f28abd",
+      "speakerId": "ASDA",
+      "sourceText": "Yes, 0468=@61=@5647=@",
+      "displayText": "Yes, 0468...61...5647...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 31
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 23
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 47
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/toki/voice/A0142BB025.wav",
+      "byteLength": 196396,
+      "sha256": "83d2cb5acba4488c81980cd4885d2dbeaad26f197b1c6080ef83a21a2aae1a07"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SE/cloths2/friction2.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/toki/sfx/a9040000.wav",
+      "byteLength": 20916,
+      "sha256": "70c58a40f2a0cb7dbd1431ee497c610b51fa15fe0946d79d09230e6cccc708b6"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SE/cloths2/friction4.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/toki/sfx/a9040100.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 2,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/toki/sfx/a9040200.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SE/footroom/jiage1.aiff",
+      "playbackId": 3,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/toki/sfx/a9040300.wav",
+      "byteLength": 5852,
+      "sha256": "cfdb9322ad1a4b569f9f60b4f26bc4e7f02609a23381e4680b69ebbb17f0a635"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SE/footroom/jiage2.aiff",
+      "playbackId": 4,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/toki/sfx/a9040400.wav",
+      "byteLength": 3388,
+      "sha256": "e7cf3e0b70adaa4dc72f0f40ad5e9c7a01c153127d4424a481e7309d8328a223"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SE/footroom/jiage5.aiff",
+      "playbackId": 5,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/toki/sfx/a9040500.wav",
+      "byteLength": 5188,
+      "sha256": "844f36171a3d8c6504813ec3fa39f9e48655edaec4e831d220af5a69a6d4b9fd"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SE/smallobject/paper01.aiff",
+      "playbackId": 6,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/toki/sfx/a9040600.wav",
+      "byteLength": 15716,
+      "sha256": "5e975015a71bfe3ce84515823777a10ad35518b271214ed069e36201eff810b5"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SE/smallobject/paper2.aiff",
+      "playbackId": 7,
+      "sampleId": 11,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/toki/sfx/a9040700.wav",
+      "byteLength": 48100,
+      "sha256": "3ee57119477ec4753e1433911f99fc001d66635c3a5e6e5ad61d3b3e4d24068c"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SE/smallobject/paper4eq.aiff",
+      "playbackId": 8,
+      "sampleId": 12,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/toki/sfx/a9040800.wav",
+      "byteLength": 18300,
+      "sha256": "cc0df85987615370ed138b58acaa011b2c0b837be3a636a51603e3b8969bd152"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SE/footroom/ryoroom2.aiff",
+      "playbackId": 9,
+      "sampleId": 13,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/toki/sfx/a9040900.wav",
+      "byteLength": 10884,
+      "sha256": "f4302b7b9e55d65f6d3ab6f63a8f1b4a200d7a2cfca8e63e9a29ab6bad1dde5b"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SE/footroom/ryoroom3.aiff",
+      "playbackId": 10,
+      "sampleId": 14,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/toki/sfx/a9040a00.wav",
+      "byteLength": 12276,
+      "sha256": "205e3268ee12efae7b4bfbb4304b95d09bfd824d80c6a1decd419042ae484c7d"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 11,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/toki/sfx/a9040b00.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SE/cloths2/furimuki_f01.aiff",
+      "playbackId": 12,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/toki/sfx/a9040c00.wav",
+      "byteLength": 9348,
+      "sha256": "2026b716ba3115748b89ec3ac3b6041824b6ddbba78ee708f62af1fb8dc3756a"
+    },
+    {
+      "commandHex": "a9040d00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SE/footroom/jiagestop.aiff",
+      "playbackId": 13,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/toki/sfx/a9040d00.wav",
+      "byteLength": 9908,
+      "sha256": "15f9092b9633c7e5aaaa975ba2663cc13e42b2b41ac74f1289f8a8987096023d"
+    },
+    {
+      "commandHex": "a9040e00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SE/smallobject/paper02.aiff",
+      "playbackId": 14,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/toki/sfx/a9040e00.wav",
+      "byteLength": 26580,
+      "sha256": "975de373332c935e17c22ca1bc38590a123d07400270b6d7310a7fb8e74681cb"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0142/SE/door/woodopen5.aiff",
+      "playbackId": 15,
+      "sampleId": 15,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/toki/sfx/a9040f00.wav",
+      "byteLength": 13452,
+      "sha256": "0b4d5b39296983dbb6bca3c91f9f0e45c273af6bea98a3f763d15d508494e830"
+    }
+  ]
+}

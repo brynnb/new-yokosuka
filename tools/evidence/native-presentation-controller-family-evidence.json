@@ -1,0 +1,666 @@
+{
+  "schema": "new-yokosuka-native-presentation-controller-family-evidence-v1",
+  "status": "op00-complete-exact-native-routes-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operations": [
+    {
+      "operationId": 373,
+      "operationHex": "0x0175",
+      "handler": {
+        "address": "0x0c172508",
+        "length": 580,
+        "sha256": "1e16736a10495d662479320925acbc6f16771e1d94403cb777ff838af8ced5fe",
+        "tableEntryAddress": "0x0c29afb4"
+      },
+      "routes": [
+        {
+          "mode": 1,
+          "argumentCount": 1,
+          "helperAddresses": [
+            "0x0c1badbc"
+          ],
+          "forwardedWords": [],
+          "authoredCallCount": 144,
+          "op00CallCount": 0,
+          "returnsHandle": false
+        },
+        {
+          "mode": 2,
+          "argumentCount": 1,
+          "helperAddresses": [
+            "0x0c1baed0"
+          ],
+          "forwardedWords": [],
+          "authoredCallCount": 37,
+          "op00CallCount": 0,
+          "returnsHandle": false
+        },
+        {
+          "mode": 15,
+          "argumentCount": 2,
+          "helperAddresses": [
+            "0x0c1baf0c"
+          ],
+          "forwardedWords": [
+            1
+          ],
+          "authoredCallCount": 4,
+          "op00CallCount": 4,
+          "returnsHandle": false
+        },
+        {
+          "mode": 21,
+          "argumentCount": 2,
+          "helperAddresses": [
+            "0x0c1bc5f8"
+          ],
+          "forwardedWords": [
+            1
+          ],
+          "authoredCallCount": 10,
+          "op00CallCount": 0,
+          "returnsHandle": false
+        },
+        {
+          "mode": 23,
+          "argumentCount": 2,
+          "helperAddresses": [
+            "0x0c1bc5f8",
+            "0x0c1bc5ee"
+          ],
+          "forwardedWords": [
+            "literal:0x0780"
+          ],
+          "authoredCallCount": 120,
+          "op00CallCount": 0,
+          "returnsHandle": false
+        },
+        {
+          "mode": 24,
+          "argumentCount": 2,
+          "helperAddresses": [
+            "0x0c1bc5f8",
+            "0x0c1bc5ee"
+          ],
+          "forwardedWords": [
+            "literal:0x1800"
+          ],
+          "authoredCallCount": 19,
+          "op00CallCount": 0,
+          "returnsHandle": false
+        },
+        {
+          "mode": 25,
+          "argumentCount": 2,
+          "helperAddresses": [
+            "0x0c1bc5f8",
+            "0x0c1bc5ee"
+          ],
+          "forwardedWords": [
+            "literal:12"
+          ],
+          "authoredCallCount": 128,
+          "op00CallCount": 0,
+          "returnsHandle": false
+        },
+        {
+          "mode": 27,
+          "argumentCount": 1,
+          "helperAddresses": [
+            "0x0c1baeee",
+            "0x0c1bcb32"
+          ],
+          "forwardedWords": [
+            "helper-result"
+          ],
+          "authoredCallCount": 10,
+          "op00CallCount": 0,
+          "returnsHandle": false
+        }
+      ],
+      "inventory": {
+        "authoredCallCount": 472,
+        "supportedCallCount": 472,
+        "unresolvedCallCount": 0,
+        "areaCount": 108,
+        "dialogueRegionCallCount": 0,
+        "argumentCountCounts": {
+          "1": 191,
+          "2": 281
+        },
+        "modeCounts": {
+          "1": 144,
+          "2": 37,
+          "15": 4,
+          "21": 10,
+          "23": 120,
+          "24": 19,
+          "25": 128,
+          "27": 10
+        },
+        "op00CallCount": 4,
+        "op00ModeCounts": {
+          "15": 4
+        }
+      }
+    },
+    {
+      "operationId": 374,
+      "operationHex": "0x0176",
+      "handler": {
+        "address": "0x0c17274c",
+        "length": 804,
+        "sha256": "1f8ebb76f5ee2acb529fdd0216a94b5474b2ec27357ed3eba59224fa2436959e",
+        "tableEntryAddress": "0x0c29afb8"
+      },
+      "routes": [
+        {
+          "mode": 1,
+          "argumentCount": 2,
+          "helperAddresses": [
+            "0x0c1ba8fa",
+            "0x0c1baae4"
+          ],
+          "forwardedWords": [
+            "branch:1"
+          ],
+          "authoredCallCount": 128,
+          "op00CallCount": 3,
+          "returnsHandle": false
+        }
+      ],
+      "inventory": {
+        "authoredCallCount": 341,
+        "supportedCallCount": 128,
+        "unresolvedCallCount": 213,
+        "areaCount": 108,
+        "dialogueRegionCallCount": 11,
+        "argumentCountCounts": {
+          "2": 197,
+          "4": 11,
+          "5": 109,
+          "6": 21,
+          "7": 3
+        },
+        "modeCounts": {
+          "1": 128,
+          "9": 3,
+          "10": 21,
+          "11": 11,
+          "12": 69,
+          "13": 109
+        },
+        "op00CallCount": 3,
+        "op00ModeCounts": {
+          "1": 3
+        }
+      }
+    },
+    {
+      "operationId": 376,
+      "operationHex": "0x0178",
+      "handler": {
+        "address": "0x0c172b8c",
+        "length": 308,
+        "sha256": "50a33da03b00fcc943dfd37ffcfa22212f8c5de5d41b6940c7881ad0c46416c6",
+        "tableEntryAddress": "0x0c29afc0"
+      },
+      "routes": [
+        {
+          "mode": 1,
+          "argumentCount": 2,
+          "helperAddresses": [
+            "0x0c1c173c",
+            "0x0c1bb2da",
+            "0x0c0bb342"
+          ],
+          "forwardedWords": [
+            1
+          ],
+          "authoredCallCount": 5,
+          "op00CallCount": 2,
+          "returnsHandle": true
+        },
+        {
+          "mode": 6,
+          "argumentCount": 7,
+          "helperAddresses": [
+            "0x0c1c1794",
+            "0x0c1bb2da",
+            "0x0c0bb342"
+          ],
+          "forwardedWords": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "authoredCallCount": 5,
+          "op00CallCount": 5,
+          "returnsHandle": true
+        },
+        {
+          "mode": 7,
+          "argumentCount": 2,
+          "helperAddresses": [
+            "0x0c1bb514",
+            "0x0c1c17d8"
+          ],
+          "forwardedWords": [
+            1
+          ],
+          "authoredCallCount": 27,
+          "op00CallCount": 14,
+          "returnsHandle": false
+        },
+        {
+          "mode": 10,
+          "argumentCount": 1,
+          "helperAddresses": [
+            "0x0c1bc0f2"
+          ],
+          "forwardedWords": [],
+          "authoredCallCount": 2,
+          "op00CallCount": 1,
+          "returnsHandle": false
+        },
+        {
+          "mode": 13,
+          "argumentCount": 2,
+          "helperAddresses": [
+            "0x0c1baf00"
+          ],
+          "forwardedWords": [
+            1
+          ],
+          "authoredCallCount": 21,
+          "op00CallCount": 0,
+          "returnsHandle": false
+        },
+        {
+          "mode": 14,
+          "argumentCount": 2,
+          "helperAddresses": [
+            "0x0c09b9c8"
+          ],
+          "forwardedWords": [
+            1
+          ],
+          "authoredCallCount": 12,
+          "op00CallCount": 0,
+          "returnsHandle": false
+        }
+      ],
+      "inventory": {
+        "authoredCallCount": 72,
+        "supportedCallCount": 72,
+        "unresolvedCallCount": 0,
+        "areaCount": 12,
+        "dialogueRegionCallCount": 0,
+        "argumentCountCounts": {
+          "1": 2,
+          "2": 65,
+          "7": 5
+        },
+        "modeCounts": {
+          "1": 5,
+          "6": 5,
+          "7": 27,
+          "10": 2,
+          "13": 21,
+          "14": 12
+        },
+        "op00CallCount": 22,
+        "op00ModeCounts": {
+          "1": 2,
+          "6": 5,
+          "7": 14,
+          "10": 1
+        }
+      }
+    },
+    {
+      "operationId": 377,
+      "operationHex": "0x0179",
+      "handler": {
+        "address": "0x0c172cc0",
+        "length": 1220,
+        "sha256": "d66d7709e9ea827dc324f7f546b525ad6f2400c37b39556d63be960ac117ed54",
+        "tableEntryAddress": "0x0c29afc4"
+      },
+      "routes": [
+        {
+          "mode": 2,
+          "argumentCount": 2,
+          "helperAddresses": [
+            "0x0c1bb6c4"
+          ],
+          "forwardedWords": [
+            1
+          ],
+          "authoredCallCount": 1,
+          "op00CallCount": 1,
+          "returnsHandle": false
+        },
+        {
+          "mode": 3,
+          "argumentCount": 1,
+          "helperAddresses": [
+            "0x0c1bb702"
+          ],
+          "forwardedWords": [],
+          "authoredCallCount": 2,
+          "op00CallCount": 2,
+          "returnsHandle": false
+        },
+        {
+          "mode": 4,
+          "argumentCount": 2,
+          "helperAddresses": [
+            "0x0c1bb79e"
+          ],
+          "forwardedWords": [
+            1
+          ],
+          "authoredCallCount": 2,
+          "op00CallCount": 2,
+          "returnsHandle": false
+        },
+        {
+          "mode": 7,
+          "argumentCount": 2,
+          "helperAddresses": [
+            "0x0c1bb83c"
+          ],
+          "forwardedWords": [
+            1
+          ],
+          "authoredCallCount": 1,
+          "op00CallCount": 1,
+          "returnsHandle": false
+        },
+        {
+          "mode": 11,
+          "argumentCount": 2,
+          "helperAddresses": [
+            "0x0c1bb9d6"
+          ],
+          "forwardedWords": [
+            1
+          ],
+          "authoredCallCount": 6,
+          "op00CallCount": 3,
+          "returnsHandle": false
+        },
+        {
+          "mode": 12,
+          "argumentCount": 1,
+          "helperAddresses": [
+            "0x0c1bba14"
+          ],
+          "forwardedWords": [],
+          "authoredCallCount": 13,
+          "op00CallCount": 6,
+          "returnsHandle": false
+        },
+        {
+          "mode": 13,
+          "argumentCount": 2,
+          "helperAddresses": [
+            "0x0c1bbab0"
+          ],
+          "forwardedWords": [
+            1
+          ],
+          "authoredCallCount": 2,
+          "op00CallCount": 2,
+          "returnsHandle": false
+        },
+        {
+          "mode": 14,
+          "argumentCount": 3,
+          "helperAddresses": [
+            "0x0c1bbaf6"
+          ],
+          "forwardedWords": [
+            2,
+            1
+          ],
+          "authoredCallCount": 7,
+          "op00CallCount": 1,
+          "returnsHandle": false
+        },
+        {
+          "mode": 16,
+          "argumentCount": 2,
+          "helperAddresses": [
+            "0x0c1bbb94"
+          ],
+          "forwardedWords": [
+            1
+          ],
+          "authoredCallCount": 9,
+          "op00CallCount": 3,
+          "returnsHandle": false
+        },
+        {
+          "mode": 18,
+          "argumentCount": 2,
+          "helperAddresses": [
+            "0x0c1bbbdc"
+          ],
+          "forwardedWords": [
+            1
+          ],
+          "authoredCallCount": 6,
+          "op00CallCount": 3,
+          "returnsHandle": false
+        },
+        {
+          "mode": 36,
+          "argumentCount": 7,
+          "helperAddresses": [
+            "0x0c1bb92e"
+          ],
+          "forwardedWords": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "authoredCallCount": 1,
+          "op00CallCount": 1,
+          "returnsHandle": false
+        },
+        {
+          "mode": 37,
+          "argumentCount": 7,
+          "helperAddresses": [
+            "0x0c1bbc24"
+          ],
+          "forwardedWords": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "authoredCallCount": 2,
+          "op00CallCount": 2,
+          "returnsHandle": false
+        },
+        {
+          "mode": 38,
+          "argumentCount": 11,
+          "helperAddresses": [
+            "0x0c1bb738",
+            "0x0c1bba4a",
+            "0x0c1bbd6c"
+          ],
+          "forwardedWords": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "authoredCallCount": 92,
+          "op00CallCount": 0,
+          "returnsHandle": false
+        },
+        {
+          "mode": 39,
+          "argumentCount": 3,
+          "helperAddresses": [
+            "0x0c1bc43c"
+          ],
+          "forwardedWords": [
+            1,
+            2,
+            "literal:0"
+          ],
+          "authoredCallCount": 20,
+          "op00CallCount": 0,
+          "returnsHandle": false
+        },
+        {
+          "mode": 41,
+          "argumentCount": 2,
+          "helperAddresses": [
+            "0x0c1bc516"
+          ],
+          "forwardedWords": [
+            1,
+            "literal:0"
+          ],
+          "authoredCallCount": 8,
+          "op00CallCount": 0,
+          "returnsHandle": false
+        },
+        {
+          "mode": 42,
+          "argumentCount": 3,
+          "helperAddresses": [
+            "0x0c1bc4b6"
+          ],
+          "forwardedWords": [
+            1,
+            2,
+            "literal:0"
+          ],
+          "authoredCallCount": 94,
+          "op00CallCount": 0,
+          "returnsHandle": false
+        },
+        {
+          "mode": 44,
+          "argumentCount": 3,
+          "helperAddresses": [
+            "0x0c1bc43c"
+          ],
+          "forwardedWords": [
+            1,
+            2,
+            "literal:1"
+          ],
+          "authoredCallCount": 6,
+          "op00CallCount": 0,
+          "returnsHandle": false
+        },
+        {
+          "mode": 47,
+          "argumentCount": 3,
+          "helperAddresses": [
+            "0x0c1bc4b6"
+          ],
+          "forwardedWords": [
+            1,
+            2,
+            "literal:1"
+          ],
+          "authoredCallCount": 6,
+          "op00CallCount": 0,
+          "returnsHandle": false
+        }
+      ],
+      "inventory": {
+        "authoredCallCount": 278,
+        "supportedCallCount": 278,
+        "unresolvedCallCount": 0,
+        "areaCount": 102,
+        "dialogueRegionCallCount": 0,
+        "argumentCountCounts": {
+          "1": 15,
+          "2": 35,
+          "3": 133,
+          "7": 3,
+          "11": 92
+        },
+        "modeCounts": {
+          "2": 1,
+          "3": 2,
+          "4": 2,
+          "7": 1,
+          "11": 6,
+          "12": 13,
+          "13": 2,
+          "14": 7,
+          "16": 9,
+          "18": 6,
+          "36": 1,
+          "37": 2,
+          "38": 92,
+          "39": 20,
+          "41": 8,
+          "42": 94,
+          "44": 6,
+          "47": 6
+        },
+        "op00CallCount": 27,
+        "op00ModeCounts": {
+          "2": 1,
+          "3": 2,
+          "4": 2,
+          "7": 1,
+          "11": 3,
+          "12": 6,
+          "13": 2,
+          "14": 1,
+          "16": 3,
+          "18": 3,
+          "36": 1,
+          "37": 2
+        }
+      }
+    }
+  ],
+  "summary": {
+    "authoredCallCount": 1163,
+    "supportedCallCount": 950,
+    "unresolvedCallCount": 213,
+    "op00CallCount": 56,
+    "op00UnresolvedCallCount": 0
+  },
+  "evidenceBoundary": [
+    "The four handlers are adjacent executable dispatchers and share a runtime adapter boundary, but no unproved shared native state is asserted.",
+    "All OP00 routes are exact, including operation-0x0178 handle creation and release and operation-0x0179 paired-vector ABI.",
+    "Operations 0x0175, 0x0178, and 0x0179 are complete for the all-disc authored inventory; operation 0x0176 modes 9-13 remain outside this proof.",
+    "Operation 0x0179 mode 38 forwards four exact two-float groups and two scalar float words to three helpers in order; modes 39/44, 41, and 42/47 preserve distinct helper identities and literal zero/one controls.",
+    "Opaque helper addresses retain address-derived identities until their presentation-domain meanings are independently proved."
+  ]
+}

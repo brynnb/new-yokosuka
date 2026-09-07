@@ -1,0 +1,50 @@
+{
+  "schema": "new-yokosuka-scheduled-actor-offline-relocation-v1",
+  "program": "CATBPRG1",
+  "sourceFile": "extracted_disc3_v2/data/MISC/CM_D000.BIN",
+  "sourceFileSha256": "f5703c148278bc3ec3f656644cd2291de97e5dbfea9d528b31b24842366301cc",
+  "identicalDisc1TrackOccurrences": [
+    {
+      "track": ".disc-work/disc1-t6-01.iso",
+      "fileOffset": "0x0a66a000"
+    },
+    {
+      "track": ".disc-work/disc1-t6-01.iso",
+      "fileOffset": "0x29905800"
+    }
+  ],
+  "sourceProgramFileOffset": "0x0000cb6c",
+  "sourceProgramByteLength": 5088,
+  "sourceProgramSha256": "097b70582cc461ef8174d4649f208cdf4d6ded910c4ae372c2328f074bdeda09",
+  "ramCapture": "captures/pvr/20260724-103724-frame-35825/ram.bin",
+  "ramProgramHeader": "0x8cc5926c",
+  "ramProgramSha256": "0fac02628a5c51c3d60304391ecb4624bbda429541dd62768b057f7c7c1156fa",
+  "comparison": {
+    "identicalByteCount": 5016,
+    "differingByteCount": 72,
+    "differingWordCount": 18,
+    "byteIdentityRatio": 0.9858490566037735
+  },
+  "relocationRule": "raw cached RAM pointer = 0x0c000000 + (RAM program header & 0x00ffffff) - 4 + source-local pointer; normalize the 0x0c alias to 0x8c for reporting",
+  "relocatedWords": [
+    { "programRelativeOffset": "0x00fc", "source": "0x00001168", "ram": "0x0cc5a3d0" },
+    { "programRelativeOffset": "0x0104", "source": "0x000011c8", "ram": "0x0cc5a430" },
+    { "programRelativeOffset": "0x010c", "source": "0x000012ac", "ram": "0x0cc5a514" },
+    { "programRelativeOffset": "0x0114", "source": "0x000012e0", "ram": "0x0cc5a548" },
+    { "programRelativeOffset": "0x1198", "source": "0x00000f88", "ram": "0x0cc5a1f0" },
+    { "programRelativeOffset": "0x11d8", "source": "0x00000124", "ram": "0x0cc5938c" },
+    { "programRelativeOffset": "0x1204", "source": "0x000002f8", "ram": "0x0cc59560" },
+    { "programRelativeOffset": "0x1218", "source": "0x00000fe8", "ram": "0x0cc5a250" },
+    { "programRelativeOffset": "0x1230", "source": "0x00000394", "ram": "0x0cc595fc" },
+    { "programRelativeOffset": "0x125c", "source": "0x0000055c", "ram": "0x0cc597c4" },
+    { "programRelativeOffset": "0x1284", "source": "0x00001048", "ram": "0x0cc5a2b0" },
+    { "programRelativeOffset": "0x12c8", "source": "0x000010a8", "ram": "0x0cc5a310" },
+    { "programRelativeOffset": "0x1310", "source": "0x00000754", "ram": "0x0cc599bc" },
+    { "programRelativeOffset": "0x1338", "source": "0x00000838", "ram": "0x0cc59aa0" },
+    { "programRelativeOffset": "0x1364", "source": "0x000009a0", "ram": "0x0cc59c08" },
+    { "programRelativeOffset": "0x1390", "source": "0x00000b98", "ram": "0x0cc59e00" },
+    { "programRelativeOffset": "0x13b8", "source": "0x00001108", "ram": "0x0cc5a370" },
+    { "programRelativeOffset": "0x13d0", "source": "0x00000da8", "ram": "0x0cc5a010" }
+  ],
+  "conclusion": "Every byte difference is one of the 18 source-local words relocated by the stated rule; all other program bytes are identical."
+}

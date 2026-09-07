@@ -1,0 +1,75 @@
+{
+  "schema": "new-yokosuka-scene-eight-channel-transition-v1",
+  "status": "exact-native-write-query-and-all-disc-call-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 46,
+    "operationHex": "0x002e",
+    "handlerAddress": "0x0c16ad48",
+    "transitionWriter": "0x0c173c04",
+    "activeQuery": "0x0c173cfe",
+    "perTickUpdate": "0x0c173b68",
+    "writeForm": {
+      "argumentCount": 9,
+      "durationArgumentIndex": 0,
+      "firstEndpointArgumentIndices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "secondEndpointArgumentIndices": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "storedEndpointScale": 65536,
+      "deltaFormula": "signed(secondEndpointWord - firstEndpointWord) / signed duration, truncating toward zero",
+      "zeroDurationDeltaWords": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "tickBehavior": "decrement duration once; snap current words to the second endpoint when it reaches zero, otherwise add the four stored delta words with 32-bit wrapping"
+    },
+    "queryForm": {
+      "argumentCount": 1,
+      "sentinel": "0xffffffff",
+      "returnValues": [
+        0,
+        1
+      ],
+      "condition": "stored duration word is nonzero"
+    },
+    "provenBehavior": "Nine-argument calls install two four-byte endpoints as eight 16.16-scaled channel words, store argument zero as duration, and derive four signed per-tick deltas when duration is nonzero. The native update callback decrements duration, advances the four current words, and installs the exact second endpoint on the terminal tick. The one-argument -1 form returns whether the stored duration is nonzero."
+  },
+  "allDiscInventory": {
+    "callCount": 2096,
+    "formCounts": {
+      "active-query": 756,
+      "transition-write": 1338,
+      "unselected": 2
+    },
+    "dialogueRegionFormCounts": {
+      "active-query": 103,
+      "transition-write": 145
+    },
+    "durationArgumentKindCounts": {
+      "constant": 1326,
+      "frame-field": 12
+    },
+    "areaCount": 64
+  },
+  "evidenceBoundary": [
+    "The endpoint order, byte truncation, 16.16 scaling, duration field, signed division, zero-duration path, per-tick update, terminal endpoint, and query condition are exact.",
+    "The eight channels retain a neutral numeric name; no lighting, fog, palette, or color meaning is assigned.",
+    "Two zero-argument scanner detections remain unresolved."
+  ]
+}

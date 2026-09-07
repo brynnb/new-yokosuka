@@ -1,0 +1,79 @@
+{
+  "schema": "new-yokosuka-native-cutscene-lifecycle-v1",
+  "resource": "BEBF",
+  "disc": 1,
+  "area": "JOMO",
+  "mapinfo": {
+    "path": "extracted_files/data/SCENE/01/JOMO/MAPINFO.BIN",
+    "sha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9"
+  },
+  "owner": {
+    "playerFacingEntryFunction": "0x4f758",
+    "activityInstallerFunction": "0x4bf5c",
+    "installerCallFileOffset": "0x4fa72",
+    "activityOperation": "0x013e",
+    "bindings": [
+      { "slot": 60, "callFileOffset": "0x4c0e6", "primaryPointer": "0x965d7", "secondaryPointer": "0x965e4", "activity": "SEQDATA0.AUTH" },
+      { "slot": 61, "callFileOffset": "0x4c10a", "primaryPointer": "0x965e9", "secondaryPointer": "0x965f6", "activity": "SEQDATA1.AUTH" },
+      { "slot": 62, "callFileOffset": "0x4c12e", "primaryPointer": "0x965fb", "secondaryPointer": "0x96608", "activity": "SEQDATA2.AUTH" },
+      { "slot": 63, "callFileOffset": "0x4c152", "primaryPointer": "0x9660d", "secondaryPointer": "0x9661a", "activity": "SEQDATA3.AUTH" }
+    ],
+    "playbackOrder": [
+      { "slot": 60, "callFileOffset": "0x4c244" },
+      { "slot": 61, "callFileOffset": "0x4c27a" },
+      { "slot": 62, "callFileOffset": "0x4c2b0" },
+      { "slot": 60, "callFileOffset": "0x4c30e" },
+      { "slot": 63, "callFileOffset": "0x4c344" },
+      { "slot": 62, "callFileOffset": "0x4c37a" }
+    ]
+  },
+  "nativeLifecycle": {
+    "enter": [
+      "open /scene/01/JOMO/BEBF",
+      "install activity slots 60 through 63",
+      "make named voice resource 01BEDB resident",
+      "load BGM129.SND and A1_BADME.SND"
+    ],
+    "activity": "run slots 60, 61, 62, 60, 63, 62 through helper 0x4b4f8 in exact owner order",
+    "exit": [
+      "restore SINF actor state",
+      "release named resource 01BEDB",
+      "release activity slots 60 through 63 and the BEBF container"
+    ]
+  },
+  "resourceCluster": {
+    "archive": "extracted_files/data/SCENE/01/JOMO/BEBF.PKS",
+    "archiveSha256": "b380638f300587c15a02cc6d4e73a9aa7a37a39ca2a7964f9ced9653bf4ec6bd",
+    "activities": ["SEQDATA0.AUTH", "SEQDATA1.AUTH", "SEQDATA2.AUTH", "SEQDATA3.AUTH"],
+    "motionBank": "M_01BEDB.MOTN",
+    "voiceStream": "extracted_files/data/SCENE/01/STREAM/01BEDB.AFS",
+    "soundBank": "extracted_files/data/SCENE/01/SOUND/A1_BADME.SND",
+    "musicBank": "extracted_files/data/SCENE/01/SOUND/BGM129.SND"
+  },
+  "dependencies": {
+    "actors": {
+      "AKID": "native alternate player identity used for Ryo's sleeping/dream body; no AUTH in the corpus owns AKIR and AKID together, so the package declares AKID as its authored player alias",
+      "SINF": "archive-local exact SIN_M body variant, canonical S3_JOMO_SIN_M.MT5"
+    },
+    "faces": {
+      "SINF": "canonical exact SIN_F.MT5 with byte-identical SIN_FTBL.BIN; native TALK poses remain unresolved"
+    },
+    "audio": {
+      "missingRetailCue": "AUTH references 01BEDBA004, absent from the exact 01BEDB.AFS directory; do not substitute 01BEDAA004"
+    }
+  },
+  "runtimePolicy": {
+    "sequence": "execute the canonical compiled owner program and sublease its exact repeated activity calls; do not expose four independent selector entries",
+    "assets": "reuse canonical JOMO world and Shenhua assets; package only exact activity-local AUTH and motion data",
+    "audio": "play the exact 01BEDB voices and A1_BADME effects, preserving the absent A004 cue as unavailable",
+    "exit": "release camera, actor, facial, audio, music, and activity ownership exactly once"
+  },
+  "sources": [
+    ".disc-work/dialogue/native-event-ir.json",
+    "tools/evidence/native-activity-owner-candidates.json",
+    "tools/evidence/shenmue1-scripted-scene-inventory.json",
+    "tools/evidence/native-audio-bank-inventory.json"
+  ],
+  "availability": "production",
+  "productionGate": "Satisfied by the canonical owner program's exact six activity calls, package-declared AKID player/FACE aliases, SH-4-evaluated SINF TALK poses, generated exact BGM129 command, voice/SFX assets, and shared ownership cleanup runtimes."
+}

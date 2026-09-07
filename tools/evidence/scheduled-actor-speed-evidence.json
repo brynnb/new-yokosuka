@@ -1,0 +1,2589 @@
+{
+  "schema": "new-yokosuka-scheduled-actor-speed-evidence-v1",
+  "capture": "captures/pvr/20260724-103724-frame-35825/ram.bin",
+  "captureSha256": "67ceb05f032fe571a80a7a123635f22cf23df3a286e8dd4c63bb1fa5e47be3ff",
+  "engineEvidence": {
+    "operationOneHandler": "0x0c11f948",
+    "effectiveSpeedFunction": "0x0c122a44",
+    "controllerBaseSpeedOffset": "0x54",
+    "controllerMovementScaleOffset": "0x58",
+    "programMovementScaleOffsetFromPrg1": "0x08",
+    "defaultBaseSpeed": 0.041666666666666664,
+    "rule": "path step per 30 Hz native actor update = PRG1 float at +0x08 / 24"
+  },
+  "summary": {
+    "scheduledProgramCount": 151,
+    "programWithControllerPointerCount": 151,
+    "exactDefaultInitializationMatchCount": 133,
+    "runtimeModifiedOrExceptionalCount": 18
+  },
+  "observations": [
+    {
+      "actorCode": "AKMI",
+      "programHeader": "0x8cc4e3d8",
+      "programRecordPointer": "0x8cc4e3d4",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c384220",
+          "activeOperation": 7,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "AKSK",
+      "programHeader": "0x8cc4f1c0",
+      "programRecordPointer": "0x8cc4f1bc",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c384410",
+          "activeOperation": 1,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "AKTG",
+      "programHeader": "0x8cc4fd04",
+      "programRecordPointer": "0x8cc4fd00",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c384600",
+          "activeOperation": 7,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "AOKI",
+      "programHeader": "0x8cc4ff2c",
+      "programRecordPointer": "0x8cc4ff28",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3847f0",
+          "activeOperation": 7,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "ASDA",
+      "programHeader": "0x8cc50adc",
+      "programRecordPointer": "0x8cc50ad8",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3849e0",
+          "activeOperation": 7,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "ASOU",
+      "programHeader": "0x8cc50c88",
+      "programRecordPointer": "0x8cc50c84",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c384bd0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "BIKA",
+      "programHeader": "0x8cc51374",
+      "programRecordPointer": "0x8cc51370",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c384dc0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "BIKB",
+      "programHeader": "0x8cc51704",
+      "programRecordPointer": "0x8cc51700",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c384fb0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "BUS2",
+      "programHeader": "0x8cc51a94",
+      "programRecordPointer": "0x8cc51a90",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3851a0",
+          "activeOperation": 0,
+          "baseSpeed": 1,
+          "movementScale": 0.555555522441864,
+          "effectivePathStepPerNativeUpdate": 0.555555522441864,
+          "matchesDefaultInitialization": false
+        }
+      ]
+    },
+    {
+      "actorCode": "CA01",
+      "programHeader": "0x8cc52d1c",
+      "programRecordPointer": "0x8cc52d18",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c385580",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "CA06",
+      "programHeader": "0x8cc53324",
+      "programRecordPointer": "0x8cc53320",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c385770",
+          "activeOperation": 0,
+          "baseSpeed": 1,
+          "movementScale": 0.555555522441864,
+          "effectivePathStepPerNativeUpdate": 0.555555522441864,
+          "matchesDefaultInitialization": false
+        }
+      ]
+    },
+    {
+      "actorCode": "CA08",
+      "programHeader": "0x8cc53e2c",
+      "programRecordPointer": "0x8cc53e28",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c385960",
+          "activeOperation": 0,
+          "baseSpeed": 1,
+          "movementScale": 0.555555522441864,
+          "effectivePathStepPerNativeUpdate": 0.555555522441864,
+          "matchesDefaultInitialization": false
+        }
+      ]
+    },
+    {
+      "actorCode": "CA09",
+      "programHeader": "0x8cc549d4",
+      "programRecordPointer": "0x8cc549d0",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c385b50",
+          "activeOperation": 0,
+          "baseSpeed": 1,
+          "movementScale": 0.555555522441864,
+          "effectivePathStepPerNativeUpdate": 0.555555522441864,
+          "matchesDefaultInitialization": false
+        }
+      ]
+    },
+    {
+      "actorCode": "CA10",
+      "programHeader": "0x8cc54fbc",
+      "programRecordPointer": "0x8cc54fb8",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c385d40",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "CA14",
+      "programHeader": "0x8cc555c4",
+      "programRecordPointer": "0x8cc555c0",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c385f30",
+          "activeOperation": 0,
+          "baseSpeed": 1,
+          "movementScale": 0.555555522441864,
+          "effectivePathStepPerNativeUpdate": 0.555555522441864,
+          "matchesDefaultInitialization": false
+        }
+      ]
+    },
+    {
+      "actorCode": "CA22",
+      "programHeader": "0x8cc55f2c",
+      "programRecordPointer": "0x8cc55f28",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c386120",
+          "activeOperation": 0,
+          "baseSpeed": 1,
+          "movementScale": 0.555555522441864,
+          "effectivePathStepPerNativeUpdate": 0.555555522441864,
+          "matchesDefaultInitialization": false
+        }
+      ]
+    },
+    {
+      "actorCode": "CA24",
+      "programHeader": "0x8cc564c0",
+      "programRecordPointer": "0x8cc564bc",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c386310",
+          "activeOperation": 0,
+          "baseSpeed": 1,
+          "movementScale": 0.555555522441864,
+          "effectivePathStepPerNativeUpdate": 0.555555522441864,
+          "matchesDefaultInitialization": false
+        }
+      ]
+    },
+    {
+      "actorCode": "CA25",
+      "programHeader": "0x8cc56e58",
+      "programRecordPointer": "0x8cc56e54",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c386500",
+          "activeOperation": 0,
+          "baseSpeed": 1,
+          "movementScale": 0.555555522441864,
+          "effectivePathStepPerNativeUpdate": 0.555555522441864,
+          "matchesDefaultInitialization": false
+        }
+      ]
+    },
+    {
+      "actorCode": "CA34",
+      "programHeader": "0x8cc57218",
+      "programRecordPointer": "0x8cc57214",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3866f0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "CA36",
+      "programHeader": "0x8cc57920",
+      "programRecordPointer": "0x8cc5791c",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3868e0",
+          "activeOperation": 0,
+          "baseSpeed": 1,
+          "movementScale": 0.555555522441864,
+          "effectivePathStepPerNativeUpdate": 0.555555522441864,
+          "matchesDefaultInitialization": false
+        }
+      ]
+    },
+    {
+      "actorCode": "CA42",
+      "programHeader": "0x8cc57e88",
+      "programRecordPointer": "0x8cc57e84",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c386ad0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "CA43",
+      "programHeader": "0x8cc58464",
+      "programRecordPointer": "0x8cc58460",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c386cc0",
+          "activeOperation": 27,
+          "baseSpeed": 1,
+          "movementScale": 0.555555522441864,
+          "effectivePathStepPerNativeUpdate": 0.555555522441864,
+          "matchesDefaultInitialization": false
+        }
+      ]
+    },
+    {
+      "actorCode": "CATA",
+      "programHeader": "0x8cc58934",
+      "programRecordPointer": "0x8cc58930",
+      "programMovementScale": 1.5,
+      "expectedDefaultPathStepPerNativeUpdate": 0.0625,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c386eb0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1.5,
+          "effectivePathStepPerNativeUpdate": 0.0624999962747097,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "CATB",
+      "programHeader": "0x8cc5926c",
+      "programRecordPointer": "0x8cc59268",
+      "programMovementScale": 1.5,
+      "expectedDefaultPathStepPerNativeUpdate": 0.0625,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3870a0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1.5,
+          "effectivePathStepPerNativeUpdate": 0.0624999962747097,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "CMAL",
+      "programHeader": "0x8cc5a64c",
+      "programRecordPointer": "0x8cc5a648",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c387290",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "DOGA",
+      "programHeader": "0x8cc5b9b8",
+      "programRecordPointer": "0x8cc5b9b4",
+      "programMovementScale": 1.5,
+      "expectedDefaultPathStepPerNativeUpdate": 0.0625,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c387480",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1.5,
+          "effectivePathStepPerNativeUpdate": 0.0624999962747097,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "DOOR",
+      "programHeader": "0x8cc5ca90",
+      "programRecordPointer": "0x8cc5ca8c",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c387670",
+          "activeOperation": 4,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "ECHO",
+      "programHeader": "0x8cc5cbc8",
+      "programRecordPointer": "0x8cc5cbc4",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c387860",
+          "activeOperation": 22,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "EIKK",
+      "programHeader": "0x8cc5d980",
+      "programRecordPointer": "0x8cc5d97c",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c387a50",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "ENKI",
+      "programHeader": "0x8cc5e470",
+      "programRecordPointer": "0x8cc5e46c",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c387c40",
+          "activeOperation": 2,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "ETKO",
+      "programHeader": "0x8cc5f080",
+      "programRecordPointer": "0x8cc5f07c",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c387e30",
+          "activeOperation": 18,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "FKSM",
+      "programHeader": "0x8cc5f4b8",
+      "programRecordPointer": "0x8cc5f4b4",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c388020",
+          "activeOperation": 33,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "GJBF",
+      "programHeader": "0x8cc5fae0",
+      "programRecordPointer": "0x8cc5fadc",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c388210",
+          "activeOperation": 10,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "GJBM",
+      "programHeader": "0x8cc5fdd8",
+      "programRecordPointer": "0x8cc5fdd4",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c388400",
+          "activeOperation": 2,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "GJHM",
+      "programHeader": "0x8cc60408",
+      "programRecordPointer": "0x8cc60404",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3885f0",
+          "activeOperation": 2,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "GRKN",
+      "programHeader": "0x8cc60b0c",
+      "programRecordPointer": "0x8cc60b08",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3887e0",
+          "activeOperation": 22,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "HATO",
+      "programHeader": "0x8cc619d8",
+      "programRecordPointer": "0x8cc619d4",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3889d0",
+          "activeOperation": 7,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "HATR",
+      "programHeader": "0x8cc62628",
+      "programRecordPointer": "0x8cc62624",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c388bc0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "HIDE",
+      "programHeader": "0x8cc62be8",
+      "programRecordPointer": "0x8cc62be4",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c388db0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "HIRA",
+      "programHeader": "0x8cc63fec",
+      "programRecordPointer": "0x8cc63fe8",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c388fa0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "HIRI",
+      "programHeader": "0x8cc648f0",
+      "programRecordPointer": "0x8cc648ec",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c389190",
+          "activeOperation": 7,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "HOND",
+      "programHeader": "0x8cc65620",
+      "programRecordPointer": "0x8cc6561c",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c389380",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "HORS",
+      "programHeader": "0x8cc65818",
+      "programRecordPointer": "0x8cc65814",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c389570",
+          "activeOperation": 4,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "HREO",
+      "programHeader": "0x8cc65efc",
+      "programRecordPointer": "0x8cc65ef8",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c389760",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "HRKO",
+      "programHeader": "0x8cc675b0",
+      "programRecordPointer": "0x8cc675ac",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c389950",
+          "activeOperation": 7,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "HRNO",
+      "programHeader": "0x8cc67998",
+      "programRecordPointer": "0x8cc67994",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c389b40",
+          "activeOperation": 4,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "HROT",
+      "programHeader": "0x8cc68f2c",
+      "programRecordPointer": "0x8cc68f28",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c389d30",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "HRSK",
+      "programHeader": "0x8cc6a090",
+      "programRecordPointer": "0x8cc6a08c",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c389f20",
+          "activeOperation": 7,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "ISYM",
+      "programHeader": "0x8cc6a5e4",
+      "programRecordPointer": "0x8cc6a5e0",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38a110",
+          "activeOperation": 7,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "ITOH",
+      "programHeader": "0x8cc6b9e8",
+      "programRecordPointer": "0x8cc6b9e4",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38a300",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "ITOI",
+      "programHeader": "0x8cc6c8b4",
+      "programRecordPointer": "0x8cc6c8b0",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38a4f0",
+          "activeOperation": 1,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "IZWA",
+      "programHeader": "0x8cc6d3fc",
+      "programRecordPointer": "0x8cc6d3f8",
+      "programMovementScale": 1.2000000476837158,
+      "expectedDefaultPathStepPerNativeUpdate": 0.050000001986821495,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38a6e0",
+          "activeOperation": 1,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1.2000000476837158,
+          "effectivePathStepPerNativeUpdate": 0.049999999006589135,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "JONO",
+      "programHeader": "0x8cc705e8",
+      "programRecordPointer": "0x8cc705e4",
+      "programMovementScale": 0.800000011920929,
+      "expectedDefaultPathStepPerNativeUpdate": 0.033333333830038704,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38aac0",
+          "activeOperation": 22,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": false
+        }
+      ]
+    },
+    {
+      "actorCode": "JUKY",
+      "programHeader": "0x8cc717ac",
+      "programRecordPointer": "0x8cc717a8",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38acb0",
+          "activeOperation": 7,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "KAME",
+      "programHeader": "0x8cc71f7c",
+      "programRecordPointer": "0x8cc71f78",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38aea0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "KAYO",
+      "programHeader": "0x8cc7233c",
+      "programRecordPointer": "0x8cc72338",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38b090",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "KENI",
+      "programHeader": "0x8cc72ec4",
+      "programRecordPointer": "0x8cc72ec0",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38b280",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "KJHS",
+      "programHeader": "0x8cc7517c",
+      "programRecordPointer": "0x8cc75178",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38b470",
+          "activeOperation": 7,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "KJIY",
+      "programHeader": "0x8cc7536c",
+      "programRecordPointer": "0x8cc75368",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38b660",
+          "activeOperation": 2,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "KKBN",
+      "programHeader": "0x8cc784e0",
+      "programRecordPointer": "0x8cc784dc",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38b850",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "KNJI",
+      "programHeader": "0x8cc7965c",
+      "programRecordPointer": "0x8cc79658",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38ba40",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "KOMN",
+      "programHeader": "0x8cc7ae2c",
+      "programRecordPointer": "0x8cc7ae28",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38bc30",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "KOND",
+      "programHeader": "0x8cc7b728",
+      "programRecordPointer": "0x8cc7b724",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38be20",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "KOTA",
+      "programHeader": "0x8cc7d1e8",
+      "programRecordPointer": "0x8cc7d1e4",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38c010",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "KTRO",
+      "programHeader": "0x8cc7e690",
+      "programRecordPointer": "0x8cc7e68c",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38c200",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "KUKT",
+      "programHeader": "0x8cc7ff08",
+      "programRecordPointer": "0x8cc7ff04",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38c3f0",
+          "activeOperation": 1,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "KURI",
+      "programHeader": "0x8cc809f8",
+      "programRecordPointer": "0x8cc809f4",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38c5e0",
+          "activeOperation": 7,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "KWMT",
+      "programHeader": "0x8cc810c0",
+      "programRecordPointer": "0x8cc810bc",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38c7d0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 0,
+          "effectivePathStepPerNativeUpdate": 0,
+          "matchesDefaultInitialization": false
+        }
+      ]
+    },
+    {
+      "actorCode": "KYAS",
+      "programHeader": "0x8cc81c9c",
+      "programRecordPointer": "0x8cc81c98",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38c9c0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "KYOH",
+      "programHeader": "0x8cc83448",
+      "programRecordPointer": "0x8cc83444",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38cbb0",
+          "activeOperation": 2,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "KYSN",
+      "programHeader": "0x8cc83668",
+      "programRecordPointer": "0x8cc83664",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38cda0",
+          "activeOperation": 22,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "KYUR",
+      "programHeader": "0x8cc85b88",
+      "programRecordPointer": "0x8cc85b84",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38cf90",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "MADA",
+      "programHeader": "0x8cc85d58",
+      "programRecordPointer": "0x8cc85d54",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38d180",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "MAGO",
+      "programHeader": "0x8cc85ef8",
+      "programRecordPointer": "0x8cc85ef4",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38d370",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "MASR",
+      "programHeader": "0x8cc878c8",
+      "programRecordPointer": "0x8cc878c4",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38d560",
+          "activeOperation": 22,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "MAYM",
+      "programHeader": "0x8cc88318",
+      "programRecordPointer": "0x8cc88314",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38d750",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "MEGM",
+      "programHeader": "0x8cc897c0",
+      "programRecordPointer": "0x8cc897bc",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38d940",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "MIHO",
+      "programHeader": "0x8cc8cb90",
+      "programRecordPointer": "0x8cc8cb8c",
+      "programMovementScale": 0.8999999761581421,
+      "expectedDefaultPathStepPerNativeUpdate": 0.037499999006589256,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38db30",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 0.8999999761581421,
+          "effectivePathStepPerNativeUpdate": 0.037499996771415134,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "MIKI",
+      "programHeader": "0x8cc8e158",
+      "programRecordPointer": "0x8cc8e154",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38dd20",
+          "activeOperation": 1,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "MIKM",
+      "programHeader": "0x8cc8fcf0",
+      "programRecordPointer": "0x8cc8fcec",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38df10",
+          "activeOperation": 4,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "MISM",
+      "programHeader": "0x8cc904f4",
+      "programRecordPointer": "0x8cc904f0",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38e100",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "MRIG",
+      "programHeader": "0x8cc91cd8",
+      "programRecordPointer": "0x8cc91cd4",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38e2f0",
+          "activeOperation": 7,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "MRUA",
+      "programHeader": "0x8cc91fa4",
+      "programRecordPointer": "0x8cc91fa0",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38e4e0",
+          "activeOperation": 22,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "MSTA",
+      "programHeader": "0x8cc92424",
+      "programRecordPointer": "0x8cc92420",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38e6d0",
+          "activeOperation": 22,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "MTRI",
+      "programHeader": "0x8cc94314",
+      "programRecordPointer": "0x8cc94310",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38e8c0",
+          "activeOperation": 1,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "MTUK",
+      "programHeader": "0x8cc978c8",
+      "programRecordPointer": "0x8cc978c4",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38eab0",
+          "activeOperation": 7,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "MTUR",
+      "programHeader": "0x8cc97b10",
+      "programRecordPointer": "0x8cc97b0c",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38eca0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "MYKN",
+      "programHeader": "0x8cc98c74",
+      "programRecordPointer": "0x8cc98c70",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38ee90",
+          "activeOperation": 1,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "NANS",
+      "programHeader": "0x8cc997b4",
+      "programRecordPointer": "0x8cc997b0",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38f080",
+          "activeOperation": 7,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "NGAI",
+      "programHeader": "0x8cc99b2c",
+      "programRecordPointer": "0x8cc99b28",
+      "programMovementScale": 0.9700000286102295,
+      "expectedDefaultPathStepPerNativeUpdate": 0.04041666785875956,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38f270",
+          "activeOperation": 10,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": false
+        }
+      ]
+    },
+    {
+      "actorCode": "NGSM",
+      "programHeader": "0x8cc99c98",
+      "programRecordPointer": "0x8cc99c94",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38f460",
+          "activeOperation": 2,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "NITO",
+      "programHeader": "0x8cc9a9b4",
+      "programRecordPointer": "0x8cc9a9b0",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38f650",
+          "activeOperation": 7,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "NMNO",
+      "programHeader": "0x8cc9b1e8",
+      "programRecordPointer": "0x8cc9b1e4",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38f840",
+          "activeOperation": 26,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "NMTO",
+      "programHeader": "0x8cc9c3c0",
+      "programRecordPointer": "0x8cc9c3bc",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38fa30",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "NOMR",
+      "programHeader": "0x8cc9d5c4",
+      "programRecordPointer": "0x8cc9d5c0",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38fc20",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "NORK",
+      "programHeader": "0x8cc9ee0c",
+      "programRecordPointer": "0x8cc9ee08",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c38fe10",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "NSMR",
+      "programHeader": "0x8cca08a4",
+      "programRecordPointer": "0x8cca08a0",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c390000",
+          "activeOperation": 34,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "OISI",
+      "programHeader": "0x8cca1704",
+      "programRecordPointer": "0x8cca1700",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3901f0",
+          "activeOperation": 7,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "ONRR",
+      "programHeader": "0x8cca2cd0",
+      "programRecordPointer": "0x8cca2ccc",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3905d0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "RIKA",
+      "programHeader": "0x8cca2e74",
+      "programRecordPointer": "0x8cca2e70",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3907c0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "RINS",
+      "programHeader": "0x8cca3974",
+      "programRecordPointer": "0x8cca3970",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3909b0",
+          "activeOperation": 22,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "RKKI",
+      "programHeader": "0x8cca4f74",
+      "programRecordPointer": "0x8cca4f70",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c390ba0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "RNKT",
+      "programHeader": "0x8cca69ec",
+      "programRecordPointer": "0x8cca69e8",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c390d90",
+          "activeOperation": 7,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "RYBI",
+      "programHeader": "0x8cca6e20",
+      "programRecordPointer": "0x8cca6e1c",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c390f80",
+          "activeOperation": 1,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "SAJO",
+      "programHeader": "0x8cca9468",
+      "programRecordPointer": "0x8cca9464",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c391170",
+          "activeOperation": 7,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "SAKI",
+      "programHeader": "0x8ccaa434",
+      "programRecordPointer": "0x8ccaa430",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c391360",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "SATM",
+      "programHeader": "0x8ccab5f0",
+      "programRecordPointer": "0x8ccab5ec",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c391550",
+          "activeOperation": 4,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "SATO",
+      "programHeader": "0x8ccac4e8",
+      "programRecordPointer": "0x8ccac4e4",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c391740",
+          "activeOperation": 22,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "SCKO",
+      "programHeader": "0x8ccaf2b0",
+      "programRecordPointer": "0x8ccaf2ac",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c391930",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "SETA",
+      "programHeader": "0x8ccafda8",
+      "programRecordPointer": "0x8ccafda4",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c391b20",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "SGRH",
+      "programHeader": "0x8ccb0270",
+      "programRecordPointer": "0x8ccb026c",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c391d10",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "SIND",
+      "programHeader": "0x8ccb2854",
+      "programRecordPointer": "0x8ccb2850",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c391f00",
+          "activeOperation": 22,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "SKMT",
+      "programHeader": "0x8ccb34a8",
+      "programRecordPointer": "0x8ccb34a4",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3920f0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "SKRD",
+      "programHeader": "0x8ccb4d18",
+      "programRecordPointer": "0x8ccb4d14",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3922e0",
+          "activeOperation": 7,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "SNKC",
+      "programHeader": "0x8ccb59a4",
+      "programRecordPointer": "0x8ccb59a0",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3924d0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 0.5555554628372192,
+          "effectivePathStepPerNativeUpdate": 0.023148142905147218,
+          "matchesDefaultInitialization": false
+        }
+      ]
+    },
+    {
+      "actorCode": "SOBA",
+      "programHeader": "0x8ccb6c14",
+      "programRecordPointer": "0x8ccb6c10",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3926c0",
+          "activeOperation": 10,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "STAK",
+      "programHeader": "0x8ccb8704",
+      "programRecordPointer": "0x8ccb8700",
+      "programMovementScale": 1.2000000476837158,
+      "expectedDefaultPathStepPerNativeUpdate": 0.050000001986821495,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3928b0",
+          "activeOperation": 1,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1.2000000476837158,
+          "effectivePathStepPerNativeUpdate": 0.049999999006589135,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "SUMI",
+      "programHeader": "0x8ccb8e44",
+      "programRecordPointer": "0x8ccb8e40",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c392aa0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "SYKU",
+      "programHeader": "0x8ccbabd4",
+      "programRecordPointer": "0x8ccbabd0",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c392c90",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "TAEN",
+      "programHeader": "0x8ccbc9f4",
+      "programRecordPointer": "0x8ccbc9f0",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c392e80",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "TAKI",
+      "programHeader": "0x8ccbda98",
+      "programRecordPointer": "0x8ccbda94",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c393070",
+          "activeOperation": 22,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "TATM",
+      "programHeader": "0x8ccc05a0",
+      "programRecordPointer": "0x8ccc059c",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c393260",
+          "activeOperation": 22,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "TJMA",
+      "programHeader": "0x8ccc15d8",
+      "programRecordPointer": "0x8ccc15d4",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c393450",
+          "activeOperation": 0,
+          "baseSpeed": 0.035974450409412384,
+          "movementScale": 1.106839656829834,
+          "effectivePathStepPerNativeUpdate": 0.039817948345795884,
+          "matchesDefaultInitialization": false
+        }
+      ]
+    },
+    {
+      "actorCode": "TKHS",
+      "programHeader": "0x8ccc2714",
+      "programRecordPointer": "0x8ccc2710",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c393640",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "TKNB",
+      "programHeader": "0x8ccc3a64",
+      "programRecordPointer": "0x8ccc3a60",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c393830",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "TOKI",
+      "programHeader": "0x8ccc4d00",
+      "programRecordPointer": "0x8ccc4cfc",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c393a20",
+          "activeOperation": 4,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "TOSK",
+      "programHeader": "0x8ccc5c50",
+      "programRecordPointer": "0x8ccc5c4c",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c393e00",
+          "activeOperation": 10,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "TSUC",
+      "programHeader": "0x8ccc5dbc",
+      "programRecordPointer": "0x8ccc5db8",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c393ff0",
+          "activeOperation": 7,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "TTAY",
+      "programHeader": "0x8ccc91e0",
+      "programRecordPointer": "0x8ccc91dc",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3941e0",
+          "activeOperation": 7,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "TTYA",
+      "programHeader": "0x8ccc93bc",
+      "programRecordPointer": "0x8ccc93b8",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3943d0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "TURU",
+      "programHeader": "0x8ccc9a18",
+      "programRecordPointer": "0x8ccc9a14",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3945c0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "TYHG",
+      "programHeader": "0x8ccca628",
+      "programRecordPointer": "0x8ccca624",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3947b0",
+          "activeOperation": 10,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "UDGW",
+      "programHeader": "0x8ccca794",
+      "programRecordPointer": "0x8ccca790",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3949a0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "YAMA",
+      "programHeader": "0x8cccbd54",
+      "programRecordPointer": "0x8cccbd50",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c394d80",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "YASU",
+      "programHeader": "0x8cccca44",
+      "programRecordPointer": "0x8cccca40",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c394f70",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "YAYI",
+      "programHeader": "0x8ccce138",
+      "programRecordPointer": "0x8ccce134",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c395160",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "YJIH",
+      "programHeader": "0x8ccced20",
+      "programRecordPointer": "0x8ccced1c",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c395350",
+          "activeOperation": 22,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "YJJI",
+      "programHeader": "0x8ccd0168",
+      "programRecordPointer": "0x8ccd0164",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c395540",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "YKDM",
+      "programHeader": "0x8ccd02f8",
+      "programRecordPointer": "0x8ccd02f4",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c395730",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "YKHI",
+      "programHeader": "0x8ccd1260",
+      "programRecordPointer": "0x8ccd125c",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c395920",
+          "activeOperation": 36,
+          "baseSpeed": 1,
+          "movementScale": 0,
+          "effectivePathStepPerNativeUpdate": 0,
+          "matchesDefaultInitialization": false
+        }
+      ]
+    },
+    {
+      "actorCode": "YMST",
+      "programHeader": "0x8ccd2c5c",
+      "programRecordPointer": "0x8ccd2c58",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c395b10",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 0,
+          "effectivePathStepPerNativeUpdate": 0,
+          "matchesDefaultInitialization": false
+        }
+      ]
+    },
+    {
+      "actorCode": "YOB1",
+      "programHeader": "0x8ccd3cc0",
+      "programRecordPointer": "0x8ccd3cbc",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c395d00",
+          "activeOperation": 0,
+          "baseSpeed": 1,
+          "movementScale": 0.5555554628372192,
+          "effectivePathStepPerNativeUpdate": 0.5555554628372192,
+          "matchesDefaultInitialization": false
+        }
+      ]
+    },
+    {
+      "actorCode": "YOB2",
+      "programHeader": "0x8ccd4938",
+      "programRecordPointer": "0x8ccd4934",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c395ef0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "YOHI",
+      "programHeader": "0x8ccd5c38",
+      "programRecordPointer": "0x8ccd5c34",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3960e0",
+          "activeOperation": 22,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "YOKO",
+      "programHeader": "0x8ccd80fc",
+      "programRecordPointer": "0x8ccd80f8",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3962d0",
+          "activeOperation": 4,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "YOPA",
+      "programHeader": "0x8ccda570",
+      "programRecordPointer": "0x8ccda56c",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3964c0",
+          "activeOperation": 7,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "YOS2",
+      "programHeader": "0x8ccdc00c",
+      "programRecordPointer": "0x8ccdc008",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3966b0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "YOSE",
+      "programHeader": "0x8ccdd038",
+      "programRecordPointer": "0x8ccdd034",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c3968a0",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "YSKT",
+      "programHeader": "0x8ccdd240",
+      "programRecordPointer": "0x8ccdd23c",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c396a90",
+          "activeOperation": 1,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "YUKK",
+      "programHeader": "0x8cce02e8",
+      "programRecordPointer": "0x8cce02e4",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c396c80",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    },
+    {
+      "actorCode": "YUMM",
+      "programHeader": "0x8cce080c",
+      "programRecordPointer": "0x8cce0808",
+      "programMovementScale": 1,
+      "expectedDefaultPathStepPerNativeUpdate": 0.041666666666666664,
+      "controllers": [
+        {
+          "controllerAddress": "0x8c396e70",
+          "activeOperation": 0,
+          "baseSpeed": 0.0416666641831398,
+          "movementScale": 1,
+          "effectivePathStepPerNativeUpdate": 0.0416666641831398,
+          "matchesDefaultInitialization": true
+        }
+      ]
+    }
+  ]
+}

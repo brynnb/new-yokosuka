@@ -1,0 +1,13 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "new-yokosuka-dialogue-upload-local",
+  "main": "worker.js",
+  "compatibility_date": "2026-07-29",
+  "r2_buckets": [
+    {
+      "binding": "BUCKET",
+      "bucket_name": "newyokosuka",
+      "remote": true
+    }
+  ]
+}

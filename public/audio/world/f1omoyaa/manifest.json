@@ -1,0 +1,38 @@
+{
+  "schema": "new-yokosuka-jomo-telephone-audio-pack-v1",
+  "generatedBy": "tools/build_jomo_telephone_audio_pack.mjs",
+  "source": {
+    "bank": "extracted_files/data/SCENE/01/SOUND/F1OMOYAA.SND",
+    "bankSha256": "41cdccd04ef8f4835a946f3f1ada404d4f1607adbae6c4bf8da5b825d23c9abb",
+    "evidence": "tools/evidence/jomo-telephone-audio.json",
+    "evidenceSha256": "f4ab20be1bab15c5d95c7ca8d399f2fae4f2eddbe333746523cf37d3be56d667",
+    "decoder": {
+      "tool": "DTPKDump",
+      "commit": "a323c0e7e80af05e17e5bb291a9b20e55a3f9455"
+    }
+  },
+  "encoding": {
+    "container": "WebM",
+    "codec": "Opus",
+    "bitrate": "48k",
+    "application": "lowdelay"
+  },
+  "tracks": [
+    {
+      "commandHex": "ab060100",
+      "group": "ab06",
+      "track": 1,
+      "compositionHex": "c0df495f80ff",
+      "playbackId": 73,
+      "sampleId": 26,
+      "rawVolume": 95,
+      "dtpkRate": "0xe800",
+      "sampleRate": 11025,
+      "decodedSource": "F1OMOYAA_01_08_SPD_73_Sample_1A_Rate_E800.wav",
+      "asset": "ab060100.webm",
+      "byteLength": 8077,
+      "sha256": "d12e1d3f28c6916f282e297fc96627db05bd65c930ab22476284e464f77545e5"
+    }
+  ],
+  "runtimeStatus": "Packaged from the exact JOMO location bank but intentionally unwired until the owning E1032 incoming-call state is implemented."
+}

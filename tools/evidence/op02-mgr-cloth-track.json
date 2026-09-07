@@ -1,0 +1,81 @@
+{
+  "schema": "new-yokosuka-native-cloth-track-v2",
+  "status": "captured",
+  "source": {
+    "executable": "extracted_files/data/1ST_READ.BIN",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "saveState": ".flycast-pvr/op02-cloth-capture-real/data/flycast/Shenmue (USA) (Disc 1)_3.state",
+    "saveStateSha256": "07d91c0fa0c53d3b446f6f55b0bba5da57fba53f0b33771c70c474a77d7331f9",
+    "emulator": "Flycast",
+    "transport": "Flycast dynarec local-output instrumentation",
+    "clothStateWrites": false,
+    "artificialFunctionCalls": false,
+    "emulatorSourceCommit": "75df66041cf99b1d5e06abd7808023167c34a1a4",
+    "emulatorBinary": "${FLYCAST_ROOT}/build/flycast",
+    "emulatorBinarySha256": "19bf9f81057c9273920b30d74043d80ec3f21b51a5cfff3a730c1143a33c3c23",
+    "instrumentationPatch": "tools/patches/flycast-op02-native-cloth-capture.patch",
+    "instrumentationPatchSha256": "e3260311cc9a5c86e8cceba926fbbc4be75d7e577089ae5ee2160064600a9a1c"
+  },
+  "native": {
+    "groupUpdate": "0x0c0ae916",
+    "inverseBodyTransform": "0x0c0aede8",
+    "localOutputReturn": "0x0c0aea38",
+    "renderPairProjection": "0x0c0b11e4"
+  },
+  "track": {
+    "path": "play/assets/introduction/op02/MGR_CLOTH_TRACK.bin",
+    "sha256": "b7764ddea665263dada837cc2c447504396d32943a3632845cb2775173c2db1d",
+    "byteLength": 2531504,
+    "frameRate": 30,
+    "frameCount": 1313,
+    "sampleSeconds": 43.766666666666666,
+    "formatVersion": 2,
+    "componentCount": 6,
+    "coordinateKind": "native-auth-slot-frame",
+    "sampleCount": 1313,
+    "firstCoordinate": [
+      2,
+      2
+    ],
+    "lastCoordinate": [
+      5,
+      57
+    ],
+    "activityCoverage": [
+      {
+        "slot": 2,
+        "firstFrame": 2,
+        "lastFrame": 147,
+        "sampleCount": 146
+      },
+      {
+        "slot": 3,
+        "firstFrame": 1,
+        "lastFrame": 580,
+        "sampleCount": 580
+      },
+      {
+        "slot": 4,
+        "firstFrame": 1,
+        "lastFrame": 530,
+        "sampleCount": 530
+      },
+      {
+        "slot": 5,
+        "firstFrame": 1,
+        "lastFrame": 57,
+        "sampleCount": 57
+      }
+    ],
+    "quantizationScale": 0.0001220703125,
+    "modelCode": "MGR",
+    "modelWord": "0x2052474d",
+    "controlType": -70,
+    "rowCount": 8,
+    "columnCount": 20,
+    "vertexCount": 160,
+    "completion": "terminal-auth-frame",
+    "rejectedNonTargetHits": 0
+  },
+  "finalizationElapsedSeconds": 0.064
+}

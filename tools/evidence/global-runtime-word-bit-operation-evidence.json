@@ -1,0 +1,46 @@
+{
+  "schema": "new-yokosuka-global-runtime-word-bit-evidence-v1",
+  "status": "exact-native-handler-and-all-disc-call-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 405,
+    "operationHex": "0x0195",
+    "handlerAddress": "0x0c173980",
+    "handlerLength": 18,
+    "handlerSha256": "7c1eea85564dca82b12a11a2fcd53629a0c39f04a41df67578badc14c9c3f33d",
+    "wordAddress": "0x0c20c3d4",
+    "mask": "0x00000020",
+    "modes": [
+      {
+        "mode": 0,
+        "targetAddress": "0x0c13a076",
+        "behavior": "sets mask 0x20"
+      },
+      {
+        "mode": 1,
+        "targetAddress": "0x0c13a080",
+        "behavior": "clears mask 0x20"
+      }
+    ],
+    "provenBehavior": "Mode zero sets bit 5 in the 32-bit global word at 0x0c20c3d4. Every nonzero value would select the clear path; the authored corpus contains only exact mode one, which clears bit 5 while preserving every other bit."
+  },
+  "allDiscInventory": {
+    "callCount": 1146,
+    "dialogueRegionCallCount": 261,
+    "areaCount": 61,
+    "modeCounts": {
+      "0": 576,
+      "1": 570
+    }
+  },
+  "evidenceBoundary": [
+    "The address, width, mask, set/clear polarity, and authored modes are exact.",
+    "The higher-level story or subsystem meaning of global bit 5 remains deliberately unassigned.",
+    "No browser, emulator, runtime capture, or object-tag inference is used."
+  ]
+}

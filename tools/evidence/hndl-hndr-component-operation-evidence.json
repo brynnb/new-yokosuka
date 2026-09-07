@@ -1,0 +1,89 @@
+{
+  "schema": "new-yokosuka-hndl-hndr-component-operation-evidence-v1",
+  "status": "exact-native-contract-and-all-authored-call-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 235,
+    "operationHex": "0x00eb",
+    "argumentCount": 4,
+    "handlerAddress": "0x0c1652fe",
+    "handlerLength": 148,
+    "handlerSha256": "40616b2c86c07f618ab80a0f21280b8cbb34e68868cc24da458a98b68869f3e1",
+    "recordTags": {
+      "zeroSideSelector": "HNDL",
+      "nonzeroSideSelector": "HNDR"
+    },
+    "targetPointerOffset": "record+0x10",
+    "targetVectorOffsets": [
+      "pointer+0x08",
+      "pointer+0x0c",
+      "pointer+0x10"
+    ],
+    "componentBits": {
+      "0x01": "replace component zero",
+      "0x02": "raw-add component zero",
+      "0x04": "replace component one",
+      "0x08": "raw-add component one",
+      "0x10": "replace component two",
+      "0x20": "raw-add component two"
+    },
+    "authoredMasks": {
+      "0x00000015": "replace all three components",
+      "0x0000002a": "raw-add all three components"
+    },
+    "dependencies": {
+      "handlerTableEntry": "0x0c1652fe",
+      "objectResolver": "0x0c153956",
+      "rightRecordResolver": "0x0c0de67a",
+      "leftRecordResolver": "0x0c0de672",
+      "pointer10VectorRead": "0x0c0dec26",
+      "pointer10VectorWrite": "0x0c0dec4e",
+      "leftRecordTag": "0x4c444e48",
+      "associatedRecordLookup": "0x0c0aad5a",
+      "rightRecordTag": "0x52444e48"
+    },
+    "provenBehavior": "Resolves argument zero and selects its literal HNDL record when argument one is zero or HNDR otherwise. A present record reads three raw words through its pointer at +0x10. Argument-two bits 0x01/0x04/0x10 replace corresponding components from the argument-three vector; bits 0x02/0x08/0x20 add the raw 32-bit words. The result writes back through the same +0x10 pointer. A missing object or record is a native no-op, and a null +0x10 pointer receives no write."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 566,
+    "provenCallCount": 566,
+    "unresolvedCallCount": 0,
+    "dialogueRegionCallCount": 40,
+    "areaCount": 34,
+    "dialogueAreaCount": 14,
+    "argumentKindCounts": {
+      "0": {
+        "constant": 552,
+        "frame-field": 14
+      },
+      "1": {
+        "constant": 533,
+        "frame-field": 30,
+        "runtime": 3
+      },
+      "2": {
+        "constant": 566
+      },
+      "3": {
+        "frame-address": 375,
+        "frame-field": 14,
+        "static-pointer": 177
+      }
+    },
+    "maskCounts": {
+      "0x00000015": 563,
+      "0x0000002a": 3
+    }
+  },
+  "evidenceBoundary": [
+    "HNDL and HNDR remain the executable's literal record tags.",
+    "The three target fields retain exact pointer-relative offsets.",
+    "The add routes use raw 32-bit integer addition, not float32.",
+    "No coordinate-space name or gameplay owner is inferred."
+  ]
+}

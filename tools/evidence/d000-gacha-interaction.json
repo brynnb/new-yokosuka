@@ -1,0 +1,1916 @@
+{
+  "schema": "new-yokosuka-d000-gacha-interaction-v1",
+  "status": "verified",
+  "source": {
+    "mapinfo": ".disc-work/exact/d000/MAPINFO.BIN",
+    "dispatchCalls": ".disc-work/d000-dispatch-calls.json",
+    "ram": "captures/pvr/20260724-010057-frame-4933/ram.bin"
+  },
+  "staticDataFileOffset": "0xa2480",
+  "generatedTagTables": {
+    "machine": [
+      "GCH0",
+      "GCH1",
+      "GCH2",
+      "GCH3",
+      "GCH4",
+      "GCH5"
+    ],
+    "highDetail": [
+      "HGC0",
+      "HGC1",
+      "HGC2",
+      "HGC3",
+      "HGC4",
+      "HGC5"
+    ],
+    "capsuleBox": [
+      "GBX0",
+      "GBX1",
+      "GBX2",
+      "GBX3",
+      "GBX4",
+      "GBX5"
+    ]
+  },
+  "machineRecords": [
+    {
+      "index": 0,
+      "sourcePosition": [
+        24.5,
+        0,
+        32.15999984741211
+      ],
+      "sourceYawRaw": 32768,
+      "recordFlags": 516,
+      "componentSelector": 4
+    },
+    {
+      "index": 1,
+      "sourcePosition": [
+        0,
+        0,
+        0
+      ],
+      "sourceYawRaw": 0,
+      "recordFlags": 0,
+      "componentSelector": 0
+    },
+    {
+      "index": 2,
+      "sourcePosition": [
+        0,
+        0,
+        0
+      ],
+      "sourceYawRaw": 0,
+      "recordFlags": 0,
+      "componentSelector": 0
+    },
+    {
+      "index": 3,
+      "sourcePosition": [
+        23.75,
+        0,
+        32.15999984741211
+      ],
+      "sourceYawRaw": 32768,
+      "recordFlags": 770,
+      "componentSelector": 2
+    },
+    {
+      "index": 4,
+      "sourcePosition": [
+        0,
+        0,
+        0
+      ],
+      "sourceYawRaw": 0,
+      "recordFlags": 0,
+      "componentSelector": 0
+    },
+    {
+      "index": 5,
+      "sourcePosition": [
+        0,
+        0,
+        0
+      ],
+      "sourceYawRaw": 0,
+      "recordFlags": 0,
+      "componentSelector": 0
+    }
+  ],
+  "populatedMachineRecords": [
+    {
+      "index": 0,
+      "sourcePosition": [
+        24.5,
+        0,
+        32.15999984741211
+      ],
+      "sourceYawRaw": 32768,
+      "recordFlags": 516,
+      "componentSelector": 4
+    },
+    {
+      "index": 3,
+      "sourcePosition": [
+        23.75,
+        0,
+        32.15999984741211
+      ],
+      "sourceYawRaw": 32768,
+      "recordFlags": 770,
+      "componentSelector": 2
+    }
+  ],
+  "productionRegistry": [
+    {
+      "index": 0,
+      "machineTag": "GCH0",
+      "capsuleBoxTag": "GBX0",
+      "lowDetailModel": "S1_D000_OMG_GAT02L0G.MT5",
+      "highDetailModel": "S1_D000_GAT0G00G.MT5",
+      "sourcePosition": [
+        24.5,
+        0,
+        32.15999984741211
+      ],
+      "sourceYawRaw": 32768,
+      "componentSelector": 4,
+      "recordFlags": 516
+    },
+    {
+      "index": 3,
+      "machineTag": "GCH3",
+      "capsuleBoxTag": "GBX3",
+      "lowDetailModel": "S1_D000_OMG_GAT02L3G.MT5",
+      "highDetailModel": "S1_D000_GAT0G03G.MT5",
+      "sourcePosition": [
+        23.75,
+        0,
+        32.15999984741211
+      ],
+      "sourceYawRaw": 32768,
+      "componentSelector": 2,
+      "recordFlags": 770
+    }
+  ],
+  "nativeSetupCalls": {
+    "machineInstantiate": {
+      "callFileOffset": "0x50a64",
+      "operationHex": "0x0018",
+      "arguments": [
+        "runtime",
+        939524096,
+        "runtime"
+      ]
+    },
+    "machinePlace": {
+      "callFileOffset": "0x50a82",
+      "operationHex": "0x001d",
+      "arguments": [
+        "runtime",
+        939524096,
+        "runtime",
+        0
+      ]
+    },
+    "machineEnable": {
+      "callFileOffset": "0x50a96",
+      "operationHex": "0x001f",
+      "arguments": [
+        "runtime",
+        1
+      ]
+    },
+    "machineSelector": {
+      "callFileOffset": "0x50abe",
+      "operationHex": "0x0024",
+      "arguments": [
+        "runtime",
+        "runtime"
+      ]
+    },
+    "associateCapsuleBox": {
+      "callFileOffset": "0x50aee",
+      "operationHex": "0x0043",
+      "arguments": [
+        "runtime",
+        "runtime"
+      ]
+    },
+    "capsuleBoxInstantiate": {
+      "callFileOffset": "0x50b18",
+      "operationHex": "0x0018",
+      "arguments": [
+        "runtime",
+        939524096,
+        707288
+      ]
+    },
+    "capsuleBoxPlace": {
+      "callFileOffset": "0x50b46",
+      "operationHex": "0x001d",
+      "arguments": [
+        "runtime",
+        939524096,
+        707300,
+        0
+      ]
+    },
+    "capsuleBoxEnable": {
+      "callFileOffset": "0x50b68",
+      "operationHex": "0x001f",
+      "arguments": [
+        "runtime",
+        1
+      ]
+    }
+  },
+  "highDetailResourceFlow": {
+    "resourceName": "HI_GACH",
+    "interactionModels": [
+      {
+        "source": ".disc-work/exact/d000/unpacked/HI_GACH/GAT0G00G.CHRM",
+        "browserAsset": "S1_D000_GAT0G00G.MT5",
+        "byteLength": 13428,
+        "sha256": "ed59b26d7757f35667c38abc9d8de903c2210e318a51ceeef5ab9976b4dc2841",
+        "renderKeys": [
+          -1,
+          152,
+          153
+        ],
+        "textureIds": [
+          "c891c064b038325f",
+          "c891c2926334425f",
+          "c891c064af38325f",
+          "c891c161aa38325f",
+          "c891c261ad38325f",
+          "ce91c064b138325f",
+          "d591cfa8a978425f",
+          "e1a0c0a8a978425f",
+          "a366d3a8a978425f",
+          "c891c364b138325f"
+        ]
+      },
+      {
+        "source": ".disc-work/exact/d000/unpacked/HI_GACH/GAT0G03G.CHRM",
+        "browserAsset": "S1_D000_GAT0G03G.MT5",
+        "byteLength": 13428,
+        "sha256": "92a550940b91a966844118f60d6e7ff8df1b3188df69fac03c6ccbd15b80891a",
+        "renderKeys": [
+          -1,
+          152,
+          153
+        ],
+        "textureIds": [
+          "61305f6761613336",
+          "c891c2926534425f",
+          "61305f6761613335",
+          "61305f6761623030",
+          "61305f6761633033",
+          "67305f6761613337",
+          "d591cfa8a978425f",
+          "e1a0c0a8a978425f",
+          "a366d3a8a978425f",
+          "61305f6761643337"
+        ]
+      }
+    ],
+    "loadCalls": [
+      {
+        "callFileOffset": "0x515da",
+        "operationHex": "0x016d",
+        "arguments": [
+          1,
+          7,
+          707318,
+          16384
+        ]
+      },
+      {
+        "callFileOffset": "0x51686",
+        "operationHex": "0x013c",
+        "arguments": [
+          0,
+          0,
+          707331,
+          707347
+        ]
+      },
+      {
+        "callFileOffset": "0x51776",
+        "operationHex": "0x00ca",
+        "arguments": [
+          0,
+          707360
+        ]
+      },
+      {
+        "callFileOffset": "0x51792",
+        "operationHex": "0x013c",
+        "arguments": [
+          0,
+          6,
+          707366
+        ]
+      },
+      {
+        "callFileOffset": "0x517d6",
+        "operationHex": "0x013c",
+        "arguments": [
+          0,
+          5,
+          707374
+        ]
+      }
+    ]
+  },
+  "operationHandlers": {
+    "floatMathAndRandom": {
+      "operationId": 9,
+      "operationHex": "0x0009",
+      "tableEntryAddress": "0x0c29aa04",
+      "handlerAddress": "0x0c17320c",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "4b1ddc7a144df6544e8cb367b81a6ec8d1d99dff929d6a10e539a5f1ce3ac29c"
+    },
+    "instantiate": {
+      "operationId": 24,
+      "operationHex": "0x0018",
+      "tableEntryAddress": "0x0c29aa40",
+      "handlerAddress": "0x0c157530",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "3640d667c69de4ed406383e5e4a6ee2eb833cdb6406d0c58dcbf8853d3f503a9"
+    },
+    "place": {
+      "operationId": 29,
+      "operationHex": "0x001d",
+      "tableEntryAddress": "0x0c29aa54",
+      "handlerAddress": "0x0c15787a",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "ea405850c9ad9d4704e6bbf9accba88b9ca2e3556ef8a9bda8c3cad49c7082d6"
+    },
+    "objectState": {
+      "operationId": 31,
+      "operationHex": "0x001f",
+      "tableEntryAddress": "0x0c29aa5c",
+      "handlerAddress": "0x0c157e12",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "c4af34318ec08d71dcbb06584e6fc648aa07964727dbd4a162bf621cb86fe2d5"
+    },
+    "componentSelector": {
+      "operationId": 36,
+      "operationHex": "0x0024",
+      "tableEntryAddress": "0x0c29aa70",
+      "handlerAddress": "0x0c15870c",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "187fd6739d56bbc96e3bf2d918186747a27ac95444d4f70441fae858abd57f42"
+    },
+    "collectionMutation": {
+      "operationId": 61,
+      "operationHex": "0x003d",
+      "tableEntryAddress": "0x0c29aad4",
+      "handlerAddress": "0x0c163060",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "f6d2dde089f19656ea8db990c00b5947b79ddfc6ae7f34c28035d875f5d6e801"
+    },
+    "collectionQuery": {
+      "operationId": 63,
+      "operationHex": "0x003f",
+      "tableEntryAddress": "0x0c29aadc",
+      "handlerAddress": "0x0c1630de",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "d5216d55b5c682c868adedd1d7900f7d2394bff17c7839e9dabab502b885ebc4"
+    },
+    "associate": {
+      "operationId": 67,
+      "operationHex": "0x0043",
+      "tableEntryAddress": "0x0c29aaec",
+      "handlerAddress": "0x0c157c88",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "ac8fd0118abb248c9d3b7de1c5bc70469c901866d6dd1de0ff6d502d72a87427"
+    },
+    "integerCompareAndRandom": {
+      "operationId": 79,
+      "operationHex": "0x004f",
+      "tableEntryAddress": "0x0c29ab1c",
+      "handlerAddress": "0x0c1733a0",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "9b1ec62b1bc09f3309dbe38e1dd1795033b4269f7f0882fa04f9e44865cc6a1c"
+    }
+  },
+  "componentSelector": {
+    "componentFourCc": "CCOW",
+    "componentFieldOffset": 4,
+    "implementationAddress": "0x0c0a3aca",
+    "implementationSha256": "943b72cce27b237b79e8228a65b9f533796c5408bd9baef87db17eae73975f3e"
+  },
+  "motion": {
+    "source": ".disc-work/exact/d000/unpacked/OMG/M_GACH.MOTN",
+    "byteLength": 6080,
+    "sha256": "3dee651e6b7b5d33c0326628133ea104ab643f75c25ceec404fdb94739ccc23b",
+    "sequence": "AKI_ASOBU_GATYA",
+    "frameCount": null
+  },
+  "prizeLookup": {
+    "categoryCount": 16,
+    "categoryStateByteOffset": "global state +0x37c",
+    "modelListSelectorFunction": "0x4f978",
+    "collectibleIdLookupFunction": "0x4fe10",
+    "collectibleIdLookupArguments": [
+      "category byte",
+      "zero-based item-index byte"
+    ],
+    "poolLengthTable": {
+      "fileOffset": "0xabd4c",
+      "values": [
+        12,
+        17,
+        22,
+        10,
+        19,
+        18,
+        11,
+        8,
+        4,
+        4,
+        17,
+        7,
+        6,
+        5,
+        4,
+        4
+      ],
+      "proof": "each byte equals the exact count of uint16 lookup entries in the corresponding 0x4fe10 branch"
+    },
+    "selectionSplitTable": {
+      "fileOffset": "0xabd5c",
+      "values": [
+        12,
+        1,
+        2,
+        1,
+        3,
+        2,
+        2,
+        8,
+        4,
+        4,
+        17,
+        7,
+        6,
+        5,
+        4,
+        4
+      ],
+      "nativeConsumer": "0x57330",
+      "semanticLabel": null
+    },
+    "categories": [
+      {
+        "category": 0,
+        "modelListStart": "0xabec8",
+        "modelListLoadCall": {
+          "callFileOffset": "0x4f9e2",
+          "operationHex": "0x019d",
+          "arguments": [
+            0,
+            704200
+          ]
+        },
+        "modelTokens": [
+          "%GACR016G.MT5",
+          "%GACK66BG.MT5",
+          "%GACK66RG.MT5",
+          "%GACR0BNG.MT5",
+          "%GACR0B2G.MT5",
+          "%GACR0B3G.MT5",
+          "%SPBK6REG.MT5",
+          "%SPBK6BRG.MT5",
+          "%SPBK6YEG.MT5",
+          "%SAIK6WHG.MT5",
+          "%SAIK6BKG.MT5",
+          "%SAIK6REG.MT5"
+        ],
+        "mt5Tokens": [
+          "%GACR016G.MT5",
+          "%GACK66BG.MT5",
+          "%GACK66RG.MT5",
+          "%GACR0BNG.MT5",
+          "%GACR0B2G.MT5",
+          "%GACR0B3G.MT5",
+          "%SPBK6REG.MT5",
+          "%SPBK6BRG.MT5",
+          "%SPBK6YEG.MT5",
+          "%SAIK6WHG.MT5",
+          "%SAIK6BKG.MT5",
+          "%SAIK6REG.MT5"
+        ],
+        "controlTokens": [],
+        "collectibleIdPoolStart": "0xabd6c",
+        "lookupValues": [
+          "0xa7",
+          "0xa8",
+          "0xa9",
+          "0x87",
+          "0x88",
+          "0x89",
+          "0xe5",
+          "0xe6",
+          "0xe7",
+          "0xe8",
+          "0xe9",
+          "0xea"
+        ],
+        "nonzeroCollectibleIds": [
+          "0xa7",
+          "0xa8",
+          "0xa9",
+          "0x87",
+          "0x88",
+          "0x89",
+          "0xe5",
+          "0xe6",
+          "0xe7",
+          "0xe8",
+          "0xe9",
+          "0xea"
+        ],
+        "poolLength": 12,
+        "selectionSplitValue": 12
+      },
+      {
+        "category": 1,
+        "modelListStart": "0xabf71",
+        "modelListLoadCall": {
+          "callFileOffset": "0x4fa26",
+          "operationHex": "0x019d",
+          "arguments": [
+            0,
+            704369
+          ]
+        },
+        "modelTokens": [
+          "%GACIAK1G.MT5",
+          "%GACIAK2G.MT5",
+          "%GACOJK1G.MT5",
+          "%GACOJK2G.MT5",
+          "%GACOSA1G.MT5",
+          "%GACOSA2G.MT5",
+          "%GACOLA1G.MT5",
+          "%GACOLA2G.MT5",
+          "%GACOPA1G.MT5",
+          "%GACOPA2G.MT5",
+          "%GACGWF1G.MT5",
+          "%GACGWF2G.MT5",
+          "%GACGJF1G.MT5",
+          "%GACGJF2G.MT5",
+          "%GACIKA1G.MT5",
+          "%GACIKA2G.MT5",
+          "%GACM401G.MT5",
+          "%GACIAA1G.MT5",
+          "%GACIAA2G.MT5",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "%GACGJJ1G.MT5",
+          "%GACGJJ2G.MT5"
+        ],
+        "mt5Tokens": [
+          "%GACIAK1G.MT5",
+          "%GACIAK2G.MT5",
+          "%GACOJK1G.MT5",
+          "%GACOJK2G.MT5",
+          "%GACOSA1G.MT5",
+          "%GACOSA2G.MT5",
+          "%GACOLA1G.MT5",
+          "%GACOLA2G.MT5",
+          "%GACOPA1G.MT5",
+          "%GACOPA2G.MT5",
+          "%GACGWF1G.MT5",
+          "%GACGWF2G.MT5",
+          "%GACGJF1G.MT5",
+          "%GACGJF2G.MT5",
+          "%GACIKA1G.MT5",
+          "%GACIKA2G.MT5",
+          "%GACM401G.MT5",
+          "%GACIAA1G.MT5",
+          "%GACIAA2G.MT5",
+          "%GACGJJ1G.MT5",
+          "%GACGJJ2G.MT5"
+        ],
+        "controlTokens": [
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D"
+        ],
+        "collectibleIdPoolStart": "0xabd84",
+        "lookupValues": [
+          "0x43",
+          "0x44",
+          "0x45",
+          "0x46",
+          "0x47",
+          "0x48",
+          "0x49",
+          "0x4a",
+          "0x4b",
+          "0x4c",
+          "0x4d",
+          "0x4e",
+          "0x4f",
+          "0x50",
+          "0x51",
+          "0x52",
+          "0x55"
+        ],
+        "nonzeroCollectibleIds": [
+          "0x43",
+          "0x44",
+          "0x45",
+          "0x46",
+          "0x47",
+          "0x48",
+          "0x49",
+          "0x4a",
+          "0x4b",
+          "0x4c",
+          "0x4d",
+          "0x4e",
+          "0x4f",
+          "0x50",
+          "0x51",
+          "0x52",
+          "0x55"
+        ],
+        "poolLength": 17,
+        "selectionSplitValue": 1
+      },
+      {
+        "category": 2,
+        "modelListStart": "0xac0ac",
+        "modelListLoadCall": {
+          "callFileOffset": "0x4fa6a",
+          "operationHex": "0x019d",
+          "arguments": [
+            0,
+            704684
+          ]
+        },
+        "modelTokens": [
+          "%GACIAKAG.MT5",
+          "%GACIAKBG.MT5",
+          "%GACGJKAG.MT5",
+          "%GACGJKBG.MT5",
+          "%GACOSAAG.MT5",
+          "%GACOSABG.MT5",
+          "%GACOLAAG.MT5",
+          "%GACOLABG.MT5",
+          "%GACOPAAG.MT5",
+          "%GACOPABG.MT5",
+          "%GACIWLAG.MT5",
+          "%GACIWLBG.MT5",
+          "%GACGJFAG.MT5",
+          "%GACGJFBG.MT5",
+          "%GACIKAAG.MT5",
+          "%GACIKABG.MT5",
+          "%GACGSNAG.MT5",
+          "%GACGSNBG.MT5",
+          "%GACILIAG.MT5",
+          "%GACILIBG.MT5",
+          "%GACIDUAG.MT5",
+          "%GACIDUBG.MT5"
+        ],
+        "mt5Tokens": [
+          "%GACIAKAG.MT5",
+          "%GACIAKBG.MT5",
+          "%GACGJKAG.MT5",
+          "%GACGJKBG.MT5",
+          "%GACOSAAG.MT5",
+          "%GACOSABG.MT5",
+          "%GACOLAAG.MT5",
+          "%GACOLABG.MT5",
+          "%GACOPAAG.MT5",
+          "%GACOPABG.MT5",
+          "%GACIWLAG.MT5",
+          "%GACIWLBG.MT5",
+          "%GACGJFAG.MT5",
+          "%GACGJFBG.MT5",
+          "%GACIKAAG.MT5",
+          "%GACIKABG.MT5",
+          "%GACGSNAG.MT5",
+          "%GACGSNBG.MT5",
+          "%GACILIAG.MT5",
+          "%GACILIBG.MT5",
+          "%GACIDUAG.MT5",
+          "%GACIDUBG.MT5"
+        ],
+        "controlTokens": [],
+        "collectibleIdPoolStart": "0xabda8",
+        "lookupValues": [
+          "0x5b",
+          "0x5c",
+          "0x5d",
+          "0x5e",
+          "0x5f",
+          "0x60",
+          "0x61",
+          "0x62",
+          "0x63",
+          "0x64",
+          "0x65",
+          "0x66",
+          "0x67",
+          "0x68",
+          "0x69",
+          "0x6a",
+          "0x6b",
+          "0x6c",
+          "0x6d",
+          "0x6e",
+          "0x6f",
+          "0x70"
+        ],
+        "nonzeroCollectibleIds": [
+          "0x5b",
+          "0x5c",
+          "0x5d",
+          "0x5e",
+          "0x5f",
+          "0x60",
+          "0x61",
+          "0x62",
+          "0x63",
+          "0x64",
+          "0x65",
+          "0x66",
+          "0x67",
+          "0x68",
+          "0x69",
+          "0x6a",
+          "0x6b",
+          "0x6c",
+          "0x6d",
+          "0x6e",
+          "0x6f",
+          "0x70"
+        ],
+        "poolLength": 22,
+        "selectionSplitValue": 2
+      },
+      {
+        "category": 3,
+        "modelListStart": "0xac1e1",
+        "modelListLoadCall": {
+          "callFileOffset": "0x4faae",
+          "operationHex": "0x019d",
+          "arguments": [
+            0,
+            704993
+          ]
+        },
+        "modelTokens": [
+          "%GACRSO1G.MT5",
+          "%GACRSO2G.MT5",
+          "%GACRTL1G.MT5",
+          "%GACRNUCG.MT5",
+          "%GACRBAKG.MT5",
+          "%GACRBING.MT5",
+          "%GACRFNGG.MT5",
+          "%GACRAMYG.MT5",
+          "%GACRESPG.MT5",
+          "%GACREGGG.MT5",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "%GACRFNNG.MT5"
+        ],
+        "mt5Tokens": [
+          "%GACRSO1G.MT5",
+          "%GACRSO2G.MT5",
+          "%GACRTL1G.MT5",
+          "%GACRNUCG.MT5",
+          "%GACRBAKG.MT5",
+          "%GACRBING.MT5",
+          "%GACRFNGG.MT5",
+          "%GACRAMYG.MT5",
+          "%GACRESPG.MT5",
+          "%GACREGGG.MT5",
+          "%GACRFNNG.MT5"
+        ],
+        "controlTokens": [
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D"
+        ],
+        "collectibleIdPoolStart": "0xabdd4",
+        "lookupValues": [
+          "0x73",
+          "0x74",
+          "0x76",
+          "0x77",
+          "0x78",
+          "0x79",
+          "0x7a",
+          "0x7b",
+          "0x7c",
+          "0x7e"
+        ],
+        "nonzeroCollectibleIds": [
+          "0x73",
+          "0x74",
+          "0x76",
+          "0x77",
+          "0x78",
+          "0x79",
+          "0x7a",
+          "0x7b",
+          "0x7c",
+          "0x7e"
+        ],
+        "poolLength": 10,
+        "selectionSplitValue": 1
+      },
+      {
+        "category": 4,
+        "modelListStart": "0xac288",
+        "modelListLoadCall": {
+          "callFileOffset": "0x4faf2",
+          "operationHex": "0x019d",
+          "arguments": [
+            0,
+            705160
+          ]
+        },
+        "modelTokens": [
+          "%GACRNT1G.MT5",
+          "%GACRNT2G.MT5",
+          "%GACRLOPG.MT5",
+          "%GACRMYUG.MT5",
+          "%GACRCKNG.MT5",
+          "%GACRALFG.MT5",
+          "%GACRRISG.MT5",
+          "%GACRARXG.MT5",
+          "%GACR0OPG.MT5",
+          "%GACR0O2G.MT5",
+          "%GACRPOPG.MT5",
+          "%GACRCOBG.MT5",
+          "%GACRIDAG.MT5",
+          "%GACRSHPG.MT5",
+          "%GACRMOBG.MT5",
+          "%GACRROBG.MT5",
+          "%GACK6TZG.MT5",
+          "%GACRPANG.MT5",
+          "%GACK6DYG.MT5",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "%GACRAXXG.MT5",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "%GACRRBBG.MT5",
+          "%GACK6TSG.MT5",
+          "%GACRPPNG.MT5",
+          "%GACK6DSG.MT5"
+        ],
+        "mt5Tokens": [
+          "%GACRNT1G.MT5",
+          "%GACRNT2G.MT5",
+          "%GACRLOPG.MT5",
+          "%GACRMYUG.MT5",
+          "%GACRCKNG.MT5",
+          "%GACRALFG.MT5",
+          "%GACRRISG.MT5",
+          "%GACRARXG.MT5",
+          "%GACR0OPG.MT5",
+          "%GACR0O2G.MT5",
+          "%GACRPOPG.MT5",
+          "%GACRCOBG.MT5",
+          "%GACRIDAG.MT5",
+          "%GACRSHPG.MT5",
+          "%GACRMOBG.MT5",
+          "%GACRROBG.MT5",
+          "%GACK6TZG.MT5",
+          "%GACRPANG.MT5",
+          "%GACK6DYG.MT5",
+          "%GACRAXXG.MT5",
+          "%GACRRBBG.MT5",
+          "%GACK6TSG.MT5",
+          "%GACRPPNG.MT5",
+          "%GACK6DSG.MT5"
+        ],
+        "controlTokens": [
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D",
+          "D"
+        ],
+        "collectibleIdPoolStart": "0xabde8",
+        "lookupValues": [
+          "0x71",
+          "0x72",
+          "0x86",
+          "0x9c",
+          "0x9d",
+          "0x9e",
+          "0x9f",
+          "0xa0",
+          "0xa1",
+          "0xa2",
+          "0xa3",
+          "0xa4",
+          "0xa5",
+          "0xa6",
+          "0xaa",
+          "0xab",
+          "0x57",
+          "0x58",
+          "0xb4"
+        ],
+        "nonzeroCollectibleIds": [
+          "0x71",
+          "0x72",
+          "0x86",
+          "0x9c",
+          "0x9d",
+          "0x9e",
+          "0x9f",
+          "0xa0",
+          "0xa1",
+          "0xa2",
+          "0xa3",
+          "0xa4",
+          "0xa5",
+          "0xa6",
+          "0xaa",
+          "0xab",
+          "0x57",
+          "0x58",
+          "0xb4"
+        ],
+        "poolLength": 19,
+        "selectionSplitValue": 3
+      },
+      {
+        "category": 5,
+        "modelListStart": "0xac3f5",
+        "modelListLoadCall": {
+          "callFileOffset": "0x4fb36",
+          "operationHex": "0x019d",
+          "arguments": [
+            0,
+            705525
+          ]
+        },
+        "modelTokens": [
+          "%GACK6HHG.MT5",
+          "%GACK6HYG.MT5",
+          "%GACK6HBG.MT5",
+          "%GACK6HGG.MT5",
+          "%GACH5BKG.MT5",
+          "%KAB02FSG.MT5",
+          "%GACO1K2G.MT5",
+          "%GACO1K3G.MT5",
+          "%GACO1K7G.MT5",
+          "%GACO1K8G.MT5",
+          "%GACO1K9G.MT5",
+          "%GACO1K1G.MT5",
+          "%GACO1K4G.MT5",
+          "%GACO1K5G.MT5",
+          "%GACO1K6G.MT5",
+          "%GACS5BSG.MT5",
+          "%GACK6HOG.MT5",
+          "%GACK6HKG.MT5",
+          "%GACK6XHG.MT5",
+          "%GACK6XYG.MT5",
+          "%GACK6XBG.MT5",
+          "%GACK6XGG.MT5",
+          "%GACK6BKG.MT5",
+          "%KABK6FSG.MT5",
+          "%GACOKK2G.MT5",
+          "%GACOKK3G.MT5",
+          "%GACOKK7G.MT5",
+          "%GACOKK8G.MT5",
+          "%GACOKK9G.MT5",
+          "%GACOKK1G.MT5",
+          "%GACOKK4G.MT5",
+          "%GACOKK5G.MT5",
+          "%GACOKK6G.MT5",
+          "%GACS5BBG.MT5",
+          "%GACK6XOG.MT5",
+          "%GACK6XKG.MT5"
+        ],
+        "mt5Tokens": [
+          "%GACK6HHG.MT5",
+          "%GACK6HYG.MT5",
+          "%GACK6HBG.MT5",
+          "%GACK6HGG.MT5",
+          "%GACH5BKG.MT5",
+          "%KAB02FSG.MT5",
+          "%GACO1K2G.MT5",
+          "%GACO1K3G.MT5",
+          "%GACO1K7G.MT5",
+          "%GACO1K8G.MT5",
+          "%GACO1K9G.MT5",
+          "%GACO1K1G.MT5",
+          "%GACO1K4G.MT5",
+          "%GACO1K5G.MT5",
+          "%GACO1K6G.MT5",
+          "%GACS5BSG.MT5",
+          "%GACK6HOG.MT5",
+          "%GACK6HKG.MT5",
+          "%GACK6XHG.MT5",
+          "%GACK6XYG.MT5",
+          "%GACK6XBG.MT5",
+          "%GACK6XGG.MT5",
+          "%GACK6BKG.MT5",
+          "%KABK6FSG.MT5",
+          "%GACOKK2G.MT5",
+          "%GACOKK3G.MT5",
+          "%GACOKK7G.MT5",
+          "%GACOKK8G.MT5",
+          "%GACOKK9G.MT5",
+          "%GACOKK1G.MT5",
+          "%GACOKK4G.MT5",
+          "%GACOKK5G.MT5",
+          "%GACOKK6G.MT5",
+          "%GACS5BBG.MT5",
+          "%GACK6XOG.MT5",
+          "%GACK6XKG.MT5"
+        ],
+        "controlTokens": [],
+        "collectibleIdPoolStart": "0xabe10",
+        "lookupValues": [
+          "0x80",
+          "0x81",
+          "0x82",
+          "0x83",
+          "0xad",
+          "0xae",
+          "0xaf",
+          "0xb0",
+          "0xb1",
+          "0xb2",
+          "0xb3",
+          "0xb5",
+          "0xb6",
+          "0xb7",
+          "0xb8",
+          "0xbe",
+          "0x7f",
+          "0x84"
+        ],
+        "nonzeroCollectibleIds": [
+          "0x80",
+          "0x81",
+          "0x82",
+          "0x83",
+          "0xad",
+          "0xae",
+          "0xaf",
+          "0xb0",
+          "0xb1",
+          "0xb2",
+          "0xb3",
+          "0xb5",
+          "0xb6",
+          "0xb7",
+          "0xb8",
+          "0xbe",
+          "0x7f",
+          "0x84"
+        ],
+        "poolLength": 18,
+        "selectionSplitValue": 2
+      },
+      {
+        "category": 6,
+        "modelListStart": "0xac5ee",
+        "modelListLoadCall": {
+          "callFileOffset": "0x4fb7a",
+          "operationHex": "0x019d",
+          "arguments": [
+            0,
+            706030
+          ]
+        },
+        "modelTokens": [
+          "%GACH5TKG.MT5",
+          "%GACGTRXG.MT5",
+          "%GACO1T1G.MT5",
+          "%GACO1T2G.MT5",
+          "%GACO1KOG.MT5",
+          "%GACO1KBG.MT5",
+          "%GACO1KJG.MT5",
+          "%GACH5UKG.MT5",
+          "%GACH5IKG.MT5",
+          "%GACO1FOG.MT5",
+          "%GACGSHEG.MT5",
+          "%GACH5TTG.MT5",
+          "%GACGTXXG.MT5",
+          "%GACOTT1G.MT5",
+          "%GACOTT2G.MT5"
+        ],
+        "mt5Tokens": [
+          "%GACH5TKG.MT5",
+          "%GACGTRXG.MT5",
+          "%GACO1T1G.MT5",
+          "%GACO1T2G.MT5",
+          "%GACO1KOG.MT5",
+          "%GACO1KBG.MT5",
+          "%GACO1KJG.MT5",
+          "%GACH5UKG.MT5",
+          "%GACH5IKG.MT5",
+          "%GACO1FOG.MT5",
+          "%GACGSHEG.MT5",
+          "%GACH5TTG.MT5",
+          "%GACGTXXG.MT5",
+          "%GACOTT1G.MT5",
+          "%GACOTT2G.MT5"
+        ],
+        "controlTokens": [],
+        "collectibleIdPoolStart": "0xabe34",
+        "lookupValues": [
+          "0xbc",
+          "0xb9",
+          "0xba",
+          "0xbb",
+          "0xc9",
+          "0xca",
+          "0xcd",
+          "0xce",
+          "0xcb",
+          "0xbf",
+          "0xc8"
+        ],
+        "nonzeroCollectibleIds": [
+          "0xbc",
+          "0xb9",
+          "0xba",
+          "0xbb",
+          "0xc9",
+          "0xca",
+          "0xcd",
+          "0xce",
+          "0xcb",
+          "0xbf",
+          "0xc8"
+        ],
+        "poolLength": 11,
+        "selectionSplitValue": 2
+      },
+      {
+        "category": 7,
+        "modelListStart": "0xac6c1",
+        "modelListLoadCall": {
+          "callFileOffset": "0x4fbbe",
+          "operationHex": "0x019d",
+          "arguments": [
+            0,
+            706241
+          ]
+        },
+        "modelTokens": [
+          "%YKW0201G.MT5",
+          "%YWT0201G.MT5",
+          "%GACRBONG.MT5",
+          "%GACRRENG.MT5",
+          "%GACK6SPG.MT5",
+          "%GACG360G.MT5",
+          "%GACRDR1G.MT5",
+          "%GACRDR2G.MT5"
+        ],
+        "mt5Tokens": [
+          "%YKW0201G.MT5",
+          "%YWT0201G.MT5",
+          "%GACRBONG.MT5",
+          "%GACRRENG.MT5",
+          "%GACK6SPG.MT5",
+          "%GACG360G.MT5",
+          "%GACRDR1G.MT5",
+          "%GACRDR2G.MT5"
+        ],
+        "controlTokens": [],
+        "collectibleIdPoolStart": "0xabe4c",
+        "lookupValues": [
+          "0x59",
+          "0x5a",
+          "0xac",
+          "0x56",
+          "0x85",
+          "0xd9",
+          "0x53",
+          "0x54"
+        ],
+        "nonzeroCollectibleIds": [
+          "0x59",
+          "0x5a",
+          "0xac",
+          "0x56",
+          "0x85",
+          "0xd9",
+          "0x53",
+          "0x54"
+        ],
+        "poolLength": 8,
+        "selectionSplitValue": 8
+      },
+      {
+        "category": 8,
+        "modelListStart": "0xac732",
+        "modelListLoadCall": {
+          "callFileOffset": "0x4fc02",
+          "operationHex": "0x019d",
+          "arguments": [
+            0,
+            706354
+          ]
+        },
+        "modelTokens": [
+          "%GACRSSCG.MT5",
+          "%GACRMETG.MT5",
+          "%GACRGBIG.MT5",
+          "%GACH5TRG.MT5",
+          "D",
+          "D",
+          "D",
+          "%GACH5RRG.MT5"
+        ],
+        "mt5Tokens": [
+          "%GACRSSCG.MT5",
+          "%GACRMETG.MT5",
+          "%GACRGBIG.MT5",
+          "%GACH5TRG.MT5",
+          "%GACH5RRG.MT5"
+        ],
+        "controlTokens": [
+          "D",
+          "D",
+          "D"
+        ],
+        "collectibleIdPoolStart": "0xabe5c",
+        "lookupValues": [
+          "0x75",
+          "0x7d",
+          "0x8a",
+          "0xbd"
+        ],
+        "nonzeroCollectibleIds": [
+          "0x75",
+          "0x7d",
+          "0x8a",
+          "0xbd"
+        ],
+        "poolLength": 4,
+        "selectionSplitValue": 4
+      },
+      {
+        "category": 9,
+        "modelListStart": "0xac77f",
+        "modelListLoadCall": {
+          "callFileOffset": "0x4fc46",
+          "operationHex": "0x019d",
+          "arguments": [
+            0,
+            706431
+          ]
+        },
+        "modelTokens": [
+          "%GACS5FRG.MT5",
+          "%GACS5FBG.MT5",
+          "%GACO1KUG.MT5",
+          "%GACO1FEG.MT5"
+        ],
+        "mt5Tokens": [
+          "%GACS5FRG.MT5",
+          "%GACS5FBG.MT5",
+          "%GACO1KUG.MT5",
+          "%GACO1FEG.MT5"
+        ],
+        "controlTokens": [],
+        "collectibleIdPoolStart": "0xabe64",
+        "lookupValues": [
+          "0xc5",
+          "0xc6",
+          "0xc7",
+          "0xcc"
+        ],
+        "nonzeroCollectibleIds": [
+          "0xc5",
+          "0xc6",
+          "0xc7",
+          "0xcc"
+        ],
+        "poolLength": 4,
+        "selectionSplitValue": 4
+      },
+      {
+        "category": 10,
+        "modelListStart": "0xac7b8",
+        "modelListLoadCall": {
+          "callFileOffset": "0x4fc8a",
+          "operationHex": "0x019d",
+          "arguments": [
+            0,
+            706488
+          ]
+        },
+        "modelTokens": [
+          "%GACODG1G.MT5",
+          "%GACODG2G.MT5",
+          "%GACODG3G.MT5",
+          "%GACOCT2G.MT5",
+          "%GACOCATG.MT5",
+          "%GACO1SHG.MT5",
+          "%GACOKSHG.MT5",
+          "%GACO1IRG.MT5",
+          "%GACOKIRG.MT5",
+          "%GACO1HAG.MT5",
+          "%GACOHA2G.MT5",
+          "%GACOHA3G.MT5",
+          "%GACOHA4G.MT5",
+          "%GACO1YGG.MT5",
+          "%GACO1USG.MT5",
+          "%GACOOSHG.MT5",
+          "%GACOOIRG.MT5"
+        ],
+        "mt5Tokens": [
+          "%GACODG1G.MT5",
+          "%GACODG2G.MT5",
+          "%GACODG3G.MT5",
+          "%GACOCT2G.MT5",
+          "%GACOCATG.MT5",
+          "%GACO1SHG.MT5",
+          "%GACOKSHG.MT5",
+          "%GACO1IRG.MT5",
+          "%GACOKIRG.MT5",
+          "%GACO1HAG.MT5",
+          "%GACOHA2G.MT5",
+          "%GACOHA3G.MT5",
+          "%GACOHA4G.MT5",
+          "%GACO1YGG.MT5",
+          "%GACO1USG.MT5",
+          "%GACOOSHG.MT5",
+          "%GACOOIRG.MT5"
+        ],
+        "controlTokens": [],
+        "collectibleIdPoolStart": "0xabe6c",
+        "lookupValues": [
+          "0x8b",
+          "0x8c",
+          "0x8d",
+          "0x8e",
+          "0x8f",
+          "0x90",
+          "0x91",
+          "0x93",
+          "0x94",
+          "0x0",
+          "0x97",
+          "0x98",
+          "0x99",
+          "0x9a",
+          "0x9b",
+          "0x92",
+          "0x95"
+        ],
+        "nonzeroCollectibleIds": [
+          "0x8b",
+          "0x8c",
+          "0x8d",
+          "0x8e",
+          "0x8f",
+          "0x90",
+          "0x91",
+          "0x93",
+          "0x94",
+          "0x97",
+          "0x98",
+          "0x99",
+          "0x9a",
+          "0x9b",
+          "0x92",
+          "0x95"
+        ],
+        "poolLength": 17,
+        "selectionSplitValue": 17
+      },
+      {
+        "category": 11,
+        "modelListStart": "0xac8a7",
+        "modelListLoadCall": {
+          "callFileOffset": "0x4fcce",
+          "operationHex": "0x019d",
+          "arguments": [
+            0,
+            706727
+          ]
+        },
+        "modelTokens": [
+          "%GACM400G.MT5",
+          "%GACGSPHG.MT5",
+          "%GACS5HGG.MT5",
+          "%GACGDT1G.MT5",
+          "%GACS5EQG.MT5",
+          "%SYOGSH0G.MT5",
+          "%SYOGHG0G.MT5"
+        ],
+        "mt5Tokens": [
+          "%GACM400G.MT5",
+          "%GACGSPHG.MT5",
+          "%GACS5HGG.MT5",
+          "%GACGDT1G.MT5",
+          "%GACS5EQG.MT5",
+          "%SYOGSH0G.MT5",
+          "%SYOGHG0G.MT5"
+        ],
+        "controlTokens": [],
+        "collectibleIdPoolStart": "0xabe90",
+        "lookupValues": [
+          "0xd6",
+          "0xd7",
+          "0xd8",
+          "0xda",
+          "0xdb",
+          "0xe3",
+          "0xe4"
+        ],
+        "nonzeroCollectibleIds": [
+          "0xd6",
+          "0xd7",
+          "0xd8",
+          "0xda",
+          "0xdb",
+          "0xe3",
+          "0xe4"
+        ],
+        "poolLength": 7,
+        "selectionSplitValue": 7
+      },
+      {
+        "category": 12,
+        "modelListStart": "0xac90a",
+        "modelListLoadCall": {
+          "callFileOffset": "0x4fd12",
+          "operationHex": "0x019d",
+          "arguments": [
+            0,
+            706826
+          ]
+        },
+        "modelTokens": [
+          "%GACGCRYG.MT5",
+          "%GACGBIRG.MT5",
+          "%GACH5SLG.MT5",
+          "%GACH5JKG.MT5",
+          "%SYOGMD1G.MT5",
+          "%SYOGMD5G.MT5"
+        ],
+        "mt5Tokens": [
+          "%GACGCRYG.MT5",
+          "%GACGBIRG.MT5",
+          "%GACH5SLG.MT5",
+          "%GACH5JKG.MT5",
+          "%SYOGMD1G.MT5",
+          "%SYOGMD5G.MT5"
+        ],
+        "controlTokens": [],
+        "collectibleIdPoolStart": "0xabea0",
+        "lookupValues": [
+          "0xd3",
+          "0xdc",
+          "0xd5",
+          "0xd4",
+          "0xdd",
+          "0xde"
+        ],
+        "nonzeroCollectibleIds": [
+          "0xd3",
+          "0xdc",
+          "0xd5",
+          "0xd4",
+          "0xdd",
+          "0xde"
+        ],
+        "poolLength": 6,
+        "selectionSplitValue": 6
+      },
+      {
+        "category": 13,
+        "modelListStart": "0xac95f",
+        "modelListLoadCall": {
+          "callFileOffset": "0x4fd56",
+          "operationHex": "0x019d",
+          "arguments": [
+            0,
+            706911
+          ]
+        },
+        "modelTokens": [
+          "%GACS5N1G.MT5",
+          "%GACS5N2G.MT5",
+          "%GACS5N3G.MT5",
+          "%GACS5N4G.MT5",
+          "%GACS5N5G.MT5"
+        ],
+        "mt5Tokens": [
+          "%GACS5N1G.MT5",
+          "%GACS5N2G.MT5",
+          "%GACS5N3G.MT5",
+          "%GACS5N4G.MT5",
+          "%GACS5N5G.MT5"
+        ],
+        "controlTokens": [],
+        "collectibleIdPoolStart": "0xabeac",
+        "lookupValues": [
+          "0xc0",
+          "0xc1",
+          "0xc2",
+          "0xc3",
+          "0xc4"
+        ],
+        "nonzeroCollectibleIds": [
+          "0xc0",
+          "0xc1",
+          "0xc2",
+          "0xc3",
+          "0xc4"
+        ],
+        "poolLength": 5,
+        "selectionSplitValue": 5
+      },
+      {
+        "category": 14,
+        "modelListStart": "0xac9a6",
+        "modelListLoadCall": {
+          "callFileOffset": "0x4fd9a",
+          "operationHex": "0x019d",
+          "arguments": [
+            0,
+            706982
+          ]
+        },
+        "modelTokens": [
+          "%GACGXBNG.MT5",
+          "%GACGYBNG.MT5",
+          "%GACGABNG.MT5",
+          "%GACGBBNG.MT5"
+        ],
+        "mt5Tokens": [
+          "%GACGXBNG.MT5",
+          "%GACGYBNG.MT5",
+          "%GACGABNG.MT5",
+          "%GACGBBNG.MT5"
+        ],
+        "controlTokens": [],
+        "collectibleIdPoolStart": "0xabeb8",
+        "lookupValues": [
+          "0xcf",
+          "0xd0",
+          "0xd1",
+          "0xd2"
+        ],
+        "nonzeroCollectibleIds": [
+          "0xcf",
+          "0xd0",
+          "0xd1",
+          "0xd2"
+        ],
+        "poolLength": 4,
+        "selectionSplitValue": 4
+      },
+      {
+        "category": 15,
+        "modelListStart": "0xac9df",
+        "modelListLoadCall": {
+          "callFileOffset": "0x4fdde",
+          "operationHex": "0x019d",
+          "arguments": [
+            0,
+            707039
+          ]
+        },
+        "modelTokens": [
+          "%GACRMEGG.MT5",
+          "%GACR0GGG.MT5",
+          "%GACRSATG.MT5",
+          "%GACRCASG.MT5"
+        ],
+        "mt5Tokens": [
+          "%GACRMEGG.MT5",
+          "%GACR0GGG.MT5",
+          "%GACRSATG.MT5",
+          "%GACRCASG.MT5"
+        ],
+        "controlTokens": [],
+        "collectibleIdPoolStart": "0xabec0",
+        "lookupValues": [
+          "0xdf",
+          "0xe0",
+          "0xe1",
+          "0xe2"
+        ],
+        "nonzeroCollectibleIds": [
+          "0xdf",
+          "0xe0",
+          "0xe1",
+          "0xe2"
+        ],
+        "poolLength": 4,
+        "selectionSplitValue": 4
+      }
+    ],
+    "modelSelectionCalls": [
+      {
+        "callFileOffset": "0x508ae",
+        "operationHex": "0x019d",
+        "arguments": [
+          5,
+          "runtime",
+          "runtime"
+        ]
+      },
+      {
+        "callFileOffset": "0x508e6",
+        "operationHex": "0x019d",
+        "arguments": [
+          1,
+          "runtime",
+          "runtime"
+        ]
+      }
+    ],
+    "physicalMachineToCategoryFlow": {
+      "activeObjectStateOffset": "global state +0x380",
+      "selectorRead": {
+        "callFileOffset": "0x56ef2",
+        "operationHex": "0x0024",
+        "arguments": [
+          "runtime",
+          4294967295
+        ]
+      },
+      "selectorReadSentinel": "0xffffffff",
+      "categoryStateLocalOffset": "r14 + 0x1c",
+      "resultPresentationCall": {
+        "callFileOffset": "0x57b3c",
+        "targetFunction": "0x50414",
+        "categoryArgumentSource": "r14 + 0x1c",
+        "itemIndexArgumentSource": "r14 + 0x20",
+        "orientationArgumentSource": "r14 + 0x24"
+      },
+      "proof": "operation 0x0024 reads the active machine's CCOW selector into the category-state local; the result presenter later receives that same local as its category argument"
+    },
+    "paymentFlow": {
+      "currencySelector": 2,
+      "priceYen": 100,
+      "balanceRead": {
+        "callFileOffset": "0x552a0",
+        "operationHex": "0x005f",
+        "arguments": [
+          2
+        ]
+      },
+      "subtractInstructionFileOffset": "0x552d8",
+      "balanceWrite": {
+        "callFileOffset": "0x552e6",
+        "operationHex": "0x0060",
+        "arguments": [
+          2,
+          "runtime"
+        ]
+      },
+      "proof": "the native routine reads selector 2, subtracts immediate 100, and writes the result to selector 2; selector 2 is independently identified as currency by the vending affordability and MONEY_LOCK paths"
+    },
+    "collectionStateFlow": {
+      "selectedIdLookup": {
+        "callFileOffset": "0x56e46",
+        "targetFunction": "0x4fe10",
+        "categorySource": "global category state +0x37c",
+        "itemIndexSource": "r14 + 0x44"
+      },
+      "mutationCall": {
+        "callFileOffset": "0x56e82",
+        "operationHex": "0x003d",
+        "arguments": [
+          "runtime",
+          1,
+          0,
+          0
+        ]
+      },
+      "mutationOperationHex": "0x003d",
+      "mutationHandlerAddress": "0x0c163060",
+      "mutationEngineTargetMode0": "0x0c0e38b6",
+      "awardedQuantity": 1,
+      "ownershipQueryOperationHex": "0x003f",
+      "ownershipQueryHandlerAddress": "0x0c1630de",
+      "ownershipQueryEngineTargetMode0": "0x0c0e38be",
+      "ownershipQueryCalls": [
+        {
+          "callFileOffset": "0x55042",
+          "operationHex": "0x003f",
+          "arguments": [
+            "runtime",
+            0
+          ]
+        },
+        {
+          "callFileOffset": "0x573b2",
+          "operationHex": "0x003f",
+          "arguments": [
+            "unresolved",
+            "runtime"
+          ]
+        },
+        {
+          "callFileOffset": "0x57556",
+          "operationHex": "0x003f",
+          "arguments": [
+            "unresolved",
+            "runtime"
+          ]
+        }
+      ],
+      "proof": "the selected lookup value is passed to operation 0x003d with quantity 1; its mode-0 handler target and the mode-0 0x003f query target are paired collection-state routines eight bytes apart"
+    },
+    "randomSelectionPrimitives": {
+      "sharedRngAddress": "0x0c1ce210",
+      "uniformFloatMode16": {
+        "operationHex": "0x0009",
+        "handlerAddress": "0x0c17320c",
+        "implementationLength": 404,
+        "implementationSha256": "353463eeec830c8f2cf0813b458ccbb65deefea5c0a24f3fccd84488b8967111",
+        "semantics": "shared RNG result multiplied by the supplied float",
+        "calls": [
+          {
+            "callFileOffset": "0x56f14",
+            "operationHex": "0x0009",
+            "arguments": [
+              16,
+              1065353216
+            ]
+          },
+          {
+            "callFileOffset": "0x573e2",
+            "operationHex": "0x0009",
+            "arguments": [
+              16,
+              1065353216
+            ]
+          },
+          {
+            "callFileOffset": "0x57586",
+            "operationHex": "0x0009",
+            "arguments": [
+              16,
+              1065353216
+            ]
+          }
+        ]
+      },
+      "boundedIntegerMode6": {
+        "operationHex": "0x004f",
+        "handlerAddress": "0x0c1733a0",
+        "implementationLength": 166,
+        "implementationSha256": "d940c91c3bcf45fc030c586de5b385e95e950c03b84814b3a72bc1f266a659e3",
+        "semantics": "truncate(shared RNG result multiplied by the supplied exclusive upper bound)",
+        "calls": [
+          {
+            "callFileOffset": "0x56f70",
+            "operationHex": "0x004f",
+            "arguments": [
+              6,
+              3
+            ]
+          },
+          {
+            "callFileOffset": "0x57240",
+            "operationHex": "0x004f",
+            "arguments": [
+              6,
+              "runtime"
+            ]
+          },
+          {
+            "callFileOffset": "0x5729c",
+            "operationHex": "0x004f",
+            "arguments": [
+              6,
+              "runtime"
+            ]
+          },
+          {
+            "callFileOffset": "0x572fc",
+            "operationHex": "0x004f",
+            "arguments": [
+              6,
+              "runtime"
+            ]
+          },
+          {
+            "callFileOffset": "0x574a6",
+            "operationHex": "0x004f",
+            "arguments": [
+              6,
+              "runtime"
+            ]
+          },
+          {
+            "callFileOffset": "0x57632",
+            "operationHex": "0x004f",
+            "arguments": [
+              6,
+              "runtime"
+            ]
+          },
+          {
+            "callFileOffset": "0x576aa",
+            "operationHex": "0x004f",
+            "arguments": [
+              6,
+              2
+            ]
+          },
+          {
+            "callFileOffset": "0x57752",
+            "operationHex": "0x004f",
+            "arguments": [
+              6,
+              5
+            ]
+          },
+          {
+            "callFileOffset": "0x578c2",
+            "operationHex": "0x004f",
+            "arguments": [
+              6,
+              4
+            ]
+          }
+        ]
+      },
+      "branchThresholds": [
+        {
+          "comparisonFileOffset": "0x56f38",
+          "value": 0.3333333134651184
+        },
+        {
+          "comparisonFileOffset": "0x573f4",
+          "value": 0.6666666865348816
+        },
+        {
+          "comparisonFileOffset": "0x57598",
+          "value": 0.3333333432674408
+        }
+      ]
+    }
+  },
+  "browserSemantics": "the selected low-detail GCH body is replaced by its exact HI_GACH model while the source-native M_GACH interaction plays; its owned GBX component remains in place",
+  "unresolved": [
+    "the exact category model lists and persistent collectible-ID pools are recovered and the physical CCOW selector is traced into category state; the native 100-yen debit is recovered, but random split semantics, browser economy/collection state, and result presentation are not yet implemented"
+  ],
+  "failures": []
+}

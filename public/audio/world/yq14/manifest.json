@@ -1,0 +1,162 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/build_yq14_audio_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/STREAM/A01114.AFS",
+      "sha256": "29a315dfe1699c5b2891f2269175439b356cd96a19d257f1873c4ac4ee019010"
+    },
+    "soundBank": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/SOUND/N1014_4.SND",
+      "sha256": "1ecf521427bed498340e300f493864c9e1e9ccc578ccc37825d7f4f68b59a4d4"
+    },
+    "authManifest": "play/assets/dobuita/yq14/manifest.json",
+    "resourceBindingEvidence": "tools/evidence/d000-auth-audio-banks.json"
+  },
+  "voices": [
+    {
+      "voiceId": "A01114A001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01114/SOUND/A01114A001.aiff",
+      "nativeMember": "A01114A001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 8192,
+      "nativeSha256": "9f80cf8231877bc1efa5a5f4e1bd3f866c0a2cc2a4de0f098049ccb76d5aee4f",
+      "speakerId": "AKIR",
+      "sourceText": "Get outta my way=@",
+      "displayText": "Get outta my way...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/yq14/voice/A01114A001.wav",
+      "byteLength": 32556,
+      "sha256": "cc0a8a6ebeb2f3341e25d9649bbe2d8793ecbc1167b98b69d9d0fb755fbfb732"
+    },
+    {
+      "voiceId": "A01114B001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01114/SOUND/A01114B001.aiff",
+      "nativeMember": "A01114B001.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 6144,
+      "nativeSha256": "348deff3ca0233c2b403f38a0c8c5ef71c4949bd5229a55d38092b7ccf86c740",
+      "speakerId": "TONY",
+      "sourceText": "What?",
+      "displayText": "What?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 25
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/yq14/voice/A01114B001.wav",
+      "byteLength": 24364,
+      "sha256": "7b49d0d57b1a9adb4848c5ddba6dfee4156bf27ae7a2cb9f9cdd2b7fff01aab3"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a90f0000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01114/SE/foot2/RYOASHIKONKURI_1.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/yq14/sfx/a90f0000.wav",
+      "byteLength": 8620,
+      "sha256": "919e66037c11b2048c53e17a99c1110da2a14f189affc9f177f355c0aaea5ad4"
+    },
+    {
+      "commandHex": "a90f0100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01114/SE/foot2/RYOASHIKONKURI_2.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/yq14/sfx/a90f0100.wav",
+      "byteLength": 7348,
+      "sha256": "9feabe3d7e91912550cec7ab83540d42da47d491151e9e3af4fa288d40ea0d86"
+    },
+    {
+      "commandHex": "a90f0200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01114/SE/foot2/RYOASHIKONKURI_3.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/yq14/sfx/a90f0200.wav",
+      "byteLength": 8668,
+      "sha256": "d04c3ee8c1d0d1ac17d2eb1dc432c862c3aa7f7bdde52f22c7c1dd7f2fdc95e6"
+    },
+    {
+      "commandHex": "a90f0400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01114/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/yq14/sfx/a90f0400.wav",
+      "byteLength": 8060,
+      "sha256": "e54dbb9378fb132239c6e4f387328f6a77a18aaadd5eae47160ea4af01d7b491"
+    }
+  ]
+}

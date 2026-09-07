@@ -1,0 +1,1662 @@
+{
+  "schema": "new-yokosuka-dreamcast-operation-handlers-v1",
+  "status": "verified",
+  "source": {
+    "ram": "captures/pvr/20260724-010057-frame-4933/ram.bin",
+    "calls": ".disc-work/d000-dispatch-calls.json"
+  },
+  "dispatcherAddress": "0x0c0bb69c",
+  "tableAddress": "0x0c29a9e0",
+  "operationCount": 206,
+  "handlers": [
+    {
+      "operationId": 0,
+      "operationHex": "0x0000",
+      "tableEntryAddress": "0x0c29a9e0",
+      "handlerAddress": "0x0c173196",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "63566684b358a45517fce8eff960b8756809fd2ff338ce0f5cd78a3863818f49"
+    },
+    {
+      "operationId": 1,
+      "operationHex": "0x0001",
+      "tableEntryAddress": "0x0c29a9e4",
+      "handlerAddress": "0x0c0bb386",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "9f85c883e1a825ff8a8dcbd84a5d0f21ed175ba655d5a612ea24c7e2c6f39f4e"
+    },
+    {
+      "operationId": 2,
+      "operationHex": "0x0002",
+      "tableEntryAddress": "0x0c29a9e8",
+      "handlerAddress": "0x0c0bb3ac",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "483b1afbb53bcf6be881cc3cbe3b7ed134244bbec0a1c8bc6fced3e2ccb8a070"
+    },
+    {
+      "operationId": 3,
+      "operationHex": "0x0003",
+      "tableEntryAddress": "0x0c29a9ec",
+      "handlerAddress": "0x0c0bb3d8",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "727a0d95e62407a7304e1c6906196adef8e13452d4a086ed6bba65434ce020db"
+    },
+    {
+      "operationId": 4,
+      "operationHex": "0x0004",
+      "tableEntryAddress": "0x0c29a9f0",
+      "handlerAddress": "0x0c1731ce",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "6945cdf18f66210b891aaa7846605e8aa17ac7654a730f56686016e181ff9727"
+    },
+    {
+      "operationId": 5,
+      "operationHex": "0x0005",
+      "tableEntryAddress": "0x0c29a9f4",
+      "handlerAddress": "0x0c141bec",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "ef596a28c73a8239b1b0a4d1075a483529a983292dc8e81abd6a511d12371bf6"
+    },
+    {
+      "operationId": 6,
+      "operationHex": "0x0006",
+      "tableEntryAddress": "0x0c29a9f8",
+      "handlerAddress": "0x0c16b6d8",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "ee3998dd72e591900d7a93e6308dfbec7e9c6bb0f9c48cdb051684416d9b221d"
+    },
+    {
+      "operationId": 8,
+      "operationHex": "0x0008",
+      "tableEntryAddress": "0x0c29aa00",
+      "handlerAddress": "0x0c17344a",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "b7ea5a50568047501677031fafe75d1cd26046663ee2d5733322812cba3a5605"
+    },
+    {
+      "operationId": 9,
+      "operationHex": "0x0009",
+      "tableEntryAddress": "0x0c29aa04",
+      "handlerAddress": "0x0c17320c",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "4b1ddc7a144df6544e8cb367b81a6ec8d1d99dff929d6a10e539a5f1ce3ac29c"
+    },
+    {
+      "operationId": 10,
+      "operationHex": "0x000a",
+      "tableEntryAddress": "0x0c29aa08",
+      "handlerAddress": "0x0c155878",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "b3835cd9662d52e69f781c51e5692c217b70d497094302a4710c348d2638a042"
+    },
+    {
+      "operationId": 11,
+      "operationHex": "0x000b",
+      "tableEntryAddress": "0x0c29aa0c",
+      "handlerAddress": "0x0c155958",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "fe173c71c991279e0ba6a6c65bcd7f857e93420ac7d32f354e50c0989bc7a0e9"
+    },
+    {
+      "operationId": 12,
+      "operationHex": "0x000c",
+      "tableEntryAddress": "0x0c29aa10",
+      "handlerAddress": "0x0c157846",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "92c394574495cf245a774efdcb8c6677eab5f5fdbfb8ddfcb03987a538febb02"
+    },
+    {
+      "operationId": 14,
+      "operationHex": "0x000e",
+      "tableEntryAddress": "0x0c29aa18",
+      "handlerAddress": "0x0c156a58",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "d1ecd8afbfef82aad58ad20e8bebd3d7c0012caebfb64f5b11e432b24badf744"
+    },
+    {
+      "operationId": 16,
+      "operationHex": "0x0010",
+      "tableEntryAddress": "0x0c29aa20",
+      "handlerAddress": "0x0c156a6a",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "9fa10727aaced57ea537e13cc7377a14ab638d148b7b746689182859e645f624"
+    },
+    {
+      "operationId": 17,
+      "operationHex": "0x0011",
+      "tableEntryAddress": "0x0c29aa24",
+      "handlerAddress": "0x0c156a84",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "5f0c78300b0cde531ac13bfb63fb681d0dae672b56af4a29470cdaae0066105e"
+    },
+    {
+      "operationId": 18,
+      "operationHex": "0x0012",
+      "tableEntryAddress": "0x0c29aa28",
+      "handlerAddress": "0x0c156af6",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "e20193f4a092ebe97e9edb5c28c7ef7a9a88aaa7b8ddd356db79ad7a3c6f325a"
+    },
+    {
+      "operationId": 24,
+      "operationHex": "0x0018",
+      "tableEntryAddress": "0x0c29aa40",
+      "handlerAddress": "0x0c157530",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "3640d667c69de4ed406383e5e4a6ee2eb833cdb6406d0c58dcbf8853d3f503a9"
+    },
+    {
+      "operationId": 25,
+      "operationHex": "0x0019",
+      "tableEntryAddress": "0x0c29aa44",
+      "handlerAddress": "0x0c157678",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "9f14d7411103c25e496ab6b7328ff8efbde1f6438f71ab8a937124fa8c56f2ea"
+    },
+    {
+      "operationId": 27,
+      "operationHex": "0x001b",
+      "tableEntryAddress": "0x0c29aa4c",
+      "handlerAddress": "0x0c157830",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "54b691647ec5ae5d873ecfdd11bc2dcd10ba390f5a14d75d7af439fee03ee413"
+    },
+    {
+      "operationId": 28,
+      "operationHex": "0x001c",
+      "tableEntryAddress": "0x0c29aa50",
+      "handlerAddress": "0x0c157bdc",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "05e3ccb0a1e1a0416ecf1ebfb27fdcbe71e9dd0fdf8855643fb493dd10ddc610"
+    },
+    {
+      "operationId": 29,
+      "operationHex": "0x001d",
+      "tableEntryAddress": "0x0c29aa54",
+      "handlerAddress": "0x0c15787a",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "ea405850c9ad9d4704e6bbf9accba88b9ca2e3556ef8a9bda8c3cad49c7082d6"
+    },
+    {
+      "operationId": 31,
+      "operationHex": "0x001f",
+      "tableEntryAddress": "0x0c29aa5c",
+      "handlerAddress": "0x0c157e12",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "c4af34318ec08d71dcbb06584e6fc648aa07964727dbd4a162bf621cb86fe2d5"
+    },
+    {
+      "operationId": 32,
+      "operationHex": "0x0020",
+      "tableEntryAddress": "0x0c29aa60",
+      "handlerAddress": "0x0c15860c",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "d268aa49b3f46acddb5246ca61295534da44722eb444eee9866e6bfcc501cf18"
+    },
+    {
+      "operationId": 35,
+      "operationHex": "0x0023",
+      "tableEntryAddress": "0x0c29aa6c",
+      "handlerAddress": "0x0c1586d4",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "9ed28c1c705c3a7b4bd8c2c6038f949e631643cade83cb81241b595e8671c8a1"
+    },
+    {
+      "operationId": 36,
+      "operationHex": "0x0024",
+      "tableEntryAddress": "0x0c29aa70",
+      "handlerAddress": "0x0c15870c",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "187fd6739d56bbc96e3bf2d918186747a27ac95444d4f70441fae858abd57f42"
+    },
+    {
+      "operationId": 37,
+      "operationHex": "0x0025",
+      "tableEntryAddress": "0x0c29aa74",
+      "handlerAddress": "0x0c0adfb2",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "a1959cbd60070e59f17bd7fcbefe0b5efa23828471fb807e317e504154f56ded"
+    },
+    {
+      "operationId": 38,
+      "operationHex": "0x0026",
+      "tableEntryAddress": "0x0c29aa78",
+      "handlerAddress": "0x0c1649a8",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "f0630fe348de85a4591d0d94560ff52a0e4fd18a2685aae2e7ce021a3917f564"
+    },
+    {
+      "operationId": 39,
+      "operationHex": "0x0027",
+      "tableEntryAddress": "0x0c29aa7c",
+      "handlerAddress": "0x0c164d44",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "847cc713243be392bbd515ee0e142ca872324d49ea6b6c6e7ded58d54409db12"
+    },
+    {
+      "operationId": 40,
+      "operationHex": "0x0028",
+      "tableEntryAddress": "0x0c29aa80",
+      "handlerAddress": "0x0c165b12",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "8fb279b4687c69a66f5bfbc303c14f12985faf98674ce7b3429207df025ea827"
+    },
+    {
+      "operationId": 41,
+      "operationHex": "0x0029",
+      "tableEntryAddress": "0x0c29aa84",
+      "handlerAddress": "0x0c165c48",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "7e3136deba47e57628850bd0f806c848471b98add9876b83320034f63917d914"
+    },
+    {
+      "operationId": 42,
+      "operationHex": "0x002a",
+      "tableEntryAddress": "0x0c29aa88",
+      "handlerAddress": "0x0c165cd4",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "434ff50f03441951670ae332ac1e8f232c6a7d6b93ed3e4ce7367d03775512b0"
+    },
+    {
+      "operationId": 43,
+      "operationHex": "0x002b",
+      "tableEntryAddress": "0x0c29aa8c",
+      "handlerAddress": "0x0c165e48",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "cc7db74a65dfa66e1b7f934d71b868058058a2bbe69b28e8c2a2cae61c2beed6"
+    },
+    {
+      "operationId": 44,
+      "operationHex": "0x002c",
+      "tableEntryAddress": "0x0c29aa90",
+      "handlerAddress": "0x0c165eaa",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "60cc94bad9d78234a462d4bcd6116a57942272675d269e89f7b69cdb738b1c90"
+    },
+    {
+      "operationId": 45,
+      "operationHex": "0x002d",
+      "tableEntryAddress": "0x0c29aa94",
+      "handlerAddress": "0x0c168d40",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "ba7e8f764dd901ea69367faf41b9417c0b3600969262a0661a4b075e66c84ecb"
+    },
+    {
+      "operationId": 46,
+      "operationHex": "0x002e",
+      "tableEntryAddress": "0x0c29aa98",
+      "handlerAddress": "0x0c16ad48",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "3580f8af5d836d2e5e9286c384ca09aabaf8b0e15f2ccf23ad5ed62f4c06d96b"
+    },
+    {
+      "operationId": 47,
+      "operationHex": "0x002f",
+      "tableEntryAddress": "0x0c29aa9c",
+      "handlerAddress": "0x0c16ae36",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "45326482a0855ffe3f2aa0e8af451905d0d29fb0751bbe72ef0e9774ab19db10"
+    },
+    {
+      "operationId": 48,
+      "operationHex": "0x0030",
+      "tableEntryAddress": "0x0c29aaa0",
+      "handlerAddress": "0x0c16b492",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "952b7da76c5115d9a1f9b05aeb4c0fe639e014b3992905fa1603fe0320fe6724"
+    },
+    {
+      "operationId": 49,
+      "operationHex": "0x0031",
+      "tableEntryAddress": "0x0c29aaa4",
+      "handlerAddress": "0x0c16b4c8",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "f35d9426bc5f4ec79aff8c98da4ad0ea9ff787bae4fad7d8044a2c7df0449152"
+    },
+    {
+      "operationId": 53,
+      "operationHex": "0x0035",
+      "tableEntryAddress": "0x0c29aab4",
+      "handlerAddress": "0x0c155a66",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "c1356bbce3de3e67c867fbb40f9ebf3dda87abd74ecf4986f9522f0dffcde186"
+    },
+    {
+      "operationId": 54,
+      "operationHex": "0x0036",
+      "tableEntryAddress": "0x0c29aab8",
+      "handlerAddress": "0x0c155ba4",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "ebf11107e22581dce3a1bc6cf2e015aa688e7aa5d31206fb09c20459f87f14b3"
+    },
+    {
+      "operationId": 61,
+      "operationHex": "0x003d",
+      "tableEntryAddress": "0x0c29aad4",
+      "handlerAddress": "0x0c163060",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "f6d2dde089f19656ea8db990c00b5947b79ddfc6ae7f34c28035d875f5d6e801"
+    },
+    {
+      "operationId": 63,
+      "operationHex": "0x003f",
+      "tableEntryAddress": "0x0c29aadc",
+      "handlerAddress": "0x0c1630de",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "d5216d55b5c682c868adedd1d7900f7d2394bff17c7839e9dabab502b885ebc4"
+    },
+    {
+      "operationId": 64,
+      "operationHex": "0x0040",
+      "tableEntryAddress": "0x0c29aae0",
+      "handlerAddress": "0x0c165bde",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "0c13b783668e9744660cfe265f8e7def43cdeec9275bc24577f54af703c509f9"
+    },
+    {
+      "operationId": 65,
+      "operationHex": "0x0041",
+      "tableEntryAddress": "0x0c29aae4",
+      "handlerAddress": "0x0c168ecc",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "564077c765127a873dc881340fad0207fb37f6048d27d126e98d30aa7ad3ddbb"
+    },
+    {
+      "operationId": 66,
+      "operationHex": "0x0042",
+      "tableEntryAddress": "0x0c29aae8",
+      "handlerAddress": "0x0c165e22",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "94426dc4e21d845cfbdba6201377d796c70012a3a66bcd75fb631c682bfbe909"
+    },
+    {
+      "operationId": 67,
+      "operationHex": "0x0043",
+      "tableEntryAddress": "0x0c29aaec",
+      "handlerAddress": "0x0c157c88",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "ac8fd0118abb248c9d3b7de1c5bc70469c901866d6dd1de0ff6d502d72a87427"
+    },
+    {
+      "operationId": 70,
+      "operationHex": "0x0046",
+      "tableEntryAddress": "0x0c29aaf8",
+      "handlerAddress": "0x0c1587dc",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "b273d26cb6ad8c2ed8b0977993697dd4bf040c446ffe34ea064597799328259a"
+    },
+    {
+      "operationId": 73,
+      "operationHex": "0x0049",
+      "tableEntryAddress": "0x0c29ab04",
+      "handlerAddress": "0x0c16ae6e",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "2bccaaf9b0883c654bca7fd4717ed19032bd111570fbb4f57cffaa2e5d28d53b"
+    },
+    {
+      "operationId": 76,
+      "operationHex": "0x004c",
+      "tableEntryAddress": "0x0c29ab10",
+      "handlerAddress": "0x0c1724a4",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "853978c3f4f251bb092b0cc944ab1e98b4592801344b5b9a1c54356108d89347"
+    },
+    {
+      "operationId": 77,
+      "operationHex": "0x004d",
+      "tableEntryAddress": "0x0c29ab14",
+      "handlerAddress": "0x0c173542",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "68333bb6917083166823bc27eefb2d40b2069504df4c795fd610fcc65be2345a"
+    },
+    {
+      "operationId": 78,
+      "operationHex": "0x004e",
+      "tableEntryAddress": "0x0c29ab18",
+      "handlerAddress": "0x0c165a60",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "aad68335f15f145be56716c185792bc0e0aaec324677c3e348475ef3b27d6e58"
+    },
+    {
+      "operationId": 79,
+      "operationHex": "0x004f",
+      "tableEntryAddress": "0x0c29ab1c",
+      "handlerAddress": "0x0c1733a0",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "9b1ec62b1bc09f3309dbe38e1dd1795033b4269f7f0882fa04f9e44865cc6a1c"
+    },
+    {
+      "operationId": 80,
+      "operationHex": "0x0050",
+      "tableEntryAddress": "0x0c29ab20",
+      "handlerAddress": "0x0c155194",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "dade76df3133bd83661696873b7b57e52700c8a391837a542749872f0d64ed9a"
+    },
+    {
+      "operationId": 81,
+      "operationHex": "0x0051",
+      "tableEntryAddress": "0x0c29ab24",
+      "handlerAddress": "0x0c1592e0",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "86bc3bcc72759b3e496786776a50435399c323eb482195c1d8c2db744a024e99"
+    },
+    {
+      "operationId": 82,
+      "operationHex": "0x0052",
+      "tableEntryAddress": "0x0c29ab28",
+      "handlerAddress": "0x0c168efc",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "f58082136b0204eb6a4d96bf7bc014e382cb626212ed9ad5eb6a69353b7d7aab"
+    },
+    {
+      "operationId": 84,
+      "operationHex": "0x0054",
+      "tableEntryAddress": "0x0c29ab30",
+      "handlerAddress": "0x0c168f3c",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "972031dc6e8d0b7977bb5ba7c1ec4d3f2aad5937c7dbc34c0f3c88812fc0e8cc"
+    },
+    {
+      "operationId": 88,
+      "operationHex": "0x0058",
+      "tableEntryAddress": "0x0c29ab40",
+      "handlerAddress": "0x0c170768",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "fa788baebf7cd4f943fdd1e382df22dda97bf6c967309d4bed3b0fce67a1aff0"
+    },
+    {
+      "operationId": 89,
+      "operationHex": "0x0059",
+      "tableEntryAddress": "0x0c29ab44",
+      "handlerAddress": "0x0c170776",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "52996275b9652c006fded03df684838fe750df3f966156abafb50a311b48a909"
+    },
+    {
+      "operationId": 93,
+      "operationHex": "0x005d",
+      "tableEntryAddress": "0x0c29ab54",
+      "handlerAddress": "0x0c158880",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "6763e11c234e6068ad4b5be77670b4b7df74ad9d026604012363e3d8f35e56ee"
+    },
+    {
+      "operationId": 94,
+      "operationHex": "0x005e",
+      "tableEntryAddress": "0x0c29ab58",
+      "handlerAddress": "0x0c165480",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "d477ab1c4d1a949d17de9eaea6ede4ca7f7a18a17c5a1a44ed3090335383ab13"
+    },
+    {
+      "operationId": 95,
+      "operationHex": "0x005f",
+      "tableEntryAddress": "0x0c29ab5c",
+      "handlerAddress": "0x0c16b5f6",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "8a88733149586009d5b6061fa80a9d95524b2b9de9f685d8c748399753933a1c"
+    },
+    {
+      "operationId": 96,
+      "operationHex": "0x0060",
+      "tableEntryAddress": "0x0c29ab60",
+      "handlerAddress": "0x0c16b612",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "f719b8ffeabf854901ceaf9d4c59c75e6487ac5664d96adf9b628cee1a875e95"
+    },
+    {
+      "operationId": 97,
+      "operationHex": "0x0061",
+      "tableEntryAddress": "0x0c29ab64",
+      "handlerAddress": "0x0c155a3c",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "904f64efbc9ad31f314c7b44c846d3aaab99691b70041c4ef35518f7dd1e3caf"
+    },
+    {
+      "operationId": 98,
+      "operationHex": "0x0062",
+      "tableEntryAddress": "0x0c29ab68",
+      "handlerAddress": "0x0c1645b8",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "228e75cefc098ee9b4ac9ab6a1ff2affc014057e9c8ab81e931d3d9199995fb8"
+    },
+    {
+      "operationId": 101,
+      "operationHex": "0x0065",
+      "tableEntryAddress": "0x0c29ab74",
+      "handlerAddress": "0x0c16448e",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "4154f66836b1fcbe6b9ee3b0e45e939d13486e8cb27ea1958a64665f06cdb8b0"
+    },
+    {
+      "operationId": 102,
+      "operationHex": "0x0066",
+      "tableEntryAddress": "0x0c29ab78",
+      "handlerAddress": "0x0c1644dc",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "011bc4aa6a49f3b80807d6c1c39b7fc4ebf352ca2fff1eaa8550fbd5b11d334b"
+    },
+    {
+      "operationId": 107,
+      "operationHex": "0x006b",
+      "tableEntryAddress": "0x0c29ab8c",
+      "handlerAddress": "0x0c157d10",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "c49acf4d73580e07a41977a1313061b362a0ae2c24613b441184526780d453cf"
+    },
+    {
+      "operationId": 108,
+      "operationHex": "0x006c",
+      "tableEntryAddress": "0x0c29ab90",
+      "handlerAddress": "0x0c16b110",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "3f1c9c94eee0f343c327a92f1de36c314d59168df7d14ed765c3d72efb847c1b"
+    },
+    {
+      "operationId": 109,
+      "operationHex": "0x006d",
+      "tableEntryAddress": "0x0c29ab94",
+      "handlerAddress": "0x0c16b27e",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "7a3d9dc72a1a48ad58af09eba2ea101c75e344f5b0866ccf61c38aaa61d82b3d"
+    },
+    {
+      "operationId": 110,
+      "operationHex": "0x006e",
+      "tableEntryAddress": "0x0c29ab98",
+      "handlerAddress": "0x0c156bc4",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "08bbb698b09df7c49a36ed195b1e300da0b6065d9bdca6a602730fbed1853367"
+    },
+    {
+      "operationId": 112,
+      "operationHex": "0x0070",
+      "tableEntryAddress": "0x0c29aba0",
+      "handlerAddress": "0x0c15761a",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "a57525e7d6475cb93120a4df2e40f5d72d5a77b8d1d1797977c46966f249e6f0"
+    },
+    {
+      "operationId": 113,
+      "operationHex": "0x0071",
+      "tableEntryAddress": "0x0c29aba4",
+      "handlerAddress": "0x0c156ce4",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "113ce4c076a6ff1508e2fea9e88faa47765ad4b91aa56b1feeaa81db9df67485"
+    },
+    {
+      "operationId": 114,
+      "operationHex": "0x0072",
+      "tableEntryAddress": "0x0c29aba8",
+      "handlerAddress": "0x0c157ed4",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "1d7605ec6184fdd1227f501f4e8b04ea3b1e1c9017c8fb6f8a00a7f9f8c101b1"
+    },
+    {
+      "operationId": 116,
+      "operationHex": "0x0074",
+      "tableEntryAddress": "0x0c29abb0",
+      "handlerAddress": "0x0c164d7a",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "c67c37acf3e3b4b71edb18d5b4135f7bd3229cafb54785de3ce4686ace5a12a3"
+    },
+    {
+      "operationId": 117,
+      "operationHex": "0x0075",
+      "tableEntryAddress": "0x0c29abb4",
+      "handlerAddress": "0x0c164e76",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "586d3aab0beb475ade057f10523805989d874deb0e4c321a8d94ae8ed56e9842"
+    },
+    {
+      "operationId": 120,
+      "operationHex": "0x0078",
+      "tableEntryAddress": "0x0c29abc0",
+      "handlerAddress": "0x0c165f1a",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "d74cb7bd52dfd993cbc7473f71239ac121e7d3bb730b0f82f10ef55c94e1edcc"
+    },
+    {
+      "operationId": 129,
+      "operationHex": "0x0081",
+      "tableEntryAddress": "0x0c29abe4",
+      "handlerAddress": "0x0c164ef0",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "5fe33624875498bfba715e41329e2d2cbb06539e39a94ebc2505115506b078f4"
+    },
+    {
+      "operationId": 132,
+      "operationHex": "0x0084",
+      "tableEntryAddress": "0x0c29abf0",
+      "handlerAddress": "0x0c165fd2",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "790b7401b405340bc3fd8d7dea1c15d179cef5a48e860198089b52327755bbec"
+    },
+    {
+      "operationId": 136,
+      "operationHex": "0x0088",
+      "tableEntryAddress": "0x0c29ac00",
+      "handlerAddress": "0x0c155be6",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "c672449b393dfadcb164abd190c6a8757447c3ad1ead4dad0cd8cddbfa6312fc"
+    },
+    {
+      "operationId": 137,
+      "operationHex": "0x0089",
+      "tableEntryAddress": "0x0c29ac04",
+      "handlerAddress": "0x0c155cd6",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "922bb497fd0cc16522f596540fff65b20c1111a05855f2d25bd2d618906de552"
+    },
+    {
+      "operationId": 140,
+      "operationHex": "0x008c",
+      "tableEntryAddress": "0x0c29ac10",
+      "handlerAddress": "0x0c164ffe",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "2d2dfe2e95cda8d50a456fe47d953e0ce82e85b11c7605a5142b9ae6fbc67988"
+    },
+    {
+      "operationId": 143,
+      "operationHex": "0x008f",
+      "tableEntryAddress": "0x0c29ac1c",
+      "handlerAddress": "0x0c17355c",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "02445588fa5209a1c9aca4d26c4803a4596561833fa460ae3928c9ff16a7c7aa"
+    },
+    {
+      "operationId": 144,
+      "operationHex": "0x0090",
+      "tableEntryAddress": "0x0c29ac20",
+      "handlerAddress": "0x0c157db0",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "a01ec850c14ccbaeb69bc836f70fb17e6f61710497f4027a3ce729c99b705c7f"
+    },
+    {
+      "operationId": 145,
+      "operationHex": "0x0091",
+      "tableEntryAddress": "0x0c29ac24",
+      "handlerAddress": "0x0c157f1c",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "b0967094a2f5ddd944b9d384bfb99d042ea96d6047726b8ce64bcf5f57f18251"
+    },
+    {
+      "operationId": 148,
+      "operationHex": "0x0094",
+      "tableEntryAddress": "0x0c29ac30",
+      "handlerAddress": "0x0c165080",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "d31d0733fb21ea5717d5ce1d543a0749b175d769ca2c2a919f4bd16f6476daf4"
+    },
+    {
+      "operationId": 152,
+      "operationHex": "0x0098",
+      "tableEntryAddress": "0x0c29ac40",
+      "handlerAddress": "0x0c1649de",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "bf84299eaafdda3e2fda6ce4d937260abe67aae135187c9488a48b584cc1a45a"
+    },
+    {
+      "operationId": 153,
+      "operationHex": "0x0099",
+      "tableEntryAddress": "0x0c29ac44",
+      "handlerAddress": "0x0c1650c4",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "16d7101a79f3b555d87e2f71a4b4e94e3da4f324bc752e6b807b71f8c71b07d5"
+    },
+    {
+      "operationId": 154,
+      "operationHex": "0x009a",
+      "tableEntryAddress": "0x0c29ac48",
+      "handlerAddress": "0x0c1737b4",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "251981c1bba4882905a53159666e978fd9a64a92a91cd72c0e4ef4a5fe11e09d"
+    },
+    {
+      "operationId": 155,
+      "operationHex": "0x009b",
+      "tableEntryAddress": "0x0c29ac4c",
+      "handlerAddress": "0x0c166020",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "8f2d9e56d4105e9ea9eb5bfbab9d9ff335cc3451e2ed45b3e9239ae2da36b264"
+    },
+    {
+      "operationId": 156,
+      "operationHex": "0x009c",
+      "tableEntryAddress": "0x0c29ac50",
+      "handlerAddress": "0x0c16602e",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "f27d05e3b52b9cceb30fae89c112d8d4c557cc4ad642cd564a429bb3a7691627"
+    },
+    {
+      "operationId": 157,
+      "operationHex": "0x009d",
+      "tableEntryAddress": "0x0c29ac54",
+      "handlerAddress": "0x0c166078",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "80c00b02a6a08855818bb5cb7313917d5f4b4781225814298934421c676d97f3"
+    },
+    {
+      "operationId": 168,
+      "operationHex": "0x00a8",
+      "tableEntryAddress": "0x0c29ac80",
+      "handlerAddress": "0x0c157f36",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "d517abccfac097961b29a246779b71615b562db3d29e93478f506e07894d9faf"
+    },
+    {
+      "operationId": 172,
+      "operationHex": "0x00ac",
+      "tableEntryAddress": "0x0c29ac90",
+      "handlerAddress": "0x0c156d80",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "dd69e9dc617b2a768cd739c18a27a60986bdcbabedec56e7df31ade34a2b3420"
+    },
+    {
+      "operationId": 178,
+      "operationHex": "0x00b2",
+      "tableEntryAddress": "0x0c29aca8",
+      "handlerAddress": "0x0c16b2ba",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "9cb1c9daff541c956bcb680287ede00ab113090a610d3a7d0b8d1808a060a1cb"
+    },
+    {
+      "operationId": 181,
+      "operationHex": "0x00b5",
+      "tableEntryAddress": "0x0c29acb4",
+      "handlerAddress": "0x0c162d68",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "bb627056349727bcc526debc175a985065716feaf29970f73c98c3f84f7524ae"
+    },
+    {
+      "operationId": 182,
+      "operationHex": "0x00b6",
+      "tableEntryAddress": "0x0c29acb8",
+      "handlerAddress": "0x0c155cee",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "48ee79da47ca300d9283f181cc22e9a9d39f35491343dd767642b9f792f5bc50"
+    },
+    {
+      "operationId": 184,
+      "operationHex": "0x00b8",
+      "tableEntryAddress": "0x0c29acc0",
+      "handlerAddress": "0x0c155b5a",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "3ad1d451d08038f8012b0abd4b870e7a05b186de55ead41c7066ba69c99c11b6"
+    },
+    {
+      "operationId": 195,
+      "operationHex": "0x00c3",
+      "tableEntryAddress": "0x0c29acec",
+      "handlerAddress": "0x0c155d52",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "7653133091071c0fb372997a2a41cd42dc6c00e3791477adeff715e7eef7659a"
+    },
+    {
+      "operationId": 196,
+      "operationHex": "0x00c4",
+      "tableEntryAddress": "0x0c29acf0",
+      "handlerAddress": "0x0c164fd0",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "478cde4940d126133518bd2bd403365b4d9dc54964bc519fce231d5cd579d7f9"
+    },
+    {
+      "operationId": 200,
+      "operationHex": "0x00c8",
+      "tableEntryAddress": "0x0c29ad00",
+      "handlerAddress": "0x0c09c2ac",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "419ac2a7ef58415e3fa489a9224bde3ae075265703b4403b50d9f47f0c1d4620"
+    },
+    {
+      "operationId": 201,
+      "operationHex": "0x00c9",
+      "tableEntryAddress": "0x0c29ad04",
+      "handlerAddress": "0x0c15820a",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "88e9de4b290754bfaf9daeb15c6b1d1e54cd82c3b0aaba8d7e736b524ef9e5ec"
+    },
+    {
+      "operationId": 202,
+      "operationHex": "0x00ca",
+      "tableEntryAddress": "0x0c29ad08",
+      "handlerAddress": "0x0c16b8c0",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "048439799c2d4d6bf121b5ad8dac492c7de1038bd76a3ae68dbfb40915f49ddc"
+    },
+    {
+      "operationId": 205,
+      "operationHex": "0x00cd",
+      "tableEntryAddress": "0x0c29ad14",
+      "handlerAddress": "0x0c155d66",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "991f468fecf07ac33301b00667ca7ccfb0a653fd003f9d9e006238dd2758437c"
+    },
+    {
+      "operationId": 218,
+      "operationHex": "0x00da",
+      "tableEntryAddress": "0x0c29ad48",
+      "handlerAddress": "0x0c157076",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "316d6a14db232798587f6e90d49fbce3c28a7f9a2baea1ece3f5e4655076810c"
+    },
+    {
+      "operationId": 221,
+      "operationHex": "0x00dd",
+      "tableEntryAddress": "0x0c29ad54",
+      "handlerAddress": "0x0c165128",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "a131dc98a2a5ccedc6c524603c31f4f3fefa6941725c812c5031d46d6a5cdee9"
+    },
+    {
+      "operationId": 222,
+      "operationHex": "0x00de",
+      "tableEntryAddress": "0x0c29ad58",
+      "handlerAddress": "0x0c16514a",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "c57c703f08bc3f1e8e0c047b2026ebf603625d171fabdaa1fb265fb91a05eba5"
+    },
+    {
+      "operationId": 223,
+      "operationHex": "0x00df",
+      "tableEntryAddress": "0x0c29ad5c",
+      "handlerAddress": "0x0c165190",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "ae09bf677996a24b360b5cab1d85821a3af2b5eb7ab3b0f4b486fc708e2759d3"
+    },
+    {
+      "operationId": 230,
+      "operationHex": "0x00e6",
+      "tableEntryAddress": "0x0c29ad78",
+      "handlerAddress": "0x0c1577fe",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "6b75c5d2543a2b7f4b4a6ecfdea42c1d0b791cf93fc439cbb34cf185e5f3bbc8"
+    },
+    {
+      "operationId": 231,
+      "operationHex": "0x00e7",
+      "tableEntryAddress": "0x0c29ad7c",
+      "handlerAddress": "0x0c1651ca",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "62c23a44845e2ee18809af055cf7e9f506dc4509a5b49a4c754740b7ec9a5c8a"
+    },
+    {
+      "operationId": 232,
+      "operationHex": "0x00e8",
+      "tableEntryAddress": "0x0c29ad80",
+      "handlerAddress": "0x0c165204",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "99e3c3c40f45bf16bdd3da68e047644923d22c8c02dbeb4d5c1662641d249434"
+    },
+    {
+      "operationId": 233,
+      "operationHex": "0x00e9",
+      "tableEntryAddress": "0x0c29ad84",
+      "handlerAddress": "0x0c165280",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "bb69697e0f5b6a4d8db5021640335aa8e75834f652082b95910dd4f26ec0947d"
+    },
+    {
+      "operationId": 234,
+      "operationHex": "0x00ea",
+      "tableEntryAddress": "0x0c29ad88",
+      "handlerAddress": "0x0c1652d4",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "69a608c18dedacdf973c67adbaf481787c412b6ae3a4160f3299ab480612f4d8"
+    },
+    {
+      "operationId": 235,
+      "operationHex": "0x00eb",
+      "tableEntryAddress": "0x0c29ad8c",
+      "handlerAddress": "0x0c1652fe",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "fdd7fad8cffcac6c45beced4fc31275a309b1a36f4d427a4edf301d9e588d727"
+    },
+    {
+      "operationId": 239,
+      "operationHex": "0x00ef",
+      "tableEntryAddress": "0x0c29ad9c",
+      "handlerAddress": "0x0c1588be",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "84b8bcbb0310687cc0c34847bc9d078c7addb79902cc133924bca29345c8a72d"
+    },
+    {
+      "operationId": 241,
+      "operationHex": "0x00f1",
+      "tableEntryAddress": "0x0c29ada4",
+      "handlerAddress": "0x0c1703b8",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "deb21a74a895e292f071294a64bbf35563c134ccfe4e62ae07f1dc6e39c49e24"
+    },
+    {
+      "operationId": 243,
+      "operationHex": "0x00f3",
+      "tableEntryAddress": "0x0c29adac",
+      "handlerAddress": "0x0c16b350",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "973ea16d37638a105df903bde1970094e50cc231deaae54f8909d0ea05d45972"
+    },
+    {
+      "operationId": 245,
+      "operationHex": "0x00f5",
+      "tableEntryAddress": "0x0c29adb4",
+      "handlerAddress": "0x0c16b3e0",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "ddf52dfdb05bbeb2e6b1f74eeded54f4c7b7c4e4c2035d36e9857ced3e4b92d0"
+    },
+    {
+      "operationId": 247,
+      "operationHex": "0x00f7",
+      "tableEntryAddress": "0x0c29adbc",
+      "handlerAddress": "0x0c15836a",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "0a961a57c6bbe09f8e3df2dd78b531feb808df97c307d15152d3c0d5fad3f5d7"
+    },
+    {
+      "operationId": 248,
+      "operationHex": "0x00f8",
+      "tableEntryAddress": "0x0c29adc0",
+      "handlerAddress": "0x0c162d3c",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "0c3092bb1be551a37589a84cc7deadf7c9646b10ade8fe640e9070eb8de5b8d3"
+    },
+    {
+      "operationId": 249,
+      "operationHex": "0x00f9",
+      "tableEntryAddress": "0x0c29adc4",
+      "handlerAddress": "0x0c162d5a",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "503a08386e2a85e387a64b338d468f1f9e681d6c3b780b7a3ead1fa372c7fdae"
+    },
+    {
+      "operationId": 253,
+      "operationHex": "0x00fd",
+      "tableEntryAddress": "0x0c29add4",
+      "handlerAddress": "0x0c164dfc",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "4c4f54b3418a53466f98d0193d15e5459e81c36ad46b21ca6ce157fe0c68c4c8"
+    },
+    {
+      "operationId": 255,
+      "operationHex": "0x00ff",
+      "tableEntryAddress": "0x0c29addc",
+      "handlerAddress": "0x0c166612",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "b3b4a550ef985cd1886950066b81ca578eda8df6bd91aa1be72cc6244a29e681"
+    },
+    {
+      "operationId": 256,
+      "operationHex": "0x0100",
+      "tableEntryAddress": "0x0c29ade0",
+      "handlerAddress": "0x0c15f74c",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "fd71c8f15c4822bbe581662255d6de6b6f7a0c6059f15a17bdcfcd257144d7da"
+    },
+    {
+      "operationId": 267,
+      "operationHex": "0x010b",
+      "tableEntryAddress": "0x0c29ae0c",
+      "handlerAddress": "0x0c1600c4",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "352979de4ecc97c9dbbb9081ae32601d8879021909caa184bd8bad83e7f580de"
+    },
+    {
+      "operationId": 271,
+      "operationHex": "0x010f",
+      "tableEntryAddress": "0x0c29ae1c",
+      "handlerAddress": "0x0c1646f2",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "54674d589e4e930143305fd95697967b008e6a9aa7d098787d86ca9bb7023c06"
+    },
+    {
+      "operationId": 272,
+      "operationHex": "0x0110",
+      "tableEntryAddress": "0x0c29ae20",
+      "handlerAddress": "0x0c09c2c4",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "317fc0729a377db41780d2c57f5526c9ed0836987338432d76b004e084db5050"
+    },
+    {
+      "operationId": 275,
+      "operationHex": "0x0113",
+      "tableEntryAddress": "0x0c29ae2c",
+      "handlerAddress": "0x0c164eb8",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "921ce8988e7e882a678c35666518af854c228d6137663d3ea6391a09b873a340"
+    },
+    {
+      "operationId": 277,
+      "operationHex": "0x0115",
+      "tableEntryAddress": "0x0c29ae34",
+      "handlerAddress": "0x0c15850a",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "ed1dbf1a628188a8ea258efa82dc37aaa316126127e32df22c507882bc24a7d8"
+    },
+    {
+      "operationId": 278,
+      "operationHex": "0x0116",
+      "tableEntryAddress": "0x0c29ae38",
+      "handlerAddress": "0x0c157126",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "37a9fcbc8d3ca8184875037803a10227a7ad120d9659646ecf509bef2759b7e5"
+    },
+    {
+      "operationId": 280,
+      "operationHex": "0x0118",
+      "tableEntryAddress": "0x0c29ae40",
+      "handlerAddress": "0x0c1648ac",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "093564a975ed60e92f377c96113c28ea04e0e5577935c5238af8d29b0e56ac1f"
+    },
+    {
+      "operationId": 282,
+      "operationHex": "0x011a",
+      "tableEntryAddress": "0x0c29ae48",
+      "handlerAddress": "0x0c16b2d6",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "04315f7100356de50f02bd221213cdddbb8e23af0505c9d16be99180f6c76186"
+    },
+    {
+      "operationId": 288,
+      "operationHex": "0x0120",
+      "tableEntryAddress": "0x0c29ae60",
+      "handlerAddress": "0x0c164ae6",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "185403d887aa0f27c542be6accca062a242a8294f74224fb388b717447b1986b"
+    },
+    {
+      "operationId": 289,
+      "operationHex": "0x0121",
+      "tableEntryAddress": "0x0c29ae64",
+      "handlerAddress": "0x0c1583dc",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "1598da9d0451fd63ffed6c63c3d827bab47c7658433db3d5098d2f9b25f81dd2"
+    },
+    {
+      "operationId": 300,
+      "operationHex": "0x012c",
+      "tableEntryAddress": "0x0c29ae90",
+      "handlerAddress": "0x0c1731ca",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "037b3c22457b9d6ab26970c9a184322d55c2fe27256ca77c2fb3563eaf6be230"
+    },
+    {
+      "operationId": 302,
+      "operationHex": "0x012e",
+      "tableEntryAddress": "0x0c29ae98",
+      "handlerAddress": "0x0c165508",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "edb53a39714114e237f9dff097846d6e7b3ba698e79c883ad17468705b167a4d"
+    },
+    {
+      "operationId": 306,
+      "operationHex": "0x0132",
+      "tableEntryAddress": "0x0c29aea8",
+      "handlerAddress": "0x0c131ab6",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "104519028e0b9eb0dd9253185f7b60d7bd0ea7f769cadc19e764859226c1be98"
+    },
+    {
+      "operationId": 312,
+      "operationHex": "0x0138",
+      "tableEntryAddress": "0x0c29aec0",
+      "handlerAddress": "0x0c16b2e4",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "b74badd292544c03b7d8780e2619a2896686b32bf2f019ce7c8ce5f9eaf7be66"
+    },
+    {
+      "operationId": 313,
+      "operationHex": "0x0139",
+      "tableEntryAddress": "0x0c29aec4",
+      "handlerAddress": "0x0c165544",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "c8fc4724d1d56dd5db0d390cb5ddee09d200e4ea20be001a62a6d30476fb85d0"
+    },
+    {
+      "operationId": 314,
+      "operationHex": "0x013a",
+      "tableEntryAddress": "0x0c29aec8",
+      "handlerAddress": "0x0c1584b0",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "b91467cc0b04ed2164c9f69e367e3b21d68f6245d95b6d584a00c19bfc9f638a"
+    },
+    {
+      "operationId": 316,
+      "operationHex": "0x013c",
+      "tableEntryAddress": "0x0c29aed0",
+      "handlerAddress": "0x0c15f484",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "c7e0a30e38dccfff6efc6b67b3c1d288ab1a63193255ae30d74191affee0d5d8"
+    },
+    {
+      "operationId": 318,
+      "operationHex": "0x013e",
+      "tableEntryAddress": "0x0c29aed8",
+      "handlerAddress": "0x0c15555a",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "e387b2c8ef06a3394b972248d65eefa576f1e9ee96b4122e2f67c43763a4d808"
+    },
+    {
+      "operationId": 323,
+      "operationHex": "0x0143",
+      "tableEntryAddress": "0x0c29aeec",
+      "handlerAddress": "0x0c1635c2",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "9ad24f77885df131745a51dd699fa6a82c2159672ed6fde389eb468eb07ec495"
+    },
+    {
+      "operationId": 326,
+      "operationHex": "0x0146",
+      "tableEntryAddress": "0x0c29aef8",
+      "handlerAddress": "0x0c171358",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "c427962005187f61db038b71602cac5fdb1fa3a8adc0bc74a4b9ab637da895b4"
+    },
+    {
+      "operationId": 327,
+      "operationHex": "0x0147",
+      "tableEntryAddress": "0x0c29aefc",
+      "handlerAddress": "0x0c1713fc",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "84e947a3e6eb63488ad9b31d60f07545d0ddc062ba1555265e019d7875da62e2"
+    },
+    {
+      "operationId": 329,
+      "operationHex": "0x0149",
+      "tableEntryAddress": "0x0c29af04",
+      "handlerAddress": "0x0c1707c6",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "50d8f57810eaef922f577455ecb1b05bc149d057d6145ad1db1f1554e27ad89f"
+    },
+    {
+      "operationId": 335,
+      "operationHex": "0x014f",
+      "tableEntryAddress": "0x0c29af1c",
+      "handlerAddress": "0x0c1667f6",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "bbd650f72d01e7cf4f581683e7a2e293829c03afd825a5864f37edbd54380ed3"
+    },
+    {
+      "operationId": 337,
+      "operationHex": "0x0151",
+      "tableEntryAddress": "0x0c29af24",
+      "handlerAddress": "0x0c1667fe",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "a1146c4b95b8c3e58a977e9281437ae8459c9610379447fe2dd6392a9efd472b"
+    },
+    {
+      "operationId": 339,
+      "operationHex": "0x0153",
+      "tableEntryAddress": "0x0c29af2c",
+      "handlerAddress": "0x0c1571ba",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "b6220bfad85e4be143bde69ca7e60e46c5b98f762614651a73005c56746c1008"
+    },
+    {
+      "operationId": 345,
+      "operationHex": "0x0159",
+      "tableEntryAddress": "0x0c29af44",
+      "handlerAddress": "0x0c16b208",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "6b9eb666a6951c114e8e50043e614b8a6c65651f134c1e84f286db2101b67dde"
+    },
+    {
+      "operationId": 347,
+      "operationHex": "0x015b",
+      "tableEntryAddress": "0x0c29af4c",
+      "handlerAddress": "0x0c1600d2",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "59411259699afd95c78b22397d42a48a007a52634e5908530a201e503d75d255"
+    },
+    {
+      "operationId": 348,
+      "operationHex": "0x015c",
+      "tableEntryAddress": "0x0c29af50",
+      "handlerAddress": "0x0c16b29c",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "8ee593e2329bb6991e0c7b80c988a9a835f1a6130f0cb59a9b97e96ca9575d4e"
+    },
+    {
+      "operationId": 351,
+      "operationHex": "0x015f",
+      "tableEntryAddress": "0x0c29af5c",
+      "handlerAddress": "0x0c1584d4",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "875c1697ccac4d4a9e38410916f783f723f31d7d431cf2a70ccfbaca841b18c8"
+    },
+    {
+      "operationId": 352,
+      "operationHex": "0x0160",
+      "tableEntryAddress": "0x0c29af60",
+      "handlerAddress": "0x0c166874",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "502b3a13695a9f8dcadeb5d99304b8f51c9380d10ef9202160c2a0223c9f203d"
+    },
+    {
+      "operationId": 357,
+      "operationHex": "0x0165",
+      "tableEntryAddress": "0x0c29af74",
+      "handlerAddress": "0x0c166a7c",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "3995e22921c142fbc9e74fbf159ccedf66d160c5c7236adad2023ce34eee63ec"
+    },
+    {
+      "operationId": 358,
+      "operationHex": "0x0166",
+      "tableEntryAddress": "0x0c29af78",
+      "handlerAddress": "0x0c167ab4",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "07dc08c61bec1ab2c4e3e577e54085b79e3b9e323af4484d1f80dd2b4a7027b6"
+    },
+    {
+      "operationId": 363,
+      "operationHex": "0x016b",
+      "tableEntryAddress": "0x0c29af8c",
+      "handlerAddress": "0x0c1600aa",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "584dbb669b4ab54d41ec3fb2bbf60e559c2e349a41854fb9f82fbeee922689e0"
+    },
+    {
+      "operationId": 364,
+      "operationHex": "0x016c",
+      "tableEntryAddress": "0x0c29af90",
+      "handlerAddress": "0x0c165ed0",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "2590b4664f54341c114c8d49bac4a5d27b50bb311ec84dfae58936587bd18231"
+    },
+    {
+      "operationId": 365,
+      "operationHex": "0x016d",
+      "tableEntryAddress": "0x0c29af94",
+      "handlerAddress": "0x0c16b358",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "7fdd5363d1120b2e86eda7033d04d48ee85b1edd1adf49b20abf01b60679583f"
+    },
+    {
+      "operationId": 366,
+      "operationHex": "0x016e",
+      "tableEntryAddress": "0x0c29af98",
+      "handlerAddress": "0x0c166adc",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "1e60c1617d2beaa07e0006fbd31f71b44fe3dd515019667352bbcdcf65e9e323"
+    },
+    {
+      "operationId": 368,
+      "operationHex": "0x0170",
+      "tableEntryAddress": "0x0c29afa0",
+      "handlerAddress": "0x0c164be6",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "6e5ac52258438c4a1f432cd10c159a4ecd0f7368101939bed1fb7fa07bcc03f6"
+    },
+    {
+      "operationId": 370,
+      "operationHex": "0x0172",
+      "tableEntryAddress": "0x0c29afa8",
+      "handlerAddress": "0x0c15852c",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "2cc04c86f9788157f2cd6216e8ab1f923602e0ee41ab7d2e1df3d1aeb31cd5e7"
+    },
+    {
+      "operationId": 371,
+      "operationHex": "0x0173",
+      "tableEntryAddress": "0x0c29afac",
+      "handlerAddress": "0x0c1571d6",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "a9af0a1f6a89c882a71b087e2a76c42f371f4f15e008c9fc9207c3717e8d58cd"
+    },
+    {
+      "operationId": 372,
+      "operationHex": "0x0174",
+      "tableEntryAddress": "0x0c29afb0",
+      "handlerAddress": "0x0c1724bc",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "365216e57993aa1dd9b23f2f56c327b642ace2b65043e499e654409f94a9b403"
+    },
+    {
+      "operationId": 373,
+      "operationHex": "0x0175",
+      "tableEntryAddress": "0x0c29afb4",
+      "handlerAddress": "0x0c172508",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "6fae6455611bb23b787b4728e9a78b120f5f94e5fab0a05766b7d7a6ce7db8f2"
+    },
+    {
+      "operationId": 374,
+      "operationHex": "0x0176",
+      "tableEntryAddress": "0x0c29afb8",
+      "handlerAddress": "0x0c17274c",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "e00aa8cc64eb6d73f045f51dfd5a8fd983b8dfc189aef692fb1d8776a2555599"
+    },
+    {
+      "operationId": 377,
+      "operationHex": "0x0179",
+      "tableEntryAddress": "0x0c29afc4",
+      "handlerAddress": "0x0c172cc0",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "87f3c983fbc32a3e486eed91c9da1d10b2a3be8106ab0b85ba44e580c77eef84"
+    },
+    {
+      "operationId": 378,
+      "operationHex": "0x017a",
+      "tableEntryAddress": "0x0c29afc8",
+      "handlerAddress": "0x0c1636f6",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "5b1eb8d5adc3000c8b1240a48b7e460f629a8797444f8313c1b6196028e6c647"
+    },
+    {
+      "operationId": 381,
+      "operationHex": "0x017d",
+      "tableEntryAddress": "0x0c29afd4",
+      "handlerAddress": "0x0c166c2e",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "ef0350523d9d05db79fcc5bd84631111a5a679ee247648e65999933d762ed10c"
+    },
+    {
+      "operationId": 382,
+      "operationHex": "0x017e",
+      "tableEntryAddress": "0x0c29afd8",
+      "handlerAddress": "0x0c166c8e",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "8bbcb8a2909aa332c68621dab1393dcb1aea33f2684cf5147a9631691beb2a97"
+    },
+    {
+      "operationId": 385,
+      "operationHex": "0x0181",
+      "tableEntryAddress": "0x0c29afe4",
+      "handlerAddress": "0x0c163b3c",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "2f83c1c3ed6e75e8ec513be5987abcbf160958a9243960319c74a4e389adca75"
+    },
+    {
+      "operationId": 388,
+      "operationHex": "0x0184",
+      "tableEntryAddress": "0x0c29aff0",
+      "handlerAddress": "0x0c163736",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "86b56d57fc5281cae7878cf987e711fe1622b404130d02af004a45fdc3b49a8c"
+    },
+    {
+      "operationId": 389,
+      "operationHex": "0x0185",
+      "tableEntryAddress": "0x0c29aff4",
+      "handlerAddress": "0x0c16b7b0",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "9feef180984137463123bebcaeb811c8d9a80bfe77549f2652b24e1b93e572f7"
+    },
+    {
+      "operationId": 394,
+      "operationHex": "0x018a",
+      "tableEntryAddress": "0x0c29b008",
+      "handlerAddress": "0x0c16b150",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "0b1eeec21af8bebe578a849f49de7dce1f82b4fbe7009d2a7daa0a9938269db1"
+    },
+    {
+      "operationId": 395,
+      "operationHex": "0x018b",
+      "tableEntryAddress": "0x0c29b00c",
+      "handlerAddress": "0x0c16b1de",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "982ebecd96c2d36633eb345d3ca28c042428918fc2b0b329ddf8aed14e590677"
+    },
+    {
+      "operationId": 398,
+      "operationHex": "0x018e",
+      "tableEntryAddress": "0x0c29b018",
+      "handlerAddress": "0x0c1637fc",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "6043685ced26f08ec69bc35466e413258799cab001ebc1972d5fde470f06d2c5"
+    },
+    {
+      "operationId": 402,
+      "operationHex": "0x0192",
+      "tableEntryAddress": "0x0c29b028",
+      "handlerAddress": "0x0c17246e",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "ef47cde6f66b8cafd3879feafe291cc9320aad2238e925dc8f86cdb2c34cdee6"
+    },
+    {
+      "operationId": 403,
+      "operationHex": "0x0193",
+      "tableEntryAddress": "0x0c29b02c",
+      "handlerAddress": "0x0c16380a",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "e8ea44cbc92b0bd92225c9c466ca08f15f066c60bf3ab7b6528a8765b587da52"
+    },
+    {
+      "operationId": 404,
+      "operationHex": "0x0194",
+      "tableEntryAddress": "0x0c29b030",
+      "handlerAddress": "0x0c16383e",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "91880c37fdc9807f2a5910dd642b51873bd6ae1eec9df484e5622b252565238a"
+    },
+    {
+      "operationId": 405,
+      "operationHex": "0x0195",
+      "tableEntryAddress": "0x0c29b034",
+      "handlerAddress": "0x0c173980",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "bb21d7de933f190aba126996fc9d6625aa268726c10ea86679e79edfa7e7a365"
+    },
+    {
+      "operationId": 409,
+      "operationHex": "0x0199",
+      "tableEntryAddress": "0x0c29b044",
+      "handlerAddress": "0x0c1573d6",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "2ec087491051b9dca4f18f97e4fc9dc82ab8d7e036c107d4033f69d3d5aa51da"
+    },
+    {
+      "operationId": 412,
+      "operationHex": "0x019c",
+      "tableEntryAddress": "0x0c29b050",
+      "handlerAddress": "0x0c1649b0",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "1333f4d73fb4e4b71148c37737422d40f61f001b810a8bbbee0c8d9edff41a97"
+    },
+    {
+      "operationId": 413,
+      "operationHex": "0x019d",
+      "tableEntryAddress": "0x0c29b054",
+      "handlerAddress": "0x0c0c8fbc",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "f4c479d197ae2aa320204118d625af7c53cb3395bcc4e392d5dd3d2eb7fce2ba"
+    },
+    {
+      "operationId": 414,
+      "operationHex": "0x019e",
+      "tableEntryAddress": "0x0c29b058",
+      "handlerAddress": "0x0c16ac0e",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "87d7dd655ddbcf10ce745dc94ec3fbc9edb905b22d316e3e56e61fc037588f94"
+    },
+    {
+      "operationId": 415,
+      "operationHex": "0x019f",
+      "tableEntryAddress": "0x0c29b05c",
+      "handlerAddress": "0x0c166d7c",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "5d33991234cd37ff832daf3567810c9a8231b6b75bc62ee9c04ef4cd5e57e11f"
+    },
+    {
+      "operationId": 418,
+      "operationHex": "0x01a2",
+      "tableEntryAddress": "0x0c29b068",
+      "handlerAddress": "0x0c15a82e",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "c3154e48c5fab31db1a8ee430641e87fde983250efda01346316b3ec60fa6892"
+    },
+    {
+      "operationId": 421,
+      "operationHex": "0x01a5",
+      "tableEntryAddress": "0x0c29b074",
+      "handlerAddress": "0x0c16b75a",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "bb53eab9b9f52a78ff8bcaa44cdf8b97f60bcae67addfc4db53223027c4c48ac"
+    },
+    {
+      "operationId": 422,
+      "operationHex": "0x01a6",
+      "tableEntryAddress": "0x0c29b078",
+      "handlerAddress": "0x0c16388e",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "6513294547b69e3cbf6eef5462028b2caa43536ac5883ac5541e4cd57bf6d4ff"
+    },
+    {
+      "operationId": 430,
+      "operationHex": "0x01ae",
+      "tableEntryAddress": "0x0c29b098",
+      "handlerAddress": "0x0c1658d0",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "572d0a503cf5b3890b93a3236a11e114fdcf1a8d5360f09209b2f598be05e4cb"
+    },
+    {
+      "operationId": 431,
+      "operationHex": "0x01af",
+      "tableEntryAddress": "0x0c29b09c",
+      "handlerAddress": "0x0c16b64e",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "a6f13214540204c27a7b616086963d898627d937cf4e45a9d0f423c6416475ff"
+    },
+    {
+      "operationId": 432,
+      "operationHex": "0x01b0",
+      "tableEntryAddress": "0x0c29b0a0",
+      "handlerAddress": "0x0c1679e6",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "3d844053d02e991bcdb4be5898403a8708e67c1d0f4cedfcd14fdc3e45dbd29b"
+    },
+    {
+      "operationId": 435,
+      "operationHex": "0x01b3",
+      "tableEntryAddress": "0x0c29b0ac",
+      "handlerAddress": "0x0c1589b0",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "b9de651ef3498ffa3f5cc7cc0c6f7e1aca00acd01bb541fefa980dde4cac6351"
+    },
+    {
+      "operationId": 436,
+      "operationHex": "0x01b4",
+      "tableEntryAddress": "0x0c29b0b0",
+      "handlerAddress": "0x0c166b08",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "f260d744bd800b61430bf31d18f49246ed2ef8b07db2bac5b62f47d093087e29"
+    },
+    {
+      "operationId": 437,
+      "operationHex": "0x01b5",
+      "tableEntryAddress": "0x0c29b0b4",
+      "handlerAddress": "0x0c166b38",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "4c6f2b6ea8153d3ff6658287ea2fe4f76dcaab28193d3673462b2f025edba444"
+    },
+    {
+      "operationId": 438,
+      "operationHex": "0x01b6",
+      "tableEntryAddress": "0x0c29b0b8",
+      "handlerAddress": "0x0c166bda",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "25480ba2616ba3caada1bbf9b2eff13c589b295002117de6dc102517baeb19a8"
+    },
+    {
+      "operationId": 441,
+      "operationHex": "0x01b9",
+      "tableEntryAddress": "0x0c29b0c4",
+      "handlerAddress": "0x0c165394",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "c8c56692fb7eb52d4dda76e8aaa26d18fb01613f59451011cff84debf9540f0b"
+    },
+    {
+      "operationId": 442,
+      "operationHex": "0x01ba",
+      "tableEntryAddress": "0x0c29b0c8",
+      "handlerAddress": "0x0c1653be",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "e8e7a2f7572acd517d36bbd761758d18b660bcbd445ba9dd3e622b627b30b82b"
+    },
+    {
+      "operationId": 443,
+      "operationHex": "0x01bb",
+      "tableEntryAddress": "0x0c29b0cc",
+      "handlerAddress": "0x0c1589ec",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "20f6fd3f203714f55d7a7ff27308cf238f452444a4abf7682f2f04190fa86a8b"
+    },
+    {
+      "operationId": 444,
+      "operationHex": "0x01bc",
+      "tableEntryAddress": "0x0c29b0d0",
+      "handlerAddress": "0x0c160958",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "1839dcb5e15dbd6687199c6a52b52bf38cd32a8a7e8288638908799fa109ec8b"
+    },
+    {
+      "operationId": 445,
+      "operationHex": "0x01bd",
+      "tableEntryAddress": "0x0c29b0d4",
+      "handlerAddress": "0x0c162cb2",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "0164c1586aa49d00e37b3f49519bda51cbab51ba4cf91e44726b421b89dc762a"
+    },
+    {
+      "operationId": 446,
+      "operationHex": "0x01be",
+      "tableEntryAddress": "0x0c29b0d8",
+      "handlerAddress": "0x0c162cce",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "87e979bdd3a91e0ee845d57318e9527623737025d5d9119b026ab8b4016f5dc3"
+    },
+    {
+      "operationId": 447,
+      "operationHex": "0x01bf",
+      "tableEntryAddress": "0x0c29b0dc",
+      "handlerAddress": "0x0c162cd6",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "f7769dc020e73bea7bcd783935c97da725efc24535d7b3899ffdd0c1b4b31d6c"
+    },
+    {
+      "operationId": 449,
+      "operationHex": "0x01c1",
+      "tableEntryAddress": "0x0c29b0e4",
+      "handlerAddress": "0x0c158a08",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "478b58010055e703228e54fa8302d53b52360344fe85bf672a17808c0f3025c2"
+    },
+    {
+      "operationId": 455,
+      "operationHex": "0x01c7",
+      "tableEntryAddress": "0x0c29b0fc",
+      "handlerAddress": "0x0c16a1dc",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "d0c2ef871b2c6c19d51246af32c10dcfa2cefcbb224ed3da8a5ffc0427306f2f"
+    },
+    {
+      "operationId": 457,
+      "operationHex": "0x01c9",
+      "tableEntryAddress": "0x0c29b104",
+      "handlerAddress": "0x0c164936",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "998a183d8398676d9ae0ed8dd65cd0a6141798aef5e3a2f810a08b92509b7923"
+    },
+    {
+      "operationId": 459,
+      "operationHex": "0x01cb",
+      "tableEntryAddress": "0x0c29b10c",
+      "handlerAddress": "0x0c167e38",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "3bb7bf6d80976a459638f81596048b3b72e24b645f13b3ade79b238d5b2b2bee"
+    },
+    {
+      "operationId": 460,
+      "operationHex": "0x01cc",
+      "tableEntryAddress": "0x0c29b110",
+      "handlerAddress": "0x0c164954",
+      "handlerSampleBytes": 128,
+      "handlerSampleSha256": "3ef02fa091681df19430f00fa19f75cffb60b85d76c31c0ab8e0fdff674f1620"
+    }
+  ],
+  "failures": []
+}

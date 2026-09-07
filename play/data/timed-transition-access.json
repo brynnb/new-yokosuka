@@ -1,0 +1,19 @@
+{
+  "schema": "new-yokosuka-timed-transition-access-v1",
+  "generatedFrom": [
+    {
+      "path": "play/config/world-access-policy.json",
+      "sha256": "b2d8d9541797c5a37b7e22e40950b073eed62e095395f02746453071b67654ad"
+    }
+  ],
+  "alwaysAccessibleInteriorWorldIds": [
+    "interior",
+    "cinema",
+    "arcade",
+    "djaz"
+  ],
+  "alwaysAccessibleInteriorPolicy": "Interiors exposed by the left-sidebar travel menu remain accessible at all public-clock times. This explicit development/exploration override takes precedence over public opening-hour rules, but does not fabricate native door evidence or alter story progression.",
+  "rules": [],
+  "presentationOnlyAssociations": [],
+  "evidenceBoundary": "No verified physical-door access rules. The former layer-14/selector-30/DCHA rule and selector-63 portal exclusion joined unrelated dispatcher and physical-door identifiers. Native clock layers remain presentation only; reverse-entry associations supply storefront destinations."
+}

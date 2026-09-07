@@ -1,0 +1,121 @@
+{
+  "schema": "new-yokosuka-native-prelude-presentation-state-evidence-v1",
+  "status": "exact-native-routes-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "controlFlow": ".disc-work/dialogue/scripted-event-control-flow-index.json"
+  },
+  "operations": {
+    "0x0049": {
+      "handlerAddress": "0x0c16ae6e",
+      "authoredCallCount": 107,
+      "sourceKindCounts": {
+        "static-pointer": 106,
+        "frame-address": 1
+      },
+      "fixedConfigurationAddress": "0x0c20bc44",
+      "enabledAddress": "0x0c20bc54",
+      "behavior": "Copies three float32 words and one packed color word, enables the native path, and rebuilds its 128-entry fog table."
+    },
+    "0x006f-mode-0": {
+      "handlerAddress": "0x0c16af3c",
+      "allModeCounts": {
+        "0": 92,
+        "2": 16,
+        "4": 3
+      },
+      "fixedSlotAddress": "0x0c1f7118",
+      "slotCount": 4,
+      "rendererResourceTags": [
+        "SCRL",
+        "SCOF",
+        "SHOF",
+        "SENT",
+        "SCROLL%02d.SPR"
+      ],
+      "behavior": "Copies four packed color words unchanged into the SCRL/SCROLL sprite renderer's four global slots."
+    },
+    "0x0173-mode-0": {
+      "handlerAddress": "0x0c1571d6",
+      "allModeCounts": {
+        "0": 7,
+        "1": 3,
+        "2": 3,
+        "3": 1,
+        "4": 1,
+        "5": 96
+      },
+      "controlAddress": "0x0c201b38",
+      "auxiliaryVectorAddress": "0x0c201b3c",
+      "primaryScaleAddress": "0x0c201b20",
+      "secondaryScaleAddress": "0x0c201b2c",
+      "behavior": "Writes control zero, auxiliary vector [0,0,0], and both scale vectors [1.0,1.0,1.0]."
+    }
+  },
+  "cataDirectEntry": {
+    "fogCall": "0x26c26",
+    "fogPointer": "0x517dc",
+    "fogWords": [
+      1096915354,
+      1145569280,
+      1056293519,
+      2141180415
+    ],
+    "scrollColorCall": "0x26c3e",
+    "scrollColorPointer": "0x517ec",
+    "scrollColorWords": [
+      0,
+      0,
+      3137365564,
+      3137365564
+    ],
+    "cameraAuxiliaryResetCalls": [
+      "0x2c092",
+      "0x353fe"
+    ]
+  },
+  "verifiedRanges": {
+    "operation0049": {
+      "address": "0x0c16ae6e",
+      "length": 54,
+      "sha256": "dcf7a8bab4c2bf7f7eec8925534d235e3051344ee1f86078ad97d0b7360bd87d"
+    },
+    "fogAccessors": {
+      "address": "0x0c0bf280",
+      "length": 50,
+      "sha256": "abd6bfe82927930c65882637a9dcd10c746fff38efbb93bb04fca39629dfc60c"
+    },
+    "fogEnable": {
+      "address": "0x0c0bf2b0",
+      "length": 44,
+      "sha256": "ae78e60665e37172cde2a3ca856f4678a9cbe0bb4f305bdb2f953a511836cc68"
+    },
+    "operation006f": {
+      "address": "0x0c16af3c",
+      "length": 204,
+      "sha256": "24d77d77d3e8c61c5bdb25f4fdce478cd1aabd9b330b382a14ff213264a60ca6"
+    },
+    "scrollColorSlotAccessors": {
+      "address": "0x0c09b390",
+      "length": 18,
+      "sha256": "444408b51a90599e1a00b206f430d095029c60e279303b4132684273d19c401a"
+    },
+    "operation0173": {
+      "address": "0x0c1571d6",
+      "length": 414,
+      "sha256": "595b24ccc9ae6879f4a3c52c188c20e142021dfada1b11c6a71c90ab7509600a"
+    },
+    "cameraAuxiliaryAccessors": {
+      "address": "0x0c09f62e",
+      "length": 126,
+      "sha256": "1e34fa2477afa5e28b8d5c96c145ae6618de5afc42ba58d95c11c234971837fd"
+    }
+  },
+  "evidenceBoundary": [
+    "Operation 0x0049's exact words and fog-table ownership are proven; its three float inputs are deliberately not assigned inferred names.",
+    "Only operation 0x006f mode zero is promoted. Modes two and four remain unresolved.",
+    "Only operation 0x0173 mode zero is promoted. Modes one through five remain unresolved.",
+    "This evidence retains native state. A Babylon fog or screen-overlay presentation adapter is separate work."
+  ]
+}

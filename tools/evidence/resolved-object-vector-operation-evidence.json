@@ -1,0 +1,90 @@
+{
+  "schema": "new-yokosuka-resolved-object-vector-operation-evidence-v1",
+  "status": "exact-native-handler-flags-and-hato-dataflow",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "mapinfo": "Disc 1 D000/MAPINFO.BIN",
+    "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e"
+  },
+  "operation": {
+    "operationId": 29,
+    "operationHex": "0x001d",
+    "handlerAddress": "0x0c15787a",
+    "handlerSampleSha256": "ea405850c9ad9d4704e6bbf9accba88b9ca2e3556ef8a9bda8c3cad49c7082d6",
+    "actorResolverAddress": "0x0c153956",
+    "vectorOperationAddress": "0x0c15791c",
+    "vectorOperationSha256": "0fca4408a6463fa75c3447c507b2345a00bea5cdfc36141999c8d5aec090a306",
+    "arguments": [
+      {
+        "index": 0,
+        "meaning": "object reference resolved by the actor resolver"
+      },
+      {
+        "index": 1,
+        "meaning": "bit field selecting vector source and operation"
+      },
+      {
+        "index": 2,
+        "meaning": "pointer to the supplied three-component vector"
+      },
+      {
+        "index": 3,
+        "meaning": "auxiliary pointer used only by the separately branched angular computation"
+      }
+    ],
+    "normalVectorPath": {
+      "associatedVectorBit": "0x40000000",
+      "addInsteadOfReplaceBit": "0x80000000",
+      "componentBits": [
+        {
+          "bit": "0x20000000",
+          "component": 0
+        },
+        {
+          "bit": "0x10000000",
+          "component": 1
+        },
+        {
+          "bit": "0x08000000",
+          "component": 2
+        }
+      ],
+      "specialAngularPathMask": "0x04200000",
+      "directVectorOffsets": [
+        "+0x14",
+        "+0x18",
+        "+0x1c"
+      ],
+      "directReadAddress": "0x0c0aaf80",
+      "associatedReadAddress": "0x0c0ab06a",
+      "directWriteAddress": "0x0c0aaf62",
+      "associatedWriteAddress": "0x0c0ab08a"
+    },
+    "provenBehavior": "Resolves an object, obtains one of its native three-component vectors, conditionally replaces or adds selected components from a supplied vector, and writes the result back through the matching direct or associated-object path; flag mask 0x04200000 selects a separate angular computation."
+  },
+  "hatoConversation": {
+    "phase": "postlude",
+    "functionFileOffset": "0x7fb60",
+    "callFileOffset": "0x7fc18",
+    "actorCode": "AKIR",
+    "actorLiteralValue": "0x52494b41",
+    "actorLiteralLoadFileOffset": "0x7fb6c",
+    "actorLocalStoreFileOffset": "0x7fb6e",
+    "actorArgumentLoadFileOffset": "0x7fc08",
+    "flags": "0x78000000",
+    "flagsMeaning": "associated-vector path; replace all three components; normal non-angular path",
+    "vectorSource": {
+      "base": "room VM r9",
+      "offset": "0x00ec",
+      "components": 3
+    },
+    "auxiliaryPointer": 0
+  },
+  "evidenceBoundary": [
+    "The resolver, flag masks, direct vector offsets, component selection, replace/add behavior, and paired read/write paths are executable-proven.",
+    "Exact D000 constant propagation proves Hato's postlude targets AKIR and replaces all three components from room-VM vector r9 +0x00ec.",
+    "The vectors' engine-wide coordinate-space names and the special angular path's gameplay purpose remain deliberately unnamed."
+  ]
+}

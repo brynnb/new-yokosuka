@@ -1,0 +1,684 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/build_tgma_audio_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/STREAM/A0139.AFS",
+      "sha256": "5d4284d25e61bef963dece6291eb9203b88ac6da96ff0c75d1a0916f21085655"
+    },
+    "soundBank": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/SOUND/A1_INET2.SND",
+      "sha256": "24ad865f3ba2bed8bd8d1b7b7524513a4078718117204a8b6dc06fe18e4905e8"
+    },
+    "authManifest": "play/assets/hazuki/tgma/manifest.json",
+    "resourceBindingEvidence": "tools/evidence/tgma-native-lifecycle.json"
+  },
+  "voices": [
+    {
+      "voiceId": "A0139A001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0139/SOUND/A0139A001.aiff",
+      "nativeMember": "A0139A001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 6144,
+      "nativeSha256": "d57b4707a24f91bfb221ab73d9df10eeadc5c112979c4f0258f53e3a45853c50",
+      "speakerId": "AKIR",
+      "sourceText": "Well.",
+      "displayText": "Well.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/tgma/voice/A0139A001.wav",
+      "byteLength": 24364,
+      "sha256": "be570f553fa431aee7b2eef43cee116a951e22cc28343754b0ff378618ccf9cc"
+    },
+    {
+      "voiceId": "A0139A002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0139/SOUND/A0139A002.aiff",
+      "nativeMember": "A0139A002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 8192,
+      "nativeSha256": "cd9d6f4302fcf52e8685930318ae0e5371db546d5c0bf9a00559388edb68bc69",
+      "speakerId": "AKIR",
+      "sourceText": "I don't know.",
+      "displayText": "I don't know.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          }
+        ]
+      },
+      "asset": "public/audio/world/tgma/voice/A0139A002.wav",
+      "byteLength": 32556,
+      "sha256": "7ab59cbabff1e756ab9b7565192c3d05b42a5f11cbcaebc3bbd1cc7ea15d4a45"
+    },
+    {
+      "voiceId": "A0139B001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0139/SOUND/A0139B001.aiff",
+      "nativeMember": "A0139B001.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 6144,
+      "nativeSha256": "1ac3214a799a91a084d81f5f7b960c536c0d5a2607a7bd8ea284f77227d33cb3",
+      "speakerId": "FUKU",
+      "sourceText": "Ryo-san.",
+      "displayText": "Ryo-san.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          }
+        ]
+      },
+      "asset": "public/audio/world/tgma/voice/A0139B001.wav",
+      "byteLength": 24364,
+      "sha256": "7a9a85fe559765bc7ceb836eb90cd9941fbb523c4b5de1907d7297909c75df7d"
+    },
+    {
+      "voiceId": "A0139B002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0139/SOUND/A0139B002.aiff",
+      "nativeMember": "A0139B002.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 16384,
+      "nativeSha256": "24edda723e8ed4c1a31aeada7b022368378e093ae07ed2728d5b7ab5198c12d4",
+      "speakerId": "FUKU",
+      "sourceText": "What were you talking about with Ine-san?",
+      "displayText": "What were you talking about with Ine-san?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 20
+          }
+        ]
+      },
+      "asset": "public/audio/world/tgma/voice/A0139B002.wav",
+      "byteLength": 65324,
+      "sha256": "77b7a31afea20817fe2b2ac411d1fdc58b50ddec9740d56030143417f06193a5"
+    },
+    {
+      "voiceId": "A0139B003",
+      "sourcePath": "/p16/prj16m5/AUTH01/0139/SOUND/A0139B003.aiff",
+      "nativeMember": "A0139B003.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 22528,
+      "nativeSha256": "0de619221ca796832761fca70319fee096068820699a9e8f649ac367ec813bfe",
+      "speakerId": "FUKU",
+      "sourceText": "Is that a letter? In Chinese=@?",
+      "displayText": "Is that a letter? In Chinese...?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 44
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 23
+          }
+        ]
+      },
+      "asset": "public/audio/world/tgma/voice/A0139B003.wav",
+      "byteLength": 89900,
+      "sha256": "8789f434ea17b535c973a81ce560d1d94c3a9a31db0b55ce9c9b3f9e29d3809d"
+    },
+    {
+      "voiceId": "A0139B004",
+      "sourcePath": "/p16/prj16m5/AUTH01/0139/SOUND/A0139B004.aiff",
+      "nativeMember": "A0139B004.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 18432,
+      "nativeSha256": "6c9f40c1444a9bffe94e9796df69d739dbb9e9cb7342890007c0a66a4fb3957e",
+      "speakerId": "FUKU",
+      "sourceText": "Is it from the man who murdered Sensei?",
+      "displayText": "Is it from the man who murdered Sensei?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 20
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 35
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/tgma/voice/A0139B004.wav",
+      "byteLength": 73516,
+      "sha256": "f8962ac28e7053c58f160dd01c7a8f23d013118d1bca4ec96f6d164f77e3a4d1"
+    },
+    {
+      "voiceId": "A0139B005",
+      "sourcePath": "/p16/prj16m5/AUTH01/0139/SOUND/A0139B005.aiff",
+      "nativeMember": "A0139B005.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 8192,
+      "nativeSha256": "b07f96d36a6978280d68e385f85bacbb1ad4be1338925851de794bcb6d448c72",
+      "speakerId": "FUKU",
+      "sourceText": "Damn it!",
+      "displayText": "Damn it!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 28
+          }
+        ]
+      },
+      "asset": "public/audio/world/tgma/voice/A0139B005.wav",
+      "byteLength": 32556,
+      "sha256": "281fc103339f561ae125ddcae6d3f6faca4d0b3ef09a80f7afe076a9a4545a17"
+    },
+    {
+      "voiceId": "A0139B006",
+      "sourcePath": "/p16/prj16m5/AUTH01/0139/SOUND/A0139B006.aiff",
+      "nativeMember": "A0139B006.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 22528,
+      "nativeSha256": "7ca21bde302fdbb521f6a31262653dae4b7c268de1c5db721199df17b7a100f9",
+      "speakerId": "FUKU",
+      "sourceText": "If only we knew＆someone who reads Chinese.",
+      "displayText": "If only we knew\nsomeone who reads Chinese.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 20
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 19
+          },
+          {
+            "shape": 0,
+            "durationTicks": 18
+          }
+        ]
+      },
+      "asset": "public/audio/world/tgma/voice/A0139B006.wav",
+      "byteLength": 89900,
+      "sha256": "ebf36baa161e651404ad4c043f63a0724007a47244e6f7bceba76eec9813e831"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/0139/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tgma/sfx/a9040000.wav",
+      "byteLength": 54060,
+      "sha256": "f2ddb64de592f66422a15eba361ad7cde8689e6560147348f84196d4a517677b"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/0139/SE/cloths2/furimuki_n02.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tgma/sfx/a9040100.wav",
+      "byteLength": 127604,
+      "sha256": "2c13979aaaf032ee706d0353819b385a7aca4f3d3d1a6b0e480c83e7a4162737"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/0139/SE/smallobject/paper2eq.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tgma/sfx/a9040200.wav",
+      "byteLength": 20916,
+      "sha256": "9ba29a5ab2fe22c69473ae00e7b3089de123d7ee9f0de866cee5cbdadd59f9f2"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/0139/SE/smallobject/paper7eq.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tgma/sfx/a9040300.wav",
+      "byteLength": 18260,
+      "sha256": "6eb5936ad7d4db5d50b4e6cbe7b0d3e66b430fef83e3a8dd6158e7f29c85480b"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/0139/SE/footsoil/ryoashi05.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tgma/sfx/a9040400.wav",
+      "byteLength": 20916,
+      "sha256": "70c58a40f2a0cb7dbd1431ee497c610b51fa15fe0946d79d09230e6cccc708b6"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/0139/SE/footsoil/ryoashi06.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tgma/sfx/a9040500.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/0139/SE/footsoil/ryoashi07.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tgma/sfx/a9040600.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/0139/SE/footsoil/ryoashi08.aiff",
+      "playbackId": 7,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tgma/sfx/a9040700.wav",
+      "byteLength": 6612,
+      "sha256": "6c9e310fcbad52875222a3e020e9470baafa5a94d7197d4809e929753a60d361"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/0139/SE/footsoil/ryoashi3.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tgma/sfx/a9040800.wav",
+      "byteLength": 8652,
+      "sha256": "e67782f5f3e7112a2570a4abc1164e261965466aa5ce749045dd1e148fdcc272"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/0139/SE/footsoil/ryoashi6.aiff",
+      "playbackId": 9,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tgma/sfx/a9040900.wav",
+      "byteLength": 8948,
+      "sha256": "4d840a86ae658873c0ec805bdf8da1cbcc55f7e7589ad3c2ac2d10a574f7371a"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0139/SE/footsoil/ryoashi7.aiff",
+      "playbackId": 10,
+      "sampleId": 12,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tgma/sfx/a9040a00.wav",
+      "byteLength": 23556,
+      "sha256": "12b564f0fe93107fc27ced1b9842ce3dcbdcefee227c26f79c32f7594f677a10"
+    }
+  ]
+}

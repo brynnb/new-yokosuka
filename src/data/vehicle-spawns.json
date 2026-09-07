@@ -1,0 +1,96 @@
+{
+  "schema": "new-yokosuka-vehicle-spawns-v1",
+  "defaultForkliftModel": "S3_MA00_FOKS502G.MT5",
+  "worlds": {
+    "mfsy": {
+      "forklifts": [],
+      "cargo": [],
+      "cargoEnabled": false
+    },
+    "ma00": {
+      "forklifts": [
+        {
+          "id": "forklift-1",
+          "model": "S3_MA00_FOKS502G.MT5",
+          "position": { "x": -0.8, "y": 0, "z": 33 },
+          "yaw": 3.141592653589793
+        },
+        {
+          "id": "forklift-2",
+          "model": "S3_MA00_FOKS502G.MT5",
+          "position": { "x": 1.6, "y": 0, "z": 33 },
+          "yaw": 3.141592653589793
+        },
+        {
+          "id": "forklift-3",
+          "model": "S3_MA00_FOKS502G.MT5",
+          "position": { "x": 4, "y": 0, "z": 33 },
+          "yaw": 3.141592653589793
+        },
+        {
+          "id": "forklift-4",
+          "model": "S3_MA00_FOKS502G.MT5",
+          "position": { "x": -0.8, "y": 0, "z": 36 },
+          "yaw": 3.141592653589793
+        },
+        {
+          "id": "forklift-5",
+          "model": "S3_MA00_FOKS502G.MT5",
+          "position": { "x": 1.6, "y": 0, "z": 36 },
+          "yaw": 3.141592653589793
+        }
+      ],
+      "cargo": [
+        {
+          "id": "cargo-job-1",
+          "position": { "x": -7.42, "y": 0.51, "z": 17 }
+        },
+        {
+          "id": "cargo-job-2",
+          "position": { "x": -10.4, "y": 0.51, "z": 20 }
+        },
+        {
+          "id": "cargo-job-3",
+          "position": { "x": -14, "y": 0.51, "z": 23 }
+        }
+      ],
+      "cargoEnabled": true
+    },
+    "ma00race": {
+      "forklifts": [
+        {
+          "id": "forklift-11",
+          "model": "S3_MA00_FOKS502G.MT5",
+          "position": { "x": 51, "y": 0, "z": 105 },
+          "yaw": 1.5707963267948966
+        },
+        {
+          "id": "forklift-12",
+          "model": "S3_MA00_FOKS502G.MT5",
+          "position": { "x": 54, "y": 0, "z": 107 },
+          "yaw": 1.5707963267948966
+        },
+        {
+          "id": "forklift-13",
+          "model": "S3_MA00_FOKS502G.MT5",
+          "position": { "x": 57, "y": 0, "z": 105 },
+          "yaw": 1.5707963267948966
+        },
+        {
+          "id": "forklift-14",
+          "model": "S3_MA00_FOKS502G.MT5",
+          "position": { "x": 60, "y": 0, "z": 107 },
+          "yaw": 1.5707963267948966
+        },
+        {
+          "id": "forklift-15",
+          "model": "S3_MA00_FOKS502G.MT5",
+          "position": { "x": 63, "y": 0, "z": 105 },
+          "yaw": 1.5707963267948966
+        }
+      ],
+      "cargo": [],
+      "cargoEnabled": false
+    }
+  }
+}

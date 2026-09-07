@@ -1,0 +1,2653 @@
+{
+  "schema": "new-yokosuka-player-cutscene-scene-inventory-v1",
+  "evidenceBoundary": [
+    "Groups follow reviewed native owner and trigger routes; archive names alone do not define scenes.",
+    "A selector entry may expose one fragment or one variant and therefore is not counted as an independent owner scene by default.",
+    "Unresolved resource selections remain unclassified owner candidates and are never promoted to missing cinematics by inference."
+  ],
+  "summary": {
+    "mapinfoCount": 136,
+    "logicalAuthResourceCount": 491,
+    "uniqueAuthPayloadCount": 404,
+    "selectorEntryCount": 58,
+    "selectorNativeOwnerEntryCount": 6,
+    "selectorSingleAuthPreviewEntryCount": 47,
+    "selectedOwnerTriggerGroupCount": 21,
+    "selectedReviewedAuthBindingCount": 79,
+    "selectedResearchOnlyAuthBindingCount": 5,
+    "selectedOwnerIncompleteGroupCount": 2,
+    "missingCoherentSceneCount": 0,
+    "missingSceneAuthBindingCount": 0,
+    "reviewedNonSceneAuthBindingCount": 3,
+    "reviewedAmbientOrGameplayCandidateCount": 4,
+    "duplicateInstallerCandidateCount": 2,
+    "unresolvedOwnerCandidateCount": 0,
+    "unresolvedOwnerCandidateSelectionCount": 0,
+    "newlyDiscoveredPlayerFacingCandidateCount": 5,
+    "promotedDiscoveredPlayerFacingSceneCount": 10,
+    "newlyDiscoveredPlayerFacingSceneCount": 0,
+    "newlyDiscoveredAuthPayloadCount": 12,
+    "candidatePromotionStates": {
+      "owner-review-required": 7,
+      "reviewed-non-cutscene": 4,
+      "reviewed-route": 20
+    }
+  },
+  "selectedOwnerTriggerGroups": [
+    {
+      "id": "opening-vision",
+      "label": "Opening Vision \u2014 Shenhua and the Hawk",
+      "classification": "complete-owner-scene",
+      "selectorIds": [
+        "S1-OP02-00"
+      ],
+      "programIds": [
+        "S1-OP02-00"
+      ],
+      "selectorEntryCount": 1,
+      "previewActivityIds": [],
+      "content": {
+        "authBindingCount": 0,
+        "durationFrames": 0,
+        "commandCounts": {},
+        "actorTags": [],
+        "members": []
+      },
+      "discoveryContent": [],
+      "bindingAvailability": "production"
+    },
+    {
+      "id": "iwao-murder",
+      "label": "Introduction \u2014 Iwao's Murder",
+      "classification": "complete-owner-scene",
+      "selectorIds": [
+        "S1-000"
+      ],
+      "programIds": [
+        "S1-OP00-A0114"
+      ],
+      "selectorEntryCount": 1,
+      "previewActivityIds": [],
+      "content": {
+        "authBindingCount": 24,
+        "durationFrames": 10641,
+        "commandCounts": {
+          "camera": 24,
+          "motion": 148,
+          "move": 68,
+          "sound": 266,
+          "voice": 48
+        },
+        "actorTags": [
+          "AKIR",
+          "FUKU",
+          "INE_",
+          "IWAO",
+          "KNBS",
+          "KNBU",
+          "KURA",
+          "KURB",
+          "MNLF",
+          "ODR1",
+          "ODR2",
+          "RMJN",
+          "SORY"
+        ],
+        "members": [
+          {
+            "programId": "S1-OP00-A0114",
+            "resourceName": "A0114",
+            "archiveMember": "SEQDATA0.AUTH",
+            "sha256": "474eff015e0e9ea2fe90789ba45a64a8e4465ee4f8124c379f48400bac6abc32",
+            "durationFrames": 846,
+            "callFileOffsets": [
+              "0x15b80"
+            ]
+          },
+          {
+            "programId": "S1-OP00-A0114",
+            "resourceName": "A0114",
+            "archiveMember": "SEQDATA1.AUTH",
+            "sha256": "24abe5f7c34914dbfcf411b764862cf7c621ec0242954c50b2e939c6c5301bab",
+            "durationFrames": 870,
+            "callFileOffsets": [
+              "0x15d50"
+            ]
+          },
+          {
+            "programId": "S1-OP00-A0114",
+            "resourceName": "A0114",
+            "archiveMember": "SEQDATA2.AUTH",
+            "sha256": "b609feaf262218293d4818e1041defc5be71b85b08726a61057b3bfa4c4582be",
+            "durationFrames": 629,
+            "callFileOffsets": [
+              "0x16082"
+            ]
+          },
+          {
+            "programId": "S1-OP00-A0114",
+            "resourceName": "A0114",
+            "archiveMember": "SEQDATA3.AUTH",
+            "sha256": "2fdd274b3f4944dffa35d71b496ecb464d212eaeb176323db11a1438b99ec3e3",
+            "durationFrames": 956,
+            "callFileOffsets": [
+              "0x1633e"
+            ]
+          },
+          {
+            "programId": "S1-OP00-A0114",
+            "resourceName": "A0114",
+            "archiveMember": "SEQDATA4.AUTH",
+            "sha256": "12fb5beee973039e7e8163324c282e01971b9f8e0f1964b1212b0a047c8258a4",
+            "durationFrames": 825,
+            "callFileOffsets": [
+              "0x1816a"
+            ]
+          },
+          {
+            "programId": "S1-OP00-A0114",
+            "resourceName": "A0114",
+            "archiveMember": "SEQDATA5.AUTH",
+            "sha256": "2ba69902f8576ee3b93edce5303e8815c348f2b1f385edcced071036bbe40738",
+            "durationFrames": 350,
+            "callFileOffsets": [
+              "0x18874"
+            ]
+          },
+          {
+            "programId": "S1-OP00-A0114",
+            "resourceName": "A0114",
+            "archiveMember": "SEQDATA6.AUTH",
+            "sha256": "e97ea26a136f3807e891258268d78979b06ecb805a977580ddffd5015b74c757",
+            "durationFrames": 284,
+            "callFileOffsets": [
+              "0x18a40"
+            ]
+          },
+          {
+            "programId": "S1-OP00-A0114",
+            "resourceName": "A0114",
+            "archiveMember": "SEQDATA7.AUTH",
+            "sha256": "db4a9b91d21114b806463f32fe93e59eca2040d2ab7356efee8884782c45e1c7",
+            "durationFrames": 155,
+            "callFileOffsets": [
+              "0x18c0c"
+            ]
+          },
+          {
+            "programId": "S1-OP00-A0114",
+            "resourceName": "A0114",
+            "archiveMember": "SEQDATA8.AUTH",
+            "sha256": "f8ea5e38733c4165ff142b5ee7b0244518065cb55a02ce46b8060f8d6d40fc03",
+            "durationFrames": 180,
+            "callFileOffsets": [
+              "0x18e64"
+            ]
+          },
+          {
+            "programId": "S1-OP00-A0114",
+            "resourceName": "A0114",
+            "archiveMember": "SEQDATA9.AUTH",
+            "sha256": "28ca3d2984071045a322cf97f0197ed15905215773cba450a7158e90d7b3235d",
+            "durationFrames": 228,
+            "callFileOffsets": [
+              "0x18fa4"
+            ]
+          },
+          {
+            "programId": "S1-OP00-A0114",
+            "resourceName": "A0114",
+            "archiveMember": "SEQDATA10.AUTH",
+            "sha256": "0a210d5d897bc14a3668d6cb9c89bb73e4b1e651cc3a0877502918c5d8f72e44",
+            "durationFrames": 240,
+            "callFileOffsets": [
+              "0x190e4"
+            ]
+          },
+          {
+            "programId": "S1-OP00-A0114",
+            "resourceName": "A0114",
+            "archiveMember": "SEQDATA11.AUTH",
+            "sha256": "1e1670d8012591945f3f74f1f7f14c93a97b5aa34f22155ccb468749448957c5",
+            "durationFrames": 110,
+            "callFileOffsets": [
+              "0x191a0"
+            ]
+          },
+          {
+            "programId": "S1-OP00-A0114",
+            "resourceName": "A0114",
+            "archiveMember": "SEQDATA12.AUTH",
+            "sha256": "cc75acef819c61ab793d07768dbba5a69a8464a1160663933730db59b5aed1cf",
+            "durationFrames": 133,
+            "callFileOffsets": [
+              "0x192d8"
+            ]
+          },
+          {
+            "programId": "S1-OP00-A0114",
+            "resourceName": "A0114",
+            "archiveMember": "SEQDATA13.AUTH",
+            "sha256": "7722371a8574ea7e50dd473b2933d18a62e12b19826117589d2cbbefd97f40b7",
+            "durationFrames": 250,
+            "callFileOffsets": [
+              "0x1950a"
+            ]
+          },
+          {
+            "programId": "S1-OP00-A0114",
+            "resourceName": "A0114",
+            "archiveMember": "SEQDATA14.AUTH",
+            "sha256": "79de011071f5c0490459a369c08bbe9e77a02e8e1416fd5e86938e41ebd6dab7",
+            "durationFrames": 143,
+            "callFileOffsets": [
+              "0x1994c"
+            ]
+          },
+          {
+            "programId": "S1-OP00-A0114",
+            "resourceName": "A0114",
+            "archiveMember": "SEQDATA15.AUTH",
+            "sha256": "5639a7c05bfa0e7a1170285f856ec147e112e9bfa5d486df8bbe990e6e91632a",
+            "durationFrames": 40,
+            "callFileOffsets": [
+              "0x19d20"
+            ]
+          },
+          {
+            "programId": "S1-OP00-A0114",
+            "resourceName": "A0114",
+            "archiveMember": "SEQDATA16.AUTH",
+            "sha256": "1abc02d28b96a0cb79ae9cd06d245419a5ebf6174f1df8749fdb42f7b6f5dd86",
+            "durationFrames": 47,
+            "callFileOffsets": [
+              "0x19fde"
+            ]
+          },
+          {
+            "programId": "S1-OP00-A0114",
+            "resourceName": "A0114",
+            "archiveMember": "SEQDATA17.AUTH",
+            "sha256": "af422d6ca145e3c0db7a65e363d839d0ba5dd7ab79a719be4ff0c1946e30bcb4",
+            "durationFrames": 450,
+            "callFileOffsets": [
+              "0x1a198"
+            ]
+          },
+          {
+            "programId": "S1-OP00-A0114",
+            "resourceName": "A0114",
+            "archiveMember": "SEQDATA18.AUTH",
+            "sha256": "cfe8d9479e39d8f9c20ce592b18161f75947691bdd01128f5ed93d5840e5c465",
+            "durationFrames": 933,
+            "callFileOffsets": [
+              "0x183c4"
+            ]
+          },
+          {
+            "programId": "S1-OP00-A0114",
+            "resourceName": "A0114",
+            "archiveMember": "SEQDATA19.AUTH",
+            "sha256": "7d98391ba7786ff489c78169eae33ce8b41977cf88786f33ba7998ba47981a90",
+            "durationFrames": 200,
+            "callFileOffsets": [
+              "0x1861c"
+            ]
+          },
+          {
+            "programId": "S1-OP00-A0114",
+            "resourceName": "A0114",
+            "archiveMember": "SEQDATA20.AUTH",
+            "sha256": "eec47c436911384224d543725b50b8b5634b4f3a71090023ede5e549ac20de40",
+            "durationFrames": 430,
+            "callFileOffsets": [
+              "0x1a324"
+            ]
+          },
+          {
+            "programId": "S1-OP00-A0114",
+            "resourceName": "A0114",
+            "archiveMember": "SEQDATA21.AUTH",
+            "sha256": "f741da6f3f3d323e00821f6906918c9c8c2e519d885860dc44564a1089c7739b",
+            "durationFrames": 1632,
+            "callFileOffsets": [
+              "0x1a65c"
+            ]
+          },
+          {
+            "programId": "S1-OP00-A0114",
+            "resourceName": "A0114",
+            "archiveMember": "SEQDATA22.AUTH",
+            "sha256": "0b1e5d357325cac412d8b40709f1ad778c5b49f8522a76116675eb16367afb27",
+            "durationFrames": 150,
+            "callFileOffsets": [
+              "0x19750"
+            ]
+          },
+          {
+            "programId": "S1-OP00-A0114",
+            "resourceName": "A0114",
+            "archiveMember": "SEQDATA23.AUTH",
+            "sha256": "a6368e3f979d6d57bf963aebfbcd5197e99bc03198a33e9673325215f2f439e6",
+            "durationFrames": 560,
+            "callFileOffsets": [
+              "0x19890"
+            ]
+          }
+        ]
+      },
+      "discoveryContent": [],
+      "bindingAvailability": "production"
+    },
+    {
+      "id": "drauth",
+      "label": "DRAUTH owner activity set",
+      "classification": "owner-bound-fragment-set",
+      "programIds": [
+        "disc1-d000-selector-18-0x84b60"
+      ],
+      "resourceNames": [
+        "DRAUTH"
+      ],
+      "selectorIds": [
+        "S1-DRAUTH-01",
+        "S1-DRAUTH-02"
+      ],
+      "selectorEntryCount": 2,
+      "previewActivityIds": [
+        "DRAUTH/SEQDATA1.AUTH",
+        "DRAUTH/SEQDATA2.AUTH"
+      ],
+      "content": {
+        "authBindingCount": 2,
+        "durationFrames": 1830,
+        "commandCounts": {
+          "camera": 2,
+          "motion": 18,
+          "move": 12,
+          "sound": 48,
+          "voice": 12
+        },
+        "actorTags": [
+          "AKIR",
+          "HARY",
+          "JONZ",
+          "SERA",
+          "SMTH",
+          "TONY"
+        ],
+        "members": [
+          {
+            "programId": "disc1-d000-selector-18-0x84b60",
+            "resourceName": "DRAUTH",
+            "archiveMember": "SEQDATA1.AUTH",
+            "sha256": "1e4a1c1ce0151c59fec79d9bfc706e14990ee75edf78698713fc28d6065e3357",
+            "durationFrames": 1330,
+            "callFileOffsets": [
+              "0x8598a"
+            ]
+          },
+          {
+            "programId": "disc1-d000-selector-18-0x84b60",
+            "resourceName": "DRAUTH",
+            "archiveMember": "SEQDATA2.AUTH",
+            "sha256": "a410bfb4d1a82db5bf09cdb05398ad55fc078fe3f31126033f6c20b52e7c83da",
+            "durationFrames": 500,
+            "callFileOffsets": [
+              "0x859ae"
+            ]
+          }
+        ]
+      },
+      "discoveryContent": [],
+      "bindingAvailability": "production"
+    },
+    {
+      "id": "heartbeats-alley",
+      "label": "Heartbeats alley confrontation",
+      "classification": "ordered-fragment-set",
+      "programIds": [
+        "disc1-d000-entry-0x7abf4"
+      ],
+      "resourceNames": [
+        "YQ14"
+      ],
+      "selectorIds": [
+        "S1-YQ14-01",
+        "S1-YQ14-02"
+      ],
+      "selectorEntryCount": 2,
+      "previewActivityIds": [
+        "YQ14/SEQDATA1.AUTH",
+        "YQ14/SEQDATA2.AUTH"
+      ],
+      "content": {
+        "authBindingCount": 2,
+        "durationFrames": 505,
+        "commandCounts": {
+          "camera": 2,
+          "motion": 8,
+          "move": 7,
+          "sound": 13,
+          "voice": 2
+        },
+        "actorTags": [
+          "AKIR",
+          "BIN_",
+          "SMTH",
+          "TONY"
+        ],
+        "members": [
+          {
+            "programId": "disc1-d000-entry-0x7abf4",
+            "resourceName": "YQ14",
+            "archiveMember": "SEQDATA1.AUTH",
+            "sha256": "529bc62c6721402fa265c4952d5d9aae3d9ba42ce0807ee39436935a9f448422",
+            "durationFrames": 70,
+            "callFileOffsets": [
+              "0x7a912"
+            ]
+          },
+          {
+            "programId": "disc1-d000-entry-0x7abf4",
+            "resourceName": "YQ14",
+            "archiveMember": "SEQDATA2.AUTH",
+            "sha256": "e56fd5983791b824f1f7b1ce40629a207df87f5081b723cc7b5d18d1c2af4b58",
+            "durationFrames": 435,
+            "callFileOffsets": [
+              "0x7a936"
+            ]
+          }
+        ]
+      },
+      "discoveryContent": [],
+      "bindingAvailability": "production"
+    },
+    {
+      "id": "nozomi-waits",
+      "label": "Nozomi waits for Ryo",
+      "classification": "complete-activity-scene",
+      "programIds": [
+        "disc1-d000-entry-0x7abf4"
+      ],
+      "resourceNames": [
+        "YBHN"
+      ],
+      "selectorIds": [
+        "S1-YBHN-01"
+      ],
+      "selectorEntryCount": 1,
+      "previewActivityIds": [
+        "YBHN/SEQDATA0.AUTH"
+      ],
+      "content": {
+        "authBindingCount": 1,
+        "durationFrames": 2130,
+        "commandCounts": {
+          "camera": 1,
+          "motion": 2,
+          "move": 2,
+          "sound": 15,
+          "voice": 26
+        },
+        "actorTags": [
+          "AKIR",
+          "HRSK"
+        ],
+        "members": [
+          {
+            "programId": "disc1-d000-entry-0x7abf4",
+            "resourceName": "YBHN",
+            "archiveMember": "SEQDATA0.AUTH",
+            "sha256": "590ca02d4dba7437ae84fe3fb35908241092fcee011784b90417497338bdf0df",
+            "durationFrames": 2130,
+            "callFileOffsets": [
+              "0x7bc9a"
+            ]
+          }
+        ]
+      },
+      "discoveryContent": [],
+      "bindingAvailability": "production"
+    },
+    {
+      "id": "vending-encounters",
+      "label": "Vending-machine encounters",
+      "classification": "gameplay-variant-family",
+      "programIds": [
+        "disc1-d000-vending-owner-a-0x8c768",
+        "disc1-d000-vending-owner-b-0x8ce38"
+      ],
+      "resourceNames": [
+        "DJHN"
+      ],
+      "selectorIds": [
+        "S1-DJHN-01",
+        "S1-DJHN-02",
+        "S1-DJHN-03",
+        "S1-DJHN-04",
+        "S1-DJHN-05",
+        "S1-DJHN-06",
+        "S1-DJHN-07"
+      ],
+      "selectorEntryCount": 7,
+      "previewActivityIds": [
+        "DJHN/SEQDATA1.AUTH",
+        "DJHN/SEQDATA2.AUTH",
+        "DJHN/SEQDATA3.AUTH",
+        "DJHN/SEQDATA4.AUTH",
+        "DJHN/SEQDATA5.AUTH",
+        "DJHN/SEQDATA6.AUTH",
+        "DJHN/SEQDATA7.AUTH"
+      ],
+      "content": {
+        "authBindingCount": 7,
+        "durationFrames": 7352,
+        "commandCounts": {
+          "camera": 7,
+          "motion": 21,
+          "move": 14,
+          "sound": 129,
+          "voice": 71
+        },
+        "actorTags": [
+          "AKIR",
+          "YKHI"
+        ],
+        "members": [
+          {
+            "programId": "disc1-d000-vending-owner-b-0x8ce38",
+            "resourceName": "DJHN",
+            "archiveMember": "SEQDATA1.AUTH",
+            "sha256": "68c2603a2909e3d278f86715ab357c839ce0171e1d5f2f2fa298588d6a02fd86",
+            "durationFrames": 380,
+            "callFileOffsets": [
+              "0x8b696"
+            ]
+          },
+          {
+            "programId": "disc1-d000-vending-owner-b-0x8ce38",
+            "resourceName": "DJHN",
+            "archiveMember": "SEQDATA2.AUTH",
+            "sha256": "b0adb724799acc25d290362d0da136b187edd82db01b26e5613618b865d36387",
+            "durationFrames": 461,
+            "callFileOffsets": [
+              "0x8b6ea"
+            ]
+          },
+          {
+            "programId": "disc1-d000-vending-owner-b-0x8ce38",
+            "resourceName": "DJHN",
+            "archiveMember": "SEQDATA3.AUTH",
+            "sha256": "e4e1bdf7774df6d3462436bfed88155abe3203cec1ef17a557e4a7d7fff8aee3",
+            "durationFrames": 2260,
+            "callFileOffsets": [
+              "0x8b73e"
+            ]
+          },
+          {
+            "programId": "disc1-d000-vending-owner-b-0x8ce38",
+            "resourceName": "DJHN",
+            "archiveMember": "SEQDATA4.AUTH",
+            "sha256": "f23a6627236b93ed51d4b3b7e8e52fd78c47b7a2ce1eee55becaca85e77d07df",
+            "durationFrames": 1593,
+            "callFileOffsets": [
+              "0x8b792"
+            ]
+          },
+          {
+            "programId": "disc1-d000-vending-owner-b-0x8ce38",
+            "resourceName": "DJHN",
+            "archiveMember": "SEQDATA5.AUTH",
+            "sha256": "0f75af17e4270b05ce3bf4efcba870b0a45010c91d70acabc4df774b7a7e21b1",
+            "durationFrames": 1215,
+            "callFileOffsets": [
+              "0x8b7e6"
+            ]
+          },
+          {
+            "programId": "disc1-d000-vending-owner-b-0x8ce38",
+            "resourceName": "DJHN",
+            "archiveMember": "SEQDATA6.AUTH",
+            "sha256": "14ade9fa18fd408a22b7c05b46d3a1914320e47c589d5a94aa2bd99058d058e9",
+            "durationFrames": 678,
+            "callFileOffsets": [
+              "0x8b83a"
+            ]
+          },
+          {
+            "programId": "disc1-d000-vending-owner-b-0x8ce38",
+            "resourceName": "DJHN",
+            "archiveMember": "SEQDATA7.AUTH",
+            "sha256": "857d8ced7965011235410efe8c20919b9753320665c2d639170bb47ce1f8e62c",
+            "durationFrames": 765,
+            "callFileOffsets": [
+              "0x8b88e"
+            ]
+          }
+        ]
+      },
+      "discoveryContent": [],
+      "bindingAvailability": "production"
+    },
+    {
+      "id": "yamagishi-conversations",
+      "label": "Yamagishi conversations",
+      "classification": "gameplay-variant-family",
+      "programIds": [
+        "disc1-d000-yamagishi-owner-0x5b904"
+      ],
+      "resourceNames": [
+        "D0W0"
+      ],
+      "selectorIds": [
+        "S1-D0W0-01",
+        "S1-D0W0-02",
+        "S1-D0W0-03",
+        "S1-D0W0-04",
+        "S1-D0W0-05",
+        "S1-D0W0-06",
+        "S1-D0W0-07",
+        "S1-D0W0-08",
+        "S1-D0W0-09",
+        "S1-D0W0-10",
+        "S1-D0W0-11",
+        "S1-D0W0-12"
+      ],
+      "selectorEntryCount": 12,
+      "previewActivityIds": [
+        "D0W0/SEQDATA1.AUTH",
+        "D0W0/SEQDATA2.AUTH",
+        "D0W0/SEQDATA3.AUTH",
+        "D0W0/SEQDATA4.AUTH",
+        "D0W0/SEQDATA5.AUTH",
+        "D0W0/SEQDATA6.AUTH",
+        "D0W0/SEQDATA7.AUTH",
+        "D0W0/SEQDATA8.AUTH",
+        "D0W0/SEQDATA9.AUTH",
+        "D0W0/SEQDATAA.AUTH",
+        "D0W0/SEQDATAB.AUTH",
+        "D0W0/SEQDATAC.AUTH"
+      ],
+      "content": {
+        "authBindingCount": 12,
+        "durationFrames": 13271,
+        "commandCounts": {
+          "camera": 12,
+          "motion": 111,
+          "move": 29,
+          "sound": 188,
+          "voice": 103
+        },
+        "actorTags": [
+          "AKIR",
+          "COP_",
+          "YAMA"
+        ],
+        "members": [
+          {
+            "programId": "disc1-d000-yamagishi-owner-0x5b904",
+            "resourceName": "D0W0",
+            "archiveMember": "SEQDATA1.AUTH",
+            "sha256": "8a53eccca3fc3c40fab9935e6ea10c6d29aa3d5536129c69a4862ffbe4a2b6c6",
+            "durationFrames": 3320,
+            "callFileOffsets": [
+              "0x5ad5e"
+            ]
+          },
+          {
+            "programId": "disc1-d000-yamagishi-owner-0x5b904",
+            "resourceName": "D0W0",
+            "archiveMember": "SEQDATA2.AUTH",
+            "sha256": "a9393cd99ae10760c9de943cce5621baf409182f63459a3bb70d829520aedc02",
+            "durationFrames": 690,
+            "callFileOffsets": [
+              "0x5ad82"
+            ]
+          },
+          {
+            "programId": "disc1-d000-yamagishi-owner-0x5b904",
+            "resourceName": "D0W0",
+            "archiveMember": "SEQDATA3.AUTH",
+            "sha256": "de16a1d8039bd1c92a176c706d38ef4ceca5dbae695d96012e081f9d16d26b94",
+            "durationFrames": 1260,
+            "callFileOffsets": [
+              "0x5ada6"
+            ]
+          },
+          {
+            "programId": "disc1-d000-yamagishi-owner-0x5b904",
+            "resourceName": "D0W0",
+            "archiveMember": "SEQDATA4.AUTH",
+            "sha256": "3714dc9e0b12f39c2864c8bca4137bae6dc20eae4b8db82a72e34f7382c95da7",
+            "durationFrames": 900,
+            "callFileOffsets": [
+              "0x5adca"
+            ]
+          },
+          {
+            "programId": "disc1-d000-yamagishi-owner-0x5b904",
+            "resourceName": "D0W0",
+            "archiveMember": "SEQDATA5.AUTH",
+            "sha256": "3fae97c475fd411227f382b81dbc86a02f3f7208da9dd9db9dc9b398e4beeae3",
+            "durationFrames": 670,
+            "callFileOffsets": [
+              "0x5adee"
+            ]
+          },
+          {
+            "programId": "disc1-d000-yamagishi-owner-0x5b904",
+            "resourceName": "D0W0",
+            "archiveMember": "SEQDATA6.AUTH",
+            "sha256": "4fe1bdd127d22d6f472d73cbaca32aa2a52176a826663144aa9f8354b6ccdefb",
+            "durationFrames": 980,
+            "callFileOffsets": [
+              "0x5ae12"
+            ]
+          },
+          {
+            "programId": "disc1-d000-yamagishi-owner-0x5b904",
+            "resourceName": "D0W0",
+            "archiveMember": "SEQDATA7.AUTH",
+            "sha256": "19fff3b2c54e34f0aee962f880c0f8da7643004c75f7a9c61fc7223257f85fdd",
+            "durationFrames": 920,
+            "callFileOffsets": [
+              "0x5ae36"
+            ]
+          },
+          {
+            "programId": "disc1-d000-yamagishi-owner-0x5b904",
+            "resourceName": "D0W0",
+            "archiveMember": "SEQDATA8.AUTH",
+            "sha256": "808ade83f2bc13975efee585aeee5d1f5c14e831ff921b940abe18c06a822e8c",
+            "durationFrames": 1057,
+            "callFileOffsets": [
+              "0x5ae5a"
+            ]
+          },
+          {
+            "programId": "disc1-d000-yamagishi-owner-0x5b904",
+            "resourceName": "D0W0",
+            "archiveMember": "SEQDATA9.AUTH",
+            "sha256": "57e3421025bcbec1af1ca193397bd746cdf962a16fc9940f44fc7743e3d069f9",
+            "durationFrames": 600,
+            "callFileOffsets": [
+              "0x5ae7e"
+            ]
+          },
+          {
+            "programId": "disc1-d000-yamagishi-owner-0x5b904",
+            "resourceName": "D0W0",
+            "archiveMember": "SEQDATAA.AUTH",
+            "sha256": "e90c79d1bfac774bfcd7348af08498111ecd61b6360eafbc295761eaf875a9d7",
+            "durationFrames": 1040,
+            "callFileOffsets": [
+              "0x5aea2"
+            ]
+          },
+          {
+            "programId": "disc1-d000-yamagishi-owner-0x5b904",
+            "resourceName": "D0W0",
+            "archiveMember": "SEQDATAB.AUTH",
+            "sha256": "4dc9bcea8e03279160471f71942096f27fde3475c7afde34d2d5a9cacae65a80",
+            "durationFrames": 600,
+            "callFileOffsets": [
+              "0x5aec6"
+            ]
+          },
+          {
+            "programId": "disc1-d000-yamagishi-owner-0x5b904",
+            "resourceName": "D0W0",
+            "archiveMember": "SEQDATAC.AUTH",
+            "sha256": "cacb30bf13ad287d67396b30d14cf2f769653f71505ad50ee9bce893d1dd0ad9",
+            "durationFrames": 1234,
+            "callFileOffsets": [
+              "0x5aeea"
+            ]
+          }
+        ]
+      },
+      "discoveryContent": [],
+      "bindingAvailability": "production"
+    },
+    {
+      "id": "nozomi-tears",
+      "label": "Nozomi's dedicated-map scenes",
+      "classification": "ordered-fragment-set",
+      "programIds": [
+        "disc1-jd00-nozomi-tears-owner-0x5c958"
+      ],
+      "resourceNames": [
+        "DNOZ"
+      ],
+      "selectorIds": [
+        "S1-DNOZ-01",
+        "S1-DNOZ-02"
+      ],
+      "discoverySceneIds": [
+        "dnoz-selector-0",
+        "dnoz-selector-1"
+      ],
+      "includeResearchBindings": true,
+      "ownerCompletionBlocker": "the selected canonical packs use exact loose DNOZ owner sources; the older JD00 archive-owner bindings remain research provenance",
+      "selectorEntryCount": 2,
+      "previewActivityIds": [],
+      "content": {
+        "authBindingCount": 2,
+        "durationFrames": 3480,
+        "commandCounts": {
+          "camera": 2,
+          "motion": 8,
+          "move": 4,
+          "sound": 36,
+          "voice": 26
+        },
+        "actorTags": [
+          "AKIR",
+          "HRSK"
+        ],
+        "members": [
+          {
+            "programId": "disc1-jd00-nozomi-tears-owner-0x5c958",
+            "resourceName": "DNOZ",
+            "archiveMember": "SEQDATA2.AUTH",
+            "sha256": "e5413316cd0d7739a7f72f23a3fe26bb12a08c31ec53d3f9bb4c314e961a4aee",
+            "durationFrames": 1920,
+            "callFileOffsets": [
+              "0x5cdca"
+            ]
+          },
+          {
+            "programId": "disc1-jd00-nozomi-tears-owner-0x5c958",
+            "resourceName": "DNOZ",
+            "archiveMember": "SEQDATA3.AUTH",
+            "sha256": "df1d41a77b7487c9da9de1e8db77dd3dd0f6f54cd57330c53abe9bbe58273466",
+            "durationFrames": 1560,
+            "callFileOffsets": [
+              "0x5cdee"
+            ]
+          }
+        ]
+      },
+      "discoveryContent": [
+        {
+          "id": "dnoz-selector-0",
+          "label": "Nozomi dedicated-map scene \u2014 selector 0",
+          "classification": "ordered-fragment-set",
+          "trigger": {
+            "selectorValue": 0
+          },
+          "installCallOffsets": [
+            "0x217c",
+            "0x21a0"
+          ],
+          "playFunctions": [
+            "0xb34",
+            "0xd18"
+          ],
+          "members": [
+            {
+              "kind": "loose-auth",
+              "path": "extracted_files/data/SCENE/01/DNOZ/SEQDATA4.BIN"
+            },
+            {
+              "kind": "loose-auth",
+              "path": "extracted_files/data/SCENE/01/DNOZ/SEQDATA5.BIN"
+            }
+          ],
+          "content": {
+            "authMemberCount": 2,
+            "durationFrames": 3904,
+            "voiceCommandCount": 33,
+            "soundCommandCount": 26,
+            "actorTags": [
+              "AKIR",
+              "HRSK"
+            ],
+            "members": [
+              {
+                "kind": "loose-auth",
+                "path": "extracted_files/data/SCENE/01/DNOZ/SEQDATA4.BIN",
+                "sha256": "2cb6480b7585a4006d55c778b6fea01e1b821e329346f6d5cdecbe7578887d2b",
+                "byteLength": 3864,
+                "durationFrames": 830,
+                "actorTags": [
+                  "AKIR",
+                  "HRSK"
+                ],
+                "cameraCount": 1,
+                "commandCounts": {
+                  "camera": 1,
+                  "move": 2,
+                  "motion": 2,
+                  "sound": 8,
+                  "voice": 8
+                },
+                "motionBanks": [
+                  16
+                ]
+              },
+              {
+                "kind": "loose-auth",
+                "path": "extracted_files/data/SCENE/01/DNOZ/SEQDATA5.BIN",
+                "sha256": "da6f69a9a4d4fd576dae55353cab272975e99e411da87c0cae2f80dd420b2032",
+                "byteLength": 9268,
+                "durationFrames": 3074,
+                "actorTags": [
+                  "AKIR",
+                  "HRSK"
+                ],
+                "cameraCount": 1,
+                "commandCounts": {
+                  "camera": 1,
+                  "move": 2,
+                  "motion": 2,
+                  "voice": 25,
+                  "sound": 18
+                },
+                "motionBanks": [
+                  16
+                ]
+              }
+            ]
+          },
+          "candidateId": "d1:DNOZ:installer:0x1d74",
+          "sourceCandidateIds": [
+            "d1:DNOZ:installer:0x1d74"
+          ],
+          "world": "DNOZ dedicated Nozomi cutscene map",
+          "owner": {
+            "entryFunction": "0x1d74",
+            "selector": "frame field +0x0c",
+            "cleanupBoundary": "0x2582"
+          },
+          "audio": {
+            "music": [
+              "BGM068.SND"
+            ],
+            "soundBanks": [
+              "A1_NOZOK.SND",
+              "A1_NONAM.SND"
+            ],
+            "voiceStreams": [
+              "01SKI",
+              "01FULB"
+            ]
+          }
+        },
+        {
+          "id": "dnoz-selector-1",
+          "label": "Nozomi dedicated-map scene \u2014 selector 1",
+          "classification": "ordered-fragment-set",
+          "trigger": {
+            "selectorValue": 1
+          },
+          "installCallOffsets": [
+            "0x2406",
+            "0x242a"
+          ],
+          "playFunctions": [
+            "0x13e0",
+            "0x1628"
+          ],
+          "members": [
+            {
+              "kind": "loose-auth",
+              "path": "extracted_files/data/SCENE/01/DNOZ/SEQDATA2.BIN"
+            },
+            {
+              "kind": "loose-auth",
+              "path": "extracted_files/data/SCENE/01/DNOZ/SEQDATA3.BIN"
+            }
+          ],
+          "content": {
+            "authMemberCount": 2,
+            "durationFrames": 3480,
+            "voiceCommandCount": 26,
+            "soundCommandCount": 36,
+            "actorTags": [
+              "AKIR",
+              "HRSK"
+            ],
+            "members": [
+              {
+                "kind": "loose-auth",
+                "path": "extracted_files/data/SCENE/01/DNOZ/SEQDATA2.BIN",
+                "sha256": "210cf85c321ba1e7265ae05af47ff402abb259b698fabc29d19bec0b71ee1d5e",
+                "byteLength": 11104,
+                "durationFrames": 1920,
+                "actorTags": [
+                  "AKIR",
+                  "HRSK"
+                ],
+                "cameraCount": 1,
+                "commandCounts": {
+                  "camera": 1,
+                  "move": 2,
+                  "motion": 6,
+                  "voice": 17,
+                  "sound": 30
+                },
+                "motionBanks": [
+                  16
+                ]
+              },
+              {
+                "kind": "loose-auth",
+                "path": "extracted_files/data/SCENE/01/DNOZ/SEQDATA3.BIN",
+                "sha256": "ce0cc17dae8d19f50c39141a7d313ed9cb5c06640ba617623b2550b06152139f",
+                "byteLength": 4092,
+                "durationFrames": 1560,
+                "actorTags": [
+                  "AKIR",
+                  "HRSK"
+                ],
+                "cameraCount": 1,
+                "commandCounts": {
+                  "camera": 1,
+                  "move": 2,
+                  "motion": 2,
+                  "sound": 6,
+                  "voice": 9
+                },
+                "motionBanks": [
+                  16
+                ]
+              }
+            ]
+          },
+          "candidateId": "d1:DNOZ:installer:0x1d74",
+          "sourceCandidateIds": [
+            "d1:DNOZ:installer:0x1d74"
+          ],
+          "world": "DNOZ dedicated Nozomi cutscene map",
+          "owner": {
+            "entryFunction": "0x1d74",
+            "selector": "frame field +0x0c",
+            "cleanupBoundary": "0x2582"
+          },
+          "audio": {
+            "music": [
+              "BGM068.SND"
+            ],
+            "soundBanks": [
+              "A1_NOZOK.SND",
+              "A1_NONAM.SND"
+            ],
+            "voiceStreams": [
+              "01SKI",
+              "01FULB"
+            ]
+          }
+        }
+      ],
+      "bindingAvailability": "research-only"
+    },
+    {
+      "id": "nozomi-rescue",
+      "label": "Nozomi rescue",
+      "classification": "selected-composite-preview",
+      "programIds": [
+        "disc1-jd00-nozomi-rescue-owner-0x5b6f8"
+      ],
+      "resourceNames": [
+        "EVSN"
+      ],
+      "selectorIds": [
+        "S1-EVSN-01",
+        "S1-EVSN-02"
+      ],
+      "selectorEntryCount": 2,
+      "previewActivityIds": [],
+      "content": {
+        "authBindingCount": 4,
+        "durationFrames": 3201,
+        "commandCounts": {
+          "camera": 4,
+          "effect": 22,
+          "motion": 16,
+          "move": 17,
+          "sound": 78,
+          "voice": 37
+        },
+        "actorTags": [
+          "AIRO",
+          "AKIR",
+          "ENKI",
+          "HRSK",
+          "KKEN",
+          "NGSM"
+        ],
+        "members": [
+          {
+            "programId": "disc1-jd00-nozomi-rescue-owner-0x5b6f8",
+            "resourceName": "EVSN",
+            "archiveMember": "SEQDATA1.AUTH",
+            "sha256": "dcf1b9718432e56bac5516b735187171faf4039b3da41bf982c3072340c69240",
+            "durationFrames": 230,
+            "callFileOffsets": [
+              "0x76382"
+            ]
+          },
+          {
+            "programId": "disc1-jd00-nozomi-rescue-owner-0x5b6f8",
+            "resourceName": "EVSN",
+            "archiveMember": "SEQDATA2.AUTH",
+            "sha256": "73877745a6e80bbbfc785b319972299ae81dff5b512390adb28fcbcc92daf8b7",
+            "durationFrames": 1671,
+            "callFileOffsets": [
+              "0x76532"
+            ]
+          },
+          {
+            "programId": "disc1-jd00-nozomi-rescue-owner-0x5b6f8",
+            "resourceName": "EVSN",
+            "archiveMember": "SEQDATA3.AUTH",
+            "sha256": "6e9875e3507e52d696f92eddf3a5d354d9943b28718700136d394ef7b7e7e750",
+            "durationFrames": 1080,
+            "callFileOffsets": [
+              "0x76822"
+            ]
+          },
+          {
+            "programId": "disc1-jd00-nozomi-rescue-owner-0x5b6f8",
+            "resourceName": "EVSN",
+            "archiveMember": "SEQDATA4.AUTH",
+            "sha256": "8f17a245f4f1f09df580d07b88cd7c8bb20636dd515e6f647d1339b96bf73411",
+            "durationFrames": 220,
+            "callFileOffsets": [
+              "0x76ad2"
+            ]
+          }
+        ]
+      },
+      "discoveryContent": [],
+      "bindingAvailability": "production"
+    },
+    {
+      "id": "kitten-care",
+      "label": "Yamanose kitten-care event",
+      "classification": "selected-composite-preview-owner-incomplete",
+      "programIds": [
+        "disc1-ju00-kitten-care-owner-0x27554"
+      ],
+      "resourceNames": [
+        "CATA1"
+      ],
+      "selectorIds": [
+        "S1-CATA1-01"
+      ],
+      "includeResearchBindings": true,
+      "ownerCompletionBlocker": "realtime interstitial and persistent CATM/BOX1 state replay",
+      "selectorEntryCount": 1,
+      "previewActivityIds": [],
+      "content": {
+        "authBindingCount": 3,
+        "durationFrames": 6911,
+        "commandCounts": {
+          "camera": 3,
+          "motion": 56,
+          "move": 18,
+          "sound": 87,
+          "voice": 59
+        },
+        "actorTags": [
+          "AKIR",
+          "BNB1",
+          "BNB2",
+          "BNB3",
+          "CATM",
+          "MEGM",
+          "NBO1",
+          "NBO2",
+          "NBO3",
+          "NBOX"
+        ],
+        "members": [
+          {
+            "programId": "disc1-ju00-kitten-care-owner-0x27554",
+            "resourceName": "CATA1",
+            "archiveMember": "SEQDATA0.AUTH",
+            "sha256": "608d057edec528c35f4067cf5011abb8c351e81fd916269b7642d68833124552",
+            "durationFrames": 3150,
+            "callFileOffsets": [
+              "0x2b040"
+            ]
+          },
+          {
+            "programId": "disc1-ju00-kitten-care-owner-0x27554",
+            "resourceName": "CATA1",
+            "archiveMember": "SEQDATA1.AUTH",
+            "sha256": "8fe949eb1378fd9f37f8742972f8f8116d3dbbdcff2c428a16c89ea20cd56ed4",
+            "durationFrames": 2391,
+            "callFileOffsets": [
+              "0x2b552"
+            ]
+          },
+          {
+            "programId": "disc1-ju00-kitten-care-owner-0x27554",
+            "resourceName": "CATA1",
+            "archiveMember": "SEQDATA2.AUTH",
+            "sha256": "db3cf574a2567e2a3dd5d52f70d2f3678efeb81cf4029a324ddf59154868b1b7",
+            "durationFrames": 1370,
+            "callFileOffsets": [
+              "0x2b5fa"
+            ]
+          }
+        ]
+      },
+      "discoveryContent": [],
+      "bindingAvailability": "research-only"
+    },
+    {
+      "id": "fukusan-training",
+      "label": "Fuku-san move training",
+      "classification": "gameplay-variant-family",
+      "programIds": [
+        "disc1-jhd0-fukusan-move-training-0x464bc"
+      ],
+      "resourceNames": [
+        "JHW0"
+      ],
+      "selectorIds": [
+        "S1-JHW0-01",
+        "S1-JHW0-02",
+        "S1-JHW0-03",
+        "S1-JHW0-04",
+        "S1-JHW0-05",
+        "S1-JHW0-06",
+        "S1-JHW0-07",
+        "S1-JHW0-08"
+      ],
+      "selectorEntryCount": 8,
+      "previewActivityIds": [
+        "JHW0/SEQDATA1.AUTH",
+        "JHW0/SEQDATA2.AUTH",
+        "JHW0/SEQDATA3.AUTH",
+        "JHW0/SEQDATA4.AUTH",
+        "JHW0/SEQDATA5.AUTH",
+        "JHW0/SEQDATA6.AUTH",
+        "JHW0/SEQDATA7.AUTH",
+        "JHW0/SEQDATA8.AUTH"
+      ],
+      "content": {
+        "authBindingCount": 8,
+        "durationFrames": 7253,
+        "commandCounts": {
+          "camera": 8,
+          "motion": 29,
+          "move": 16,
+          "sound": 167,
+          "voice": 53
+        },
+        "actorTags": [
+          "AKIR",
+          "FUKU"
+        ],
+        "members": [
+          {
+            "programId": "disc1-jhd0-fukusan-move-training-0x464bc",
+            "resourceName": "JHW0",
+            "archiveMember": "SEQDATA1.AUTH",
+            "sha256": "71c1317c290e83bb059305c25ef218565c921ca19d0be90006851c5a7318cd55",
+            "durationFrames": 1600,
+            "callFileOffsets": [
+              "0x4582e"
+            ]
+          },
+          {
+            "programId": "disc1-jhd0-fukusan-move-training-0x464bc",
+            "resourceName": "JHW0",
+            "archiveMember": "SEQDATA2.AUTH",
+            "sha256": "7ee8bbeee275caf8bf692f1e810ca2e84a64acba9cdd9fa08a2ba32d621633ff",
+            "durationFrames": 1150,
+            "callFileOffsets": [
+              "0x45852"
+            ]
+          },
+          {
+            "programId": "disc1-jhd0-fukusan-move-training-0x464bc",
+            "resourceName": "JHW0",
+            "archiveMember": "SEQDATA3.AUTH",
+            "sha256": "ee33590481cc907f3f306e2811cf6ce0193497e0bb67b0e24dbec6d0d788ccba",
+            "durationFrames": 635,
+            "callFileOffsets": [
+              "0x45876"
+            ]
+          },
+          {
+            "programId": "disc1-jhd0-fukusan-move-training-0x464bc",
+            "resourceName": "JHW0",
+            "archiveMember": "SEQDATA4.AUTH",
+            "sha256": "ee81a8358a576f3e46cc3b4252f4a44c24d4092d3e6789265a8379b25a5d2f64",
+            "durationFrames": 830,
+            "callFileOffsets": [
+              "0x4589a"
+            ]
+          },
+          {
+            "programId": "disc1-jhd0-fukusan-move-training-0x464bc",
+            "resourceName": "JHW0",
+            "archiveMember": "SEQDATA5.AUTH",
+            "sha256": "d2d4f897f6b6be153659ae6e483f9f1ce64984861f13e64573ce98e0619aea5a",
+            "durationFrames": 798,
+            "callFileOffsets": [
+              "0x458be"
+            ]
+          },
+          {
+            "programId": "disc1-jhd0-fukusan-move-training-0x464bc",
+            "resourceName": "JHW0",
+            "archiveMember": "SEQDATA6.AUTH",
+            "sha256": "c4a71b4ee62335c0a066b98b99da1c8046ac1ae1754093f666cd091042949528",
+            "durationFrames": 500,
+            "callFileOffsets": [
+              "0x458e2"
+            ]
+          },
+          {
+            "programId": "disc1-jhd0-fukusan-move-training-0x464bc",
+            "resourceName": "JHW0",
+            "archiveMember": "SEQDATA7.AUTH",
+            "sha256": "a6f9e4a10a7ddb27f2f97b65c6862aa46572a47476f55f7d409236f374ce947e",
+            "durationFrames": 830,
+            "callFileOffsets": [
+              "0x45906"
+            ]
+          },
+          {
+            "programId": "disc1-jhd0-fukusan-move-training-0x464bc",
+            "resourceName": "JHW0",
+            "archiveMember": "SEQDATA8.AUTH",
+            "sha256": "c362c25c49195a71ecf1de43b97de603377dcd25435f9e001d4272a6e5f04049",
+            "durationFrames": 910,
+            "callFileOffsets": [
+              "0x4592a"
+            ]
+          }
+        ]
+      },
+      "discoveryContent": [],
+      "bindingAvailability": "production"
+    },
+    {
+      "id": "iwao-death-discussion",
+      "label": "Ryo and Fuku-san discuss Iwao's death",
+      "classification": "complete-owner-scene",
+      "programIds": [
+        "disc1-jhd0-fukusan-iwao-death-0x3aec8"
+      ],
+      "selectorIds": [
+        "S1-MSKA-01"
+      ],
+      "selectorEntryCount": 1,
+      "previewActivityIds": [],
+      "content": {
+        "authBindingCount": 1,
+        "durationFrames": 775,
+        "commandCounts": {
+          "camera": 1,
+          "motion": 4,
+          "move": 2,
+          "sound": 10,
+          "voice": 5
+        },
+        "actorTags": [
+          "AKIR",
+          "FUKU"
+        ],
+        "members": [
+          {
+            "programId": "disc1-jhd0-fukusan-iwao-death-0x3aec8",
+            "resourceName": "MSKA",
+            "archiveMember": "SEQDATA2.AUTH",
+            "sha256": "04d1801ad62088df3f361d306b9bbc9da755bb54fda54679e3de14d133d6ebe4",
+            "durationFrames": 775,
+            "callFileOffsets": [
+              "0x3b69a"
+            ]
+          }
+        ]
+      },
+      "discoveryContent": [],
+      "bindingAvailability": "production"
+    },
+    {
+      "id": "hazuki-conversations",
+      "label": "Hazuki grounds conversations",
+      "classification": "activity-variant-family",
+      "programIds": [
+        "disc1-jhd0-kakg-owner-0x3cfa0"
+      ],
+      "resourceNames": [
+        "KAKG"
+      ],
+      "selectorIds": [
+        "S1-KAKG-01",
+        "S1-KAKG-02"
+      ],
+      "selectorEntryCount": 2,
+      "previewActivityIds": [
+        "KAKG/SEQDATK2.AUTH",
+        "KAKG/SEQDATK3.AUTH"
+      ],
+      "content": {
+        "authBindingCount": 2,
+        "durationFrames": 3031,
+        "commandCounts": {
+          "camera": 2,
+          "motion": 5,
+          "move": 4,
+          "sound": 32,
+          "voice": 31
+        },
+        "actorTags": [
+          "AKIR",
+          "FUKU",
+          "INE_"
+        ],
+        "members": [
+          {
+            "programId": "disc1-jhd0-kakg-owner-0x3cfa0",
+            "resourceName": "KAKG",
+            "archiveMember": "SEQDATK2.AUTH",
+            "sha256": "5b42a5329495c02803ac6e0cec1054921048088c47ed45f9efb1e0b046066267",
+            "durationFrames": 2000,
+            "callFileOffsets": [
+              "0x3d36a"
+            ]
+          },
+          {
+            "programId": "disc1-jhd0-kakg-owner-0x3cfa0",
+            "resourceName": "KAKG",
+            "archiveMember": "SEQDATK3.AUTH",
+            "sha256": "180c36d23dd813d7b9e2dec39b13169c001a0ae8e754b45368b698eeae859034",
+            "durationFrames": 1031,
+            "callFileOffsets": [
+              "0x3d38e"
+            ]
+          }
+        ]
+      },
+      "discoveryContent": [],
+      "bindingAvailability": "production"
+    },
+    {
+      "id": "harbor-bus-transitions",
+      "label": "Harbor bus travel transitions",
+      "classification": "transition-variant-family",
+      "programIds": [
+        "disc1-d000-bus-travel-owner-0x6e1a0"
+      ],
+      "resourceNames": [
+        "BUSS"
+      ],
+      "selectorIds": [
+        "S1-BUSS-01",
+        "S1-BUSS-02",
+        "S1-BUSS-03",
+        "S1-BUSS-04"
+      ],
+      "selectorEntryCount": 4,
+      "previewActivityIds": [
+        "BUSS/SEQDATA1.AUTH",
+        "BUSS/SEQDATA4.AUTH",
+        "BUSS/SEQDATA2.AUTH",
+        "BUSS/SEQDATA5.AUTH"
+      ],
+      "content": {
+        "authBindingCount": 4,
+        "durationFrames": 1142,
+        "commandCounts": {
+          "camera": 4,
+          "motion": 16,
+          "move": 12,
+          "sound": 42
+        },
+        "actorTags": [
+          "AKIR",
+          "BUSS",
+          "BUS_"
+        ],
+        "members": [
+          {
+            "programId": "disc1-d000-bus-travel-owner-0x6e1a0",
+            "resourceName": "BUSS",
+            "archiveMember": "SEQDATA1.AUTH",
+            "sha256": "3d769872346e486df965296861c502402e95e064e2da4c1f051a568c87774ba0",
+            "durationFrames": 325,
+            "callFileOffsets": [
+              "0x6e37a"
+            ]
+          },
+          {
+            "programId": "disc1-d000-bus-travel-owner-0x6e1a0",
+            "resourceName": "BUSS",
+            "archiveMember": "SEQDATA4.AUTH",
+            "sha256": "400c63409f2910eba206da078f80ab5ddb76a88e87e747b369bf74ecb2b7415e",
+            "durationFrames": 325,
+            "callFileOffsets": [
+              "0x6e3b6"
+            ]
+          },
+          {
+            "programId": "disc1-d000-bus-travel-owner-0x6e1a0",
+            "resourceName": "BUSS",
+            "archiveMember": "SEQDATA2.AUTH",
+            "sha256": "e4b254047a27493388cbef074e909ab0169652ee64ab469802abc425247e46f6",
+            "durationFrames": 246,
+            "callFileOffsets": [
+              "0x6e56a"
+            ]
+          },
+          {
+            "programId": "disc1-d000-bus-travel-owner-0x6e1a0",
+            "resourceName": "BUSS",
+            "archiveMember": "SEQDATA5.AUTH",
+            "sha256": "69e81149123aecc70759b84098d4a70cfb35129ed757bda8b42ce571c4ec0fb6",
+            "durationFrames": 246,
+            "callFileOffsets": [
+              "0x6e5ee"
+            ]
+          }
+        ]
+      },
+      "discoveryContent": [],
+      "bindingAvailability": "production"
+    },
+    {
+      "id": "fukusan-letter",
+      "label": "Fuku-san's letter",
+      "classification": "selected-activity-preview-owner-incomplete",
+      "programIds": [
+        "disc1-jhd0-fukusan-letter-0x545f8"
+      ],
+      "resourceNames": [
+        "TGMA"
+      ],
+      "selectorIds": [
+        "S1-TGMA-01"
+      ],
+      "includeResearchBindings": true,
+      "ownerCompletionBlocker": "FUB native talk-pose evaluation",
+      "selectorEntryCount": 1,
+      "previewActivityIds": [
+        "TGMA/SEQDATA4.AUTH"
+      ],
+      "content": {
+        "authBindingCount": 1,
+        "durationFrames": 954,
+        "commandCounts": {
+          "camera": 1,
+          "motion": 2,
+          "move": 2,
+          "sound": 26,
+          "voice": 8
+        },
+        "actorTags": [
+          "AKIR",
+          "FUKU"
+        ],
+        "members": [
+          {
+            "programId": "disc1-jhd0-fukusan-letter-0x545f8",
+            "resourceName": "TGMA",
+            "archiveMember": "SEQDATA4.AUTH",
+            "sha256": "e409876e1c569cc4ad93447a6bf588dc0325b8a907c404bc4883140e1e2ab968",
+            "durationFrames": 954,
+            "callFileOffsets": [
+              "0x54cc0"
+            ]
+          }
+        ]
+      },
+      "discoveryContent": [],
+      "bindingAvailability": "production"
+    },
+    {
+      "id": "young-ryo-memory",
+      "label": "Iwao and young Ryo memory",
+      "classification": "complete-owner-scene",
+      "programIds": [
+        "disc1-jhd0-iwao-young-ryo-memory-0x37d56"
+      ],
+      "selectorIds": [
+        "S1-HIHY-01"
+      ],
+      "selectorEntryCount": 1,
+      "previewActivityIds": [],
+      "content": {
+        "authBindingCount": 1,
+        "durationFrames": 2210,
+        "commandCounts": {
+          "camera": 1,
+          "motion": 12,
+          "move": 3,
+          "voice": 13
+        },
+        "actorTags": [
+          "IWAO",
+          "JAKR",
+          "MOON"
+        ],
+        "members": [
+          {
+            "programId": "disc1-jhd0-iwao-young-ryo-memory-0x37d56",
+            "resourceName": "HIHY",
+            "archiveMember": "SEQDATA5.AUTH",
+            "sha256": "1ab4b319189417c1557480a6f3e86d3b8aea575d5f3f125828a971473945be3f",
+            "durationFrames": 2210,
+            "callFileOffsets": [
+              "0x3823c"
+            ]
+          }
+        ]
+      },
+      "discoveryContent": [],
+      "bindingAvailability": "production"
+    },
+    {
+      "id": "shenhua-nightmare",
+      "label": "Shenhua nightmare",
+      "classification": "complete-owner-scene",
+      "programIds": [
+        "disc1-jomo-bebf-nightmare-owner-0x4bf5c"
+      ],
+      "selectorIds": [
+        "S1-BEBF-01"
+      ],
+      "selectorEntryCount": 1,
+      "previewActivityIds": [],
+      "content": {
+        "authBindingCount": 4,
+        "durationFrames": 2030,
+        "commandCounts": {
+          "camera": 4,
+          "motion": 4,
+          "move": 4,
+          "sound": 4,
+          "voice": 9
+        },
+        "actorTags": [
+          "AKID",
+          "SINF"
+        ],
+        "members": [
+          {
+            "programId": "disc1-jomo-bebf-nightmare-owner-0x4bf5c",
+            "resourceName": "BEBF",
+            "archiveMember": "SEQDATA0.AUTH",
+            "sha256": "dca3e9c06e0a166c8c1b6378611edcf17784293aa2ccd2c091e65b41527dd569",
+            "durationFrames": 260,
+            "callFileOffsets": [
+              "0x4c0e6"
+            ]
+          },
+          {
+            "programId": "disc1-jomo-bebf-nightmare-owner-0x4bf5c",
+            "resourceName": "BEBF",
+            "archiveMember": "SEQDATA1.AUTH",
+            "sha256": "72739216b17bc1e18154c3d5da46f55243d3df819fe62615d0a197caac086c51",
+            "durationFrames": 700,
+            "callFileOffsets": [
+              "0x4c10a"
+            ]
+          },
+          {
+            "programId": "disc1-jomo-bebf-nightmare-owner-0x4bf5c",
+            "resourceName": "BEBF",
+            "archiveMember": "SEQDATA2.AUTH",
+            "sha256": "c454590be0b1d00e10cf7df1b1c01f39a873df085e62443065a1453f50edef15",
+            "durationFrames": 370,
+            "callFileOffsets": [
+              "0x4c12e"
+            ]
+          },
+          {
+            "programId": "disc1-jomo-bebf-nightmare-owner-0x4bf5c",
+            "resourceName": "BEBF",
+            "archiveMember": "SEQDATA3.AUTH",
+            "sha256": "e03c42fbda49a4f52d708e727deed4b526238b03a72df6f94ea35aa9fac8ae8d",
+            "durationFrames": 700,
+            "callFileOffsets": [
+              "0x4c152"
+            ]
+          }
+        ]
+      },
+      "discoveryContent": [],
+      "bindingAvailability": "production"
+    },
+    {
+      "id": "sakura-training-memory",
+      "label": "Sakura training memory",
+      "classification": "complete-owner-scene",
+      "programIds": [
+        "disc1-yd01-sakura-training-owner-0x2678"
+      ],
+      "selectorIds": [
+        "S1-SAKR-01"
+      ],
+      "selectorEntryCount": 1,
+      "previewActivityIds": [],
+      "content": {
+        "authBindingCount": 1,
+        "durationFrames": 1559,
+        "commandCounts": {
+          "camera": 1,
+          "motion": 13,
+          "move": 2,
+          "sound": 6,
+          "voice": 12
+        },
+        "actorTags": [
+          "IWAO",
+          "JAKR"
+        ],
+        "members": [
+          {
+            "programId": "disc1-yd01-sakura-training-owner-0x2678",
+            "resourceName": "SAKR",
+            "archiveMember": "SEQDATA0.AUTH",
+            "sha256": "e2160469503e7faf9b850ad1513f7dc67aea33288fbbee3d626003599b338aee",
+            "durationFrames": 1559,
+            "callFileOffsets": [
+              "0x2c2"
+            ]
+          }
+        ]
+      },
+      "discoveryContent": [],
+      "bindingAvailability": "production"
+    },
+    {
+      "id": "phoenix-mirror",
+      "label": "Ryo and Fuku-san discover the Phoenix mirror",
+      "classification": "complete-owner-scene",
+      "resourceNames": [
+        "HOUO"
+      ],
+      "selectorIds": [
+        "S1-HOUO-01"
+      ],
+      "discoverySceneIds": [
+        "houo-phoenix-mirror"
+      ],
+      "programIds": [],
+      "selectorEntryCount": 1,
+      "previewActivityIds": [
+        "HOUO/SEQDATAD.AUTH"
+      ],
+      "content": {
+        "authBindingCount": 0,
+        "durationFrames": 0,
+        "commandCounts": {},
+        "actorTags": [],
+        "members": []
+      },
+      "discoveryContent": [
+        {
+          "id": "houo-phoenix-mirror",
+          "label": "Ryo and Fuku-san \u2014 Phoenix mirror",
+          "classification": "complete-owner-scene",
+          "trigger": {
+            "dispatcherState": 97
+          },
+          "installCallOffsets": [
+            "0x568a8"
+          ],
+          "playFunctions": [
+            "0x24044"
+          ],
+          "assetDependencies": [
+            "M_01DIS.BIN",
+            "MIRR scene object"
+          ],
+          "members": [
+            {
+              "kind": "archive-auth",
+              "path": "extracted_disc2_v2/data/SCENE/02/JHD0/HOUO.PKS",
+              "member": "SEQDATAD.AUTH"
+            }
+          ],
+          "content": {
+            "authMemberCount": 1,
+            "durationFrames": 1810,
+            "voiceCommandCount": 16,
+            "soundCommandCount": 25,
+            "actorTags": [
+              "AKIR",
+              "FUKU",
+              "MIRR"
+            ],
+            "members": [
+              {
+                "kind": "archive-auth",
+                "path": "extracted_disc2_v2/data/SCENE/02/JHD0/HOUO.PKS",
+                "member": "SEQDATAD.AUTH",
+                "sha256": "33c400d02f7a5fbc2d3a9c9be17529b289b9432ad2c78a0985beee522a1a446c",
+                "byteLength": 31008,
+                "durationFrames": 1810,
+                "actorTags": [
+                  "AKIR",
+                  "FUKU",
+                  "MIRR"
+                ],
+                "cameraCount": 1,
+                "commandCounts": {
+                  "camera": 1,
+                  "move": 3,
+                  "motion": 4,
+                  "sound": 25,
+                  "voice": 16
+                },
+                "motionBanks": [
+                  16
+                ]
+              }
+            ]
+          },
+          "candidateId": "d1:JHD0:installer:0x56028",
+          "sourceCandidateIds": [
+            "d1:JHD0:installer:0x56028"
+          ],
+          "world": "JHD0 Hazuki grounds",
+          "owner": {
+            "parentFunction": "0x545f8",
+            "dispatcherFunction": "0x56028",
+            "stateCode": 97,
+            "installCallOffset": "0x568a8",
+            "playFunction": "0x24044"
+          },
+          "audio": {
+            "soundBanks": [
+              "A1_HOUHA.SND"
+            ]
+          }
+        }
+      ],
+      "bindingAvailability": "production"
+    },
+    {
+      "id": "shenhua-dream-visions",
+      "label": "Shenhua dream and vision activities",
+      "classification": "owner-trigger-variant-family",
+      "resourceNames": [
+        "KKYA",
+        "KKYB",
+        "KKYC",
+        "KKYD",
+        "KKYE",
+        "KKYF"
+      ],
+      "selectorIds": [
+        "S1-KKYA-01",
+        "S1-KKYB-01",
+        "S1-KKYC-01",
+        "S1-KKYD-01",
+        "S1-KKYE-01",
+        "S1-KKYF-01"
+      ],
+      "discoverySceneIds": [
+        "kkya-vision",
+        "kkyb-vision",
+        "kkyc-vision",
+        "kkyd-vision",
+        "kkye-vision",
+        "kkyf-vision"
+      ],
+      "programIds": [],
+      "selectorEntryCount": 6,
+      "previewActivityIds": [
+        "KKYA/SEQDATA0.AUTH",
+        "KKYB/SEQDATA1.AUTH",
+        "KKYC/SEQDATA2.AUTH",
+        "KKYD/SEQDATA3.AUTH",
+        "KKYE/SEQDATA4.AUTH",
+        "KKYF/SEQDATA5.AUTH"
+      ],
+      "content": {
+        "authBindingCount": 0,
+        "durationFrames": 0,
+        "commandCounts": {},
+        "actorTags": [],
+        "members": []
+      },
+      "discoveryContent": [
+        {
+          "id": "kkya-vision",
+          "label": "KKYA dream vision",
+          "classification": "complete-activity-scene",
+          "trigger": {
+            "eventCode": 2103,
+            "selectorValue": 0
+          },
+          "installCallOffsets": [
+            "0x4a31a"
+          ],
+          "members": [
+            {
+              "kind": "archive-auth",
+              "path": "extracted_disc3_v2/data/SCENE/03/JOMO/KKYA.PKS",
+              "member": "SEQDATA0.AUTH"
+            }
+          ],
+          "content": {
+            "authMemberCount": 1,
+            "durationFrames": 1100,
+            "voiceCommandCount": 0,
+            "soundCommandCount": 0,
+            "actorTags": [
+              "HOMR"
+            ],
+            "members": [
+              {
+                "kind": "archive-auth",
+                "path": "extracted_disc3_v2/data/SCENE/03/JOMO/KKYA.PKS",
+                "member": "SEQDATA0.AUTH",
+                "sha256": "65f0adf42b7f25cb665949af5ff1adadafcdc5c739292f13749d7cb3ccfb83a3",
+                "byteLength": 2148,
+                "durationFrames": 1100,
+                "actorTags": [
+                  "HOMR"
+                ],
+                "cameraCount": 1,
+                "commandCounts": {
+                  "camera": 1,
+                  "move": 1
+                },
+                "motionBanks": []
+              }
+            ]
+          },
+          "candidateId": "d1:JOMO:installer:0x4a1f2",
+          "sourceCandidateIds": [
+            "d1:JOMO:installer:0x4a1f2"
+          ],
+          "world": "JOMO Hazuki bedroom dream presentation",
+          "owner": {
+            "storyFunction": "0x4f758",
+            "selectorInstaller": "0x4a1f2",
+            "playFunction": "0x45d10"
+          },
+          "audio": {
+            "music": [
+              "BGM201.SND",
+              "BGM079.SND"
+            ],
+            "policy": "KKYF selects BGM201; KKYA through K enters the other native music branch using BGM079"
+          }
+        },
+        {
+          "id": "kkyb-vision",
+          "label": "KKYB dream vision",
+          "classification": "complete-activity-scene",
+          "trigger": {
+            "eventCode": 1701,
+            "selectorValue": 1
+          },
+          "installCallOffsets": [
+            "0x4a46a"
+          ],
+          "members": [
+            {
+              "kind": "archive-auth",
+              "path": "extracted_disc2_v2/data/SCENE/02/JOMO/KKYB.PKS",
+              "member": "SEQDATA1.AUTH"
+            }
+          ],
+          "content": {
+            "authMemberCount": 1,
+            "durationFrames": 900,
+            "voiceCommandCount": 0,
+            "soundCommandCount": 0,
+            "actorTags": [
+              "HAWK",
+              "HOMR",
+              "RYMR"
+            ],
+            "members": [
+              {
+                "kind": "archive-auth",
+                "path": "extracted_disc2_v2/data/SCENE/02/JOMO/KKYB.PKS",
+                "member": "SEQDATA1.AUTH",
+                "sha256": "d18f0cc90a5bba968a4d269765dc2cf1e2995f223e390fde0e6ab8d7540fd349",
+                "byteLength": 3764,
+                "durationFrames": 900,
+                "actorTags": [
+                  "HAWK",
+                  "HOMR",
+                  "RYMR"
+                ],
+                "cameraCount": 1,
+                "commandCounts": {
+                  "camera": 1,
+                  "move": 3
+                },
+                "motionBanks": []
+              }
+            ]
+          },
+          "candidateId": "d1:JOMO:installer:0x4a1f2",
+          "sourceCandidateIds": [
+            "d1:JOMO:installer:0x4a1f2"
+          ],
+          "world": "JOMO Hazuki bedroom dream presentation",
+          "owner": {
+            "storyFunction": "0x4f758",
+            "selectorInstaller": "0x4a1f2",
+            "playFunction": "0x45d10"
+          },
+          "audio": {
+            "music": [
+              "BGM201.SND",
+              "BGM079.SND"
+            ],
+            "policy": "KKYF selects BGM201; KKYA through K enters the other native music branch using BGM079"
+          }
+        },
+        {
+          "id": "kkyc-vision",
+          "label": "KKYC dream vision",
+          "classification": "complete-activity-scene",
+          "trigger": {
+            "eventCode": 1801,
+            "selectorValue": 2
+          },
+          "installCallOffsets": [
+            "0x4a5ba"
+          ],
+          "members": [
+            {
+              "kind": "archive-auth",
+              "path": "extracted_disc2_v2/data/SCENE/02/JOMO/KKYC.PKS",
+              "member": "SEQDATA2.AUTH"
+            }
+          ],
+          "content": {
+            "authMemberCount": 1,
+            "durationFrames": 1100,
+            "voiceCommandCount": 0,
+            "soundCommandCount": 0,
+            "actorTags": [
+              "SINF"
+            ],
+            "members": [
+              {
+                "kind": "archive-auth",
+                "path": "extracted_disc2_v2/data/SCENE/02/JOMO/KKYC.PKS",
+                "member": "SEQDATA2.AUTH",
+                "sha256": "10ab2974a98fe8404ef47b2626508859cb18fcfd37cb401770907fc2a439ce8c",
+                "byteLength": 5676,
+                "durationFrames": 1100,
+                "actorTags": [
+                  "SINF"
+                ],
+                "cameraCount": 1,
+                "commandCounts": {
+                  "camera": 1,
+                  "move": 1,
+                  "motion": 1
+                },
+                "motionBanks": [
+                  16
+                ]
+              }
+            ]
+          },
+          "candidateId": "d1:JOMO:installer:0x4a1f2",
+          "sourceCandidateIds": [
+            "d1:JOMO:installer:0x4a1f2"
+          ],
+          "world": "JOMO Hazuki bedroom dream presentation",
+          "owner": {
+            "storyFunction": "0x4f758",
+            "selectorInstaller": "0x4a1f2",
+            "playFunction": "0x45d10"
+          },
+          "audio": {
+            "music": [
+              "BGM201.SND",
+              "BGM079.SND"
+            ],
+            "policy": "KKYF selects BGM201; KKYA through K enters the other native music branch using BGM079"
+          }
+        },
+        {
+          "id": "kkyd-vision",
+          "label": "KKYD dream vision",
+          "classification": "complete-activity-scene",
+          "trigger": {
+            "eventCode": 2204,
+            "selectorValue": 3
+          },
+          "installCallOffsets": [
+            "0x4a70a"
+          ],
+          "members": [
+            {
+              "kind": "archive-auth",
+              "path": "extracted_disc3_v2/data/SCENE/03/JOMO/KKYD.PKS",
+              "member": "SEQDATA3.AUTH"
+            }
+          ],
+          "content": {
+            "authMemberCount": 1,
+            "durationFrames": 1260,
+            "voiceCommandCount": 0,
+            "soundCommandCount": 0,
+            "actorTags": [
+              "SEIZ",
+              "SINF"
+            ],
+            "members": [
+              {
+                "kind": "archive-auth",
+                "path": "extracted_disc3_v2/data/SCENE/03/JOMO/KKYD.PKS",
+                "member": "SEQDATA3.AUTH",
+                "sha256": "44b6cba868f90829083deeb5e673ef8e761a777ffcea55421a29b0d8a8ef8e22",
+                "byteLength": 4552,
+                "durationFrames": 1260,
+                "actorTags": [
+                  "SEIZ",
+                  "SINF"
+                ],
+                "cameraCount": 1,
+                "commandCounts": {
+                  "camera": 1,
+                  "move": 2,
+                  "motion": 1
+                },
+                "motionBanks": [
+                  16
+                ]
+              }
+            ]
+          },
+          "candidateId": "d1:JOMO:installer:0x4a1f2",
+          "sourceCandidateIds": [
+            "d1:JOMO:installer:0x4a1f2"
+          ],
+          "world": "JOMO Hazuki bedroom dream presentation",
+          "owner": {
+            "storyFunction": "0x4f758",
+            "selectorInstaller": "0x4a1f2",
+            "playFunction": "0x45d10"
+          },
+          "audio": {
+            "music": [
+              "BGM201.SND",
+              "BGM079.SND"
+            ],
+            "policy": "KKYF selects BGM201; KKYA through K enters the other native music branch using BGM079"
+          }
+        },
+        {
+          "id": "kkye-vision",
+          "label": "KKYE dream vision",
+          "classification": "complete-activity-scene",
+          "trigger": {
+            "eventCodes": [
+              2001,
+              2002
+            ],
+            "selectorValue": 4
+          },
+          "installCallOffsets": [
+            "0x4a85a"
+          ],
+          "members": [
+            {
+              "kind": "archive-auth",
+              "path": "extracted_disc3_v2/data/SCENE/03/JOMO/KKYE.PKS",
+              "member": "SEQDATA4.AUTH"
+            }
+          ],
+          "content": {
+            "authMemberCount": 1,
+            "durationFrames": 1000,
+            "voiceCommandCount": 0,
+            "soundCommandCount": 0,
+            "actorTags": [
+              "HAWK",
+              "MOON",
+              "SINF"
+            ],
+            "members": [
+              {
+                "kind": "archive-auth",
+                "path": "extracted_disc3_v2/data/SCENE/03/JOMO/KKYE.PKS",
+                "member": "SEQDATA4.AUTH",
+                "sha256": "1d9d0b2947f851e908c39b1f3c1bbe0902c45214335488aaf75008c3255e2688",
+                "byteLength": 3244,
+                "durationFrames": 1000,
+                "actorTags": [
+                  "HAWK",
+                  "MOON",
+                  "SINF"
+                ],
+                "cameraCount": 1,
+                "commandCounts": {
+                  "camera": 1,
+                  "move": 3,
+                  "motion": 2
+                },
+                "motionBanks": [
+                  16
+                ]
+              }
+            ]
+          },
+          "candidateId": "d1:JOMO:installer:0x4a1f2",
+          "sourceCandidateIds": [
+            "d1:JOMO:installer:0x4a1f2"
+          ],
+          "world": "JOMO Hazuki bedroom dream presentation",
+          "owner": {
+            "storyFunction": "0x4f758",
+            "selectorInstaller": "0x4a1f2",
+            "playFunction": "0x45d10"
+          },
+          "audio": {
+            "music": [
+              "BGM201.SND",
+              "BGM079.SND"
+            ],
+            "policy": "KKYF selects BGM201; KKYA through K enters the other native music branch using BGM079"
+          }
+        },
+        {
+          "id": "kkyf-vision",
+          "label": "KKYF dream vision",
+          "classification": "complete-activity-scene",
+          "trigger": {
+            "eventCode": 2106,
+            "selectorValue": 5
+          },
+          "installCallOffsets": [
+            "0x4a9aa"
+          ],
+          "members": [
+            {
+              "kind": "archive-auth",
+              "path": "extracted_disc3_v2/data/SCENE/03/JOMO/KKYF.PKS",
+              "member": "SEQDATA5.AUTH"
+            }
+          ],
+          "content": {
+            "authMemberCount": 1,
+            "durationFrames": 240,
+            "voiceCommandCount": 0,
+            "soundCommandCount": 0,
+            "actorTags": [
+              "RYMR",
+              "SORY"
+            ],
+            "members": [
+              {
+                "kind": "archive-auth",
+                "path": "extracted_disc3_v2/data/SCENE/03/JOMO/KKYF.PKS",
+                "member": "SEQDATA5.AUTH",
+                "sha256": "6c32c6d6567b0792f5a32c46e3628e25f530174f47e9e888b0cba55b973d852b",
+                "byteLength": 1752,
+                "durationFrames": 240,
+                "actorTags": [
+                  "RYMR",
+                  "SORY"
+                ],
+                "cameraCount": 1,
+                "commandCounts": {
+                  "camera": 1,
+                  "move": 2,
+                  "motion": 2
+                },
+                "motionBanks": [
+                  16
+                ]
+              }
+            ]
+          },
+          "candidateId": "d1:JOMO:installer:0x4a1f2",
+          "sourceCandidateIds": [
+            "d1:JOMO:installer:0x4a1f2"
+          ],
+          "world": "JOMO Hazuki bedroom dream presentation",
+          "owner": {
+            "storyFunction": "0x4f758",
+            "selectorInstaller": "0x4a1f2",
+            "playFunction": "0x45d10"
+          },
+          "audio": {
+            "music": [
+              "BGM201.SND",
+              "BGM079.SND"
+            ],
+            "policy": "KKYF selects BGM201; KKYA through K enters the other native music branch using BGM079"
+          }
+        }
+      ],
+      "bindingAvailability": "production"
+    },
+    {
+      "id": "toki-asada-conversation",
+      "label": "Ryo and Asada at the Tomato store",
+      "classification": "complete-owner-scene",
+      "resourceNames": [
+        "TOKI"
+      ],
+      "selectorIds": [
+        "S1-TOKI-01"
+      ],
+      "discoverySceneIds": [
+        "toki-asada-conversation"
+      ],
+      "programIds": [],
+      "selectorEntryCount": 1,
+      "previewActivityIds": [
+        "TOKI/SEQDATA2.AUTH"
+      ],
+      "content": {
+        "authBindingCount": 0,
+        "durationFrames": 0,
+        "commandCounts": {},
+        "actorTags": [],
+        "members": []
+      },
+      "discoveryContent": [
+        {
+          "id": "toki-asada-conversation",
+          "label": "Ryo and Asada in the Tomato store",
+          "classification": "complete-owner-scene",
+          "trigger": {
+            "stateCodes": [
+              0,
+              10,
+              99
+            ]
+          },
+          "installCallOffsets": [
+            "0x1ba6",
+            "0x1e06",
+            "0x253a"
+          ],
+          "playFunctions": [
+            "0xa94"
+          ],
+          "assetDependencies": [
+            "M_0142.BIN",
+            "TEGS hand prop and native attachments"
+          ],
+          "members": [
+            {
+              "kind": "loose-auth",
+              "path": "extracted_files/data/SCENE/01/TOKI/SEQDATA2.BIN"
+            }
+          ],
+          "content": {
+            "authMemberCount": 1,
+            "durationFrames": 5355,
+            "voiceCommandCount": 41,
+            "soundCommandCount": 29,
+            "actorTags": [
+              "AKIR",
+              "ASDA"
+            ],
+            "members": [
+              {
+                "kind": "loose-auth",
+                "path": "extracted_files/data/SCENE/01/TOKI/SEQDATA2.BIN",
+                "sha256": "507a20816d8a73a2a41700e90b4bc8e62e9a2b4dc4ad865cdfd9e555f459a38e",
+                "byteLength": 15592,
+                "durationFrames": 5355,
+                "actorTags": [
+                  "AKIR",
+                  "ASDA"
+                ],
+                "cameraCount": 1,
+                "commandCounts": {
+                  "camera": 1,
+                  "move": 2,
+                  "motion": 6,
+                  "sound": 29,
+                  "voice": 41
+                },
+                "motionBanks": [
+                  16
+                ]
+              }
+            ]
+          },
+          "candidateId": "d1:TOKI:installer:0x19e0",
+          "sourceCandidateIds": [
+            "d1:TOKI:installer:0x19e0",
+            "d1:TOKI:installer:0x2280"
+          ],
+          "world": "TOKI Tomato convenience store interior",
+          "owner": {
+            "entryFunction": "0x19e0",
+            "childReplayFunction": "0x2280",
+            "stateCodes": [
+              0,
+              10,
+              99
+            ],
+            "playFunction": "0xa94"
+          },
+          "audio": {
+            "music": [
+              "BGM050.SND"
+            ],
+            "soundBanks": [
+              "A1_TOURA.SND"
+            ],
+            "voiceStreams": [
+              "A0142B"
+            ]
+          }
+        }
+      ],
+      "bindingAvailability": "production"
+    }
+  ],
+  "missingScenesRanked": [],
+  "reviewedResearchNonScenes": [
+    {
+      "id": "phone-book",
+      "classification": "specialized-gameplay-timeline",
+      "programIds": [
+        "disc1-d000-phone-book-0x6a49c"
+      ],
+      "resourceNames": [
+        "AUTH"
+      ],
+      "reason": "The AUTH is owned by the phone-book control interaction, not a standalone cinematic.",
+      "content": {
+        "authBindingCount": 1,
+        "durationFrames": 890,
+        "commandCounts": {
+          "camera": 1,
+          "motion": 1,
+          "move": 1,
+          "sound": 7,
+          "voice": 3
+        },
+        "actorTags": [
+          "AKIR"
+        ],
+        "members": [
+          {
+            "programId": "disc1-d000-phone-book-0x6a49c",
+            "resourceName": "AUTH",
+            "archiveMember": "SEQDATA0.AUTH",
+            "sha256": "cded8b9c546b7ea3a4a4e0c3dbff9c3bfb31c2a9c3abc263e05414c352409c60",
+            "durationFrames": 890,
+            "callFileOffsets": [
+              "0x6aa34"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "kakg-resident-staging",
+      "classification": "resident-object-staging",
+      "programIds": [
+        "disc1-jhd0-kakg-owner-0x3cfa0"
+      ],
+      "resourceNames": [
+        "KAKG"
+      ],
+      "archiveMembers": [
+        "SEQDATK0.AUTH",
+        "SEQDATK1.AUTH"
+      ],
+      "reason": "These slots stage KAWA for the two already-selected conversations and are not independent scenes.",
+      "content": {
+        "authBindingCount": 2,
+        "durationFrames": 300,
+        "commandCounts": {
+          "camera": 2,
+          "motion": 2,
+          "move": 3,
+          "sound": 5
+        },
+        "actorTags": [
+          "AKIR",
+          "KAWA"
+        ],
+        "members": [
+          {
+            "programId": "disc1-jhd0-kakg-owner-0x3cfa0",
+            "resourceName": "KAKG",
+            "archiveMember": "SEQDATK0.AUTH",
+            "sha256": "c3a4b7d716d6fc8999a4edf50e3e7c0144a14baa0a85327a9680c7a7fdec4efe",
+            "durationFrames": 190,
+            "callFileOffsets": [
+              "0x3d322"
+            ]
+          },
+          {
+            "programId": "disc1-jhd0-kakg-owner-0x3cfa0",
+            "resourceName": "KAKG",
+            "archiveMember": "SEQDATK1.AUTH",
+            "sha256": "f4e3594b09103c781e50049a75316d1a33e43a216ae5bf6e314d2d9990dcf527",
+            "durationFrames": 110,
+            "callFileOffsets": [
+              "0x3d346"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "reviewedAmbientAndGameplayScripts": [
+    {
+      "candidateId": "d1:JD00:installer:0x59448",
+      "classification": "ambient-world-state",
+      "reviewedOwnerFunction": "0x58c34",
+      "reason": "The parent runs only in its exact 19:00-04:00 clock window, toggles TAXI and numbered JD00 map layers, and launches two silent 200-frame Ryo-only activities. It is nighttime taxi/world-state presentation, not a standalone player-facing cutscene.",
+      "evidence": [
+        ".disc-work/dialogue/native-event-ir.json",
+        "tools/evidence/native-clock-record-operation-evidence.json",
+        "tools/evidence/native-activity-owner-candidates.json"
+      ]
+    },
+    {
+      "candidateId": "d1:JHD0:installer:0x553c8",
+      "classification": "support-map-presentation",
+      "reviewedOwnerFunction": "0x545f8",
+      "reason": "The parent story controller launches this helper before later conversations. MPM1 and MPM2 contain byte-identical silent 335-frame Ryo-only AUTH data and alternate GWNS201G/GWNS202G map-presentation objects. They are conditional staging variants, not standalone player-facing cutscenes.",
+      "evidence": [
+        ".disc-work/dialogue/native-event-ir.json",
+        "tools/evidence/native-activity-owner-candidates.json",
+        "tools/evidence/shenmue1-scripted-scene-inventory.json"
+      ]
+    },
+    {
+      "candidateId": "d1:JU00:installer:0x4407c",
+      "classification": "room-transition-presentation",
+      "reviewedOwnerFunction": "0x43178",
+      "reason": "The parent is a clock- and room-state controller that disables interaction, runs two silent 200-frame Ryo-only activities around map-layer and GT01/GT02 gate-state changes, then restores gameplay. This is authored environmental transition presentation, not a standalone player-facing cutscene.",
+      "evidence": [
+        ".disc-work/dialogue/native-event-ir.json",
+        "tools/evidence/native-clock-record-operation-evidence.json",
+        "tools/evidence/native-activity-owner-candidates.json"
+      ]
+    },
+    {
+      "candidateId": "d1:D000:installer:0x7d3b0",
+      "classification": "nighttime-map-presentation",
+      "reviewedOwnerFunction": "0x7de84",
+      "reason": "The parent is a clock- and world-state controller for WAGK. Its three YORU activities contain only a camera and one LUV2 movement channel, while the archive contains five B0104OS map-lighting models and no actor motion, voice, or sound timeline. The owner applies scene-channel fades around the activities and restores gameplay, so these are authored nighttime lighting/presentation transitions rather than standalone player-facing cutscenes.",
+      "evidence": [
+        ".disc-work/dialogue/native-event-ir.json",
+        "tools/evidence/native-clock-record-operation-evidence.json",
+        "tools/evidence/shenmue1-scripted-scene-inventory.json",
+        "tools/evidence/native-activity-owner-candidates.json"
+      ]
+    }
+  ],
+  "duplicateInstallerCandidates": [
+    {
+      "candidateId": "d1:JHD0:installer:0x3e7ec",
+      "canonicalGroupId": "hazuki-conversations",
+      "area": "JHD0",
+      "installerFunction": "0x3e7ec",
+      "authPayloadCount": 2,
+      "authPayloadSha256": [
+        "c3a4b7d716d6fc8999a4edf50e3e7c0144a14baa0a85327a9680c7a7fdec4efe",
+        "f4e3594b09103c781e50049a75316d1a33e43a216ae5bf6e314d2d9990dcf527"
+      ]
+    },
+    {
+      "candidateId": "d1:JHD0:installer:0x537d4",
+      "canonicalGroupId": "hazuki-conversations",
+      "area": "JHD0",
+      "installerFunction": "0x537d4",
+      "authPayloadCount": 4,
+      "authPayloadSha256": [
+        "180c36d23dd813d7b9e2dec39b13169c001a0ae8e754b45368b698eeae859034",
+        "5b42a5329495c02803ac6e0cec1054921048088c47ed45f9efb1e0b046066267",
+        "c3a4b7d716d6fc8999a4edf50e3e7c0144a14baa0a85327a9680c7a7fdec4efe",
+        "f4e3594b09103c781e50049a75316d1a33e43a216ae5bf6e314d2d9990dcf527"
+      ]
+    }
+  ],
+  "newlyDiscoveredMissingScenes": [],
+  "unresolvedOwnerCandidates": [],
+  "generatedBy": "tools/cutscenes/audit_player_cutscene_scene_inventory.py",
+  "generatedFrom": [
+    {
+      "path": "tools/data/player-cutscene-scene-groups.json",
+      "sha256": "0b5e3e50b0d2f86fba2afb5e6926e071179a884268f9281a0793f723d1918ff2"
+    },
+    {
+      "path": "tools/evidence/native-cutscene-selector-program-audit.json",
+      "sha256": "054d3da6751553c798c3144fefce107ac993ab5e6bdcbaab6f834a3f0a21e12e"
+    },
+    {
+      "path": "tools/evidence/native-cutscene-package-readiness.json",
+      "sha256": "f270701427c195ef3a5adf236219a6e57bca1c1f005e0e6a1f404dd4ce765c49"
+    },
+    {
+      "path": "tools/evidence/native-activity-owner-candidates.json",
+      "sha256": "b853b5845a6f05a1fd5ece5fbd0c0738b51b932536d0a75440c54d1f4369179a"
+    },
+    {
+      "path": "tools/data/native-activity-owner-dispositions.json",
+      "sha256": "c46a8633ec2d02b4320652e9b7dc080502719341f58a224fb02a15f2b7a184b7"
+    },
+    {
+      "path": "play/data/events/nativeEventPrograms.generated.json",
+      "sha256": "2337efee89a42c3b8e2bc475ec2bd4ac2392ffa1ade22099b30b905c42b43e28"
+    },
+    {
+      "path": "tools/evidence/shenmue1-scripted-scene-inventory.json",
+      "sha256": "e9e255dd76c542f1d42c31e28fe08753f655cfce15f87e31779378755c3aa075"
+    },
+    {
+      "path": "tools/evidence/player-cutscene-owner-discovery.json",
+      "sha256": "71d13a685b797df9f1308fac77e4812402a25927edeace41b0a7db5f20044530"
+    }
+  ]
+}

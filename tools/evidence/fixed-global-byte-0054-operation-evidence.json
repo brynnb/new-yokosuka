@@ -1,0 +1,33 @@
+{
+  "schema": "new-yokosuka-fixed-global-byte-0054-operation-evidence-v1",
+  "operation": {
+    "operationId": 84,
+    "operationHex": "0x0054",
+    "handlerAddress": "0x0c168f3c",
+    "implementationAddress": "0x0c0a6f84",
+    "globalByteAddress": "0x0c201c40"
+  },
+  "staticEvidence": {
+    "handlerFunctionPointerLiteralFileOffset": "0x159058",
+    "handlerFunctionPointerValue": "0x0c0a6f84",
+    "globalAddressLiteralFileOffset": "0x97004",
+    "globalAddressLiteralValue": "0x0c201c40",
+    "globalInitialImageFileOffset": "0x1f1c40",
+    "globalInitialImageValue": 0,
+    "selectorZeroExpression": "old | 0x40",
+    "selectorOneExpression": "old & 0xbf"
+  },
+  "liveEvidence": {
+    "emulator": "Flycast",
+    "disc": 1,
+    "stateIndex": 2,
+    "stateSha256": "e3d430da77844977f754363d9f90e9ac2e4963a35707cb19e3f262774186dba5",
+    "profile": ".flycast-pvr/validation-global-byte",
+    "transport": "built-in GDB remote stub",
+    "guestWrites": false,
+    "artificialHandlerCalls": false,
+    "observedAddress": "0x0c201c40",
+    "observedValue": 0
+  },
+  "evidenceBoundary": "Only authored selectors zero and one receive semantics. The operation preserves every bit except mask 0x40; selectors two and three remain unresolved and fail closed. The live observation confirms the natural D000 save value but is not used to infer behavior."
+}

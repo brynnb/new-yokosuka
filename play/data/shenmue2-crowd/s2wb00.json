@@ -1,0 +1,1729 @@
+{
+  "schema": "new-yokosuka-shenmue2-crowd-v2",
+  "generatedFrom": "SCENE/01/NPC/NPC.BIN + HUMANS.IDX + HUMANS.AFS",
+  "worldId": "s2wb00",
+  "areaWorlds": {},
+  "localObjectModels": [],
+  "motionRequirements": {
+    "mbas": [],
+    "free": [],
+    "mobj": []
+  },
+  "source": {
+    "npcSha256": "dd15fd5829e75aa43e09d831549453329205282896f51cc0950bc8cd90e73814",
+    "humansIndexSha256": "9d5952e86a8284868ae817ee16bc9cfe49e29dac0a6635b649db400237b8ca33",
+    "humansSha256": "7e641175c4486136be9bb4bccf85a021e4751b75abb1d90ffabc56313150173a",
+    "nativeMotionSources": {
+      "NPC.MOT": {
+        "source": "MISC/NPC.MOT",
+        "sha256": "b9773add1f519108198e3bf366b86f8f70336b1bae2a845ce39abc15158ad732",
+        "byteLength": 937928
+      },
+      "NPC_TBL.MOT": {
+        "source": "MISC/NPC_TBL.MOT",
+        "sha256": "6ddb57ecb84adca3303de04f378ebecb70ed46e4e7867babb688a81db36d4104",
+        "byteLength": 671836
+      },
+      "MOTION.MOT": {
+        "source": "MISC/MOTION.MOT",
+        "sha256": "69e17a984c66fa8ba8eb1e0eeb6d17e6cddf7b24cad901c537a163b4c9dd9c59",
+        "byteLength": 624528
+      },
+      "NPC_WESM.MOT": {
+        "source": "MISC/NPC_WESM.MOT",
+        "sha256": "7dc37f7a84a9da19670ddba066b8b4fcaa51a7ba5072cb21206952e4253aa5be",
+        "byteLength": 420480
+      },
+      "NPC_KUN.MOT": {
+        "source": "MISC/NPC_KUN.MOT",
+        "sha256": "9c85a044db26a04453ae01d7799117ab9870eeabfae74950336a7bfaa5e40611",
+        "byteLength": 79424
+      },
+      "NPC_SYE.MOT": {
+        "source": "MISC/NPC_SYE.MOT",
+        "sha256": "3271d713b28ae82ef3ee394a957e93744051ef84613aee502c8a265e8ed09325",
+        "byteLength": 5288
+      },
+      "NPC_WS00.MOT": {
+        "source": "MISC/NPC_WS00.MOT",
+        "sha256": "23fc8825b6dbab081971b0422943c56a4c6243e513928785240951c5a0a371d7",
+        "byteLength": 59860
+      },
+      "NPC_JOY.MOT": {
+        "source": "MISC/NPC_JOY.MOT",
+        "sha256": "c64011ba1514c8dbe15054e5f4b6eb223a0b7079f866a0a4aab799f1486c5ec7",
+        "byteLength": 13720
+      },
+      "NPC_ANI1.MOT": {
+        "source": "MISC/NPC_ANI1.MOT",
+        "sha256": "0dfc87729e318d23cb21d4e9f5f350dd0daea525e069830bb793b727305add59",
+        "byteLength": 66408
+      },
+      "NPC_WK00.MOT": {
+        "source": "MISC/NPC_WK00.MOT",
+        "sha256": "699bdd5c47aa41a99e65df084397a16617fbebd9e48f8e20fd92f1d2119609f9",
+        "byteLength": 8740
+      },
+      "NPC_WR00.MOT": {
+        "source": "MISC/NPC_WR00.MOT",
+        "sha256": "187faebb0919a1994f867449d2503346b74b77bbcd7d07b87da7eca0f07fd11f",
+        "byteLength": 30272
+      },
+      "NPC_WN00.MOT": {
+        "source": "MISC/NPC_WN00.MOT",
+        "sha256": "9530aa712deb1d22915eb0a86522653ee039abc673bf4d2cf7cdc84a1bbc980e",
+        "byteLength": 17448
+      },
+      "NPC_WE00.MOT": {
+        "source": "MISC/NPC_WE00.MOT",
+        "sha256": "bd98935fbcaccb00e678512ab0dd9c07ec2e76f40e057a089a84e6dc294609b4",
+        "byteLength": 18020
+      },
+      "NPC_AK00.MOT": {
+        "source": "MISC/NPC_AK00.MOT",
+        "sha256": "9ce81e0ec72b03885f7a3e78c14e0f42695fc409bc8a3ebd6bb41ecf6a405927",
+        "byteLength": 4096
+      },
+      "NPC_WT00.MOT": {
+        "source": "MISC/NPC_WT00.MOT",
+        "sha256": "d8639863a7877d1dfbe55d90fec03ba0dba3a8014fba92153e6a5d82d8aa4bbb",
+        "byteLength": 76752
+      }
+    },
+    "routeSelection": "all proven generic actor programs whose first authored node is in this world",
+    "characterSelection": "exact actor code lookup in HUMANS.IDX",
+    "unresolvedNativeSemantics": [
+      "non-area prefix words preceding alternate actor program blocks",
+      "exact activation meaning of actor records with no packed time boundary",
+      "exact completion behavior of the final unbracketed route leg"
+    ],
+    "nativeRuntimePolicy": "Exact identities and native instruction phases are clock-driven. An opcode-3-only initial phase remains logically staged and non-resident until its first clock gate. Opcode-5/6 routes repeat; unbracketed routes execute once and hold. A final unbracketed leg exits after arrival, which remains an explicit inference pending complete opcode dispatch recovery."
+  },
+  "actors": [
+    {
+      "instanceId": "s2native:s2wb00:02G_:2",
+      "actorCode": "02G_",
+      "label": "S2 native resident 02G_",
+      "modelCode": "GF3_L",
+      "textureFile": "GF3_textures.bin",
+      "characterAssetDirectory": "shenmue2-characters",
+      "characterAssetFormat": "MT7",
+      "characterScale": 10,
+      "position": [
+        -735.7999877929688,
+        126.97500662047241,
+        555.9100341796875
+      ],
+      "nativeSchedule": {
+        "worldId": "s2wb00",
+        "speed": 0.699920654296875,
+        "phases": [
+          {
+            "startSecond": 0,
+            "behavior": "loop",
+            "active": true,
+            "lifecycle": "resident",
+            "points": [
+              [
+                -735.7999877929688,
+                126.97500662047241,
+                555.9100341796875
+              ],
+              [
+                -736.2288038213737,
+                126.97500662047241,
+                556.5355977436993
+              ],
+              [
+                -735.7999877929688,
+                126.97500662047241,
+                555.9100341796875
+              ],
+              [
+                -736.2288038213737,
+                126.97500662047241,
+                556.5355977436993
+              ],
+              [
+                -735.7999877929688,
+                126.97500662047241,
+                555.9100341796875
+              ],
+              [
+                -736.2288038213737,
+                126.97500662047241,
+                556.5355977436993
+              ],
+              [
+                -736.4205138683319,
+                126.97500615566969,
+                557.6873506307602
+              ],
+              [
+                -741.5,
+                126.97500615566969,
+                560.5799560546875
+              ],
+              [
+                -736.4205138683319,
+                126.97500615566969,
+                557.6873506307602
+              ],
+              [
+                -736.2288038213737,
+                126.97500662047241,
+                556.5355977436993
+              ],
+              [
+                -735.7999877929688,
+                126.97500662047241,
+                555.9100341796875
+              ]
+            ],
+            "sourceOffset": 18124,
+            "nodeIds": [
+              "WB10",
+              "WB10",
+              "WB10",
+              "WBS4"
+            ],
+            "routeIndices": [
+              39
+            ]
+          },
+          {
+            "startSecond": 66600,
+            "secondOfDay": 66600,
+            "behavior": "loop",
+            "active": true,
+            "lifecycle": "resident",
+            "points": [
+              [
+                -735.7999877929688,
+                126.97500662047241,
+                555.9100341796875
+              ]
+            ],
+            "sourceOffset": 18232,
+            "nodeIds": []
+          }
+        ],
+        "wrapAfterMidnightSecond": null,
+        "interpretation": "opcode 1/2 gates the following phase at its packed clock; opcode 5/6 brackets a repeating patrol; unbracketed node lists execute once and hold, except the final post-clock exit leg; an initial opcode-3-only phase stages the logical record without making its render model resident until the first clock gate",
+        "phase": 0
+      },
+      "localLoopRoute": {
+        "id": "s2:native:02G_:2",
+        "worldId": "s2wb00",
+        "points": [
+          [
+            -735.7999877929688,
+            126.97500662047241,
+            555.9100341796875
+          ],
+          [
+            -735.7999877929688,
+            126.97500662047241,
+            555.9100341796875
+          ]
+        ],
+        "speed": 0.699920654296875,
+        "phase": 0,
+        "movementMode": "0x66",
+        "clockDriven": true,
+        "supersededByNativeSchedule": true,
+        "activeUntilSecond": null,
+        "stationary": true
+      },
+      "shenmue2NativeEvidence": {
+        "source": "SCENE/01/NPC/NPC.BIN",
+        "actorProfile": {
+          "variant": 0,
+          "ageCategory": 62,
+          "motionSubtype": 1,
+          "sourceOffset": "0x454c"
+        },
+        "actorRecordIndex": 22,
+        "actorProgramBlockIndex": 2,
+        "actorProgramWorldSegmentIndex": null,
+        "actorProgramOffset": "0x46cc",
+        "actorProgramEnd": "0x4784",
+        "unresolvedSelectorWords": [
+          "0xd0",
+          "0x2b",
+          "0x213",
+          "0x1",
+          "0x4",
+          "0x0"
+        ],
+        "packedTimeBoundaries": [
+          {
+            "opcode": 1,
+            "packed": "0x121e",
+            "second": 66600,
+            "sourceOffset": "0x4738"
+          }
+        ],
+        "boundaryInterpretation": "packed clock values gate the following native instruction phases; backwards values are normalized across midnight",
+        "scheduleInterpretation": "opcode 1/2 gates the following phase at its packed clock; opcode 5/6 brackets a repeating patrol; unbracketed node lists execute once and hold, except the final post-clock exit leg; an initial opcode-3-only phase stages the logical record without making its render model resident until the first clock gate",
+        "nodeReferences": [
+          {
+            "opcode": 3,
+            "id": "WB10",
+            "index": 317,
+            "sourceOffset": "0x46cc",
+            "nodeRecordOffset": "0x2a160"
+          },
+          {
+            "opcode": 4,
+            "id": "WTV5",
+            "index": 620,
+            "sourceOffset": "0x46dc",
+            "nodeRecordOffset": "0x2f1dc"
+          },
+          {
+            "opcode": 4,
+            "id": "WB10",
+            "index": 317,
+            "sourceOffset": "0x46e8",
+            "nodeRecordOffset": "0x2a160"
+          },
+          {
+            "opcode": 4,
+            "id": "WTX2",
+            "index": 647,
+            "sourceOffset": "0x46f4",
+            "nodeRecordOffset": "0x2f908"
+          },
+          {
+            "opcode": 4,
+            "id": "WTX3",
+            "index": 648,
+            "sourceOffset": "0x4700",
+            "nodeRecordOffset": "0x2f94c"
+          },
+          {
+            "opcode": 4,
+            "id": "WB10",
+            "index": 317,
+            "sourceOffset": "0x470c",
+            "nodeRecordOffset": "0x2a160"
+          },
+          {
+            "opcode": 4,
+            "id": "WBS4",
+            "index": 332,
+            "sourceOffset": "0x4718",
+            "nodeRecordOffset": "0x2a55c"
+          },
+          {
+            "opcode": 4,
+            "id": "WTR0",
+            "index": 606,
+            "sourceOffset": "0x4724",
+            "nodeRecordOffset": "0x2ee24"
+          }
+        ],
+        "nativeOperations": [
+          {
+            "opcode": 3,
+            "arguments": [
+              "0x13d"
+            ],
+            "sourceOffset": "0x46cc"
+          },
+          {
+            "opcode": 5,
+            "arguments": [
+              "0x0"
+            ],
+            "sourceOffset": "0x46d4"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x26c",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x46dc"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x13d",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x46e8"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x287",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x46f4"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x288",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x4700"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x13d",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x470c"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x14c",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x4718"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x25e",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x4724"
+          },
+          {
+            "opcode": 6,
+            "arguments": [
+              "0x0"
+            ],
+            "sourceOffset": "0x4730"
+          },
+          {
+            "opcode": 1,
+            "arguments": [
+              "0x121e"
+            ],
+            "sourceOffset": "0x4738"
+          },
+          {
+            "opcode": 5,
+            "arguments": [
+              "0x0"
+            ],
+            "sourceOffset": "0x4740"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x26c",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x4748"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x287",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x4754"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x288",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x4760"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x25e",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x476c"
+          },
+          {
+            "opcode": 6,
+            "arguments": [
+              "0x0"
+            ],
+            "sourceOffset": "0x4778"
+          }
+        ],
+        "explicitPoseMotion": null,
+        "postBoundaryNodeReferences": [
+          {
+            "opcode": 4,
+            "id": "WTV5",
+            "index": 620,
+            "sourceOffset": "0x4748",
+            "nodeRecordOffset": "0x2f1dc"
+          },
+          {
+            "opcode": 4,
+            "id": "WTX2",
+            "index": 647,
+            "sourceOffset": "0x4754",
+            "nodeRecordOffset": "0x2f908"
+          },
+          {
+            "opcode": 4,
+            "id": "WTX3",
+            "index": 648,
+            "sourceOffset": "0x4760",
+            "nodeRecordOffset": "0x2f94c"
+          },
+          {
+            "opcode": 4,
+            "id": "WTR0",
+            "index": 606,
+            "sourceOffset": "0x476c",
+            "nodeRecordOffset": "0x2ee24"
+          }
+        ],
+        "logicalCharacterCode": "02G_",
+        "logicalCharacterIndex": 22,
+        "mt7RootNodeId": "0x7007",
+        "mt7BodyValue": 6,
+        "motionFamilyIndex": 6,
+        "locomotionMotionId": 61536,
+        "locomotionSpeed": 0.699920654296875,
+        "modelAfsEntry": 45,
+        "textureAfsEntry": 44
+      }
+    },
+    {
+      "instanceId": "s2native:s2wb00:02H_:2:1",
+      "actorCode": "02H_",
+      "label": "S2 native resident 02H_",
+      "modelCode": "GM3_L",
+      "textureFile": "GM3_textures.bin",
+      "characterAssetDirectory": "shenmue2-characters",
+      "characterAssetFormat": "MT7",
+      "characterScale": 10,
+      "position": [
+        -735.7999877929688,
+        126.97500662047241,
+        555.9100341796875
+      ],
+      "nativeSchedule": {
+        "worldId": "s2wb00",
+        "speed": 0.699920654296875,
+        "phases": [
+          {
+            "startSecond": 0,
+            "behavior": "loop",
+            "active": true,
+            "lifecycle": "resident",
+            "points": [
+              [
+                -735.7999877929688,
+                126.97500662047241,
+                555.9100341796875
+              ],
+              [
+                -736.2288038213737,
+                126.97500662047241,
+                556.5355977436993
+              ],
+              [
+                -735.7999877929688,
+                126.97500662047241,
+                555.9100341796875
+              ],
+              [
+                -736.2288038213737,
+                126.97500662047241,
+                556.5355977436993
+              ],
+              [
+                -735.7999877929688,
+                126.97500662047241,
+                555.9100341796875
+              ],
+              [
+                -736.2288038213737,
+                126.97500662047241,
+                556.5355977436993
+              ],
+              [
+                -735.7999877929688,
+                126.97500662047241,
+                555.9100341796875
+              ]
+            ],
+            "sourceOffset": 18984,
+            "nodeIds": [
+              "WB10",
+              "WB10",
+              "WB10",
+              "WB10"
+            ],
+            "routeIndices": [
+              39
+            ]
+          },
+          {
+            "startSecond": 67200,
+            "secondOfDay": 67200,
+            "behavior": "loop",
+            "active": true,
+            "lifecycle": "resident",
+            "points": [
+              [
+                -735.7999877929688,
+                126.97500662047241,
+                555.9100341796875
+              ]
+            ],
+            "sourceOffset": 19092,
+            "nodeIds": []
+          }
+        ],
+        "wrapAfterMidnightSecond": null,
+        "interpretation": "opcode 1/2 gates the following phase at its packed clock; opcode 5/6 brackets a repeating patrol; unbracketed node lists execute once and hold, except the final post-clock exit leg; an initial opcode-3-only phase stages the logical record without making its render model resident until the first clock gate",
+        "phase": 0.25
+      },
+      "localLoopRoute": {
+        "id": "s2:native:02H_:2",
+        "worldId": "s2wb00",
+        "points": [
+          [
+            -735.7999877929688,
+            126.97500662047241,
+            555.9100341796875
+          ],
+          [
+            -735.7999877929688,
+            126.97500662047241,
+            555.9100341796875
+          ]
+        ],
+        "speed": 0.699920654296875,
+        "phase": 0.25,
+        "movementMode": "0x66",
+        "clockDriven": true,
+        "supersededByNativeSchedule": true,
+        "activeUntilSecond": null,
+        "stationary": true
+      },
+      "shenmue2NativeEvidence": {
+        "source": "SCENE/01/NPC/NPC.BIN",
+        "actorProfile": {
+          "variant": 1,
+          "ageCategory": 62,
+          "motionSubtype": 1,
+          "sourceOffset": "0x48d4"
+        },
+        "actorRecordIndex": 23,
+        "actorProgramBlockIndex": 2,
+        "actorProgramWorldSegmentIndex": 1,
+        "actorProgramOffset": "0x4a28",
+        "actorProgramEnd": "0x4ae0",
+        "unresolvedSelectorWords": [
+          "0xd0",
+          "0x2b",
+          "0x213",
+          "0x1"
+        ],
+        "packedTimeBoundaries": [
+          {
+            "opcode": 1,
+            "packed": "0x1228",
+            "second": 67200,
+            "sourceOffset": "0x4a94"
+          }
+        ],
+        "boundaryInterpretation": "packed clock values gate the following native instruction phases; backwards values are normalized across midnight",
+        "scheduleInterpretation": "opcode 1/2 gates the following phase at its packed clock; opcode 5/6 brackets a repeating patrol; unbracketed node lists execute once and hold, except the final post-clock exit leg; an initial opcode-3-only phase stages the logical record without making its render model resident until the first clock gate",
+        "nodeReferences": [
+          {
+            "opcode": 3,
+            "id": "WB10",
+            "index": 317,
+            "sourceOffset": "0x4a28",
+            "nodeRecordOffset": "0x2a160"
+          },
+          {
+            "opcode": 4,
+            "id": "WTK0",
+            "index": 595,
+            "sourceOffset": "0x4a38",
+            "nodeRecordOffset": "0x2eb38"
+          },
+          {
+            "opcode": 4,
+            "id": "WB10",
+            "index": 317,
+            "sourceOffset": "0x4a44",
+            "nodeRecordOffset": "0x2a160"
+          },
+          {
+            "opcode": 4,
+            "id": "WTVD",
+            "index": 628,
+            "sourceOffset": "0x4a50",
+            "nodeRecordOffset": "0x2f3fc"
+          },
+          {
+            "opcode": 4,
+            "id": "WB10",
+            "index": 317,
+            "sourceOffset": "0x4a5c",
+            "nodeRecordOffset": "0x2a160"
+          },
+          {
+            "opcode": 4,
+            "id": "WTVE",
+            "index": 629,
+            "sourceOffset": "0x4a68",
+            "nodeRecordOffset": "0x2f440"
+          },
+          {
+            "opcode": 4,
+            "id": "WB10",
+            "index": 317,
+            "sourceOffset": "0x4a74",
+            "nodeRecordOffset": "0x2a160"
+          },
+          {
+            "opcode": 4,
+            "id": "WTVC",
+            "index": 627,
+            "sourceOffset": "0x4a80",
+            "nodeRecordOffset": "0x2f3b8"
+          }
+        ],
+        "nativeOperations": [
+          {
+            "opcode": 3,
+            "arguments": [
+              "0x13d"
+            ],
+            "sourceOffset": "0x4a28"
+          },
+          {
+            "opcode": 5,
+            "arguments": [
+              "0x0"
+            ],
+            "sourceOffset": "0x4a30"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x253",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x4a38"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x13d",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x4a44"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x274",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x4a50"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x13d",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x4a5c"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x275",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x4a68"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x13d",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x4a74"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x273",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x4a80"
+          },
+          {
+            "opcode": 6,
+            "arguments": [
+              "0x0"
+            ],
+            "sourceOffset": "0x4a8c"
+          },
+          {
+            "opcode": 1,
+            "arguments": [
+              "0x1228"
+            ],
+            "sourceOffset": "0x4a94"
+          },
+          {
+            "opcode": 5,
+            "arguments": [
+              "0x0"
+            ],
+            "sourceOffset": "0x4a9c"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x253",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x4aa4"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x274",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x4ab0"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x275",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x4abc"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x273",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x4ac8"
+          },
+          {
+            "opcode": 6,
+            "arguments": [
+              "0x0"
+            ],
+            "sourceOffset": "0x4ad4"
+          }
+        ],
+        "explicitPoseMotion": null,
+        "postBoundaryNodeReferences": [
+          {
+            "opcode": 4,
+            "id": "WTK0",
+            "index": 595,
+            "sourceOffset": "0x4aa4",
+            "nodeRecordOffset": "0x2eb38"
+          },
+          {
+            "opcode": 4,
+            "id": "WTVD",
+            "index": 628,
+            "sourceOffset": "0x4ab0",
+            "nodeRecordOffset": "0x2f3fc"
+          },
+          {
+            "opcode": 4,
+            "id": "WTVE",
+            "index": 629,
+            "sourceOffset": "0x4abc",
+            "nodeRecordOffset": "0x2f440"
+          },
+          {
+            "opcode": 4,
+            "id": "WTVC",
+            "index": 627,
+            "sourceOffset": "0x4ac8",
+            "nodeRecordOffset": "0x2f3b8"
+          }
+        ],
+        "logicalCharacterCode": "02H_",
+        "logicalCharacterIndex": 23,
+        "mt7RootNodeId": "0x7007",
+        "mt7BodyValue": 6,
+        "motionFamilyIndex": 6,
+        "locomotionMotionId": 61536,
+        "locomotionSpeed": 0.699920654296875,
+        "modelAfsEntry": 47,
+        "textureAfsEntry": 46
+      }
+    },
+    {
+      "instanceId": "s2native:s2wb00:03H_:3",
+      "actorCode": "03H_",
+      "label": "S2 native resident 03H_",
+      "modelCode": "GM4_L",
+      "textureFile": "GM4_textures.bin",
+      "characterAssetDirectory": "shenmue2-characters",
+      "characterAssetFormat": "MT7",
+      "characterScale": 10,
+      "position": [
+        -735.7999877929688,
+        126.97500662047241,
+        555.9100341796875
+      ],
+      "nativeSchedule": {
+        "worldId": "s2wb00",
+        "speed": 0.699920654296875,
+        "phases": [
+          {
+            "startSecond": 0,
+            "behavior": "loop",
+            "active": true,
+            "lifecycle": "resident",
+            "points": [
+              [
+                -735.7999877929688,
+                126.97500662047241,
+                555.9100341796875
+              ],
+              [
+                -736.2288038213737,
+                126.97500662047241,
+                556.5355977436993
+              ],
+              [
+                -735.7999877929688,
+                126.97500662047241,
+                555.9100341796875
+              ],
+              [
+                -736.2288038213737,
+                126.97500662047241,
+                556.5355977436993
+              ],
+              [
+                -735.8142700195312,
+                126.97500610351562,
+                554.5211791992188
+              ],
+              [
+                -736.1249389648438,
+                126.9749984741211,
+                546.760009765625
+              ],
+              [
+                -736.125,
+                126.9749984741211,
+                545.8900146484375
+              ],
+              [
+                -736.4341430664062,
+                126.9749984741211,
+                543.9388427734375
+              ],
+              [
+                -736.6709594726562,
+                126.9749984741211,
+                543.4611206054688
+              ],
+              [
+                -736.785400390625,
+                126.9749984741211,
+                542.4098510742188
+              ],
+              [
+                -736.7958374023438,
+                126.97699737548828,
+                540.3698120117188
+              ],
+              [
+                -736.7646484375,
+                126.97599792480469,
+                539.9639282226562
+              ],
+              [
+                -736.7632446289062,
+                126.97599792480469,
+                537.0064697265625
+              ],
+              [
+                -736.5174560546875,
+                126.97599792480469,
+                536.8031005859375
+              ],
+              [
+                -733.7021408081055,
+                126.97599792480469,
+                536.5379829406738
+              ],
+              [
+                -731.4161987304688,
+                126.97599792480469,
+                536.068603515625
+              ],
+              [
+                -730.8759288787842,
+                126.97072452306747,
+                535.7263860702515
+              ],
+              [
+                -730.6492309570312,
+                126.96193552017212,
+                535.3465270996094
+              ],
+              [
+                -730.5499267578125,
+                126.97599792480469,
+                533.7000122070312
+              ],
+              [
+                -730.7899780273438,
+                127.20099639892578,
+                525.5700073242188
+              ],
+              [
+                -730.6166152954102,
+                127.55256032943726,
+                524.0828742980957
+              ],
+              [
+                -730.64501953125,
+                127.8759994506836,
+                523.5299682617188
+              ],
+              [
+                -731.4471664428711,
+                127.91818714141846,
+                523.1153831481934
+              ],
+              [
+                -732.4992065429688,
+                127.8759994506836,
+                522.873779296875
+              ],
+              [
+                -732.8239135742188,
+                127.8759994506836,
+                522.5615234375
+              ],
+              [
+                -732.5963888069382,
+                127.8759994506836,
+                520.3020207539666
+              ],
+              [
+                -734.0490112304688,
+                127.8759994506836,
+                520.3599853515625
+              ],
+              [
+                -732.5963888069382,
+                127.8759994506836,
+                520.3020207539666
+              ],
+              [
+                -732.8239135742188,
+                127.8759994506836,
+                522.5615234375
+              ],
+              [
+                -733.0986938476562,
+                127.8759994506836,
+                522.873779296875
+              ],
+              [
+                -736.395263671875,
+                127.8759994506836,
+                523.0736083984375
+              ],
+              [
+                -737.0317993164062,
+                127.8759994506836,
+                523.08251953125
+              ],
+              [
+                -740.530517578125,
+                127.8759994506836,
+                522.8612670898438
+              ],
+              [
+                -740.9675903320312,
+                127.8759994506836,
+                522.4615478515625
+              ],
+              [
+                -740.9606082588434,
+                127.8759994506836,
+                520.0714931339025
+              ],
+              [
+                -739.89697265625,
+                127.8759994506836,
+                520.31103515625
+              ],
+              [
+                -740.9606082588434,
+                127.8759994506836,
+                520.0714931339025
+              ],
+              [
+                -740.9675903320312,
+                127.8759994506836,
+                522.4615478515625
+              ],
+              [
+                -741.3297729492188,
+                127.8759994506836,
+                522.8987426757812
+              ],
+              [
+                -742.1480522155762,
+                127.93224954605103,
+                523.5875854492188
+              ],
+              [
+                -742.7950439453125,
+                127.8759994506836,
+                524.3300170898438
+              ],
+              [
+                -742.9431762695312,
+                127.42599868774414,
+                524.8775901794434
+              ],
+              [
+                -742.9152669906616,
+                127.15881073474884,
+                525.3148798942566
+              ],
+              [
+                -742.8900146484375,
+                126.97599792480469,
+                526.1900024414062
+              ],
+              [
+                -742.7449340820312,
+                126.97599792480469,
+                533.739990234375
+              ],
+              [
+                -742.8020668029785,
+                126.97599792480469,
+                535.5291595458984
+              ],
+              [
+                -742.6936430931091,
+                126.97599792480469,
+                536.0270519256592
+              ],
+              [
+                -742.2228393554688,
+                126.97599792480469,
+                536.4201049804688
+              ],
+              [
+                -741.2452926635742,
+                126.97599792480469,
+                536.6739921569824
+              ],
+              [
+                -739.8994750976562,
+                126.97599792480469,
+                536.7469482421875
+              ],
+              [
+                -736.9868774414062,
+                126.97599792480469,
+                536.7843017578125
+              ],
+              [
+                -736.7632446289062,
+                126.97599792480469,
+                537.0064697265625
+              ],
+              [
+                -736.7646484375,
+                126.97599792480469,
+                539.9639282226562
+              ],
+              [
+                -736.7958374023438,
+                126.97699737548828,
+                540.3698120117188
+              ],
+              [
+                -736.785400390625,
+                126.9749984741211,
+                542.4098510742188
+              ],
+              [
+                -736.6709594726562,
+                126.9749984741211,
+                543.4611206054688
+              ],
+              [
+                -736.4341430664062,
+                126.9749984741211,
+                543.9388427734375
+              ],
+              [
+                -736.125,
+                126.9749984741211,
+                545.8900146484375
+              ],
+              [
+                -736.1249389648438,
+                126.9749984741211,
+                546.760009765625
+              ],
+              [
+                -735.8142700195312,
+                126.97500610351562,
+                554.5211791992188
+              ],
+              [
+                -736.2288038213737,
+                126.97500662047241,
+                556.5355977436993
+              ],
+              [
+                -735.7999877929688,
+                126.97500662047241,
+                555.9100341796875
+              ]
+            ],
+            "sourceOffset": 24636,
+            "nodeIds": [
+              "WB10",
+              "WB10",
+              "WB13",
+              "WB14"
+            ],
+            "routeIndices": [
+              39,
+              232,
+              169,
+              170,
+              178,
+              177,
+              176,
+              179,
+              171
+            ]
+          },
+          {
+            "startSecond": 66600,
+            "secondOfDay": 66600,
+            "behavior": "stationary",
+            "active": true,
+            "lifecycle": "resident",
+            "points": [
+              [
+                -735.7999877929688,
+                126.97500662047241,
+                555.9100341796875
+              ]
+            ],
+            "sourceOffset": 24696,
+            "nodeIds": []
+          }
+        ],
+        "wrapAfterMidnightSecond": null,
+        "interpretation": "opcode 1/2 gates the following phase at its packed clock; opcode 5/6 brackets a repeating patrol; unbracketed node lists execute once and hold, except the final post-clock exit leg; an initial opcode-3-only phase stages the logical record without making its render model resident until the first clock gate",
+        "phase": 0.5
+      },
+      "localLoopRoute": {
+        "id": "s2:native:03H_:3",
+        "worldId": "s2wb00",
+        "points": [
+          [
+            -735.7999877929688,
+            126.97500662047241,
+            555.9100341796875
+          ],
+          [
+            -735.7999877929688,
+            126.97500662047241,
+            555.9100341796875
+          ]
+        ],
+        "speed": 0.699920654296875,
+        "phase": 0.5,
+        "movementMode": "0x66",
+        "clockDriven": true,
+        "supersededByNativeSchedule": true,
+        "activeUntilSecond": null,
+        "stationary": true
+      },
+      "shenmue2NativeEvidence": {
+        "source": "SCENE/01/NPC/NPC.BIN",
+        "actorProfile": {
+          "variant": 1,
+          "ageCategory": 62,
+          "motionSubtype": 1,
+          "sourceOffset": "0x5e3c"
+        },
+        "actorRecordIndex": 31,
+        "actorProgramBlockIndex": 3,
+        "actorProgramWorldSegmentIndex": null,
+        "actorProgramOffset": "0x603c",
+        "actorProgramEnd": "0x6090",
+        "unresolvedSelectorWords": [
+          "0x80",
+          "0x2b",
+          "0x213",
+          "0x1",
+          "0x4",
+          "0x0",
+          "0x2b",
+          "0x467",
+          "0x1",
+          "0x5",
+          "0x0"
+        ],
+        "packedTimeBoundaries": [
+          {
+            "opcode": 1,
+            "packed": "0x121e",
+            "second": 66600,
+            "sourceOffset": "0x6078"
+          }
+        ],
+        "boundaryInterpretation": "packed clock values gate the following native instruction phases; backwards values are normalized across midnight",
+        "scheduleInterpretation": "opcode 1/2 gates the following phase at its packed clock; opcode 5/6 brackets a repeating patrol; unbracketed node lists execute once and hold, except the final post-clock exit leg; an initial opcode-3-only phase stages the logical record without making its render model resident until the first clock gate",
+        "nodeReferences": [
+          {
+            "opcode": 3,
+            "id": "WB10",
+            "index": 317,
+            "sourceOffset": "0x603c",
+            "nodeRecordOffset": "0x2a160"
+          },
+          {
+            "opcode": 4,
+            "id": "WB10",
+            "index": 317,
+            "sourceOffset": "0x604c",
+            "nodeRecordOffset": "0x2a160"
+          },
+          {
+            "opcode": 4,
+            "id": "WB13",
+            "index": 318,
+            "sourceOffset": "0x6058",
+            "nodeRecordOffset": "0x2a1a4"
+          },
+          {
+            "opcode": 4,
+            "id": "WB14",
+            "index": 319,
+            "sourceOffset": "0x6064",
+            "nodeRecordOffset": "0x2a1e8"
+          }
+        ],
+        "nativeOperations": [
+          {
+            "opcode": 3,
+            "arguments": [
+              "0x13d"
+            ],
+            "sourceOffset": "0x603c"
+          },
+          {
+            "opcode": 5,
+            "arguments": [
+              "0x0"
+            ],
+            "sourceOffset": "0x6044"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x13d",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x604c"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x13e",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x6058"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x13f",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x6064"
+          },
+          {
+            "opcode": 6,
+            "arguments": [
+              "0x0"
+            ],
+            "sourceOffset": "0x6070"
+          },
+          {
+            "opcode": 1,
+            "arguments": [
+              "0x121e"
+            ],
+            "sourceOffset": "0x6078"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x28a",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0x6080"
+          }
+        ],
+        "explicitPoseMotion": null,
+        "postBoundaryNodeReferences": [
+          {
+            "opcode": 4,
+            "id": "WTXA",
+            "index": 650,
+            "sourceOffset": "0x6080",
+            "nodeRecordOffset": "0x2f9d4"
+          }
+        ],
+        "logicalCharacterCode": "03H_",
+        "logicalCharacterIndex": 31,
+        "mt7RootNodeId": "0x7007",
+        "mt7BodyValue": 6,
+        "motionFamilyIndex": 6,
+        "locomotionMotionId": 61536,
+        "locomotionSpeed": 0.699920654296875,
+        "modelAfsEntry": 63,
+        "textureAfsEntry": 62
+      }
+    },
+    {
+      "instanceId": "s2native:s2wb00:07C_:5",
+      "actorCode": "07C_",
+      "label": "S2 native resident 07C_",
+      "modelCode": "JN8_L",
+      "textureFile": "JN8_textures.bin",
+      "characterAssetDirectory": "shenmue2-characters",
+      "characterAssetFormat": "MT7",
+      "characterScale": 10,
+      "position": [
+        -741.5,
+        126.97500615566969,
+        560.5799560546875
+      ],
+      "nativeSchedule": {
+        "worldId": "s2wb00",
+        "speed": 1.2447248186383928,
+        "phases": [
+          {
+            "startSecond": 0,
+            "behavior": "loop",
+            "active": true,
+            "lifecycle": "resident",
+            "points": [
+              [
+                -741.5,
+                126.97500615566969,
+                560.5799560546875
+              ],
+              [
+                -736.4205138683319,
+                126.97500615566969,
+                557.6873506307602
+              ],
+              [
+                -741.5,
+                126.97500615566969,
+                560.5799560546875
+              ],
+              [
+                -736.4205138683319,
+                126.97500615566969,
+                557.6873506307602
+              ],
+              [
+                -741.5,
+                126.97500615566969,
+                560.5799560546875
+              ]
+            ],
+            "sourceOffset": 42252,
+            "nodeIds": [
+              "WBS4",
+              "WBS4",
+              "WBS4"
+            ],
+            "routeIndices": [
+              39
+            ]
+          },
+          {
+            "startSecond": 66600,
+            "secondOfDay": 66600,
+            "behavior": "stationary",
+            "active": true,
+            "lifecycle": "resident",
+            "points": [
+              [
+                -741.5,
+                126.97500615566969,
+                560.5799560546875
+              ]
+            ],
+            "sourceOffset": 42356,
+            "nodeIds": []
+          }
+        ],
+        "wrapAfterMidnightSecond": null,
+        "interpretation": "opcode 1/2 gates the following phase at its packed clock; opcode 5/6 brackets a repeating patrol; unbracketed node lists execute once and hold, except the final post-clock exit leg; an initial opcode-3-only phase stages the logical record without making its render model resident until the first clock gate",
+        "phase": 0.75
+      },
+      "localLoopRoute": {
+        "id": "s2:native:07C_:5",
+        "worldId": "s2wb00",
+        "points": [
+          [
+            -741.5,
+            126.97500615566969,
+            560.5799560546875
+          ],
+          [
+            -741.5,
+            126.97500615566969,
+            560.5799560546875
+          ]
+        ],
+        "speed": 1.2447248186383928,
+        "phase": 0.75,
+        "movementMode": "0x66",
+        "clockDriven": true,
+        "supersededByNativeSchedule": true,
+        "activeUntilSecond": null,
+        "stationary": true
+      },
+      "shenmue2NativeEvidence": {
+        "source": "SCENE/01/NPC/NPC.BIN",
+        "actorProfile": {
+          "variant": 0,
+          "ageCategory": 22,
+          "motionSubtype": 1,
+          "sourceOffset": "0xa2f0"
+        },
+        "actorRecordIndex": 55,
+        "actorProgramBlockIndex": 5,
+        "actorProgramWorldSegmentIndex": null,
+        "actorProgramOffset": "0xa50c",
+        "actorProgramEnd": "0xa594",
+        "unresolvedSelectorWords": [
+          "0x94",
+          "0x14",
+          "0x0"
+        ],
+        "packedTimeBoundaries": [
+          {
+            "opcode": 1,
+            "packed": "0x121e",
+            "second": 66600,
+            "sourceOffset": "0xa574"
+          }
+        ],
+        "boundaryInterpretation": "packed clock values gate the following native instruction phases; backwards values are normalized across midnight",
+        "scheduleInterpretation": "opcode 1/2 gates the following phase at its packed clock; opcode 5/6 brackets a repeating patrol; unbracketed node lists execute once and hold, except the final post-clock exit leg; an initial opcode-3-only phase stages the logical record without making its render model resident until the first clock gate",
+        "nodeReferences": [
+          {
+            "opcode": 3,
+            "id": "WBS4",
+            "index": 332,
+            "sourceOffset": "0xa50c",
+            "nodeRecordOffset": "0x2a55c"
+          },
+          {
+            "opcode": 4,
+            "id": "WTV5",
+            "index": 620,
+            "sourceOffset": "0xa524",
+            "nodeRecordOffset": "0x2f1dc"
+          },
+          {
+            "opcode": 4,
+            "id": "WTV2",
+            "index": 617,
+            "sourceOffset": "0xa530",
+            "nodeRecordOffset": "0x2f110"
+          },
+          {
+            "opcode": 4,
+            "id": "WBS4",
+            "index": 332,
+            "sourceOffset": "0xa53c",
+            "nodeRecordOffset": "0x2a55c"
+          },
+          {
+            "opcode": 4,
+            "id": "WTV4",
+            "index": 619,
+            "sourceOffset": "0xa548",
+            "nodeRecordOffset": "0x2f198"
+          },
+          {
+            "opcode": 4,
+            "id": "WTV6",
+            "index": 621,
+            "sourceOffset": "0xa554",
+            "nodeRecordOffset": "0x2f220"
+          },
+          {
+            "opcode": 4,
+            "id": "WBS4",
+            "index": 332,
+            "sourceOffset": "0xa560",
+            "nodeRecordOffset": "0x2a55c"
+          }
+        ],
+        "nativeOperations": [
+          {
+            "opcode": 3,
+            "arguments": [
+              "0x14c"
+            ],
+            "sourceOffset": "0xa50c"
+          },
+          {
+            "opcode": 21,
+            "arguments": [
+              "0x0"
+            ],
+            "sourceOffset": "0xa514"
+          },
+          {
+            "opcode": 5,
+            "arguments": [
+              "0x0"
+            ],
+            "sourceOffset": "0xa51c"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x26c",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0xa524"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x269",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0xa530"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x14c",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0xa53c"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x26b",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0xa548"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x26d",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0xa554"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x14c",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0xa560"
+          },
+          {
+            "opcode": 6,
+            "arguments": [
+              "0x0"
+            ],
+            "sourceOffset": "0xa56c"
+          },
+          {
+            "opcode": 1,
+            "arguments": [
+              "0x121e"
+            ],
+            "sourceOffset": "0xa574"
+          },
+          {
+            "opcode": 4,
+            "arguments": [
+              "0x28a",
+              "0x3f800000"
+            ],
+            "sourceOffset": "0xa57c"
+          },
+          {
+            "opcode": 20,
+            "arguments": [
+              "0x0"
+            ],
+            "sourceOffset": "0xa588"
+          }
+        ],
+        "explicitPoseMotion": null,
+        "postBoundaryNodeReferences": [
+          {
+            "opcode": 4,
+            "id": "WTXA",
+            "index": 650,
+            "sourceOffset": "0xa57c",
+            "nodeRecordOffset": "0x2f9d4"
+          }
+        ],
+        "logicalCharacterCode": "07C_",
+        "logicalCharacterIndex": 55,
+        "mt7RootNodeId": "0x7008",
+        "mt7BodyValue": 7,
+        "motionFamilyIndex": 7,
+        "locomotionMotionId": 61574,
+        "locomotionSpeed": 1.2447248186383928,
+        "modelAfsEntry": 111,
+        "textureAfsEntry": 110
+      }
+    }
+  ]
+}

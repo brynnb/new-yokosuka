@@ -1,0 +1,873 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/build_cata1_activity_pack.mjs",
+  "source": {
+    "disc": 1,
+    "path": "extracted_files/data/SCENE/01/JU00/CATA1.PKS",
+    "sha256": "2bc070776361b822cda028f653d45fa94e08474f22b3e01686ebdb885c46924b",
+    "archiveFormat": "PAKS/IPAC",
+    "members": [
+      {
+        "name": "DANM400G.CHRM",
+        "byteLength": 2636,
+        "sha256": "a34211b0f17aa553059312bd098f755e7fa95483bcd5d95a8deae88e3318f452"
+      },
+      {
+        "name": "KRIS500G.CHRM",
+        "byteLength": 1028,
+        "sha256": "519ad6824273ccbe27ac8f120a2372a1cbac3f0d6567870f1f639dcb63e4a804"
+      },
+      {
+        "name": "M_01CAT.MOTN",
+        "byteLength": 366692,
+        "sha256": "01489797ac2fb1db34bb63659b418672160c4d0a2fdd4d6bc5fbcc5073a04f42"
+      },
+      {
+        "name": "NIBM400G.CHRM",
+        "byteLength": 1692,
+        "sha256": "0e1b1183dac9fd49175e994aaaf1141a154a3e95d4bf59913ae0c904eb9da40b"
+      },
+      {
+        "name": "NIBM401G.CHRM",
+        "byteLength": 7620,
+        "sha256": "86599162d325f971b00459692dd2e3fb0f41f6fff5a100dd3b6d78d31f654b65"
+      },
+      {
+        "name": "SEQDATA0.AUTH",
+        "byteLength": 28456,
+        "sha256": "608d057edec528c35f4067cf5011abb8c351e81fd916269b7642d68833124552"
+      },
+      {
+        "name": "SEQDATA1.AUTH",
+        "byteLength": 15028,
+        "sha256": "8fe949eb1378fd9f37f8742972f8f8116d3dbbdcff2c428a16c89ea20cd56ed4"
+      },
+      {
+        "name": "SEQDATA2.AUTH",
+        "byteLength": 9012,
+        "sha256": "db3cf574a2567e2a3dd5d52f70d2f3678efeb81cf4029a324ddf59154868b1b7"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "tools/evidence/cata1-native-lifecycle.json",
+    "resourceName": "CATA1",
+    "variant": "",
+    "selectionRule": "exact AUTH member name selected by repeated operation-0x013e slot-0 installs"
+  },
+  "audioManifest": "public/audio/world/cata1/manifest.json",
+  "sceneObjects": {
+    "NBOX": {
+      "model": "DANM400G",
+      "image": "DANM400G",
+      "browserFilename": "S1_JU00_DANM400G.MT5",
+      "assetPath": "play/assets/yamanose/cata1/DANM400G.CHRM",
+      "lifecycle": {
+        "kind": "native-composite-owner"
+      },
+      "nativeBinding": {
+        "archive": "CATA1.PKF",
+        "archiveMember": "CHARA.CHRT",
+        "characterRecordOffset": 112,
+        "imagePropertyOffset": 140,
+        "defImageRecordOffset": 8
+      }
+    },
+    "NBO1": {
+      "model": "NIBM400G",
+      "image": "NIBOSHI",
+      "browserFilename": "S1_JU00_NIBM400G.MT5",
+      "assetPath": "play/assets/yamanose/cata1/NIBM400G.CHRM",
+      "lifecycle": {
+        "kind": "native-composite-owner"
+      },
+      "nativeBinding": {
+        "archive": "CATA1.PKF",
+        "archiveMember": "CHARA.CHRT",
+        "characterRecordOffset": 228,
+        "imagePropertyOffset": 256,
+        "defImageRecordOffset": 40
+      }
+    },
+    "NBO2": {
+      "model": "NIBM400G",
+      "image": "NIBOSHI",
+      "browserFilename": "S1_JU00_NIBM400G.MT5",
+      "assetPath": "play/assets/yamanose/cata1/NIBM400G.CHRM",
+      "lifecycle": {
+        "kind": "native-composite-owner"
+      },
+      "nativeBinding": {
+        "archive": "CATA1.PKF",
+        "archiveMember": "CHARA.CHRT",
+        "characterRecordOffset": 312,
+        "imagePropertyOffset": 340,
+        "defImageRecordOffset": 40
+      }
+    },
+    "NBO3": {
+      "model": "NIBM400G",
+      "image": "NIBOSHI",
+      "browserFilename": "S1_JU00_NIBM400G.MT5",
+      "assetPath": "play/assets/yamanose/cata1/NIBM400G.CHRM",
+      "lifecycle": {
+        "kind": "native-composite-owner"
+      },
+      "nativeBinding": {
+        "archive": "CATA1.PKF",
+        "archiveMember": "CHARA.CHRT",
+        "characterRecordOffset": 396,
+        "imagePropertyOffset": 424,
+        "defImageRecordOffset": 40
+      }
+    },
+    "NBO4": {
+      "model": "NIBM400G",
+      "image": "NIBOSHI",
+      "browserFilename": "S1_JU00_NIBM400G.MT5",
+      "assetPath": "play/assets/yamanose/cata1/NIBM400G.CHRM",
+      "lifecycle": {
+        "kind": "native-composite-owner"
+      },
+      "nativeBinding": {
+        "archive": "CATA1.PKF",
+        "archiveMember": "CHARA.CHRT",
+        "characterRecordOffset": 480,
+        "imagePropertyOffset": 508,
+        "defImageRecordOffset": 40
+      }
+    },
+    "NBO5": {
+      "model": "NIBM400G",
+      "image": "NIBOSHI",
+      "browserFilename": "S1_JU00_NIBM400G.MT5",
+      "assetPath": "play/assets/yamanose/cata1/NIBM400G.CHRM",
+      "lifecycle": {
+        "kind": "native-composite-owner"
+      },
+      "nativeBinding": {
+        "archive": "CATA1.PKF",
+        "archiveMember": "CHARA.CHRT",
+        "characterRecordOffset": 564,
+        "imagePropertyOffset": 592,
+        "defImageRecordOffset": 40
+      }
+    },
+    "BNB1": {
+      "model": "NIBM401G",
+      "image": "NIBM401G",
+      "browserFilename": "S1_JU00_NIBM401G.MT5",
+      "assetPath": "play/assets/yamanose/cata1/NIBM401G.CHRM",
+      "lifecycle": {
+        "kind": "native-composite-owner"
+      },
+      "nativeBinding": {
+        "archive": "CATA1.PKF",
+        "archiveMember": "CHARA.CHRT",
+        "characterRecordOffset": 648,
+        "imagePropertyOffset": 676,
+        "defImageRecordOffset": 72
+      }
+    },
+    "BNB2": {
+      "model": "NIBM401G",
+      "image": "NIBM401G",
+      "browserFilename": "S1_JU00_NIBM401G.MT5",
+      "assetPath": "play/assets/yamanose/cata1/NIBM401G.CHRM",
+      "lifecycle": {
+        "kind": "native-composite-owner"
+      },
+      "nativeBinding": {
+        "archive": "CATA1.PKF",
+        "archiveMember": "CHARA.CHRT",
+        "characterRecordOffset": 732,
+        "imagePropertyOffset": 760,
+        "defImageRecordOffset": 72
+      }
+    },
+    "BNB3": {
+      "model": "NIBM401G",
+      "image": "NIBM401G",
+      "browserFilename": "S1_JU00_NIBM401G.MT5",
+      "assetPath": "play/assets/yamanose/cata1/NIBM401G.CHRM",
+      "lifecycle": {
+        "kind": "native-composite-owner"
+      },
+      "nativeBinding": {
+        "archive": "CATA1.PKF",
+        "archiveMember": "CHARA.CHRT",
+        "characterRecordOffset": 816,
+        "imagePropertyOffset": 844,
+        "defImageRecordOffset": 72
+      }
+    },
+    "ABRG": {
+      "model": "KRIS500G",
+      "image": "ABURAGE",
+      "browserFilename": "S1_JU00_KRIS500G.MT5",
+      "assetPath": "play/assets/yamanose/cata1/KRIS500G.CHRM",
+      "lifecycle": {
+        "kind": "native-composite-owner"
+      },
+      "nativeBinding": {
+        "archive": "CATA1.PKF",
+        "archiveMember": "CHARA.CHRT",
+        "characterRecordOffset": 900,
+        "imagePropertyOffset": 928,
+        "defImageRecordOffset": 188
+      }
+    }
+  },
+  "packageActors": {
+    "CATM": {
+      "label": "Yamanose shrine kitten",
+      "modelCode": "KC1_M",
+      "browserFilename": "S3_JU00_KC1_M.MT5",
+      "assetFormat": "MT5",
+      "characterScale": 1
+    }
+  },
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/yamanose/cata1/M_01CAT.MOTN",
+      "byteLength": 366692,
+      "sha256": "01489797ac2fb1db34bb63659b418672160c4d0a2fdd4d6bc5fbcc5073a04f42"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/yamanose/cata1/M_01CAT.MOTN",
+      "byteLength": 366692,
+      "sha256": "01489797ac2fb1db34bb63659b418672160c4d0a2fdd4d6bc5fbcc5073a04f42"
+    },
+    {
+      "path": "play/assets/yamanose/cata1/SEQDATA0.AUTH",
+      "byteLength": 28456,
+      "sha256": "608d057edec528c35f4067cf5011abb8c351e81fd916269b7642d68833124552"
+    },
+    {
+      "path": "play/assets/yamanose/cata1/SEQDATA1.AUTH",
+      "byteLength": 15028,
+      "sha256": "8fe949eb1378fd9f37f8742972f8f8116d3dbbdcff2c428a16c89ea20cd56ed4"
+    },
+    {
+      "path": "play/assets/yamanose/cata1/SEQDATA2.AUTH",
+      "byteLength": 9012,
+      "sha256": "db3cf574a2567e2a3dd5d52f70d2f3678efeb81cf4029a324ddf59154868b1b7"
+    },
+    {
+      "path": "play/assets/yamanose/cata1/DANM400G.CHRM",
+      "byteLength": 2636,
+      "sha256": "a34211b0f17aa553059312bd098f755e7fa95483bcd5d95a8deae88e3318f452"
+    },
+    {
+      "path": "play/assets/yamanose/cata1/KRIS500G.CHRM",
+      "byteLength": 1028,
+      "sha256": "519ad6824273ccbe27ac8f120a2372a1cbac3f0d6567870f1f639dcb63e4a804"
+    },
+    {
+      "path": "play/assets/yamanose/cata1/NIBM400G.CHRM",
+      "byteLength": 1692,
+      "sha256": "0e1b1183dac9fd49175e994aaaf1141a154a3e95d4bf59913ae0c904eb9da40b"
+    },
+    {
+      "path": "play/assets/yamanose/cata1/NIBM401G.CHRM",
+      "byteLength": 7620,
+      "sha256": "86599162d325f971b00459692dd2e3fb0f41f6fff5a100dd3b6d78d31f654b65"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "primaryPointer": 334785,
+      "secondaryPointer": 334798,
+      "activityId": "CATA1/SEQDATA0.AUTH",
+      "archiveMember": "SEQDATA0.AUTH",
+      "byteLength": 28456,
+      "sha256": "608d057edec528c35f4067cf5011abb8c351e81fd916269b7642d68833124552",
+      "durationFrames": 3150,
+      "durationSeconds": 105.01667022705078,
+      "frameCount": 70,
+      "commandCounts": {
+        "camera": 1,
+        "move": 4,
+        "motion": 16,
+        "sound": 30,
+        "voice": 29
+      },
+      "actors": [
+        "NBOX",
+        "CATM",
+        "AKIR",
+        "MEGM"
+      ],
+      "motions": [
+        {
+          "actorTag": "CATM",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "KCT_YOKOTAWARU_LP",
+          "startFrame": 1,
+          "endFrame": 2
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AT1_MEGUMI_NEKOTAWAMURE_0100",
+          "startFrame": 1,
+          "endFrame": 2
+        },
+        {
+          "actorTag": "MEGM",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 22,
+          "motionName": "KOD_MEG_AT1_MEGUMI_NEKOTAWAMURE_0100",
+          "startFrame": 300,
+          "endFrame": 2039
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 90,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AT1_MEGUMI_NEKOTAWAMURE_0100",
+          "startFrame": 1,
+          "endFrame": 1651
+        },
+        {
+          "actorTag": "CATM",
+          "frame": 1050,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "KCT_YOKOTAWARU_LP",
+          "startFrame": 1,
+          "endFrame": 60
+        },
+        {
+          "actorTag": "CATM",
+          "frame": 1110,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "KCT_YOKOTAWARU_LP",
+          "startFrame": 1,
+          "endFrame": 60
+        },
+        {
+          "actorTag": "CATM",
+          "frame": 1170,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "KCT_YOKOTAWARU_LP",
+          "startFrame": 1,
+          "endFrame": 60
+        },
+        {
+          "actorTag": "CATM",
+          "frame": 1230,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "KCT_YOKOTAWARU_LP",
+          "startFrame": 1,
+          "endFrame": 60
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1741,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AT1_MEGUMI_NEKOTAWAMURE_0100",
+          "startFrame": 1698,
+          "endFrame": 2110
+        },
+        {
+          "actorTag": "MEGM",
+          "frame": 1741,
+          "motionBank": 16,
+          "sequenceIndex": 22,
+          "motionName": "KOD_MEG_AT1_MEGUMI_NEKOTAWAMURE_0100",
+          "startFrame": 1134,
+          "endFrame": 1344
+        },
+        {
+          "actorTag": "MEGM",
+          "frame": 1952,
+          "motionBank": 16,
+          "sequenceIndex": 22,
+          "motionName": "KOD_MEG_AT1_MEGUMI_NEKOTAWAMURE_0100",
+          "startFrame": 1064,
+          "endFrame": 1265
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 2154,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AT1_MEGUMI_NEKOTAWAMURE_0100",
+          "startFrame": 1698,
+          "endFrame": 2402
+        },
+        {
+          "actorTag": "MEGM",
+          "frame": 2154,
+          "motionBank": 16,
+          "sequenceIndex": 22,
+          "motionName": "KOD_MEG_AT1_MEGUMI_NEKOTAWAMURE_0100",
+          "startFrame": 2086,
+          "endFrame": 2790
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 2919,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AT1_MEGUMI_NEKOTAWAMURE_0100",
+          "startFrame": 2403,
+          "endFrame": 2424
+        },
+        {
+          "actorTag": "MEGM",
+          "frame": 2919,
+          "motionBank": 16,
+          "sequenceIndex": 22,
+          "motionName": "KOD_MEG_AT1_MEGUMI_NEKOTAWAMURE_0100",
+          "startFrame": 2791,
+          "endFrame": 2963
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 2941,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AT1_MEGUMI_NEKOTAWAMURE_0100",
+          "startFrame": 2400,
+          "endFrame": 2520
+        }
+      ]
+    },
+    {
+      "slot": 0,
+      "primaryPointer": 334804,
+      "secondaryPointer": 334817,
+      "activityId": "CATA1/SEQDATA1.AUTH",
+      "archiveMember": "SEQDATA1.AUTH",
+      "byteLength": 15028,
+      "sha256": "8fe949eb1378fd9f37f8742972f8f8116d3dbbdcff2c428a16c89ea20cd56ed4",
+      "durationFrames": 2391,
+      "durationSeconds": 79.71666717529297,
+      "frameCount": 72,
+      "commandCounts": {
+        "camera": 1,
+        "move": 10,
+        "motion": 25,
+        "sound": 35,
+        "voice": 18
+      },
+      "actors": [
+        "NBOX",
+        "CATM",
+        "NBO1",
+        "NBO2",
+        "NBO3",
+        "BNB1",
+        "BNB2",
+        "BNB3",
+        "MEGM",
+        "AKIR"
+      ],
+      "motions": [
+        {
+          "actorTag": "CATM",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 19,
+          "motionName": "KCT_YOKOTAWARU_TABERU",
+          "startFrame": 1,
+          "endFrame": 2
+        },
+        {
+          "actorTag": "MEGM",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 23,
+          "motionName": "KOD_MEG_AT2_MEGUMI_NIBOSI_NEKOTAWAMURE_0100",
+          "startFrame": 200,
+          "endFrame": 729
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "AKI_AT2_MEGUMI_NIBOSI_NEKOTAWAMURE_0100",
+          "startFrame": 1,
+          "endFrame": 349
+        },
+        {
+          "actorTag": "CATM",
+          "frame": 350,
+          "motionBank": 16,
+          "sequenceIndex": 19,
+          "motionName": "KCT_YOKOTAWARU_TABERU",
+          "startFrame": 1,
+          "endFrame": 150
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 350,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "AKI_AT2_MEGUMI_NIBOSI_NEKOTAWAMURE_0100",
+          "startFrame": 600,
+          "endFrame": 780
+        },
+        {
+          "actorTag": "MEGM",
+          "frame": 531,
+          "motionBank": 16,
+          "sequenceIndex": 23,
+          "motionName": "KOD_MEG_AT2_MEGUMI_NIBOSI_NEKOTAWAMURE_0100",
+          "startFrame": 639,
+          "endFrame": 961
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 531,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "AKI_AT2_MEGUMI_NIBOSI_NEKOTAWAMURE_0100",
+          "startFrame": 690,
+          "endFrame": 1013
+        },
+        {
+          "actorTag": "MEGM",
+          "frame": 854,
+          "motionBank": 16,
+          "sequenceIndex": 23,
+          "motionName": "KOD_MEG_AT2_MEGUMI_NIBOSI_NEKOTAWAMURE_0100",
+          "startFrame": 947,
+          "endFrame": 1148
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 855,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "AKI_AT2_MEGUMI_NIBOSI_NEKOTAWAMURE_0100",
+          "startFrame": 1140,
+          "endFrame": 1373
+        },
+        {
+          "actorTag": "MEGM",
+          "frame": 1056,
+          "motionBank": 16,
+          "sequenceIndex": 23,
+          "motionName": "KOD_MEG_AT2_MEGUMI_NIBOSI_NEKOTAWAMURE_0100",
+          "startFrame": 998,
+          "endFrame": 1232
+        },
+        {
+          "actorTag": "MEGM",
+          "frame": 1291,
+          "motionBank": 16,
+          "sequenceIndex": 24,
+          "motionName": "KOD_MEG_AT2_MEGUMI_NIBOSI_NEKOTAWAMURE_2_0100",
+          "startFrame": 1039,
+          "endFrame": 1228
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1320,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "AKI_AT2_MEGUMI_NIBOSI_NEKOTAWAMURE_0100",
+          "startFrame": 1376,
+          "endFrame": 1714
+        },
+        {
+          "actorTag": "MEGM",
+          "frame": 1481,
+          "motionBank": 16,
+          "sequenceIndex": 23,
+          "motionName": "KOD_MEG_AT2_MEGUMI_NIBOSI_NEKOTAWAMURE_0100",
+          "startFrame": 1233,
+          "endFrame": 1410
+        },
+        {
+          "actorTag": "MEGM",
+          "frame": 1659,
+          "motionBank": 16,
+          "sequenceIndex": 24,
+          "motionName": "KOD_MEG_AT2_MEGUMI_NIBOSI_NEKOTAWAMURE_2_0100",
+          "startFrame": 999,
+          "endFrame": 1410
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1659,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AKI_STAND_DOWN_HED_LP",
+          "startFrame": 1,
+          "endFrame": 60
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1719,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AKI_STAND_DOWN_HED_LP",
+          "startFrame": 1,
+          "endFrame": 60
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1779,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AKI_STAND_DOWN_HED_LP",
+          "startFrame": 1,
+          "endFrame": 60
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1839,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AKI_STAND_DOWN_HED_LP",
+          "startFrame": 1,
+          "endFrame": 60
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1899,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AKI_STAND_DOWN_HED_LP",
+          "startFrame": 1,
+          "endFrame": 60
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1959,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AKI_STAND_DOWN_HED_LP",
+          "startFrame": 1,
+          "endFrame": 60
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 2019,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AKI_STAND_DOWN_HED_LP",
+          "startFrame": 1,
+          "endFrame": 60
+        },
+        {
+          "actorTag": "MEGM",
+          "frame": 2071,
+          "motionBank": 16,
+          "sequenceIndex": 23,
+          "motionName": "KOD_MEG_AT2_MEGUMI_NIBOSI_NEKOTAWAMURE_0100",
+          "startFrame": 1411,
+          "endFrame": 1479
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 2071,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "AKI_AT2_MEGUMI_NIBOSI_NEKOTAWAMURE_0100",
+          "startFrame": 1716,
+          "endFrame": 1952
+        },
+        {
+          "actorTag": "MEGM",
+          "frame": 2140,
+          "motionBank": 16,
+          "sequenceIndex": 23,
+          "motionName": "KOD_MEG_AT2_MEGUMI_NIBOSI_NEKOTAWAMURE_0100",
+          "startFrame": 1519,
+          "endFrame": 1601
+        },
+        {
+          "actorTag": "CATM",
+          "frame": 2240,
+          "motionBank": 16,
+          "sequenceIndex": 19,
+          "motionName": "KCT_YOKOTAWARU_TABERU",
+          "startFrame": 149,
+          "endFrame": 150
+        }
+      ]
+    },
+    {
+      "slot": 0,
+      "primaryPointer": 334823,
+      "secondaryPointer": 334836,
+      "activityId": "CATA1/SEQDATA2.AUTH",
+      "archiveMember": "SEQDATA2.AUTH",
+      "byteLength": 9012,
+      "sha256": "db3cf574a2567e2a3dd5d52f70d2f3678efeb81cf4029a324ddf59154868b1b7",
+      "durationFrames": 1370,
+      "durationSeconds": 45.68333435058594,
+      "frameCount": 45,
+      "commandCounts": {
+        "camera": 1,
+        "move": 4,
+        "motion": 15,
+        "sound": 22,
+        "voice": 12
+      },
+      "actors": [
+        "NBOX",
+        "MEGM",
+        "CATM",
+        "AKIR"
+      ],
+      "motions": [
+        {
+          "actorTag": "MEGM",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 25,
+          "motionName": "KOD_MEG_AT3_MEGUMI_ABURAAGE_NEKOTAWAMURE_0100",
+          "startFrame": 150,
+          "endFrame": 839
+        },
+        {
+          "actorTag": "CATM",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 18,
+          "motionName": "KCT_YOKOTAWARU_TABENAI2",
+          "startFrame": 1,
+          "endFrame": 2
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "AKI_AT3_MEGUMI_ABURAAGE_NEKOTAWAMURE_0100",
+          "startFrame": 1,
+          "endFrame": 690
+        },
+        {
+          "actorTag": "CATM",
+          "frame": 231,
+          "motionBank": 16,
+          "sequenceIndex": 18,
+          "motionName": "KCT_YOKOTAWARU_TABENAI2",
+          "startFrame": 1,
+          "endFrame": 300
+        },
+        {
+          "actorTag": "MEGM",
+          "frame": 691,
+          "motionBank": 16,
+          "sequenceIndex": 24,
+          "motionName": "KOD_MEG_AT2_MEGUMI_NIBOSI_NEKOTAWAMURE_2_0100",
+          "startFrame": 999,
+          "endFrame": 1399
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 691,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AKI_STAND_DOWN_HED_LP",
+          "startFrame": 1,
+          "endFrame": 60
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 751,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AKI_STAND_DOWN_HED_LP",
+          "startFrame": 1,
+          "endFrame": 60
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 811,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AKI_STAND_DOWN_HED_LP",
+          "startFrame": 1,
+          "endFrame": 60
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 871,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AKI_STAND_DOWN_HED_LP",
+          "startFrame": 1,
+          "endFrame": 60
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 931,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AKI_STAND_DOWN_HED_LP",
+          "startFrame": 1,
+          "endFrame": 60
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 991,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AKI_STAND_DOWN_HED_LP",
+          "startFrame": 1,
+          "endFrame": 60
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1051,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AKI_STAND_DOWN_HED_LP",
+          "startFrame": 1,
+          "endFrame": 60
+        },
+        {
+          "actorTag": "MEGM",
+          "frame": 1092,
+          "motionBank": 16,
+          "sequenceIndex": 25,
+          "motionName": "KOD_MEG_AT3_MEGUMI_ABURAAGE_NEKOTAWAMURE_0100",
+          "startFrame": 868,
+          "endFrame": 1095
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1092,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "AKI_AT3_MEGUMI_ABURAAGE_NEKOTAWAMURE_0100",
+          "startFrame": 692,
+          "endFrame": 855
+        },
+        {
+          "actorTag": "CATM",
+          "frame": 1369,
+          "motionBank": 16,
+          "sequenceIndex": 18,
+          "motionName": "KCT_YOKOTAWARU_TABENAI2",
+          "startFrame": 299,
+          "endFrame": 300
+        }
+      ]
+    }
+  ]
+}

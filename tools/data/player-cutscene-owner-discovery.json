@@ -1,0 +1,81 @@
+{
+  "schema": "new-yokosuka-player-cutscene-owner-discovery-routes-v1",
+  "evidenceBoundary": [
+    "These routes classify only the five unresolved candidates already surfaced by the player-facing inventory.",
+    "Loose TRCK files and cross-disc IPAC members are selected by the exact resource strings authored in MAPINFO; archive-name similarity is not used.",
+    "Repeated installs of an identical payload under one owner are replay paths, not additional cinematics."
+  ],
+  "candidates": [
+    {
+      "candidateId": "d1:DNOZ:installer:0x1d74",
+      "classification": "player-facing-composite-scenes",
+      "world": "DNOZ dedicated Nozomi cutscene map",
+      "owner": {"entryFunction":"0x1d74","selector":"frame field +0x0c","cleanupBoundary":"0x2582"},
+      "audio": {"music":["BGM068.SND"],"soundBanks":["A1_NOZOK.SND","A1_NONAM.SND"],"voiceStreams":["01SKI","01FULB"]},
+      "scenes": [
+        {
+          "id":"dnoz-selector-0","label":"Nozomi dedicated-map scene — selector 0","classification":"ordered-fragment-set","trigger":{"selectorValue":0},
+          "installCallOffsets":["0x217c","0x21a0"],"playFunctions":["0xb34","0xd18"],
+          "members":[
+            {"kind":"loose-auth","path":"extracted_files/data/SCENE/01/DNOZ/SEQDATA4.BIN"},
+            {"kind":"loose-auth","path":"extracted_files/data/SCENE/01/DNOZ/SEQDATA5.BIN"}
+          ]
+        },
+        {
+          "id":"dnoz-selector-1","label":"Nozomi dedicated-map scene — selector 1","classification":"ordered-fragment-set","trigger":{"selectorValue":1},
+          "installCallOffsets":["0x2406","0x242a"],"playFunctions":["0x13e0","0x1628"],
+          "members":[
+            {"kind":"loose-auth","path":"extracted_files/data/SCENE/01/DNOZ/SEQDATA2.BIN"},
+            {"kind":"loose-auth","path":"extracted_files/data/SCENE/01/DNOZ/SEQDATA3.BIN"}
+          ]
+        }
+      ]
+    },
+    {
+      "candidateId": "d1:JHD0:installer:0x56028",
+      "classification": "player-facing-scene",
+      "world": "JHD0 Hazuki grounds",
+      "owner": {"parentFunction":"0x545f8","dispatcherFunction":"0x56028","stateCode":97,"installCallOffset":"0x568a8","playFunction":"0x24044"},
+      "audio": {"soundBanks":["A1_HOUHA.SND"]},
+      "scenes": [
+        {
+          "id":"houo-phoenix-mirror","label":"Ryo and Fuku-san — Phoenix mirror","classification":"complete-owner-scene","trigger":{"dispatcherState":97},
+          "installCallOffsets":["0x568a8"],"playFunctions":["0x24044"],
+          "assetDependencies":["M_01DIS.BIN","MIRR scene object"],
+          "members":[{"kind":"archive-auth","path":"extracted_disc2_v2/data/SCENE/02/JHD0/HOUO.PKS","member":"SEQDATAD.AUTH"}]
+        }
+      ]
+    },
+    {
+      "candidateId": "d1:JOMO:installer:0x4a1f2",
+      "classification": "player-facing-vision-family",
+      "world": "JOMO Hazuki bedroom dream presentation",
+      "owner": {"storyFunction":"0x4f758","selectorInstaller":"0x4a1f2","playFunction":"0x45d10"},
+      "audio": {"music":["BGM201.SND","BGM079.SND"],"policy":"KKYF selects BGM201; KKYA through K enters the other native music branch using BGM079"},
+      "scenes": [
+        {"id":"kkya-vision","label":"KKYA dream vision","classification":"complete-activity-scene","trigger":{"eventCode":2103,"selectorValue":0},"installCallOffsets":["0x4a31a"],"members":[{"kind":"archive-auth","path":"extracted_disc3_v2/data/SCENE/03/JOMO/KKYA.PKS","member":"SEQDATA0.AUTH"}]},
+        {"id":"kkyb-vision","label":"KKYB dream vision","classification":"complete-activity-scene","trigger":{"eventCode":1701,"selectorValue":1},"installCallOffsets":["0x4a46a"],"members":[{"kind":"archive-auth","path":"extracted_disc2_v2/data/SCENE/02/JOMO/KKYB.PKS","member":"SEQDATA1.AUTH"}]},
+        {"id":"kkyc-vision","label":"KKYC dream vision","classification":"complete-activity-scene","trigger":{"eventCode":1801,"selectorValue":2},"installCallOffsets":["0x4a5ba"],"members":[{"kind":"archive-auth","path":"extracted_disc2_v2/data/SCENE/02/JOMO/KKYC.PKS","member":"SEQDATA2.AUTH"}]},
+        {"id":"kkyd-vision","label":"KKYD dream vision","classification":"complete-activity-scene","trigger":{"eventCode":2204,"selectorValue":3},"installCallOffsets":["0x4a70a"],"members":[{"kind":"archive-auth","path":"extracted_disc3_v2/data/SCENE/03/JOMO/KKYD.PKS","member":"SEQDATA3.AUTH"}]},
+        {"id":"kkye-vision","label":"KKYE dream vision","classification":"complete-activity-scene","trigger":{"eventCodes":[2001,2002],"selectorValue":4},"installCallOffsets":["0x4a85a"],"members":[{"kind":"archive-auth","path":"extracted_disc3_v2/data/SCENE/03/JOMO/KKYE.PKS","member":"SEQDATA4.AUTH"}]},
+        {"id":"kkyf-vision","label":"KKYF dream vision","classification":"complete-activity-scene","trigger":{"eventCode":2106,"selectorValue":5},"installCallOffsets":["0x4a9aa"],"members":[{"kind":"archive-auth","path":"extracted_disc3_v2/data/SCENE/03/JOMO/KKYF.PKS","member":"SEQDATA5.AUTH"}]}
+      ]
+    },
+    {
+      "candidateId": "d1:TOKI:installer:0x19e0",
+      "relatedCandidateIds":["d1:TOKI:installer:0x2280"],
+      "classification": "player-facing-scene-with-replay-paths",
+      "world": "TOKI Tomato convenience store interior",
+      "owner": {"entryFunction":"0x19e0","childReplayFunction":"0x2280","stateCodes":[0,10,99],"playFunction":"0xa94"},
+      "audio": {"music":["BGM050.SND"],"soundBanks":["A1_TOURA.SND"],"voiceStreams":["A0142B"]},
+      "scenes": [
+        {
+          "id":"toki-asada-conversation","label":"Ryo and Asada in the Tomato store","classification":"complete-owner-scene","trigger":{"stateCodes":[0,10,99]},
+          "installCallOffsets":["0x1ba6","0x1e06","0x253a"],"playFunctions":["0xa94"],
+          "assetDependencies":["M_0142.BIN","TEGS hand prop and native attachments"],
+          "members":[{"kind":"loose-auth","path":"extracted_files/data/SCENE/01/TOKI/SEQDATA2.BIN"}]
+        }
+      ]
+    }
+  ]
+}

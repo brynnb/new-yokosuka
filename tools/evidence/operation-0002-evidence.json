@@ -1,0 +1,217 @@
+{
+  "schema": "new-yokosuka-operation-0002-evidence-v1",
+  "status": "exact-native-handler-and-bounded-target-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "controlFlow": ".disc-work/dialogue/scripted-event-control-flow-index.json"
+  },
+  "verifiedNativeRanges": {
+    "operationHandler": {
+      "runtimeAddress": "0x0c0bb3ac",
+      "size": 44,
+      "sha256": "9e7789a934f489967b9eb5466dcfa0410f868db93f551ce6e57f769b44ec6ca3"
+    },
+    "coroutineConstructor": {
+      "runtimeAddress": "0x0c0bb1d6",
+      "size": 290,
+      "sha256": "c12634820dc021fedf41c45642d453de1e08654bb3d1af1faf44e41fa8b6edfb"
+    }
+  },
+  "operation": {
+    "operationId": 2,
+    "operationHex": "0x0002",
+    "argumentZero": "absolute child SCN3 function pointer",
+    "argumentOne": "number of words copied into the child coroutine",
+    "remainingWords": "child coroutine frame payload",
+    "result": "new SCNT coroutine record stored on the caller",
+    "recordTag": "SCNT",
+    "recordSize": 576
+  },
+  "stackContract": {
+    "direction": "downward-growing",
+    "sourcePushOrder": "left-to-right",
+    "nativeArgumentOrder": "reverse push order",
+    "nestedCleanupRule": "positive r13 adjustments reclaim only the nearest nested pushes; older payload pushes remain live",
+    "implicitFrameWordRule": "18 authored launches request one word beyond their explicit operation operands; after cleanup that word is exactly frame offset zero"
+  },
+  "inventory": {
+    "authoredReachableCallCount": 7701,
+    "exactLaunchCount": 7701,
+    "fixedTargetLaunchCount": 7382,
+    "typedTableTargetLaunchCount": 288,
+    "registeredSelectorTargetLaunchCount": 21,
+    "propagatedFunctionPointerLaunchCount": 10,
+    "remainingDynamicOrUnderRecoveredCallCount": 0,
+    "implicitFrameWordLaunchCount": 18,
+    "launchCountsByDisc": {
+      "1": 2051,
+      "2": 1887,
+      "3": 3763
+    },
+    "mapCountWithExactLaunches": 119,
+    "remainingTargetKinds": {}
+  },
+  "implicitFrameWordLaunches": [
+    {
+      "disc": 1,
+      "area": "D000",
+      "functionFileOffset": "0x634c0",
+      "callFileOffset": "0x634f2",
+      "targetFileOffset": "0x63504",
+      "argumentCount": 7
+    },
+    {
+      "disc": 1,
+      "area": "JOMO",
+      "functionFileOffset": "0x486d4",
+      "callFileOffset": "0x487ba",
+      "targetFileOffset": "0x48be8",
+      "argumentCount": 3
+    },
+    {
+      "disc": 1,
+      "area": "JOMO",
+      "functionFileOffset": "0x486d4",
+      "callFileOffset": "0x4881a",
+      "targetFileOffset": "0x48fa4",
+      "argumentCount": 3
+    },
+    {
+      "disc": 1,
+      "area": "JOMO",
+      "functionFileOffset": "0x486d4",
+      "callFileOffset": "0x4886a",
+      "targetFileOffset": "0x48be8",
+      "argumentCount": 3
+    },
+    {
+      "disc": 1,
+      "area": "JOMO",
+      "functionFileOffset": "0x486d4",
+      "callFileOffset": "0x488be",
+      "targetFileOffset": "0x48fa4",
+      "argumentCount": 3
+    },
+    {
+      "disc": 2,
+      "area": "JOMO",
+      "functionFileOffset": "0x486d4",
+      "callFileOffset": "0x487ba",
+      "targetFileOffset": "0x48be8",
+      "argumentCount": 3
+    },
+    {
+      "disc": 2,
+      "area": "JOMO",
+      "functionFileOffset": "0x486d4",
+      "callFileOffset": "0x4881a",
+      "targetFileOffset": "0x48fa4",
+      "argumentCount": 3
+    },
+    {
+      "disc": 2,
+      "area": "JOMO",
+      "functionFileOffset": "0x486d4",
+      "callFileOffset": "0x4886a",
+      "targetFileOffset": "0x48be8",
+      "argumentCount": 3
+    },
+    {
+      "disc": 2,
+      "area": "JOMO",
+      "functionFileOffset": "0x486d4",
+      "callFileOffset": "0x488be",
+      "targetFileOffset": "0x48fa4",
+      "argumentCount": 3
+    },
+    {
+      "disc": 2,
+      "area": "YDB1",
+      "functionFileOffset": "0x19294",
+      "callFileOffset": "0x196b2",
+      "targetFileOffset": "0x2310c",
+      "argumentCount": 1
+    },
+    {
+      "disc": 2,
+      "area": "YDB1",
+      "functionFileOffset": "0x21998",
+      "callFileOffset": "0x21d6c",
+      "targetFileOffset": "0x2310c",
+      "argumentCount": 1
+    },
+    {
+      "disc": 2,
+      "area": "YDB1",
+      "functionFileOffset": "0x21998",
+      "callFileOffset": "0x21e3a",
+      "targetFileOffset": "0x2310c",
+      "argumentCount": 1
+    },
+    {
+      "disc": 3,
+      "area": "JOMO",
+      "functionFileOffset": "0x486d4",
+      "callFileOffset": "0x487ba",
+      "targetFileOffset": "0x48be8",
+      "argumentCount": 3
+    },
+    {
+      "disc": 3,
+      "area": "JOMO",
+      "functionFileOffset": "0x486d4",
+      "callFileOffset": "0x4881a",
+      "targetFileOffset": "0x48fa4",
+      "argumentCount": 3
+    },
+    {
+      "disc": 3,
+      "area": "JOMO",
+      "functionFileOffset": "0x486d4",
+      "callFileOffset": "0x4886a",
+      "targetFileOffset": "0x48be8",
+      "argumentCount": 3
+    },
+    {
+      "disc": 3,
+      "area": "JOMO",
+      "functionFileOffset": "0x486d4",
+      "callFileOffset": "0x488be",
+      "targetFileOffset": "0x48fa4",
+      "argumentCount": 3
+    },
+    {
+      "disc": 3,
+      "area": "YDB1",
+      "functionFileOffset": "0x18cf4",
+      "callFileOffset": "0x19112",
+      "targetFileOffset": "0x226e0",
+      "argumentCount": 1
+    },
+    {
+      "disc": 3,
+      "area": "YDB1",
+      "functionFileOffset": "0x213dc",
+      "callFileOffset": "0x21432",
+      "targetFileOffset": "0x226e0",
+      "argumentCount": 1
+    }
+  ],
+  "recoveredDynamicTargetFamilies": {
+    "registeredFourEntrySelectors": 21,
+    "propagatedCoroutineFunctionPointers": 10,
+    "sharedCleanupStaticTargets": 10
+  },
+  "evidenceBoundary": [
+    "The native handler and SCNT constructor are hash-pinned.",
+    "Every static target is SCN3-relative and must match an exact same-MAPINFO function prologue.",
+    "Nested operation arguments are excluded through exact stack cleanup rather than proximity.",
+    "The 18 implicit words preserve their exact live frame source instead of being dropped.",
+    "Mode-8 typed tables retain all 38 ordered entries and 13 exact legal targets per room.",
+    "Registered selectors require the exact index bound, indexed r9 table load, and ordered executable-target group.",
+    "Propagated targets resolve through every exact incoming coroutine payload; incomplete or conflicting provenance fails closed.",
+    "Shared epilogue recovery follows only direct branches to an immediate exact r13 cleanup."
+  ]
+}

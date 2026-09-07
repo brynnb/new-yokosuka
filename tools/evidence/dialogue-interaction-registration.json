@@ -1,0 +1,2815 @@
+{
+  "schema": 1,
+  "evidenceBoundary": "The setup routine and its exact caller arguments are selected structurally from generated SH-4. The four static inputs are preserved at exact SCN3-relative addresses. Only the first input's ten operation-0x009a reads have a proven 13-word stride; the previews for the other inputs are not asserted as records. Higher-level field meanings remain unresolved, and no actor or gameplay meaning is inferred from numeric values.",
+  "summary": {
+    "mapinfoCount": 136,
+    "candidateSetupFunctionCount": 96,
+    "registrationCount": 96,
+    "exactRegistrationCount": 96,
+    "gapCount": 0,
+    "internalSlotCount": 10,
+    "internalSlotCapacity": 960,
+    "controlArgument5Counts": {
+      "1": 32,
+      "10": 30,
+      "15": 3,
+      "2": 18,
+      "3": 7,
+      "4": 3,
+      "5": 3
+    },
+    "ownerTagCounts": {
+      "AKIR": 96
+    }
+  },
+  "verifiedAnchors": [
+    {
+      "disc": 1,
+      "area": "D000",
+      "source": "extracted_files/data/SCENE/01/D000/MAPINFO.BIN",
+      "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+      "scn3FileOffset": "0x1338",
+      "staticDataFileOffset": "0xa2480",
+      "setupFunction": "0x27d80",
+      "callerFunction": "0x8d548",
+      "callFileOffset": "0x8da02",
+      "ownerTag": "AKIR",
+      "ownerTagValue": {
+        "kind": "constant",
+        "value": 1380535105,
+        "hex": "0x52494b41",
+        "sourceFileOffset": "0x8d9f6"
+      },
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x8d9d6"
+      },
+      "controlArgument6": {
+        "kind": "constant",
+        "value": 0,
+        "hex": "0x00000000",
+        "sourceFileOffset": "0x8d9d4"
+      },
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "sourceFileOffset": "0x8d9f6"
+        },
+        {
+          "kind": "static-pointer",
+          "relativeOffset": 21228,
+          "relativeOffsetHex": "0x52ec",
+          "sourceFileOffset": "0x8d9f2"
+        },
+        {
+          "kind": "static-pointer",
+          "relativeOffset": 24660,
+          "relativeOffsetHex": "0x6054",
+          "sourceFileOffset": "0x8d9ea"
+        },
+        {
+          "kind": "static-pointer",
+          "relativeOffset": 25724,
+          "relativeOffsetHex": "0x647c",
+          "sourceFileOffset": "0x8d9e2"
+        },
+        {
+          "kind": "static-pointer",
+          "relativeOffset": 26300,
+          "relativeOffsetHex": "0x66bc",
+          "sourceFileOffset": "0x8d9dc"
+        },
+        {
+          "kind": "constant",
+          "value": 10,
+          "hex": "0x0000000a",
+          "sourceFileOffset": "0x8d9d6"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "sourceFileOffset": "0x8d9d4"
+        }
+      ],
+      "sceneBindings": [
+        {
+          "callerArgument": 1,
+          "frameOffset": 24,
+          "sceneFieldOffset": 324,
+          "sceneFieldOffsetHex": "0x144",
+          "storeFileOffset": "0x27d8e"
+        },
+        {
+          "callerArgument": 2,
+          "frameOffset": 28,
+          "sceneFieldOffset": 328,
+          "sceneFieldOffsetHex": "0x148",
+          "storeFileOffset": "0x27d98"
+        },
+        {
+          "callerArgument": 3,
+          "frameOffset": 32,
+          "sceneFieldOffset": 332,
+          "sceneFieldOffsetHex": "0x14c",
+          "storeFileOffset": "0x27da2"
+        },
+        {
+          "callerArgument": 4,
+          "frameOffset": 36,
+          "sceneFieldOffset": 336,
+          "sceneFieldOffsetHex": "0x150",
+          "storeFileOffset": "0x27dac"
+        },
+        {
+          "callerArgument": 0,
+          "frameOffset": 20,
+          "sceneFieldOffset": 676,
+          "sceneFieldOffsetHex": "0x2a4",
+          "storeFileOffset": "0x27ddc"
+        }
+      ],
+      "staticInputs": [
+        {
+          "pointer": {
+            "kind": "static-pointer",
+            "relativeOffset": 21228,
+            "relativeOffsetHex": "0x52ec",
+            "sourceFileOffset": "0x8d9f2"
+          },
+          "fileOffset": "0xa776c",
+          "sha256": "96160cc030d1b5fda1510b23462b3b770ce5eb9f15f0ec03ae69c78a20a57171",
+          "status": "exact",
+          "wordPreview": [
+            0,
+            0,
+            6553700,
+            0,
+            0,
+            0,
+            0,
+            4294967295,
+            4294967295,
+            4294967295,
+            4294967295,
+            4294967295,
+            4294967295
+          ],
+          "provenSetupRead": {
+            "operation": "0x009a",
+            "typeOperand": 4,
+            "indexFormula": "internalSlot * 13",
+            "elementWidthBytes": 4,
+            "byteStride": 52,
+            "internalSlotCount": 10,
+            "probes": [
+              {
+                "internalSlot": 0,
+                "fileOffset": "0xa776c",
+                "value": 0,
+                "valueHex": "0x00000000"
+              },
+              {
+                "internalSlot": 1,
+                "fileOffset": "0xa77a0",
+                "value": 3,
+                "valueHex": "0x00000003"
+              },
+              {
+                "internalSlot": 2,
+                "fileOffset": "0xa77d4",
+                "value": 6,
+                "valueHex": "0x00000006"
+              },
+              {
+                "internalSlot": 3,
+                "fileOffset": "0xa7808",
+                "value": 8,
+                "valueHex": "0x00000008"
+              },
+              {
+                "internalSlot": 4,
+                "fileOffset": "0xa783c",
+                "value": 11,
+                "valueHex": "0x0000000b"
+              },
+              {
+                "internalSlot": 5,
+                "fileOffset": "0xa7870",
+                "value": 14,
+                "valueHex": "0x0000000e"
+              },
+              {
+                "internalSlot": 6,
+                "fileOffset": "0xa78a4",
+                "value": 17,
+                "valueHex": "0x00000011"
+              },
+              {
+                "internalSlot": 7,
+                "fileOffset": "0xa78d8",
+                "value": 20,
+                "valueHex": "0x00000014"
+              },
+              {
+                "internalSlot": 8,
+                "fileOffset": "0xa790c",
+                "value": 23,
+                "valueHex": "0x00000017"
+              },
+              {
+                "internalSlot": 9,
+                "fileOffset": "0xa7940",
+                "value": 26,
+                "valueHex": "0x0000001a"
+              }
+            ]
+          }
+        },
+        {
+          "pointer": {
+            "kind": "static-pointer",
+            "relativeOffset": 24660,
+            "relativeOffsetHex": "0x6054",
+            "sourceFileOffset": "0x8d9ea"
+          },
+          "fileOffset": "0xa84d4",
+          "sha256": "68ad3f67a4a4424d90db5a133d7abee5d654b626ed0e996e4650d35875f29be3",
+          "status": "exact",
+          "wordPreview": [
+            98,
+            99,
+            4294967295,
+            78,
+            79,
+            4294967295,
+            90,
+            4294967295,
+            40,
+            41,
+            4294967295,
+            60,
+            61
+          ]
+        },
+        {
+          "pointer": {
+            "kind": "static-pointer",
+            "relativeOffset": 25724,
+            "relativeOffsetHex": "0x647c",
+            "sourceFileOffset": "0x8d9e2"
+          },
+          "fileOffset": "0xa88fc",
+          "sha256": "5bae21baf0b94d2dcfd46f55c19f944b3bf60dea2bd62cc2f97d39668c5da066",
+          "status": "exact",
+          "wordPreview": [
+            685184,
+            1,
+            1311403,
+            1376939,
+            685193,
+            0,
+            4294967295,
+            4294967295,
+            685202,
+            5,
+            1442475,
+            1508011,
+            685211
+          ]
+        },
+        {
+          "pointer": {
+            "kind": "static-pointer",
+            "relativeOffset": 26300,
+            "relativeOffsetHex": "0x66bc",
+            "sourceFileOffset": "0x8d9dc"
+          },
+          "fileOffset": "0xa8b3c",
+          "sha256": "3529be267cbd463f5fb0cc7c6cf4500a3ffeec1d6a39cb300caca7a4952bac77",
+          "status": "exact",
+          "wordPreview": [
+            2,
+            0,
+            1065353216,
+            1065353216,
+            1065353216,
+            3270855446,
+            1033127540,
+            1118069417,
+            9393,
+            1,
+            1,
+            1065353216,
+            1065353216
+          ]
+        }
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "disc": 1,
+      "area": "D000",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x8d9d6"
+      },
+      "setupFunction": "0x27d80",
+      "callFileOffset": "0x8da02",
+      "staticInputFileOffsets": [
+        "0xa776c",
+        "0xa84d4",
+        "0xa88fc",
+        "0xa8b3c"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DAZA",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x1e1a6"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1e1d2",
+      "staticInputFileOffsets": [
+        "0x20878",
+        "0x208b0",
+        "0x208c0",
+        "0x208d0"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DBHB",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x20e8e"
+      },
+      "setupFunction": "0x139b4",
+      "callFileOffset": "0x20eba",
+      "staticInputFileOffsets": [
+        "0x2322c",
+        "0x23264",
+        "0x23274",
+        "0x23284"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DBYO",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x1e172"
+      },
+      "setupFunction": "0x13f70",
+      "callFileOffset": "0x1e19e",
+      "staticInputFileOffsets": [
+        "0x20670",
+        "0x206a8",
+        "0x206b8",
+        "0x206c8"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DCBN",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x27452"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x2747e",
+      "staticInputFileOffsets": [
+        "0x2a22c",
+        "0x2a264",
+        "0x2a274",
+        "0x2a284"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DCHA",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x1a66a"
+      },
+      "setupFunction": "0x14b6c",
+      "callFileOffset": "0x1a696",
+      "staticInputFileOffsets": [
+        "0x1cfa0",
+        "0x1cfd8",
+        "0x1cfe8",
+        "0x1cff8"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DGCT",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x434fc"
+      },
+      "setupFunction": "0x19ec4",
+      "callFileOffset": "0x43528",
+      "staticInputFileOffsets": [
+        "0x46db8",
+        "0x46df0",
+        "0x46e04",
+        "0x46e14"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DJAZ",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x2cb04"
+      },
+      "setupFunction": "0x13b14",
+      "callFileOffset": "0x2cb30",
+      "staticInputFileOffsets": [
+        "0x2edcc",
+        "0x2ee04",
+        "0x2ee14",
+        "0x2ee24"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DKPA",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 2,
+        "hex": "0x00000002",
+        "sourceFileOffset": "0x1a746"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1a772",
+      "staticInputFileOffsets": [
+        "0x1cae4",
+        "0x1cb1c",
+        "0x1cb2c",
+        "0x1cb3c"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DKTY",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x1f34a"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1f376",
+      "staticInputFileOffsets": [
+        "0x21a10",
+        "0x21a78",
+        "0x21a88",
+        "0x21a98"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DMAJ",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 4,
+        "hex": "0x00000004",
+        "sourceFileOffset": "0x21f52"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x21f7e",
+      "staticInputFileOffsets": [
+        "0x246c0",
+        "0x2475c",
+        "0x2477c",
+        "0x2479c"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DPIZ",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 2,
+        "hex": "0x00000002",
+        "sourceFileOffset": "0x1a5a2"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1a5ce",
+      "staticInputFileOffsets": [
+        "0x1c98c",
+        "0x1c9c4",
+        "0x1c9d4",
+        "0x1c9e4"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DRHT",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x1e1d4"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1e200",
+      "staticInputFileOffsets": [
+        "0x2072c",
+        "0x20764",
+        "0x20774",
+        "0x20784"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DRME",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 2,
+        "hex": "0x00000002",
+        "sourceFileOffset": "0x1a60e"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1a63a",
+      "staticInputFileOffsets": [
+        "0x1c844",
+        "0x1c87c",
+        "0x1c88c",
+        "0x1c89c"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DRSA",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 3,
+        "hex": "0x00000003",
+        "sourceFileOffset": "0x1a35a"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1a386",
+      "staticInputFileOffsets": [
+        "0x1c804",
+        "0x1c8a0",
+        "0x1c8bc",
+        "0x1c8dc"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DSBA",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x1e35e"
+      },
+      "setupFunction": "0x14490",
+      "callFileOffset": "0x1e38a",
+      "staticInputFileOffsets": [
+        "0x210f0",
+        "0x21128",
+        "0x2113c",
+        "0x2114c"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DSKI",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x1e436"
+      },
+      "setupFunction": "0x13a90",
+      "callFileOffset": "0x1e462",
+      "staticInputFileOffsets": [
+        "0x20c44",
+        "0x20c7c",
+        "0x20c8c",
+        "0x20c9c"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DSLI",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 2,
+        "hex": "0x00000002",
+        "sourceFileOffset": "0x20a92"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x20abe",
+      "staticInputFileOffsets": [
+        "0x22cec",
+        "0x22d24",
+        "0x22d38",
+        "0x22d48"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DSLT",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x2ecb6"
+      },
+      "setupFunction": "0x139e8",
+      "callFileOffset": "0x2ece2",
+      "staticInputFileOffsets": [
+        "0x3a674",
+        "0x3a6ac",
+        "0x3a6c0",
+        "0x3a6d0"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DSUS",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x1e156"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1e182",
+      "staticInputFileOffsets": [
+        "0x21050",
+        "0x210b8",
+        "0x210cc",
+        "0x210dc"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DTKY",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x1e2e6"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1e312",
+      "staticInputFileOffsets": [
+        "0x20614",
+        "0x2064c",
+        "0x20660",
+        "0x20670"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DURN",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x24ab4"
+      },
+      "setupFunction": "0x14048",
+      "callFileOffset": "0x24ae0",
+      "staticInputFileOffsets": [
+        "0x2754c",
+        "0x275b4",
+        "0x275c8",
+        "0x275d8"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DYKZ",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 2,
+        "hex": "0x00000002",
+        "sourceFileOffset": "0x25b2e"
+      },
+      "setupFunction": "0x13950",
+      "callFileOffset": "0x25b5a",
+      "staticInputFileOffsets": [
+        "0x27fec",
+        "0x28088",
+        "0x280a4",
+        "0x280c4"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "JABE",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 2,
+        "hex": "0x00000002",
+        "sourceFileOffset": "0x2b836"
+      },
+      "setupFunction": "0x1cf14",
+      "callFileOffset": "0x2b862",
+      "staticInputFileOffsets": [
+        "0x2dc40",
+        "0x2dc78",
+        "0x2dc88",
+        "0x2dc98"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "JD00",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x76e88"
+      },
+      "setupFunction": "0x22bd0",
+      "callFileOffset": "0x76eb4",
+      "staticInputFileOffsets": [
+        "0x7bb54",
+        "0x7c138",
+        "0x7c30c",
+        "0x7c3fc"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "JHD0",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 3,
+        "hex": "0x00000003",
+        "sourceFileOffset": "0x5424c"
+      },
+      "setupFunction": "0x1c314",
+      "callFileOffset": "0x54278",
+      "staticInputFileOffsets": [
+        "0x5c584",
+        "0x5c620",
+        "0x5c644",
+        "0x5c664"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "JOMO",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 15,
+        "hex": "0x0000000f",
+        "sourceFileOffset": "0x88e9e"
+      },
+      "setupFunction": "0x15788",
+      "callFileOffset": "0x88eca",
+      "staticInputFileOffsets": [
+        "0x92660",
+        "0x92a08",
+        "0x92ad8",
+        "0x92b48"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "JU00",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 5,
+        "hex": "0x00000005",
+        "sourceFileOffset": "0x4d390"
+      },
+      "setupFunction": "0x1ca30",
+      "callFileOffset": "0x4d3bc",
+      "staticInputFileOffsets": [
+        "0x4f638",
+        "0x4f874",
+        "0x4f928",
+        "0x4f998"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "TATQ",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x1c896"
+      },
+      "setupFunction": "0x13e6c",
+      "callFileOffset": "0x1c8c2",
+      "staticInputFileOffsets": [
+        "0x232cc",
+        "0x23304",
+        "0x23314",
+        "0x23324"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x6c81e"
+      },
+      "setupFunction": "0x27a30",
+      "callFileOffset": "0x6c84a",
+      "staticInputFileOffsets": [
+        "0x91b44",
+        "0x928ac",
+        "0x92cd4",
+        "0x92f14"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DAZA",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x1e1a6"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1e1d2",
+      "staticInputFileOffsets": [
+        "0x20878",
+        "0x208b0",
+        "0x208c0",
+        "0x208d0"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DBHB",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x20e8e"
+      },
+      "setupFunction": "0x139b4",
+      "callFileOffset": "0x20eba",
+      "staticInputFileOffsets": [
+        "0x2322c",
+        "0x23264",
+        "0x23274",
+        "0x23284"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DBYO",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x1e172"
+      },
+      "setupFunction": "0x13f70",
+      "callFileOffset": "0x1e19e",
+      "staticInputFileOffsets": [
+        "0x207bc",
+        "0x207f4",
+        "0x20804",
+        "0x20814"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DCBN",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x27452"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x2747e",
+      "staticInputFileOffsets": [
+        "0x2a22c",
+        "0x2a264",
+        "0x2a274",
+        "0x2a284"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DCHA",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x1a66a"
+      },
+      "setupFunction": "0x14b6c",
+      "callFileOffset": "0x1a696",
+      "staticInputFileOffsets": [
+        "0x1ce74",
+        "0x1ceac",
+        "0x1cebc",
+        "0x1cecc"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DGCT",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x434fc"
+      },
+      "setupFunction": "0x19ec4",
+      "callFileOffset": "0x43528",
+      "staticInputFileOffsets": [
+        "0x46db8",
+        "0x46df0",
+        "0x46e04",
+        "0x46e14"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DJAZ",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x2cb04"
+      },
+      "setupFunction": "0x13b14",
+      "callFileOffset": "0x2cb30",
+      "staticInputFileOffsets": [
+        "0x2edcc",
+        "0x2ee04",
+        "0x2ee14",
+        "0x2ee24"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DKPA",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 2,
+        "hex": "0x00000002",
+        "sourceFileOffset": "0x1a746"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1a772",
+      "staticInputFileOffsets": [
+        "0x1cae4",
+        "0x1cb1c",
+        "0x1cb2c",
+        "0x1cb3c"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DKTY",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x235ba"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x235e6",
+      "staticInputFileOffsets": [
+        "0x264dc",
+        "0x26544",
+        "0x26554",
+        "0x26564"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DMAJ",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 4,
+        "hex": "0x00000004",
+        "sourceFileOffset": "0x21f52"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x21f7e",
+      "staticInputFileOffsets": [
+        "0x246c0",
+        "0x2475c",
+        "0x2477c",
+        "0x2479c"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DPIZ",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 2,
+        "hex": "0x00000002",
+        "sourceFileOffset": "0x1a5a2"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1a5ce",
+      "staticInputFileOffsets": [
+        "0x1c98c",
+        "0x1c9c4",
+        "0x1c9d4",
+        "0x1c9e4"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DRHT",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x1e1d4"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1e200",
+      "staticInputFileOffsets": [
+        "0x2072c",
+        "0x20764",
+        "0x20774",
+        "0x20784"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DRME",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 2,
+        "hex": "0x00000002",
+        "sourceFileOffset": "0x1a60e"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1a63a",
+      "staticInputFileOffsets": [
+        "0x1c844",
+        "0x1c87c",
+        "0x1c88c",
+        "0x1c89c"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DRSA",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 3,
+        "hex": "0x00000003",
+        "sourceFileOffset": "0x1a35a"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1a386",
+      "staticInputFileOffsets": [
+        "0x1c784",
+        "0x1c820",
+        "0x1c83c",
+        "0x1c85c"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DSBA",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x1e35e"
+      },
+      "setupFunction": "0x14490",
+      "callFileOffset": "0x1e38a",
+      "staticInputFileOffsets": [
+        "0x210f0",
+        "0x21128",
+        "0x2113c",
+        "0x2114c"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DSKI",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x1fad6"
+      },
+      "setupFunction": "0x13a90",
+      "callFileOffset": "0x1fb02",
+      "staticInputFileOffsets": [
+        "0x22b68",
+        "0x22ba0",
+        "0x22bb0",
+        "0x22bc0"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DSLI",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 2,
+        "hex": "0x00000002",
+        "sourceFileOffset": "0x20a92"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x20abe",
+      "staticInputFileOffsets": [
+        "0x22cec",
+        "0x22d24",
+        "0x22d38",
+        "0x22d48"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DSLT",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x2ecb6"
+      },
+      "setupFunction": "0x139e8",
+      "callFileOffset": "0x2ece2",
+      "staticInputFileOffsets": [
+        "0x3a674",
+        "0x3a6ac",
+        "0x3a6c0",
+        "0x3a6d0"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DSUS",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x1e156"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1e182",
+      "staticInputFileOffsets": [
+        "0x21050",
+        "0x210b8",
+        "0x210cc",
+        "0x210dc"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DTKY",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x1e2e6"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1e312",
+      "staticInputFileOffsets": [
+        "0x20614",
+        "0x2064c",
+        "0x20660",
+        "0x20670"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DURN",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x24ab4"
+      },
+      "setupFunction": "0x14048",
+      "callFileOffset": "0x24ae0",
+      "staticInputFileOffsets": [
+        "0x2754c",
+        "0x275b4",
+        "0x275c8",
+        "0x275d8"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DYKZ",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 2,
+        "hex": "0x00000002",
+        "sourceFileOffset": "0x25b2e"
+      },
+      "setupFunction": "0x13950",
+      "callFileOffset": "0x25b5a",
+      "staticInputFileOffsets": [
+        "0x27fec",
+        "0x28088",
+        "0x280a4",
+        "0x280c4"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "JABE",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 2,
+        "hex": "0x00000002",
+        "sourceFileOffset": "0x2b836"
+      },
+      "setupFunction": "0x1cf14",
+      "callFileOffset": "0x2b862",
+      "staticInputFileOffsets": [
+        "0x2dc40",
+        "0x2dc78",
+        "0x2dc88",
+        "0x2dc98"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "JD00",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x613ac"
+      },
+      "setupFunction": "0x22bd0",
+      "callFileOffset": "0x613d8",
+      "staticInputFileOffsets": [
+        "0x66064",
+        "0x66648",
+        "0x6681c",
+        "0x6690c"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "JHD0",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 3,
+        "hex": "0x00000003",
+        "sourceFileOffset": "0x4af78"
+      },
+      "setupFunction": "0x1c314",
+      "callFileOffset": "0x4afa4",
+      "staticInputFileOffsets": [
+        "0x52870",
+        "0x5290c",
+        "0x52930",
+        "0x52950"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "JOMO",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 15,
+        "hex": "0x0000000f",
+        "sourceFileOffset": "0x88e9e"
+      },
+      "setupFunction": "0x15788",
+      "callFileOffset": "0x88eca",
+      "staticInputFileOffsets": [
+        "0x92660",
+        "0x92a08",
+        "0x92ad8",
+        "0x92b48"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "JU00",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 5,
+        "hex": "0x00000005",
+        "sourceFileOffset": "0x48eb4"
+      },
+      "setupFunction": "0x1ca30",
+      "callFileOffset": "0x48ee0",
+      "staticInputFileOffsets": [
+        "0x4b15c",
+        "0x4b398",
+        "0x4b44c",
+        "0x4b4bc"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "MFSY",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x7538a"
+      },
+      "setupFunction": "0x13a90",
+      "callFileOffset": "0x753b6",
+      "staticInputFileOffsets": [
+        "0x926c4",
+        "0x929d0",
+        "0x92aac",
+        "0x92b0c"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "MKSG",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x24d96"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x24dc2",
+      "staticInputFileOffsets": [
+        "0x308e8",
+        "0x30b58",
+        "0x30c04",
+        "0x30c54"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "MKYU",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x40bd0"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x40bfc",
+      "staticInputFileOffsets": [
+        "0x44484",
+        "0x444ec",
+        "0x44500",
+        "0x44510"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "MS08",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x28842"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x2886e",
+      "staticInputFileOffsets": [
+        "0x2b07c",
+        "0x2b0b4",
+        "0x2b0c4",
+        "0x2b0d4"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "MS8S",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 3,
+        "hex": "0x00000003",
+        "sourceFileOffset": "0x2883e"
+      },
+      "setupFunction": "0x14358",
+      "callFileOffset": "0x2886a",
+      "staticInputFileOffsets": [
+        "0x2b3f4",
+        "0x2b4c4",
+        "0x2b4fc",
+        "0x2b52c"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "TATQ",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x1a67a"
+      },
+      "setupFunction": "0x13e6c",
+      "callFileOffset": "0x1a6a6",
+      "staticInputFileOffsets": [
+        "0x1c8b4",
+        "0x1c8ec",
+        "0x1c8fc",
+        "0x1c90c"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "D000",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x6acbe"
+      },
+      "setupFunction": "0x27714",
+      "callFileOffset": "0x6acea",
+      "staticInputFileOffsets": [
+        "0x73958",
+        "0x746c0",
+        "0x74ae8",
+        "0x74d28"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DBHB",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x20e8e"
+      },
+      "setupFunction": "0x139b4",
+      "callFileOffset": "0x20eba",
+      "staticInputFileOffsets": [
+        "0x2322c",
+        "0x23264",
+        "0x23274",
+        "0x23284"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DBYO",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x1e172"
+      },
+      "setupFunction": "0x13f70",
+      "callFileOffset": "0x1e19e",
+      "staticInputFileOffsets": [
+        "0x20490",
+        "0x204c8",
+        "0x204d8",
+        "0x204e8"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DCBN",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x27506"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x27532",
+      "staticInputFileOffsets": [
+        "0x2a2e0",
+        "0x2a318",
+        "0x2a328",
+        "0x2a338"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DCHA",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x1a66a"
+      },
+      "setupFunction": "0x14b6c",
+      "callFileOffset": "0x1a696",
+      "staticInputFileOffsets": [
+        "0x1ce74",
+        "0x1ceac",
+        "0x1cebc",
+        "0x1cecc"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DGCT",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x434fc"
+      },
+      "setupFunction": "0x19ec4",
+      "callFileOffset": "0x43528",
+      "staticInputFileOffsets": [
+        "0x46db8",
+        "0x46df0",
+        "0x46e04",
+        "0x46e14"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DJAZ",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x2cb04"
+      },
+      "setupFunction": "0x13b14",
+      "callFileOffset": "0x2cb30",
+      "staticInputFileOffsets": [
+        "0x2edcc",
+        "0x2ee04",
+        "0x2ee14",
+        "0x2ee24"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DKPA",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 2,
+        "hex": "0x00000002",
+        "sourceFileOffset": "0x1a746"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1a772",
+      "staticInputFileOffsets": [
+        "0x1cae4",
+        "0x1cb1c",
+        "0x1cb2c",
+        "0x1cb3c"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DKTY",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x1f34a"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1f376",
+      "staticInputFileOffsets": [
+        "0x21a10",
+        "0x21a78",
+        "0x21a88",
+        "0x21a98"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DMAJ",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 4,
+        "hex": "0x00000004",
+        "sourceFileOffset": "0x21f52"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x21f7e",
+      "staticInputFileOffsets": [
+        "0x246c0",
+        "0x2475c",
+        "0x2477c",
+        "0x2479c"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DPIZ",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 2,
+        "hex": "0x00000002",
+        "sourceFileOffset": "0x1a5a2"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1a5ce",
+      "staticInputFileOffsets": [
+        "0x1c98c",
+        "0x1c9c4",
+        "0x1c9d4",
+        "0x1c9e4"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DRHT",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x1e1d4"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1e200",
+      "staticInputFileOffsets": [
+        "0x2072c",
+        "0x20764",
+        "0x20774",
+        "0x20784"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DRME",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 2,
+        "hex": "0x00000002",
+        "sourceFileOffset": "0x1a60e"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1a63a",
+      "staticInputFileOffsets": [
+        "0x1c844",
+        "0x1c87c",
+        "0x1c88c",
+        "0x1c89c"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DRSA",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 3,
+        "hex": "0x00000003",
+        "sourceFileOffset": "0x1a35a"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1a386",
+      "staticInputFileOffsets": [
+        "0x1c784",
+        "0x1c820",
+        "0x1c83c",
+        "0x1c85c"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DSBA",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x1e35e"
+      },
+      "setupFunction": "0x14490",
+      "callFileOffset": "0x1e38a",
+      "staticInputFileOffsets": [
+        "0x210f0",
+        "0x21128",
+        "0x2113c",
+        "0x2114c"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DSKI",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x1e436"
+      },
+      "setupFunction": "0x13a90",
+      "callFileOffset": "0x1e462",
+      "staticInputFileOffsets": [
+        "0x20c44",
+        "0x20c7c",
+        "0x20c8c",
+        "0x20c9c"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DSLI",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 2,
+        "hex": "0x00000002",
+        "sourceFileOffset": "0x20a92"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x20abe",
+      "staticInputFileOffsets": [
+        "0x22cec",
+        "0x22d24",
+        "0x22d38",
+        "0x22d48"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DSLT",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x2ecb6"
+      },
+      "setupFunction": "0x139e8",
+      "callFileOffset": "0x2ece2",
+      "staticInputFileOffsets": [
+        "0x3a674",
+        "0x3a6ac",
+        "0x3a6c0",
+        "0x3a6d0"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DSUS",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x1e156"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1e182",
+      "staticInputFileOffsets": [
+        "0x21050",
+        "0x210b8",
+        "0x210cc",
+        "0x210dc"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DTKY",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x1e2e6"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1e312",
+      "staticInputFileOffsets": [
+        "0x20614",
+        "0x2064c",
+        "0x20660",
+        "0x20670"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DURN",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x24ab4"
+      },
+      "setupFunction": "0x14048",
+      "callFileOffset": "0x24ae0",
+      "staticInputFileOffsets": [
+        "0x2754c",
+        "0x275b4",
+        "0x275c8",
+        "0x275d8"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DYKZ",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 2,
+        "hex": "0x00000002",
+        "sourceFileOffset": "0x25b2e"
+      },
+      "setupFunction": "0x13950",
+      "callFileOffset": "0x25b5a",
+      "staticInputFileOffsets": [
+        "0x27fec",
+        "0x28088",
+        "0x280a4",
+        "0x280c4"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "JABE",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 2,
+        "hex": "0x00000002",
+        "sourceFileOffset": "0x2b836"
+      },
+      "setupFunction": "0x1cf14",
+      "callFileOffset": "0x2b862",
+      "staticInputFileOffsets": [
+        "0x2dc40",
+        "0x2dc78",
+        "0x2dc88",
+        "0x2dc98"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "JD00",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x5e9c4"
+      },
+      "setupFunction": "0x22ea8",
+      "callFileOffset": "0x5e9f0",
+      "staticInputFileOffsets": [
+        "0x637c0",
+        "0x63da4",
+        "0x63f78",
+        "0x64068"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "JHD0",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 3,
+        "hex": "0x00000003",
+        "sourceFileOffset": "0x4267a"
+      },
+      "setupFunction": "0x1c314",
+      "callFileOffset": "0x426a6",
+      "staticInputFileOffsets": [
+        "0x49928",
+        "0x499c4",
+        "0x499e8",
+        "0x49a08"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "JOMO",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 15,
+        "hex": "0x0000000f",
+        "sourceFileOffset": "0x88e9e"
+      },
+      "setupFunction": "0x15788",
+      "callFileOffset": "0x88eca",
+      "staticInputFileOffsets": [
+        "0x92660",
+        "0x92a08",
+        "0x92ad8",
+        "0x92b48"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "JU00",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 5,
+        "hex": "0x00000005",
+        "sourceFileOffset": "0x46504"
+      },
+      "setupFunction": "0x1ca30",
+      "callFileOffset": "0x46530",
+      "staticInputFileOffsets": [
+        "0x487ac",
+        "0x489e8",
+        "0x48a9c",
+        "0x48b0c"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "MA00",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x56aaa"
+      },
+      "setupFunction": "0x1487c",
+      "callFileOffset": "0x56ad6",
+      "staticInputFileOffsets": [
+        "0x597e8",
+        "0x59af4",
+        "0x59bd0",
+        "0x59c30"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "MFSY",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x8d1a6"
+      },
+      "setupFunction": "0x13a90",
+      "callFileOffset": "0x8d1d2",
+      "staticInputFileOffsets": [
+        "0xd6bb8",
+        "0xd6ec4",
+        "0xd6fa0",
+        "0xd7000"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "MKSG",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x1c4f6"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x1c522",
+      "staticInputFileOffsets": [
+        "0x1fca4",
+        "0x1ff14",
+        "0x1ffc0",
+        "0x20010"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "MKYU",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x40bd0"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x40bfc",
+      "staticInputFileOffsets": [
+        "0x44954",
+        "0x449bc",
+        "0x449d0",
+        "0x449e0"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "MS08",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 10,
+        "hex": "0x0000000a",
+        "sourceFileOffset": "0x28a3a"
+      },
+      "setupFunction": "0x138b0",
+      "callFileOffset": "0x28a66",
+      "staticInputFileOffsets": [
+        "0x2ad24",
+        "0x2ad5c",
+        "0x2ad6c",
+        "0x2ad7c"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "TATQ",
+      "ownerTag": "AKIR",
+      "internalSlotCount": 10,
+      "controlArgument5": {
+        "kind": "constant",
+        "value": 1,
+        "hex": "0x00000001",
+        "sourceFileOffset": "0x1a67a"
+      },
+      "setupFunction": "0x13e6c",
+      "callFileOffset": "0x1a6a6",
+      "staticInputFileOffsets": [
+        "0x1c8b4",
+        "0x1c8ec",
+        "0x1c8fc",
+        "0x1c90c"
+      ],
+      "staticInputStatuses": [
+        "exact",
+        "exact",
+        "exact",
+        "exact"
+      ]
+    }
+  ],
+  "gaps": [],
+  "fullReport": ".disc-work/dialogue/dialogue-interaction-registration.json"
+}

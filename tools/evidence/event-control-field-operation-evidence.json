@@ -1,0 +1,116 @@
+{
+  "schema": "new-yokosuka-event-control-field-operation-evidence-v1",
+  "status": "exact-native-handler-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json",
+    "priorFieldEvidence": "tools/evidence/d000-door-dispatch-input-evidence.json"
+  },
+  "operation": {
+    "operationId": 49,
+    "operationHex": "0x0031",
+    "handlerAddress": "0x0c16b4c8",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c16b4c8",
+        "length": 116,
+        "sha256": "1ddbebdd28dd692901eec7c36481474ddff805cab434b5bb57900fcd7169b70b"
+      },
+      "currentEventGetter": {
+        "address": "0x0c0f0b3c",
+        "length": 16,
+        "sha256": "b46f03ecc43c1ed7588c00988091d45a9a203e31f9e0d59e41cbebb81f713b2a"
+      },
+      "recordOffsetter": {
+        "address": "0x0c137482",
+        "length": 6,
+        "sha256": "2585c946be341be916e34af22c6113915cea75216ba43d68f51405e4b33caf70"
+      }
+    },
+    "nativeContract": {
+      "currentEventGetter": "0x0c0f0b3c",
+      "recordOffsetter": "0x0c137482",
+      "resultWriter": "0x0c0bb342",
+      "currentSceneOwner": "0x0c217488",
+      "ownerResolver": "0x0c09766a"
+    },
+    "fieldRoutes": [
+      {
+        "selector": 0,
+        "offset": "0x04",
+        "width": 2,
+        "unsignedResult": true
+      },
+      {
+        "selector": 1,
+        "offset": "0x08",
+        "width": 2,
+        "unsignedResult": true
+      },
+      {
+        "selector": 2,
+        "offset": "0x0a",
+        "width": 2,
+        "unsignedResult": true
+      },
+      {
+        "selector": 3,
+        "offset": "0x0c",
+        "width": 1,
+        "unsignedResult": true
+      },
+      {
+        "selector": 4,
+        "offset": "0x0d",
+        "width": 1,
+        "unsignedResult": true
+      },
+      {
+        "selector": 5,
+        "offset": "0x0e",
+        "width": 1,
+        "unsignedResult": true
+      },
+      {
+        "selector": 6,
+        "offset": "0x0f",
+        "width": 1,
+        "unsignedResult": true
+      },
+      {
+        "selector": 7,
+        "offset": "0x12",
+        "width": 2,
+        "unsignedResult": true
+      }
+    ],
+    "provenBehavior": "Resolves the current event record from the current scene owner, adds four bytes to its base, and returns one of eight exact unsigned byte/word fields selected by argument zero."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 727,
+    "provenCallCount": 727,
+    "dialogueRegionCallCount": 71,
+    "areaCount": 59,
+    "selectorCounts": {
+      "0": 238,
+      "1": 466,
+      "2": 6,
+      "3": 4,
+      "4": 4,
+      "5": 3,
+      "7": 6
+    },
+    "dialogueSelectorCounts": {
+      "0": 38,
+      "1": 33
+    }
+  },
+  "evidenceBoundary": [
+    "The fields remain numeric current-event control fields.",
+    "Operation 0x0031 selector one is not the D000 logical door selector.",
+    "Selector six is proven by the handler but has no authored calls in the all-disc event corpus.",
+    "Unavailable current-event state is a hard runtime prerequisite and remains an explicit interpreter stop."
+  ]
+}

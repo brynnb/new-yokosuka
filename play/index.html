@@ -1,0 +1,1064 @@
+<!doctype html>
+<html lang="en" class="mobile-sidebar-pending">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <link rel="icon" type="image/gif" href="/favicon.gif" />
+    <title>Play Online — New Yokosuka</title>
+    <link rel="stylesheet" href="./play.css" />
+  </head>
+  <body class="account-pending">
+    <div id="account-ui-root" class="account-ui-booting">
+      <section class="account-gate" aria-live="polite">
+        <div class="account-shell account-shell-entry">
+          <header class="account-header">
+            <span class="account-kicker">Checking Server...</span>
+            <h1>Welcome to New Yokosuka</h1>
+            <p class="account-copy">
+              Sign in, create an account, or continue with a guest account
+              saved in this browser.
+            </p>
+          </header>
+        </div>
+      </section>
+    </div>
+    <div id="settings-ui-root"></div>
+    <div id="journal-ui-root"></div>
+    <div id="inventory-ui-root"></div>
+    <div class="app">
+      <aside class="sidebar">
+        <div id="sidebar-ui-root"></div>
+        <aside class="debug-panel" id="debug-panel" hidden>
+          <strong class="debug-title">Local debug</strong>
+          <div class="debug-coordinates">
+            <span>Coordinates</span>
+            <div class="debug-coordinate-value">
+              <code id="world-coordinates">0.00, 0.00, 0.00</code>
+              <button
+                class="debug-coordinate-copy"
+                id="copy-world-coordinates"
+                type="button"
+                aria-label="Copy coordinates"
+                title="Copy coordinates"
+              >
+                <svg viewBox="0 0 20 20" aria-hidden="true">
+                  <rect x="6.5" y="6.5" width="9" height="9" rx="1.5"></rect>
+                  <path d="M13.5 6.5v-2a1.5 1.5 0 0 0-1.5-1.5H4.5A1.5 1.5 0 0 0 3 4.5V12a1.5 1.5 0 0 0 1.5 1.5h2"></path>
+                </svg>
+              </button>
+            </div>
+            <span>Facing / camera</span>
+            <div class="debug-coordinate-value">
+              <code id="world-facing">0.00°</code>
+              <button
+                class="debug-coordinate-copy"
+                id="copy-world-facing"
+                type="button"
+                aria-label="Copy facing and camera pose"
+                title="Copy facing and camera pose"
+              >
+                <svg viewBox="0 0 20 20" aria-hidden="true">
+                  <rect x="6.5" y="6.5" width="9" height="9" rx="1.5"></rect>
+                  <path d="M13.5 6.5v-2a1.5 1.5 0 0 0-1.5-1.5H4.5A1.5 1.5 0 0 0 3 4.5V12a1.5 1.5 0 0 0 1.5 1.5h2"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <section class="debug-arcade-performance">
+            <span class="debug-npc-label">Arcade performance</span>
+            <div class="debug-status-row">
+              <span>Mode</span>
+              <strong id="debug-arcade-mode">Inactive</strong>
+            </div>
+            <div class="debug-status-row">
+              <span>Sample FPS</span>
+              <code id="debug-arcade-fps">—</code>
+            </div>
+            <div class="debug-status-row">
+              <span>Videos</span>
+              <strong id="debug-arcade-videos">On</strong>
+            </div>
+            <div class="debug-status-row">
+              <span>Lights</span>
+              <strong id="debug-arcade-lights">On</strong>
+            </div>
+            <div class="debug-status-row">
+              <span>Screens</span>
+              <code id="debug-arcade-screens">0/0 ready</code>
+            </div>
+            <div class="debug-status-row">
+              <span>Last change</span>
+              <code id="debug-arcade-reason">initial</code>
+            </div>
+          </section>
+          <section class="debug-script-scenarios">
+            <label for="debug-script-scenario">Script test scenario</label>
+            <select id="debug-script-scenario"></select>
+            <div class="debug-script-scenario-actions">
+              <button id="debug-apply-script-scenario" type="button">
+                Apply &amp; teleport
+              </button>
+              <button id="debug-reset-script-scenario" type="button" disabled>
+                Restore
+              </button>
+            </div>
+            <small id="debug-script-scenario-status">
+               Uses temporary state; progress is not saved.
+             </small>
+          </section>
+          <section
+            class="debug-cutscene-transport"
+            id="debug-cutscene-transport"
+            hidden
+          >
+            <span class="debug-npc-label">Cutscene transport</span>
+            <code id="debug-cutscene-position">00:00.0 / 00:00.0</code>
+            <div class="debug-cutscene-actions">
+              <button id="debug-cutscene-back-60" type="button">−60s</button>
+              <button id="debug-cutscene-back-15" type="button">−15s</button>
+              <button id="debug-cutscene-back" type="button">−5s</button>
+              <button
+                id="debug-cutscene-pause"
+                type="button"
+                aria-pressed="false"
+              >
+                Pause
+              </button>
+              <button id="debug-cutscene-forward" type="button">+5s</button>
+              <button id="debug-cutscene-forward-15" type="button">+15s</button>
+              <button id="debug-cutscene-forward-60" type="button">+60s</button>
+            </div>
+          </section>
+          <section class="debug-npc-selection" id="debug-npc-selection" hidden>
+            <span class="debug-npc-label">Selected NPC</span>
+            <strong id="debug-npc-name">Unknown</strong>
+            <code id="debug-npc-id"></code>
+          </section>
+          <label class="debug-option">
+            <input id="show-collisions" type="checkbox" />
+            <span>Show collisions</span>
+          </label>
+          <label class="debug-option">
+            <input id="show-lights" type="checkbox" />
+            <span id="show-lights-label">Show lights</span>
+          </label>
+          <label class="debug-option">
+            <input id="tint-collisions" type="checkbox" disabled />
+            <span>Tint objects</span>
+          </label>
+          <section
+            class="light-debug-editor"
+            id="light-debug-editor"
+            hidden
+          >
+            <strong class="light-debug-name" id="light-debug-name">
+              Selected light
+            </strong>
+            <label class="debug-range light-debug-field">
+              <span class="debug-range-label">
+                <span>Brightness</span>
+                <output id="light-debug-intensity-value">1</output>
+              </span>
+              <input
+                id="light-debug-intensity"
+                type="range"
+                min="0"
+                max="30"
+                step="0.1"
+              />
+            </label>
+            <label class="debug-range light-debug-field">
+              <span class="debug-range-label">
+                <span>Range</span>
+                <output id="light-debug-range-value">1</output>
+              </span>
+              <input
+                id="light-debug-range"
+                type="range"
+                min="0.1"
+                max="10"
+                step="0.1"
+              />
+            </label>
+            <label
+              class="debug-range light-debug-field"
+              id="light-debug-angle-field"
+            >
+              <span class="debug-range-label">
+                <span>Spread</span>
+                <output id="light-debug-angle-value">60°</output>
+              </span>
+              <input
+                id="light-debug-angle"
+                type="range"
+                min="5"
+                max="170"
+                step="1"
+              />
+            </label>
+            <label
+              class="debug-range light-debug-field"
+              id="light-debug-exponent-field"
+            >
+              <span class="debug-range-label">
+                <span>Focus</span>
+                <output id="light-debug-exponent-value">1</output>
+              </span>
+              <input
+                id="light-debug-exponent"
+                type="range"
+                min="0"
+                max="10"
+                step="0.1"
+              />
+            </label>
+            <label
+              class="debug-range light-debug-field"
+              id="light-debug-position-x-field"
+            >
+              <span class="debug-range-label">
+                <span>Position X</span>
+                <output id="light-debug-position-x-value">0</output>
+              </span>
+              <input id="light-debug-position-x" type="range" step="0.01" />
+            </label>
+            <label
+              class="debug-range light-debug-field"
+              id="light-debug-position-y-field"
+            >
+              <span class="debug-range-label">
+                <span>Position Y</span>
+                <output id="light-debug-position-y-value">0</output>
+              </span>
+              <input id="light-debug-position-y" type="range" step="0.01" />
+            </label>
+            <label
+              class="debug-range light-debug-field"
+              id="light-debug-position-z-field"
+            >
+              <span class="debug-range-label">
+                <span>Position Z</span>
+                <output id="light-debug-position-z-value">0</output>
+              </span>
+              <input id="light-debug-position-z" type="range" step="0.01" />
+            </label>
+            <label
+              class="debug-range light-debug-field"
+              id="light-debug-direction-x-field"
+            >
+              <span class="debug-range-label">
+                <span>Direction X</span>
+                <output id="light-debug-direction-x-value">0</output>
+              </span>
+              <input
+                id="light-debug-direction-x"
+                type="range"
+                min="-1"
+                max="1"
+                step="0.01"
+              />
+            </label>
+            <label
+              class="debug-range light-debug-field"
+              id="light-debug-direction-y-field"
+            >
+              <span class="debug-range-label">
+                <span>Direction Y</span>
+                <output id="light-debug-direction-y-value">0</output>
+              </span>
+              <input
+                id="light-debug-direction-y"
+                type="range"
+                min="-1"
+                max="1"
+                step="0.01"
+              />
+            </label>
+            <label
+              class="debug-range light-debug-field"
+              id="light-debug-direction-z-field"
+            >
+              <span class="debug-range-label">
+                <span>Direction Z</span>
+                <output id="light-debug-direction-z-value">0</output>
+              </span>
+              <input
+                id="light-debug-direction-z"
+                type="range"
+                min="-1"
+                max="1"
+                step="0.01"
+              />
+            </label>
+            <button
+              class="debug-live-clock"
+              id="copy-light-debug"
+              type="button"
+            >
+              Copy JSON
+            </button>
+          </section>
+          <button
+            class="debug-live-clock"
+            id="triangle-picker"
+            type="button"
+            aria-pressed="false"
+          >
+            Triangle picker
+          </button>
+          <button
+            class="debug-live-clock"
+            id="copy-triangle-selection"
+            type="button"
+            disabled
+          >
+            Copy selection
+          </button>
+          <button
+            class="debug-live-clock"
+            id="collision-picker"
+            type="button"
+            aria-pressed="false"
+          >
+            Collision picker
+          </button>
+          <button
+            class="debug-live-clock"
+            id="copy-collision-selection"
+            type="button"
+            disabled
+          >
+            Copy selection
+          </button>
+          <button
+            class="debug-live-clock"
+            id="download-pool-reflection"
+            type="button"
+          >
+            Download pool reflection
+          </button>
+          <label class="debug-range">
+            <span class="debug-range-label">
+              <span>Time of day</span>
+              <output id="debug-time-of-day-value">Live</output>
+            </span>
+            <input
+              id="debug-time-of-day"
+              type="range"
+              min="8.5"
+              max="23.4833333333"
+              step="0.0166666667"
+              value="8.5"
+            />
+          </label>
+          <button
+            class="debug-live-clock"
+            id="debug-live-clock"
+            type="button"
+            disabled
+          >
+            Use live clock
+          </button>
+          <label class="debug-range">
+            <span class="debug-range-label">
+              <span>Run speed</span>
+              <output id="debug-run-speed-value">1×</output>
+            </span>
+            <input
+              id="debug-run-speed"
+              type="range"
+              min="1"
+              max="10"
+              step="0.25"
+              value="1"
+            />
+          </label>
+          <label class="debug-range">
+            <span class="debug-range-label">
+              <span>NPC walk speed</span>
+              <span class="debug-range-value">
+                <output id="debug-npc-walk-speed-value">1.00×</output>
+                <button
+                  class="debug-range-reset"
+                  id="debug-npc-walk-speed-reset"
+                  type="button"
+                >
+                  Reset
+                </button>
+              </span>
+            </span>
+            <input
+              id="debug-npc-walk-speed"
+              type="range"
+              min="0.5"
+              max="2"
+              step="0.01"
+              value="1"
+            />
+          </label>
+          <details class="debug-collapsible">
+            <summary>Forklift physics</summary>
+            <label class="debug-range">
+            <span class="debug-range-label">
+              <span>Center of gravity height</span>
+              <output id="forklift-com-height-value">0.26 m</output>
+            </span>
+            <input
+              id="forklift-com-height"
+              type="range"
+              min="0.05"
+              max="1.15"
+              step="0.01"
+              value="0.26"
+            />
+            </label>
+            <label class="debug-range">
+            <span class="debug-range-label">
+              <span>Wheel spring firmness</span>
+              <output id="forklift-spring-rate-value">250%</output>
+            </span>
+            <input
+              id="forklift-spring-rate"
+              type="range"
+              min="50"
+              max="250"
+              step="5"
+              value="250"
+            />
+            </label>
+            <label class="debug-range">
+            <span class="debug-range-label">
+              <span>Shock damping</span>
+              <output id="forklift-shock-damping-value">250%</output>
+            </span>
+            <input
+              id="forklift-shock-damping"
+              type="range"
+              min="25"
+              max="250"
+              step="5"
+              value="250"
+            />
+            </label>
+            <label class="debug-range">
+            <span class="debug-range-label">
+              <span>Raised-load instability</span>
+              <output id="forklift-load-influence-value">10%</output>
+            </span>
+            <input
+              id="forklift-load-influence"
+              type="range"
+              min="0"
+              max="200"
+              step="5"
+              value="10"
+            />
+            </label>
+            <label class="debug-range">
+            <span class="debug-range-label">
+              <span>Tire grip</span>
+              <output id="forklift-tire-grip-value">200%</output>
+            </span>
+            <input
+              id="forklift-tire-grip"
+              type="range"
+              min="0"
+              max="200"
+              step="5"
+              value="200"
+            />
+            </label>
+            <label class="debug-range">
+            <span class="debug-range-label">
+              <span>Brake force</span>
+              <output id="forklift-brake-force-value">115%</output>
+            </span>
+            <input id="forklift-brake-force" type="range" min="25" max="200" step="5" value="115" />
+            </label>
+            <label class="debug-range">
+            <span class="debug-range-label">
+              <span>Drive force</span>
+              <output id="forklift-drive-force-value">200%</output>
+            </span>
+            <input id="forklift-drive-force" type="range" min="25" max="200" step="5" value="200" />
+            </label>
+            <label class="debug-range">
+            <span class="debug-range-label">
+              <span>Steering response</span>
+              <output id="forklift-steering-response-value">50%</output>
+            </span>
+            <input
+              id="forklift-steering-response"
+              type="range"
+              min="25"
+              max="200"
+              step="5"
+              value="50"
+            />
+            </label>
+            <label class="debug-range">
+            <span class="debug-range-label">
+              <span>High-speed steering response</span>
+              <output id="forklift-high-speed-steering-value">20%</output>
+            </span>
+            <input
+              id="forklift-high-speed-steering"
+              type="range"
+              min="0"
+              max="100"
+              step="5"
+              value="20"
+            />
+            </label>
+            <label class="debug-range">
+            <span class="debug-range-label">
+              <span>Roll stiffness</span>
+              <output id="forklift-roll-stiffness-value">20%</output>
+            </span>
+            <input id="forklift-roll-stiffness" type="range" min="0" max="200" step="5" value="20" />
+            </label>
+          </details>
+        </aside>
+        <div class="sidebar-footer">
+          <span>
+            Made by
+            <a href="https://www.brynnbateman.com/" target="_blank" rel="noreferrer">Brynn</a>
+          </span>
+        </div>
+      </aside>
+
+      <main class="viewport" id="canvas-container">
+        <canvas id="renderCanvas" tabindex="-1"></canvas>
+        <div id="pool-ui-root"></div>
+        <div
+          class="dialogue-overlay"
+          id="dialogue-overlay"
+          aria-hidden="true"
+          hidden
+        >
+          <section
+            class="dialogue-panel"
+            role="dialog"
+            aria-live="polite"
+            aria-label="Conversation"
+          >
+            <strong class="dialogue-speaker" id="dialogue-speaker"></strong>
+            <p class="dialogue-source" id="dialogue-source"></p>
+            <p
+              class="dialogue-japanese"
+              id="dialogue-japanese"
+              lang="ja"
+              hidden
+            ></p>
+            <div class="dialogue-options" id="dialogue-options" hidden></div>
+          </section>
+        </div>
+        <button id="sky-btn" type="button">Time: Day</button>
+        <div class="map-loading awaiting-server" id="loading">
+          <div class="loading-card" id="status-bar">
+            <p class="loading-place-japanese" id="loading-place-japanese">芭月家</p>
+            <p class="loading-place-english" id="loading-place-english">Hazuki Residence Grounds</p>
+            <div class="loading-datetime">
+              <time id="loading-time">4:20 pm</time>
+              <time id="loading-date">Jun. 9, 1986 (Mon.)</time>
+            </div>
+            <span id="status">
+              <span id="loading-progress">
+                <span id="loading-word">Connecting</span><span id="loading-dots"><span class="loading-dot">.</span><span class="loading-dot">.</span><span class="loading-dot">.</span></span><span id="loading-count">(0/1)</span>
+              </span>
+              <span id="loading-error" hidden></span>
+            </span>
+          </div>
+        </div>
+        <button
+          class="mobile-chat-toggle"
+          id="mobile-chat-toggle"
+          type="button"
+          aria-controls="chat-panel"
+          aria-expanded="false"
+          aria-label="Toggle online chat"
+          title="Chat"
+        >
+          <svg viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M3 4.5h14v9H9l-4 3v-3H3z"></path>
+          </svg>
+        </button>
+        <div id="player-status-ui-root"></div>
+        <aside class="combat-hud" id="combat-hud" aria-label="Moves List" hidden>
+          <section class="combat-move-scroll">
+            <h2 id="combat-move-count">Moves List</h2>
+            <div id="combat-move-list"></div>
+          </section>
+        </aside>
+        <output
+          class="combat-command-feedback"
+          id="combat-command-feedback"
+          aria-live="polite"
+          hidden
+        >
+          <span id="combat-command-keys"></span>
+          <strong id="combat-command-move"></strong>
+          <strong id="combat-command-result"></strong>
+        </output>
+        <div
+          class="combat-health-gauge combat-health-gauge-player"
+          id="combat-player-gauge"
+          role="meter"
+          aria-label="Ryo health"
+          hidden
+        >
+          <img class="combat-health-sigil" alt="" draggable="false" />
+          <span class="combat-health-beads" aria-hidden="true"></span>
+          <strong>Ryo</strong>
+        </div>
+        <div
+          class="combat-health-gauge combat-health-gauge-enemy"
+          id="combat-enemy-gauge"
+          role="meter"
+          aria-label="Chai health"
+          hidden
+        >
+          <img class="combat-health-sigil" alt="" draggable="false" />
+          <span class="combat-health-beads" aria-hidden="true"></span>
+          <strong>Chai</strong>
+        </div>
+        <div id="chat-ui-root"></div>
+        <div
+          class="mobile-joystick-zone"
+          id="mobile-joystick-zone"
+          aria-label="Movement joystick"
+        ></div>
+        <button
+          class="mobile-cinema-stand"
+          id="mobile-cinema-stand"
+          type="button"
+        >
+          Stand
+        </button>
+        <button
+          class="mobile-stuck-button"
+          id="mobile-stuck-button"
+          type="button"
+          aria-pressed="false"
+          title="Toggle no-clip recovery mode"
+          hidden
+        >
+          Stuck
+        </button>
+        <div
+          class="mobile-forklift-controls"
+          id="mobile-forklift-controls"
+          aria-label="Forklift lift controls"
+        >
+          <button
+            class="mobile-forklift-button"
+            id="mobile-fork-up"
+            type="button"
+          >UP</button>
+          <button
+            class="mobile-forklift-button"
+            id="mobile-fork-down"
+            type="button"
+          >DOWN</button>
+        </div>
+        <button
+          class="mobile-forklift-button mobile-forklift-exit"
+          id="mobile-forklift-exit"
+          type="button"
+        >Exit Lift</button>
+        <div class="stuck-hint" id="stuck-hint" role="status" hidden>
+          <span class="stuck-hint-desktop">
+            Stuck? Type /stuck in chat
+          </span>
+          <span class="stuck-hint-mobile">
+            Stuck? Type /stuck in chat
+          </span>
+        </div>
+        <div
+          class="transient-notice"
+          id="transient-notice"
+          role="status"
+          aria-live="polite"
+          hidden
+        ></div>
+        <div
+          class="forklift-tip-hint"
+          id="forklift-tip-hint"
+          role="status"
+          hidden
+        >
+          Forklift tipped over — exit, then click it to upright.
+        </div>
+        <div class="race-hud" id="race-hud" hidden>
+          <button class="race-start" id="race-start" type="button">
+            Start race
+          </button>
+          <div class="race-timing" id="race-timing" hidden>
+            <span class="race-state" id="race-state">Lap 1 / 3</span>
+            <time class="race-timer" id="race-timer">00:00.000</time>
+            <span class="race-best" id="race-best">Best --:--.---</span>
+            <div
+              class="race-checkpoints"
+              id="race-checkpoints"
+              aria-label="Race checkpoints"
+            ></div>
+            <button
+              class="race-start race-restart"
+              id="race-restart"
+              type="button"
+              hidden
+            >
+              Restart Race
+            </button>
+            <button
+              class="race-start race-quit"
+              id="race-quit"
+              type="button"
+            >
+              Quit Race
+            </button>
+          </div>
+        </div>
+        <div
+          class="race-countdown"
+          id="race-countdown"
+          role="status"
+          aria-live="assertive"
+          aria-atomic="true"
+          hidden
+        >
+          3
+        </div>
+        <div class="inspect-hint" id="inspect-hint" role="status" hidden>
+          Examine
+        </div>
+        <div class="bottom-right-tools">
+          <a
+            class="discord-button"
+            href="https://discord.gg/vH4GPChWKY"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg viewBox="0 0 127.14 96.36" aria-hidden="true">
+              <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"></path>
+            </svg>
+            Join the Discord!
+          </a>
+          <div
+            class="hud"
+            id="world-controls-hud"
+            aria-label="Controls"
+            data-input-device="keyboard"
+          >
+            <span class="gamepad-reticle" aria-hidden="true"></span>
+            <div class="keyboard-control-hints">
+            <div class="hud-row">
+              <kbd data-control-binding="moveForward">W</kbd>
+              <kbd data-control-binding="moveLeft">A</kbd>
+              <kbd data-control-binding="moveBackward">S</kbd>
+              <kbd data-control-binding="moveRight">D</kbd>
+              <span class="hud-label" id="movement-control-label">Move</span>
+            </div>
+            <div class="hud-row exploration-control-row" id="run-control-row">
+              <kbd id="run-control-key" data-control-binding="run">Shift</kbd>
+              <span id="run-state" class="hud-label run-state">Run off</span>
+            </div>
+            <div class="hud-row exploration-control-row" id="auto-run-control-row">
+              <kbd data-control-binding="autoRun">Q</kbd>
+              <span id="auto-run-state" class="hud-label run-state">Auto-run off</span>
+            </div>
+            <div
+              class="hud-row exploration-control-row"
+              id="no-clip-control-row"
+              hidden
+            >
+              <kbd data-control-binding="noClip">Z</kbd>
+              <span id="no-clip-state" class="hud-label no-clip-state">No-clip off</span>
+            </div>
+            <div class="hud-row exploration-control-row">
+              <kbd id="look-control-key">Right Click</kbd>
+              <span class="hud-label">Look</span>
+            </div>
+            <div class="hud-row exploration-control-row" id="zoom-control-row">
+              <kbd>Wheel</kbd>
+              <span class="hud-label">Zoom</span>
+            </div>
+            <div class="hud-row exploration-control-row" id="camera-mode-control-row">
+              <kbd data-control-binding="cameraMode">R</kbd>
+              <span class="hud-label">1st/3rd Person</span>
+            </div>
+            <div class="hud-row exploration-control-row" id="forklift-exit-control-row" hidden>
+              <kbd data-control-binding="cancel">X</kbd>
+              <span class="hud-label" id="exit-control-label">Exit Forklift</span>
+            </div>
+            <div class="hud-row forklift-control-row">
+              <kbd data-control-binding="forkliftHorn">H</kbd>
+              <span class="hud-label">Horn</span>
+            </div>
+            <div class="hud-row combat-control-row">
+              <kbd data-control-binding="combatHand">J</kbd>
+              <span class="hud-label">Hand</span>
+            </div>
+            <div class="hud-row combat-control-row">
+              <kbd data-control-binding="combatLeg">K</kbd>
+              <span class="hud-label">Leg</span>
+            </div>
+            <div class="hud-row combat-control-row">
+              <kbd data-control-binding="combatThrow">L</kbd>
+              <span class="hud-label">Throw</span>
+            </div>
+            <div class="hud-row combat-control-row">
+              <kbd data-control-binding="combatGuard">I</kbd>
+              <span class="hud-label">Guard</span>
+            </div>
+            <div class="hud-row combat-control-row">
+              <kbd data-control-binding="run">Shift</kbd>
+              <span class="hud-label">Dash</span>
+            </div>
+            <div class="hud-row combat-mode-control-row">
+              <kbd data-control-binding="cancel">X</kbd>
+              <span id="combat-mode-control-label" class="hud-label">Toggle Combat</span>
+            </div>
+            </div>
+            <div class="gamepad-control-hints" aria-label="Xbox controls">
+              <div class="hud-row gamepad-exploration-control-row">
+                <kbd>LS</kbd><span class="hud-label">Move</span>
+              </div>
+              <div class="hud-row gamepad-exploration-control-row">
+                <kbd>RS</kbd><span class="hud-label">Look</span>
+              </div>
+              <div class="hud-row gamepad-exploration-control-row">
+                <kbd>LT</kbd><span class="hud-label">Hold Run / Walk</span>
+              </div>
+              <div class="hud-row gamepad-exploration-control-row">
+                <kbd>LB</kbd><span class="hud-label">Toggle Run</span>
+              </div>
+              <div class="hud-row gamepad-exploration-control-row">
+                <kbd>RT / RB</kbd><span class="hud-label">1st/3rd Person</span>
+              </div>
+              <div class="hud-row gamepad-exploration-control-row">
+                <kbd>X / Y</kbd><span class="hud-label">Notebook / Inventory</span>
+              </div>
+              <div class="hud-row gamepad-exploration-control-row">
+                <kbd>Menu</kbd><span class="hud-label">Settings</span>
+              </div>
+              <div class="hud-row gamepad-forklift-control-row">
+                <kbd>LS</kbd><span class="hud-label">Steer</span>
+              </div>
+              <div class="hud-row gamepad-forklift-control-row">
+                <kbd>LT / RT</kbd><span class="hud-label">Reverse / Forward</span>
+              </div>
+              <div class="hud-row gamepad-forklift-control-row">
+                <kbd>A / B</kbd><span class="hud-label">Raise / Lower</span>
+              </div>
+              <div class="hud-row gamepad-forklift-control-row">
+                <kbd>RS</kbd><span class="hud-label">Look</span>
+              </div>
+              <div class="hud-row gamepad-forklift-control-row">
+                <kbd>X</kbd><span class="hud-label">1st/3rd Person</span>
+              </div>
+              <div class="hud-row gamepad-forklift-control-row">
+                <kbd>Y</kbd><span class="hud-label">Exit Forklift</span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="hud"
+            id="arcade-controls-hud"
+            aria-label="Arcade controls"
+            hidden
+          ></div>
+          <div
+            class="hud"
+            id="pool-controls-hud"
+            aria-label="Pool controls"
+            hidden
+          >
+            <div class="hud-row">
+              <kbd>A</kbd>
+              <kbd>D</kbd>
+              <kbd>←</kbd>
+              <kbd>→</kbd>
+              <span class="hud-label">Aim</span>
+            </div>
+            <div class="hud-row">
+              <kbd>W</kbd>
+              <kbd>S</kbd>
+              <kbd>↑</kbd>
+              <kbd>↓</kbd>
+              <span class="hud-label">Power</span>
+            </div>
+            <div class="hud-row">
+              <kbd>Wheel</kbd>
+              <span class="hud-label">Power</span>
+            </div>
+            <div class="hud-row">
+              <kbd>Drag</kbd>
+              <span class="hud-label">Move Camera / Aim</span>
+            </div>
+            <div class="hud-row">
+              <kbd>Alt</kbd>
+              <kbd>Drag</kbd>
+              <span class="hud-label">Adjust Spin</span>
+            </div>
+            <div class="hud-row">
+              <kbd>Space</kbd>
+              <span class="hud-label">Line Up / Shoot / Confirm</span>
+            </div>
+            <div class="hud-row">
+              <kbd>R</kbd>
+              <span class="hud-label">Toggle Low View</span>
+            </div>
+            <div class="hud-row">
+              <kbd>M</kbd>
+              <span class="hud-label">Move Cue Ball</span>
+            </div>
+            <div class="hud-row">
+              <kbd>C</kbd>
+              <span class="hud-label">Reset Spin</span>
+            </div>
+            <div class="hud-row">
+              <kbd data-control-binding="cancel">X</kbd>
+              <span class="hud-label">Leave Table</span>
+            </div>
+          </div>
+          <div
+            class="hud"
+            id="dialogue-controls-hud"
+            aria-label="Dialogue controls"
+            hidden
+          >
+            <div class="hud-row">
+              <kbd data-control-binding="dialogueAdvance">Space</kbd>
+              <span class="hud-label cutscene-control-label" data-dialogue-label="Next Line" data-cutscene-label="Skip 5 Seconds">Next Line</span>
+            </div>
+            <div class="hud-row">
+              <kbd data-control-binding="cancel">X</kbd>
+              <span class="hud-label cutscene-control-label" data-dialogue-label="End Conversation" data-cutscene-label="End Cutscene">End Conversation</span>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+
+    <div
+      class="arcade-overlay"
+      id="arcade-overlay"
+      aria-hidden="true"
+      hidden
+    >
+      <section
+        class="arcade-shell"
+        id="arcade-shell"
+        aria-label="Arcade game"
+      >
+        <header class="arcade-header">
+          <h2 id="arcade-title">Arcade Game</h2>
+          <span class="arcade-hud-value" id="arcade-score">Score 0</span>
+          <span class="arcade-hud-value" id="arcade-high-score">Best 0</span>
+          <button
+            class="arcade-close"
+            id="arcade-close"
+            type="button"
+            aria-label="Leave arcade game"
+            title="Leave game"
+          >×</button>
+        </header>
+        <canvas class="arcade-canvas" id="arcade-canvas"></canvas>
+        <iframe
+          class="arcade-emulator-frame"
+          id="arcade-emulator-frame"
+          src="about:blank"
+          allow="autoplay; fullscreen; gamepad"
+          allowfullscreen
+          tabindex="-1"
+          hidden
+        ></iframe>
+        <footer class="arcade-footer">
+          <span id="arcade-status"></span>
+          <span class="arcade-instructions" id="arcade-instructions"></span>
+        </footer>
+      </section>
+    </div>
+    <div
+      class="vending-overlay"
+      id="vending-overlay"
+      aria-hidden="true"
+      hidden
+    >
+      <section
+        class="vending-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="vending-title"
+      >
+        <header class="vending-header">
+          <div>
+            <h2 class="vending-title" id="vending-title">
+              Bell Wood's
+            </h2>
+            <p class="vending-subtitle">Select a drink</p>
+          </div>
+          <strong class="vending-price" id="vending-price">¥100</strong>
+        </header>
+        <div class="vending-options" id="vending-options"></div>
+        <footer class="vending-footer">
+          <span class="vending-status" id="vending-status" role="status">
+            Choose a drink.
+          </span>
+          <button class="vending-close" id="vending-close" type="button">
+            Cancel
+          </button>
+        </footer>
+      </section>
+    </div>
+    <div
+      class="mobile-arcade-controls"
+      id="mobile-arcade-controls"
+      aria-label="Arcade controls"
+    >
+      <div
+        class="mobile-arcade-stick"
+        id="mobile-arcade-stick"
+        aria-label="Arcade analog stick"
+      ></div>
+      <div class="mobile-arcade-actions" aria-label="Arcade buttons">
+        <button
+          class="mobile-arcade-button mobile-arcade-meta"
+          type="button"
+          data-arcade-control="coin"
+        >Insert Coin</button>
+        <button
+          class="mobile-arcade-button mobile-arcade-meta"
+          type="button"
+          data-arcade-control="start"
+        >Start</button>
+        <button
+          class="mobile-arcade-button mobile-arcade-meta"
+          type="button"
+          data-arcade-control="exit"
+        >Exit</button>
+        <button
+          class="mobile-arcade-button mobile-arcade-action"
+          type="button"
+          data-arcade-control="secondary"
+          aria-label="Arcade B button"
+        >B</button>
+        <button
+          class="mobile-arcade-button mobile-arcade-action"
+          type="button"
+          data-arcade-control="primary"
+          aria-label="Arcade A button"
+        >A</button>
+      </div>
+    </div>
+
+    <div id="react-ui-root"></div>
+    <script type="module" src="./ui/react/main.jsx"></script>
+    <script type="module" src="./play.js"></script>
+  </body>
+</html>

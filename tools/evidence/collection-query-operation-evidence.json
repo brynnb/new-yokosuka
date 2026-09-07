@@ -1,0 +1,91 @@
+{
+  "schema": "new-yokosuka-collection-query-evidence-v1",
+  "status": "exact-native-handler-routes-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 63,
+    "operationHex": "0x003f",
+    "argumentCount": 2,
+    "handlerAddress": "0x0c1630de",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c1630de",
+        "length": 46,
+        "sha256": "dc3379c94777feade37d3f979b58851abb67614610ebd90f067dde653d85b471"
+      },
+      "primaryQuery": {
+        "address": "0x0c0e38be",
+        "length": 60,
+        "sha256": "aceecedd8265ecd0aaadbc4734fbcd2cab4bccd0d709a1a1ac61e7511afb1628"
+      },
+      "auxiliaryQuery": {
+        "address": "0x0c0e7e20",
+        "length": 48,
+        "sha256": "92305be1d15ccc6a1acbf832bef76e453e0597080c206a5febcbeff5a0be3de1"
+      },
+      "auxiliaryLookup": {
+        "address": "0x0c0e7d92",
+        "length": 38,
+        "sha256": "dd7b0f483bd9f681dd191c244eeb27a85ec682029c8741ef86468439d0258189"
+      }
+    },
+    "nativeContract": {
+      "resultWriter": "0x0c0bb342",
+      "auxiliaryQuery": "0x0c0e7e20",
+      "primaryQuery": "0x0c0e38be",
+      "primaryLowStorage": "0x0c221a84",
+      "primaryHighStorage": "0x0c221cbc",
+      "auxiliaryStorage": "0x0c221dbc"
+    },
+    "routes": [
+      {
+        "whenArgument1": 0,
+        "indexWidth": "signed-word",
+        "validIndices": "0..234",
+        "result": "unsigned byte from the primary namespace"
+      },
+      {
+        "whenArgument1": "nonzero",
+        "indexWidth": "signed-byte",
+        "validIndices": "0..28",
+        "lookup": "exact auxiliary record selector",
+        "result": "unsigned record value byte, or zero when invalid or absent"
+      }
+    ],
+    "provenBehavior": "Argument one selects an exact read-only query over the same two native collection stores used by operation 0x003d. The zero route reads the primary 235-index byte namespace. The nonzero route resolves an exact signed-byte selector in the 32 auxiliary records. Both return an unsigned byte, with invalid or absent entries returning zero."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 217,
+    "provenCallCount": 217,
+    "dialogueRegionCallCount": 59,
+    "areaCount": 24,
+    "argumentKindCounts": {
+      "0": {
+        "constant": 186,
+        "frame-field": 12,
+        "runtime": 3,
+        "unresolved": 16
+      },
+      "1": {
+        "constant": 201,
+        "runtime": 16
+      }
+    },
+    "routeSelectorCounts": {
+      "0": 192,
+      "1": 9,
+      "runtime": 16
+    }
+  },
+  "evidenceBoundary": [
+    "The collection namespace remains numeric and is not mapped to browser item IDs.",
+    "The auxiliary query's inclusive index 28 bound is preserved separately from operation 0x003d.",
+    "Collection persistence ownership remains independently injected.",
+    "Unresolved runtime operands remain interpreter stops."
+  ]
+}

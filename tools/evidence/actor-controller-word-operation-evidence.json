@@ -1,0 +1,149 @@
+{
+  "schema": "new-yokosuka-actor-controller-word-evidence-v2",
+  "status": "exact-native-handler-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 156,
+    "operationHex": "0x009c",
+    "handlerAddress": "0x0c16602e",
+    "verifiedRanges": {
+      "wordWriteHandler": {
+        "address": "0x0c16602e",
+        "length": 74,
+        "sha256": "da0bd82b9f1d73b6aa1bc1f5a15bd54a6f4a55892fb93293b7d50ba709f83d1e"
+      },
+      "modeControlHandler": {
+        "address": "0x0c166078",
+        "length": 208,
+        "sha256": "29664bbbd2efe1402c4b6b11ec572b6e7fc827efe718c38dedc0b7e6cc120075"
+      },
+      "actorResolver": {
+        "address": "0x0c153956",
+        "length": 58,
+        "sha256": "b99d1c60ec19d8c20dec13ede36b9f81a3b04510da97159b53e03db38deba35f"
+      },
+      "motmControllerAccessor": {
+        "address": "0x0c113a76",
+        "length": 30,
+        "sha256": "69d657beb0f052b69809a44353767e8d1d78164f4255489734802b15c7027f35"
+      },
+      "sceneRegistryUnlink": {
+        "address": "0x0c152e82",
+        "length": 92,
+        "sha256": "376a15375677a80e98e63068037825507f4ef8c7f750fda9d1c57189ccb7f39b"
+      }
+    },
+    "nativeContract": {
+      "actorResolver": "0x0c153956",
+      "motmControllerAccessor": "0x0c113a76",
+      "currentSceneOwner": "0x0c217488",
+      "ownerResolver": "0x0c09766a",
+      "sceneRegistryUnlink": "0x0c152e82"
+    },
+    "controllerRecordTag": "MOTM",
+    "controllerWordOffset": "0x007c",
+    "controllerWordWidth": 2,
+    "provenBehavior": "Resolves argument zero as an actor. A missing actor is a no-op. When the actor has a MOTM controller, the handler writes argument one's low word to controller offset +0x7c. When the actor exists without that controller, the handler calls the exact current-scene registry unlink routine for the resolved actor."
+  },
+  "modeControlOperation": {
+    "operationId": 157,
+    "operationHex": "0x009d",
+    "handlerAddress": "0x0c166078",
+    "controllerRecordTag": "MOTM",
+    "controllerFlagMask": "0x00004000",
+    "modeDwordOffset": "0x01cc",
+    "resetWordOffsets": [
+      "0x0086",
+      "0x0090",
+      "0x009a"
+    ],
+    "authoredModes": {
+      "0xffffffff": {
+        "flag4000": false,
+        "dword1cc": 0,
+        "word86": 0,
+        "word90": 0,
+        "word9a": 0
+      },
+      "0": {
+        "flag4000": true,
+        "dword1cc": 3
+      },
+      "1": {
+        "flag4000": true,
+        "dword1cc": 7
+      },
+      "2": {
+        "flag4000": true,
+        "dword1cc": 0
+      },
+      "3": {
+        "flag4000": true,
+        "dword1cc": 5
+      }
+    },
+    "provenBehavior": "Resolves argument zero as an actor and then its MOTM controller. A missing actor is a no-op. A resolved actor without MOTM follows the exact current-scene registry unlink path. Modes zero through three set controller flag 0x4000 and write 3, 7, 0, or 5 respectively to dword +0x1cc. Authored mode 0xffffffff clears that flag and zeroes dword +0x1cc plus words +0x86, +0x90, and +0x9a."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 631,
+    "provenCallCount": 631,
+    "dialogueRegionCallCount": 80,
+    "areaCount": 50,
+    "argumentKindCounts": {
+      "0": {
+        "constant": 373,
+        "frame-field": 170,
+        "runtime": 80,
+        "scene-field": 8
+      },
+      "1": {
+        "constant": 627,
+        "frame-field": 4
+      }
+    },
+    "dialogueArgumentKindCounts": {
+      "0": {
+        "constant": 39,
+        "frame-field": 38,
+        "scene-field": 3
+      },
+      "1": {
+        "constant": 80
+      }
+    }
+  },
+  "modeControlAllDiscInventory": {
+    "authoredCallCount": 351,
+    "provenCallCount": 351,
+    "dialogueRegionCallCount": 1,
+    "areaCount": 31,
+    "argumentKindCounts": {
+      "0": {
+        "constant": 313,
+        "frame-field": 38
+      },
+      "1": {
+        "constant": 351
+      }
+    },
+    "modeValueCounts": {
+      "0x00000000": 64,
+      "0x00000001": 4,
+      "0x00000002": 3,
+      "0x00000003": 5,
+      "0xffffffff": 275
+    }
+  },
+  "evidenceBoundary": [
+    "The MOTM tag and numeric controller offset remain low-level native identities.",
+    "The meaning of controller word +0x7c is not inferred from its authored values.",
+    "The no-controller registry unlink remains an explicit runtime adapter call.",
+    "No gameplay name or purpose is assigned to the 0x009d mode values.",
+    "Runtime, frame-field, and scene-field actor bindings remain unresolved until their exact execution context supplies them."
+  ]
+}

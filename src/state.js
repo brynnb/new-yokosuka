@@ -9,6 +9,10 @@ const state = {
 
   // Loader
   loader: null,
+  mt7Loader: null,
+
+  // Asset library
+  currentGame: "shenmue",
 
   // Meshes & loading
   currentMeshes: [],
@@ -17,12 +21,16 @@ const state = {
 
   // Time & season
   currentTimeOfDay: 0, // 0=Day, 1=Sunset, 2=Evening, 3=Night
-  currentSeason: 0, // 0=Summer, 1=Winter, 2=Show All
+  currentSeason: 0, // 0=Summer, 1=Winter
+  currentWeather: "clear",
+  currentWeatherIndex: 0,
 
   // Scene info
   isInteriorScene: false,
   currentZone: null,
   currentScenePrefix: null,
+  currentSceneComposition: null,
+  currentVariantProfile: null,
   singleModelMode: false,
 
   // Camera
@@ -37,6 +45,7 @@ const state = {
   // File catalog
   allFiles: [],
   mt5Files: [],
+  mt7Models: [],
   mapNames: {},
   charNames: {},
 

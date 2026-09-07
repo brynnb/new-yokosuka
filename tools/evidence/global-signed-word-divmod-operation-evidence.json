@@ -1,0 +1,61 @@
+{
+  "schema": "new-yokosuka-global-signed-word-divmod-operation-evidence-v1",
+  "status": "exact-native-divmod-routines-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 388,
+    "operationHex": "0x0184",
+    "handlerAddress": "0x0c163736",
+    "handlerLength": 198,
+    "handlerSha256": "96406693d51f2489944edfaa0c97369d59b493d127ce2f017e2b6499b5cb428d",
+    "nativeContract": {
+      "wordReader": "0x0c142944",
+      "remainderRoutine": "0x0c1dc440",
+      "quotientRoutine": "0x0c1dc294",
+      "wordAddress": "0x0c22020c"
+    },
+    "sourceWord": {
+      "address": "0x0c22020c",
+      "width": 2,
+      "signed": true
+    },
+    "authoredModes": [
+      {
+        "mode": 0,
+        "semantic": "signed remainder after division by 10"
+      },
+      {
+        "mode": 1,
+        "semantic": "signed quotient after division by 10, truncated toward zero"
+      }
+    ],
+    "ignoredAuthoredArgument": {
+      "index": 1,
+      "value": 0
+    },
+    "provenBehavior": "Reads the signed 16-bit global word at 0x0c22020c. Authored mode zero returns its signed remainder after division by ten; authored mode one returns its signed quotient truncated toward zero."
+  },
+  "allDiscInventory": {
+    "callCount": 528,
+    "dialogueRegionCallCount": 144,
+    "areaCount": 54,
+    "modeCounts": {
+      "0": 201,
+      "1": 327
+    },
+    "dialogueRegionModeCounts": {
+      "0": 51,
+      "1": 93
+    }
+  },
+  "evidenceBoundary": [
+    "Only the two exact authored mode forms receive semantics; the executable's unauthored mode two is not promoted.",
+    "The global word's owning gameplay subsystem remains unnamed.",
+    "Signed quotient and remainder behavior comes from the exact SH-4 division routines, not a decimal-display guess."
+  ]
+}

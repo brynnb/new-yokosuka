@@ -1,0 +1,43 @@
+{
+  "schema": "new-yokosuka-ma00-forklift-race-course-v1",
+  "source": {
+    "disc": 3,
+    "area": "MA00",
+    "saveState": "Flycast displayed slot 1 (Lua state index 0)",
+    "recording": "captures/race/forklift-race-route-1785051682.csv",
+    "recordingSha256": "9d99fec86ff198fa5f2eeac1e6aa659666bf756751d9ece59b12f6261f0cafe5",
+    "samplingHz": 10,
+    "recordedTaskTags": ["FRK0", "FRK1", "FRK2", "FRK3", "FRK4"],
+    "coordinateConversion": "browser = [-runtimeX, runtimeY, runtimeZ]"
+  },
+  "nativeObservation": {
+    "movingOpponentCount": 4,
+    "lapCount": 3,
+    "opponentBrowserBounds": {
+      "minimumX": -59.95933151245117,
+      "maximumX": 116.89986419677734,
+      "minimumZ": 40.02680206298828,
+      "maximumZ": 161.9688720703125
+    }
+  },
+  "orderedCheckpointCenters": [
+    [96, 107],
+    [114, 82],
+    [95, 50],
+    [62, 50],
+    [30, 65],
+    [-8, 80],
+    [-43, 96],
+    [-48, 130],
+    [-18, 158],
+    [2, 140],
+    [8, 112],
+    [35, 105],
+    [63, 106]
+  ],
+  "notes": [
+    "Centers are a reduced route through the dense native opponent samples, not visually guessed map points.",
+    "The browser requires every checkpoint in order on every lap, preventing finish-line and course-cut shortcuts.",
+    "S3_MA00_MAP_RACE.MT5 supplies the native course barriers and cones independently of these logical gates."
+  ]
+}

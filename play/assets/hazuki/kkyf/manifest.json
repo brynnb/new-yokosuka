@@ -1,0 +1,152 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/build_jomo_vision_activity_packs.mjs",
+  "source": {
+    "disc": 3,
+    "path": "extracted_disc3_v2/data/SCENE/03/JOMO/KKYF.PKS",
+    "sha256": "cff01c6ed68be4f5055426e2e8840b74c3f456c0997c68b3bee6f8163b42f56a",
+    "archiveFormat": "PAKS/IPAC",
+    "members": [
+      {
+        "name": "DRGS502G.CHRM",
+        "byteLength": 8556,
+        "sha256": "3695b11a84c715316c16ec32680e197632015bc6aa18716530ffd03012fad033"
+      },
+      {
+        "name": "KOK_F.CHRM",
+        "byteLength": 20348,
+        "sha256": "0c467e1983120c619958d963254fbcd6c7ce7416e5bc335e70829389cb5036da"
+      },
+      {
+        "name": "KOK_FTBL.BIN",
+        "byteLength": 7824,
+        "sha256": "8df5fc417b0a934bfac4809eeb81d5dfe2377c681560f881d3826040d2345124"
+      },
+      {
+        "name": "KOK_HM.BIN",
+        "byteLength": 9264,
+        "sha256": "bd81f3033c0be237e5f52aa1976166e1376dd1c8c2b3ec66948f25d08fbc9729"
+      },
+      {
+        "name": "KOK_M.CHRM",
+        "byteLength": 91804,
+        "sha256": "7e3f97682e8eece82a07297f333493a3f60f817d54880ba04b7bf812bdf6d592"
+      },
+      {
+        "name": "KOK_TL.CHRM",
+        "byteLength": 12956,
+        "sha256": "0696b31b710cade0ec90b81f1922e85751036ae3aa8ef790046378944c3634bc"
+      },
+      {
+        "name": "KOK_TR.CHRM",
+        "byteLength": 12988,
+        "sha256": "9ab4b281d4928d62c956d5ef707fdf62fa271c7fe14b274ab6595e790305dd53"
+      },
+      {
+        "name": "M_01KKY.MOTN",
+        "byteLength": 132588,
+        "sha256": "3b44ddf768fdc6c1405ab7ffca32cc7431b86b9af7b3644fe35d3b1cb0e58c18"
+      },
+      {
+        "name": "SEQDATA5.AUTH",
+        "byteLength": 1752,
+        "sha256": "6c32c6d6567b0792f5a32c46e3628e25f530174f47e9e888b0cba55b973d852b"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "tools/evidence/player-cutscene-owner-discovery.json",
+    "resourceName": "KKYF",
+    "variant": "",
+    "selectionRule": "exact cross-disc AUTH member selected by JOMO owner 0x4f758"
+  },
+  "sceneObjects": {
+    "RYMR": {
+      "model": "DRGS502G",
+      "browserFilename": "S3_JOMO_DRGS502G.MT5",
+      "assetPath": "play/assets/hazuki/kkyb/DRGS502G.CHRM",
+      "lifecycle": {
+        "kind": "auth-scoped"
+      }
+    }
+  },
+  "packageActors": {
+    "SORY": {
+      "label": "Lan Di",
+      "modelCode": "KOK_M",
+      "browserFilename": "S3_JOMO_KOK_M.MT5",
+      "assetPath": "play/assets/characters/KOK_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "nativeClothRuntimeMode": 4
+    }
+  },
+  "actorTags": [
+    "RYMR",
+    "SORY"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/hazuki/kkyc/M_01KKY.MOTN",
+      "byteLength": 132588,
+      "sha256": "3b44ddf768fdc6c1405ab7ffca32cc7431b86b9af7b3644fe35d3b1cb0e58c18"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/hazuki/kkyc/M_01KKY.MOTN",
+      "byteLength": 132588,
+      "sha256": "3b44ddf768fdc6c1405ab7ffca32cc7431b86b9af7b3644fe35d3b1cb0e58c18"
+    },
+    {
+      "path": "play/assets/hazuki/kkyf/SEQDATA5.AUTH",
+      "byteLength": 1752,
+      "sha256": "6c32c6d6567b0792f5a32c46e3628e25f530174f47e9e888b0cba55b973d852b"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 55,
+      "primaryPointer": 614348,
+      "secondaryPointer": 614361,
+      "activityId": "KKYF/SEQDATA5.AUTH",
+      "archiveMember": "SEQDATA5.AUTH",
+      "byteLength": 1752,
+      "sha256": "6c32c6d6567b0792f5a32c46e3628e25f530174f47e9e888b0cba55b973d852b",
+      "durationFrames": 240,
+      "durationSeconds": 11.666666984558105,
+      "frameCount": 2,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 2
+      },
+      "actors": [
+        "RYMR",
+        "SORY"
+      ],
+      "nativeSceneObjectStates": [],
+      "motions": [
+        {
+          "actorTag": "SORY",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "KOK_OHI_FLASH_BACK_0100",
+          "startFrame": 1,
+          "endFrame": 2
+        },
+        {
+          "actorTag": "SORY",
+          "frame": 5,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "KOK_OHI_FLASH_BACK_0100",
+          "startFrame": 2,
+          "endFrame": 500
+        }
+      ]
+    }
+  ]
+}

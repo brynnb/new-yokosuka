@@ -1,0 +1,158 @@
+{
+  "schema": "new-yokosuka-operation-016d-evidence-v1",
+  "status": "exact-native-routes-query-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 365,
+    "operationHex": "0x016d",
+    "handlerAddress": "0x0c16b358",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c16b358",
+        "length": 136,
+        "sha256": "6e0b13a8ff536d33bf023ddac2264d5afb21f81171d907d4a766b76177bd1acb"
+      },
+      "modeZeroHelper": {
+        "address": "0x0c17a24e",
+        "length": 110,
+        "sha256": "b68ed8e501b15b9cf6e648fa8351d52889b06576a04ea4de0cf98e989049f4b3"
+      },
+      "modeOneHelper": {
+        "address": "0x0c17b210",
+        "length": 380,
+        "sha256": "3fea4b629bfb79129275faa76177117cb17e59e63f02b60035a6b0d966b2df92"
+      },
+      "modeTwoQuery": {
+        "address": "0x0c17b38e",
+        "length": 18,
+        "sha256": "536975317f297f70f0e1094434880a1c177d729e4afd420565df119881f252f0"
+      },
+      "modeThreeHelper": {
+        "address": "0x0c17b1b6",
+        "length": 38,
+        "sha256": "944f89aacb827575f864d766b87c9250921a78fccae8fff13c0f0dc7b51c3696"
+      }
+    },
+    "nativeContract": {
+      "handlerTableEntry": "0x0c16b358",
+      "resultWriter": "0x0c0bb358",
+      "currentOwnerGlobal": "0x0c20c3d8",
+      "modeZeroHelper": "0x0c17a24e",
+      "modeOneHelper": "0x0c17b210",
+      "modeTwoQuery": "0x0c17b38e",
+      "modeThreeHelper": "0x0c17b1b6",
+      "queryGlobal": "0x0c224b20",
+      "modeOneTag": "SNDT"
+    },
+    "routes": [
+      {
+        "mode": 0,
+        "forwardedArguments": [
+          1,
+          2
+        ],
+        "ignoredArguments": [
+          3
+        ],
+        "behavior": "Pass the current owner global value and arguments one and two to helper 0x0c17a24e."
+      },
+      {
+        "mode": 1,
+        "forwardedArguments": [
+          1,
+          2,
+          3
+        ],
+        "ignoredArguments": [],
+        "behavior": "Pass arguments one through three to 0x0c17b210."
+      },
+      {
+        "mode": 2,
+        "forwardedArguments": [],
+        "ignoredArguments": [
+          1,
+          2,
+          3
+        ],
+        "behavior": "Return one when signed dword 0x0c224b20 is nonnegative, otherwise return zero."
+      },
+      {
+        "mode": 3,
+        "forwardedArguments": [],
+        "ignoredArguments": [
+          1,
+          2,
+          3
+        ],
+        "behavior": "Call helper 0x0c17b1b6 without arguments."
+      },
+      {
+        "mode": 4,
+        "forwardedArguments": [],
+        "ignoredArguments": [
+          1,
+          2,
+          3
+        ],
+        "behavior": "Return without a helper call or state write."
+      }
+    ]
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 1258,
+    "provenCallCount": 1256,
+    "unresolvedMalformedCallCount": 2,
+    "dialogueRegionCallCount": 40,
+    "areaCount": 41,
+    "modeCounts": {
+      "0": 989,
+      "1": 67,
+      "2": 70,
+      "3": 63,
+      "4": 67
+    },
+    "dialogueModeCounts": {
+      "0": 24,
+      "1": 4,
+      "2": 4,
+      "3": 4,
+      "4": 4
+    },
+    "argumentKindCounts": {
+      "0": {
+        "constant": 1256
+      },
+      "1": {
+        "constant": 1230,
+        "frame-field": 26
+      },
+      "2": {
+        "constant": 200,
+        "frame-field": 28,
+        "static-pointer": 1028
+      },
+      "3": {
+        "constant": 1246,
+        "frame-field": 10
+      }
+    },
+    "resultComparisonModeCounts": {
+      "0": 2,
+      "2": 70
+    }
+  },
+  "evidenceBoundary": [
+    "The gameplay-domain ownership of helpers zero, one, and three remains unknown.",
+    "Those three helpers remain mandatory injected adapters with their exact raw argument boundaries.",
+    "The SNDT literal is retained as evidence and is not used to assign an audio semantic name.",
+    "Mode two is implemented as the exact signed query over native dword 0x0c224b20.",
+    "Mode four is implemented as the exact native no-op.",
+    "Only 1,256 exact four-argument calls with constant modes zero through four are promoted.",
+    "The two zero-argument calls remain unresolved."
+  ]
+}

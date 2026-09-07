@@ -1,0 +1,73 @@
+{
+  "schema": "new-yokosuka-actor-figp-byte-operation-evidence-v1",
+  "status": "exact-native-handler-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 200,
+    "operationHex": "0x00c8",
+    "handlerAddress": "0x0c09c2ac",
+    "argumentCount": 2,
+    "actorResolverAddress": "0x0c153956",
+    "associatedRecordResolverAddress": "0x0c0aad5a",
+    "associatedRecordTag": "FIGP",
+    "recordByteOffset": "0x10",
+    "writeWidth": 1,
+    "authoredCallCount": 132,
+    "dialogueRegionCallCount": 20,
+    "mapCount": 21,
+    "argumentKinds": {
+      "0": {
+        "constant": 54,
+        "frame-field": 72,
+        "scene-field": 6
+      },
+      "1": {
+        "constant": 115,
+        "frame-field": 17
+      }
+    },
+    "constantModeCounts": {
+      "0": 67,
+      "1": 16,
+      "2": 13,
+      "3": 1,
+      "4": 4,
+      "5": 4,
+      "6": 7,
+      "7": 3
+    },
+    "provenBehavior": "Resolves argument zero through the exact actor resolver, resolves that actor's literal FIGP associated record, and writes the low eight bits of argument one to record byte +0x10. Missing actors and missing FIGP records are exact native no-ops."
+  },
+  "verifiedRanges": {
+    "operationHandler": {
+      "address": "0x0c09c2ac",
+      "length": 24,
+      "sha256": "156bfcccca12c27c8b128b3b3e2a97bb6fc33a5f206ccec2d77313ce15bb702e"
+    },
+    "figpByteWrite": {
+      "address": "0x0c09bc5a",
+      "length": 34,
+      "sha256": "5e406ee9a200c152108759495321675a5dd64d9d1dae92ae81da91657ae20d23"
+    },
+    "actorResolver": {
+      "address": "0x0c153956",
+      "length": 58,
+      "sha256": "b99d1c60ec19d8c20dec13ede36b9f81a3b04510da97159b53e03db38deba35f"
+    },
+    "associatedRecordResolver": {
+      "address": "0x0c0aad5a",
+      "length": 64,
+      "sha256": "93bed2c74d0db3548d88fd24f81c702cf9531e1ce23107222156fdef0ff0b7eb"
+    }
+  },
+  "evidenceBoundary": [
+    "FIGP is retained as the executable's literal record identity; no gameplay label is inferred.",
+    "Authored constant values zero through seven are raw record bytes, not named browser modes.",
+    "The runtime contract preserves missing-actor and missing-record no-ops."
+  ]
+}

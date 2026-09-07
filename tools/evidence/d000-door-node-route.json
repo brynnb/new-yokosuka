@@ -1,0 +1,90 @@
+{
+  "schema": "shenmue-d000-door-node-route-v1",
+  "source": ".disc-work/exact/d000/MAPINFO.BIN",
+  "function": {
+    "fileOffset": "0x1de74",
+    "frameByteCount": 196,
+    "selectorIncomingStackOffset": "0xdc",
+    "reason": "The function allocates 0xc4 bytes after saving r14/pr; offset 0xdc therefore reads the fifth caller stack word."
+  },
+  "callers": [
+    {
+      "callFileOffset": "0x15786",
+      "selectorCallerFrameOffset": "0x08",
+      "selectorKind": "normalized-boolean"
+    },
+    {
+      "callFileOffset": "0x15b4e",
+      "selectorCallerFrameOffset": "0x0c",
+      "selectorKind": "relative-heading-quadrant",
+      "quadrantHelperFileOffset": "0x29a74",
+      "quadrantReductionFileOffset": "0x29bd8"
+    }
+  ],
+  "branch": {
+    "fileOffset": "0x21940",
+    "node12SelectorValues": [
+      2,
+      3
+    ],
+    "node12SetterFileOffset": "0x2199a",
+    "node7SelectorValues": [
+      0,
+      1
+    ],
+    "node7SetterFileOffset": "0x219e2"
+  },
+  "browserSideObservation": {
+    "sourceCapture": "captures/pvr/20260724-013823-frame-9042/ram.bin",
+    "doorSelector": 53,
+    "staticDoorIndex": 0,
+    "model": "S1_D000_DR01_011.MT5",
+    "actorBrowserPosition": [
+      121.08992767333984,
+      0,
+      81.13014221191406
+    ],
+    "doorBrowserPosition": [
+      122.646652,
+      0.0724,
+      82.192696
+    ],
+    "doorBrowserYawDegrees": -51.59729,
+    "actorDoorLocalZ": 0.5599071226606611,
+    "observedRenderNodeKey": 12,
+    "mapping": {
+      "nonnegativeDoorLocalZ": 12,
+      "negativeDoorLocalZ": 7
+    }
+  },
+  "verifiedSignatures": [
+    {
+      "fileOffset": "0x1de74",
+      "bytes": "e62d224d807dbc7dd36e"
+    },
+    {
+      "fileOffset": "0x1576c",
+      "bytes": "00e4e255e856e757462de654562de555662d762d462d562d"
+    },
+    {
+      "fileOffset": "0x15b34",
+      "bytes": "01e4e355e956e857462de754562de655662d762d462d562d"
+    },
+    {
+      "fileOffset": "0x21940",
+      "bytes": "08d0ee0402e550344a3406d0ee0503e660355a355b2443600088078b"
+    },
+    {
+      "fileOffset": "0x2197c",
+      "bytes": "00e40ce5ec3500e60ce7"
+    },
+    {
+      "fileOffset": "0x219c4",
+      "bytes": "00e40ce5ec3500e607e7"
+    },
+    {
+      "fileOffset": "0x29bd8",
+      "bytes": "1ce4ec34e7552ce6ec3604e77c36626668350ee66b666c4503e669255224"
+    }
+  ]
+}

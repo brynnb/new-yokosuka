@@ -1,0 +1,113 @@
+{
+  "schema": "new-yokosuka-selectable-cutscene-music-audit-v1",
+  "evidenceBoundary": [
+    "A native A83F command is classified as music only when the active sound-bank slot resolves to a pinned background-music bank.",
+    "A1_HOUHA.SND and A1_SAKRA.SND are exact event banks with zero song tracks; their AUTH A904 commands are effects, not background music.",
+    "Post-activity room-music restoration is not promoted to selector cutscene music because the selector returns to its menu after package cleanup.",
+    "No browser soundtrack is guessed when an owner does not load a background-music bank or issue a song-start command during its activity."
+  ],
+  "generatedFrom": {
+    "programPack": "play/data/events/nativeEventPrograms.generated.json",
+    "ownerDiscovery": "tools/evidence/player-cutscene-owner-discovery.json",
+    "audioBankInventory": "tools/evidence/native-audio-bank-inventory.json",
+    "smokeAudit": "tools/evidence/selectable-cutscene-smoke.json"
+  },
+  "summary": {
+    "familyCount": 3,
+    "missingBindingCount": 0,
+    "authoredSilentDuringActivityCount": 3,
+    "postActivityRoomRestorationCount": 1
+  },
+  "families": [
+    {
+      "resource": "HOUO",
+      "selectorIds": ["S1-HOUO-01"],
+      "classification": "native-owner-silent-during-activity",
+      "owner": {
+        "disc": 1,
+        "area": "JHD0",
+        "mapinfoSha256": "e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca",
+        "dispatcherFunction": "0x56028",
+        "branchRange": ["0x567fe", "0x5692e"],
+        "activityInstallCallFileOffset": "0x568a8",
+        "activityPlayCallFileOffset": "0x56906",
+        "activityPlayFunction": "0x24044",
+        "branchSoundCommandCallOffsets": [],
+        "playFunctionSoundCommandCallOffsets": []
+      },
+      "activity": {
+        "archive": "extracted_disc2_v2/data/SCENE/02/JHD0/HOUO.PKS",
+        "member": "SEQDATAD.AUTH",
+        "sha256": "33c400d02f7a5fbc2d3a9c9be17529b289b9432ad2c78a0985beee522a1a446c",
+        "authoredSoundCommandCount": 25
+      },
+      "soundBank": {
+        "path": "SCENE/02/SOUND/A1_HOUHA.SND",
+        "sha256": "4fbc8fa043f8db207ae1f099333469606702f49302687fd8d0d367d1c04342cb",
+        "family": "event",
+        "descriptor": "a904",
+        "songTrackCount": 0
+      },
+      "packagePolicy": "do-not-start-music"
+    },
+    {
+      "resource": "HIHY",
+      "selectorIds": ["S1-HIHY-01"],
+      "classification": "native-owner-silent-during-activity",
+      "owner": {
+        "programId": "disc1-jhd0-iwao-young-ryo-memory-0x37d56",
+        "entryFunction": "0x37d56",
+        "mapinfoSha256": "e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca",
+        "activityInstallCallFileOffset": "0x3823c",
+        "activityReleaseCallFileOffset": "0x383be",
+        "postActivityBankReconcileCallFileOffset": "0x3840e",
+        "postActivityMusicCommandCallFileOffset": "0x38426"
+      },
+      "postActivityRoomRestoration": {
+        "commandHex": "a83f0000",
+        "exactArguments": [0, 0],
+        "bank": "BGM009.SND",
+        "bankSha256": "7e3aef5210847b80285c1c9519cdad7ca47fa58a30a1ed2a3a6effb06c6c9e31",
+        "browserTrackId": "hazuki-residence",
+        "disposition": "restore JHD0/JOMO room audio after activity release; do not play in selector"
+      },
+      "packagePolicy": "do-not-start-music"
+    },
+    {
+      "resource": "SAKR",
+      "selectorIds": ["S1-SAKR-01"],
+      "classification": "native-owner-silent-during-activity",
+      "owner": {
+        "programId": "disc1-yd01-sakura-training-owner-0x2678",
+        "entryFunction": "0x2678",
+        "mapinfoSha256": "245459a1f9936e5582954375bff9b49ced48000d301b2bbf19e135b145494baa",
+        "preActivitySoundCommands": [
+          {
+            "callFileOffset": "0x2692",
+            "commandHex": "a80f0000",
+            "exactArguments": [0, 0]
+          },
+          {
+            "callFileOffset": "0x26aa",
+            "commandHex": "a0040000",
+            "exactArguments": [2, 90]
+          }
+        ],
+        "musicStartCallOffsets": []
+      },
+      "soundBank": {
+        "path": "SCENE/01/SOUND/A1_SAKRA.SND",
+        "sha256": "cf1e1202e3072d46e45f6d0bb2ed27b96552d1fe5d8ad713ab940c75fb01a8e6",
+        "family": "event",
+        "descriptor": "a904",
+        "songTrackCount": 0
+      },
+      "transition": {
+        "callFileOffset": "0x2758",
+        "destinationArea": "JHD0",
+        "destinationIndex": 5
+      },
+      "packagePolicy": "do-not-start-music"
+    }
+  ]
+}

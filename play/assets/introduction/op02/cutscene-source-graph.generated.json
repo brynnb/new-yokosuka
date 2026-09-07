@@ -1,0 +1,927 @@
+{
+  "schema": "new-yokosuka-native-cutscene-source-graph-v1",
+  "id": "S1-OP02-00",
+  "disc": 1,
+  "area": "OP02",
+  "source": {
+    "mapinfo": {
+      "path": "SCENE/01/OP02/MAPINFO.BIN",
+      "byteLength": 28496,
+      "sha256": "5463ad11cf2ed99764160795be2e1576a874d8c928b8ccc9db437ad32b25d6d0"
+    },
+    "archives": [
+      {
+        "path": "SCENE/01/OP02/SHD2.PKS",
+        "lifecycle": "activity-local",
+        "byteLength": 980648,
+        "sha256": "80c97a1a0dbee382111f81cc0ff906c7d48b905e5046d97a682449e63cf631ca"
+      },
+      {
+        "path": "SCENE/01/OP02/SHDR.PKS",
+        "lifecycle": "area-resident",
+        "byteLength": 269831,
+        "sha256": "465f2af518db6adeae1a200f86b793a2f7494364829df7918c350318b32eceea"
+      }
+    ],
+    "evidence": [
+      "tools/evidence/op02-opening-native-lifecycle.json",
+      "play/data/events/nativeScriptedSceneCatalog.generated.json"
+    ]
+  },
+  "program": {
+    "entryFunction": "0x23c8",
+    "ownerFunction": "0x7c",
+    "nativeActivityResourceName": "A0100",
+    "structuralEntry": {
+      "id": "disc1/OP02/5463ad11cf2e/0x23c8",
+      "entryFunction": "0x23c8",
+      "entryKinds": [
+        "child-coroutine-target"
+      ],
+      "launchSiteCount": 1,
+      "coverageState": "structurally-parsed-blocked",
+      "availability": "research-only",
+      "closure": {
+        "functionCount": 13,
+        "dialogueRegionCount": 0,
+        "authActivityLaunchCount": 21,
+        "authResourceBindingCount": 0,
+        "unresolvedBoundaryCount": 45,
+        "unresolvedBoundaryTypeCount": 14
+      },
+      "firstBlocker": {
+        "kind": "engineOperation",
+        "identity": "0x0005",
+        "callSiteCount": 1,
+        "minimumGraphDepth": 0,
+        "firstFunction": "0x23c8",
+        "firstCallFileOffset": "0x2410"
+      }
+    },
+    "compiledArtifact": {
+      "path": "play/assets/introduction/op02/cutscene-program.generated.json",
+      "schema": "new-yokosuka-native-cutscene-program-v1",
+      "summary": {
+        "functionCount": 13,
+        "blockCount": 397,
+        "actionCount": 265,
+        "actionKinds": {
+          "childCoroutineLaunch": 1,
+          "coroutineContinuationTransfer": 14,
+          "directCall": 17,
+          "engineOperation": 172,
+          "frameFieldExpressionWrite": 17,
+          "frameFieldWrite": 20,
+          "runtimeInterfaceCall": 24
+        },
+        "staticTargetEdges": {
+          "childCoroutineLaunch": 1,
+          "directCall": 17
+        },
+        "unresolvedOperationTypeCount": 0,
+        "unresolvedOperationCallCount": 0,
+        "staticStringCount": 9,
+        "staticVectorCount": 1,
+        "operation013cStaticRecordPairCount": 1,
+        "operation013cArchivePairCount": 1,
+        "operation013eStaticBindingCount": 0
+      }
+    }
+  },
+  "resources": [
+    {
+      "logicalId": "OP02/MAPINFO.BIN",
+      "contentIdentity": "sha256:5463ad11cf2ed99764160795be2e1576a874d8c928b8ccc9db437ad32b25d6d0",
+      "kind": "mapinfo",
+      "source": {
+        "disc": 1,
+        "path": "SCENE/01/OP02/MAPINFO.BIN"
+      },
+      "byteLength": 28496
+    },
+    {
+      "logicalId": "OP02/SHD2/MAP01.MAPM",
+      "contentIdentity": "sha256:85a8070543471906bfbc90f49b5cf4bfc0429f97d6b410a7c4c6cf495eeb9d61",
+      "kind": "archive-member",
+      "source": {
+        "disc": 1,
+        "path": "SCENE/01/OP02/SHD2.PKS",
+        "archiveMember": "MAP01.MAPM"
+      },
+      "byteLength": 127556,
+      "lifecycle": "activity-local"
+    },
+    {
+      "logicalId": "OP02/SHD2/MAP02.MAPM",
+      "contentIdentity": "sha256:3aa3abecf4e57bf8650aada68d5f3d95bdfc65acb4b87457581b5a446a863a27",
+      "kind": "archive-member",
+      "source": {
+        "disc": 1,
+        "path": "SCENE/01/OP02/SHD2.PKS",
+        "archiveMember": "MAP02.MAPM"
+      },
+      "byteLength": 156672,
+      "lifecycle": "activity-local"
+    },
+    {
+      "logicalId": "OP02/SHD2/MGR_F.CHRM",
+      "contentIdentity": "sha256:2b5c3c5f8408cd9819f430598fb2bcba649b0278165ce042a78366860b4bd4a6",
+      "kind": "archive-member",
+      "source": {
+        "disc": 1,
+        "path": "SCENE/01/OP02/SHD2.PKS",
+        "archiveMember": "MGR_F.CHRM"
+      },
+      "byteLength": 108220,
+      "lifecycle": "activity-local"
+    },
+    {
+      "logicalId": "OP02/SHD2/MGR_FTBL.BIN",
+      "contentIdentity": "sha256:a6b16ea46f2f5669361e4d27210110aef06a55951f17a81c913ea303e9af7e7a",
+      "kind": "archive-member",
+      "source": {
+        "disc": 1,
+        "path": "SCENE/01/OP02/SHD2.PKS",
+        "archiveMember": "MGR_FTBL.BIN"
+      },
+      "byteLength": 41196,
+      "lifecycle": "activity-local"
+    },
+    {
+      "logicalId": "OP02/SHD2/MGR_M.CHRM",
+      "contentIdentity": "sha256:a79af46067bc08d22ec55e7308d6ac9157185bcba5409de3b59fc07830435f55",
+      "kind": "archive-member",
+      "source": {
+        "disc": 1,
+        "path": "SCENE/01/OP02/SHD2.PKS",
+        "archiveMember": "MGR_M.CHRM"
+      },
+      "byteLength": 238128,
+      "lifecycle": "activity-local"
+    },
+    {
+      "logicalId": "OP02/SHD2/M_0605.MOTN",
+      "contentIdentity": "sha256:191697b8ae70bea123ddf990a1c1268d8df6d5ad23a1602ebcd064bf1454b0f9",
+      "kind": "archive-member",
+      "source": {
+        "disc": 1,
+        "path": "SCENE/01/OP02/SHD2.PKS",
+        "archiveMember": "M_0605.MOTN"
+      },
+      "byteLength": 12240,
+      "lifecycle": "activity-local"
+    },
+    {
+      "logicalId": "OP02/SHD2/SCROLL53.SCR1",
+      "contentIdentity": "sha256:ebb90b04a8b2ff865dc4bff68996ee9745cd2c64504bc934ccd2e8454f6a719c",
+      "kind": "scroll-sprite",
+      "source": {
+        "disc": 1,
+        "path": "SCENE/01/OP02/SHD2.PKS",
+        "archiveMember": "SCROLL53.SCR1"
+      },
+      "byteLength": 262196,
+      "lifecycle": "activity-local",
+      "nativeSlot": 1,
+      "logicalDimensions": [
+        512,
+        256
+      ],
+      "tiles": [
+        {
+          "index": 0,
+          "textureName": "air53",
+          "width": 512,
+          "height": 256,
+          "colorFormat": 1,
+          "dataFormat": 13
+        }
+      ]
+    },
+    {
+      "logicalId": "OP02/SHD2/SIN_HM.BIN",
+      "contentIdentity": "sha256:6245a820d3b4e69388cde3bea95f2d9b0bc3246a77e8ff2254d586e6398fc589",
+      "kind": "archive-member",
+      "source": {
+        "disc": 1,
+        "path": "SCENE/01/OP02/SHD2.PKS",
+        "archiveMember": "SIN_HM.BIN"
+      },
+      "byteLength": 8632,
+      "lifecycle": "activity-local"
+    },
+    {
+      "logicalId": "OP02/SHD2/SIN_TL.CHRM",
+      "contentIdentity": "sha256:d0c2c59ead198eef047313c5852726df5b1ffd0d903baa4e95254e7f38468be0",
+      "kind": "archive-member",
+      "source": {
+        "disc": 1,
+        "path": "SCENE/01/OP02/SHD2.PKS",
+        "archiveMember": "SIN_TL.CHRM"
+      },
+      "byteLength": 12676,
+      "lifecycle": "activity-local"
+    },
+    {
+      "logicalId": "OP02/SHD2/SIN_TR.CHRM",
+      "contentIdentity": "sha256:6427c37fbdba8b721a0ed0580c89bc9513260f5a1a4df9d5af25fc5226b3962e",
+      "kind": "archive-member",
+      "source": {
+        "disc": 1,
+        "path": "SCENE/01/OP02/SHD2.PKS",
+        "archiveMember": "SIN_TR.CHRM"
+      },
+      "byteLength": 12764,
+      "lifecycle": "activity-local"
+    },
+    {
+      "logicalId": "OP02/SHDR/MAP.MAPM",
+      "contentIdentity": "sha256:07a409ba6bfd8eab73e013c04ff3b6e2e483aa1a9cb6a99f79437cb385ebbc88",
+      "kind": "archive-member",
+      "source": {
+        "disc": 1,
+        "path": "SCENE/01/OP02/SHDR.PKS",
+        "archiveMember": "MAP.MAPM"
+      },
+      "byteLength": 159980,
+      "lifecycle": "area-resident"
+    },
+    {
+      "logicalId": "OP02/SHDR/MAP03.MAPM",
+      "contentIdentity": "sha256:116a7963cc4d3dcd0c40daa3e97a33af0626082ac0d2124db9456997e4b266ee",
+      "kind": "archive-member",
+      "source": {
+        "disc": 1,
+        "path": "SCENE/01/OP02/SHDR.PKS",
+        "archiveMember": "MAP03.MAPM"
+      },
+      "byteLength": 3564,
+      "lifecycle": "area-resident"
+    },
+    {
+      "logicalId": "OP02/SHDR/M_TORI.MOTN",
+      "contentIdentity": "sha256:faa2483e6bbdfb5cde0fec4a1a1aeb5530330b9e8cfec6538bbe524370b67558",
+      "kind": "archive-member",
+      "source": {
+        "disc": 1,
+        "path": "SCENE/01/OP02/SHDR.PKS",
+        "archiveMember": "M_TORI.MOTN"
+      },
+      "byteLength": 132456,
+      "lifecycle": "area-resident"
+    },
+    {
+      "logicalId": "OP02/SHDR/SCROLL67.SCR0",
+      "contentIdentity": "sha256:2c734eef6227c75fc84859a0a6e88dbec5391dc17ac868b240b31c575e7880b0",
+      "kind": "scroll-sprite",
+      "source": {
+        "disc": 1,
+        "path": "SCENE/01/OP02/SHDR.PKS",
+        "archiveMember": "SCROLL67.SCR0"
+      },
+      "byteLength": 327800,
+      "lifecycle": "area-resident",
+      "nativeSlot": 0,
+      "logicalDimensions": [
+        512,
+        320
+      ],
+      "tiles": [
+        {
+          "index": 0,
+          "textureName": "air67",
+          "width": 512,
+          "height": 256,
+          "colorFormat": 1,
+          "dataFormat": 13
+        },
+        {
+          "index": 1,
+          "textureName": "air67b",
+          "width": 512,
+          "height": 64,
+          "colorFormat": 1,
+          "dataFormat": 13
+        }
+      ]
+    },
+    {
+      "logicalId": "OP02/SHDR/TAK02M7G.CHRM",
+      "contentIdentity": "sha256:3bb785a9e35909dfddf4d0914faaf063668e848f0667fb931acbfa8a503f2e05",
+      "kind": "archive-member",
+      "source": {
+        "disc": 1,
+        "path": "SCENE/01/OP02/SHDR.PKS",
+        "archiveMember": "TAK02M7G.CHRM"
+      },
+      "byteLength": 45816,
+      "lifecycle": "area-resident"
+    },
+    {
+      "logicalId": "OP02/SHDR/TAK02M8G.CHRM",
+      "contentIdentity": "sha256:80dd28d41fbac62c2bb52e88a5f0fd16b9a1dba101d6bd87308b5e0d3398035b",
+      "kind": "archive-member",
+      "source": {
+        "disc": 1,
+        "path": "SCENE/01/OP02/SHDR.PKS",
+        "archiveMember": "TAK02M8G.CHRM"
+      },
+      "byteLength": 39976,
+      "lifecycle": "area-resident"
+    },
+    {
+      "logicalId": "OP02/MAPINFO.BIN/TRCK@0x2894",
+      "contentIdentity": "sha256:5f8f06c137f57e245ea9b73022e49c148d4973ec2bbe83b7868ea3f6a6908fa3",
+      "kind": "auth-activity",
+      "source": {
+        "disc": 1,
+        "path": "SCENE/01/OP02/MAPINFO.BIN",
+        "byteOffset": "0x2894"
+      },
+      "byteLength": 1600
+    },
+    {
+      "logicalId": "OP02/MAPINFO.BIN/TRCK@0x2ed4",
+      "contentIdentity": "sha256:50d4bb03923ac6e442a0eb47ea78ff057aa740218385a47868a14399fa343ee2",
+      "kind": "auth-activity",
+      "source": {
+        "disc": 1,
+        "path": "SCENE/01/OP02/MAPINFO.BIN",
+        "byteOffset": "0x2ed4"
+      },
+      "byteLength": 4968
+    },
+    {
+      "logicalId": "OP02/MAPINFO.BIN/TRCK@0x423c",
+      "contentIdentity": "sha256:645e5a3ffd3bb3bd1b323c7768dd8a537d78ce5438034da49b31092b8dbea30b",
+      "kind": "auth-activity",
+      "source": {
+        "disc": 1,
+        "path": "SCENE/01/OP02/MAPINFO.BIN",
+        "byteOffset": "0x423c"
+      },
+      "byteLength": 1800
+    },
+    {
+      "logicalId": "OP02/MAPINFO.BIN/TRCK@0x4944",
+      "contentIdentity": "sha256:9a43456ff590a013ce54228d054749eb2d8fd5c4be55190579f4577528a19a50",
+      "kind": "auth-activity",
+      "source": {
+        "disc": 1,
+        "path": "SCENE/01/OP02/MAPINFO.BIN",
+        "byteOffset": "0x4944"
+      },
+      "byteLength": 2356
+    },
+    {
+      "logicalId": "OP02/MAPINFO.BIN/TRCK@0x5278",
+      "contentIdentity": "sha256:4bdd07b5be164fcbf47704017d7a6ba9107bcd1bbb585d0e6681c7af89684f75",
+      "kind": "auth-activity",
+      "source": {
+        "disc": 1,
+        "path": "SCENE/01/OP02/MAPINFO.BIN",
+        "byteOffset": "0x5278"
+      },
+      "byteLength": 2764
+    },
+    {
+      "logicalId": "OP02/MAPINFO.BIN/TRCK@0x5d44",
+      "contentIdentity": "sha256:86f2c35e276ed399bbee9ab9c50ea6cd1f6217822224548a5269b413be004ffb",
+      "kind": "auth-activity",
+      "source": {
+        "disc": 1,
+        "path": "SCENE/01/OP02/MAPINFO.BIN",
+        "byteOffset": "0x5d44"
+      },
+      "byteLength": 1504
+    },
+    {
+      "logicalId": "OP02/MAPINFO.BIN/TRCK@0x6324",
+      "contentIdentity": "sha256:98ea8a7a95481e833bbfee9f6d2eb1c86241f953aa8f6c2db8ce245dee694653",
+      "kind": "auth-activity",
+      "source": {
+        "disc": 1,
+        "path": "SCENE/01/OP02/MAPINFO.BIN",
+        "byteOffset": "0x6324"
+      },
+      "byteLength": 2528
+    }
+  ],
+  "activities": [
+    {
+      "logicalId": "OP02/MAPINFO.BIN/TRCK@0x2894",
+      "resourceId": "OP02/MAPINFO.BIN/TRCK@0x2894",
+      "nativeCatalogId": "d1:OP02:mapinfo:5463ad11cf2e:trck:0x2894",
+      "actors": [
+        "HAWK",
+        "AKIR"
+      ],
+      "durationFrames": 450,
+      "movementDurationSeconds": 59,
+      "cameraDurationSeconds": 15.90000057220459,
+      "cameraCount": 1,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "sound": 1
+      }
+    },
+    {
+      "logicalId": "OP02/MAPINFO.BIN/TRCK@0x2ed4",
+      "resourceId": "OP02/MAPINFO.BIN/TRCK@0x2ed4",
+      "nativeCatalogId": "d1:OP02:mapinfo:5463ad11cf2e:trck:0x2ed4",
+      "actors": [
+        "HAWK",
+        "SINF"
+      ],
+      "durationFrames": 350,
+      "movementDurationSeconds": 11.683333396911621,
+      "cameraDurationSeconds": 11.683333396911621,
+      "cameraCount": 1,
+      "commandCounts": {
+        "camera": 1,
+        "motion": 2,
+        "move": 2
+      }
+    },
+    {
+      "logicalId": "OP02/MAPINFO.BIN/TRCK@0x423c",
+      "resourceId": "OP02/MAPINFO.BIN/TRCK@0x423c",
+      "nativeCatalogId": "d1:OP02:mapinfo:5463ad11cf2e:trck:0x423c",
+      "actors": [
+        "HAWK",
+        "SINF"
+      ],
+      "durationFrames": 147,
+      "movementDurationSeconds": 15.666666984558105,
+      "cameraDurationSeconds": 4.9166669845581055,
+      "cameraCount": 1,
+      "commandCounts": {
+        "camera": 1,
+        "motion": 1,
+        "move": 2,
+        "voice": 1
+      }
+    },
+    {
+      "logicalId": "OP02/MAPINFO.BIN/TRCK@0x4944",
+      "resourceId": "OP02/MAPINFO.BIN/TRCK@0x4944",
+      "nativeCatalogId": "d1:OP02:mapinfo:5463ad11cf2e:trck:0x4944",
+      "actors": [
+        "HAWK",
+        "SINF"
+      ],
+      "durationFrames": 580,
+      "movementDurationSeconds": 24,
+      "cameraDurationSeconds": 19.350000381469727,
+      "cameraCount": 1,
+      "commandCounts": {
+        "camera": 1,
+        "motion": 1,
+        "move": 2,
+        "voice": 4
+      }
+    },
+    {
+      "logicalId": "OP02/MAPINFO.BIN/TRCK@0x5278",
+      "resourceId": "OP02/MAPINFO.BIN/TRCK@0x5278",
+      "nativeCatalogId": "d1:OP02:mapinfo:5463ad11cf2e:trck:0x5278",
+      "actors": [
+        "HAWK",
+        "SINF"
+      ],
+      "durationFrames": 530,
+      "movementDurationSeconds": 21,
+      "cameraDurationSeconds": 17.683332443237305,
+      "cameraCount": 1,
+      "commandCounts": {
+        "camera": 1,
+        "motion": 2,
+        "move": 2,
+        "voice": 3
+      }
+    },
+    {
+      "logicalId": "OP02/MAPINFO.BIN/TRCK@0x5d44",
+      "resourceId": "OP02/MAPINFO.BIN/TRCK@0x5d44",
+      "nativeCatalogId": "d1:OP02:mapinfo:5463ad11cf2e:trck:0x5d44",
+      "actors": [
+        "SINF"
+      ],
+      "durationFrames": 57,
+      "movementDurationSeconds": 1.9166669845581055,
+      "cameraDurationSeconds": 1.9166669845581055,
+      "cameraCount": 1,
+      "commandCounts": {
+        "camera": 1,
+        "effect": 3,
+        "motion": 1,
+        "move": 1
+      }
+    },
+    {
+      "logicalId": "OP02/MAPINFO.BIN/TRCK@0x6324",
+      "resourceId": "OP02/MAPINFO.BIN/TRCK@0x6324",
+      "nativeCatalogId": "d1:OP02:mapinfo:5463ad11cf2e:trck:0x6324",
+      "actors": [
+        "SINF",
+        "HAWK"
+      ],
+      "durationFrames": 243,
+      "movementDurationSeconds": 27.53333282470703,
+      "cameraDurationSeconds": 8.116666793823242,
+      "cameraCount": 1,
+      "commandCounts": {
+        "camera": 1,
+        "motion": 1,
+        "move": 2,
+        "voice": 2
+      }
+    }
+  ],
+  "models": [
+    {
+      "logicalId": "OP02/SHD2/MAP01.MAPM",
+      "resourceId": "OP02/SHD2/MAP01.MAPM",
+      "nativeName": "MAP01.MAPM",
+      "kind": "map-model",
+      "hierarchy": {
+        "nodeCount": 28,
+        "topologySha256": "9e6e65c3f2e34f7bb3270186f3acdc5bfe015fe8867f8b6adeb029bfeac73535"
+      }
+    },
+    {
+      "logicalId": "OP02/SHD2/MAP02.MAPM",
+      "resourceId": "OP02/SHD2/MAP02.MAPM",
+      "nativeName": "MAP02.MAPM",
+      "kind": "map-model",
+      "hierarchy": {
+        "nodeCount": 145,
+        "topologySha256": "76a25204997627b0c5884dfbd2299b34588365c0bff918cfbe00d54edc2d94ef"
+      }
+    },
+    {
+      "logicalId": "OP02/SHD2/MGR_F.CHRM",
+      "resourceId": "OP02/SHD2/MGR_F.CHRM",
+      "nativeName": "MGR_F.CHRM",
+      "kind": "character-model",
+      "hierarchy": {
+        "nodeCount": 7,
+        "topologySha256": "9d8ce696525d7b66eff5d9a25b7559f87b2c7a41f587780b78fc8a2e1749c595"
+      }
+    },
+    {
+      "logicalId": "OP02/SHD2/MGR_M.CHRM",
+      "resourceId": "OP02/SHD2/MGR_M.CHRM",
+      "nativeName": "MGR_M.CHRM",
+      "kind": "character-model",
+      "hierarchy": {
+        "nodeCount": 86,
+        "topologySha256": "710ca6a88e50b1c5b52ddd366c1d3f6aa8f3d029b40bc17f170111d109d714d4"
+      }
+    },
+    {
+      "logicalId": "OP02/SHD2/SIN_TL.CHRM",
+      "resourceId": "OP02/SHD2/SIN_TL.CHRM",
+      "nativeName": "SIN_TL.CHRM",
+      "kind": "character-model",
+      "hierarchy": {
+        "nodeCount": 1,
+        "topologySha256": "767c06db096a20db5b37a961854398eee0475a2f873002d07a710b3fe656e109"
+      }
+    },
+    {
+      "logicalId": "OP02/SHD2/SIN_TR.CHRM",
+      "resourceId": "OP02/SHD2/SIN_TR.CHRM",
+      "nativeName": "SIN_TR.CHRM",
+      "kind": "character-model",
+      "hierarchy": {
+        "nodeCount": 1,
+        "topologySha256": "b6aaa9873f4f04d24d83744d21cb45a59b4446a889596433a2f1866d6712ef90"
+      }
+    },
+    {
+      "logicalId": "OP02/SHDR/MAP.MAPM",
+      "resourceId": "OP02/SHDR/MAP.MAPM",
+      "nativeName": "MAP.MAPM",
+      "kind": "map-model",
+      "hierarchy": {
+        "nodeCount": 44,
+        "topologySha256": "99ffb0cb0abb95dcf60b60191ea33f8467acbd002b793c0b95378e3300b13dd7"
+      }
+    },
+    {
+      "logicalId": "OP02/SHDR/MAP03.MAPM",
+      "resourceId": "OP02/SHDR/MAP03.MAPM",
+      "nativeName": "MAP03.MAPM",
+      "kind": "map-model",
+      "hierarchy": {
+        "nodeCount": 2,
+        "topologySha256": "b2378c9b5ff89b9005f731c92b67d86bff62d8b5e849f223f52b2a95bf516be5"
+      }
+    },
+    {
+      "logicalId": "OP02/SHDR/TAK02M7G.CHRM",
+      "resourceId": "OP02/SHDR/TAK02M7G.CHRM",
+      "nativeName": "TAK02M7G.CHRM",
+      "kind": "character-model",
+      "hierarchy": {
+        "nodeCount": 58,
+        "topologySha256": "77a0da8ddbbd78f2d94a051c0a71baba4df19c7dbf64d79921063626aa10f722"
+      }
+    },
+    {
+      "logicalId": "OP02/SHDR/TAK02M8G.CHRM",
+      "resourceId": "OP02/SHDR/TAK02M8G.CHRM",
+      "nativeName": "TAK02M8G.CHRM",
+      "kind": "character-model",
+      "hierarchy": {
+        "nodeCount": 54,
+        "topologySha256": "6bf77ae3d6744af77041f414781cf8f849f14b056681c0331197b2954e03e945"
+      }
+    }
+  ],
+  "motions": [
+    {
+      "logicalId": "OP02/SHD2/M_0605.MOTN",
+      "resourceId": "OP02/SHD2/M_0605.MOTN",
+      "format": "MOTN",
+      "sequences": [
+        {
+          "index": 0,
+          "name": "SIN_STAND_C_NWJ",
+          "durationFrames": 606,
+          "controllerFamilyIndex": 15
+        },
+        {
+          "index": 1,
+          "name": "SIN_WALK_STAND_A_NWJ",
+          "durationFrames": 789,
+          "controllerFamilyIndex": 15
+        },
+        {
+          "index": 2,
+          "name": "SIN_OHI_FURIMUKI_0605",
+          "durationFrames": 126,
+          "controllerFamilyIndex": 15
+        }
+      ]
+    },
+    {
+      "logicalId": "OP02/SHDR/M_TORI.MOTN",
+      "resourceId": "OP02/SHDR/M_TORI.MOTN",
+      "format": "TMNM",
+      "sequences": [
+        {
+          "index": 0,
+          "name": "TMN_TAK_7_FLY_KAKKU",
+          "playbackKind": "transition",
+          "durationFrames": 50,
+          "requiredNodeCount": 58
+        },
+        {
+          "index": 1,
+          "name": "TMN_TAK_7_FLY_LP",
+          "playbackKind": "loop",
+          "durationFrames": 25,
+          "requiredNodeCount": 58
+        },
+        {
+          "index": 2,
+          "name": "TMN_TAK_7_KAKKU_FLY",
+          "playbackKind": "transition",
+          "durationFrames": 68,
+          "requiredNodeCount": 58
+        },
+        {
+          "index": 3,
+          "name": "TMN_TAK_7_KAKKU_LP",
+          "playbackKind": "loop",
+          "durationFrames": 24,
+          "requiredNodeCount": 58
+        },
+        {
+          "index": 4,
+          "name": "TMN_TAK_7_KAKKU_KOGEKI",
+          "playbackKind": "transition",
+          "durationFrames": 68,
+          "requiredNodeCount": 58
+        },
+        {
+          "index": 5,
+          "name": "TMN_TAK_8_KAKKU_KOUKA",
+          "playbackKind": "transition",
+          "durationFrames": 43,
+          "requiredNodeCount": 54
+        },
+        {
+          "index": 6,
+          "name": "TMN_TAK_8_KOUKA_KAKKU",
+          "playbackKind": "transition",
+          "durationFrames": 27,
+          "requiredNodeCount": 54
+        },
+        {
+          "index": 7,
+          "name": "TMN_TAK_8_KOUKA_LP",
+          "playbackKind": "loop",
+          "durationFrames": 5,
+          "requiredNodeCount": 54
+        }
+      ]
+    }
+  ],
+  "motionCompatibility": [
+    {
+      "motionId": "OP02/SHDR/M_TORI.MOTN",
+      "sequenceIndex": 0,
+      "sequenceName": "TMN_TAK_7_FLY_KAKKU",
+      "requiredNodeCount": 58,
+      "compatibleModelIds": [
+        "OP02/SHDR/TAK02M7G.CHRM"
+      ]
+    },
+    {
+      "motionId": "OP02/SHDR/M_TORI.MOTN",
+      "sequenceIndex": 1,
+      "sequenceName": "TMN_TAK_7_FLY_LP",
+      "requiredNodeCount": 58,
+      "compatibleModelIds": [
+        "OP02/SHDR/TAK02M7G.CHRM"
+      ]
+    },
+    {
+      "motionId": "OP02/SHDR/M_TORI.MOTN",
+      "sequenceIndex": 2,
+      "sequenceName": "TMN_TAK_7_KAKKU_FLY",
+      "requiredNodeCount": 58,
+      "compatibleModelIds": [
+        "OP02/SHDR/TAK02M7G.CHRM"
+      ]
+    },
+    {
+      "motionId": "OP02/SHDR/M_TORI.MOTN",
+      "sequenceIndex": 3,
+      "sequenceName": "TMN_TAK_7_KAKKU_LP",
+      "requiredNodeCount": 58,
+      "compatibleModelIds": [
+        "OP02/SHDR/TAK02M7G.CHRM"
+      ]
+    },
+    {
+      "motionId": "OP02/SHDR/M_TORI.MOTN",
+      "sequenceIndex": 4,
+      "sequenceName": "TMN_TAK_7_KAKKU_KOGEKI",
+      "requiredNodeCount": 58,
+      "compatibleModelIds": [
+        "OP02/SHDR/TAK02M7G.CHRM"
+      ]
+    },
+    {
+      "motionId": "OP02/SHDR/M_TORI.MOTN",
+      "sequenceIndex": 5,
+      "sequenceName": "TMN_TAK_8_KAKKU_KOUKA",
+      "requiredNodeCount": 54,
+      "compatibleModelIds": [
+        "OP02/SHDR/TAK02M8G.CHRM"
+      ]
+    },
+    {
+      "motionId": "OP02/SHDR/M_TORI.MOTN",
+      "sequenceIndex": 6,
+      "sequenceName": "TMN_TAK_8_KOUKA_KAKKU",
+      "requiredNodeCount": 54,
+      "compatibleModelIds": [
+        "OP02/SHDR/TAK02M8G.CHRM"
+      ]
+    },
+    {
+      "motionId": "OP02/SHDR/M_TORI.MOTN",
+      "sequenceIndex": 7,
+      "sequenceName": "TMN_TAK_8_KOUKA_LP",
+      "requiredNodeCount": 54,
+      "compatibleModelIds": [
+        "OP02/SHDR/TAK02M8G.CHRM"
+      ]
+    }
+  ],
+  "audio": {
+    "nativeSoundReferences": [
+      "a1_opni.snd",
+      "bgm019.snd"
+    ],
+    "voices": [
+      {
+        "voiceId": "A0100B001",
+        "nativeSha256": "033efb9732afdd2c8d5e5a1e52c692647b7884b8db56e9f6ba01932b0cd99cdb",
+        "assetSha256": "d453bb24c7ad9cd1955b72e772ba0aefdc0b22c1cc16f44fb31b8fef77b0921f"
+      },
+      {
+        "voiceId": "A0100B002",
+        "nativeSha256": "d8600d36f171873899424613906e5aa5a2b7e39748c1efb46f2fc6eb4cfdda33",
+        "assetSha256": "ab99b0e45f15a7fad1931200aeaed2b1b61c2e3d2fd34953cec1f8a0ca516edf"
+      },
+      {
+        "voiceId": "A0100B003",
+        "nativeSha256": "8a9f40885b871cc35957388aa0c42a20c95239f0d72d0a0a3058df0cd5802fff",
+        "assetSha256": "acbdb95a681d9dbf85b61268f9ed5b82590648dcaac7bd1586e7522e3113ea60"
+      },
+      {
+        "voiceId": "A0100B004",
+        "nativeSha256": "02eddfb0911c75002b31008ea13a012805d27370a96297c895c6bb7aaf440fe6",
+        "assetSha256": "09cc4721eb521faa8dda72bbedcd295b3ac71c3d6ebc63578e4a95bde3d7a770"
+      },
+      {
+        "voiceId": "A0100B005",
+        "nativeSha256": "a0ea5452b40c790acb29dd56533acbf93c63a4fae0e1d02154542b52ea2be8bf",
+        "assetSha256": "a312f0b341dcfbd818dc8b4de0a6e89e5710b467a6ed30141e6badbedd00ed09"
+      },
+      {
+        "voiceId": "A0100B006",
+        "nativeSha256": "8707f80345f7ef3964a6eb7258c07946cad38fe9804470ac6e831d8910df099b",
+        "assetSha256": "19965f912cc4c6222cba8d66221ab09189dd0d844b08bb2e340c24d86427e0d9"
+      },
+      {
+        "voiceId": "A0100B007",
+        "nativeSha256": "5e242203b1bb48fbd49b0a6a538abc515e039e20718a9f3c5421e41a109b6ba0",
+        "assetSha256": "4da925b992aa16ef71e7f5f1b4b3ab0c5be3c92cf25e952fdacf5398d495d7a2"
+      },
+      {
+        "voiceId": "A0100B008",
+        "nativeSha256": "d8c71293f1d468c2fe14254977fe67a9145a9c47ee062d217e3b87e8ffa354d5",
+        "assetSha256": "0f8ee95ba3ec20314f79a02e116d4b6c50019a5efe72fe8020e2e8aaca1de71d"
+      },
+      {
+        "voiceId": "A0100B009",
+        "nativeSha256": "3278dd0778cb26f3538455482b3aad72994a7833261785e42bcadc257c4c8a92",
+        "assetSha256": "c5930a6e0708193c100799e55ecf04d25ba13868ffd6565be9ba8a5df54c5371"
+      },
+      {
+        "voiceId": "A0100B010",
+        "nativeSha256": "003d51e77355b19250cfa9809904870255fdfaa5be6885b9791ce32962977ee2",
+        "assetSha256": "24b07b37c41b67794bfe6e1e60b378e74415b3a89a8cb4c9076bd9a0aed30a6f"
+      }
+    ],
+    "soundEffects": [
+      {
+        "command": "a9040000",
+        "assetSha256": "62492665dfd9945f3ba71f09eac0d9b867783a056ce133d73d13fe6ffd5ae9b3"
+      }
+    ],
+    "music": [
+      {
+        "nativeName": "bgm019.snd",
+        "trackId": "bgm019",
+        "sourceSha256": "66f656273ed039feb466b8df9561e96abe0dbe2f84b4eca14e98081ff1741870",
+        "groupCommand": "A82B0000",
+        "assetSha256": "8391040bbbf0f68382665410173091b36188936510500fd45e646294a3441f9d",
+        "assetUrl": "https://pub-c3aa1dfd53424ee9af1b87ad19954589.r2.dev/shenmue/music/bgm019.ogg"
+      }
+    ],
+    "ownerCommands": [
+      {
+        "commandHex": "a82b0000",
+        "exactArguments": [
+          0,
+          0
+        ],
+        "kind": "music",
+        "trackId": "bgm019",
+        "callFileOffsets": [
+          "0x192"
+        ]
+      },
+      {
+        "commandHex": "a0040000",
+        "exactArguments": [
+          2,
+          100
+        ],
+        "kind": "native-control-no-output",
+        "constructedQueueWord": "0x00000002",
+        "byteReversedDriverWord": "0x02000000",
+        "callFileOffsets": [
+          "0x1aa"
+        ]
+      },
+      {
+        "commandHex": "a00a0000",
+        "exactArguments": [
+          2,
+          30
+        ],
+        "kind": "native-control-no-output",
+        "constructedQueueWord": "0x00000002",
+        "byteReversedDriverWord": "0x02000000",
+        "callFileOffsets": [
+          "0x1892",
+          "0x1986"
+        ]
+      }
+    ]
+  },
+  "compile": {
+    "status": "compiled",
+    "blockers": []
+  }
+}

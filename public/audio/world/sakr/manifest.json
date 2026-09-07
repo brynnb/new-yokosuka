@@ -1,0 +1,744 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/build_sakr_audio_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/STREAM/A0128.AFS",
+      "sha256": "e6426b93a52461b4541f45eba7aee3427601ee300e1447dc8f6caadf55431410"
+    },
+    "soundBank": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/SOUND/A1_SAKRA.SND",
+      "sha256": "cf1e1202e3072d46e45f6d0bb2ed27b96552d1fe5d8ad713ab940c75fb01a8e6"
+    },
+    "authManifest": "play/assets/yd01/sakr/manifest.json",
+    "resourceBindingEvidence": "tools/evidence/sakr-native-lifecycle.json"
+  },
+  "voices": [
+    {
+      "voiceId": "A0128A001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0128/SOUND/A0128A001.aiff",
+      "nativeMember": "A0128A001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 6144,
+      "nativeSha256": "d119c35a1a5cec337facbbd4cf78d6015f24f5f0a2216e95843a291b2b0cb9ac",
+      "speakerId": "JAKR",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/sakr/voice/A0128A001.wav",
+      "byteLength": 24364,
+      "sha256": "ec57ab5a921e5177b3dca1114b34f6761f2fc3e62a46963f34610503aadad92e"
+    },
+    {
+      "voiceId": "A0128B001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0128/SOUND/A0128B001.aiff",
+      "nativeMember": "A0128B001.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 6144,
+      "nativeSha256": "41f137cdf4ff5f0447762bd039bfbe33af58ce5937dc0728e1242d1d93d88f9d",
+      "speakerId": "IWAO",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 27
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/sakr/voice/A0128B001.wav",
+      "byteLength": 24364,
+      "sha256": "3218d6e0bdad1e35b1e81c50450f46b07b3b6688a049a76fe269e1b24d8e0d10"
+    },
+    {
+      "voiceId": "A0128B002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0128/SOUND/A0128B002.aiff",
+      "nativeMember": "A0128B002.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 4096,
+      "nativeSha256": "bb2a762a3fcb65c248ccb844b47adf65c5e1f17a753a413145989d73eea0de0a",
+      "speakerId": "IWAO",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/sakr/voice/A0128B002.wav",
+      "byteLength": 16172,
+      "sha256": "7183b76dd1697d7fb646d5173022dbc176b1c5def4b2a70f0e807bfc9f00bd45"
+    },
+    {
+      "voiceId": "A0128B003",
+      "sourcePath": "/p16/prj16m5/AUTH01/0128/SOUND/A0128B003.aiff",
+      "nativeMember": "A0128B003.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 4096,
+      "nativeSha256": "e045f3e1f5fc98e4fecce9724baf3e709f357a2ec58486a59adcbe9d2d0d0671",
+      "speakerId": "IWAO",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/sakr/voice/A0128B003.wav",
+      "byteLength": 16172,
+      "sha256": "437e49a2edfeb2e95832e5a767fb464d953c49e884f1848e9b2a6aac07c49b5d"
+    },
+    {
+      "voiceId": "A0128B004",
+      "sourcePath": "/p16/prj16m5/AUTH01/0128/SOUND/A0128B004.aiff",
+      "nativeMember": "A0128B004.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 4096,
+      "nativeSha256": "bbe170fc60a8831ce3a1d08eedebb54efdccb1b3e034303a6ab7cf87ef8c07f2",
+      "speakerId": "IWAO",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/sakr/voice/A0128B004.wav",
+      "byteLength": 16172,
+      "sha256": "44df95a3ebb9b080cc0386fb963f0c436232305e907b9074adb293a5fcaf0711"
+    },
+    {
+      "voiceId": "A0128B005",
+      "sourcePath": "/p16/prj16m5/AUTH01/0128/SOUND/A0128B005.aiff",
+      "nativeMember": "A0128B005.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 16384,
+      "nativeSha256": "b62d826db6e008fb227a44fc6ae4d84c1418c7fdfc19e930296a84eddb3c23e8",
+      "speakerId": "IWAO",
+      "sourceText": "Keep your balance=@that's right.",
+      "displayText": "Keep your balance...that's right.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 49
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/sakr/voice/A0128B005.wav",
+      "byteLength": 65324,
+      "sha256": "12e1ef9ef7de5c4318d7ba8327f3e83782f151c76831f3a1f874583af1b0f17f"
+    },
+    {
+      "voiceId": "A0128B006",
+      "sourcePath": "/p16/prj16m5/AUTH01/0128/SOUND/A0128B006.aiff",
+      "nativeMember": "A0128B006.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 8192,
+      "nativeSha256": "e5713c72788254f67caf75216f56457a4afec01e822ec6639fc2943862fe56b9",
+      "speakerId": "IWAO",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 20
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          }
+        ]
+      },
+      "asset": "public/audio/world/sakr/voice/A0128B006.wav",
+      "byteLength": 32556,
+      "sha256": "e8e6ea34eb2cd6181e69862854bb7d114db33b044b94d389083ac1b068182f9b"
+    },
+    {
+      "voiceId": "A0128B007",
+      "sourcePath": "/p16/prj16m5/AUTH01/0128/SOUND/A0128B007.aiff",
+      "nativeMember": "A0128B007.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 24576,
+      "nativeSha256": "ab43104f833d36289b34dd695b818b14440507a4c845a52163ecdea961fea609",
+      "speakerId": "IWAO",
+      "sourceText": "Now listen, tighten up your abdomen.",
+      "displayText": "Now listen, tighten up your abdomen.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 95
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/sakr/voice/A0128B007.wav",
+      "byteLength": 98092,
+      "sha256": "d62f2f8da332105ce7918aa7f1cc6a22b583973f9e3e1fe8d48ad30e5d47981c"
+    },
+    {
+      "voiceId": "A0128B008",
+      "sourcePath": "/p16/prj16m5/AUTH01/0128/SOUND/A0128B008.aiff",
+      "nativeMember": "A0128B008.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 45056,
+      "nativeSha256": "d6db0da3b0993f1bb36c1f28f3808196d03f94e9f09c4af743ded712141b6619",
+      "speakerId": "IWAO",
+      "sourceText": "Straighten up, find your center of balance.＆Yes, like that.",
+      "displayText": "Straighten up, find your center of balance.\nYes, like that.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 76
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 51
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 19
+          },
+          {
+            "shape": 0,
+            "durationTicks": 31
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/sakr/voice/A0128B008.wav",
+      "byteLength": 180012,
+      "sha256": "f9132afc3f2e66f345fde30b8523881584754f8aa41f624d6aead54418a0b442"
+    },
+    {
+      "voiceId": "A0128B009",
+      "sourcePath": "/p16/prj16m5/AUTH01/0128/SOUND/A0128B009.aiff",
+      "nativeMember": "A0128B009.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 6144,
+      "nativeSha256": "d31d87ece2ffabcce5056f6e64c9e38ef377c41bf4905b205ebc0d8b66ce6649",
+      "speakerId": "IWAO",
+      "sourceText": "Yes=@",
+      "displayText": "Yes...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          }
+        ]
+      },
+      "asset": "public/audio/world/sakr/voice/A0128B009.wav",
+      "byteLength": 24364,
+      "sha256": "50742c8df226a254f6b002b4c9b998bafd5fb1d69a1314252974755d71d6fa55"
+    },
+    {
+      "voiceId": "A0128B010",
+      "sourcePath": "/p16/prj16m5/AUTH01/0128/SOUND/A0128B010.aiff",
+      "nativeMember": "A0128B010.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 6144,
+      "nativeSha256": "c5a9b852c8cb33fce6fa7ce282cbf8c8e69a3b4b5892e1dff8e0a7d7c1ee69eb",
+      "speakerId": "IWAO",
+      "sourceText": "Good.",
+      "displayText": "Good.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/sakr/voice/A0128B010.wav",
+      "byteLength": 24364,
+      "sha256": "06fe03045bf1f8a0d898b82f419d7a6fd34d4a2b7ec8a12a628b878302faaace"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/0128/SE/cloths2/cloths02.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/sakr/sfx/a9040000.wav",
+      "byteLength": 18260,
+      "sha256": "6eb5936ad7d4db5d50b4e6cbe7b0d3e66b430fef83e3a8dd6158e7f29c85480b"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/0128/SE/body/gomi1.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/sakr/sfx/a9040100.wav",
+      "byteLength": 13308,
+      "sha256": "b60797f12d0f0dcc6696c536848d0b7b3f1c114502d208f8919436c8d58fe812"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/0128/SE/swing/swing04.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/sakr/sfx/a9040200.wav",
+      "byteLength": 18884,
+      "sha256": "f3ec04b6eca88d8d2f827b545042f3b7eee8ca35411dfb6fab8b7c13e4e1816c"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/0128/SE/swing/swing08.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/sakr/sfx/a9040300.wav",
+      "byteLength": 4116,
+      "sha256": "69ce0c4ee135fa717809b88684f29e70af62ee6947fa3d9bab611f47006510c8"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/0128/SE/swing/swing10.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/sakr/sfx/a9040400.wav",
+      "byteLength": 26692,
+      "sha256": "afd200729bf16169d8523c7bc64bcee68c5a88e70629f82e0b80377870446963"
+    }
+  ]
+}

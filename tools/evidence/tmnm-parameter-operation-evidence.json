@@ -1,0 +1,87 @@
+{
+  "schema": "new-yokosuka-tmnm-parameter-operation-evidence-v1",
+  "status": "exact-native-contract-and-all-complete-call-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 236,
+    "operationHex": "0x00ec",
+    "argumentCount": 7,
+    "handlerAddress": "0x0c1664e6",
+    "handlerLength": 176,
+    "handlerSha256": "2bede492178aa36e092b19af21a57567cb02effedafbcb878771fe23893d7a72",
+    "associatedRecordTag": "TMNM",
+    "associatedRecordTagWord": "0x4d4e4d54",
+    "resourceResolverAddress": "0x0c092f14",
+    "resourceApplyAddress": "0x0c182776",
+    "floatUpperBoundWord": "0x46fffe00",
+    "provenBehavior": "Resolves argument zero and its literal TMNM associated record. Nonzero argument one resolves and applies the exact resource route. Float words two, three, and four write record offsets +0x14, +0x18, and +0x0c unless zero is greater than the supplied float. Argument five writes +0x10 only below native float word 0x46fffe00. Nonnegative argument six clears the 16-bit +0x1c field for zero or ORs its low bits for nonzero. A missing resolved object is a native no-op."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 178,
+    "provenCallCount": 177,
+    "unresolvedCallCount": 1,
+    "dialogueRegionCallCount": 41,
+    "provenDialogueRegionCallCount": 41,
+    "areaCount": 13,
+    "dialogueAreaCount": 5,
+    "argumentKindCounts": {
+      "0": {
+        "constant": 171,
+        "frame-field": 6
+      },
+      "1": {
+        "constant": 177
+      },
+      "2": {
+        "constant": 177
+      },
+      "3": {
+        "constant": 177
+      },
+      "4": {
+        "constant": 177
+      },
+      "5": {
+        "constant": 173,
+        "frame-field": 4
+      },
+      "6": {
+        "constant": 177
+      }
+    },
+    "dialogueArgumentKindCounts": {
+      "0": {
+        "constant": 41
+      },
+      "1": {
+        "constant": 41
+      },
+      "2": {
+        "constant": 41
+      },
+      "3": {
+        "constant": 41
+      },
+      "4": {
+        "constant": 41
+      },
+      "5": {
+        "constant": 41
+      },
+      "6": {
+        "constant": 41
+      }
+    }
+  },
+  "evidenceBoundary": [
+    "TMNM is retained as the executable's literal record tag.",
+    "The resource route remains a mandatory adapter with raw IDs.",
+    "Raw record offsets are not assigned guessed gameplay names.",
+    "The one malformed zero-argument call remains unresolved."
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "schema": "new-yokosuka-actor-motion-operation-evidence-v1",
+  "status": "exact-native-handler-and-motion-bank-mapping",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "motionBank": "MOTION.BIN",
+    "motionBankSha256": "aca6a41b967b9f9f92ad847c9495e780058b8194e359bca9a9c2763b0d337b23",
+    "operationTable": "tools/evidence/d000-operation-handlers.json",
+    "ghidraLabels": "tools/ghidra/LabelShenmueRuntimeAnchors.py"
+  },
+  "motionRequestOperation": {
+    "operationId": 40,
+    "operationHex": "0x0028",
+    "handlerAddress": "0x0c165b12",
+    "handlerSampleSha256": "8fb279b4687c69a66f5bfbc303c14f12985faf98674ce7b3429207df025ea827",
+    "actorResolverAddress": "0x0c153956",
+    "controllerResolverAddress": "0x0c113a76",
+    "requestSetterAddress": "0x0c11453a",
+    "arguments": [
+      {
+        "index": 0,
+        "meaning": "actor reference resolved by the native actor resolver"
+      },
+      {
+        "index": 1,
+        "meaning": "16-bit registered motion request stored at controller +0x66"
+      },
+      {
+        "index": 2,
+        "meaning": "positive float stored at controller +0x12c; non-positive values clear the field"
+      },
+      {
+        "index": 3,
+        "meaning": "positive float stored at controller +0x130; zero also clears +0x12c and negative values clear +0x130"
+      },
+      {
+        "index": 4,
+        "meaning": "positive float stored at controller +0x134; non-positive values select the native -1.0 default"
+      },
+      {
+        "index": 5,
+        "meaning": "float stored at controller +0xdc"
+      }
+    ],
+    "sideEffects": [
+      "requestSetterAddress clears controller status bit 1 when installing the request"
+    ]
+  },
+  "motionStatusOperation": {
+    "operationId": 41,
+    "operationHex": "0x0029",
+    "handlerAddress": "0x0c165c48",
+    "handlerSampleSha256": "7e3136deba47e57628850bd0f806c848471b98add9876b83320034f63917d914",
+    "actorResolverAddress": "0x0c153956",
+    "controllerResolverAddress": "0x0c113a76",
+    "statusReaderAddress": "0x0c11451a",
+    "returnWriterAddress": "0x0c0bb342",
+    "provenReturnValue": "controller flags masked with 0x00000002"
+  },
+  "registeredMotionResolution": {
+    "lowerExclusive": 0,
+    "upperExclusive": 1560,
+    "bank": "MOTION.BIN",
+    "indexRule": "motion request N resolves to the one-based MOTION.BIN entry at zero-based index N - 1",
+    "source": "play/data/scheduled-actor-motions.json"
+  },
+  "hatoConversationExamples": [
+    {
+      "phase": "prelude",
+      "callFileOffset": "0x7f98a",
+      "actorCode": "AKIR",
+      "actorLiteralLoadFileOffset": "0x7f870",
+      "actorLocalStoreFileOffset": "0x7f872",
+      "actorArgumentLoadFileOffset": "0x7f97a",
+      "motionRequest": 903,
+      "motionIndex": 902,
+      "motionName": "AKI_AKI_TATI_IWA_L"
+    },
+    {
+      "phase": "postlude",
+      "callFileOffset": "0x7fb94",
+      "actorCode": "AKIR",
+      "actorLiteralLoadFileOffset": "0x7fb6c",
+      "actorLocalStoreFileOffset": "0x7fb6e",
+      "actorArgumentLoadFileOffset": "0x7fb84",
+      "motionRequest": 100,
+      "motionIndex": 99,
+      "motionName": "AKI_AKI_TURN180_L",
+      "waitsForStatusBit1": true
+    },
+    {
+      "phase": "postlude-status",
+      "callFileOffset": "0x7fbc6",
+      "operationHex": "0x0029",
+      "actorCode": "AKIR",
+      "actorArgumentLoadFileOffset": "0x7fbbc",
+      "loopWhileStatusIsZero": true
+    }
+  ],
+  "evidenceBoundary": [
+    "The handler, actor/controller resolution, request field writes, status-bit query, and one-based MOTION.BIN resolution are exact.",
+    "The general browser event interpreter must retain runtime actor arguments until their native dataflow is resolved. In the Hato functions, local constant propagation exactly resolves all three runtime-looking actor loads to AKIR.",
+    "The human-readable motion names come from the exact indexed MOTION.BIN entries and are not inferred from the Hato scene.",
+    "Hato's postlude exactly loops while status bit 1 is zero, but the engine-wide meaning of that bit (completion, interruption, or another terminal state) remains deliberately unnamed.",
+    "The native meaning of the auxiliary request floats remains deliberately unnamed."
+  ]
+}

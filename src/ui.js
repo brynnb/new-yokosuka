@@ -1,19 +1,46 @@
-import state from "./state.js";
+import { installBrowserSearch } from "./AssetBrowser.js";
 
 const statusEl = document.getElementById("status");
 const statusBar = document.getElementById("status-bar");
 const canvasContainer = document.getElementById("canvas-container");
 const selectModelPrompt = document.getElementById("select-model-prompt");
 const modelList = document.getElementById("model-list");
+const sidebarToggle = document.getElementById("sidebar-toggle");
+const mobileSidebarQuery = window.matchMedia("(max-width: 850px)");
+
+export function setAssetViewerSidebarCollapsed(collapsed) {
+  const next = mobileSidebarQuery.matches && Boolean(collapsed);
+  document.body.classList.toggle("asset-sidebar-collapsed", next);
+  if (sidebarToggle) {
+    sidebarToggle.textContent = next ? "☰" : "‹";
+    sidebarToggle.setAttribute("aria-expanded", String(!next));
+    sidebarToggle.setAttribute(
+      "aria-label",
+      next ? "Open asset browser" : "Collapse asset browser",
+    );
+    sidebarToggle.title = next
+      ? "Open asset browser"
+      : "Collapse asset browser";
+  }
+  window.requestAnimationFrame(() => {
+    window.dispatchEvent(new Event("resize"));
+  });
+}
+
+export function collapseAssetViewerSidebarOnMobile() {
+  if (mobileSidebarQuery.matches) {
+    setAssetViewerSidebarCollapsed(true);
+  }
+}
 
 export function setStatus(text, isLoading = false) {
-  statusEl.innerText = text;
+  if (statusEl) statusEl.innerText = text;
   if (isLoading) {
-    statusBar.classList.add("loading");
+    statusBar?.classList.add("loading");
     if (canvasContainer) canvasContainer.classList.add("loading-active");
     if (selectModelPrompt) selectModelPrompt.classList.add("hidden");
   } else {
-    statusBar.classList.remove("loading");
+    statusBar?.classList.remove("loading");
     if (canvasContainer) canvasContainer.classList.remove("loading-active");
   }
 }
@@ -23,9 +50,10 @@ export function getModelList() {
 }
 
 // Navigation Logic
-function expandParents(element) {
+export function expandAssetParents(element) {
   let parent = element.parentElement;
   while (parent && parent !== modelList) {
+    if (parent.tagName === "DETAILS") parent.open = true;
     if (
       parent.classList.contains("category-content") ||
       parent.classList.contains("group-items")
@@ -41,7 +69,7 @@ function expandParents(element) {
 }
 
 export function navigateModel(dir) {
-  const items = Array.from(document.querySelectorAll(".model-item"));
+  const items = Array.from(document.querySelectorAll(".model-item:not([data-search-hidden])"));
   if (items.length === 0) return;
 
   let nextIndex = 0;
@@ -60,13 +88,29 @@ export function navigateModel(dir) {
 
   const target = items[nextIndex];
   if (target) {
-    expandParents(target);
+    expandAssetParents(target);
     target.click();
     target.scrollIntoView({ block: "center", behavior: "smooth" });
   }
 }
 
 export function initUIHandlers() {
+  installBrowserSearch(modelList);
+  setAssetViewerSidebarCollapsed(mobileSidebarQuery.matches);
+  sidebarToggle?.addEventListener("click", () => {
+    setAssetViewerSidebarCollapsed(
+      !document.body.classList.contains("asset-sidebar-collapsed"),
+    );
+  });
+  const handleMobileSidebarChange = (event) => {
+    setAssetViewerSidebarCollapsed(event.matches);
+  };
+  if (typeof mobileSidebarQuery.addEventListener === "function") {
+    mobileSidebarQuery.addEventListener("change", handleMobileSidebarChange);
+  } else {
+    mobileSidebarQuery.addListener(handleMobileSidebarChange);
+  }
+
   document.getElementById("prev-btn").onclick = (e) => {
     e.preventDefault();
     navigateModel(-1);
@@ -76,44 +120,8 @@ export function initUIHandlers() {
     navigateModel(1);
   };
 
-  // Handle Welcome Modal
-  const welcomeModal = document.getElementById("welcome-modal");
-  const closeModalBtn = document.getElementById("close-modal");
-  const mobileWarningModal = document.getElementById("mobile-warning-modal");
-  const closeMobileWarningBtn = document.getElementById("close-mobile-warning");
-
-  function isMobileOrSmallScreen() {
-    return (
-      window.innerWidth < 1000 ||
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent,
-      )
-    );
-  }
-
-  if (closeModalBtn && welcomeModal) {
-    closeModalBtn.onclick = () => {
-      welcomeModal.classList.add("hidden");
-
-      // Show mobile warning if on small screen or mobile device
-      if (isMobileOrSmallScreen() && mobileWarningModal) {
-        mobileWarningModal.classList.remove("hidden");
-      }
-    };
-  }
-
-  if (closeMobileWarningBtn && mobileWarningModal) {
-    closeMobileWarningBtn.onclick = () => {
-      mobileWarningModal.classList.add("hidden");
-    };
-  }
-
   window.addEventListener("keydown", (e) => {
-    // If we are in FPS mode (pointer locked), do not navigate the list
-    if (document.pointerLockElement === state.canvas) {
-      return;
-    }
-
+    if (e.target.closest?.("input, textarea, select, button, summary, [contenteditable=true]")) return;
     if (e.key === "ArrowUp") {
       e.preventDefault();
       navigateModel(-1);

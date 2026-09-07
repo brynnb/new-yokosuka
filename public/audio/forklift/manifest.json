@@ -1,0 +1,427 @@
+{
+  "schema": "new-yokosuka-forklift-audio-v1",
+  "generatedBy": "tools/build_forklift_audio_pack.mjs",
+  "source": {
+    "bank": "extracted_disc3_v2/data/SCENE/03/SOUND/E1FORKLI.SND",
+    "byteLength": 181044,
+    "sha256": "171e106f04972a5bb34ae1113cdaa47208f7cafb65b3814a5202a20da97933fc",
+    "commandGroup": "a904",
+    "map": "SCENE/03/MA00/MAPINFO.BIN"
+  },
+  "decoder": {
+    "repository": "https://github.com/Preppy/dtpkdump",
+    "command": "python DTPKDump.py -wavconv E1FORKLI.SND",
+    "wavNormalization": "remove DTPKDump's four 64-bit-size padding words"
+  },
+  "encoding": {
+    "container": "webm",
+    "codec": "opus",
+    "bitRate": 48000,
+    "loopAssets": "native DTPK loop spans, encoded as seamless standalone clips"
+  },
+  "nativeRuntimeEvidence": {
+    "engineLayerA": {
+      "start": "0x001104a9",
+      "stop": "0x001204a9",
+      "mapCallOffsets": [
+        "0x21f86",
+        "0x1a2bc"
+      ]
+    },
+    "engineLayerB": {
+      "start": "0x001304a9",
+      "stop": "0x001404a9",
+      "mapCallOffsets": [
+        "0x21b28",
+        "0x1a2d4"
+      ]
+    },
+    "positionalForklift": {
+      "start": "0x000d04a9",
+      "stop": "0x000e04a9",
+      "mapCallOffsets": [
+        "0x1b3e0",
+        "0x1c25c",
+        "0x21c5a",
+        "0x22074",
+        "0x1b670",
+        "0x1c368",
+        "0x21d60",
+        "0x22180"
+      ]
+    }
+  },
+  "assets": [
+    {
+      "commandHex": "a9040000",
+      "track": 0,
+      "playbackId": 0,
+      "sampleId": 3,
+      "variant": 0,
+      "rawVolume": 127,
+      "compositionHex": "c0df007f80ff",
+      "sampleRate": 16000,
+      "decodedSource": "E1FORKLI_00_00_SPD_00_Sample_03_Rate_EE1D.wav",
+      "filename": "a9040000.webm",
+      "identifiedFunction": "forklift-flipping",
+      "byteLength": 8810,
+      "sha256": "5fafca3ea9ac699728736da31bb6f5228585fed4f133061818e64173ce33de82"
+    },
+    {
+      "commandHex": "a9040100",
+      "track": 1,
+      "playbackId": 1,
+      "sampleId": 0,
+      "variant": 0,
+      "rawVolume": 127,
+      "compositionHex": "c0df017f80ff",
+      "sampleRate": 16000,
+      "decodedSource": "E1FORKLI_00_01_SPD_01_Sample_00_Rate_EE1D.wav",
+      "filename": "a9040100.webm",
+      "identifiedFunction": "startup",
+      "byteLength": 18195,
+      "sha256": "90aa86eaa5a6108562c6419dc993848b12e7677f0cb4b28d96c6dcdea0276faa",
+      "loop": {
+        "startSample": 6742,
+        "endSample": 42464,
+        "filename": "a9040100-loop.webm",
+        "identifiedFunction": "startup-loop-region",
+        "byteLength": 15335,
+        "sha256": "dcf784227bdd64e0ffab94b9f954e042a2444ce9c32fb5d0c3cb39d5715e64e3"
+      }
+    },
+    {
+      "commandHex": "a9040300",
+      "track": 3,
+      "playbackId": 2,
+      "sampleId": 18,
+      "variant": 0,
+      "rawVolume": 127,
+      "compositionHex": "c0df027f80ff",
+      "sampleRate": 16000,
+      "decodedSource": "E1FORKLI_00_02_SPD_02_Sample_12_Rate_EE1D.wav",
+      "filename": "a9040300.webm",
+      "identifiedFunction": "shutdown",
+      "byteLength": 16517,
+      "sha256": "fe5303313d064f68f23cc989a4caf2ad20cb2b41c9090c2f107e30994f7e4263"
+    },
+    {
+      "commandHex": "a9040500",
+      "track": 5,
+      "playbackId": 4,
+      "sampleId": 13,
+      "variant": 0,
+      "rawVolume": 69,
+      "compositionHex": "c0df044580ff",
+      "sampleRate": 16000,
+      "decodedSource": "E1FORKLI_00_05_SPD_04_Sample_0D_Rate_EE1D.wav",
+      "filename": "a9040500.webm",
+      "identifiedFunction": "horn",
+      "byteLength": 6697,
+      "sha256": "83ffab0e62189e800b8efecdf366f4d1473fe54a7c0e2bbfd0bf61b2ad660d7d"
+    },
+    {
+      "commandHex": "a9040700",
+      "track": 7,
+      "playbackId": 6,
+      "sampleId": 15,
+      "variant": 0,
+      "rawVolume": 127,
+      "compositionHex": "c0df067f80ff",
+      "sampleRate": 16000,
+      "decodedSource": "E1FORKLI_00_08_SPD_06_Sample_0F_Rate_EE1D.wav",
+      "filename": "a9040700.webm",
+      "byteLength": 9277,
+      "sha256": "561da06228164b7faf76a43d59d19e7ebd136cc3b311c54d3fd3ee138b3ca20b"
+    },
+    {
+      "commandHex": "a9040800",
+      "track": 8,
+      "playbackId": 7,
+      "sampleId": 17,
+      "variant": 0,
+      "rawVolume": 127,
+      "compositionHex": "c0df077f80ff",
+      "sampleRate": 16000,
+      "decodedSource": "E1FORKLI_00_09_SPD_07_Sample_11_Rate_EE1D.wav",
+      "filename": "a9040800.webm",
+      "byteLength": 15695,
+      "sha256": "a26f69b759474d4424822d9a8f33f8520a85f97d5c005e3164414361fb7ecf1e"
+    },
+    {
+      "commandHex": "a9040900",
+      "track": 9,
+      "playbackId": 8,
+      "sampleId": 13,
+      "variant": 0,
+      "rawVolume": 111,
+      "compositionHex": "c0df086f80ff",
+      "sampleRate": 16000,
+      "decodedSource": "E1FORKLI_00_05_SPD_04_Sample_0D_Rate_EE1D.wav",
+      "filename": "a9040900.webm",
+      "byteLength": 6697,
+      "sha256": "a8658d7a16bf55f1f828fda3639d6732fa5d460477491c63d921949e1d2108e6"
+    },
+    {
+      "commandHex": "a9040a00",
+      "track": 10,
+      "playbackId": 9,
+      "sampleId": 14,
+      "variant": 0,
+      "rawVolume": 127,
+      "compositionHex": "c0df097f80ff",
+      "sampleRate": 16000,
+      "decodedSource": "E1FORKLI_00_11_SPD_09_Sample_0E_Rate_EE1D.wav",
+      "filename": "a9040a00.webm",
+      "identifiedFunction": "forklift-ground-impact",
+      "byteLength": 7521,
+      "sha256": "180aabd09eaec57646e27539adad678de8ff1cb4dc60e529de8d941e8898010b"
+    },
+    {
+      "commandHex": "a9040b00",
+      "track": 11,
+      "playbackId": 10,
+      "sampleId": 5,
+      "variant": 0,
+      "rawVolume": 127,
+      "compositionHex": "c0df0a7f80ff",
+      "sampleRate": 16000,
+      "decodedSource": "E1FORKLI_00_12_SPD_10_Sample_05_Rate_EE1D.wav",
+      "filename": "a9040b00.webm",
+      "byteLength": 4482,
+      "sha256": "1f5bcaaf791da8379ae6685dbf6654af7a3cc3fb80934b95106ad4b96643427c"
+    },
+    {
+      "commandHex": "a9040c00",
+      "track": 12,
+      "playbackId": 11,
+      "sampleId": 6,
+      "variant": 0,
+      "rawVolume": 127,
+      "compositionHex": "c0df0b7f80ff",
+      "sampleRate": 16000,
+      "decodedSource": "E1FORKLI_00_13_SPD_11_Sample_06_Rate_EE1D.wav",
+      "filename": "a9040c00.webm",
+      "byteLength": 4199,
+      "sha256": "8371869b2ecfa0f20d2af83a8bce371d21303f682fafdf42253f8d1db53c88bd"
+    },
+    {
+      "commandHex": "a9040d00",
+      "track": 13,
+      "playbackId": 12,
+      "sampleId": 2,
+      "variant": 0,
+      "rawVolume": 46,
+      "compositionHex": "c0df0c2e80ff",
+      "sampleRate": 16000,
+      "decodedSource": "E1FORKLI_00_14_SPD_12_Sample_02_Rate_EE1D.wav",
+      "filename": "a9040d00.webm",
+      "byteLength": 6360,
+      "sha256": "5422fe36dddbd428606e4a11639c0352477e752f18fca8df680d1332a1d2e635",
+      "loop": {
+        "startSample": 790,
+        "endSample": 12262,
+        "filename": "a9040d00-loop.webm",
+        "identifiedFunction": "reverse-beep",
+        "byteLength": 5962,
+        "sha256": "ac7792f28b88ba4c200e54b77f8f2e858a9c500079262535111b7cdb3aa824b5"
+      }
+    },
+    {
+      "commandHex": "a9040f00",
+      "track": 15,
+      "playbackId": 13,
+      "sampleId": 1,
+      "variant": 0,
+      "rawVolume": 69,
+      "compositionHex": "c0df0d4580ff",
+      "sampleRate": 11025,
+      "decodedSource": "E1FORKLI_00_15_SPD_13_Sample_01_Rate_E800.wav",
+      "filename": "a9040f00.webm",
+      "byteLength": 1880,
+      "sha256": "36fd5934d0ac3728eeb9d5eb10889e2ca8f037c3ab84f8613bde4d653b1f7277"
+    },
+    {
+      "commandHex": "a9041000",
+      "track": 16,
+      "playbackId": 14,
+      "sampleId": 10,
+      "variant": 0,
+      "rawVolume": 127,
+      "compositionHex": "c0df0e7f80ff",
+      "sampleRate": 11025,
+      "decodedSource": "E1FORKLI_00_16_SPD_14_Sample_0A_Rate_E80A.wav",
+      "filename": "a9041000-v0.webm",
+      "byteLength": 4512,
+      "sha256": "cd30cf2597d758eb28eb2d40e552cf8145f9c93f37252fde7af5ee344af69343"
+    },
+    {
+      "commandHex": "a9041000",
+      "track": 16,
+      "playbackId": 14,
+      "sampleId": 11,
+      "variant": 1,
+      "rawVolume": 127,
+      "compositionHex": "c0df0e7f80ff",
+      "sampleRate": 11025,
+      "decodedSource": "E1FORKLI_00_16_SPD_14_Sample_0B_Rate_E80A.wav",
+      "filename": "a9041000-v1.webm",
+      "identifiedFunction": "engine-moving",
+      "byteLength": 5488,
+      "sha256": "c6524bb863aae7fdcd942c3820af348ccef1c7fc8ec4432243b588c2c97d1343",
+      "loop": {
+        "startSample": 5236,
+        "endSample": 6912,
+        "filename": "a9041000-v1-loop.webm",
+        "identifiedFunction": "engine-moving-loop",
+        "byteLength": 1922,
+        "sha256": "e0fb711cfe7343db5d98456653b58e34469b1c6b53af0b0c77ee3ac541f89c88"
+      }
+    },
+    {
+      "commandHex": "a9041000",
+      "track": 16,
+      "playbackId": 14,
+      "sampleId": 12,
+      "variant": 2,
+      "rawVolume": 127,
+      "compositionHex": "c0df0e7f80ff",
+      "sampleRate": 11025,
+      "decodedSource": "E1FORKLI_00_16_SPD_14_Sample_0C_Rate_E80A.wav",
+      "filename": "a9041000-v2.webm",
+      "identifiedFunction": "engine-idle",
+      "byteLength": 5557,
+      "sha256": "4fdbc40ddc7ec135e672728e73636994c576d66ff87368afb1c839748af9333a",
+      "loop": {
+        "startSample": 2520,
+        "endSample": 7022,
+        "filename": "a9041000-v2-loop.webm",
+        "identifiedFunction": "engine-idle-loop",
+        "byteLength": 3951,
+        "sha256": "880e44308faf6088298eefec60c0d0aaf84e80d1b07372633157385676803092"
+      }
+    },
+    {
+      "commandHex": "a9041100",
+      "track": 17,
+      "playbackId": 15,
+      "sampleId": 7,
+      "variant": 0,
+      "rawVolume": 100,
+      "compositionHex": "c0df0f6480ff",
+      "sampleRate": 16000,
+      "decodedSource": "E1FORKLI_00_17_SPD_15_Sample_07_Rate_EE1D.wav",
+      "filename": "a9041100-v0.webm",
+      "identifiedFunction": "tines-moving-down-start",
+      "byteLength": 10252,
+      "sha256": "2fe8539a96c0c28af355a3f8113057c34dd0cde35a2cb244ce1df5c1e0e32ed0",
+      "loop": {
+        "startSample": 16160,
+        "endSample": 21904,
+        "filename": "a9041100-v0-loop.webm",
+        "identifiedFunction": "tines-moving-down-loop",
+        "byteLength": 3363,
+        "sha256": "32144a42f752d84ceb61b066bdab746ca833493a472ebe0f2f8bd6fa0ab6a7ba"
+      }
+    },
+    {
+      "commandHex": "a9041100",
+      "track": 17,
+      "playbackId": 15,
+      "sampleId": 8,
+      "variant": 1,
+      "rawVolume": 100,
+      "compositionHex": "c0df0f6480ff",
+      "sampleRate": 16000,
+      "decodedSource": "E1FORKLI_00_17_SPD_15_Sample_08_Rate_EE1D.wav",
+      "filename": "a9041100-v1.webm",
+      "byteLength": 9746,
+      "sha256": "093f0c70dc4468f0895f6895664fd3004ff3cd35aeaf1c3664ca7ebe4258bbf1",
+      "loop": {
+        "startSample": 6720,
+        "endSample": 21698,
+        "filename": "a9041100-v1-loop.webm",
+        "byteLength": 7033,
+        "sha256": "cf6757aa2141c584cf73f262a680a1afeedc9f95c394422a6f2bdddd10aa07e5"
+      }
+    },
+    {
+      "commandHex": "a9041300",
+      "track": 19,
+      "playbackId": 16,
+      "sampleId": 19,
+      "variant": 0,
+      "rawVolume": 100,
+      "compositionHex": "c0df106480ff",
+      "sampleRate": 16000,
+      "decodedSource": "E1FORKLI_00_18_SPD_16_Sample_13_Rate_EE1D.wav",
+      "filename": "a9041300.webm",
+      "identifiedFunction": "tines-moving-up-start",
+      "byteLength": 12189,
+      "sha256": "15c5f3045d6b8e315fb8e4b30af213f7fe99f2203d90c611094b2bf2e0a4d3c7",
+      "loop": {
+        "startSample": 15396,
+        "endSample": 26880,
+        "filename": "a9041300-loop.webm",
+        "identifiedFunction": "tines-moving-up-loop",
+        "byteLength": 5942,
+        "sha256": "5ea0cebc5f12fe35e35e580ceb0c6dbc1129cde04fffeb643cb4e3c719e2c4e8"
+      }
+    },
+    {
+      "commandHex": "a9041500",
+      "track": 21,
+      "playbackId": 17,
+      "sampleId": 16,
+      "variant": 0,
+      "rawVolume": 120,
+      "compositionHex": "c0df117880ff",
+      "sampleRate": 4400,
+      "decodedSource": "E1FORKLI_00_19_SPD_17_Sample_10_Rate_D11E.wav",
+      "filename": "a9041500.webm",
+      "identifiedFunction": "end-of-day-siren",
+      "byteLength": 45606,
+      "sha256": "3e4e53ccbce1cdb4f49dee4064b7e82765058808ff0f125a8b8b690cfe29c105"
+    },
+    {
+      "commandHex": "a9041900",
+      "track": 25,
+      "playbackId": 18,
+      "sampleId": 9,
+      "variant": 0,
+      "rawVolume": 127,
+      "compositionHex": "c0df127f80ff",
+      "sampleRate": 11025,
+      "decodedSource": "E1FORKLI_00_20_SPD_18_Sample_09_Rate_E800.wav",
+      "filename": "a9041900.webm",
+      "byteLength": 4233,
+      "sha256": "7a2b82708d6950ba59a80bd47b90b9824bc91aa64232317a2bd42e660a94d38e"
+    }
+  ],
+  "stopTracks": [
+    {
+      "commandHex": "a9040200",
+      "track": 2,
+      "stopsPlaybackId": 1,
+      "compositionHex": "c0df010080ff"
+    },
+    {
+      "commandHex": "a9040e00",
+      "track": 14,
+      "stopsPlaybackId": 12,
+      "compositionHex": "c0df0c0080ff"
+    },
+    {
+      "commandHex": "a9041200",
+      "track": 18,
+      "stopsPlaybackId": 15,
+      "compositionHex": "c0df0f0080ff"
+    },
+    {
+      "commandHex": "a9041400",
+      "track": 20,
+      "stopsPlaybackId": 16,
+      "compositionHex": "c0df100080ff"
+    }
+  ]
+}

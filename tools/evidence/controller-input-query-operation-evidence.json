@@ -1,0 +1,90 @@
+{
+  "schema": "new-yokosuka-controller-input-query-operation-evidence-v1",
+  "status": "exact-native-record-query-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 50,
+    "operationHex": "0x0032",
+    "handlerAddress": "0x0c16b53c",
+    "recordTableAddress": "0x0c21d9b8",
+    "recordCount": 4,
+    "recordStride": 20,
+    "selectors": [
+      {
+        "selector": 0,
+        "offset": "0x04",
+        "width": 2
+      },
+      {
+        "selector": 1,
+        "offset": "0x08",
+        "width": 2
+      },
+      {
+        "selector": 2,
+        "offset": "0x0a",
+        "width": 2
+      },
+      {
+        "selector": 3,
+        "offset": "0x0c",
+        "width": 1
+      },
+      {
+        "selector": 4,
+        "offset": "0x0d",
+        "width": 1
+      },
+      {
+        "selector": 5,
+        "offset": "0x0e",
+        "width": 1
+      },
+      {
+        "selector": 6,
+        "offset": "0x0f",
+        "width": 1
+      },
+      {
+        "selector": 7,
+        "offset": "0x12",
+        "width": 2
+      }
+    ],
+    "provenBehavior": "Reads one unsigned byte or word from the selected 20-byte controller record and writes it to the interpreter result."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 35,
+    "provenCallCount": 35,
+    "areaCount": 9,
+    "pairCounts": {
+      "0:0": 4,
+      "0:1": 2,
+      "0:2": 7,
+      "1:0": 2,
+      "1:1": 2,
+      "1:2": 2,
+      "2:0": 2,
+      "2:1": 2,
+      "2:2": 2,
+      "3:0": 2,
+      "3:1": 6,
+      "3:2": 2
+    },
+    "op02Calls": [
+      {
+        "callFileOffset": "0x1952",
+        "recordIndex": 0,
+        "fieldSelector": 0
+      }
+    ]
+  },
+  "evidenceBoundary": [
+    "The operation exposes raw controller record fields; button-name mapping belongs to the input adapter.",
+    "Only selectors zero through two are authored, while the complete handler proves all eight field layouts."
+  ]
+}

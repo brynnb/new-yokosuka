@@ -1,0 +1,63 @@
+{
+  "schema": "new-yokosuka-secondary-operation-0001-mode3-evidence-v1",
+  "status": "exact-native-handler-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json",
+    "interactionManager": ".disc-work/dialogue/native-interaction-manager.json"
+  },
+  "verifiedNativeRanges": {
+    "commandHandler": {
+      "runtimeAddress": "0x0c15dd4c",
+      "size": 322,
+      "sha256": "a0c6b8c022a0350cbc4d3be3240519b62b356e28ec62b74abf435bfb73bc21f0"
+    },
+    "indirectIndexLookup": {
+      "runtimeAddress": "0x0c15f018",
+      "size": 72,
+      "sha256": "974e1a773237af47fd6b6708ea1365bd68cc14f9bfffa21b00777ff2004a7d5b"
+    }
+  },
+  "operation": {
+    "secondaryOperationId": 1,
+    "subcommand": 3,
+    "argumentCount": 3,
+    "descriptorSizeBytes": 52,
+    "indirectIndexElementSizeBytes": 4,
+    "indirectRecordSizeBytes": 36,
+    "indirectRecordKeyOffset": 0,
+    "notFoundResult": -1,
+    "provenBehavior": "Uses argument one as a descriptor index, follows the descriptor word-zero sequence until 0xffffffff, and returns the first sequence value whose 36-byte record word zero equals argument two; otherwise returns -1."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 486,
+    "resultConsumedCount": 486,
+    "areaCount": 96,
+    "callsByDisc": {
+      "1": 150,
+      "2": 170,
+      "3": 166
+    },
+    "descriptorOperandKinds": {
+      "constant": 90,
+      "frame-field": 3,
+      "runtime": 393
+    },
+    "keyValues": {
+      "1": 96,
+      "2": 390
+    }
+  },
+  "managerCorpus": {
+    "registrationCount": 96,
+    "descriptorRecordCount": 517,
+    "indirectReferenceCount": 850
+  },
+  "evidenceBoundary": [
+    "Only secondary operation 0x0001 with exact constant subcommand 3 and three arguments receives this semantic.",
+    "Descriptor and record gameplay meanings remain numeric; the runtime preserves the native first-match index result.",
+    "The exact room manager tables are mandatory runtime configuration and missing configuration must stop explicitly."
+  ]
+}

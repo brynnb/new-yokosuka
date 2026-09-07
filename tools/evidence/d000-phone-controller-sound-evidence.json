@@ -1,0 +1,40 @@
+{
+  "schema": "new-yokosuka-d000-phone-controller-sound-evidence-v1",
+  "status": "verified",
+  "source": {
+    "mapinfo": {
+      "path": "SCENE/01/D000/MAPINFO.BIN",
+      "sha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e"
+    },
+    "bank": {
+      "path": "SCENE/01/SOUND/F1DOBUIT.SND",
+      "byteLength": 416968,
+      "sha256": "e77a6ea473b62e6356fe9b0152ec285b6ee115ef75cd912c443852ff6ff118be"
+    }
+  },
+  "scriptCall": {
+    "controllerEntryFunction": "0x6a49c",
+    "childFunction": "0x6be1c",
+    "callFileOffset": "0x6beee",
+    "operationHex": "0x006c",
+    "arguments": [6817193, 0, 0],
+    "nativeWordHex": "0x006805a9",
+    "commandHex": "a9056800"
+  },
+  "dtpkTrack": {
+    "group": "a905",
+    "groupTrackCount": 105,
+    "track": 104,
+    "compositionHex": "c0df217f80ff",
+    "playbackId": 33,
+    "sampleId": 57,
+    "dtpkRate": "0xe800",
+    "sampleRate": 11025,
+    "rawVolume": 127
+  },
+  "conclusions": [
+    "The phone-book program invokes operation 0x006c with the exact three-word argument tuple at 0x6beee.",
+    "Dreamcast little-endian byte order converts the first word to native command a9056800.",
+    "D000's F1DOBUIT location bank declares that command as one simple playable SFX backed by playback 33 and sample 57."
+  ]
+}

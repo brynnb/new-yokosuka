@@ -1,0 +1,51 @@
+{
+  "schema": "new-yokosuka-tmnm-word-zero-reset-evidence-v1",
+  "status": "exact-native-handler-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 251,
+    "operationHex": "0x00fb",
+    "semanticId": "resolved-object-tmnm-word-zero-reset",
+    "handlerAddress": "0x0c1665ec",
+    "componentTag": "TMNM",
+    "fieldOffset": "+0x00",
+    "provenBehavior": "Resolves the sole object argument, resolves its literal TMNM associated record, and writes zero to the record dword at +0x00. A missing object or TMNM record is a native no-op.",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c1665ec",
+        "length": 38,
+        "sha256": "eea65fc6a75a690220ddc7732271b09af176584b2bb9d109a48329e86ed4297a"
+      },
+      "objectResolver": {
+        "address": "0x0c153956",
+        "length": 58,
+        "sha256": "b99d1c60ec19d8c20dec13ede36b9f81a3b04510da97159b53e03db38deba35f"
+      },
+      "tmnmLookup": {
+        "address": "0x0c182c2a",
+        "length": 8,
+        "sha256": "9fbe526005ccb087dc967839f72cb0228bed5144d7331ad8ad73575290609972"
+      },
+      "associatedLookup": {
+        "address": "0x0c0aad5a",
+        "length": 50,
+        "sha256": "4c5affee0a1739c5cc4b01e389b4f6af7d2f6147cd09ad667b8e103fb3466c27"
+      }
+    }
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 15,
+    "provenCallCount": 15,
+    "mapCount": 7,
+    "dialogueRegionCallCount": 5
+  },
+  "evidenceBoundary": [
+    "All authored calls pass one constant four-character object identity and consume no result.",
+    "The dword's higher-level animation meaning is not inferred; the runtime preserves its exact TMNM record offset."
+  ]
+}

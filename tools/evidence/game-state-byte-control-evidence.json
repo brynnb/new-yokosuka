@@ -1,0 +1,335 @@
+{
+  "schema": "new-yokosuka-game-state-byte-control-evidence-v1",
+  "status": "exact-byte-routes-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 431,
+    "operationHex": "0x01af",
+    "handlerAddress": "0x0c16b64e",
+    "dispatcherAddress": "0x0c151622",
+    "verifiedRanges": {
+      "operationHandler": {
+        "address": "0x0c16b64e",
+        "length": 26,
+        "sha256": "225ee6e480bbff1d7cd6af2df859c5b39b511329afc87b4f0b0e946e38007143"
+      },
+      "byteStateDispatcher": {
+        "address": "0x0c151622",
+        "length": 1464,
+        "sha256": "91863289d3d6f0dd51c17520867534f0c16c517b6b77a4cbd77e59a823b97b88"
+      },
+      "registeredCodeAppender": {
+        "address": "0x0c1514d8",
+        "length": 64,
+        "sha256": "d4bcf3fcaa85328d31e8300140910606bee2772f840347a018c3eda204ab2743"
+      },
+      "pairRecordResolver": {
+        "address": "0x0c1515a6",
+        "length": 124,
+        "sha256": "112263b276b204295679dd4d84c2084ad63d32670399268b3b750dbd324e3955"
+      }
+    },
+    "nativeContract": {
+      "dependencies": {
+        "handlerTableEntry": "0x0c16b64e",
+        "dispatcher": "0x0c151622",
+        "resultWriter": "0x0c0bb342",
+        "stateBase": "0x0c220a54"
+      },
+      "jumpTargets": {
+        "14": "0x0c151788",
+        "15": "0x0c151798",
+        "42": "0x0c1518b8",
+        "44": "0x0c151966",
+        "55": "0x0c151a32",
+        "56": "0x0c151a46",
+        "57": "0x0c151a54",
+        "58": "0x0c151a64",
+        "71": "0x0c151b58",
+        "72": "0x0c151b80",
+        "73": "0x0c151b8a",
+        "74": "0x0c151ba0",
+        "75": "0x0c151ba6",
+        "76": "0x0c151bbc"
+      },
+      "offsets": {
+        "incrementedByteOffset": "0x09ec",
+        "registeredCodeCapacity": "0x0200",
+        "registeredCodeCountAddress": "0xc22220c",
+        "registeredCodeArrayAddress": "0xc221e0c",
+        "signedWord44Offset": "0x02c0",
+        "pairTableOffset": "0x0184",
+        "fixedByte57Offset": "0x0004",
+        "indexedByteOffset": "0x0e78",
+        "fixedByte73Offset": "0x0e99",
+        "fixedByte75Offset": "0x0e98"
+      }
+    },
+    "routes": [
+      {
+        "incrementMode": 42,
+        "kind": "saturating-indexed-byte-increment",
+        "baseAddress": "0x0c221440",
+        "maximum": 255,
+        "specialCodeRegistrations": {
+          "15": [
+            702,
+            703,
+            704
+          ],
+          "19": [
+            702,
+            703,
+            704
+          ],
+          "79": [
+            251
+          ],
+          "90": [
+            203,
+            284
+          ],
+          "92": [
+            208,
+            211
+          ],
+          "99": [
+            704,
+            125,
+            253
+          ],
+          "100": [
+            701,
+            705,
+            802,
+            803,
+            118
+          ]
+        },
+        "registeredCodeArrayAddress": "0x0c221e0c",
+        "registeredCodeCountAddress": "0x0c22220c",
+        "registeredCodeCapacity": 512
+      },
+      {
+        "readMode": 44,
+        "kind": "signed-word",
+        "address": "0x0c220d14"
+      },
+      {
+        "writeMode": 14,
+        "readMode": 15,
+        "kind": "fixed-byte",
+        "address": "0x0c220a5b"
+      },
+      {
+        "writeMode": 55,
+        "readMode": 56,
+        "kind": "opaque-two-key-byte-table",
+        "stateBaseOffset": "0x0184"
+      },
+      {
+        "writeMode": 57,
+        "readMode": 58,
+        "kind": "fixed-byte",
+        "address": "0x0c220a58"
+      },
+      {
+        "writeMode": 71,
+        "readMode": 72,
+        "kind": "indexed-byte",
+        "baseAddress": "0x0c2218cc"
+      },
+      {
+        "writeMode": 73,
+        "readMode": 74,
+        "kind": "fixed-byte",
+        "address": "0x0c2218ed"
+      },
+      {
+        "writeMode": 75,
+        "readMode": 76,
+        "kind": "fixed-byte",
+        "address": "0x0c2218ec"
+      }
+    ],
+    "writeValueRule": "Clamp signed values greater than 255 to 255, otherwise store the low byte."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 332,
+    "provenCallCount": 332,
+    "dialogueRegionCallCount": 28,
+    "areaCount": 105,
+    "modeCounts": {
+      "14": 3,
+      "15": 3,
+      "42": 133,
+      "44": 15,
+      "55": 26,
+      "56": 26,
+      "57": 3,
+      "58": 3,
+      "71": 33,
+      "72": 9,
+      "73": 19,
+      "74": 19,
+      "75": 20,
+      "76": 20
+    },
+    "dialogueModeCounts": {
+      "14": 3,
+      "15": 3,
+      "55": 8,
+      "56": 8,
+      "71": 1,
+      "72": 1,
+      "73": 1,
+      "74": 1,
+      "75": 1,
+      "76": 1
+    },
+    "argumentKindCountsByMode": {
+      "14": {
+        "0": {
+          "constant": 3
+        },
+        "1": {
+          "runtime": 3
+        }
+      },
+      "15": {
+        "0": {
+          "constant": 3
+        }
+      },
+      "42": {
+        "0": {
+          "constant": 133
+        },
+        "1": {
+          "constant": 113,
+          "frame-field": 13,
+          "runtime": 7
+        }
+      },
+      "44": {
+        "0": {
+          "constant": 15
+        }
+      },
+      "55": {
+        "0": {
+          "constant": 26
+        },
+        "1": {
+          "constant": 26
+        },
+        "2": {
+          "constant": 18,
+          "frame-field": 8
+        },
+        "3": {
+          "constant": 18,
+          "runtime": 8
+        }
+      },
+      "56": {
+        "0": {
+          "constant": 26
+        },
+        "1": {
+          "constant": 26
+        },
+        "2": {
+          "constant": 18,
+          "frame-field": 8
+        }
+      },
+      "57": {
+        "0": {
+          "constant": 3
+        },
+        "1": {
+          "frame-field": 3
+        }
+      },
+      "58": {
+        "0": {
+          "constant": 3
+        }
+      },
+      "71": {
+        "0": {
+          "constant": 33
+        },
+        "1": {
+          "constant": 13,
+          "runtime": 6,
+          "scene-field": 14
+        },
+        "2": {
+          "constant": 5,
+          "frame-field": 1,
+          "integer-expression": 3,
+          "runtime": 5,
+          "scene-field": 19
+        }
+      },
+      "72": {
+        "0": {
+          "constant": 9
+        },
+        "1": {
+          "constant": 9
+        }
+      },
+      "73": {
+        "0": {
+          "constant": 19
+        },
+        "1": {
+          "integer-expression": 11,
+          "runtime": 8
+        }
+      },
+      "74": {
+        "0": {
+          "constant": 19
+        }
+      },
+      "75": {
+        "0": {
+          "constant": 20
+        },
+        "1": {
+          "integer-expression": 12,
+          "runtime": 8
+        }
+      },
+      "76": {
+        "0": {
+          "constant": 20
+        }
+      }
+    },
+    "resultComparisonCountsByMode": {
+      "44": 15,
+      "56": 18,
+      "58": 3,
+      "72": 3
+    },
+    "resultTargetCount": 32
+  },
+  "evidenceBoundary": [
+    "Only the fourteen exact authored selectors and their exact argument counts receive this semantic.",
+    "Selector 42's saturating increment, indexed address, and seven special code-registration lists are executable-proven.",
+    "Fixed addresses, widths, indexed address arithmetic, byte clamping, and read results are executable-proven.",
+    "The selector-55/56 pair-record allocator remains a mandatory neutral adapter.",
+    "The fields' gameplay names and persistence owner remain unknown.",
+    "No other operation-0x01af selector is promoted by this evidence."
+  ]
+}

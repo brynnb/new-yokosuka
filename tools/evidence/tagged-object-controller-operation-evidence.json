@@ -1,0 +1,69 @@
+{
+  "schema": "new-yokosuka-tagged-object-controller-operation-evidence-v1",
+  "status": "exact-outer-modes-zero-and-sixteen",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c"
+  },
+  "operation": {
+    "operationId": 313,
+    "operationHex": "0x0139",
+    "handlerAddress": "0x0c165544",
+    "verifiedRanges": {
+      "wrapper": {
+        "address": "0x0c165544",
+        "length": 332,
+        "sha256": "14ce3eaf4dbed8ee8fa93b4a4b386b32804e831b4821303cadea70677cb18884"
+      },
+      "pairInitializer": {
+        "address": "0x0c0c9b4c",
+        "length": 400,
+        "sha256": "6fba7467ecbe81df9fd8d0d70c6c0b66da5c9ad07a32390535dd854677ec6598"
+      },
+      "configurationWriter": {
+        "address": "0x0c0ccafe",
+        "length": 22,
+        "sha256": "4cb56f265bd24ab51b277849c9ee07f0232e0771afa61d2b80f5d7bb66ee57e9"
+      }
+    },
+    "nativeContract": {
+      "objectResolver": "0x0c153956",
+      "pairInitializer": "0x0c0c9b4c",
+      "emptyInitializer": "0x0c0c9cdc",
+      "configurationWriter": "0x0c0ccafe",
+      "resultWriter": "0x0c0bb342",
+      "activeController": "0x0c2164ac",
+      "configurationPointer": "0x0c2164b4"
+    },
+    "modes": [
+      {
+        "mode": 0,
+        "semanticId": "tagged-object-controller-initialize",
+        "argumentCount": 3,
+        "provenBehavior": "Resolves arguments one and two through the native object resolver when either tag is nonzero, then passes both resolved pointers to 0x0c0c9b4c. Two zero tags instead call 0x0c0c9cdc. The helper result is returned unchanged."
+      },
+      {
+        "mode": 16,
+        "semanticId": "tagged-object-controller-configuration-write",
+        "argumentCount": 2,
+        "provenBehavior": "Returns -1 without mutation when global controller 0x0c2164ac is null. Otherwise writes argument one unchanged to 0x0c2164b4 and returns zero."
+      }
+    ]
+  },
+  "d000Owner": {
+    "functionFileOffset": "0x69b14",
+    "modeZeroCallFileOffset": "0x69b38",
+    "modeZeroTags": [
+      "YKUL",
+      "YKUR"
+    ],
+    "modeSixteenCallFileOffset": "0x69b68",
+    "modeSixteenConfigurationPointer": "0x000ae354"
+  },
+  "evidenceBoundary": [
+    "The two modes are outer operation selectors, distinct from the inner object-action selectors used by outer modes one through five.",
+    "Mode zero's large paired-controller helper remains an explicit adapter boundary; no high-level input or proximity meaning is assigned to its private fields.",
+    "Mode sixteen is only the exact active-controller guard and configuration-pointer write; it is not the neighboring mode-fifteen natural-input updater."
+  ]
+}

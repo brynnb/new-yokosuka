@@ -1,0 +1,108 @@
+{
+  "schema": "new-yokosuka-introduction-scene-v3",
+  "id": "S1-000",
+  "label": "Iwao's murder",
+  "area": "OP00",
+  "instance": {
+    "visibility": "solo",
+    "authority": "server",
+    "entryState": "prologue-pending",
+    "completionCheckpoint": "S1-000-complete",
+    "destinationWorld": "interior"
+  },
+  "generatedSources": {
+    "assetInventory": "play/assets/introduction/op00/asset-inventory.generated.json",
+    "activityPack": "play/assets/introduction/op00/manifest.json",
+    "audio": "public/audio/world/op00/manifest.json"
+  },
+  "environment": {
+    "composition": "op00-introduction",
+    "family": "op00-cinematic",
+    "source": "OP00",
+    "texturePacks": [
+      "S1_OP00_textures.bin"
+    ],
+    "activation": "native-op00-composition-with-native-shot-state-and-explicit-cutaway",
+    "season": "winter",
+    "weather": "snow",
+    "renderedFoundation": [
+      "S1_OP00_OMO.MT5",
+      "S1_OP00_JIMENHAL.MT5",
+      "S1_OP00_NAIB.MT5",
+      "S1_OP00_OMADO.MT5",
+      "S1_OP00_OOSAKI.MT5",
+      "S1_OP00_JYUU.MT5"
+    ],
+    "renderedOverlays": [
+      "S1_OP00_B023H01G.MT5",
+      "S1_OP00_BMWS703G.MT5",
+      "S1_OP00_DDRR1001.MT5",
+      "S1_OP00_DDRR1002.MT5",
+      "S1_OP00_DRGS502G.MT5",
+      "S1_OP00_YUKS502G.MT5",
+      "S1_OP00_YUKS503G.MT5"
+    ],
+    "models": [
+      "OMO",
+      "JIMENHAL",
+      "NAIB",
+      "NIWAKAL",
+      "OMADO",
+      "OOSAKI",
+      "JYUU"
+    ]
+  },
+  "actors": {
+    "AKIR": {
+      "label": "Ryo Hazuki",
+      "assetRole": "player-avatar"
+    },
+    "INE_": {
+      "label": "Ine Hayata",
+      "model": "INE_M"
+    },
+    "FUKU": {
+      "label": "Masayuki Fukuhara",
+      "model": "FUK_M"
+    },
+    "IWAO": {
+      "label": "Iwao Hazuki",
+      "model": "IWA_M"
+    },
+    "KURA": {
+      "label": "Man in black A",
+      "model": "BLA_M"
+    },
+    "KURB": {
+      "label": "Man in black B",
+      "model": "BLB_M"
+    },
+    "SORY": {
+      "label": "Lan Di",
+      "model": "KOK_M"
+    }
+  },
+  "nativeSceneObjects": [
+    "KNBS",
+    "KNBU",
+    "MNLF",
+    "ODR1",
+    "ODR2",
+    "RMJN"
+  ],
+  "nativeAttachedObjects": [
+    "RYUK"
+  ],
+  "presentation": {
+    "timelineMode": "compiled-owner-activities",
+    "placementSource": "AMOV",
+    "cameraSource": "ACAM",
+    "animationSource": "ASEQ",
+    "voiceSource": "A0114.AFS",
+    "soundEffectSource": "A1_PROLG.SND",
+    "musicSource": "BGM01.AFS OPEN1/OPEN2",
+    "motionBank": 25,
+    "restoreSharedWorldCameraOnExit": true,
+    "preserveFinalOp00PlayerTransform": false
+  }
+}

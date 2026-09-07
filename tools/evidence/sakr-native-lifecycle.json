@@ -1,0 +1,87 @@
+{
+  "schema": "new-yokosuka-native-cutscene-lifecycle-v1",
+  "resource": "SAKR",
+  "disc": 1,
+  "area": "YD01",
+  "mapinfo": {
+    "path": "extracted_files/data/SCENE/01/YD01/MAPINFO.BIN",
+    "sha256": "245459a1f9936e5582954375bff9b49ced48000d301b2bbf19e135b145494baa"
+  },
+  "owner": {
+    "playerFacingEntryFunction": "0x2678",
+    "activityInstallerFunction": "0x1a4",
+    "installerCallFileOffset": "0x2702",
+    "activityOperation": "0x013e",
+    "binding": {
+      "slot": 0,
+      "callFileOffset": "0x2c2",
+      "primaryPointer": "0x2d99",
+      "secondaryPointer": "0x2da6",
+      "selection": "SAKR.PKS exact member SEQDATA0.AUTH"
+    },
+    "completionTransition": {
+      "callFileOffset": "0x2758",
+      "operation": "0x0030",
+      "destinationArea": "JHD0",
+      "destinationIndex": 5
+    }
+  },
+  "nativeLifecycle": {
+    "enter": [
+      "open /scene/01/YD01/SAKR",
+      "make named resource A0128 resident",
+      "register archive-local IWAO and JAKR variants",
+      "load A0128 voice stream, A1_SAKRA sound bank, and tsm003 sound environment"
+    ],
+    "activity": "run slot 0 through the native activity wait boundary",
+    "exit": [
+      "release the activity slot and SAKR resource container",
+      "release the named A0128 resource",
+      "transition to JHD0 destination index 5"
+    ]
+  },
+  "resourceCluster": {
+    "archive": "extracted_files/data/SCENE/01/YD01/SAKR.PKS",
+    "archiveSha256": "dbe1067dd36caa78e75afd9343af2cbd052efdc60eca3096116d371a0c2ef57d",
+    "activity": "SEQDATA0.AUTH",
+    "motionBank": "M_0128.MOTN",
+    "voiceStream": "extracted_files/data/SCENE/01/STREAM/A0128.AFS",
+    "soundBank": "extracted_files/data/SCENE/01/SOUND/A1_SAKRA.SND",
+    "ownerSoundEnvironment": "tsm003.snd"
+  },
+  "dependencies": {
+    "world": [
+      "canonical S1_YD01_MAP.MT5",
+      "canonical S1_YD01_MAP01.MT5",
+      "canonical S1_YD01_MAP02.MT5",
+      "canonical S1_YD01_MAP03.MT5",
+      "canonical S1_YD01_textures.bin"
+    ],
+    "actors": {
+      "IWAO": "canonical S1_YD01_IWA_M.MT5, exact archive-local IWA body variant",
+      "JAKR": "canonical S1_YD01_JKB_M.MT5, exact young-Ryo body variant"
+    },
+    "faces": {
+      "IWAO": "canonical exact IWA_F.MT5 with byte-identical IWA_FTBL.BIN; archive-local HRCM is the compact equivalent",
+      "JAKR": "canonical exact JKB_F.MT5 with archive-local byte-identical JKB_FTBL.BIN"
+    },
+    "hands": {
+      "IWAO": "archive-local IWA_TL/IWA_TR and IWA_HM, byte-identical rig and hand models shared by the native hand pack",
+      "JAKR": "archive-local JKB_TL/JKB_TR and JKB_HM"
+    }
+  },
+  "runtimePolicy": {
+    "world": "load the dedicated YD01 composition and coordinate root; do not borrow JHD0 geometry",
+    "assets": "reuse exact canonical YD01 map and body models; package only activity-local motion, AUTH, and presentation dependencies",
+    "audio": "play all exact A0128 voices and every A1_SAKRA DTPK effect referenced by AUTH",
+    "exit": "the selector returns to its menu after releasing package ownership; native gameplay ownership transitions to JHD0 index 5"
+  },
+  "sources": [
+    ".disc-work/dialogue/native-event-ir.json",
+    "tools/evidence/native-activity-owner-candidates.json",
+    "tools/evidence/shenmue1-scripted-scene-inventory.json",
+    "tools/evidence/native-audio-bank-inventory.json"
+  ],
+  "availability": "package-candidate",
+  "productionGate": "Exact world, both character variants, exact native facial and hand presentation, motion, voice/SFX, owner binding, and fail-closed cleanup must pass."
+}

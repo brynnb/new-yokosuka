@@ -1,0 +1,579 @@
+{
+  "schema": "new-yokosuka-d000-hato-conversation-flow-v1",
+  "status": "exact-native-four-phase-conversation-flow",
+  "source": {
+    "mapinfo": ".disc-work/mapinfo/disc1/SCENE/01/D000/MAPINFO.BIN",
+    "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+    "scn3FileOffset": "0x1338"
+  },
+  "controlRoutine": {
+    "functionFileOffset": "0x8002c",
+    "functionEndFileOffsetExclusive": "0x8023c",
+    "nativeOperations": [
+      {
+        "callFileOffset": "0x80042",
+        "operationId": 0,
+        "operationHex": "0x0000",
+        "arguments": [
+          {
+            "kind": "static-pointer",
+            "value": 724924,
+            "hex": "0x000b0fbc",
+            "source": "0x80038"
+          }
+        ]
+      },
+      {
+        "callFileOffset": "0x800f0",
+        "operationId": 44,
+        "operationHex": "0x002c",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1330921800,
+            "hex": "0x4f544148",
+            "ascii": "HATO",
+            "source": "0x800e0"
+          },
+          {
+            "kind": "constant",
+            "value": 4294967280,
+            "hex": "0xfffffff0",
+            "source": "0x800de"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x800dc"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x800da"
+          }
+        ]
+      },
+      {
+        "callFileOffset": "0x80100",
+        "operationId": 172,
+        "operationHex": "0x00ac",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x800f6"
+          }
+        ]
+      },
+      {
+        "callFileOffset": "0x80110",
+        "operationId": 14,
+        "operationHex": "0x000e",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x80106"
+          }
+        ]
+      },
+      {
+        "callFileOffset": "0x80148",
+        "operationId": 45,
+        "operationHex": "0x002d",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x8013e"
+          }
+        ]
+      },
+      {
+        "callFileOffset": "0x801ce",
+        "operationId": 0,
+        "operationHex": "0x0000",
+        "arguments": [
+          {
+            "kind": "static-pointer",
+            "value": 724934,
+            "hex": "0x000b0fc6",
+            "source": "0x801c4"
+          }
+        ]
+      },
+      {
+        "callFileOffset": "0x801de",
+        "operationId": 81,
+        "operationHex": "0x0051",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 2,
+            "hex": "0x00000002",
+            "source": "0x801d4"
+          }
+        ]
+      },
+      {
+        "callFileOffset": "0x801f2",
+        "operationId": 358,
+        "operationHex": "0x0166",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 8,
+            "hex": "0x00000008",
+            "source": "0x801e6"
+          },
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x801e4"
+          }
+        ]
+      },
+      {
+        "callFileOffset": "0x80206",
+        "operationId": 358,
+        "operationHex": "0x0166",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 2,
+            "hex": "0x00000002",
+            "source": "0x801fa"
+          },
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x801f8"
+          }
+        ]
+      }
+    ]
+  },
+  "orderedPhases": [
+    {
+      "phase": "prelude",
+      "controlCallFileOffset": "0x800ca",
+      "functionFileOffset": "0x7f864",
+      "functionEndFileOffsetExclusive": "0x7f9f0",
+      "nativeOperations": [
+        {
+          "callFileOffset": "0x7f88a",
+          "operationId": 9,
+          "operationHex": "0x0009",
+          "arguments": [
+            {
+              "kind": "constant",
+              "value": 16,
+              "hex": "0x00000010",
+              "source": "0x7f87c"
+            },
+            {
+              "kind": "constant",
+              "value": 1077936128,
+              "hex": "0x40400000",
+              "source": "0x7f87a"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x7f8be",
+          "operationId": 45,
+          "operationHex": "0x002d",
+          "arguments": [
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x7f8b4"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x7f8fa",
+          "operationId": 17,
+          "operationHex": "0x0011",
+          "arguments": [
+            {
+              "kind": "runtime",
+              "source": "mov.w at 0x7f8ea"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x7f8e8"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x7f8e6"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x7f962",
+          "operationId": 44,
+          "operationHex": "0x002c",
+          "arguments": [
+            {
+              "kind": "constant",
+              "value": 1330921800,
+              "hex": "0x4f544148",
+              "ascii": "HATO",
+              "source": "0x7f952"
+            },
+            {
+              "kind": "constant",
+              "value": 15,
+              "hex": "0x0000000f",
+              "source": "0x7f950"
+            },
+            {
+              "kind": "runtime",
+              "source": "add at 0x7f94e"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x7f94a"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x7f98a",
+          "operationId": 40,
+          "operationHex": "0x0028",
+          "arguments": [
+            {
+              "kind": "runtime",
+              "source": "@(12,r14) at 0x7f97a"
+            },
+            {
+              "kind": "constant",
+              "value": 903,
+              "hex": "0x00000387",
+              "source": "0x7f976"
+            },
+            {
+              "kind": "constant",
+              "value": 3212836864,
+              "hex": "0xbf800000",
+              "source": "0x7f972"
+            },
+            {
+              "kind": "constant",
+              "value": 3212836864,
+              "hex": "0xbf800000",
+              "source": "0x7f96e"
+            },
+            {
+              "kind": "constant",
+              "value": 3212836864,
+              "hex": "0xbf800000",
+              "source": "0x7f96c"
+            },
+            {
+              "kind": "constant",
+              "value": 1065353216,
+              "hex": "0x3f800000",
+              "source": "0x7f96a"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x7f968"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x7f99a",
+          "operationId": 81,
+          "operationHex": "0x0051",
+          "arguments": [
+            {
+              "kind": "constant",
+              "value": 21,
+              "hex": "0x00000015",
+              "source": "0x7f990"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x7f9e2",
+          "operationId": 81,
+          "operationHex": "0x0051",
+          "arguments": [
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x7f9d8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "voice",
+      "controlCallFileOffset": "0x800d0",
+      "functionFileOffset": "0x7fa98",
+      "functionEndFileOffsetExclusive": "0x7fb60",
+      "nativeOperations": [
+        {
+          "callFileOffset": "0x7faae",
+          "operationId": 109,
+          "operationHex": "0x006d",
+          "arguments": [
+            {
+              "kind": "static-pointer",
+              "value": 724808,
+              "hex": "0x000b0f48",
+              "source": "0x7faa4"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x7fabe",
+          "operationId": 178,
+          "operationHex": "0x00b2",
+          "arguments": [
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x7fab4"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x7fb1c",
+          "operationId": 431,
+          "operationHex": "0x01af",
+          "arguments": [
+            {
+              "kind": "constant",
+              "value": 66,
+              "hex": "0x00000042",
+              "source": "0x7fb0e"
+            },
+            {
+              "kind": "constant",
+              "value": 1330921800,
+              "hex": "0x4f544148",
+              "ascii": "HATO",
+              "source": "0x7fb0c"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x7fb4a",
+          "operationId": 431,
+          "operationHex": "0x01af",
+          "arguments": [
+            {
+              "kind": "constant",
+              "value": 65,
+              "hex": "0x00000041",
+              "source": "0x7fb3c"
+            },
+            {
+              "kind": "constant",
+              "value": 1330921800,
+              "hex": "0x4f544148",
+              "ascii": "HATO",
+              "source": "0x7fb3a"
+            },
+            {
+              "kind": "runtime",
+              "source": "@(0,r14) at 0x7fb38"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "postlude",
+      "controlCallFileOffset": "0x800d6",
+      "functionFileOffset": "0x7fb60",
+      "functionEndFileOffsetExclusive": "0x7fc30",
+      "nativeOperations": [
+        {
+          "callFileOffset": "0x7fb94",
+          "operationId": 40,
+          "operationHex": "0x0028",
+          "arguments": [
+            {
+              "kind": "runtime",
+              "source": "@(12,r14) at 0x7fb84"
+            },
+            {
+              "kind": "constant",
+              "value": 100,
+              "hex": "0x00000064",
+              "source": "0x7fb80"
+            },
+            {
+              "kind": "constant",
+              "value": 3212836864,
+              "hex": "0xbf800000",
+              "source": "0x7fb7c"
+            },
+            {
+              "kind": "constant",
+              "value": 3212836864,
+              "hex": "0xbf800000",
+              "source": "0x7fb78"
+            },
+            {
+              "kind": "constant",
+              "value": 3212836864,
+              "hex": "0xbf800000",
+              "source": "0x7fb76"
+            },
+            {
+              "kind": "constant",
+              "value": 1065353216,
+              "hex": "0x3f800000",
+              "source": "0x7fb74"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x7fb72"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x7fbc6",
+          "operationId": 41,
+          "operationHex": "0x0029",
+          "arguments": [
+            {
+              "kind": "runtime",
+              "source": "@(12,r14) at 0x7fbbc"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x7fc18",
+          "operationId": 29,
+          "operationHex": "0x001d",
+          "arguments": [
+            {
+              "kind": "runtime",
+              "source": "@(12,r14) at 0x7fc08"
+            },
+            {
+              "kind": "constant",
+              "value": 2013265920,
+              "hex": "0x78000000",
+              "source": "0x7fc06"
+            },
+            {
+              "kind": "runtime",
+              "source": "add at 0x7fc04"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x7fc00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "cleanup",
+      "controlCallFileOffset": "0x80118",
+      "functionFileOffset": "0x7fd94",
+      "functionEndFileOffsetExclusive": "0x7fe74",
+      "nativeOperations": [
+        {
+          "callFileOffset": "0x7fdb4",
+          "operationId": 66,
+          "operationHex": "0x0042",
+          "arguments": [
+            {
+              "kind": "runtime",
+              "source": "@(0,r14) at 0x7fda8"
+            },
+            {
+              "kind": "constant",
+              "value": 1,
+              "hex": "0x00000001",
+              "source": "0x7fda6"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x7fdfc",
+          "operationId": 357,
+          "operationHex": "0x0165",
+          "arguments": [
+            {
+              "kind": "runtime",
+              "source": "@(0,r14) at 0x7fdec"
+            },
+            {
+              "kind": "runtime",
+              "source": "add at 0x7fde8"
+            },
+            {
+              "kind": "constant",
+              "value": 42143,
+              "hex": "0x0000a49f",
+              "source": "0x7fde4"
+            },
+            {
+              "kind": "constant",
+              "value": 2147485022,
+              "hex": "0x8000055e",
+              "source": "0x7fde2"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x7fde0"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x7fe0c",
+          "operationId": 366,
+          "operationHex": "0x016e",
+          "arguments": [
+            {
+              "kind": "runtime",
+              "source": "@(0,r14) at 0x7fe02"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "conclusion": "D000's Hato control routine calls an exact ordered prelude, voice, postlude, and cleanup sequence. The voice phase contains F1030B001; the surrounding phases retain the original actor and staging operation operands needed for later semantic recovery.",
+  "evidenceBoundary": [
+    "The four functions, call sites, order, native operation IDs, and recoverable operands are exact.",
+    "Operation 0x0028 is independently proven as an actor motion request and operation 0x0029 as its controller status-bit query; their exact handler evidence is recorded separately.",
+    "Operation 0x002c is independently proven as native LKPT actor look-point control; its exact handler and Hato target-vector dataflow are recorded separately.",
+    "Operation 0x0009 suboperation 0x10 and operation 0x0011 are independently proven as the normalized random-float source and authored event-camera request. Operation 0x000e forwards its numeric argument to the same native camera-state mode selector. Operation 0x001d is independently proven as a resolved-object three-vector operation, and exact local dataflow resolves Hato's postlude target to AKIR and source to room-VM r9 +0x00ec. Operation 0x002d modes 0 and 1 are independently proven as opposing primary-runtime state transitions, without inventing high-level names for those modes. Operation 0x0042 is independently proven as the actor-associated MOMT record's bit-zero setter, although that bit's consumer-side meaning remains unknown. Operation 0x00ac is independently proven as a direct global-byte write, while its owning subsystem remains unnamed.",
+    "Exact local constant propagation resolves the recovered motion-request/status actor operands to AKIR. The LKPT affected joints/interpolation and ECAM binary/player adapter remain unresolved."
+  ]
+}

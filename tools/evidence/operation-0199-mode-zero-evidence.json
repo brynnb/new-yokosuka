@@ -1,0 +1,76 @@
+{
+  "schema": "new-yokosuka-operation-0199-evidence-v2",
+  "status": "exact-native-three-mode-boundary-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 409,
+    "operationHex": "0x0199",
+    "handlerAddress": "0x0c1573d6",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c1573d6",
+        "length": 132,
+        "sha256": "c9c23fc7153b4b5a92bbf75aabd418ce88f1387ca4298562aeecd85a9f392534"
+      },
+      "modeZeroHelperSample": {
+        "address": "0x0c0c8b70",
+        "length": 160,
+        "sha256": "125fb15628ea403aa1b8a1226c42b77622096f252fa5a8d394e8aa42a5661d99"
+      },
+      "modeOneHelper": {
+        "address": "0x0c0c333a",
+        "length": 6,
+        "sha256": "af6ab9ed54d78a104d7c1d35ed4efcb479fdd5c2e01e8bd4d5071d5bdcc51ded"
+      },
+      "modeTwoHelper": {
+        "address": "0x0c0c8b6a",
+        "length": 6,
+        "sha256": "300519a0487edd44f0b880973b4da5b7a93273fcc998646f00235397eaf118b7"
+      },
+      "objectResolverSample": {
+        "address": "0x0c153956",
+        "length": 64,
+        "sha256": "46e00fc5aa0eb86845d366f0eac4ad78ef1124d2aff4f210e8728b7f1d79e3cd"
+      }
+    },
+    "nativeContract": {
+      "integerResultWriter": "0x0c0bb342",
+      "objectResolver": "0x0c153956",
+      "modeZeroHelper": "0x0c0c8b70",
+      "modeOneHelper": "0x0c0c333a",
+      "modeTwoHelper": "0x0c0c8b6a"
+    },
+    "provenBehavior": "For mode zero, resolves arguments two and three as objects and passes argument one, both resolved object pointers, and arguments four and five as exact float32 words to native helper 0x0c0c8b70. Mode one replaces the global dword at 0x0c20bdec with argument one. Mode two reads and sign-extends the global byte at 0x0c20bf6c into the operation result."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 141,
+    "provenModeZeroCallCount": 42,
+    "provenModeOneCallCount": 96,
+    "provenModeTwoCallCount": 3,
+    "dialogueRegionCallCount": 42,
+    "areaCount": 3,
+    "routeCounts": {
+      "mode-0-argc-6": 42,
+      "mode-1-argc-2": 96,
+      "mode-2-argc-1": 3
+    },
+    "modeZeroControlWordCounts": {
+      "0": 30,
+      "1": 6,
+      "539": 6
+    }
+  },
+  "evidenceBoundary": [
+    "The mode-zero helper's global subsystem remains one mandatory injected adapter.",
+    "Both object arguments retain their literal four-character identities.",
+    "The two float32 operands are forwarded as raw words without inferred units.",
+    "All 42 mode-zero calls are dialogue-region calls and have fully constant arguments.",
+    "The mode-one control word and mode-two status byte retain raw subsystem names.",
+    "No gameplay-domain name is assigned to operation 0x0199 or its control word."
+  ]
+}

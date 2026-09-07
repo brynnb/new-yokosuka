@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "subject": {
+    "name": "Osamu Murakawa",
+    "actorCode": "YOS2",
+    "instanceId": "YOS2:92eb277e5533",
+    "area": "Dobuita",
+    "observedGameTime": "10:20",
+    "playerPosition": [39.73, 0.0, 39.34]
+  },
+  "source": {
+    "disc": "Shenmue (USA) (Disc 1)",
+    "displayedSaveStateSlot": 4,
+    "internalSaveStateSlot": 3,
+    "saveState": ".flycast-pvr/data/flycast/Shenmue (USA) (Disc 1)_3.state",
+    "saveStateSha256": "632ebe025388efecebcf4a9ee819b4ca52f765ed2e9a3838bc63c5f6e24ce725",
+    "captureFrames": [4812, 4814, 4815, 4816, 4817, 4818, 4819, 4820],
+    "capture4812RamSha256": "ea7f0345366f0fa0c49a5585d57b3fe74f5bbacc608f9ae84b3a8b8ff4426a01"
+  },
+  "runtime": {
+    "actorAddress": "0x8c3966b0",
+    "controllerAddress": "0x8ca6ca1c",
+    "operation": 1,
+    "motionRequest": 102,
+    "motionName": "AKI_AKI_WALK_LP",
+    "routeStepMetersPerNativeTick": 0.0410427525639534,
+    "movementScale": 1.0,
+    "nativeTickRateHz": 30,
+    "nominalRouteSpeedMetersPerSecond": 1.231282576918602
+  },
+  "motion": {
+    "source": ".disc-work/runtime-motion/MOTION.BIN",
+    "sourceSha256": "aca6a41b967b9f9f92ad847c9495e780058b8194e359bca9a9c2763b0d337b23",
+    "sourceFrameCount": 37,
+    "sourceFrameRateHz": 30,
+    "nativeLoopStartFrame": 1,
+    "nativeLoopFrameCount": 36,
+    "rootDisplacementMeters": 1.43865966796875,
+    "authoredRootSpeedMetersPerSecond": 1.198883056640625,
+    "observedSourceFrames": {
+      "4812": 30,
+      "4814": 32,
+      "4815": 33,
+      "4816": 34,
+      "4817": 35,
+      "4818": 36,
+      "4819": 1,
+      "4820": 2
+    },
+    "observedPlaybackRate": 1.0
+  },
+  "worldMovement": {
+    "actorPositions": {
+      "4814": [-30.887123107910156, 0.0, 42.44784927368164],
+      "4815": [-30.847143173217773, 0.0, 42.447425842285156],
+      "4816": [-30.807165145874023, 0.0, 42.44700241088867],
+      "4817": [-30.767189025878906, 0.0, 42.44657897949219],
+      "4818": [-30.727216720581055, 0.0, 42.4461555480957],
+      "4819": [-30.688156127929688, 0.0, 42.445743560791016],
+      "4820": [-30.648183822631836, 0.0, 42.44532012939453]
+    },
+    "intervalCount": 6,
+    "totalDistanceMeters": 0.2389526706174588,
+    "meanDistanceMetersPerTick": 0.0398254451029098,
+    "measuredSpeedMetersPerSecond": 1.194763353087294,
+    "measuredToAuthoredSpeedRatio": 0.9965637152593726
+  },
+  "conclusions": [
+    "The native walk animation advances one authored MOTION.BIN frame per 30 Hz simulation tick, including across the loop boundary.",
+    "The actor moves approximately 1.195 meters per real second in this sample; the route-step field is not meters per displayed in-game clock second.",
+    "The measured route is within 0.4 percent of this clip's authored horizontal root speed over its native 36-frame looping span.",
+    "Timetable time, physical movement integration, and animation playback are separate clocks in the native game."
+  ],
+  "scope": "This directly establishes ordinary route walking for this YOS2 sample. It does not by itself establish root-motion handling for special motions such as drunk stumbles."
+}

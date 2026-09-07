@@ -1,0 +1,68 @@
+{
+  "schema": "new-yokosuka-map-entry-spawn-v1",
+  "status": "verified",
+  "destination": {
+    "scene": 1,
+    "area": "JHD0",
+    "entry": 2
+  },
+  "source": {
+    "transitionEvidence": "tools/evidence/jomo-front-door-map-transition.json",
+    "ramCapture": "captures/pvr/20260724-084354-frame-3652/ram.bin",
+    "captureFrame": 3652,
+    "captureState": "settled after the JOMO front-door load completed"
+  },
+  "runtimeControl": {
+    "baseAddress": "0x8cc05820",
+    "rootRecordIndex": 0,
+    "positionAddresses": [
+      "0x8cc05830",
+      "0x8cc05834",
+      "0x8cc05838"
+    ],
+    "rotationRawAddresses": [
+      "0x8cc0582a",
+      "0x8cc0582c",
+      "0x8cc0582e"
+    ],
+    "nativePosition": [
+      -2.9900002479553223,
+      1.1416015625,
+      1.090000033378601
+    ],
+    "nativeRotationRaw": [
+      0,
+      2354,
+      0
+    ],
+    "nativeYawDegrees": 12.930908203125
+  },
+  "browserConversion": {
+    "rule": {
+      "position": "reflect source X; retain Z; resolve actor feet Y against browser terrain",
+      "yaw": "negate native Y rotation"
+    },
+    "position": [
+      2.9900002479553223,
+      0,
+      1.090000033378601
+    ],
+    "yawRadians": -0.22568692341767496,
+    "yawDegrees": -12.930908203125
+  },
+  "crossChecks": {
+    "completedWarpRecord": {
+      "area": "JHD0",
+      "scene": 1,
+      "entry": 2
+    },
+    "rootMatrixAddress": "0x8cc06e80",
+    "rootMatrixTranslation": [
+      -2.9900002479553223,
+      1.1416015625,
+      1.090000033378601
+    ],
+    "positionMatchesRootMatrix": true
+  },
+  "conclusion": "JHD0 scene 1 entry 2 initializes Ryo at native (-2.99000025, 1.14160156, 1.09000003) with raw Y heading 2354. The browser spawn is (2.99000025, terrain, 1.09000003) at yaw -0.2256869234 radians."
+}

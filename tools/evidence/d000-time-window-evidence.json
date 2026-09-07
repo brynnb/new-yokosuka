@@ -1,0 +1,3164 @@
+{
+  "schema": "new-yokosuka-d000-time-window-evidence-v2",
+  "source": {
+    "path": ".disc-work/exact/d000/MAPINFO.BIN",
+    "sha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e"
+  },
+  "nativePredicate": {
+    "fileOffset": "0x7ed70",
+    "semantics": "normalize each hour below 06:00 by adding 24, then evaluate start <= current game hour/minute < end",
+    "dayBoundaryHour": 6,
+    "sourceClock": {
+      "hourOffset": "SCN3 module state +0xcc",
+      "minuteOffset": "SCN3 module state +0xcd"
+    }
+  },
+  "summary": {
+    "callCount": 19,
+    "exactLiteralWindowCount": 15,
+    "dynamicOrNoncanonicalCount": 4,
+    "uniqueRoutineCount": 13,
+    "exactCanonicalBooleanBranchCount": 17,
+    "runtimeCombinedPredicateCount": 2,
+    "trueOnlyDirectCallCount": 14,
+    "falseOnlyDirectCallCount": 12,
+    "sharedDirectCallCount": 58,
+    "branchOwnedLocalByteWriteCount": 8
+  },
+  "calls": [
+    {
+      "callFileOffset": "0x690fc",
+      "window": {
+        "start": {
+          "hour": 7,
+          "minute": 0
+        },
+        "end": {
+          "hour": 19,
+          "minute": 0
+        },
+        "normalizedStartMinute": 420,
+        "normalizedEndMinute": 1140,
+        "boundary": "start-inclusive, end-exclusive",
+        "dayBoundaryHour": 6
+      },
+      "operandClassification": "exactLiteralWindow",
+      "containingRoutine": {
+        "startFileOffset": "0x68f5e",
+        "endFileOffsetExclusive": "0x69784",
+        "sha256": "65bd2c3abb01d9eee8a503be49db12a3d00d03308eeae64fa2bb6a9a6553a8bb"
+      },
+      "directObjectAndPersistentStateCalls": [
+        {
+          "operation": "0x001f",
+          "callFileOffset": "0x6960e",
+          "arguments": [
+            "TKOM",
+            1
+          ]
+        },
+        {
+          "operation": "0x001f",
+          "callFileOffset": "0x69622",
+          "arguments": [
+            "TKON",
+            1
+          ]
+        },
+        {
+          "operation": "0x00a8",
+          "callFileOffset": "0x69636",
+          "arguments": [
+            "TKOM",
+            0
+          ]
+        },
+        {
+          "operation": "0x00a8",
+          "callFileOffset": "0x6964a",
+          "arguments": [
+            "TKON",
+            0
+          ]
+        },
+        {
+          "operation": "0x001f",
+          "callFileOffset": "0x6967e",
+          "arguments": [
+            "TKOK",
+            2
+          ]
+        },
+        {
+          "operation": "0x001f",
+          "callFileOffset": "0x696b6",
+          "arguments": [
+            "TKOK",
+            1
+          ]
+        },
+        {
+          "operation": "0x00a8",
+          "callFileOffset": "0x696da",
+          "arguments": [
+            "TKOK",
+            0
+          ]
+        },
+        {
+          "operation": "0x001f",
+          "callFileOffset": "0x6970a",
+          "arguments": [
+            "TKOL",
+            2
+          ]
+        },
+        {
+          "operation": "0x001f",
+          "callFileOffset": "0x69742",
+          "arguments": [
+            "TKOL",
+            1
+          ]
+        },
+        {
+          "operation": "0x00a8",
+          "callFileOffset": "0x69766",
+          "arguments": [
+            "TKOL",
+            0
+          ]
+        }
+      ],
+      "resultBranch": {
+        "classification": "exactCanonicalBooleanBranch",
+        "compareFileOffset": "0x69102",
+        "branchFileOffset": "0x69104",
+        "branchMnemonic": "bf",
+        "trueSuccessorFileOffset": "0x69118",
+        "falseSuccessorFileOffset": "0x69106"
+      },
+      "branchOwnedDirectCalls": {
+        "trueOnly": [],
+        "falseOnly": [],
+        "shared": [
+          {
+            "operation": "0x001f",
+            "callFileOffset": "0x6960e",
+            "arguments": [
+              "TKOM",
+              1
+            ]
+          },
+          {
+            "operation": "0x001f",
+            "callFileOffset": "0x69622",
+            "arguments": [
+              "TKON",
+              1
+            ]
+          },
+          {
+            "operation": "0x00a8",
+            "callFileOffset": "0x69636",
+            "arguments": [
+              "TKOM",
+              0
+            ]
+          },
+          {
+            "operation": "0x00a8",
+            "callFileOffset": "0x6964a",
+            "arguments": [
+              "TKON",
+              0
+            ]
+          },
+          {
+            "operation": "0x001f",
+            "callFileOffset": "0x6967e",
+            "arguments": [
+              "TKOK",
+              2
+            ]
+          },
+          {
+            "operation": "0x001f",
+            "callFileOffset": "0x696b6",
+            "arguments": [
+              "TKOK",
+              1
+            ]
+          },
+          {
+            "operation": "0x00a8",
+            "callFileOffset": "0x696da",
+            "arguments": [
+              "TKOK",
+              0
+            ]
+          },
+          {
+            "operation": "0x001f",
+            "callFileOffset": "0x6970a",
+            "arguments": [
+              "TKOL",
+              2
+            ]
+          },
+          {
+            "operation": "0x001f",
+            "callFileOffset": "0x69742",
+            "arguments": [
+              "TKOL",
+              1
+            ]
+          },
+          {
+            "operation": "0x00a8",
+            "callFileOffset": "0x69766",
+            "arguments": [
+              "TKOL",
+              0
+            ]
+          }
+        ],
+        "unreachable": []
+      },
+      "branchOwnedLocalByteWrites": {
+        "trueOnly": [
+          {
+            "writeFileOffset": "0x6911e",
+            "frameOffset": 2,
+            "valueSigned": 0,
+            "valueHex": "0x00",
+            "valueLoadFileOffset": "0x6911c",
+            "addressProofFileOffsets": [
+              "0x69118",
+              "0x6911a"
+            ]
+          }
+        ],
+        "falseOnly": [
+          {
+            "writeFileOffset": "0x69136",
+            "frameOffset": 2,
+            "valueSigned": -1,
+            "valueHex": "0xff",
+            "valueLoadFileOffset": "0x69134",
+            "addressProofFileOffsets": [
+              "0x69130",
+              "0x69132"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "callFileOffset": "0x6dadc",
+      "window": {
+        "start": {
+          "hour": 22,
+          "minute": 0
+        },
+        "end": {
+          "hour": 5,
+          "minute": 25
+        },
+        "normalizedStartMinute": 1320,
+        "normalizedEndMinute": 1765,
+        "boundary": "start-inclusive, end-exclusive",
+        "dayBoundaryHour": 6
+      },
+      "operandClassification": "exactLiteralWindow",
+      "containingRoutine": {
+        "startFileOffset": "0x6d9b6",
+        "endFileOffsetExclusive": "0x6e19a",
+        "sha256": "cafe127809e4389cb37d2d41175849e0a67a4f64f1b932f0288238b76ada463d"
+      },
+      "directObjectAndPersistentStateCalls": [],
+      "resultBranch": {
+        "classification": "exactCanonicalBooleanBranch",
+        "compareFileOffset": "0x6dae2",
+        "branchFileOffset": "0x6dae4",
+        "branchMnemonic": "bf",
+        "trueSuccessorFileOffset": "0x6daf4",
+        "falseSuccessorFileOffset": "0x6dae6"
+      },
+      "branchOwnedDirectCalls": {
+        "trueOnly": [],
+        "falseOnly": [],
+        "shared": [],
+        "unreachable": []
+      },
+      "branchOwnedLocalByteWrites": {
+        "trueOnly": [],
+        "falseOnly": [
+          {
+            "writeFileOffset": "0x6dd32",
+            "frameOffset": 3,
+            "valueSigned": -1,
+            "valueHex": "0xff",
+            "valueLoadFileOffset": "0x6dd30",
+            "addressProofFileOffsets": [
+              "0x6dd2c",
+              "0x6dd2e"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "callFileOffset": "0x7602a",
+      "window": null,
+      "operandClassification": "runtimeOrNoncanonicalArguments",
+      "containingRoutine": {
+        "startFileOffset": "0x75b86",
+        "endFileOffsetExclusive": "0x767b4",
+        "sha256": "1f551a4030b294667bfe4d26d44274807c51e6f2a91d584fde679f75fc8e0a49"
+      },
+      "directObjectAndPersistentStateCalls": [
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x75dae",
+          "arguments": [
+            11,
+            125
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x7608a",
+          "arguments": [
+            11,
+            70
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x760a2",
+          "arguments": [
+            11,
+            80
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x7627e",
+          "arguments": [
+            11,
+            920
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x76296",
+          "arguments": [
+            11,
+            70
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x76458",
+          "arguments": [
+            11,
+            100
+          ]
+        }
+      ],
+      "resultBranch": {
+        "classification": "runtimeCombinedPredicate",
+        "reason": "clock result is combined with other runtime state before the controlling branch"
+      },
+      "branchOwnedDirectCalls": {
+        "trueOnly": [],
+        "falseOnly": [],
+        "shared": [],
+        "unreachable": [
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x75dae",
+            "arguments": [
+              11,
+              125
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x7608a",
+            "arguments": [
+              11,
+              70
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x760a2",
+            "arguments": [
+              11,
+              80
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x7627e",
+            "arguments": [
+              11,
+              920
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x76296",
+            "arguments": [
+              11,
+              70
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x76458",
+            "arguments": [
+              11,
+              100
+            ]
+          }
+        ]
+      },
+      "branchOwnedLocalByteWrites": {
+        "trueOnly": [],
+        "falseOnly": []
+      }
+    },
+    {
+      "callFileOffset": "0x76cde",
+      "window": {
+        "start": {
+          "hour": 8,
+          "minute": 0
+        },
+        "end": {
+          "hour": 22,
+          "minute": 0
+        },
+        "normalizedStartMinute": 480,
+        "normalizedEndMinute": 1320,
+        "boundary": "start-inclusive, end-exclusive",
+        "dayBoundaryHour": 6
+      },
+      "operandClassification": "exactLiteralWindow",
+      "containingRoutine": {
+        "startFileOffset": "0x76b02",
+        "endFileOffsetExclusive": "0x76e08",
+        "sha256": "c027df3b4b39a9491d2c656aefc29ae5d4daa7bb8d6593dee516da83c7b895fe"
+      },
+      "directObjectAndPersistentStateCalls": [],
+      "resultBranch": {
+        "classification": "exactCanonicalBooleanBranch",
+        "compareFileOffset": "0x76ce4",
+        "branchFileOffset": "0x76ce6",
+        "branchMnemonic": "bf",
+        "trueSuccessorFileOffset": "0x76cfc",
+        "falseSuccessorFileOffset": "0x76ce8"
+      },
+      "branchOwnedDirectCalls": {
+        "trueOnly": [],
+        "falseOnly": [],
+        "shared": [],
+        "unreachable": []
+      },
+      "branchOwnedLocalByteWrites": {
+        "trueOnly": [],
+        "falseOnly": []
+      }
+    },
+    {
+      "callFileOffset": "0x77a7a",
+      "window": {
+        "start": {
+          "hour": 11,
+          "minute": 0
+        },
+        "end": {
+          "hour": 15,
+          "minute": 0
+        },
+        "normalizedStartMinute": 660,
+        "normalizedEndMinute": 900,
+        "boundary": "start-inclusive, end-exclusive",
+        "dayBoundaryHour": 6
+      },
+      "operandClassification": "exactLiteralWindow",
+      "containingRoutine": {
+        "startFileOffset": "0x779fe",
+        "endFileOffsetExclusive": "0x77bb8",
+        "sha256": "4563565f3a4c4d3871e8650f805a7e06e3791e227687f7cc4289cee31c677092"
+      },
+      "directObjectAndPersistentStateCalls": [
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x77a34",
+          "arguments": [
+            11,
+            852
+          ]
+        }
+      ],
+      "resultBranch": {
+        "classification": "exactCanonicalBooleanBranch",
+        "compareFileOffset": "0x77a80",
+        "branchFileOffset": "0x77a82",
+        "branchMnemonic": "bf",
+        "trueSuccessorFileOffset": "0x77a94",
+        "falseSuccessorFileOffset": "0x77a84"
+      },
+      "branchOwnedDirectCalls": {
+        "trueOnly": [],
+        "falseOnly": [],
+        "shared": [],
+        "unreachable": [
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x77a34",
+            "arguments": [
+              11,
+              852
+            ]
+          }
+        ]
+      },
+      "branchOwnedLocalByteWrites": {
+        "trueOnly": [
+          {
+            "writeFileOffset": "0x77b92",
+            "frameOffset": 3,
+            "valueSigned": 19,
+            "valueHex": "0x13",
+            "valueLoadFileOffset": "0x77b90",
+            "addressProofFileOffsets": [
+              "0x77b8c",
+              "0x77b8e"
+            ]
+          }
+        ],
+        "falseOnly": [
+          {
+            "writeFileOffset": "0x77ba6",
+            "frameOffset": 3,
+            "valueSigned": -1,
+            "valueHex": "0xff",
+            "valueLoadFileOffset": "0x77ba4",
+            "addressProofFileOffsets": [
+              "0x77ba0",
+              "0x77ba2"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "callFileOffset": "0x77c5a",
+      "window": {
+        "start": {
+          "hour": 19,
+          "minute": 0
+        },
+        "end": {
+          "hour": 23,
+          "minute": 0
+        },
+        "normalizedStartMinute": 1140,
+        "normalizedEndMinute": 1380,
+        "boundary": "start-inclusive, end-exclusive",
+        "dayBoundaryHour": 6
+      },
+      "operandClassification": "exactLiteralWindow",
+      "containingRoutine": {
+        "startFileOffset": "0x77bba",
+        "endFileOffsetExclusive": "0x77d30",
+        "sha256": "8500156953a1739959a394aaa8759ac57d06ee88c758f9ba953868b4431e30f7"
+      },
+      "directObjectAndPersistentStateCalls": [
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x77bf0",
+          "arguments": [
+            11,
+            851
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x77c12",
+          "arguments": [
+            11,
+            801
+          ]
+        }
+      ],
+      "resultBranch": {
+        "classification": "runtimeCombinedPredicate",
+        "reason": "clock result is combined with other runtime state before the controlling branch"
+      },
+      "branchOwnedDirectCalls": {
+        "trueOnly": [],
+        "falseOnly": [],
+        "shared": [],
+        "unreachable": [
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x77bf0",
+            "arguments": [
+              11,
+              851
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x77c12",
+            "arguments": [
+              11,
+              801
+            ]
+          }
+        ]
+      },
+      "branchOwnedLocalByteWrites": {
+        "trueOnly": [],
+        "falseOnly": []
+      }
+    },
+    {
+      "callFileOffset": "0x77da6",
+      "window": null,
+      "operandClassification": "runtimeOrNoncanonicalArguments",
+      "containingRoutine": {
+        "startFileOffset": "0x77d32",
+        "endFileOffsetExclusive": "0x77e80",
+        "sha256": "5759877660f8711fabfdee0971bf9c1769c9ff28c5ca4f6de2fdb217962f9746"
+      },
+      "directObjectAndPersistentStateCalls": [
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x77d80",
+          "arguments": [
+            11,
+            964
+          ]
+        }
+      ],
+      "resultBranch": {
+        "classification": "exactCanonicalBooleanBranch",
+        "compareFileOffset": "0x77db4",
+        "branchFileOffset": "0x77db6",
+        "branchMnemonic": "bf",
+        "trueSuccessorFileOffset": "0x77de0",
+        "falseSuccessorFileOffset": "0x77db8"
+      },
+      "branchOwnedDirectCalls": {
+        "trueOnly": [],
+        "falseOnly": [],
+        "shared": [],
+        "unreachable": [
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x77d80",
+            "arguments": [
+              11,
+              964
+            ]
+          }
+        ]
+      },
+      "branchOwnedLocalByteWrites": {
+        "trueOnly": [
+          {
+            "writeFileOffset": "0x77e5a",
+            "frameOffset": 3,
+            "valueSigned": 21,
+            "valueHex": "0x15",
+            "valueLoadFileOffset": "0x77e58",
+            "addressProofFileOffsets": [
+              "0x77e54",
+              "0x77e56"
+            ]
+          }
+        ],
+        "falseOnly": [
+          {
+            "writeFileOffset": "0x77e6e",
+            "frameOffset": 3,
+            "valueSigned": -1,
+            "valueHex": "0xff",
+            "valueLoadFileOffset": "0x77e6c",
+            "addressProofFileOffsets": [
+              "0x77e68",
+              "0x77e6a"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "callFileOffset": "0x7823a",
+      "window": {
+        "start": {
+          "hour": 8,
+          "minute": 0
+        },
+        "end": {
+          "hour": 19,
+          "minute": 30
+        },
+        "normalizedStartMinute": 480,
+        "normalizedEndMinute": 1170,
+        "boundary": "start-inclusive, end-exclusive",
+        "dayBoundaryHour": 6
+      },
+      "operandClassification": "exactLiteralWindow",
+      "containingRoutine": {
+        "startFileOffset": "0x7815e",
+        "endFileOffsetExclusive": "0x782a4",
+        "sha256": "6c37c8c055047ac0a75114f0c6563c25ed97af31d74700cafdb97c619d373fb8"
+      },
+      "directObjectAndPersistentStateCalls": [
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x781d4",
+          "arguments": [
+            11,
+            {
+              "kind": "runtime",
+              "source": "@(8,r14) at 0x781c6"
+            }
+          ]
+        }
+      ],
+      "resultBranch": {
+        "classification": "exactCanonicalBooleanBranch",
+        "compareFileOffset": "0x78240",
+        "branchFileOffset": "0x78242",
+        "branchMnemonic": "bf",
+        "trueSuccessorFileOffset": "0x78254",
+        "falseSuccessorFileOffset": "0x78244"
+      },
+      "branchOwnedDirectCalls": {
+        "trueOnly": [],
+        "falseOnly": [],
+        "shared": [],
+        "unreachable": [
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x781d4",
+            "arguments": [
+              11,
+              {
+                "kind": "runtime",
+                "source": "@(8,r14) at 0x781c6"
+              }
+            ]
+          }
+        ]
+      },
+      "branchOwnedLocalByteWrites": {
+        "trueOnly": [
+          {
+            "writeFileOffset": "0x78272",
+            "frameOffset": 7,
+            "valueSigned": 22,
+            "valueHex": "0x16",
+            "valueLoadFileOffset": "0x78270",
+            "addressProofFileOffsets": [
+              "0x7826c",
+              "0x7826e"
+            ]
+          }
+        ],
+        "falseOnly": []
+      }
+    },
+    {
+      "callFileOffset": "0x78896",
+      "window": null,
+      "operandClassification": "runtimeOrNoncanonicalArguments",
+      "containingRoutine": {
+        "startFileOffset": "0x783b6",
+        "endFileOffsetExclusive": "0x79a10",
+        "sha256": "35227296874cd009a1637d8a632dd0dfb23b0a2281679679307817ff5cc8bf9b"
+      },
+      "directObjectAndPersistentStateCalls": [
+        {
+          "operation": "0x001f",
+          "callFileOffset": "0x78910",
+          "arguments": [
+            "EXD0",
+            1
+          ]
+        },
+        {
+          "operation": "0x00a8",
+          "callFileOffset": "0x78924",
+          "arguments": [
+            "EXD0",
+            0
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x789de",
+          "arguments": [
+            11,
+            766
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x789fc",
+          "arguments": [
+            11,
+            180
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x78ad6",
+          "arguments": [
+            12,
+            816,
+            1
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x78b16",
+          "arguments": [
+            12,
+            815,
+            1
+          ]
+        },
+        {
+          "operation": "0x001f",
+          "callFileOffset": "0x78c34",
+          "arguments": [
+            "EXD0",
+            1
+          ]
+        },
+        {
+          "operation": "0x00a8",
+          "callFileOffset": "0x78c48",
+          "arguments": [
+            "EXD0",
+            0
+          ]
+        },
+        {
+          "operation": "0x001f",
+          "callFileOffset": "0x78c5c",
+          "arguments": [
+            "EXD1",
+            1
+          ]
+        },
+        {
+          "operation": "0x00a8",
+          "callFileOffset": "0x78c70",
+          "arguments": [
+            "EXD1",
+            0
+          ]
+        },
+        {
+          "operation": "0x00a8",
+          "callFileOffset": "0x78e4a",
+          "arguments": [
+            "LUV2",
+            4294967295
+          ]
+        },
+        {
+          "operation": "0x00a8",
+          "callFileOffset": "0x78e82",
+          "arguments": [
+            "LUV2",
+            1
+          ]
+        },
+        {
+          "operation": "0x00a8",
+          "callFileOffset": "0x78ea6",
+          "arguments": [
+            "LUV2",
+            4294967295
+          ]
+        },
+        {
+          "operation": "0x00a8",
+          "callFileOffset": "0x78ed6",
+          "arguments": [
+            "LUV2",
+            0
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x78f96",
+          "arguments": [
+            11,
+            956
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x78fae",
+          "arguments": [
+            11,
+            400
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x78fea",
+          "arguments": [
+            12,
+            400,
+            1
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x7902e",
+          "arguments": [
+            11,
+            360
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x79046",
+          "arguments": [
+            11,
+            370
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x790ce",
+          "arguments": [
+            12,
+            370,
+            1
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x79162",
+          "arguments": [
+            16,
+            24,
+            {
+              "kind": "runtime",
+              "source": "mov.b at 0x79150"
+            }
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x791ce",
+          "arguments": [
+            11,
+            330
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x791e6",
+          "arguments": [
+            11,
+            861
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x79208",
+          "arguments": [
+            11,
+            350
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x79272",
+          "arguments": [
+            11,
+            350
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x7928a",
+          "arguments": [
+            11,
+            360
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x792c6",
+          "arguments": [
+            12,
+            360,
+            1
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x7934e",
+          "arguments": [
+            11,
+            70
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x79366",
+          "arguments": [
+            11,
+            100
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x795e2",
+          "arguments": [
+            11,
+            160
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x795fa",
+          "arguments": [
+            11,
+            180
+          ]
+        },
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x7968e",
+          "arguments": [
+            11,
+            818
+          ]
+        }
+      ],
+      "resultBranch": {
+        "classification": "exactCanonicalBooleanBranch",
+        "compareFileOffset": "0x788a4",
+        "branchFileOffset": "0x788a6",
+        "branchMnemonic": "bf",
+        "trueSuccessorFileOffset": "0x788bc",
+        "falseSuccessorFileOffset": "0x788a8"
+      },
+      "branchOwnedDirectCalls": {
+        "trueOnly": [
+          {
+            "operation": "0x001f",
+            "callFileOffset": "0x78910",
+            "arguments": [
+              "EXD0",
+              1
+            ]
+          },
+          {
+            "operation": "0x00a8",
+            "callFileOffset": "0x78924",
+            "arguments": [
+              "EXD0",
+              0
+            ]
+          }
+        ],
+        "falseOnly": [],
+        "shared": [
+          {
+            "operation": "0x00a8",
+            "callFileOffset": "0x78e4a",
+            "arguments": [
+              "LUV2",
+              4294967295
+            ]
+          },
+          {
+            "operation": "0x00a8",
+            "callFileOffset": "0x78e82",
+            "arguments": [
+              "LUV2",
+              1
+            ]
+          },
+          {
+            "operation": "0x00a8",
+            "callFileOffset": "0x78ea6",
+            "arguments": [
+              "LUV2",
+              4294967295
+            ]
+          },
+          {
+            "operation": "0x00a8",
+            "callFileOffset": "0x78ed6",
+            "arguments": [
+              "LUV2",
+              0
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x78f96",
+            "arguments": [
+              11,
+              956
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x78fae",
+            "arguments": [
+              11,
+              400
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x78fea",
+            "arguments": [
+              12,
+              400,
+              1
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x7902e",
+            "arguments": [
+              11,
+              360
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x79046",
+            "arguments": [
+              11,
+              370
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x790ce",
+            "arguments": [
+              12,
+              370,
+              1
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x79162",
+            "arguments": [
+              16,
+              24,
+              {
+                "kind": "runtime",
+                "source": "mov.b at 0x79150"
+              }
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x791ce",
+            "arguments": [
+              11,
+              330
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x791e6",
+            "arguments": [
+              11,
+              861
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x79208",
+            "arguments": [
+              11,
+              350
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x79272",
+            "arguments": [
+              11,
+              350
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x7928a",
+            "arguments": [
+              11,
+              360
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x792c6",
+            "arguments": [
+              12,
+              360,
+              1
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x7934e",
+            "arguments": [
+              11,
+              70
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x79366",
+            "arguments": [
+              11,
+              100
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x795e2",
+            "arguments": [
+              11,
+              160
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x795fa",
+            "arguments": [
+              11,
+              180
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x7968e",
+            "arguments": [
+              11,
+              818
+            ]
+          }
+        ],
+        "unreachable": [
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x789de",
+            "arguments": [
+              11,
+              766
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x789fc",
+            "arguments": [
+              11,
+              180
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x78ad6",
+            "arguments": [
+              12,
+              816,
+              1
+            ]
+          },
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x78b16",
+            "arguments": [
+              12,
+              815,
+              1
+            ]
+          },
+          {
+            "operation": "0x001f",
+            "callFileOffset": "0x78c34",
+            "arguments": [
+              "EXD0",
+              1
+            ]
+          },
+          {
+            "operation": "0x00a8",
+            "callFileOffset": "0x78c48",
+            "arguments": [
+              "EXD0",
+              0
+            ]
+          },
+          {
+            "operation": "0x001f",
+            "callFileOffset": "0x78c5c",
+            "arguments": [
+              "EXD1",
+              1
+            ]
+          },
+          {
+            "operation": "0x00a8",
+            "callFileOffset": "0x78c70",
+            "arguments": [
+              "EXD1",
+              0
+            ]
+          }
+        ]
+      },
+      "branchOwnedLocalByteWrites": {
+        "trueOnly": [],
+        "falseOnly": []
+      }
+    },
+    {
+      "callFileOffset": "0x7cd5e",
+      "window": {
+        "start": {
+          "hour": 8,
+          "minute": 30
+        },
+        "end": {
+          "hour": 18,
+          "minute": 30
+        },
+        "normalizedStartMinute": 510,
+        "normalizedEndMinute": 1110,
+        "boundary": "start-inclusive, end-exclusive",
+        "dayBoundaryHour": 6
+      },
+      "operandClassification": "exactLiteralWindow",
+      "containingRoutine": {
+        "startFileOffset": "0x7cd46",
+        "endFileOffsetExclusive": "0x7cf00",
+        "sha256": "45e0aabb8e54b96f835c6addd389c28f543f80d240cd8876328072eb19178880"
+      },
+      "directObjectAndPersistentStateCalls": [
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cd86",
+          "arguments": [
+            20,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cd9a",
+          "arguments": [
+            17,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cdbe",
+          "arguments": [
+            17,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cdd2",
+          "arguments": [
+            20,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7ce16",
+          "arguments": [
+            18,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7ce2a",
+          "arguments": [
+            21,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7ce4e",
+          "arguments": [
+            21,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7ce62",
+          "arguments": [
+            18,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cea6",
+          "arguments": [
+            19,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7ceba",
+          "arguments": [
+            22,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cede",
+          "arguments": [
+            22,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cef2",
+          "arguments": [
+            19,
+            1
+          ]
+        }
+      ],
+      "resultBranch": {
+        "classification": "exactCanonicalBooleanBranch",
+        "compareFileOffset": "0x7cd64",
+        "branchFileOffset": "0x7cd66",
+        "branchMnemonic": "bf",
+        "trueSuccessorFileOffset": "0x7cd78",
+        "falseSuccessorFileOffset": "0x7cd68"
+      },
+      "branchOwnedDirectCalls": {
+        "trueOnly": [
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cd86",
+            "arguments": [
+              20,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cd9a",
+            "arguments": [
+              17,
+              1
+            ]
+          }
+        ],
+        "falseOnly": [
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cdbe",
+            "arguments": [
+              17,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cdd2",
+            "arguments": [
+              20,
+              1
+            ]
+          }
+        ],
+        "shared": [
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7ce16",
+            "arguments": [
+              18,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7ce2a",
+            "arguments": [
+              21,
+              1
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7ce4e",
+            "arguments": [
+              21,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7ce62",
+            "arguments": [
+              18,
+              1
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cea6",
+            "arguments": [
+              19,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7ceba",
+            "arguments": [
+              22,
+              1
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cede",
+            "arguments": [
+              22,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cef2",
+            "arguments": [
+              19,
+              1
+            ]
+          }
+        ],
+        "unreachable": []
+      },
+      "branchOwnedLocalByteWrites": {
+        "trueOnly": [],
+        "falseOnly": []
+      }
+    },
+    {
+      "callFileOffset": "0x7cdea",
+      "window": {
+        "start": {
+          "hour": 19,
+          "minute": 0
+        },
+        "end": {
+          "hour": 23,
+          "minute": 0
+        },
+        "normalizedStartMinute": 1140,
+        "normalizedEndMinute": 1380,
+        "boundary": "start-inclusive, end-exclusive",
+        "dayBoundaryHour": 6
+      },
+      "operandClassification": "exactLiteralWindow",
+      "containingRoutine": {
+        "startFileOffset": "0x7cd46",
+        "endFileOffsetExclusive": "0x7cf00",
+        "sha256": "45e0aabb8e54b96f835c6addd389c28f543f80d240cd8876328072eb19178880"
+      },
+      "directObjectAndPersistentStateCalls": [
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cd86",
+          "arguments": [
+            20,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cd9a",
+          "arguments": [
+            17,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cdbe",
+          "arguments": [
+            17,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cdd2",
+          "arguments": [
+            20,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7ce16",
+          "arguments": [
+            18,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7ce2a",
+          "arguments": [
+            21,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7ce4e",
+          "arguments": [
+            21,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7ce62",
+          "arguments": [
+            18,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cea6",
+          "arguments": [
+            19,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7ceba",
+          "arguments": [
+            22,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cede",
+          "arguments": [
+            22,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cef2",
+          "arguments": [
+            19,
+            1
+          ]
+        }
+      ],
+      "resultBranch": {
+        "classification": "exactCanonicalBooleanBranch",
+        "compareFileOffset": "0x7cdf0",
+        "branchFileOffset": "0x7cdf2",
+        "branchMnemonic": "bf",
+        "trueSuccessorFileOffset": "0x7ce08",
+        "falseSuccessorFileOffset": "0x7cdf4"
+      },
+      "branchOwnedDirectCalls": {
+        "trueOnly": [
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7ce16",
+            "arguments": [
+              18,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7ce2a",
+            "arguments": [
+              21,
+              1
+            ]
+          }
+        ],
+        "falseOnly": [
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7ce4e",
+            "arguments": [
+              21,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7ce62",
+            "arguments": [
+              18,
+              1
+            ]
+          }
+        ],
+        "shared": [
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cea6",
+            "arguments": [
+              19,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7ceba",
+            "arguments": [
+              22,
+              1
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cede",
+            "arguments": [
+              22,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cef2",
+            "arguments": [
+              19,
+              1
+            ]
+          }
+        ],
+        "unreachable": [
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cd86",
+            "arguments": [
+              20,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cd9a",
+            "arguments": [
+              17,
+              1
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cdbe",
+            "arguments": [
+              17,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cdd2",
+            "arguments": [
+              20,
+              1
+            ]
+          }
+        ]
+      },
+      "branchOwnedLocalByteWrites": {
+        "trueOnly": [],
+        "falseOnly": []
+      }
+    },
+    {
+      "callFileOffset": "0x7ce7a",
+      "window": {
+        "start": {
+          "hour": 19,
+          "minute": 30
+        },
+        "end": {
+          "hour": 23,
+          "minute": 0
+        },
+        "normalizedStartMinute": 1170,
+        "normalizedEndMinute": 1380,
+        "boundary": "start-inclusive, end-exclusive",
+        "dayBoundaryHour": 6
+      },
+      "operandClassification": "exactLiteralWindow",
+      "containingRoutine": {
+        "startFileOffset": "0x7cd46",
+        "endFileOffsetExclusive": "0x7cf00",
+        "sha256": "45e0aabb8e54b96f835c6addd389c28f543f80d240cd8876328072eb19178880"
+      },
+      "directObjectAndPersistentStateCalls": [
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cd86",
+          "arguments": [
+            20,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cd9a",
+          "arguments": [
+            17,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cdbe",
+          "arguments": [
+            17,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cdd2",
+          "arguments": [
+            20,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7ce16",
+          "arguments": [
+            18,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7ce2a",
+          "arguments": [
+            21,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7ce4e",
+          "arguments": [
+            21,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7ce62",
+          "arguments": [
+            18,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cea6",
+          "arguments": [
+            19,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7ceba",
+          "arguments": [
+            22,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cede",
+          "arguments": [
+            22,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cef2",
+          "arguments": [
+            19,
+            1
+          ]
+        }
+      ],
+      "resultBranch": {
+        "classification": "exactCanonicalBooleanBranch",
+        "compareFileOffset": "0x7ce80",
+        "branchFileOffset": "0x7ce82",
+        "branchMnemonic": "bf",
+        "trueSuccessorFileOffset": "0x7ce98",
+        "falseSuccessorFileOffset": "0x7ce84"
+      },
+      "branchOwnedDirectCalls": {
+        "trueOnly": [
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cea6",
+            "arguments": [
+              19,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7ceba",
+            "arguments": [
+              22,
+              1
+            ]
+          }
+        ],
+        "falseOnly": [
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cede",
+            "arguments": [
+              22,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cef2",
+            "arguments": [
+              19,
+              1
+            ]
+          }
+        ],
+        "shared": [],
+        "unreachable": [
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cd86",
+            "arguments": [
+              20,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cd9a",
+            "arguments": [
+              17,
+              1
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cdbe",
+            "arguments": [
+              17,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cdd2",
+            "arguments": [
+              20,
+              1
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7ce16",
+            "arguments": [
+              18,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7ce2a",
+            "arguments": [
+              21,
+              1
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7ce4e",
+            "arguments": [
+              21,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7ce62",
+            "arguments": [
+              18,
+              1
+            ]
+          }
+        ]
+      },
+      "branchOwnedLocalByteWrites": {
+        "trueOnly": [],
+        "falseOnly": []
+      }
+    },
+    {
+      "callFileOffset": "0x7cf1e",
+      "window": {
+        "start": {
+          "hour": 8,
+          "minute": 30
+        },
+        "end": {
+          "hour": 18,
+          "minute": 30
+        },
+        "normalizedStartMinute": 510,
+        "normalizedEndMinute": 1110,
+        "boundary": "start-inclusive, end-exclusive",
+        "dayBoundaryHour": 6
+      },
+      "operandClassification": "exactLiteralWindow",
+      "containingRoutine": {
+        "startFileOffset": "0x7cf06",
+        "endFileOffsetExclusive": "0x7d100",
+        "sha256": "f3b53f1d8db30eac3f4ad06c26fa714e5e8c9165c35b34d0dc6afc383de7ec22"
+      },
+      "directObjectAndPersistentStateCalls": [
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cf46",
+          "arguments": [
+            8,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cf5a",
+          "arguments": [
+            11,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cf7e",
+          "arguments": [
+            8,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cf92",
+          "arguments": [
+            11,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cfd6",
+          "arguments": [
+            10,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cfea",
+          "arguments": [
+            12,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7d00e",
+          "arguments": [
+            10,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7d022",
+          "arguments": [
+            12,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7d066",
+          "arguments": [
+            13,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7d08a",
+          "arguments": [
+            13,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7d0ce",
+          "arguments": [
+            14,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7d0f2",
+          "arguments": [
+            14,
+            1
+          ]
+        }
+      ],
+      "resultBranch": {
+        "classification": "exactCanonicalBooleanBranch",
+        "compareFileOffset": "0x7cf24",
+        "branchFileOffset": "0x7cf26",
+        "branchMnemonic": "bf",
+        "trueSuccessorFileOffset": "0x7cf38",
+        "falseSuccessorFileOffset": "0x7cf28"
+      },
+      "branchOwnedDirectCalls": {
+        "trueOnly": [
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cf46",
+            "arguments": [
+              8,
+              1
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cf5a",
+            "arguments": [
+              11,
+              0
+            ]
+          }
+        ],
+        "falseOnly": [
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cf7e",
+            "arguments": [
+              8,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cf92",
+            "arguments": [
+              11,
+              1
+            ]
+          }
+        ],
+        "shared": [
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cfd6",
+            "arguments": [
+              10,
+              1
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cfea",
+            "arguments": [
+              12,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7d00e",
+            "arguments": [
+              10,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7d022",
+            "arguments": [
+              12,
+              1
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7d066",
+            "arguments": [
+              13,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7d08a",
+            "arguments": [
+              13,
+              1
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7d0ce",
+            "arguments": [
+              14,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7d0f2",
+            "arguments": [
+              14,
+              1
+            ]
+          }
+        ],
+        "unreachable": []
+      },
+      "branchOwnedLocalByteWrites": {
+        "trueOnly": [],
+        "falseOnly": []
+      }
+    },
+    {
+      "callFileOffset": "0x7cfaa",
+      "window": {
+        "start": {
+          "hour": 10,
+          "minute": 0
+        },
+        "end": {
+          "hour": 21,
+          "minute": 0
+        },
+        "normalizedStartMinute": 600,
+        "normalizedEndMinute": 1260,
+        "boundary": "start-inclusive, end-exclusive",
+        "dayBoundaryHour": 6
+      },
+      "operandClassification": "exactLiteralWindow",
+      "containingRoutine": {
+        "startFileOffset": "0x7cf06",
+        "endFileOffsetExclusive": "0x7d100",
+        "sha256": "f3b53f1d8db30eac3f4ad06c26fa714e5e8c9165c35b34d0dc6afc383de7ec22"
+      },
+      "directObjectAndPersistentStateCalls": [
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cf46",
+          "arguments": [
+            8,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cf5a",
+          "arguments": [
+            11,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cf7e",
+          "arguments": [
+            8,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cf92",
+          "arguments": [
+            11,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cfd6",
+          "arguments": [
+            10,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cfea",
+          "arguments": [
+            12,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7d00e",
+          "arguments": [
+            10,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7d022",
+          "arguments": [
+            12,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7d066",
+          "arguments": [
+            13,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7d08a",
+          "arguments": [
+            13,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7d0ce",
+          "arguments": [
+            14,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7d0f2",
+          "arguments": [
+            14,
+            1
+          ]
+        }
+      ],
+      "resultBranch": {
+        "classification": "exactCanonicalBooleanBranch",
+        "compareFileOffset": "0x7cfb0",
+        "branchFileOffset": "0x7cfb2",
+        "branchMnemonic": "bf",
+        "trueSuccessorFileOffset": "0x7cfc8",
+        "falseSuccessorFileOffset": "0x7cfb4"
+      },
+      "branchOwnedDirectCalls": {
+        "trueOnly": [
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cfd6",
+            "arguments": [
+              10,
+              1
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cfea",
+            "arguments": [
+              12,
+              0
+            ]
+          }
+        ],
+        "falseOnly": [
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7d00e",
+            "arguments": [
+              10,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7d022",
+            "arguments": [
+              12,
+              1
+            ]
+          }
+        ],
+        "shared": [
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7d066",
+            "arguments": [
+              13,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7d08a",
+            "arguments": [
+              13,
+              1
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7d0ce",
+            "arguments": [
+              14,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7d0f2",
+            "arguments": [
+              14,
+              1
+            ]
+          }
+        ],
+        "unreachable": [
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cf46",
+            "arguments": [
+              8,
+              1
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cf5a",
+            "arguments": [
+              11,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cf7e",
+            "arguments": [
+              8,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cf92",
+            "arguments": [
+              11,
+              1
+            ]
+          }
+        ]
+      },
+      "branchOwnedLocalByteWrites": {
+        "trueOnly": [],
+        "falseOnly": []
+      }
+    },
+    {
+      "callFileOffset": "0x7d03a",
+      "window": {
+        "start": {
+          "hour": 8,
+          "minute": 0
+        },
+        "end": {
+          "hour": 17,
+          "minute": 30
+        },
+        "normalizedStartMinute": 480,
+        "normalizedEndMinute": 1050,
+        "boundary": "start-inclusive, end-exclusive",
+        "dayBoundaryHour": 6
+      },
+      "operandClassification": "exactLiteralWindow",
+      "containingRoutine": {
+        "startFileOffset": "0x7cf06",
+        "endFileOffsetExclusive": "0x7d100",
+        "sha256": "f3b53f1d8db30eac3f4ad06c26fa714e5e8c9165c35b34d0dc6afc383de7ec22"
+      },
+      "directObjectAndPersistentStateCalls": [
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cf46",
+          "arguments": [
+            8,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cf5a",
+          "arguments": [
+            11,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cf7e",
+          "arguments": [
+            8,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cf92",
+          "arguments": [
+            11,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cfd6",
+          "arguments": [
+            10,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cfea",
+          "arguments": [
+            12,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7d00e",
+          "arguments": [
+            10,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7d022",
+          "arguments": [
+            12,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7d066",
+          "arguments": [
+            13,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7d08a",
+          "arguments": [
+            13,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7d0ce",
+          "arguments": [
+            14,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7d0f2",
+          "arguments": [
+            14,
+            1
+          ]
+        }
+      ],
+      "resultBranch": {
+        "classification": "exactCanonicalBooleanBranch",
+        "compareFileOffset": "0x7d040",
+        "branchFileOffset": "0x7d042",
+        "branchMnemonic": "bf",
+        "trueSuccessorFileOffset": "0x7d058",
+        "falseSuccessorFileOffset": "0x7d044"
+      },
+      "branchOwnedDirectCalls": {
+        "trueOnly": [
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7d066",
+            "arguments": [
+              13,
+              0
+            ]
+          }
+        ],
+        "falseOnly": [
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7d08a",
+            "arguments": [
+              13,
+              1
+            ]
+          }
+        ],
+        "shared": [
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7d0ce",
+            "arguments": [
+              14,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7d0f2",
+            "arguments": [
+              14,
+              1
+            ]
+          }
+        ],
+        "unreachable": [
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cf46",
+            "arguments": [
+              8,
+              1
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cf5a",
+            "arguments": [
+              11,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cf7e",
+            "arguments": [
+              8,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cf92",
+            "arguments": [
+              11,
+              1
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cfd6",
+            "arguments": [
+              10,
+              1
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cfea",
+            "arguments": [
+              12,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7d00e",
+            "arguments": [
+              10,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7d022",
+            "arguments": [
+              12,
+              1
+            ]
+          }
+        ]
+      },
+      "branchOwnedLocalByteWrites": {
+        "trueOnly": [],
+        "falseOnly": []
+      }
+    },
+    {
+      "callFileOffset": "0x7d0a2",
+      "window": {
+        "start": {
+          "hour": 8,
+          "minute": 0
+        },
+        "end": {
+          "hour": 19,
+          "minute": 30
+        },
+        "normalizedStartMinute": 480,
+        "normalizedEndMinute": 1170,
+        "boundary": "start-inclusive, end-exclusive",
+        "dayBoundaryHour": 6
+      },
+      "operandClassification": "exactLiteralWindow",
+      "containingRoutine": {
+        "startFileOffset": "0x7cf06",
+        "endFileOffsetExclusive": "0x7d100",
+        "sha256": "f3b53f1d8db30eac3f4ad06c26fa714e5e8c9165c35b34d0dc6afc383de7ec22"
+      },
+      "directObjectAndPersistentStateCalls": [
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cf46",
+          "arguments": [
+            8,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cf5a",
+          "arguments": [
+            11,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cf7e",
+          "arguments": [
+            8,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cf92",
+          "arguments": [
+            11,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cfd6",
+          "arguments": [
+            10,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7cfea",
+          "arguments": [
+            12,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7d00e",
+          "arguments": [
+            10,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7d022",
+          "arguments": [
+            12,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7d066",
+          "arguments": [
+            13,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7d08a",
+          "arguments": [
+            13,
+            1
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7d0ce",
+          "arguments": [
+            14,
+            0
+          ]
+        },
+        {
+          "operation": "0x0098",
+          "callFileOffset": "0x7d0f2",
+          "arguments": [
+            14,
+            1
+          ]
+        }
+      ],
+      "resultBranch": {
+        "classification": "exactCanonicalBooleanBranch",
+        "compareFileOffset": "0x7d0a8",
+        "branchFileOffset": "0x7d0aa",
+        "branchMnemonic": "bf",
+        "trueSuccessorFileOffset": "0x7d0c0",
+        "falseSuccessorFileOffset": "0x7d0ac"
+      },
+      "branchOwnedDirectCalls": {
+        "trueOnly": [
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7d0ce",
+            "arguments": [
+              14,
+              0
+            ]
+          }
+        ],
+        "falseOnly": [
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7d0f2",
+            "arguments": [
+              14,
+              1
+            ]
+          }
+        ],
+        "shared": [],
+        "unreachable": [
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cf46",
+            "arguments": [
+              8,
+              1
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cf5a",
+            "arguments": [
+              11,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cf7e",
+            "arguments": [
+              8,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cf92",
+            "arguments": [
+              11,
+              1
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cfd6",
+            "arguments": [
+              10,
+              1
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7cfea",
+            "arguments": [
+              12,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7d00e",
+            "arguments": [
+              10,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7d022",
+            "arguments": [
+              12,
+              1
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7d066",
+            "arguments": [
+              13,
+              0
+            ]
+          },
+          {
+            "operation": "0x0098",
+            "callFileOffset": "0x7d08a",
+            "arguments": [
+              13,
+              1
+            ]
+          }
+        ]
+      },
+      "branchOwnedLocalByteWrites": {
+        "trueOnly": [],
+        "falseOnly": []
+      }
+    },
+    {
+      "callFileOffset": "0x7e2a2",
+      "window": null,
+      "operandClassification": "runtimeOrNoncanonicalArguments",
+      "containingRoutine": {
+        "startFileOffset": "0x7e28a",
+        "endFileOffsetExclusive": "0x7e394",
+        "sha256": "0110f9db0641ad42e46e865860dd3174ae490b9b2fcdf17b6a302431defabaa1"
+      },
+      "directObjectAndPersistentStateCalls": [],
+      "resultBranch": {
+        "classification": "exactCanonicalBooleanBranch",
+        "compareFileOffset": "0x7e2a8",
+        "branchFileOffset": "0x7e2aa",
+        "branchMnemonic": "bf",
+        "trueSuccessorFileOffset": "0x7e2bc",
+        "falseSuccessorFileOffset": "0x7e2ac"
+      },
+      "branchOwnedDirectCalls": {
+        "trueOnly": [],
+        "falseOnly": [],
+        "shared": [],
+        "unreachable": []
+      },
+      "branchOwnedLocalByteWrites": {
+        "trueOnly": [],
+        "falseOnly": []
+      }
+    },
+    {
+      "callFileOffset": "0x7e3e6",
+      "window": {
+        "start": {
+          "hour": 7,
+          "minute": 30
+        },
+        "end": {
+          "hour": 18,
+          "minute": 0
+        },
+        "normalizedStartMinute": 450,
+        "normalizedEndMinute": 1080,
+        "boundary": "start-inclusive, end-exclusive",
+        "dayBoundaryHour": 6
+      },
+      "operandClassification": "exactLiteralWindow",
+      "containingRoutine": {
+        "startFileOffset": "0x7e39e",
+        "endFileOffsetExclusive": "0x7ecf6",
+        "sha256": "08a4a9a184b16fab8838a310a4a5e811ab0a6c305872498db95df3b03ad68e4a"
+      },
+      "directObjectAndPersistentStateCalls": [
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x7e602",
+          "arguments": [
+            11,
+            957
+          ]
+        }
+      ],
+      "resultBranch": {
+        "classification": "exactCanonicalBooleanBranch",
+        "compareFileOffset": "0x7e3ec",
+        "branchFileOffset": "0x7e3ee",
+        "branchMnemonic": "bf",
+        "trueSuccessorFileOffset": "0x7e400",
+        "falseSuccessorFileOffset": "0x7e3f0"
+      },
+      "branchOwnedDirectCalls": {
+        "trueOnly": [],
+        "falseOnly": [],
+        "shared": [],
+        "unreachable": [
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x7e602",
+            "arguments": [
+              11,
+              957
+            ]
+          }
+        ]
+      },
+      "branchOwnedLocalByteWrites": {
+        "trueOnly": [],
+        "falseOnly": []
+      }
+    },
+    {
+      "callFileOffset": "0x7e4c2",
+      "window": {
+        "start": {
+          "hour": 10,
+          "minute": 0
+        },
+        "end": {
+          "hour": 21,
+          "minute": 0
+        },
+        "normalizedStartMinute": 600,
+        "normalizedEndMinute": 1260,
+        "boundary": "start-inclusive, end-exclusive",
+        "dayBoundaryHour": 6
+      },
+      "operandClassification": "exactLiteralWindow",
+      "containingRoutine": {
+        "startFileOffset": "0x7e39e",
+        "endFileOffsetExclusive": "0x7ecf6",
+        "sha256": "08a4a9a184b16fab8838a310a4a5e811ab0a6c305872498db95df3b03ad68e4a"
+      },
+      "directObjectAndPersistentStateCalls": [
+        {
+          "operation": "0x0051",
+          "callFileOffset": "0x7e602",
+          "arguments": [
+            11,
+            957
+          ]
+        }
+      ],
+      "resultBranch": {
+        "classification": "exactCanonicalBooleanBranch",
+        "compareFileOffset": "0x7e4c8",
+        "branchFileOffset": "0x7e4ca",
+        "branchMnemonic": "bf",
+        "trueSuccessorFileOffset": "0x7e4dc",
+        "falseSuccessorFileOffset": "0x7e4cc"
+      },
+      "branchOwnedDirectCalls": {
+        "trueOnly": [],
+        "falseOnly": [],
+        "shared": [],
+        "unreachable": [
+          {
+            "operation": "0x0051",
+            "callFileOffset": "0x7e602",
+            "arguments": [
+              11,
+              957
+            ]
+          }
+        ]
+      },
+      "branchOwnedLocalByteWrites": {
+        "trueOnly": [],
+        "falseOnly": []
+      }
+    }
+  ],
+  "evidenceBoundary": "Literal windows, containing native routines, canonical result branches, and direct-call reachability are exact. Calls marked shared are not attributed to the time predicate. Runtime-combined predicates and indirect helper effects remain unresolved; the browser must not change an object from those records alone."
+}

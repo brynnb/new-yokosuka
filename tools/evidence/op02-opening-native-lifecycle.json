@@ -1,0 +1,141 @@
+{
+  "schema": "new-yokosuka-op02-opening-native-lifecycle-v1",
+  "status": "canonical-compiled-vertical-slice-verified",
+  "source": {
+    "disc": 1,
+    "area": "OP02",
+    "mapinfoSha256": "5463ad11cf2ed99764160795be2e1576a874d8c928b8ccc9db437ad32b25d6d0",
+    "ownerFunctionFileOffset": "0x7c",
+    "entryOwnerFunctionFileOffset": "0x23c8"
+  },
+  "activity": {
+    "resourceName": "A0100",
+    "trackCount": 7,
+    "nativePlaybackOrder": [0, 1, 2, 3, 6, 4, 5],
+    "durationFrames": 2357,
+    "frameRate": 30
+  },
+  "compiledOwner": {
+    "artifact": "play/assets/introduction/op02/cutscene-program.generated.json",
+    "schema": "new-yokosuka-native-cutscene-program-v1",
+    "programId": "S1-OP02-00",
+    "entryFunction": "0x23c8",
+    "functionCount": 13,
+    "blockCount": 397,
+    "actionCount": 265,
+    "unresolvedOperationTypeCount": 0,
+    "unresolvedOperationCallCount": 0,
+    "launch": "play/config/cutscenes.js selects the compiled program; OP02 has no selector activity or playlist launch"
+  },
+  "numberedMapLayers": {
+    "operation": "0x0098",
+    "definitions": ["MAP01", "MAP02"],
+    "writes": [
+      { "callFileOffset": "0x446", "layer": 1, "value": 0 },
+      { "callFileOffset": "0xf62", "layer": 0, "value": 0 }
+    ]
+  },
+  "nativeResources": {
+    "shenhuaMotion": "M_0605.MOTN",
+    "hawkObjectMotion": "M_TORI.MOTN",
+    "scroll": ["SCROLL53.SCR1", "SCROLL67.SCR0"],
+    "faceTable": "MGR_FTBL.BIN"
+  },
+  "hawkPresentation": {
+    "motionFormat": "TMNM",
+    "sequenceCount": 8,
+    "resourceIds": [57345, 57346, 57347, 57348, 57349, 57350, 57351, 57352],
+    "playbackKinds": ["transition", "loop", "transition", "loop", "transition", "transition", "transition", "loop"],
+    "modelCompatibility": {
+      "TAK02M7G": { "nodeCount": 58, "sequenceIndices": [0, 1, 2, 3, 4] },
+      "TAK02M8G": { "nodeCount": 54, "sequenceIndices": [5, 6, 7] }
+    },
+    "selectionOwner": "resolved-object-tmnm-parameter-write actions in the compiled MAPINFO owner",
+    "manualActivityTimeline": false
+  },
+  "scrollPresentation": {
+    "executable": "1ST_READ.BIN",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "nativeInitializerAddress": "0x0c09a05e",
+    "nativeTransitionAddress": "0x0c09b54a",
+    "nativeFullscreenSpriteAddress": "0x0c09bb88",
+    "nativeSlotCount": 3,
+    "nativeViewport": [640, 480],
+    "resources": [
+      {
+        "name": "SCROLL53.SCR1",
+        "slot": 1,
+        "container": "TEXN",
+        "logicalDimensions": [512, 256],
+        "tiles": ["air53"]
+      },
+      {
+        "name": "SCROLL67.SCR0",
+        "slot": 0,
+        "container": "SCRL",
+        "logicalDimensions": [512, 320],
+        "tiles": ["air67", "air67b"]
+      }
+    ],
+    "ownerCommands": {
+      "slotOneTransitionFrames": 560,
+      "slotZeroReleasedAtEnd": true
+    }
+  },
+  "facePresentation": {
+    "actorTag": "SINF",
+    "bodyModel": {
+      "name": "MGR_M.CHRM",
+      "sha256": "a79af46067bc08d22ec55e7308d6ac9157185bcba5409de3b59fc07830435f55",
+      "attachmentRenderKey": -67,
+      "attachmentWorldScale": [10, 10, 10]
+    },
+    "detailedModel": {
+      "name": "MGR_F.CHRM",
+      "sha256": "2b5c3c5f8408cd9819f430598fb2bcba649b0278165ce042a78366860b4bd4a6",
+      "rootRenderKey": 3,
+      "eyeRenderKeys": [77, 78]
+    },
+    "attachmentSpaceConversion": "full-affine-inverse",
+    "exactSharedPrimaryTextureSourceVertices": 1197,
+    "exactSharedPrimaryTextureTriangles": 1602,
+    "transferredBodyTriangles": 3593,
+    "retainedBodyTriangles": 2397,
+    "lifecycle": "prepared once at package scope; integrated for SINF AUTH ownership; body surface restored and detailed root detached at every activity end",
+    "result": "MGR_F.CHRM is the authored detailed surface for MGR_M.CHRM render key -67; the prior zero-overlap result was caused by applying a rigid inverse to the body's scaled attachment chain."
+  },
+  "audioPresentation": {
+    "nativeName": "bgm019.snd",
+    "trackId": "bgm019",
+    "groupCommand": "A82B0000",
+    "ownerCallFileOffset": "0x192",
+    "routeSource": "play/assets/introduction/op02/manifest.json ownerAudioCommands",
+    "assetCatalog": "public/music/manifest.json",
+    "dispatch": "NativeCutsceneDirector.activeProgramSoundCommands -> dispatchNativeRoomSoundCommand -> native room music"
+  },
+  "runtimeOwnership": {
+    "program": "NativeProgramCutsceneRuntime",
+    "package": "NativeCutscenePackageRuntime",
+    "auth": "NativeAseqActivityRuntime",
+    "composite": "NativeCompositeProgramPresentation",
+    "scroll": "NativeScrollSpritePresentation",
+    "cleanupOrder": ["composite", "scroll", "AUTH presentation", "program actors", "map/attachment/music presentation", "AUTH reset"],
+    "playlistDependency": false
+  },
+  "verification": [
+    "tests/Op02CanonicalVerticalSlice.test.js",
+    "tests/Op02NativeProgramRuntime.test.js",
+    "tests/Op02FacialPresentation.test.js",
+    "tests/NativeScrollSprite.test.js",
+    "tests/NativeScrollSpritePresentation.test.js",
+    "tests/NativeCutscenePackageRuntime.test.js",
+    "tests/NativeCompositeProgramPresentation.test.js",
+    "tests/TmnmMotion.test.js",
+    "tests/NativeRoomSoundCommands.test.js"
+  ],
+  "remainingPresentationBoundary": [
+    "Native SCRL packed-corner color and signed global words remain retained as exact scene state; their visual interpretation is not asserted by the fullscreen resource renderer.",
+    "No procedural hawk animation or scene-local sky replacement is permitted.",
+    "The repository-wide clean break is not complete while remaining packages such as OP00 still use the legacy playlist stack; this does not place OP02 on that path."
+  ]
+}

@@ -1,0 +1,2112 @@
+{
+  "schema": "new-yokosuka-jomo-interaction-model-audit-v1",
+  "source": {
+    "manifest": "play/data/jomo-runtime-placements.json",
+    "assetBase": "https://pub-c3aa1dfd53424ee9af1b87ad19954589.r2.dev/shenmue"
+  },
+  "method": "Load every distinct model assigned a browser interaction through the production MT5 loader and verify its behavior's required render route.",
+  "summary": {
+    "interactionModelCount": 105,
+    "verifiedModelCount": 105,
+    "failureCount": 0
+  },
+  "failures": [],
+  "models": [
+    {
+      "model": "S1_JOMO_ASNT220G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_BTAS500G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_BUTK300G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_BUTM401G.MT5",
+      "behavior": "drawer",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        254
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.44999998807907104,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_BUTM402G.MT5",
+      "behavior": "hinged-door",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        8,
+        13,
+        254
+      ],
+      "requiredRoute": "render key 8 or 13",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.7106117405000508,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_BUTM403G.MT5",
+      "behavior": "drawer",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        254
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.44999998807907104,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_BUTM408G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_CASS500G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_CHDS500G.MT5",
+      "behavior": "drawer",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        254
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.42600011825561523,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_CHSS500G.MT5",
+      "behavior": "hinged-door",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        8,
+        254
+      ],
+      "requiredRoute": "render key 8 or 13",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.7083934570709433,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_CHSS501G.MT5",
+      "behavior": "hinged-door",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        13,
+        254
+      ],
+      "requiredRoute": "render key 8 or 13",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.7045427416181599,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_CLKS501G.MT5",
+      "behavior": "alarm-clock",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        150,
+        151,
+        152,
+        153,
+        154
+      ],
+      "requiredRoute": "render keys 152 and 153",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.01000000536441803,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_CLOS5003.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        150,
+        151
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_DENK304G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_DENS501G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_DESM402G.MT5",
+      "behavior": "drawer",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        254
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.3199999928474426,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_DESM403G.MT5",
+      "behavior": "drawer",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        254
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.3199999928474426,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_DOUK300G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_DR01_015.MT5",
+      "behavior": "swing-door",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        12
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 1.1572389739615607,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_DR01_016.MT5",
+      "behavior": "swing-door",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        12
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 1.1572389739615607,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_DR15_016.MT5",
+      "behavior": "sliding-door",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        5,
+        7,
+        10,
+        12
+      ],
+      "requiredRoute": "render key 7 or 12",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.75,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_DR15_026.MT5",
+      "behavior": "sliding-door",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        7,
+        12
+      ],
+      "requiredRoute": "render key 7 or 12",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.75,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_DR15_028.MT5",
+      "behavior": "sliding-door",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        7,
+        12
+      ],
+      "requiredRoute": "render key 7 or 12",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.75,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_DR15_029.MT5",
+      "behavior": "sliding-door",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        7,
+        12
+      ],
+      "requiredRoute": "render key 7 or 12",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.75,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_DR23_000.MT5",
+      "behavior": "sliding-door",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        7,
+        12
+      ],
+      "requiredRoute": "render key 7 or 12",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.75,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_FLYM400G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        254
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_FUTS301G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_FUTS302G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_FUTS5OKG.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_GKI02O1G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        152,
+        153,
+        154,
+        155,
+        156
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_GLAHI35G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_HIKR101G.MT5",
+      "behavior": "drawer",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        254
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.42600011825561523,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_HIKR102G.MT5",
+      "behavior": "hinged-door",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        8,
+        254
+      ],
+      "requiredRoute": "render key 8 or 13",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.6555100946368211,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_HIKR103G.MT5",
+      "behavior": "hinged-door",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        13,
+        254
+      ],
+      "requiredRoute": "render key 8 or 13",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.655346752231746,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_HIKW101G.MT5",
+      "behavior": "drawer",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        254
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.42600011825561523,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_HIMT203G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        254
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_HIMT204G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        254
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_HNMT205G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        254
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_HONM401G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_HOUS501G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_KAGT211G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_KAIR101G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_KAIS500G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_KAKS503G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_KAKS504G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_KAKS508G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_KGTS500G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_KHKO105G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        152
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_LGWS201G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_LGWS202G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_LGWS203G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_LGWS204G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_LGWS261G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_LGWS263G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_LGWS266G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_LGWS267G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_MALS530G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_MATM400G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_MJAS500G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        152,
+        153,
+        154
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_MKIS3C1G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_MLKS301G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_MTPK6MTG.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_MTPK6SMG.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_NIPK302G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_OHDK3I0G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_OHDM4K0G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_OHDM4R0G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_PTBS5L1G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_REIO101G.MT5",
+      "behavior": "swing-door",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        254
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 1.0519871675955272,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_REIO102G.MT5",
+      "behavior": "swing-door",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        153,
+        254
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 1.055269659588695,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_ROUM400G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_RYSS50LG.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_RYSS50RG.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_SSTS500G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_SUTS503G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        152,
+        153,
+        154,
+        155,
+        156
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_SYAT200G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_TANM402G.MT5",
+      "behavior": "hinged-door",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        8,
+        13,
+        254
+      ],
+      "requiredRoute": "render key 8 or 13",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.43537227256887867,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_TANM4W3G.MT5",
+      "behavior": "drawer",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        254
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.42600011825561523,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_TANM4W4G.MT5",
+      "behavior": "drawer",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        254
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.42600011825561523,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_TELS514G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        0,
+        1,
+        3,
+        252,
+        253
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_TKFT201G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_TMKR101G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_TNBR101G.MT5",
+      "behavior": "hinged-door",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        8,
+        254
+      ],
+      "requiredRoute": "render key 8 or 13",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 1.4760679926019162,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_TNBR102G.MT5",
+      "behavior": "hinged-door",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        13,
+        254
+      ],
+      "requiredRoute": "render key 8 or 13",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 1.4777026437059515,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_TO1W101G.MT5",
+      "behavior": "hinged-door",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        8,
+        13,
+        254
+      ],
+      "requiredRoute": "render key 8 or 13",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.7342009546168874,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_TO2W101G.MT5",
+      "behavior": "hinged-door",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        8,
+        13,
+        254
+      ],
+      "requiredRoute": "render key 8 or 13",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.7341232192015584,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_TOBT201G.MT5",
+      "behavior": "paired-sliding-panel",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        13,
+        254
+      ],
+      "requiredRoute": "render key 13",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.6000000238418579,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_TOBT202G.MT5",
+      "behavior": "paired-sliding-panel",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        8,
+        254
+      ],
+      "requiredRoute": "render key 8",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.6000000238418579,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_TUBS205G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_TUBT2051.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_TUDT202G.MT5",
+      "behavior": "hinged-door",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        8,
+        254
+      ],
+      "requiredRoute": "render key 8 or 13",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 1.0774004123336158,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_TUDT203G.MT5",
+      "behavior": "hinged-door",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        13,
+        254
+      ],
+      "requiredRoute": "render key 8 or 13",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 1.0770960865522334,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_TVDS500G.MT5",
+      "behavior": "hinged-door",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        8,
+        13,
+        254
+      ],
+      "requiredRoute": "render key 8 or 13",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 0.652618815694462,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_WZBS5SJG.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_YAKM400G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        153,
+        254
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_YUKS510G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_YUKS511G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_YUKS512G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_YUKS513G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_YUKS514G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_YUKS515G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_YUKS516G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_YUKS517G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_YUNK300G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_JOMO_ZALS500G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "alternateRenderNodeKey": null,
+      "alternateRoutePresent": false,
+      "alternateEndpointVertexDisplacement": null,
+      "alternateMotionPresent": true,
+      "status": "verified"
+    }
+  ]
+}

@@ -1,0 +1,1039 @@
+{
+  "schema": "new-yokosuka-shenmue2-crowd-v2",
+  "generatedFrom": "SCENE/01/NPC/NPC.BIN + HUMANS.IDX + HUMANS.AFS",
+  "worldId": "s2ar03",
+  "areaWorlds": {},
+  "localObjectModels": [],
+  "motionRequirements": {
+    "mbas": [],
+    "free": [],
+    "mobj": []
+  },
+  "source": {
+    "npcSha256": "dd15fd5829e75aa43e09d831549453329205282896f51cc0950bc8cd90e73814",
+    "humansIndexSha256": "9d5952e86a8284868ae817ee16bc9cfe49e29dac0a6635b649db400237b8ca33",
+    "humansSha256": "7e641175c4486136be9bb4bccf85a021e4751b75abb1d90ffabc56313150173a",
+    "nativeMotionSources": {
+      "NPC.MOT": {
+        "source": "MISC/NPC.MOT",
+        "sha256": "b9773add1f519108198e3bf366b86f8f70336b1bae2a845ce39abc15158ad732",
+        "byteLength": 937928
+      },
+      "NPC_TBL.MOT": {
+        "source": "MISC/NPC_TBL.MOT",
+        "sha256": "6ddb57ecb84adca3303de04f378ebecb70ed46e4e7867babb688a81db36d4104",
+        "byteLength": 671836
+      },
+      "MOTION.MOT": {
+        "source": "MISC/MOTION.MOT",
+        "sha256": "69e17a984c66fa8ba8eb1e0eeb6d17e6cddf7b24cad901c537a163b4c9dd9c59",
+        "byteLength": 624528
+      },
+      "NPC_WESM.MOT": {
+        "source": "MISC/NPC_WESM.MOT",
+        "sha256": "7dc37f7a84a9da19670ddba066b8b4fcaa51a7ba5072cb21206952e4253aa5be",
+        "byteLength": 420480
+      },
+      "NPC_KUN.MOT": {
+        "source": "MISC/NPC_KUN.MOT",
+        "sha256": "9c85a044db26a04453ae01d7799117ab9870eeabfae74950336a7bfaa5e40611",
+        "byteLength": 79424
+      },
+      "NPC_SYE.MOT": {
+        "source": "MISC/NPC_SYE.MOT",
+        "sha256": "3271d713b28ae82ef3ee394a957e93744051ef84613aee502c8a265e8ed09325",
+        "byteLength": 5288
+      },
+      "NPC_WS00.MOT": {
+        "source": "MISC/NPC_WS00.MOT",
+        "sha256": "23fc8825b6dbab081971b0422943c56a4c6243e513928785240951c5a0a371d7",
+        "byteLength": 59860
+      },
+      "NPC_JOY.MOT": {
+        "source": "MISC/NPC_JOY.MOT",
+        "sha256": "c64011ba1514c8dbe15054e5f4b6eb223a0b7079f866a0a4aab799f1486c5ec7",
+        "byteLength": 13720
+      },
+      "NPC_ANI1.MOT": {
+        "source": "MISC/NPC_ANI1.MOT",
+        "sha256": "0dfc87729e318d23cb21d4e9f5f350dd0daea525e069830bb793b727305add59",
+        "byteLength": 66408
+      },
+      "NPC_WK00.MOT": {
+        "source": "MISC/NPC_WK00.MOT",
+        "sha256": "699bdd5c47aa41a99e65df084397a16617fbebd9e48f8e20fd92f1d2119609f9",
+        "byteLength": 8740
+      },
+      "NPC_WR00.MOT": {
+        "source": "MISC/NPC_WR00.MOT",
+        "sha256": "187faebb0919a1994f867449d2503346b74b77bbcd7d07b87da7eca0f07fd11f",
+        "byteLength": 30272
+      },
+      "NPC_WN00.MOT": {
+        "source": "MISC/NPC_WN00.MOT",
+        "sha256": "9530aa712deb1d22915eb0a86522653ee039abc673bf4d2cf7cdc84a1bbc980e",
+        "byteLength": 17448
+      },
+      "NPC_WE00.MOT": {
+        "source": "MISC/NPC_WE00.MOT",
+        "sha256": "bd98935fbcaccb00e678512ab0dd9c07ec2e76f40e057a089a84e6dc294609b4",
+        "byteLength": 18020
+      },
+      "NPC_AK00.MOT": {
+        "source": "MISC/NPC_AK00.MOT",
+        "sha256": "9ce81e0ec72b03885f7a3e78c14e0f42695fc409bc8a3ebd6bb41ecf6a405927",
+        "byteLength": 4096
+      },
+      "NPC_WT00.MOT": {
+        "source": "MISC/NPC_WT00.MOT",
+        "sha256": "d8639863a7877d1dfbe55d90fec03ba0dba3a8014fba92153e6a5d82d8aa4bbb",
+        "byteLength": 76752
+      }
+    },
+    "routeSelection": "all proven generic actor programs whose first authored node is in this world",
+    "characterSelection": "exact actor code lookup in HUMANS.IDX",
+    "unresolvedNativeSemantics": [
+      "non-area prefix words preceding alternate actor program blocks",
+      "exact activation meaning of actor records with no packed time boundary",
+      "exact completion behavior of the final unbracketed route leg"
+    ],
+    "nativeRuntimePolicy": "Exact identities and native instruction phases are clock-driven. An opcode-3-only initial phase remains logically staged and non-resident until its first clock gate. Opcode-5/6 routes repeat; unbracketed routes execute once and hold. A final unbracketed leg exits after arrival, which remains an explicit inference pending complete opcode dispatch recovery."
+  },
+  "actors": [
+    {
+      "instanceId": "s2native:s2ar03:02H_:2:0",
+      "actorCode": "02H_",
+      "label": "S2 native resident 02H_",
+      "modelCode": "GM3_L",
+      "textureFile": "GM3_textures.bin",
+      "characterAssetDirectory": "shenmue2-characters",
+      "characterAssetFormat": "MT7",
+      "characterScale": 10,
+      "position": [
+        -292.20001220703125,
+        95.27499389648438,
+        592.7999877929688
+      ],
+      "nativeSchedule": {
+        "worldId": "s2ar03",
+        "speed": 0.699920654296875,
+        "phases": [
+          {
+            "startSecond": 0,
+            "behavior": "stationary",
+            "active": true,
+            "lifecycle": "resident",
+            "points": [
+              [
+                -292.20001220703125,
+                95.27499389648438,
+                592.7999877929688
+              ]
+            ],
+            "sourceOffset": 18976,
+            "nodeIds": [
+              "AB71"
+            ]
+          }
+        ],
+        "wrapAfterMidnightSecond": null,
+        "interpretation": "opcode 1/2 gates the following phase at its packed clock; opcode 5/6 brackets a repeating patrol; unbracketed node lists execute once and hold, except the final post-clock exit leg; an initial opcode-3-only phase stages the logical record without making its render model resident until the first clock gate",
+        "phase": 0
+      },
+      "localLoopRoute": {
+        "id": "s2:native:02H_:2",
+        "worldId": "s2ar03",
+        "points": [
+          [
+            -292.20001220703125,
+            95.27499389648438,
+            592.7999877929688
+          ],
+          [
+            -292.20001220703125,
+            95.27499389648438,
+            592.7999877929688
+          ]
+        ],
+        "speed": 0.699920654296875,
+        "phase": 0,
+        "movementMode": "0x66",
+        "clockDriven": true,
+        "supersededByNativeSchedule": true,
+        "activeUntilSecond": null,
+        "stationary": true
+      },
+      "shenmue2NativeEvidence": {
+        "source": "SCENE/01/NPC/NPC.BIN",
+        "actorProfile": {
+          "variant": 1,
+          "ageCategory": 62,
+          "motionSubtype": 1,
+          "sourceOffset": "0x48d4"
+        },
+        "actorRecordIndex": 23,
+        "actorProgramBlockIndex": 2,
+        "actorProgramWorldSegmentIndex": 0,
+        "actorProgramOffset": "0x4a20",
+        "actorProgramEnd": "0x4a28",
+        "unresolvedSelectorWords": [
+          "0xd0",
+          "0x2b",
+          "0x213",
+          "0x1"
+        ],
+        "packedTimeBoundaries": [],
+        "boundaryInterpretation": "packed clock values gate the following native instruction phases; backwards values are normalized across midnight",
+        "scheduleInterpretation": "opcode 1/2 gates the following phase at its packed clock; opcode 5/6 brackets a repeating patrol; unbracketed node lists execute once and hold, except the final post-clock exit leg; an initial opcode-3-only phase stages the logical record without making its render model resident until the first clock gate",
+        "nodeReferences": [
+          {
+            "opcode": 3,
+            "id": "AB71",
+            "index": 0,
+            "sourceOffset": "0x4a20",
+            "nodeRecordOffset": "0x24d2c"
+          }
+        ],
+        "nativeOperations": [
+          {
+            "opcode": 3,
+            "arguments": [
+              "0x0"
+            ],
+            "sourceOffset": "0x4a20"
+          }
+        ],
+        "explicitPoseMotion": null,
+        "postBoundaryNodeReferences": [],
+        "logicalCharacterCode": "02H_",
+        "logicalCharacterIndex": 23,
+        "mt7RootNodeId": "0x7007",
+        "mt7BodyValue": 6,
+        "motionFamilyIndex": 6,
+        "locomotionMotionId": 61536,
+        "locomotionSpeed": 0.699920654296875,
+        "modelAfsEntry": 47,
+        "textureAfsEntry": 46
+      }
+    },
+    {
+      "instanceId": "s2native:s2ar03:03A_:2:0",
+      "actorCode": "03A_",
+      "label": "S2 native resident 03A_",
+      "modelCode": "OK5_L",
+      "textureFile": "OK5_textures.bin",
+      "characterAssetDirectory": "shenmue2-characters",
+      "characterAssetFormat": "MT7",
+      "characterScale": 10,
+      "position": [
+        -292.20001220703125,
+        95.27499389648438,
+        592.7999877929688
+      ],
+      "nativeSchedule": {
+        "worldId": "s2ar03",
+        "speed": 0.7082346323374155,
+        "phases": [
+          {
+            "startSecond": 0,
+            "behavior": "stationary",
+            "active": true,
+            "lifecycle": "resident",
+            "points": [
+              [
+                -292.20001220703125,
+                95.27499389648438,
+                592.7999877929688
+              ]
+            ],
+            "sourceOffset": 19640,
+            "nodeIds": [
+              "AB71"
+            ]
+          }
+        ],
+        "wrapAfterMidnightSecond": null,
+        "interpretation": "opcode 1/2 gates the following phase at its packed clock; opcode 5/6 brackets a repeating patrol; unbracketed node lists execute once and hold, except the final post-clock exit leg; an initial opcode-3-only phase stages the logical record without making its render model resident until the first clock gate",
+        "phase": 0.125
+      },
+      "localLoopRoute": {
+        "id": "s2:native:03A_:2",
+        "worldId": "s2ar03",
+        "points": [
+          [
+            -292.20001220703125,
+            95.27499389648438,
+            592.7999877929688
+          ],
+          [
+            -292.20001220703125,
+            95.27499389648438,
+            592.7999877929688
+          ]
+        ],
+        "speed": 0.7082346323374155,
+        "phase": 0.125,
+        "movementMode": "0x66",
+        "clockDriven": true,
+        "supersededByNativeSchedule": true,
+        "activeUntilSecond": null,
+        "stationary": true
+      },
+      "shenmue2NativeEvidence": {
+        "source": "SCENE/01/NPC/NPC.BIN",
+        "actorProfile": {
+          "variant": 0,
+          "ageCategory": 10,
+          "motionSubtype": 1,
+          "sourceOffset": "0x4b44"
+        },
+        "actorRecordIndex": 24,
+        "actorProgramBlockIndex": 2,
+        "actorProgramWorldSegmentIndex": 0,
+        "actorProgramOffset": "0x4cb8",
+        "actorProgramEnd": "0x4cc0",
+        "unresolvedSelectorWords": [
+          "0x80",
+          "0x2b",
+          "0x213",
+          "0x1"
+        ],
+        "packedTimeBoundaries": [],
+        "boundaryInterpretation": "packed clock values gate the following native instruction phases; backwards values are normalized across midnight",
+        "scheduleInterpretation": "opcode 1/2 gates the following phase at its packed clock; opcode 5/6 brackets a repeating patrol; unbracketed node lists execute once and hold, except the final post-clock exit leg; an initial opcode-3-only phase stages the logical record without making its render model resident until the first clock gate",
+        "nodeReferences": [
+          {
+            "opcode": 3,
+            "id": "AB71",
+            "index": 0,
+            "sourceOffset": "0x4cb8",
+            "nodeRecordOffset": "0x24d2c"
+          }
+        ],
+        "nativeOperations": [
+          {
+            "opcode": 3,
+            "arguments": [
+              "0x0"
+            ],
+            "sourceOffset": "0x4cb8"
+          }
+        ],
+        "explicitPoseMotion": null,
+        "postBoundaryNodeReferences": [],
+        "logicalCharacterCode": "03A_",
+        "logicalCharacterIndex": 24,
+        "mt7RootNodeId": "0x7005",
+        "mt7BodyValue": 4,
+        "motionFamilyIndex": 4,
+        "locomotionMotionId": 61598,
+        "locomotionSpeed": 0.7082346323374155,
+        "modelAfsEntry": 49,
+        "textureAfsEntry": 48
+      }
+    },
+    {
+      "instanceId": "s2native:s2ar03:03G_:1:0",
+      "actorCode": "03G_",
+      "label": "S2 native resident 03G_",
+      "modelCode": "GF4_L",
+      "textureFile": "GF4_textures.bin",
+      "characterAssetDirectory": "shenmue2-characters",
+      "characterAssetFormat": "MT7",
+      "characterScale": 10,
+      "position": [
+        -292.20001220703125,
+        95.27499389648438,
+        592.7999877929688
+      ],
+      "nativeSchedule": {
+        "worldId": "s2ar03",
+        "speed": 0.699920654296875,
+        "phases": [
+          {
+            "startSecond": 0,
+            "behavior": "stationary",
+            "active": true,
+            "lifecycle": "resident",
+            "points": [
+              [
+                -292.20001220703125,
+                95.27499389648438,
+                592.7999877929688
+              ]
+            ],
+            "sourceOffset": 23480,
+            "nodeIds": [
+              "AB71"
+            ]
+          }
+        ],
+        "wrapAfterMidnightSecond": null,
+        "interpretation": "opcode 1/2 gates the following phase at its packed clock; opcode 5/6 brackets a repeating patrol; unbracketed node lists execute once and hold, except the final post-clock exit leg; an initial opcode-3-only phase stages the logical record without making its render model resident until the first clock gate",
+        "phase": 0.25
+      },
+      "localLoopRoute": {
+        "id": "s2:native:03G_:1",
+        "worldId": "s2ar03",
+        "points": [
+          [
+            -292.20001220703125,
+            95.27499389648438,
+            592.7999877929688
+          ],
+          [
+            -292.20001220703125,
+            95.27499389648438,
+            592.7999877929688
+          ]
+        ],
+        "speed": 0.699920654296875,
+        "phase": 0.25,
+        "movementMode": "0x66",
+        "clockDriven": true,
+        "supersededByNativeSchedule": true,
+        "activeUntilSecond": null,
+        "stationary": true
+      },
+      "shenmue2NativeEvidence": {
+        "source": "SCENE/01/NPC/NPC.BIN",
+        "actorProfile": {
+          "variant": 0,
+          "ageCategory": 62,
+          "motionSubtype": 1,
+          "sourceOffset": "0x5abc"
+        },
+        "actorRecordIndex": 30,
+        "actorProgramBlockIndex": 1,
+        "actorProgramWorldSegmentIndex": 0,
+        "actorProgramOffset": "0x5bb8",
+        "actorProgramEnd": "0x5bc0",
+        "unresolvedSelectorWords": [
+          "0xe0",
+          "0x2b",
+          "0x213",
+          "0x1"
+        ],
+        "packedTimeBoundaries": [],
+        "boundaryInterpretation": "packed clock values gate the following native instruction phases; backwards values are normalized across midnight",
+        "scheduleInterpretation": "opcode 1/2 gates the following phase at its packed clock; opcode 5/6 brackets a repeating patrol; unbracketed node lists execute once and hold, except the final post-clock exit leg; an initial opcode-3-only phase stages the logical record without making its render model resident until the first clock gate",
+        "nodeReferences": [
+          {
+            "opcode": 3,
+            "id": "AB71",
+            "index": 0,
+            "sourceOffset": "0x5bb8",
+            "nodeRecordOffset": "0x24d2c"
+          }
+        ],
+        "nativeOperations": [
+          {
+            "opcode": 3,
+            "arguments": [
+              "0x0"
+            ],
+            "sourceOffset": "0x5bb8"
+          }
+        ],
+        "explicitPoseMotion": null,
+        "postBoundaryNodeReferences": [],
+        "logicalCharacterCode": "03G_",
+        "logicalCharacterIndex": 30,
+        "mt7RootNodeId": "0x7007",
+        "mt7BodyValue": 6,
+        "motionFamilyIndex": 6,
+        "locomotionMotionId": 61536,
+        "locomotionSpeed": 0.699920654296875,
+        "modelAfsEntry": 61,
+        "textureAfsEntry": 60
+      }
+    },
+    {
+      "instanceId": "s2native:s2ar03:04A_:1:0",
+      "actorCode": "04A_",
+      "label": "S2 native resident 04A_",
+      "modelCode": "CM1_L",
+      "textureFile": "CM1_textures.bin",
+      "characterAssetDirectory": "shenmue2-characters",
+      "characterAssetFormat": "MT7",
+      "characterScale": 10,
+      "position": [
+        -291.8999938964844,
+        95.27499389648438,
+        592.9000244140625
+      ],
+      "nativeSchedule": {
+        "worldId": "s2ar03",
+        "speed": 0.7082346323374155,
+        "phases": [
+          {
+            "startSecond": 0,
+            "behavior": "stationary",
+            "active": true,
+            "lifecycle": "resident",
+            "points": [
+              [
+                -291.8999938964844,
+                95.27499389648438,
+                592.9000244140625
+              ]
+            ],
+            "sourceOffset": 25016,
+            "nodeIds": [
+              "AB75"
+            ]
+          }
+        ],
+        "wrapAfterMidnightSecond": null,
+        "interpretation": "opcode 1/2 gates the following phase at its packed clock; opcode 5/6 brackets a repeating patrol; unbracketed node lists execute once and hold, except the final post-clock exit leg; an initial opcode-3-only phase stages the logical record without making its render model resident until the first clock gate",
+        "phase": 0.375
+      },
+      "localLoopRoute": {
+        "id": "s2:native:04A_:1",
+        "worldId": "s2ar03",
+        "points": [
+          [
+            -291.8999938964844,
+            95.27499389648438,
+            592.9000244140625
+          ],
+          [
+            -291.8999938964844,
+            95.27499389648438,
+            592.9000244140625
+          ]
+        ],
+        "speed": 0.7082346323374155,
+        "phase": 0.375,
+        "movementMode": "0x66",
+        "clockDriven": true,
+        "supersededByNativeSchedule": true,
+        "activeUntilSecond": null,
+        "stationary": true
+      },
+      "shenmue2NativeEvidence": {
+        "source": "SCENE/01/NPC/NPC.BIN",
+        "actorProfile": {
+          "variant": 0,
+          "ageCategory": 10,
+          "motionSubtype": 0,
+          "sourceOffset": "0x6104"
+        },
+        "actorRecordIndex": 32,
+        "actorProgramBlockIndex": 1,
+        "actorProgramWorldSegmentIndex": 0,
+        "actorProgramOffset": "0x61b8",
+        "actorProgramEnd": "0x61c0",
+        "unresolvedSelectorWords": [
+          "0xc8",
+          "0x2b",
+          "0x1",
+          "0x1"
+        ],
+        "packedTimeBoundaries": [],
+        "boundaryInterpretation": "packed clock values gate the following native instruction phases; backwards values are normalized across midnight",
+        "scheduleInterpretation": "opcode 1/2 gates the following phase at its packed clock; opcode 5/6 brackets a repeating patrol; unbracketed node lists execute once and hold, except the final post-clock exit leg; an initial opcode-3-only phase stages the logical record without making its render model resident until the first clock gate",
+        "nodeReferences": [
+          {
+            "opcode": 3,
+            "id": "AB75",
+            "index": 4,
+            "sourceOffset": "0x61b8",
+            "nodeRecordOffset": "0x24e3c"
+          }
+        ],
+        "nativeOperations": [
+          {
+            "opcode": 3,
+            "arguments": [
+              "0x4"
+            ],
+            "sourceOffset": "0x61b8"
+          }
+        ],
+        "explicitPoseMotion": null,
+        "postBoundaryNodeReferences": [],
+        "logicalCharacterCode": "04A_",
+        "logicalCharacterIndex": 32,
+        "mt7RootNodeId": "0x7005",
+        "mt7BodyValue": 4,
+        "motionFamilyIndex": 4,
+        "locomotionMotionId": 61598,
+        "locomotionSpeed": 0.7082346323374155,
+        "modelAfsEntry": 65,
+        "textureAfsEntry": 64
+      }
+    },
+    {
+      "instanceId": "s2native:s2ar03:08A_:2:0",
+      "actorCode": "08A_",
+      "label": "S2 native resident 08A_",
+      "modelCode": "CM5_L",
+      "textureFile": "CM5_textures.bin",
+      "characterAssetDirectory": "shenmue2-characters",
+      "characterAssetFormat": "MT7",
+      "characterScale": 10,
+      "position": [
+        -291.8999938964844,
+        95.27499389648438,
+        592.9000244140625
+      ],
+      "nativeSchedule": {
+        "worldId": "s2ar03",
+        "speed": 0.7082346323374155,
+        "phases": [
+          {
+            "startSecond": 0,
+            "behavior": "stationary",
+            "active": true,
+            "lifecycle": "resident",
+            "points": [
+              [
+                -291.8999938964844,
+                95.27499389648438,
+                592.9000244140625
+              ]
+            ],
+            "sourceOffset": 47092,
+            "nodeIds": [
+              "AB75"
+            ]
+          }
+        ],
+        "wrapAfterMidnightSecond": null,
+        "interpretation": "opcode 1/2 gates the following phase at its packed clock; opcode 5/6 brackets a repeating patrol; unbracketed node lists execute once and hold, except the final post-clock exit leg; an initial opcode-3-only phase stages the logical record without making its render model resident until the first clock gate",
+        "phase": 0.5
+      },
+      "localLoopRoute": {
+        "id": "s2:native:08A_:2",
+        "worldId": "s2ar03",
+        "points": [
+          [
+            -291.8999938964844,
+            95.27499389648438,
+            592.9000244140625
+          ],
+          [
+            -291.8999938964844,
+            95.27499389648438,
+            592.9000244140625
+          ]
+        ],
+        "speed": 0.7082346323374155,
+        "phase": 0.5,
+        "movementMode": "0x66",
+        "clockDriven": true,
+        "supersededByNativeSchedule": true,
+        "activeUntilSecond": null,
+        "stationary": true
+      },
+      "shenmue2NativeEvidence": {
+        "source": "SCENE/01/NPC/NPC.BIN",
+        "actorProfile": {
+          "variant": 0,
+          "ageCategory": 10,
+          "motionSubtype": 0,
+          "sourceOffset": "0xb6c4"
+        },
+        "actorRecordIndex": 61,
+        "actorProgramBlockIndex": 2,
+        "actorProgramWorldSegmentIndex": 0,
+        "actorProgramOffset": "0xb7f4",
+        "actorProgramEnd": "0xb804",
+        "unresolvedSelectorWords": [
+          "0x84",
+          "0x2b",
+          "0x1",
+          "0x1"
+        ],
+        "packedTimeBoundaries": [],
+        "boundaryInterpretation": "packed clock values gate the following native instruction phases; backwards values are normalized across midnight",
+        "scheduleInterpretation": "opcode 1/2 gates the following phase at its packed clock; opcode 5/6 brackets a repeating patrol; unbracketed node lists execute once and hold, except the final post-clock exit leg; an initial opcode-3-only phase stages the logical record without making its render model resident until the first clock gate",
+        "nodeReferences": [
+          {
+            "opcode": 3,
+            "id": "AB75",
+            "index": 4,
+            "sourceOffset": "0xb7f4",
+            "nodeRecordOffset": "0x24e3c"
+          }
+        ],
+        "nativeOperations": [
+          {
+            "opcode": 3,
+            "arguments": [
+              "0x4"
+            ],
+            "sourceOffset": "0xb7f4"
+          },
+          {
+            "opcode": 51,
+            "arguments": [
+              "0x0"
+            ],
+            "sourceOffset": "0xb7fc"
+          }
+        ],
+        "explicitPoseMotion": null,
+        "postBoundaryNodeReferences": [],
+        "logicalCharacterCode": "08A_",
+        "logicalCharacterIndex": 61,
+        "mt7RootNodeId": "0x7005",
+        "mt7BodyValue": 4,
+        "motionFamilyIndex": 4,
+        "locomotionMotionId": 61598,
+        "locomotionSpeed": 0.7082346323374155,
+        "modelAfsEntry": 123,
+        "textureAfsEntry": 122
+      }
+    },
+    {
+      "instanceId": "s2native:s2ar03:13G_:2:0",
+      "actorCode": "13G_",
+      "label": "S2 native resident 13G_",
+      "modelCode": "JJ2_L",
+      "textureFile": "JJ2_textures.bin",
+      "characterAssetDirectory": "shenmue2-characters",
+      "characterAssetFormat": "MT7",
+      "characterScale": 10,
+      "position": [
+        -291.8999938964844,
+        95.27499389648438,
+        592.9000244140625
+      ],
+      "nativeSchedule": {
+        "worldId": "s2ar03",
+        "speed": 0.699920654296875,
+        "phases": [
+          {
+            "startSecond": 0,
+            "behavior": "stationary",
+            "active": true,
+            "lifecycle": "resident",
+            "points": [
+              [
+                -291.8999938964844,
+                95.27499389648438,
+                592.9000244140625
+              ]
+            ],
+            "sourceOffset": 68968,
+            "nodeIds": [
+              "AB75"
+            ]
+          }
+        ],
+        "wrapAfterMidnightSecond": null,
+        "interpretation": "opcode 1/2 gates the following phase at its packed clock; opcode 5/6 brackets a repeating patrol; unbracketed node lists execute once and hold, except the final post-clock exit leg; an initial opcode-3-only phase stages the logical record without making its render model resident until the first clock gate",
+        "phase": 0.625
+      },
+      "localLoopRoute": {
+        "id": "s2:native:13G_:2",
+        "worldId": "s2ar03",
+        "points": [
+          [
+            -291.8999938964844,
+            95.27499389648438,
+            592.9000244140625
+          ],
+          [
+            -291.8999938964844,
+            95.27499389648438,
+            592.9000244140625
+          ]
+        ],
+        "speed": 0.699920654296875,
+        "phase": 0.625,
+        "movementMode": "0x66",
+        "clockDriven": true,
+        "supersededByNativeSchedule": true,
+        "activeUntilSecond": null,
+        "stationary": true
+      },
+      "shenmue2NativeEvidence": {
+        "source": "SCENE/01/NPC/NPC.BIN",
+        "actorProfile": {
+          "variant": 0,
+          "ageCategory": 72,
+          "motionSubtype": 1,
+          "sourceOffset": "0x10c88"
+        },
+        "actorRecordIndex": 93,
+        "actorProgramBlockIndex": 2,
+        "actorProgramWorldSegmentIndex": 0,
+        "actorProgramOffset": "0x10d68",
+        "actorProgramEnd": "0x10d70",
+        "unresolvedSelectorWords": [
+          "0x24",
+          "0x2b",
+          "0x1",
+          "0x1"
+        ],
+        "packedTimeBoundaries": [],
+        "boundaryInterpretation": "packed clock values gate the following native instruction phases; backwards values are normalized across midnight",
+        "scheduleInterpretation": "opcode 1/2 gates the following phase at its packed clock; opcode 5/6 brackets a repeating patrol; unbracketed node lists execute once and hold, except the final post-clock exit leg; an initial opcode-3-only phase stages the logical record without making its render model resident until the first clock gate",
+        "nodeReferences": [
+          {
+            "opcode": 3,
+            "id": "AB75",
+            "index": 4,
+            "sourceOffset": "0x10d68",
+            "nodeRecordOffset": "0x24e3c"
+          }
+        ],
+        "nativeOperations": [
+          {
+            "opcode": 3,
+            "arguments": [
+              "0x4"
+            ],
+            "sourceOffset": "0x10d68"
+          }
+        ],
+        "explicitPoseMotion": null,
+        "postBoundaryNodeReferences": [],
+        "logicalCharacterCode": "13G_",
+        "logicalCharacterIndex": 93,
+        "mt7RootNodeId": "0x7007",
+        "mt7BodyValue": 6,
+        "motionFamilyIndex": 6,
+        "locomotionMotionId": 61536,
+        "locomotionSpeed": 0.699920654296875,
+        "modelAfsEntry": 187,
+        "textureAfsEntry": 186
+      }
+    },
+    {
+      "instanceId": "s2native:s2ar03:14G_:2:0",
+      "actorCode": "14G_",
+      "label": "S2 native resident 14G_",
+      "modelCode": "JJ3_L",
+      "textureFile": "JJ3_textures.bin",
+      "characterAssetDirectory": "shenmue2-characters",
+      "characterAssetFormat": "MT7",
+      "characterScale": 10,
+      "position": [
+        -291.8999938964844,
+        95.27499389648438,
+        592.9000244140625
+      ],
+      "nativeSchedule": {
+        "worldId": "s2ar03",
+        "speed": 0.699920654296875,
+        "phases": [
+          {
+            "startSecond": 0,
+            "behavior": "stationary",
+            "active": true,
+            "lifecycle": "resident",
+            "points": [
+              [
+                -291.8999938964844,
+                95.27499389648438,
+                592.9000244140625
+              ]
+            ],
+            "sourceOffset": 73688,
+            "nodeIds": [
+              "AB75"
+            ]
+          }
+        ],
+        "wrapAfterMidnightSecond": null,
+        "interpretation": "opcode 1/2 gates the following phase at its packed clock; opcode 5/6 brackets a repeating patrol; unbracketed node lists execute once and hold, except the final post-clock exit leg; an initial opcode-3-only phase stages the logical record without making its render model resident until the first clock gate",
+        "phase": 0.75
+      },
+      "localLoopRoute": {
+        "id": "s2:native:14G_:2",
+        "worldId": "s2ar03",
+        "points": [
+          [
+            -291.8999938964844,
+            95.27499389648438,
+            592.9000244140625
+          ],
+          [
+            -291.8999938964844,
+            95.27499389648438,
+            592.9000244140625
+          ]
+        ],
+        "speed": 0.699920654296875,
+        "phase": 0.75,
+        "movementMode": "0x66",
+        "clockDriven": true,
+        "supersededByNativeSchedule": true,
+        "activeUntilSecond": null,
+        "stationary": true
+      },
+      "shenmue2NativeEvidence": {
+        "source": "SCENE/01/NPC/NPC.BIN",
+        "actorProfile": {
+          "variant": 0,
+          "ageCategory": 82,
+          "motionSubtype": 1,
+          "sourceOffset": "0x11f10"
+        },
+        "actorRecordIndex": 98,
+        "actorProgramBlockIndex": 2,
+        "actorProgramWorldSegmentIndex": 0,
+        "actorProgramOffset": "0x11fd8",
+        "actorProgramEnd": "0x11fe0",
+        "unresolvedSelectorWords": [
+          "0x24",
+          "0x2b",
+          "0x1",
+          "0x1"
+        ],
+        "packedTimeBoundaries": [],
+        "boundaryInterpretation": "packed clock values gate the following native instruction phases; backwards values are normalized across midnight",
+        "scheduleInterpretation": "opcode 1/2 gates the following phase at its packed clock; opcode 5/6 brackets a repeating patrol; unbracketed node lists execute once and hold, except the final post-clock exit leg; an initial opcode-3-only phase stages the logical record without making its render model resident until the first clock gate",
+        "nodeReferences": [
+          {
+            "opcode": 3,
+            "id": "AB75",
+            "index": 4,
+            "sourceOffset": "0x11fd8",
+            "nodeRecordOffset": "0x24e3c"
+          }
+        ],
+        "nativeOperations": [
+          {
+            "opcode": 3,
+            "arguments": [
+              "0x4"
+            ],
+            "sourceOffset": "0x11fd8"
+          }
+        ],
+        "explicitPoseMotion": null,
+        "postBoundaryNodeReferences": [],
+        "logicalCharacterCode": "14G_",
+        "logicalCharacterIndex": 98,
+        "mt7RootNodeId": "0x7007",
+        "mt7BodyValue": 6,
+        "motionFamilyIndex": 6,
+        "locomotionMotionId": 61536,
+        "locomotionSpeed": 0.699920654296875,
+        "modelAfsEntry": 197,
+        "textureAfsEntry": 196
+      }
+    },
+    {
+      "instanceId": "s2native:s2ar03:17G_:2:0",
+      "actorCode": "17G_",
+      "label": "S2 native resident 17G_",
+      "modelCode": "JJA_L",
+      "textureFile": "JJA_textures.bin",
+      "characterAssetDirectory": "shenmue2-characters",
+      "characterAssetFormat": "MT7",
+      "characterScale": 10,
+      "position": [
+        -291.8999938964844,
+        95.27499389648438,
+        592.9000244140625
+      ],
+      "nativeSchedule": {
+        "worldId": "s2ar03",
+        "speed": 0.699920654296875,
+        "phases": [
+          {
+            "startSecond": 0,
+            "behavior": "stationary",
+            "active": true,
+            "lifecycle": "resident",
+            "points": [
+              [
+                -291.8999938964844,
+                95.27499389648438,
+                592.9000244140625
+              ]
+            ],
+            "sourceOffset": 75740,
+            "nodeIds": [
+              "AB75"
+            ]
+          }
+        ],
+        "wrapAfterMidnightSecond": null,
+        "interpretation": "opcode 1/2 gates the following phase at its packed clock; opcode 5/6 brackets a repeating patrol; unbracketed node lists execute once and hold, except the final post-clock exit leg; an initial opcode-3-only phase stages the logical record without making its render model resident until the first clock gate",
+        "phase": 0.875
+      },
+      "localLoopRoute": {
+        "id": "s2:native:17G_:2",
+        "worldId": "s2ar03",
+        "points": [
+          [
+            -291.8999938964844,
+            95.27499389648438,
+            592.9000244140625
+          ],
+          [
+            -291.8999938964844,
+            95.27499389648438,
+            592.9000244140625
+          ]
+        ],
+        "speed": 0.699920654296875,
+        "phase": 0.875,
+        "movementMode": "0x66",
+        "clockDriven": true,
+        "supersededByNativeSchedule": true,
+        "activeUntilSecond": null,
+        "stationary": true
+      },
+      "shenmue2NativeEvidence": {
+        "source": "SCENE/01/NPC/NPC.BIN",
+        "actorProfile": {
+          "variant": 0,
+          "ageCategory": 92,
+          "motionSubtype": 1,
+          "sourceOffset": "0x12710"
+        },
+        "actorRecordIndex": 104,
+        "actorProgramBlockIndex": 2,
+        "actorProgramWorldSegmentIndex": 0,
+        "actorProgramOffset": "0x127dc",
+        "actorProgramEnd": "0x127e4",
+        "unresolvedSelectorWords": [
+          "0x24",
+          "0x2b",
+          "0x1",
+          "0x1"
+        ],
+        "packedTimeBoundaries": [],
+        "boundaryInterpretation": "packed clock values gate the following native instruction phases; backwards values are normalized across midnight",
+        "scheduleInterpretation": "opcode 1/2 gates the following phase at its packed clock; opcode 5/6 brackets a repeating patrol; unbracketed node lists execute once and hold, except the final post-clock exit leg; an initial opcode-3-only phase stages the logical record without making its render model resident until the first clock gate",
+        "nodeReferences": [
+          {
+            "opcode": 3,
+            "id": "AB75",
+            "index": 4,
+            "sourceOffset": "0x127dc",
+            "nodeRecordOffset": "0x24e3c"
+          }
+        ],
+        "nativeOperations": [
+          {
+            "opcode": 3,
+            "arguments": [
+              "0x4"
+            ],
+            "sourceOffset": "0x127dc"
+          }
+        ],
+        "explicitPoseMotion": null,
+        "postBoundaryNodeReferences": [],
+        "logicalCharacterCode": "17G_",
+        "logicalCharacterIndex": 104,
+        "mt7RootNodeId": "0x7007",
+        "mt7BodyValue": 6,
+        "motionFamilyIndex": 6,
+        "locomotionMotionId": 61536,
+        "locomotionSpeed": 0.699920654296875,
+        "modelAfsEntry": 209,
+        "textureAfsEntry": 208
+      }
+    }
+  ]
+}

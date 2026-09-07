@@ -1,0 +1,51 @@
+{
+  "schema": "new-yokosuka-actor-momt-flag-operation-evidence-v1",
+  "status": "exact-native-handler-and-hato-dataflow",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "mapinfo": "Disc 1 D000/MAPINFO.BIN",
+    "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e"
+  },
+  "operation": {
+    "operationId": 66,
+    "operationHex": "0x0042",
+    "handlerAddress": "0x0c165e22",
+    "handlerSampleSha256": "94426dc4e21d845cfbdba6201377d796c70012a3a66bcd75fb631c682bfbe909",
+    "actorResolverAddress": "0x0c153956",
+    "momtRecordResolverAddress": "0x0c0aad5a",
+    "momtTagAscii": "MOMT",
+    "momtTagValue": "0x544d4f4d",
+    "flagSetterAddress": "0x0c113ab0",
+    "flagSetterSha256": "94d5da7d12620f27e8163eb7bdb9275769b226cbf9fb7fa39fc145c0edae32c0",
+    "arguments": [
+      {
+        "index": 0,
+        "meaning": "actor reference resolved by the native actor resolver"
+      },
+      {
+        "index": 1,
+        "meaning": "zero clears MOMT record +0x14 bit 0; nonzero sets it"
+      }
+    ],
+    "provenBehavior": "Resolves the actor's associated MOMT record and clears or sets bit 0 of the 32-bit flags word at record +0x14."
+  },
+  "hatoConversation": {
+    "phase": "cleanup",
+    "functionFileOffset": "0x7fd94",
+    "callFileOffset": "0x7fdb4",
+    "actorCode": "AKIR",
+    "actorLiteralValue": "0x52494b41",
+    "actorLiteralLoadFileOffset": "0x7fda0",
+    "actorLocalStoreFileOffset": "0x7fda2",
+    "actorArgumentLoadFileOffset": "0x7fda8",
+    "flagValue": 1,
+    "cleanupFunctionSha256": "ec6477b736b72ab2f1f64affce11f26c7e5fa5d1db617d30e58e2104ce386ecc"
+  },
+  "evidenceBoundary": [
+    "The actor resolution, MOMT associated-record lookup, exact flag word offset, and bit-zero mutation are executable-proven.",
+    "Constant propagation through the D000 cleanup function proves that the runtime-looking actor operand is AKIR.",
+    "The consumer-side meaning of MOMT flag bit 0 remains unresolved; it is not labelled movement lock, input lock, visibility, or animation state."
+  ]
+}

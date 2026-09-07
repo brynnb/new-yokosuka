@@ -1,0 +1,1908 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/build_ybhn_audio_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/STREAM/01YOB.AFS",
+      "sha256": "d7bd8c1d2e9c38e4cc9359cda3b6842bacb45b27b0b719d2e0c8c3776e542a61"
+    },
+    "soundBank": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/SOUND/A1_YOBI.SND",
+      "sha256": "2ae3b81c6af8e210bc7f5bc982bf8e597aea2b085b1fbd2e7b609b46910632ea"
+    },
+    "authManifest": "play/assets/dobuita/ybhn/manifest.json",
+    "resourceBindingEvidence": "tools/evidence/d000-auth-audio-banks.json"
+  },
+  "voices": [
+    {
+      "voiceId": "01YOBA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBA001.aiff",
+      "nativeMember": "01YOBA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 14336,
+      "nativeSha256": "e09df5020e4ad08b6289d47d9e90d6227c55930acaa9c0816e313810e0b4a079",
+      "speakerId": "AKIR",
+      "sourceText": "Nozomi=@?＆What're you doing here?",
+      "displayText": "Nozomi...?\nWhat're you doing here?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 21
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBA001.wav",
+      "byteLength": 57132,
+      "sha256": "85ee7e020fb5cbc052d488e53093e8ebf5a470eac32d138ef78749137380f693"
+    },
+    {
+      "voiceId": "01YOBA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBA002.aiff",
+      "nativeMember": "01YOBA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 12288,
+      "nativeSha256": "2b5046456eb462bd3180e472957029f529425d73c2f10fdec42cdd7f8d55101a",
+      "speakerId": "AKIR",
+      "sourceText": "You shouldn't be around here.",
+      "displayText": "You shouldn't be around here.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBA002.wav",
+      "byteLength": 48940,
+      "sha256": "541c4d9fbcabf17487d2bd3fdd1023b205ac8602af42ff0130fe60381fa5c6d2"
+    },
+    {
+      "voiceId": "01YOBA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBA003.aiff",
+      "nativeMember": "01YOBA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 4096,
+      "nativeSha256": "507aab2e38a71af4f9db31a1b9cf308de1d7849309f8f80af74d3b47b6b29d33",
+      "speakerId": "AKIR",
+      "sourceText": "Oh?",
+      "displayText": "Oh?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBA003.wav",
+      "byteLength": 16172,
+      "sha256": "924e152cce93868ca48e0d171d50850a6f37e5b2b9dfa0c4a31a494f0cfdec99"
+    },
+    {
+      "voiceId": "01YOBA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBA004.aiff",
+      "nativeMember": "01YOBA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 8192,
+      "nativeSha256": "65184162b63b4f59fab1ce0499fa84d02dccd8db39ad99df7110c06be8bdfb24",
+      "speakerId": "AKIR",
+      "sourceText": "But, why?=@",
+      "displayText": "But, why?...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBA004.wav",
+      "byteLength": 32556,
+      "sha256": "26e96658d091d91868a5c93e573bff622959a40676f1ba84f1b418c8e3ed67cd"
+    },
+    {
+      "voiceId": "01YOBA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBA005.aiff",
+      "nativeMember": "01YOBA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 6144,
+      "nativeSha256": "41ba4f59b21997cc27dd35b5f6ce2502a3b2fe4dc8717ae158be5cd762774e3b",
+      "speakerId": "AKIR",
+      "sourceText": "Yeah=@",
+      "displayText": "Yeah...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBA005.wav",
+      "byteLength": 24364,
+      "sha256": "905ad605bb275384d8a9ee7270729ea3b4e4d5b68f9a9fe1e5e32040b890be3d"
+    },
+    {
+      "voiceId": "01YOBA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBA006.aiff",
+      "nativeMember": "01YOBA006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 18432,
+      "nativeSha256": "eaca55e17fc81606e15410985221eeb8a92efbc26739fcc4eb512d2bf37891cb",
+      "speakerId": "AKIR",
+      "sourceText": "Not yet=@But if I go,＆it'll have Karate.",
+      "displayText": "Not yet...But if I go,\nit'll have Karate.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBA006.wav",
+      "byteLength": 73516,
+      "sha256": "b677ae43eba1e7be915a196e9e561ddd6f0a6a1cd434a1ea361c50b20221a1c8"
+    },
+    {
+      "voiceId": "01YOBA007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBA007.aiff",
+      "nativeMember": "01YOBA007.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 8192,
+      "nativeSha256": "60bb878c332ef2164158bc70c0425fa7f4c45bcbdbb199aeb44370b3129ca7da",
+      "speakerId": "AKIR",
+      "sourceText": "Yeah, I know.",
+      "displayText": "Yeah, I know.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBA007.wav",
+      "byteLength": 32556,
+      "sha256": "3cc7addb1aa31a590d4e45ba6cb081b7fe66e7cfeb9941db784d9c446acf6d15"
+    },
+    {
+      "voiceId": "01YOBA008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBA008.aiff",
+      "nativeMember": "01YOBA008.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 6144,
+      "nativeSha256": "0d1a7ac70d2bdea7975006ffcff50515d29de93e01ac8e2a28813a75035cfbda",
+      "speakerId": "AKIR",
+      "sourceText": "I'll be fine.",
+      "displayText": "I'll be fine.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBA008.wav",
+      "byteLength": 24364,
+      "sha256": "b72fc1f44c43a5cee9d0764955c5212eb400f6643bcbf6e3b04df1362115a591"
+    },
+    {
+      "voiceId": "01YOBA009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBA009.aiff",
+      "nativeMember": "01YOBA009.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 10240,
+      "nativeSha256": "1533bde17621f8f004411541509ada6bf177d253a11c8485e0cf7a67c75e1067",
+      "speakerId": "AKIR",
+      "sourceText": "We can talk about it later.",
+      "displayText": "We can talk about it later.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBA009.wav",
+      "byteLength": 40748,
+      "sha256": "def29f08e6f21772bc3fdde7180bef77a1eff95b4a1ee0bd52bfdd94c648a8b3"
+    },
+    {
+      "voiceId": "01YOBA010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBA010.aiff",
+      "nativeMember": "01YOBA010.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 4096,
+      "nativeSha256": "31c806841a76a549952afba35d7d6204ef7cdde66d34edb5231adf2b2a04b8ce",
+      "speakerId": "AKIR",
+      "sourceText": "Yeah.",
+      "displayText": "Yeah.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBA010.wav",
+      "byteLength": 16172,
+      "sha256": "97635f015b3ba768d6401956f10ad725f02ef53c5b862ff6081d8a39e5f1b035"
+    },
+    {
+      "voiceId": "01YOBA011",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBA011.aiff",
+      "nativeMember": "01YOBA011.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 8192,
+      "nativeSha256": "43f0389f8b5bb04cb8b32e236ce17e0c7b74ddbb669399199e2985a28c355d4a",
+      "speakerId": "AKIR",
+      "sourceText": "It's dangerous here=@",
+      "displayText": "It's dangerous here...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBA011.wav",
+      "byteLength": 32556,
+      "sha256": "887bcfc304939f39fa2403f5c7ba68ffdcf0ccd03f1a7462aedd84de13a8eb89"
+    },
+    {
+      "voiceId": "01YOBA012",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBA012.aiff",
+      "nativeMember": "01YOBA012.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 8192,
+      "nativeSha256": "9cbaad327aebc06437bf2db82f6867aa7e4d451d858dd3099ef7af9f1b7d945e",
+      "speakerId": "AKIR",
+      "sourceText": "You should go home.",
+      "displayText": "You should go home.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBA012.wav",
+      "byteLength": 32556,
+      "sha256": "b4c6332c5d50ce568f05b2953cebad2244ddde8f146c40b7ab15d400b2af958a"
+    },
+    {
+      "voiceId": "01YOBB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBB001.aiff",
+      "nativeMember": "01YOBB001.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 6144,
+      "nativeSha256": "685530cb95e1c6032173ed5fcb60b294df2aa263c22435a72e7e1efc57a5cb13",
+      "speakerId": "HRSK",
+      "sourceText": "Hi Ryo=@",
+      "displayText": "Hi Ryo...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBB001.wav",
+      "byteLength": 24364,
+      "sha256": "ecba5c9376493941800dee927a1b123bb0ec3e43a38cc41371ad5bda73d3ce59"
+    },
+    {
+      "voiceId": "01YOBB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBB002.aiff",
+      "nativeMember": "01YOBB002.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 8192,
+      "nativeSha256": "f36eea75a9e3717ba9b777f755ec12fb531f3b092c2f20e191030f549369467f",
+      "speakerId": "HRSK",
+      "sourceText": "Class just got out.",
+      "displayText": "Class just got out.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBB002.wav",
+      "byteLength": 32556,
+      "sha256": "01eea6e1dd137ac348db234b09cf36d2148ffeec8d8b044327e960d114b5ad5a"
+    },
+    {
+      "voiceId": "01YOBB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBB003.aiff",
+      "nativeMember": "01YOBB003.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 10240,
+      "nativeSha256": "242ac4731fed352215ac2d8263ef46ccd4fa593331ac61aa5f5b73b681296a3b",
+      "speakerId": "HRSK",
+      "sourceText": "But I was looking for you.",
+      "displayText": "But I was looking for you.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBB003.wav",
+      "byteLength": 40748,
+      "sha256": "779437626fa0dd4879b798616de2c28a1f147a85ae2cbd5c1641824020c3414e"
+    },
+    {
+      "voiceId": "01YOBB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBB004.aiff",
+      "nativeMember": "01YOBB004.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 14336,
+      "nativeSha256": "ad7de2b90df5a3043335ccc8e29ba36c50bfbeafa03a1b25735e76141c6f560f",
+      "speakerId": "HRSK",
+      "sourceText": "My friend said she saw you＆down here.",
+      "displayText": "My friend said she saw you\ndown here.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBB004.wav",
+      "byteLength": 57132,
+      "sha256": "90a5eb2f27eb46cf7fff5dfdc35d4a22a2f91bc8ebcc8f0d468602ec3b461eef"
+    },
+    {
+      "voiceId": "01YOBB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBB005.aiff",
+      "nativeMember": "01YOBB005.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 16384,
+      "nativeSha256": "ed7b406f904d8bc62508da6a5eab4113b5838e5c1c38c8af95b16fff0f755f2e",
+      "speakerId": "HRSK",
+      "sourceText": "Today we had our＆college orientation=@",
+      "displayText": "Today we had our\ncollege orientation...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBB005.wav",
+      "byteLength": 65324,
+      "sha256": "fae33c484a8d1b1f88033595e67e8db0c29d1d4bf166f367749a90393d869c79"
+    },
+    {
+      "voiceId": "01YOBB006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBB006.aiff",
+      "nativeMember": "01YOBB006.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 8192,
+      "nativeSha256": "4a8d827eb352f577cd9dcedc3cdff7f36e0a8da0c0bc37811ac7a12bbae16d11",
+      "speakerId": "HRSK",
+      "sourceText": "But you weren't there.",
+      "displayText": "But you weren't there.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 17
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 24
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBB006.wav",
+      "byteLength": 32556,
+      "sha256": "7e6c25d270e5eddfddaf853c6d6c49df4c7cf033a627950367873fb5bfc05958"
+    },
+    {
+      "voiceId": "01YOBB007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBB007.aiff",
+      "nativeMember": "01YOBB007.str",
+      "nativeIndex": 18,
+      "nativeByteLength": 10240,
+      "nativeSha256": "e21a442bb5e7d6cb576dd46dfe35d9c561c63690e4709c12890a65d32eec8423",
+      "speakerId": "HRSK",
+      "sourceText": "Have you decided where to go?",
+      "displayText": "Have you decided where to go?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 18
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBB007.wav",
+      "byteLength": 40748,
+      "sha256": "7d3d5786475a5e48d460ec2bb4f6394f358b5276439a6ed3e92b5d0c99a437f6"
+    },
+    {
+      "voiceId": "01YOBB008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBB008.aiff",
+      "nativeMember": "01YOBB008.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 22528,
+      "nativeSha256": "c3e2bfe670dfa25ee3d80d4f4fb816973d7ae157b1f443826463f8ab7df0641c",
+      "speakerId": "HRSK",
+      "sourceText": "It's about time you started＆studying for the entrance exams.",
+      "displayText": "It's about time you started\nstudying for the entrance exams.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBB008.wav",
+      "byteLength": 89900,
+      "sha256": "7ca4aa98832b82698004af7cc0ef17321bbccaa6dfd061a95b49875368a1083a"
+    },
+    {
+      "voiceId": "01YOBB009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBB009.aiff",
+      "nativeMember": "01YOBB009.str",
+      "nativeIndex": 20,
+      "nativeByteLength": 10240,
+      "nativeSha256": "b4f47cef30eee4ae216136eddbabbcef8ba4e3770ed9b46ef759321c621d5dc4",
+      "speakerId": "HRSK",
+      "sourceText": "I'm worried about you.",
+      "displayText": "I'm worried about you.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBB009.wav",
+      "byteLength": 40748,
+      "sha256": "fe4a45c87104a5d57348b519acf6e06351ab444bc8bc959202238c884baa99c1"
+    },
+    {
+      "voiceId": "01YOBB010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBB010.aiff",
+      "nativeMember": "01YOBB010.str",
+      "nativeIndex": 21,
+      "nativeByteLength": 8192,
+      "nativeSha256": "74d94034af135a3f542119b1b255f5674f0e8f25b5b3c7bb7b4529bc71ee1520",
+      "speakerId": "HRSK",
+      "sourceText": "and with exams=@",
+      "displayText": "and with exams...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBB010.wav",
+      "byteLength": 32556,
+      "sha256": "1c86106cf1053e05f9453b89dbccde97f879fc2a8f3da8aa4d8a6990909c30ae"
+    },
+    {
+      "voiceId": "01YOBB011",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBB011.aiff",
+      "nativeMember": "01YOBB011.str",
+      "nativeIndex": 22,
+      "nativeByteLength": 4096,
+      "nativeSha256": "63d47e98538ca00c7a52196b8b7fce8506609db289113bac99feca9b20f7b1e0",
+      "speakerId": "HRSK",
+      "sourceText": "Ryo=@",
+      "displayText": "Ryo...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBB011.wav",
+      "byteLength": 16172,
+      "sha256": "937aaa66495e3d5b06fc11e573a640ba60e2b82173d7cbcc9aee2e806a4fb3b9"
+    },
+    {
+      "voiceId": "01YOBB012",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBB012.aiff",
+      "nativeMember": "01YOBB012.str",
+      "nativeIndex": 23,
+      "nativeByteLength": 22528,
+      "nativeSha256": "a41927480973aa6dccf513d4a96ea35aff5f3c3c6e9e9a04df488818dab03b30",
+      "speakerId": "HRSK",
+      "sourceText": "I understand what you're going through＆with your father and all, but=@",
+      "displayText": "I understand what you're going through\nwith your father and all, but...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 18
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 3,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBB012.wav",
+      "byteLength": 89900,
+      "sha256": "49535125f64f1a47ac2750ed4ed256168f22dbe2f85f729e78ab9973df78cd3d"
+    },
+    {
+      "voiceId": "01YOBB013",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBB013.aiff",
+      "nativeMember": "01YOBB013.str",
+      "nativeIndex": 24,
+      "nativeByteLength": 6144,
+      "nativeSha256": "2d94cb7eb48f3e9457a5345b43a663b2ce76463d9220511fe10f7defc3f68cae",
+      "speakerId": "HRSK",
+      "sourceText": "Promise?",
+      "displayText": "Promise?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBB013.wav",
+      "byteLength": 24364,
+      "sha256": "296edc8df13b7315b6a724d6bf2dcd4a6a314032e206ffd281b1febcae72e869"
+    },
+    {
+      "voiceId": "01YOBB014",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SOUND/01YOBB014.aiff",
+      "nativeMember": "01YOBB014.str",
+      "nativeIndex": 25,
+      "nativeByteLength": 6144,
+      "nativeSha256": "368445b3b5be11c74843e5261a16d937c731fc665c7021b74467f182ecccc8c8",
+      "speakerId": "HRSK",
+      "sourceText": "See you later.",
+      "displayText": "See you later.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/ybhn/voice/01YOBB014.wav",
+      "byteLength": 24364,
+      "sha256": "559d563f722c466cdaddd6601b9bdbcac5bb2050d6eb2ced787bf0d696e41a66"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/ybhn/sfx/a9040000.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SE/cloths2/furimuki_s02.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/ybhn/sfx/a9040100.wav",
+      "byteLength": 9676,
+      "sha256": "32ccc18cfaf7088ef83c5bd45e3dca6e8dfdde70a2dfd43db42cd9e86e84fe9d"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SE/footconcrete/lenashi02.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/ybhn/sfx/a9040200.wav",
+      "byteLength": 9740,
+      "sha256": "715d806350c88d336b10afb8e3204e78fb9212c758c175afd27430a5c70b1483"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SE/footconcrete/lenashi03.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/ybhn/sfx/a9040300.wav",
+      "byteLength": 10548,
+      "sha256": "7f0b9000b825e5eb3571dc4ab783e16d852d013404049ea3c29d0ae95e1f2ae7"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SE/footconcrete/lenashi04.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/ybhn/sfx/a9040400.wav",
+      "byteLength": 11708,
+      "sha256": "0fbe44d6b4dc8fe9445053886abca947b91f0b06b396fd87d9b8c826da99ebbc"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SE/foot2/RYOASHIKONKURI_1.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/ybhn/sfx/a9040500.wav",
+      "byteLength": 6332,
+      "sha256": "bc848737a2f00cbf54692351ab73b4c275e2423c0af36a626661648f0f2a6338"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SE/foot2/RYOASHIKONKURI_2.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/ybhn/sfx/a9040600.wav",
+      "byteLength": 5412,
+      "sha256": "64fa0eff3320191bd9befe41d84a45f91d48ae9a9c821c8aac766ce9b3fcf3f3"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SE/foot2/RYOASHIKONKURI_3.aiff",
+      "playbackId": 7,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/ybhn/sfx/a9040700.wav",
+      "byteLength": 6364,
+      "sha256": "a087e557bddc12e1ca7a20b8ad3ee5e15dfa88ad4531cbba9c0b85b9367c66af"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YOB/SE/foot2/RYOASHIKONKURI_4.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/ybhn/sfx/a9040800.wav",
+      "byteLength": 4620,
+      "sha256": "b777d818c86e674e40a080c0aabb21e31a54b732828322cdb9b9288dd4184907"
+    }
+  ]
+}

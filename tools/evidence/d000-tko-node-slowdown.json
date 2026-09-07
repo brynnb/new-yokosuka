@@ -1,0 +1,86 @@
+{
+  "schema": "new-yokosuka-d000-tko-node-slowdown-v1",
+  "source": {
+    "mapinfo": ".disc-work/exact/d000/MAPINFO.BIN",
+    "staticDataRuntimeBase": "0x0c467bc0",
+    "staticVectorRuntimeAddress": "0x0c4738c8",
+    "staticVectorFileOffset": "0xae188"
+  },
+  "operation": {
+    "id": "0x00c9",
+    "name": "HMDL node transform",
+    "mode": 1,
+    "modeName": "add",
+    "renderNodeKey": 152,
+    "gameHz": 30
+  },
+  "routes": [
+    {
+      "objectTag": "TKOM",
+      "callFileOffset": "0x69324",
+      "counterLocalOffset": 7
+    },
+    {
+      "objectTag": "TKON",
+      "callFileOffset": "0x69510",
+      "counterLocalOffset": 6
+    }
+  ],
+  "construction": {
+    "counterInitialValue": 40,
+    "counterFinalValue": 1,
+    "baseYFixedTurns": -910,
+    "perTickAdjustmentFixedTurns": 22,
+    "formula": "-910 + (41 - counter) * 22",
+    "sourceYFixedTurnsPerTick": [
+      -888,
+      -866,
+      -844,
+      -822,
+      -800,
+      -778,
+      -756,
+      -734,
+      -712,
+      -690,
+      -668,
+      -646,
+      -624,
+      -602,
+      -580,
+      -558,
+      -536,
+      -514,
+      -492,
+      -470,
+      -448,
+      -426,
+      -404,
+      -382,
+      -360,
+      -338,
+      -316,
+      -294,
+      -272,
+      -250,
+      -228,
+      -206,
+      -184,
+      -162,
+      -140,
+      -118,
+      -96,
+      -74,
+      -52,
+      -30
+    ],
+    "totalSourceYFixedTurns": -18360,
+    "totalSourceYDegrees": -100.8544921875
+  },
+  "runtimePolicy": {
+    "curveRecovered": true,
+    "triggerRecovered": false,
+    "automaticPlaybackEnabled": false,
+    "reason": "The native story/time-state branch selecting this transition is not yet proven."
+  }
+}

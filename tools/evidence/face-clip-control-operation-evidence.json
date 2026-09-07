@@ -1,0 +1,143 @@
+{
+  "schema": "new-yokosuka-face-clip-control-operation-evidence-v1",
+  "status": "exact-record-writes-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 275,
+    "operationHex": "0x0113",
+    "handlerAddress": "0x0c164eb8",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c164eb8",
+        "length": 56,
+        "sha256": "5da94d1dce59b7d03359981026f9178496f2d84f6de10fc015733ddaf7be4dfe"
+      },
+      "actorResolver": {
+        "address": "0x0c153956",
+        "length": 58,
+        "sha256": "b99d1c60ec19d8c20dec13ede36b9f81a3b04510da97159b53e03db38deba35f"
+      },
+      "momtPrecheck": {
+        "address": "0x0c114314",
+        "length": 28,
+        "sha256": "8c6e31027a4ae437740f04597870e04214c5e395e171244fd410cdf2a9235bf4"
+      },
+      "faceClipMutator": {
+        "address": "0x0c0bc688",
+        "length": 146,
+        "sha256": "2e43e43f27db389fd256138a7364f1f32a49ca70f4cd34aca4afdea965922ae1"
+      }
+    },
+    "nativeContract": {
+      "handlerTableEntry": "0x0c164eb8",
+      "actorResolver": "0x0c153956",
+      "momtPrecheck": "0x0c114314",
+      "faceClipMutator": "0x0c0bc688",
+      "momtTag": "MOTM",
+      "faceTag": "FACE",
+      "clipTag": "CLIP"
+    },
+    "recordContract": {
+      "prerequisites": [
+        "resolved actor",
+        "MOMT",
+        "FACE",
+        "CLIP"
+      ],
+      "faceWrites": [
+        {
+          "offset": "0x2c",
+          "width": 2,
+          "value": "low16(argument1) * 6, low16 result"
+        },
+        {
+          "offset": "0x2e",
+          "width": 2,
+          "value": "signed-low16(argument3) clamped to at least 1"
+        },
+        {
+          "offset": "0x45",
+          "width": 1,
+          "value": 1,
+          "condition": "signed FACE byte +0x47 <= 1"
+        },
+        {
+          "offset": "0x4a",
+          "width": 2,
+          "value": "clamped argument3",
+          "condition": "signed FACE byte +0x47 <= 1 and FACE byte +0x45 == 0"
+        }
+      ],
+      "clipWrites": [
+        {
+          "offset": "0x10",
+          "width": 1,
+          "value": "1 when signed-low16(argument2) == -1, otherwise 2"
+        },
+        {
+          "offset": "0x16",
+          "width": 2,
+          "value": "clamped argument3"
+        },
+        {
+          "offset": "0x1c",
+          "width": 2,
+          "value": "low16(argument2)"
+        }
+      ]
+    }
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 1067,
+    "provenCallCount": 1066,
+    "unresolvedMalformedCallCount": 1,
+    "dialogueRegionCallCount": 38,
+    "areaCount": 35,
+    "argumentKindCounts": {
+      "0": {
+        "constant": 940,
+        "frame-field": 126
+      },
+      "1": {
+        "constant": 1043,
+        "frame-field": 23
+      },
+      "2": {
+        "constant": 1043,
+        "frame-field": 23
+      },
+      "3": {
+        "constant": 1043,
+        "frame-field": 23
+      }
+    },
+    "dialogueArgumentKindCounts": {
+      "0": {
+        "constant": 34,
+        "frame-field": 4
+      },
+      "1": {
+        "constant": 38
+      },
+      "2": {
+        "constant": 38
+      },
+      "3": {
+        "constant": 38
+      }
+    }
+  },
+  "evidenceBoundary": [
+    "The record names are literal executable fourcc values, not inferred domain labels.",
+    "Missing actors or any prerequisite record are exact native no-ops.",
+    "All arithmetic is preserved at SH-4 word width and signedness.",
+    "Only the 1,066 complete four-argument calls are promoted.",
+    "The single zero-argument scanner detection remains unresolved.",
+    "No result from the operation feeds a comparison or stored result target."
+  ]
+}

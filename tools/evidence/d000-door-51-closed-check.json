@@ -1,0 +1,66 @@
+{
+  "schema": "new-yokosuka-d000-door-51-closed-check-v1",
+  "status": "exact-control-presentation-dialogue-and-audio-route",
+  "source": {
+    "mapinfo": "Disc 1 D000/MAPINFO.BIN",
+    "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+    "dialogueArchive": "Disc 1 STREAM/SA1081.AFS",
+    "dialogueArchiveSha256": "d3a46fd1f6bdc2ec427f3395ba0daa5fa9ff1df04591629f729867e418f9cdce",
+    "soundBank": "Disc 1 SOUND/F1DOBUIT.SND",
+    "soundBankSha256": "e77a6ea473b62e6356fe9b0152ec285b6ee115ef75cd912c443852ff6ff118be"
+  },
+  "selection": {
+    "logicalDoorSelector": 51,
+    "visibleDoorIndex": 102,
+    "model": "S1_D000_DR02_019.MT5",
+    "browserPosition": [-7.3624, 0.072396, 84.918999],
+    "targetIndex": 530,
+    "regionStartFileOffset": "0x7507c",
+    "dispatcherComparisonFileOffset": "0x765e4",
+    "dispatcherCallFileOffset": "0x76662"
+  },
+  "alignment": {
+    "helperFileOffset": "0x6faa0",
+    "actorCode": "AKIR",
+    "targetNative": [6.452099800109863, 0.07000000029802322, 84.81649780273438],
+    "inputDegrees": 320,
+    "requestWord": 58254,
+    "requestDword": 594,
+    "stateSelector": 0
+  },
+  "motion": {
+    "request": 28677,
+    "name": "AKI_HITORIGOTO_R_RYURIHATUTEN",
+    "motionFile": "M_D000.MOTN",
+    "parameters": [-1, -1, 40, 1.2000000476837158],
+    "soundCuePhases": [58, 82],
+    "dialogueReleasePhase": 150,
+    "completionStatusMask": 2
+  },
+  "sound": {
+    "commandHex": "a9054200",
+    "group": "a905",
+    "track": 66,
+    "compositionHex": "c0df0e6d80ff",
+    "playbackId": 14,
+    "sampleId": 25,
+    "dtpkRate": "0xe500",
+    "sampleRate": 9500
+  },
+  "branches": {
+    "storySequenceFieldOffset": "0xf8",
+    "storySequenceBoundaryInclusive": 202,
+    "nativeRandomRange": [0, 2],
+    "nativeRandomThreshold": 1.5,
+    "translatedUniformQuartileRangeInclusive": [1, 4],
+    "atOrBeforeSequence202": {
+      "firstThreeQuartiles": "SA1081A002",
+      "fourthQuartile": "SA1081A003"
+    },
+    "afterSequence202": {
+      "firstThreeQuartiles": "SA1081A002",
+      "fourthQuartileAtHours5Through9": "SA1081A005",
+      "fourthQuartileAtOtherHours": "SA1081A006"
+    }
+  }
+}

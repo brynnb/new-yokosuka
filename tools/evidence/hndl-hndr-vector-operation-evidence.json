@@ -1,0 +1,101 @@
+{
+  "schema": "new-yokosuka-hndl-hndr-vector-operation-evidence-v1",
+  "status": "exact-native-vector-install-contract-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 94,
+    "operationHex": "0x005e",
+    "handlerAddress": "0x0c165480",
+    "recordTags": {
+      "zeroSideSelector": "HNDL",
+      "nonzeroSideSelector": "HNDR"
+    },
+    "vectorSlotCount": 71,
+    "sourceVectorCount": 19,
+    "activeByteOffset": "record+0x49",
+    "durationWordOffset": "record+0x4a",
+    "vectorSlotsOffset": "record+0x4c",
+    "sourceVectorStride": 12,
+    "dependencies": {
+      "objectResolver": "0x0c153956",
+      "rightRecordResolver": "0x0c0de67a",
+      "leftRecordResolver": "0x0c0de672",
+      "vectorInstaller": "0x0c0dee94",
+      "leftRecordTag": "0x4c444e48",
+      "associatedRecordLookup": "0x0c0aad5a",
+      "rightRecordTag": "0x52444e48",
+      "slotIndexTable": "0x0c288ec4"
+    },
+    "installedSlotIndices": [
+      31,
+      30,
+      29,
+      35,
+      34,
+      33,
+      32,
+      39,
+      38,
+      37,
+      36,
+      43,
+      42,
+      41,
+      40,
+      47,
+      46,
+      45,
+      44
+    ],
+    "provenBehavior": "Resolves argument zero and selects its HNDL record when argument one is zero or HNDR otherwise. A present record sets byte +0x49 to one, clears 71 three-dword vector slots starting at +0x4c, copies 19 consecutive source vectors from argument two into the executable-fixed slot indices, and stores argument three's signed low word clamped to at least one at +0x4a."
+  },
+  "allDiscInventory": {
+    "callCount": 1498,
+    "selectedCallCount": 1496,
+    "malformedCallCount": 2,
+    "dialogueRegionCallCount": 84,
+    "areaCount": 38,
+    "argumentKindCounts": {
+      "0": {
+        "constant": 1402,
+        "frame-field": 86,
+        "runtime": 8
+      },
+      "1": {
+        "constant": 1442,
+        "frame-field": 13,
+        "runtime": 41
+      },
+      "2": {
+        "frame-field": 12,
+        "static-pointer": 1484
+      },
+      "3": {
+        "constant": 1485,
+        "frame-field": 3,
+        "runtime": 8
+      }
+    },
+    "constantSideSelectorCounts": {
+      "0": 660,
+      "1": 782
+    },
+    "dialogueRegionDurationCounts": {
+      "0": 60,
+      "5": 6,
+      "10": 18
+    }
+  },
+  "evidenceBoundary": [
+    "HNDL and HNDR remain literal native record tags; no anatomical or gameplay label is assigned.",
+    "The 19 source vectors remain raw three-dword values.",
+    "Runtime source pointers require their exact 19-vector table and are never substituted.",
+    "Missing objects or HNDL/HNDR records preserve the native no-op.",
+    "Two zero-argument scanner detections remain malformed and unresolved."
+  ]
+}

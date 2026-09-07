@@ -1,0 +1,134 @@
+{
+  "schema": "new-yokosuka-sound-command-operation-evidence-v2",
+  "evidenceBoundary": [
+    "The verified operation 0x006c handler is a tail-call wrapper.",
+    "It forwards native arguments zero, one, and two unchanged as r4, r5, and r6 to 0x0c17a91c.",
+    "The verified dispatcher compares the command's unsigned low byte with 0xA8 and sends values at or above that threshold directly to the AICA command queue at 0x0c1d4b18.",
+    "Low-byte values below 0xA5 take a separate parameter-building handler at 0x0c1d4770 before reaching that queue.",
+    "The MA00 authored start/stop command pairs independently establish that the target is the native sound-command dispatcher.",
+    "The thresholds and queue routes do not establish player-visible meanings for individual A0-family commands; those remain numeric unless separately evidenced.",
+    "For parameterized commands whose argument one has no 0xff00 bits, the verified fast path constructs (command low nibble << 24) + argument one; the AICA driver byte-reverses that word and ignores a resulting top nibble below eight."
+  ],
+  "executable": {
+    "filename": "1ST_READ.BIN",
+    "runtimeBase": "0x0c010000",
+    "sha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c"
+  },
+  "operation": {
+    "operationId": 108,
+    "operationHex": "0x006c",
+    "semanticId": "sound-command-dispatch",
+    "handlerAddress": "0x0c16b110",
+    "handlerSize": 16,
+    "handlerSha256": "64f622fd3958044c49c443b57e6138675c8be26c2ca69d65b788016d9643be5e",
+    "dispatchAddress": "0x0c17a91c",
+    "forwardedArguments": [
+      0,
+      1,
+      2
+    ],
+    "returnBehavior": "tail-call return value is forwarded unchanged"
+  },
+  "dispatcher": {
+    "address": "0x0c17a91c",
+    "size": 212,
+    "sha256": "1ac3cdcc487ca9bb3ed1bd10e967b90f2be4ca2792258dbe74ac05ff6cbc5d7f",
+    "commandClassification": "unsigned low byte of argument zero",
+    "directQueue": {
+      "minimumInclusive": 168,
+      "minimumInclusiveHex": "0xa8",
+      "targetAddress": "0x0c1d4b18",
+      "behavior": "forwards the complete command word unchanged"
+    },
+    "parameterizedRoute": {
+      "maximumExclusive": 165,
+      "maximumExclusiveHex": "0xa5",
+      "targetAddress": "0x0c1d4770",
+      "behavior": "constructs a queued command from all three arguments",
+      "individualCommandMeanings": "unresolved"
+    }
+  },
+  "aicaDriver": {
+    "filename": "AICADRV.BIN",
+    "sha256": "3f88553a52a6d1af0b988ea3f41800178988350721bd7422a570dc3e4e369915",
+    "externalQueueIngest": {
+      "fileOffset": "0x0710",
+      "size": 208,
+      "sha256": "0d4d1aea5295a916943c639ab4391b275cd0284a7b0650942a49373e0e095fb2",
+      "behavior": "consumes one nonzero external word, clears its slot, byte-reverses it, and dispatches the reversed word"
+    },
+    "commandDispatcher": {
+      "fileOffset": "0x41c4",
+      "classification": "top nibble of byte-reversed queued word",
+      "belowEightTarget": "0x4410",
+      "belowEightBehavior": "returns without a sound-handler dispatch"
+    },
+    "provenIgnoredControls": [
+      {
+        "area": "D000",
+        "nativeCommandWord": "0x000004a0",
+        "dreamcastByteOrder": "A0040000",
+        "argumentsOneAndTwo": [
+          2,
+          115
+        ],
+        "constructedQueueWord": "0x00000002",
+        "byteReversedDriverWord": "0x02000000",
+        "driverTopNibble": 0,
+        "playerVisibleEffect": "none",
+        "scope": "this exact command and argument tuple only"
+      },
+      {
+        "area": "OP02",
+        "nativeCommandWord": "0x000004a0",
+        "dreamcastByteOrder": "A0040000",
+        "argumentsOneAndTwo": [
+          2,
+          100
+        ],
+        "constructedQueueWord": "0x00000002",
+        "byteReversedDriverWord": "0x02000000",
+        "driverTopNibble": 0,
+        "playerVisibleEffect": "none",
+        "scope": "this exact command and argument tuple only"
+      },
+      {
+        "area": "OP02",
+        "nativeCommandWord": "0x00000aa0",
+        "dreamcastByteOrder": "A00A0000",
+        "argumentsOneAndTwo": [
+          2,
+          30
+        ],
+        "constructedQueueWord": "0x00000002",
+        "byteReversedDriverWord": "0x02000000",
+        "driverTopNibble": 0,
+        "playerVisibleEffect": "none",
+        "scope": "this exact command and argument tuple only"
+      }
+    ]
+  },
+  "authoredCorroboration": {
+    "source": "docs/research/shenmue1/native-world-audio.md",
+    "area": "MA00",
+    "bank": "A904",
+    "provenStartStopPairs": [
+      [
+        1,
+        2
+      ],
+      [
+        13,
+        14
+      ],
+      [
+        17,
+        18
+      ],
+      [
+        19,
+        20
+      ]
+    ]
+  }
+}

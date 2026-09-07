@@ -1,0 +1,46 @@
+{
+  "schema": "new-yokosuka-map-entry-runtime-capture-v1",
+  "scene": 1,
+  "area": "JU00",
+  "entry": 1,
+  "capture": "captures/pvr/20260724-100412-frame-18879",
+  "playerTask": {
+    "objectTag": "AKIR",
+    "taskAddress": "0x8c4ae040",
+    "runtimePosition": [
+      -51.98007583618164,
+      7.74480676651001,
+      99.62751007080078
+    ],
+    "browserPosition": [
+      51.98007583618164,
+      7.74480676651001,
+      99.62751007080078
+    ],
+    "runtimeYawDegrees": -60.0018310546875,
+    "browserYawDegrees": 60.0018310546875,
+    "arrivalYawDegrees": -120,
+    "arrivalYawNote": "The captured task faced the gate; browser arrival faces 180 degrees away into Yamanose."
+  },
+  "activeMapModels": [
+    "S1_JU00_MAP.MT5",
+    "S1_JU00_MAP01.MT5",
+    "S1_JU00_MAP02.MT5",
+    "S1_JU00_MAP06.MT5",
+    "S1_JU00_MAP07.MT5",
+    "S1_JU00_MAP08.MT5",
+    "S1_JU00_MAP10.MT5"
+  ],
+  "groundModelEvidence": {
+    "model": "S1_JU00_MAP08.MT5",
+    "runtimeAddress": "0x8c5b48a0",
+    "runtimeByteAgreement": 0.9474076741076021,
+    "note": "Relocation lowered agreement below the original extractor's 0.95 inclusion threshold."
+  },
+  "placementSummary": {
+    "taggedTasks": 33,
+    "modeledWorldPlacements": 6,
+    "activeStaticDoorPlacements": 14,
+    "browserPlacementCount": 20
+  }
+}

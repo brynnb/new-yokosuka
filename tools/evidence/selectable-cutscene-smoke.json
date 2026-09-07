@@ -1,0 +1,3204 @@
+{
+  "schema": "new-yokosuka-selectable-cutscene-smoke-v1",
+  "generatedBy": "tools/cutscenes/audit_selectable_cutscene_smoke.mjs",
+  "generatedFrom": {
+    "cutscenes": "play/config/cutscenes.js",
+    "packages": "play/cutscenes/nativeCutscenePackages.js",
+    "programPack": {
+      "path": "play/data/events/nativeEventPrograms.generated.json",
+      "sha256": "c25951a048291fe8dc9f129e8db59d96490913b1b1df7949f25b11071305a977"
+    }
+  },
+  "evidenceBoundary": [
+    "Every selectable package is loaded through Vite's real module graph, so bundled URL maps and manifest objects match the game client.",
+    "Every selected AUTH is hash-verified, parsed, motion-resolved, audio-resolved, advanced through its final frame, and cleanup-checked through the shared activity/presentation runtimes.",
+    "Activity-preview programs execute through the canonical event interpreter. Larger native owners are structurally checked and all activities they select are playback-smoked; their complete world-dependent owner paths remain browser integration coverage.",
+    "Zero voice, sound, or music coverage is reported as a fidelity review item only when the native package contains no authored binding; it is not guessed into a failure.",
+    "Retail-native voice references proven absent from their pinned AFS/IDX source are reported as source absences rather than fabricated assets.",
+    "World geometry visibility and final rendered appearance require a browser scene and are outside this headless audit."
+  ],
+  "summary": {
+    "selectableCutsceneCount": 58,
+    "passedCount": 58,
+    "failedCount": 0,
+    "previewProgramCount": 57,
+    "ownerProgramCount": 1,
+    "fidelityFindingCount": 65,
+    "knownGapCount": 0,
+    "reviewFindingCount": 37,
+    "sourceAbsenceCount": 6
+  },
+  "failureClusters": [],
+  "fidelityFindingClusters": [
+    {
+      "finding": "informational: native-owner-authors-no-cutscene-music",
+      "sceneCount": 3
+    },
+    {
+      "finding": "review: voiced-actor-without-detailed-face-presentation",
+      "sceneCount": 12
+    },
+    {
+      "finding": "source-absence: native-reference-has-no-retail-voice-member",
+      "sceneCount": 6
+    },
+    {
+      "finding": "informational: no-authored-voice-cues",
+      "sceneCount": 11
+    },
+    {
+      "finding": "review: no-explicit-package-music-binding",
+      "sceneCount": 25
+    },
+    {
+      "finding": "informational: no-authored-sound-cues",
+      "sceneCount": 8
+    }
+  ],
+  "scenes": [
+    {
+      "cutsceneId": "S1-HOUO-01",
+      "label": "Phoenix Mirror — Ryo and Fuku-san",
+      "packageId": "houo",
+      "programId": "preview-s1-houo-01",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "native-owner-authors-no-cutscene-music",
+          "severity": "informational",
+          "resource": "HOUO",
+          "evidence": "tools/evidence/selectable-cutscene-music-audit.json"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 54,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 1810,
+        "playbackTicks": 1810,
+        "actorCount": 3,
+        "motionApplications": 3581,
+        "transformApplications": 5430,
+        "cameraFrames": 1810,
+        "voiceCues": 16,
+        "soundCues": 25,
+        "authoredVoiceCues": 16,
+        "authoredSoundCues": 25,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 37,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 16,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 2,
+        "sceneObjectCount": 1,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-TOKI-01",
+      "label": "Chinese Letter — Xia Xiu Yu",
+      "packageId": "toki",
+      "programId": "preview-s1-toki-01",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "voiced-actor-without-detailed-face-presentation",
+          "severity": "review",
+          "actorTags": [
+            "ASDA"
+          ]
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 41,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 5355,
+        "playbackTicks": 5355,
+        "actorCount": 2,
+        "motionApplications": 10457,
+        "transformApplications": 10710,
+        "cameraFrames": 5355,
+        "voiceCues": 41,
+        "soundCues": 29,
+        "authoredVoiceCues": 41,
+        "authoredSoundCues": 29,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 1,
+        "faceClipCues": 6,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 41,
+        "handPoseCues": 4,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 210,
+        "facialAssetActorCount": 1,
+        "handAssetActorCount": 1,
+        "sceneObjectCount": 0,
+        "packageActorCount": 0,
+        "attachedObjectCount": 1,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-OP02-00",
+      "label": "Opening Vision — Shenhua and the Hawk",
+      "packageId": "op02-opening",
+      "programId": "S1-OP02-00",
+      "programKind": "native-owner",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "owner-activity-playback"
+      ],
+      "fidelityFindings": [],
+      "coverage": {
+        "bundledAssetCount": 25,
+        "programActionCount": 265,
+        "activityCount": 7,
+        "playbackActivityCount": 7,
+        "durationFrames": 2357,
+        "playbackTicks": 2357,
+        "actorCount": 3,
+        "motionApplications": 1171,
+        "transformApplications": 4657,
+        "cameraFrames": 2357,
+        "voiceCues": 10,
+        "soundCues": 1,
+        "authoredVoiceCues": 0,
+        "authoredSoundCues": 0,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 1,
+        "faceClipCues": 3,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 10,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 2364,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 1,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 0,
+        "packageActorCount": 2,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 2,
+        "scrollSpriteCount": 2
+      }
+    },
+    {
+      "cutsceneId": "S1-000",
+      "label": "Introduction — Iwao's Murder",
+      "packageId": "op00-opening",
+      "programId": "preview-s1-000",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "voiced-actor-without-detailed-face-presentation",
+          "severity": "review",
+          "actorTags": [
+            "KURA"
+          ]
+        },
+        {
+          "kind": "native-reference-has-no-retail-voice-member",
+          "severity": "source-absence",
+          "voices": [
+            {
+              "voiceId": "A0114A015",
+              "reason": "absent-from-pinned-native-stream",
+              "evidence": null
+            },
+            {
+              "voiceId": "A0114A027",
+              "reason": "absent-from-pinned-native-stream",
+              "evidence": null
+            },
+            {
+              "voiceId": "A0114D014",
+              "reason": "absent-from-pinned-native-stream",
+              "evidence": null
+            }
+          ]
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 75,
+        "programActionCount": 96,
+        "activityCount": 24,
+        "playbackActivityCount": 24,
+        "durationFrames": 10641,
+        "playbackTicks": 10641,
+        "actorCount": 13,
+        "motionApplications": 19896,
+        "transformApplications": 32019,
+        "cameraFrames": 10641,
+        "voiceCues": 48,
+        "soundCues": 266,
+        "authoredVoiceCues": 48,
+        "authoredSoundCues": 266,
+        "silentVoiceCueCount": 3,
+        "musicTrackCount": 2,
+        "faceClipCues": 216,
+        "faceGazeCues": 19,
+        "voiceFaceCues": 48,
+        "handPoseCues": 122,
+        "bodyHandPoseCues": 15,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 5,
+        "handAssetActorCount": 5,
+        "sceneObjectCount": 6,
+        "packageActorCount": 0,
+        "attachedObjectCount": 1,
+        "mapLayerCount": 1,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-DRAUTH-01",
+      "label": "DRAUTH — Sequence 1",
+      "packageId": "drauth",
+      "programId": "preview-s1-drauth-01",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [],
+      "coverage": {
+        "bundledAssetCount": 38,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 1330,
+        "playbackTicks": 1330,
+        "actorCount": 6,
+        "motionApplications": 2470,
+        "transformApplications": 7980,
+        "cameraFrames": 1330,
+        "voiceCues": 11,
+        "soundCues": 33,
+        "authoredVoiceCues": 11,
+        "authoredSoundCues": 33,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 1,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 11,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 10,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 0,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-DRAUTH-02",
+      "label": "DRAUTH — Sequence 2",
+      "packageId": "drauth",
+      "programId": "preview-s1-drauth-02",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [],
+      "coverage": {
+        "bundledAssetCount": 38,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 500,
+        "playbackTicks": 500,
+        "actorCount": 6,
+        "motionApplications": 2105,
+        "transformApplications": 3000,
+        "cameraFrames": 500,
+        "voiceCues": 1,
+        "soundCues": 15,
+        "authoredVoiceCues": 1,
+        "authoredSoundCues": 15,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 1,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 1,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 10,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 0,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-YQ14-01",
+      "label": "Heartbeats Alley — Confrontation",
+      "packageId": "yq14",
+      "programId": "preview-s1-yq14-01",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "no-authored-voice-cues",
+          "severity": "informational"
+        },
+        {
+          "kind": "no-explicit-package-music-binding",
+          "severity": "review"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 39,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 70,
+        "playbackTicks": 70,
+        "actorCount": 3,
+        "motionApplications": 210,
+        "transformApplications": 210,
+        "cameraFrames": 70,
+        "voiceCues": 0,
+        "soundCues": 4,
+        "authoredVoiceCues": 0,
+        "authoredSoundCues": 4,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 0,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 10,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 1,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-YQ14-02",
+      "label": "Heartbeats Alley — Beer QTE",
+      "packageId": "yq14",
+      "programId": "preview-s1-yq14-02",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "no-explicit-package-music-binding",
+          "severity": "review"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 39,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 435,
+        "playbackTicks": 435,
+        "actorCount": 4,
+        "motionApplications": 1303,
+        "transformApplications": 1740,
+        "cameraFrames": 435,
+        "voiceCues": 2,
+        "soundCues": 9,
+        "authoredVoiceCues": 2,
+        "authoredSoundCues": 9,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 2,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 10,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 1,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-YBHN-01",
+      "label": "Nozomi Waits for Ryo",
+      "packageId": "ybhn",
+      "programId": "preview-s1-ybhn-01",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [],
+      "coverage": {
+        "bundledAssetCount": 37,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 2130,
+        "playbackTicks": 2130,
+        "actorCount": 2,
+        "motionApplications": 4108,
+        "transformApplications": 4260,
+        "cameraFrames": 2130,
+        "voiceCues": 26,
+        "soundCues": 15,
+        "authoredVoiceCues": 26,
+        "authoredSoundCues": 15,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 1,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 26,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 10,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 0,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-DJHN-01",
+      "label": "Vending Machine — Sequence 1",
+      "packageId": "djhn",
+      "programId": "preview-s1-djhn-01",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "voiced-actor-without-detailed-face-presentation",
+          "severity": "review",
+          "actorTags": [
+            "YKHI"
+          ]
+        },
+        {
+          "kind": "no-explicit-package-music-binding",
+          "severity": "review"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 44,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 380,
+        "playbackTicks": 380,
+        "actorCount": 2,
+        "motionApplications": 760,
+        "transformApplications": 760,
+        "cameraFrames": 380,
+        "voiceCues": 6,
+        "soundCues": 8,
+        "authoredVoiceCues": 6,
+        "authoredSoundCues": 8,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 6,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 1,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 0,
+        "packageActorCount": 0,
+        "attachedObjectCount": 1,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-DJHN-02",
+      "label": "Vending Machine — Sequence 2",
+      "packageId": "djhn",
+      "programId": "preview-s1-djhn-02",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "voiced-actor-without-detailed-face-presentation",
+          "severity": "review",
+          "actorTags": [
+            "YKHI"
+          ]
+        },
+        {
+          "kind": "no-explicit-package-music-binding",
+          "severity": "review"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 44,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 461,
+        "playbackTicks": 461,
+        "actorCount": 2,
+        "motionApplications": 920,
+        "transformApplications": 922,
+        "cameraFrames": 461,
+        "voiceCues": 4,
+        "soundCues": 8,
+        "authoredVoiceCues": 4,
+        "authoredSoundCues": 8,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 4,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 1,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 0,
+        "packageActorCount": 0,
+        "attachedObjectCount": 1,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-DJHN-03",
+      "label": "Vending Machine — Sequence 3",
+      "packageId": "djhn",
+      "programId": "preview-s1-djhn-03",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "voiced-actor-without-detailed-face-presentation",
+          "severity": "review",
+          "actorTags": [
+            "YKHI"
+          ]
+        },
+        {
+          "kind": "no-explicit-package-music-binding",
+          "severity": "review"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 44,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 2260,
+        "playbackTicks": 2260,
+        "actorCount": 2,
+        "motionApplications": 4253,
+        "transformApplications": 4520,
+        "cameraFrames": 2260,
+        "voiceCues": 23,
+        "soundCues": 39,
+        "authoredVoiceCues": 23,
+        "authoredSoundCues": 39,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 23,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 1,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 0,
+        "packageActorCount": 0,
+        "attachedObjectCount": 1,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-DJHN-04",
+      "label": "Vending Machine — Sequence 4",
+      "packageId": "djhn",
+      "programId": "preview-s1-djhn-04",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "voiced-actor-without-detailed-face-presentation",
+          "severity": "review",
+          "actorTags": [
+            "YKHI"
+          ]
+        },
+        {
+          "kind": "no-explicit-package-music-binding",
+          "severity": "review"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 44,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 1593,
+        "playbackTicks": 1593,
+        "actorCount": 2,
+        "motionApplications": 3055,
+        "transformApplications": 3186,
+        "cameraFrames": 1593,
+        "voiceCues": 11,
+        "soundCues": 30,
+        "authoredVoiceCues": 11,
+        "authoredSoundCues": 30,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 11,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 1,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 0,
+        "packageActorCount": 0,
+        "attachedObjectCount": 1,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-DJHN-05",
+      "label": "Vending Machine — Sequence 5",
+      "packageId": "djhn",
+      "programId": "preview-s1-djhn-05",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "voiced-actor-without-detailed-face-presentation",
+          "severity": "review",
+          "actorTags": [
+            "YKHI"
+          ]
+        },
+        {
+          "kind": "native-reference-has-no-retail-voice-member",
+          "severity": "source-absence",
+          "voices": [
+            {
+              "voiceId": "01JUCEAA026",
+              "reason": "the AUTH-authored member is absent from both 01JUCEA.AFS and its exact IDX02 directory",
+              "evidence": "extracted_files/data/SCENE/01/STREAM/01JUCEA.IDX"
+            }
+          ]
+        },
+        {
+          "kind": "no-explicit-package-music-binding",
+          "severity": "review"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 44,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 1215,
+        "playbackTicks": 1215,
+        "actorCount": 2,
+        "motionApplications": 2365,
+        "transformApplications": 2430,
+        "cameraFrames": 1215,
+        "voiceCues": 15,
+        "soundCues": 25,
+        "authoredVoiceCues": 15,
+        "authoredSoundCues": 25,
+        "silentVoiceCueCount": 1,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 15,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 1,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 0,
+        "packageActorCount": 0,
+        "attachedObjectCount": 1,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-DJHN-06",
+      "label": "Vending Machine — Sequence 6",
+      "packageId": "djhn",
+      "programId": "preview-s1-djhn-06",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "voiced-actor-without-detailed-face-presentation",
+          "severity": "review",
+          "actorTags": [
+            "YKHI"
+          ]
+        },
+        {
+          "kind": "native-reference-has-no-retail-voice-member",
+          "severity": "source-absence",
+          "voices": [
+            {
+              "voiceId": "01JUCEAA026",
+              "reason": "the AUTH-authored member is absent from both 01JUCEA.AFS and its exact IDX02 directory",
+              "evidence": "extracted_files/data/SCENE/01/STREAM/01JUCEA.IDX"
+            }
+          ]
+        },
+        {
+          "kind": "no-explicit-package-music-binding",
+          "severity": "review"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 44,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 678,
+        "playbackTicks": 678,
+        "actorCount": 2,
+        "motionApplications": 1302,
+        "transformApplications": 1356,
+        "cameraFrames": 678,
+        "voiceCues": 6,
+        "soundCues": 8,
+        "authoredVoiceCues": 6,
+        "authoredSoundCues": 8,
+        "silentVoiceCueCount": 1,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 6,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 1,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 0,
+        "packageActorCount": 0,
+        "attachedObjectCount": 1,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-DJHN-07",
+      "label": "Vending Machine — Sequence 7",
+      "packageId": "djhn",
+      "programId": "preview-s1-djhn-07",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "voiced-actor-without-detailed-face-presentation",
+          "severity": "review",
+          "actorTags": [
+            "YKHI"
+          ]
+        },
+        {
+          "kind": "no-explicit-package-music-binding",
+          "severity": "review"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 44,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 765,
+        "playbackTicks": 765,
+        "actorCount": 2,
+        "motionApplications": 1462,
+        "transformApplications": 1530,
+        "cameraFrames": 765,
+        "voiceCues": 6,
+        "soundCues": 11,
+        "authoredVoiceCues": 6,
+        "authoredSoundCues": 11,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 6,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 1,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 0,
+        "packageActorCount": 0,
+        "attachedObjectCount": 1,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-D0W0-01",
+      "label": "Yamagishi's Advice — Sequence 1",
+      "packageId": "d0w0",
+      "programId": "preview-s1-d0w0-01",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "no-explicit-package-music-binding",
+          "severity": "review"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 51,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 3320,
+        "playbackTicks": 3320,
+        "actorCount": 3,
+        "motionApplications": 6347,
+        "transformApplications": 9960,
+        "cameraFrames": 3320,
+        "voiceCues": 22,
+        "soundCues": 35,
+        "authoredVoiceCues": 22,
+        "authoredSoundCues": 35,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 22,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 1,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-D0W0-02",
+      "label": "Yamagishi's Advice — Sequence 2",
+      "packageId": "d0w0",
+      "programId": "preview-s1-d0w0-02",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "no-explicit-package-music-binding",
+          "severity": "review"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 51,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 690,
+        "playbackTicks": 690,
+        "actorCount": 2,
+        "motionApplications": 1322,
+        "transformApplications": 1380,
+        "cameraFrames": 690,
+        "voiceCues": 6,
+        "soundCues": 10,
+        "authoredVoiceCues": 6,
+        "authoredSoundCues": 10,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 6,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 1,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-D0W0-03",
+      "label": "Yamagishi's Advice — Sequence 3",
+      "packageId": "d0w0",
+      "programId": "preview-s1-d0w0-03",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "no-explicit-package-music-binding",
+          "severity": "review"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 51,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 1260,
+        "playbackTicks": 1260,
+        "actorCount": 2,
+        "motionApplications": 2512,
+        "transformApplications": 2520,
+        "cameraFrames": 1260,
+        "voiceCues": 9,
+        "soundCues": 11,
+        "authoredVoiceCues": 9,
+        "authoredSoundCues": 11,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 9,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 1,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-D0W0-04",
+      "label": "Yamagishi's Advice — Sequence 4",
+      "packageId": "d0w0",
+      "programId": "preview-s1-d0w0-04",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "no-explicit-package-music-binding",
+          "severity": "review"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 51,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 900,
+        "playbackTicks": 900,
+        "actorCount": 3,
+        "motionApplications": 1777,
+        "transformApplications": 2700,
+        "cameraFrames": 900,
+        "voiceCues": 6,
+        "soundCues": 15,
+        "authoredVoiceCues": 6,
+        "authoredSoundCues": 15,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 6,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 1,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-D0W0-05",
+      "label": "Yamagishi's Advice — Sequence 5",
+      "packageId": "d0w0",
+      "programId": "preview-s1-d0w0-05",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "no-explicit-package-music-binding",
+          "severity": "review"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 51,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 670,
+        "playbackTicks": 670,
+        "actorCount": 2,
+        "motionApplications": 1333,
+        "transformApplications": 1340,
+        "cameraFrames": 670,
+        "voiceCues": 6,
+        "soundCues": 10,
+        "authoredVoiceCues": 6,
+        "authoredSoundCues": 10,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 6,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 1,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-D0W0-06",
+      "label": "Yamagishi's Advice — Sequence 6",
+      "packageId": "d0w0",
+      "programId": "preview-s1-d0w0-06",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "no-explicit-package-music-binding",
+          "severity": "review"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 51,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 980,
+        "playbackTicks": 980,
+        "actorCount": 2,
+        "motionApplications": 1846,
+        "transformApplications": 1960,
+        "cameraFrames": 980,
+        "voiceCues": 8,
+        "soundCues": 17,
+        "authoredVoiceCues": 8,
+        "authoredSoundCues": 17,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 8,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 1,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-D0W0-07",
+      "label": "Yamagishi's Advice — Sequence 7",
+      "packageId": "d0w0",
+      "programId": "preview-s1-d0w0-07",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "no-explicit-package-music-binding",
+          "severity": "review"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 51,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 920,
+        "playbackTicks": 920,
+        "actorCount": 2,
+        "motionApplications": 1787,
+        "transformApplications": 1840,
+        "cameraFrames": 920,
+        "voiceCues": 7,
+        "soundCues": 25,
+        "authoredVoiceCues": 7,
+        "authoredSoundCues": 25,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 7,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 1,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-D0W0-08",
+      "label": "Yamagishi's Advice — Sequence 8",
+      "packageId": "d0w0",
+      "programId": "preview-s1-d0w0-08",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "no-explicit-package-music-binding",
+          "severity": "review"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 51,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 1057,
+        "playbackTicks": 1057,
+        "actorCount": 3,
+        "motionApplications": 1975,
+        "transformApplications": 3171,
+        "cameraFrames": 1057,
+        "voiceCues": 9,
+        "soundCues": 27,
+        "authoredVoiceCues": 9,
+        "authoredSoundCues": 27,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 9,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 1,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-D0W0-09",
+      "label": "Yamagishi's Advice — Sequence 9",
+      "packageId": "d0w0",
+      "programId": "preview-s1-d0w0-09",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "no-explicit-package-music-binding",
+          "severity": "review"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 51,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 600,
+        "playbackTicks": 600,
+        "actorCount": 2,
+        "motionApplications": 1095,
+        "transformApplications": 1200,
+        "cameraFrames": 600,
+        "voiceCues": 5,
+        "soundCues": 7,
+        "authoredVoiceCues": 5,
+        "authoredSoundCues": 7,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 5,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 1,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-D0W0-10",
+      "label": "Yamagishi's Advice — Sequence 10",
+      "packageId": "d0w0",
+      "programId": "preview-s1-d0w0-10",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "no-explicit-package-music-binding",
+          "severity": "review"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 51,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 1040,
+        "playbackTicks": 1040,
+        "actorCount": 3,
+        "motionApplications": 1678,
+        "transformApplications": 3120,
+        "cameraFrames": 1040,
+        "voiceCues": 9,
+        "soundCues": 24,
+        "authoredVoiceCues": 9,
+        "authoredSoundCues": 24,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 9,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 1,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-D0W0-11",
+      "label": "Yamagishi's Advice — Sequence 11",
+      "packageId": "d0w0",
+      "programId": "preview-s1-d0w0-11",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "no-explicit-package-music-binding",
+          "severity": "review"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 51,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 600,
+        "playbackTicks": 600,
+        "actorCount": 2,
+        "motionApplications": 1095,
+        "transformApplications": 1200,
+        "cameraFrames": 600,
+        "voiceCues": 5,
+        "soundCues": 7,
+        "authoredVoiceCues": 5,
+        "authoredSoundCues": 7,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 5,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 1,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-D0W0-12",
+      "label": "Yamagishi's Advice — Sequence 12",
+      "packageId": "d0w0",
+      "programId": "preview-s1-d0w0-12",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "no-authored-sound-cues",
+          "severity": "informational"
+        },
+        {
+          "kind": "no-explicit-package-music-binding",
+          "severity": "review"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 51,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 1234,
+        "playbackTicks": 1234,
+        "actorCount": 3,
+        "motionApplications": 2194,
+        "transformApplications": 3702,
+        "cameraFrames": 1234,
+        "voiceCues": 11,
+        "soundCues": 0,
+        "authoredVoiceCues": 11,
+        "authoredSoundCues": 0,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 11,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 1,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-DNOZ-01",
+      "label": "Nozomi's Confession",
+      "packageId": "dnoz-ski",
+      "programId": "preview-s1-dnoz-01",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [],
+      "coverage": {
+        "bundledAssetCount": 55,
+        "programActionCount": 10,
+        "activityCount": 2,
+        "playbackActivityCount": 2,
+        "durationFrames": 3904,
+        "playbackTicks": 3904,
+        "actorCount": 2,
+        "motionApplications": 7421,
+        "transformApplications": 7808,
+        "cameraFrames": 3904,
+        "voiceCues": 33,
+        "soundCues": 26,
+        "authoredVoiceCues": 33,
+        "authoredSoundCues": 26,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 1,
+        "faceClipCues": 9,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 33,
+        "handPoseCues": 1,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 1,
+        "sceneObjectCount": 14,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-DNOZ-02",
+      "label": "Nozomi's Tears",
+      "packageId": "dnoz",
+      "programId": "preview-s1-dnoz-02",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [],
+      "coverage": {
+        "bundledAssetCount": 52,
+        "programActionCount": 10,
+        "activityCount": 2,
+        "playbackActivityCount": 2,
+        "durationFrames": 3480,
+        "playbackTicks": 3480,
+        "actorCount": 2,
+        "motionApplications": 6610,
+        "transformApplications": 6960,
+        "cameraFrames": 3480,
+        "voiceCues": 26,
+        "soundCues": 36,
+        "authoredVoiceCues": 26,
+        "authoredSoundCues": 36,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 1,
+        "faceClipCues": 6,
+        "faceGazeCues": 2,
+        "voiceFaceCues": 26,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 14,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-TGMA-01",
+      "label": "Fuku-san's Letter",
+      "packageId": "tgma",
+      "programId": "preview-s1-tgma-01",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [],
+      "coverage": {
+        "bundledAssetCount": 60,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 954,
+        "playbackTicks": 954,
+        "actorCount": 2,
+        "motionApplications": 1800,
+        "transformApplications": 1908,
+        "cameraFrames": 954,
+        "voiceCues": 8,
+        "soundCues": 26,
+        "authoredVoiceCues": 8,
+        "authoredSoundCues": 26,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 1,
+        "faceClipCues": 12,
+        "faceGazeCues": 36,
+        "voiceFaceCues": 8,
+        "handPoseCues": 5,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 5,
+        "sceneObjectCount": 0,
+        "packageActorCount": 1,
+        "attachedObjectCount": 1,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-JHW0-01",
+      "label": "Fuku-san's Move Training — Sequence 1",
+      "packageId": "jhw0",
+      "programId": "preview-s1-jhw0-01",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [],
+      "coverage": {
+        "bundledAssetCount": 45,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 1600,
+        "playbackTicks": 1600,
+        "actorCount": 2,
+        "motionApplications": 3128,
+        "transformApplications": 3200,
+        "cameraFrames": 1600,
+        "voiceCues": 10,
+        "soundCues": 55,
+        "authoredVoiceCues": 10,
+        "authoredSoundCues": 55,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 1,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 10,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 0,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-JHW0-02",
+      "label": "Fuku-san's Move Training — Sequence 2",
+      "packageId": "jhw0",
+      "programId": "preview-s1-jhw0-02",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [],
+      "coverage": {
+        "bundledAssetCount": 45,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 1150,
+        "playbackTicks": 1150,
+        "actorCount": 2,
+        "motionApplications": 2300,
+        "transformApplications": 2300,
+        "cameraFrames": 1150,
+        "voiceCues": 10,
+        "soundCues": 16,
+        "authoredVoiceCues": 10,
+        "authoredSoundCues": 16,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 1,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 10,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 0,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-JHW0-03",
+      "label": "Fuku-san's Move Training — Sequence 3",
+      "packageId": "jhw0",
+      "programId": "preview-s1-jhw0-03",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [],
+      "coverage": {
+        "bundledAssetCount": 45,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 635,
+        "playbackTicks": 635,
+        "actorCount": 2,
+        "motionApplications": 1270,
+        "transformApplications": 1270,
+        "cameraFrames": 635,
+        "voiceCues": 6,
+        "soundCues": 15,
+        "authoredVoiceCues": 6,
+        "authoredSoundCues": 15,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 1,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 6,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 0,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-JHW0-04",
+      "label": "Fuku-san's Move Training — Sequence 4",
+      "packageId": "jhw0",
+      "programId": "preview-s1-jhw0-04",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [],
+      "coverage": {
+        "bundledAssetCount": 45,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 830,
+        "playbackTicks": 830,
+        "actorCount": 2,
+        "motionApplications": 1660,
+        "transformApplications": 1660,
+        "cameraFrames": 830,
+        "voiceCues": 6,
+        "soundCues": 18,
+        "authoredVoiceCues": 6,
+        "authoredSoundCues": 18,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 1,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 6,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 0,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-JHW0-05",
+      "label": "Fuku-san's Move Training — Sequence 5",
+      "packageId": "jhw0",
+      "programId": "preview-s1-jhw0-05",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [],
+      "coverage": {
+        "bundledAssetCount": 45,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 798,
+        "playbackTicks": 798,
+        "actorCount": 2,
+        "motionApplications": 1323,
+        "transformApplications": 1596,
+        "cameraFrames": 798,
+        "voiceCues": 5,
+        "soundCues": 14,
+        "authoredVoiceCues": 5,
+        "authoredSoundCues": 14,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 1,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 5,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 0,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-JHW0-06",
+      "label": "Fuku-san's Move Training — Sequence 6",
+      "packageId": "jhw0",
+      "programId": "preview-s1-jhw0-06",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [],
+      "coverage": {
+        "bundledAssetCount": 45,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 500,
+        "playbackTicks": 500,
+        "actorCount": 2,
+        "motionApplications": 1000,
+        "transformApplications": 1000,
+        "cameraFrames": 500,
+        "voiceCues": 5,
+        "soundCues": 14,
+        "authoredVoiceCues": 5,
+        "authoredSoundCues": 14,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 1,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 5,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 0,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-JHW0-07",
+      "label": "Fuku-san's Move Training — Sequence 7",
+      "packageId": "jhw0",
+      "programId": "preview-s1-jhw0-07",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [],
+      "coverage": {
+        "bundledAssetCount": 45,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 830,
+        "playbackTicks": 830,
+        "actorCount": 2,
+        "motionApplications": 1660,
+        "transformApplications": 1660,
+        "cameraFrames": 830,
+        "voiceCues": 6,
+        "soundCues": 15,
+        "authoredVoiceCues": 6,
+        "authoredSoundCues": 15,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 1,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 6,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 0,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-JHW0-08",
+      "label": "Fuku-san's Move Training — Sequence 8",
+      "packageId": "jhw0",
+      "programId": "preview-s1-jhw0-08",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [],
+      "coverage": {
+        "bundledAssetCount": 45,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 910,
+        "playbackTicks": 910,
+        "actorCount": 2,
+        "motionApplications": 1636,
+        "transformApplications": 1820,
+        "cameraFrames": 910,
+        "voiceCues": 5,
+        "soundCues": 20,
+        "authoredVoiceCues": 5,
+        "authoredSoundCues": 20,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 1,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 5,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 0,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-MSKA-01",
+      "label": "Fuku-san — Iwao's Death",
+      "packageId": "mska",
+      "programId": "preview-s1-mska-01",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [],
+      "coverage": {
+        "bundledAssetCount": 37,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 775,
+        "playbackTicks": 775,
+        "actorCount": 2,
+        "motionApplications": 1516,
+        "transformApplications": 1550,
+        "cameraFrames": 775,
+        "voiceCues": 5,
+        "soundCues": 10,
+        "authoredVoiceCues": 5,
+        "authoredSoundCues": 10,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 1,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 5,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 0,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-KAKG-01",
+      "label": "Fuku-san — Ryo's Resolve",
+      "packageId": "kakg",
+      "programId": "preview-s1-kakg-01",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [],
+      "coverage": {
+        "bundledAssetCount": 39,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 2000,
+        "playbackTicks": 2000,
+        "actorCount": 2,
+        "motionApplications": 3836,
+        "transformApplications": 4000,
+        "cameraFrames": 2000,
+        "voiceCues": 22,
+        "soundCues": 20,
+        "authoredVoiceCues": 22,
+        "authoredSoundCues": 20,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 2,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 22,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 3,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 0,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-KAKG-02",
+      "label": "Ine-san — Promise to Iwao",
+      "packageId": "kakg",
+      "programId": "preview-s1-kakg-02",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [],
+      "coverage": {
+        "bundledAssetCount": 39,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 1031,
+        "playbackTicks": 1031,
+        "actorCount": 2,
+        "motionApplications": 2048,
+        "transformApplications": 2062,
+        "cameraFrames": 1031,
+        "voiceCues": 9,
+        "soundCues": 12,
+        "authoredVoiceCues": 9,
+        "authoredSoundCues": 12,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 2,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 9,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 3,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 0,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-BUSS-01",
+      "label": "Bus to New Yokosuka Harbor — Boarding A",
+      "packageId": "buss",
+      "programId": "preview-s1-buss-01",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "no-authored-voice-cues",
+          "severity": "informational"
+        },
+        {
+          "kind": "no-explicit-package-music-binding",
+          "severity": "review"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 6,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 325,
+        "playbackTicks": 325,
+        "actorCount": 3,
+        "motionApplications": 394,
+        "transformApplications": 975,
+        "cameraFrames": 325,
+        "voiceCues": 0,
+        "soundCues": 8,
+        "authoredVoiceCues": 0,
+        "authoredSoundCues": 8,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 0,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 0,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 1,
+        "packageActorCount": 1,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-BUSS-02",
+      "label": "Bus to New Yokosuka Harbor — Boarding B",
+      "packageId": "buss",
+      "programId": "preview-s1-buss-02",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "no-authored-voice-cues",
+          "severity": "informational"
+        },
+        {
+          "kind": "no-explicit-package-music-binding",
+          "severity": "review"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 6,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 325,
+        "playbackTicks": 325,
+        "actorCount": 3,
+        "motionApplications": 394,
+        "transformApplications": 975,
+        "cameraFrames": 325,
+        "voiceCues": 0,
+        "soundCues": 8,
+        "authoredVoiceCues": 0,
+        "authoredSoundCues": 8,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 0,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 0,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 1,
+        "packageActorCount": 1,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-BUSS-03",
+      "label": "Bus to New Yokosuka Harbor — Arrival A",
+      "packageId": "buss",
+      "programId": "preview-s1-buss-03",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "no-authored-voice-cues",
+          "severity": "informational"
+        },
+        {
+          "kind": "no-explicit-package-music-binding",
+          "severity": "review"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 6,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 246,
+        "playbackTicks": 246,
+        "actorCount": 3,
+        "motionApplications": 433,
+        "transformApplications": 738,
+        "cameraFrames": 246,
+        "voiceCues": 0,
+        "soundCues": 12,
+        "authoredVoiceCues": 0,
+        "authoredSoundCues": 12,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 0,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 0,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 1,
+        "packageActorCount": 1,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-BUSS-04",
+      "label": "Bus to New Yokosuka Harbor — Arrival B",
+      "packageId": "buss",
+      "programId": "preview-s1-buss-04",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "no-authored-voice-cues",
+          "severity": "informational"
+        },
+        {
+          "kind": "no-explicit-package-music-binding",
+          "severity": "review"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 6,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 246,
+        "playbackTicks": 246,
+        "actorCount": 3,
+        "motionApplications": 433,
+        "transformApplications": 738,
+        "cameraFrames": 246,
+        "voiceCues": 0,
+        "soundCues": 14,
+        "authoredVoiceCues": 0,
+        "authoredSoundCues": 14,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 0,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 0,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 1,
+        "packageActorCount": 1,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-HIHY-01",
+      "label": "Iwao and Young Ryo — The Path",
+      "packageId": "hihy",
+      "programId": "preview-s1-hihy-01",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "no-authored-sound-cues",
+          "severity": "informational"
+        },
+        {
+          "kind": "native-owner-authors-no-cutscene-music",
+          "severity": "informational",
+          "resource": "HIHY",
+          "evidence": "tools/evidence/selectable-cutscene-music-audit.json"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 31,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 2210,
+        "playbackTicks": 2210,
+        "actorCount": 3,
+        "motionApplications": 4160,
+        "transformApplications": 6630,
+        "cameraFrames": 2210,
+        "voiceCues": 13,
+        "soundCues": 0,
+        "authoredVoiceCues": 13,
+        "authoredSoundCues": 0,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 13,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 1,
+        "packageActorCount": 1,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 1
+      }
+    },
+    {
+      "cutsceneId": "S1-CATA1-01",
+      "label": "Megumi and the Kitten",
+      "packageId": "cata1",
+      "programId": "preview-s1-cata1-01",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "voiced-actor-without-detailed-face-presentation",
+          "severity": "review",
+          "actorTags": [
+            "MEGM"
+          ]
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 43,
+        "programActionCount": 15,
+        "activityCount": 3,
+        "playbackActivityCount": 3,
+        "durationFrames": 6911,
+        "playbackTicks": 6911,
+        "actorCount": 10,
+        "motionApplications": 13463,
+        "transformApplications": 41990,
+        "cameraFrames": 6911,
+        "voiceCues": 59,
+        "soundCues": 87,
+        "authoredVoiceCues": 59,
+        "authoredSoundCues": 87,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 1,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 59,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 1,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 10,
+        "packageActorCount": 1,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-EVSN-01",
+      "label": "Nozomi Rescue — Main Route",
+      "packageId": "evsn",
+      "programId": "preview-s1-evsn-01",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "voiced-actor-without-detailed-face-presentation",
+          "severity": "review",
+          "actorTags": [
+            "ENKI",
+            "NGSM",
+            "TTYA"
+          ]
+        },
+        {
+          "kind": "native-reference-has-no-retail-voice-member",
+          "severity": "source-absence",
+          "voices": [
+            {
+              "voiceId": "01NVEA007",
+              "reason": "AUTH references 01NVEA007, but the exact retail 01NVE.AFS directory skips from A006 to A008",
+              "evidence": "tools/evidence/evsn-native-lifecycle.json"
+            },
+            {
+              "voiceId": "01NVED007",
+              "reason": "AUTH references 01NVED007, but the exact retail 01NVE.AFS directory contains D001 through D005 only",
+              "evidence": "tools/evidence/evsn-native-lifecycle.json"
+            },
+            {
+              "voiceId": "01NVED008",
+              "reason": "AUTH references 01NVED008, but the exact retail 01NVE.AFS directory contains D001 through D005 only",
+              "evidence": "tools/evidence/evsn-native-lifecycle.json"
+            }
+          ]
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 42,
+        "programActionCount": 20,
+        "activityCount": 3,
+        "playbackActivityCount": 4,
+        "durationFrames": 2981,
+        "playbackTicks": 4652,
+        "actorCount": 6,
+        "motionApplications": 17740,
+        "transformApplications": 26142,
+        "cameraFrames": 4652,
+        "voiceCues": 53,
+        "soundCues": 120,
+        "authoredVoiceCues": 53,
+        "authoredSoundCues": 120,
+        "silentVoiceCueCount": 4,
+        "musicTrackCount": 1,
+        "faceClipCues": 31,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 53,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 1,
+        "packageActorCount": 1,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-EVSN-02",
+      "label": "Nozomi Rescue — Alternate Lead-in",
+      "packageId": "evsn",
+      "programId": "preview-s1-evsn-02",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "voiced-actor-without-detailed-face-presentation",
+          "severity": "review",
+          "actorTags": [
+            "ENKI",
+            "NGSM",
+            "TTYA"
+          ]
+        },
+        {
+          "kind": "native-reference-has-no-retail-voice-member",
+          "severity": "source-absence",
+          "voices": [
+            {
+              "voiceId": "01NVEA007",
+              "reason": "AUTH references 01NVEA007, but the exact retail 01NVE.AFS directory skips from A006 to A008",
+              "evidence": "tools/evidence/evsn-native-lifecycle.json"
+            },
+            {
+              "voiceId": "01NVED007",
+              "reason": "AUTH references 01NVED007, but the exact retail 01NVE.AFS directory contains D001 through D005 only",
+              "evidence": "tools/evidence/evsn-native-lifecycle.json"
+            },
+            {
+              "voiceId": "01NVED008",
+              "reason": "AUTH references 01NVED008, but the exact retail 01NVE.AFS directory contains D001 through D005 only",
+              "evidence": "tools/evidence/evsn-native-lifecycle.json"
+            }
+          ]
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 42,
+        "programActionCount": 20,
+        "activityCount": 3,
+        "playbackActivityCount": 4,
+        "durationFrames": 2971,
+        "playbackTicks": 4642,
+        "actorCount": 6,
+        "motionApplications": 17730,
+        "transformApplications": 26112,
+        "cameraFrames": 4642,
+        "voiceCues": 53,
+        "soundCues": 120,
+        "authoredVoiceCues": 53,
+        "authoredSoundCues": 120,
+        "silentVoiceCueCount": 4,
+        "musicTrackCount": 1,
+        "faceClipCues": 31,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 53,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 1,
+        "packageActorCount": 1,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-BEBF-01",
+      "label": "Ryo's Nightmare — Shenhua's Warning",
+      "packageId": "bebf",
+      "programId": "preview-s1-bebf-01",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "native-reference-has-no-retail-voice-member",
+          "severity": "source-absence",
+          "voices": [
+            {
+              "voiceId": "01BEDBA004",
+              "reason": "AUTH references 01BEDBA004, but the exact retail 01BEDB.AFS directory contains only A001 through A003 and B001 through B003",
+              "evidence": "tools/evidence/bebf-native-lifecycle.json"
+            }
+          ]
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 40,
+        "programActionCount": 30,
+        "activityCount": 4,
+        "playbackActivityCount": 6,
+        "durationFrames": 2030,
+        "playbackTicks": 2660,
+        "actorCount": 2,
+        "motionApplications": 2440,
+        "transformApplications": 2660,
+        "cameraFrames": 2660,
+        "voiceCues": 12,
+        "soundCues": 8,
+        "authoredVoiceCues": 12,
+        "authoredSoundCues": 8,
+        "silentVoiceCueCount": 2,
+        "musicTrackCount": 1,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 12,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 0,
+        "packageActorCount": 1,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-KKYA-01",
+      "label": "Dream Vision — Phoenix Mirror",
+      "packageId": "kkya",
+      "programId": "preview-s1-kkya-01",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "no-authored-voice-cues",
+          "severity": "informational"
+        },
+        {
+          "kind": "no-authored-sound-cues",
+          "severity": "informational"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 55,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 1100,
+        "playbackTicks": 1100,
+        "actorCount": 1,
+        "motionApplications": 0,
+        "transformApplications": 1100,
+        "cameraFrames": 1100,
+        "voiceCues": 0,
+        "soundCues": 0,
+        "authoredVoiceCues": 0,
+        "authoredSoundCues": 0,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 1,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 0,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 0,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 3,
+        "packageActorCount": 0,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-KKYB-01",
+      "label": "Dream Vision — The Two Mirrors",
+      "packageId": "kkyb",
+      "programId": "preview-s1-kkyb-01",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "no-authored-voice-cues",
+          "severity": "informational"
+        },
+        {
+          "kind": "no-authored-sound-cues",
+          "severity": "informational"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 55,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 900,
+        "playbackTicks": 900,
+        "actorCount": 3,
+        "motionApplications": 0,
+        "transformApplications": 2700,
+        "cameraFrames": 900,
+        "voiceCues": 0,
+        "soundCues": 0,
+        "authoredVoiceCues": 0,
+        "authoredSoundCues": 0,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 1,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 0,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 901,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 0,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 4,
+        "packageActorCount": 1,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-KKYC-01",
+      "label": "Dream Vision — Shenhua",
+      "packageId": "kkyc",
+      "programId": "preview-s1-kkyc-01",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "no-authored-voice-cues",
+          "severity": "informational"
+        },
+        {
+          "kind": "no-authored-sound-cues",
+          "severity": "informational"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 55,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 1100,
+        "playbackTicks": 1100,
+        "actorCount": 1,
+        "motionApplications": 795,
+        "transformApplications": 1100,
+        "cameraFrames": 1100,
+        "voiceCues": 0,
+        "soundCues": 0,
+        "authoredVoiceCues": 0,
+        "authoredSoundCues": 0,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 1,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 0,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 1,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 0,
+        "packageActorCount": 1,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-KKYD-01",
+      "label": "Dream Vision — Shenhua and the Stone",
+      "packageId": "kkyd",
+      "programId": "preview-s1-kkyd-01",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "no-authored-voice-cues",
+          "severity": "informational"
+        },
+        {
+          "kind": "no-authored-sound-cues",
+          "severity": "informational"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 55,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 1260,
+        "playbackTicks": 1260,
+        "actorCount": 2,
+        "motionApplications": 1024,
+        "transformApplications": 2520,
+        "cameraFrames": 1260,
+        "voiceCues": 0,
+        "soundCues": 0,
+        "authoredVoiceCues": 0,
+        "authoredSoundCues": 0,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 1,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 0,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 1,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 2,
+        "packageActorCount": 1,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-KKYE-01",
+      "label": "Dream Vision — Shenhua and the Hawk",
+      "packageId": "kkye",
+      "programId": "preview-s1-kkye-01",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "no-authored-voice-cues",
+          "severity": "informational"
+        },
+        {
+          "kind": "no-authored-sound-cues",
+          "severity": "informational"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 55,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 1000,
+        "playbackTicks": 1000,
+        "actorCount": 3,
+        "motionApplications": 999,
+        "transformApplications": 3000,
+        "cameraFrames": 1000,
+        "voiceCues": 0,
+        "soundCues": 0,
+        "authoredVoiceCues": 0,
+        "authoredSoundCues": 0,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 1,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 0,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 1001,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 1,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 2,
+        "packageActorCount": 2,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-KKYF-01",
+      "label": "Dream Vision — Lan Di",
+      "packageId": "kkyf",
+      "programId": "preview-s1-kkyf-01",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "no-authored-voice-cues",
+          "severity": "informational"
+        },
+        {
+          "kind": "no-authored-sound-cues",
+          "severity": "informational"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 55,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 240,
+        "playbackTicks": 240,
+        "actorCount": 2,
+        "motionApplications": 237,
+        "transformApplications": 480,
+        "cameraFrames": 240,
+        "voiceCues": 0,
+        "soundCues": 0,
+        "authoredVoiceCues": 0,
+        "authoredSoundCues": 0,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 1,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 0,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 1,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 1,
+        "packageActorCount": 1,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    },
+    {
+      "cutsceneId": "S1-SAKR-01",
+      "label": "Iwao and Young Ryo — Training Memory",
+      "packageId": "sakr",
+      "programId": "preview-s1-sakr-01",
+      "programKind": "activity-preview",
+      "status": "passed",
+      "stages": [
+        "package-assets",
+        "program-structure",
+        "music-bindings",
+        "preview-program-playback"
+      ],
+      "fidelityFindings": [
+        {
+          "kind": "native-owner-authors-no-cutscene-music",
+          "severity": "informational",
+          "resource": "SAKR",
+          "evidence": "tools/evidence/selectable-cutscene-music-audit.json"
+        }
+      ],
+      "coverage": {
+        "bundledAssetCount": 27,
+        "programActionCount": 5,
+        "activityCount": 1,
+        "playbackActivityCount": 1,
+        "durationFrames": 1559,
+        "playbackTicks": 1559,
+        "actorCount": 2,
+        "motionApplications": 2418,
+        "transformApplications": 3118,
+        "cameraFrames": 1559,
+        "voiceCues": 12,
+        "soundCues": 6,
+        "authoredVoiceCues": 12,
+        "authoredSoundCues": 6,
+        "silentVoiceCueCount": 0,
+        "musicTrackCount": 0,
+        "faceClipCues": 0,
+        "faceGazeCues": 0,
+        "voiceFaceCues": 12,
+        "handPoseCues": 0,
+        "bodyHandPoseCues": 0,
+        "nodeMotionFrames": 0,
+        "actorLookPointCues": 0,
+        "facialAssetActorCount": 2,
+        "handAssetActorCount": 0,
+        "sceneObjectCount": 0,
+        "packageActorCount": 2,
+        "attachedObjectCount": 0,
+        "mapLayerCount": 0,
+        "scrollSpriteCount": 0
+      }
+    }
+  ]
+}

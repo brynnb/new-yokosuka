@@ -1,0 +1,1174 @@
+{
+  "schema": "new-yokosuka-scheduled-actor-scene-object-evidence-v1",
+  "generatedFrom": [
+    "tools/evidence/scheduled-actor-capture-inventory.json",
+    "tools/evidence/scheduled-actors.json",
+    ".disc-work/exact/1ST_READ.BIN"
+  ],
+  "evidenceBoundary": "The scheduler dispatcher calls operation-0x2a handler 0x0c0f9efa. It stores the four-byte scene-object code at actor +0xc8 and the control at +0xd4, then calls 0x0c0f9c90 with object code, control + 4, and the scheduler clock. Modes 4 and 5 select the target object's two native position/state slots. The remaining position/facing/two-float interaction payload is retained exactly without assigning an unproved higher-level interaction name. Runtime actors are discovered through relocated PRG1 owner pointers; active records join source operations through the native next-descriptor pointer, never through capture-specific actor addresses.",
+  "nativeEvidence": {
+    "dispatcherAddress": "0x0c119444",
+    "handlerPointerLiteralAddress": "0x0c1197a0",
+    "handlerAddress": "0x0c0f9efa",
+    "sceneObjectStateHandlerAddress": "0x0c0f9c90",
+    "actorObjectCodeOffsetLiteralAddress": "0x0c0f9fda",
+    "actorObjectCodeOffset": "0xc8",
+    "actorControlOffset": "0xd4",
+    "actorNextDescriptorPointerOffset": "0x64",
+    "transitionModeRule": "sceneObjectControlValue + 4"
+  },
+  "summary": {
+    "inventoryCaptureCount": 499,
+    "uniqueCaptureCount": 476,
+    "relevantCaptureCount": 249,
+    "sourceOperationCount": 41,
+    "sourceActorCodeCount": 19,
+    "distinctSceneObjectCodeCount": 16,
+    "sourceControlZeroCount": 21,
+    "sourceControlOneCount": 20,
+    "invalidSourceControlCount": 0,
+    "runtimeActorObservationCount": 3566,
+    "activeRuntimeObservationCount": 4,
+    "exactActiveSourceOperationObservationCount": 4,
+    "unmatchedActiveRuntimeObservationCount": 0,
+    "actorResolutionErrorCount": 0
+  },
+  "sourceOperations": [
+    {
+      "actorCode": "AKSK",
+      "sourceVariantId": "AKSK:0c119848e28ab85966c8d0ee93d8f92c5d002a20d6989ce920af1d2d90ded0a2",
+      "sourceProgramByteSha256": "0c119848e28ab85966c8d0ee93d8f92c5d002a20d6989ce920af1d2d90ded0a2",
+      "operationOffsetFromProgramHeader": 1916,
+      "scheduleTableFileOffset": "0x2bb8",
+      "journeyStartSecond": 32400,
+      "operationFileOffset": "0x323c",
+      "byteLength": 36,
+      "sceneObjectCode": "BS11",
+      "sceneObjectControlValue": 0,
+      "sceneObjectTransitionMode": 4,
+      "interactionRuntimePosition": [
+        -30.100000381469727,
+        0,
+        74.08000183105469
+      ],
+      "interactionFacingFixed": 0,
+      "interactionFacingControlWord": 0,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "4253313100000000cdccf0c100000000f6289442000000000000803f00000000"
+    },
+    {
+      "actorCode": "AKSK",
+      "sourceVariantId": "AKSK:0c119848e28ab85966c8d0ee93d8f92c5d002a20d6989ce920af1d2d90ded0a2",
+      "sourceProgramByteSha256": "0c119848e28ab85966c8d0ee93d8f92c5d002a20d6989ce920af1d2d90ded0a2",
+      "operationOffsetFromProgramHeader": 2368,
+      "scheduleTableFileOffset": "0x2bb8",
+      "journeyStartSecond": 73800,
+      "operationFileOffset": "0x3400",
+      "byteLength": 36,
+      "sceneObjectCode": "BS11",
+      "sceneObjectControlValue": 1,
+      "sceneObjectTransitionMode": 5,
+      "interactionRuntimePosition": [
+        -30.780000686645508,
+        0,
+        74.19999694824219
+      ],
+      "interactionFacingFixed": 0,
+      "interactionFacingControlWord": 0,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "4253313101000000713df6c10000000066669442000000000000803f00000000"
+    },
+    {
+      "actorCode": "AOKI",
+      "sourceVariantId": "AOKI:67575deb7400bfafd7f465ae0bd1f6edb245c546aa1b884fe1bcb1373914c91e",
+      "sourceProgramByteSha256": "67575deb7400bfafd7f465ae0bd1f6edb245c546aa1b884fe1bcb1373914c91e",
+      "operationOffsetFromProgramHeader": 1816,
+      "scheduleTableFileOffset": "0x3924",
+      "journeyStartSecond": 36000,
+      "operationFileOffset": "0x3f44",
+      "byteLength": 36,
+      "sceneObjectCode": "BS03",
+      "sceneObjectControlValue": 0,
+      "sceneObjectTransitionMode": 4,
+      "interactionRuntimePosition": [
+        -67.09980010986328,
+        0.10000000149011612,
+        93.00779724121094
+      ],
+      "interactionFacingFixed": -1092,
+      "interactionFacingControlWord": 64444,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "4253303300000000193386c2cdcccc3dfe03ba42bcfb00000000803f00000000"
+    },
+    {
+      "actorCode": "AOKI",
+      "sourceVariantId": "AOKI:67575deb7400bfafd7f465ae0bd1f6edb245c546aa1b884fe1bcb1373914c91e",
+      "sourceProgramByteSha256": "67575deb7400bfafd7f465ae0bd1f6edb245c546aa1b884fe1bcb1373914c91e",
+      "operationOffsetFromProgramHeader": 1932,
+      "scheduleTableFileOffset": "0x3924",
+      "journeyStartSecond": 72000,
+      "operationFileOffset": "0x3fb8",
+      "byteLength": 36,
+      "sceneObjectCode": "BS03",
+      "sceneObjectControlValue": 1,
+      "sceneObjectTransitionMode": 5,
+      "interactionRuntimePosition": [
+        -67.09980010986328,
+        0.10000000149011612,
+        93.00779724121094
+      ],
+      "interactionFacingFixed": -1092,
+      "interactionFacingControlWord": 64444,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "4253303301000000193386c2cdcccc3dfe03ba42bcfb00000000803f00000000"
+    },
+    {
+      "actorCode": "ASOU",
+      "sourceVariantId": "ASOU:d00bbd8d244e3120768508be3d2d5bb34b357d390c2e6c640ff9ecca42fdf853",
+      "sourceProgramByteSha256": "d00bbd8d244e3120768508be3d2d5bb34b357d390c2e6c640ff9ecca42fdf853",
+      "operationOffsetFromProgramHeader": 1556,
+      "scheduleTableFileOffset": "0x4680",
+      "journeyStartSecond": 25200,
+      "operationFileOffset": "0x4b9c",
+      "byteLength": 36,
+      "sceneObjectCode": "BS13",
+      "sceneObjectControlValue": 0,
+      "sceneObjectTransitionMode": 4,
+      "interactionRuntimePosition": [
+        11.997262001037598,
+        0.10000000149011612,
+        34.18021774291992
+      ],
+      "interactionFacingFixed": 0,
+      "interactionFacingControlWord": 0,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "4253313300000000c9f43f41cdcccc3d8bb80842000000000000803f00000000"
+    },
+    {
+      "actorCode": "ASOU",
+      "sourceVariantId": "ASOU:d00bbd8d244e3120768508be3d2d5bb34b357d390c2e6c640ff9ecca42fdf853",
+      "sourceProgramByteSha256": "d00bbd8d244e3120768508be3d2d5bb34b357d390c2e6c640ff9ecca42fdf853",
+      "operationOffsetFromProgramHeader": 1724,
+      "scheduleTableFileOffset": "0x4680",
+      "journeyStartSecond": 66600,
+      "operationFileOffset": "0x4c44",
+      "byteLength": 36,
+      "sceneObjectCode": "BS13",
+      "sceneObjectControlValue": 1,
+      "sceneObjectTransitionMode": 5,
+      "interactionRuntimePosition": [
+        11.997262001037598,
+        0.10000000149011612,
+        34.18021774291992
+      ],
+      "interactionFacingFixed": 0,
+      "interactionFacingControlWord": 0,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "4253313301000000c9f43f41cdcccc3d8bb80842000000000000803f00000000"
+    },
+    {
+      "actorCode": "ETKO",
+      "sourceVariantId": "ETKO:972e68b16cd4677381287af67a26f33481d0603797dc2a1924cb4ba346c007d9",
+      "sourceProgramByteSha256": "972e68b16cd4677381287af67a26f33481d0603797dc2a1924cb4ba346c007d9",
+      "operationOffsetFromProgramHeader": 444,
+      "scheduleTableFileOffset": "0x12aa8",
+      "journeyStartSecond": 35700,
+      "operationFileOffset": "0x12b3c",
+      "byteLength": 36,
+      "sceneObjectCode": "BS02",
+      "sceneObjectControlValue": 0,
+      "sceneObjectTransitionMode": 4,
+      "interactionRuntimePosition": [
+        -71.5999984741211,
+        0.07240000367164612,
+        78.41999816894531
+      ],
+      "interactionFacingFixed": -32768,
+      "interactionFacingControlWord": 32768,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "425330320000000033338fc27446943d0ad79c42008000000000803f00000000"
+    },
+    {
+      "actorCode": "ETKO",
+      "sourceVariantId": "ETKO:972e68b16cd4677381287af67a26f33481d0603797dc2a1924cb4ba346c007d9",
+      "sourceProgramByteSha256": "972e68b16cd4677381287af67a26f33481d0603797dc2a1924cb4ba346c007d9",
+      "operationOffsetFromProgramHeader": 588,
+      "scheduleTableFileOffset": "0x12aa8",
+      "journeyStartSecond": 72300,
+      "operationFileOffset": "0x12bcc",
+      "byteLength": 36,
+      "sceneObjectCode": "BS02",
+      "sceneObjectControlValue": 1,
+      "sceneObjectTransitionMode": 5,
+      "interactionRuntimePosition": [
+        -71.5999984741211,
+        0.07240000367164612,
+        78.41999816894531
+      ],
+      "interactionFacingFixed": -32768,
+      "interactionFacingControlWord": 32768,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "425330320100000033338fc27446943d0ad79c42008000000000803f00000000"
+    },
+    {
+      "actorCode": "ETKO",
+      "sourceVariantId": "ETKO:972e68b16cd4677381287af67a26f33481d0603797dc2a1924cb4ba346c007d9",
+      "sourceProgramByteSha256": "972e68b16cd4677381287af67a26f33481d0603797dc2a1924cb4ba346c007d9",
+      "operationOffsetFromProgramHeader": 740,
+      "scheduleTableFileOffset": "0x12c30",
+      "journeyStartSecond": 35700,
+      "operationFileOffset": "0x12c64",
+      "byteLength": 36,
+      "sceneObjectCode": "BS02",
+      "sceneObjectControlValue": 0,
+      "sceneObjectTransitionMode": 4,
+      "interactionRuntimePosition": [
+        -71.5999984741211,
+        0.07240000367164612,
+        78.41999816894531
+      ],
+      "interactionFacingFixed": -32768,
+      "interactionFacingControlWord": 32768,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "425330320000000033338fc27446943d0ad79c42008000000000803f00000000"
+    },
+    {
+      "actorCode": "ETKO",
+      "sourceVariantId": "ETKO:972e68b16cd4677381287af67a26f33481d0603797dc2a1924cb4ba346c007d9",
+      "sourceProgramByteSha256": "972e68b16cd4677381287af67a26f33481d0603797dc2a1924cb4ba346c007d9",
+      "operationOffsetFromProgramHeader": 816,
+      "scheduleTableFileOffset": "0x12c30",
+      "journeyStartSecond": 72180,
+      "operationFileOffset": "0x12cb0",
+      "byteLength": 36,
+      "sceneObjectCode": "BS02",
+      "sceneObjectControlValue": 1,
+      "sceneObjectTransitionMode": 5,
+      "interactionRuntimePosition": [
+        -71.5999984741211,
+        0.07240000367164612,
+        78.41999816894531
+      ],
+      "interactionFacingFixed": -32768,
+      "interactionFacingControlWord": 32768,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "425330320100000033338fc27446943d0ad79c42008000000000803f00000000"
+    },
+    {
+      "actorCode": "ETKO",
+      "sourceVariantId": "ETKO:972e68b16cd4677381287af67a26f33481d0603797dc2a1924cb4ba346c007d9",
+      "sourceProgramByteSha256": "972e68b16cd4677381287af67a26f33481d0603797dc2a1924cb4ba346c007d9",
+      "operationOffsetFromProgramHeader": 972,
+      "scheduleTableFileOffset": "0x12d18",
+      "journeyStartSecond": 30600,
+      "operationFileOffset": "0x12d4c",
+      "byteLength": 36,
+      "sceneObjectCode": "BS02",
+      "sceneObjectControlValue": 0,
+      "sceneObjectTransitionMode": 4,
+      "interactionRuntimePosition": [
+        -71.5999984741211,
+        0.07240000367164612,
+        78.41999816894531
+      ],
+      "interactionFacingFixed": -32768,
+      "interactionFacingControlWord": 32768,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "425330320000000033338fc27446943d0ad79c42008000000000803f00000000"
+    },
+    {
+      "actorCode": "ETKO",
+      "sourceVariantId": "ETKO:972e68b16cd4677381287af67a26f33481d0603797dc2a1924cb4ba346c007d9",
+      "sourceProgramByteSha256": "972e68b16cd4677381287af67a26f33481d0603797dc2a1924cb4ba346c007d9",
+      "operationOffsetFromProgramHeader": 1032,
+      "scheduleTableFileOffset": "0x12d18",
+      "journeyStartSecond": 64800,
+      "operationFileOffset": "0x12d88",
+      "byteLength": 36,
+      "sceneObjectCode": "BS02",
+      "sceneObjectControlValue": 1,
+      "sceneObjectTransitionMode": 5,
+      "interactionRuntimePosition": [
+        -71.5999984741211,
+        0.07240000367164612,
+        78.41999816894531
+      ],
+      "interactionFacingFixed": -32768,
+      "interactionFacingControlWord": 32768,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "425330320100000033338fc27446943d0ad79c42008000000000803f00000000"
+    },
+    {
+      "actorCode": "FKSM",
+      "sourceVariantId": "FKSM:4d594ac0fb9bb00cc6888ff93fa46220e900f2366d5107372bf7e8c22688823a",
+      "sourceProgramByteSha256": "4d594ac0fb9bb00cc6888ff93fa46220e900f2366d5107372bf7e8c22688823a",
+      "operationOffsetFromProgramHeader": 1288,
+      "scheduleTableFileOffset": "0x12eb0",
+      "journeyStartSecond": 35940,
+      "operationFileOffset": "0x132c0",
+      "byteLength": 36,
+      "sceneObjectCode": "BS05",
+      "sceneObjectControlValue": 0,
+      "sceneObjectTransitionMode": 4,
+      "interactionRuntimePosition": [
+        -50.59469985961914,
+        0,
+        50.42729949951172
+      ],
+      "interactionFacingFixed": 2912,
+      "interactionFacingControlWord": 2912,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "4253303500000000f9604ac2000000008eb54942600b00000000803f00000000"
+    },
+    {
+      "actorCode": "FKSM",
+      "sourceVariantId": "FKSM:4d594ac0fb9bb00cc6888ff93fa46220e900f2366d5107372bf7e8c22688823a",
+      "sourceProgramByteSha256": "4d594ac0fb9bb00cc6888ff93fa46220e900f2366d5107372bf7e8c22688823a",
+      "operationOffsetFromProgramHeader": 1380,
+      "scheduleTableFileOffset": "0x12eb0",
+      "journeyStartSecond": 72000,
+      "operationFileOffset": "0x1331c",
+      "byteLength": 36,
+      "sceneObjectCode": "BS05",
+      "sceneObjectControlValue": 1,
+      "sceneObjectTransitionMode": 5,
+      "interactionRuntimePosition": [
+        -50.59469985961914,
+        0,
+        50.42729949951172
+      ],
+      "interactionFacingFixed": 2912,
+      "interactionFacingControlWord": 2912,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "4253303501000000f9604ac2000000008eb54942600b00000000803f00000000"
+    },
+    {
+      "actorCode": "HATR",
+      "sourceVariantId": "HATR:5441a06e2cdbfaed3e1d96c207e405cdf132815aca8d4c3cc9ddc3a71d80875f",
+      "sourceProgramByteSha256": "5441a06e2cdbfaed3e1d96c207e405cdf132815aca8d4c3cc9ddc3a71d80875f",
+      "operationOffsetFromProgramHeader": 380,
+      "scheduleTableFileOffset": "0x16020",
+      "journeyStartSecond": 25200,
+      "operationFileOffset": "0x160a4",
+      "byteLength": 36,
+      "sceneObjectCode": "BS07",
+      "sceneObjectControlValue": 0,
+      "sceneObjectTransitionMode": 4,
+      "interactionRuntimePosition": [
+        -97.9000015258789,
+        0.07000000029802322,
+        61.18000030517578
+      ],
+      "interactionFacingFixed": -28216,
+      "interactionFacingControlWord": 37320,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "4253303700000000cdccc3c2295c8f3d52b87442c89100000000803f00000000"
+    },
+    {
+      "actorCode": "HATR",
+      "sourceVariantId": "HATR:5441a06e2cdbfaed3e1d96c207e405cdf132815aca8d4c3cc9ddc3a71d80875f",
+      "sourceProgramByteSha256": "5441a06e2cdbfaed3e1d96c207e405cdf132815aca8d4c3cc9ddc3a71d80875f",
+      "operationOffsetFromProgramHeader": 1424,
+      "scheduleTableFileOffset": "0x16020",
+      "journeyStartSecond": 68400,
+      "operationFileOffset": "0x164b8",
+      "byteLength": 36,
+      "sceneObjectCode": "BS07",
+      "sceneObjectControlValue": 1,
+      "sceneObjectTransitionMode": 5,
+      "interactionRuntimePosition": [
+        -97.9000015258789,
+        0.07000000029802322,
+        61.18000030517578
+      ],
+      "interactionFacingFixed": -28216,
+      "interactionFacingControlWord": 37320,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "4253303701000000cdccc3c2295c8f3d52b87442c89100000000803f00000000"
+    },
+    {
+      "actorCode": "HIRA",
+      "sourceVariantId": "HIRA:47a78e05f812d6c0c258410fb872a361accc9e7ebf909a9729845588ca92391f",
+      "sourceProgramByteSha256": "47a78e05f812d6c0c258410fb872a361accc9e7ebf909a9729845588ca92391f",
+      "operationOffsetFromProgramHeader": 1448,
+      "scheduleTableFileOffset": "0x179e4",
+      "journeyStartSecond": 25200,
+      "operationFileOffset": "0x17e94",
+      "byteLength": 36,
+      "sceneObjectCode": "BS04",
+      "sceneObjectControlValue": 0,
+      "sceneObjectTransitionMode": 4,
+      "interactionRuntimePosition": [
+        39.840599060058594,
+        0.07240000367164612,
+        10.177200317382812
+      ],
+      "interactionFacingFixed": 18386,
+      "interactionFacingControlWord": 18386,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "4253303400000000c65c1f427446943dd0d52241d24700000000803f00000000"
+    },
+    {
+      "actorCode": "HIRA",
+      "sourceVariantId": "HIRA:47a78e05f812d6c0c258410fb872a361accc9e7ebf909a9729845588ca92391f",
+      "sourceProgramByteSha256": "47a78e05f812d6c0c258410fb872a361accc9e7ebf909a9729845588ca92391f",
+      "operationOffsetFromProgramHeader": 2140,
+      "scheduleTableFileOffset": "0x179e4",
+      "journeyStartSecond": 66600,
+      "operationFileOffset": "0x18148",
+      "byteLength": 36,
+      "sceneObjectCode": "BS04",
+      "sceneObjectControlValue": 1,
+      "sceneObjectTransitionMode": 5,
+      "interactionRuntimePosition": [
+        39.840599060058594,
+        0.07240000367164612,
+        10.177200317382812
+      ],
+      "interactionFacingFixed": 18386,
+      "interactionFacingControlWord": 18386,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "4253303401000000c65c1f427446943dd0d52241d24700000000803f00000000"
+    },
+    {
+      "actorCode": "HOND",
+      "sourceVariantId": "HOND:141aab959fb18465983941d2b6d95887b91945f104a892ec21b96dcc1b34df81",
+      "sourceProgramByteSha256": "141aab959fb18465983941d2b6d95887b91945f104a892ec21b96dcc1b34df81",
+      "operationOffsetFromProgramHeader": 356,
+      "scheduleTableFileOffset": "0x19018",
+      "journeyStartSecond": 36000,
+      "operationFileOffset": "0x19084",
+      "byteLength": 36,
+      "sceneObjectCode": "BS06",
+      "sceneObjectControlValue": 0,
+      "sceneObjectTransitionMode": 4,
+      "interactionRuntimePosition": [
+        -92.36000061035156,
+        0,
+        60.369998931884766
+      ],
+      "interactionFacingFixed": -29309,
+      "interactionFacingControlWord": 36227,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "425330360000000052b8b8c200000000e17a7142838d00000000803f00000000"
+    },
+    {
+      "actorCode": "HOND",
+      "sourceVariantId": "HOND:141aab959fb18465983941d2b6d95887b91945f104a892ec21b96dcc1b34df81",
+      "sourceProgramByteSha256": "141aab959fb18465983941d2b6d95887b91945f104a892ec21b96dcc1b34df81",
+      "operationOffsetFromProgramHeader": 448,
+      "scheduleTableFileOffset": "0x19018",
+      "journeyStartSecond": 72000,
+      "operationFileOffset": "0x190e0",
+      "byteLength": 36,
+      "sceneObjectCode": "BS06",
+      "sceneObjectControlValue": 1,
+      "sceneObjectTransitionMode": 5,
+      "interactionRuntimePosition": [
+        -92.92179870605469,
+        0,
+        58.52880096435547
+      ],
+      "interactionFacingFixed": -29309,
+      "interactionFacingControlWord": 36227,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "4253303601000000f6d7b9c2000000007e1d6a42838d00000000803f00000000"
+    },
+    {
+      "actorCode": "HRSK",
+      "sourceVariantId": "HRSK:c15070554728d5b8095f3394936d073b013e76364c9cc896307b69d45c8821a6",
+      "sourceProgramByteSha256": "c15070554728d5b8095f3394936d073b013e76364c9cc896307b69d45c8821a6",
+      "operationOffsetFromProgramHeader": 696,
+      "scheduleTableFileOffset": "0x1db18",
+      "journeyStartSecond": 82500,
+      "operationFileOffset": "0x1dc48",
+      "byteLength": 36,
+      "sceneObjectCode": "BS01",
+      "sceneObjectControlValue": 1,
+      "sceneObjectTransitionMode": 5,
+      "interactionRuntimePosition": [
+        -61.91999816894531,
+        0.07000000029802322,
+        71.9000015258789
+      ],
+      "interactionFacingFixed": -728,
+      "interactionFacingControlWord": 64808,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "425330310100000014ae77c2295c8f3dcdcc8f4228fd00000000803f00000000"
+    },
+    {
+      "actorCode": "HRSK",
+      "sourceVariantId": "HRSK:c15070554728d5b8095f3394936d073b013e76364c9cc896307b69d45c8821a6",
+      "sourceProgramByteSha256": "c15070554728d5b8095f3394936d073b013e76364c9cc896307b69d45c8821a6",
+      "operationOffsetFromProgramHeader": 1116,
+      "scheduleTableFileOffset": "0x1dcd4",
+      "journeyStartSecond": 82500,
+      "operationFileOffset": "0x1ddec",
+      "byteLength": 36,
+      "sceneObjectCode": "BS01",
+      "sceneObjectControlValue": 1,
+      "sceneObjectTransitionMode": 5,
+      "interactionRuntimePosition": [
+        -61.91999816894531,
+        0.07000000029802322,
+        71.9000015258789
+      ],
+      "interactionFacingFixed": -728,
+      "interactionFacingControlWord": 64808,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "425330310100000014ae77c2295c8f3dcdcc8f4228fd00000000803f00000000"
+    },
+    {
+      "actorCode": "ITOI",
+      "sourceVariantId": "ITOI:950706276446e27ea6b2ce922b4f757a9137686a4122ec6542fce0d4fba127bf",
+      "sourceProgramByteSha256": "950706276446e27ea6b2ce922b4f757a9137686a4122ec6542fce0d4fba127bf",
+      "operationOffsetFromProgramHeader": 2420,
+      "scheduleTableFileOffset": "0x202ac",
+      "journeyStartSecond": 36000,
+      "operationFileOffset": "0x20b28",
+      "byteLength": 36,
+      "sceneObjectCode": "BS10",
+      "sceneObjectControlValue": 0,
+      "sceneObjectTransitionMode": 4,
+      "interactionRuntimePosition": [
+        -8.906900405883789,
+        0.07240000367164612,
+        24.80340003967285
+      ],
+      "interactionFacingFixed": -32768,
+      "interactionFacingControlWord": 32768,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "4253313000000000aa820ec17446943d5d6dc641008000000000803f00000000"
+    },
+    {
+      "actorCode": "ITOI",
+      "sourceVariantId": "ITOI:950706276446e27ea6b2ce922b4f757a9137686a4122ec6542fce0d4fba127bf",
+      "sourceProgramByteSha256": "950706276446e27ea6b2ce922b4f757a9137686a4122ec6542fce0d4fba127bf",
+      "operationOffsetFromProgramHeader": 2572,
+      "scheduleTableFileOffset": "0x202ac",
+      "journeyStartSecond": 72000,
+      "operationFileOffset": "0x20bc0",
+      "byteLength": 36,
+      "sceneObjectCode": "BS10",
+      "sceneObjectControlValue": 1,
+      "sceneObjectTransitionMode": 5,
+      "interactionRuntimePosition": [
+        -8.906900405883789,
+        0.07240000367164612,
+        24.80340003967285
+      ],
+      "interactionFacingFixed": -32768,
+      "interactionFacingControlWord": 32768,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "4253313001000000aa820ec17446943d5d6dc641008000000000803f00000000"
+    },
+    {
+      "actorCode": "IZWA",
+      "sourceVariantId": "IZWA:0562ac2fb420c3dc21d741d955bbe80f2b4a72d546ae74b3c27f01cba40dbb2f",
+      "sourceProgramByteSha256": "0562ac2fb420c3dc21d741d955bbe80f2b4a72d546ae74b3c27f01cba40dbb2f",
+      "operationOffsetFromProgramHeader": 2712,
+      "scheduleTableFileOffset": "0x20df4",
+      "journeyStartSecond": 31200,
+      "operationFileOffset": "0x21794",
+      "byteLength": 36,
+      "sceneObjectCode": "BS15",
+      "sceneObjectControlValue": 0,
+      "sceneObjectTransitionMode": 4,
+      "interactionRuntimePosition": [
+        -50.81999969482422,
+        0,
+        41.09000015258789
+      ],
+      "interactionFacingFixed": 10376,
+      "interactionFacingControlWord": 10376,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "4253313500000000ae474bc200000000295c2442882800000000803f00000000"
+    },
+    {
+      "actorCode": "IZWA",
+      "sourceVariantId": "IZWA:0562ac2fb420c3dc21d741d955bbe80f2b4a72d546ae74b3c27f01cba40dbb2f",
+      "sourceProgramByteSha256": "0562ac2fb420c3dc21d741d955bbe80f2b4a72d546ae74b3c27f01cba40dbb2f",
+      "operationOffsetFromProgramHeader": 3680,
+      "scheduleTableFileOffset": "0x20df4",
+      "journeyStartSecond": 73200,
+      "operationFileOffset": "0x21b5c",
+      "byteLength": 36,
+      "sceneObjectCode": "BS15",
+      "sceneObjectControlValue": 1,
+      "sceneObjectTransitionMode": 5,
+      "interactionRuntimePosition": [
+        -51.15999984741211,
+        0,
+        41.86000061035156
+      ],
+      "interactionFacingFixed": 5643,
+      "interactionFacingControlWord": 5643,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "4253313501000000d7a34cc200000000a47027420b1600000000803f00000000"
+    },
+    {
+      "actorCode": "KURI",
+      "sourceVariantId": "KURI:87bdf47792024712cc6a8ad92f0247cf444c2e672b11127c9ddf77c4ec6c6634",
+      "sourceProgramByteSha256": "87bdf47792024712cc6a8ad92f0247cf444c2e672b11127c9ddf77c4ec6c6634",
+      "operationOffsetFromProgramHeader": 1412,
+      "scheduleTableFileOffset": "0x343f0",
+      "journeyStartSecond": 32400,
+      "operationFileOffset": "0x3487c",
+      "byteLength": 36,
+      "sceneObjectCode": "BS09",
+      "sceneObjectControlValue": 0,
+      "sceneObjectTransitionMode": 4,
+      "interactionRuntimePosition": [
+        -14.729999542236328,
+        0.07240000367164612,
+        29.459999084472656
+      ],
+      "interactionFacingFixed": 6371,
+      "interactionFacingControlWord": 6371,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "425330390000000014ae6bc17446943d14aeeb41e31800000000803f00000000"
+    },
+    {
+      "actorCode": "KURI",
+      "sourceVariantId": "KURI:87bdf47792024712cc6a8ad92f0247cf444c2e672b11127c9ddf77c4ec6c6634",
+      "sourceProgramByteSha256": "87bdf47792024712cc6a8ad92f0247cf444c2e672b11127c9ddf77c4ec6c6634",
+      "operationOffsetFromProgramHeader": 1588,
+      "scheduleTableFileOffset": "0x343f0",
+      "journeyStartSecond": 75300,
+      "operationFileOffset": "0x3492c",
+      "byteLength": 36,
+      "sceneObjectCode": "BS09",
+      "sceneObjectControlValue": 1,
+      "sceneObjectTransitionMode": 5,
+      "interactionRuntimePosition": [
+        -14.729999542236328,
+        0.07240000367164612,
+        29.459999084472656
+      ],
+      "interactionFacingFixed": 6371,
+      "interactionFacingControlWord": 6371,
+      "interactionControlFloats": [
+        0,
+        0
+      ],
+      "rawOperands": "425330390100000014ae6bc17446943d14aeeb41e31800000000000000000000"
+    },
+    {
+      "actorCode": "MASR",
+      "sourceVariantId": "MASR:bded4b43e63d4d0127490d870942768be99bb26148382c77e6e9aef85e03efe8",
+      "sourceProgramByteSha256": "bded4b43e63d4d0127490d870942768be99bb26148382c77e6e9aef85e03efe8",
+      "operationOffsetFromProgramHeader": 1968,
+      "scheduleTableFileOffset": "0x3b2c0",
+      "journeyStartSecond": 25200,
+      "operationFileOffset": "0x3b978",
+      "byteLength": 36,
+      "sceneObjectCode": "BS16",
+      "sceneObjectControlValue": 0,
+      "sceneObjectTransitionMode": 4,
+      "interactionRuntimePosition": [
+        -70.19999694824219,
+        0.07240000367164612,
+        67.05000305175781
+      ],
+      "interactionFacingFixed": 15473,
+      "interactionFacingControlWord": 15473,
+      "interactionControlFloats": [
+        0,
+        0
+      ],
+      "rawOperands": "425331360000000066668cc27446943d9a198642713c00000000000000000000"
+    },
+    {
+      "actorCode": "MASR",
+      "sourceVariantId": "MASR:bded4b43e63d4d0127490d870942768be99bb26148382c77e6e9aef85e03efe8",
+      "sourceProgramByteSha256": "bded4b43e63d4d0127490d870942768be99bb26148382c77e6e9aef85e03efe8",
+      "operationOffsetFromProgramHeader": 2072,
+      "scheduleTableFileOffset": "0x3b2c0",
+      "journeyStartSecond": 30660,
+      "operationFileOffset": "0x3b9e0",
+      "byteLength": 36,
+      "sceneObjectCode": "BS16",
+      "sceneObjectControlValue": 0,
+      "sceneObjectTransitionMode": 4,
+      "interactionRuntimePosition": [
+        -70.19999694824219,
+        0.07240000367164612,
+        67.05000305175781
+      ],
+      "interactionFacingFixed": 15473,
+      "interactionFacingControlWord": 15473,
+      "interactionControlFloats": [
+        0,
+        0
+      ],
+      "rawOperands": "425331360000000066668cc27446943d9a198642713c00000000000000000000"
+    },
+    {
+      "actorCode": "MASR",
+      "sourceVariantId": "MASR:bded4b43e63d4d0127490d870942768be99bb26148382c77e6e9aef85e03efe8",
+      "sourceProgramByteSha256": "bded4b43e63d4d0127490d870942768be99bb26148382c77e6e9aef85e03efe8",
+      "operationOffsetFromProgramHeader": 2308,
+      "scheduleTableFileOffset": "0x3b2c0",
+      "journeyStartSecond": 66000,
+      "operationFileOffset": "0x3bacc",
+      "byteLength": 36,
+      "sceneObjectCode": "BS16",
+      "sceneObjectControlValue": 1,
+      "sceneObjectTransitionMode": 5,
+      "interactionRuntimePosition": [
+        -72.11385345458984,
+        0.07240000367164612,
+        66.85240173339844
+      ],
+      "interactionFacingFixed": 0,
+      "interactionFacingControlWord": 0,
+      "interactionControlFloats": [
+        0,
+        0
+      ],
+      "rawOperands": "42533136010000004b3a90c27446943d6eb48542000000000000000000000000"
+    },
+    {
+      "actorCode": "SNKC",
+      "sourceVariantId": "SNKC:61407a2d771e1c6533d483a1c8efd654e75e281d8d6ea3f7ddf3bd619f2bf5c5",
+      "sourceProgramByteSha256": "61407a2d771e1c6533d483a1c8efd654e75e281d8d6ea3f7ddf3bd619f2bf5c5",
+      "operationOffsetFromProgramHeader": 4040,
+      "scheduleTableFileOffset": "0x6939c",
+      "journeyStartSecond": 30600,
+      "operationFileOffset": "0x6a26c",
+      "byteLength": 36,
+      "sceneObjectCode": "BS14",
+      "sceneObjectControlValue": 0,
+      "sceneObjectTransitionMode": 4,
+      "interactionRuntimePosition": [
+        -35.060001373291016,
+        0,
+        39.58000183105469
+      ],
+      "interactionFacingFixed": 546,
+      "interactionFacingControlWord": 546,
+      "interactionControlFloats": [
+        0,
+        0
+      ],
+      "rawOperands": "4253313400000000713d0cc200000000ec511e42220200000000000000000000"
+    },
+    {
+      "actorCode": "SNKC",
+      "sourceVariantId": "SNKC:61407a2d771e1c6533d483a1c8efd654e75e281d8d6ea3f7ddf3bd619f2bf5c5",
+      "sourceProgramByteSha256": "61407a2d771e1c6533d483a1c8efd654e75e281d8d6ea3f7ddf3bd619f2bf5c5",
+      "operationOffsetFromProgramHeader": 4240,
+      "scheduleTableFileOffset": "0x6939c",
+      "journeyStartSecond": 65700,
+      "operationFileOffset": "0x6a334",
+      "byteLength": 36,
+      "sceneObjectCode": "BS14",
+      "sceneObjectControlValue": 1,
+      "sceneObjectTransitionMode": 5,
+      "interactionRuntimePosition": [
+        -35.060001373291016,
+        0,
+        39.900001525878906
+      ],
+      "interactionFacingFixed": 546,
+      "interactionFacingControlWord": 546,
+      "interactionControlFloats": [
+        0,
+        0
+      ],
+      "rawOperands": "4253313401000000713d0cc2000000009a991f42220200000000000000000000"
+    },
+    {
+      "actorCode": "TATM",
+      "sourceVariantId": "TATM:d2e78a5c22922d88293f860b240e583dbf310713dfcd40f33a81fa0f56643478",
+      "sourceProgramByteSha256": "d2e78a5c22922d88293f860b240e583dbf310713dfcd40f33a81fa0f56643478",
+      "operationOffsetFromProgramHeader": 1808,
+      "scheduleTableFileOffset": "0x73f98",
+      "journeyStartSecond": 33000,
+      "operationFileOffset": "0x745b0",
+      "byteLength": 36,
+      "sceneObjectCode": "BS15",
+      "sceneObjectControlValue": 0,
+      "sceneObjectTransitionMode": 4,
+      "interactionRuntimePosition": [
+        -51.279998779296875,
+        0,
+        41.65999984741211
+      ],
+      "interactionFacingFixed": -1092,
+      "interactionFacingControlWord": 64444,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "4253313500000000b81e4dc200000000d7a32642bcfb00000000803f00000000"
+    },
+    {
+      "actorCode": "TOKI",
+      "sourceVariantId": "TOKI:d046c197770f2fc593e4d452100baf6dfd02a119e3767fc73554a3eb20e083c3",
+      "sourceProgramByteSha256": "d046c197770f2fc593e4d452100baf6dfd02a119e3767fc73554a3eb20e083c3",
+      "operationOffsetFromProgramHeader": 552,
+      "scheduleTableFileOffset": "0x786f8",
+      "journeyStartSecond": 30600,
+      "operationFileOffset": "0x78828",
+      "byteLength": 36,
+      "sceneObjectCode": "BS01",
+      "sceneObjectControlValue": 0,
+      "sceneObjectTransitionMode": 4,
+      "interactionRuntimePosition": [
+        -60.052486419677734,
+        0.10000000149011612,
+        71.48834228515625
+      ],
+      "interactionFacingFixed": -32585,
+      "interactionFacingControlWord": 32951,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "4253303100000000bf3570c2cdcccc3d08fa8e42b78000000000803f00000000"
+    },
+    {
+      "actorCode": "TOKI",
+      "sourceVariantId": "TOKI:d046c197770f2fc593e4d452100baf6dfd02a119e3767fc73554a3eb20e083c3",
+      "sourceProgramByteSha256": "d046c197770f2fc593e4d452100baf6dfd02a119e3767fc73554a3eb20e083c3",
+      "operationOffsetFromProgramHeader": 1144,
+      "scheduleTableFileOffset": "0x786f8",
+      "journeyStartSecond": 81600,
+      "operationFileOffset": "0x78a78",
+      "byteLength": 36,
+      "sceneObjectCode": "BS01",
+      "sceneObjectControlValue": 1,
+      "sceneObjectTransitionMode": 5,
+      "interactionRuntimePosition": [
+        -61.91999816894531,
+        0.07000000029802322,
+        71.9000015258789
+      ],
+      "interactionFacingFixed": -728,
+      "interactionFacingControlWord": 64808,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "425330310100000014ae77c2295c8f3dcdcc8f4228fd00000000803f00000000"
+    },
+    {
+      "actorCode": "TURU",
+      "sourceVariantId": "TURU:d96adb27c08b5014488a12749b9978922e98a86c7fb0f5d15561062b93cf2a51",
+      "sourceProgramByteSha256": "d96adb27c08b5014488a12749b9978922e98a86c7fb0f5d15561062b93cf2a51",
+      "operationOffsetFromProgramHeader": 2584,
+      "scheduleTableFileOffset": "0x7d410",
+      "journeyStartSecond": 32100,
+      "operationFileOffset": "0x7dd30",
+      "byteLength": 36,
+      "sceneObjectCode": "BS08",
+      "sceneObjectControlValue": 0,
+      "sceneObjectTransitionMode": 4,
+      "interactionRuntimePosition": [
+        2.1500000953674316,
+        0,
+        31.100000381469727
+      ],
+      "interactionFacingFixed": -32768,
+      "interactionFacingControlWord": 32768,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "42533038000000009a99094000000000cdccf841008000000000803f00000000"
+    },
+    {
+      "actorCode": "TURU",
+      "sourceVariantId": "TURU:d96adb27c08b5014488a12749b9978922e98a86c7fb0f5d15561062b93cf2a51",
+      "sourceProgramByteSha256": "d96adb27c08b5014488a12749b9978922e98a86c7fb0f5d15561062b93cf2a51",
+      "operationOffsetFromProgramHeader": 2956,
+      "scheduleTableFileOffset": "0x7d410",
+      "journeyStartSecond": 71700,
+      "operationFileOffset": "0x7dea4",
+      "byteLength": 36,
+      "sceneObjectCode": "BS08",
+      "sceneObjectControlValue": 1,
+      "sceneObjectTransitionMode": 5,
+      "interactionRuntimePosition": [
+        2.1500000953674316,
+        0,
+        31.100000381469727
+      ],
+      "interactionFacingFixed": -32768,
+      "interactionFacingControlWord": 32768,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "42533038010000009a99094000000000cdccf841008000000000803f00000000"
+    },
+    {
+      "actorCode": "UDGW",
+      "sourceVariantId": "UDGW:3ae18c4f27770309f9fbfbd9ab65d9350ed3b3737ca163ae354c9cf2bdc8400a",
+      "sourceProgramByteSha256": "3ae18c4f27770309f9fbfbd9ab65d9350ed3b3737ca163ae354c9cf2bdc8400a",
+      "operationOffsetFromProgramHeader": 2892,
+      "scheduleTableFileOffset": "0x7e18c",
+      "journeyStartSecond": 33000,
+      "operationFileOffset": "0x7ebe0",
+      "byteLength": 36,
+      "sceneObjectCode": "BS11",
+      "sceneObjectControlValue": 0,
+      "sceneObjectTransitionMode": 4,
+      "interactionRuntimePosition": [
+        -30.100000381469727,
+        0,
+        74.08000183105469
+      ],
+      "interactionFacingFixed": 0,
+      "interactionFacingControlWord": 0,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "4253313100000000cdccf0c100000000f6289442000000000000803f00000000"
+    },
+    {
+      "actorCode": "YURI",
+      "sourceVariantId": "YURI:509425b19fd85c362ec3f1cc0622d3c4557d187c3cc8c5ea225bf2690d6b2b8b",
+      "sourceProgramByteSha256": "509425b19fd85c362ec3f1cc0622d3c4557d187c3cc8c5ea225bf2690d6b2b8b",
+      "operationOffsetFromProgramHeader": 2160,
+      "scheduleTableFileOffset": "0x9667c",
+      "journeyStartSecond": 25200,
+      "operationFileOffset": "0x96df4",
+      "byteLength": 36,
+      "sceneObjectCode": "BS12",
+      "sceneObjectControlValue": 0,
+      "sceneObjectTransitionMode": 4,
+      "interactionRuntimePosition": [
+        26.649200439453125,
+        0.07000000029802322,
+        12.531999588012695
+      ],
+      "interactionFacingFixed": 3094,
+      "interactionFacingControlWord": 3094,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "42533132000000009031d541295c8f3d12834841160c00000000803f00000000"
+    },
+    {
+      "actorCode": "YURI",
+      "sourceVariantId": "YURI:509425b19fd85c362ec3f1cc0622d3c4557d187c3cc8c5ea225bf2690d6b2b8b",
+      "sourceProgramByteSha256": "509425b19fd85c362ec3f1cc0622d3c4557d187c3cc8c5ea225bf2690d6b2b8b",
+      "operationOffsetFromProgramHeader": 3724,
+      "scheduleTableFileOffset": "0x9667c",
+      "journeyStartSecond": 66600,
+      "operationFileOffset": "0x97410",
+      "byteLength": 36,
+      "sceneObjectCode": "BS12",
+      "sceneObjectControlValue": 1,
+      "sceneObjectTransitionMode": 5,
+      "interactionRuntimePosition": [
+        29.635499954223633,
+        0,
+        13.507499694824219
+      ],
+      "interactionFacingFixed": 2366,
+      "interactionFacingControlWord": 2366,
+      "interactionControlFloats": [
+        1,
+        0
+      ],
+      "rawOperands": "42533132010000008115ed4100000000b81e58413e0900000000803f00000000"
+    }
+  ],
+  "activeObservations": [
+    {
+      "capturePath": "captures/pvr/20260724-015410-frame-19777/ram.bin",
+      "captureSha256": "63d66b87bc0f8a4f47e396522fe1cdc7daf591c37a86ac019e598d4ef61243d2",
+      "likelyDisc": 1,
+      "likelyArea": "DSLT",
+      "schedulerClockSecond": 65746,
+      "actorCode": "SNKC",
+      "sourceProgramByteSha256": "61407a2d771e1c6533d483a1c8efd654e75e281d8d6ea3f7ddf3bd619f2bf5c5",
+      "programHeader": "0x8ccb59a4",
+      "actorRecordAddress": "0x8c3924d0",
+      "currentOperation": 42,
+      "nextDescriptorPointer": "0x0ccb6a58",
+      "sceneObjectCode": "BS14",
+      "sceneObjectControlValue": 1,
+      "sceneObjectTransitionMode": 5,
+      "operationAddress": "0x8ccb6a34",
+      "sourceMatchCount": 1,
+      "status": "exact active source operation-0x2a scene-object transition",
+      "exactSourceOperation": {
+        "sourceVariantId": "SNKC:61407a2d771e1c6533d483a1c8efd654e75e281d8d6ea3f7ddf3bd619f2bf5c5",
+        "operationFileOffset": "0x6a334",
+        "journeyStartSecond": 65700,
+        "sceneObjectCode": "BS14",
+        "sceneObjectControlValue": 1,
+        "sceneObjectTransitionMode": 5
+      }
+    },
+    {
+      "capturePath": "captures/pvr/20260724-015516-frame-20358/ram.bin",
+      "captureSha256": "c6986ca5ca27d11e8f90c88651616501f9bbbfc3382e80e75296966bd50d2e79",
+      "likelyDisc": 1,
+      "likelyArea": "DSLT",
+      "schedulerClockSecond": 66037,
+      "actorCode": "MASR",
+      "sourceProgramByteSha256": "bded4b43e63d4d0127490d870942768be99bb26148382c77e6e9aef85e03efe8",
+      "programHeader": "0x8cc878c8",
+      "actorRecordAddress": "0x8c38d560",
+      "currentOperation": 42,
+      "nextDescriptorPointer": "0x0cc881f0",
+      "sceneObjectCode": "BS16",
+      "sceneObjectControlValue": 1,
+      "sceneObjectTransitionMode": 5,
+      "operationAddress": "0x8cc881cc",
+      "sourceMatchCount": 1,
+      "status": "exact active source operation-0x2a scene-object transition",
+      "exactSourceOperation": {
+        "sourceVariantId": "MASR:bded4b43e63d4d0127490d870942768be99bb26148382c77e6e9aef85e03efe8",
+        "operationFileOffset": "0x3bacc",
+        "journeyStartSecond": 66000,
+        "sceneObjectCode": "BS16",
+        "sceneObjectControlValue": 1,
+        "sceneObjectTransitionMode": 5
+      }
+    },
+    {
+      "capturePath": "captures/pvr/20260724-015539-frame-20487/ram.bin",
+      "captureSha256": "52c89138c2427106e687962ddc9698057bf28677b462c755c12d1508a127a9e6",
+      "likelyDisc": 1,
+      "likelyArea": "DSLT",
+      "schedulerClockSecond": 66101,
+      "actorCode": "MASR",
+      "sourceProgramByteSha256": "bded4b43e63d4d0127490d870942768be99bb26148382c77e6e9aef85e03efe8",
+      "programHeader": "0x8cc878c8",
+      "actorRecordAddress": "0x8c38d560",
+      "currentOperation": 42,
+      "nextDescriptorPointer": "0x0cc881f0",
+      "sceneObjectCode": "BS16",
+      "sceneObjectControlValue": 1,
+      "sceneObjectTransitionMode": 5,
+      "operationAddress": "0x8cc881cc",
+      "sourceMatchCount": 1,
+      "status": "exact active source operation-0x2a scene-object transition",
+      "exactSourceOperation": {
+        "sourceVariantId": "MASR:bded4b43e63d4d0127490d870942768be99bb26148382c77e6e9aef85e03efe8",
+        "operationFileOffset": "0x3bacc",
+        "journeyStartSecond": 66000,
+        "sceneObjectCode": "BS16",
+        "sceneObjectControlValue": 1,
+        "sceneObjectTransitionMode": 5
+      }
+    },
+    {
+      "capturePath": "captures/pvr/20260724-100412-frame-18879/ram.bin",
+      "captureSha256": "85e249d107028f65de45159f694056aaecffa8507b303872d0d22b3b10f783d5",
+      "likelyDisc": 1,
+      "likelyArea": "JU00",
+      "schedulerClockSecond": 65833,
+      "actorCode": "SNKC",
+      "sourceProgramByteSha256": "61407a2d771e1c6533d483a1c8efd654e75e281d8d6ea3f7ddf3bd619f2bf5c5",
+      "programHeader": "0x8ccb59a4",
+      "actorRecordAddress": "0x8c3924d0",
+      "currentOperation": 42,
+      "nextDescriptorPointer": "0x0ccb6a58",
+      "sceneObjectCode": "BS14",
+      "sceneObjectControlValue": 1,
+      "sceneObjectTransitionMode": 5,
+      "operationAddress": "0x8ccb6a34",
+      "sourceMatchCount": 1,
+      "status": "exact active source operation-0x2a scene-object transition",
+      "exactSourceOperation": {
+        "sourceVariantId": "SNKC:61407a2d771e1c6533d483a1c8efd654e75e281d8d6ea3f7ddf3bd619f2bf5c5",
+        "operationFileOffset": "0x6a334",
+        "journeyStartSecond": 65700,
+        "sceneObjectCode": "BS14",
+        "sceneObjectControlValue": 1,
+        "sceneObjectTransitionMode": 5
+      }
+    }
+  ],
+  "actorResolutionErrors": []
+}

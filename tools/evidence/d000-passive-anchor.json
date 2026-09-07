@@ -1,0 +1,107 @@
+{
+  "schema": "new-yokosuka-d000-passive-anchor-v1",
+  "status": "verified",
+  "source": {
+    "model": ".disc-work/exact/d000/unpacked/OMG/SEGM4SPG.CHRM",
+    "captures": [
+      ".disc-work/d000-entry0-tagged-objects.json",
+      ".disc-work/d000-entry1-tagged-objects.json",
+      ".disc-work/d000-entry2-tagged-objects.json"
+    ],
+    "dispatch": ".disc-work/d000-dispatch-calls.json",
+    "transforms": ".disc-work/d000-sh4-transforms.json"
+  },
+  "runtimeStates": [
+    {
+      "entry": 0,
+      "placementClass": "origin-or-inactive",
+      "runtimePosition": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "entry": 1,
+      "placementClass": "origin-or-inactive",
+      "runtimePosition": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "entry": 2,
+      "placementClass": "world",
+      "runtimePosition": [
+        24.125,
+        0,
+        32.310001373291016
+      ]
+    }
+  ],
+  "model": {
+    "byteLength": 1604,
+    "vertexCount": 52,
+    "renderKeys": [
+      -1
+    ],
+    "dimensions": [
+      0.029999999329447746,
+      0.0019759999122470617,
+      0.029999999329447746
+    ]
+  },
+  "directHmdlTransforms": [],
+  "directDispatch": [
+    {
+      "callFileOffset": "0x51ba8",
+      "operationHex": "0x00a8"
+    },
+    {
+      "callFileOffset": "0x51bbc",
+      "operationHex": "0x001f"
+    },
+    {
+      "callFileOffset": "0x51dce",
+      "operationHex": "0x00a8"
+    },
+    {
+      "callFileOffset": "0x57c64",
+      "operationHex": "0x0043"
+    },
+    {
+      "callFileOffset": "0x57c7c",
+      "operationHex": "0x0018"
+    },
+    {
+      "callFileOffset": "0x57c90",
+      "operationHex": "0x0043"
+    },
+    {
+      "callFileOffset": "0x57cac",
+      "operationHex": "0x0019"
+    },
+    {
+      "callFileOffset": "0x57cda",
+      "operationHex": "0x0043"
+    },
+    {
+      "callFileOffset": "0x57cf6",
+      "operationHex": "0x001d"
+    },
+    {
+      "callFileOffset": "0x57d0a",
+      "operationHex": "0x0043"
+    },
+    {
+      "callFileOffset": "0x57d22",
+      "operationHex": "0x001c"
+    }
+  ],
+  "classification": {
+    "browser": "non-rendered, non-interactive scene anchor",
+    "remainingGap": "native gameplay consumer of the anchor is not decoded"
+  },
+  "failures": []
+}

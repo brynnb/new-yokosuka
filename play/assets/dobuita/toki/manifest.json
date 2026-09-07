@@ -1,0 +1,4654 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/build_toki_activity_pack.mjs",
+  "source": {
+    "disc": 1,
+    "path": "extracted_files/data/SCENE/01/TOKI/SEQDATA2.BIN",
+    "sha256": "507a20816d8a73a2a41700e90b4bc8e62e9a2b4dc4ad865cdfd9e555f459a38e",
+    "archiveFormat": "loose-TRCK",
+    "members": [
+      {
+        "name": "SEQDATA2.BIN",
+        "byteLength": 15592,
+        "sha256": "507a20816d8a73a2a41700e90b4bc8e62e9a2b4dc4ad865cdfd9e555f459a38e"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "tools/evidence/player-cutscene-owner-discovery.json",
+    "resourceName": "TOKI",
+    "variant": "",
+    "selectionRule": "first exact SEQDATA2.BIN install; later installs replay identical bytes"
+  },
+  "audioManifest": "public/audio/world/toki/manifest.json",
+  "actorTags": [
+    "AKIR",
+    "ASDA"
+  ],
+  "nativeHandPoseTables": {
+    "0x3310": {
+      "sourceMapinfoOffset": "0x3310",
+      "vectors": [
+        [
+          0,
+          0,
+          -1092
+        ],
+        [
+          0,
+          -1274,
+          4187
+        ],
+        [
+          0,
+          -182,
+          1092
+        ],
+        [
+          0,
+          -546,
+          -6735
+        ],
+        [
+          0,
+          1638,
+          -12379
+        ],
+        [
+          0,
+          0,
+          -9466
+        ],
+        [
+          0,
+          546,
+          2912
+        ],
+        [
+          0,
+          0,
+          -11468
+        ],
+        [
+          0,
+          0,
+          -10194
+        ],
+        [
+          0,
+          910,
+          -9648
+        ],
+        [
+          0,
+          0,
+          2548
+        ],
+        [
+          0,
+          182,
+          -7099
+        ],
+        [
+          0,
+          0,
+          -7827
+        ],
+        [
+          0,
+          2002,
+          -9466
+        ],
+        [
+          0,
+          -182,
+          2002
+        ],
+        [
+          0,
+          -728,
+          -5643
+        ],
+        [
+          0,
+          -1274,
+          -6371
+        ],
+        [
+          0,
+          -910,
+          -8738
+        ],
+        [
+          0,
+          0,
+          182
+        ]
+      ]
+    },
+    "0x33f4": {
+      "sourceMapinfoOffset": "0x33f4",
+      "vectors": [
+        [
+          0,
+          0,
+          -2912
+        ],
+        [
+          0,
+          1456,
+          1820
+        ],
+        [
+          0,
+          3094,
+          182
+        ],
+        [
+          0,
+          -546,
+          -6735
+        ],
+        [
+          0,
+          364,
+          -5279
+        ],
+        [
+          0,
+          2002,
+          -8374
+        ],
+        [
+          0,
+          -182,
+          2548
+        ],
+        [
+          0,
+          0,
+          -7827
+        ],
+        [
+          0,
+          364,
+          -3640
+        ],
+        [
+          0,
+          910,
+          -8738
+        ],
+        [
+          0,
+          0,
+          1820
+        ],
+        [
+          0,
+          182,
+          -5279
+        ],
+        [
+          0,
+          -182,
+          -4004
+        ],
+        [
+          0,
+          0,
+          -7827
+        ],
+        [
+          0,
+          182,
+          1638
+        ],
+        [
+          0,
+          -728,
+          -5279
+        ],
+        [
+          0,
+          -1274,
+          -6735
+        ],
+        [
+          0,
+          -910,
+          -6371
+        ],
+        [
+          0,
+          0,
+          1638
+        ]
+      ]
+    }
+  },
+  "handAssets": {
+    "ASDA": {
+      "actorTag": "ASDA",
+      "bodyModelCode": "KAS_L",
+      "handCode": "KAS",
+      "bodyHandRenderKeys": {
+        "left": -66,
+        "right": -65
+      },
+      "left": {
+        "rootRenderKey": 11,
+        "model": {
+          "path": "play/assets/dobuita/toki/KAS_TL.MT5",
+          "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/KAS_TL.MT5",
+          "byteLength": 176796,
+          "sha256": "cbb723c3ab2bb4f26f05992b37852fa0d8f0eeb904510ad68b36bfc829e95970"
+        }
+      },
+      "right": {
+        "rootRenderKey": 6,
+        "model": {
+          "path": "play/assets/dobuita/toki/KAS_TR.MT5",
+          "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/KAS_TR.MT5",
+          "byteLength": 176700,
+          "sha256": "51b7232819cce6014a230cfb1b30e23f06a1b14acaa58e87ef992ad87b1634f3"
+        }
+      },
+      "rig": {
+        "path": "play/assets/dobuita/toki/KAS_HM.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/KAS_HM.BIN",
+        "byteLength": 9168,
+        "sha256": "58aeb13a2458cfc31a539753ef40d8269db1d0c2e86eeca08b8867007a2598d4",
+        "transformNodeCount": 71,
+        "vertexCount": 301,
+        "pointerOffsets": [
+          24,
+          168,
+          8864,
+          5848,
+          6456,
+          9168
+        ]
+      },
+      "presentation": {
+        "attachment": "body-hand-node-world-matrix",
+        "initialPose": "hm-bind-pose",
+        "deformationAssetRetained": true,
+        "nativePoseOperation": "0x005e"
+      }
+    }
+  },
+  "attachedObjects": {
+    "TEGS": {
+      "browserFilename": "MALS509G.MT5",
+      "assetPath": "play/assets/dobuita/toki/MALS509G.MT5",
+      "attachments": [
+        {
+          "activitySlot": 0,
+          "frame": 1906,
+          "parentActorTag": "AKIR",
+          "controlId": 18,
+          "translation": [
+            0.1679999977350235,
+            0.07000000029802322,
+            -0.04399999976158142
+          ],
+          "rotationRaw": [
+            17658,
+            48423,
+            55887
+          ],
+          "callFileOffset": "0xd9a"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 2046,
+          "parentActorTag": "ASDA",
+          "controlId": 18,
+          "translation": [
+            0.07000000029802322,
+            0.11400000005960464,
+            -0.07800000160932541
+          ],
+          "rotationRaw": [
+            5662,
+            36228,
+            45513
+          ],
+          "callFileOffset": "0xeb2"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 3300,
+          "parentActorTag": "ASDA",
+          "controlId": 18,
+          "translation": [
+            0.05000000074505806,
+            -0.004999999888241291,
+            -0.11800000071525574
+          ],
+          "rotationRaw": [
+            62277,
+            32406,
+            13473
+          ],
+          "callFileOffset": "0x102a"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 4215,
+          "parentActorTag": "ASDA",
+          "controlId": 18,
+          "translation": [
+            0.13099999725818634,
+            0.1940000057220459,
+            -0.03400000184774399
+          ],
+          "rotationRaw": [
+            2022,
+            36227,
+            43511
+          ],
+          "callFileOffset": "0x11a6"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 5051,
+          "parentActorTag": "AKIR",
+          "controlId": 18,
+          "translation": [
+            0.1679999977350235,
+            0.07000000029802322,
+            -0.04399999976158142
+          ],
+          "rotationRaw": [
+            17658,
+            48423,
+            55887
+          ],
+          "callFileOffset": "0x1376"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 5174,
+          "action": "detach",
+          "callFileOffset": "0x1446"
+        }
+      ],
+      "nodeTransforms": [
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "nodeKey": 152,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "callFileOffset": "0xafe"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "nodeKey": 153,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "callFileOffset": "0xb20"
+        },
+        {
+          "activitySlot": 0,
+          "firstFrame": 1972,
+          "lastFrame": 1991,
+          "nodeKey": 152,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            0,
+            1456
+          ],
+          "callFileOffset": "0x157a"
+        },
+        {
+          "activitySlot": 0,
+          "firstFrame": 2000,
+          "lastFrame": 2020,
+          "nodeKey": 153,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            0,
+            -1456
+          ],
+          "callFileOffset": "0x161a"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 5051,
+          "nodeKey": 152,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "callFileOffset": "0x13be"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 5051,
+          "nodeKey": 153,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "callFileOffset": "0x13e0"
+        }
+      ]
+    }
+  },
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/dobuita/toki/M_0142.MOTN",
+      "byteLength": 220648,
+      "sha256": "498586681767acb83318a283b740766129a51fef2a194c9b942690bb6722e6e3"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/dobuita/toki/SEQDATA2.AUTH",
+      "byteLength": 15592,
+      "sha256": "507a20816d8a73a2a41700e90b4bc8e62e9a2b4dc4ad865cdfd9e555f459a38e"
+    },
+    {
+      "path": "play/assets/dobuita/toki/M_0142.MOTN",
+      "byteLength": 220648,
+      "sha256": "498586681767acb83318a283b740766129a51fef2a194c9b942690bb6722e6e3"
+    },
+    {
+      "path": "play/assets/dobuita/toki/MALS509G.MT5",
+      "byteLength": 19912,
+      "sha256": "a7de7d6a318a17276a983ee4bb2a745a5b934675d0328f4566d0e4a06c48e156"
+    },
+    {
+      "path": "play/assets/dobuita/toki/KAS_HM.BIN",
+      "byteLength": 9168,
+      "sha256": "58aeb13a2458cfc31a539753ef40d8269db1d0c2e86eeca08b8867007a2598d4"
+    },
+    {
+      "path": "play/assets/dobuita/toki/KAS_TL.MT5",
+      "byteLength": 176796,
+      "sha256": "cbb723c3ab2bb4f26f05992b37852fa0d8f0eeb904510ad68b36bfc829e95970"
+    },
+    {
+      "path": "play/assets/dobuita/toki/KAS_TR.MT5",
+      "byteLength": 176700,
+      "sha256": "51b7232819cce6014a230cfb1b30e23f06a1b14acaa58e87ef992ad87b1634f3"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "primaryPointer": 13559,
+      "secondaryPointer": 13572,
+      "activityId": "TOKI/SEQDATA2.AUTH",
+      "archiveMember": "SEQDATA2.AUTH",
+      "byteLength": 15592,
+      "sha256": "507a20816d8a73a2a41700e90b4bc8e62e9a2b4dc4ad865cdfd9e555f459a38e",
+      "durationFrames": 5355,
+      "durationSeconds": 178.51666259765625,
+      "frameCount": 74,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 6,
+        "sound": 29,
+        "voice": 41
+      },
+      "actors": [
+        "AKIR",
+        "ASDA"
+      ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 0,
+          "frame": 2046,
+          "actorTag": "ASDA",
+          "side": "right",
+          "poseTableOffset": "0x3310",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0xe12"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 2046,
+          "actorTag": "ASDA",
+          "side": "left",
+          "poseTableOffset": "0x33f4",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0xe32"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 4620,
+          "actorTag": "ASDA",
+          "side": "right",
+          "poseTableOffset": "0x3310",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x128e"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 4620,
+          "actorTag": "ASDA",
+          "side": "left",
+          "poseTableOffset": "0x33f4",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x12ae"
+        }
+      ],
+      "nativeFaceClipCues": [
+        {
+          "activitySlot": 0,
+          "frame": 1707,
+          "actorTag": "AKIR",
+          "clipGroup": 1,
+          "selector": 0,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0xc8a"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1875,
+          "actorTag": "AKIR",
+          "clipGroup": 0,
+          "selector": 0,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0xce6"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 3141,
+          "actorTag": "AKIR",
+          "clipGroup": 2,
+          "selector": 0,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0xf7a"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 3382,
+          "actorTag": "AKIR",
+          "clipGroup": 0,
+          "selector": 0,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x1092"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 4125,
+          "actorTag": "AKIR",
+          "clipGroup": 2,
+          "selector": 0,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x10de"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 4215,
+          "actorTag": "AKIR",
+          "clipGroup": 0,
+          "selector": 0,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x11c2"
+        }
+      ],
+      "nativeFaceGazeCues": [],
+      "nativeActorLookPointCues": [
+        {
+          "activitySlot": 0,
+          "frame": 131,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 132,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 133,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 134,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 135,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 136,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 137,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 138,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 139,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 140,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 141,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 142,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 143,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 144,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 145,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 146,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 147,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 148,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 149,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 150,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 151,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 152,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 153,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 154,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 155,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 156,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 157,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 158,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 159,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 160,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 161,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 162,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 163,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 164,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 165,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 166,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 167,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 168,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 169,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 170,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 171,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 172,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 173,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 174,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 175,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 176,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 177,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 178,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 179,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 180,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 181,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 182,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 183,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 184,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 185,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 186,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 187,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 188,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 189,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 190,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 191,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 192,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 193,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 194,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 195,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 196,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 197,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 198,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 199,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 200,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 201,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 202,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 203,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 204,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 205,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 206,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 207,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 208,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 209,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 210,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 211,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 212,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 213,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 214,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 215,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 216,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 217,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 218,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 219,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 220,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 221,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 222,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 223,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 224,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 225,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 226,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 227,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 228,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 229,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 230,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 231,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 232,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 233,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 234,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 235,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 236,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 237,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 238,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 239,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 240,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 241,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 242,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 243,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 244,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 245,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 246,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 247,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 248,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 249,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 250,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 251,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 252,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 253,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 254,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 255,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 256,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 257,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 258,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 259,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 260,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 261,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 262,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 263,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 264,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 265,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 266,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 267,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 268,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 269,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 270,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 271,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 272,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 273,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 274,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 275,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 276,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 277,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 278,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 279,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 280,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 281,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 282,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 283,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 284,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 285,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 286,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 287,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 288,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 289,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 290,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 291,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 292,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 293,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 294,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 295,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 296,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 297,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 298,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 299,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 300,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 301,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 302,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 303,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 304,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 305,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 306,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 307,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 308,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 309,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 310,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 311,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 312,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 313,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 314,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 315,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 316,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 317,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 318,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 319,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 320,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 321,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 322,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 323,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 324,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 325,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 326,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 327,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 328,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 329,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 330,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 331,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 332,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 333,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 334,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 335,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 336,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 337,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 338,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 339,
+          "actorTag": "AKIR",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "ASDA",
+            "selector": 5,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1506"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 386,
+          "actorTag": "AKIR",
+          "selector": -98312,
+          "mode": 0,
+          "target": null,
+          "callFileOffset": "0xbee"
+        }
+      ],
+      "motions": [
+        {
+          "actorTag": "ASDA",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 12,
+          "motionName": "JIJ_KAH_AT2_TEGAMIKAIDOKU_TOUKIYA_2_0100",
+          "startFrame": 1,
+          "endFrame": 399
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 131,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "AKI_AT1_HAIRU_TOUKIYA_0100",
+          "startFrame": 1,
+          "endFrame": 269
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 400,
+          "motionBank": 16,
+          "sequenceIndex": 5,
+          "motionName": "AKI_AT2_TEGAMIKAIDOKU_TOUKIYA_0100",
+          "startFrame": 285,
+          "endFrame": 2994
+        },
+        {
+          "actorTag": "ASDA",
+          "frame": 400,
+          "motionBank": 16,
+          "sequenceIndex": 12,
+          "motionName": "JIJ_KAH_AT2_TEGAMIKAIDOKU_TOUKIYA_2_0100",
+          "startFrame": 300,
+          "endFrame": 2994
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 3141,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "AKI_AT3_TEGAMIKAIDOKU_TOUKIYA_0100",
+          "startFrame": 400,
+          "endFrame": 2573
+        },
+        {
+          "actorTag": "ASDA",
+          "frame": 3141,
+          "motionBank": 16,
+          "sequenceIndex": 9,
+          "motionName": "JIJ_KAH_AT3_TEGAMIKAIDOKU_TOUKIYA_0100",
+          "startFrame": 415,
+          "endFrame": 2674
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "schema": "new-yokosuka-operation-019e-evidence-v1",
+  "status": "exact-native-all-authored-routes",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 414,
+    "operationHex": "0x019e",
+    "handlerAddress": "0x0c16ac0e",
+    "maximumRecordCount": 8,
+    "recordStride": 36,
+    "routes": {
+      "2": "Writes and returns the Boolean global control byte.",
+      "4": "Builds one controller record from scene index, area tag, kind, sentinel-terminated schedule, time word, and flags; returns its table index or -1 for duplicate/full."
+    },
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c16ac0e",
+        "length": 70,
+        "sha256": "ef40cbf453cad3f2405c117d865ba198da6f899f7e8edead9498ae7fe34de7e7"
+      },
+      "recordAllocator": {
+        "address": "0x0c16a9b8",
+        "length": 258,
+        "sha256": "d63bf437f6ca2f0ec0bcfc2e3f7fba7b8c1d741b9ecf100ae60a34ee4bd94448"
+      },
+      "recordComparator": {
+        "address": "0x0c16ab64",
+        "length": 170,
+        "sha256": "91e9f2769c93e6ce5bb544920808ea81904f0a000cc9cd1c3718cd157857756e"
+      },
+      "recordPruner": {
+        "address": "0x0c16a932",
+        "length": 134,
+        "sha256": "7bb133b0171afe4e218c7423171de06c45814d9824168b4ce88a2a2c1f3e55d1"
+      }
+    }
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 569,
+    "areaCount": 98,
+    "modeCounts": {
+      "2": 15,
+      "4": 554
+    },
+    "modeTwoValueCounts": {
+      "0": 5,
+      "1": 10
+    },
+    "modeFourSceneSourceCounts": {
+      "constant": 495,
+      "operation-result": 56,
+      "scene-field": 3
+    },
+    "interleaved019cResultCallCount": 56,
+    "staticScheduleCount": 490,
+    "sentinelScheduleCount": 490,
+    "resultConsumerCount": 0
+  },
+  "evidenceBoundary": [
+    "Only authored modes two and four are promoted; executable mode three remains unregistered because no authored call uses it.",
+    "The 56 mode-four calls that interleave a zero-argument 0x019c query retain the exact seven-word native record through instruction-shape dataflow recovery.",
+    "Record capacity, field layout, duplicate comparison fields, sentinel bound, control-byte behavior, and return values are executable-proven.",
+    "The higher-level gameplay meaning of each controller record remains numeric."
+  ]
+}

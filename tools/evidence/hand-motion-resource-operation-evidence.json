@@ -1,0 +1,103 @@
+{
+  "schema": "new-yokosuka-hand-motion-resource-operation-evidence-v1",
+  "status": "exact-native-HNDM-request-contract-and-full-ir-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json",
+    "op00MapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4"
+  },
+  "operation": {
+    "operationId": 221,
+    "operationHex": "0x00dd",
+    "argumentCount": 3,
+    "handlerAddress": "0x0c165128",
+    "verifiedRanges": {
+      "handlerTableEntry": {
+        "address": "0x0c29ad54",
+        "length": 4,
+        "sha256": "c0b25997a2f396f168baedbed33bc4384fd055c690424765f60f7a3f39f0d50c"
+      },
+      "handler": {
+        "address": "0x0c165128",
+        "length": 34,
+        "sha256": "22f88626f53d248146641c1c36b34374d1feff703bff96bece44cd92d7649b7b"
+      },
+      "resourceLoader": {
+        "address": "0x0c0dd744",
+        "length": 378,
+        "sha256": "b7dc8d06a31a74f0ff5685c500414f7d9fe15490075830dab5e5ff1ea82af4d8"
+      },
+      "resultWriter": {
+        "address": "0x0c0bb342",
+        "length": 6,
+        "sha256": "0e95a398fa69bff19b2b51bfecd66ebcbddc95a59adb8690eafbb32ad4cbb2c2"
+      }
+    },
+    "nativeContract": {
+      "handlerTableEntry": "0x0c165128",
+      "resourceLoader": "0x0c0dd744",
+      "resultWriter": "0x0c0bb342",
+      "sceneDirectoryFormat": "scene/%02d/%c%c%c%c",
+      "resourceTypeWord": "0x4d444e48"
+    },
+    "resourceType": "HNDM",
+    "provenBehavior": "Resolve argument two as a filename, build scene/%02d/%c%c%c%c from signed argument zero and the four little-endian bytes of argument one, load the named HNDM resource, and publish the returned opaque handle as the operation result."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 57,
+    "exactOperandCallCount": 51,
+    "unresolvedWrapperCallCount": 6,
+    "argumentShapes": [
+      {
+        "kinds": [
+          "constant",
+          "constant",
+          "static-pointer"
+        ],
+        "count": 51
+      },
+      {
+        "kinds": [
+          "unresolved",
+          "unresolved",
+          "operation-result"
+        ],
+        "count": 6
+      }
+    ],
+    "dialogueRegionCallCount": 4,
+    "resultTargetCount": 24,
+    "op00": {
+      "disc": 1,
+      "area": "OP00",
+      "functionFileOffset": "0x1512a",
+      "callFileOffset": "0x154ae",
+      "dialogue": false,
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x154a0"
+        },
+        {
+          "kind": "constant",
+          "value": 808472655,
+          "hex": "0x3030504f",
+          "ascii": "OP00",
+          "source": "0x1549e"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 140248,
+          "hex": "0x000223d8",
+          "source": "0x1549c"
+        }
+      ],
+      "resultTarget": null,
+      "filename": "HMOT0102.BIN"
+    }
+  }
+}

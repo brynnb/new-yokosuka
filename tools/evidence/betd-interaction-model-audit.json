@@ -1,0 +1,112 @@
+{
+  "schema": "new-yokosuka-jomo-interaction-model-audit-v1",
+  "source": {
+    "manifest": "tools/evidence/betd-mapinfo-placements.json",
+    "assetBase": "https://pub-c3aa1dfd53424ee9af1b87ad19954589.r2.dev/shenmue"
+  },
+  "method": "Load every distinct model assigned a browser interaction through the production MT5 loader and verify its behavior's required render route.",
+  "summary": {
+    "interactionModelCount": 6,
+    "verifiedModelCount": 6,
+    "failureCount": 0
+  },
+  "failures": [],
+  "models": [
+    {
+      "model": "S1_BETD_DDRR1001.MT5",
+      "behavior": "swing-door",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 1.3010018186970784,
+      "motionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_BETD_DDRR1002.MT5",
+      "behavior": "swing-door",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": true,
+      "maxEndpointVertexDisplacement": 1.3382494379958016,
+      "motionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_BETD_DKTR101G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_BETD_GART201G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_BETD_KAKS509G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        152,
+        153,
+        154
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "status": "verified"
+    },
+    {
+      "model": "S1_BETD_KAKS505G.MT5",
+      "behavior": "inspect",
+      "rootCount": 1,
+      "renderKeys": [
+        -1,
+        152,
+        153,
+        154
+      ],
+      "requiredRoute": "renderable root",
+      "routePresent": true,
+      "renderable": true,
+      "motionRequired": false,
+      "maxEndpointVertexDisplacement": 0,
+      "motionPresent": true,
+      "status": "verified"
+    }
+  ]
+}

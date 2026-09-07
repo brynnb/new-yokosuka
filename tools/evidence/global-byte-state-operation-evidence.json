@@ -1,0 +1,42 @@
+{
+  "schema": "new-yokosuka-global-byte-state-operation-evidence-v1",
+  "status": "exact-native-handler-write-consumer-and-hato-dataflow",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "mapinfo": "Disc 1 D000/MAPINFO.BIN",
+    "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e"
+  },
+  "operation": {
+    "operationId": 172,
+    "operationHex": "0x00ac",
+    "handlerAddress": "0x0c156d80",
+    "handlerSha256": "9f317501d9ece7aad52549b923b81b2c332c4a05a434c18514894814ce958724",
+    "setterAddress": "0x0c188088",
+    "setterSha256": "8310220c01acf625df8dd2c358c0c33de39c389563b39779c7f41d0a3e72f361",
+    "destinationAddress": "0x0c225340",
+    "destinationWidth": "byte",
+    "argument": {
+      "index": 0,
+      "behavior": "low byte is written directly to 0x0c225340"
+    },
+    "provenBehavior": "Writes the low byte of argument zero directly to global address 0x0c225340.",
+    "consumerEvidence": {
+      "initializationFunction": "0x0c187394",
+      "initializationSha256": "5d854c9c44581cc292f430d2114a898d4c3d7e277203ebfa411904d0df71fa4e",
+      "updateFunction": "0x0c187408",
+      "updateSha256": "6bcbfe0b6225b44f6d673cd98d5586283a2be01afb053436a245598c5bf43fcb",
+      "boundedBehavior": "The neighboring subsystem initializes the byte to one, branches on whether it is zero during its update, and restores it to one after the zero branch."
+    }
+  },
+  "hatoConversation": {
+    "phase": "control cleanup",
+    "callFileOffset": "0x80100",
+    "value": 1
+  },
+  "evidenceBoundary": [
+    "The handler target, destination address and width, direct write, consumer reads/writes, and Hato operand are exact.",
+    "The owning subsystem and high-level meaning of the byte remain unresolved, so it is not named as a camera reset, visibility switch, or interpolation flag."
+  ]
+}

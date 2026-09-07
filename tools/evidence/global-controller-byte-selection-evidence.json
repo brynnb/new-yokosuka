@@ -1,0 +1,97 @@
+{
+  "schema": "new-yokosuka-global-controller-byte-selection-evidence-v1",
+  "status": "exact-native-selector-contract-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 323,
+    "operationHex": "0x0143",
+    "handlerAddress": "0x0c1635c2",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c1635c2",
+        "length": 72,
+        "sha256": "3257f506f636a415f5ad2162b9f80ec851b9dd7632e3ce6064c19b8add973938"
+      },
+      "selector0Writer": {
+        "address": "0x0c0e0388",
+        "length": 30,
+        "sha256": "5275997b39e2651ee598bdf41692e234856cc35d7315b2f3e0e689a9bf477cb5"
+      }
+    },
+    "nativeContract": {
+      "selector0Writer": "0x0c0e0388",
+      "selector1Handler": "0x0c0e0284",
+      "otherSelectorHandler": "0x0c0e0402",
+      "selectedByteA": "0x0c216cf4",
+      "selectedByteB": "0x0c216cf3",
+      "secondaryByte": "0x0c216cf6",
+      "selectionWord": "0x0c216d24"
+    },
+    "selector": 0,
+    "provenBehavior": "Sign-extends argument one's low byte and replaces values at least 65 with zero, writes the resulting low byte to 0x0c216cf4 and 0x0c216cf3, writes argument two's low byte to 0x0c216cf6, and clears word 0x0c216d24."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 482,
+    "provenCallCount": 476,
+    "remainingUnresolvedCallCount": 6,
+    "dialogueRegionCallCount": 75,
+    "areaCount": 55,
+    "selectorCounts": {
+      "0": 476,
+      "1": 1,
+      "5": 2,
+      "7": 3
+    },
+    "primaryValueCounts": {
+      "0": 184,
+      "1": 2,
+      "3": 5,
+      "4": 6,
+      "5": 3,
+      "6": 14,
+      "7": 44,
+      "8": 6,
+      "9": 16,
+      "14": 8,
+      "15": 11,
+      "20": 11,
+      "21": 13,
+      "22": 2,
+      "23": 1,
+      "25": 29,
+      "26": 4,
+      "27": 6,
+      "28": 6,
+      "30": 1,
+      "35": 4,
+      "36": 1,
+      "37": 18,
+      "44": 1,
+      "45": 3,
+      "46": 21,
+      "47": 8,
+      "52": 6,
+      "53": 6,
+      "54": 3,
+      "56": 16,
+      "57": 3,
+      "58": 8,
+      "59": 1,
+      "63": 5
+    },
+    "secondaryValueCounts": {
+      "0": 476
+    }
+  },
+  "evidenceBoundary": [
+    "The owning subsystem and individual byte meanings remain unnamed.",
+    "The authored selector-zero primary values are all 0 through 63, so none trigger the native >=65 clamp.",
+    "Selector one and selectors five/seven enter separate complex handlers and remain unresolved.",
+    "The same selector-zero writer is called conditionally by operation 0x0116 selector two and is shared by that runtime implementation."
+  ]
+}

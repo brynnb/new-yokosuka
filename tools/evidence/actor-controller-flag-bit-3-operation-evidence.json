@@ -1,0 +1,35 @@
+{
+  "schema": "new-yokosuka-actor-controller-flag-bit-3-operation-evidence-v1",
+  "status": "exact-actor-controller-bit-contract",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 145,
+    "operationHex": "0x0091",
+    "handlerAddress": "0x0c157f1c",
+    "handlerLength": 26,
+    "handlerSha256": "1084f4e23318a2de82b0043dc55e66473cd0dc469a9943a1aa7e79d86b135bc7",
+    "helperAddress": "0x0c0ab330",
+    "helperLength": 32,
+    "helperSha256": "1eb989899960bd568f9e9086be30de876d281c6689ae2a345f8ca96a3f84e1bc",
+    "controllerDwordOffset": "0x5c",
+    "mask": "0x00000008",
+    "provenBehavior": "The handler resolves argument zero as an actor and forwards argument one. Zero clears bit 3 at actor-controller +0x5c; nonzero sets it. A null actor is a native no-op."
+  },
+  "inventory": {
+    "authoredCallCount": 537,
+    "twoArgumentCallCount": 535,
+    "constantModeZeroCount": 274,
+    "constantModeOneCount": 249,
+    "runtimeModeCount": 12
+  },
+  "evidenceBoundary": [
+    "The native handler and bit helper are SHA-256 verified.",
+    "Only exact constant modes zero and one are promoted.",
+    "Browser actor-controller mutation remains a mandatory adapter."
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "schema": "new-yokosuka-d000-tko-initial-state-v1",
+  "source": {
+    "dispatcherTrace": ".disc-work/d000-call-trace.csv",
+    "ramCapture": "captures/pvr/20260724-005903-frame-4074/ram.bin",
+    "taskFlagOffset": "TASK + 0x7c"
+  },
+  "initializationCalls": [
+    {
+      "objectTag": "TKOK",
+      "operation1fValue": 1,
+      "operationA8Value": 1,
+      "taskFlags": "0x00000085",
+      "enabled": true
+    },
+    {
+      "objectTag": "TKOL",
+      "operation1fValue": 2,
+      "operationA8Value": 0,
+      "taskFlags": "0x00000081",
+      "enabled": false
+    },
+    {
+      "objectTag": "TKOM",
+      "operation1fValue": 2,
+      "operationA8Value": 0,
+      "taskFlags": "0x00000081",
+      "enabled": false
+    },
+    {
+      "objectTag": "TKON",
+      "operation1fValue": 1,
+      "operationA8Value": 1,
+      "taskFlags": "0x00000085",
+      "enabled": true
+    }
+  ],
+  "runtimeTransformObservation": {
+    "traceRows": 1000000,
+    "TKOKNode152AddCalls": 11696,
+    "TKOLNode152AddCalls": 0,
+    "TKOMNode152AddCalls": 0,
+    "TKONNode152AddCalls": 0
+  },
+  "browserPolicy": {
+    "enabledTags": [
+      "TKOK",
+      "TKON"
+    ],
+    "disabledTags": [
+      "TKOL",
+      "TKOM"
+    ],
+    "ambientSpinTag": "TKOK"
+  }
+}

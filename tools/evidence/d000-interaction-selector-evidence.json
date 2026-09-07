@@ -1,0 +1,497 @@
+{
+  "schema": "new-yokosuka-d000-interaction-selector-evidence-v1",
+  "status": "exact-native-spatial-selector-boundary",
+  "source": {
+    "mapinfo": ".disc-work/mapinfo/disc1/SCENE/01/D000/MAPINFO.BIN",
+    "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+    "ram": "captures/pvr/20260724-010057-frame-4933/ram.bin",
+    "ramSha256": "2fe05abcb3984460e76e31179681bdb8f247c85b9c2eafd34b29a05e5f1ea346"
+  },
+  "generatedInteractionCoroutine": {
+    "fileOffset": "0x13ac",
+    "launch": {
+      "operationId": 2,
+      "callFileOffset": "0x767ea",
+      "targetRelativeLiteralFileOffset": "0x76838"
+    },
+    "spatialSelectorCall": {
+      "operationId": 385,
+      "mode": 0,
+      "callFileOffset": "0x148a",
+      "argumentCount": 6,
+      "resultLocalFrameOffset": 76
+    },
+    "sceneSelectorWrite": {
+      "fileOffset": "0x16d8",
+      "sceneContextRelativeOffset": "0x84",
+      "slotIndexLocalFrameOffset": 88,
+      "value": "spatial selector result + 1"
+    },
+    "sceneSelectorReset": {
+      "fileOffset": "0x29e8",
+      "sceneContextRelativeOffset": "0x84",
+      "slotIndexLocalFrameOffset": 88,
+      "value": -1,
+      "hatoControlWait": {
+        "functionFileOffset": "0x8002c",
+        "readFileOffset": "0x80070",
+        "slotIndex": 0,
+        "requiredValue": -1
+      },
+      "exactBoundary": "The generic interaction coroutine owns this reset. It is an interaction-selector lifecycle transition, not a room-ready timer."
+    },
+    "interactionStateLifecycle": {
+      "sceneContextRelativeOffset": "0xb0",
+      "slotIndexLocalFrameOffset": 88,
+      "selectedWrite": {
+        "fileOffset": "0x16e8",
+        "value": 3
+      },
+      "consumedReset": {
+        "fileOffset": "0x29d4",
+        "value": 0
+      },
+      "hatoCleanupHandshake": {
+        "functionFileOffset": "0x8002c",
+        "orWriteFileOffset": "0x8015c",
+        "orMask": 1,
+        "waitReadFileOffset": "0x80164",
+        "completionValue": 0
+      }
+    }
+  },
+  "nativeOperation0181": {
+    "handlerAddress": "0x0c163b3c",
+    "mode0ScannerAddress": "0x0c163cf8",
+    "resultWriterAddress": "0x0c0bb342",
+    "notSelectedSentinel": -1,
+    "recordStrideBytes": 24,
+    "resultMeaning": "zero-based selected spatial-record index",
+    "recordSchema": [
+      {
+        "offset": "0x00",
+        "type": "float32[3]",
+        "meaning": "interaction position x/y/z"
+      },
+      {
+        "offset": "0x0c",
+        "type": "uint32",
+        "meaning": "required facing angle; 0x10000 raw units is one turn"
+      },
+      {
+        "offset": "0x10",
+        "type": "uint32",
+        "meaning": "selector flags; bit 0x0100 enables a per-record half-width lookup"
+      },
+      {
+        "offset": "0x14",
+        "type": "uint32",
+        "meaning": "auxiliary word; not read by the mode-zero scanner"
+      }
+    ],
+    "selectionGeometry": {
+      "verticalHalfExtent": 0.3999999761581421,
+      "defaultLateralHalfWidth": 0.3999999761581421,
+      "longitudinalHalfExtent": 0.5999999642372131,
+      "orientation": "the position delta is rotated by the live actor facing before the lateral/depth bounds are tested",
+      "customHalfWidthFlag": 256,
+      "customHalfWidthSource": "operation argument 4 points to a terminated 12-byte override table keyed by zero-based record index",
+      "facingToleranceArgument": 16384,
+      "facingToleranceDegrees": 90.0,
+      "facingRule": "circular raw-angle difference must be strictly less than the tolerance"
+    }
+  },
+  "serializedSpatialSource": {
+    "staticBaseFileOffset": "0xa2480",
+    "relativePointer": "0xd0fc",
+    "tableFileOffset": "0xaf57c",
+    "recordCount": 18,
+    "recordStrideBytes": 24,
+    "records": [
+      {
+        "index": 0,
+        "fileOffset": "0xaf57c",
+        "position": [
+          18.329999923706055,
+          0.22499999403953552,
+          60.88750076293945
+        ],
+        "requiredFacingRaw": 32768,
+        "requiredFacingDegrees": 180.0,
+        "selectorFlags": 1048832,
+        "usesCustomHalfWidth": true,
+        "auxiliaryWord": 8,
+        "packedFieldsHex": "008000000001100008000000",
+        "rawHex": "d7a392416666663ecd8c7342008000000001100008000000",
+        "lateralHalfWidth": 1.0
+      },
+      {
+        "index": 1,
+        "fileOffset": "0xaf594",
+        "position": [
+          18.41900062561035,
+          1.7999999523162842,
+          62.99020004272461
+        ],
+        "requiredFacingRaw": 0,
+        "requiredFacingDegrees": 0.0,
+        "selectorFlags": 264,
+        "usesCustomHalfWidth": true,
+        "auxiliaryWord": 8,
+        "packedFieldsHex": "000000000801000008000000",
+        "rawHex": "1d5a93416666e63ff7f57b42000000000801000008000000",
+        "lateralHalfWidth": 1.0
+      },
+      {
+        "index": 2,
+        "fileOffset": "0xaf5ac",
+        "position": [
+          19.520299911499023,
+          2.0250000953674316,
+          65.0645980834961
+        ],
+        "requiredFacingRaw": 39321,
+        "requiredFacingDegrees": 215.9967041015625,
+        "selectorFlags": 1048832,
+        "usesCustomHalfWidth": true,
+        "auxiliaryWord": 15,
+        "packedFieldsHex": "99990000000110000f000000",
+        "rawHex": "93299c419a9901401321824299990000000110000f000000",
+        "lateralHalfWidth": 1.0
+      },
+      {
+        "index": 3,
+        "fileOffset": "0xaf5c4",
+        "position": [
+          22.151399612426758,
+          5.400000095367432,
+          68.33480072021484
+        ],
+        "requiredFacingRaw": 6553,
+        "requiredFacingDegrees": 35.9967041015625,
+        "selectorFlags": 264,
+        "usesCustomHalfWidth": true,
+        "auxiliaryWord": 15,
+        "packedFieldsHex": "99190000080100000f000000",
+        "rawHex": "1136b141cdccac406bab884299190000080100000f000000",
+        "lateralHalfWidth": 1.0
+      },
+      {
+        "index": 4,
+        "fileOffset": "0xaf5dc",
+        "position": [
+          -120.79949951171875,
+          -1.5729999542236328,
+          78.31430053710938
+        ],
+        "requiredFacingRaw": 42143,
+        "requiredFacingDegrees": 231.4984130859375,
+        "selectorFlags": 1048832,
+        "usesCustomHalfWidth": true,
+        "auxiliaryWord": 8,
+        "packedFieldsHex": "9fa400000001100008000000",
+        "rawHex": "5899f1c21058c9bfeca09c429fa400000001100008000000",
+        "lateralHalfWidth": 0.5
+      },
+      {
+        "index": 5,
+        "fileOffset": "0xaf5f4",
+        "position": [
+          -119.13939666748047,
+          0.0,
+          79.6144027709961
+        ],
+        "requiredFacingRaw": 9375,
+        "requiredFacingDegrees": 51.4984130859375,
+        "selectorFlags": 264,
+        "usesCustomHalfWidth": true,
+        "auxiliaryWord": 8,
+        "packedFieldsHex": "9f2400000801000008000000",
+        "rawHex": "5f47eec200000000933a9f429f2400000801000008000000",
+        "lateralHalfWidth": 0.5
+      },
+      {
+        "index": 6,
+        "fileOffset": "0xaf60c",
+        "position": [
+          -101.99629974365234,
+          0.29670000076293945,
+          99.62940216064453
+        ],
+        "requiredFacingRaw": 25486,
+        "requiredFacingDegrees": 139.998779296875,
+        "selectorFlags": 1048576,
+        "usesCustomHalfWidth": false,
+        "auxiliaryWord": 12,
+        "packedFieldsHex": "8e630000000010000c000000",
+        "rawHex": "1bfecbc210e9973e4142c7428e630000000010000c000000",
+        "lateralHalfWidth": 0.3999999761581421
+      },
+      {
+        "index": 7,
+        "fileOffset": "0xaf624",
+        "position": [
+          -103.98269653320312,
+          2.75,
+          102.19850158691406
+        ],
+        "requiredFacingRaw": 58254,
+        "requiredFacingDegrees": 319.998779296875,
+        "selectorFlags": 8,
+        "usesCustomHalfWidth": false,
+        "auxiliaryWord": 12,
+        "packedFieldsHex": "8ee30000080000000c000000",
+        "rawHex": "24f7cfc200003040a265cc428ee30000080000000c000000",
+        "lateralHalfWidth": 0.3999999761581421
+      },
+      {
+        "index": 8,
+        "fileOffset": "0xaf63c",
+        "position": [
+          -51.18949890136719,
+          0.29600000381469727,
+          97.4197998046875
+        ],
+        "requiredFacingRaw": 37501,
+        "requiredFacingDegrees": 205.9991455078125,
+        "selectorFlags": 1048576,
+        "usesCustomHalfWidth": false,
+        "auxiliaryWord": 12,
+        "packedFieldsHex": "7d920000000010000c000000",
+        "rawHex": "0cc24cc2508d973ef0d6c2427d920000000010000c000000",
+        "lateralHalfWidth": 0.3999999761581421
+      },
+      {
+        "index": 9,
+        "fileOffset": "0xaf654",
+        "position": [
+          -49.68230056762695,
+          2.7716000080108643,
+          100.29869842529297
+        ],
+        "requiredFacingRaw": 4642,
+        "requiredFacingDegrees": 25.499267578125,
+        "selectorFlags": 9,
+        "usesCustomHalfWidth": false,
+        "auxiliaryWord": 12,
+        "packedFieldsHex": "22120000090000000c000000",
+        "rawHex": "adba46c2e5613140ef98c84222120000090000000c000000",
+        "lateralHalfWidth": 0.3999999761581421
+      },
+      {
+        "index": 10,
+        "fileOffset": "0xaf66c",
+        "position": [
+          -32.910400390625,
+          0.29600000381469727,
+          88.20760345458984
+        ],
+        "requiredFacingRaw": 33314,
+        "requiredFacingDegrees": 182.999267578125,
+        "selectorFlags": 1048576,
+        "usesCustomHalfWidth": false,
+        "auxiliaryWord": 12,
+        "packedFieldsHex": "22820000000010000c000000",
+        "rawHex": "40a403c2508d973e4b6ab04222820000000010000c000000",
+        "lateralHalfWidth": 0.3999999761581421
+      },
+      {
+        "index": 11,
+        "fileOffset": "0xaf684",
+        "position": [
+          -32.722198486328125,
+          2.7716000080108643,
+          91.50360107421875
+        ],
+        "requiredFacingRaw": 546,
+        "requiredFacingDegrees": 2.999267578125,
+        "selectorFlags": 8,
+        "usesCustomHalfWidth": false,
+        "auxiliaryWord": 12,
+        "packedFieldsHex": "22020000080000000c000000",
+        "rawHex": "88e302c2e5613140d801b74222020000080000000c000000",
+        "lateralHalfWidth": 0.3999999761581421
+      },
+      {
+        "index": 12,
+        "fileOffset": "0xaf69c",
+        "position": [
+          -7.646399974822998,
+          0.29600000381469727,
+          72.42960357666016
+        ],
+        "requiredFacingRaw": 11468,
+        "requiredFacingDegrees": 62.99560546875,
+        "selectorFlags": 1048576,
+        "usesCustomHalfWidth": false,
+        "auxiliaryWord": 12,
+        "packedFieldsHex": "cc2c0000000010000c000000",
+        "rawHex": "4faff4c0508d973ef5db9042cc2c0000000010000c000000",
+        "lateralHalfWidth": 0.3999999761581421
+      },
+      {
+        "index": 13,
+        "fileOffset": "0xaf6b4",
+        "position": [
+          -10.606100082397461,
+          2.7716000080108643,
+          70.964599609375
+        ],
+        "requiredFacingRaw": 44252,
+        "requiredFacingDegrees": 243.08349609375,
+        "selectorFlags": 8,
+        "usesCustomHalfWidth": false,
+        "auxiliaryWord": 12,
+        "packedFieldsHex": "dcac0000080000000c000000",
+        "rawHex": "96b229c1e5613140e0ed8d42dcac0000080000000c000000",
+        "lateralHalfWidth": 0.3999999761581421
+      },
+      {
+        "index": 14,
+        "fileOffset": "0xaf6cc",
+        "position": [
+          -6.244999885559082,
+          0.29600000381469727,
+          93.552001953125
+        ],
+        "requiredFacingRaw": 26594,
+        "requiredFacingDegrees": 146.085205078125,
+        "selectorFlags": 1048576,
+        "usesCustomHalfWidth": false,
+        "auxiliaryWord": 12,
+        "packedFieldsHex": "e2670000000010000c000000",
+        "rawHex": "0ad7c7c0508d973ea01abb42e2670000000010000c000000",
+        "lateralHalfWidth": 0.3999999761581421
+      },
+      {
+        "index": 15,
+        "fileOffset": "0xaf6e4",
+        "position": [
+          -8.141200065612793,
+          2.7716000080108643,
+          96.25769805908203
+        ],
+        "requiredFacingRaw": 59346,
+        "requiredFacingDegrees": 325.997314453125,
+        "selectorFlags": 8,
+        "usesCustomHalfWidth": false,
+        "auxiliaryWord": 12,
+        "packedFieldsHex": "d2e70000080000000c000000",
+        "rawHex": "5b4202c1e5613140f183c042d2e70000080000000c000000",
+        "lateralHalfWidth": 0.3999999761581421
+      },
+      {
+        "index": 16,
+        "fileOffset": "0xaf6fc",
+        "position": [
+          38.7333984375,
+          5.4741997718811035,
+          90.1436996459961
+        ],
+        "requiredFacingRaw": 24576,
+        "requiredFacingDegrees": 135.0,
+        "selectorFlags": 1048576,
+        "usesCustomHalfWidth": false,
+        "auxiliaryWord": 12,
+        "packedFieldsHex": "00600000000010000c000000",
+        "rawHex": "00ef1a42a52caf409349b44200600000000010000c000000",
+        "lateralHalfWidth": 0.3999999761581421
+      },
+      {
+        "index": 17,
+        "fileOffset": "0xaf714",
+        "position": [
+          36.39970016479492,
+          7.952499866485596,
+          92.4854965209961
+        ],
+        "requiredFacingRaw": 57344,
+        "requiredFacingDegrees": 315.0,
+        "selectorFlags": 8,
+        "usesCustomHalfWidth": false,
+        "auxiliaryWord": 12,
+        "packedFieldsHex": "00e00000080000000c000000",
+        "rawHex": "4b991142e17afe4093f8b84200e00000080000000c000000",
+        "lateralHalfWidth": 0.3999999761581421
+      }
+    ],
+    "loadedAddress": "0x0c474cbc",
+    "capturedTableByteExact": true,
+    "customHalfWidthOverrides": {
+      "tableFileOffset": "0xaf730",
+      "loadedAddress": "0x0c474e70",
+      "recordStrideBytes": 12,
+      "entryType": 0,
+      "terminatorType": 3,
+      "entries": [
+        {
+          "recordIndex": 0,
+          "lateralHalfWidth": 1.0,
+          "fileOffset": "0xaf730"
+        },
+        {
+          "recordIndex": 1,
+          "lateralHalfWidth": 1.0,
+          "fileOffset": "0xaf73c"
+        },
+        {
+          "recordIndex": 2,
+          "lateralHalfWidth": 1.0,
+          "fileOffset": "0xaf748"
+        },
+        {
+          "recordIndex": 3,
+          "lateralHalfWidth": 1.0,
+          "fileOffset": "0xaf754"
+        },
+        {
+          "recordIndex": 4,
+          "lateralHalfWidth": 0.5,
+          "fileOffset": "0xaf760"
+        },
+        {
+          "recordIndex": 5,
+          "lateralHalfWidth": 0.5,
+          "fileOffset": "0xaf76c"
+        }
+      ],
+      "terminatorFileOffset": "0xaf778",
+      "capturedTableByteExact": true
+    },
+    "runtimeContext": {
+      "address": "0x0c49f74c",
+      "countRelativeOffset": "0x6c",
+      "count": 18,
+      "tablePointerRelativeOffset": "0x70",
+      "customHalfWidthTablePointerRelativeOffset": "0x74",
+      "actorTagRelativeOffset": "0x80",
+      "actorTag": "AKIR",
+      "flagsRelativeOffset": "0x8c",
+      "flags": 16384
+    },
+    "runtimeRelationship": "context +0x6c count and +0x70 table pointer are passed directly to native operation 0x0181"
+  },
+  "hatoPredicateConnection": {
+    "predicateReadFileOffset": "0x7ac54",
+    "requiredOneBasedSceneSelector": 6,
+    "requiredZeroBasedSpatialIndex": 5,
+    "selectedSpatialRecord": {
+      "index": 5,
+      "fileOffset": "0xaf5f4",
+      "position": [
+        -119.13939666748047,
+        0.0,
+        79.6144027709961
+      ],
+      "requiredFacingRaw": 9375,
+      "requiredFacingDegrees": 51.4984130859375,
+      "selectorFlags": 264,
+      "usesCustomHalfWidth": true,
+      "auxiliaryWord": 8,
+      "packedFieldsHex": "9f2400000801000008000000",
+      "rawHex": "5f47eec200000000933a9f429f2400000801000008000000",
+      "lateralHalfWidth": 0.5
+    },
+    "semanticLimit": "The native position, facing, and selection volume are exact. The authored record's higher-level story label and the semantics of fields unused by mode zero remain unresolved."
+  }
+}

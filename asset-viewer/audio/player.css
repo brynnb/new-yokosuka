@@ -1,0 +1,92 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color-scheme: dark;
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.audio-player-mount,
+.radix-themes {
+  width: 100%;
+  height: 100%;
+}
+
+.audio-player-stage {
+  display: grid;
+  width: 100%;
+  min-height: 100%;
+  place-items: center;
+  padding: clamp(24px, 6vw, 72px);
+  background:
+    radial-gradient(circle at 52% 42%, rgb(22 141 160 / 0.13), transparent 34rem),
+    #111217;
+}
+
+.audio-player-card {
+  width: min(560px, 100%);
+  border: 1px solid rgb(255 255 255 / 0.09);
+  background: rgb(23 24 31 / 0.94);
+  box-shadow: 0 24px 80px rgb(0 0 0 / 0.38);
+}
+
+.audio-kicker {
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.audio-play-button svg {
+  width: 19px;
+  height: 19px;
+  fill: currentColor;
+}
+
+.audio-volume-control {
+  display: grid;
+  flex: 1;
+  gap: 7px;
+}
+
+.audio-volume-value {
+  min-width: 2.5rem;
+  text-align: right;
+}
+
+.audio-empty-state {
+  padding: 28px 12px;
+}
+
+.audio-disc {
+  position: relative;
+  width: 82px;
+  height: 82px;
+  border: 1px solid rgb(117 200 211 / 0.4);
+  border-radius: 50%;
+  background: repeating-radial-gradient(circle, #20232c 0 4px, #17181f 5px 8px);
+  box-shadow: 0 0 42px rgb(22 141 160 / 0.18);
+}
+
+.audio-disc::after {
+  position: absolute;
+  inset: 31px;
+  border: 7px solid #168da0;
+  border-radius: 50%;
+  background: #111217;
+  content: "";
+}
+
+@media (max-width: 600px) {
+  .audio-player-stage {
+    padding: 68px 14px 18px;
+  }
+
+  .audio-player-card {
+    max-height: calc(100dvh - 86px);
+    overflow-y: auto;
+  }
+}

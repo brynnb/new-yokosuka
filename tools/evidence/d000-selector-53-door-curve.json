@@ -1,0 +1,393 @@
+{
+  "schema": "shenmue-d000-door-curve-v1",
+  "sourceRecording": "captures/objects/object-once-1784883671.csv",
+  "selector": 53,
+  "staticDoorIndex": 0,
+  "model": "S1_D000_DR01_011.MT5",
+  "wordAddress": "0x8c9fa9ac",
+  "renderNodeKey": 12,
+  "sampling": {
+    "distinctGameUpdates": 52,
+    "note": "Interpreter host frames repeat game state. Consecutive distinct fixed-turn values are retained as game updates."
+  },
+  "startFixedTurn": 0,
+  "endpointFixedTurn": -16679,
+  "endpointDegrees": -91.6204833984375,
+  "fixedTurnSamples": [
+    0,
+    -910,
+    -1588,
+    -2029,
+    -2370,
+    -2602,
+    -2714,
+    -2789,
+    -2918,
+    -3132,
+    -3223,
+    -3251,
+    -3299,
+    -3437,
+    -3670,
+    -3989,
+    -4384,
+    -4834,
+    -5283,
+    -5704,
+    -6117,
+    -6545,
+    -7005,
+    -7483,
+    -7960,
+    -8424,
+    -8882,
+    -9334,
+    -9780,
+    -10221,
+    -10659,
+    -11096,
+    -11527,
+    -11947,
+    -12357,
+    -12759,
+    -13154,
+    -13543,
+    -13911,
+    -14248,
+    -14555,
+    -14835,
+    -15091,
+    -15326,
+    -15541,
+    -15739,
+    -15922,
+    -16092,
+    -16244,
+    -16381,
+    -16502,
+    -16602,
+    -16679
+  ],
+  "normalizedSamples": [
+    -0.0,
+    0.05455962587685113,
+    0.09520954493674681,
+    0.12164997901552851,
+    0.14209484981113976,
+    0.1560045566280952,
+    0.16271958750524612,
+    0.16721625996762396,
+    0.17495053660291385,
+    0.18778104202889861,
+    0.19323700461658372,
+    0.19491576233587146,
+    0.19779363271179326,
+    0.20606751004256849,
+    0.22003717249235566,
+    0.23916301936566942,
+    0.2628454943341927,
+    0.28982552910845977,
+    0.31674560824989506,
+    0.3419869296720427,
+    0.36674860603153664,
+    0.39240961688350623,
+    0.4199892079860903,
+    0.44864800047964504,
+    0.4772468373403681,
+    0.505066250974279,
+    0.5325259308111997,
+    0.5596258768511302,
+    0.5863660890940704,
+    0.6128065231728521,
+    0.6390670903531387,
+    0.6652677019005936,
+    0.6911085796510582,
+    0.7162899454403742,
+    0.740871754901373,
+    0.7649739192997183,
+    0.7886563942682415,
+    0.8119791354397745,
+    0.8340428083218419,
+    0.8542478565861262,
+    0.8726542358654595,
+    0.8894418130583368,
+    0.9047904550632532,
+    0.9188800287787038,
+    0.9317704898375202,
+    0.9436417051381978,
+    0.9546135859463997,
+    0.9648060435277894,
+    0.9739192997182086,
+    0.982133221416152,
+    0.9893878529887883,
+    0.9953834162719587,
+    1.0
+  ],
+  "changes": [
+    {
+      "recordingFrame": 1,
+      "fixedTurn": 0,
+      "degrees": 0.0
+    },
+    {
+      "recordingFrame": 169,
+      "fixedTurn": -910,
+      "degrees": -4.998779296875
+    },
+    {
+      "recordingFrame": 173,
+      "fixedTurn": -1588,
+      "degrees": -8.72314453125
+    },
+    {
+      "recordingFrame": 177,
+      "fixedTurn": -2029,
+      "degrees": -11.1456298828125
+    },
+    {
+      "recordingFrame": 181,
+      "fixedTurn": -2370,
+      "degrees": -13.018798828125
+    },
+    {
+      "recordingFrame": 185,
+      "fixedTurn": -2602,
+      "degrees": -14.293212890625
+    },
+    {
+      "recordingFrame": 189,
+      "fixedTurn": -2714,
+      "degrees": -14.908447265625
+    },
+    {
+      "recordingFrame": 193,
+      "fixedTurn": -2789,
+      "degrees": -15.3204345703125
+    },
+    {
+      "recordingFrame": 198,
+      "fixedTurn": -2918,
+      "degrees": -16.029052734375
+    },
+    {
+      "recordingFrame": 202,
+      "fixedTurn": -3132,
+      "degrees": -17.20458984375
+    },
+    {
+      "recordingFrame": 206,
+      "fixedTurn": -3223,
+      "degrees": -17.7044677734375
+    },
+    {
+      "recordingFrame": 210,
+      "fixedTurn": -3251,
+      "degrees": -17.8582763671875
+    },
+    {
+      "recordingFrame": 214,
+      "fixedTurn": -3299,
+      "degrees": -18.1219482421875
+    },
+    {
+      "recordingFrame": 218,
+      "fixedTurn": -3437,
+      "degrees": -18.8800048828125
+    },
+    {
+      "recordingFrame": 222,
+      "fixedTurn": -3670,
+      "degrees": -20.159912109375
+    },
+    {
+      "recordingFrame": 226,
+      "fixedTurn": -3989,
+      "degrees": -21.9122314453125
+    },
+    {
+      "recordingFrame": 230,
+      "fixedTurn": -4384,
+      "degrees": -24.08203125
+    },
+    {
+      "recordingFrame": 234,
+      "fixedTurn": -4834,
+      "degrees": -26.553955078125
+    },
+    {
+      "recordingFrame": 238,
+      "fixedTurn": -5283,
+      "degrees": -29.0203857421875
+    },
+    {
+      "recordingFrame": 242,
+      "fixedTurn": -5704,
+      "degrees": -31.3330078125
+    },
+    {
+      "recordingFrame": 246,
+      "fixedTurn": -6117,
+      "degrees": -33.6016845703125
+    },
+    {
+      "recordingFrame": 251,
+      "fixedTurn": -6545,
+      "degrees": -35.9527587890625
+    },
+    {
+      "recordingFrame": 255,
+      "fixedTurn": -7005,
+      "degrees": -38.4796142578125
+    },
+    {
+      "recordingFrame": 260,
+      "fixedTurn": -7483,
+      "degrees": -41.1053466796875
+    },
+    {
+      "recordingFrame": 265,
+      "fixedTurn": -7960,
+      "degrees": -43.7255859375
+    },
+    {
+      "recordingFrame": 270,
+      "fixedTurn": -8424,
+      "degrees": -46.2744140625
+    },
+    {
+      "recordingFrame": 275,
+      "fixedTurn": -8882,
+      "degrees": -48.790283203125
+    },
+    {
+      "recordingFrame": 280,
+      "fixedTurn": -9334,
+      "degrees": -51.273193359375
+    },
+    {
+      "recordingFrame": 285,
+      "fixedTurn": -9780,
+      "degrees": -53.72314453125
+    },
+    {
+      "recordingFrame": 290,
+      "fixedTurn": -10221,
+      "degrees": -56.1456298828125
+    },
+    {
+      "recordingFrame": 295,
+      "fixedTurn": -10659,
+      "degrees": -58.5516357421875
+    },
+    {
+      "recordingFrame": 300,
+      "fixedTurn": -11096,
+      "degrees": -60.9521484375
+    },
+    {
+      "recordingFrame": 304,
+      "fixedTurn": -11527,
+      "degrees": -63.3197021484375
+    },
+    {
+      "recordingFrame": 308,
+      "fixedTurn": -11947,
+      "degrees": -65.6268310546875
+    },
+    {
+      "recordingFrame": 313,
+      "fixedTurn": -12357,
+      "degrees": -67.8790283203125
+    },
+    {
+      "recordingFrame": 317,
+      "fixedTurn": -12759,
+      "degrees": -70.0872802734375
+    },
+    {
+      "recordingFrame": 322,
+      "fixedTurn": -13154,
+      "degrees": -72.257080078125
+    },
+    {
+      "recordingFrame": 327,
+      "fixedTurn": -13543,
+      "degrees": -74.3939208984375
+    },
+    {
+      "recordingFrame": 332,
+      "fixedTurn": -13911,
+      "degrees": -76.4154052734375
+    },
+    {
+      "recordingFrame": 337,
+      "fixedTurn": -14248,
+      "degrees": -78.2666015625
+    },
+    {
+      "recordingFrame": 342,
+      "fixedTurn": -14555,
+      "degrees": -79.9530029296875
+    },
+    {
+      "recordingFrame": 347,
+      "fixedTurn": -14835,
+      "degrees": -81.4910888671875
+    },
+    {
+      "recordingFrame": 352,
+      "fixedTurn": -15091,
+      "degrees": -82.8973388671875
+    },
+    {
+      "recordingFrame": 357,
+      "fixedTurn": -15326,
+      "degrees": -84.188232421875
+    },
+    {
+      "recordingFrame": 362,
+      "fixedTurn": -15541,
+      "degrees": -85.3692626953125
+    },
+    {
+      "recordingFrame": 367,
+      "fixedTurn": -15739,
+      "degrees": -86.4569091796875
+    },
+    {
+      "recordingFrame": 372,
+      "fixedTurn": -15922,
+      "degrees": -87.462158203125
+    },
+    {
+      "recordingFrame": 377,
+      "fixedTurn": -16092,
+      "degrees": -88.39599609375
+    },
+    {
+      "recordingFrame": 382,
+      "fixedTurn": -16244,
+      "degrees": -89.23095703125
+    },
+    {
+      "recordingFrame": 387,
+      "fixedTurn": -16381,
+      "degrees": -89.9835205078125
+    },
+    {
+      "recordingFrame": 392,
+      "fixedTurn": -16502,
+      "degrees": -90.648193359375
+    },
+    {
+      "recordingFrame": 397,
+      "fixedTurn": -16602,
+      "degrees": -91.197509765625
+    },
+    {
+      "recordingFrame": 402,
+      "fixedTurn": -16679,
+      "degrees": -91.6204833984375
+    }
+  ]
+}

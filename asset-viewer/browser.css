@@ -1,0 +1,12 @@
+.asset-browser-tools { padding: 12px 16px; display: grid; gap: 8px; }
+.asset-browser-tools[hidden] { display: none; }
+.asset-browser-tools input { box-sizing: border-box; width: 100%; min-width: 0; padding: 9px 10px; border: 1px solid #444; border-radius: 6px; background: #20242c; color: #eee; }
+.asset-browser-tools button { justify-self: start; padding: 6px 10px; }
+#asset-search-status { font-size: 12px; color: #b8c7d0; }
+.asset-browser-section { margin: 5px 0; min-width: 0; }
+.asset-browser-section > summary { padding: 10px 8px; cursor: pointer; font-size: 13px; font-weight: 600; border-radius: 6px; background: rgb(255 255 255 / 0.04); overflow-wrap: anywhere; }
+.asset-browser-section > summary:hover { background: rgb(255 255 255 / 0.08); }
+.asset-browser-content { padding-left: 8px; border-left: 1px solid rgb(255 255 255 / 0.08); }
+.asset-technical-name { display: block; color: #9eabb9; font-size: 10px; font-weight: normal; overflow-wrap: anywhere; white-space: normal; margin-top: 3px; }
+#model-list .model-item, #model-list .main-view-button { white-space: normal; overflow-wrap: anywhere; text-align: left; }
+#model-list [data-search-hidden] { display: none !important; }

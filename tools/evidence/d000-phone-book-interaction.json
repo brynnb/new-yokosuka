@@ -1,0 +1,179 @@
+{
+  "schema": "new-yokosuka-d000-phone-book-interaction-v1",
+  "status": "verified",
+  "source": {
+    "mapinfo": ".disc-work/exact/d000/MAPINFO.BIN",
+    "ram": "captures/pvr/20260724-010057-frame-4933/ram.bin",
+    "runtimeControls": "captures/skeleton/ryo-controls-1784840938.csv"
+  },
+  "engineSemantics": {
+    "attachOperation": {
+      "operationHex": "0x00e6",
+      "dispatcherHandler": "0x0c1577fe",
+      "fixoConstructor": "0x0c0beb4a",
+      "handlerSha256": "6b75c5d2543a2b7f4b4a6ecfdea42c1d0b791cf93fc439cbb34cf185e5f3bbc8",
+      "implementationSha256": "4534392c03aedf9f513389dcc2535debf5e77a755e10a57f716a181437da3210",
+      "effect": "create/update the child object's FIXO component from a local translation, fixed-turn Euler rotation, parent tag, and MOTM model-control id"
+    },
+    "detachOperation": {
+      "operationHex": "0x001b",
+      "dispatcherHandler": "0x0c157830",
+      "fixoClear": "0x0c0bebda",
+      "handlerSha256": "8235134b6a9d88823c209a50b641e22140fe662fc5b6a601f2fe1d2dd90a2859",
+      "effect": "clear the child object's FIXO component"
+    },
+    "controlLookup": {
+      "function": "0x0c1140e6 -> 0x0c10c442 -> 0x0c092ea0",
+      "effect": "look up a MOTM control record by its type byte, not by array index"
+    }
+  },
+  "scriptCalls": {
+    "attachClosed": {
+      "callFileOffset": "0x6b3c8",
+      "operationHex": "0x00e6",
+      "arguments": [
+        "TBK1",
+        "AKIR",
+        18,
+        "runtime",
+        "runtime"
+      ]
+    },
+    "detachClosed": {
+      "callFileOffset": "0x6b614",
+      "operationHex": "0x001b",
+      "arguments": [
+        "TBK1"
+      ]
+    },
+    "attachOpened": {
+      "callFileOffset": "0x6b660",
+      "operationHex": "0x00e6",
+      "arguments": [
+        "TBK3",
+        "AKIR",
+        12,
+        "runtime",
+        "runtime"
+      ]
+    },
+    "detachOpened": {
+      "callFileOffset": "0x6ba70",
+      "operationHex": "0x001b",
+      "arguments": [
+        "TBK3"
+      ]
+    }
+  },
+  "attachments": {
+    "closed": {
+      "objectTag": "TBK1",
+      "parentTag": "AKIR",
+      "modelControlId": 18,
+      "runtimeMatrixIndex": 36,
+      "renderKey": -65,
+      "translation": [
+        0.09839999675750732,
+        0,
+        -0.10700000077486038
+      ],
+      "rotationRaw": [
+        15655,
+        52428,
+        30401
+      ],
+      "runtimeControlTypeAtMatrixIndex": 18
+    },
+    "opened": {
+      "objectTag": "TBK3",
+      "parentTag": "AKIR",
+      "modelControlId": 12,
+      "runtimeMatrixIndex": 30,
+      "renderKey": -66,
+      "translation": [
+        0.20329999923706055,
+        0.014000000432133675,
+        0.052000001072883606
+      ],
+      "rotationRaw": [
+        47332,
+        38226,
+        22748
+      ],
+      "runtimeControlTypeAtMatrixIndex": 12
+    }
+  },
+  "models": {
+    "closed": {
+      "source": ".disc-work/exact/d000/unpacked/OMG/DENS501G.CHRM",
+      "byteLength": 596,
+      "sha256": "3c06acbdcc6888f5a79e4f4aa8ae6d55e0c82d1bfe9746e01c376b5da8b22c3d",
+      "renderKeys": [
+        -1
+      ],
+      "textureIds": [
+        "d79acd616063325f"
+      ],
+      "dimensions": [
+        0.2101600021123886,
+        0.05029599843692267,
+        0.296999990940094
+      ]
+    },
+    "opened": {
+      "source": ".disc-work/exact/d000/unpacked/AUTH/DENS502G.CHRM",
+      "byteLength": 2196,
+      "sha256": "bc68d76e1f0a53f2bb9a5c63eabf4dfa7b9bb15e3c5096c40673074a9ee67bde",
+      "renderKeys": [
+        -1
+      ],
+      "textureIds": [
+        "d79acd616163325f",
+        "d79acd616063325f"
+      ],
+      "dimensions": [
+        0.4488070011138916,
+        0.064989003501978,
+        0.2957940101623535
+      ],
+      "bundled": {
+        "source": "play/assets/dobuita/DENS502G.CHRM",
+        "byteLength": 2196,
+        "sha256": "bc68d76e1f0a53f2bb9a5c63eabf4dfa7b9bb15e3c5096c40673074a9ee67bde"
+      }
+    }
+  },
+  "motion": {
+    "source": ".disc-work/exact/d000/unpacked/AUTH/M_01TE.MOTN",
+    "byteLength": 135728,
+    "sha256": "6fe13710cb2cc8ecb8dbcb107ce3befd328b481db1d1e8ddb405a7c7578b6451",
+    "sequenceCount": 25,
+    "requiredCompleteSequences": [
+      "AKI_TORU_TELBOOK_90_F",
+      "AKI_OPEN_TELBOOK_F",
+      "AKI_OPEN_TELBOOK_LP_F",
+      "AKI_LOOK_TELBOOK_LP_F",
+      "AKI_MEKURU_TELBOOK_LP_F",
+      "AKI_OKU_TELBOOK_90_F"
+    ],
+    "authoredTimeline": {
+      "source": ".disc-work/exact/d000/unpacked/AUTH/SEQDATA0.AUTH",
+      "byteLength": 3404,
+      "sha256": "cded8b9c546b7ea3a4a4e0c3dbff9c3bfb31c2a9c3abc263e05414c352409c60",
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "motionId": 5144,
+          "motionBank": 20,
+          "sequenceNumber": 24,
+          "sequenceIndex": 23,
+          "motionName": "AKI_SIRABERU_DENWATYOU_ETC_TABACOYA_0100",
+          "startFrame": 18,
+          "endFrame": 925
+        }
+      ]
+    }
+  },
+  "conclusion": "The telephone-book routine has two exact FIXO prop states: DENS501G on AKIR model-control 18/runtime matrix 36, then DENS502G on model-control 12/runtime matrix 30. Both local transforms and detach calls are recovered without visual offset fitting. The owning AUTH timeline independently selects one-based M_01TE sequence 24 and frames 18..925.",
+  "failures": []
+}

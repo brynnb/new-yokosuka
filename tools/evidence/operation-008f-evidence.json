@@ -1,0 +1,96 @@
+{
+  "schema": "new-yokosuka-operation-008f-evidence-v1",
+  "status": "exact-native-orchestration-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 143,
+    "operationHex": "0x008f",
+    "handlerAddress": "0x0c17355c",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c17355c",
+        "length": 204,
+        "sha256": "4e5a54c4a5859d079251d28259df2e9d05dbc131939934f7517c0917378e4f62"
+      }
+    },
+    "nativeContract": {
+      "handlerTableEntry": "0x0c17355c",
+      "objectResolver": "0x0c153956",
+      "zeroStage0": "0x0c0e33ec",
+      "zeroStage1": "0x0c0d9c08",
+      "identityCapture": "0x0c0e3498",
+      "descriptorPrepare": "0x0c0addee",
+      "currentOwnerGlobal": "0x0c217488",
+      "currentOwnerResolver": "0x0c09766a",
+      "descriptorApply": "0x0c0e3402",
+      "gateQuery": "0x0c114314",
+      "identityReconcile": "0x0c113a96",
+      "finalizeStage0": "0x0c0adcac",
+      "finalizeStage1": "0x0c131806"
+    },
+    "routes": [
+      {
+        "condition": "argument one is zero",
+        "behavior": "Resolve argument zero as an object, invoke native stage 0x0c0e33ec, then tail-call stage 0x0c0d9c08 with that same resolved object."
+      },
+      {
+        "condition": "argument one is nonzero",
+        "behavior": "Capture identity through 0x0c0e3498, prepare through 0x0c0addee, resolve the current owner's dword +0x1c, and pass the resolved object, owner field, argument one, and argument two to 0x0c0e3402. If gate 0x0c114314 returns nonzero, capture identity again, call 0x0c113a96 only when it changed, then invoke 0x0c0adcac and 0x0c131806 in that order."
+      }
+    ]
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 413,
+    "provenCallCount": 410,
+    "malformedCallCount": 3,
+    "dialogueRegionCallCount": 34,
+    "malformedDialogueRegionCallCount": 3,
+    "areaCount": 58,
+    "argumentKindCounts": {
+      "0": {
+        "constant": 224,
+        "frame-field": 42,
+        "unresolved": 144
+      },
+      "1": {
+        "constant": 174,
+        "frame-field": 54,
+        "scene-field": 4,
+        "static-pointer": 178
+      },
+      "2": {
+        "constant": 266,
+        "operation-result": 144
+      }
+    },
+    "dialogueArgumentKindCounts": {
+      "0": {
+        "constant": 34
+      },
+      "1": {
+        "constant": 10,
+        "static-pointer": 24
+      },
+      "2": {
+        "constant": 34
+      }
+    },
+    "zeroDescriptorCount": 84,
+    "dialogueZeroDescriptorCount": 10,
+    "constantZeroValueCount": 266,
+    "resultComparisonCount": 0,
+    "resultTargetCount": 0
+  },
+  "evidenceBoundary": [
+    "Only the 410 exact three-argument calls receive this semantic; the three malformed zero-argument dialogue calls remain unresolved.",
+    "All ten subordinate calls retain mandatory low-level adapters and their executable-proven order.",
+    "A configured null object is distinct from unavailable object state because the native resolver can return zero and still passes it onward.",
+    "Identity values are compared only for exact equality; no object ownership, animation, presentation, or descriptor meaning is inferred.",
+    "Argument one is called a descriptor only as a neutral data-flow label, and argument two remains a raw 32-bit word."
+  ]
+}

@@ -1,0 +1,317 @@
+{
+  "schema": "new-yokosuka-native-map-layer-state-v1",
+  "generatedFrom": {
+    "path": "tools/evidence/d000-time-window-evidence.json",
+    "sha256": "be658a0b9c4f75df6464ea300f2873edc529207ef87864b244d610f0182796d5"
+  },
+  "nativeSemantics": {
+    "operation": "0x0098",
+    "handlerAddress": "0x0c1649de",
+    "getterAddress": "0x0c13080e",
+    "setterAddress": "0x0c130824",
+    "recordBaseAddress": "0x0c21c768",
+    "recordCount": 32,
+    "recordStride": 96,
+    "activeRule": "record +0x00 != 0",
+    "inactiveRule": "record +0x00 == 0"
+  },
+  "areas": {
+    "D000": {
+      "worldId": "dobuita",
+      "modelPrefix": "S1_D000",
+      "controlledLayers": [
+        8,
+        10,
+        11,
+        12,
+        13,
+        14,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22
+      ],
+      "rules": [
+        {
+          "predicate": {
+            "kind": "native-clock-window",
+            "startMinute": 510,
+            "endMinute": 1110,
+            "dayBoundaryHour": 6,
+            "boundary": "start-inclusive, end-exclusive"
+          },
+          "whenTrue": [
+            {
+              "layer": 20,
+              "value": 0
+            },
+            {
+              "layer": 17,
+              "value": 1
+            }
+          ],
+          "whenFalse": [
+            {
+              "layer": 17,
+              "value": 0
+            },
+            {
+              "layer": 20,
+              "value": 1
+            }
+          ],
+          "evidence": {
+            "predicateCallFileOffset": "0x7cd5e",
+            "compareFileOffset": "0x7cd64",
+            "branchFileOffset": "0x7cd66",
+            "trueSuccessorFileOffset": "0x7cd78",
+            "falseSuccessorFileOffset": "0x7cd68",
+            "routine": {
+              "startFileOffset": "0x7cd46",
+              "endFileOffsetExclusive": "0x7cf00",
+              "sha256": "45e0aabb8e54b96f835c6addd389c28f543f80d240cd8876328072eb19178880"
+            }
+          }
+        },
+        {
+          "predicate": {
+            "kind": "native-clock-window",
+            "startMinute": 1140,
+            "endMinute": 1380,
+            "dayBoundaryHour": 6,
+            "boundary": "start-inclusive, end-exclusive"
+          },
+          "whenTrue": [
+            {
+              "layer": 18,
+              "value": 0
+            },
+            {
+              "layer": 21,
+              "value": 1
+            }
+          ],
+          "whenFalse": [
+            {
+              "layer": 21,
+              "value": 0
+            },
+            {
+              "layer": 18,
+              "value": 1
+            }
+          ],
+          "evidence": {
+            "predicateCallFileOffset": "0x7cdea",
+            "compareFileOffset": "0x7cdf0",
+            "branchFileOffset": "0x7cdf2",
+            "trueSuccessorFileOffset": "0x7ce08",
+            "falseSuccessorFileOffset": "0x7cdf4",
+            "routine": {
+              "startFileOffset": "0x7cd46",
+              "endFileOffsetExclusive": "0x7cf00",
+              "sha256": "45e0aabb8e54b96f835c6addd389c28f543f80d240cd8876328072eb19178880"
+            }
+          }
+        },
+        {
+          "predicate": {
+            "kind": "native-clock-window",
+            "startMinute": 1170,
+            "endMinute": 1380,
+            "dayBoundaryHour": 6,
+            "boundary": "start-inclusive, end-exclusive"
+          },
+          "whenTrue": [
+            {
+              "layer": 19,
+              "value": 0
+            },
+            {
+              "layer": 22,
+              "value": 1
+            }
+          ],
+          "whenFalse": [
+            {
+              "layer": 22,
+              "value": 0
+            },
+            {
+              "layer": 19,
+              "value": 1
+            }
+          ],
+          "evidence": {
+            "predicateCallFileOffset": "0x7ce7a",
+            "compareFileOffset": "0x7ce80",
+            "branchFileOffset": "0x7ce82",
+            "trueSuccessorFileOffset": "0x7ce98",
+            "falseSuccessorFileOffset": "0x7ce84",
+            "routine": {
+              "startFileOffset": "0x7cd46",
+              "endFileOffsetExclusive": "0x7cf00",
+              "sha256": "45e0aabb8e54b96f835c6addd389c28f543f80d240cd8876328072eb19178880"
+            }
+          }
+        },
+        {
+          "predicate": {
+            "kind": "native-clock-window",
+            "startMinute": 510,
+            "endMinute": 1110,
+            "dayBoundaryHour": 6,
+            "boundary": "start-inclusive, end-exclusive"
+          },
+          "whenTrue": [
+            {
+              "layer": 8,
+              "value": 1
+            },
+            {
+              "layer": 11,
+              "value": 0
+            }
+          ],
+          "whenFalse": [
+            {
+              "layer": 8,
+              "value": 0
+            },
+            {
+              "layer": 11,
+              "value": 1
+            }
+          ],
+          "evidence": {
+            "predicateCallFileOffset": "0x7cf1e",
+            "compareFileOffset": "0x7cf24",
+            "branchFileOffset": "0x7cf26",
+            "trueSuccessorFileOffset": "0x7cf38",
+            "falseSuccessorFileOffset": "0x7cf28",
+            "routine": {
+              "startFileOffset": "0x7cf06",
+              "endFileOffsetExclusive": "0x7d100",
+              "sha256": "f3b53f1d8db30eac3f4ad06c26fa714e5e8c9165c35b34d0dc6afc383de7ec22"
+            }
+          }
+        },
+        {
+          "predicate": {
+            "kind": "native-clock-window",
+            "startMinute": 600,
+            "endMinute": 1260,
+            "dayBoundaryHour": 6,
+            "boundary": "start-inclusive, end-exclusive"
+          },
+          "whenTrue": [
+            {
+              "layer": 10,
+              "value": 1
+            },
+            {
+              "layer": 12,
+              "value": 0
+            }
+          ],
+          "whenFalse": [
+            {
+              "layer": 10,
+              "value": 0
+            },
+            {
+              "layer": 12,
+              "value": 1
+            }
+          ],
+          "evidence": {
+            "predicateCallFileOffset": "0x7cfaa",
+            "compareFileOffset": "0x7cfb0",
+            "branchFileOffset": "0x7cfb2",
+            "trueSuccessorFileOffset": "0x7cfc8",
+            "falseSuccessorFileOffset": "0x7cfb4",
+            "routine": {
+              "startFileOffset": "0x7cf06",
+              "endFileOffsetExclusive": "0x7d100",
+              "sha256": "f3b53f1d8db30eac3f4ad06c26fa714e5e8c9165c35b34d0dc6afc383de7ec22"
+            }
+          }
+        },
+        {
+          "predicate": {
+            "kind": "native-clock-window",
+            "startMinute": 480,
+            "endMinute": 1050,
+            "dayBoundaryHour": 6,
+            "boundary": "start-inclusive, end-exclusive"
+          },
+          "whenTrue": [
+            {
+              "layer": 13,
+              "value": 0
+            }
+          ],
+          "whenFalse": [
+            {
+              "layer": 13,
+              "value": 1
+            }
+          ],
+          "evidence": {
+            "predicateCallFileOffset": "0x7d03a",
+            "compareFileOffset": "0x7d040",
+            "branchFileOffset": "0x7d042",
+            "trueSuccessorFileOffset": "0x7d058",
+            "falseSuccessorFileOffset": "0x7d044",
+            "routine": {
+              "startFileOffset": "0x7cf06",
+              "endFileOffsetExclusive": "0x7d100",
+              "sha256": "f3b53f1d8db30eac3f4ad06c26fa714e5e8c9165c35b34d0dc6afc383de7ec22"
+            }
+          }
+        },
+        {
+          "predicate": {
+            "kind": "native-clock-window",
+            "startMinute": 480,
+            "endMinute": 1170,
+            "dayBoundaryHour": 6,
+            "boundary": "start-inclusive, end-exclusive"
+          },
+          "whenTrue": [
+            {
+              "layer": 14,
+              "value": 0
+            }
+          ],
+          "whenFalse": [
+            {
+              "layer": 14,
+              "value": 1
+            }
+          ],
+          "evidence": {
+            "predicateCallFileOffset": "0x7d0a2",
+            "compareFileOffset": "0x7d0a8",
+            "branchFileOffset": "0x7d0aa",
+            "trueSuccessorFileOffset": "0x7d0c0",
+            "falseSuccessorFileOffset": "0x7d0ac",
+            "routine": {
+              "startFileOffset": "0x7cf06",
+              "endFileOffsetExclusive": "0x7d100",
+              "sha256": "f3b53f1d8db30eac3f4ad06c26fa714e5e8c9165c35b34d0dc6afc383de7ec22"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "summary": {
+    "areaCount": 1,
+    "ruleCount": 7,
+    "controlledLayerCount": 12
+  },
+  "evidenceBoundary": "Only literal D000 clock predicates with exact canonical branch ownership on both sides are executable here. The whole-disc operation-0x0098 inventory is retained separately; no story, season, weather, or runtime-valued predicate is synthesized."
+}

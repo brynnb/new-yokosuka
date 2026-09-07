@@ -1,0 +1,743 @@
+{
+  "schema": "new-yokosuka-player-cutscene-owner-discovery-v1",
+  "generatedBy": "tools/cutscenes/audit_player_cutscene_owner_discovery.mjs",
+  "generatedFrom": [
+    {
+      "path": "tools/data/player-cutscene-owner-discovery.json",
+      "sha256": "8d55ff8467d4f808c6f27ca3c25ff2077704bb4b572050eac4bd5795b946c9a9"
+    },
+    {
+      "path": "tools/evidence/native-activity-owner-candidates.json",
+      "sha256": "b853b5845a6f05a1fd5ece5fbd0c0738b51b932536d0a75440c54d1f4369179a"
+    }
+  ],
+  "evidenceBoundary": [
+    "These routes classify only the five unresolved candidates already surfaced by the player-facing inventory.",
+    "Loose TRCK files and cross-disc IPAC members are selected by the exact resource strings authored in MAPINFO; archive-name similarity is not used.",
+    "Repeated installs of an identical payload under one owner are replay paths, not additional cinematics."
+  ],
+  "summary": {
+    "reviewedCandidateCount": 5,
+    "sourceInstallCount": 14,
+    "distinctPlayerFacingSceneCount": 10,
+    "uniqueAuthPayloadCount": 12,
+    "durationFrames": 20149,
+    "voiceCommandCount": 116
+  },
+  "candidates": [
+    {
+      "candidateId": "d1:DNOZ:installer:0x1d74",
+      "classification": "player-facing-composite-scenes",
+      "world": "DNOZ dedicated Nozomi cutscene map",
+      "owner": {
+        "entryFunction": "0x1d74",
+        "selector": "frame field +0x0c",
+        "cleanupBoundary": "0x2582"
+      },
+      "audio": {
+        "music": [
+          "BGM068.SND"
+        ],
+        "soundBanks": [
+          "A1_NOZOK.SND",
+          "A1_NONAM.SND"
+        ],
+        "voiceStreams": [
+          "01SKI",
+          "01FULB"
+        ]
+      },
+      "scenes": [
+        {
+          "id": "dnoz-selector-0",
+          "label": "Nozomi dedicated-map scene — selector 0",
+          "classification": "ordered-fragment-set",
+          "trigger": {
+            "selectorValue": 0
+          },
+          "installCallOffsets": [
+            "0x217c",
+            "0x21a0"
+          ],
+          "playFunctions": [
+            "0xb34",
+            "0xd18"
+          ],
+          "members": [
+            {
+              "kind": "loose-auth",
+              "path": "extracted_files/data/SCENE/01/DNOZ/SEQDATA4.BIN"
+            },
+            {
+              "kind": "loose-auth",
+              "path": "extracted_files/data/SCENE/01/DNOZ/SEQDATA5.BIN"
+            }
+          ],
+          "content": {
+            "authMemberCount": 2,
+            "durationFrames": 3904,
+            "voiceCommandCount": 33,
+            "soundCommandCount": 26,
+            "actorTags": [
+              "AKIR",
+              "HRSK"
+            ],
+            "members": [
+              {
+                "kind": "loose-auth",
+                "path": "extracted_files/data/SCENE/01/DNOZ/SEQDATA4.BIN",
+                "sha256": "2cb6480b7585a4006d55c778b6fea01e1b821e329346f6d5cdecbe7578887d2b",
+                "byteLength": 3864,
+                "durationFrames": 830,
+                "actorTags": [
+                  "AKIR",
+                  "HRSK"
+                ],
+                "cameraCount": 1,
+                "commandCounts": {
+                  "camera": 1,
+                  "move": 2,
+                  "motion": 2,
+                  "sound": 8,
+                  "voice": 8
+                },
+                "motionBanks": [
+                  16
+                ]
+              },
+              {
+                "kind": "loose-auth",
+                "path": "extracted_files/data/SCENE/01/DNOZ/SEQDATA5.BIN",
+                "sha256": "da6f69a9a4d4fd576dae55353cab272975e99e411da87c0cae2f80dd420b2032",
+                "byteLength": 9268,
+                "durationFrames": 3074,
+                "actorTags": [
+                  "AKIR",
+                  "HRSK"
+                ],
+                "cameraCount": 1,
+                "commandCounts": {
+                  "camera": 1,
+                  "move": 2,
+                  "motion": 2,
+                  "voice": 25,
+                  "sound": 18
+                },
+                "motionBanks": [
+                  16
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "dnoz-selector-1",
+          "label": "Nozomi dedicated-map scene — selector 1",
+          "classification": "ordered-fragment-set",
+          "trigger": {
+            "selectorValue": 1
+          },
+          "installCallOffsets": [
+            "0x2406",
+            "0x242a"
+          ],
+          "playFunctions": [
+            "0x13e0",
+            "0x1628"
+          ],
+          "members": [
+            {
+              "kind": "loose-auth",
+              "path": "extracted_files/data/SCENE/01/DNOZ/SEQDATA2.BIN"
+            },
+            {
+              "kind": "loose-auth",
+              "path": "extracted_files/data/SCENE/01/DNOZ/SEQDATA3.BIN"
+            }
+          ],
+          "content": {
+            "authMemberCount": 2,
+            "durationFrames": 3480,
+            "voiceCommandCount": 26,
+            "soundCommandCount": 36,
+            "actorTags": [
+              "AKIR",
+              "HRSK"
+            ],
+            "members": [
+              {
+                "kind": "loose-auth",
+                "path": "extracted_files/data/SCENE/01/DNOZ/SEQDATA2.BIN",
+                "sha256": "210cf85c321ba1e7265ae05af47ff402abb259b698fabc29d19bec0b71ee1d5e",
+                "byteLength": 11104,
+                "durationFrames": 1920,
+                "actorTags": [
+                  "AKIR",
+                  "HRSK"
+                ],
+                "cameraCount": 1,
+                "commandCounts": {
+                  "camera": 1,
+                  "move": 2,
+                  "motion": 6,
+                  "voice": 17,
+                  "sound": 30
+                },
+                "motionBanks": [
+                  16
+                ]
+              },
+              {
+                "kind": "loose-auth",
+                "path": "extracted_files/data/SCENE/01/DNOZ/SEQDATA3.BIN",
+                "sha256": "ce0cc17dae8d19f50c39141a7d313ed9cb5c06640ba617623b2550b06152139f",
+                "byteLength": 4092,
+                "durationFrames": 1560,
+                "actorTags": [
+                  "AKIR",
+                  "HRSK"
+                ],
+                "cameraCount": 1,
+                "commandCounts": {
+                  "camera": 1,
+                  "move": 2,
+                  "motion": 2,
+                  "sound": 6,
+                  "voice": 9
+                },
+                "motionBanks": [
+                  16
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "sourceCandidateIds": [
+        "d1:DNOZ:installer:0x1d74"
+      ],
+      "sourceInstallCount": 4,
+      "distinctSceneCount": 2
+    },
+    {
+      "candidateId": "d1:JHD0:installer:0x56028",
+      "classification": "player-facing-scene",
+      "world": "JHD0 Hazuki grounds",
+      "owner": {
+        "parentFunction": "0x545f8",
+        "dispatcherFunction": "0x56028",
+        "stateCode": 97,
+        "installCallOffset": "0x568a8",
+        "playFunction": "0x24044"
+      },
+      "audio": {
+        "soundBanks": [
+          "A1_HOUHA.SND"
+        ]
+      },
+      "scenes": [
+        {
+          "id": "houo-phoenix-mirror",
+          "label": "Ryo and Fuku-san — Phoenix mirror",
+          "classification": "complete-owner-scene",
+          "trigger": {
+            "dispatcherState": 97
+          },
+          "installCallOffsets": [
+            "0x568a8"
+          ],
+          "playFunctions": [
+            "0x24044"
+          ],
+          "assetDependencies": [
+            "M_01DIS.BIN",
+            "MIRR scene object"
+          ],
+          "members": [
+            {
+              "kind": "archive-auth",
+              "path": "extracted_disc2_v2/data/SCENE/02/JHD0/HOUO.PKS",
+              "member": "SEQDATAD.AUTH"
+            }
+          ],
+          "content": {
+            "authMemberCount": 1,
+            "durationFrames": 1810,
+            "voiceCommandCount": 16,
+            "soundCommandCount": 25,
+            "actorTags": [
+              "AKIR",
+              "FUKU",
+              "MIRR"
+            ],
+            "members": [
+              {
+                "kind": "archive-auth",
+                "path": "extracted_disc2_v2/data/SCENE/02/JHD0/HOUO.PKS",
+                "member": "SEQDATAD.AUTH",
+                "sha256": "33c400d02f7a5fbc2d3a9c9be17529b289b9432ad2c78a0985beee522a1a446c",
+                "byteLength": 31008,
+                "durationFrames": 1810,
+                "actorTags": [
+                  "AKIR",
+                  "FUKU",
+                  "MIRR"
+                ],
+                "cameraCount": 1,
+                "commandCounts": {
+                  "camera": 1,
+                  "move": 3,
+                  "motion": 4,
+                  "sound": 25,
+                  "voice": 16
+                },
+                "motionBanks": [
+                  16
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "sourceCandidateIds": [
+        "d1:JHD0:installer:0x56028"
+      ],
+      "sourceInstallCount": 1,
+      "distinctSceneCount": 1
+    },
+    {
+      "candidateId": "d1:JOMO:installer:0x4a1f2",
+      "classification": "player-facing-vision-family",
+      "world": "JOMO Hazuki bedroom dream presentation",
+      "owner": {
+        "storyFunction": "0x4f758",
+        "selectorInstaller": "0x4a1f2",
+        "playFunction": "0x45d10"
+      },
+      "audio": {
+        "music": [
+          "BGM201.SND",
+          "BGM079.SND"
+        ],
+        "policy": "KKYF selects BGM201; KKYA through K enters the other native music branch using BGM079"
+      },
+      "scenes": [
+        {
+          "id": "kkya-vision",
+          "label": "KKYA dream vision",
+          "classification": "complete-activity-scene",
+          "trigger": {
+            "eventCode": 2103,
+            "selectorValue": 0
+          },
+          "installCallOffsets": [
+            "0x4a31a"
+          ],
+          "members": [
+            {
+              "kind": "archive-auth",
+              "path": "extracted_disc3_v2/data/SCENE/03/JOMO/KKYA.PKS",
+              "member": "SEQDATA0.AUTH"
+            }
+          ],
+          "content": {
+            "authMemberCount": 1,
+            "durationFrames": 1100,
+            "voiceCommandCount": 0,
+            "soundCommandCount": 0,
+            "actorTags": [
+              "HOMR"
+            ],
+            "members": [
+              {
+                "kind": "archive-auth",
+                "path": "extracted_disc3_v2/data/SCENE/03/JOMO/KKYA.PKS",
+                "member": "SEQDATA0.AUTH",
+                "sha256": "65f0adf42b7f25cb665949af5ff1adadafcdc5c739292f13749d7cb3ccfb83a3",
+                "byteLength": 2148,
+                "durationFrames": 1100,
+                "actorTags": [
+                  "HOMR"
+                ],
+                "cameraCount": 1,
+                "commandCounts": {
+                  "camera": 1,
+                  "move": 1
+                },
+                "motionBanks": []
+              }
+            ]
+          }
+        },
+        {
+          "id": "kkyb-vision",
+          "label": "KKYB dream vision",
+          "classification": "complete-activity-scene",
+          "trigger": {
+            "eventCode": 1701,
+            "selectorValue": 1
+          },
+          "installCallOffsets": [
+            "0x4a46a"
+          ],
+          "members": [
+            {
+              "kind": "archive-auth",
+              "path": "extracted_disc2_v2/data/SCENE/02/JOMO/KKYB.PKS",
+              "member": "SEQDATA1.AUTH"
+            }
+          ],
+          "content": {
+            "authMemberCount": 1,
+            "durationFrames": 900,
+            "voiceCommandCount": 0,
+            "soundCommandCount": 0,
+            "actorTags": [
+              "HAWK",
+              "HOMR",
+              "RYMR"
+            ],
+            "members": [
+              {
+                "kind": "archive-auth",
+                "path": "extracted_disc2_v2/data/SCENE/02/JOMO/KKYB.PKS",
+                "member": "SEQDATA1.AUTH",
+                "sha256": "d18f0cc90a5bba968a4d269765dc2cf1e2995f223e390fde0e6ab8d7540fd349",
+                "byteLength": 3764,
+                "durationFrames": 900,
+                "actorTags": [
+                  "HAWK",
+                  "HOMR",
+                  "RYMR"
+                ],
+                "cameraCount": 1,
+                "commandCounts": {
+                  "camera": 1,
+                  "move": 3
+                },
+                "motionBanks": []
+              }
+            ]
+          }
+        },
+        {
+          "id": "kkyc-vision",
+          "label": "KKYC dream vision",
+          "classification": "complete-activity-scene",
+          "trigger": {
+            "eventCode": 1801,
+            "selectorValue": 2
+          },
+          "installCallOffsets": [
+            "0x4a5ba"
+          ],
+          "members": [
+            {
+              "kind": "archive-auth",
+              "path": "extracted_disc2_v2/data/SCENE/02/JOMO/KKYC.PKS",
+              "member": "SEQDATA2.AUTH"
+            }
+          ],
+          "content": {
+            "authMemberCount": 1,
+            "durationFrames": 1100,
+            "voiceCommandCount": 0,
+            "soundCommandCount": 0,
+            "actorTags": [
+              "SINF"
+            ],
+            "members": [
+              {
+                "kind": "archive-auth",
+                "path": "extracted_disc2_v2/data/SCENE/02/JOMO/KKYC.PKS",
+                "member": "SEQDATA2.AUTH",
+                "sha256": "10ab2974a98fe8404ef47b2626508859cb18fcfd37cb401770907fc2a439ce8c",
+                "byteLength": 5676,
+                "durationFrames": 1100,
+                "actorTags": [
+                  "SINF"
+                ],
+                "cameraCount": 1,
+                "commandCounts": {
+                  "camera": 1,
+                  "move": 1,
+                  "motion": 1
+                },
+                "motionBanks": [
+                  16
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "kkyd-vision",
+          "label": "KKYD dream vision",
+          "classification": "complete-activity-scene",
+          "trigger": {
+            "eventCode": 2204,
+            "selectorValue": 3
+          },
+          "installCallOffsets": [
+            "0x4a70a"
+          ],
+          "members": [
+            {
+              "kind": "archive-auth",
+              "path": "extracted_disc3_v2/data/SCENE/03/JOMO/KKYD.PKS",
+              "member": "SEQDATA3.AUTH"
+            }
+          ],
+          "content": {
+            "authMemberCount": 1,
+            "durationFrames": 1260,
+            "voiceCommandCount": 0,
+            "soundCommandCount": 0,
+            "actorTags": [
+              "SEIZ",
+              "SINF"
+            ],
+            "members": [
+              {
+                "kind": "archive-auth",
+                "path": "extracted_disc3_v2/data/SCENE/03/JOMO/KKYD.PKS",
+                "member": "SEQDATA3.AUTH",
+                "sha256": "44b6cba868f90829083deeb5e673ef8e761a777ffcea55421a29b0d8a8ef8e22",
+                "byteLength": 4552,
+                "durationFrames": 1260,
+                "actorTags": [
+                  "SEIZ",
+                  "SINF"
+                ],
+                "cameraCount": 1,
+                "commandCounts": {
+                  "camera": 1,
+                  "move": 2,
+                  "motion": 1
+                },
+                "motionBanks": [
+                  16
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "kkye-vision",
+          "label": "KKYE dream vision",
+          "classification": "complete-activity-scene",
+          "trigger": {
+            "eventCodes": [
+              2001,
+              2002
+            ],
+            "selectorValue": 4
+          },
+          "installCallOffsets": [
+            "0x4a85a"
+          ],
+          "members": [
+            {
+              "kind": "archive-auth",
+              "path": "extracted_disc3_v2/data/SCENE/03/JOMO/KKYE.PKS",
+              "member": "SEQDATA4.AUTH"
+            }
+          ],
+          "content": {
+            "authMemberCount": 1,
+            "durationFrames": 1000,
+            "voiceCommandCount": 0,
+            "soundCommandCount": 0,
+            "actorTags": [
+              "HAWK",
+              "MOON",
+              "SINF"
+            ],
+            "members": [
+              {
+                "kind": "archive-auth",
+                "path": "extracted_disc3_v2/data/SCENE/03/JOMO/KKYE.PKS",
+                "member": "SEQDATA4.AUTH",
+                "sha256": "1d9d0b2947f851e908c39b1f3c1bbe0902c45214335488aaf75008c3255e2688",
+                "byteLength": 3244,
+                "durationFrames": 1000,
+                "actorTags": [
+                  "HAWK",
+                  "MOON",
+                  "SINF"
+                ],
+                "cameraCount": 1,
+                "commandCounts": {
+                  "camera": 1,
+                  "move": 3,
+                  "motion": 2
+                },
+                "motionBanks": [
+                  16
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "kkyf-vision",
+          "label": "KKYF dream vision",
+          "classification": "complete-activity-scene",
+          "trigger": {
+            "eventCode": 2106,
+            "selectorValue": 5
+          },
+          "installCallOffsets": [
+            "0x4a9aa"
+          ],
+          "members": [
+            {
+              "kind": "archive-auth",
+              "path": "extracted_disc3_v2/data/SCENE/03/JOMO/KKYF.PKS",
+              "member": "SEQDATA5.AUTH"
+            }
+          ],
+          "content": {
+            "authMemberCount": 1,
+            "durationFrames": 240,
+            "voiceCommandCount": 0,
+            "soundCommandCount": 0,
+            "actorTags": [
+              "RYMR",
+              "SORY"
+            ],
+            "members": [
+              {
+                "kind": "archive-auth",
+                "path": "extracted_disc3_v2/data/SCENE/03/JOMO/KKYF.PKS",
+                "member": "SEQDATA5.AUTH",
+                "sha256": "6c32c6d6567b0792f5a32c46e3628e25f530174f47e9e888b0cba55b973d852b",
+                "byteLength": 1752,
+                "durationFrames": 240,
+                "actorTags": [
+                  "RYMR",
+                  "SORY"
+                ],
+                "cameraCount": 1,
+                "commandCounts": {
+                  "camera": 1,
+                  "move": 2,
+                  "motion": 2
+                },
+                "motionBanks": [
+                  16
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "sourceCandidateIds": [
+        "d1:JOMO:installer:0x4a1f2"
+      ],
+      "sourceInstallCount": 6,
+      "distinctSceneCount": 6
+    },
+    {
+      "candidateId": "d1:TOKI:installer:0x19e0",
+      "relatedCandidateIds": [
+        "d1:TOKI:installer:0x2280"
+      ],
+      "classification": "player-facing-scene-with-replay-paths",
+      "world": "TOKI Tomato convenience store interior",
+      "owner": {
+        "entryFunction": "0x19e0",
+        "childReplayFunction": "0x2280",
+        "stateCodes": [
+          0,
+          10,
+          99
+        ],
+        "playFunction": "0xa94"
+      },
+      "audio": {
+        "music": [
+          "BGM050.SND"
+        ],
+        "soundBanks": [
+          "A1_TOURA.SND"
+        ],
+        "voiceStreams": [
+          "A0142B"
+        ]
+      },
+      "scenes": [
+        {
+          "id": "toki-asada-conversation",
+          "label": "Ryo and Asada in the Tomato store",
+          "classification": "complete-owner-scene",
+          "trigger": {
+            "stateCodes": [
+              0,
+              10,
+              99
+            ]
+          },
+          "installCallOffsets": [
+            "0x1ba6",
+            "0x1e06",
+            "0x253a"
+          ],
+          "playFunctions": [
+            "0xa94"
+          ],
+          "assetDependencies": [
+            "M_0142.BIN",
+            "TEGS hand prop and native attachments"
+          ],
+          "members": [
+            {
+              "kind": "loose-auth",
+              "path": "extracted_files/data/SCENE/01/TOKI/SEQDATA2.BIN"
+            }
+          ],
+          "content": {
+            "authMemberCount": 1,
+            "durationFrames": 5355,
+            "voiceCommandCount": 41,
+            "soundCommandCount": 29,
+            "actorTags": [
+              "AKIR",
+              "ASDA"
+            ],
+            "members": [
+              {
+                "kind": "loose-auth",
+                "path": "extracted_files/data/SCENE/01/TOKI/SEQDATA2.BIN",
+                "sha256": "507a20816d8a73a2a41700e90b4bc8e62e9a2b4dc4ad865cdfd9e555f459a38e",
+                "byteLength": 15592,
+                "durationFrames": 5355,
+                "actorTags": [
+                  "AKIR",
+                  "ASDA"
+                ],
+                "cameraCount": 1,
+                "commandCounts": {
+                  "camera": 1,
+                  "move": 2,
+                  "motion": 6,
+                  "sound": 29,
+                  "voice": 41
+                },
+                "motionBanks": [
+                  16
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "sourceCandidateIds": [
+        "d1:TOKI:installer:0x19e0",
+        "d1:TOKI:installer:0x2280"
+      ],
+      "sourceInstallCount": 3,
+      "distinctSceneCount": 1
+    }
+  ]
+}

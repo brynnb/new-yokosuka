@@ -1,0 +1,3679 @@
+{
+  "schema": "new-yokosuka-native-activity-owner-candidates-v1",
+  "generatedBy": "tools/cutscenes/build_native_activity_owner_candidates.py",
+  "generatedFrom": {
+    "nativeEventIr": {
+      "path": ".disc-work/dialogue/native-event-ir.json",
+      "sha256": "991c94d2fac6aafa4f4cf2cb6534f95c6be284b9e240012f6e44e69d6069d177"
+    },
+    "scriptedSceneInventory": {
+      "path": "tools/evidence/shenmue1-scripted-scene-inventory.json",
+      "sha256": "e9e255dd76c542f1d42c31e28fe08753f655cfce15f87e31779378755c3aa075"
+    },
+    "nativeActivityActors": {
+      "path": "play/data/events/nativeActivityActors.json",
+      "sha256": "60d6471978ff1d917653af1b6dad8f6631758b3a9ea5d549965aba55ed60b29e"
+    },
+    "nativeEventProgramRoutes": {
+      "path": "tools/data/native-event-program-routes.json",
+      "sha256": "5aec4e8e65b99531722a422c8a8da96f72da5b4ad4d3c9c16beb737fe46ecb88"
+    },
+    "nativeEventProgramPack": {
+      "path": "play/data/events/nativeEventPrograms.generated.json",
+      "sha256": "4584c1a5c0ad42c582a8a98acb60c98a8bb6e33f823184e89f1e725322ec782e"
+    },
+    "nativeActivityOwnerDispositions": {
+      "path": "tools/data/native-activity-owner-dispositions.json",
+      "sha256": "c46a8633ec2d02b4320652e9b7dc080502719341f58a224fb02a15f2b7a184b7"
+    },
+    "nativeLifecycleAudioEvidence": [
+      {
+        "path": "tools/evidence/bebf-native-lifecycle.json",
+        "sha256": "f3cf2d881cf75367864b36abb6ca683d0b2b7fa10aa22016eb19cadd75123fa5",
+        "resource": "BEBF",
+        "soundBank": "extracted_files/data/SCENE/01/SOUND/A1_BADME.SND"
+      },
+      {
+        "path": "tools/evidence/buss-native-lifecycle.json",
+        "sha256": "490a71b30a6bb8a8d951842d937e7ac776743cacafe1f1caf5d2253bfa653925",
+        "resource": "BUSS",
+        "soundBank": "extracted_files/data/SCENE/01/SOUND/A1_BUSNO.SND"
+      },
+      {
+        "path": "tools/evidence/cata1-native-lifecycle.json",
+        "sha256": "50d4ebbcbcea5509b6f9f8ae51dfe4f43af6dea5e6ebb37f64c38e9e1df267f5",
+        "resource": "CATA1",
+        "soundBank": "A1_NEKO1.SND"
+      },
+      {
+        "path": "tools/evidence/dnoz-native-lifecycle.json",
+        "sha256": "f0ccd148f64d9b49aa0548795b3cd8611a3a4632e2c2c1361e376c0945856137",
+        "resource": "DNOZ",
+        "soundBank": "A1_NONAM.SND"
+      },
+      {
+        "path": "tools/evidence/evsn-native-lifecycle.json",
+        "sha256": "f1e2ca8ab3d7596c677f177e2e73b1333299607ecaf8067cd228e6731611456d",
+        "resource": "EVSN",
+        "soundBank": "A1_NZMVS.SND"
+      },
+      {
+        "path": "tools/evidence/jhw0-native-lifecycle.json",
+        "sha256": "a75346a80ac97add6b7e6da4432960b862aebe1dacc7fa7cef39cce2b9ee5928",
+        "resource": "JHW0",
+        "soundBank": "A1_FUKW.SND"
+      },
+      {
+        "path": "tools/evidence/mska-native-lifecycle.json",
+        "sha256": "b7b2dd71f86c71638b3d400bcb1cb1ecee39bc23c18492b08d758366e283f284",
+        "resource": "MSKA",
+        "soundBank": "A1_FUKAN.SND"
+      },
+      {
+        "path": "tools/evidence/sakr-native-lifecycle.json",
+        "sha256": "573fd6d77eab4abeaae626229dc20fc7ce52fc3c599c796fc569ad4b001ba058",
+        "resource": "SAKR",
+        "soundBank": "extracted_files/data/SCENE/01/SOUND/A1_SAKRA.SND"
+      },
+      {
+        "path": "tools/evidence/ybhn-native-lifecycle.json",
+        "sha256": "a1c3196a90bb2b19d6db0d7affc5c692f62fedf34b7fd8c367eb7337f7b9016f",
+        "resource": "YBHN",
+        "soundBank": "a1_yobi.snd"
+      }
+    ]
+  },
+  "evidenceBoundary": [
+    "Every entry is an exact function containing one or more static mode-zero operation-0x013e installs.",
+    "Incoming direct calls identify structural wrappers only; they do not prove player-facing lifecycle ownership.",
+    "Routes may narrow reviewed activity ownership to explicit functions so a large story-controller closure cannot claim sibling installers.",
+    "Archive AUTH selection uses exact member names or the native zero-based AUTH-extension ordinal rule.",
+    "Unknown four-character tags remain actor-or-scene-object blockers until their native bindings are proved.",
+    "A candidate is not production-ready until a reviewed owner route and every dependency are packaged and runtime-validated.",
+    "Reviewed non-cutscene dispositions preserve exact exclusions so ambient AUTH activities are not repeatedly reconsidered or exposed as cutscenes.",
+    "Only explicit native-event route definitions confer reviewed activity-owner status; compiled programs outside that route inventory remain valid canonical programs but do not classify operation-0x013e installer candidates."
+  ],
+  "sourceAlignment": {
+    "compiledProgramCount": 19,
+    "activityOwnerRouteCount": 17,
+    "programsOutsideActivityOwnerRoutes": [
+      "S1-OP00-A0114",
+      "S1-OP02-00"
+    ]
+  },
+  "summary": {
+    "installerFunctionCount": 31,
+    "staticInstallCount": 87,
+    "reviewedRouteCount": 20,
+    "reviewedNonCutsceneCount": 4,
+    "exactAuthSelectionCount": 73,
+    "unresolvedAuthSelectionCount": 14
+  },
+  "candidates": [
+    {
+      "id": "d1:D000:installer:0x6a8a8",
+      "disc": 1,
+      "area": "D000",
+      "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+      "installerFunction": "0x6a8a8",
+      "reviewedRouteIds": [
+        "disc1-d000-phone-book-0x6a49c"
+      ],
+      "incomingDirectCalls": [
+        {
+          "callerFunction": "0x69b14",
+          "callFileOffset": "0x69cce"
+        }
+      ],
+      "releaseSlotsInFunction": [
+        2
+      ],
+      "resourceNames": [
+        "AUTH"
+      ],
+      "actorTags": [
+        "AKIR"
+      ],
+      "unknownActorOrObjectTags": [],
+      "installs": [
+        {
+          "callFileOffset": "0x6aa34",
+          "slot": 2,
+          "primaryPointer": 715460,
+          "secondaryPointer": 715473,
+          "primaryResource": "seqdata0.bin",
+          "secondaryResource": "AUTH",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/AUTH.PKS:2:SEQDATA0.AUTH",
+              "archiveMember": "SEQDATA0.AUTH",
+              "payloadSha256": "cded8b9c546b7ea3a4a4e0c3dbff9c3bfb31c2a9c3abc263e05414c352409c60",
+              "parseStatus": "complete",
+              "durationFrames": 890,
+              "actorTags": [
+                "AKIR"
+              ],
+              "motionBanks": [
+                20
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 1,
+                "motion": 1,
+                "sound": 7,
+                "voice": 3
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [],
+      "promotionState": "reviewed-route"
+    },
+    {
+      "id": "d1:D000:installer:0x6e1a0",
+      "disc": 1,
+      "area": "D000",
+      "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+      "installerFunction": "0x6e1a0",
+      "reviewedRouteIds": [
+        "disc1-d000-bus-travel-owner-0x6e1a0"
+      ],
+      "incomingDirectCalls": [
+        {
+          "callerFunction": "0x6d9b4",
+          "callFileOffset": "0x6e018"
+        },
+        {
+          "callerFunction": "0x8d548",
+          "callFileOffset": "0x8dc04"
+        }
+      ],
+      "releaseSlotsInFunction": [
+        17
+      ],
+      "resourceNames": [
+        "BUSS"
+      ],
+      "actorTags": [
+        "AKIR",
+        "BUSS",
+        "BUS_"
+      ],
+      "unknownActorOrObjectTags": [],
+      "installs": [
+        {
+          "callFileOffset": "0x6e37a",
+          "slot": 16,
+          "primaryPointer": 716815,
+          "secondaryPointer": 716828,
+          "primaryResource": "seqdata1.bin",
+          "secondaryResource": "BUSS",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/BUSS.PKS:3:SEQDATA1.AUTH",
+              "archiveMember": "SEQDATA1.AUTH",
+              "payloadSha256": "3d769872346e486df965296861c502402e95e064e2da4c1f051a568c87774ba0",
+              "parseStatus": "complete",
+              "durationFrames": 325,
+              "actorTags": [
+                "AKIR",
+                "BUS_",
+                "BUSS"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 3,
+                "motion": 3,
+                "sound": 8
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x6e3b6",
+          "slot": 16,
+          "primaryPointer": 716833,
+          "secondaryPointer": 716846,
+          "primaryResource": "seqdata4.bin",
+          "secondaryResource": "BUSS",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/BUSS.PKS:5:SEQDATA4.AUTH",
+              "archiveMember": "SEQDATA4.AUTH",
+              "payloadSha256": "400c63409f2910eba206da078f80ab5ddb76a88e87e747b369bf74ecb2b7415e",
+              "parseStatus": "complete",
+              "durationFrames": 325,
+              "actorTags": [
+                "AKIR",
+                "BUS_",
+                "BUSS"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 3,
+                "motion": 3,
+                "sound": 8
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x6e56a",
+          "slot": 17,
+          "primaryPointer": 716885,
+          "secondaryPointer": 716898,
+          "primaryResource": "seqdata2.bin",
+          "secondaryResource": "BUSS",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/BUSS.PKS:4:SEQDATA2.AUTH",
+              "archiveMember": "SEQDATA2.AUTH",
+              "payloadSha256": "e4b254047a27493388cbef074e909ab0169652ee64ab469802abc425247e46f6",
+              "parseStatus": "complete",
+              "durationFrames": 246,
+              "actorTags": [
+                "AKIR",
+                "BUS_",
+                "BUSS"
+              ],
+              "motionBanks": [
+                2,
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 3,
+                "motion": 5,
+                "sound": 12
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x6e5ee",
+          "slot": 17,
+          "primaryPointer": 716903,
+          "secondaryPointer": 716916,
+          "primaryResource": "seqdata5.bin",
+          "secondaryResource": "BUSS",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/BUSS.PKS:6:SEQDATA5.AUTH",
+              "archiveMember": "SEQDATA5.AUTH",
+              "payloadSha256": "69e81149123aecc70759b84098d4a70cfb35129ed757bda8b42ce571c4ec0fb6",
+              "parseStatus": "complete",
+              "durationFrames": 246,
+              "actorTags": [
+                "AKIR",
+                "BUS_",
+                "BUSS"
+              ],
+              "motionBanks": [
+                2,
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 3,
+                "motion": 5,
+                "sound": 14
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [],
+      "promotionState": "reviewed-route"
+    },
+    {
+      "id": "d1:D000:installer:0x7b7d8",
+      "disc": 1,
+      "area": "D000",
+      "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+      "installerFunction": "0x7b7d8",
+      "reviewedRouteIds": [
+        "disc1-d000-entry-0x7abf4"
+      ],
+      "incomingDirectCalls": [
+        {
+          "callerFunction": "0x7abf4",
+          "callFileOffset": "0x7ae9a"
+        }
+      ],
+      "releaseSlotsInFunction": [],
+      "resourceNames": [
+        "YBHN"
+      ],
+      "actorTags": [
+        "AKIR",
+        "HRSK"
+      ],
+      "unknownActorOrObjectTags": [],
+      "installs": [
+        {
+          "callFileOffset": "0x7bc9a",
+          "slot": 27,
+          "primaryPointer": 719022,
+          "secondaryPointer": 719035,
+          "primaryResource": "seqdata0.bin",
+          "secondaryResource": "YBHN",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/YBHN.PKS:1:SEQDATA0.AUTH",
+              "archiveMember": "SEQDATA0.AUTH",
+              "payloadSha256": "590ca02d4dba7437ae84fe3fb35908241092fcee011784b90417497338bdf0df",
+              "parseStatus": "complete",
+              "durationFrames": 2130,
+              "actorTags": [
+                "AKIR",
+                "HRSK"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 2,
+                "sound": 15,
+                "voice": 26
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [],
+      "promotionState": "reviewed-route"
+    },
+    {
+      "id": "d1:JD00:installer:0x59448",
+      "disc": 1,
+      "area": "JD00",
+      "mapinfoSha256": "8582ed57e13593d7622d24216ef8f93e5393b13fffd2132f70500f9e6ce2a43b",
+      "installerFunction": "0x59448",
+      "reviewedRouteIds": [],
+      "incomingDirectCalls": [],
+      "releaseSlotsInFunction": [
+        0,
+        1
+      ],
+      "resourceNames": [
+        "JDYA"
+      ],
+      "actorTags": [
+        "AKIR"
+      ],
+      "unknownActorOrObjectTags": [],
+      "installs": [
+        {
+          "callFileOffset": "0x5984a",
+          "slot": 0,
+          "primaryPointer": 527876,
+          "secondaryPointer": 527881,
+          "primaryResource": "JDYA",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:JD00:archive:JD00/JDYA.PKS:1:SEQDATA2.AUTH",
+              "archiveMember": "SEQDATA2.AUTH",
+              "payloadSha256": "9455b5b8e916d0ea17b14a232bb65a2ae4dfa4617aecb80e672010fdb1bbde60",
+              "parseStatus": "complete",
+              "durationFrames": 200,
+              "actorTags": [
+                "AKIR"
+              ],
+              "motionBanks": [
+                0
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 1,
+                "motion": 4
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x5986e",
+          "slot": 1,
+          "primaryPointer": 527882,
+          "secondaryPointer": 527887,
+          "primaryResource": "JDYA",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:JD00:archive:JD00/JDYA.PKS:2:SEQDATA3.AUTH",
+              "archiveMember": "SEQDATA3.AUTH",
+              "payloadSha256": "7590e37cf15cf19b6b8784f2639e1ea4a55aa9216065e5525a9f0f7d02dea7c7",
+              "parseStatus": "complete",
+              "durationFrames": 200,
+              "actorTags": [
+                "AKIR"
+              ],
+              "motionBanks": [
+                0
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 1,
+                "motion": 4
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [],
+      "promotionState": "reviewed-non-cutscene",
+      "reviewedDisposition": {
+        "candidateId": "d1:JD00:installer:0x59448",
+        "classification": "ambient-world-state",
+        "reviewedOwnerFunction": "0x58c34",
+        "reason": "The parent runs only in its exact 19:00-04:00 clock window, toggles TAXI and numbered JD00 map layers, and launches two silent 200-frame Ryo-only activities. It is nighttime taxi/world-state presentation, not a standalone player-facing cutscene.",
+        "evidence": [
+          ".disc-work/dialogue/native-event-ir.json",
+          "tools/evidence/native-clock-record-operation-evidence.json",
+          "tools/evidence/native-activity-owner-candidates.json"
+        ]
+      }
+    },
+    {
+      "id": "d1:JD00:installer:0x5c958",
+      "disc": 1,
+      "area": "JD00",
+      "mapinfoSha256": "8582ed57e13593d7622d24216ef8f93e5393b13fffd2132f70500f9e6ce2a43b",
+      "installerFunction": "0x5c958",
+      "reviewedRouteIds": [
+        "disc1-jd00-nozomi-tears-owner-0x5c958"
+      ],
+      "incomingDirectCalls": [
+        {
+          "callerFunction": "0x5b6f8",
+          "callFileOffset": "0x5bcfe"
+        },
+        {
+          "callerFunction": "0x76b90",
+          "callFileOffset": "0x771ba"
+        }
+      ],
+      "releaseSlotsInFunction": [],
+      "resourceNames": [
+        "DNOZ"
+      ],
+      "actorTags": [
+        "AKIR",
+        "HRSK"
+      ],
+      "unknownActorOrObjectTags": [],
+      "installs": [
+        {
+          "callFileOffset": "0x5cdca",
+          "slot": 0,
+          "primaryPointer": 527965,
+          "secondaryPointer": 527970,
+          "primaryResource": "DNOZ",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:JD00:archive:JD00/DNOZ.PKS:1:SEQDATA2.AUTH",
+              "archiveMember": "SEQDATA2.AUTH",
+              "payloadSha256": "e5413316cd0d7739a7f72f23a3fe26bb12a08c31ec53d3f9bb4c314e961a4aee",
+              "parseStatus": "complete",
+              "durationFrames": 1920,
+              "actorTags": [
+                "AKIR",
+                "HRSK"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 6,
+                "voice": 17,
+                "sound": 30
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x5cdee",
+          "slot": 1,
+          "primaryPointer": 527971,
+          "secondaryPointer": 527976,
+          "primaryResource": "DNOZ",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:JD00:archive:JD00/DNOZ.PKS:2:SEQDATA3.AUTH",
+              "archiveMember": "SEQDATA3.AUTH",
+              "payloadSha256": "df1d41a77b7487c9da9de1e8db77dd3dd0f6f54cd57330c53abe9bbe58273466",
+              "parseStatus": "complete",
+              "durationFrames": 1560,
+              "actorTags": [
+                "AKIR",
+                "HRSK"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 2,
+                "sound": 6,
+                "voice": 9
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [],
+      "promotionState": "reviewed-route"
+    },
+    {
+      "id": "d1:JD00:installer:0x761ca",
+      "disc": 1,
+      "area": "JD00",
+      "mapinfoSha256": "8582ed57e13593d7622d24216ef8f93e5393b13fffd2132f70500f9e6ce2a43b",
+      "installerFunction": "0x761ca",
+      "reviewedRouteIds": [
+        "disc1-jd00-nozomi-rescue-owner-0x5b6f8"
+      ],
+      "incomingDirectCalls": [
+        {
+          "callerFunction": "0x73de4",
+          "callFileOffset": "0x73e12"
+        }
+      ],
+      "releaseSlotsInFunction": [
+        0
+      ],
+      "resourceNames": [
+        "EVSN"
+      ],
+      "actorTags": [
+        "AKIR",
+        "ENKI",
+        "HRSK"
+      ],
+      "unknownActorOrObjectTags": [],
+      "installs": [
+        {
+          "callFileOffset": "0x76382",
+          "slot": 0,
+          "primaryPointer": 529554,
+          "secondaryPointer": 529559,
+          "primaryResource": "EVSN",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:JD00:archive:JD00/EVSN.PKS:3:SEQDATA1.AUTH",
+              "archiveMember": "SEQDATA1.AUTH",
+              "payloadSha256": "dcf1b9718432e56bac5516b735187171faf4039b3da41bf982c3072340c69240",
+              "parseStatus": "complete",
+              "durationFrames": 230,
+              "actorTags": [
+                "AKIR",
+                "ENKI",
+                "HRSK"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 3,
+                "motion": 1,
+                "voice": 3,
+                "sound": 5
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [],
+      "promotionState": "reviewed-route"
+    },
+    {
+      "id": "d1:JD00:installer:0x76424",
+      "disc": 1,
+      "area": "JD00",
+      "mapinfoSha256": "8582ed57e13593d7622d24216ef8f93e5393b13fffd2132f70500f9e6ce2a43b",
+      "installerFunction": "0x76424",
+      "reviewedRouteIds": [
+        "disc1-jd00-nozomi-rescue-owner-0x5b6f8"
+      ],
+      "incomingDirectCalls": [
+        {
+          "callerFunction": "0x73de4",
+          "callFileOffset": "0x73e2c"
+        },
+        {
+          "callerFunction": "0x74960",
+          "callFileOffset": "0x7587e"
+        }
+      ],
+      "releaseSlotsInFunction": [
+        1
+      ],
+      "resourceNames": [
+        "EVSN"
+      ],
+      "actorTags": [
+        "AIRO",
+        "AKIR",
+        "ENKI",
+        "HRSK",
+        "KKEN",
+        "NGSM"
+      ],
+      "unknownActorOrObjectTags": [],
+      "installs": [
+        {
+          "callFileOffset": "0x76532",
+          "slot": 1,
+          "primaryPointer": 529570,
+          "secondaryPointer": 529575,
+          "primaryResource": "EVSN",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:JD00:archive:JD00/EVSN.PKS:4:SEQDATA2.AUTH",
+              "archiveMember": "SEQDATA2.AUTH",
+              "payloadSha256": "73877745a6e80bbbfc785b319972299ae81dff5b512390adb28fcbcc92daf8b7",
+              "parseStatus": "complete",
+              "durationFrames": 1671,
+              "actorTags": [
+                "AIRO",
+                "AKIR",
+                "ENKI",
+                "HRSK",
+                "KKEN",
+                "NGSM"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 6,
+                "motion": 8,
+                "effect": 9,
+                "voice": 19,
+                "sound": 47
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [],
+      "promotionState": "reviewed-route"
+    },
+    {
+      "id": "d1:JD00:installer:0x76644",
+      "disc": 1,
+      "area": "JD00",
+      "mapinfoSha256": "8582ed57e13593d7622d24216ef8f93e5393b13fffd2132f70500f9e6ce2a43b",
+      "installerFunction": "0x76644",
+      "reviewedRouteIds": [
+        "disc1-jd00-nozomi-rescue-owner-0x5b6f8"
+      ],
+      "incomingDirectCalls": [
+        {
+          "callerFunction": "0x73de4",
+          "callFileOffset": "0x73e38"
+        }
+      ],
+      "releaseSlotsInFunction": [
+        2
+      ],
+      "resourceNames": [
+        "EVSN"
+      ],
+      "actorTags": [
+        "AKIR",
+        "ENKI",
+        "HRSK",
+        "KKEN",
+        "NGSM"
+      ],
+      "unknownActorOrObjectTags": [],
+      "installs": [
+        {
+          "callFileOffset": "0x76822",
+          "slot": 2,
+          "primaryPointer": 529602,
+          "secondaryPointer": 529607,
+          "primaryResource": "EVSN",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:JD00:archive:JD00/EVSN.PKS:5:SEQDATA3.AUTH",
+              "archiveMember": "SEQDATA3.AUTH",
+              "payloadSha256": "6e9875e3507e52d696f92eddf3a5d354d9943b28718700136d394ef7b7e7e750",
+              "parseStatus": "complete",
+              "durationFrames": 1080,
+              "actorTags": [
+                "AKIR",
+                "ENKI",
+                "HRSK",
+                "KKEN",
+                "NGSM"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 5,
+                "motion": 6,
+                "effect": 13,
+                "voice": 12,
+                "sound": 21
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [],
+      "promotionState": "reviewed-route"
+    },
+    {
+      "id": "d1:JD00:installer:0x7691c",
+      "disc": 1,
+      "area": "JD00",
+      "mapinfoSha256": "8582ed57e13593d7622d24216ef8f93e5393b13fffd2132f70500f9e6ce2a43b",
+      "installerFunction": "0x7691c",
+      "reviewedRouteIds": [
+        "disc1-jd00-nozomi-rescue-owner-0x5b6f8"
+      ],
+      "incomingDirectCalls": [
+        {
+          "callerFunction": "0x73de4",
+          "callFileOffset": "0x73e26"
+        }
+      ],
+      "releaseSlotsInFunction": [
+        3
+      ],
+      "resourceNames": [
+        "EVSN"
+      ],
+      "actorTags": [
+        "AKIR",
+        "ENKI",
+        "HRSK"
+      ],
+      "unknownActorOrObjectTags": [],
+      "installs": [
+        {
+          "callFileOffset": "0x76ad2",
+          "slot": 3,
+          "primaryPointer": 529618,
+          "secondaryPointer": 529623,
+          "primaryResource": "EVSN",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:JD00:archive:JD00/EVSN.PKS:6:SEQDATA4.AUTH",
+              "archiveMember": "SEQDATA4.AUTH",
+              "payloadSha256": "8f17a245f4f1f09df580d07b88cd7c8bb20636dd515e6f647d1339b96bf73411",
+              "parseStatus": "complete",
+              "durationFrames": 220,
+              "actorTags": [
+                "AKIR",
+                "ENKI",
+                "HRSK"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 3,
+                "motion": 1,
+                "voice": 3,
+                "sound": 5
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [],
+      "promotionState": "reviewed-route"
+    },
+    {
+      "id": "d1:JHD0:installer:0x3aec8",
+      "disc": 1,
+      "area": "JHD0",
+      "mapinfoSha256": "e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca",
+      "installerFunction": "0x3aec8",
+      "reviewedRouteIds": [
+        "disc1-jhd0-fukusan-iwao-death-0x3aec8"
+      ],
+      "incomingDirectCalls": [],
+      "releaseSlotsInFunction": [
+        0
+      ],
+      "resourceNames": [
+        "MSKA"
+      ],
+      "actorTags": [
+        "AKIR",
+        "FUKU"
+      ],
+      "unknownActorOrObjectTags": [],
+      "installs": [
+        {
+          "callFileOffset": "0x3b69a",
+          "slot": 0,
+          "primaryPointer": 388612,
+          "secondaryPointer": 388617,
+          "primaryResource": "MSKA",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:JHD0:archive:JHD0/MSKA.PKS:1:SEQDATA2.AUTH",
+              "archiveMember": "SEQDATA2.AUTH",
+              "payloadSha256": "04d1801ad62088df3f361d306b9bbc9da755bb54fda54679e3de14d133d6ebe4",
+              "parseStatus": "complete",
+              "durationFrames": 775,
+              "actorTags": [
+                "AKIR",
+                "FUKU"
+              ],
+              "motionBanks": [
+                20
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 4,
+                "sound": 10,
+                "voice": 5
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [],
+      "promotionState": "reviewed-route"
+    },
+    {
+      "id": "d1:JHD0:installer:0x45308",
+      "disc": 1,
+      "area": "JHD0",
+      "mapinfoSha256": "e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca",
+      "installerFunction": "0x45308",
+      "reviewedRouteIds": [
+        "disc1-jhd0-fukusan-move-training-0x464bc"
+      ],
+      "incomingDirectCalls": [
+        {
+          "callerFunction": "0x464bc",
+          "callFileOffset": "0x464c6"
+        }
+      ],
+      "releaseSlotsInFunction": [],
+      "resourceNames": [
+        "JHW0"
+      ],
+      "actorTags": [
+        "AKIR",
+        "FUKU"
+      ],
+      "unknownActorOrObjectTags": [],
+      "installs": [
+        {
+          "callFileOffset": "0x4582e",
+          "slot": 9,
+          "primaryPointer": 390653,
+          "secondaryPointer": 390666,
+          "primaryResource": "seqdata1.bin",
+          "secondaryResource": "JHW0",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:JHD0:archive:JHD0/JHW0.PKS:2:SEQDATA1.AUTH",
+              "archiveMember": "SEQDATA1.AUTH",
+              "payloadSha256": "71c1317c290e83bb059305c25ef218565c921ca19d0be90006851c5a7318cd55",
+              "parseStatus": "complete",
+              "durationFrames": 1600,
+              "actorTags": [
+                "AKIR",
+                "FUKU"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 4,
+                "sound": 55,
+                "voice": 10
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x45852",
+          "slot": 10,
+          "primaryPointer": 390671,
+          "secondaryPointer": 390684,
+          "primaryResource": "seqdata2.bin",
+          "secondaryResource": "JHW0",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:JHD0:archive:JHD0/JHW0.PKS:3:SEQDATA2.AUTH",
+              "archiveMember": "SEQDATA2.AUTH",
+              "payloadSha256": "7ee8bbeee275caf8bf692f1e810ca2e84a64acba9cdd9fa08a2ba32d621633ff",
+              "parseStatus": "complete",
+              "durationFrames": 1150,
+              "actorTags": [
+                "AKIR",
+                "FUKU"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 2,
+                "voice": 10,
+                "sound": 16
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x45876",
+          "slot": 11,
+          "primaryPointer": 390689,
+          "secondaryPointer": 390702,
+          "primaryResource": "seqdata3.bin",
+          "secondaryResource": "JHW0",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:JHD0:archive:JHD0/JHW0.PKS:4:SEQDATA3.AUTH",
+              "archiveMember": "SEQDATA3.AUTH",
+              "payloadSha256": "ee33590481cc907f3f306e2811cf6ce0193497e0bb67b0e24dbec6d0d788ccba",
+              "parseStatus": "complete",
+              "durationFrames": 635,
+              "actorTags": [
+                "AKIR",
+                "FUKU"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 2,
+                "voice": 6,
+                "sound": 15
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x4589a",
+          "slot": 12,
+          "primaryPointer": 390707,
+          "secondaryPointer": 390720,
+          "primaryResource": "seqdata4.bin",
+          "secondaryResource": "JHW0",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:JHD0:archive:JHD0/JHW0.PKS:5:SEQDATA4.AUTH",
+              "archiveMember": "SEQDATA4.AUTH",
+              "payloadSha256": "ee81a8358a576f3e46cc3b4252f4a44c24d4092d3e6789265a8379b25a5d2f64",
+              "parseStatus": "complete",
+              "durationFrames": 830,
+              "actorTags": [
+                "AKIR",
+                "FUKU"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 2,
+                "voice": 6,
+                "sound": 18
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x458be",
+          "slot": 13,
+          "primaryPointer": 390725,
+          "secondaryPointer": 390738,
+          "primaryResource": "seqdata5.bin",
+          "secondaryResource": "JHW0",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:JHD0:archive:JHD0/JHW0.PKS:6:SEQDATA5.AUTH",
+              "archiveMember": "SEQDATA5.AUTH",
+              "payloadSha256": "d2d4f897f6b6be153659ae6e483f9f1ce64984861f13e64573ce98e0619aea5a",
+              "parseStatus": "complete",
+              "durationFrames": 798,
+              "actorTags": [
+                "AKIR",
+                "FUKU"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 7,
+                "voice": 5,
+                "sound": 14
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x458e2",
+          "slot": 14,
+          "primaryPointer": 390743,
+          "secondaryPointer": 390756,
+          "primaryResource": "seqdata6.bin",
+          "secondaryResource": "JHW0",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:JHD0:archive:JHD0/JHW0.PKS:7:SEQDATA6.AUTH",
+              "archiveMember": "SEQDATA6.AUTH",
+              "payloadSha256": "c4a71b4ee62335c0a066b98b99da1c8046ac1ae1754093f666cd091042949528",
+              "parseStatus": "complete",
+              "durationFrames": 500,
+              "actorTags": [
+                "AKIR",
+                "FUKU"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 2,
+                "voice": 5,
+                "sound": 14
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x45906",
+          "slot": 15,
+          "primaryPointer": 390761,
+          "secondaryPointer": 390774,
+          "primaryResource": "seqdata7.bin",
+          "secondaryResource": "JHW0",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:JHD0:archive:JHD0/JHW0.PKS:8:SEQDATA7.AUTH",
+              "archiveMember": "SEQDATA7.AUTH",
+              "payloadSha256": "a6f9e4a10a7ddb27f2f97b65c6862aa46572a47476f55f7d409236f374ce947e",
+              "parseStatus": "complete",
+              "durationFrames": 830,
+              "actorTags": [
+                "AKIR",
+                "FUKU"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 2,
+                "voice": 6,
+                "sound": 15
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x4592a",
+          "slot": 16,
+          "primaryPointer": 390779,
+          "secondaryPointer": 390792,
+          "primaryResource": "seqdata8.bin",
+          "secondaryResource": "JHW0",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:JHD0:archive:JHD0/JHW0.PKS:9:SEQDATA8.AUTH",
+              "archiveMember": "SEQDATA8.AUTH",
+              "payloadSha256": "c362c25c49195a71ecf1de43b97de603377dcd25435f9e001d4272a6e5f04049",
+              "parseStatus": "complete",
+              "durationFrames": 910,
+              "actorTags": [
+                "AKIR",
+                "FUKU"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 8,
+                "sound": 20,
+                "voice": 5
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [],
+      "promotionState": "reviewed-route"
+    },
+    {
+      "id": "d1:JHD0:installer:0x553c8",
+      "disc": 1,
+      "area": "JHD0",
+      "mapinfoSha256": "e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca",
+      "installerFunction": "0x553c8",
+      "reviewedRouteIds": [],
+      "incomingDirectCalls": [],
+      "releaseSlotsInFunction": [
+        0
+      ],
+      "resourceNames": [
+        "MPM1",
+        "MPM2"
+      ],
+      "actorTags": [
+        "AKIR"
+      ],
+      "unknownActorOrObjectTags": [],
+      "installs": [
+        {
+          "callFileOffset": "0x5579e",
+          "slot": 0,
+          "primaryPointer": 393720,
+          "secondaryPointer": 393725,
+          "primaryResource": "MPM2",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:JHD0:archive:JHD0/MPM2.PKS:1:SEQDATA3.AUTH",
+              "archiveMember": "SEQDATA3.AUTH",
+              "payloadSha256": "5b16284db186261aaacd9e886b1e6a8627f644fce677c0154fa5f8d9fbdf8bd3",
+              "parseStatus": "complete",
+              "durationFrames": 335,
+              "actorTags": [
+                "AKIR"
+              ],
+              "motionBanks": [
+                0
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 1,
+                "motion": 1
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x557da",
+          "slot": 0,
+          "primaryPointer": 393726,
+          "secondaryPointer": 393731,
+          "primaryResource": "MPM1",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:JHD0:archive:JHD0/MPM1.PKS:1:SEQDATA3.AUTH",
+              "archiveMember": "SEQDATA3.AUTH",
+              "payloadSha256": "5b16284db186261aaacd9e886b1e6a8627f644fce677c0154fa5f8d9fbdf8bd3",
+              "parseStatus": "complete",
+              "durationFrames": 335,
+              "actorTags": [
+                "AKIR"
+              ],
+              "motionBanks": [
+                0
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 1,
+                "motion": 1
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [],
+      "promotionState": "reviewed-non-cutscene",
+      "reviewedDisposition": {
+        "candidateId": "d1:JHD0:installer:0x553c8",
+        "classification": "support-map-presentation",
+        "reviewedOwnerFunction": "0x545f8",
+        "reason": "The parent story controller launches this helper before later conversations. MPM1 and MPM2 contain byte-identical silent 335-frame Ryo-only AUTH data and alternate GWNS201G/GWNS202G map-presentation objects. They are conditional staging variants, not standalone player-facing cutscenes.",
+        "evidence": [
+          ".disc-work/dialogue/native-event-ir.json",
+          "tools/evidence/native-activity-owner-candidates.json",
+          "tools/evidence/shenmue1-scripted-scene-inventory.json"
+        ]
+      }
+    },
+    {
+      "id": "d1:JU00:installer:0x2aa70",
+      "disc": 1,
+      "area": "JU00",
+      "mapinfoSha256": "3887bbf6e00eb152f7cca34d23841cc743ee7345a2db6b7d27e8303f6274924d",
+      "installerFunction": "0x2aa70",
+      "reviewedRouteIds": [
+        "disc1-ju00-kitten-care-owner-0x27554"
+      ],
+      "incomingDirectCalls": [
+        {
+          "callerFunction": "0x2a7f8",
+          "callFileOffset": "0x2a8aa"
+        },
+        {
+          "callerFunction": "0x2a934",
+          "callFileOffset": "0x2a9e6"
+        }
+      ],
+      "releaseSlotsInFunction": [
+        0
+      ],
+      "resourceNames": [
+        "CATA1"
+      ],
+      "actorTags": [
+        "AKIR",
+        "BNB1",
+        "BNB2",
+        "BNB3",
+        "CATM",
+        "MEGM",
+        "NBO1",
+        "NBO2",
+        "NBO3",
+        "NBOX"
+      ],
+      "unknownActorOrObjectTags": [],
+      "installs": [
+        {
+          "callFileOffset": "0x2b040",
+          "slot": 0,
+          "primaryPointer": 334785,
+          "secondaryPointer": 334798,
+          "primaryResource": "seqdata0.bin",
+          "secondaryResource": "CATA1",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:JU00:archive:JU00/CATA1.PKS:5:SEQDATA0.AUTH",
+              "archiveMember": "SEQDATA0.AUTH",
+              "payloadSha256": "608d057edec528c35f4067cf5011abb8c351e81fd916269b7642d68833124552",
+              "parseStatus": "complete",
+              "durationFrames": 3150,
+              "actorTags": [
+                "AKIR",
+                "CATM",
+                "MEGM",
+                "NBOX"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 4,
+                "motion": 16,
+                "sound": 30,
+                "voice": 29
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x2b552",
+          "slot": 0,
+          "primaryPointer": 334804,
+          "secondaryPointer": 334817,
+          "primaryResource": "seqdata1.bin",
+          "secondaryResource": "CATA1",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:JU00:archive:JU00/CATA1.PKS:6:SEQDATA1.AUTH",
+              "archiveMember": "SEQDATA1.AUTH",
+              "payloadSha256": "8fe949eb1378fd9f37f8742972f8f8116d3dbbdcff2c428a16c89ea20cd56ed4",
+              "parseStatus": "complete",
+              "durationFrames": 2391,
+              "actorTags": [
+                "AKIR",
+                "BNB1",
+                "BNB2",
+                "BNB3",
+                "CATM",
+                "MEGM",
+                "NBO1",
+                "NBO2",
+                "NBO3",
+                "NBOX"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 10,
+                "motion": 25,
+                "sound": 35,
+                "voice": 18
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x2b5fa",
+          "slot": 0,
+          "primaryPointer": 334823,
+          "secondaryPointer": 334836,
+          "primaryResource": "seqdata2.bin",
+          "secondaryResource": "CATA1",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:JU00:archive:JU00/CATA1.PKS:7:SEQDATA2.AUTH",
+              "archiveMember": "SEQDATA2.AUTH",
+              "payloadSha256": "db3cf574a2567e2a3dd5d52f70d2f3678efeb81cf4029a324ddf59154868b1b7",
+              "parseStatus": "complete",
+              "durationFrames": 1370,
+              "actorTags": [
+                "AKIR",
+                "CATM",
+                "MEGM",
+                "NBOX"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 4,
+                "motion": 15,
+                "sound": 22,
+                "voice": 12
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [],
+      "promotionState": "reviewed-route"
+    },
+    {
+      "id": "d1:JU00:installer:0x4407c",
+      "disc": 1,
+      "area": "JU00",
+      "mapinfoSha256": "3887bbf6e00eb152f7cca34d23841cc743ee7345a2db6b7d27e8303f6274924d",
+      "installerFunction": "0x4407c",
+      "reviewedRouteIds": [],
+      "incomingDirectCalls": [
+        {
+          "callerFunction": "0x43178",
+          "callFileOffset": "0x43500"
+        }
+      ],
+      "releaseSlotsInFunction": [],
+      "resourceNames": [
+        "JYUU"
+      ],
+      "actorTags": [
+        "AKIR"
+      ],
+      "unknownActorOrObjectTags": [],
+      "installs": [
+        {
+          "callFileOffset": "0x44496",
+          "slot": 0,
+          "primaryPointer": 337020,
+          "secondaryPointer": 337025,
+          "primaryResource": "JYUU",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:JU00:archive:JU00/JYUU.PKS:1:SEQDATA5.AUTH",
+              "archiveMember": "SEQDATA5.AUTH",
+              "payloadSha256": "1d89ebad0fab2614b0742b2c0f277127505bf586f86acd2e84bfd1d04b1db888",
+              "parseStatus": "complete",
+              "durationFrames": 200,
+              "actorTags": [
+                "AKIR"
+              ],
+              "motionBanks": [
+                0
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 1,
+                "motion": 4
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x444ba",
+          "slot": 1,
+          "primaryPointer": 337026,
+          "secondaryPointer": 337031,
+          "primaryResource": "JYUU",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:JU00:archive:JU00/JYUU.PKS:2:SEQDATA6.AUTH",
+              "archiveMember": "SEQDATA6.AUTH",
+              "payloadSha256": "7f83af08650428df1a098d0ec58ba36762b54056e69b48c7fa65b2c3560513fe",
+              "parseStatus": "complete",
+              "durationFrames": 200,
+              "actorTags": [
+                "AKIR"
+              ],
+              "motionBanks": [
+                0
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 1,
+                "motion": 4
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [],
+      "promotionState": "reviewed-non-cutscene",
+      "reviewedDisposition": {
+        "candidateId": "d1:JU00:installer:0x4407c",
+        "classification": "room-transition-presentation",
+        "reviewedOwnerFunction": "0x43178",
+        "reason": "The parent is a clock- and room-state controller that disables interaction, runs two silent 200-frame Ryo-only activities around map-layer and GT01/GT02 gate-state changes, then restores gameplay. This is authored environmental transition presentation, not a standalone player-facing cutscene.",
+        "evidence": [
+          ".disc-work/dialogue/native-event-ir.json",
+          "tools/evidence/native-clock-record-operation-evidence.json",
+          "tools/evidence/native-activity-owner-candidates.json"
+        ]
+      }
+    },
+    {
+      "id": "d1:D000:installer:0x5a900",
+      "disc": 1,
+      "area": "D000",
+      "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+      "installerFunction": "0x5a900",
+      "reviewedRouteIds": [
+        "disc1-d000-yamagishi-owner-0x5b904"
+      ],
+      "incomingDirectCalls": [
+        {
+          "callerFunction": "0x5b904",
+          "callFileOffset": "0x5b922"
+        }
+      ],
+      "releaseSlotsInFunction": [],
+      "resourceNames": [
+        "D0W0"
+      ],
+      "actorTags": [
+        "AKIR",
+        "COP_",
+        "YAMA"
+      ],
+      "unknownActorOrObjectTags": [
+        "COP_"
+      ],
+      "installs": [
+        {
+          "callFileOffset": "0x5ad5e",
+          "slot": 4,
+          "primaryPointer": 711520,
+          "secondaryPointer": 711533,
+          "primaryResource": "seqdata1.bin",
+          "secondaryResource": "D0W0",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/D0W0.PKS:4:SEQDATA1.AUTH",
+              "archiveMember": "SEQDATA1.AUTH",
+              "payloadSha256": "8a53eccca3fc3c40fab9935e6ea10c6d29aa3d5536129c69a4862ffbe4a2b6c6",
+              "parseStatus": "complete",
+              "durationFrames": 3320,
+              "actorTags": [
+                "AKIR",
+                "COP_",
+                "YAMA"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 3,
+                "motion": 31,
+                "sound": 35,
+                "voice": 22
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x5ad82",
+          "slot": 5,
+          "primaryPointer": 711538,
+          "secondaryPointer": 711551,
+          "primaryResource": "seqdata2.bin",
+          "secondaryResource": "D0W0",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/D0W0.PKS:5:SEQDATA2.AUTH",
+              "archiveMember": "SEQDATA2.AUTH",
+              "payloadSha256": "a9393cd99ae10760c9de943cce5621baf409182f63459a3bb70d829520aedc02",
+              "parseStatus": "complete",
+              "durationFrames": 690,
+              "actorTags": [
+                "AKIR",
+                "YAMA"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 9,
+                "voice": 6,
+                "sound": 10
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x5ada6",
+          "slot": 6,
+          "primaryPointer": 711556,
+          "secondaryPointer": 711569,
+          "primaryResource": "seqdata3.bin",
+          "secondaryResource": "D0W0",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/D0W0.PKS:6:SEQDATA3.AUTH",
+              "archiveMember": "SEQDATA3.AUTH",
+              "payloadSha256": "de16a1d8039bd1c92a176c706d38ef4ceca5dbae695d96012e081f9d16d26b94",
+              "parseStatus": "complete",
+              "durationFrames": 1260,
+              "actorTags": [
+                "AKIR",
+                "YAMA"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 10,
+                "voice": 9,
+                "sound": 11
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x5adca",
+          "slot": 7,
+          "primaryPointer": 711574,
+          "secondaryPointer": 711587,
+          "primaryResource": "seqdata4.bin",
+          "secondaryResource": "D0W0",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/D0W0.PKS:7:SEQDATA4.AUTH",
+              "archiveMember": "SEQDATA4.AUTH",
+              "payloadSha256": "3714dc9e0b12f39c2864c8bca4137bae6dc20eae4b8db82a72e34f7382c95da7",
+              "parseStatus": "complete",
+              "durationFrames": 900,
+              "actorTags": [
+                "AKIR",
+                "COP_",
+                "YAMA"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 3,
+                "motion": 9,
+                "sound": 15,
+                "voice": 6
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x5adee",
+          "slot": 8,
+          "primaryPointer": 711592,
+          "secondaryPointer": 711605,
+          "primaryResource": "seqdata5.bin",
+          "secondaryResource": "D0W0",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/D0W0.PKS:8:SEQDATA5.AUTH",
+              "archiveMember": "SEQDATA5.AUTH",
+              "payloadSha256": "3fae97c475fd411227f382b81dbc86a02f3f7208da9dd9db9dc9b398e4beeae3",
+              "parseStatus": "complete",
+              "durationFrames": 670,
+              "actorTags": [
+                "AKIR",
+                "YAMA"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 9,
+                "sound": 10,
+                "voice": 6
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x5ae12",
+          "slot": 9,
+          "primaryPointer": 711610,
+          "secondaryPointer": 711623,
+          "primaryResource": "seqdata6.bin",
+          "secondaryResource": "D0W0",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/D0W0.PKS:9:SEQDATA6.AUTH",
+              "archiveMember": "SEQDATA6.AUTH",
+              "payloadSha256": "4fe1bdd127d22d6f472d73cbaca32aa2a52176a826663144aa9f8354b6ccdefb",
+              "parseStatus": "complete",
+              "durationFrames": 980,
+              "actorTags": [
+                "AKIR",
+                "YAMA"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 7,
+                "voice": 8,
+                "sound": 17
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x5ae36",
+          "slot": 10,
+          "primaryPointer": 711628,
+          "secondaryPointer": 711641,
+          "primaryResource": "seqdata7.bin",
+          "secondaryResource": "D0W0",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/D0W0.PKS:10:SEQDATA7.AUTH",
+              "archiveMember": "SEQDATA7.AUTH",
+              "payloadSha256": "19fff3b2c54e34f0aee962f880c0f8da7643004c75f7a9c61fc7223257f85fdd",
+              "parseStatus": "complete",
+              "durationFrames": 920,
+              "actorTags": [
+                "AKIR",
+                "YAMA"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 6,
+                "sound": 25,
+                "voice": 7
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x5ae5a",
+          "slot": 11,
+          "primaryPointer": 711646,
+          "secondaryPointer": 711659,
+          "primaryResource": "seqdata8.bin",
+          "secondaryResource": "D0W0",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/D0W0.PKS:11:SEQDATA8.AUTH",
+              "archiveMember": "SEQDATA8.AUTH",
+              "payloadSha256": "808ade83f2bc13975efee585aeee5d1f5c14e831ff921b940abe18c06a822e8c",
+              "parseStatus": "complete",
+              "durationFrames": 1057,
+              "actorTags": [
+                "AKIR",
+                "COP_",
+                "YAMA"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 3,
+                "motion": 8,
+                "sound": 27,
+                "voice": 9
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x5ae7e",
+          "slot": 12,
+          "primaryPointer": 711664,
+          "secondaryPointer": 711677,
+          "primaryResource": "seqdata9.bin",
+          "secondaryResource": "D0W0",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/D0W0.PKS:12:SEQDATA9.AUTH",
+              "archiveMember": "SEQDATA9.AUTH",
+              "payloadSha256": "57e3421025bcbec1af1ca193397bd746cdf962a16fc9940f44fc7743e3d069f9",
+              "parseStatus": "complete",
+              "durationFrames": 600,
+              "actorTags": [
+                "AKIR",
+                "YAMA"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 2,
+                "voice": 5,
+                "sound": 7
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x5aea2",
+          "slot": 13,
+          "primaryPointer": 711682,
+          "secondaryPointer": 711695,
+          "primaryResource": "seqdataA.bin",
+          "secondaryResource": "D0W0",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/D0W0.PKS:13:SEQDATAA.AUTH",
+              "archiveMember": "SEQDATAA.AUTH",
+              "payloadSha256": "e90c79d1bfac774bfcd7348af08498111ecd61b6360eafbc295761eaf875a9d7",
+              "parseStatus": "complete",
+              "durationFrames": 1040,
+              "actorTags": [
+                "AKIR",
+                "COP_",
+                "YAMA"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 3,
+                "motion": 8,
+                "voice": 9,
+                "sound": 24
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x5aec6",
+          "slot": 14,
+          "primaryPointer": 711700,
+          "secondaryPointer": 711713,
+          "primaryResource": "seqdataB.bin",
+          "secondaryResource": "D0W0",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/D0W0.PKS:14:SEQDATAB.AUTH",
+              "archiveMember": "SEQDATAB.AUTH",
+              "payloadSha256": "4dc9bcea8e03279160471f71942096f27fde3475c7afde34d2d5a9cacae65a80",
+              "parseStatus": "complete",
+              "durationFrames": 600,
+              "actorTags": [
+                "AKIR",
+                "YAMA"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 2,
+                "voice": 5,
+                "sound": 7
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x5aeea",
+          "slot": 15,
+          "primaryPointer": 711718,
+          "secondaryPointer": 711731,
+          "primaryResource": "seqdataC.bin",
+          "secondaryResource": "D0W0",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/D0W0.PKS:15:SEQDATAC.AUTH",
+              "archiveMember": "SEQDATAC.AUTH",
+              "payloadSha256": "cacb30bf13ad287d67396b30d14cf2f769653f71505ad50ee9bce893d1dd0ad9",
+              "parseStatus": "complete",
+              "durationFrames": 1234,
+              "actorTags": [
+                "AKIR",
+                "COP_",
+                "YAMA"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 3,
+                "motion": 10,
+                "voice": 11
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        "actor-or-scene-object-bindings-unreviewed"
+      ],
+      "promotionState": "reviewed-route"
+    },
+    {
+      "id": "d1:D000:installer:0x7a714",
+      "disc": 1,
+      "area": "D000",
+      "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+      "installerFunction": "0x7a714",
+      "reviewedRouteIds": [
+        "disc1-d000-entry-0x7abf4"
+      ],
+      "incomingDirectCalls": [
+        {
+          "callerFunction": "0x7abf4",
+          "callFileOffset": "0x7ad2a"
+        }
+      ],
+      "releaseSlotsInFunction": [
+        0,
+        1
+      ],
+      "resourceNames": [
+        "YQ14"
+      ],
+      "actorTags": [
+        "AKIR",
+        "BIN_",
+        "SMTH",
+        "TONY"
+      ],
+      "unknownActorOrObjectTags": [
+        "BIN_"
+      ],
+      "installs": [
+        {
+          "callFileOffset": "0x7a912",
+          "slot": 0,
+          "primaryPointer": 718875,
+          "secondaryPointer": 718888,
+          "primaryResource": "seqdata1.bin",
+          "secondaryResource": "YQ14",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/YQ14.PKS:7:SEQDATA1.AUTH",
+              "archiveMember": "SEQDATA1.AUTH",
+              "payloadSha256": "529bc62c6721402fa265c4952d5d9aae3d9ba42ce0807ee39436935a9f448422",
+              "parseStatus": "complete",
+              "durationFrames": 70,
+              "actorTags": [
+                "AKIR",
+                "SMTH",
+                "TONY"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 3,
+                "motion": 3,
+                "sound": 4
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x7a936",
+          "slot": 1,
+          "primaryPointer": 718893,
+          "secondaryPointer": 718906,
+          "primaryResource": "seqdata2.bin",
+          "secondaryResource": "YQ14",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/YQ14.PKS:8:SEQDATA2.AUTH",
+              "archiveMember": "SEQDATA2.AUTH",
+              "payloadSha256": "e56fd5983791b824f1f7b1ce40629a207df87f5081b723cc7b5d18d1c2af4b58",
+              "parseStatus": "complete",
+              "durationFrames": 435,
+              "actorTags": [
+                "AKIR",
+                "BIN_",
+                "SMTH",
+                "TONY"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 4,
+                "motion": 5,
+                "sound": 9,
+                "voice": 2
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        "actor-or-scene-object-bindings-unreviewed"
+      ],
+      "promotionState": "reviewed-route"
+    },
+    {
+      "id": "d1:D000:installer:0x7d3b0",
+      "disc": 1,
+      "area": "D000",
+      "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+      "installerFunction": "0x7d3b0",
+      "reviewedRouteIds": [],
+      "incomingDirectCalls": [
+        {
+          "callerFunction": "0x7de84",
+          "callFileOffset": "0x7e172"
+        }
+      ],
+      "releaseSlotsInFunction": [
+        5,
+        6,
+        7
+      ],
+      "resourceNames": [
+        "YORU"
+      ],
+      "actorTags": [
+        "LUV2"
+      ],
+      "unknownActorOrObjectTags": [
+        "LUV2"
+      ],
+      "installs": [
+        {
+          "callFileOffset": "0x7d618",
+          "slot": 5,
+          "primaryPointer": 724716,
+          "secondaryPointer": 724729,
+          "primaryResource": "seqdata3.bin",
+          "secondaryResource": "YORU",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/YORU.PKS:5:SEQDATA3.AUTH",
+              "archiveMember": "SEQDATA3.AUTH",
+              "payloadSha256": "cc3c06ebdbdf5ab78425506a82a58c1a35c4d2142a8af61a97ef77b8554884f3",
+              "parseStatus": "complete",
+              "durationFrames": 59,
+              "actorTags": [
+                "LUV2"
+              ],
+              "motionBanks": [],
+              "commandCounts": {
+                "camera": 1,
+                "move": 1
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x7d63c",
+          "slot": 6,
+          "primaryPointer": 724734,
+          "secondaryPointer": 724747,
+          "primaryResource": "seqdata4.bin",
+          "secondaryResource": "YORU",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/YORU.PKS:6:SEQDATA4.AUTH",
+              "archiveMember": "SEQDATA4.AUTH",
+              "payloadSha256": "897bfcddb180e98b48e67b8594bd1f2fbea25ab52f8418526582f4bb055dcfc2",
+              "parseStatus": "complete",
+              "durationFrames": 70,
+              "actorTags": [
+                "LUV2"
+              ],
+              "motionBanks": [],
+              "commandCounts": {
+                "camera": 1,
+                "move": 1
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x7d660",
+          "slot": 7,
+          "primaryPointer": 724752,
+          "secondaryPointer": 724765,
+          "primaryResource": "seqdata5.bin",
+          "secondaryResource": "YORU",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/YORU.PKS:7:SEQDATA5.AUTH",
+              "archiveMember": "SEQDATA5.AUTH",
+              "payloadSha256": "b0427f8f9de28e9d0c13cc4bd76d04567e3cc2e7557a541ad01bf862380284c2",
+              "parseStatus": "complete",
+              "durationFrames": 110,
+              "actorTags": [
+                "LUV2"
+              ],
+              "motionBanks": [],
+              "commandCounts": {
+                "camera": 1,
+                "move": 1
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        "actor-or-scene-object-bindings-unreviewed"
+      ],
+      "promotionState": "reviewed-non-cutscene",
+      "reviewedDisposition": {
+        "candidateId": "d1:D000:installer:0x7d3b0",
+        "classification": "nighttime-map-presentation",
+        "reviewedOwnerFunction": "0x7de84",
+        "reason": "The parent is a clock- and world-state controller for WAGK. Its three YORU activities contain only a camera and one LUV2 movement channel, while the archive contains five B0104OS map-lighting models and no actor motion, voice, or sound timeline. The owner applies scene-channel fades around the activities and restores gameplay, so these are authored nighttime lighting/presentation transitions rather than standalone player-facing cutscenes.",
+        "evidence": [
+          ".disc-work/dialogue/native-event-ir.json",
+          "tools/evidence/native-clock-record-operation-evidence.json",
+          "tools/evidence/shenmue1-scripted-scene-inventory.json",
+          "tools/evidence/native-activity-owner-candidates.json"
+        ]
+      }
+    },
+    {
+      "id": "d1:D000:installer:0x858c4",
+      "disc": 1,
+      "area": "D000",
+      "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+      "installerFunction": "0x858c4",
+      "reviewedRouteIds": [
+        "disc1-d000-selector-18-0x84b60"
+      ],
+      "incomingDirectCalls": [
+        {
+          "callerFunction": "0x84b60",
+          "callFileOffset": "0x85408"
+        }
+      ],
+      "releaseSlotsInFunction": [
+        0,
+        1
+      ],
+      "resourceNames": [
+        "DRAUTH"
+      ],
+      "actorTags": [
+        "AKIR",
+        "HARY",
+        "JONZ",
+        "SERA",
+        "SMTH",
+        "TONY"
+      ],
+      "unknownActorOrObjectTags": [],
+      "installs": [
+        {
+          "callFileOffset": "0x8598a",
+          "slot": 0,
+          "primaryPointer": 725898,
+          "secondaryPointer": 725905,
+          "primaryResource": "DRAUTH",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/DRAUTH.PKS:2:SEQDATA1.AUTH",
+              "archiveMember": "SEQDATA1.AUTH",
+              "payloadSha256": "1e4a1c1ce0151c59fec79d9bfc706e14990ee75edf78698713fc28d6065e3357",
+              "parseStatus": "complete",
+              "durationFrames": 1330,
+              "actorTags": [
+                "AKIR",
+                "HARY",
+                "JONZ",
+                "SERA",
+                "SMTH",
+                "TONY"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 6,
+                "motion": 9,
+                "sound": 33,
+                "voice": 11
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x859ae",
+          "slot": 1,
+          "primaryPointer": 725906,
+          "secondaryPointer": 725913,
+          "primaryResource": "DRAUTH",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/DRAUTH.PKS:3:SEQDATA2.AUTH",
+              "archiveMember": "SEQDATA2.AUTH",
+              "payloadSha256": "a410bfb4d1a82db5bf09cdb05398ad55fc078fe3f31126033f6c20b52e7c83da",
+              "parseStatus": "complete",
+              "durationFrames": 500,
+              "actorTags": [
+                "AKIR",
+                "HARY",
+                "JONZ",
+                "SERA",
+                "SMTH",
+                "TONY"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 6,
+                "motion": 9,
+                "sound": 15,
+                "voice": 1
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        "native-audio-resource-cluster-unreviewed"
+      ],
+      "promotionState": "reviewed-route"
+    },
+    {
+      "id": "d1:D000:installer:0x8b630",
+      "disc": 1,
+      "area": "D000",
+      "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+      "installerFunction": "0x8b630",
+      "reviewedRouteIds": [
+        "disc1-d000-vending-owner-a-0x8c768",
+        "disc1-d000-vending-owner-b-0x8ce38"
+      ],
+      "incomingDirectCalls": [
+        {
+          "callerFunction": "0x8c768",
+          "callFileOffset": "0x8c9b6"
+        },
+        {
+          "callerFunction": "0x8c768",
+          "callFileOffset": "0x8cb4a"
+        },
+        {
+          "callerFunction": "0x8c768",
+          "callFileOffset": "0x8cbde"
+        },
+        {
+          "callerFunction": "0x8c768",
+          "callFileOffset": "0x8cd02"
+        },
+        {
+          "callerFunction": "0x8c768",
+          "callFileOffset": "0x8cd6e"
+        },
+        {
+          "callerFunction": "0x8ce38",
+          "callFileOffset": "0x8d092"
+        },
+        {
+          "callerFunction": "0x8ce38",
+          "callFileOffset": "0x8d18a"
+        },
+        {
+          "callerFunction": "0x8ce38",
+          "callFileOffset": "0x8d212"
+        },
+        {
+          "callerFunction": "0x8ce38",
+          "callFileOffset": "0x8d27e"
+        },
+        {
+          "callerFunction": "0x8ce38",
+          "callFileOffset": "0x8d2ce"
+        },
+        {
+          "callerFunction": "0x8d3d8",
+          "callFileOffset": "0x8d42a"
+        }
+      ],
+      "releaseSlotsInFunction": [],
+      "resourceNames": [
+        "DJHN_01",
+        "DJHN_02",
+        "DJHN_03",
+        "DJHN_04",
+        "DJHN_05",
+        "DJHN_06",
+        "DJHN_07"
+      ],
+      "actorTags": [
+        "AKIR",
+        "YKHI"
+      ],
+      "unknownActorOrObjectTags": [],
+      "installs": [
+        {
+          "callFileOffset": "0x8b696",
+          "slot": 20,
+          "primaryPointer": 727349,
+          "secondaryPointer": 727362,
+          "primaryResource": "seqdata1.bin",
+          "secondaryResource": "DJHN_01",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/DJHN_01.PKS:1:SEQDATA1.AUTH",
+              "archiveMember": "SEQDATA1.AUTH",
+              "payloadSha256": "6aa1575f7d01fd8070d32ff9acedc2ed17d13728917aa5fd85d10e6e4bdb4e5d",
+              "parseStatus": "complete",
+              "durationFrames": 380,
+              "actorTags": [
+                "AKIR",
+                "YKHI"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 3,
+                "voice": 6,
+                "sound": 8
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x8b6ea",
+          "slot": 21,
+          "primaryPointer": 727370,
+          "secondaryPointer": 727383,
+          "primaryResource": "seqdata2.bin",
+          "secondaryResource": "DJHN_02",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/DJHN_02.PKS:0:SEQDATA2.AUTH",
+              "archiveMember": "SEQDATA2.AUTH",
+              "payloadSha256": "0cd9558e15a4c79a7765f298015a1a6c988ce6bb17709491341a15809bf895f5",
+              "parseStatus": "complete",
+              "durationFrames": 461,
+              "actorTags": [
+                "AKIR",
+                "YKHI"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 2,
+                "voice": 4,
+                "sound": 8
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x8b73e",
+          "slot": 22,
+          "primaryPointer": 727391,
+          "secondaryPointer": 727404,
+          "primaryResource": "seqdata3.bin",
+          "secondaryResource": "DJHN_03",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/DJHN_03.PKS:0:SEQDATA3.AUTH",
+              "archiveMember": "SEQDATA3.AUTH",
+              "payloadSha256": "c986ea7b6d9d785ccd1fe44435a61d3d28bc427b2b0d3b6ac977cc13e0a1d53d",
+              "parseStatus": "complete",
+              "durationFrames": 2260,
+              "actorTags": [
+                "AKIR",
+                "YKHI"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 6,
+                "sound": 39,
+                "voice": 23
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x8b792",
+          "slot": 23,
+          "primaryPointer": 727412,
+          "secondaryPointer": 727425,
+          "primaryResource": "seqdata4.bin",
+          "secondaryResource": "DJHN_04",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/DJHN_04.PKS:0:SEQDATA4.AUTH",
+              "archiveMember": "SEQDATA4.AUTH",
+              "payloadSha256": "1205dbc24ee454acfea853370a8213ec4e184888a28164cbeca7ecb4d6ec6609",
+              "parseStatus": "complete",
+              "durationFrames": 1593,
+              "actorTags": [
+                "AKIR",
+                "YKHI"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 2,
+                "sound": 30,
+                "voice": 11
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x8b7e6",
+          "slot": 24,
+          "primaryPointer": 727433,
+          "secondaryPointer": 727446,
+          "primaryResource": "seqdata5.bin",
+          "secondaryResource": "DJHN_05",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/DJHN_05.PKS:0:SEQDATA5.AUTH",
+              "archiveMember": "SEQDATA5.AUTH",
+              "payloadSha256": "27761e3fe9e03b2ea8dc6246aab22e5962a5a8926ee6e78b0096e2ee0f39d374",
+              "parseStatus": "complete",
+              "durationFrames": 1215,
+              "actorTags": [
+                "AKIR",
+                "YKHI"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 2,
+                "voice": 15,
+                "sound": 25
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x8b83a",
+          "slot": 25,
+          "primaryPointer": 727454,
+          "secondaryPointer": 727467,
+          "primaryResource": "seqdata6.bin",
+          "secondaryResource": "DJHN_06",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/DJHN_06.PKS:0:SEQDATA6.AUTH",
+              "archiveMember": "SEQDATA6.AUTH",
+              "payloadSha256": "8c5121962e4e80f0a82e0ca80adead60ef9e427f08471990fcabb50867c7f85d",
+              "parseStatus": "complete",
+              "durationFrames": 678,
+              "actorTags": [
+                "AKIR",
+                "YKHI"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 2,
+                "voice": 6,
+                "sound": 8
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x8b88e",
+          "slot": 26,
+          "primaryPointer": 727475,
+          "secondaryPointer": 727488,
+          "primaryResource": "seqdata7.bin",
+          "secondaryResource": "DJHN_07",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:D000:archive:D000/DJHN_07.PKS:0:SEQDATA7.AUTH",
+              "archiveMember": "SEQDATA7.AUTH",
+              "payloadSha256": "15d54745fb515de75196b689941fd8fcf89df8fd67886befa0dc3c0ad6f387cc",
+              "parseStatus": "complete",
+              "durationFrames": 765,
+              "actorTags": [
+                "AKIR",
+                "YKHI"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 5,
+                "voice": 6,
+                "sound": 11
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        "native-audio-resource-cluster-unreviewed"
+      ],
+      "promotionState": "reviewed-route"
+    },
+    {
+      "id": "d1:JHD0:installer:0x545f8",
+      "disc": 1,
+      "area": "JHD0",
+      "mapinfoSha256": "e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca",
+      "installerFunction": "0x545f8",
+      "reviewedRouteIds": [
+        "disc1-jhd0-fukusan-letter-0x545f8"
+      ],
+      "incomingDirectCalls": [],
+      "releaseSlotsInFunction": [
+        0
+      ],
+      "resourceNames": [
+        "TGMA"
+      ],
+      "actorTags": [
+        "AKIR",
+        "FUKU"
+      ],
+      "unknownActorOrObjectTags": [],
+      "installs": [
+        {
+          "callFileOffset": "0x54cc0",
+          "slot": 0,
+          "primaryPointer": 393656,
+          "secondaryPointer": 393661,
+          "primaryResource": "TGMA",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:JHD0:archive:JHD0/TGMA.PKS:2:SEQDATA4.AUTH",
+              "archiveMember": "SEQDATA4.AUTH",
+              "payloadSha256": "e409876e1c569cc4ad93447a6bf588dc0325b8a907c404bc4883140e1e2ab968",
+              "parseStatus": "complete",
+              "durationFrames": 954,
+              "actorTags": [
+                "AKIR",
+                "FUKU"
+              ],
+              "motionBanks": [
+                21
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 2,
+                "sound": 26,
+                "voice": 8
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        "native-audio-resource-cluster-unreviewed"
+      ],
+      "promotionState": "reviewed-route"
+    },
+    {
+      "id": "d1:JOMO:installer:0x4bf5c",
+      "disc": 1,
+      "area": "JOMO",
+      "mapinfoSha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
+      "installerFunction": "0x4bf5c",
+      "reviewedRouteIds": [
+        "disc1-jomo-bebf-nightmare-owner-0x4bf5c"
+      ],
+      "incomingDirectCalls": [
+        {
+          "callerFunction": "0x4f758",
+          "callFileOffset": "0x4fa72"
+        }
+      ],
+      "releaseSlotsInFunction": [
+        60,
+        61,
+        62,
+        63
+      ],
+      "resourceNames": [
+        "BEBF"
+      ],
+      "actorTags": [
+        "AKID",
+        "SINF"
+      ],
+      "unknownActorOrObjectTags": [
+        "AKID",
+        "SINF"
+      ],
+      "installs": [
+        {
+          "callFileOffset": "0x4c0e6",
+          "slot": 60,
+          "primaryPointer": 615895,
+          "secondaryPointer": 615908,
+          "primaryResource": "seqdata0.bin",
+          "secondaryResource": "BEBF",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:JOMO:archive:JOMO/BEBF.PKS:1:SEQDATA0.AUTH",
+              "archiveMember": "SEQDATA0.AUTH",
+              "payloadSha256": "dca3e9c06e0a166c8c1b6378611edcf17784293aa2ccd2c091e65b41527dd569",
+              "parseStatus": "complete",
+              "durationFrames": 260,
+              "actorTags": [
+                "AKID"
+              ],
+              "motionBanks": [
+                29
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 1,
+                "motion": 1,
+                "sound": 3
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x4c10a",
+          "slot": 61,
+          "primaryPointer": 615913,
+          "secondaryPointer": 615926,
+          "primaryResource": "seqdata1.bin",
+          "secondaryResource": "BEBF",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:JOMO:archive:JOMO/BEBF.PKS:2:SEQDATA1.AUTH",
+              "archiveMember": "SEQDATA1.AUTH",
+              "payloadSha256": "72739216b17bc1e18154c3d5da46f55243d3df819fe62615d0a197caac086c51",
+              "parseStatus": "complete",
+              "durationFrames": 700,
+              "actorTags": [
+                "SINF"
+              ],
+              "motionBanks": [
+                29
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 1,
+                "motion": 1,
+                "voice": 3
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x4c12e",
+          "slot": 62,
+          "primaryPointer": 615931,
+          "secondaryPointer": 615944,
+          "primaryResource": "seqdata2.bin",
+          "secondaryResource": "BEBF",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:JOMO:archive:JOMO/BEBF.PKS:3:SEQDATA2.AUTH",
+              "archiveMember": "SEQDATA2.AUTH",
+              "payloadSha256": "c454590be0b1d00e10cf7df1b1c01f39a873df085e62443065a1453f50edef15",
+              "parseStatus": "complete",
+              "durationFrames": 370,
+              "actorTags": [
+                "AKID"
+              ],
+              "motionBanks": [
+                29
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 1,
+                "motion": 1,
+                "sound": 1,
+                "voice": 3
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x4c152",
+          "slot": 63,
+          "primaryPointer": 615949,
+          "secondaryPointer": 615962,
+          "primaryResource": "seqdata3.bin",
+          "secondaryResource": "BEBF",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:JOMO:archive:JOMO/BEBF.PKS:4:SEQDATA3.AUTH",
+              "archiveMember": "SEQDATA3.AUTH",
+              "payloadSha256": "e03c42fbda49a4f52d708e727deed4b526238b03a72df6f94ea35aa9fac8ae8d",
+              "parseStatus": "complete",
+              "durationFrames": 700,
+              "actorTags": [
+                "SINF"
+              ],
+              "motionBanks": [
+                29
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 1,
+                "motion": 1,
+                "voice": 3
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        "actor-or-scene-object-bindings-unreviewed"
+      ],
+      "promotionState": "reviewed-route"
+    },
+    {
+      "id": "d1:YD01:installer:0x1a4",
+      "disc": 1,
+      "area": "YD01",
+      "mapinfoSha256": "245459a1f9936e5582954375bff9b49ced48000d301b2bbf19e135b145494baa",
+      "installerFunction": "0x1a4",
+      "reviewedRouteIds": [
+        "disc1-yd01-sakura-training-owner-0x2678"
+      ],
+      "incomingDirectCalls": [
+        {
+          "callerFunction": "0x2678",
+          "callFileOffset": "0x2702"
+        }
+      ],
+      "releaseSlotsInFunction": [],
+      "resourceNames": [
+        "SAKR"
+      ],
+      "actorTags": [
+        "IWAO",
+        "JAKR"
+      ],
+      "unknownActorOrObjectTags": [
+        "IWAO"
+      ],
+      "installs": [
+        {
+          "callFileOffset": "0x2c2",
+          "slot": 0,
+          "primaryPointer": 11673,
+          "secondaryPointer": 11686,
+          "primaryResource": "seqdata0.bin",
+          "secondaryResource": "SAKR",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": [
+            {
+              "resourceId": "d1:YD01:archive:YD01/SAKR.PKS:18:SEQDATA0.AUTH",
+              "archiveMember": "SEQDATA0.AUTH",
+              "payloadSha256": "e2160469503e7faf9b850ad1513f7dc67aea33288fbbee3d626003599b338aee",
+              "parseStatus": "complete",
+              "durationFrames": 1559,
+              "actorTags": [
+                "IWAO",
+                "JAKR"
+              ],
+              "motionBanks": [
+                17
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 13,
+                "voice": 12,
+                "sound": 6
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        "actor-or-scene-object-bindings-unreviewed"
+      ],
+      "promotionState": "reviewed-route"
+    },
+    {
+      "id": "d1:DNOZ:installer:0x1d74",
+      "disc": 1,
+      "area": "DNOZ",
+      "mapinfoSha256": "27aedab1046cd7e203e09b964cb87b17afd54b3a58ea6e8789bea20ec075b72e",
+      "installerFunction": "0x1d74",
+      "reviewedRouteIds": [],
+      "incomingDirectCalls": [],
+      "releaseSlotsInFunction": [
+        0,
+        1
+      ],
+      "resourceNames": [
+        "DNOZ"
+      ],
+      "actorTags": [],
+      "unknownActorOrObjectTags": [],
+      "installs": [
+        {
+          "callFileOffset": "0x217c",
+          "slot": 0,
+          "primaryPointer": 14562,
+          "secondaryPointer": 14575,
+          "primaryResource": "SEQDATA4.BIN",
+          "secondaryResource": "SCENE/01/DNOZ",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": []
+        },
+        {
+          "callFileOffset": "0x21a0",
+          "slot": 1,
+          "primaryPointer": 14589,
+          "secondaryPointer": 14602,
+          "primaryResource": "SEQDATA5.BIN",
+          "secondaryResource": "SCENE/01/DNOZ",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": []
+        },
+        {
+          "callFileOffset": "0x2406",
+          "slot": 0,
+          "primaryPointer": 14653,
+          "secondaryPointer": 14666,
+          "primaryResource": "SEQDATA2.BIN",
+          "secondaryResource": "SCENE/01/DNOZ",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": []
+        },
+        {
+          "callFileOffset": "0x242a",
+          "slot": 1,
+          "primaryPointer": 14680,
+          "secondaryPointer": 14693,
+          "primaryResource": "SEQDATA3.BIN",
+          "secondaryResource": "SCENE/01/DNOZ",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": []
+        }
+      ],
+      "blockers": [
+        "exact-auth-resource-selection-unresolved",
+        "player-facing-lifecycle-owner-unreviewed"
+      ],
+      "promotionState": "owner-review-required"
+    },
+    {
+      "id": "d1:JHD0:installer:0x37d56",
+      "disc": 1,
+      "area": "JHD0",
+      "mapinfoSha256": "e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca",
+      "installerFunction": "0x37d56",
+      "reviewedRouteIds": [
+        "disc1-jhd0-iwao-young-ryo-memory-0x37d56"
+      ],
+      "incomingDirectCalls": [
+        {
+          "callerFunction": "0x28cec",
+          "callFileOffset": "0x29b0e"
+        }
+      ],
+      "releaseSlotsInFunction": [
+        0
+      ],
+      "resourceNames": [
+        "HIHY"
+      ],
+      "actorTags": [
+        "IWAO",
+        "JAKR",
+        "MOON"
+      ],
+      "unknownActorOrObjectTags": [
+        "IWAO",
+        "MOON"
+      ],
+      "installs": [
+        {
+          "callFileOffset": "0x3823c",
+          "slot": 0,
+          "primaryPointer": 388275,
+          "secondaryPointer": 388280,
+          "primaryResource": "HIHY",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:JHD0:archive:JHD0/HIHY.PKS:11:SEQDATA5.AUTH",
+              "archiveMember": "SEQDATA5.AUTH",
+              "payloadSha256": "1ab4b319189417c1557480a6f3e86d3b8aea575d5f3f125828a971473945be3f",
+              "parseStatus": "complete",
+              "durationFrames": 2210,
+              "actorTags": [
+                "IWAO",
+                "JAKR",
+                "MOON"
+              ],
+              "motionBanks": [
+                17
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 3,
+                "motion": 12,
+                "voice": 13
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        "actor-or-scene-object-bindings-unreviewed",
+        "native-audio-resource-cluster-unreviewed"
+      ],
+      "promotionState": "reviewed-route"
+    },
+    {
+      "id": "d1:JHD0:installer:0x3cfa0",
+      "disc": 1,
+      "area": "JHD0",
+      "mapinfoSha256": "e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca",
+      "installerFunction": "0x3cfa0",
+      "reviewedRouteIds": [
+        "disc1-jhd0-kakg-owner-0x3cfa0"
+      ],
+      "incomingDirectCalls": [],
+      "releaseSlotsInFunction": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "resourceNames": [
+        "KAKG"
+      ],
+      "actorTags": [
+        "AKIR",
+        "FUKU",
+        "INE_",
+        "KAWA"
+      ],
+      "unknownActorOrObjectTags": [
+        "KAWA"
+      ],
+      "installs": [
+        {
+          "callFileOffset": "0x3d322",
+          "slot": 0,
+          "primaryPointer": 389467,
+          "secondaryPointer": 389472,
+          "primaryResource": "KAKG",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:JHD0:archive:JHD0/KAKG.PKS:3:SEQDATK0.AUTH",
+              "archiveMember": "SEQDATK0.AUTH",
+              "payloadSha256": "c3a4b7d716d6fc8999a4edf50e3e7c0144a14baa0a85327a9680c7a7fdec4efe",
+              "parseStatus": "complete",
+              "durationFrames": 190,
+              "actorTags": [
+                "AKIR",
+                "KAWA"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 1,
+                "sound": 2
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x3d346",
+          "slot": 1,
+          "primaryPointer": 389473,
+          "secondaryPointer": 389478,
+          "primaryResource": "KAKG",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:JHD0:archive:JHD0/KAKG.PKS:4:SEQDATK1.AUTH",
+              "archiveMember": "SEQDATK1.AUTH",
+              "payloadSha256": "f4e3594b09103c781e50049a75316d1a33e43a216ae5bf6e314d2d9990dcf527",
+              "parseStatus": "complete",
+              "durationFrames": 110,
+              "actorTags": [
+                "AKIR"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 1,
+                "motion": 1,
+                "sound": 3
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x3d36a",
+          "slot": 2,
+          "primaryPointer": 389479,
+          "secondaryPointer": 389484,
+          "primaryResource": "KAKG",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:JHD0:archive:JHD0/KAKG.PKS:5:SEQDATK2.AUTH",
+              "archiveMember": "SEQDATK2.AUTH",
+              "payloadSha256": "5b42a5329495c02803ac6e0cec1054921048088c47ed45f9efb1e0b046066267",
+              "parseStatus": "complete",
+              "durationFrames": 2000,
+              "actorTags": [
+                "AKIR",
+                "FUKU"
+              ],
+              "motionBanks": [
+                32
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 3,
+                "voice": 22,
+                "sound": 20
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x3d38e",
+          "slot": 3,
+          "primaryPointer": 389485,
+          "secondaryPointer": 389490,
+          "primaryResource": "KAKG",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:JHD0:archive:JHD0/KAKG.PKS:6:SEQDATK3.AUTH",
+              "archiveMember": "SEQDATK3.AUTH",
+              "payloadSha256": "180c36d23dd813d7b9e2dec39b13169c001a0ae8e754b45368b698eeae859034",
+              "parseStatus": "complete",
+              "durationFrames": 1031,
+              "actorTags": [
+                "AKIR",
+                "INE_"
+              ],
+              "motionBanks": [
+                48
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 2,
+                "sound": 12,
+                "voice": 9
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        "actor-or-scene-object-bindings-unreviewed",
+        "native-audio-resource-cluster-unreviewed"
+      ],
+      "promotionState": "reviewed-route"
+    },
+    {
+      "id": "d1:JHD0:installer:0x56028",
+      "disc": 1,
+      "area": "JHD0",
+      "mapinfoSha256": "e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca",
+      "installerFunction": "0x56028",
+      "reviewedRouteIds": [],
+      "incomingDirectCalls": [
+        {
+          "callerFunction": "0x545f8",
+          "callFileOffset": "0x54602"
+        }
+      ],
+      "releaseSlotsInFunction": [],
+      "resourceNames": [
+        "JHD0"
+      ],
+      "actorTags": [],
+      "unknownActorOrObjectTags": [],
+      "installs": [
+        {
+          "callFileOffset": "0x568a8",
+          "slot": 9,
+          "primaryPointer": 394211,
+          "secondaryPointer": 394224,
+          "primaryResource": "seqdataD.bin",
+          "secondaryResource": "scene/01/JHD0",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": []
+        }
+      ],
+      "blockers": [
+        "exact-auth-resource-selection-unresolved",
+        "player-facing-lifecycle-owner-unreviewed"
+      ],
+      "promotionState": "owner-review-required"
+    },
+    {
+      "id": "d1:JOMO:installer:0x4a1f2",
+      "disc": 1,
+      "area": "JOMO",
+      "mapinfoSha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
+      "installerFunction": "0x4a1f2",
+      "reviewedRouteIds": [],
+      "incomingDirectCalls": [
+        {
+          "callerFunction": "0x4f758",
+          "callFileOffset": "0x4fbec"
+        },
+        {
+          "callerFunction": "0x4f758",
+          "callFileOffset": "0x4fd4c"
+        },
+        {
+          "callerFunction": "0x4f758",
+          "callFileOffset": "0x4feac"
+        },
+        {
+          "callerFunction": "0x4f758",
+          "callFileOffset": "0x50018"
+        },
+        {
+          "callerFunction": "0x4f758",
+          "callFileOffset": "0x50174"
+        },
+        {
+          "callerFunction": "0x4f758",
+          "callFileOffset": "0x502d0"
+        }
+      ],
+      "releaseSlotsInFunction": [
+        50,
+        51,
+        52,
+        53,
+        54,
+        55
+      ],
+      "resourceNames": [
+        "KKYA",
+        "KKYB",
+        "KKYC",
+        "KKYD",
+        "KKYE",
+        "KKYF"
+      ],
+      "actorTags": [],
+      "unknownActorOrObjectTags": [],
+      "installs": [
+        {
+          "callFileOffset": "0x4a31a",
+          "slot": 50,
+          "primaryPointer": 614163,
+          "secondaryPointer": 614176,
+          "primaryResource": "seqdata0.bin",
+          "secondaryResource": "KKYA",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": []
+        },
+        {
+          "callFileOffset": "0x4a46a",
+          "slot": 51,
+          "primaryPointer": 614200,
+          "secondaryPointer": 614213,
+          "primaryResource": "seqdata1.bin",
+          "secondaryResource": "KKYB",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": []
+        },
+        {
+          "callFileOffset": "0x4a5ba",
+          "slot": 52,
+          "primaryPointer": 614237,
+          "secondaryPointer": 614250,
+          "primaryResource": "seqdata2.bin",
+          "secondaryResource": "KKYC",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": []
+        },
+        {
+          "callFileOffset": "0x4a70a",
+          "slot": 53,
+          "primaryPointer": 614274,
+          "secondaryPointer": 614287,
+          "primaryResource": "seqdata3.bin",
+          "secondaryResource": "KKYD",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": []
+        },
+        {
+          "callFileOffset": "0x4a85a",
+          "slot": 54,
+          "primaryPointer": 614311,
+          "secondaryPointer": 614324,
+          "primaryResource": "seqdata4.bin",
+          "secondaryResource": "KKYE",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": []
+        },
+        {
+          "callFileOffset": "0x4a9aa",
+          "slot": 55,
+          "primaryPointer": 614348,
+          "secondaryPointer": 614361,
+          "primaryResource": "seqdata5.bin",
+          "secondaryResource": "KKYF",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": []
+        }
+      ],
+      "blockers": [
+        "exact-auth-resource-selection-unresolved",
+        "player-facing-lifecycle-owner-unreviewed"
+      ],
+      "promotionState": "owner-review-required"
+    },
+    {
+      "id": "d1:TOKI:installer:0x19e0",
+      "disc": 1,
+      "area": "TOKI",
+      "mapinfoSha256": "6167c444368db980b6e2534d13b237dfec77be89c3258bbac96bc6efc67e481f",
+      "installerFunction": "0x19e0",
+      "reviewedRouteIds": [],
+      "incomingDirectCalls": [],
+      "releaseSlotsInFunction": [
+        0
+      ],
+      "resourceNames": [
+        "TOKI"
+      ],
+      "actorTags": [],
+      "unknownActorOrObjectTags": [],
+      "installs": [
+        {
+          "callFileOffset": "0x1ba6",
+          "slot": 0,
+          "primaryPointer": 13559,
+          "secondaryPointer": 13572,
+          "primaryResource": "SEQDATA2.BIN",
+          "secondaryResource": "SCENE/01/TOKI",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": []
+        },
+        {
+          "callFileOffset": "0x1e06",
+          "slot": 0,
+          "primaryPointer": 13628,
+          "secondaryPointer": 13641,
+          "primaryResource": "SEQDATA2.BIN",
+          "secondaryResource": "SCENE/01/TOKI",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": []
+        }
+      ],
+      "blockers": [
+        "exact-auth-resource-selection-unresolved",
+        "player-facing-lifecycle-owner-unreviewed"
+      ],
+      "promotionState": "owner-review-required"
+    },
+    {
+      "id": "d1:TOKI:installer:0x2280",
+      "disc": 1,
+      "area": "TOKI",
+      "mapinfoSha256": "6167c444368db980b6e2534d13b237dfec77be89c3258bbac96bc6efc67e481f",
+      "installerFunction": "0x2280",
+      "reviewedRouteIds": [],
+      "incomingDirectCalls": [
+        {
+          "callerFunction": "0x19e0",
+          "callFileOffset": "0x1fbe"
+        }
+      ],
+      "releaseSlotsInFunction": [
+        0
+      ],
+      "resourceNames": [
+        "TOKI"
+      ],
+      "actorTags": [],
+      "unknownActorOrObjectTags": [],
+      "installs": [
+        {
+          "callFileOffset": "0x253a",
+          "slot": 0,
+          "primaryPointer": 13715,
+          "secondaryPointer": 13728,
+          "primaryResource": "SEQDATA2.BIN",
+          "secondaryResource": "SCENE/01/TOKI",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": []
+        }
+      ],
+      "blockers": [
+        "exact-auth-resource-selection-unresolved",
+        "player-facing-lifecycle-owner-unreviewed"
+      ],
+      "promotionState": "owner-review-required"
+    },
+    {
+      "id": "d1:JHD0:installer:0x3e7ec",
+      "disc": 1,
+      "area": "JHD0",
+      "mapinfoSha256": "e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca",
+      "installerFunction": "0x3e7ec",
+      "reviewedRouteIds": [],
+      "incomingDirectCalls": [],
+      "releaseSlotsInFunction": [
+        0,
+        1
+      ],
+      "resourceNames": [
+        "KAKG"
+      ],
+      "actorTags": [
+        "AKIR",
+        "KAWA"
+      ],
+      "unknownActorOrObjectTags": [
+        "KAWA"
+      ],
+      "installs": [
+        {
+          "callFileOffset": "0x3ebf2",
+          "slot": 0,
+          "primaryPointer": 389881,
+          "secondaryPointer": 389886,
+          "primaryResource": "KAKG",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:JHD0:archive:JHD0/KAKG.PKS:3:SEQDATK0.AUTH",
+              "archiveMember": "SEQDATK0.AUTH",
+              "payloadSha256": "c3a4b7d716d6fc8999a4edf50e3e7c0144a14baa0a85327a9680c7a7fdec4efe",
+              "parseStatus": "complete",
+              "durationFrames": 190,
+              "actorTags": [
+                "AKIR",
+                "KAWA"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 1,
+                "sound": 2
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x3ec16",
+          "slot": 1,
+          "primaryPointer": 389887,
+          "secondaryPointer": 389892,
+          "primaryResource": "KAKG",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:JHD0:archive:JHD0/KAKG.PKS:4:SEQDATK1.AUTH",
+              "archiveMember": "SEQDATK1.AUTH",
+              "payloadSha256": "f4e3594b09103c781e50049a75316d1a33e43a216ae5bf6e314d2d9990dcf527",
+              "parseStatus": "complete",
+              "durationFrames": 110,
+              "actorTags": [
+                "AKIR"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 1,
+                "motion": 1,
+                "sound": 3
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        "actor-or-scene-object-bindings-unreviewed",
+        "native-audio-resource-cluster-unreviewed",
+        "player-facing-lifecycle-owner-unreviewed"
+      ],
+      "promotionState": "owner-review-required"
+    },
+    {
+      "id": "d1:JHD0:installer:0x537d4",
+      "disc": 1,
+      "area": "JHD0",
+      "mapinfoSha256": "e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca",
+      "installerFunction": "0x537d4",
+      "reviewedRouteIds": [],
+      "incomingDirectCalls": [],
+      "releaseSlotsInFunction": [],
+      "resourceNames": [
+        "KAKG"
+      ],
+      "actorTags": [
+        "AKIR",
+        "FUKU",
+        "INE_",
+        "KAWA"
+      ],
+      "unknownActorOrObjectTags": [
+        "KAWA"
+      ],
+      "installs": [
+        {
+          "callFileOffset": "0x541a2",
+          "slot": 0,
+          "primaryPointer": 393527,
+          "secondaryPointer": 393532,
+          "primaryResource": "KAKG",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:JHD0:archive:JHD0/KAKG.PKS:3:SEQDATK0.AUTH",
+              "archiveMember": "SEQDATK0.AUTH",
+              "payloadSha256": "c3a4b7d716d6fc8999a4edf50e3e7c0144a14baa0a85327a9680c7a7fdec4efe",
+              "parseStatus": "complete",
+              "durationFrames": 190,
+              "actorTags": [
+                "AKIR",
+                "KAWA"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 1,
+                "sound": 2
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x541c6",
+          "slot": 1,
+          "primaryPointer": 393533,
+          "secondaryPointer": 393538,
+          "primaryResource": "KAKG",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:JHD0:archive:JHD0/KAKG.PKS:4:SEQDATK1.AUTH",
+              "archiveMember": "SEQDATK1.AUTH",
+              "payloadSha256": "f4e3594b09103c781e50049a75316d1a33e43a216ae5bf6e314d2d9990dcf527",
+              "parseStatus": "complete",
+              "durationFrames": 110,
+              "actorTags": [
+                "AKIR"
+              ],
+              "motionBanks": [
+                16
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 1,
+                "motion": 1,
+                "sound": 3
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x541ea",
+          "slot": 2,
+          "primaryPointer": 393539,
+          "secondaryPointer": 393544,
+          "primaryResource": "KAKG",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:JHD0:archive:JHD0/KAKG.PKS:5:SEQDATK2.AUTH",
+              "archiveMember": "SEQDATK2.AUTH",
+              "payloadSha256": "5b42a5329495c02803ac6e0cec1054921048088c47ed45f9efb1e0b046066267",
+              "parseStatus": "complete",
+              "durationFrames": 2000,
+              "actorTags": [
+                "AKIR",
+                "FUKU"
+              ],
+              "motionBanks": [
+                32
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 3,
+                "voice": 22,
+                "sound": 20
+              }
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x5420e",
+          "slot": 3,
+          "primaryPointer": 393545,
+          "secondaryPointer": 393550,
+          "primaryResource": "KAKG",
+          "secondaryResource": "",
+          "selectionRule": "zero-based-auth-extension-ordinal",
+          "authResources": [
+            {
+              "resourceId": "d1:JHD0:archive:JHD0/KAKG.PKS:6:SEQDATK3.AUTH",
+              "archiveMember": "SEQDATK3.AUTH",
+              "payloadSha256": "180c36d23dd813d7b9e2dec39b13169c001a0ae8e754b45368b698eeae859034",
+              "parseStatus": "complete",
+              "durationFrames": 1031,
+              "actorTags": [
+                "AKIR",
+                "INE_"
+              ],
+              "motionBanks": [
+                48
+              ],
+              "commandCounts": {
+                "camera": 1,
+                "move": 2,
+                "motion": 2,
+                "sound": 12,
+                "voice": 9
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        "actor-or-scene-object-bindings-unreviewed",
+        "native-audio-resource-cluster-unreviewed",
+        "player-facing-lifecycle-owner-unreviewed"
+      ],
+      "promotionState": "owner-review-required"
+    }
+  ]
+}

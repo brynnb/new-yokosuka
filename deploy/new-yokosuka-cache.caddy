@@ -1,0 +1,9 @@
+# Import this file inside the newyokosuka.com site block.
+# HTML must revalidate so it cannot keep pointing at an older hashed bundle.
+@newYokosukaHtml path / /index.html /play /play/ /play/index.html /asset-viewer /asset-viewer/ /asset-viewer/index.html /story-review /story-review/ /story-review/index.html /script-editor /script-editor/ /script-editor/index.html /arcade /arcade/ /arcade/index.html
+header @newYokosukaHtml Cache-Control "no-cache, must-revalidate"
+
+# Vite changes these filenames when their content changes, so they are safe to
+# retain indefinitely. HTML from a newer deployment references new filenames.
+@newYokosukaHashedAsset path_regexp newYokosukaHashedAsset ^/assets/(.+-)?[A-Za-z0-9_-]{8,}\.[A-Za-z0-9]+$
+header @newYokosukaHashedAsset Cache-Control "public, max-age=31536000, immutable"

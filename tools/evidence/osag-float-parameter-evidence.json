@@ -1,0 +1,109 @@
+{
+  "schema": "new-yokosuka-osag-float-parameter-evidence-v1",
+  "status": "exact-native-osag-float-word-write-and-full-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 319,
+    "operationHex": "0x013f",
+    "argumentCount": 2,
+    "handlerAddress": "0x0c131b44",
+    "verifiedRanges": {
+      "handlerTableEntry": {
+        "address": "0x0c29aedc",
+        "length": 4,
+        "sha256": "487b3af39320fcb385b8d96f79ae711bdae77abae849567643e418f3d507914a"
+      },
+      "handler": {
+        "address": "0x0c131b44",
+        "length": 50,
+        "sha256": "c7b14c5fb3c7697c4e1bf780b917fdeedd5e9ad68a6d931634752be647d845d5"
+      },
+      "objectResolver": {
+        "address": "0x0c153956",
+        "length": 58,
+        "sha256": "b99d1c60ec19d8c20dec13ede36b9f81a3b04510da97159b53e03db38deba35f"
+      },
+      "associatedRecordResolver": {
+        "address": "0x0c0aad5a",
+        "length": 50,
+        "sha256": "4c5affee0a1739c5cc4b01e389b4f6af7d2f6147cd09ad667b8e103fb3466c27"
+      }
+    },
+    "nativeContract": {
+      "handlerTableEntry": "0x0c131b44",
+      "objectResolver": "0x0c153956",
+      "osagComponentTag": "0x4741534f",
+      "associatedRecordResolver": "0x0c0aad5a"
+    },
+    "componentTag": "OSAG",
+    "floatWordOffset": "0x01e8",
+    "provenBehavior": "Resolve argument zero as an object, resolve that object's associated OSAG record, and copy argument one's exact 32-bit float word to OSAG +0x01e8. A missing object or associated OSAG record returns without mutation."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 15,
+    "areaCounts": {
+      "1:OP00": 15
+    },
+    "dialogueRegionCallCount": 0,
+    "functionCounts": {
+      "0x1fe28": 1,
+      "0x77e8": 6,
+      "0x9930": 1,
+      "0x9e5c": 1,
+      "0xb898": 4,
+      "0xc1d4": 1,
+      "0xc3d4": 1
+    },
+    "argumentKindCounts": {
+      "0": {
+        "constant": 14,
+        "frame-field": 1
+      },
+      "1": {
+        "constant": 15
+      }
+    },
+    "constantObjectTagCounts": {
+      "SORY": 14
+    },
+    "floatWordCounts": {
+      "0x3c23d70a": 1,
+      "0x3dcccccd": 2,
+      "0x3df5c28f": 1,
+      "0x3e0f5c29": 1,
+      "0x3f800000": 5,
+      "0x3fb33333": 1,
+      "0x40400000": 4
+    },
+    "resultComparisonCount": 0,
+    "resultTargetCount": 0,
+    "callFileOffsets": [
+      "0x7996",
+      "0x7a9a",
+      "0x7b32",
+      "0x7ce6",
+      "0x82d6",
+      "0x85ae",
+      "0x9b52",
+      "0xa05e",
+      "0xbcd6",
+      "0xbd1e",
+      "0xbef2",
+      "0xbffa",
+      "0xc28a",
+      "0xc54a",
+      "0x2000e"
+    ]
+  },
+  "evidenceBoundary": [
+    "The value is retained as the exact authored IEEE-754 word.",
+    "The executable proves the OSAG field identity and write, but not a presentation-level name such as wind, stiffness, gravity, or damping.",
+    "SORY is corpus evidence, not a hard-coded runtime identity.",
+    "A missing object or OSAG record is an exact native no-op; unknown browser-side availability remains distinct from that proven no-op."
+  ]
+}

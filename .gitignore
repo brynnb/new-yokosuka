@@ -1,13 +1,75 @@
 node_modules
+__pycache__/
+*.pyc
 .env
-.env.local
+.env.*
+!.env.example
 dist
+.dev/
+internal-docs/
+# Local-only, incomplete script editor and its dedicated tests.
+/script-editor/
+/tests/ScriptFixtureForm.test.js
+/tests/ScriptSourceCompletions.test.js
+/tests/ScriptVersionDiff.test.js
+/tests/ScriptVersionLifecycle.test.js
+/story-review/
+/tests/StoryReview.test.js
+.wrangler/
 .DS_Store
+*.log
+*.swp
+*.swo
+*~
+
+# Test, coverage, and tool caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+coverage/
+.nyc_output/
+tests/reports/
+playwright/.cache/
+
+# Local editor settings
+.idea/
+.vscode/
 
 # Game data and extracted files (large binaries, not committed)
 gamedata/
 extracted_files/
 extracted_disc2_v2/
+extracted_disc3_v2/
 public/models/
+# Music binaries are local build inputs; manifests remain tracked.
+public/music/*.ogg
+public/music/*.mp3
+public/music/mp3/
+public/music/shenmue2/
+# Extracted runtime payloads live on R2; keep local extraction copies available.
+# Source code, structured manifests, and project-created branding remain tracked.
+play/assets/**
+!play/assets/**/
+!play/assets/**/*.json
+!play/assets/configureMt5TexturePack.js
+!play/assets/account/new-yokosuka-logo.png
+!play/assets/account/phoenix-logo.png
+public/audio/**
+!public/audio/**/
+!public/audio/**/*.json
 tools/extracted_tex/
 .notes
+# Local emulator profile and frame captures
+.flycast-pvr/
+captures/
+pvr-captures/
+.disc-work/
+
+# Audio rendering toolchain artifacts
+.audio-tools/
+
+# Generated scheduler evidence derived from local RAM/disc data
+tools/evidence/scheduled-actor-capture-inventory.json
+tools/evidence/scheduled-actors-capture.json
+tools/evidence/scheduled-actors.json
+tools/evidence/offline-scheduled-actors.json

@@ -1,0 +1,3537 @@
+{
+  "schema": "new-yokosuka-dialogue-predicate-routes-v1",
+  "evidenceBoundary": [
+    "Predicates come from exact symbolic execution of generated SH-4 comparison, T-bit, subc-mask, bitwise-composition, scene-field, stack-save, and call forms.",
+    "Dialogue descendants use only exact direct-call and child-coroutine edges.",
+    "Cyclic functions are traversed to a fixed point; irreducible loop joins, unsupported expressions, opaque branch terms, and state-limit exits remain explicitly marked rather than guessed.",
+    "A guarded call route does not by itself identify a clicked actor, object, prompt, or story meaning."
+  ],
+  "summary": {
+    "mapinfoCount": 64,
+    "scriptedEventFunctionCount": 11998,
+    "functionStatusCounts": {
+      "exact-acyclic": 7174,
+      "fixed-point-cyclic": 4765,
+      "state-limit": 59
+    },
+    "predicateRouteCount": 538,
+    "fullyResolvedPredicateRouteCount": 197,
+    "routeWithExactSpatialTriggerCount": 1,
+    "dialogueDescendantCount": 2833
+  },
+  "verifiedAnchors": [
+    {
+      "disc": 1,
+      "area": "D000",
+      "sourceFunctionFileOffset": "0x7abf4",
+      "callKind": "directCall",
+      "callFileOffset": "0x7ac72",
+      "targetFileOffset": "0x8002c",
+      "predicate": {
+        "kind": "and",
+        "terms": [
+          {
+            "kind": "comparison",
+            "operator": "cmp/eq",
+            "left": {
+              "kind": "engine-operation-result",
+              "operationId": 81,
+              "operationHex": "0x0051",
+              "arguments": [
+                {
+                  "kind": "constant",
+                  "value": 11
+                },
+                {
+                  "kind": "constant",
+                  "value": 100
+                }
+              ],
+              "callFileOffset": "0x7ac0a"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "comparison",
+            "operator": "cmp/eq",
+            "left": {
+              "kind": "scene-field",
+              "fieldOffset": "0x84",
+              "loadWidth": 4,
+              "signedLoad": false
+            },
+            "right": {
+              "kind": "constant",
+              "value": 6
+            }
+          },
+          {
+            "kind": "comparison",
+            "operator": "cmp/gt",
+            "left": {
+              "kind": "constant",
+              "value": 19
+            },
+            "right": {
+              "kind": "scene-field",
+              "fieldOffset": "0xcc",
+              "loadWidth": 1,
+              "signedLoad": true
+            }
+          },
+          {
+            "kind": "comparison",
+            "operator": "cmp/gt",
+            "left": {
+              "kind": "scene-field",
+              "fieldOffset": "0xcc",
+              "loadWidth": 1,
+              "signedLoad": true
+            },
+            "right": {
+              "kind": "constant",
+              "value": 6
+            }
+          }
+        ]
+      },
+      "containsOpaqueTerm": false,
+      "spatialTriggers": [
+        {
+          "sceneSelectorArrayBaseOffset": "0x84",
+          "selectorValue": 6,
+          "spatialRecordIndex": 5,
+          "serializedSourceFileOffset": "0xaf57c",
+          "record": {
+            "index": 5,
+            "fileOffset": "0xaf5f4",
+            "position": [
+              -119.13939666748047,
+              0.0,
+              79.6144027709961
+            ],
+            "requiredFacingRaw": 9375,
+            "selectorFlags": 264,
+            "auxiliaryWord": 8,
+            "usesCustomHalfWidth": true,
+            "rawHex": "5f47eec200000000933a9f429f2400000801000008000000",
+            "lateralHalfWidth": 0.5
+          }
+        }
+      ],
+      "dialogueDescendants": [
+        {
+          "functionFileOffset": "0x7fa98",
+          "executableTargetIndex": 629,
+          "voiceIds": [
+            "F1030B001"
+          ],
+          "actorTags": [
+            "HATO"
+          ]
+        }
+      ]
+    }
+  ],
+  "representativeRoutes": [
+    {
+      "disc": 2,
+      "area": "D000",
+      "sourceFunctionFileOffset": "0xcb2c",
+      "callKind": "directCall",
+      "callFileOffset": "0xcc64",
+      "targetFileOffset": "0xdaa8",
+      "predicate": {
+        "kind": "and",
+        "terms": [
+          {
+            "kind": "comparison",
+            "operator": "cmp/eq",
+            "left": {
+              "kind": "engine-operation-result",
+              "operationId": 81,
+              "operationHex": "0x0051",
+              "arguments": [
+                {
+                  "kind": "constant",
+                  "value": 28
+                }
+              ],
+              "callFileOffset": "0xcb78"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "engine-operation-result",
+                "operationId": 430,
+                "operationHex": "0x01ae",
+                "arguments": [
+                  {
+                    "kind": "constant",
+                    "value": 0
+                  }
+                ],
+                "callFileOffset": "0xcba2"
+              },
+              "right": {
+                "kind": "constant",
+                "value": 0
+              }
+            }
+          },
+          {
+            "kind": "unresolved-expression",
+            "nativeForm": "('unknown',)"
+          }
+        ]
+      },
+      "containsOpaqueTerm": true,
+      "spatialTriggers": [],
+      "dialogueDescendants": [
+        {
+          "functionFileOffset": "0xab94",
+          "executableTargetIndex": 22,
+          "voiceIds": [
+            "SY11A006",
+            "SY11A007",
+            "SY11A008",
+            "SY11A002",
+            "SY11A003",
+            "SY11A004",
+            "SY11A005",
+            "SY11A001",
+            "SY11A009",
+            "SY11A010",
+            "SY11A011",
+            "SY11A009"
+          ],
+          "actorTags": []
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "sourceFunctionFileOffset": "0xcb2c",
+      "callKind": "directCall",
+      "callFileOffset": "0xcde4",
+      "targetFileOffset": "0xab94",
+      "predicate": {
+        "kind": "or",
+        "terms": [
+          {
+            "kind": "and",
+            "terms": [
+              {
+                "kind": "comparison",
+                "operator": "cmp/eq",
+                "left": {
+                  "kind": "engine-operation-result",
+                  "operationId": 45,
+                  "operationHex": "0x002d",
+                  "arguments": [
+                    {
+                      "kind": "constant",
+                      "value": 2
+                    }
+                  ],
+                  "callFileOffset": "0xcdaa"
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": 0
+                }
+              },
+              {
+                "kind": "comparison",
+                "operator": "cmp/eq",
+                "left": {
+                  "kind": "engine-operation-result",
+                  "operationId": 81,
+                  "operationHex": "0x0051",
+                  "arguments": [
+                    {
+                      "kind": "constant",
+                      "value": 28
+                    }
+                  ],
+                  "callFileOffset": "0xcb78"
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": 0
+                }
+              },
+              {
+                "kind": "not",
+                "term": {
+                  "kind": "comparison",
+                  "operator": "cmp/eq",
+                  "left": {
+                    "kind": "engine-operation-result",
+                    "operationId": 430,
+                    "operationHex": "0x01ae",
+                    "arguments": [
+                      {
+                        "kind": "constant",
+                        "value": 0
+                      }
+                    ],
+                    "callFileOffset": "0xcba2"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 0
+                  }
+                }
+              },
+              {
+                "kind": "not",
+                "term": {
+                  "kind": "unresolved-expression",
+                  "nativeForm": "('unknown',)"
+                }
+              }
+            ]
+          },
+          {
+            "kind": "and",
+            "terms": [
+              {
+                "kind": "comparison",
+                "operator": "cmp/eq",
+                "left": {
+                  "kind": "engine-operation-result",
+                  "operationId": 81,
+                  "operationHex": "0x0051",
+                  "arguments": [
+                    {
+                      "kind": "constant",
+                      "value": 28
+                    }
+                  ],
+                  "callFileOffset": "0xcb78"
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": 0
+                }
+              },
+              {
+                "kind": "not",
+                "term": {
+                  "kind": "comparison",
+                  "operator": "cmp/eq",
+                  "left": {
+                    "kind": "engine-operation-result",
+                    "operationId": 430,
+                    "operationHex": "0x01ae",
+                    "arguments": [
+                      {
+                        "kind": "constant",
+                        "value": 0
+                      }
+                    ],
+                    "callFileOffset": "0xcba2"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 0
+                  }
+                }
+              },
+              {
+                "kind": "not",
+                "term": {
+                  "kind": "comparison",
+                  "operator": "cmp/eq",
+                  "left": {
+                    "kind": "engine-operation-result",
+                    "operationId": 45,
+                    "operationHex": "0x002d",
+                    "arguments": [
+                      {
+                        "kind": "constant",
+                        "value": 2
+                      }
+                    ],
+                    "callFileOffset": "0xcdaa"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 0
+                  }
+                }
+              },
+              {
+                "kind": "not",
+                "term": {
+                  "kind": "unresolved-expression",
+                  "nativeForm": "('unknown',)"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "containsOpaqueTerm": true,
+      "spatialTriggers": [],
+      "dialogueDescendants": [
+        {
+          "functionFileOffset": "0xab94",
+          "executableTargetIndex": 22,
+          "voiceIds": [
+            "SY11A006",
+            "SY11A007",
+            "SY11A008",
+            "SY11A002",
+            "SY11A003",
+            "SY11A004",
+            "SY11A005",
+            "SY11A001",
+            "SY11A009",
+            "SY11A010",
+            "SY11A011",
+            "SY11A009"
+          ],
+          "actorTags": []
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "sourceFunctionFileOffset": "0xce88",
+      "callKind": "directCall",
+      "callFileOffset": "0xcf80",
+      "targetFileOffset": "0xdaa8",
+      "predicate": {
+        "kind": "and",
+        "terms": [
+          {
+            "kind": "comparison",
+            "operator": "cmp/eq",
+            "left": {
+              "kind": "engine-operation-result",
+              "operationId": 81,
+              "operationHex": "0x0051",
+              "arguments": [
+                {
+                  "kind": "constant",
+                  "value": 21
+                }
+              ],
+              "callFileOffset": "0xceb8"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "unresolved-expression",
+            "nativeForm": "('unknown',)"
+          }
+        ]
+      },
+      "containsOpaqueTerm": true,
+      "spatialTriggers": [],
+      "dialogueDescendants": [
+        {
+          "functionFileOffset": "0xab94",
+          "executableTargetIndex": 22,
+          "voiceIds": [
+            "SY11A006",
+            "SY11A007",
+            "SY11A008",
+            "SY11A002",
+            "SY11A003",
+            "SY11A004",
+            "SY11A005",
+            "SY11A001",
+            "SY11A009",
+            "SY11A010",
+            "SY11A011",
+            "SY11A009"
+          ],
+          "actorTags": []
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "sourceFunctionFileOffset": "0x2d5b0",
+      "callKind": "directCall",
+      "callFileOffset": "0x2e0c4",
+      "targetFileOffset": "0x2d06c",
+      "predicate": {
+        "kind": "and",
+        "terms": [
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "scene-field",
+                "fieldOffset": "0x319",
+                "loadWidth": 1,
+                "signedLoad": true
+              },
+              "right": {
+                "kind": "constant",
+                "value": 1
+              }
+            }
+          },
+          {
+            "kind": "or",
+            "terms": [
+              {
+                "kind": "comparison",
+                "operator": "cmp/eq",
+                "left": {
+                  "kind": "scene-field",
+                  "fieldOffset": "0x319",
+                  "loadWidth": 1,
+                  "signedLoad": true
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": -1
+                }
+              },
+              {
+                "kind": "comparison",
+                "operator": "cmp/eq",
+                "left": {
+                  "kind": "scene-field",
+                  "fieldOffset": "0x319",
+                  "loadWidth": 1,
+                  "signedLoad": true
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": -10
+                }
+              },
+              {
+                "kind": "comparison",
+                "operator": "cmp/eq",
+                "left": {
+                  "kind": "scene-field",
+                  "fieldOffset": "0x319",
+                  "loadWidth": 1,
+                  "signedLoad": true
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": -15
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "containsOpaqueTerm": false,
+      "spatialTriggers": [],
+      "dialogueDescendants": [
+        {
+          "functionFileOffset": "0x2d06c",
+          "executableTargetIndex": 144,
+          "voiceIds": [
+            "E1066A012",
+            "E1066A013",
+            "E1066A006"
+          ],
+          "actorTags": []
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "sourceFunctionFileOffset": "0x2e19c",
+      "callKind": "directCall",
+      "callFileOffset": "0x2f21a",
+      "targetFileOffset": "0x301f4",
+      "predicate": {
+        "kind": "and",
+        "terms": [
+          {
+            "kind": "comparison",
+            "operator": "cmp/eq",
+            "left": {
+              "kind": "scene-field",
+              "fieldOffset": "0x380",
+              "loadWidth": 1,
+              "signedLoad": true
+            },
+            "right": {
+              "kind": "scene-field",
+              "fieldOffset": "0x340",
+              "loadWidth": 4,
+              "signedLoad": false
+            }
+          },
+          {
+            "kind": "opaque-native-path-join",
+            "joinFileOffset": "0x2f196"
+          }
+        ]
+      },
+      "containsOpaqueTerm": true,
+      "spatialTriggers": [],
+      "dialogueDescendants": [
+        {
+          "functionFileOffset": "0x301f4",
+          "executableTargetIndex": 155,
+          "voiceIds": [
+            "E1032I001",
+            "E1032A052",
+            "E1032I007",
+            "E1032I008",
+            "E1032A097",
+            "E1032I009",
+            "E1032I010",
+            "E1032A054",
+            "E1032I011",
+            "E1032A055",
+            "E1032I012",
+            "E1032A056",
+            "E1032I013",
+            "E1032A057",
+            "E1032I011",
+            "E1032A059",
+            "E1032I009",
+            "E1032I010",
+            "E1032A054",
+            "E1032I011",
+            "E1032A060",
+            "E1032I009",
+            "E1032I010",
+            "E1032A054",
+            "E1032I011",
+            "E1032I001",
+            "E1032A007",
+            "E1032A006",
+            "E1032I002",
+            "E1032I003",
+            "E1032I004",
+            "E1032I005",
+            "E1032I006",
+            "E1032A008",
+            "E1032A009"
+          ],
+          "actorTags": []
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "sourceFunctionFileOffset": "0x55df4",
+      "callKind": "directCall",
+      "callFileOffset": "0x55e92",
+      "targetFileOffset": "0x5659c",
+      "predicate": {
+        "kind": "not",
+        "term": {
+          "kind": "comparison",
+          "operator": "cmp/eq",
+          "left": {
+            "kind": "native-call-result",
+            "targetFileOffset": "0x56014",
+            "callFileOffset": "0x55e3a"
+          },
+          "right": {
+            "kind": "constant",
+            "value": 0
+          }
+        }
+      },
+      "containsOpaqueTerm": false,
+      "spatialTriggers": [],
+      "dialogueDescendants": [
+        {
+          "functionFileOffset": "0x54c2c",
+          "executableTargetIndex": 222,
+          "voiceIds": [
+            "E1066A023"
+          ],
+          "actorTags": []
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "sourceFunctionFileOffset": "0x5f944",
+      "callKind": "directCall",
+      "callFileOffset": "0x5fb5a",
+      "targetFileOffset": "0x5ee3c",
+      "predicate": {
+        "kind": "and",
+        "terms": [
+          {
+            "kind": "comparison",
+            "operator": "cmp/eq",
+            "left": {
+              "kind": "engine-operation-result",
+              "operationId": 49,
+              "operationHex": "0x0031",
+              "arguments": [
+                {
+                  "kind": "constant",
+                  "value": 1
+                }
+              ],
+              "callFileOffset": "0x5fa9e"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1024
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "unresolved-expression",
+                "nativeForm": "('bitwise-and', ('operation-result', 154, (('runtime', '@(r0,r9) at 0x5fb10'), ('constant', 4), ('runtime', 'add at 0x5fb0a')), 391966), ('const', 2))"
+              },
+              "right": {
+                "kind": "constant",
+                "value": 0
+              }
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "engine-operation-result",
+                "operationId": 430,
+                "operationHex": "0x01ae",
+                "arguments": [
+                  {
+                    "kind": "constant",
+                    "value": 0
+                  }
+                ],
+                "callFileOffset": "0x5f956"
+              },
+              "right": {
+                "kind": "constant",
+                "value": 0
+              }
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "opaque-native-branch",
+              "branchFileOffset": "0x5f9b4"
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "opaque-native-branch",
+              "branchFileOffset": "0x5fa74"
+            }
+          },
+          {
+            "kind": "unresolved-expression",
+            "nativeForm": "('unknown',)"
+          }
+        ]
+      },
+      "containsOpaqueTerm": true,
+      "spatialTriggers": [],
+      "dialogueDescendants": [
+        {
+          "functionFileOffset": "0x5ee3c",
+          "executableTargetIndex": 273,
+          "voiceIds": [
+            "SA1081A002",
+            "SA1081A003",
+            "SA1081A002",
+            "SA1081A005",
+            "SA1081A006"
+          ],
+          "actorTags": [
+            "AKIR"
+          ]
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "sourceFunctionFileOffset": "0x5fdc0",
+      "callKind": "childCoroutineLaunch",
+      "callFileOffset": "0x5fdfe",
+      "targetFileOffset": "0x62908",
+      "predicate": {
+        "kind": "not",
+        "term": {
+          "kind": "comparison",
+          "operator": "cmp/eq",
+          "left": {
+            "kind": "engine-operation-result",
+            "operationId": 38,
+            "operationHex": "0x0026",
+            "arguments": [],
+            "callFileOffset": "0x5fdce"
+          },
+          "right": {
+            "kind": "constant",
+            "value": 99
+          }
+        }
+      },
+      "containsOpaqueTerm": false,
+      "spatialTriggers": [],
+      "dialogueDescendants": [
+        {
+          "functionFileOffset": "0xab94",
+          "executableTargetIndex": 22,
+          "voiceIds": [
+            "SY11A006",
+            "SY11A007",
+            "SY11A008",
+            "SY11A002",
+            "SY11A003",
+            "SY11A004",
+            "SY11A005",
+            "SY11A001",
+            "SY11A009",
+            "SY11A010",
+            "SY11A011",
+            "SY11A009"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x54c2c",
+          "executableTargetIndex": 222,
+          "voiceIds": [
+            "E1066A023"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x5bc66",
+          "executableTargetIndex": 252,
+          "voiceIds": [
+            "SA1076A015",
+            "SA1076A016",
+            "SA1076A017"
+          ],
+          "actorTags": [
+            "AKIR"
+          ]
+        },
+        {
+          "functionFileOffset": "0x5b82c",
+          "executableTargetIndex": 253,
+          "voiceIds": [
+            "SA1076A001",
+            "SA1076A013",
+            "SA1076A002",
+            "SA1076A014",
+            "SA1076A003",
+            "SA1076A015"
+          ],
+          "actorTags": [
+            "AKIR"
+          ]
+        },
+        {
+          "functionFileOffset": "0x5ee3c",
+          "executableTargetIndex": 273,
+          "voiceIds": [
+            "SA1081A002",
+            "SA1081A003",
+            "SA1081A002",
+            "SA1081A005",
+            "SA1081A006"
+          ],
+          "actorTags": [
+            "AKIR"
+          ]
+        },
+        {
+          "functionFileOffset": "0x5e634",
+          "executableTargetIndex": 274,
+          "voiceIds": [
+            "SA1080A003",
+            "SA1080A002",
+            "SA1080A004",
+            "SA1080A005",
+            "SA1080A004",
+            "SA1080A006"
+          ],
+          "actorTags": [
+            "AKIR"
+          ]
+        },
+        {
+          "functionFileOffset": "0x5f33c",
+          "executableTargetIndex": 275,
+          "voiceIds": [
+            "SA1088A001",
+            "SA1088A002",
+            "SA1088A003",
+            "SA1088A002",
+            "SA1088A004",
+            "SA1088A003",
+            "SA1088A005",
+            "SA1088A002",
+            "SA1088A003"
+          ],
+          "actorTags": [
+            "AKIR"
+          ]
+        },
+        {
+          "functionFileOffset": "0xb094",
+          "executableTargetIndex": 284,
+          "voiceIds": [
+            "SY11A001",
+            "SY11A009",
+            "SY11A010",
+            "SY11A011"
+          ],
+          "actorTags": [
+            "AKIR"
+          ]
+        },
+        {
+          "functionFileOffset": "0x62eb0",
+          "executableTargetIndex": 312,
+          "voiceIds": [
+            "SA1089A001",
+            "SA1089A002",
+            "SA1089A003",
+            "SA1095A001",
+            "SA1095A002",
+            "SA1095A003",
+            "SA1119A001",
+            "SA1119A002",
+            "SA1119A003",
+            "SA1120A001",
+            "SA1120A002",
+            "SA1120A003",
+            "SA1121A001",
+            "SA1121A002",
+            "SA1121A003",
+            "SA1122A004",
+            "SA1122A005",
+            "SA1122A006",
+            "SA1122A001",
+            "SA1122A002",
+            "SA1122A003",
+            "SA1076A001",
+            "SA1076A002",
+            "SA1076A003"
+          ],
+          "actorTags": [
+            "AKIR"
+          ]
+        },
+        {
+          "functionFileOffset": "0x69350",
+          "executableTargetIndex": 361,
+          "voiceIds": [
+            "E1040A018",
+            "E1040A015",
+            "E1040A016",
+            "E1040A017"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x68830",
+          "executableTargetIndex": 362,
+          "voiceIds": [
+            "E1040A028",
+            "E1040A029",
+            "E1040A030",
+            "E1040A031",
+            "E1040A032"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x69044",
+          "executableTargetIndex": 366,
+          "voiceIds": [
+            "E1040A001",
+            "E1040A003"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x69128",
+          "executableTargetIndex": 367,
+          "voiceIds": [
+            "E1040A009",
+            "E1040A010"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x69230",
+          "executableTargetIndex": 369,
+          "voiceIds": [
+            "E1040A012",
+            "E1040A013",
+            "E1040A014"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x7043c",
+          "executableTargetIndex": 453,
+          "voiceIds": [
+            "E1004AA028"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x70464",
+          "executableTargetIndex": 454,
+          "voiceIds": [
+            "E1004AM001"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x6fde4",
+          "executableTargetIndex": 455,
+          "voiceIds": [
+            "E1004AA007"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x704b4",
+          "executableTargetIndex": 456,
+          "voiceIds": [
+            "E1004AI001",
+            "E1004AI003",
+            "E1004AA022"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x7048c",
+          "executableTargetIndex": 457,
+          "voiceIds": [
+            "E1004AI002"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x6fed4",
+          "executableTargetIndex": 458,
+          "voiceIds": [
+            "E1004AA010"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x7011c",
+          "executableTargetIndex": 459,
+          "voiceIds": [
+            "E1004AF001"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x703ec",
+          "executableTargetIndex": 462,
+          "voiceIds": [
+            "E1004AA018"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x703c4",
+          "executableTargetIndex": 466,
+          "voiceIds": [
+            "E1004AA037"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x7052c",
+          "executableTargetIndex": 467,
+          "voiceIds": [
+            "E1004AA023"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x70374",
+          "executableTargetIndex": 468,
+          "voiceIds": [
+            "E1004AA027"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x6fcf4",
+          "executableTargetIndex": 484,
+          "voiceIds": [
+            "E1004AA004"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x6fd1c",
+          "executableTargetIndex": 485,
+          "voiceIds": [
+            "E1004AC001",
+            "E1004AA005"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x6fd6c",
+          "executableTargetIndex": 487,
+          "voiceIds": [
+            "E1004AA006"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x6fd94",
+          "executableTargetIndex": 489,
+          "voiceIds": [
+            "E1004AB003"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x7057c",
+          "executableTargetIndex": 491,
+          "voiceIds": [
+            "E1004AJ001"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x705a4",
+          "executableTargetIndex": 492,
+          "voiceIds": [
+            "E1004AJ002",
+            "E1004AA040",
+            "E1004AB009"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x6fe0c",
+          "executableTargetIndex": 493,
+          "voiceIds": [
+            "E1004AA009"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x6feac",
+          "executableTargetIndex": 494,
+          "voiceIds": [
+            "E1004AB004"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x6fe84",
+          "executableTargetIndex": 495,
+          "voiceIds": [
+            "E1004AD001"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x6fefc",
+          "executableTargetIndex": 496,
+          "voiceIds": [
+            "E1004AA011",
+            "E1004AA012"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x6fbac",
+          "executableTargetIndex": 497,
+          "voiceIds": [
+            "E1004AA001",
+            "E1004AB001",
+            "E1004AB002",
+            "E1004AA003"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x6ff74",
+          "executableTargetIndex": 498,
+          "voiceIds": [
+            "E1004AA013",
+            "E1004AA014",
+            "E1004AA015"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x70554",
+          "executableTargetIndex": 504,
+          "voiceIds": [
+            "E1004AL003"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x70144",
+          "executableTargetIndex": 506,
+          "voiceIds": [
+            "E1004AA017"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x7c4e0",
+          "executableTargetIndex": 510,
+          "voiceIds": [
+            "E1004AA007",
+            "E1004AO003",
+            "E1004AA026",
+            "E1004AA036",
+            "E1004AA037",
+            "E1004AO002"
+          ],
+          "actorTags": [
+            "AKSK",
+            "AKIR",
+            "PIL0"
+          ]
+        },
+        {
+          "functionFileOffset": "0x7c25c",
+          "executableTargetIndex": 518,
+          "voiceIds": [
+            "E1004AO001"
+          ],
+          "actorTags": [
+            "AKSK"
+          ]
+        },
+        {
+          "functionFileOffset": "0x70054",
+          "executableTargetIndex": 521,
+          "voiceIds": [
+            "E1004AA016"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x7007c",
+          "executableTargetIndex": 522,
+          "voiceIds": [
+            "E1004AE002"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x700a4",
+          "executableTargetIndex": 523,
+          "voiceIds": [
+            "E1004AE001"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x7039c",
+          "executableTargetIndex": 524,
+          "voiceIds": [
+            "E1004AL002"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x700cc",
+          "executableTargetIndex": 525,
+          "voiceIds": [
+            "E1004AB005"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x70414",
+          "executableTargetIndex": 526,
+          "voiceIds": [
+            "E1004AL001"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x7016c",
+          "executableTargetIndex": 527,
+          "voiceIds": [
+            "E1004AG001"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x70194",
+          "executableTargetIndex": 528,
+          "voiceIds": [
+            "E1004AA034"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x701bc",
+          "executableTargetIndex": 529,
+          "voiceIds": [
+            "E1004AG002",
+            "E1004AH001",
+            "E1004AH002",
+            "E1004AH003",
+            "E1004AA029",
+            "E1004AB006",
+            "E1004AA031"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x702fc",
+          "executableTargetIndex": 530,
+          "voiceIds": [
+            "E1004AN001",
+            "E1004AO002",
+            "E1004AO004"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x702d4",
+          "executableTargetIndex": 531,
+          "voiceIds": [
+            "E1004AN002"
+          ],
+          "actorTags": []
+        },
+        {
+          "functionFileOffset": "0x74b7c",
+          "executableTargetIndex": 543,
+          "voiceIds": [
+            "E1004AA017"
+          ],
+          "actorTags": [
+            "AKIR",
+            "SEIR",
+            "TERY",
+            "PIL2",
+            "DSOB",
+            "HANA",
+            "PIL3",
+            "PIL0",
+            "PIL1"
+          ]
+        },
+        {
+          "functionFileOffset": "0x87098",
+          "executableTargetIndex": 570,
+          "voiceIds": [
+            "E1005A001",
+            "E1005A002",
+            "E1005A003",
+            "E1005A004",
+            "E1005B001",
+            "E1005B002",
+            "E1005B003",
+            "E1005B004",
+            "E1005B005",
+            "E1005B006",
+            "E1005B007",
+            "E1005B008",
+            "E1005B009",
+            "E1005B010",
+            "E1005B011",
+            "E1005B012",
+            "E1005B013",
+            "E1005B014"
+          ],
+          "actorTags": []
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "sourceFunctionFileOffset": "0x61268",
+      "callKind": "directCall",
+      "callFileOffset": "0x61316",
+      "targetFileOffset": "0xb094",
+      "predicate": {
+        "kind": "and",
+        "terms": [
+          {
+            "kind": "comparison",
+            "operator": "cmp/eq",
+            "left": {
+              "kind": "engine-operation-result",
+              "operationId": 49,
+              "operationHex": "0x0031",
+              "arguments": [
+                {
+                  "kind": "constant",
+                  "value": 1
+                }
+              ],
+              "callFileOffset": "0x6129e"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1024
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "engine-operation-result",
+                "operationId": 430,
+                "operationHex": "0x01ae",
+                "arguments": [
+                  {
+                    "kind": "constant",
+                    "value": 0
+                  }
+                ],
+                "callFileOffset": "0x6127a"
+              },
+              "right": {
+                "kind": "constant",
+                "value": 0
+              }
+            }
+          },
+          {
+            "kind": "unresolved-expression",
+            "nativeForm": "('unknown',)"
+          }
+        ]
+      },
+      "containsOpaqueTerm": true,
+      "spatialTriggers": [],
+      "dialogueDescendants": [
+        {
+          "functionFileOffset": "0xb094",
+          "executableTargetIndex": 284,
+          "voiceIds": [
+            "SY11A001",
+            "SY11A009",
+            "SY11A010",
+            "SY11A011"
+          ],
+          "actorTags": [
+            "AKIR"
+          ]
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "sourceFunctionFileOffset": "0x61268",
+      "callKind": "directCall",
+      "callFileOffset": "0x6138e",
+      "targetFileOffset": "0xcb2c",
+      "predicate": {
+        "kind": "or",
+        "terms": [
+          {
+            "kind": "and",
+            "terms": [
+              {
+                "kind": "comparison",
+                "operator": "cmp/eq",
+                "left": {
+                  "kind": "engine-operation-result",
+                  "operationId": 49,
+                  "operationHex": "0x0031",
+                  "arguments": [
+                    {
+                      "kind": "constant",
+                      "value": 1
+                    }
+                  ],
+                  "callFileOffset": "0x6129e"
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": 1024
+                }
+              },
+              {
+                "kind": "comparison",
+                "operator": "cmp/eq",
+                "left": {
+                  "kind": "scene-field",
+                  "fieldOffset": "0x10d",
+                  "loadWidth": 1,
+                  "signedLoad": true
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": -1
+                }
+              },
+              {
+                "kind": "not",
+                "term": {
+                  "kind": "comparison",
+                  "operator": "cmp/eq",
+                  "left": {
+                    "kind": "native-call-result",
+                    "targetFileOffset": "0xb094",
+                    "callFileOffset": "0x61316"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 0
+                  }
+                }
+              },
+              {
+                "kind": "not",
+                "term": {
+                  "kind": "comparison",
+                  "operator": "cmp/eq",
+                  "left": {
+                    "kind": "engine-operation-result",
+                    "operationId": 430,
+                    "operationHex": "0x01ae",
+                    "arguments": [
+                      {
+                        "kind": "constant",
+                        "value": 0
+                      }
+                    ],
+                    "callFileOffset": "0x6127a"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 0
+                  }
+                }
+              },
+              {
+                "kind": "unresolved-expression",
+                "nativeForm": "('unknown',)"
+              }
+            ]
+          },
+          {
+            "kind": "and",
+            "terms": [
+              {
+                "kind": "comparison",
+                "operator": "cmp/eq",
+                "left": {
+                  "kind": "engine-operation-result",
+                  "operationId": 49,
+                  "operationHex": "0x0031",
+                  "arguments": [
+                    {
+                      "kind": "constant",
+                      "value": 1
+                    }
+                  ],
+                  "callFileOffset": "0x6129e"
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": 1024
+                }
+              },
+              {
+                "kind": "not",
+                "term": {
+                  "kind": "comparison",
+                  "operator": "cmp/eq",
+                  "left": {
+                    "kind": "native-call-result",
+                    "targetFileOffset": "0xb094",
+                    "callFileOffset": "0x61316"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 0
+                  }
+                }
+              },
+              {
+                "kind": "not",
+                "term": {
+                  "kind": "comparison",
+                  "operator": "cmp/eq",
+                  "left": {
+                    "kind": "engine-operation-result",
+                    "operationId": 430,
+                    "operationHex": "0x01ae",
+                    "arguments": [
+                      {
+                        "kind": "constant",
+                        "value": 0
+                      }
+                    ],
+                    "callFileOffset": "0x6127a"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 0
+                  }
+                }
+              },
+              {
+                "kind": "not",
+                "term": {
+                  "kind": "comparison",
+                  "operator": "cmp/eq",
+                  "left": {
+                    "kind": "scene-field",
+                    "fieldOffset": "0x10d",
+                    "loadWidth": 1,
+                    "signedLoad": true
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": -1
+                  }
+                }
+              },
+              {
+                "kind": "unresolved-expression",
+                "nativeForm": "('unknown',)"
+              }
+            ]
+          }
+        ]
+      },
+      "containsOpaqueTerm": true,
+      "spatialTriggers": [],
+      "dialogueDescendants": [
+        {
+          "functionFileOffset": "0xab94",
+          "executableTargetIndex": 22,
+          "voiceIds": [
+            "SY11A006",
+            "SY11A007",
+            "SY11A008",
+            "SY11A002",
+            "SY11A003",
+            "SY11A004",
+            "SY11A005",
+            "SY11A001",
+            "SY11A009",
+            "SY11A010",
+            "SY11A011",
+            "SY11A009"
+          ],
+          "actorTags": []
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "sourceFunctionFileOffset": "0x61268",
+      "callKind": "directCall",
+      "callFileOffset": "0x616a2",
+      "targetFileOffset": "0x8a528",
+      "predicate": {
+        "kind": "and",
+        "terms": [
+          {
+            "kind": "comparison",
+            "operator": "cmp/gt",
+            "left": {
+              "kind": "constant",
+              "value": 57435
+            },
+            "right": {
+              "kind": "scene-field",
+              "fieldOffset": "0xe4",
+              "loadWidth": 4,
+              "signedLoad": false
+            }
+          },
+          {
+            "kind": "comparison",
+            "operator": "cmp/gt",
+            "left": {
+              "kind": "scene-field",
+              "fieldOffset": "0xe4",
+              "loadWidth": 4,
+              "signedLoad": false
+            },
+            "right": {
+              "kind": "constant",
+              "value": 35589
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "unresolved-expression",
+              "nativeForm": "('unknown',)"
+            }
+          },
+          {
+            "kind": "or",
+            "terms": [
+              {
+                "kind": "and",
+                "terms": [
+                  {
+                    "kind": "comparison",
+                    "operator": "cmp/eq",
+                    "left": {
+                      "kind": "engine-operation-result",
+                      "operationId": 49,
+                      "operationHex": "0x0031",
+                      "arguments": [
+                        {
+                          "kind": "constant",
+                          "value": 1
+                        }
+                      ],
+                      "callFileOffset": "0x6129e"
+                    },
+                    "right": {
+                      "kind": "constant",
+                      "value": 1024
+                    }
+                  },
+                  {
+                    "kind": "not",
+                    "term": {
+                      "kind": "comparison",
+                      "operator": "cmp/eq",
+                      "left": {
+                        "kind": "native-call-result",
+                        "targetFileOffset": "0xb094",
+                        "callFileOffset": "0x61316"
+                      },
+                      "right": {
+                        "kind": "constant",
+                        "value": 0
+                      }
+                    }
+                  },
+                  {
+                    "kind": "not",
+                    "term": {
+                      "kind": "comparison",
+                      "operator": "cmp/eq",
+                      "left": {
+                        "kind": "engine-operation-result",
+                        "operationId": 430,
+                        "operationHex": "0x01ae",
+                        "arguments": [
+                          {
+                            "kind": "constant",
+                            "value": 0
+                          }
+                        ],
+                        "callFileOffset": "0x6127a"
+                      },
+                      "right": {
+                        "kind": "constant",
+                        "value": 0
+                      }
+                    }
+                  },
+                  {
+                    "kind": "not",
+                    "term": {
+                      "kind": "comparison",
+                      "operator": "cmp/eq",
+                      "left": {
+                        "kind": "scene-field",
+                        "fieldOffset": "0x10d",
+                        "loadWidth": 1,
+                        "signedLoad": true
+                      },
+                      "right": {
+                        "kind": "constant",
+                        "value": -1
+                      }
+                    }
+                  },
+                  {
+                    "kind": "unresolved-expression",
+                    "nativeForm": "('unknown',)"
+                  }
+                ]
+              },
+              {
+                "kind": "and",
+                "terms": [
+                  {
+                    "kind": "or",
+                    "terms": [
+                      {
+                        "kind": "and",
+                        "terms": [
+                          {
+                            "kind": "comparison",
+                            "operator": "cmp/eq",
+                            "left": {
+                              "kind": "engine-operation-result",
+                              "operationId": 49,
+                              "operationHex": "0x0031",
+                              "arguments": [
+                                {
+                                  "kind": "constant",
+                                  "value": 1
+                                }
+                              ],
+                              "callFileOffset": "0x6129e"
+                            },
+                            "right": {
+                              "kind": "constant",
+                              "value": 1024
+                            }
+                          },
+                          {
+                            "kind": "comparison",
+                            "operator": "cmp/eq",
+                            "left": {
+                              "kind": "scene-field",
+                              "fieldOffset": "0x10d",
+                              "loadWidth": 1,
+                              "signedLoad": true
+                            },
+                            "right": {
+                              "kind": "constant",
+                              "value": -1
+                            }
+                          },
+                          {
+                            "kind": "not",
+                            "term": {
+                              "kind": "comparison",
+                              "operator": "cmp/eq",
+                              "left": {
+                                "kind": "native-call-result",
+                                "targetFileOffset": "0xb094",
+                                "callFileOffset": "0x61316"
+                              },
+                              "right": {
+                                "kind": "constant",
+                                "value": 0
+                              }
+                            }
+                          },
+                          {
+                            "kind": "not",
+                            "term": {
+                              "kind": "comparison",
+                              "operator": "cmp/eq",
+                              "left": {
+                                "kind": "engine-operation-result",
+                                "operationId": 430,
+                                "operationHex": "0x01ae",
+                                "arguments": [
+                                  {
+                                    "kind": "constant",
+                                    "value": 0
+                                  }
+                                ],
+                                "callFileOffset": "0x6127a"
+                              },
+                              "right": {
+                                "kind": "constant",
+                                "value": 0
+                              }
+                            }
+                          },
+                          {
+                            "kind": "unresolved-expression",
+                            "nativeForm": "('unknown',)"
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "and",
+                        "terms": [
+                          {
+                            "kind": "comparison",
+                            "operator": "cmp/eq",
+                            "left": {
+                              "kind": "engine-operation-result",
+                              "operationId": 49,
+                              "operationHex": "0x0031",
+                              "arguments": [
+                                {
+                                  "kind": "constant",
+                                  "value": 1
+                                }
+                              ],
+                              "callFileOffset": "0x6129e"
+                            },
+                            "right": {
+                              "kind": "constant",
+                              "value": 1024
+                            }
+                          },
+                          {
+                            "kind": "not",
+                            "term": {
+                              "kind": "comparison",
+                              "operator": "cmp/eq",
+                              "left": {
+                                "kind": "native-call-result",
+                                "targetFileOffset": "0xb094",
+                                "callFileOffset": "0x61316"
+                              },
+                              "right": {
+                                "kind": "constant",
+                                "value": 0
+                              }
+                            }
+                          },
+                          {
+                            "kind": "not",
+                            "term": {
+                              "kind": "comparison",
+                              "operator": "cmp/eq",
+                              "left": {
+                                "kind": "engine-operation-result",
+                                "operationId": 430,
+                                "operationHex": "0x01ae",
+                                "arguments": [
+                                  {
+                                    "kind": "constant",
+                                    "value": 0
+                                  }
+                                ],
+                                "callFileOffset": "0x6127a"
+                              },
+                              "right": {
+                                "kind": "constant",
+                                "value": 0
+                              }
+                            }
+                          },
+                          {
+                            "kind": "not",
+                            "term": {
+                              "kind": "comparison",
+                              "operator": "cmp/eq",
+                              "left": {
+                                "kind": "scene-field",
+                                "fieldOffset": "0x10d",
+                                "loadWidth": 1,
+                                "signedLoad": true
+                              },
+                              "right": {
+                                "kind": "constant",
+                                "value": -1
+                              }
+                            }
+                          },
+                          {
+                            "kind": "unresolved-expression",
+                            "nativeForm": "('unknown',)"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "unresolved-expression",
+                    "nativeForm": "('unknown',)"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "containsOpaqueTerm": true,
+      "spatialTriggers": [],
+      "dialogueDescendants": [
+        {
+          "functionFileOffset": "0x87098",
+          "executableTargetIndex": 570,
+          "voiceIds": [
+            "E1005A001",
+            "E1005A002",
+            "E1005A003",
+            "E1005A004",
+            "E1005B001",
+            "E1005B002",
+            "E1005B003",
+            "E1005B004",
+            "E1005B005",
+            "E1005B006",
+            "E1005B007",
+            "E1005B008",
+            "E1005B009",
+            "E1005B010",
+            "E1005B011",
+            "E1005B012",
+            "E1005B013",
+            "E1005B014"
+          ],
+          "actorTags": []
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "sourceFunctionFileOffset": "0x641d0",
+      "callKind": "directCall",
+      "callFileOffset": "0x6422e",
+      "targetFileOffset": "0x63d46",
+      "predicate": {
+        "kind": "and",
+        "terms": [
+          {
+            "kind": "comparison",
+            "operator": "cmp/ge",
+            "left": {
+              "kind": "constant",
+              "value": 1504
+            },
+            "right": {
+              "kind": "scene-field",
+              "fieldOffset": "0xf8",
+              "loadWidth": 4,
+              "signedLoad": false
+            }
+          },
+          {
+            "kind": "comparison",
+            "operator": "cmp/ge",
+            "left": {
+              "kind": "scene-field",
+              "fieldOffset": "0xf8",
+              "loadWidth": 4,
+              "signedLoad": false
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1301
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "engine-operation-result",
+                "operationId": 430,
+                "operationHex": "0x01ae",
+                "arguments": [],
+                "callFileOffset": "0x641de"
+              },
+              "right": {
+                "kind": "constant",
+                "value": 0
+              }
+            }
+          }
+        ]
+      },
+      "containsOpaqueTerm": false,
+      "spatialTriggers": [],
+      "dialogueDescendants": [
+        {
+          "functionFileOffset": "0x62eb0",
+          "executableTargetIndex": 312,
+          "voiceIds": [
+            "SA1089A001",
+            "SA1089A002",
+            "SA1089A003",
+            "SA1095A001",
+            "SA1095A002",
+            "SA1095A003",
+            "SA1119A001",
+            "SA1119A002",
+            "SA1119A003",
+            "SA1120A001",
+            "SA1120A002",
+            "SA1120A003",
+            "SA1121A001",
+            "SA1121A002",
+            "SA1121A003",
+            "SA1122A004",
+            "SA1122A005",
+            "SA1122A006",
+            "SA1122A001",
+            "SA1122A002",
+            "SA1122A003",
+            "SA1076A001",
+            "SA1076A002",
+            "SA1076A003"
+          ],
+          "actorTags": [
+            "AKIR"
+          ]
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "sourceFunctionFileOffset": "0x641d0",
+      "callKind": "directCall",
+      "callFileOffset": "0x6426e",
+      "targetFileOffset": "0x63d46",
+      "predicate": {
+        "kind": "and",
+        "terms": [
+          {
+            "kind": "comparison",
+            "operator": "cmp/eq",
+            "left": {
+              "kind": "scene-field",
+              "fieldOffset": "0xf8",
+              "loadWidth": 4,
+              "signedLoad": false
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1706
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "and",
+              "terms": [
+                {
+                  "kind": "comparison",
+                  "operator": "cmp/ge",
+                  "left": {
+                    "kind": "constant",
+                    "value": 1504
+                  },
+                  "right": {
+                    "kind": "scene-field",
+                    "fieldOffset": "0xf8",
+                    "loadWidth": 4,
+                    "signedLoad": false
+                  }
+                },
+                {
+                  "kind": "comparison",
+                  "operator": "cmp/ge",
+                  "left": {
+                    "kind": "scene-field",
+                    "fieldOffset": "0xf8",
+                    "loadWidth": 4,
+                    "signedLoad": false
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 1301
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "engine-operation-result",
+                "operationId": 430,
+                "operationHex": "0x01ae",
+                "arguments": [],
+                "callFileOffset": "0x641de"
+              },
+              "right": {
+                "kind": "constant",
+                "value": 0
+              }
+            }
+          }
+        ]
+      },
+      "containsOpaqueTerm": false,
+      "spatialTriggers": [],
+      "dialogueDescendants": [
+        {
+          "functionFileOffset": "0x62eb0",
+          "executableTargetIndex": 312,
+          "voiceIds": [
+            "SA1089A001",
+            "SA1089A002",
+            "SA1089A003",
+            "SA1095A001",
+            "SA1095A002",
+            "SA1095A003",
+            "SA1119A001",
+            "SA1119A002",
+            "SA1119A003",
+            "SA1120A001",
+            "SA1120A002",
+            "SA1120A003",
+            "SA1121A001",
+            "SA1121A002",
+            "SA1121A003",
+            "SA1122A004",
+            "SA1122A005",
+            "SA1122A006",
+            "SA1122A001",
+            "SA1122A002",
+            "SA1122A003",
+            "SA1076A001",
+            "SA1076A002",
+            "SA1076A003"
+          ],
+          "actorTags": [
+            "AKIR"
+          ]
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "sourceFunctionFileOffset": "0x641d0",
+      "callKind": "directCall",
+      "callFileOffset": "0x642ae",
+      "targetFileOffset": "0x63d46",
+      "predicate": {
+        "kind": "and",
+        "terms": [
+          {
+            "kind": "comparison",
+            "operator": "cmp/eq",
+            "left": {
+              "kind": "scene-field",
+              "fieldOffset": "0xf8",
+              "loadWidth": 4,
+              "signedLoad": false
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1801
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "and",
+              "terms": [
+                {
+                  "kind": "comparison",
+                  "operator": "cmp/ge",
+                  "left": {
+                    "kind": "constant",
+                    "value": 1504
+                  },
+                  "right": {
+                    "kind": "scene-field",
+                    "fieldOffset": "0xf8",
+                    "loadWidth": 4,
+                    "signedLoad": false
+                  }
+                },
+                {
+                  "kind": "comparison",
+                  "operator": "cmp/ge",
+                  "left": {
+                    "kind": "scene-field",
+                    "fieldOffset": "0xf8",
+                    "loadWidth": 4,
+                    "signedLoad": false
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 1301
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "engine-operation-result",
+                "operationId": 430,
+                "operationHex": "0x01ae",
+                "arguments": [],
+                "callFileOffset": "0x641de"
+              },
+              "right": {
+                "kind": "constant",
+                "value": 0
+              }
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "scene-field",
+                "fieldOffset": "0xf8",
+                "loadWidth": 4,
+                "signedLoad": false
+              },
+              "right": {
+                "kind": "constant",
+                "value": 1706
+              }
+            }
+          }
+        ]
+      },
+      "containsOpaqueTerm": false,
+      "spatialTriggers": [],
+      "dialogueDescendants": [
+        {
+          "functionFileOffset": "0x62eb0",
+          "executableTargetIndex": 312,
+          "voiceIds": [
+            "SA1089A001",
+            "SA1089A002",
+            "SA1089A003",
+            "SA1095A001",
+            "SA1095A002",
+            "SA1095A003",
+            "SA1119A001",
+            "SA1119A002",
+            "SA1119A003",
+            "SA1120A001",
+            "SA1120A002",
+            "SA1120A003",
+            "SA1121A001",
+            "SA1121A002",
+            "SA1121A003",
+            "SA1122A004",
+            "SA1122A005",
+            "SA1122A006",
+            "SA1122A001",
+            "SA1122A002",
+            "SA1122A003",
+            "SA1076A001",
+            "SA1076A002",
+            "SA1076A003"
+          ],
+          "actorTags": [
+            "AKIR"
+          ]
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "sourceFunctionFileOffset": "0x641d0",
+      "callKind": "directCall",
+      "callFileOffset": "0x642ee",
+      "targetFileOffset": "0x63d46",
+      "predicate": {
+        "kind": "and",
+        "terms": [
+          {
+            "kind": "comparison",
+            "operator": "cmp/eq",
+            "left": {
+              "kind": "scene-field",
+              "fieldOffset": "0xf8",
+              "loadWidth": 4,
+              "signedLoad": false
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1901
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "and",
+              "terms": [
+                {
+                  "kind": "comparison",
+                  "operator": "cmp/ge",
+                  "left": {
+                    "kind": "constant",
+                    "value": 1504
+                  },
+                  "right": {
+                    "kind": "scene-field",
+                    "fieldOffset": "0xf8",
+                    "loadWidth": 4,
+                    "signedLoad": false
+                  }
+                },
+                {
+                  "kind": "comparison",
+                  "operator": "cmp/ge",
+                  "left": {
+                    "kind": "scene-field",
+                    "fieldOffset": "0xf8",
+                    "loadWidth": 4,
+                    "signedLoad": false
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 1301
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "engine-operation-result",
+                "operationId": 430,
+                "operationHex": "0x01ae",
+                "arguments": [],
+                "callFileOffset": "0x641de"
+              },
+              "right": {
+                "kind": "constant",
+                "value": 0
+              }
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "scene-field",
+                "fieldOffset": "0xf8",
+                "loadWidth": 4,
+                "signedLoad": false
+              },
+              "right": {
+                "kind": "constant",
+                "value": 1706
+              }
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "scene-field",
+                "fieldOffset": "0xf8",
+                "loadWidth": 4,
+                "signedLoad": false
+              },
+              "right": {
+                "kind": "constant",
+                "value": 1801
+              }
+            }
+          }
+        ]
+      },
+      "containsOpaqueTerm": false,
+      "spatialTriggers": [],
+      "dialogueDescendants": [
+        {
+          "functionFileOffset": "0x62eb0",
+          "executableTargetIndex": 312,
+          "voiceIds": [
+            "SA1089A001",
+            "SA1089A002",
+            "SA1089A003",
+            "SA1095A001",
+            "SA1095A002",
+            "SA1095A003",
+            "SA1119A001",
+            "SA1119A002",
+            "SA1119A003",
+            "SA1120A001",
+            "SA1120A002",
+            "SA1120A003",
+            "SA1121A001",
+            "SA1121A002",
+            "SA1121A003",
+            "SA1122A004",
+            "SA1122A005",
+            "SA1122A006",
+            "SA1122A001",
+            "SA1122A002",
+            "SA1122A003",
+            "SA1076A001",
+            "SA1076A002",
+            "SA1076A003"
+          ],
+          "actorTags": [
+            "AKIR"
+          ]
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "sourceFunctionFileOffset": "0x641d0",
+      "callKind": "directCall",
+      "callFileOffset": "0x6432e",
+      "targetFileOffset": "0x63d46",
+      "predicate": {
+        "kind": "and",
+        "terms": [
+          {
+            "kind": "comparison",
+            "operator": "cmp/eq",
+            "left": {
+              "kind": "scene-field",
+              "fieldOffset": "0xf8",
+              "loadWidth": 4,
+              "signedLoad": false
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1902
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "and",
+              "terms": [
+                {
+                  "kind": "comparison",
+                  "operator": "cmp/ge",
+                  "left": {
+                    "kind": "constant",
+                    "value": 1504
+                  },
+                  "right": {
+                    "kind": "scene-field",
+                    "fieldOffset": "0xf8",
+                    "loadWidth": 4,
+                    "signedLoad": false
+                  }
+                },
+                {
+                  "kind": "comparison",
+                  "operator": "cmp/ge",
+                  "left": {
+                    "kind": "scene-field",
+                    "fieldOffset": "0xf8",
+                    "loadWidth": 4,
+                    "signedLoad": false
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 1301
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "engine-operation-result",
+                "operationId": 430,
+                "operationHex": "0x01ae",
+                "arguments": [],
+                "callFileOffset": "0x641de"
+              },
+              "right": {
+                "kind": "constant",
+                "value": 0
+              }
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "scene-field",
+                "fieldOffset": "0xf8",
+                "loadWidth": 4,
+                "signedLoad": false
+              },
+              "right": {
+                "kind": "constant",
+                "value": 1706
+              }
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "scene-field",
+                "fieldOffset": "0xf8",
+                "loadWidth": 4,
+                "signedLoad": false
+              },
+              "right": {
+                "kind": "constant",
+                "value": 1801
+              }
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "scene-field",
+                "fieldOffset": "0xf8",
+                "loadWidth": 4,
+                "signedLoad": false
+              },
+              "right": {
+                "kind": "constant",
+                "value": 1901
+              }
+            }
+          }
+        ]
+      },
+      "containsOpaqueTerm": false,
+      "spatialTriggers": [],
+      "dialogueDescendants": [
+        {
+          "functionFileOffset": "0x62eb0",
+          "executableTargetIndex": 312,
+          "voiceIds": [
+            "SA1089A001",
+            "SA1089A002",
+            "SA1089A003",
+            "SA1095A001",
+            "SA1095A002",
+            "SA1095A003",
+            "SA1119A001",
+            "SA1119A002",
+            "SA1119A003",
+            "SA1120A001",
+            "SA1120A002",
+            "SA1120A003",
+            "SA1121A001",
+            "SA1121A002",
+            "SA1121A003",
+            "SA1122A004",
+            "SA1122A005",
+            "SA1122A006",
+            "SA1122A001",
+            "SA1122A002",
+            "SA1122A003",
+            "SA1076A001",
+            "SA1076A002",
+            "SA1076A003"
+          ],
+          "actorTags": [
+            "AKIR"
+          ]
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "sourceFunctionFileOffset": "0x641d0",
+      "callKind": "directCall",
+      "callFileOffset": "0x6436e",
+      "targetFileOffset": "0x63d46",
+      "predicate": {
+        "kind": "and",
+        "terms": [
+          {
+            "kind": "comparison",
+            "operator": "cmp/eq",
+            "left": {
+              "kind": "scene-field",
+              "fieldOffset": "0xf8",
+              "loadWidth": 4,
+              "signedLoad": false
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1903
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "and",
+              "terms": [
+                {
+                  "kind": "comparison",
+                  "operator": "cmp/ge",
+                  "left": {
+                    "kind": "constant",
+                    "value": 1504
+                  },
+                  "right": {
+                    "kind": "scene-field",
+                    "fieldOffset": "0xf8",
+                    "loadWidth": 4,
+                    "signedLoad": false
+                  }
+                },
+                {
+                  "kind": "comparison",
+                  "operator": "cmp/ge",
+                  "left": {
+                    "kind": "scene-field",
+                    "fieldOffset": "0xf8",
+                    "loadWidth": 4,
+                    "signedLoad": false
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 1301
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "engine-operation-result",
+                "operationId": 430,
+                "operationHex": "0x01ae",
+                "arguments": [],
+                "callFileOffset": "0x641de"
+              },
+              "right": {
+                "kind": "constant",
+                "value": 0
+              }
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "scene-field",
+                "fieldOffset": "0xf8",
+                "loadWidth": 4,
+                "signedLoad": false
+              },
+              "right": {
+                "kind": "constant",
+                "value": 1706
+              }
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "scene-field",
+                "fieldOffset": "0xf8",
+                "loadWidth": 4,
+                "signedLoad": false
+              },
+              "right": {
+                "kind": "constant",
+                "value": 1801
+              }
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "scene-field",
+                "fieldOffset": "0xf8",
+                "loadWidth": 4,
+                "signedLoad": false
+              },
+              "right": {
+                "kind": "constant",
+                "value": 1901
+              }
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "scene-field",
+                "fieldOffset": "0xf8",
+                "loadWidth": 4,
+                "signedLoad": false
+              },
+              "right": {
+                "kind": "constant",
+                "value": 1902
+              }
+            }
+          }
+        ]
+      },
+      "containsOpaqueTerm": false,
+      "spatialTriggers": [],
+      "dialogueDescendants": [
+        {
+          "functionFileOffset": "0x62eb0",
+          "executableTargetIndex": 312,
+          "voiceIds": [
+            "SA1089A001",
+            "SA1089A002",
+            "SA1089A003",
+            "SA1095A001",
+            "SA1095A002",
+            "SA1095A003",
+            "SA1119A001",
+            "SA1119A002",
+            "SA1119A003",
+            "SA1120A001",
+            "SA1120A002",
+            "SA1120A003",
+            "SA1121A001",
+            "SA1121A002",
+            "SA1121A003",
+            "SA1122A004",
+            "SA1122A005",
+            "SA1122A006",
+            "SA1122A001",
+            "SA1122A002",
+            "SA1122A003",
+            "SA1076A001",
+            "SA1076A002",
+            "SA1076A003"
+          ],
+          "actorTags": [
+            "AKIR"
+          ]
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "sourceFunctionFileOffset": "0x641d0",
+      "callKind": "directCall",
+      "callFileOffset": "0x643be",
+      "targetFileOffset": "0x63d46",
+      "predicate": {
+        "kind": "and",
+        "terms": [
+          {
+            "kind": "comparison",
+            "operator": "cmp/ge",
+            "left": {
+              "kind": "constant",
+              "value": 1903
+            },
+            "right": {
+              "kind": "scene-field",
+              "fieldOffset": "0xf8",
+              "loadWidth": 4,
+              "signedLoad": false
+            }
+          },
+          {
+            "kind": "comparison",
+            "operator": "cmp/ge",
+            "left": {
+              "kind": "scene-field",
+              "fieldOffset": "0xf8",
+              "loadWidth": 4,
+              "signedLoad": false
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1604
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "and",
+              "terms": [
+                {
+                  "kind": "comparison",
+                  "operator": "cmp/ge",
+                  "left": {
+                    "kind": "constant",
+                    "value": 1504
+                  },
+                  "right": {
+                    "kind": "scene-field",
+                    "fieldOffset": "0xf8",
+                    "loadWidth": 4,
+                    "signedLoad": false
+                  }
+                },
+                {
+                  "kind": "comparison",
+                  "operator": "cmp/ge",
+                  "left": {
+                    "kind": "scene-field",
+                    "fieldOffset": "0xf8",
+                    "loadWidth": 4,
+                    "signedLoad": false
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 1301
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "engine-operation-result",
+                "operationId": 430,
+                "operationHex": "0x01ae",
+                "arguments": [],
+                "callFileOffset": "0x641de"
+              },
+              "right": {
+                "kind": "constant",
+                "value": 0
+              }
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "scene-field",
+                "fieldOffset": "0xf8",
+                "loadWidth": 4,
+                "signedLoad": false
+              },
+              "right": {
+                "kind": "constant",
+                "value": 1706
+              }
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "scene-field",
+                "fieldOffset": "0xf8",
+                "loadWidth": 4,
+                "signedLoad": false
+              },
+              "right": {
+                "kind": "constant",
+                "value": 1801
+              }
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "scene-field",
+                "fieldOffset": "0xf8",
+                "loadWidth": 4,
+                "signedLoad": false
+              },
+              "right": {
+                "kind": "constant",
+                "value": 1901
+              }
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "scene-field",
+                "fieldOffset": "0xf8",
+                "loadWidth": 4,
+                "signedLoad": false
+              },
+              "right": {
+                "kind": "constant",
+                "value": 1902
+              }
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "scene-field",
+                "fieldOffset": "0xf8",
+                "loadWidth": 4,
+                "signedLoad": false
+              },
+              "right": {
+                "kind": "constant",
+                "value": 1903
+              }
+            }
+          }
+        ]
+      },
+      "containsOpaqueTerm": false,
+      "spatialTriggers": [],
+      "dialogueDescendants": [
+        {
+          "functionFileOffset": "0x62eb0",
+          "executableTargetIndex": 312,
+          "voiceIds": [
+            "SA1089A001",
+            "SA1089A002",
+            "SA1089A003",
+            "SA1095A001",
+            "SA1095A002",
+            "SA1095A003",
+            "SA1119A001",
+            "SA1119A002",
+            "SA1119A003",
+            "SA1120A001",
+            "SA1120A002",
+            "SA1120A003",
+            "SA1121A001",
+            "SA1121A002",
+            "SA1121A003",
+            "SA1122A004",
+            "SA1122A005",
+            "SA1122A006",
+            "SA1122A001",
+            "SA1122A002",
+            "SA1122A003",
+            "SA1076A001",
+            "SA1076A002",
+            "SA1076A003"
+          ],
+          "actorTags": [
+            "AKIR"
+          ]
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "sourceFunctionFileOffset": "0x641d0",
+      "callKind": "directCall",
+      "callFileOffset": "0x643da",
+      "targetFileOffset": "0x63d46",
+      "predicate": {
+        "kind": "and",
+        "terms": [
+          {
+            "kind": "not",
+            "term": {
+              "kind": "and",
+              "terms": [
+                {
+                  "kind": "comparison",
+                  "operator": "cmp/ge",
+                  "left": {
+                    "kind": "constant",
+                    "value": 1504
+                  },
+                  "right": {
+                    "kind": "scene-field",
+                    "fieldOffset": "0xf8",
+                    "loadWidth": 4,
+                    "signedLoad": false
+                  }
+                },
+                {
+                  "kind": "comparison",
+                  "operator": "cmp/ge",
+                  "left": {
+                    "kind": "scene-field",
+                    "fieldOffset": "0xf8",
+                    "loadWidth": 4,
+                    "signedLoad": false
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 1301
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "and",
+              "terms": [
+                {
+                  "kind": "comparison",
+                  "operator": "cmp/ge",
+                  "left": {
+                    "kind": "constant",
+                    "value": 1903
+                  },
+                  "right": {
+                    "kind": "scene-field",
+                    "fieldOffset": "0xf8",
+                    "loadWidth": 4,
+                    "signedLoad": false
+                  }
+                },
+                {
+                  "kind": "comparison",
+                  "operator": "cmp/ge",
+                  "left": {
+                    "kind": "scene-field",
+                    "fieldOffset": "0xf8",
+                    "loadWidth": 4,
+                    "signedLoad": false
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 1604
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "engine-operation-result",
+                "operationId": 430,
+                "operationHex": "0x01ae",
+                "arguments": [],
+                "callFileOffset": "0x641de"
+              },
+              "right": {
+                "kind": "constant",
+                "value": 0
+              }
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "scene-field",
+                "fieldOffset": "0xf8",
+                "loadWidth": 4,
+                "signedLoad": false
+              },
+              "right": {
+                "kind": "constant",
+                "value": 1706
+              }
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "scene-field",
+                "fieldOffset": "0xf8",
+                "loadWidth": 4,
+                "signedLoad": false
+              },
+              "right": {
+                "kind": "constant",
+                "value": 1801
+              }
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "scene-field",
+                "fieldOffset": "0xf8",
+                "loadWidth": 4,
+                "signedLoad": false
+              },
+              "right": {
+                "kind": "constant",
+                "value": 1901
+              }
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "scene-field",
+                "fieldOffset": "0xf8",
+                "loadWidth": 4,
+                "signedLoad": false
+              },
+              "right": {
+                "kind": "constant",
+                "value": 1902
+              }
+            }
+          },
+          {
+            "kind": "not",
+            "term": {
+              "kind": "comparison",
+              "operator": "cmp/eq",
+              "left": {
+                "kind": "scene-field",
+                "fieldOffset": "0xf8",
+                "loadWidth": 4,
+                "signedLoad": false
+              },
+              "right": {
+                "kind": "constant",
+                "value": 1903
+              }
+            }
+          }
+        ]
+      },
+      "containsOpaqueTerm": false,
+      "spatialTriggers": [],
+      "dialogueDescendants": [
+        {
+          "functionFileOffset": "0x62eb0",
+          "executableTargetIndex": 312,
+          "voiceIds": [
+            "SA1089A001",
+            "SA1089A002",
+            "SA1089A003",
+            "SA1095A001",
+            "SA1095A002",
+            "SA1095A003",
+            "SA1119A001",
+            "SA1119A002",
+            "SA1119A003",
+            "SA1120A001",
+            "SA1120A002",
+            "SA1120A003",
+            "SA1121A001",
+            "SA1121A002",
+            "SA1121A003",
+            "SA1122A004",
+            "SA1122A005",
+            "SA1122A006",
+            "SA1122A001",
+            "SA1122A002",
+            "SA1122A003",
+            "SA1076A001",
+            "SA1076A002",
+            "SA1076A003"
+          ],
+          "actorTags": [
+            "AKIR"
+          ]
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "sourceFunctionFileOffset": "0x6a12c",
+      "callKind": "directCall",
+      "callFileOffset": "0x6a5f2",
+      "targetFileOffset": "0x6a0de",
+      "predicate": {
+        "kind": "and",
+        "terms": [
+          {
+            "kind": "comparison",
+            "operator": "cmp/eq",
+            "left": {
+              "kind": "engine-operation-result",
+              "operationId": 136,
+              "operationHex": "0x0088",
+              "arguments": [
+                {
+                  "kind": "constant",
+                  "value": 4294967295
+                },
+                {
+                  "kind": "constant",
+                  "value": 2
+                }
+              ],
+              "callFileOffset": "0x6a5ce"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "opaque-native-path-join",
+            "joinFileOffset": "0x6a57c"
+          },
+          {
+            "kind": "unresolved-expression",
+            "nativeForm": "('unknown',)"
+          }
+        ]
+      },
+      "containsOpaqueTerm": true,
+      "spatialTriggers": [],
+      "dialogueDescendants": [
+        {
+          "functionFileOffset": "0x69350",
+          "executableTargetIndex": 361,
+          "voiceIds": [
+            "E1040A018",
+            "E1040A015",
+            "E1040A016",
+            "E1040A017"
+          ],
+          "actorTags": []
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "sourceFunctionFileOffset": "0x6a12c",
+      "callKind": "directCall",
+      "callFileOffset": "0x6a65a",
+      "targetFileOffset": "0x6a0de",
+      "predicate": {
+        "kind": "and",
+        "terms": [
+          {
+            "kind": "comparison",
+            "operator": "cmp/eq",
+            "left": {
+              "kind": "engine-operation-result",
+              "operationId": 136,
+              "operationHex": "0x0088",
+              "arguments": [
+                {
+                  "kind": "constant",
+                  "value": 4294967295
+                },
+                {
+                  "kind": "constant",
+                  "value": 2
+                }
+              ],
+              "callFileOffset": "0x6a636"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "opaque-native-path-join",
+            "joinFileOffset": "0x6a5b6"
+          },
+          {
+            "kind": "unresolved-expression",
+            "nativeForm": "('unknown',)"
+          }
+        ]
+      },
+      "containsOpaqueTerm": true,
+      "spatialTriggers": [],
+      "dialogueDescendants": [
+        {
+          "functionFileOffset": "0x69350",
+          "executableTargetIndex": 361,
+          "voiceIds": [
+            "E1040A018",
+            "E1040A015",
+            "E1040A016",
+            "E1040A017"
+          ],
+          "actorTags": []
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "sourceFunctionFileOffset": "0x75be0",
+      "callKind": "childCoroutineLaunch",
+      "callFileOffset": "0x76020",
+      "targetFileOffset": "0x7011c",
+      "predicate": {
+        "kind": "comparison",
+        "operator": "cmp/eq",
+        "left": {
+          "kind": "native-call-result",
+          "targetFileOffset": "0x70718",
+          "callFileOffset": "0x75e2a"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 0
+        }
+      },
+      "containsOpaqueTerm": false,
+      "spatialTriggers": [],
+      "dialogueDescendants": [
+        {
+          "functionFileOffset": "0x7011c",
+          "executableTargetIndex": 459,
+          "voiceIds": [
+            "E1004AF001"
+          ],
+          "actorTags": []
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "sourceFunctionFileOffset": "0x76578",
+      "callKind": "childCoroutineLaunch",
+      "callFileOffset": "0x768de",
+      "targetFileOffset": "0x703ec",
+      "predicate": {
+        "kind": "comparison",
+        "operator": "cmp/eq",
+        "left": {
+          "kind": "native-call-result",
+          "targetFileOffset": "0x70718",
+          "callFileOffset": "0x7679a"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 0
+        }
+      },
+      "containsOpaqueTerm": false,
+      "spatialTriggers": [],
+      "dialogueDescendants": [
+        {
+          "functionFileOffset": "0x703ec",
+          "executableTargetIndex": 462,
+          "voiceIds": [
+            "E1004AA018"
+          ],
+          "actorTags": []
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "sourceFunctionFileOffset": "0x7754c",
+      "callKind": "childCoroutineLaunch",
+      "callFileOffset": "0x77756",
+      "targetFileOffset": "0x703c4",
+      "predicate": {
+        "kind": "comparison",
+        "operator": "cmp/eq",
+        "left": {
+          "kind": "native-call-result",
+          "targetFileOffset": "0x70718",
+          "callFileOffset": "0x7755a"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 0
+        }
+      },
+      "containsOpaqueTerm": false,
+      "spatialTriggers": [],
+      "dialogueDescendants": [
+        {
+          "functionFileOffset": "0x703c4",
+          "executableTargetIndex": 466,
+          "voiceIds": [
+            "E1004AA037"
+          ],
+          "actorTags": []
+        }
+      ]
+    }
+  ],
+  "fullReport": ".disc-work/dialogue/dialogue-predicate-routes.json"
+}

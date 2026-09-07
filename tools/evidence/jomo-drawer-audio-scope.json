@@ -1,0 +1,728 @@
+{
+  "schema": "new-yokosuka-jomo-drawer-audio-scope-v1",
+  "generatedBy": "tools/audio/extract_jomo_drawer_audio_scope.py",
+  "source": {
+    "mapinfo": "SCENE/01/JOMO/MAPINFO.BIN",
+    "mapinfoSha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
+    "captureSchema": "flycast-pvr-frame-v2",
+    "capturedObjectRecording": "captures/objects/drawer-open-1784865219.csv"
+  },
+  "drawerRegistration": {
+    "objectTag": "ATS1",
+    "objectRecordFileOffset": "0x9b1c0",
+    "logicalActionId": 40,
+    "sharedObjectGroup": 0,
+    "groupFileOffset": "0x9b700",
+    "groupCallbackTokens": [
+      {
+        "rawHex": "0x000b05a9",
+        "selector": 11,
+        "functionFileOffset": "0x11f50"
+      },
+      {
+        "rawHex": "0x00000000",
+        "selector": 0
+      },
+      {
+        "rawHex": "0x000a05a9",
+        "selector": 10,
+        "functionFileOffset": "0x11ce0"
+      },
+      {
+        "rawHex": "0x006405a9",
+        "selector": 100,
+        "functionFileOffset": "0x58464"
+      }
+    ],
+    "runtimeTaskAddress": "0x0c810c40",
+    "model": "S1_JOMO_TANM4W3G.MT5"
+  },
+  "selector11SoundRoute": {
+    "functionFileOffset": "0x11f50",
+    "logicalRecordWord": 9,
+    "sentinel": "0xffffffff",
+    "readAndCallSites": [
+      {
+        "readFileOffset": "0x12794",
+        "callFileOffset": "0x1280e",
+        "operationId": "0x006c"
+      },
+      {
+        "readFileOffset": "0x128e0",
+        "callFileOffset": "0x1295a",
+        "operationId": "0x006c"
+      }
+    ],
+    "condition": "operation 0x006c is reached only when the fetched word is not 0xffffffff"
+  },
+  "captures": [
+    {
+      "frameCount": 147,
+      "source": "captures/pvr/20260723-205340-frame-147/ram.bin",
+      "ramSha256": "a11e95a3f55dfc3399d0973c80c85753792c22713bd5c2a174663565e92cd2db",
+      "moduleRuntimeBase": "0x0c3c5740",
+      "scriptContextRuntimeAddress": "0x0c4963ac",
+      "installedContextPointers": {
+        "+0xc0": "0x0c457da0",
+        "+0xc4": "0x0c458148",
+        "+0xc8": "0x0c458218",
+        "+0xcc": "0x0c458288"
+      },
+      "ats1TaskTag": "ATS1",
+      "logicalRecords": [
+        {
+          "recordIndex": 0,
+          "runtimeAddress": "0x0c457da0",
+          "logicalActionId": 0,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 1,
+          "runtimeAddress": "0x0c457dd4",
+          "logicalActionId": 4,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 2,
+          "runtimeAddress": "0x0c457e08",
+          "logicalActionId": 6,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 3,
+          "runtimeAddress": "0x0c457e3c",
+          "logicalActionId": 8,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 4,
+          "runtimeAddress": "0x0c457e70",
+          "logicalActionId": 10,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 5,
+          "runtimeAddress": "0x0c457ea4",
+          "logicalActionId": 12,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 6,
+          "runtimeAddress": "0x0c457ed8",
+          "logicalActionId": 14,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 7,
+          "runtimeAddress": "0x0c457f0c",
+          "logicalActionId": 16,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 8,
+          "runtimeAddress": "0x0c457f40",
+          "logicalActionId": 18,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 9,
+          "runtimeAddress": "0x0c457f74",
+          "logicalActionId": 20,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 10,
+          "runtimeAddress": "0x0c457fa8",
+          "logicalActionId": 22,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 11,
+          "runtimeAddress": "0x0c457fdc",
+          "logicalActionId": 24,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 12,
+          "runtimeAddress": "0x0c458010",
+          "logicalActionId": 26,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 13,
+          "runtimeAddress": "0x0c458044",
+          "logicalActionId": 28,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 14,
+          "runtimeAddress": "0x0c458078",
+          "logicalActionId": 30,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 15,
+          "runtimeAddress": "0x0c4580ac",
+          "logicalActionId": 32,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 16,
+          "runtimeAddress": "0x0c4580e0",
+          "logicalActionId": 34,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 17,
+          "runtimeAddress": "0x0c458114",
+          "logicalActionId": null,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        }
+      ],
+      "nonSentinelLogicalSoundRecordCount": 0
+    },
+    {
+      "frameCount": 156,
+      "source": "captures/pvr/20260723-205340-frame-156/ram.bin",
+      "ramSha256": "3807fb7e887425f382be75d7a1c6ebe160c198a45ef9fda031e11a36ce99cf79",
+      "moduleRuntimeBase": "0x0c3c5740",
+      "scriptContextRuntimeAddress": "0x0c4963ac",
+      "installedContextPointers": {
+        "+0xc0": "0x0c457da0",
+        "+0xc4": "0x0c458148",
+        "+0xc8": "0x0c458218",
+        "+0xcc": "0x0c458288"
+      },
+      "ats1TaskTag": "ATS1",
+      "logicalRecords": [
+        {
+          "recordIndex": 0,
+          "runtimeAddress": "0x0c457da0",
+          "logicalActionId": 0,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 1,
+          "runtimeAddress": "0x0c457dd4",
+          "logicalActionId": 4,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 2,
+          "runtimeAddress": "0x0c457e08",
+          "logicalActionId": 6,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 3,
+          "runtimeAddress": "0x0c457e3c",
+          "logicalActionId": 8,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 4,
+          "runtimeAddress": "0x0c457e70",
+          "logicalActionId": 10,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 5,
+          "runtimeAddress": "0x0c457ea4",
+          "logicalActionId": 12,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 6,
+          "runtimeAddress": "0x0c457ed8",
+          "logicalActionId": 14,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 7,
+          "runtimeAddress": "0x0c457f0c",
+          "logicalActionId": 16,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 8,
+          "runtimeAddress": "0x0c457f40",
+          "logicalActionId": 18,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 9,
+          "runtimeAddress": "0x0c457f74",
+          "logicalActionId": 20,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 10,
+          "runtimeAddress": "0x0c457fa8",
+          "logicalActionId": 22,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 11,
+          "runtimeAddress": "0x0c457fdc",
+          "logicalActionId": 24,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 12,
+          "runtimeAddress": "0x0c458010",
+          "logicalActionId": 26,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 13,
+          "runtimeAddress": "0x0c458044",
+          "logicalActionId": 28,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 14,
+          "runtimeAddress": "0x0c458078",
+          "logicalActionId": 30,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 15,
+          "runtimeAddress": "0x0c4580ac",
+          "logicalActionId": 32,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 16,
+          "runtimeAddress": "0x0c4580e0",
+          "logicalActionId": 34,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 17,
+          "runtimeAddress": "0x0c458114",
+          "logicalActionId": null,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        }
+      ],
+      "nonSentinelLogicalSoundRecordCount": 0
+    },
+    {
+      "frameCount": 160,
+      "source": "captures/pvr/20260723-205340-frame-160/ram.bin",
+      "ramSha256": "05789d4dc72d6cabc7223f8438f6c86a2b105c2fe27a2dc84b038f601dfc338f",
+      "moduleRuntimeBase": "0x0c3c5740",
+      "scriptContextRuntimeAddress": "0x0c4963ac",
+      "installedContextPointers": {
+        "+0xc0": "0x0c457da0",
+        "+0xc4": "0x0c458148",
+        "+0xc8": "0x0c458218",
+        "+0xcc": "0x0c458288"
+      },
+      "ats1TaskTag": "ATS1",
+      "logicalRecords": [
+        {
+          "recordIndex": 0,
+          "runtimeAddress": "0x0c457da0",
+          "logicalActionId": 0,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 1,
+          "runtimeAddress": "0x0c457dd4",
+          "logicalActionId": 4,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 2,
+          "runtimeAddress": "0x0c457e08",
+          "logicalActionId": 6,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 3,
+          "runtimeAddress": "0x0c457e3c",
+          "logicalActionId": 8,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 4,
+          "runtimeAddress": "0x0c457e70",
+          "logicalActionId": 10,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 5,
+          "runtimeAddress": "0x0c457ea4",
+          "logicalActionId": 12,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 6,
+          "runtimeAddress": "0x0c457ed8",
+          "logicalActionId": 14,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 7,
+          "runtimeAddress": "0x0c457f0c",
+          "logicalActionId": 16,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 8,
+          "runtimeAddress": "0x0c457f40",
+          "logicalActionId": 18,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 9,
+          "runtimeAddress": "0x0c457f74",
+          "logicalActionId": 20,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 10,
+          "runtimeAddress": "0x0c457fa8",
+          "logicalActionId": 22,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 11,
+          "runtimeAddress": "0x0c457fdc",
+          "logicalActionId": 24,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 12,
+          "runtimeAddress": "0x0c458010",
+          "logicalActionId": 26,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 13,
+          "runtimeAddress": "0x0c458044",
+          "logicalActionId": 28,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 14,
+          "runtimeAddress": "0x0c458078",
+          "logicalActionId": 30,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 15,
+          "runtimeAddress": "0x0c4580ac",
+          "logicalActionId": 32,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 16,
+          "runtimeAddress": "0x0c4580e0",
+          "logicalActionId": 34,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        },
+        {
+          "recordIndex": 17,
+          "runtimeAddress": "0x0c458114",
+          "logicalActionId": null,
+          "soundWords": [
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff",
+            "0xffffffff"
+          ]
+        }
+      ],
+      "nonSentinelLogicalSoundRecordCount": 0
+    }
+  ],
+  "summary": {
+    "captureCount": 3,
+    "logicalRecordCountPerCapture": 18,
+    "logicalSoundWordCountPerRecord": 4,
+    "inspectedLogicalSoundWordCount": 216,
+    "nonSentinelLogicalSoundWordCount": 0,
+    "runtimePolicy": "logical-record-path-empty"
+  },
+  "semanticBoundary": {
+    "proven": [
+      "ATS1 is the captured top wardrobe drawer and is a member of shared-object group zero.",
+      "Group zero contains selector 11, whose exact generated sound path reads logical-record word 9 before operation 0x006c.",
+      "All 18 installed logical records retain 0xffffffff in words 9..12 in each of three native RAM checkpoints."
+    ],
+    "rejected": [
+      "Fixed AB05 calls in nearby STAN or scheduled-actor functions are not promoted to drawer sounds.",
+      "The JOMO door model/audio pairs are not reused for drawers without an exact native dataflow edge."
+    ],
+    "unresolved": [
+      "This proves only that selector 11's logical-record word-9 route is empty in the pinned captures. It does not classify the raw group phase words after they reach the shared typed-command dispatcher.",
+      "The independent object-phase evidence now resolves the group-zero phase words as F1OMOYAA A905 commands; exact opening/closing phase labels remain a separate boundary."
+    ]
+  }
+}

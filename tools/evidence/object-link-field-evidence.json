@@ -1,0 +1,108 @@
+{
+  "schema": "new-yokosuka-object-link-field-evidence-v1",
+  "status": "exact-link-write-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 67,
+    "operationHex": "0x0043",
+    "handlerAddress": "0x0c157c88",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c157c88",
+        "length": 136,
+        "sha256": "6a1745bff3217bf8543afa4de9ddeec4f78ba7a174e6050285ae8af79f818c9e"
+      },
+      "objectResolver": {
+        "address": "0x0c153956",
+        "length": 58,
+        "sha256": "b99d1c60ec19d8c20dec13ede36b9f81a3b04510da97159b53e03db38deba35f"
+      },
+      "objectPlusFour": {
+        "address": "0x0c0ab0e2",
+        "length": 14,
+        "sha256": "c42ec668a2df1d45e8dbe66ca8a43fe96dad8b10d07483673311df9a3fdcc643"
+      },
+      "captureStateA": {
+        "address": "0x0c0ab02e",
+        "length": 36,
+        "sha256": "3caf4ca7e9d78567162bd0368d2f6f97e1cc1b49ffe4a36fa573c82eddfbee9c"
+      },
+      "reconcileStateA": {
+        "address": "0x0c0ab052",
+        "length": 24,
+        "sha256": "6a41a74aa7edc0d49a52ae852b7d328056cd97cac0286bacde00eeab010551b9"
+      },
+      "captureStateB": {
+        "address": "0x0c0ab06a",
+        "length": 32,
+        "sha256": "42bfcbb9dc106fa7bba23af1ad229d782d03912d8ed2d02460cfbfe519ab69df"
+      },
+      "reconcileStateB": {
+        "address": "0x0c0ab08a",
+        "length": 24,
+        "sha256": "dcd6c1b3e2e622b0e9292f46c5ec4799644af6f5bac78ce7019dc0e99d918880"
+      },
+      "indexedSlotResolver": {
+        "address": "0x0c0f0c7a",
+        "length": 40,
+        "sha256": "488e6563a0689b82eb54bc0f03f6d6f5ecad11a2fbbc348f84a991c34ffb31a8"
+      }
+    },
+    "nativeContract": {
+      "handlerTableEntry": "0x0c157c88",
+      "objectResolver": "0x0c153956",
+      "objectPlusFour": "0x0c0ab0e2",
+      "captureStateA": "0x0c0ab02e",
+      "captureStateB": "0x0c0ab06a",
+      "indexedSlotResolver": "0x0c0f0c7a",
+      "reconcileStateA": "0x0c0ab052",
+      "reconcileStateB": "0x0c0ab08a"
+    },
+    "provenBehavior": "Resolve argument zero, capture two distinct three-word states, resolve argument one as null for -1, an indexed slot for signed values 0 through 31, or another object otherwise, write that target into field zero of the source object-plus-four structure, then reconcile both captured states in their original order."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 887,
+    "provenCallCount": 880,
+    "malformedCallCount": 7,
+    "dialogueRegionCallCount": 27,
+    "malformedDialogueRegionCallCount": 0,
+    "areaCount": 43,
+    "argumentKindCounts": {
+      "0": {
+        "constant": 593,
+        "frame-field": 244,
+        "runtime": 39,
+        "scene-field": 4
+      },
+      "1": {
+        "constant": 593,
+        "frame-field": 210,
+        "runtime": 26,
+        "scene-field": 51
+      }
+    },
+    "targetRouteCounts": {
+      "runtime": 287,
+      "null": 297,
+      "resolvedObject": 277,
+      "indexedSlot": 19
+    },
+    "observedConstantSlotCounts": {
+      "0": 3,
+      "31": 16
+    },
+    "resultComparisonCount": 0,
+    "resultTargetCount": 0
+  },
+  "evidenceBoundary": [
+    "Only the 880 exact two-argument calls are promoted.",
+    "Seven zero-argument scanner detections remain unresolved.",
+    "The two capture/reconcile algorithms remain mandatory low-level adapters.",
+    "The field's ownership and higher-level parent, attachment, or targeting meaning are not inferred."
+  ]
+}

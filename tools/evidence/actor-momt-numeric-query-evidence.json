@@ -1,0 +1,88 @@
+{
+  "schema": "new-yokosuka-actor-momt-numeric-query-evidence-v1",
+  "status": "exact-native-handler-helper-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 43,
+    "operationHex": "0x002b",
+    "argumentCount": 1,
+    "handlerAddress": "0x0c165e48",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c165e48",
+        "length": 98,
+        "sha256": "a421b9b481b7889d090110fa2d1636b34e2edf9b0c1182dec2d92875199256f4"
+      },
+      "numericHelper": {
+        "address": "0x0c114578",
+        "length": 134,
+        "sha256": "d53a1dfc4da5a87f39226728826a5dfbffa14c67b41789d9b7b19d398e01ba93"
+      },
+      "signedRemainder": {
+        "address": "0x0c1dc440",
+        "length": 198,
+        "sha256": "76dd71db7d1b54a272ad18ea0a917a8b548a21d5f48240c712e11348ac0cdd37"
+      },
+      "signedQuotient": {
+        "address": "0x0c1dc294",
+        "length": 172,
+        "sha256": "de9f7407ff3561b31ea617fce63cab5ebfda7419f1dd6e204eb9cc90de01c570"
+      }
+    },
+    "nativeContract": {
+      "dependencies": {
+        "actorResolver": "0x0c153956",
+        "momtAccessor": "0x0c113a76",
+        "currentSceneOwner": "0x0c217488",
+        "ownerResolver": "0x0c09766a",
+        "sceneRegistryUnlink": "0x0c152e82",
+        "resultWriter": "0x0c0bb348",
+        "numericHelper": "0x0c114578",
+        "globalDword": "0x0c20c48c",
+        "signedRemainder": "0x0c1dc440",
+        "signedQuotient": "0x0c1dc294"
+      },
+      "constants": {
+        "lowerExclusive": 0.9899999499320984,
+        "upperExclusive": 1.0099999904632568,
+        "hundred": 100.0,
+        "hundredth": 0.009999999776482582,
+        "threeSixteenths": 0.1875
+      }
+    },
+    "recordTag": "MOMT",
+    "recordFloatWordOffsets": {
+      "base": "0x00f0",
+      "control": "0x00dc"
+    },
+    "provenBehavior": "Returns float-word zero for a missing actor and also unlinks a resolved actor without MOMT. With MOMT, it reads record +0x00f0 as the base and +0x00dc as control. Negative global state or global state one returns the base on their exact branches. Control strictly between the native 0.99 and 1.01 float constants applies the exact FTRC, signed remainder by 100, signed quotient by 10, and parity rounding path. Other control values subtract control * multiplier * 0.1875, with the multiplier derived exactly from the global dword."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 622,
+    "provenCallCount": 622,
+    "dialogueRegionCallCount": 66,
+    "areaCount": 60,
+    "argumentKindCounts": {
+      "constant": 244,
+      "frame-field": 206,
+      "runtime": 171,
+      "scene-field": 1
+    },
+    "dialogueArgumentKindCounts": {
+      "constant": 48,
+      "frame-field": 12,
+      "runtime": 6
+    }
+  },
+  "evidenceBoundary": [
+    "MOMT and all numeric fields remain low-level native identities.",
+    "The query is not labelled speed, distance, duration, or animation state.",
+    "Unsupported SH-4 FTRC inputs remain explicit runtime stops.",
+    "Unestablished actor, MOMT, or global state remains an interpreter stop."
+  ]
+}

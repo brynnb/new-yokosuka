@@ -1,0 +1,5253 @@
+{
+  "schema": "new-yokosuka-runtime-placement-manifest-v2",
+  "source": {
+    "captureDirectory": "captures/pvr/20260723-191152-frame-4977",
+    "runtimeSchema": "shenmue-runtime-placement-capture-v1",
+    "mapinfo": ".disc-work/exact/jomo/MAPINFO.BIN",
+    "staticDoorRecordCount": 18
+  },
+  "coordinateTransform": {
+    "position": "[-runtimeX, runtimeY, runtimeZ]",
+    "rotationDegrees": "[runtimeX, -runtimeY, -runtimeZ]"
+  },
+  "objectTags": [
+    {
+      "objectTag": "AKIR",
+      "taskAddress": "0x8c519980",
+      "callbackAddress": "0x0c2de638",
+      "model": null,
+      "activePlacement": false,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "dor0",
+      "taskAddress": "0x8c6601c0",
+      "callbackAddress": "0x00000000",
+      "model": "S1_JOMO_DR15_016.MT5",
+      "activePlacement": true,
+      "behavior": "sliding-door"
+    },
+    {
+      "objectTag": "dor1",
+      "taskAddress": "0x8c660580",
+      "callbackAddress": "0x00000000",
+      "model": "S1_JOMO_DR15_026.MT5",
+      "activePlacement": true,
+      "behavior": "sliding-door"
+    },
+    {
+      "objectTag": "dor2",
+      "taskAddress": "0x8c660940",
+      "callbackAddress": "0x00000000",
+      "model": "S1_JOMO_DR15_026.MT5",
+      "activePlacement": true,
+      "behavior": "sliding-door"
+    },
+    {
+      "objectTag": "dor3",
+      "taskAddress": "0x8c660d00",
+      "callbackAddress": "0x00000000",
+      "model": "S1_JOMO_DR15_028.MT5",
+      "activePlacement": true,
+      "behavior": "sliding-door"
+    },
+    {
+      "objectTag": "dor4",
+      "taskAddress": "0x8c6610c0",
+      "callbackAddress": "0x00000000",
+      "model": "S1_JOMO_DR23_000.MT5",
+      "activePlacement": true,
+      "behavior": "sliding-door"
+    },
+    {
+      "objectTag": "dor5",
+      "taskAddress": "0x8c661480",
+      "callbackAddress": "0x00000000",
+      "model": "S1_JOMO_DR15_026.MT5",
+      "activePlacement": true,
+      "behavior": "sliding-door"
+    },
+    {
+      "objectTag": "dor6",
+      "taskAddress": "0x8c661840",
+      "callbackAddress": "0x00000000",
+      "model": "S1_JOMO_DR15_026.MT5",
+      "activePlacement": true,
+      "behavior": "sliding-door"
+    },
+    {
+      "objectTag": "dor7",
+      "taskAddress": "0x8c661c00",
+      "callbackAddress": "0x00000000",
+      "model": "S1_JOMO_DR01_015.MT5",
+      "activePlacement": true,
+      "behavior": "swing-door"
+    },
+    {
+      "objectTag": "dor8",
+      "taskAddress": "0x8c661fc0",
+      "callbackAddress": "0x00000000",
+      "model": "S1_JOMO_DR01_015.MT5",
+      "activePlacement": true,
+      "behavior": "swing-door"
+    },
+    {
+      "objectTag": "dor9",
+      "taskAddress": "0x8c662380",
+      "callbackAddress": "0x00000000",
+      "model": "S1_JOMO_DR23_000.MT5",
+      "activePlacement": true,
+      "behavior": "sliding-door"
+    },
+    {
+      "objectTag": "AKID",
+      "taskAddress": "0x8c803de0",
+      "callbackAddress": "0x0c2de638",
+      "model": null,
+      "activePlacement": false,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "YKUL",
+      "taskAddress": "0x8c806820",
+      "callbackAddress": "0x0c2de638",
+      "model": null,
+      "activePlacement": false,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "YKUR",
+      "taskAddress": "0x8c8077c0",
+      "callbackAddress": "0x0c2de638",
+      "model": null,
+      "activePlacement": false,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "IWKJ",
+      "taskAddress": "0x8c80bf60",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_KAKS503G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "IGAK",
+      "taskAddress": "0x8c80c3c0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_YUKS510G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "TRNE",
+      "taskAddress": "0x8c80c820",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_KAIR101G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "IWWH",
+      "taskAddress": "0x8c80cc80",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_HIKR101G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "TEGA",
+      "taskAddress": "0x8c80d120",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_MALS530G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "KAGI",
+      "taskAddress": "0x8c80d580",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_KGTS500G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "ITBO",
+      "taskAddress": "0x8c80d9e0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TUBT2051.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "HIM1",
+      "taskAddress": "0x8c80de40",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_HIMT203G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "itbR",
+      "taskAddress": "0x8c80e2e0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TNBR101G.MT5",
+      "activePlacement": true,
+      "behavior": "hinged-door"
+    },
+    {
+      "objectTag": "itbL",
+      "taskAddress": "0x8c80e7c0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TNBR102G.MT5",
+      "activePlacement": true,
+      "behavior": "hinged-door"
+    },
+    {
+      "objectTag": "wden",
+      "taskAddress": "0x8c80eca0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_LGWS261G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "wstn",
+      "taskAddress": "0x8c80f100",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_LGWS267G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "iosh",
+      "taskAddress": "0x8c80f560",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_OHDK3I0G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "ihko",
+      "taskAddress": "0x8c80f9c0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_KHKO105G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "AKD2",
+      "taskAddress": "0x8c80fe60",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_DESM402G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "AKD3",
+      "taskAddress": "0x8c810300",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_DESM402G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "AKD4",
+      "taskAddress": "0x8c8107a0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_DESM403G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "ATS1",
+      "taskAddress": "0x8c810c40",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TANM4W3G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "ATS2",
+      "taskAddress": "0x8c8110e0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TANM4W3G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "ATS3",
+      "taskAddress": "0x8c811580",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TANM4W3G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "ATS4",
+      "taskAddress": "0x8c811a20",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TANM4W3G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "ATS5",
+      "taskAddress": "0x8c811ec0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TANM4W4G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "ATS6",
+      "taskAddress": "0x8c812360",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TANM4W4G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "ATS7",
+      "taskAddress": "0x8c812800",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TANM402G.MT5",
+      "activePlacement": true,
+      "behavior": "hinged-door"
+    },
+    {
+      "objectTag": "AKDG",
+      "taskAddress": "0x8c812d60",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_DOUK300G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "KAWA",
+      "taskAddress": "0x8c8131c0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_MJAS500G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "FUT1",
+      "taskAddress": "0x8c8136e0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_FUTS301G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "FUT2",
+      "taskAddress": "0x8c813d40",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_FUTS302G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "TOKE",
+      "taskAddress": "0x8c8141e0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_CLKS501G.MT5",
+      "activePlacement": true,
+      "behavior": "alarm-clock"
+    },
+    {
+      "objectTag": "rden",
+      "taskAddress": "0x8c814780",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_LGWS203G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "rstn",
+      "taskAddress": "0x8c814be0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_LGWS267G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "rosh",
+      "taskAddress": "0x8c815040",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_OHDM4R0G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "rrad",
+      "taskAddress": "0x8c8154a0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_CASS500G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "pwkm",
+      "taskAddress": "0x8c815900",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_PTBS5L1G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "ptpm",
+      "taskAddress": "0x8c815d60",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_MTPK6MTG.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "ptpf",
+      "taskAddress": "0x8c8161c0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_MTPK6SMG.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "BMKJ",
+      "taskAddress": "0x8c816620",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_KAKS504G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "KIKJ",
+      "taskAddress": "0x8c816a80",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_KAKS508G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "BMBO",
+      "taskAddress": "0x8c816ee0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_BUTK300G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "BMB1",
+      "taskAddress": "0x8c817340",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_BUTM403G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "BMB2",
+      "taskAddress": "0x8c8177e0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_BUTM403G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "BMB3",
+      "taskAddress": "0x8c817c80",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_BUTM402G.MT5",
+      "activePlacement": true,
+      "behavior": "hinged-door"
+    },
+    {
+      "objectTag": "BMB4",
+      "taskAddress": "0x8c8181e0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_BUTM401G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "BMB5",
+      "taskAddress": "0x8c818680",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_BUTM401G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "BMMC",
+      "taskAddress": "0x8c818b20",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_MATM400G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "BTBO",
+      "taskAddress": "0x8c818f80",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TUBS205G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "bden",
+      "taskAddress": "0x8c8193e0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_LGWS203G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "HANA",
+      "taskAddress": "0x8c819840",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_BUTM408G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "btbR",
+      "taskAddress": "0x8c819ca0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TNBR101G.MT5",
+      "activePlacement": true,
+      "behavior": "hinged-door"
+    },
+    {
+      "objectTag": "btbL",
+      "taskAddress": "0x8c81a180",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TNBR102G.MT5",
+      "activePlacement": true,
+      "behavior": "hinged-door"
+    },
+    {
+      "objectTag": "bkgu",
+      "taskAddress": "0x8c81a660",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_KAGT211G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "brou",
+      "taskAddress": "0x8c81aac0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_ROUM400G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "imk3",
+      "taskAddress": "0x8c81af20",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_WZBS5SJG.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "sykj",
+      "taskAddress": "0x8c81b380",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_SSTS500G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "DDZ1",
+      "taskAddress": "0x8c81b7e0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_ZALS500G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "D1C1",
+      "taskAddress": "0x8c81bc40",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_CHDS500G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "D1C2",
+      "taskAddress": "0x8c81c0e0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_CHDS500G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "D1C3",
+      "taskAddress": "0x8c81c580",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_CHSS501G.MT5",
+      "activePlacement": true,
+      "behavior": "hinged-door"
+    },
+    {
+      "objectTag": "D1C4",
+      "taskAddress": "0x8c81ca60",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_CHSS500G.MT5",
+      "activePlacement": true,
+      "behavior": "hinged-door"
+    },
+    {
+      "objectTag": "DDG1",
+      "taskAddress": "0x8c81cf40",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TO1W101G.MT5",
+      "activePlacement": true,
+      "behavior": "hinged-door"
+    },
+    {
+      "objectTag": "DDG2",
+      "taskAddress": "0x8c81d4a0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TO2W101G.MT5",
+      "activePlacement": true,
+      "behavior": "hinged-door"
+    },
+    {
+      "objectTag": "DDR1",
+      "taskAddress": "0x8c81da00",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_REIO101G.MT5",
+      "activePlacement": true,
+      "behavior": "swing-door"
+    },
+    {
+      "objectTag": "DDR2",
+      "taskAddress": "0x8c81dea0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_REIO102G.MT5",
+      "activePlacement": true,
+      "behavior": "swing-door"
+    },
+    {
+      "objectTag": "DND1",
+      "taskAddress": "0x8c81e380",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TUDT202G.MT5",
+      "activePlacement": true,
+      "behavior": "hinged-door"
+    },
+    {
+      "objectTag": "DND2",
+      "taskAddress": "0x8c81e860",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TUDT203G.MT5",
+      "activePlacement": true,
+      "behavior": "hinged-door"
+    },
+    {
+      "objectTag": "DGKI",
+      "taskAddress": "0x8c81ed40",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_GKI02O1G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "DDYK",
+      "taskAddress": "0x8c81f2e0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_YAKM400G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "DDFP",
+      "taskAddress": "0x8c81f7c0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_FLYM400G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "kden",
+      "taskAddress": "0x8c81fc60",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_LGWS203G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "kmil",
+      "taskAddress": "0x8c8200c0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_MLKS301G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "knib",
+      "taskAddress": "0x8c820520",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_NIPK302G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "kclk",
+      "taskAddress": "0x8c820980",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_CLOS5003.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "kpic",
+      "taskAddress": "0x8c820e60",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_YUKS515G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "IDEN",
+      "taskAddress": "0x8c8212c0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_DENK304G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "STAN",
+      "taskAddress": "0x8c821720",
+      "callbackAddress": "0x0c2de638",
+      "model": null,
+      "activePlacement": false,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "DSTN",
+      "taskAddress": "0x8c821cc0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_SUTS503G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "cdsh",
+      "taskAddress": "0x8c822260",
+      "callbackAddress": "0x0c2de638",
+      "model": null,
+      "activePlacement": false,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "cdhn",
+      "taskAddress": "0x8c8226c0",
+      "callbackAddress": "0x0c2de638",
+      "model": null,
+      "activePlacement": false,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "IMOR",
+      "taskAddress": "0x8c822b20",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TMKR101G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "IMC1",
+      "taskAddress": "0x8c822f80",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_CHDS500G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "IMC2",
+      "taskAddress": "0x8c823420",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_CHDS500G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "IMC3",
+      "taskAddress": "0x8c8238c0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_CHSS501G.MT5",
+      "activePlacement": true,
+      "behavior": "hinged-door"
+    },
+    {
+      "objectTag": "IMC4",
+      "taskAddress": "0x8c823da0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_CHSS500G.MT5",
+      "activePlacement": true,
+      "behavior": "hinged-door"
+    },
+    {
+      "objectTag": "IYNU",
+      "taskAddress": "0x8c824280",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_YUNK300G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "ITVH",
+      "taskAddress": "0x8c8246e0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TVDS500G.MT5",
+      "activePlacement": true,
+      "behavior": "hinged-door"
+    },
+    {
+      "objectTag": "lden",
+      "taskAddress": "0x8c824c40",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_LGWS202G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "HIM2",
+      "taskAddress": "0x8c8250a0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_HIMT204G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "lclk",
+      "taskAddress": "0x8c825540",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_CLOS5003.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "IKD1",
+      "taskAddress": "0x8c825a20",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_HIKW101G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "IKD2",
+      "taskAddress": "0x8c825ec0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_HIKW101G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "ITS1",
+      "taskAddress": "0x8c826360",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TANM4W3G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "ITS2",
+      "taskAddress": "0x8c826800",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TANM4W3G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "ITS3",
+      "taskAddress": "0x8c826ca0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TANM4W3G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "ITS4",
+      "taskAddress": "0x8c827140",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TANM4W3G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "ITS5",
+      "taskAddress": "0x8c8275e0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TANM4W4G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "ITS6",
+      "taskAddress": "0x8c827a80",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TANM4W4G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "ITS7",
+      "taskAddress": "0x8c827f20",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TANM402G.MT5",
+      "activePlacement": true,
+      "behavior": "hinged-door"
+    },
+    {
+      "objectTag": "HIM4",
+      "taskAddress": "0x8c828480",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_HIMT203G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "iden",
+      "taskAddress": "0x8c828920",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_LGWS201G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "ikgu",
+      "taskAddress": "0x8c828d80",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_KAGT211G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "imk1",
+      "taskAddress": "0x8c8291e0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_MKIS3C1G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "FGAK",
+      "taskAddress": "0x8c829640",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_YUKS511G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "FKWH",
+      "taskAddress": "0x8c829aa0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_HIKR101G.MT5",
+      "activePlacement": true,
+      "behavior": "drawer"
+    },
+    {
+      "objectTag": "HIM3",
+      "taskAddress": "0x8c829f40",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_HIMT203G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "fden",
+      "taskAddress": "0x8c82a3e0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_LGWS201G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "fstn",
+      "taskAddress": "0x8c82a840",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_LGWS267G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "fbut",
+      "taskAddress": "0x8c82aca0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_BTAS500G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "PIG_",
+      "taskAddress": "0x8c82b100",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_BTAS500G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "ktbL",
+      "taskAddress": "0x8c82b560",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TNBR102G.MT5",
+      "activePlacement": true,
+      "behavior": "hinged-door"
+    },
+    {
+      "objectTag": "ktbR",
+      "taskAddress": "0x8c82ba40",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TNBR101G.MT5",
+      "activePlacement": true,
+      "behavior": "hinged-door"
+    },
+    {
+      "objectTag": "KGK1",
+      "taskAddress": "0x8c82bf20",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_YUKS514G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "KGK2",
+      "taskAddress": "0x8c82c380",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_YUKS512G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "gden",
+      "taskAddress": "0x8c82c7e0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_LGWS263G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "gosh",
+      "taskAddress": "0x8c82cc40",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_OHDM4K0G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "gclk",
+      "taskAddress": "0x8c82d0a0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_CLOS5003.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "TEL_",
+      "taskAddress": "0x8c82d580",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TELS514G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "TGAK",
+      "taskAddress": "0x8c82e3e0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_YUKS513G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "TAN1",
+      "taskAddress": "0x8c82e840",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_HIKR102G.MT5",
+      "activePlacement": true,
+      "behavior": "hinged-door"
+    },
+    {
+      "objectTag": "TAN2",
+      "taskAddress": "0x8c82ed20",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_HIKR103G.MT5",
+      "activePlacement": true,
+      "behavior": "hinged-door"
+    },
+    {
+      "objectTag": "GGB1",
+      "taskAddress": "0x8c82f200",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TOBT201G.MT5",
+      "activePlacement": true,
+      "behavior": "hinged-door"
+    },
+    {
+      "objectTag": "GGB2",
+      "taskAddress": "0x8c82f6e0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TOBT202G.MT5",
+      "activePlacement": true,
+      "behavior": "hinged-door"
+    },
+    {
+      "objectTag": "RKUT",
+      "taskAddress": "0x8c82fbc0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_RYSS50RG.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "LKUT",
+      "taskAddress": "0x8c830020",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_RYSS50LG.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "KFUT",
+      "taskAddress": "0x8c830480",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_FUTS5OKG.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "KOZU",
+      "taskAddress": "0x8c8308e0",
+      "callbackAddress": "0x0c2de638",
+      "model": null,
+      "activePlacement": false,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "TLBK",
+      "taskAddress": "0x8c830d40",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_DENS501G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "ATB1",
+      "taskAddress": "0x8c8311a0",
+      "callbackAddress": "0x0c2de638",
+      "model": null,
+      "activePlacement": false,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "ATB2",
+      "taskAddress": "0x8c831600",
+      "callbackAddress": "0x0c2de638",
+      "model": null,
+      "activePlacement": false,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "ATB3",
+      "taskAddress": "0x8c831a60",
+      "callbackAddress": "0x0c2de638",
+      "model": null,
+      "activePlacement": false,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "eden",
+      "taskAddress": "0x8c8320c0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_LGWS204G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "ekai",
+      "taskAddress": "0x8c832520",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_KAIS500G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "ecal",
+      "taskAddress": "0x8c832a40",
+      "callbackAddress": "0x0c2de638",
+      "model": null,
+      "activePlacement": false,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "ldn1",
+      "taskAddress": "0x8c833fa0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_LGWS204G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "ldn2",
+      "taskAddress": "0x8c834400",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_LGWS204G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "ldn3",
+      "taskAddress": "0x8c834860",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_LGWS204G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "tden",
+      "taskAddress": "0x8c834cc0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_LGWS266G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "_pc1",
+      "taskAddress": "0x8c835120",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_YUKS517G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "_pc3",
+      "taskAddress": "0x8c835580",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_YUKS516G.MT5",
+      "activePlacement": true,
+      "behavior": "inspect"
+    },
+    {
+      "objectTag": "SO01",
+      "taskAddress": "0x8c835a60",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_HOUS501G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "DA10",
+      "taskAddress": "0x8c835f40",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_ASNT220G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "DA13",
+      "taskAddress": "0x8c836420",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_GLAHI35G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "BU02",
+      "taskAddress": "0x8c836900",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_HONM401G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "BU09",
+      "taskAddress": "0x8c836de0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_TKFT201G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "BU10",
+      "taskAddress": "0x8c8372c0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_SYAT200G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "SO05",
+      "taskAddress": "0x8c8377a0",
+      "callbackAddress": "0x0c2de638",
+      "model": "S1_JOMO_HNMT205G.MT5",
+      "activePlacement": true,
+      "behavior": "none"
+    },
+    {
+      "objectTag": "INE_",
+      "taskAddress": "0x8c9345e0",
+      "callbackAddress": "0x0c2de638",
+      "model": null,
+      "activePlacement": false,
+      "behavior": "none"
+    }
+  ],
+  "placements": [
+    {
+      "model": "S1_JOMO_ASNT220G.MT5",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6676c0",
+        "hmdlAddress": "0x8c836340",
+        "taskAddress": "0x8c835f40",
+        "objectTag": "DA10",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_BTAS500G.MT5",
+      "position": [
+        -23.1,
+        0.463,
+        -4.317
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c667ce0",
+        "hmdlAddress": "0x8c82b0a0",
+        "taskAddress": "0x8c82aca0",
+        "objectTag": "fbut",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_BTAS500G.MT5",
+      "position": [
+        -22.790001,
+        1.75,
+        -2.31
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c667ce0",
+        "hmdlAddress": "0x8c82b500",
+        "taskAddress": "0x8c82b100",
+        "objectTag": "PIG_",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_BUTK300G.MT5",
+      "position": [
+        -2.629,
+        0.7255,
+        -1.017
+      ],
+      "rotationDegrees": [
+        5.795288,
+        76.052856,
+        1.999512
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c668fe0",
+        "hmdlAddress": "0x8c8172e0",
+        "taskAddress": "0x8c816ee0",
+        "objectTag": "BMBO",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_BUTM401G.MT5",
+      "position": [
+        -2.687,
+        0.315,
+        -1.359
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6697e0",
+        "hmdlAddress": "0x8c8185e0",
+        "taskAddress": "0x8c8181e0",
+        "objectTag": "BMB4",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_BUTM401G.MT5",
+      "position": [
+        -2.687,
+        0.03,
+        -1.359
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6697e0",
+        "hmdlAddress": "0x8c818a80",
+        "taskAddress": "0x8c818680",
+        "objectTag": "BMB5",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_BUTM402G.MT5",
+      "position": [
+        -2.687,
+        0.03,
+        -0.477
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c66a220",
+        "hmdlAddress": "0x8c818080",
+        "taskAddress": "0x8c817c80",
+        "objectTag": "BMB3",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_BUTM403G.MT5",
+      "position": [
+        -2.687,
+        0.465,
+        -0.257
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c66be00",
+        "hmdlAddress": "0x8c817740",
+        "taskAddress": "0x8c817340",
+        "objectTag": "BMB1",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_BUTM403G.MT5",
+      "position": [
+        -2.687,
+        0.465,
+        -0.704
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c66be00",
+        "hmdlAddress": "0x8c817be0",
+        "taskAddress": "0x8c8177e0",
+        "objectTag": "BMB2",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_BUTM408G.MT5",
+      "position": [
+        -2.572,
+        0.996,
+        -0.439
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c66c8a0",
+        "hmdlAddress": "0x8c819c40",
+        "taskAddress": "0x8c819840",
+        "objectTag": "HANA",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_CASS500G.MT5",
+      "position": [
+        -16.450001,
+        0.75,
+        4.4
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6727e0",
+        "hmdlAddress": "0x8c8158a0",
+        "taskAddress": "0x8c8154a0",
+        "objectTag": "rrad",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_CHDS500G.MT5",
+      "position": [
+        -12.892,
+        0.6299,
+        -3.343
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6764c0",
+        "hmdlAddress": "0x8c81c040",
+        "taskAddress": "0x8c81bc40",
+        "objectTag": "D1C1",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_CHDS500G.MT5",
+      "position": [
+        -12.892,
+        0.6299,
+        -2.905
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6764c0",
+        "hmdlAddress": "0x8c81c4e0",
+        "taskAddress": "0x8c81c0e0",
+        "objectTag": "D1C2",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_CHDS500G.MT5",
+      "position": [
+        -14.15,
+        0.6299,
+        -3.841
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6764c0",
+        "hmdlAddress": "0x8c823380",
+        "taskAddress": "0x8c822f80",
+        "objectTag": "IMC1",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_CHDS500G.MT5",
+      "position": [
+        -14.15,
+        0.6299,
+        -4.279
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6764c0",
+        "hmdlAddress": "0x8c823820",
+        "taskAddress": "0x8c823420",
+        "objectTag": "IMC2",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_CHSS500G.MT5",
+      "position": [
+        -12.892,
+        0.05,
+        -3.124
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c676c00",
+        "hmdlAddress": "0x8c81ce60",
+        "taskAddress": "0x8c81ca60",
+        "objectTag": "D1C4",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_CHSS500G.MT5",
+      "position": [
+        -14.15,
+        0.05,
+        -4.06
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c676c00",
+        "hmdlAddress": "0x8c8241a0",
+        "taskAddress": "0x8c823da0",
+        "objectTag": "IMC4",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_CHSS501G.MT5",
+      "position": [
+        -12.892,
+        0.05,
+        -3.124
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6770a0",
+        "hmdlAddress": "0x8c81c980",
+        "taskAddress": "0x8c81c580",
+        "objectTag": "D1C3",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_CHSS501G.MT5",
+      "position": [
+        -14.15,
+        0.05,
+        -4.06
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6770a0",
+        "hmdlAddress": "0x8c823cc0",
+        "taskAddress": "0x8c8238c0",
+        "objectTag": "IMC3",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_CLKS501G.MT5",
+      "position": [
+        -18.299999,
+        0.45,
+        6.1
+      ],
+      "rotationDegrees": [
+        0,
+        180,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c677540",
+        "hmdlAddress": "0x8c8145e0",
+        "taskAddress": "0x8c8141e0",
+        "objectTag": "TOKE",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_CLOS5003.MT5",
+      "position": [
+        -8.19,
+        2.1,
+        -1
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6791a0",
+        "hmdlAddress": "0x8c820d80",
+        "taskAddress": "0x8c820980",
+        "objectTag": "kclk",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_CLOS5003.MT5",
+      "position": [
+        -13.6,
+        2.1,
+        -2.3
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6791a0",
+        "hmdlAddress": "0x8c825940",
+        "taskAddress": "0x8c825540",
+        "objectTag": "lclk",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_CLOS5003.MT5",
+      "position": [
+        -21.01,
+        2.1,
+        3.94
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6791a0",
+        "hmdlAddress": "0x8c82d4a0",
+        "taskAddress": "0x8c82d0a0",
+        "objectTag": "gclk",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_DENK304G.MT5",
+      "position": [
+        -13.95,
+        0.6799,
+        -3.841
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c679820",
+        "hmdlAddress": "0x8c8216c0",
+        "taskAddress": "0x8c8212c0",
+        "objectTag": "IDEN",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_DENS501G.MT5",
+      "position": [
+        -15.8,
+        0.19,
+        2.655
+      ],
+      "rotationDegrees": [
+        90,
+        0,
+        180
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c67ab40",
+        "hmdlAddress": "0x8c831140",
+        "taskAddress": "0x8c830d40",
+        "objectTag": "TLBK",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_DESM402G.MT5",
+      "position": [
+        -16.874001,
+        0.5578,
+        3.7706
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c67cdc0",
+        "hmdlAddress": "0x8c810260",
+        "taskAddress": "0x8c80fe60",
+        "objectTag": "AKD2",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_DESM402G.MT5",
+      "position": [
+        -16.874001,
+        0.4058,
+        3.7706
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c67cdc0",
+        "hmdlAddress": "0x8c810700",
+        "taskAddress": "0x8c810300",
+        "objectTag": "AKD3",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_DESM403G.MT5",
+      "position": [
+        -16.874001,
+        0.103,
+        3.7706
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c67d640",
+        "hmdlAddress": "0x8c810ba0",
+        "taskAddress": "0x8c8107a0",
+        "objectTag": "AKD4",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_DOUK300G.MT5",
+      "position": [
+        -19.771999,
+        2.073,
+        5.251
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c67dec0",
+        "hmdlAddress": "0x8c813160",
+        "taskAddress": "0x8c812d60",
+        "objectTag": "AKDG",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_DR01_015.MT5",
+      "position": [
+        -16.302,
+        0,
+        1.833
+      ],
+      "rotationDegrees": [
+        0,
+        79.909058,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c67f4a0",
+        "hmdlAddress": "0x8c939d80",
+        "taskAddress": "0x8c661c00",
+        "objectTag": "dor7",
+        "callbackAddress": "0x00000000",
+        "staticDoorIndex": 7,
+        "staticSourceOffset": "0x92c44",
+        "placementSource": "runtime-and-jomo-static-door-table"
+      }
+    },
+    {
+      "model": "S1_JOMO_DR01_015.MT5",
+      "position": [
+        -21.007,
+        0,
+        1.833
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c67f4a0",
+        "hmdlAddress": "0x8c933e40",
+        "taskAddress": "0x8c661fc0",
+        "objectTag": "dor8",
+        "callbackAddress": "0x00000000",
+        "staticDoorIndex": 6,
+        "staticSourceOffset": "0x92c20",
+        "placementSource": "runtime-and-jomo-static-door-table"
+      }
+    },
+    {
+      "id": "static-door-5",
+      "model": "S1_JOMO_DR01_016.MT5",
+      "position": [
+        -5.4,
+        0,
+        -3.6149
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": null,
+        "hmdlAddress": null,
+        "taskAddress": null,
+        "callbackAddress": null,
+        "objectTag": null,
+        "staticDoorIndex": 5,
+        "staticDoorType": 2,
+        "staticDoorModelIndex": 5,
+        "staticSourceOffset": "0x92bfc",
+        "placementSource": "jomo-static-door-table"
+      }
+    },
+    {
+      "id": "static-door-14",
+      "model": "S1_JOMO_DR15_016.MT5",
+      "position": [
+        -14.886,
+        -0.219,
+        6.3261
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": null,
+        "hmdlAddress": null,
+        "taskAddress": "0x8c6601c0",
+        "callbackAddress": "0x00000000",
+        "objectTag": "dor0",
+        "staticDoorIndex": 14,
+        "staticDoorType": 2,
+        "staticDoorModelIndex": 4,
+        "staticSourceOffset": "0x92d40",
+        "placementSource": "runtime-task-and-jomo-static-door-table"
+      }
+    },
+    {
+      "id": "static-door-0",
+      "model": "S1_JOMO_DR15_026.MT5",
+      "position": [
+        0.323,
+        0,
+        -1.8162
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": null,
+        "hmdlAddress": null,
+        "taskAddress": null,
+        "callbackAddress": null,
+        "objectTag": null,
+        "staticDoorIndex": 0,
+        "staticDoorType": 2,
+        "staticDoorModelIndex": 0,
+        "staticSourceOffset": "0x92b48",
+        "placementSource": "jomo-static-door-table"
+      }
+    },
+    {
+      "id": "static-door-2",
+      "model": "S1_JOMO_DR15_026.MT5",
+      "position": [
+        -4.515,
+        0,
+        -1.816
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": null,
+        "hmdlAddress": null,
+        "taskAddress": null,
+        "callbackAddress": null,
+        "objectTag": null,
+        "staticDoorIndex": 2,
+        "staticDoorType": 2,
+        "staticDoorModelIndex": 0,
+        "staticSourceOffset": "0x92b90",
+        "placementSource": "jomo-static-door-table"
+      }
+    },
+    {
+      "id": "static-door-3",
+      "model": "S1_JOMO_DR15_026.MT5",
+      "position": [
+        -6.346,
+        0,
+        0.015
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": null,
+        "hmdlAddress": null,
+        "taskAddress": null,
+        "callbackAddress": null,
+        "objectTag": null,
+        "staticDoorIndex": 3,
+        "staticDoorType": 2,
+        "staticDoorModelIndex": 0,
+        "staticSourceOffset": "0x92bb4",
+        "placementSource": "jomo-static-door-table"
+      }
+    },
+    {
+      "id": "static-door-9",
+      "model": "S1_JOMO_DR15_026.MT5",
+      "position": [
+        -15.372,
+        0,
+        -4.555
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": null,
+        "hmdlAddress": null,
+        "taskAddress": null,
+        "callbackAddress": null,
+        "objectTag": null,
+        "staticDoorIndex": 9,
+        "staticDoorType": 2,
+        "staticDoorModelIndex": 0,
+        "staticSourceOffset": "0x92c8c",
+        "placementSource": "jomo-static-door-table"
+      }
+    },
+    {
+      "model": "S1_JOMO_DR15_026.MT5",
+      "position": [
+        -21.882,
+        0,
+        -0.0141
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c681400",
+        "hmdlAddress": "0x8c933d20",
+        "taskAddress": "0x8c660580",
+        "objectTag": "dor1",
+        "callbackAddress": "0x00000000",
+        "staticDoorIndex": 13,
+        "staticSourceOffset": "0x92d1c",
+        "placementSource": "runtime-and-jomo-static-door-table"
+      }
+    },
+    {
+      "model": "S1_JOMO_DR15_026.MT5",
+      "position": [
+        -19.062,
+        0,
+        -0.0141
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c681400",
+        "hmdlAddress": "0x8c933ac0",
+        "taskAddress": "0x8c660940",
+        "objectTag": "dor2",
+        "callbackAddress": "0x00000000",
+        "staticDoorIndex": 12,
+        "staticSourceOffset": "0x92cf8",
+        "placementSource": "runtime-and-jomo-static-door-table"
+      }
+    },
+    {
+      "model": "S1_JOMO_DR15_026.MT5",
+      "position": [
+        -17.218,
+        0,
+        -1.8344
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c681400",
+        "hmdlAddress": "0x8c92eda0",
+        "taskAddress": "0x8c661480",
+        "objectTag": "dor5",
+        "callbackAddress": "0x00000000",
+        "staticDoorIndex": 10,
+        "staticSourceOffset": "0x92cb0",
+        "placementSource": "runtime-and-jomo-static-door-table"
+      }
+    },
+    {
+      "model": "S1_JOMO_DR15_026.MT5",
+      "position": [
+        -19.062,
+        0,
+        -4.555
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c681400",
+        "hmdlAddress": "0x8c934200",
+        "taskAddress": "0x8c661840",
+        "objectTag": "dor6",
+        "callbackAddress": "0x00000000",
+        "staticDoorIndex": 11,
+        "staticSourceOffset": "0x92cd4",
+        "placementSource": "runtime-and-jomo-static-door-table"
+      }
+    },
+    {
+      "model": "S1_JOMO_DR15_028.MT5",
+      "position": [
+        -15.345,
+        0,
+        -0.0183
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6819c0",
+        "hmdlAddress": "0x8c933ee0",
+        "taskAddress": "0x8c660d00",
+        "objectTag": "dor3",
+        "callbackAddress": "0x00000000",
+        "staticDoorIndex": 8,
+        "staticSourceOffset": "0x92c68",
+        "placementSource": "runtime-and-jomo-static-door-table"
+      }
+    },
+    {
+      "id": "static-door-1",
+      "model": "S1_JOMO_DR15_029.MT5",
+      "position": [
+        0.087,
+        0,
+        1.85
+      ],
+      "rotationDegrees": [
+        0,
+        180,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": null,
+        "hmdlAddress": null,
+        "taskAddress": null,
+        "callbackAddress": null,
+        "objectTag": null,
+        "staticDoorIndex": 1,
+        "staticDoorType": 2,
+        "staticDoorModelIndex": 1,
+        "staticSourceOffset": "0x92b6c",
+        "placementSource": "jomo-static-door-table"
+      }
+    },
+    {
+      "id": "static-door-4",
+      "model": "S1_JOMO_DR15_029.MT5",
+      "position": [
+        -4.515,
+        0,
+        1.8142
+      ],
+      "rotationDegrees": [
+        0,
+        180,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": null,
+        "hmdlAddress": null,
+        "taskAddress": null,
+        "callbackAddress": null,
+        "objectTag": null,
+        "staticDoorIndex": 4,
+        "staticDoorType": 2,
+        "staticDoorModelIndex": 1,
+        "staticSourceOffset": "0x92bd8",
+        "placementSource": "jomo-static-door-table"
+      }
+    },
+    {
+      "id": "static-door-15",
+      "model": "S1_JOMO_DR23_000.MT5",
+      "position": [
+        -0.901,
+        0,
+        -0.9
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": null,
+        "hmdlAddress": null,
+        "taskAddress": null,
+        "callbackAddress": null,
+        "objectTag": null,
+        "staticDoorIndex": 15,
+        "staticDoorType": 2,
+        "staticDoorModelIndex": 6,
+        "staticSourceOffset": "0x92d64",
+        "placementSource": "jomo-static-door-table"
+      }
+    },
+    {
+      "model": "S1_JOMO_DR23_000.MT5",
+      "position": [
+        -19.871,
+        0,
+        2.755
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c683620",
+        "hmdlAddress": "0x8c92ec80",
+        "taskAddress": "0x8c6610c0",
+        "objectTag": "dor4",
+        "callbackAddress": "0x00000000",
+        "staticDoorIndex": 16,
+        "staticSourceOffset": "0x92d88",
+        "placementSource": "runtime-and-jomo-static-door-table"
+      }
+    },
+    {
+      "model": "S1_JOMO_DR23_000.MT5",
+      "position": [
+        -20.910999,
+        0,
+        5.368
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c683620",
+        "hmdlAddress": "0x8c934120",
+        "taskAddress": "0x8c662380",
+        "objectTag": "dor9",
+        "callbackAddress": "0x00000000",
+        "staticDoorIndex": 17,
+        "staticSourceOffset": "0x92dac",
+        "placementSource": "runtime-and-jomo-static-door-table"
+      }
+    },
+    {
+      "model": "S1_JOMO_FLYM400G.MT5",
+      "position": [
+        -10.14,
+        0.95,
+        -4.86
+      ],
+      "rotationDegrees": [
+        0,
+        -68.999634,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c683be0",
+        "hmdlAddress": "0x8c81fbc0",
+        "taskAddress": "0x8c81f7c0",
+        "objectTag": "DDFP",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_FUTS301G.MT5",
+      "position": [
+        -19.188601,
+        0.608,
+        4.379
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c684860",
+        "hmdlAddress": "0x8c813ae0",
+        "taskAddress": "0x8c8136e0",
+        "objectTag": "FUT1",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_FUTS302G.MT5",
+      "position": [
+        -18.995001,
+        0.551,
+        4.391
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c687260",
+        "hmdlAddress": "0x8c814140",
+        "taskAddress": "0x8c813d40",
+        "objectTag": "FUT2",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_FUTS5OKG.MT5",
+      "position": [
+        -15.635,
+        0.985,
+        3.6
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        86.000977
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c687de0",
+        "hmdlAddress": "0x8c830880",
+        "taskAddress": "0x8c830480",
+        "objectTag": "KFUT",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_GKI02O1G.MT5",
+      "position": [
+        -9.7419,
+        0.3209,
+        -4.9388
+      ],
+      "rotationDegrees": [
+        0,
+        170.002441,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6885a0",
+        "hmdlAddress": "0x8c81f140",
+        "taskAddress": "0x8c81ed40",
+        "objectTag": "DGKI",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_GLAHI35G.MT5",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c689840",
+        "hmdlAddress": "0x8c836820",
+        "taskAddress": "0x8c836420",
+        "objectTag": "DA13",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_HIKR101G.MT5",
+      "position": [
+        1.788,
+        0.25,
+        -0.4905
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c68a020",
+        "hmdlAddress": "0x8c80d080",
+        "taskAddress": "0x8c80cc80",
+        "objectTag": "IWWH",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_HIKR101G.MT5",
+      "position": [
+        -23.389,
+        0.25,
+        -3.615
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c68a020",
+        "hmdlAddress": "0x8c829ea0",
+        "taskAddress": "0x8c829aa0",
+        "objectTag": "FKWH",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_HIKR102G.MT5",
+      "position": [
+        -15.6,
+        0.04,
+        2.355
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c68a6c0",
+        "hmdlAddress": "0x8c82ec40",
+        "taskAddress": "0x8c82e840",
+        "objectTag": "TAN1",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_HIKR103G.MT5",
+      "position": [
+        -15.57,
+        0.04,
+        2.355
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c68ac40",
+        "hmdlAddress": "0x8c82f120",
+        "taskAddress": "0x8c82ed20",
+        "objectTag": "TAN2",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_HIKW101G.MT5",
+      "position": [
+        -20.3479,
+        0.2406,
+        -2.2558
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c68b1c0",
+        "hmdlAddress": "0x8c825e20",
+        "taskAddress": "0x8c825a20",
+        "objectTag": "IKD1",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_HIKW101G.MT5",
+      "position": [
+        -20.3479,
+        0.2406,
+        -2.5477
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c68b1c0",
+        "hmdlAddress": "0x8c8262c0",
+        "taskAddress": "0x8c825ec0",
+        "objectTag": "IKD2",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_HIMT203G.MT5",
+      "position": [
+        0.8979,
+        1.85,
+        0
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1.15,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c68e2c0",
+        "hmdlAddress": "0x8c80e240",
+        "taskAddress": "0x8c80de40",
+        "objectTag": "HIM1",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_HIMT203G.MT5",
+      "position": [
+        -19.030001,
+        1.85,
+        -2.31
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1.15,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c68e2c0",
+        "hmdlAddress": "0x8c828880",
+        "taskAddress": "0x8c828480",
+        "objectTag": "HIM4",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_HIMT203G.MT5",
+      "position": [
+        -22.7922,
+        1.85,
+        -2.31
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1.15,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c68e2c0",
+        "hmdlAddress": "0x8c82a340",
+        "taskAddress": "0x8c829f40",
+        "objectTag": "HIM3",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_HIMT204G.MT5",
+      "position": [
+        -15.3865,
+        1.85,
+        -2.1978
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1.15,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c68e680",
+        "hmdlAddress": "0x8c8254a0",
+        "taskAddress": "0x8c8250a0",
+        "objectTag": "HIM2",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_HNMT205G.MT5",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c699500",
+        "hmdlAddress": "0x8c837ba0",
+        "taskAddress": "0x8c8377a0",
+        "objectTag": "SO05",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_HONM401G.MT5",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c69a0e0",
+        "hmdlAddress": "0x8c836d00",
+        "taskAddress": "0x8c836900",
+        "objectTag": "BU02",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_HOUS501G.MT5",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c69ac20",
+        "hmdlAddress": "0x8c835e60",
+        "taskAddress": "0x8c835a60",
+        "objectTag": "SO01",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_KAGT211G.MT5",
+      "position": [
+        -6,
+        0.3,
+        2.6
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c69bca0",
+        "hmdlAddress": "0x8c81aa60",
+        "taskAddress": "0x8c81a660",
+        "objectTag": "bkgu",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_KAGT211G.MT5",
+      "position": [
+        -20.509001,
+        0.3,
+        -1.774
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c69bca0",
+        "hmdlAddress": "0x8c829180",
+        "taskAddress": "0x8c828d80",
+        "objectTag": "ikgu",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_KAIR101G.MT5",
+      "position": [
+        1.597,
+        1.383,
+        1.753
+      ],
+      "rotationDegrees": [
+        0,
+        180,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c69c3a0",
+        "hmdlAddress": "0x8c80cc20",
+        "taskAddress": "0x8c80c820",
+        "objectTag": "TRNE",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_KAIS500G.MT5",
+      "position": [
+        -15.67,
+        0.225,
+        2.2
+      ],
+      "rotationDegrees": [
+        -90,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c69c720",
+        "hmdlAddress": "0x8c832920",
+        "taskAddress": "0x8c832520",
+        "objectTag": "ekai",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_KAKS503G.MT5",
+      "position": [
+        -1.7726,
+        1.18,
+        0.8859
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c69db40",
+        "hmdlAddress": "0x8c80c360",
+        "taskAddress": "0x8c80bf60",
+        "objectTag": "IWKJ",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_KAKS504G.MT5",
+      "position": [
+        -1.8505,
+        1.18,
+        1.1969
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c69ede0",
+        "hmdlAddress": "0x8c816a20",
+        "taskAddress": "0x8c816620",
+        "objectTag": "BMKJ",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_KAKS508G.MT5",
+      "position": [
+        -1.8643,
+        1.18,
+        0.5
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6a0080",
+        "hmdlAddress": "0x8c816e80",
+        "taskAddress": "0x8c816a80",
+        "objectTag": "KIKJ",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_KGTS500G.MT5",
+      "position": [
+        2.088,
+        0.27,
+        -0.4905
+      ],
+      "rotationDegrees": [
+        0,
+        180,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6a1340",
+        "hmdlAddress": "0x8c80d980",
+        "taskAddress": "0x8c80d580",
+        "objectTag": "KAGI",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_KHKO105G.MT5",
+      "position": [
+        2.088,
+        0.27,
+        -0.4905
+      ],
+      "rotationDegrees": [
+        0,
+        180,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6a1fc0",
+        "hmdlAddress": "0x8c80fdc0",
+        "taskAddress": "0x8c80f9c0",
+        "objectTag": "ihko",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_LGWS201G.MT5",
+      "position": [
+        -19.030001,
+        2.12,
+        -2.31
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6a2c60",
+        "hmdlAddress": "0x8c828d20",
+        "taskAddress": "0x8c828920",
+        "objectTag": "iden",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_LGWS201G.MT5",
+      "position": [
+        -22.7922,
+        2.12,
+        -2.31
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6a2c60",
+        "hmdlAddress": "0x8c82a7e0",
+        "taskAddress": "0x8c82a3e0",
+        "objectTag": "fden",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_LGWS202G.MT5",
+      "position": [
+        -15.3865,
+        2.2135,
+        -2.1978
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6a55e0",
+        "hmdlAddress": "0x8c825040",
+        "taskAddress": "0x8c824c40",
+        "objectTag": "lden",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_LGWS203G.MT5",
+      "position": [
+        -18.1315,
+        2.652,
+        4.073
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6a8260",
+        "hmdlAddress": "0x8c814b80",
+        "taskAddress": "0x8c814780",
+        "objectTag": "rden",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_LGWS203G.MT5",
+      "position": [
+        -4.5165,
+        2.652,
+        0.004
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6a8260",
+        "hmdlAddress": "0x8c8197e0",
+        "taskAddress": "0x8c8193e0",
+        "objectTag": "bden",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_LGWS203G.MT5",
+      "position": [
+        -10.7125,
+        2.652,
+        -2.247
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6a8260",
+        "hmdlAddress": "0x8c820060",
+        "taskAddress": "0x8c81fc60",
+        "objectTag": "kden",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_LGWS204G.MT5",
+      "position": [
+        -14.8125,
+        2.652,
+        3.887
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6a88e0",
+        "hmdlAddress": "0x8c8324c0",
+        "taskAddress": "0x8c8320c0",
+        "objectTag": "eden",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_LGWS204G.MT5",
+      "position": [
+        -18.122,
+        2.646,
+        0.9
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6a88e0",
+        "hmdlAddress": "0x8c8343a0",
+        "taskAddress": "0x8c833fa0",
+        "objectTag": "ldn1",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_LGWS204G.MT5",
+      "position": [
+        -10.772,
+        2.646,
+        0.9
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6a88e0",
+        "hmdlAddress": "0x8c834800",
+        "taskAddress": "0x8c834400",
+        "objectTag": "ldn2",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_LGWS204G.MT5",
+      "position": [
+        -2.431,
+        2.646,
+        -2.73
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6a88e0",
+        "hmdlAddress": "0x8c834c60",
+        "taskAddress": "0x8c834860",
+        "objectTag": "ldn3",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_LGWS261G.MT5",
+      "position": [
+        0.8979,
+        2.12,
+        0
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6aa200",
+        "hmdlAddress": "0x8c80f0a0",
+        "taskAddress": "0x8c80eca0",
+        "objectTag": "wden",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_LGWS263G.MT5",
+      "position": [
+        -22.786501,
+        2.652,
+        4.073
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6aecc0",
+        "hmdlAddress": "0x8c82cbe0",
+        "taskAddress": "0x8c82c7e0",
+        "objectTag": "gden",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_LGWS266G.MT5",
+      "position": [
+        -5.9,
+        2.575,
+        -4.27
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6af780",
+        "hmdlAddress": "0x8c8350c0",
+        "taskAddress": "0x8c834cc0",
+        "objectTag": "tden",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_LGWS267G.MT5",
+      "position": [
+        2.183,
+        0.748,
+        -0.439
+      ],
+      "rotationDegrees": [
+        0,
+        33.228149,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6afa60",
+        "hmdlAddress": "0x8c80f500",
+        "taskAddress": "0x8c80f100",
+        "objectTag": "wstn",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_LGWS267G.MT5",
+      "position": [
+        -16.382999,
+        1.048,
+        3.812
+      ],
+      "rotationDegrees": [
+        0,
+        51.998291,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6afa60",
+        "hmdlAddress": "0x8c814fe0",
+        "taskAddress": "0x8c814be0",
+        "objectTag": "rstn",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_LGWS267G.MT5",
+      "position": [
+        -22.514,
+        0.748,
+        -4.324
+      ],
+      "rotationDegrees": [
+        0,
+        51.998291,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6afa60",
+        "hmdlAddress": "0x8c82ac40",
+        "taskAddress": "0x8c82a840",
+        "objectTag": "fstn",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_MALS530G.MT5",
+      "position": [
+        2,
+        0.4633,
+        0.0877
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6afcc0",
+        "hmdlAddress": "0x8c80d520",
+        "taskAddress": "0x8c80d120",
+        "objectTag": "TEGA",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_MATM400G.MT5",
+      "position": [
+        -2.61,
+        0.608,
+        -1.29
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        -90
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6b00a0",
+        "hmdlAddress": "0x8c818f20",
+        "taskAddress": "0x8c818b20",
+        "objectTag": "BMMC",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_MJAS500G.MT5",
+      "position": [
+        -19.41,
+        -1.91,
+        1.9
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6b0300",
+        "hmdlAddress": "0x8c8135c0",
+        "taskAddress": "0x8c8131c0",
+        "objectTag": "KAWA",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_MKIS3C1G.MT5",
+      "position": [
+        -23.459999,
+        0.564,
+        -4.275
+      ],
+      "rotationDegrees": [
+        -90,
+        10.003052,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6b44c0",
+        "hmdlAddress": "0x8c8295e0",
+        "taskAddress": "0x8c8291e0",
+        "objectTag": "imk1",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_MLKS301G.MT5",
+      "position": [
+        -12.925,
+        0.86,
+        -2.21
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6b4860",
+        "hmdlAddress": "0x8c8204c0",
+        "taskAddress": "0x8c8200c0",
+        "objectTag": "kmil",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_MTPK6MTG.MT5",
+      "position": [
+        -16.540001,
+        0.758,
+        3.947
+      ],
+      "rotationDegrees": [
+        90,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6b6260",
+        "hmdlAddress": "0x8c816160",
+        "taskAddress": "0x8c815d60",
+        "objectTag": "ptpm",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_MTPK6SMG.MT5",
+      "position": [
+        -16.67,
+        0.275,
+        3.77
+      ],
+      "rotationDegrees": [
+        90,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c6b64c0",
+        "hmdlAddress": "0x8c8165c0",
+        "taskAddress": "0x8c8161c0",
+        "objectTag": "ptpf",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_NIPK302G.MT5",
+      "position": [
+        -11.49,
+        1.01,
+        -5.28
+      ],
+      "rotationDegrees": [
+        -22.5,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c78e1a0",
+        "hmdlAddress": "0x8c820920",
+        "taskAddress": "0x8c820520",
+        "objectTag": "knib",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_OHDK3I0G.MT5",
+      "position": [
+        -1.38,
+        0,
+        -0.899
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c78eec0",
+        "hmdlAddress": "0x8c80f960",
+        "taskAddress": "0x8c80f560",
+        "objectTag": "iosh",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_OHDM4K0G.MT5",
+      "position": [
+        -20.441999,
+        0,
+        5.36
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c793360",
+        "hmdlAddress": "0x8c82d040",
+        "taskAddress": "0x8c82cc40",
+        "objectTag": "gosh",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_OHDM4R0G.MT5",
+      "position": [
+        -20.299999,
+        0,
+        2.75
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c797780",
+        "hmdlAddress": "0x8c815440",
+        "taskAddress": "0x8c815040",
+        "objectTag": "rosh",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_PTBS5L1G.MT5",
+      "position": [
+        -16.674,
+        0.5678,
+        3.7506
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c79e7e0",
+        "hmdlAddress": "0x8c815d00",
+        "taskAddress": "0x8c815900",
+        "objectTag": "pwkm",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_REIO101G.MT5",
+      "position": [
+        -12.8103,
+        1.5469,
+        -1.7966
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c79f160",
+        "hmdlAddress": "0x8c81de00",
+        "taskAddress": "0x8c81da00",
+        "objectTag": "DDR1",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_REIO102G.MT5",
+      "position": [
+        -12.8103,
+        0.6164,
+        -1.7966
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c79f7e0",
+        "hmdlAddress": "0x8c81e2a0",
+        "taskAddress": "0x8c81dea0",
+        "objectTag": "DDR2",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_ROUM400G.MT5",
+      "position": [
+        -2.46,
+        0.5,
+        -0.795
+      ],
+      "rotationDegrees": [
+        90,
+        0,
+        180
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7a13c0",
+        "hmdlAddress": "0x8c81aec0",
+        "taskAddress": "0x8c81aac0",
+        "objectTag": "brou",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_RYSS50LG.MT5",
+      "position": [
+        -14.7317,
+        -0.2442,
+        3.2782
+      ],
+      "rotationDegrees": [
+        5.993042,
+        -7.992554,
+        0.999756
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7a1620",
+        "hmdlAddress": "0x8c830420",
+        "taskAddress": "0x8c830020",
+        "objectTag": "LKUT",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_RYSS50RG.MT5",
+      "position": [
+        -14.9429,
+        -0.2492,
+        3.2643
+      ],
+      "rotationDegrees": [
+        6.998291,
+        5.998535,
+        2.999268
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7a1dc0",
+        "hmdlAddress": "0x8c82ffc0",
+        "taskAddress": "0x8c82fbc0",
+        "objectTag": "RKUT",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_SSTS500G.MT5",
+      "position": [
+        -10.9,
+        0.75,
+        -2.45
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7a4260",
+        "hmdlAddress": "0x8c81b780",
+        "taskAddress": "0x8c81b380",
+        "objectTag": "sykj",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_SUTS503G.MT5",
+      "position": [
+        -14.0279,
+        0.1,
+        -0.646
+      ],
+      "rotationDegrees": [
+        0,
+        -136.999512,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7a8fc0",
+        "hmdlAddress": "0x8c8220c0",
+        "taskAddress": "0x8c821cc0",
+        "objectTag": "DSTN",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_SYAT200G.MT5",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7abd00",
+        "hmdlAddress": "0x8c8376c0",
+        "taskAddress": "0x8c8372c0",
+        "objectTag": "BU10",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TANM402G.MT5",
+      "position": [
+        -18.584999,
+        0.64,
+        2.42
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7ac020",
+        "hmdlAddress": "0x8c812c00",
+        "taskAddress": "0x8c812800",
+        "objectTag": "ATS7",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TANM402G.MT5",
+      "position": [
+        -20.277,
+        0.64,
+        -3.58
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7ac020",
+        "hmdlAddress": "0x8c828320",
+        "taskAddress": "0x8c827f20",
+        "objectTag": "ITS7",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TANM4W3G.MT5",
+      "position": [
+        -18.018999,
+        1.51,
+        2.44
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7acf80",
+        "hmdlAddress": "0x8c811040",
+        "taskAddress": "0x8c810c40",
+        "objectTag": "ATS1",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TANM4W3G.MT5",
+      "position": [
+        -18.018999,
+        1.22,
+        2.44
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7acf80",
+        "hmdlAddress": "0x8c8114e0",
+        "taskAddress": "0x8c8110e0",
+        "objectTag": "ATS2",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TANM4W3G.MT5",
+      "position": [
+        -18.018999,
+        0.93,
+        2.44
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7acf80",
+        "hmdlAddress": "0x8c811980",
+        "taskAddress": "0x8c811580",
+        "objectTag": "ATS3",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TANM4W3G.MT5",
+      "position": [
+        -18.018999,
+        0.64,
+        2.44
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7acf80",
+        "hmdlAddress": "0x8c811e20",
+        "taskAddress": "0x8c811a20",
+        "objectTag": "ATS4",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TANM4W3G.MT5",
+      "position": [
+        -20.257,
+        1.51,
+        -4.146
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7acf80",
+        "hmdlAddress": "0x8c826760",
+        "taskAddress": "0x8c826360",
+        "objectTag": "ITS1",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TANM4W3G.MT5",
+      "position": [
+        -20.257,
+        1.22,
+        -4.146
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7acf80",
+        "hmdlAddress": "0x8c826c00",
+        "taskAddress": "0x8c826800",
+        "objectTag": "ITS2",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TANM4W3G.MT5",
+      "position": [
+        -20.257,
+        0.93,
+        -4.146
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7acf80",
+        "hmdlAddress": "0x8c8270a0",
+        "taskAddress": "0x8c826ca0",
+        "objectTag": "ITS3",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TANM4W3G.MT5",
+      "position": [
+        -20.257,
+        0.64,
+        -4.146
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7acf80",
+        "hmdlAddress": "0x8c827540",
+        "taskAddress": "0x8c827140",
+        "objectTag": "ITS4",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TANM4W4G.MT5",
+      "position": [
+        -18.299999,
+        0.36,
+        2.44
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7ad940",
+        "hmdlAddress": "0x8c8122c0",
+        "taskAddress": "0x8c811ec0",
+        "objectTag": "ATS5",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TANM4W4G.MT5",
+      "position": [
+        -18.299999,
+        0.08,
+        2.44
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7ad940",
+        "hmdlAddress": "0x8c812760",
+        "taskAddress": "0x8c812360",
+        "objectTag": "ATS6",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TANM4W4G.MT5",
+      "position": [
+        -20.257,
+        0.36,
+        -3.865
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7ad940",
+        "hmdlAddress": "0x8c8279e0",
+        "taskAddress": "0x8c8275e0",
+        "objectTag": "ITS5",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TANM4W4G.MT5",
+      "position": [
+        -20.257,
+        0.08,
+        -3.865
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7ad940",
+        "hmdlAddress": "0x8c827e80",
+        "taskAddress": "0x8c827a80",
+        "objectTag": "ITS6",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TELS514G.MT5",
+      "position": [
+        -15.96217,
+        0.5988,
+        2.13451
+      ],
+      "rotationDegrees": [
+        -0.626221,
+        89.044189,
+        -0.582275
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7ae300",
+        "hmdlAddress": "0x8c82d980",
+        "taskAddress": "0x8c82d580",
+        "objectTag": "TEL_",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TKFT201G.MT5",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7b0260",
+        "hmdlAddress": "0x8c8371e0",
+        "taskAddress": "0x8c836de0",
+        "objectTag": "BU09",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TMKR101G.MT5",
+      "position": [
+        -15.61,
+        0.4805,
+        -2.2278
+      ],
+      "rotationDegrees": [
+        0,
+        13.996582,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7b0900",
+        "hmdlAddress": "0x8c822f20",
+        "taskAddress": "0x8c822b20",
+        "objectTag": "IMOR",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TNBR101G.MT5",
+      "position": [
+        -0.91,
+        2.2,
+        -0.91
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7b0fc0",
+        "hmdlAddress": "0x8c80e6e0",
+        "taskAddress": "0x8c80e2e0",
+        "objectTag": "itbR",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TNBR101G.MT5",
+      "position": [
+        -2.706,
+        2.2,
+        -0.9127
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7b0fc0",
+        "hmdlAddress": "0x8c81a0a0",
+        "taskAddress": "0x8c819ca0",
+        "objectTag": "btbR",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TNBR101G.MT5",
+      "position": [
+        -20.910999,
+        2.2,
+        5.365
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7b0fc0",
+        "hmdlAddress": "0x8c82be40",
+        "taskAddress": "0x8c82ba40",
+        "objectTag": "ktbR",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TNBR102G.MT5",
+      "position": [
+        -0.91,
+        2.2,
+        -0.91
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7b1580",
+        "hmdlAddress": "0x8c80ebc0",
+        "taskAddress": "0x8c80e7c0",
+        "objectTag": "itbL",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TNBR102G.MT5",
+      "position": [
+        -2.706,
+        2.2,
+        -0.9127
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7b1580",
+        "hmdlAddress": "0x8c81a580",
+        "taskAddress": "0x8c81a180",
+        "objectTag": "btbL",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TNBR102G.MT5",
+      "position": [
+        -20.944,
+        2.2,
+        5.365
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7b1580",
+        "hmdlAddress": "0x8c82b960",
+        "taskAddress": "0x8c82b560",
+        "objectTag": "ktbL",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TO1W101G.MT5",
+      "position": [
+        -9.902,
+        0,
+        -4.6664
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7b1b40",
+        "hmdlAddress": "0x8c81d340",
+        "taskAddress": "0x8c81cf40",
+        "objectTag": "DDG1",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TO2W101G.MT5",
+      "position": [
+        -11.106001,
+        0,
+        -4.6644
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7b25c0",
+        "hmdlAddress": "0x8c81d8a0",
+        "taskAddress": "0x8c81d4a0",
+        "objectTag": "DDG2",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TOBT201G.MT5",
+      "position": [
+        -15.589,
+        0.025,
+        3.62
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7b3040",
+        "hmdlAddress": "0x8c82f600",
+        "taskAddress": "0x8c82f200",
+        "objectTag": "GGB1",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TOBT202G.MT5",
+      "position": [
+        -15.57,
+        0.025,
+        3.62
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7b34c0",
+        "hmdlAddress": "0x8c82fae0",
+        "taskAddress": "0x8c82f6e0",
+        "objectTag": "GGB2",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TUBS205G.MT5",
+      "position": [
+        -2.43,
+        0.1,
+        0.899
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7b3940",
+        "hmdlAddress": "0x8c819380",
+        "taskAddress": "0x8c818f80",
+        "objectTag": "BTBO",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TUBT2051.MT5",
+      "position": [
+        -1.2505,
+        0.1123,
+        0.8626
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7b49a0",
+        "hmdlAddress": "0x8c80dde0",
+        "taskAddress": "0x8c80d9e0",
+        "objectTag": "ITBO",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TUDT202G.MT5",
+      "position": [
+        -11.92,
+        1.92,
+        -4.835
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7b5a60",
+        "hmdlAddress": "0x8c81e780",
+        "taskAddress": "0x8c81e380",
+        "objectTag": "DND1",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TUDT203G.MT5",
+      "position": [
+        -11.92,
+        1.92,
+        -4.835
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7b6060",
+        "hmdlAddress": "0x8c81ec60",
+        "taskAddress": "0x8c81e860",
+        "objectTag": "DND2",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_TVDS500G.MT5",
+      "position": [
+        -14.197,
+        0.1,
+        -0.84
+      ],
+      "rotationDegrees": [
+        0,
+        -136.999512,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7b6660",
+        "hmdlAddress": "0x8c824ae0",
+        "taskAddress": "0x8c8246e0",
+        "objectTag": "ITVH",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_WZBS5SJG.MT5",
+      "position": [
+        -5.98,
+        0.2,
+        2.6
+      ],
+      "rotationDegrees": [
+        -90,
+        0,
+        -9.992065
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7b7060",
+        "hmdlAddress": "0x8c81b320",
+        "taskAddress": "0x8c81af20",
+        "objectTag": "imk3",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_YAKM400G.MT5",
+      "position": [
+        -10.66,
+        0.9,
+        -4.76
+      ],
+      "rotationDegrees": [
+        0,
+        10.003052,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7b7400",
+        "hmdlAddress": "0x8c81f6e0",
+        "taskAddress": "0x8c81f2e0",
+        "objectTag": "DDYK",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_YUKS510G.MT5",
+      "position": [
+        0.1101,
+        2.4177,
+        1.7279
+      ],
+      "rotationDegrees": [
+        7.992554,
+        180,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7fc9a0",
+        "hmdlAddress": "0x8c80c7c0",
+        "taskAddress": "0x8c80c3c0",
+        "objectTag": "IGAK",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_YUKS511G.MT5",
+      "position": [
+        -21.030001,
+        2.125,
+        -2.28
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        6.795044
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7fcf60",
+        "hmdlAddress": "0x8c829a40",
+        "taskAddress": "0x8c829640",
+        "objectTag": "FGAK",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_YUKS512G.MT5",
+      "position": [
+        -24.587999,
+        1.8,
+        5.4
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7fd520",
+        "hmdlAddress": "0x8c82c780",
+        "taskAddress": "0x8c82c380",
+        "objectTag": "KGK2",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_YUKS513G.MT5",
+      "position": [
+        -16.157,
+        1.7,
+        3.466
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7fda60",
+        "hmdlAddress": "0x8c82e7e0",
+        "taskAddress": "0x8c82e3e0",
+        "objectTag": "TGAK",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_YUKS514G.MT5",
+      "position": [
+        -20.983999,
+        1.6,
+        3.3
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7fdfa0",
+        "hmdlAddress": "0x8c82c320",
+        "taskAddress": "0x8c82bf20",
+        "objectTag": "KGK1",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_YUKS515G.MT5",
+      "position": [
+        -8.1953,
+        1.65,
+        -2.72
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7fe4e0",
+        "hmdlAddress": "0x8c821260",
+        "taskAddress": "0x8c820e60",
+        "objectTag": "kpic",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_YUKS516G.MT5",
+      "position": [
+        -6.42,
+        1.65,
+        0.9
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7feaa0",
+        "hmdlAddress": "0x8c835980",
+        "taskAddress": "0x8c835580",
+        "objectTag": "_pc3",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_YUKS517G.MT5",
+      "position": [
+        -8.045,
+        1.65,
+        -2.61
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7fefe0",
+        "hmdlAddress": "0x8c835520",
+        "taskAddress": "0x8c835120",
+        "objectTag": "_pc1",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_YUNK300G.MT5",
+      "position": [
+        -15.709,
+        0.4521,
+        -2.5856
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c7ff520",
+        "hmdlAddress": "0x8c824680",
+        "taskAddress": "0x8c824280",
+        "objectTag": "IYNU",
+        "callbackAddress": "0x0c2de638"
+      }
+    },
+    {
+      "model": "S1_JOMO_ZALS500G.MT5",
+      "position": [
+        -10.732,
+        1.667,
+        -5.023
+      ],
+      "rotationDegrees": [
+        0,
+        180,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "modelAddress": "0x8c8001e0",
+        "hmdlAddress": "0x8c81bbe0",
+        "taskAddress": "0x8c81b7e0",
+        "objectTag": "DDZ1",
+        "callbackAddress": "0x0c2de638"
+      }
+    }
+  ]
+}

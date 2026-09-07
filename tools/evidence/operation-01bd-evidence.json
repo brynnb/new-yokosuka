@@ -1,0 +1,43 @@
+{
+  "schema": "new-yokosuka-operation-01bd-evidence-v1",
+  "status": "exact-native-consume-boundary-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 445,
+    "operationHex": "0x01bd",
+    "handlerAddress": "0x0c162cb2",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c162cb2",
+        "length": 28,
+        "sha256": "4b04b0b494d17cac9d008f1312da6afa5b980e3f5f2286ed9478fc2ba94a41ae"
+      },
+      "integerResultWriter": {
+        "address": "0x0c0bb342",
+        "length": 58,
+        "sha256": "b67f6a3a7caff1e0a4cdec5de7340a723955e0fe59760afd76854f4317353851"
+      }
+    },
+    "nativeContract": {
+      "operationTableHandler": "0x0c162cb2",
+      "globalDword": "0x0c2242c8",
+      "integerResultWriter": "0x0c0bb342"
+    },
+    "provenBehavior": "The handler ignores its authored operand pointer, writes the current signed dword at 0x0c2242c8 to the interpreter result through 0x0c0bb342, then replaces that dword with -1."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 84,
+    "areaCount": 84,
+    "twoIgnoredRuntimeOperandCallCount": 84
+  },
+  "evidenceBoundary": [
+    "The two authored runtime operands are ignored by the native handler and are intentionally not resolved.",
+    "The producer and gameplay-domain meaning of 0x0c2242c8 remain unproved.",
+    "Runtime execution fails closed until an authoritative producer initializes the dword."
+  ]
+}

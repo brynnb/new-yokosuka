@@ -1,0 +1,96 @@
+{
+  "schema": "new-yokosuka-event-camera-operation-evidence-v1",
+  "status": "exact-native-handler-subsystem-and-hato-shot-selection",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "mapinfo": ".disc-work/mapinfo/disc1/SCENE/01/D000/MAPINFO.BIN",
+    "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+    "operationTable": "tools/evidence/d000-operation-handlers.json",
+    "conversationFlow": "tools/evidence/d000-hato-conversation-flow.json",
+    "eventCameraCatalog": "tools/evidence/d000-event-camera-catalog.json",
+    "cameraDataNode": "ECAM"
+  },
+  "randomFloatOperation": {
+    "operationId": 9,
+    "operationHex": "0x0009",
+    "handlerAddress": "0x0c17320c",
+    "handlerSampleSha256": "4b1ddc7a144df6544e8cb367b81a6ec8d1d99dff929d6a10e539a5f1ce3ac29c",
+    "suboperation": 16,
+    "suboperationHex": "0x10",
+    "randomFloatAddress": "0x0c1ce210",
+    "randomIntegerAddress": "0x0c1ce1f0",
+    "generator": {
+      "kind": "linear-congruential",
+      "multiplier": "0x41c64e6d",
+      "increment": "0x00003039",
+      "resultShift": 16,
+      "resultMask": "0x00007fff",
+      "floatScale": 0.000030517578125,
+      "resultRange": "[0, 1)"
+    },
+    "behavior": "Suboperation 0x10 multiplies the shared engine generator's normalized random float by float argument one and writes the single-precision result to the room-script VM."
+  },
+  "cameraRequestOperation": {
+    "operationId": 17,
+    "operationHex": "0x0011",
+    "handlerAddress": "0x0c156a84",
+    "handlerSampleSha256": "5f0c78300b0cde531ac13bfb63fb681d0dae672b56af4a29470cdaae0066105e",
+    "arguments": [
+      {
+        "index": 0,
+        "meaning": "authored event-camera sequence number"
+      },
+      {
+        "index": 1,
+        "meaning": "optional actor reference resolved by the native actor resolver; zero remains null"
+      },
+      {
+        "index": 2,
+        "meaning": "optional actor reference resolved by the native actor resolver; zero remains null"
+      }
+    ],
+    "actorResolverAddress": "0x0c153956",
+    "requestRecord": {
+      "wordCount": 3,
+      "writeAddress": "0x0c09f4ec",
+      "modeSelectorAddress": "0x0c09f4c6",
+      "selectedMode": 6
+    },
+    "eventCameraPlayerAddress": "0x0c1118e2",
+    "eventCameraPlayerArguments": [
+      "authored event-camera sequence number",
+      "resolved optional actor reference 1",
+      "resolved optional actor reference 2"
+    ],
+    "behavior": "Builds the exact three-word event-camera request, resolves its two optional actor targets, installs it in the camera state machine, selects mode 6, and dispatches the record to the authored event-camera player."
+  },
+  "hatoConversation": {
+    "randomCallFileOffset": "0x7f88a",
+    "randomUpperBound": 3,
+    "integerConversion": "truncate non-negative random product",
+    "indexMultiplier": 2,
+    "cameraNumberBase": 2950,
+    "possibleCameraNumbers": [
+      2950,
+      2952,
+      2954
+    ],
+    "cameraRecords": "Exact spline records 2950, 2952, and 2954 in tools/evidence/d000-event-camera-catalog.json",
+    "requestCallFileOffset": "0x7f8fa",
+    "optionalActorReferences": [
+      0,
+      0
+    ],
+    "cleanupModeCallFileOffset": "0x80110",
+    "cleanupMode": 0
+  },
+  "evidenceBoundary": [
+    "Operation 0x0011's handler, actor resolution, three-word request layout, camera-state mode 6, and dispatch to 0x0c1118e2 are exact executable behavior.",
+    "The original sequence-conversion source identifies this data family as Camera/CamAll and MAPINFO identifies the corresponding authored data node as ECAM.",
+    "The Hato prelude exactly uses random-float suboperation 0x10 with upper bound 3, truncates the non-negative result, doubles it, and adds 2950, selecting authored camera number 2950, 2952, or 2954.",
+    "The exact ECAM binary layout, spline interpolation adapter, camera collision behavior, and transition back to the browser follow camera remain unresolved.",
+    "A browser adapter must not replace these authored camera numbers with guessed azimuth, pitch, distance, or actor-relative offsets."
+  ]
+}

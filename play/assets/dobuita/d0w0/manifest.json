@@ -1,0 +1,1509 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/build_d0w0_activity_pack.mjs",
+  "source": {
+    "disc": 1,
+    "path": "extracted_files/data/SCENE/01/D000/D0W0.PKS",
+    "sha256": "baf951d961b6987d6884dfe710fd31c7149f3ed5fc55dd33bc440d36d3efb5f8",
+    "archiveFormat": "PAKS/IPAC",
+    "members": [
+      {
+        "name": "CUPK300G.CHRM",
+        "byteLength": 3108,
+        "sha256": "e51f0d36a61171dedcebddae62b52ef9429859808bd5fd302b11aae1b1869c04"
+      },
+      {
+        "name": "M_01YAMA.MOTN",
+        "byteLength": 165336,
+        "sha256": "26c5c03c5386f2ac2c576538c4de224a32e16facf66db72e363a7c7c7abb6e41"
+      },
+      {
+        "name": "M_D0W0.MOTN",
+        "byteLength": 4660,
+        "sha256": "5756d7870039bb01b30301c06967a2e9c68b56eeb31ff5830d1a59700481ba57"
+      },
+      {
+        "name": "M_JHW0.MOTN",
+        "byteLength": 12320,
+        "sha256": "528415ccb65b399647d08f46fb983a3550f3ec9dbd0581e2443d4492b9a8b202"
+      },
+      {
+        "name": "SEQDATA1.AUTH",
+        "byteLength": 39820,
+        "sha256": "8a53eccca3fc3c40fab9935e6ea10c6d29aa3d5536129c69a4862ffbe4a2b6c6"
+      },
+      {
+        "name": "SEQDATA2.AUTH",
+        "byteLength": 4904,
+        "sha256": "a9393cd99ae10760c9de943cce5621baf409182f63459a3bb70d829520aedc02"
+      },
+      {
+        "name": "SEQDATA3.AUTH",
+        "byteLength": 5220,
+        "sha256": "de16a1d8039bd1c92a176c706d38ef4ceca5dbae695d96012e081f9d16d26b94"
+      },
+      {
+        "name": "SEQDATA4.AUTH",
+        "byteLength": 14184,
+        "sha256": "3714dc9e0b12f39c2864c8bca4137bae6dc20eae4b8db82a72e34f7382c95da7"
+      },
+      {
+        "name": "SEQDATA5.AUTH",
+        "byteLength": 5000,
+        "sha256": "3fae97c475fd411227f382b81dbc86a02f3f7208da9dd9db9dc9b398e4beeae3"
+      },
+      {
+        "name": "SEQDATA6.AUTH",
+        "byteLength": 5392,
+        "sha256": "4fe1bdd127d22d6f472d73cbaca32aa2a52176a826663144aa9f8354b6ccdefb"
+      },
+      {
+        "name": "SEQDATA7.AUTH",
+        "byteLength": 5528,
+        "sha256": "19fff3b2c54e34f0aee962f880c0f8da7643004c75f7a9c61fc7223257f85fdd"
+      },
+      {
+        "name": "SEQDATA8.AUTH",
+        "byteLength": 15652,
+        "sha256": "808ade83f2bc13975efee585aeee5d1f5c14e831ff921b940abe18c06a822e8c"
+      },
+      {
+        "name": "SEQDATA9.AUTH",
+        "byteLength": 3532,
+        "sha256": "57e3421025bcbec1af1ca193397bd746cdf962a16fc9940f44fc7743e3d069f9"
+      },
+      {
+        "name": "SEQDATAA.AUTH",
+        "byteLength": 18524,
+        "sha256": "e90c79d1bfac774bfcd7348af08498111ecd61b6360eafbc295761eaf875a9d7"
+      },
+      {
+        "name": "SEQDATAB.AUTH",
+        "byteLength": 3724,
+        "sha256": "4dc9bcea8e03279160471f71942096f27fde3475c7afde34d2d5a9cacae65a80"
+      },
+      {
+        "name": "SEQDATAC.AUTH",
+        "byteLength": 11084,
+        "sha256": "cacb30bf13ad287d67396b30d14cf2f769653f71505ad50ee9bce893d1dd0ad9"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "tools/evidence/d0w0-native-lifecycle.json",
+    "resourceName": "D0W0",
+    "variant": "",
+    "selectionRule": "operation-0x013e slots 4 through 15 select SEQDATA1.AUTH through SEQDATAC.AUTH"
+  },
+  "audioManifest": "public/audio/world/d0w0/manifest.json",
+  "sceneObjects": {
+    "COP_": {
+      "model": "CUPK300",
+      "browserFilename": "S1_D000_CUPK300G.MT5",
+      "assetPath": "play/assets/dobuita/d0w0/CUPK300G.CHRM",
+      "lifecycle": {
+        "kind": "auth-scoped"
+      },
+      "nativeBinding": {
+        "archiveMember": "CUPK300G.CHRM",
+        "archiveMemberSha256": "e51f0d36a61171dedcebddae62b52ef9429859808bd5fd302b11aae1b1869c04",
+        "rule": "COP_ is the only non-character AUTH tag and CUPK300G is the sole archive-local CHRM member"
+      }
+    }
+  },
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/dobuita/d0w0/M_01YAMA.MOTN",
+      "byteLength": 165336,
+      "sha256": "26c5c03c5386f2ac2c576538c4de224a32e16facf66db72e363a7c7c7abb6e41"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/dobuita/d0w0/M_01YAMA.MOTN",
+      "byteLength": 165336,
+      "sha256": "26c5c03c5386f2ac2c576538c4de224a32e16facf66db72e363a7c7c7abb6e41"
+    },
+    {
+      "path": "play/assets/dobuita/d0w0/SEQDATA1.AUTH",
+      "byteLength": 39820,
+      "sha256": "8a53eccca3fc3c40fab9935e6ea10c6d29aa3d5536129c69a4862ffbe4a2b6c6"
+    },
+    {
+      "path": "play/assets/dobuita/d0w0/SEQDATA2.AUTH",
+      "byteLength": 4904,
+      "sha256": "a9393cd99ae10760c9de943cce5621baf409182f63459a3bb70d829520aedc02"
+    },
+    {
+      "path": "play/assets/dobuita/d0w0/SEQDATA3.AUTH",
+      "byteLength": 5220,
+      "sha256": "de16a1d8039bd1c92a176c706d38ef4ceca5dbae695d96012e081f9d16d26b94"
+    },
+    {
+      "path": "play/assets/dobuita/d0w0/SEQDATA4.AUTH",
+      "byteLength": 14184,
+      "sha256": "3714dc9e0b12f39c2864c8bca4137bae6dc20eae4b8db82a72e34f7382c95da7"
+    },
+    {
+      "path": "play/assets/dobuita/d0w0/SEQDATA5.AUTH",
+      "byteLength": 5000,
+      "sha256": "3fae97c475fd411227f382b81dbc86a02f3f7208da9dd9db9dc9b398e4beeae3"
+    },
+    {
+      "path": "play/assets/dobuita/d0w0/SEQDATA6.AUTH",
+      "byteLength": 5392,
+      "sha256": "4fe1bdd127d22d6f472d73cbaca32aa2a52176a826663144aa9f8354b6ccdefb"
+    },
+    {
+      "path": "play/assets/dobuita/d0w0/SEQDATA7.AUTH",
+      "byteLength": 5528,
+      "sha256": "19fff3b2c54e34f0aee962f880c0f8da7643004c75f7a9c61fc7223257f85fdd"
+    },
+    {
+      "path": "play/assets/dobuita/d0w0/SEQDATA8.AUTH",
+      "byteLength": 15652,
+      "sha256": "808ade83f2bc13975efee585aeee5d1f5c14e831ff921b940abe18c06a822e8c"
+    },
+    {
+      "path": "play/assets/dobuita/d0w0/SEQDATA9.AUTH",
+      "byteLength": 3532,
+      "sha256": "57e3421025bcbec1af1ca193397bd746cdf962a16fc9940f44fc7743e3d069f9"
+    },
+    {
+      "path": "play/assets/dobuita/d0w0/SEQDATAA.AUTH",
+      "byteLength": 18524,
+      "sha256": "e90c79d1bfac774bfcd7348af08498111ecd61b6360eafbc295761eaf875a9d7"
+    },
+    {
+      "path": "play/assets/dobuita/d0w0/SEQDATAB.AUTH",
+      "byteLength": 3724,
+      "sha256": "4dc9bcea8e03279160471f71942096f27fde3475c7afde34d2d5a9cacae65a80"
+    },
+    {
+      "path": "play/assets/dobuita/d0w0/SEQDATAC.AUTH",
+      "byteLength": 11084,
+      "sha256": "cacb30bf13ad287d67396b30d14cf2f769653f71505ad50ee9bce893d1dd0ad9"
+    },
+    {
+      "path": "play/assets/dobuita/d0w0/CUPK300G.CHRM",
+      "byteLength": 3108,
+      "sha256": "e51f0d36a61171dedcebddae62b52ef9429859808bd5fd302b11aae1b1869c04"
+    },
+    {
+      "path": "play/assets/dobuita/d0w0/M_D0W0.MOTN",
+      "byteLength": 4660,
+      "sha256": "5756d7870039bb01b30301c06967a2e9c68b56eeb31ff5830d1a59700481ba57"
+    },
+    {
+      "path": "play/assets/dobuita/d0w0/M_JHW0.MOTN",
+      "byteLength": 12320,
+      "sha256": "528415ccb65b399647d08f46fb983a3550f3ec9dbd0581e2443d4492b9a8b202"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 4,
+      "primaryPointer": 711520,
+      "secondaryPointer": 711533,
+      "activityId": "D0W0/SEQDATA1.AUTH",
+      "archiveMember": "SEQDATA1.AUTH",
+      "byteLength": 39820,
+      "sha256": "8a53eccca3fc3c40fab9935e6ea10c6d29aa3d5536129c69a4862ffbe4a2b6c6",
+      "durationFrames": 3320,
+      "durationSeconds": 111.66667175292969,
+      "frameCount": 77,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "motion": 31,
+        "sound": 35,
+        "voice": 22
+      },
+      "actors": [
+        "COP_",
+        "AKIR",
+        "YAMA"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 1,
+          "endFrame": 240
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "JIJ_YMG_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 1,
+          "endFrame": 140
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 141,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "JIJ_YMG_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 411,
+          "endFrame": 510
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 241,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 161,
+          "endFrame": 310
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 241,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "JIJ_YMG_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 161,
+          "endFrame": 310
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 391,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 191,
+          "endFrame": 310
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 391,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "JIJ_YMG_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 331,
+          "endFrame": 450
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 511,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 311,
+          "endFrame": 539
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 511,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "JIJ_YMG_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 451,
+          "endFrame": 844
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 741,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 747,
+          "endFrame": 910
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 905,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 915,
+          "endFrame": 970
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 905,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "JIJ_YMG_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 705,
+          "endFrame": 1680
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 961,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 971,
+          "endFrame": 1345
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1336,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 1206,
+          "endFrame": 1892
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 1881,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "JIJ_YMG_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 1655,
+          "endFrame": 1823
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 2023,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 1823,
+          "endFrame": 1849
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 2100,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 1850,
+          "endFrame": 1912
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 2100,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "JIJ_YMG_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 1801,
+          "endFrame": 1851
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 2151,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "JIJ_YMG_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 1831,
+          "endFrame": 1848
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 2163,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 1823,
+          "endFrame": 1955
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 2169,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "JIJ_YMG_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 1824,
+          "endFrame": 1857
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 2296,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 1906,
+          "endFrame": 2060
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 2296,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "JIJ_YMG_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 1889,
+          "endFrame": 2043
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 2451,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 2061,
+          "endFrame": 2310
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 2451,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "JIJ_YMG_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 1921,
+          "endFrame": 2170
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 2701,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 2281,
+          "endFrame": 2600
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 2701,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "JIJ_YMG_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 2141,
+          "endFrame": 2460
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 3021,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 2601,
+          "endFrame": 2700
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 3021,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "JIJ_YMG_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 2461,
+          "endFrame": 2589
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 3091,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 2540,
+          "endFrame": 2788
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 3150,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "JIJ_YMG_AUTO1_MISERU_KASANEATE_0100",
+          "startFrame": 2560,
+          "endFrame": 2660
+        }
+      ]
+    },
+    {
+      "slot": 5,
+      "primaryPointer": 711538,
+      "secondaryPointer": 711551,
+      "activityId": "D0W0/SEQDATA2.AUTH",
+      "archiveMember": "SEQDATA2.AUTH",
+      "byteLength": 4904,
+      "sha256": "a9393cd99ae10760c9de943cce5621baf409182f63459a3bb70d829520aedc02",
+      "durationFrames": 690,
+      "durationSeconds": 40,
+      "frameCount": 21,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 9,
+        "voice": 6,
+        "sound": 10
+      },
+      "actors": [
+        "AKIR",
+        "YAMA"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "AKI_AUTO3_SETUMEI_KASANEATE_0100",
+          "startFrame": 91,
+          "endFrame": 210
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 10,
+          "motionName": "JIJ_YMG_AUTO3_SETUMEI_KASANEATE_0100",
+          "startFrame": 91,
+          "endFrame": 210
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 121,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "AKI_AUTO3_SETUMEI_KASANEATE_0100",
+          "startFrame": 181,
+          "endFrame": 320
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 121,
+          "motionBank": 16,
+          "sequenceIndex": 10,
+          "motionName": "JIJ_YMG_AUTO3_SETUMEI_KASANEATE_0100",
+          "startFrame": 181,
+          "endFrame": 320
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 261,
+          "motionBank": 16,
+          "sequenceIndex": 10,
+          "motionName": "JIJ_YMG_AUTO3_SETUMEI_KASANEATE_0100",
+          "startFrame": 221,
+          "endFrame": 300
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 291,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "AKI_AUTO3_SETUMEI_KASANEATE_0100",
+          "startFrame": 321,
+          "endFrame": 370
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 341,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "AKI_AUTO3_SETUMEI_KASANEATE_0100",
+          "startFrame": 261,
+          "endFrame": 439
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 341,
+          "motionBank": 16,
+          "sequenceIndex": 10,
+          "motionName": "JIJ_YMG_AUTO3_SETUMEI_KASANEATE_0100",
+          "startFrame": 271,
+          "endFrame": 600
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 520,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "AKI_AUTO3_SETUMEI_KASANEATE_0100",
+          "startFrame": 260,
+          "endFrame": 600
+        }
+      ]
+    },
+    {
+      "slot": 6,
+      "primaryPointer": 711556,
+      "secondaryPointer": 711569,
+      "activityId": "D0W0/SEQDATA3.AUTH",
+      "archiveMember": "SEQDATA3.AUTH",
+      "byteLength": 5220,
+      "sha256": "de16a1d8039bd1c92a176c706d38ef4ceca5dbae695d96012e081f9d16d26b94",
+      "durationFrames": 1260,
+      "durationSeconds": 45,
+      "frameCount": 26,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 10,
+        "voice": 9,
+        "sound": 11
+      },
+      "actors": [
+        "AKIR",
+        "YAMA"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "AKI_AUTO4_OSOREITTA_KASANEATE_0100",
+          "startFrame": 131,
+          "endFrame": 350
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 11,
+          "motionName": "JIJ_YMG_AUTO4_OSOREITTA_KASANEATE_0100",
+          "startFrame": 160,
+          "endFrame": 379
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 221,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "AKI_AUTO4_OSOREITTA_KASANEATE_0100",
+          "startFrame": 301,
+          "endFrame": 410
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 221,
+          "motionBank": 16,
+          "sequenceIndex": 11,
+          "motionName": "JIJ_YMG_AUTO4_OSOREITTA_KASANEATE_0100",
+          "startFrame": 241,
+          "endFrame": 460
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 331,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "AKI_AUTO4_OSOREITTA_KASANEATE_0100",
+          "startFrame": 381,
+          "endFrame": 490
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 441,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "AKI_AUTO4_OSOREITTA_KASANEATE_0100",
+          "startFrame": 491,
+          "endFrame": 1120
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 441,
+          "motionBank": 16,
+          "sequenceIndex": 11,
+          "motionName": "JIJ_YMG_AUTO4_OSOREITTA_KASANEATE_0100",
+          "startFrame": 431,
+          "endFrame": 780
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 791,
+          "motionBank": 16,
+          "sequenceIndex": 11,
+          "motionName": "JIJ_YMG_AUTO4_OSOREITTA_KASANEATE_0100",
+          "startFrame": 783,
+          "endFrame": 1062
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1071,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "AKI_AUTO4_OSOREITTA_KASANEATE_0100",
+          "startFrame": 1001,
+          "endFrame": 1316
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 1071,
+          "motionBank": 16,
+          "sequenceIndex": 11,
+          "motionName": "JIJ_YMG_AUTO4_OSOREITTA_KASANEATE_0100",
+          "startFrame": 900,
+          "endFrame": 1216
+        }
+      ]
+    },
+    {
+      "slot": 7,
+      "primaryPointer": 711574,
+      "secondaryPointer": 711587,
+      "activityId": "D0W0/SEQDATA4.AUTH",
+      "archiveMember": "SEQDATA4.AUTH",
+      "byteLength": 14184,
+      "sha256": "3714dc9e0b12f39c2864c8bca4137bae6dc20eae4b8db82a72e34f7382c95da7",
+      "durationFrames": 900,
+      "durationSeconds": 33.33333206176758,
+      "frameCount": 26,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "motion": 9,
+        "sound": 15,
+        "voice": 6
+      },
+      "actors": [
+        "COP_",
+        "AKIR",
+        "YAMA"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AUTO2_KOTOWARU_KASANEATE_0100",
+          "startFrame": 85,
+          "endFrame": 275
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 9,
+          "motionName": "JIJ_YMG_AUTO2_KOTOWARU_KASANEATE_0100",
+          "startFrame": 1,
+          "endFrame": 190
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 191,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AUTO2_KOTOWARU_KASANEATE_0100",
+          "startFrame": 191,
+          "endFrame": 350
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 191,
+          "motionBank": 16,
+          "sequenceIndex": 9,
+          "motionName": "JIJ_YMG_AUTO2_KOTOWARU_KASANEATE_0100",
+          "startFrame": 191,
+          "endFrame": 350
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 351,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AUTO2_KOTOWARU_KASANEATE_0100",
+          "startFrame": 301,
+          "endFrame": 440
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 351,
+          "motionBank": 16,
+          "sequenceIndex": 9,
+          "motionName": "JIJ_YMG_AUTO2_KOTOWARU_KASANEATE_0100",
+          "startFrame": 351,
+          "endFrame": 490
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 491,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AUTO2_KOTOWARU_KASANEATE_0100",
+          "startFrame": 461,
+          "endFrame": 750
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 491,
+          "motionBank": 16,
+          "sequenceIndex": 9,
+          "motionName": "JIJ_YMG_AUTO2_KOTOWARU_KASANEATE_0100",
+          "startFrame": 441,
+          "endFrame": 834
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 781,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AUTO2_KOTOWARU_KASANEATE_0100",
+          "startFrame": 751,
+          "endFrame": 936
+        }
+      ]
+    },
+    {
+      "slot": 8,
+      "primaryPointer": 711592,
+      "secondaryPointer": 711605,
+      "activityId": "D0W0/SEQDATA5.AUTH",
+      "archiveMember": "SEQDATA5.AUTH",
+      "byteLength": 5000,
+      "sha256": "3fae97c475fd411227f382b81dbc86a02f3f7208da9dd9db9dc9b398e4beeae3",
+      "durationFrames": 670,
+      "durationSeconds": 40,
+      "frameCount": 21,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 9,
+        "sound": 10,
+        "voice": 6
+      },
+      "actors": [
+        "AKIR",
+        "YAMA"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "AKI_AUTO3_SETUMEI_KASANEATE_0100",
+          "startFrame": 91,
+          "endFrame": 210
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 10,
+          "motionName": "JIJ_YMG_AUTO3_SETUMEI_KASANEATE_0100",
+          "startFrame": 91,
+          "endFrame": 210
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 121,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "AKI_AUTO3_SETUMEI_KASANEATE_0100",
+          "startFrame": 181,
+          "endFrame": 290
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 121,
+          "motionBank": 16,
+          "sequenceIndex": 10,
+          "motionName": "JIJ_YMG_AUTO3_SETUMEI_KASANEATE_0100",
+          "startFrame": 191,
+          "endFrame": 300
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 231,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "AKI_AUTO3_SETUMEI_KASANEATE_0100",
+          "startFrame": 241,
+          "endFrame": 330
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 231,
+          "motionBank": 16,
+          "sequenceIndex": 10,
+          "motionName": "JIJ_YMG_AUTO3_SETUMEI_KASANEATE_0100",
+          "startFrame": 221,
+          "endFrame": 310
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 321,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "AKI_AUTO3_SETUMEI_KASANEATE_0100",
+          "startFrame": 261,
+          "endFrame": 439
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 321,
+          "motionBank": 16,
+          "sequenceIndex": 10,
+          "motionName": "JIJ_YMG_AUTO3_SETUMEI_KASANEATE_0100",
+          "startFrame": 241,
+          "endFrame": 600
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 500,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "AKI_AUTO3_SETUMEI_KASANEATE_0100",
+          "startFrame": 260,
+          "endFrame": 600
+        }
+      ]
+    },
+    {
+      "slot": 9,
+      "primaryPointer": 711610,
+      "secondaryPointer": 711623,
+      "activityId": "D0W0/SEQDATA6.AUTH",
+      "archiveMember": "SEQDATA6.AUTH",
+      "byteLength": 5392,
+      "sha256": "4fe1bdd127d22d6f472d73cbaca32aa2a52176a826663144aa9f8354b6ccdefb",
+      "durationFrames": 980,
+      "durationSeconds": 45.66666793823242,
+      "frameCount": 28,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 7,
+        "voice": 8,
+        "sound": 17
+      },
+      "actors": [
+        "AKIR",
+        "YAMA"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "AKI_AUTO5_JOUDEKI_KASANEATE_0100",
+          "startFrame": 111,
+          "endFrame": 370
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 12,
+          "motionName": "JIJ_YMG_AUTO5_JOUDEKI_KASANEATE_0100",
+          "startFrame": 101,
+          "endFrame": 245
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 146,
+          "motionBank": 16,
+          "sequenceIndex": 12,
+          "motionName": "JIJ_YMG_AUTO5_JOUDEKI_KASANEATE_0100",
+          "startFrame": 216,
+          "endFrame": 360
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 291,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "AKI_AUTO5_JOUDEKI_KASANEATE_0100",
+          "startFrame": 361,
+          "endFrame": 820
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 291,
+          "motionBank": 16,
+          "sequenceIndex": 12,
+          "motionName": "JIJ_YMG_AUTO5_JOUDEKI_KASANEATE_0100",
+          "startFrame": 361,
+          "endFrame": 820
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 751,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "AKI_AUTO5_JOUDEKI_KASANEATE_0100",
+          "startFrame": 751,
+          "endFrame": 903
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 751,
+          "motionBank": 16,
+          "sequenceIndex": 12,
+          "motionName": "JIJ_YMG_AUTO5_JOUDEKI_KASANEATE_0100",
+          "startFrame": 712,
+          "endFrame": 941
+        }
+      ]
+    },
+    {
+      "slot": 10,
+      "primaryPointer": 711628,
+      "secondaryPointer": 711641,
+      "activityId": "D0W0/SEQDATA7.AUTH",
+      "archiveMember": "SEQDATA7.AUTH",
+      "byteLength": 5528,
+      "sha256": "19fff3b2c54e34f0aee962f880c0f8da7643004c75f7a9c61fc7223257f85fdd",
+      "durationFrames": 920,
+      "durationSeconds": 45,
+      "frameCount": 35,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 6,
+        "sound": 25,
+        "voice": 7
+      },
+      "actors": [
+        "AKIR",
+        "YAMA"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "AKI_AUTO5_JOUDEKI_KASANEATE_0100",
+          "startFrame": 111,
+          "endFrame": 340
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 12,
+          "motionName": "JIJ_YMG_AUTO5_JOUDEKI_KASANEATE_0100",
+          "startFrame": 141,
+          "endFrame": 370
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 231,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "AKI_AUTO5_JOUDEKI_KASANEATE_0100",
+          "startFrame": 341,
+          "endFrame": 830
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 231,
+          "motionBank": 16,
+          "sequenceIndex": 12,
+          "motionName": "JIJ_YMG_AUTO5_JOUDEKI_KASANEATE_0100",
+          "startFrame": 341,
+          "endFrame": 830
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 721,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "AKI_AUTO5_JOUDEKI_KASANEATE_0100",
+          "startFrame": 751,
+          "endFrame": 903
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 721,
+          "motionBank": 16,
+          "sequenceIndex": 12,
+          "motionName": "JIJ_YMG_AUTO5_JOUDEKI_KASANEATE_0100",
+          "startFrame": 693,
+          "endFrame": 892
+        }
+      ]
+    },
+    {
+      "slot": 11,
+      "primaryPointer": 711646,
+      "secondaryPointer": 711659,
+      "activityId": "D0W0/SEQDATA8.AUTH",
+      "archiveMember": "SEQDATA8.AUTH",
+      "byteLength": 15652,
+      "sha256": "808ade83f2bc13975efee585aeee5d1f5c14e831ff921b940abe18c06a822e8c",
+      "durationFrames": 1057,
+      "durationSeconds": 35.25,
+      "frameCount": 42,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "motion": 8,
+        "sound": 27,
+        "voice": 9
+      },
+      "actors": [
+        "COP_",
+        "AKIR",
+        "YAMA"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "AKI_AUTO7_ZANNEN_KASANEATE_0100",
+          "startFrame": 101,
+          "endFrame": 260
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 15,
+          "motionName": "JIJ_YMG_AUTO7_ZANNEN_KASANEATE_0100",
+          "startFrame": 231,
+          "endFrame": 330
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 100,
+          "motionBank": 16,
+          "sequenceIndex": 15,
+          "motionName": "JIJ_YMG_AUTO7_ZANNEN_KASANEATE_0100",
+          "startFrame": 91,
+          "endFrame": 391
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 161,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "AKI_AUTO7_ZANNEN_KASANEATE_0100",
+          "startFrame": 251,
+          "endFrame": 490
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 401,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "AKI_AUTO7_ZANNEN_KASANEATE_0100",
+          "startFrame": 451,
+          "endFrame": 880
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 401,
+          "motionBank": 16,
+          "sequenceIndex": 15,
+          "motionName": "JIJ_YMG_AUTO7_ZANNEN_KASANEATE_0100",
+          "startFrame": 352,
+          "endFrame": 820
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 791,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "AKI_AUTO7_ZANNEN_KASANEATE_0100",
+          "startFrame": 821,
+          "endFrame": 1087
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 831,
+          "motionBank": 16,
+          "sequenceIndex": 15,
+          "motionName": "JIJ_YMG_AUTO7_ZANNEN_KASANEATE_0100",
+          "startFrame": 760,
+          "endFrame": 852
+        }
+      ]
+    },
+    {
+      "slot": 12,
+      "primaryPointer": 711664,
+      "secondaryPointer": 711677,
+      "activityId": "D0W0/SEQDATA9.AUTH",
+      "archiveMember": "SEQDATA9.AUTH",
+      "byteLength": 3532,
+      "sha256": "57e3421025bcbec1af1ca193397bd746cdf962a16fc9940f44fc7743e3d069f9",
+      "durationFrames": 600,
+      "durationSeconds": 40,
+      "frameCount": 13,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 2,
+        "voice": 5,
+        "sound": 7
+      },
+      "actors": [
+        "AKIR",
+        "YAMA"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "AKI_AUTO3_SETUMEI_KASANEATE_0100",
+          "startFrame": 601,
+          "endFrame": 1184
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 10,
+          "motionName": "JIJ_YMG_AUTO3_SETUMEI_KASANEATE_0100",
+          "startFrame": 601,
+          "endFrame": 1113
+        }
+      ]
+    },
+    {
+      "slot": 13,
+      "primaryPointer": 711682,
+      "secondaryPointer": 711695,
+      "activityId": "D0W0/SEQDATAA.AUTH",
+      "archiveMember": "SEQDATAA.AUTH",
+      "byteLength": 18524,
+      "sha256": "e90c79d1bfac774bfcd7348af08498111ecd61b6360eafbc295761eaf875a9d7",
+      "durationFrames": 1040,
+      "durationSeconds": 34.68333435058594,
+      "frameCount": 37,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "motion": 8,
+        "voice": 9,
+        "sound": 24
+      },
+      "actors": [
+        "COP_",
+        "AKIR",
+        "YAMA"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 5,
+          "motionName": "AKI_AUTO6AB_DAIJOUBU_KASANEATE_0100",
+          "startFrame": 91,
+          "endFrame": 370
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 60,
+          "motionBank": 16,
+          "sequenceIndex": 13,
+          "motionName": "JIJ_YMG_AUTO6AB_DAIJOUBU_KASANEATE_0100",
+          "startFrame": 131,
+          "endFrame": 351
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 281,
+          "motionBank": 16,
+          "sequenceIndex": 5,
+          "motionName": "AKI_AUTO6AB_DAIJOUBU_KASANEATE_0100",
+          "startFrame": 351,
+          "endFrame": 440
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 281,
+          "motionBank": 16,
+          "sequenceIndex": 13,
+          "motionName": "JIJ_YMG_AUTO6AB_DAIJOUBU_KASANEATE_0100",
+          "startFrame": 332,
+          "endFrame": 420
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 371,
+          "motionBank": 16,
+          "sequenceIndex": 5,
+          "motionName": "AKI_AUTO6AB_DAIJOUBU_KASANEATE_0100",
+          "startFrame": 391,
+          "endFrame": 740
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 371,
+          "motionBank": 16,
+          "sequenceIndex": 13,
+          "motionName": "JIJ_YMG_AUTO6AB_DAIJOUBU_KASANEATE_0100",
+          "startFrame": 321,
+          "endFrame": 670
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 721,
+          "motionBank": 16,
+          "sequenceIndex": 5,
+          "motionName": "AKI_AUTO6AB_DAIJOUBU_KASANEATE_0100",
+          "startFrame": 741,
+          "endFrame": 922
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 721,
+          "motionBank": 16,
+          "sequenceIndex": 13,
+          "motionName": "JIJ_YMG_AUTO6AB_DAIJOUBU_KASANEATE_0100",
+          "startFrame": 641,
+          "endFrame": 764
+        }
+      ]
+    },
+    {
+      "slot": 14,
+      "primaryPointer": 711700,
+      "secondaryPointer": 711713,
+      "activityId": "D0W0/SEQDATAB.AUTH",
+      "archiveMember": "SEQDATAB.AUTH",
+      "byteLength": 3724,
+      "sha256": "4dc9bcea8e03279160471f71942096f27fde3475c7afde34d2d5a9cacae65a80",
+      "durationFrames": 600,
+      "durationSeconds": 40,
+      "frameCount": 13,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 2,
+        "voice": 5,
+        "sound": 7
+      },
+      "actors": [
+        "AKIR",
+        "YAMA"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "AKI_AUTO3_SETUMEI_KASANEATE_0100",
+          "startFrame": 601,
+          "endFrame": 1184
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 10,
+          "motionName": "JIJ_YMG_AUTO3_SETUMEI_KASANEATE_0100",
+          "startFrame": 601,
+          "endFrame": 1113
+        }
+      ]
+    },
+    {
+      "slot": 15,
+      "primaryPointer": 711718,
+      "secondaryPointer": 711731,
+      "activityId": "D0W0/SEQDATAC.AUTH",
+      "archiveMember": "SEQDATAC.AUTH",
+      "byteLength": 11084,
+      "sha256": "cacb30bf13ad287d67396b30d14cf2f769653f71505ad50ee9bce893d1dd0ad9",
+      "durationFrames": 1234,
+      "durationSeconds": 44.33333206176758,
+      "frameCount": 17,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "motion": 10,
+        "voice": 11
+      },
+      "actors": [
+        "COP_",
+        "AKIR",
+        "YAMA"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "AKI_AUTO6C_MADAWAKAI_KASANEATE_0100",
+          "startFrame": 101,
+          "endFrame": 220
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 10,
+          "motionBank": 16,
+          "sequenceIndex": 14,
+          "motionName": "JIJ_YMG_AUTO6C_MADAWAKAI_KASANEATE_0100",
+          "startFrame": 90,
+          "endFrame": 200
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 121,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "AKI_AUTO6C_MADAWAKAI_KASANEATE_0100",
+          "startFrame": 221,
+          "endFrame": 320
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 121,
+          "motionBank": 16,
+          "sequenceIndex": 14,
+          "motionName": "JIJ_YMG_AUTO6C_MADAWAKAI_KASANEATE_0100",
+          "startFrame": 201,
+          "endFrame": 330
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 251,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "AKI_AUTO6C_MADAWAKAI_KASANEATE_0100",
+          "startFrame": 221,
+          "endFrame": 390
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 251,
+          "motionBank": 16,
+          "sequenceIndex": 14,
+          "motionName": "JIJ_YMG_AUTO6C_MADAWAKAI_KASANEATE_0100",
+          "startFrame": 220,
+          "endFrame": 389
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 421,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "AKI_AUTO6C_MADAWAKAI_KASANEATE_0100",
+          "startFrame": 391,
+          "endFrame": 920
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 421,
+          "motionBank": 16,
+          "sequenceIndex": 14,
+          "motionName": "JIJ_YMG_AUTO6C_MADAWAKAI_KASANEATE_0100",
+          "startFrame": 301,
+          "endFrame": 830
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 951,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "AKI_AUTO6C_MADAWAKAI_KASANEATE_0100",
+          "startFrame": 931,
+          "endFrame": 1163
+        },
+        {
+          "actorTag": "YAMA",
+          "frame": 951,
+          "motionBank": 16,
+          "sequenceIndex": 14,
+          "motionName": "JIJ_YMG_AUTO6C_MADAWAKAI_KASANEATE_0100",
+          "startFrame": 830,
+          "endFrame": 939
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schema": "new-yokosuka-fixed-global-float4-operation-evidence-v1",
+  "status": "exact-native-route-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "controlFlow": ".disc-work/dialogue/scripted-event-control-flow-index.json"
+  },
+  "operation": {
+    "operationId": 267,
+    "operationHex": "0x010b",
+    "handlerAddress": "0x0c1600c4",
+    "copyHelperAddress": "0x0c1444de",
+    "destinationAddress": "0x0c220330",
+    "wordCount": 4,
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c1600c4",
+        "length": 14,
+        "sha256": "e1909cf6b1fa0e521787836a89f81c5f560533264512a167da1c135f4d19528f"
+      },
+      "copyHelper": {
+        "address": "0x0c1444de",
+        "length": 26,
+        "sha256": "78c509f37581c6f8322fd4f5124f42309874ce222912a5cc431c6ae249c257fb"
+      }
+    },
+    "behavior": "Dereference argument zero and copy four float32 words unchanged and in order to 0x0c220330 through 0x0c22033c."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 58,
+    "operandKindCounts": {
+      "frame-address": 3,
+      "static-pointer": 55
+    },
+    "areaCount": 18,
+    "staticPayloadManifestSha256": "ebb55e5f976a59767571f93c36b1a8038fc15c60fa0674f9732811779739e1fe"
+  },
+  "evidenceBoundary": [
+    "Only the exact one-argument static-pointer and frame-address shapes receive this semantic.",
+    "The four words are retained bit-exactly; no color, lighting, or other gameplay label is inferred."
+  ]
+}

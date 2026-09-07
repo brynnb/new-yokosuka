@@ -1,0 +1,101 @@
+{
+  "schema": "new-yokosuka-scheduled-actor-controller-transform-v1",
+  "nativeRoutine": {
+    "attachmentMatrixHandler": "0x0c11d6fa",
+    "mode": 10,
+    "controllerPointer": "actor +0x6c",
+    "translation": "controller +0x150",
+    "rotationX": "controller +0x18c",
+    "rotationY": "controller +0x190",
+    "rotationZ": "controller +0x194",
+    "compositionOrder": [
+      "identity",
+      "translation",
+      "rotationY",
+      "rotationX",
+      "rotationZ",
+      "finalize"
+    ]
+  },
+  "summary": {
+    "observationCount": 2,
+    "allFacingValuesMatch": true,
+    "maximumCurrentPositionDelta": 0.041046000767572755,
+    "minimumActionToCurrentDistance": 12.26963659209473
+  },
+  "observations": [
+    {
+      "actorCode": "TKNB",
+      "capture": "captures/analysis/dobuita-tknb-native-controller.json",
+      "ramSha256": "dcc1f52f10eba12fb55a46ef868694e13976b3541e95248e74843b303c7d34fb",
+      "actorAddress": "0x8c393830",
+      "controllerAddress": "0x8ca0d5bc",
+      "actorCurrentPositionAt0x24": [
+        -65.66068267822266,
+        0.0,
+        66.23844146728516
+      ],
+      "controllerPositionAt0x150": [
+        -65.66179656982422,
+        0.0,
+        66.27947235107422
+      ],
+      "positionDelta": [
+        -0.0011138916015625,
+        0.0,
+        0.0410308837890625
+      ],
+      "positionDeltaLength": 0.041046000767572755,
+      "actorFacingAt0x50": -283,
+      "controllerEulerAt0x18c": [
+        0,
+        -283,
+        0
+      ],
+      "facingMatchesControllerY": true,
+      "actorActionPositionAt0x1ac": [
+        -69.43291473388672,
+        0.0,
+        77.91381072998047
+      ],
+      "actionToCurrentDistance": 12.26963659209473
+    },
+    {
+      "actorCode": "KNJI",
+      "capture": "captures/analysis/dobuita-kenji-native-controllers.json",
+      "ramSha256": "93908dfa27ad49dbe87074dfe129ad5c8927d55ef5fbcead7deb81758952a610",
+      "actorAddress": "0x8c38ba40",
+      "controllerAddress": "0x8ca155bc",
+      "actorCurrentPositionAt0x24": [
+        -68.92700958251953,
+        0.0,
+        71.08488464355469
+      ],
+      "controllerPositionAt0x150": [
+        -68.92439270019531,
+        0.0,
+        71.05432891845703
+      ],
+      "positionDelta": [
+        0.00261688232421875,
+        0.0,
+        -0.03055572509765625
+      ],
+      "positionDeltaLength": 0.030667579124253493,
+      "actorFacingAt0x50": 31877,
+      "controllerEulerAt0x18c": [
+        0,
+        31877,
+        0
+      ],
+      "facingMatchesControllerY": true,
+      "actorActionPositionAt0x1ac": [
+        -55.74348068237305,
+        0.0,
+        46.93893051147461
+      ],
+      "actionToCurrentDistance": 27.510589510396038
+    }
+  ],
+  "evidenceBoundary": "The native routine and offsets come from relocation-aware SH-4 disassembly. Two independent Dobuita RAM captures show the controller transform follows current actor position/facing while actor +0x1ac is a distinct action position. Browser mode 10 may therefore use the current scheduled-actor root; it is not aliased to mode 11."
+}

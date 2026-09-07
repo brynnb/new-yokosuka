@@ -1,0 +1,316 @@
+{
+  "schema": "new-yokosuka-jomo-telephone-audio-v1",
+  "status": "exact-native-cadence-and-literal-phone-event",
+  "source": {
+    "mapinfo": "Disc 1 SCENE/01/JOMO/MAPINFO.BIN",
+    "mapinfoSha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
+    "sharedBank": "SOUND/SYSTEM1.SND",
+    "sharedBankSha256": "d25eb40cdfc129a09f380922752891bd47e6e1714a0ddb4556fea6875dad2f59",
+    "locationBank": "SCENE/01/SOUND/F1OMOYAA.SND",
+    "locationBankSha256": "41cdccd04ef8f4835a946f3f1ada404d4f1607adbae6c4bf8da5b825d23c9abb",
+    "objectDispatchEvidence": "tools/evidence/jomo-shared-object-dispatch.json",
+    "objectDispatchEvidenceSha256": "07f5c3d381af39cd67073d2aba9eee7c788aef9ab32bad964ce2c201cb93c023"
+  },
+  "cadenceRoutine": {
+    "functionFileOffset": "0x1d524",
+    "functionEndFileOffsetExclusive": "0x1d77a",
+    "verifiedRangeSha256": "3b92341a0985b691aa8cc6e8d7ad3b850ab7f7ad86ad89f0f1ec73e376f374fe",
+    "directCallers": [
+      {
+        "sourceFunctionFileOffset": "0x1e104",
+        "callFileOffset": "0x1f0cc"
+      },
+      {
+        "sourceFunctionFileOffset": "0x1e104",
+        "callFileOffset": "0x1f446"
+      }
+    ],
+    "start": {
+      "nativeOperation": {
+        "callFileOffset": "0x1d552",
+        "operationId": 108,
+        "operationHex": "0x006c",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 263595,
+            "hex": "0x000405ab",
+            "source": "0x1d544"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x1d542"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x1d540"
+          }
+        ]
+      },
+      "commandHex": "ab050400",
+      "bankScope": "shared-system1"
+    },
+    "audibilityWait": {
+      "nativeOperation": {
+        "callFileOffset": "0x1d56c",
+        "operationId": 49,
+        "operationHex": "0x0031",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x1d562"
+          }
+        ]
+      },
+      "completionValue": "0x00000200",
+      "counterInitialValue": 0,
+      "counterIncrement": 1,
+      "schedulerYieldWhileCounterAtMost": 45,
+      "schedulerYieldsPerPass": 1
+    },
+    "stop": {
+      "nativeOperation": {
+        "callFileOffset": "0x1d61e",
+        "operationId": 108,
+        "operationHex": "0x006c",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 329131,
+            "hex": "0x000505ab",
+            "source": "0x1d610"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x1d60e"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x1d60c"
+          }
+        ]
+      },
+      "commandHex": "ab050500",
+      "bankScope": "shared-system1",
+      "controlOnly": true
+    },
+    "silenceWait": {
+      "nativeOperation": {
+        "callFileOffset": "0x1d664",
+        "operationId": 49,
+        "operationHex": "0x0031",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x1d65a"
+          }
+        ]
+      },
+      "completionValue": "0x00000200",
+      "counterInitialValue": 0,
+      "counterIncrement": 1,
+      "schedulerYieldWhileCounterAtMost": 45,
+      "schedulerYieldsPerPass": 1
+    },
+    "repeatControl": {
+      "repeatCounterInitialValue": 0,
+      "repeatCounterIncrement": 1,
+      "repeatLimitSource": "incoming routine argument 0",
+      "constantRepeatInvocation": {
+        "callFileOffset": "0x1f446",
+        "repeatLimit": 6
+      },
+      "runtimeRepeatInvocation": {
+        "callFileOffset": "0x1f0cc",
+        "repeatLimitSource": "control-routine local byte 27"
+      }
+    },
+    "provenBehavior": "The routine starts AB05:4, waits for operation 0x0031 to report 0x0200, increments from 0 and yields while the counter is at most 45 for the authored on interval, issues the zero-volume AB05:5 mate, yields through the corresponding off interval, and repeats until its incoming repeat limit is reached. One native caller passes literal 6."
+  },
+  "owningControlRoute": {
+    "functionFileOffset": "0x1e104",
+    "functionEndFileOffsetExclusive": "0x1ff4c",
+    "verifiedRangeSha256": "9b03b53c98bdd44cc355e25a8b89ec58d9192e38215a009eb6e0838a3bb18d4b",
+    "staticInteractionGroup": 12,
+    "staticInteractionTag": "DDFP",
+    "callbackSelector": 63,
+    "callbackFunctionFileOffset": "0x1e104",
+    "voiceResourcePrefix": "E1032",
+    "semanticBoundary": "The DDFP callback owns both cadence invocations and an E1032 dialogue route. DDFP is not relabeled as the telephone object, and the cadence is not generalized to every TELM interaction."
+  },
+  "literalPhoneEvent": {
+    "functionFileOffset": "0x6dfe4",
+    "functionEndFileOffsetExclusive": "0x6e62c",
+    "verifiedRangeSha256": "f5665268e2263bea9402feed61c5d52f5d0b38e611436e75b3b31d53ec763191",
+    "guard": {
+      "operationFileOffset": "0x6e06e",
+      "localStateRequired": 30
+    },
+    "orderedOperations": [
+      {
+        "callFileOffset": "0x6e0b2",
+        "operationId": 108,
+        "operationHex": "0x006c",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 329131,
+            "hex": "0x000505ab",
+            "source": "0x6e0a4"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x6e0a2"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x6e0a0"
+          }
+        ]
+      },
+      {
+        "callFileOffset": "0x6e0ca",
+        "operationId": 108,
+        "operationHex": "0x006c",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 67243,
+            "hex": "0x000106ab",
+            "source": "0x6e0bc"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x6e0ba"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x6e0b8"
+          }
+        ]
+      },
+      {
+        "callFileOffset": "0x6e1b0",
+        "operationId": 241,
+        "operationHex": "0x00f1",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 11,
+            "hex": "0x0000000b",
+            "source": "0x6e1a2"
+          },
+          {
+            "kind": "constant",
+            "value": 1598834004,
+            "hex": "0x5f4c4554",
+            "ascii": "TEL_",
+            "source": "0x6e1a0"
+          },
+          {
+            "kind": "runtime",
+            "source": "add at 0x6e19e"
+          }
+        ]
+      },
+      {
+        "callFileOffset": "0x6e1ca",
+        "operationId": 241,
+        "operationHex": "0x00f1",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 12,
+            "hex": "0x0000000c",
+            "source": "0x6e1bc"
+          },
+          {
+            "kind": "constant",
+            "value": 1598834004,
+            "hex": "0x5f4c4554",
+            "ascii": "TEL_",
+            "source": "0x6e1ba"
+          },
+          {
+            "kind": "runtime",
+            "source": "add at 0x6e1b8"
+          }
+        ]
+      },
+      {
+        "callFileOffset": "0x6e1e6",
+        "operationId": 241,
+        "operationHex": "0x00f1",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x6e1d6"
+          },
+          {
+            "kind": "constant",
+            "value": 1598834004,
+            "hex": "0x5f4c4554",
+            "ascii": "TEL_",
+            "source": "0x6e1d4"
+          },
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x6e1d2"
+          },
+          {
+            "kind": "constant",
+            "value": 3,
+            "hex": "0x00000003",
+            "source": "0x6e1d0"
+          }
+        ]
+      }
+    ],
+    "sharedStopCommandHex": "ab050500",
+    "locationCue": {
+      "commandHex": "ab060100",
+      "bankScope": "map-named-location",
+      "bank": "F1OMOYAA.SND"
+    },
+    "targetTag": "TEL_",
+    "linkedActorTag": "AKIR",
+    "provenBehavior": "Under local state 30 this independent generated function stops AB05:4 through its AB05:5 mate, dispatches JOMO-local AB06:1, then supplies two authored vectors and an AKIR link to literal object TEL_."
+  },
+  "runtimePolicy": {
+    "sharedAudibleAsset": "public/audio/world/system1/ab050400.webm",
+    "sharedStopHasNoAsset": true,
+    "implemented": false,
+    "reason": "The authentic cadence and the literal telephone event are proven, but the browser does not yet implement the owning E1032 incoming-call state. Playing this on ordinary TEL0 or TEL_ inspection would invent a trigger absent from the native route."
+  },
+  "evidenceBoundary": [
+    "AB05:4 and AB05:5 are an exact native start/stop pair in a timed repeating coroutine.",
+    "A separate literal TEL_ route stops that pair and immediately dispatches JOMO-local AB06:1 before configuring TEL_ and AKIR.",
+    "The exact low-level route supports a telephone cadence classification, but does not assign the other AB05 or AB06 controller tracks to telephone phases.",
+    "No browser playback hook is added until the E1032 incoming-call trigger/state is implemented."
+  ]
+}

@@ -1,0 +1,887 @@
+{
+  "schema": "new-yokosuka-native-activity-preview-routes-v1",
+  "routes": [
+    {
+      "cutsceneId": "S1-HOUO-01",
+      "programId": "preview-s1-houo-01",
+      "packageId": "houo",
+      "worldId": "exterior",
+      "area": "JHD0",
+      "manifest": "play/assets/hazuki/houo/manifest.json",
+      "activity": {
+        "slot": 9,
+        "binding": {
+          "primaryPointer": 394211,
+          "secondaryPointer": 394224
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-TOKI-01",
+      "programId": "preview-s1-toki-01",
+      "packageId": "toki",
+      "worldId": "drsa",
+      "area": "TOKI",
+      "manifest": "play/assets/dobuita/toki/manifest.json",
+      "activity": {
+        "slot": 0,
+        "binding": {
+          "primaryPointer": 13559,
+          "secondaryPointer": 13572
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-OP02-00",
+      "programId": "preview-s1-op02-00",
+      "packageId": "op02-opening",
+      "worldId": "op02",
+      "area": "OP02",
+      "manifest": "play/assets/introduction/op02/manifest.json",
+      "activities": [
+        { "slot": 0 },
+        { "slot": 1 },
+        { "slot": 2 },
+        { "slot": 3 },
+        { "slot": 6 },
+        { "slot": 4 },
+        { "slot": 5 }
+      ]
+    },
+    {
+      "cutsceneId": "S1-000",
+      "programId": "preview-s1-000",
+      "packageId": "op00-opening",
+      "worldId": "op00",
+      "area": "OP00",
+      "manifest": "play/assets/introduction/op00/manifest.json",
+      "activities": [
+        { "slot": 0 },
+        { "slot": 1 },
+        { "slot": 2 },
+        { "slot": 3 },
+        { "slot": 4 },
+        { "slot": 5 },
+        { "slot": 6 },
+        { "slot": 7 },
+        { "slot": 8 },
+        { "slot": 9 },
+        { "slot": 10 },
+        { "slot": 11 },
+        { "slot": 12 },
+        { "slot": 13 },
+        { "slot": 14 },
+        { "slot": 15 },
+        { "slot": 16 },
+        { "slot": 17 },
+        { "slot": 18 },
+        { "slot": 19 },
+        { "slot": 20 },
+        { "slot": 21 },
+        { "slot": 22 },
+        { "slot": 23 }
+      ]
+    },
+    {
+      "cutsceneId": "S1-DRAUTH-01",
+      "programId": "preview-s1-drauth-01",
+      "packageId": "drauth",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/drauth/manifest.json",
+      "activity": {
+        "slot": 0,
+        "binding": {
+          "primaryPointer": 725898,
+          "secondaryPointer": 725905
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-DRAUTH-02",
+      "programId": "preview-s1-drauth-02",
+      "packageId": "drauth",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/drauth/manifest.json",
+      "activity": {
+        "slot": 1,
+        "binding": {
+          "primaryPointer": 725906,
+          "secondaryPointer": 725913
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-YQ14-01",
+      "programId": "preview-s1-yq14-01",
+      "packageId": "yq14",
+      "worldId": "yq14",
+      "area": "YQ14",
+      "manifest": "play/assets/dobuita/yq14/manifest.json",
+      "activity": {
+        "slot": 0,
+        "binding": {
+          "primaryPointer": 718875,
+          "secondaryPointer": 718888
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-YQ14-02",
+      "programId": "preview-s1-yq14-02",
+      "packageId": "yq14",
+      "worldId": "yq14",
+      "area": "YQ14",
+      "manifest": "play/assets/dobuita/yq14/manifest.json",
+      "activity": {
+        "slot": 1,
+        "binding": {
+          "primaryPointer": 718893,
+          "secondaryPointer": 718906
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-YBHN-01",
+      "programId": "preview-s1-ybhn-01",
+      "packageId": "ybhn",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/ybhn/manifest.json",
+      "activity": {
+        "slot": 27,
+        "binding": {
+          "primaryPointer": 719022,
+          "secondaryPointer": 719035
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-DJHN-01",
+      "programId": "preview-s1-djhn-01",
+      "packageId": "djhn",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/djhn/manifest.json",
+      "activity": {
+        "slot": 20,
+        "binding": {
+          "primaryPointer": 727349,
+          "secondaryPointer": 727362
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-DJHN-02",
+      "programId": "preview-s1-djhn-02",
+      "packageId": "djhn",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/djhn/manifest.json",
+      "activity": {
+        "slot": 21,
+        "binding": {
+          "primaryPointer": 727370,
+          "secondaryPointer": 727383
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-DJHN-03",
+      "programId": "preview-s1-djhn-03",
+      "packageId": "djhn",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/djhn/manifest.json",
+      "activity": {
+        "slot": 22,
+        "binding": {
+          "primaryPointer": 727391,
+          "secondaryPointer": 727404
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-DJHN-04",
+      "programId": "preview-s1-djhn-04",
+      "packageId": "djhn",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/djhn/manifest.json",
+      "activity": {
+        "slot": 23,
+        "binding": {
+          "primaryPointer": 727412,
+          "secondaryPointer": 727425
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-DJHN-05",
+      "programId": "preview-s1-djhn-05",
+      "packageId": "djhn",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/djhn/manifest.json",
+      "activity": {
+        "slot": 24,
+        "binding": {
+          "primaryPointer": 727433,
+          "secondaryPointer": 727446
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-DJHN-06",
+      "programId": "preview-s1-djhn-06",
+      "packageId": "djhn",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/djhn/manifest.json",
+      "activity": {
+        "slot": 25,
+        "binding": {
+          "primaryPointer": 727454,
+          "secondaryPointer": 727467
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-DJHN-07",
+      "programId": "preview-s1-djhn-07",
+      "packageId": "djhn",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/djhn/manifest.json",
+      "activity": {
+        "slot": 26,
+        "binding": {
+          "primaryPointer": 727475,
+          "secondaryPointer": 727488
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-D0W0-01",
+      "programId": "preview-s1-d0w0-01",
+      "packageId": "d0w0",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/d0w0/manifest.json",
+      "activity": {
+        "slot": 4,
+        "binding": {
+          "primaryPointer": 711520,
+          "secondaryPointer": 711533
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-D0W0-02",
+      "programId": "preview-s1-d0w0-02",
+      "packageId": "d0w0",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/d0w0/manifest.json",
+      "activity": {
+        "slot": 5,
+        "binding": {
+          "primaryPointer": 711538,
+          "secondaryPointer": 711551
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-D0W0-03",
+      "programId": "preview-s1-d0w0-03",
+      "packageId": "d0w0",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/d0w0/manifest.json",
+      "activity": {
+        "slot": 6,
+        "binding": {
+          "primaryPointer": 711556,
+          "secondaryPointer": 711569
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-D0W0-04",
+      "programId": "preview-s1-d0w0-04",
+      "packageId": "d0w0",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/d0w0/manifest.json",
+      "activity": {
+        "slot": 7,
+        "binding": {
+          "primaryPointer": 711574,
+          "secondaryPointer": 711587
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-D0W0-05",
+      "programId": "preview-s1-d0w0-05",
+      "packageId": "d0w0",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/d0w0/manifest.json",
+      "activity": {
+        "slot": 8,
+        "binding": {
+          "primaryPointer": 711592,
+          "secondaryPointer": 711605
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-D0W0-06",
+      "programId": "preview-s1-d0w0-06",
+      "packageId": "d0w0",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/d0w0/manifest.json",
+      "activity": {
+        "slot": 9,
+        "binding": {
+          "primaryPointer": 711610,
+          "secondaryPointer": 711623
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-D0W0-07",
+      "programId": "preview-s1-d0w0-07",
+      "packageId": "d0w0",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/d0w0/manifest.json",
+      "activity": {
+        "slot": 10,
+        "binding": {
+          "primaryPointer": 711628,
+          "secondaryPointer": 711641
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-D0W0-08",
+      "programId": "preview-s1-d0w0-08",
+      "packageId": "d0w0",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/d0w0/manifest.json",
+      "activity": {
+        "slot": 11,
+        "binding": {
+          "primaryPointer": 711646,
+          "secondaryPointer": 711659
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-D0W0-09",
+      "programId": "preview-s1-d0w0-09",
+      "packageId": "d0w0",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/d0w0/manifest.json",
+      "activity": {
+        "slot": 12,
+        "binding": {
+          "primaryPointer": 711664,
+          "secondaryPointer": 711677
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-D0W0-10",
+      "programId": "preview-s1-d0w0-10",
+      "packageId": "d0w0",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/d0w0/manifest.json",
+      "activity": {
+        "slot": 13,
+        "binding": {
+          "primaryPointer": 711682,
+          "secondaryPointer": 711695
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-D0W0-11",
+      "programId": "preview-s1-d0w0-11",
+      "packageId": "d0w0",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/d0w0/manifest.json",
+      "activity": {
+        "slot": 14,
+        "binding": {
+          "primaryPointer": 711700,
+          "secondaryPointer": 711713
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-D0W0-12",
+      "programId": "preview-s1-d0w0-12",
+      "packageId": "d0w0",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/d0w0/manifest.json",
+      "activity": {
+        "slot": 15,
+        "binding": {
+          "primaryPointer": 711718,
+          "secondaryPointer": 711731
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-DNOZ-01",
+      "programId": "preview-s1-dnoz-01",
+      "packageId": "dnoz-ski",
+      "worldId": "dnoz",
+      "area": "DNOZ",
+      "manifest": "play/assets/sakuragaoka/dnoz-ski/manifest.json",
+      "activities": [
+        { "slot": 0, "binding": { "primaryPointer": 14562, "secondaryPointer": 14575 } },
+        { "slot": 1, "binding": { "primaryPointer": 14589, "secondaryPointer": 14602 } }
+      ]
+    },
+    {
+      "cutsceneId": "S1-DNOZ-02",
+      "programId": "preview-s1-dnoz-02",
+      "packageId": "dnoz",
+      "worldId": "dnoz",
+      "area": "DNOZ",
+      "manifest": "play/assets/sakuragaoka/dnoz/manifest.json",
+      "activities": [
+        { "slot": 0, "binding": { "primaryPointer": 14653, "secondaryPointer": 14666 } },
+        { "slot": 1, "binding": { "primaryPointer": 14680, "secondaryPointer": 14693 } }
+      ]
+    },
+    {
+      "cutsceneId": "S1-CATA1-01",
+      "programId": "preview-s1-cata1-01",
+      "packageId": "cata1",
+      "worldId": "yamanose",
+      "area": "JU00",
+      "manifest": "play/assets/yamanose/cata1/manifest.json",
+      "activities": [
+        { "slot": 0, "binding": { "primaryPointer": 334785, "secondaryPointer": 334798 } },
+        { "slot": 0, "binding": { "primaryPointer": 334804, "secondaryPointer": 334817 } },
+        { "slot": 0, "binding": { "primaryPointer": 334823, "secondaryPointer": 334836 } }
+      ]
+    },
+    {
+      "cutsceneId": "S1-EVSN-01",
+      "programId": "preview-s1-evsn-01",
+      "packageId": "evsn",
+      "worldId": "sakuragaoka",
+      "area": "JD00",
+      "manifest": "play/assets/sakuragaoka/evsn/manifest.json",
+      "activities": [
+        { "slot": 0, "binding": { "primaryPointer": 529554, "secondaryPointer": 529559 } },
+        { "slot": 1, "binding": { "primaryPointer": 529570, "secondaryPointer": 529575 } },
+        { "slot": 1, "binding": { "primaryPointer": 529570, "secondaryPointer": 529575 } },
+        { "slot": 2, "binding": { "primaryPointer": 529602, "secondaryPointer": 529607 } }
+      ]
+    },
+    {
+      "cutsceneId": "S1-EVSN-02",
+      "programId": "preview-s1-evsn-02",
+      "packageId": "evsn",
+      "worldId": "sakuragaoka",
+      "area": "JD00",
+      "manifest": "play/assets/sakuragaoka/evsn/manifest.json",
+      "activities": [
+        { "slot": 3, "binding": { "primaryPointer": 529618, "secondaryPointer": 529623 } },
+        { "slot": 1, "binding": { "primaryPointer": 529570, "secondaryPointer": 529575 } },
+        { "slot": 1, "binding": { "primaryPointer": 529570, "secondaryPointer": 529575 } },
+        { "slot": 2, "binding": { "primaryPointer": 529602, "secondaryPointer": 529607 } }
+      ]
+    },
+    {
+      "cutsceneId": "S1-JHW0-01",
+      "programId": "preview-s1-jhw0-01",
+      "packageId": "jhw0",
+      "worldId": "exterior",
+      "area": "JHD0",
+      "manifest": "play/assets/hazuki/jhw0/manifest.json",
+      "activity": {
+        "slot": 9,
+        "binding": {
+          "primaryPointer": 390653,
+          "secondaryPointer": 390666
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-JHW0-02",
+      "programId": "preview-s1-jhw0-02",
+      "packageId": "jhw0",
+      "worldId": "exterior",
+      "area": "JHD0",
+      "manifest": "play/assets/hazuki/jhw0/manifest.json",
+      "activity": {
+        "slot": 10,
+        "binding": {
+          "primaryPointer": 390671,
+          "secondaryPointer": 390684
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-JHW0-03",
+      "programId": "preview-s1-jhw0-03",
+      "packageId": "jhw0",
+      "worldId": "exterior",
+      "area": "JHD0",
+      "manifest": "play/assets/hazuki/jhw0/manifest.json",
+      "activity": {
+        "slot": 11,
+        "binding": {
+          "primaryPointer": 390689,
+          "secondaryPointer": 390702
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-JHW0-04",
+      "programId": "preview-s1-jhw0-04",
+      "packageId": "jhw0",
+      "worldId": "exterior",
+      "area": "JHD0",
+      "manifest": "play/assets/hazuki/jhw0/manifest.json",
+      "activity": {
+        "slot": 12,
+        "binding": {
+          "primaryPointer": 390707,
+          "secondaryPointer": 390720
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-JHW0-05",
+      "programId": "preview-s1-jhw0-05",
+      "packageId": "jhw0",
+      "worldId": "exterior",
+      "area": "JHD0",
+      "manifest": "play/assets/hazuki/jhw0/manifest.json",
+      "activity": {
+        "slot": 13,
+        "binding": {
+          "primaryPointer": 390725,
+          "secondaryPointer": 390738
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-JHW0-06",
+      "programId": "preview-s1-jhw0-06",
+      "packageId": "jhw0",
+      "worldId": "exterior",
+      "area": "JHD0",
+      "manifest": "play/assets/hazuki/jhw0/manifest.json",
+      "activity": {
+        "slot": 14,
+        "binding": {
+          "primaryPointer": 390743,
+          "secondaryPointer": 390756
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-JHW0-07",
+      "programId": "preview-s1-jhw0-07",
+      "packageId": "jhw0",
+      "worldId": "exterior",
+      "area": "JHD0",
+      "manifest": "play/assets/hazuki/jhw0/manifest.json",
+      "activity": {
+        "slot": 15,
+        "binding": {
+          "primaryPointer": 390761,
+          "secondaryPointer": 390774
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-JHW0-08",
+      "programId": "preview-s1-jhw0-08",
+      "packageId": "jhw0",
+      "worldId": "exterior",
+      "area": "JHD0",
+      "manifest": "play/assets/hazuki/jhw0/manifest.json",
+      "activity": {
+        "slot": 16,
+        "binding": {
+          "primaryPointer": 390779,
+          "secondaryPointer": 390792
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-MSKA-01",
+      "programId": "preview-s1-mska-01",
+      "packageId": "mska",
+      "worldId": "exterior",
+      "area": "JHD0",
+      "manifest": "play/assets/hazuki/mska/manifest.json",
+      "activity": {
+        "slot": 0,
+        "binding": {
+          "primaryPointer": 388612,
+          "secondaryPointer": 388617
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-KAKG-01",
+      "programId": "preview-s1-kakg-01",
+      "packageId": "kakg",
+      "worldId": "exterior",
+      "area": "JHD0",
+      "manifest": "play/assets/hazuki/kakg/manifest.json",
+      "activity": {
+        "slot": 2,
+        "binding": {
+          "primaryPointer": 389479,
+          "secondaryPointer": 389484
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-KAKG-02",
+      "programId": "preview-s1-kakg-02",
+      "packageId": "kakg",
+      "worldId": "exterior",
+      "area": "JHD0",
+      "manifest": "play/assets/hazuki/kakg/manifest.json",
+      "activity": {
+        "slot": 3,
+        "binding": {
+          "primaryPointer": 389485,
+          "secondaryPointer": 389490
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-TGMA-01",
+      "programId": "preview-s1-tgma-01",
+      "packageId": "tgma",
+      "worldId": "exterior",
+      "area": "JHD0",
+      "manifest": "play/assets/hazuki/tgma/manifest.json",
+      "activity": {
+        "slot": 0,
+        "binding": {
+          "primaryPointer": 393656,
+          "secondaryPointer": 393661
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-HIHY-01",
+      "programId": "preview-s1-hihy-01",
+      "packageId": "hihy",
+      "worldId": "exterior",
+      "area": "JHD0",
+      "manifest": "play/assets/hazuki/hihy/manifest.json",
+      "activity": {
+        "slot": 0,
+        "binding": {
+          "primaryPointer": 388275,
+          "secondaryPointer": 388280
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-BUSS-01",
+      "programId": "preview-s1-buss-01",
+      "packageId": "buss",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/buss/manifest.json",
+      "activity": {
+        "slot": 16,
+        "binding": {
+          "primaryPointer": 716815,
+          "secondaryPointer": 716828
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-BEBF-01",
+      "programId": "preview-s1-bebf-01",
+      "packageId": "bebf",
+      "worldId": "interior",
+      "area": "JOMO",
+      "manifest": "play/assets/hazuki/bebf/manifest.json",
+      "activities": [
+        { "slot": 60, "binding": { "primaryPointer": 615895, "secondaryPointer": 615908 } },
+        { "slot": 61, "binding": { "primaryPointer": 615913, "secondaryPointer": 615926 } },
+        { "slot": 62, "binding": { "primaryPointer": 615931, "secondaryPointer": 615944 } },
+        { "slot": 60, "binding": { "primaryPointer": 615895, "secondaryPointer": 615908 } },
+        { "slot": 63, "binding": { "primaryPointer": 615949, "secondaryPointer": 615962 } },
+        { "slot": 62, "binding": { "primaryPointer": 615931, "secondaryPointer": 615944 } }
+      ]
+    },
+    {
+      "cutsceneId": "S1-KKYA-01",
+      "programId": "preview-s1-kkya-01",
+      "packageId": "kkya",
+      "worldId": "interior",
+      "area": "JOMO",
+      "manifest": "play/assets/hazuki/kkya/manifest.json",
+      "activity": {
+        "slot": 50,
+        "binding": {
+          "primaryPointer": 614163,
+          "secondaryPointer": 614176
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-KKYB-01",
+      "programId": "preview-s1-kkyb-01",
+      "packageId": "kkyb",
+      "worldId": "interior",
+      "area": "JOMO",
+      "manifest": "play/assets/hazuki/kkyb/manifest.json",
+      "activity": {
+        "slot": 51,
+        "binding": {
+          "primaryPointer": 614200,
+          "secondaryPointer": 614213
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-KKYC-01",
+      "programId": "preview-s1-kkyc-01",
+      "packageId": "kkyc",
+      "worldId": "interior",
+      "area": "JOMO",
+      "manifest": "play/assets/hazuki/kkyc/manifest.json",
+      "activity": {
+        "slot": 52,
+        "binding": {
+          "primaryPointer": 614237,
+          "secondaryPointer": 614250
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-KKYD-01",
+      "programId": "preview-s1-kkyd-01",
+      "packageId": "kkyd",
+      "worldId": "interior",
+      "area": "JOMO",
+      "manifest": "play/assets/hazuki/kkyd/manifest.json",
+      "activity": {
+        "slot": 53,
+        "binding": {
+          "primaryPointer": 614274,
+          "secondaryPointer": 614287
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-KKYE-01",
+      "programId": "preview-s1-kkye-01",
+      "packageId": "kkye",
+      "worldId": "interior",
+      "area": "JOMO",
+      "manifest": "play/assets/hazuki/kkye/manifest.json",
+      "activity": {
+        "slot": 54,
+        "binding": {
+          "primaryPointer": 614311,
+          "secondaryPointer": 614324
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-KKYF-01",
+      "programId": "preview-s1-kkyf-01",
+      "packageId": "kkyf",
+      "worldId": "interior",
+      "area": "JOMO",
+      "manifest": "play/assets/hazuki/kkyf/manifest.json",
+      "activity": {
+        "slot": 55,
+        "binding": {
+          "primaryPointer": 614348,
+          "secondaryPointer": 614361
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-BUSS-02",
+      "programId": "preview-s1-buss-02",
+      "packageId": "buss",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/buss/manifest.json",
+      "activity": {
+        "slot": 16,
+        "binding": {
+          "primaryPointer": 716833,
+          "secondaryPointer": 716846
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-BUSS-03",
+      "programId": "preview-s1-buss-03",
+      "packageId": "buss",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/buss/manifest.json",
+      "activity": {
+        "slot": 17,
+        "binding": {
+          "primaryPointer": 716885,
+          "secondaryPointer": 716898
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-BUSS-04",
+      "programId": "preview-s1-buss-04",
+      "packageId": "buss",
+      "worldId": "dobuita",
+      "area": "D000",
+      "manifest": "play/assets/dobuita/buss/manifest.json",
+      "activity": {
+        "slot": 17,
+        "binding": {
+          "primaryPointer": 716903,
+          "secondaryPointer": 716916
+        }
+      }
+    },
+    {
+      "cutsceneId": "S1-SAKR-01",
+      "programId": "preview-s1-sakr-01",
+      "packageId": "sakr",
+      "worldId": "yd01",
+      "area": "YD01",
+      "manifest": "play/assets/yd01/sakr/manifest.json",
+      "activity": {
+        "slot": 0,
+        "binding": {
+          "primaryPointer": 11673,
+          "secondaryPointer": 11686
+        }
+      }
+    }
+  ]
+}

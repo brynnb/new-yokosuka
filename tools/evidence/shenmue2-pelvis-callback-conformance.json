@@ -1,0 +1,240 @@
+{
+  "schema": "new-yokosuka-s2-pelvis-callback-conformance-v1",
+  "conclusion": "A naturally executed FUN_8c0e7f00 callback reads controller curves 3/4/5 at +0x170/+0x1b0/+0x1f0. Browser Hermite evaluation and radian-to-fixed-turn truncation reproduce all three native helper inputs exactly in the same callback invocation.",
+  "sources": {
+    "gdbCallbackCapture": {
+      "file": ".disc-work/shenmue2-pelvis-callback-one.json",
+      "sha256": "dad5c04228c7575b392c8041b04177357cf75fdbdd54114240535400bb0eaed6",
+      "observationType": "natural callback execution, live SH-4 registers, and RAM",
+      "emulatorExecutableSha256": "f3964514199df7dd194387b79fdd4ea2a03daa963d9d1f01ea5563f536a42958",
+      "discImageSha256": "783347aba032a3ed23c10d845982fe91845ce0541e3b6dcdb629a2293baccf44",
+      "saveStateSha256": "325c3d92b855d378737d772bb029b0925f8d19917dfd191caffa2e611fdc2e36",
+      "displayedSaveSlot": 2
+    },
+    "interpreterEntryTrace": {
+      "file": ".disc-work/shenmue2-pelvis-axis-callback.csv",
+      "sha256": "224b1baba2365d4f726ed11beff4352e7a565b3bbc4b0b13a8e9fa829734ce85",
+      "observationType": "natural SH-4 interpreter entries filtered by the callback's three matrix-helper return addresses"
+    }
+  },
+  "sh4": {
+    "callbackAddress": "0x0c0e7f00",
+    "scalarCurveEvaluatorAddress": "0x8c1cdee0",
+    "radiansToFixedTurns": "FTRC(value * 65536 / (2 * pi))",
+    "matrixHelperOrder": [
+      {
+        "helperAddress": "0x8c1e0040",
+        "callbackReturnAddress": "0x8c0e7fba",
+        "nativeAxis": "Z"
+      },
+      {
+        "helperAddress": "0x8c1dff90",
+        "callbackReturnAddress": "0x8c0e7fcc",
+        "nativeAxis": "Y"
+      },
+      {
+        "helperAddress": "0x8c1dfed0",
+        "callbackReturnAddress": "0x8c0e7fde",
+        "nativeAxis": "X"
+      }
+    ]
+  },
+  "observation": {
+    "controllerAddress": "0x8c7feb68",
+    "contextAddress": "0x8c800d00",
+    "currentCurveTime": 1.0666667222976685,
+    "mode": 0,
+    "modeSource": "current-actor+0x88",
+    "capturedBlendAmount": 1,
+    "forceComplete": false,
+    "contextAxisPointers": [
+      "0x8c7fecd8",
+      "0x8c7fed18",
+      "0x8c7fed58"
+    ],
+    "contextBlendPointer": "0x8c8010a0",
+    "axes": [
+      {
+        "compactChannel": "rx",
+        "curveIndex": 3,
+        "nativeAxis": "Z",
+        "descriptorAddress": "0x8c7fecd8",
+        "controllerOffset": 368,
+        "descriptorWordHex": [
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x3f99999a",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x3f555555",
+          "0x00000000",
+          "0x00000002",
+          "0x8ce9e9ba",
+          "0x8ce9e9b2",
+          "0x3f800000",
+          "0x00000000",
+          "0x00000000"
+        ],
+        "hermite": {
+          "startTime": 0,
+          "startTangent": 0,
+          "startValue": 0,
+          "endTime": 1.2000000476837158,
+          "endTangent": 0,
+          "endValue": 0,
+          "evaluatedValue": 0,
+          "fixedTurns": 0
+        },
+        "nativeHelper": {
+          "address": "0x8c1e0040",
+          "callbackReturnAddress": "0x8c0e7fba",
+          "cycle": 240699445720,
+          "fixedTurns": 0,
+          "evaluatorAdvancedDescriptorAddress": "0x8c7fece8"
+        },
+        "exactFixedTurnMatch": true
+      },
+      {
+        "compactChannel": "ry",
+        "curveIndex": 4,
+        "nativeAxis": "Y",
+        "descriptorAddress": "0x8c7fed18",
+        "controllerOffset": 432,
+        "descriptorWordHex": [
+          "0x3f6eeef0",
+          "0x3ef5c000",
+          "0x3ef5c000",
+          "0xbe64c000",
+          "0x3f99999a",
+          "0x3f9cc000",
+          "0x00000000",
+          "0x3db0e000",
+          "0x40700001",
+          "0x00000000",
+          "0x00000005",
+          "0x8ce9e9d8",
+          "0x8ce9e9ba",
+          "0x3f800000",
+          "0x00000000",
+          "0x00000000"
+        ],
+        "hermite": {
+          "startTime": 0.9333333969116211,
+          "startTangent": 0.47998046875,
+          "startValue": -0.223388671875,
+          "endTime": 1.2000000476837158,
+          "endTangent": 1.224609375,
+          "endValue": 0.08636474609375,
+          "evaluatedValue": -0.09333292495284695,
+          "fixedTurns": -973
+        },
+        "nativeHelper": {
+          "address": "0x8c1dff90",
+          "callbackReturnAddress": "0x8c0e7fcc",
+          "cycle": 240699446360,
+          "fixedTurns": -973,
+          "evaluatorAdvancedDescriptorAddress": "0x8c7fed28"
+        },
+        "exactFixedTurnMatch": true
+      },
+      {
+        "compactChannel": "rz",
+        "curveIndex": 5,
+        "nativeAxis": "X",
+        "descriptorAddress": "0x8c7fed58",
+        "controllerOffset": 496,
+        "descriptorWordHex": [
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x3f99999a",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x3f555555",
+          "0x00000000",
+          "0x00000002",
+          "0x8ce9e9e0",
+          "0x8ce9e9d8",
+          "0x3f800000",
+          "0x00000000",
+          "0x00000000"
+        ],
+        "hermite": {
+          "startTime": 0,
+          "startTangent": 0,
+          "startValue": 0,
+          "endTime": 1.2000000476837158,
+          "endTangent": 0,
+          "endValue": 0,
+          "evaluatedValue": 0,
+          "fixedTurns": 0
+        },
+        "nativeHelper": {
+          "address": "0x8c1dfed0",
+          "callbackReturnAddress": "0x8c0e7fde",
+          "cycle": 240699447008,
+          "fixedTurns": 0,
+          "evaluatorAdvancedDescriptorAddress": "0x8c7fed68"
+        },
+        "exactFixedTurnMatch": true
+      }
+    ],
+    "browserFixedTurns": [
+      0,
+      -973,
+      0
+    ],
+    "nativeFixedTurns": [
+      0,
+      -973,
+      0
+    ],
+    "exactFixedTurnMatch": true,
+    "primaryMatrixConformance": {
+      "actorRootMatrix": [
+        0.999721884727478,
+        0,
+        -0.02358277142047882,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0.02358277142047882,
+        0,
+        0.999721884727478,
+        0,
+        222.39346313476562,
+        99.32499694824219,
+        399.61328125,
+        1
+      ],
+      "nativePrimaryWorldMatrix": [
+        0.9975518584251404,
+        0,
+        0.06993073970079422,
+        0,
+        0,
+        1,
+        0,
+        0,
+        -0.06993073970079422,
+        0,
+        0.9975518584251404,
+        0,
+        222.3916015625,
+        99.89204406738281,
+        399.5890808105469,
+        1
+      ],
+      "orientationErrorDegrees": 0.018365685251615804,
+      "maximumAcceptedErrorDegrees": 0.05,
+      "passes": true
+    }
+  }
+}

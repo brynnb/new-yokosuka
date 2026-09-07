@@ -1,0 +1,487 @@
+{
+  "schema": "new-yokosuka-exact-door-model-audit-v1",
+  "generatedFrom": "play/data/native-map-transitions.json",
+  "assetBase": "https://pub-c3aa1dfd53424ee9af1b87ad19954589.r2.dev/shenmue",
+  "method": "Load every canonical exact door model through the production MT5 loader and inventory native moving render node 12. Model selection comes from CHRT DefImage bindings, exact authored names, or a unique area asset.",
+  "summary": {
+    "transitionCount": 25,
+    "verifiedModelCount": 25,
+    "genericMovingNodeCount": 24,
+    "motionClassUnresolvedCount": 1,
+    "failureCount": 0
+  },
+  "models": [
+    {
+      "area": "DAZA",
+      "objectTag": "DOOR",
+      "model": "S1_DAZA_DR13_010.MT5",
+      "status": "verified",
+      "sha256": "cdf9565a927b6407d5ad81cb4b598d9328f226ca6a3fd50fd8217e71261dbb56",
+      "byteLength": 7504,
+      "renderKeys": [
+        -1,
+        5,
+        7,
+        8,
+        10,
+        12,
+        13
+      ],
+      "primaryMovingNode": 12,
+      "genericMovingNodePresent": true,
+      "alternateMovingNodePresent": true,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x208c0"
+    },
+    {
+      "area": "DBHB",
+      "objectTag": "DOOR",
+      "model": "S1_DBHB_DR02_016.MT5",
+      "status": "verified",
+      "sha256": "e31ef3d113019a3ab55ecd061dd768cdcebbb0aafec2a08ca850a2439f6ba04c",
+      "byteLength": 7220,
+      "renderKeys": [
+        -1,
+        8,
+        12,
+        13
+      ],
+      "primaryMovingNode": 12,
+      "genericMovingNodePresent": true,
+      "alternateMovingNodePresent": false,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x23274"
+    },
+    {
+      "area": "DBYO",
+      "objectTag": "DOOR",
+      "model": "S1_DBYO_DR02_017.MT5",
+      "status": "verified",
+      "sha256": "808033bf1c09379c939bfa981c36d5de66dee04e3bb5e56bca05044c93d5caad",
+      "byteLength": 6388,
+      "renderKeys": [
+        -1,
+        8,
+        12,
+        13
+      ],
+      "primaryMovingNode": 12,
+      "genericMovingNodePresent": true,
+      "alternateMovingNodePresent": false,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x206b8"
+    },
+    {
+      "area": "DCBN",
+      "objectTag": "DOOR",
+      "model": "S1_DCBN_DR11_000.MT5",
+      "status": "verified",
+      "sha256": "83ca4c4f3009acc9b3b740520ccac95f84d2a8c922b1a1d3b8449c8e9b1dec12",
+      "byteLength": 1988,
+      "renderKeys": [
+        -1,
+        12
+      ],
+      "primaryMovingNode": 12,
+      "genericMovingNodePresent": true,
+      "alternateMovingNodePresent": false,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x2a274"
+    },
+    {
+      "area": "DCHA",
+      "objectTag": "DOOR",
+      "model": "S1_DCHA_DR15_025.MT5",
+      "status": "verified",
+      "sha256": "24294119f01b29ed7f2f3a9ece0f162bfd4cebbd5500d77534d9411842e47175",
+      "byteLength": 1472,
+      "renderKeys": [
+        -1,
+        7,
+        12
+      ],
+      "primaryMovingNode": 12,
+      "genericMovingNodePresent": true,
+      "alternateMovingNodePresent": true,
+      "modelResolution": "uniqueDoorAssetInNativeAreaCatalog",
+      "controllerRecordFileOffset": "0x1cfe8"
+    },
+    {
+      "area": "DGCT",
+      "objectTag": "AUTO_DOOR",
+      "model": "S1_DGCT_DR17_003.MT5",
+      "status": "verified",
+      "sha256": "1ff449c196839a16de3efc8ad7154480ac61555fd0b0fb0faf8c60a0602bdfad",
+      "byteLength": 2364,
+      "renderKeys": [
+        -1,
+        7,
+        12
+      ],
+      "primaryMovingNode": 12,
+      "genericMovingNodePresent": true,
+      "alternateMovingNodePresent": true,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x46e04"
+    },
+    {
+      "area": "DJAZ",
+      "objectTag": "DOOR",
+      "model": "S1_DJAZ_DR28_001.MT5",
+      "status": "verified",
+      "sha256": "0a0a43080a6e99eace9ab8c72dd828a5ba7b6904f81b094bff7cc3cca1459047",
+      "byteLength": 12664,
+      "renderKeys": [
+        -1,
+        5,
+        7,
+        8,
+        10,
+        12,
+        13
+      ],
+      "primaryMovingNode": 12,
+      "genericMovingNodePresent": true,
+      "alternateMovingNodePresent": true,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x2ee14"
+    },
+    {
+      "area": "DKPA",
+      "objectTag": "DOOR",
+      "model": "S1_DKPA_DR13_013.MT5",
+      "status": "verified",
+      "sha256": "2e3dd2d977f20e16663812fd5e7231b1e00957c03b8047d25257a3fa9dbc0a5f",
+      "byteLength": 9376,
+      "renderKeys": [
+        -1,
+        7,
+        8,
+        12,
+        13
+      ],
+      "primaryMovingNode": 12,
+      "genericMovingNodePresent": true,
+      "alternateMovingNodePresent": true,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x1cb2c"
+    },
+    {
+      "area": "DKTY",
+      "objectTag": "DOOR",
+      "model": "S1_DKTY_DR15-017.MT5",
+      "status": "verified",
+      "sha256": "b1795f6a9cae44f031a65acc9f4763a3a4fd59a122422ddbcb0c0090e3ef1b48",
+      "byteLength": 4384,
+      "renderKeys": [
+        -1,
+        7,
+        12
+      ],
+      "primaryMovingNode": 12,
+      "genericMovingNodePresent": true,
+      "alternateMovingNodePresent": true,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x21a88"
+    },
+    {
+      "area": "DPIZ",
+      "objectTag": "DOOR",
+      "model": "S1_DPIZ_DR01_009.MT5",
+      "status": "verified",
+      "sha256": "472737bb8380da2d0e2c182150589a05604c45957783bd8b0d9483844b83c089",
+      "byteLength": 31060,
+      "renderKeys": [
+        -1,
+        8,
+        12,
+        13
+      ],
+      "primaryMovingNode": 12,
+      "genericMovingNodePresent": true,
+      "alternateMovingNodePresent": false,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x1c9d4"
+    },
+    {
+      "area": "DRHT",
+      "objectTag": "DOOR",
+      "model": "S1_DRHT_DR02_019.MT5",
+      "status": "verified",
+      "sha256": "ccf0472ed3a69494fc24118aaad7c956a76d869f07078c3738382e11c432553b",
+      "byteLength": 5292,
+      "renderKeys": [
+        -1,
+        8,
+        12,
+        13
+      ],
+      "primaryMovingNode": 12,
+      "genericMovingNodePresent": true,
+      "alternateMovingNodePresent": false,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x20774"
+    },
+    {
+      "area": "DRME",
+      "objectTag": "DOOR",
+      "model": "S1_DRME_DR15_012.MT5",
+      "status": "verified",
+      "sha256": "6e17a8eeca698ec09849f87503d887e16952ea585555231642731f456e146216",
+      "byteLength": 55700,
+      "renderKeys": [
+        -1,
+        5,
+        7,
+        8,
+        10,
+        12,
+        13
+      ],
+      "primaryMovingNode": 12,
+      "genericMovingNodePresent": true,
+      "alternateMovingNodePresent": true,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x1c88c"
+    },
+    {
+      "area": "DRSA",
+      "objectTag": "DOR2",
+      "model": "S1_DRSA_DR03_000.MT5",
+      "status": "verified",
+      "sha256": "9a581e032b28dce45cb579acd8b4dc3118a6145c2a46837737ba92d84c5e1082",
+      "byteLength": 4692,
+      "renderKeys": [
+        -1,
+        12
+      ],
+      "primaryMovingNode": 12,
+      "genericMovingNodePresent": true,
+      "alternateMovingNodePresent": false,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x1c8cc"
+    },
+    {
+      "area": "DSBA",
+      "objectTag": "SOBA_DOOR",
+      "model": "S1_DSBA_DR15_015.MT5",
+      "status": "verified",
+      "sha256": "017c469c99409c45777d0422b30ab3d05108293ffea6480f7c48ca61012270c0",
+      "byteLength": 1160,
+      "renderKeys": [
+        -1,
+        7,
+        12
+      ],
+      "primaryMovingNode": 12,
+      "genericMovingNodePresent": true,
+      "alternateMovingNodePresent": true,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x2113c"
+    },
+    {
+      "area": "DSKI",
+      "objectTag": "DOOR",
+      "model": "S1_DSKI_DR13_012.MT5",
+      "status": "verified",
+      "sha256": "bb7979fdac96850d3bfbf038633700028e6134836ebc3e85a21ef06c19ddd5da",
+      "byteLength": 7192,
+      "renderKeys": [
+        -1,
+        5,
+        7,
+        8,
+        10,
+        12,
+        13
+      ],
+      "primaryMovingNode": 12,
+      "genericMovingNodePresent": true,
+      "alternateMovingNodePresent": true,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x20c8c"
+    },
+    {
+      "area": "DSLI",
+      "objectTag": "DR02_017",
+      "model": "S1_DSLI_DR02_017.MT5",
+      "status": "verified",
+      "sha256": "808033bf1c09379c939bfa981c36d5de66dee04e3bb5e56bca05044c93d5caad",
+      "byteLength": 6388,
+      "renderKeys": [
+        -1,
+        8,
+        12,
+        13
+      ],
+      "primaryMovingNode": 12,
+      "genericMovingNodePresent": true,
+      "alternateMovingNodePresent": false,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x22d38"
+    },
+    {
+      "area": "DSLT",
+      "objectTag": "TOKOYA_DOOR",
+      "model": "S1_DSLT_DR01_011.MT5",
+      "status": "verified",
+      "sha256": "ca8478c800a79562b99ed1f1d36c1c1999401c788569f8cd70d9a0ace539a8af",
+      "byteLength": 1800,
+      "renderKeys": [
+        -1,
+        10,
+        12
+      ],
+      "primaryMovingNode": 12,
+      "genericMovingNodePresent": true,
+      "alternateMovingNodePresent": false,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x3a6c0"
+    },
+    {
+      "area": "DSUS",
+      "objectTag": "DR15_002",
+      "model": "S1_DSUS_DR15_010.MT5",
+      "status": "verified",
+      "sha256": "b2919732770a5b2a7536802a074059a4bb7363a8f0fa270e4309fab32c5525b1",
+      "byteLength": 8288,
+      "renderKeys": [
+        -1,
+        5,
+        7,
+        8,
+        10,
+        12,
+        13
+      ],
+      "primaryMovingNode": 12,
+      "genericMovingNodePresent": true,
+      "alternateMovingNodePresent": true,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x210cc"
+    },
+    {
+      "area": "DTKY",
+      "objectTag": "TOKOYA_DOOR",
+      "model": "S1_DTKY_DR02_025.MT5",
+      "status": "verified",
+      "sha256": "0ca9a1075e6c73d690b50e523e7c4b1872d9e1a359e6261c49d14a79f7de8769",
+      "byteLength": 16248,
+      "renderKeys": [
+        -1,
+        12
+      ],
+      "primaryMovingNode": 12,
+      "genericMovingNodePresent": true,
+      "alternateMovingNodePresent": false,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x20660"
+    },
+    {
+      "area": "DURN",
+      "objectTag": "DR02_015",
+      "model": "S1_DURN_DR02_015.MT5",
+      "status": "verified",
+      "sha256": "aaaa59df85a81d16063a16c378e3a222a622180e519fd7f5331a30579211bcd6",
+      "byteLength": 7924,
+      "renderKeys": [
+        -1,
+        8,
+        12,
+        13
+      ],
+      "primaryMovingNode": 12,
+      "genericMovingNodePresent": true,
+      "alternateMovingNodePresent": false,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x275c8"
+    },
+    {
+      "area": "DYKZ",
+      "objectTag": "DOR2",
+      "model": "S1_DYKZ_DR02_024.MT5",
+      "status": "verified",
+      "sha256": "1b4867ff77dc149d898c13adbdef652d4e5b1169366f1cd3e1057e1b6ced0108",
+      "byteLength": 3884,
+      "renderKeys": [
+        -1,
+        12
+      ],
+      "primaryMovingNode": 12,
+      "genericMovingNodePresent": true,
+      "alternateMovingNodePresent": false,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x280b4"
+    },
+    {
+      "area": "JABE",
+      "objectTag": "DOOR",
+      "model": "S1_JABE_DR15_030.MT5",
+      "status": "verified",
+      "sha256": "143e95874c38342c8f372e26ad159f1009008e32556ed8240563ace4777d9098",
+      "byteLength": 3864,
+      "renderKeys": [
+        -1,
+        7,
+        12
+      ],
+      "primaryMovingNode": 12,
+      "genericMovingNodePresent": true,
+      "alternateMovingNodePresent": true,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x2dc88"
+    },
+    {
+      "area": "MKYU",
+      "objectTag": "DR02_001",
+      "model": "S2_MKYU_DR02_001.MT5",
+      "status": "verified",
+      "sha256": "cfcb1771f51be886548f56e20074d8a602b0064a99e1b9395172009694558814",
+      "byteLength": 1972,
+      "renderKeys": [
+        -1
+      ],
+      "primaryMovingNode": 12,
+      "genericMovingNodePresent": false,
+      "alternateMovingNodePresent": false,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x44500"
+    },
+    {
+      "area": "MS8S",
+      "objectTag": "MS8S_DOOR",
+      "model": "S2_MS8S_DR02_026.MT5",
+      "status": "verified",
+      "sha256": "31954c649c174054dcdb00f22d683ecf4f7866a197ee15f3176ef4a57e410da6",
+      "byteLength": 2044,
+      "renderKeys": [
+        -1,
+        12
+      ],
+      "primaryMovingNode": 12,
+      "genericMovingNodePresent": true,
+      "alternateMovingNodePresent": false,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x2b51c"
+    },
+    {
+      "area": "TATQ",
+      "objectTag": "DOR1",
+      "model": "S1_TATQ_DR01_017.MT5",
+      "status": "verified",
+      "sha256": "a5112268c075675527206ab1188a9dff6f783eb48bf1ebf4d6c905ed0e7e0c06",
+      "byteLength": 5764,
+      "renderKeys": [
+        -1,
+        12
+      ],
+      "primaryMovingNode": 12,
+      "genericMovingNodePresent": true,
+      "alternateMovingNodePresent": false,
+      "modelResolution": "uniqueDoorAssetInNativeAreaCatalog",
+      "controllerRecordFileOffset": "0x23314"
+    }
+  ],
+  "failures": [],
+  "evidenceBoundary": "This verifies resource availability and records whether the generic moving-door node exists. MKYU DR02_001 is root-only and therefore remains a distinct unresolved motion class; it is not forced through the generic node-12 animation. Native interaction-box dimensions also remain unresolved."
+}

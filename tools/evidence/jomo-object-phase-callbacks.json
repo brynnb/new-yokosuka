@@ -1,0 +1,456 @@
+{
+  "schema": "new-yokosuka-jomo-object-phase-callbacks-v3",
+  "status": "exact-native-phase-sounds-runtime-labeled",
+  "generatedBy": "tools/worlds/extract_jomo_object_phase_callback_evidence.py",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "jomoMapinfo": "SCENE/01/JOMO/MAPINFO.BIN",
+    "jomoMapinfoSha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
+    "locationBank": "SCENE/01/SOUND/F1OMOYAA.SND",
+    "locationBankSha256": "41cdccd04ef8f4835a946f3f1ada404d4f1607adbae6c4bf8da5b825d23c9abb",
+    "operationTrace": "tools/evidence/jomo-object-operation-trace.json",
+    "drawerPhaseTrace": "tools/evidence/jomo-ats1-drawer-phase-dispatch.csv",
+    "drawerPhaseTraceSha256": "df6f64a19956647a7a803f73e4de2e24c8bec96fc59dca793e68997b314cf9c7",
+    "verifiedWindows": [
+      {
+        "name": "operation0139",
+        "start": "0x0c165544",
+        "endExclusive": "0x0c165690",
+        "sha256": "14ce3eaf4dbed8ee8fa93b4a4b386b32804e831b4821303cadea70677cb18884"
+      },
+      {
+        "name": "phaseLink",
+        "start": "0x0c0ccb14",
+        "endExclusive": "0x0c0ccb28",
+        "sha256": "49161b2c239f5d5548cd3da0fad112273556b41a5a0a9e19f142f66a085132c1"
+      },
+      {
+        "name": "selector10And11Manager",
+        "start": "0x0c0cb3b8",
+        "endExclusive": "0x0c0cb884",
+        "sha256": "c0f65a84fd930f4b93f302017cda9858b4db3a106fcec712164dd81671071bc3"
+      },
+      {
+        "name": "typedCommandDispatcherSample",
+        "start": "0x0c17a91c",
+        "endExclusive": "0x0c17a9f0",
+        "sha256": "1ac3cdcc487ca9bb3ed1bd10e967b90f2be4ca2792258dbe74ac05ff6cbc5d7f"
+      },
+      {
+        "name": "groupCoroutine",
+        "start": "0x00081720",
+        "endExclusive": "0x00081780",
+        "sha256": "a138e963dcbf855ff1a73d92298af49f83e96afc733ee501c11fb9bb6243f4f9"
+      },
+      {
+        "name": "group0",
+        "start": "0x0009b700",
+        "endExclusive": "0x0009b780",
+        "sha256": "dc56689a1f4a0bc497fc0f04e91c4874066da4095f9c9a9c47a2f56a2fe698bb"
+      },
+      {
+        "name": "group1Prefix",
+        "start": "0x0009b780",
+        "endExclusive": "0x0009b7c0",
+        "sha256": "2746d63c5bd3e08dc9ef24b8feb2b1661cda107582e188688d79f60bbac55209"
+      }
+    ]
+  },
+  "operation0139Mode21": {
+    "operationId": "0x0139",
+    "mode": 21,
+    "handlerAddress": "0x0c165544",
+    "modeTableAddress": "0x0c165578",
+    "modeTableRelativeValue": "0x00fc",
+    "modeEntryAddress": "0x0c16566e",
+    "forwardCallAddress": "0x0c165674",
+    "forwardTargetAddress": "0x0c0ccb14",
+    "arguments": [
+      {
+        "descriptorIndex": 1,
+        "sourceRegister": "r14",
+        "destinationRegister": "r4",
+        "storedAt": "0x0c2164e8"
+      },
+      {
+        "descriptorIndex": 2,
+        "sourceRegister": "r12",
+        "destinationRegister": "r5",
+        "storedAt": "0x0c2164ec"
+      }
+    ],
+    "behavior": "Stores the two descriptor values unchanged in the engine's one-shot object-action phase slots."
+  },
+  "enginePhaseDispatch": {
+    "selectorFamily": [
+      10,
+      11
+    ],
+    "managerRange": [
+      "0x0c0cb3b8",
+      "0x0c0cb884"
+    ],
+    "slots": [
+      "0x0c2164e8",
+      "0x0c2164ec"
+    ],
+    "typedCommandDispatcherAddress": "0x0c17a91c",
+    "soundCommandRoute": {
+      "commandByteRegister": "r4",
+      "commandTypeByte": "low byte",
+      "a8OrHigherBranchAddress": "0x0c17a954",
+      "queueJumpAddress": "0x0c17a9e4",
+      "queueAddress": "0x0c1d4b18",
+      "jomoA905TakesSoundQueue": true
+    },
+    "sites": [
+      {
+        "slotAddress": "0x0c2164e8",
+        "nonzeroCheckAddress": "0x0c0cb4fe",
+        "dispatcherCallAddress": "0x0c0cb506",
+        "dispatcherAddress": "0x0c17a91c",
+        "clearAddress": "0x0c0cb514",
+        "semantics": "dispatch once when nonzero, then clear to zero"
+      },
+      {
+        "slotAddress": "0x0c2164ec",
+        "nonzeroCheckAddress": "0x0c0cb566",
+        "dispatcherCallAddress": "0x0c0cb56e",
+        "dispatcherAddress": "0x0c17a91c",
+        "clearAddress": "0x0c0cb57c",
+        "semantics": "dispatch once when nonzero, then clear to zero"
+      },
+      {
+        "slotAddress": "0x0c2164e8",
+        "nonzeroCheckAddress": "0x0c0cb770",
+        "dispatcherCallAddress": "0x0c0cb778",
+        "dispatcherAddress": "0x0c17a91c",
+        "clearAddress": "0x0c0cb784",
+        "semantics": "dispatch once when nonzero, then clear to zero"
+      },
+      {
+        "slotAddress": "0x0c2164ec",
+        "nonzeroCheckAddress": "0x0c0cb7fe",
+        "dispatcherCallAddress": "0x0c0cb806",
+        "dispatcherAddress": "0x0c17a91c",
+        "clearAddress": "0x0c0cb812",
+        "semantics": "dispatch once when nonzero, then clear to zero"
+      }
+    ]
+  },
+  "jomo": {
+    "genericCoroutine": {
+      "range": [
+        "0x81720",
+        "0x81780"
+      ],
+      "operationCallFileOffset": "0x8174a",
+      "mode": 21,
+      "descriptorInputs": [
+        {
+          "contextOffset": "0x3c",
+          "operationArgumentIndex": 1
+        },
+        {
+          "contextOffset": "0x38",
+          "operationArgumentIndex": 2
+        }
+      ]
+    },
+    "groups": [
+      {
+        "index": 0,
+        "fileOffset": "0x9b700",
+        "phaseTokens": [
+          {
+            "word": "0x000b05a9",
+            "littleEndianBytes": "a9050b00",
+            "opcode": "0x05a9",
+            "selector": 11,
+            "classification": "location-bank-sfx-command",
+            "locationBankResolution": {
+              "descriptor": "a905",
+              "track": 11,
+              "compositionOffset": "0x537",
+              "compositionHex": "c0df086480ff",
+              "entries": [
+                {
+                  "entryType": "0xdf",
+                  "playbackId": 8,
+                  "volume": 100,
+                  "sampleId": 31,
+                  "sampleOffset": "0x2e60a",
+                  "sampleBytes": 5968,
+                  "sampleSha256": "bb35d234d49effd14419ce7ef343b51830149696c1d9620e67452ca0393d7a4e",
+                  "dtpkRate": "0xe800",
+                  "sampleRate": 11025
+                }
+              ]
+            }
+          },
+          {
+            "word": "0x00000000",
+            "littleEndianBytes": "00000000",
+            "opcode": "0x0000",
+            "selector": 0,
+            "classification": "empty",
+            "locationBankResolution": null
+          },
+          {
+            "word": "0x000a05a9",
+            "littleEndianBytes": "a9050a00",
+            "opcode": "0x05a9",
+            "selector": 10,
+            "classification": "location-bank-sfx-command",
+            "locationBankResolution": {
+              "descriptor": "a905",
+              "track": 10,
+              "compositionOffset": "0x531",
+              "compositionHex": "c0df077f80ff",
+              "entries": [
+                {
+                  "entryType": "0xdf",
+                  "playbackId": 7,
+                  "volume": 127,
+                  "sampleId": 30,
+                  "sampleOffset": "0x2d3e2",
+                  "sampleBytes": 4648,
+                  "sampleSha256": "2d78096876b433f445789dd3c79976ab9a923d91996985fb326da39dfee326fe",
+                  "dtpkRate": "0xe800",
+                  "sampleRate": 11025
+                }
+              ]
+            }
+          },
+          {
+            "word": "0x006405a9",
+            "littleEndianBytes": "a9056400",
+            "opcode": "0x05a9",
+            "selector": 100,
+            "classification": "location-bank-sfx-command",
+            "locationBankResolution": {
+              "descriptor": "a905",
+              "track": 100,
+              "compositionOffset": "0x727",
+              "compositionHex": "c0df387f80ff",
+              "entries": [
+                {
+                  "entryType": "0xdf",
+                  "playbackId": 56,
+                  "volume": 127,
+                  "sampleId": 32,
+                  "sampleOffset": "0x2fd5a",
+                  "sampleBytes": 968,
+                  "sampleSha256": "377c547f207b0b065403222cfba5b37990c14a0251406bde396068a118f582c6",
+                  "dtpkRate": "0xe800",
+                  "sampleRate": 11025
+                }
+              ]
+            }
+          }
+        ],
+        "objectTags": [
+          "IWWH",
+          "BMB1",
+          "BMB2",
+          "BMB4",
+          "BMB5",
+          "D1C1",
+          "D1C2",
+          "IMC1",
+          "IMC2",
+          "AKD2",
+          "AKD3",
+          "AKD4",
+          "ATS1",
+          "ATS2",
+          "ATS3",
+          "ATS4",
+          "ATS5",
+          "ATS6",
+          "ITS1",
+          "ITS2",
+          "ITS3",
+          "ITS4",
+          "ITS5",
+          "ITS6",
+          "FKWH",
+          "IKD1",
+          "IKD2"
+        ],
+        "containsDrawerATS1": true
+      },
+      {
+        "index": 1,
+        "fileOffset": "0x9b780",
+        "phaseTokens": [
+          {
+            "word": "0x000b05a9",
+            "littleEndianBytes": "a9050b00",
+            "opcode": "0x05a9",
+            "selector": 11,
+            "classification": "location-bank-sfx-command",
+            "locationBankResolution": {
+              "descriptor": "a905",
+              "track": 11,
+              "compositionOffset": "0x537",
+              "compositionHex": "c0df086480ff",
+              "entries": [
+                {
+                  "entryType": "0xdf",
+                  "playbackId": 8,
+                  "volume": 100,
+                  "sampleId": 31,
+                  "sampleOffset": "0x2e60a",
+                  "sampleBytes": 5968,
+                  "sampleSha256": "bb35d234d49effd14419ce7ef343b51830149696c1d9620e67452ca0393d7a4e",
+                  "dtpkRate": "0xe800",
+                  "sampleRate": 11025
+                }
+              ]
+            }
+          },
+          {
+            "word": "0x00000000",
+            "littleEndianBytes": "00000000",
+            "opcode": "0x0000",
+            "selector": 0,
+            "classification": "empty",
+            "locationBankResolution": null
+          },
+          {
+            "word": "0x000a05a9",
+            "littleEndianBytes": "a9050a00",
+            "opcode": "0x05a9",
+            "selector": 10,
+            "classification": "location-bank-sfx-command",
+            "locationBankResolution": {
+              "descriptor": "a905",
+              "track": 10,
+              "compositionOffset": "0x531",
+              "compositionHex": "c0df077f80ff",
+              "entries": [
+                {
+                  "entryType": "0xdf",
+                  "playbackId": 7,
+                  "volume": 127,
+                  "sampleId": 30,
+                  "sampleOffset": "0x2d3e2",
+                  "sampleBytes": 4648,
+                  "sampleSha256": "2d78096876b433f445789dd3c79976ab9a923d91996985fb326da39dfee326fe",
+                  "dtpkRate": "0xe800",
+                  "sampleRate": 11025
+                }
+              ]
+            }
+          },
+          {
+            "word": "0x006405a9",
+            "littleEndianBytes": "a9056400",
+            "opcode": "0x05a9",
+            "selector": 100,
+            "classification": "location-bank-sfx-command",
+            "locationBankResolution": {
+              "descriptor": "a905",
+              "track": 100,
+              "compositionOffset": "0x727",
+              "compositionHex": "c0df387f80ff",
+              "entries": [
+                {
+                  "entryType": "0xdf",
+                  "playbackId": 56,
+                  "volume": 127,
+                  "sampleId": 32,
+                  "sampleOffset": "0x2fd5a",
+                  "sampleBytes": 968,
+                  "sampleSha256": "377c547f207b0b065403222cfba5b37990c14a0251406bde396068a118f582c6",
+                  "dtpkRate": "0xe800",
+                  "sampleRate": 11025
+                }
+              ]
+            }
+          }
+        ],
+        "objectTags": [
+          "D1C3",
+          "D1C4",
+          "TAN1",
+          "TAN2",
+          "GGB1",
+          "GGB2",
+          "IMC3",
+          "IMC4",
+          "DND1",
+          "DND2"
+        ],
+        "containsDrawerATS1": false
+      }
+    ]
+  },
+  "runtimePhaseTrace": {
+    "capture": "tools/evidence/jomo-ats1-drawer-phase-dispatch.csv",
+    "captureSha256": "df6f64a19956647a7a803f73e4de2e24c8bec96fc59dca793e68997b314cf9c7",
+    "archivedStateSha256": "847992cb6b6f4dd3a19673d13520e9587c7750ef70c7e6e39d9f82cd80ac66a7",
+    "target": {
+      "area": "JOMO",
+      "objectTag": "ATS1",
+      "initialState": "closed"
+    },
+    "protocol": [
+      "Load the archived Hazuki wardrobe state with the retail Disc 1 data.",
+      "Hold Dreamcast left trigger and positive analog X to focus the closed upper ATS drawer, then press A to open it.",
+      "After the drawer visibly reaches its open state, press B to close it.",
+      "Trace entries to 0x0c17a91c in SH-4 interpreter mode and label rows against the synchronized closed, open, and closing visual states."
+    ],
+    "events": [
+      {
+        "phase": "openingStart",
+        "visualStateBefore": "closed",
+        "emulatedCycles": 165949853736,
+        "dispatcherAddress": "0x0c17a91c",
+        "returnAddress": "0x0c0cb176",
+        "r4Word": "0x000b05a9",
+        "commandHex": "a9050b00",
+        "playbackId": 8,
+        "sampleId": 31
+      },
+      {
+        "phase": "closingStart",
+        "visualStateBefore": "open",
+        "emulatedCycles": 167748160768,
+        "dispatcherAddress": "0x0c17a91c",
+        "returnAddress": "0x0c0cb2a2",
+        "r4Word": "0x000a05a9",
+        "commandHex": "a9050a00",
+        "playbackId": 7,
+        "sampleId": 30
+      },
+      {
+        "phase": "closingImpact",
+        "visualStateBefore": "closing",
+        "emulatedCycles": 167998610128,
+        "dispatcherAddress": "0x0c17a91c",
+        "returnAddress": "0x0c0cb2e6",
+        "r4Word": "0x006405a9",
+        "commandHex": "a9056400",
+        "playbackId": 56,
+        "sampleId": 32
+      }
+    ],
+    "conclusion": "A905:11 is opening-start, A905:10 is closing-start, and A905:100 is the later closing-impact phase. The zero second opening token means there is no opening-completion command."
+  },
+  "audioBoundary": {
+    "proven": [
+      "Operation 0x0139 mode 21 stores two opaque 32-bit phase values; it does not directly call the audio engine.",
+      "The selector-10/11 object manager dispatches each nonzero value once through the shared native typed-command dispatcher, then clears its slot.",
+      "JOMO groups zero and one use 0x000b05a9: opcode 0x05a9 and selector 11 under the SCN3 interpretation, but bytes A9 05 0B 00 at this dispatcher are the playable F1OMOYAA A905:11 sound command.",
+      "ATS1 belongs to group zero. Its nonzero phase values resolve exactly to A905:11, A905:10, and A905:100 in JOMO's source-hashed location bank.",
+      "A synchronized retail interpreter trace identifies A905:11 at opening start, A905:10 at closing start, and A905:100 later at the closing impact."
+    ],
+    "consequence": "The engine phase route is an authentic object-audio mapping. The earlier generated-room-callback classification confused SCN3's word interpretation with the typed dispatcher's low-byte command interpretation.",
+    "policy": "phase-labels-dynamically-proven",
+    "unresolved": []
+  }
+}

@@ -1,0 +1,868 @@
+{
+  "schema": "new-yokosuka-signed-angle-division-evidence-v1",
+  "status": "exact-local-helper-and-all-disc-inventory",
+  "source": {
+    "controlFlow": ".disc-work/dialogue/scripted-event-control-flow-index.json",
+    "mapinfoPrograms": 136
+  },
+  "nativeSemantics": {
+    "helper": "shorter low-word difference right - left",
+    "halfTurnTie": 32768,
+    "conversion": "signedDifference * 360 / 65536",
+    "arithmetic": "SH-4 low-dword multiply followed by signed division",
+    "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 96,
+    "broaderStsCandidateCount": 99,
+    "callsByDisc": {
+      "1": 29,
+      "2": 34,
+      "3": 33
+    },
+    "callsByArea": {
+      "D000": 3,
+      "DAZA": 2,
+      "DBHB": 3,
+      "DBYO": 3,
+      "DCBN": 3,
+      "DCHA": 3,
+      "DGCT": 3,
+      "DJAZ": 3,
+      "DKPA": 3,
+      "DKTY": 3,
+      "DMAJ": 3,
+      "DPIZ": 3,
+      "DRHT": 3,
+      "DRME": 3,
+      "DRSA": 3,
+      "DSBA": 3,
+      "DSKI": 3,
+      "DSLI": 3,
+      "DSLT": 3,
+      "DSUS": 3,
+      "DTKY": 3,
+      "DURN": 3,
+      "DYKZ": 3,
+      "JABE": 3,
+      "JD00": 3,
+      "JHD0": 3,
+      "JOMO": 3,
+      "JU00": 3,
+      "MA00": 1,
+      "MFSY": 2,
+      "MKSG": 2,
+      "MKYU": 2,
+      "MS08": 2,
+      "MS8S": 1,
+      "TATQ": 3
+    },
+    "calls": [
+      {
+        "disc": 1,
+        "area": "D000",
+        "functionFileOffset": "0x1de74",
+        "callFileOffset": "0x20c60",
+        "helperFileOffset": "0x14334",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "DAZA",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "DBHB",
+        "functionFileOffset": "0x9b7c",
+        "callFileOffset": "0xc8fc",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "DBYO",
+        "functionFileOffset": "0xa138",
+        "callFileOffset": "0xceb8",
+        "helperFileOffset": "0x704",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "DCBN",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "DCHA",
+        "functionFileOffset": "0xad8c",
+        "callFileOffset": "0xdb08",
+        "helperFileOffset": "0x1404",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "DGCT",
+        "functionFileOffset": "0x10010",
+        "callFileOffset": "0x12df4",
+        "helperFileOffset": "0x6578",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "DJAZ",
+        "functionFileOffset": "0x9cdc",
+        "callFileOffset": "0xca5c",
+        "helperFileOffset": "0x2a8",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "DKPA",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "DKTY",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "DMAJ",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "DPIZ",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "DRHT",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "DRME",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "DRSA",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "DSBA",
+        "functionFileOffset": "0xa638",
+        "callFileOffset": "0xd414",
+        "helperFileOffset": "0xc50",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "DSKI",
+        "functionFileOffset": "0x9bdc",
+        "callFileOffset": "0xc9c0",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "DSLI",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "DSLT",
+        "functionFileOffset": "0x9c08",
+        "callFileOffset": "0xc984",
+        "helperFileOffset": "0x280",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "DSUS",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "DTKY",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "DURN",
+        "functionFileOffset": "0xa210",
+        "callFileOffset": "0xcf90",
+        "helperFileOffset": "0x7dc",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "DYKZ",
+        "functionFileOffset": "0x9b70",
+        "callFileOffset": "0xc8ec",
+        "helperFileOffset": "0x1e8",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "JABE",
+        "functionFileOffset": "0x13008",
+        "callFileOffset": "0x15df4",
+        "helperFileOffset": "0x94c8",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "JD00",
+        "functionFileOffset": "0x18c7c",
+        "callFileOffset": "0x1bab0",
+        "helperFileOffset": "0xf13c",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "JHD0",
+        "functionFileOffset": "0x12460",
+        "callFileOffset": "0x15244",
+        "helperFileOffset": "0x89d4",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "JOMO",
+        "functionFileOffset": "0xb87c",
+        "callFileOffset": "0xe668",
+        "helperFileOffset": "0x1d3c",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "functionFileOffset": "0x12b7c",
+        "callFileOffset": "0x15960",
+        "helperFileOffset": "0x90e8",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 1,
+        "area": "TATQ",
+        "functionFileOffset": "0xa08c",
+        "callFileOffset": "0xce08",
+        "helperFileOffset": "0x704",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "D000",
+        "functionFileOffset": "0x1db24",
+        "callFileOffset": "0x20910",
+        "helperFileOffset": "0x13fe4",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "DAZA",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "DBHB",
+        "functionFileOffset": "0x9b7c",
+        "callFileOffset": "0xc8fc",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "DBYO",
+        "functionFileOffset": "0xa138",
+        "callFileOffset": "0xceb8",
+        "helperFileOffset": "0x704",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "DCBN",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "DCHA",
+        "functionFileOffset": "0xad8c",
+        "callFileOffset": "0xdb08",
+        "helperFileOffset": "0x1404",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "DGCT",
+        "functionFileOffset": "0x10010",
+        "callFileOffset": "0x12df4",
+        "helperFileOffset": "0x6578",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "DJAZ",
+        "functionFileOffset": "0x9cdc",
+        "callFileOffset": "0xca5c",
+        "helperFileOffset": "0x2a8",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "DKPA",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "DKTY",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "DMAJ",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "DPIZ",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "DRHT",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "DRME",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "DRSA",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "DSBA",
+        "functionFileOffset": "0xa638",
+        "callFileOffset": "0xd414",
+        "helperFileOffset": "0xc50",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "DSKI",
+        "functionFileOffset": "0x9bdc",
+        "callFileOffset": "0xc9c0",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "DSLI",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "DSLT",
+        "functionFileOffset": "0x9c08",
+        "callFileOffset": "0xc984",
+        "helperFileOffset": "0x280",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "DSUS",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "DTKY",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "DURN",
+        "functionFileOffset": "0xa210",
+        "callFileOffset": "0xcf90",
+        "helperFileOffset": "0x7dc",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "DYKZ",
+        "functionFileOffset": "0x9b70",
+        "callFileOffset": "0xc8ec",
+        "helperFileOffset": "0x1e8",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "JABE",
+        "functionFileOffset": "0x13008",
+        "callFileOffset": "0x15df4",
+        "helperFileOffset": "0x94c8",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "JD00",
+        "functionFileOffset": "0x18c7c",
+        "callFileOffset": "0x1bab0",
+        "helperFileOffset": "0xf13c",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "JHD0",
+        "functionFileOffset": "0x12460",
+        "callFileOffset": "0x15244",
+        "helperFileOffset": "0x89d4",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "JOMO",
+        "functionFileOffset": "0xb87c",
+        "callFileOffset": "0xe668",
+        "helperFileOffset": "0x1d3c",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "JU00",
+        "functionFileOffset": "0x12b7c",
+        "callFileOffset": "0x15960",
+        "helperFileOffset": "0x90e8",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "MFSY",
+        "functionFileOffset": "0x9bdc",
+        "callFileOffset": "0xc9c0",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "MKSG",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "MKYU",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "MS08",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "MS8S",
+        "functionFileOffset": "0xa500",
+        "callFileOffset": "0xd2dc",
+        "helperFileOffset": "0xb18",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 2,
+        "area": "TATQ",
+        "functionFileOffset": "0xa08c",
+        "callFileOffset": "0xce08",
+        "helperFileOffset": "0x704",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "D000",
+        "functionFileOffset": "0x1d808",
+        "callFileOffset": "0x205f4",
+        "helperFileOffset": "0x13cc8",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "DBHB",
+        "functionFileOffset": "0x9b7c",
+        "callFileOffset": "0xc8fc",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "DBYO",
+        "functionFileOffset": "0xa138",
+        "callFileOffset": "0xceb8",
+        "helperFileOffset": "0x704",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "DCBN",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "DCHA",
+        "functionFileOffset": "0xad8c",
+        "callFileOffset": "0xdb08",
+        "helperFileOffset": "0x1404",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "DGCT",
+        "functionFileOffset": "0x10010",
+        "callFileOffset": "0x12df4",
+        "helperFileOffset": "0x6578",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "DJAZ",
+        "functionFileOffset": "0x9cdc",
+        "callFileOffset": "0xca5c",
+        "helperFileOffset": "0x2a8",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "DKPA",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "DKTY",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "DMAJ",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "DPIZ",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "DRHT",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "DRME",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "DRSA",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "DSBA",
+        "functionFileOffset": "0xa638",
+        "callFileOffset": "0xd414",
+        "helperFileOffset": "0xc50",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "DSKI",
+        "functionFileOffset": "0x9bdc",
+        "callFileOffset": "0xc9c0",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "DSLI",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "DSLT",
+        "functionFileOffset": "0x9c08",
+        "callFileOffset": "0xc984",
+        "helperFileOffset": "0x280",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "DSUS",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "DTKY",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "DURN",
+        "functionFileOffset": "0xa210",
+        "callFileOffset": "0xcf90",
+        "helperFileOffset": "0x7dc",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "DYKZ",
+        "functionFileOffset": "0x9b70",
+        "callFileOffset": "0xc8ec",
+        "helperFileOffset": "0x1e8",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "JABE",
+        "functionFileOffset": "0x13008",
+        "callFileOffset": "0x15df4",
+        "helperFileOffset": "0x94c8",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "JD00",
+        "functionFileOffset": "0x18f54",
+        "callFileOffset": "0x1bd88",
+        "helperFileOffset": "0xf414",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "JHD0",
+        "functionFileOffset": "0x12460",
+        "callFileOffset": "0x15244",
+        "helperFileOffset": "0x89d4",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "JOMO",
+        "functionFileOffset": "0xb87c",
+        "callFileOffset": "0xe668",
+        "helperFileOffset": "0x1d3c",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "JU00",
+        "functionFileOffset": "0x12b7c",
+        "callFileOffset": "0x15960",
+        "helperFileOffset": "0x90e8",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "MA00",
+        "functionFileOffset": "0xaa20",
+        "callFileOffset": "0xd800",
+        "helperFileOffset": "0x1038",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "MFSY",
+        "functionFileOffset": "0x9bdc",
+        "callFileOffset": "0xc9c0",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "MKSG",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "MKYU",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "MS08",
+        "functionFileOffset": "0x9ad0",
+        "callFileOffset": "0xc84c",
+        "helperFileOffset": "0x148",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      },
+      {
+        "disc": 3,
+        "area": "TATQ",
+        "functionFileOffset": "0xa08c",
+        "callFileOffset": "0xce08",
+        "helperFileOffset": "0x704",
+        "helperSignatureSha256": "cbe9511d86b39ec952f8d40a1b748d66c806141441a7a8748df461235f256f9e"
+      }
+    ],
+    "unmatchedStsCandidates": [
+      {
+        "disc": 3,
+        "area": "MEND",
+        "functionFileOffset": "0x27eb4",
+        "callFileOffset": "0x2802e",
+        "recoveredDividend": {
+          "kind": "runtime",
+          "source": "sts at 0x28026"
+        }
+      },
+      {
+        "disc": 3,
+        "area": "MEND",
+        "functionFileOffset": "0x27eb4",
+        "callFileOffset": "0x2812e",
+        "recoveredDividend": {
+          "kind": "runtime",
+          "source": "sts at 0x28126"
+        }
+      },
+      {
+        "disc": 3,
+        "area": "MFSY",
+        "functionFileOffset": "0xb83cc",
+        "callFileOffset": "0xb84ea",
+        "recoveredDividend": {
+          "kind": "runtime",
+          "source": "sts at 0xb84e2"
+        }
+      }
+    ]
+  },
+  "evidenceBoundary": [
+    "Only BSRF targets matching the complete structural helper signature receive the signed-angle expression.",
+    "Both helper operands must resolve through the ordinary exact integer-expression dataflow.",
+    "Other helper returns and other STS/MACL producers remain unresolved."
+  ]
+}

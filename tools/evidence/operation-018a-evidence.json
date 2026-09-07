@@ -1,0 +1,35 @@
+{
+  "schema": "new-yokosuka-operation-018a-evidence-v1",
+  "status": "exact-native-all-authored-routes",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 394,
+    "operationHex": "0x018a",
+    "handlerAddress": "0x0c16b150",
+    "routes": {
+      "0": "Allocates 0x09a0 bytes with unit count 25, installs selector 0x5da8, initializes sixteen 44-byte slots, and registers controller one for slots one through sixteen.",
+      "1": "Allocates 0x09a0 bytes with unit count 50, installs selector 0x5ea8, registers controller three for slots three through one, and sets its initialized marker.",
+      "2": "Resets one primary slot to words 0, 0, 127, and -1 and re-registers controller one; selectors above sixteen execute the helper for all sixteen slots in descending order.",
+      "3": "Writes one to the selected primary slot's record word only when its resource word at offset +8 is non-null."
+    }
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 111,
+    "areaCount": 57,
+    "modeCounts": {
+      "0": 56,
+      "1": 28,
+      "2": 24,
+      "3": 3
+    }
+  },
+  "evidenceBoundary": [
+    "Controller IDs, allocation sizes, unit counts, slot count, registration order, and slot mutations are executable-proven.",
+    "No rendering or gameplay meaning is assigned to the controller records."
+  ]
+}

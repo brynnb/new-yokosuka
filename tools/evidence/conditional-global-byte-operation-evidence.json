@@ -1,0 +1,36 @@
+{
+  "schema": "new-yokosuka-conditional-global-byte-operation-evidence-v1",
+  "status": "exact-conditional-byte-write-contract",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 329,
+    "operationHex": "0x0149",
+    "handlerAddress": "0x0c1707c6",
+    "handlerLength": 14,
+    "handlerSha256": "7bbe46a7ad02f4ffe21224823638ee1d88f26fb64b7ad42fa3bef8995fd731fc",
+    "helperAddress": "0x0c1822e6",
+    "helperLength": 16,
+    "helperSha256": "aa287308561075112992b9c7f52c10e63a113f806f46c2ad8f6f812c3e4443b0",
+    "gateByteAddress": "0x0c225251",
+    "destinationByteAddress": "0x0c225250",
+    "provenBehavior": "The handler forwards argument zero unchanged. The helper writes its low byte to 0x0c225250 only while byte 0x0c225251 is nonzero."
+  },
+  "inventory": {
+    "authoredCallCount": 71,
+    "provenCallCount": 71,
+    "argumentValues": {
+      "0": 30,
+      "1": 41
+    }
+  },
+  "evidenceBoundary": [
+    "Both native ranges and the executable are SHA-256 verified.",
+    "The two fixed bytes remain numerically named.",
+    "An unavailable gate byte remains an explicit runtime stop."
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/build_jomo_vision_activity_packs.mjs",
+  "source": {
+    "disc": 2,
+    "path": "extracted_disc2_v2/data/SCENE/02/JOMO/KKYB.PKS",
+    "sha256": "40cdb5dd0943a209fe9e3afea9cb88f426e9d520947b5ce0af0cc0baae6b4a6b",
+    "archiveFormat": "PAKS/IPAC",
+    "members": [
+      {
+        "name": "DRE02A1G.CHRM",
+        "byteLength": 1300,
+        "sha256": "8891298f41f910be13e0f8a73dd609bbb88059d0ed6aa34cdc6f52e10c395847"
+      },
+      {
+        "name": "DRGS502G.CHRM",
+        "byteLength": 8556,
+        "sha256": "3695b11a84c715316c16ec32680e197632015bc6aa18716530ffd03012fad033"
+      },
+      {
+        "name": "M_TORI.MOTN",
+        "byteLength": 132456,
+        "sha256": "faa2483e6bbdfb5cde0fec4a1a1aeb5530330b9e8cfec6538bbe524370b67558"
+      },
+      {
+        "name": "PNR02A1G.CHRM",
+        "byteLength": 1300,
+        "sha256": "63fd47a50fc2b8c28bbfad77c367dfb6708e920b4e4f42e5faea98bd1c19db80"
+      },
+      {
+        "name": "PNX02H6G.CHRM",
+        "byteLength": 11604,
+        "sha256": "d5a1f8ef801384d8558ec1f6ec8b2e96185a131d59027d806daa3e9ccfcc18d4"
+      },
+      {
+        "name": "SEQDATA1.AUTH",
+        "byteLength": 3764,
+        "sha256": "d18f0cc90a5bba968a4d269765dc2cf1e2995f223e390fde0e6ab8d7540fd349"
+      },
+      {
+        "name": "TAK02M7G.CHRM",
+        "byteLength": 45816,
+        "sha256": "3bb785a9e35909dfddf4d0914faaf063668e848f0667fb931acbfa8a503f2e05"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "tools/evidence/player-cutscene-owner-discovery.json",
+    "resourceName": "KKYB",
+    "variant": "",
+    "selectionRule": "exact cross-disc AUTH member selected by JOMO owner 0x4f758"
+  },
+  "sceneObjects": {
+    "RYMR": {
+      "model": "DRGS502G",
+      "browserFilename": "S2_JOMO_DRGS502G.MT5",
+      "assetPath": "play/assets/hazuki/kkyb/DRGS502G.CHRM",
+      "lifecycle": {
+        "kind": "auth-scoped"
+      }
+    },
+    "HOMR": {
+      "model": "PNX02H6G",
+      "browserFilename": "S2_JOMO_PNX02H6G.MT5",
+      "assetPath": "play/assets/hazuki/kkya/PNX02H6G.CHRM",
+      "lifecycle": {
+        "kind": "auth-scoped"
+      }
+    },
+    "DRE1": {
+      "model": "DRE02A1G",
+      "browserFilename": "S2_JOMO_DRE02A1G.MT5",
+      "assetPath": "play/assets/hazuki/kkyb/DRE02A1G.CHRM",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "PNR1": {
+      "model": "PNR02A1G",
+      "browserFilename": "S2_JOMO_PNR02A1G.MT5",
+      "assetPath": "play/assets/hazuki/kkyb/PNR02A1G.CHRM",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    }
+  },
+  "packageActors": {
+    "HAWK": {
+      "label": "Hawk",
+      "modelCode": "TAK02M7G",
+      "browserFilename": "S2_JOMO_TAK02M7G.MT5",
+      "assetPath": "play/assets/introduction/op02/models/TAK02M7G.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1
+    }
+  },
+  "actorTags": [
+    "RYMR",
+    "HAWK",
+    "HOMR"
+  ],
+  "motionBanks": [],
+  "outputs": [
+    {
+      "path": "play/assets/hazuki/kkyb/SEQDATA1.AUTH",
+      "byteLength": 3764,
+      "sha256": "d18f0cc90a5bba968a4d269765dc2cf1e2995f223e390fde0e6ab8d7540fd349"
+    },
+    {
+      "path": "play/assets/hazuki/kkyb/DRE02A1G.CHRM",
+      "byteLength": 1300,
+      "sha256": "8891298f41f910be13e0f8a73dd609bbb88059d0ed6aa34cdc6f52e10c395847"
+    },
+    {
+      "path": "play/assets/hazuki/kkyb/DRGS502G.CHRM",
+      "byteLength": 8556,
+      "sha256": "3695b11a84c715316c16ec32680e197632015bc6aa18716530ffd03012fad033"
+    },
+    {
+      "path": "play/assets/hazuki/kkyb/PNR02A1G.CHRM",
+      "byteLength": 1300,
+      "sha256": "63fd47a50fc2b8c28bbfad77c367dfb6708e920b4e4f42e5faea98bd1c19db80"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 51,
+      "primaryPointer": 614200,
+      "secondaryPointer": 614213,
+      "activityId": "KKYB/SEQDATA1.AUTH",
+      "archiveMember": "SEQDATA1.AUTH",
+      "byteLength": 3764,
+      "sha256": "d18f0cc90a5bba968a4d269765dc2cf1e2995f223e390fde0e6ab8d7540fd349",
+      "durationFrames": 900,
+      "durationSeconds": 45,
+      "frameCount": 1,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3
+      },
+      "actors": [
+        "RYMR",
+        "HAWK",
+        "HOMR"
+      ],
+      "nativeSceneObjectStates": [
+        {
+          "actorTag": "DRE1",
+          "presented": true
+        },
+        {
+          "actorTag": "PNR1",
+          "presented": true
+        }
+      ],
+      "motions": []
+    }
+  ]
+}

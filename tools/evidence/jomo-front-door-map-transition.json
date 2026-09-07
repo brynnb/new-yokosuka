@@ -1,0 +1,70 @@
+{
+  "schema": "new-yokosuka-natural-map-transition-v1",
+  "status": "verified",
+  "source": {
+    "saveState": "Flycast slot 1 (index 0)",
+    "recording": "captures/objects/object-once-1784907787.csv",
+    "postLoadRam": "captures/pvr/20260724-084354-frame-3652/ram.bin",
+    "mapinfo": ".disc-work/exact/jomo/MAPINFO.BIN"
+  },
+  "interaction": {
+    "description": "Ryo activates the Hazuki Residence interior front door",
+    "input": "Dreamcast A",
+    "inputStartFrame": 61,
+    "warpRequestFrame": 346
+  },
+  "warpRecord": {
+    "triggerAddress": "0x8c3c522c",
+    "areaAddress": "0x8c3c5230",
+    "sceneAddress": "0x8c3c5234",
+    "entryAddress": "0x8c3c5238",
+    "modeAddress": "0x8c3c523c",
+    "before": {
+      "trigger": 0,
+      "area": "JOMO",
+      "scene": 1,
+      "entry": 0,
+      "mode": 7
+    },
+    "requestedAtFrame346": {
+      "trigger": 1,
+      "area": "JHD0",
+      "scene": 1,
+      "entry": 2,
+      "mode": 7
+    },
+    "triggerClearedFrame": 355,
+    "postLoad": {
+      "trigger": 0,
+      "area": "JHD0",
+      "scene": 1,
+      "entry": 2,
+      "mode": 7
+    }
+  },
+  "offlineCallMatch": {
+    "operationId": 48,
+    "operationHex": "0x0030",
+    "callFileOffset": "0x4434a",
+    "argumentsInNativeR6Order": [
+      1,
+      "JHD0",
+      2
+    ],
+    "argumentMeaning": [
+      "scene",
+      "area",
+      "entry"
+    ],
+    "match": "exact"
+  },
+  "nativePath": {
+    "operationHandlerAddress": "0x0c16b492",
+    "warpRecordWriterAddress": "0x0c0f0a86",
+    "writerBehavior": [
+      "stores mode, scene, area, and entry in the global scene request",
+      "sets bit 0 of the request trigger word"
+    ]
+  },
+  "conclusion": "The normal interior front-door transition is JOMO scene 1 to JHD0 scene 1 entry 2. It is an exact runtime match for JOMO SCN3 operation 0x0030 at file offset 0x4434a."
+}

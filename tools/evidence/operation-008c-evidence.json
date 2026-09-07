@@ -1,0 +1,101 @@
+{
+  "schema": "new-yokosuka-operation-008c-evidence-v1",
+  "status": "exact-native-imgm-selection-write-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 140,
+    "operationHex": "0x008c",
+    "handlerAddress": "0x0c164ffe",
+    "verifiedRanges": {
+      "handlerTableEntry": {
+        "address": "0x0c29ac10",
+        "length": 4,
+        "sha256": "f40e61c23c598fc4bbb66474e102bfb06a592466917a060c1505e336f682fb0b"
+      },
+      "handler": {
+        "address": "0x0c164ffe",
+        "length": 40,
+        "sha256": "5ca6084a151d71b68d4c226fe76b63f3038cb45bebe18fd183fe3813c282ca69"
+      },
+      "imgmSelectionWriter": {
+        "address": "0x0c0e3434",
+        "length": 32,
+        "sha256": "69a26a455a6d5e9cc964b480e9a83902ccf9b9eaaf5889ffffe4657becc1391d"
+      },
+      "imgmSelectionConsumer": {
+        "address": "0x0c0e34b6",
+        "length": 44,
+        "sha256": "cdb578a23076cebba650e5f97dbd726f7985bcb4e51823811705ab60c9adc8b2"
+      }
+    },
+    "nativeContract": {
+      "handlerTableEntry": "0x0c164ffe",
+      "objectResolver": "0x0c153956",
+      "imgmSelectionWriter": "0x0c0e3434",
+      "imgmComponentTag": "0x4d474d49",
+      "componentResolver": "0x0c0aad5a"
+    },
+    "provenBehavior": "Resolve argument zero as an object. If resolution returns null, return without mutation. Otherwise resolve that object's IMGM component and write the low byte of argument one to component offset +0x09. The adjacent native consumer reads +0x09 unsigned and uses it as a dword-table index from IMGM +0x04.",
+    "componentTag": "IMGM",
+    "selectionByteOffset": 9,
+    "argumentValueBehavior": "truncate to low byte"
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 41,
+    "argumentCount": 2,
+    "dialogueRegionCallCount": 10,
+    "areaCounts": {
+      "1:JHD0": 4,
+      "1:OP00": 4,
+      "2:JHD0": 4,
+      "2:MFSY": 11,
+      "2:YDB1": 5,
+      "3:JHD0": 4,
+      "3:MSBS": 4,
+      "3:YDB1": 5
+    },
+    "objectTagCounts": {
+      "BIR1": 1,
+      "BIR2": 2,
+      "BIR3": 1,
+      "BIR4": 1,
+      "BIR5": 2,
+      "BIR6": 2,
+      "BIR7": 2,
+      "FIR1": 7,
+      "FIR2": 7,
+      "FIR3": 7,
+      "FIR4": 7,
+      "FIR5": 2
+    },
+    "argumentKindCounts": {
+      "0": {
+        "constant": 41
+      },
+      "1": {
+        "frame-field": 11,
+        "runtime": 30
+      }
+    },
+    "resultComparisonCount": 0,
+    "resultTargetCount": 0,
+    "op00CallFileOffsets": [
+      "0x818",
+      "0x836",
+      "0x854",
+      "0x872"
+    ]
+  },
+  "evidenceBoundary": [
+    "The semantic applies only to exact two-argument calls.",
+    "A missing resolved object is an exact no-op, not an execution failure.",
+    "The write owns an IMGM entry-selection byte; no animation cadence, material identity, or asset-specific frame meaning is inferred.",
+    "The operation truncates argument one to its low byte. Signed and unsigned producers therefore share the same byte contract.",
+    "FIR* and BIR* are corpus evidence, not hard-coded runtime identities."
+  ]
+}

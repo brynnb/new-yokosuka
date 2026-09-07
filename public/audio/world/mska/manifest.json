@@ -1,0 +1,612 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/build_mska_audio_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/STREAM/A0125.AFS",
+      "sha256": "f7040d25e2544c1bd67bc1cf672d11b6126596f57ce986d8b357772486a30795"
+    },
+    "soundBank": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/SOUND/A1_FUKAN.SND",
+      "sha256": "060975f789a815ef0fa2ef23c1c2d1aa7c1ef9a00a8a0acf944b71aba0fb5db2"
+    },
+    "authManifest": "play/assets/hazuki/mska/manifest.json",
+    "resourceBindingEvidence": "tools/evidence/mska-native-lifecycle.json"
+  },
+  "voices": [
+    {
+      "voiceId": "A0125A001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0126/SOUND/A0125A001.aiff",
+      "nativeMember": "A0125A001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 18432,
+      "nativeSha256": "7e2b097b894e46c74679b65fe7426c504294680a5202067b7c5976d2f9bf388c",
+      "speakerId": "AKIR",
+      "sourceText": "They killed my father right in front of me.",
+      "displayText": "They killed my father right in front of me.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 22
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 22
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/mska/voice/A0125A001.wav",
+      "byteLength": 73516,
+      "sha256": "bff4455824c102e73c183d1c430c1fc48d6726ddbee4e0f809fba45dd6a6bacc"
+    },
+    {
+      "voiceId": "A0125A002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0126/SOUND/A0125A002.aiff",
+      "nativeMember": "A0125A002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 12288,
+      "nativeSha256": "223c5f02caba0778db7fa98c00f7b364a5755837b9559fd51429677e26ddd51e",
+      "speakerId": "AKIR",
+      "sourceText": "I will have my revenge.",
+      "displayText": "I will have my revenge.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/mska/voice/A0125A002.wav",
+      "byteLength": 48940,
+      "sha256": "28bcc07d04af9ac2b69d47b1e8b90b947194ece8fe3a373fac0b7489ca709439"
+    },
+    {
+      "voiceId": "A0125A003",
+      "sourcePath": "/p16/prj16m5/AUTH01/0126/SOUND/A0125A003.aiff",
+      "nativeMember": "A0125A003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 20480,
+      "nativeSha256": "cf0457f223cbdd400be6932d38d883d77ee9010d28609832db4ac3d71f025677",
+      "speakerId": "AKIR",
+      "sourceText": "I need to do this, for my father.",
+      "displayText": "I need to do this, for my father.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 0,
+            "durationTicks": 57
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/mska/voice/A0125A003.wav",
+      "byteLength": 81708,
+      "sha256": "cc40471219977ae86487b93f693eab7d25b748cefdd05495efe208f074bfdc42"
+    },
+    {
+      "voiceId": "A0125B001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0126/SOUND/A0125B001.aiff",
+      "nativeMember": "A0125B001.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 32768,
+      "nativeSha256": "bf4d712ecb4d80f14b7599285077a38a1b7f97f2fcbdd080c82bf5e5c596442c",
+      "speakerId": "FUKU",
+      "sourceText": "Ryo, where are you going?＆You're not going after them?",
+      "displayText": "Ryo, where are you going?\nYou're not going after them?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 28
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 42
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 20
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/mska/voice/A0125B001.wav",
+      "byteLength": 130860,
+      "sha256": "143408511a2bb012c00f8b39f4e28481cf4f264703d843e437e03151d4f023e7"
+    },
+    {
+      "voiceId": "A0125B002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0126/SOUND/A0125B002.aiff",
+      "nativeMember": "A0125B002.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 30720,
+      "nativeSha256": "987dfe58c7d6ddd592752f805c2d3a1f577528e1a961a127551cc29e027276f3",
+      "speakerId": "FUKU",
+      "sourceText": "Please don't. Look what they did to＆Hazuki-Sensei!",
+      "displayText": "Please don't. Look what they did to\nHazuki-Sensei!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 41
+          },
+          {
+            "shape": 1,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          }
+        ]
+      },
+      "asset": "public/audio/world/mska/voice/A0125B002.wav",
+      "byteLength": 122668,
+      "sha256": "34d1e45b4e9393a931d65be2361dab4f064c918979bef2562692813c8b7a86fe"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/0126/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mska/sfx/a9040000.wav",
+      "byteLength": 15308,
+      "sha256": "18d1dab246c9a3499340f72a2f819c8a9ab565a23b33d9fddfa9b94237dc6fe2"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/0126/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mska/sfx/a9040100.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/0126/SE/foot2/GANASHI2.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mska/sfx/a9040200.wav",
+      "byteLength": 25804,
+      "sha256": "b445f45589f7dca74cd10ffb930d08fe60f20e43722f8414eb191cb942211a83"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/0126/SE/foot2/GANASHI3.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mska/sfx/a9040300.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/0126/SE/foot2/RYOASHI3.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mska/sfx/a9040400.wav",
+      "byteLength": 8132,
+      "sha256": "3afddc79d9449c27da41721f84e774c4d6a62cce071057ecb94394e448e96583"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/0180/SE/cloths/RYODORO2.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mska/sfx/a9040400.wav",
+      "byteLength": 8132,
+      "sha256": "3afddc79d9449c27da41721f84e774c4d6a62cce071057ecb94394e448e96583"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/0126/SE/foot2/RYOASHI4.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mska/sfx/a9040600.wav",
+      "byteLength": 15988,
+      "sha256": "e92aa0461cab1dce595e5813321903cf918fe0d5e386d5da20636108c1e43bbe"
+    }
+  ]
+}

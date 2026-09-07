@@ -1,0 +1,339 @@
+{
+  "schema": "new-yokosuka-native-face-pack-v1",
+  "generatedBy": "tools/build_native_face_pack.mjs",
+  "evidenceBoundary": "Ryo reuses the exact OP00 FACE/FTBL assets. Every declared native activity actor uses its exact Disc 1 FACE/FTBL pair. All TALK poses are evaluated by the original SH-4 function, and every voice uses its matching native SRF speaker and mouth-cue record.",
+  "facialAssets": {
+    "AKIR": {
+      "actorTag": "AKIR",
+      "bodyModelCode": "YKC_M",
+      "faceCode": "YKC",
+      "attachmentRenderKey": -67,
+      "faceRootRenderKey": 3,
+      "eyeRenderKeys": [
+        77,
+        78
+      ],
+      "model": {
+        "path": "play/assets/introduction/op00/faces/YKC_F.MT5",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/YKC_F.MT5",
+        "byteLength": 150664,
+        "sha256": "839c307a88fadb82877a7a68c3545b7ea90c6a2b4af3b6a48b6b62eec39af0b6"
+      },
+      "table": {
+        "path": "play/assets/introduction/op00/faces/YKC_FTBL.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/YKC_FTBL.BIN",
+        "byteLength": 5916,
+        "sha256": "1b0f9d6317bcda987476eb99043e203575eed68920c93a0adf91482d918abd67"
+      },
+      "poses": {
+        "path": "play/assets/cutscenes/native-faces/native-talk-poses.generated.json",
+        "byteLength": 2656134,
+        "sha256": "60091887074feb56e1b22d9a482a62936270018c2899b16fe2661e7a25a840bb",
+        "generatedBy": "tools/extract_native_face_poses.py",
+        "actorTag": "AKIR"
+      }
+    },
+    "IWAO": {
+      "actorTag": "IWAO",
+      "bodyModelCode": "IWA_M",
+      "faceCode": "IWA",
+      "attachmentRenderKey": -67,
+      "faceRootRenderKey": 3,
+      "eyeRenderKeys": [
+        77,
+        78
+      ],
+      "model": {
+        "path": "play/assets/cutscenes/native-faces/IWA_F.MT5",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/IWA_F.MT5",
+        "byteLength": 111728,
+        "sha256": "3843ab19cc4b70ee3ce0b1eadc3b1847c5d9c7cf9229ff474484d91f1288f29f"
+      },
+      "table": {
+        "path": "play/assets/cutscenes/native-faces/IWA_FTBL.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/IWA_FTBL.BIN",
+        "byteLength": 4544,
+        "sha256": "406ceb8399fba2ef989af0871b47c42ad62e2a1aadf536eba39f2af4c78501c3"
+      },
+      "poses": {
+        "path": "play/assets/cutscenes/native-faces/native-talk-poses.generated.json",
+        "byteLength": 2656134,
+        "sha256": "60091887074feb56e1b22d9a482a62936270018c2899b16fe2661e7a25a840bb",
+        "generatedBy": "tools/extract_native_face_poses.py",
+        "actorTag": "IWAO"
+      }
+    },
+    "JAKR": {
+      "actorTag": "JAKR",
+      "bodyModelCode": "JKA_M",
+      "faceCode": "JKA",
+      "attachmentRenderKey": -67,
+      "faceRootRenderKey": 3,
+      "eyeRenderKeys": [
+        77,
+        78
+      ],
+      "model": {
+        "path": "play/assets/cutscenes/native-faces/JKA_F.MT5",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/JKA_F.MT5",
+        "byteLength": 90052,
+        "sha256": "7af0756726e5dee137c27f4fe6774be6309c246d033b7890d3d8f39a6ced27a4"
+      },
+      "table": {
+        "path": "play/assets/cutscenes/native-faces/JKA_FTBL.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/JKA_FTBL.BIN",
+        "byteLength": 6144,
+        "sha256": "37caf2b88d92a32607418fbcc63607e7c4a70f23a851e34e3d494a2928a12988"
+      },
+      "poses": {
+        "path": "play/assets/cutscenes/native-faces/jakr-talk-poses.generated.json",
+        "byteLength": 286110,
+        "sha256": "2bb3edf187a2fa8fde6c729655f73d5be02353fef007aaf62fea5fb586311b0a",
+        "generatedBy": "tools/extract_native_face_poses.py",
+        "actorTag": "JAKR"
+      }
+    },
+    "SINF": {
+      "actorTag": "SINF",
+      "bodyModelCode": "SIN_M",
+      "faceCode": "SIN",
+      "attachmentRenderKey": -67,
+      "faceRootRenderKey": 3,
+      "eyeRenderKeys": [
+        77,
+        78
+      ],
+      "model": {
+        "path": "play/assets/cutscenes/native-faces/SIN_F.MT5",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/SIN_F.MT5",
+        "byteLength": 252780,
+        "sha256": "384e70b147fd0ea6b25ef34f28af80afe1658236f98cb18b468656e6700a7682"
+      },
+      "table": {
+        "path": "play/assets/cutscenes/native-faces/SIN_FTBL.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/SIN_FTBL.BIN",
+        "byteLength": 8092,
+        "sha256": "9ce6c79f85666df9d19bdce9210d975aa60ad3b6e68bd97f5770a56b090bb9e7"
+      },
+      "poses": {
+        "path": "play/assets/cutscenes/native-faces/sinf-talk-poses.generated.json",
+        "byteLength": 296082,
+        "sha256": "fe4e0001f2d884efd0573c42a51c08ebf72a20c7d9ff02a60358c53f6f5a5045",
+        "generatedBy": "tools/extract_native_face_poses.py",
+        "actorTag": "SINF"
+      }
+    },
+    "INE_": {
+      "actorTag": "INE_",
+      "bodyModelCode": "INE_M",
+      "faceCode": "INE",
+      "attachmentRenderKey": -67,
+      "faceRootRenderKey": 3,
+      "eyeRenderKeys": [
+        77,
+        78
+      ],
+      "model": {
+        "path": "play/assets/cutscenes/native-faces/INE_F.MT5",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/INE_F.MT5",
+        "byteLength": 111908,
+        "sha256": "0e4b50d8926ba3d2c53ba82955c825c6a806ae12725482d659592fe6e1d418a1"
+      },
+      "table": {
+        "path": "play/assets/cutscenes/native-faces/INE_FTBL.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/INE_FTBL.BIN",
+        "byteLength": 4980,
+        "sha256": "5116ef74d03b22381cb4e440de3493b54629fe3afce619dc87fa7689a6aedd7e"
+      },
+      "poses": {
+        "path": "play/assets/cutscenes/native-faces/native-talk-poses.generated.json",
+        "byteLength": 2656134,
+        "sha256": "60091887074feb56e1b22d9a482a62936270018c2899b16fe2661e7a25a840bb",
+        "generatedBy": "tools/extract_native_face_poses.py",
+        "actorTag": "INE_"
+      }
+    },
+    "FUKU": {
+      "actorTag": "FUKU",
+      "bodyModelCode": "FUK_M",
+      "faceCode": "FUK",
+      "attachmentRenderKey": -67,
+      "faceRootRenderKey": 3,
+      "eyeRenderKeys": [
+        77,
+        78
+      ],
+      "model": {
+        "path": "play/assets/cutscenes/native-faces/FUK_F.MT5",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/FUK_F.MT5",
+        "byteLength": 142760,
+        "sha256": "91d7ea39451d3f45c6c7b4a8536d3f0a349be274df9581df64f5177c17dcf1ed"
+      },
+      "table": {
+        "path": "play/assets/cutscenes/native-faces/FUK_FTBL.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/FUK_FTBL.BIN",
+        "byteLength": 5004,
+        "sha256": "0da346204075039870a014ed304b2c77af9a410f3a07e2a1f8f4196743725047"
+      },
+      "poses": {
+        "path": "play/assets/cutscenes/native-faces/native-talk-poses.generated.json",
+        "byteLength": 2656134,
+        "sha256": "60091887074feb56e1b22d9a482a62936270018c2899b16fe2661e7a25a840bb",
+        "generatedBy": "tools/extract_native_face_poses.py",
+        "actorTag": "FUKU"
+      }
+    },
+    "SMTH": {
+      "actorTag": "SMTH",
+      "bodyModelCode": "GIB_M",
+      "faceCode": "GIB",
+      "attachmentRenderKey": -67,
+      "faceRootRenderKey": 3,
+      "eyeRenderKeys": [
+        77,
+        78
+      ],
+      "model": {
+        "path": "play/assets/cutscenes/native-faces/GIB_F.MT5",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/GIB_F.MT5",
+        "byteLength": 80544,
+        "sha256": "c71ccb15d1b29621a1d539c8cc89c97def6a97c480169a81313220c4405f2a4b"
+      },
+      "table": {
+        "path": "play/assets/cutscenes/native-faces/GIB_FTBL.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/GIB_FTBL.BIN",
+        "byteLength": 4256,
+        "sha256": "71e25c250f7cac26eaadd36e87c5bac72eda5baf3ab557eed6a48741285a5bdd"
+      },
+      "poses": {
+        "path": "play/assets/cutscenes/native-faces/native-talk-poses.generated.json",
+        "byteLength": 2656134,
+        "sha256": "60091887074feb56e1b22d9a482a62936270018c2899b16fe2661e7a25a840bb",
+        "generatedBy": "tools/extract_native_face_poses.py",
+        "actorTag": "SMTH"
+      }
+    },
+    "TONY": {
+      "actorTag": "TONY",
+      "bodyModelCode": "GIJ_M",
+      "faceCode": "GIJ",
+      "attachmentRenderKey": -67,
+      "faceRootRenderKey": 3,
+      "eyeRenderKeys": [
+        77,
+        78
+      ],
+      "model": {
+        "path": "play/assets/cutscenes/native-faces/GIJ_F.MT5",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/GIJ_F.MT5",
+        "byteLength": 82112,
+        "sha256": "4a70a5d5049d004e2440511acb07ab25b2756c6b06a5795bab2b64dde9dd5732"
+      },
+      "table": {
+        "path": "play/assets/cutscenes/native-faces/GIJ_FTBL.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/GIJ_FTBL.BIN",
+        "byteLength": 4788,
+        "sha256": "13dd495f35dcd2454fd61c211c5f933f27baa32be04f02b9b5ad8ff30d51d330"
+      },
+      "poses": {
+        "path": "play/assets/cutscenes/native-faces/native-talk-poses.generated.json",
+        "byteLength": 2656134,
+        "sha256": "60091887074feb56e1b22d9a482a62936270018c2899b16fe2661e7a25a840bb",
+        "generatedBy": "tools/extract_native_face_poses.py",
+        "actorTag": "TONY"
+      }
+    },
+    "HRSK": {
+      "actorTag": "HRSK",
+      "bodyModelCode": "NZM_L",
+      "faceCode": "NZM",
+      "attachmentRenderKey": -67,
+      "faceRootRenderKey": 3,
+      "eyeRenderKeys": [
+        77,
+        78
+      ],
+      "model": {
+        "path": "play/assets/cutscenes/native-faces/NZM_F.MT5",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/NZM_F.MT5",
+        "byteLength": 79516,
+        "sha256": "3fa8edf09120105297480f18ec86390aa6a6418884acfcdc115040c64d239ef0"
+      },
+      "table": {
+        "path": "play/assets/cutscenes/native-faces/NZM_FTBL.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/NZM_FTBL.BIN",
+        "byteLength": 5920,
+        "sha256": "5fcf97d48be6863fda3f3d91ab128aa3a23283af0249275d91a3c0866470b95c"
+      },
+      "poses": {
+        "path": "play/assets/cutscenes/native-faces/native-talk-poses.generated.json",
+        "byteLength": 2656134,
+        "sha256": "60091887074feb56e1b22d9a482a62936270018c2899b16fe2661e7a25a840bb",
+        "generatedBy": "tools/extract_native_face_poses.py",
+        "actorTag": "HRSK"
+      }
+    },
+    "YAMA": {
+      "actorTag": "YAMA",
+      "bodyModelCode": "YMG_L",
+      "faceCode": "YMG",
+      "attachmentRenderKey": -67,
+      "faceRootRenderKey": 3,
+      "eyeRenderKeys": [
+        77,
+        78
+      ],
+      "model": {
+        "path": "play/assets/cutscenes/native-faces/YMG_F.MT5",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/YMG_F.MT5",
+        "byteLength": 86968,
+        "sha256": "17e98b42752469c6ea80fb105ed570e3cbdefc280104ca29098327b1c0bced28"
+      },
+      "table": {
+        "path": "play/assets/cutscenes/native-faces/YMG_FTBL.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/YMG_FTBL.BIN",
+        "byteLength": 4924,
+        "sha256": "feff5238a1ddd09f9a1368067157d9149ede9dc65c49a0afa7d8c136cd82b7f0"
+      },
+      "poses": {
+        "path": "play/assets/cutscenes/native-faces/native-talk-poses.generated.json",
+        "byteLength": 2656134,
+        "sha256": "60091887074feb56e1b22d9a482a62936270018c2899b16fe2661e7a25a840bb",
+        "generatedBy": "tools/extract_native_face_poses.py",
+        "actorTag": "YAMA"
+      }
+    }
+  },
+  "facialVariants": {
+    "JKB": {
+      "actorTag": "JAKR",
+      "bodyModelCode": "JKB_M",
+      "faceCode": "JKB",
+      "attachmentRenderKey": -67,
+      "faceRootRenderKey": 3,
+      "eyeRenderKeys": [
+        77,
+        78
+      ],
+      "model": {
+        "path": "play/assets/cutscenes/native-faces/JKB_F.MT5",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/JKB_F.MT5",
+        "byteLength": 122880,
+        "sha256": "311a4f734f2f5f4e28156a2b8ccdfd04429711ee8592721653e3e892bcdafb9f"
+      },
+      "table": {
+        "path": "play/assets/cutscenes/native-faces/JKB_FTBL.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/JKB_FTBL.BIN",
+        "byteLength": 6144,
+        "sha256": "ca13ce45c2c5e1829c87c9144d5e5f8f2e1fc0a43f3a5fd186821f71bcedc8ff"
+      },
+      "poses": {
+        "path": "play/assets/cutscenes/native-faces/jkb-talk-poses.generated.json",
+        "byteLength": 295915,
+        "sha256": "1553d9c85549d890c7f62555e7cfed7d7f4b4942e25dbf6e243cd65a879e5c70",
+        "generatedBy": "tools/extract_native_face_poses.py",
+        "actorTag": "JAKR"
+      }
+    }
+  }
+}

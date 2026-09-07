@@ -1,0 +1,150 @@
+{
+  "schema": "new-yokosuka-native-activity-actors-v1",
+  "sources": {
+    "actorTags": {
+      "path": "play/cutscenes/nativeCutscenePackages.js",
+      "rule": "exact non-player actor tags authored by production native AUTH packages"
+    },
+    "characterMapping": {
+      "path": "public/data/chars.csv",
+      "sha256": "bdd3f547098401f732e5d81fd2bfee61909ccab581ca5f2e9a5570ea76d49415",
+      "rule": "exact actor ID to model-name rows"
+    },
+    "models": {
+      "path": "disc3/SCENE/03/STREAM/HUMANS.AFS",
+      "sha256": "c61b53f0784442505e491a2bba7dc8f608495922f69acfb253be8c10492570a7",
+      "rule": "exact named CHRM child with the immediately preceding PAKF texture entry"
+    }
+  },
+  "modelCodes": [
+    "GIB_M",
+    "GIE_L",
+    "GIF_L",
+    "GIJ_M",
+    "TUW_L",
+    "NZM_L",
+    "YAA_L",
+    "YAB_L",
+    "KHI_L",
+    "YMG_L",
+    "FUK_M",
+    "INE_M",
+    "JKA_M",
+    "SIA_L"
+  ],
+  "packageActorTags": ["BUSS", "KKEN", "CATM"],
+  "sceneObjectTags": [
+    "BUS_",
+    "AIRO",
+    "NBOX",
+    "NBO1",
+    "NBO2",
+    "NBO3",
+    "NBO4",
+    "NBO5",
+    "BNB1",
+    "BNB2",
+    "BNB3",
+    "ABRG"
+  ],
+  "worlds": {
+    "dobuita": [
+      {
+        "actorCode": "SMTH",
+        "label": "Smith Bradley",
+        "modelCode": "GIB_M",
+        "activityOnly": true
+      },
+      {
+        "actorCode": "HARY",
+        "label": "Harry Thompson",
+        "modelCode": "GIE_L",
+        "activityOnly": true
+      },
+      {
+        "actorCode": "TONY",
+        "label": "Tony Abrams",
+        "modelCode": "GIJ_M",
+        "activityOnly": true
+      },
+      {
+        "actorCode": "SERA",
+        "label": "Takeshi Sera",
+        "modelCode": "TUW_L",
+        "activityOnly": true
+      },
+      {
+        "actorCode": "JONZ",
+        "label": "Jones Henders",
+        "modelCode": "GIF_L",
+        "activityOnly": true
+      },
+      {
+        "actorCode": "HRSK",
+        "label": "Nozomi Harasaki",
+        "modelCode": "NZM_L",
+        "activityOnly": true
+      },
+      {
+        "actorCode": "YKHI",
+        "label": "Wang Guang Ji",
+        "modelCode": "KHI_L",
+        "activityOnly": true
+      },
+      {
+        "actorCode": "YAMA",
+        "label": "Shigeo Yamagishi",
+        "modelCode": "YMG_L",
+        "activityOnly": true
+      }
+    ],
+    "sakuragaoka": [
+      {
+        "actorCode": "HRSK",
+        "label": "Nozomi Harasaki",
+        "modelCode": "NZM_L",
+        "activityOnly": true
+      },
+      {
+        "actorCode": "ENKI",
+        "label": "Akio Enoki",
+        "modelCode": "YAA_L",
+        "activityOnly": true
+      },
+      {
+        "actorCode": "NGSM",
+        "label": "Tetsuya Nagashima",
+        "modelCode": "YAB_L",
+        "activityOnly": true
+      }
+    ],
+    "yamanose": [
+      {
+        "actorCode": "MEGM",
+        "label": "Megumi Mishima",
+        "modelCode": "SIA_L",
+        "activityOnly": true
+      }
+    ],
+    "exterior": [
+      {
+        "actorCode": "JAKR",
+        "label": "Young Ryo Hazuki",
+        "modelCode": "JKA_M",
+        "activityOnly": true
+      },
+      {
+        "actorCode": "FUKU",
+        "label": "Masayuki Fukuhara",
+        "modelCode": "FUK_M",
+        "activityOnly": true
+      },
+      {
+        "actorCode": "INE_",
+        "label": "Ine Hayata",
+        "modelCode": "INE_M",
+        "activityOnly": true
+      }
+    ]
+  }
+}

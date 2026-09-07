@@ -1,0 +1,2482 @@
+{
+  "schema": "new-yokosuka-jomo-interaction-coverage-v1",
+  "sources": {
+    "placements": "play/data/jomo-runtime-placements.json",
+    "operations": "tools/evidence/jomo-object-operation-trace.json"
+  },
+  "summary": {
+    "objectTagCount": 160,
+    "activePlacementCount": 147,
+    "implementedInteractionCount": 147,
+    "groupedInteractionUnimplementedCount": 0,
+    "provenInteractionUnimplementedCount": 0,
+    "nonRenderedInteractionControllerCount": 2
+  },
+  "groupCoverage": [
+    {
+      "groupIndex": 0,
+      "headerWords": [
+        "0x000b05a9",
+        "0x00000000",
+        "0x000a05a9",
+        "0x006405a9"
+      ],
+      "memberCount": 27,
+      "implementedCount": 27,
+      "unimplementedTags": []
+    },
+    {
+      "groupIndex": 1,
+      "headerWords": [
+        "0x000b05a9",
+        "0x00000000",
+        "0x000a05a9",
+        "0x006405a9"
+      ],
+      "memberCount": 10,
+      "implementedCount": 10,
+      "unimplementedTags": []
+    },
+    {
+      "groupIndex": 2,
+      "headerWords": [
+        "0x000105a9",
+        "0x00000000",
+        "0x00000000",
+        "0x000005a9"
+      ],
+      "memberCount": 2,
+      "implementedCount": 2,
+      "unimplementedTags": []
+    },
+    {
+      "groupIndex": 3,
+      "headerWords": [
+        "0x000505a9",
+        "0x00000000",
+        "0x000405a9",
+        "0x005505a9"
+      ],
+      "memberCount": 6,
+      "implementedCount": 6,
+      "unimplementedTags": []
+    },
+    {
+      "groupIndex": 4,
+      "headerWords": [
+        "0x000202ab",
+        "0x00000000",
+        "0x000302ab",
+        "0x00000000"
+      ],
+      "memberCount": 6,
+      "implementedCount": 6,
+      "unimplementedTags": []
+    },
+    {
+      "groupIndex": 5,
+      "headerWords": [
+        "0x000d05a9",
+        "0x00000000",
+        "0x00000000",
+        "0x000c05a9",
+        "0x554b5749"
+      ],
+      "memberCount": 2,
+      "implementedCount": 2,
+      "unimplementedTags": []
+    },
+    {
+      "groupIndex": 6,
+      "headerWords": [
+        "0x002705a9",
+        "0x00000000",
+        "0x00000000",
+        "0x002705a9"
+      ],
+      "memberCount": 9,
+      "implementedCount": 9,
+      "unimplementedTags": []
+    },
+    {
+      "groupIndex": 7,
+      "headerWords": [
+        "0x003205a9",
+        "0x00000000",
+        "0x00000000",
+        "0x003205a9"
+      ],
+      "memberCount": 1,
+      "implementedCount": 1,
+      "unimplementedTags": []
+    },
+    {
+      "groupIndex": 8,
+      "headerWords": [
+        "0x003105a9",
+        "0x00000000",
+        "0x00000000",
+        "0x003005a9"
+      ],
+      "memberCount": 2,
+      "implementedCount": 2,
+      "unimplementedTags": []
+    },
+    {
+      "groupIndex": 9,
+      "headerWords": [
+        "0x002f05a9",
+        "0x00000000",
+        "0x00000000",
+        "0x002e05a9"
+      ],
+      "memberCount": 3,
+      "implementedCount": 3,
+      "unimplementedTags": []
+    },
+    {
+      "groupIndex": 10,
+      "headerWords": [
+        "0x001105a9",
+        "0x00000000",
+        "0x00000000",
+        "0x001005a9"
+      ],
+      "memberCount": 1,
+      "implementedCount": 1,
+      "unimplementedTags": []
+    },
+    {
+      "groupIndex": 11,
+      "headerWords": [
+        "0x005805a9",
+        "0x00000000",
+        "0x00000000",
+        "0x005805a9"
+      ],
+      "memberCount": 1,
+      "implementedCount": 1,
+      "unimplementedTags": []
+    },
+    {
+      "groupIndex": 12,
+      "headerWords": [
+        "0x003e05a9",
+        "0x00000000",
+        "0x00000000",
+        "0x003f05a9"
+      ],
+      "memberCount": 1,
+      "implementedCount": 1,
+      "unimplementedTags": []
+    },
+    {
+      "groupIndex": 13,
+      "headerWords": [
+        "0x003705a9",
+        "0x00000000",
+        "0x00000000",
+        "0x003605a9"
+      ],
+      "memberCount": 1,
+      "implementedCount": 1,
+      "unimplementedTags": []
+    },
+    {
+      "groupIndex": 14,
+      "headerWords": [
+        "0x000205a9",
+        "0x00000000",
+        "0x00000000",
+        "0x000205a9"
+      ],
+      "memberCount": 1,
+      "implementedCount": 1,
+      "unimplementedTags": []
+    }
+  ],
+  "objects": [
+    {
+      "objectTag": "AKIR",
+      "model": null,
+      "activePlacement": false,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x0005",
+        "0x000a",
+        "0x0011",
+        "0x0018",
+        "0x0019",
+        "0x001a",
+        "0x001c",
+        "0x001d",
+        "0x001f",
+        "0x0021",
+        "0x0025",
+        "0x0028",
+        "0x0029",
+        "0x002b",
+        "0x002c",
+        "0x002d",
+        "0x0040",
+        "0x0042",
+        "0x0046",
+        "0x005d",
+        "0x005e",
+        "0x0070",
+        "0x0074",
+        "0x0075",
+        "0x0078",
+        "0x0081",
+        "0x008f",
+        "0x0091",
+        "0x0094",
+        "0x0099",
+        "0x009c",
+        "0x009d",
+        "0x00a8",
+        "0x00df",
+        "0x00e6",
+        "0x00e7",
+        "0x00e9",
+        "0x00eb",
+        "0x00f1",
+        "0x00f7",
+        "0x0113",
+        "0x0118",
+        "0x0121",
+        "0x0132",
+        "0x015b",
+        "0x015f",
+        "0x0166",
+        "0x016b",
+        "0x016c",
+        "0x017d",
+        "0x017e",
+        "0x019f"
+      ],
+      "browserBehavior": "none",
+      "coverageStatus": "no-proven-browser-interaction"
+    },
+    {
+      "objectTag": "dor0",
+      "model": "S1_JOMO_DR15_016.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x0018",
+        "0x001d",
+        "0x001f",
+        "0x0027",
+        "0x0072",
+        "0x008f",
+        "0x00f7",
+        "0x0191"
+      ],
+      "browserBehavior": "sliding-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "dor1",
+      "model": "S1_JOMO_DR15_026.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x0018",
+        "0x001d",
+        "0x001f",
+        "0x0027",
+        "0x0072",
+        "0x008f",
+        "0x00f7",
+        "0x0191"
+      ],
+      "browserBehavior": "sliding-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "dor2",
+      "model": "S1_JOMO_DR15_026.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x0018",
+        "0x001d",
+        "0x001f",
+        "0x0027",
+        "0x0072",
+        "0x008f",
+        "0x00f7",
+        "0x0191"
+      ],
+      "browserBehavior": "sliding-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "dor3",
+      "model": "S1_JOMO_DR15_028.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x0018",
+        "0x001d",
+        "0x001f",
+        "0x0027",
+        "0x0072",
+        "0x008f",
+        "0x00f7",
+        "0x0191"
+      ],
+      "browserBehavior": "sliding-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "dor4",
+      "model": "S1_JOMO_DR23_000.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x0018",
+        "0x001d",
+        "0x001f",
+        "0x0027",
+        "0x0072",
+        "0x008f",
+        "0x00f7",
+        "0x0191"
+      ],
+      "browserBehavior": "sliding-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "dor5",
+      "model": "S1_JOMO_DR15_026.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x0018",
+        "0x001d",
+        "0x001f",
+        "0x0027",
+        "0x0072",
+        "0x008f",
+        "0x00f7",
+        "0x0191"
+      ],
+      "browserBehavior": "sliding-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "dor6",
+      "model": "S1_JOMO_DR15_026.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x0018",
+        "0x001d",
+        "0x001f",
+        "0x0027",
+        "0x0072",
+        "0x008f",
+        "0x00f7",
+        "0x0191"
+      ],
+      "browserBehavior": "sliding-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "dor7",
+      "model": "S1_JOMO_DR01_015.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x0018",
+        "0x001d",
+        "0x001f",
+        "0x0027",
+        "0x0072",
+        "0x008f",
+        "0x00f7",
+        "0x0191"
+      ],
+      "browserBehavior": "swing-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "dor8",
+      "model": "S1_JOMO_DR01_015.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x0018",
+        "0x001d",
+        "0x001f",
+        "0x0027",
+        "0x0072",
+        "0x008f",
+        "0x00f7",
+        "0x0191"
+      ],
+      "browserBehavior": "swing-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "dor9",
+      "model": "S1_JOMO_DR23_000.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x0018",
+        "0x001d",
+        "0x001f",
+        "0x0027",
+        "0x0072",
+        "0x008f",
+        "0x00f7",
+        "0x0191"
+      ],
+      "browserBehavior": "sliding-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "AKID",
+      "model": null,
+      "activePlacement": false,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x0019",
+        "0x001f",
+        "0x005e",
+        "0x0074",
+        "0x0075",
+        "0x0094",
+        "0x009d",
+        "0x00a8",
+        "0x00df",
+        "0x00eb",
+        "0x00fd",
+        "0x0113",
+        "0x015b",
+        "0x016b"
+      ],
+      "browserBehavior": "none",
+      "coverageStatus": "no-proven-browser-interaction"
+    },
+    {
+      "objectTag": "YKUL",
+      "model": null,
+      "activePlacement": false,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x00a8",
+        "0x0139"
+      ],
+      "browserBehavior": "none",
+      "coverageStatus": "no-proven-browser-interaction"
+    },
+    {
+      "objectTag": "YKUR",
+      "model": null,
+      "activePlacement": false,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x0018",
+        "0x001d",
+        "0x001f",
+        "0x005e",
+        "0x00a8",
+        "0x00eb",
+        "0x0139"
+      ],
+      "browserBehavior": "none",
+      "coverageStatus": "no-proven-browser-interaction"
+    },
+    {
+      "objectTag": "IWKJ",
+      "model": "S1_JOMO_KAKS503G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        9
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9a880"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "IGAK",
+      "model": "S1_JOMO_YUKS510G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        6
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9a860"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "TRNE",
+      "model": "S1_JOMO_KAIR101G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        6
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9a820"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "IWWH",
+      "model": "S1_JOMO_HIKR101G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9a8c0"
+      ],
+      "directOperationIds": [
+        "0x00e6",
+        "0x0139"
+      ],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "TEGA",
+      "model": "S1_JOMO_MALS530G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [
+        "0x9a800"
+      ],
+      "directOperationIds": [
+        "0x0019"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "KAGI",
+      "model": "S1_JOMO_KGTS500G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x001b",
+        "0x001f",
+        "0x00e6",
+        "0x0139"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ITBO",
+      "model": "S1_JOMO_TUBT2051.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        8
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9a840"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "HIM1",
+      "model": "S1_JOMO_HIMT203G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [
+        "0x9a8e0"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "itbR",
+      "model": "S1_JOMO_TNBR101G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        4
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9a920"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "hinged-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "itbL",
+      "model": "S1_JOMO_TNBR102G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        4
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9a900"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "hinged-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "wden",
+      "model": "S1_JOMO_LGWS261G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "wstn",
+      "model": "S1_JOMO_LGWS267G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "iosh",
+      "model": "S1_JOMO_OHDK3I0G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ihko",
+      "model": "S1_JOMO_KHKO105G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x001b",
+        "0x00e6",
+        "0x0139"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "AKD2",
+      "model": "S1_JOMO_DESM402G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b160"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "AKD3",
+      "model": "S1_JOMO_DESM402G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b180"
+      ],
+      "directOperationIds": [
+        "0x001a"
+      ],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "AKD4",
+      "model": "S1_JOMO_DESM403G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b1a0"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ATS1",
+      "model": "S1_JOMO_TANM4W3G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b1c0"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ATS2",
+      "model": "S1_JOMO_TANM4W3G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b1e0"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ATS3",
+      "model": "S1_JOMO_TANM4W3G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b200"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ATS4",
+      "model": "S1_JOMO_TANM4W3G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b220"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ATS5",
+      "model": "S1_JOMO_TANM4W4G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b240"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ATS6",
+      "model": "S1_JOMO_TANM4W4G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b260"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ATS7",
+      "model": "S1_JOMO_TANM402G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        3
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b280"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "hinged-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "AKDG",
+      "model": "S1_JOMO_DOUK300G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        14
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b140"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "KAWA",
+      "model": "S1_JOMO_MJAS500G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x0018",
+        "0x001d",
+        "0x001f",
+        "0x00ec"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "FUT1",
+      "model": "S1_JOMO_FUTS301G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "FUT2",
+      "model": "S1_JOMO_FUTS302G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x0018",
+        "0x0019",
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "TOKE",
+      "model": "S1_JOMO_CLKS501G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [
+        "0x9b2c0"
+      ],
+      "directOperationIds": [
+        "0x00c9",
+        "0x015b",
+        "0x016b"
+      ],
+      "browserBehavior": "alarm-clock",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "rden",
+      "model": "S1_JOMO_LGWS203G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "rstn",
+      "model": "S1_JOMO_LGWS267G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "rosh",
+      "model": "S1_JOMO_OHDM4R0G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "rrad",
+      "model": "S1_JOMO_CASS500G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [
+        "0x9b2a0"
+      ],
+      "directOperationIds": [
+        "0x001f",
+        "0x008f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "pwkm",
+      "model": "S1_JOMO_PTBS5L1G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ptpm",
+      "model": "S1_JOMO_MTPK6MTG.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [
+        "0x9b2e0"
+      ],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ptpf",
+      "model": "S1_JOMO_MTPK6SMG.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "BMKJ",
+      "model": "S1_JOMO_KAKS504G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        9
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9a9a0"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "KIKJ",
+      "model": "S1_JOMO_KAKS508G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        9
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9a940"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "BMBO",
+      "model": "S1_JOMO_BUTK300G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x001b",
+        "0x00e6"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "BMB1",
+      "model": "S1_JOMO_BUTM403G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9a9e0"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "BMB2",
+      "model": "S1_JOMO_BUTM403G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9aa00",
+        "0x9b660"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "BMB3",
+      "model": "S1_JOMO_BUTM402G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        3
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9aa20"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "hinged-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "BMB4",
+      "model": "S1_JOMO_BUTM401G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9aa40"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "BMB5",
+      "model": "S1_JOMO_BUTM401G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9aa60"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "BMMC",
+      "model": "S1_JOMO_MATM400G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [
+        "0x9aaa0"
+      ],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "BTBO",
+      "model": "S1_JOMO_TUBS205G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        8
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9a980"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "bden",
+      "model": "S1_JOMO_LGWS203G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "HANA",
+      "model": "S1_JOMO_BUTM408G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [
+        "0x9aac0"
+      ],
+      "directOperationIds": [
+        "0x008f",
+        "0x016b"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "btbR",
+      "model": "S1_JOMO_TNBR101G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        4
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9ab00"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "hinged-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "btbL",
+      "model": "S1_JOMO_TNBR102G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        4
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9aae0"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "hinged-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "bkgu",
+      "model": "S1_JOMO_KAGT211G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        5
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b640"
+      ],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "brou",
+      "model": "S1_JOMO_ROUM400G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "imk3",
+      "model": "S1_JOMO_WZBS5SJG.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "sykj",
+      "model": "S1_JOMO_SSTS500G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [
+        "0x9ab20"
+      ],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "DDZ1",
+      "model": "S1_JOMO_ZALS500G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        7
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9ab80"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "D1C1",
+      "model": "S1_JOMO_CHDS500G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9abc0"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "D1C2",
+      "model": "S1_JOMO_CHDS500G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9abe0"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "D1C3",
+      "model": "S1_JOMO_CHSS501G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        1
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9ac00"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "hinged-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "D1C4",
+      "model": "S1_JOMO_CHSS500G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        1
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9ac20"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "hinged-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "DDG1",
+      "model": "S1_JOMO_TO1W101G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        3
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9acc0"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "hinged-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "DDG2",
+      "model": "S1_JOMO_TO2W101G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        3
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9ace0"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "hinged-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "DDR1",
+      "model": "S1_JOMO_REIO101G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        2
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9ac40"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "swing-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "DDR2",
+      "model": "S1_JOMO_REIO102G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        2
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9ac60"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "swing-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "DND1",
+      "model": "S1_JOMO_TUDT202G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        1
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9ac80"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "hinged-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "DND2",
+      "model": "S1_JOMO_TUDT203G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        1
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9aca0"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "hinged-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "DGKI",
+      "model": "S1_JOMO_GKI02O1G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "DDYK",
+      "model": "S1_JOMO_YAKM400G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        10
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9aba0"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "DDFP",
+      "model": "S1_JOMO_FLYM400G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        12
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9ab60"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "kden",
+      "model": "S1_JOMO_LGWS203G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "kmil",
+      "model": "S1_JOMO_MLKS301G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [
+        "0x9b6a0"
+      ],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "knib",
+      "model": "S1_JOMO_NIPK302G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [
+        "0x9ad20"
+      ],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "kclk",
+      "model": "S1_JOMO_CLOS5003.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [
+        "0x9ad00"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "kpic",
+      "model": "S1_JOMO_YUKS515G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        6
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9ad40"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "IDEN",
+      "model": "S1_JOMO_DENK304G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "STAN",
+      "model": null,
+      "activePlacement": false,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [
+        "0x9adc0"
+      ],
+      "directOperationIds": [
+        "0x0018",
+        "0x0019",
+        "0x00c9"
+      ],
+      "browserBehavior": "none",
+      "coverageStatus": "non-rendered-controller"
+    },
+    {
+      "objectTag": "DSTN",
+      "model": "S1_JOMO_SUTS503G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x0018",
+        "0x001f",
+        "0x00c9"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "cdsh",
+      "model": null,
+      "activePlacement": false,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x0018",
+        "0x001d",
+        "0x001f",
+        "0x00a8"
+      ],
+      "browserBehavior": "none",
+      "coverageStatus": "no-proven-browser-interaction"
+    },
+    {
+      "objectTag": "cdhn",
+      "model": null,
+      "activePlacement": false,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x0018",
+        "0x001d",
+        "0x001f",
+        "0x00a8"
+      ],
+      "browserBehavior": "none",
+      "coverageStatus": "no-proven-browser-interaction"
+    },
+    {
+      "objectTag": "IMOR",
+      "model": "S1_JOMO_TMKR101G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [
+        "0x9ad60"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "IMC1",
+      "model": "S1_JOMO_CHDS500G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9ade0"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "IMC2",
+      "model": "S1_JOMO_CHDS500G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9ae00"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "IMC3",
+      "model": "S1_JOMO_CHSS501G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        1
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9ae20"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "hinged-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "IMC4",
+      "model": "S1_JOMO_CHSS500G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        1
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9ae40"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "hinged-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "IYNU",
+      "model": "S1_JOMO_YUNK300G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        13
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9ad80"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ITVH",
+      "model": "S1_JOMO_TVDS500G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        3
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9ada0"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "hinged-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "lden",
+      "model": "S1_JOMO_LGWS202G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "HIM2",
+      "model": "S1_JOMO_HIMT204G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [
+        "0x9ae60"
+      ],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "lclk",
+      "model": "S1_JOMO_CLOS5003.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [
+        "0x9ae80"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "IKD1",
+      "model": "S1_JOMO_HIKW101G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9afa0"
+      ],
+      "directOperationIds": [
+        "0x001a"
+      ],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "IKD2",
+      "model": "S1_JOMO_HIKW101G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9afc0"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ITS1",
+      "model": "S1_JOMO_TANM4W3G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9aec0"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ITS2",
+      "model": "S1_JOMO_TANM4W3G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9aee0"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ITS3",
+      "model": "S1_JOMO_TANM4W3G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9af00"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ITS4",
+      "model": "S1_JOMO_TANM4W3G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9af20"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ITS5",
+      "model": "S1_JOMO_TANM4W4G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9af40"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ITS6",
+      "model": "S1_JOMO_TANM4W4G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9af60"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ITS7",
+      "model": "S1_JOMO_TANM402G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        3
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9af80"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "hinged-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "HIM4",
+      "model": "S1_JOMO_HIMT203G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [
+        "0x9aea0"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "iden",
+      "model": "S1_JOMO_LGWS201G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ikgu",
+      "model": "S1_JOMO_KAGT211G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        5
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9afe0"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "imk1",
+      "model": "S1_JOMO_MKIS3C1G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [
+        "0x9b080"
+      ],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "FGAK",
+      "model": "S1_JOMO_YUKS511G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        6
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b000"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "FKWH",
+      "model": "S1_JOMO_HIKR101G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        0
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b040"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "drawer",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "HIM3",
+      "model": "S1_JOMO_HIMT203G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [
+        "0x9b020"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "fden",
+      "model": "S1_JOMO_LGWS201G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "fstn",
+      "model": "S1_JOMO_LGWS267G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "fbut",
+      "model": "S1_JOMO_BTAS500G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        11
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b060"
+      ],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "PIG_",
+      "model": "S1_JOMO_BTAS500G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x0019",
+        "0x001b",
+        "0x001f",
+        "0x00e6"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ktbL",
+      "model": "S1_JOMO_TNBR102G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        4
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b100"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "hinged-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ktbR",
+      "model": "S1_JOMO_TNBR101G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        4
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b120"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "hinged-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "KGK1",
+      "model": "S1_JOMO_YUKS514G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        6
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b0a0"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "KGK2",
+      "model": "S1_JOMO_YUKS512G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        6
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b0c0"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "gden",
+      "model": "S1_JOMO_LGWS263G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "gosh",
+      "model": "S1_JOMO_OHDM4K0G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "gclk",
+      "model": "S1_JOMO_CLOS5003.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [
+        "0x9b0e0"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "TEL_",
+      "model": "S1_JOMO_TELS514G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [
+        "0x9b380"
+      ],
+      "directOperationIds": [
+        "0x0072",
+        "0x00f1"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "TGAK",
+      "model": "S1_JOMO_YUKS513G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        6
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b3a0"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "TAN1",
+      "model": "S1_JOMO_HIKR102G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        1
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b300"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "hinged-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "TAN2",
+      "model": "S1_JOMO_HIKR103G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        1
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b320"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "hinged-door",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "GGB1",
+      "model": "S1_JOMO_TOBT201G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        1
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b340"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "paired-sliding-panel",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "GGB2",
+      "model": "S1_JOMO_TOBT202G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        1
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b360"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "paired-sliding-panel",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "RKUT",
+      "model": "S1_JOMO_RYSS50RG.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "LKUT",
+      "model": "S1_JOMO_RYSS50LG.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "KFUT",
+      "model": "S1_JOMO_FUTS5OKG.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x0019",
+        "0x001a",
+        "0x001b",
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "KOZU",
+      "model": null,
+      "activePlacement": false,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x001b",
+        "0x001f",
+        "0x00e6",
+        "0x015b",
+        "0x016b"
+      ],
+      "browserBehavior": "none",
+      "coverageStatus": "no-proven-browser-interaction"
+    },
+    {
+      "objectTag": "TLBK",
+      "model": "S1_JOMO_DENS501G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ATB1",
+      "model": null,
+      "activePlacement": false,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x0018",
+        "0x001b",
+        "0x001d",
+        "0x001f",
+        "0x00a8",
+        "0x00e6",
+        "0x015b",
+        "0x016b"
+      ],
+      "browserBehavior": "none",
+      "coverageStatus": "no-proven-browser-interaction"
+    },
+    {
+      "objectTag": "ATB2",
+      "model": null,
+      "activePlacement": false,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x0018",
+        "0x001d"
+      ],
+      "browserBehavior": "none",
+      "coverageStatus": "no-proven-browser-interaction"
+    },
+    {
+      "objectTag": "ATB3",
+      "model": null,
+      "activePlacement": false,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x0018",
+        "0x001b",
+        "0x001f",
+        "0x00a8",
+        "0x00e6",
+        "0x015b",
+        "0x016b"
+      ],
+      "browserBehavior": "none",
+      "coverageStatus": "no-proven-browser-interaction"
+    },
+    {
+      "objectTag": "eden",
+      "model": "S1_JOMO_LGWS204G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ekai",
+      "model": "S1_JOMO_KAIS500G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ecal",
+      "model": null,
+      "activePlacement": false,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [
+        "0x9b3c0"
+      ],
+      "directOperationIds": [],
+      "browserBehavior": "none",
+      "coverageStatus": "non-rendered-controller"
+    },
+    {
+      "objectTag": "ldn1",
+      "model": "S1_JOMO_LGWS204G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ldn2",
+      "model": "S1_JOMO_LGWS204G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "ldn3",
+      "model": "S1_JOMO_LGWS204G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "tden",
+      "model": "S1_JOMO_LGWS266G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "_pc1",
+      "model": "S1_JOMO_YUKS517G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        6
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b600"
+      ],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "_pc3",
+      "model": "S1_JOMO_YUKS516G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [
+        6
+      ],
+      "staticInteractionRecordOffsets": [
+        "0x9b620"
+      ],
+      "directOperationIds": [
+        "0x001f"
+      ],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "SO01",
+      "model": "S1_JOMO_HOUS501G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "DA10",
+      "model": "S1_JOMO_ASNT220G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "DA13",
+      "model": "S1_JOMO_GLAHI35G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "BU02",
+      "model": "S1_JOMO_HONM401G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "BU09",
+      "model": "S1_JOMO_TKFT201G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "BU10",
+      "model": "S1_JOMO_SYAT200G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "SO05",
+      "model": "S1_JOMO_HNMT205G.MT5",
+      "activePlacement": true,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [],
+      "browserBehavior": "inspect",
+      "coverageStatus": "implemented"
+    },
+    {
+      "objectTag": "INE_",
+      "model": null,
+      "activePlacement": false,
+      "staticGroupIndices": [],
+      "staticInteractionRecordOffsets": [],
+      "directOperationIds": [
+        "0x0018",
+        "0x0019",
+        "0x001d",
+        "0x001f",
+        "0x0025",
+        "0x0028",
+        "0x002c",
+        "0x0040",
+        "0x0046",
+        "0x0051",
+        "0x005e",
+        "0x0074",
+        "0x0091",
+        "0x0099",
+        "0x009d",
+        "0x00a8",
+        "0x00df",
+        "0x00e6",
+        "0x00eb",
+        "0x0113",
+        "0x0118",
+        "0x0132",
+        "0x015b",
+        "0x0166",
+        "0x016b",
+        "0x016c"
+      ],
+      "browserBehavior": "none",
+      "coverageStatus": "no-proven-browser-interaction"
+    }
+  ]
+}

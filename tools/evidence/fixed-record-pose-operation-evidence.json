@@ -1,0 +1,60 @@
+{
+  "schema": "new-yokosuka-fixed-record-pose-operation-evidence-v1",
+  "status": "exact-native-contract-and-complete-authored-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 174,
+    "operationHex": "0x00ae",
+    "argumentCount": 3,
+    "handlerAddress": "0x0c164a2a",
+    "recordBase": "0x0c21c74c",
+    "recordCount": 32,
+    "recordStride": 96,
+    "provenBehavior": "For argument-zero indices below 32, copies the three raw words addressed by argument one to fixed-record offsets +0x1c, +0x20, and +0x24, then writes argument two unchanged at +0x28. The record family is shared with operation 0x0120 mode two; its higher-level ownership remains unnamed."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 47,
+    "areaCount": 6,
+    "argumentKindCounts": {
+      "0": {
+        "constant": 47
+      },
+      "1": {
+        "frame-address": 18,
+        "static-pointer": 29
+      },
+      "2": {
+        "constant": 47
+      }
+    },
+    "recordIndices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "controlWords": [
+      0,
+      6553,
+      22022,
+      49152
+    ]
+  },
+  "evidenceBoundary": [
+    "Record addresses, stride, bounds check, and raw writes are executable-proven.",
+    "Static and frame-address vector sources are preserved without coordinate reinterpretation.",
+    "The fixed record family has no inferred high-level gameplay name."
+  ]
+}

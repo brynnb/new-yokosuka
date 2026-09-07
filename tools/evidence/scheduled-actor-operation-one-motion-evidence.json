@@ -1,0 +1,633 @@
+{
+  "schema": "new-yokosuka-scheduled-actor-operation-one-motion-evidence-v1",
+  "generatedFrom": {
+    "offlineSchedules": "tools/evidence/offline-scheduled-actors.json",
+    "executable": {
+      "path": ".disc-work/exact/1ST_READ.BIN",
+      "sha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c"
+    },
+    "banks": {
+      "free": {
+        "path": ".disc-work/runtime-motion/MOTION.BIN",
+        "sha256": "aca6a41b967b9f9f92ad847c9495e780058b8194e359bca9a9c2763b0d337b23"
+      },
+      "mobj": {
+        "path": "play/assets/scheduled-actors/M_MOBJ.BIN",
+        "sha256": "bd8f0b79aaa5cfe51311a8aba75a97c628338fe0193273a5b7c580b0cb500c99"
+      }
+    }
+  },
+  "evidenceBoundary": "Operation-0x01 handler 0x0c11f948 copies the descriptor halfword at operand offset +0x04 verbatim into scheduled actor current-motion +0x06 at 0x0c11f966. The shared registered-motion lookup therefore resolves the route state through the same exclusive, one-based runtime MOTION/M_MOBJ ranges as other scheduler motion requests. The route handler later copies its independently selected completion state from actor +0xf4 into current-motion +0x06 at 0x0c11faba. No native entry/loop/exit lookup occurs in this handler, so the browser must play the exact live-registry route state while moving and switch to the separately recovered completion state when the route ends.",
+  "nativeEvidence": {
+    "handlerAddress": "0x0c11f948",
+    "descriptorMotionStateOperandOffset": "0x04",
+    "actorCurrentMotionStateOffset": "0x06",
+    "activeStateCopyAddress": "0x0c11f966",
+    "routeCompletionStateOffset": "0xf4",
+    "routeCompletionCopyAddress": "0x0c11faba",
+    "registeredMotionRanges": [
+      {
+        "bank": "free",
+        "lowerExclusive": 0,
+        "upperExclusive": 1560
+      },
+      {
+        "bank": "mobj",
+        "lowerExclusive": 32768,
+        "upperExclusive": 33624
+      }
+    ],
+    "parsedBankSequenceCounts": {
+      "free": 1559,
+      "mobj": 855
+    }
+  },
+  "summary": {
+    "distinctMotionStateCount": 25,
+    "occurrenceCount": 1620,
+    "actorCodeCount": 171,
+    "exactRegisteredMotionStateCount": 25,
+    "unresolvedMotionStateCount": 0,
+    "nonhumanMotionStateCount": 2,
+    "controllerFamilyIndices": [
+      0,
+      3,
+      4,
+      7,
+      8,
+      10,
+      12,
+      13,
+      15,
+      16,
+      18,
+      19
+    ]
+  },
+  "modes": [
+    {
+      "motionStateId": 102,
+      "motionStateIdHex": "0x0066",
+      "occurrenceCount": 512,
+      "actorCount": 59,
+      "actorCodes": [
+        "ASNO",
+        "DJUN",
+        "ENDO",
+        "FLD1",
+        "FLD2",
+        "FLD4",
+        "FLD5",
+        "FLD8",
+        "FLD9",
+        "FLDA",
+        "FLDC",
+        "FLDD",
+        "HATO",
+        "HATR",
+        "HDEI",
+        "HIRI",
+        "HTSK",
+        "ITOH",
+        "JOE_",
+        "KEBA",
+        "KEBC",
+        "KEBD",
+        "KEBE",
+        "KEBF",
+        "KEBH",
+        "KJIY",
+        "KOGA",
+        "KOMN",
+        "KUDO",
+        "KURT",
+        "KYSN",
+        "MASR",
+        "MITA",
+        "MORN",
+        "MURI",
+        "NAKA",
+        "NGSM",
+        "NMTO",
+        "NOMR",
+        "SATO",
+        "SGRH",
+        "SIND",
+        "SKGK",
+        "SKRD",
+        "SMIK",
+        "TAGW",
+        "TAKI",
+        "TATM",
+        "TEYI",
+        "TKSA",
+        "TMHN",
+        "TMRA",
+        "TOMH",
+        "TSUC",
+        "YJIH",
+        "YMGC",
+        "YOHI",
+        "YOS2",
+        "YSHY"
+      ],
+      "bank": "free",
+      "sequenceIndex": 101,
+      "sequenceName": "AKI_AKI_WALK_LP",
+      "controllerFamilyIndex": 0,
+      "durationFrames": 37,
+      "loop": true,
+      "status": "exact registered native route motion"
+    },
+    {
+      "motionStateId": 32790,
+      "motionStateIdHex": "0x8016",
+      "occurrenceCount": 21,
+      "actorCount": 3,
+      "actorCodes": [
+        "CATA",
+        "CATB",
+        "CATC"
+      ],
+      "bank": "mobj",
+      "sequenceIndex": 21,
+      "sequenceName": "CAT_CAT_WALK_LP",
+      "controllerFamilyIndex": 16,
+      "durationFrames": 31,
+      "loop": true,
+      "status": "exact registered native route motion"
+    },
+    {
+      "motionStateId": 32810,
+      "motionStateIdHex": "0x802a",
+      "occurrenceCount": 19,
+      "actorCount": 1,
+      "actorCodes": [
+        "ISDA"
+      ],
+      "bank": "mobj",
+      "sequenceIndex": 41,
+      "sequenceName": "DEB_WALK_LP",
+      "controllerFamilyIndex": 3,
+      "durationFrames": 50,
+      "loop": true,
+      "status": "exact registered native route motion"
+    },
+    {
+      "motionStateId": 32828,
+      "motionStateIdHex": "0x803c",
+      "occurrenceCount": 25,
+      "actorCount": 2,
+      "actorCodes": [
+        "DOGA",
+        "DOGB"
+      ],
+      "bank": "mobj",
+      "sequenceIndex": 59,
+      "sequenceName": "DOG_DOG_WALK_LP",
+      "controllerFamilyIndex": 18,
+      "durationFrames": 31,
+      "loop": true,
+      "status": "exact registered native route motion"
+    },
+    {
+      "motionStateId": 32830,
+      "motionStateIdHex": "0x803e",
+      "occurrenceCount": 29,
+      "actorCount": 1,
+      "actorCodes": [
+        "FUKU"
+      ],
+      "bank": "mobj",
+      "sequenceIndex": 61,
+      "sequenceName": "FUK_WALK_BASIC_LP_F",
+      "controllerFamilyIndex": 10,
+      "durationFrames": 65,
+      "loop": true,
+      "status": "exact registered native route motion"
+    },
+    {
+      "motionStateId": 32856,
+      "motionStateIdHex": "0x8058",
+      "occurrenceCount": 141,
+      "actorCount": 10,
+      "actorCodes": [
+        "HIDE",
+        "KENI",
+        "KKBN",
+        "KNJI",
+        "KOTA",
+        "KTRO",
+        "MAGO",
+        "RIKA",
+        "TKHS",
+        "YASU"
+      ],
+      "bank": "mobj",
+      "sequenceIndex": 87,
+      "sequenceName": "GAK_WALK_LP_F",
+      "controllerFamilyIndex": 4,
+      "durationFrames": 37,
+      "loop": true,
+      "status": "exact registered native route motion"
+    },
+    {
+      "motionStateId": 32895,
+      "motionStateIdHex": "0x807f",
+      "occurrenceCount": 37,
+      "actorCount": 6,
+      "actorCodes": [
+        "HIRA",
+        "ITOI",
+        "KAME",
+        "RINS",
+        "RKKI",
+        "YAMA"
+      ],
+      "bank": "mobj",
+      "sequenceIndex": 126,
+      "sequenceName": "JIJ_JIJ_WALK_ARM_LP",
+      "controllerFamilyIndex": 7,
+      "durationFrames": 37,
+      "loop": true,
+      "status": "exact registered native route motion"
+    },
+    {
+      "motionStateId": 32965,
+      "motionStateIdHex": "0x80c5",
+      "occurrenceCount": 75,
+      "actorCount": 10,
+      "actorCodes": [
+        "GRKN",
+        "MRUA",
+        "MURA",
+        "ONO_",
+        "RNKT",
+        "STAK",
+        "SYZU",
+        "UNO_",
+        "YKHI",
+        "YOPA"
+      ],
+      "bank": "mobj",
+      "sequenceIndex": 196,
+      "sequenceName": "JIJ_YNG_WALK_LP_F",
+      "controllerFamilyIndex": 7,
+      "durationFrames": 37,
+      "loop": true,
+      "status": "exact registered native route motion"
+    },
+    {
+      "motionStateId": 32968,
+      "motionStateIdHex": "0x80c8",
+      "occurrenceCount": 51,
+      "actorCount": 5,
+      "actorCodes": [
+        "KAYO",
+        "MEGM",
+        "TTYA",
+        "YKDM",
+        "YUKK"
+      ],
+      "bank": "mobj",
+      "sequenceIndex": 199,
+      "sequenceName": "KOD_KOD_WALK_LP",
+      "controllerFamilyIndex": 8,
+      "durationFrames": 37,
+      "loop": true,
+      "status": "exact registered native route motion"
+    },
+    {
+      "motionStateId": 32972,
+      "motionStateIdHex": "0x80cc",
+      "occurrenceCount": 1,
+      "actorCount": 1,
+      "actorCodes": [
+        "KENI"
+      ],
+      "bank": "mobj",
+      "sequenceIndex": 203,
+      "sequenceName": "KOD_RUN_LP_F",
+      "controllerFamilyIndex": 8,
+      "durationFrames": 19,
+      "loop": true,
+      "status": "exact registered native route motion"
+    },
+    {
+      "motionStateId": 32981,
+      "motionStateIdHex": "0x80d5",
+      "occurrenceCount": 3,
+      "actorCount": 1,
+      "actorCodes": [
+        "GORO"
+      ],
+      "bank": "mobj",
+      "sequenceIndex": 212,
+      "sequenceName": "LLY_EX_WALK_FAST_LP",
+      "controllerFamilyIndex": 10,
+      "durationFrames": 68,
+      "loop": true,
+      "status": "exact registered native route motion"
+    },
+    {
+      "motionStateId": 32982,
+      "motionStateIdHex": "0x80d6",
+      "occurrenceCount": 3,
+      "actorCount": 1,
+      "actorCodes": [
+        "GORO"
+      ],
+      "bank": "mobj",
+      "sequenceIndex": 213,
+      "sequenceName": "LLY_SKIP_WALK_LP",
+      "controllerFamilyIndex": 10,
+      "durationFrames": 43,
+      "loop": true,
+      "status": "exact registered native route motion"
+    },
+    {
+      "motionStateId": 33055,
+      "motionStateIdHex": "0x811f",
+      "occurrenceCount": 160,
+      "actorCount": 30,
+      "actorCodes": [
+        "AKSK",
+        "AOKI",
+        "CMAL",
+        "ECHO",
+        "ENKI",
+        "GJBM",
+        "GJHM",
+        "HANA",
+        "HORS",
+        "JONO",
+        "KIM_",
+        "KJMA",
+        "KURI",
+        "MARK",
+        "MIKM",
+        "MNWA",
+        "MTRI",
+        "NITO",
+        "NRSK",
+        "NSMR",
+        "SAJO",
+        "SATM",
+        "SIMZ",
+        "SKMT",
+        "SNKC",
+        "SOBA",
+        "TAKE",
+        "TKNB",
+        "TURU",
+        "YSKT"
+      ],
+      "bank": "mobj",
+      "sequenceIndex": 286,
+      "sequenceName": "OTH_OTH_WALK_LP",
+      "controllerFamilyIndex": 10,
+      "durationFrames": 37,
+      "loop": true,
+      "status": "exact registered native route motion"
+    },
+    {
+      "motionStateId": 33109,
+      "motionStateIdHex": "0x8155",
+      "occurrenceCount": 4,
+      "actorCount": 1,
+      "actorCodes": [
+        "TOM_"
+      ],
+      "bank": "mobj",
+      "sequenceIndex": 340,
+      "sequenceName": "OTH_TOM_WALK_A_LP_ETC_F",
+      "controllerFamilyIndex": 10,
+      "durationFrames": 33,
+      "loop": true,
+      "status": "exact registered native route motion"
+    },
+    {
+      "motionStateId": 33113,
+      "motionStateIdHex": "0x8159",
+      "occurrenceCount": 10,
+      "actorCount": 3,
+      "actorCodes": [
+        "ECHO",
+        "JONO",
+        "YOPA"
+      ],
+      "bank": "mobj",
+      "sequenceIndex": 344,
+      "sequenceName": "OTH_WALK_DRUNK_LP_F",
+      "controllerFamilyIndex": 10,
+      "durationFrames": 89,
+      "loop": true,
+      "status": "exact registered native route motion"
+    },
+    {
+      "motionStateId": 33116,
+      "motionStateIdHex": "0x815c",
+      "occurrenceCount": 16,
+      "actorCount": 2,
+      "actorCodes": [
+        "NMKI",
+        "YOSI"
+      ],
+      "bank": "mobj",
+      "sequenceIndex": 347,
+      "sequenceName": "PNW_DOSUDOSU_WALK_LP_F",
+      "controllerFamilyIndex": 19,
+      "durationFrames": 37,
+      "loop": true,
+      "status": "exact registered native route motion"
+    },
+    {
+      "motionStateId": 33153,
+      "motionStateIdHex": "0x8181",
+      "occurrenceCount": 142,
+      "actorCount": 13,
+      "actorCodes": [
+        "FKSM",
+        "JUKY",
+        "KOND",
+        "MAYM",
+        "MIHO",
+        "MTUR",
+        "RYKO",
+        "SAKI",
+        "SUMI",
+        "TAEN",
+        "TMMR",
+        "YAYI",
+        "YOB2"
+      ],
+      "bank": "mobj",
+      "sequenceIndex": 384,
+      "sequenceName": "PNW_WALK_LP_F",
+      "controllerFamilyIndex": 19,
+      "durationFrames": 37,
+      "loop": true,
+      "status": "exact registered native route motion"
+    },
+    {
+      "motionStateId": 33176,
+      "motionStateIdHex": "0x8198",
+      "occurrenceCount": 152,
+      "actorCount": 11,
+      "actorCodes": [
+        "EIKK",
+        "HREO",
+        "HRNO",
+        "HROT",
+        "IRIE",
+        "ISYM",
+        "KUKT",
+        "NMNO",
+        "NORK",
+        "SCKO",
+        "TJMA"
+      ],
+      "bank": "mobj",
+      "sequenceIndex": 407,
+      "sequenceName": "SIN_SIN_WALK_LP",
+      "controllerFamilyIndex": 15,
+      "durationFrames": 37,
+      "loop": true,
+      "status": "exact registered native route motion"
+    },
+    {
+      "motionStateId": 33244,
+      "motionStateIdHex": "0x81dc",
+      "occurrenceCount": 44,
+      "actorCount": 5,
+      "actorCodes": [
+        "AKMI",
+        "KYMA",
+        "MSTA",
+        "MYKN",
+        "YOKO"
+      ],
+      "bank": "mobj",
+      "sequenceIndex": 475,
+      "sequenceName": "SYP_SEXY_WALK_LP_F",
+      "controllerFamilyIndex": 12,
+      "durationFrames": 48,
+      "loop": true,
+      "status": "exact registered native route motion"
+    },
+    {
+      "motionStateId": 33270,
+      "motionStateIdHex": "0x81f6",
+      "occurrenceCount": 107,
+      "actorCount": 10,
+      "actorCodes": [
+        "IZWA",
+        "KYAS",
+        "MEYS",
+        "MIKI",
+        "MISM",
+        "RYBI",
+        "SYKU",
+        "UDGW",
+        "YUMM",
+        "YURI"
+      ],
+      "bank": "mobj",
+      "sequenceIndex": 501,
+      "sequenceName": "SYP_SYP_WALK_LP",
+      "controllerFamilyIndex": 12,
+      "durationFrames": 37,
+      "loop": true,
+      "status": "exact registered native route motion"
+    },
+    {
+      "motionStateId": 33319,
+      "motionStateIdHex": "0x8227",
+      "occurrenceCount": 2,
+      "actorCount": 1,
+      "actorCodes": [
+        "SNDO"
+      ],
+      "bank": "mobj",
+      "sequenceIndex": 550,
+      "sequenceName": "YKI_DAISYA_OSI_WALK_LP_F",
+      "controllerFamilyIndex": 13,
+      "durationFrames": 43,
+      "loop": true,
+      "status": "exact registered native route motion"
+    },
+    {
+      "motionStateId": 33385,
+      "motionStateIdHex": "0x8269",
+      "occurrenceCount": 36,
+      "actorCount": 2,
+      "actorCodes": [
+        "JOE_",
+        "TEYI"
+      ],
+      "bank": "mobj",
+      "sequenceIndex": 616,
+      "sequenceName": "YKI_RUN_MARATHON_LP",
+      "controllerFamilyIndex": 13,
+      "durationFrames": 21,
+      "loop": true,
+      "status": "exact registered native route motion"
+    },
+    {
+      "motionStateId": 33466,
+      "motionStateIdHex": "0x82ba",
+      "occurrenceCount": 16,
+      "actorCount": 7,
+      "actorCodes": [
+        "GRKN",
+        "MASR",
+        "MTRI",
+        "RINS",
+        "SNKC",
+        "TAKI",
+        "YOPA"
+      ],
+      "bank": "mobj",
+      "sequenceIndex": 697,
+      "sequenceName": "YKI_WALK_DRUNK_LP_F",
+      "controllerFamilyIndex": 13,
+      "durationFrames": 105,
+      "loop": true,
+      "status": "exact registered native route motion"
+    },
+    {
+      "motionStateId": 33478,
+      "motionStateIdHex": "0x82c6",
+      "occurrenceCount": 6,
+      "actorCount": 3,
+      "actorCodes": [
+        "MIKI",
+        "TJMA",
+        "YUMM"
+      ],
+      "bank": "mobj",
+      "sequenceIndex": 709,
+      "sequenceName": "SIN_KIMONO_WALK_LP_F",
+      "controllerFamilyIndex": 15,
+      "durationFrames": 37,
+      "loop": true,
+      "status": "exact registered native route motion"
+    },
+    {
+      "motionStateId": 33587,
+      "motionStateIdHex": "0x8333",
+      "occurrenceCount": 8,
+      "actorCount": 1,
+      "actorCodes": [
+        "MIHO"
+      ],
+      "bank": "mobj",
+      "sequenceIndex": 818,
+      "sequenceName": "PNW_RUN_LP_F",
+      "controllerFamilyIndex": 19,
+      "durationFrames": 24,
+      "loop": true,
+      "status": "exact registered native route motion"
+    }
+  ]
+}

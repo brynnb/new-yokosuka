@@ -1,0 +1,108 @@
+{
+  "schema": "new-yokosuka-object-scale-vector-operation-evidence-v1",
+  "status": "exact-native-handler-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 39,
+    "operationHex": "0x0027",
+    "semanticId": "resolved-object-scale-vector-write",
+    "handlerAddress": "0x0c164d44",
+    "arguments": [
+      "resolved object reference",
+      "three-float scale vector pointer"
+    ],
+    "nativeContract": {
+      "objectResolver": "0x0c153956",
+      "momtExistsGate": "0x0c114314",
+      "directScaleWrite": "0x0c0ab1fc",
+      "directObjectOffsets": [
+        "+0x34",
+        "+0x38",
+        "+0x3c"
+      ]
+    },
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c164d44",
+        "length": 54,
+        "sha256": "5367587824861ab6a417d4150a2b29eae14ba6708afcd8446b303be17f99ea41"
+      },
+      "objectResolver": {
+        "address": "0x0c153956",
+        "length": 58,
+        "sha256": "b99d1c60ec19d8c20dec13ede36b9f81a3b04510da97159b53e03db38deba35f"
+      },
+      "momtExists": {
+        "address": "0x0c114314",
+        "length": 28,
+        "sha256": "8c6e31027a4ae437740f04597870e04214c5e395e171244fd410cdf2a9235bf4"
+      },
+      "directScaleWrite": {
+        "address": "0x0c0ab1fc",
+        "length": 20,
+        "sha256": "76c67a0496c80856fb4f7fa160a5601a2aa5dc11e79bbf5abd7d6556f53a17ca"
+      }
+    },
+    "provenBehavior": "Resolves argument zero, skips the write when the object is absent or the shared MOMT gate is active, and otherwise copies the three raw float words addressed by argument one to direct object offsets +0x34/+0x38/+0x3c. Authored values and presentation consumers identify this vector as scale."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 393,
+    "provenCallCount": 393,
+    "mapCount": 102,
+    "dialogueRegionCallCount": 19,
+    "argumentKindShapes": [
+      {
+        "kinds": [
+          "constant",
+          "frame-address"
+        ],
+        "count": 137
+      },
+      {
+        "kinds": [
+          "constant",
+          "static-pointer"
+        ],
+        "count": 72
+      },
+      {
+        "kinds": [
+          "frame-field",
+          "frame-address"
+        ],
+        "count": 115
+      },
+      {
+        "kinds": [
+          "frame-field",
+          "static-pointer"
+        ],
+        "count": 14
+      },
+      {
+        "kinds": [
+          "runtime",
+          "frame-address"
+        ],
+        "count": 44
+      },
+      {
+        "kinds": [
+          "scene-field",
+          "frame-address"
+        ],
+        "count": 11
+      }
+    ]
+  },
+  "evidenceBoundary": [
+    "All 393 authored calls have exactly two arguments and no consumed result.",
+    "Dynamic object references remain runtime-resolved; this evidence does not replace them with scene constants.",
+    "Missing objects and the native MOMT-gate path are executable-proven no-ops; package ownership still fails closed before presentation when a declared cutscene object is absent."
+  ]
+}

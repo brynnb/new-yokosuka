@@ -1,0 +1,172 @@
+{
+  "schema": "new-yokosuka-actor-look-point-operation-evidence-v1",
+  "status": "exact-native-handler-target-record-selector-map-and-hato-dataflow",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "mapinfo": ".disc-work/mapinfo/disc1/SCENE/01/D000/MAPINFO.BIN",
+    "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+    "operationTable": "tools/evidence/d000-operation-handlers.json",
+    "ghidraLabels": "tools/ghidra/LabelShenmueRuntimeAnchors.py"
+  },
+  "operation": {
+    "operationId": 44,
+    "operationHex": "0x002c",
+    "handlerAddress": "0x0c165eaa",
+    "handlerSampleSha256": "60cc94bad9d78234a462d4bcd6116a57942272675d269e89f7b69cdb738b1c90",
+    "actorResolverAddress": "0x0c153956",
+    "lookPointControllerAddress": "0x0c0ff172",
+    "selectorMap": {
+      "runtimeAddress": "0x0c29a400",
+      "executableFileOffset": "0x28a400",
+      "entryWidth": 4,
+      "entryCount": 22,
+      "sampleSha256": "b1d4de3c69304735a6d2a18c8bb841de4a74fdbcebfdd4eeb33706f1af1ad0ee",
+      "values": [
+        "0x1000",
+        "0x0800",
+        "0x0200",
+        "0x0080",
+        "0x0040",
+        "0x0020",
+        "0x1000",
+        "0x0800",
+        "0x8002",
+        "0x8003",
+        "0x8004",
+        "0x8006",
+        "0x8008",
+        "0x800a",
+        "0x0800",
+        "0x8066",
+        "0x8068",
+        "0x806c",
+        "0x0800",
+        "0x0800",
+        "0x8065",
+        "0x0800"
+      ]
+    },
+    "arguments": [
+      {
+        "index": 0,
+        "meaning": "actor reference resolved by the native actor resolver"
+      },
+      {
+        "index": 1,
+        "meaning": "signed native look-point selector; non-negative values activate a target and negative values select native release/reset forms"
+      },
+      {
+        "index": 2,
+        "meaning": "pointer to an exact three-float world-space target vector; null uses the actor's native default vector"
+      },
+      {
+        "index": 3,
+        "meaning": "native controller mode passed unchanged to the actor flag controller"
+      }
+    ],
+    "targetRecord": {
+      "tagAscii": "LKPT",
+      "tagLittleEndian": "0x54504b4c",
+      "recordSize": 24,
+      "recordType": 6,
+      "targetVectorOffsets": [
+        "0x00",
+        "0x04",
+        "0x08"
+      ],
+      "activeStateOffset": "0x10",
+      "auxiliaryStateOffset": "0x14"
+    },
+    "actorWrites": [
+      {
+        "offset": "0x84",
+        "meaning": "16-bit selector value after the native selector table mapping"
+      },
+      {
+        "offset": "0x86",
+        "meaning": "16-bit stateful native look-controller angle output updated downstream"
+      },
+      {
+        "offset": "0x90",
+        "meaning": "16-bit stateful native look-controller angle output updated downstream"
+      },
+      {
+        "offset": "0x80",
+        "meaning": "cleared when an inactive target record is installed"
+      }
+    ],
+    "downstreamController": {
+      "updateAddress": "0x0c107338",
+      "behavior": [
+        "Computes native angular state from the actor-to-target vector.",
+        "Applies native limits and stateful interpolation before writing actor angle fields 0x86 and 0x90.",
+        "Uses actor completion flags during release and returns the selector word to 0x0800 after release completes."
+      ]
+    },
+    "sideEffects": [
+      "Installs or reuses an LKPT record associated with the actor.",
+      "Copies the supplied three-float target vector byte-for-byte into that record.",
+      "Sets actor flag 0x00200000 for a non-negative selector.",
+      "Negative selectors select native release/reset behavior and set actor flag 0x00000040."
+    ]
+  },
+  "hatoConversation": {
+    "installCallFileOffset": "0x7f962",
+    "actorCode": "HATO",
+    "selector": 15,
+    "mappedSelectorWord": "0x8066",
+    "mode": 0,
+    "targetDataflow": {
+      "sourceBase": "room VM r9",
+      "sourceOffset": "0x0d4",
+      "copiedComponents": [
+        {
+          "component": "x",
+          "sourceFileOffsets": [
+            "0x7f904",
+            "0x7f906",
+            "0x7f908"
+          ],
+          "destinationLocalOffset": "0x00"
+        },
+        {
+          "component": "y",
+          "sourceFileOffsets": [
+            "0x7f916",
+            "0x7f918",
+            "0x7f91e"
+          ],
+          "addend": 1.600000023841858,
+          "addendBits": "0x3fcccccd",
+          "destinationLocalOffset": "0x04"
+        },
+        {
+          "component": "z",
+          "sourceFileOffsets": [
+            "0x7f93c",
+            "0x7f93e",
+            "0x7f944"
+          ],
+          "destinationLocalOffset": "0x08"
+        }
+      ],
+      "targetPointerFileOffset": "0x7f94e"
+    },
+    "releaseCallFileOffset": "0x800f0",
+    "releaseSelectorSigned": -16,
+    "releaseSelectorUnsigned": 4294967280,
+    "releaseMappedSelectorWord": "0x8068",
+    "releaseTargetPointer": 0,
+    "releaseMode": 0
+  },
+  "evidenceBoundary": [
+    "The operation handler, actor resolution, LKPT tag, 24-byte record layout, target-vector copy, selector write, and actor flag mutations are exact executable behavior.",
+    "The Hato prelude exactly targets the room-VM vector at r9 +0x0d4 after adding 1.600000023841858 to its Y component; the control routine later releases that target with signed selector -16.",
+    "LKPT and the exact target-vector behavior establish this as actor look-point control. The selector map and the Hato install/release words are exact: selector 15 maps to 0x8066 and the absolute release selector 16 maps to 0x8068.",
+    "The downstream controller performs stateful, limited angular updates through actor fields 0x86 and 0x90 and eventually returns a completed release to selector word 0x0800. The affected joint set, exact angular units and limits, interpolation curve, and mode argument remain unresolved.",
+    "The r9 +0x0d4 vector is retained by its exact native location rather than being labelled as Ryo's position until the room-VM ABI is independently proven.",
+    "A browser adapter must not substitute whole-body root rotation for the native joint/controller behavior unless that equivalence is separately established."
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "schema": "new-yokosuka-dialogue-launch-arguments-v1",
+  "evidenceBoundary": [
+    "Values are propagated only through exact generated bsrf call targets, immediate post-call stack cleanup, literal register loads, register copies, and unchanged incoming stack arguments.",
+    "A recovered four-character value is an authored launch argument; this report does not yet assert whether that argument names the clicked object, an actor, or another native resource.",
+    "Multiple callers remain alternatives. Mutable-memory loads, arithmetic, indirect calls, control-flow-dependent values, recursion, and unsupported frame layouts remain runtime.",
+    "This evidence does not by itself make a dialogue candidate runtime-ready or prove an interaction trigger."
+  ],
+  "summary": {
+    "mapCount": 64,
+    "candidateLaunchCount": 1293,
+    "launchWithAllChildArgumentsExactCount": 311,
+    "launchWithAnyExactChildArgumentCount": 344,
+    "launchWithAnyExactUpstreamContextArgumentCount": 163,
+    "exactFourCharacterArgumentCounts": {
+      "AKIR": 24,
+      "BTEL": 5,
+      "CHRL": 1,
+      "MARK": 2,
+      "MRUA": 1,
+      "TEL0": 3,
+      "TEL_": 3
+    }
+  }
+}

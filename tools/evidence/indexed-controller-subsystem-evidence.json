@@ -1,0 +1,185 @@
+{
+  "schema": "new-yokosuka-indexed-controller-subsystem-evidence-v1",
+  "executable": {
+    "sha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "runtimeBase": "0x0c010000"
+  },
+  "operations": {
+    "0x0062": {
+      "behavior": "reset-128-records-and-select-global-mode"
+    },
+    "0x0064": {
+      "behavior": "copy-four-raw-words-and-present"
+    },
+    "0x0068": {
+      "mode": 2,
+      "vectorOffset": "0x34",
+      "wordCount": 3
+    },
+    "0x0069": {
+      "mode": 3,
+      "vectorOffset": "0x28",
+      "wordCount": 3
+    },
+    "0x006a": {
+      "mode": 4,
+      "vectorOffsets": [
+        "0x28",
+        "0x34"
+      ],
+      "wordCountEach": 3
+    }
+  },
+  "verifiedRanges": {
+    "operation-0x0062": {
+      "address": "0x0c1645b8",
+      "length": 14,
+      "sha256": "78b0cac50968628a77e6db4d119929802764570e293b6f87ccb0e82e3ae59c59",
+      "dispatchTarget": "0x0c1645b8",
+      "helperTarget": "0x0c0eb9f4"
+    },
+    "operation-0x0064": {
+      "address": "0x0c164480",
+      "length": 14,
+      "sha256": "4204bb0d941d235e5870174c8c69ee0c5b224ab12f75d700762dda76291e27ec",
+      "dispatchTarget": "0x0c164480",
+      "helperTarget": "0x0c0eaee0"
+    },
+    "operation-0x0068": {
+      "address": "0x0c1645d6",
+      "length": 16,
+      "sha256": "ad082b8f7e6a654c3da2d0d7f7d8049b22b78e0489910381a226bed63f232303",
+      "dispatchTarget": "0x0c1645d6",
+      "helperTarget": "0x0c0ec358"
+    },
+    "operation-0x0069": {
+      "address": "0x0c1645e6",
+      "length": 16,
+      "sha256": "ed460cb2b34ac4fd15ab427fe70f23b41001225b8b1e169de2385242adb8a965",
+      "dispatchTarget": "0x0c1645e6",
+      "helperTarget": "0x0c0ec384"
+    },
+    "operation-0x006a": {
+      "address": "0x0c1645f6",
+      "length": 16,
+      "sha256": "2c4a96c2ee28651f94c234d1de77adc0a209192f24b733c40e539efef8e3d7aa",
+      "dispatchTarget": "0x0c1645f6",
+      "helperTarget": "0x0c0ec3b0"
+    },
+    "float4Write": {
+      "address": "0x0c0eaee0",
+      "length": 30,
+      "sha256": "804ba07a0e2dda7fa5a9d8ea5440d445f17aefe6518cf798413a3f561cb21a32"
+    },
+    "resetAll": {
+      "address": "0x0c0eb9f4",
+      "length": 82,
+      "sha256": "a50407e2e045f5ddf91d7a6709f775774de353f9f3c866ba88260c74f4da8503"
+    },
+    "initializeRecord": {
+      "address": "0x0c0eb988",
+      "length": 108,
+      "sha256": "bd4bad89e6932d10b5a08b7aebbb66e751da6335b8dc15b88dce3a8197d638cb"
+    },
+    "mode2": {
+      "address": "0x0c0ec358",
+      "length": 44,
+      "sha256": "0db5a96b802ce4e68635a77cdc8a7c089ea09c6326a92aa5971fc093b32610e8"
+    },
+    "mode3": {
+      "address": "0x0c0ec384",
+      "length": 44,
+      "sha256": "67c298573b7050a553b0efa46bea257cf4d7e06676b2be8e7a24f69665ad93b6"
+    },
+    "mode4": {
+      "address": "0x0c0ec3b0",
+      "length": 52,
+      "sha256": "f137f40bf2693e37698829e06d07137dcb1350f2173d5b48a68cf1127a11d97d"
+    },
+    "vector40": {
+      "address": "0x0c0eb63a",
+      "length": 114,
+      "sha256": "dc946d20afe5fae0eba740d34160b8727c6ba227fdea4e8cc5397fb805ee5112"
+    },
+    "vector52": {
+      "address": "0x0c0eb714",
+      "length": 120,
+      "sha256": "41a740bbd7f43b86794edf44886ef462d1f9c220dea28266b72da5b723a31e47"
+    },
+    "activation": {
+      "address": "0x0c0eaf8e",
+      "length": 122,
+      "sha256": "88d9614f5750b974c754c2a9b6261884e703af4705841260e363e3cb31efe640"
+    }
+  },
+  "nativeBoundary": {
+    "recordCount": 128,
+    "mirrorRecordCount": 32,
+    "lowIndicesInvokeCallbacks": true,
+    "operation0062InvokesPresentationCallback": true,
+    "operation0064InvokesPresentationCallback": true
+  },
+  "allDiscInventory": {
+    "0x0062": {
+      "callCount": 73,
+      "discAreaCount": 27,
+      "dialogueRegionCallCount": 0,
+      "argumentCounts": {
+        "1": 73
+      },
+      "argumentShapes": {
+        "constant": 73
+      }
+    },
+    "0x0064": {
+      "callCount": 78,
+      "discAreaCount": 21,
+      "dialogueRegionCallCount": 12,
+      "argumentCounts": {
+        "1": 78
+      },
+      "argumentShapes": {
+        "frame-address": 8,
+        "scene-address": 1,
+        "static-pointer": 69
+      }
+    },
+    "0x0068": {
+      "callCount": 29,
+      "discAreaCount": 2,
+      "dialogueRegionCallCount": 0,
+      "argumentCounts": {
+        "2": 29
+      },
+      "argumentShapes": {
+        "constant,frame-address": 17,
+        "constant,static-pointer": 12
+      }
+    },
+    "0x0069": {
+      "callCount": 37,
+      "discAreaCount": 11,
+      "dialogueRegionCallCount": 0,
+      "argumentCounts": {
+        "2": 37
+      },
+      "argumentShapes": {
+        "constant,frame-address": 36,
+        "constant,static-pointer": 1
+      }
+    },
+    "0x006a": {
+      "callCount": 42,
+      "discAreaCount": 29,
+      "dialogueRegionCallCount": 9,
+      "argumentCounts": {
+        "3": 42
+      },
+      "argumentShapes": {
+        "constant,frame-address,frame-address": 31,
+        "constant,static-pointer,static-pointer": 9,
+        "frame-field,static-pointer,static-pointer": 2
+      }
+    }
+  }
+}

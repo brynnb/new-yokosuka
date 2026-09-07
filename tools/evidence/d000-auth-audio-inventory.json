@@ -1,0 +1,5148 @@
+{
+  "schema": "new-yokosuka-d000-auth-audio-inventory-v1",
+  "generatedBy": "tools/audio/extract_d000_auth_audio_inventory.mjs",
+  "source": {
+    "logicalRoot": "D000 unpacked resources",
+    "localPathExcluded": true
+  },
+  "method": [
+    "Parse every AUTH ASEQ chunk below the supplied D000 resource root.",
+    "Retain native sound command bytes, actor tags, event indices, record offsets, and global 30 fps timeline frames.",
+    "Group byte-identical AUTH resources by SHA-256 without dropping their distinct archive paths.",
+    "Do not assign a sound bank, object action, or high-level sound name without independent resource/control-flow evidence."
+  ],
+  "summary": {
+    "authFileCount": 39,
+    "uniqueAuthContentCount": 39,
+    "soundBearingAuthFileCount": 35,
+    "soundEventCount": 571,
+    "playableEventCount": 569,
+    "stopEventCount": 2,
+    "uniqueCommandCount": 32,
+    "commandCounts": {
+      "a9040000": 3,
+      "a9040100": 7,
+      "a9040200": 76,
+      "a9040300": 42,
+      "a9040400": 43,
+      "a9040500": 30,
+      "a9040600": 30,
+      "a9040700": 23,
+      "a9040800": 26,
+      "a9040900": 12,
+      "a9040a00": 6,
+      "a9040b00": 12,
+      "a9040c00": 9,
+      "a9040d00": 37,
+      "a9040e00": 10,
+      "a9040f00": 14,
+      "a9041000": 21,
+      "a9041100": 10,
+      "a9041200": 35,
+      "a9041300": 39,
+      "a9041400": 29,
+      "a9041500": 14,
+      "a9041600": 2,
+      "a9041700": 8,
+      "a9042400": 2,
+      "a9042500": 9,
+      "a9042600": 7,
+      "a90f0000": 6,
+      "a90f0100": 5,
+      "a90f0200": 1,
+      "a90f0400": 1,
+      "ffffffff": 2
+    }
+  },
+  "duplicateContent": [],
+  "files": [
+    {
+      "path": "AUTH/SEQDATA0.AUTH",
+      "byteLength": 3404,
+      "sha256": "cded8b9c546b7ea3a4a4e0c3dbff9c3bfb31c2a9c3abc263e05414c352409c60",
+      "durationFrames": 890,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x54",
+          "frame": 59,
+          "actorTag": "AKIR",
+          "commandHex": "a9040000",
+          "eventIndex": 0,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x6c",
+          "frame": 131,
+          "actorTag": "AKIR",
+          "commandHex": "a9040700",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x84",
+          "frame": 189,
+          "actorTag": "AKIR",
+          "commandHex": "a9040800",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x9c",
+          "frame": 253,
+          "actorTag": "AKIR",
+          "commandHex": "a9040700",
+          "eventIndex": 3,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xb4",
+          "frame": 313,
+          "actorTag": "AKIR",
+          "commandHex": "a9040a00",
+          "eventIndex": 4,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xcc",
+          "frame": 402,
+          "actorTag": "AKIR",
+          "commandHex": "a9040b00",
+          "eventIndex": 5,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x144",
+          "frame": 856,
+          "actorTag": "AKIR",
+          "commandHex": "a9040100",
+          "eventIndex": 9,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "BUSS/SEQDATA1.AUTH",
+      "byteLength": 3644,
+      "sha256": "3d769872346e486df965296861c502402e95e064e2da4c1f051a568c87774ba0",
+      "durationFrames": 325,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "BUSS",
+        "BUS_"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x84",
+          "frame": 17,
+          "actorTag": "AKIR",
+          "commandHex": "a9041000",
+          "eventIndex": 0,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xb4",
+          "frame": 40,
+          "actorTag": "AKIR",
+          "commandHex": "a9040f00",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xe4",
+          "frame": 57,
+          "actorTag": "AKIR",
+          "commandHex": "a9041000",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x114",
+          "frame": 64,
+          "actorTag": "AKIR",
+          "commandHex": "a9042400",
+          "eventIndex": 3,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x144",
+          "frame": 114,
+          "actorTag": "AKIR",
+          "commandHex": "a9040f00",
+          "eventIndex": 4,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x194",
+          "frame": 142,
+          "actorTag": "BUS_",
+          "commandHex": "a9040300",
+          "eventIndex": 5,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1c4",
+          "frame": 152,
+          "actorTag": "BUS_",
+          "commandHex": "a9040400",
+          "eventIndex": 6,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1f4",
+          "frame": 236,
+          "actorTag": "BUS_",
+          "commandHex": "a9040500",
+          "eventIndex": 7,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "BUSS/SEQDATA2.AUTH",
+      "byteLength": 4872,
+      "sha256": "e4b254047a27493388cbef074e909ab0169652ee64ab469802abc425247e46f6",
+      "durationFrames": 246,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "BUSS",
+        "BUS_"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x84",
+          "frame": 60,
+          "actorTag": "AKIR",
+          "commandHex": "a9041000",
+          "eventIndex": 0,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xb4",
+          "frame": 78,
+          "actorTag": "AKIR",
+          "commandHex": "a9040f00",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xe4",
+          "frame": 97,
+          "actorTag": "AKIR",
+          "commandHex": "a9042500",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x114",
+          "frame": 117,
+          "actorTag": "AKIR",
+          "commandHex": "a9042600",
+          "eventIndex": 3,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x144",
+          "frame": 130,
+          "actorTag": "AKIR",
+          "commandHex": "a9040900",
+          "eventIndex": 4,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x174",
+          "frame": 137,
+          "actorTag": "AKIR",
+          "commandHex": "a9042500",
+          "eventIndex": 5,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1a4",
+          "frame": 155,
+          "actorTag": "AKIR",
+          "commandHex": "a9042600",
+          "eventIndex": 6,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1d4",
+          "frame": 163,
+          "actorTag": "BUS_",
+          "commandHex": "a9040300",
+          "eventIndex": 7,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x224",
+          "frame": 167,
+          "actorTag": "AKIR",
+          "commandHex": "a9042500",
+          "eventIndex": 8,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x254",
+          "frame": 171,
+          "actorTag": "BUS_",
+          "commandHex": "a9040400",
+          "eventIndex": 9,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x284",
+          "frame": 186,
+          "actorTag": "AKIR",
+          "commandHex": "a9042600",
+          "eventIndex": 10,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2d4",
+          "frame": 203,
+          "actorTag": "AKIR",
+          "commandHex": "a9042500",
+          "eventIndex": 11,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "BUSS/SEQDATA4.AUTH",
+      "byteLength": 3836,
+      "sha256": "400c63409f2910eba206da078f80ab5ddb76a88e87e747b369bf74ecb2b7415e",
+      "durationFrames": 325,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "BUSS",
+        "BUS_"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x84",
+          "frame": 17,
+          "actorTag": "AKIR",
+          "commandHex": "a9041000",
+          "eventIndex": 0,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xb4",
+          "frame": 40,
+          "actorTag": "AKIR",
+          "commandHex": "a9040f00",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xe4",
+          "frame": 57,
+          "actorTag": "AKIR",
+          "commandHex": "a9041000",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x114",
+          "frame": 64,
+          "actorTag": "AKIR",
+          "commandHex": "a9042400",
+          "eventIndex": 3,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x144",
+          "frame": 114,
+          "actorTag": "AKIR",
+          "commandHex": "a9040f00",
+          "eventIndex": 4,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x194",
+          "frame": 142,
+          "actorTag": "BUS_",
+          "commandHex": "a9040300",
+          "eventIndex": 5,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1c4",
+          "frame": 152,
+          "actorTag": "BUS_",
+          "commandHex": "a9040400",
+          "eventIndex": 6,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1f4",
+          "frame": 236,
+          "actorTag": "BUS_",
+          "commandHex": "a9040500",
+          "eventIndex": 7,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "BUSS/SEQDATA5.AUTH",
+      "byteLength": 5072,
+      "sha256": "69e81149123aecc70759b84098d4a70cfb35129ed757bda8b42ce571c4ec0fb6",
+      "durationFrames": 246,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "BUSS",
+        "BUS_"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x84",
+          "frame": 60,
+          "actorTag": "AKIR",
+          "commandHex": "a9041000",
+          "eventIndex": 0,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xb4",
+          "frame": 78,
+          "actorTag": "AKIR",
+          "commandHex": "a9040f00",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xe4",
+          "frame": 97,
+          "actorTag": "AKIR",
+          "commandHex": "a9042500",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x114",
+          "frame": 117,
+          "actorTag": "AKIR",
+          "commandHex": "a9042600",
+          "eventIndex": 3,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x144",
+          "frame": 130,
+          "actorTag": "AKIR",
+          "commandHex": "a9040900",
+          "eventIndex": 4,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x174",
+          "frame": 137,
+          "actorTag": "AKIR",
+          "commandHex": "a9042500",
+          "eventIndex": 5,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1a4",
+          "frame": 155,
+          "actorTag": "AKIR",
+          "commandHex": "a9042600",
+          "eventIndex": 6,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1d4",
+          "frame": 163,
+          "actorTag": "BUS_",
+          "commandHex": "a9040300",
+          "eventIndex": 7,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x224",
+          "frame": 167,
+          "actorTag": "AKIR",
+          "commandHex": "a9042500",
+          "eventIndex": 8,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x254",
+          "frame": 171,
+          "actorTag": "BUS_",
+          "commandHex": "a9040400",
+          "eventIndex": 9,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x284",
+          "frame": 186,
+          "actorTag": "AKIR",
+          "commandHex": "a9042600",
+          "eventIndex": 10,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2d4",
+          "frame": 203,
+          "actorTag": "AKIR",
+          "commandHex": "a9042500",
+          "eventIndex": 11,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x304",
+          "frame": 219,
+          "actorTag": "AKIR",
+          "commandHex": "a9042600",
+          "eventIndex": 12,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x354",
+          "frame": 240,
+          "actorTag": "AKIR",
+          "commandHex": "a9042500",
+          "eventIndex": 13,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "D0W0/SEQDATA1.AUTH",
+      "byteLength": 39820,
+      "sha256": "8a53eccca3fc3c40fab9935e6ea10c6d29aa3d5536129c69a4862ffbe4a2b6c6",
+      "durationFrames": 3320,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "COP_",
+        "YAMA"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0xdc",
+          "frame": 308,
+          "actorTag": "YAMA",
+          "commandHex": "a9041400",
+          "eventIndex": 0,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x184",
+          "frame": 527,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x19c",
+          "frame": 546,
+          "actorTag": "AKIR",
+          "commandHex": "a9040600",
+          "eventIndex": 3,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1b4",
+          "frame": 564,
+          "actorTag": "AKIR",
+          "commandHex": "a9040700",
+          "eventIndex": 4,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1ec",
+          "frame": 580,
+          "actorTag": "AKIR",
+          "commandHex": "a9040600",
+          "eventIndex": 6,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x39c",
+          "frame": 1597,
+          "actorTag": "YAMA",
+          "commandHex": "a9040800",
+          "eventIndex": 15,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x3b4",
+          "frame": 1611,
+          "actorTag": "YAMA",
+          "commandHex": "a9041300",
+          "eventIndex": 16,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x3ec",
+          "frame": 1706,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 18,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x404",
+          "frame": 1742,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 19,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x41c",
+          "frame": 1777,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 20,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x434",
+          "frame": 1806,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 21,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x4cc",
+          "frame": 1980,
+          "actorTag": "YAMA",
+          "commandHex": "a9040e00",
+          "eventIndex": 25,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x53c",
+          "frame": 2138,
+          "actorTag": "YAMA",
+          "commandHex": "a9040b00",
+          "eventIndex": 26,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x554",
+          "frame": 2139,
+          "actorTag": "YAMA",
+          "commandHex": "a9041100",
+          "eventIndex": 27,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x56c",
+          "frame": 2140,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 28,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x584",
+          "frame": 2141,
+          "actorTag": "YAMA",
+          "commandHex": "a9041000",
+          "eventIndex": 29,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x5bc",
+          "frame": 2158,
+          "actorTag": "YAMA",
+          "commandHex": "a9040b00",
+          "eventIndex": 30,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x5d4",
+          "frame": 2159,
+          "actorTag": "YAMA",
+          "commandHex": "a9041100",
+          "eventIndex": 31,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x5ec",
+          "frame": 2160,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 32,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x604",
+          "frame": 2161,
+          "actorTag": "YAMA",
+          "commandHex": "a9041000",
+          "eventIndex": 33,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x67c",
+          "frame": 2182,
+          "actorTag": "YAMA",
+          "commandHex": "a9040b00",
+          "eventIndex": 35,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x694",
+          "frame": 2183,
+          "actorTag": "YAMA",
+          "commandHex": "a9041100",
+          "eventIndex": 36,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x6ac",
+          "frame": 2184,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 37,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x6c4",
+          "frame": 2185,
+          "actorTag": "YAMA",
+          "commandHex": "a9041200",
+          "eventIndex": 38,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x6dc",
+          "frame": 2186,
+          "actorTag": "YAMA",
+          "commandHex": "a9040c00",
+          "eventIndex": 39,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x6f4",
+          "frame": 2187,
+          "actorTag": "YAMA",
+          "commandHex": "a9040f00",
+          "eventIndex": 40,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x73c",
+          "frame": 2296,
+          "actorTag": "YAMA",
+          "commandHex": "a9040a00",
+          "eventIndex": 41,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x754",
+          "frame": 2341,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 42,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x76c",
+          "frame": 2440,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 43,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x7fc",
+          "frame": 2558,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 46,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x904",
+          "frame": 3084,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 51,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x93c",
+          "frame": 3124,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 52,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x974",
+          "frame": 3156,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 53,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x98c",
+          "frame": 3187,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 54,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x9c4",
+          "frame": 3209,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 56,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "D0W0/SEQDATA2.AUTH",
+      "byteLength": 4904,
+      "sha256": "a9393cd99ae10760c9de943cce5621baf409182f63459a3bb70d829520aedc02",
+      "durationFrames": 690,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "YAMA"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x98",
+          "frame": 38,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xb0",
+          "frame": 92,
+          "actorTag": "AKIR",
+          "commandHex": "a9040800",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xc8",
+          "frame": 96,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 3,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x130",
+          "frame": 149,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 5,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x220",
+          "frame": 357,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 9,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x238",
+          "frame": 389,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 10,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x250",
+          "frame": 390,
+          "actorTag": "AKIR",
+          "commandHex": "a9040600",
+          "eventIndex": 11,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x268",
+          "frame": 410,
+          "actorTag": "AKIR",
+          "commandHex": "a9040700",
+          "eventIndex": 12,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2c0",
+          "frame": 653,
+          "actorTag": "AKIR",
+          "commandHex": "a9040600",
+          "eventIndex": 14,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2d8",
+          "frame": 678,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 15,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "D0W0/SEQDATA3.AUTH",
+      "byteLength": 5220,
+      "sha256": "de16a1d8039bd1c92a176c706d38ef4ceca5dbae695d96012e081f9d16d26b94",
+      "durationFrames": 1260,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "YAMA"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x98",
+          "frame": 34,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xd0",
+          "frame": 103,
+          "actorTag": "AKIR",
+          "commandHex": "a9040600",
+          "eventIndex": 3,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x198",
+          "frame": 450,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 5,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1d0",
+          "frame": 475,
+          "actorTag": "AKIR",
+          "commandHex": "a9040600",
+          "eventIndex": 7,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x208",
+          "frame": 618,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 9,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x240",
+          "frame": 660,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 11,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x258",
+          "frame": 707,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 12,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x270",
+          "frame": 746,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 13,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2c8",
+          "frame": 820,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 15,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2e0",
+          "frame": 822,
+          "actorTag": "AKIR",
+          "commandHex": "a9040700",
+          "eventIndex": 16,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2f8",
+          "frame": 842,
+          "actorTag": "AKIR",
+          "commandHex": "a9040700",
+          "eventIndex": 17,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "D0W0/SEQDATA4.AUTH",
+      "byteLength": 14184,
+      "sha256": "3714dc9e0b12f39c2864c8bca4137bae6dc20eae4b8db82a72e34f7382c95da7",
+      "durationFrames": 900,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "COP_",
+        "YAMA"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x84",
+          "frame": 50,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 0,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x204",
+          "frame": 520,
+          "actorTag": "AKIR",
+          "commandHex": "a9040800",
+          "eventIndex": 7,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x21c",
+          "frame": 629,
+          "actorTag": "YAMA",
+          "commandHex": "a9040900",
+          "eventIndex": 8,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x234",
+          "frame": 656,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 9,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x24c",
+          "frame": 677,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 10,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x264",
+          "frame": 705,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 11,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x27c",
+          "frame": 732,
+          "actorTag": "YAMA",
+          "commandHex": "a9040d00",
+          "eventIndex": 12,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x294",
+          "frame": 768,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 13,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2cc",
+          "frame": 789,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 14,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2e4",
+          "frame": 807,
+          "actorTag": "AKIR",
+          "commandHex": "a9040800",
+          "eventIndex": 15,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2fc",
+          "frame": 810,
+          "actorTag": "YAMA",
+          "commandHex": "a9040900",
+          "eventIndex": 16,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x314",
+          "frame": 837,
+          "actorTag": "YAMA",
+          "commandHex": "a9040900",
+          "eventIndex": 17,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x32c",
+          "frame": 860,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 18,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x344",
+          "frame": 883,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 19,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x35c",
+          "frame": 890,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 20,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "D0W0/SEQDATA5.AUTH",
+      "byteLength": 5000,
+      "sha256": "3fae97c475fd411227f382b81dbc86a02f3f7208da9dd9db9dc9b398e4beeae3",
+      "durationFrames": 670,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "YAMA"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x78",
+          "frame": 38,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 0,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xb0",
+          "frame": 92,
+          "actorTag": "AKIR",
+          "commandHex": "a9040800",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xc8",
+          "frame": 96,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 3,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x138",
+          "frame": 149,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 5,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x220",
+          "frame": 337,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 9,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x238",
+          "frame": 369,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 10,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x250",
+          "frame": 370,
+          "actorTag": "AKIR",
+          "commandHex": "a9040600",
+          "eventIndex": 11,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x268",
+          "frame": 390,
+          "actorTag": "AKIR",
+          "commandHex": "a9040700",
+          "eventIndex": 12,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2c0",
+          "frame": 629,
+          "actorTag": "AKIR",
+          "commandHex": "a9040600",
+          "eventIndex": 14,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2d8",
+          "frame": 661,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 15,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "D0W0/SEQDATA6.AUTH",
+      "byteLength": 5392,
+      "sha256": "4fe1bdd127d22d6f472d73cbaca32aa2a52176a826663144aa9f8354b6ccdefb",
+      "durationFrames": 980,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "YAMA"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x98",
+          "frame": 76,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xb0",
+          "frame": 77,
+          "actorTag": "AKIR",
+          "commandHex": "a9040e00",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x160",
+          "frame": 299,
+          "actorTag": "AKIR",
+          "commandHex": "a9040800",
+          "eventIndex": 5,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x198",
+          "frame": 321,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 7,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1b0",
+          "frame": 332,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 8,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1e8",
+          "frame": 373,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 10,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x200",
+          "frame": 385,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 11,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x218",
+          "frame": 433,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 12,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x230",
+          "frame": 458,
+          "actorTag": "AKIR",
+          "commandHex": "a9040700",
+          "eventIndex": 13,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x248",
+          "frame": 470,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 14,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x278",
+          "frame": 500,
+          "actorTag": "AKIR",
+          "commandHex": "a9040600",
+          "eventIndex": 16,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x290",
+          "frame": 512,
+          "actorTag": "AKIR",
+          "commandHex": "a9040700",
+          "eventIndex": 17,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2a8",
+          "frame": 559,
+          "actorTag": "AKIR",
+          "commandHex": "a9040600",
+          "eventIndex": 18,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2c0",
+          "frame": 573,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 19,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2f8",
+          "frame": 677,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 21,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x348",
+          "frame": 763,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 22,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x380",
+          "frame": 823,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 24,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "D0W0/SEQDATA7.AUTH",
+      "byteLength": 5528,
+      "sha256": "19fff3b2c54e34f0aee962f880c0f8da7643004c75f7a9c61fc7223257f85fdd",
+      "durationFrames": 920,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "YAMA"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x78",
+          "frame": 76,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 0,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x90",
+          "frame": 77,
+          "actorTag": "AKIR",
+          "commandHex": "a9040e00",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xe8",
+          "frame": 228,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 4,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x138",
+          "frame": 249,
+          "actorTag": "AKIR",
+          "commandHex": "a9040600",
+          "eventIndex": 5,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x150",
+          "frame": 269,
+          "actorTag": "AKIR",
+          "commandHex": "a9040800",
+          "eventIndex": 6,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x188",
+          "frame": 291,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 8,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1c0",
+          "frame": 343,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 10,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1d8",
+          "frame": 390,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 11,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1f0",
+          "frame": 396,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 12,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x208",
+          "frame": 409,
+          "actorTag": "AKIR",
+          "commandHex": "a9040600",
+          "eventIndex": 13,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x220",
+          "frame": 424,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 14,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x238",
+          "frame": 428,
+          "actorTag": "AKIR",
+          "commandHex": "a9040700",
+          "eventIndex": 15,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x250",
+          "frame": 461,
+          "actorTag": "AKIR",
+          "commandHex": "a9040600",
+          "eventIndex": 16,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x288",
+          "frame": 488,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 18,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2a0",
+          "frame": 518,
+          "actorTag": "AKIR",
+          "commandHex": "a9040600",
+          "eventIndex": 19,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2b8",
+          "frame": 543,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 20,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2f0",
+          "frame": 591,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 22,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x308",
+          "frame": 612,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 23,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x320",
+          "frame": 633,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 24,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x370",
+          "frame": 733,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 25,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x3a8",
+          "frame": 756,
+          "actorTag": "AKIR",
+          "commandHex": "a9040600",
+          "eventIndex": 27,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x3c0",
+          "frame": 783,
+          "actorTag": "AKIR",
+          "commandHex": "a9040700",
+          "eventIndex": 28,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x3d8",
+          "frame": 793,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 29,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x3f0",
+          "frame": 806,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 30,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x408",
+          "frame": 832,
+          "actorTag": "AKIR",
+          "commandHex": "a9040700",
+          "eventIndex": 31,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "D0W0/SEQDATA8.AUTH",
+      "byteLength": 15652,
+      "sha256": "808ade83f2bc13975efee585aeee5d1f5c14e831ff921b940abe18c06a822e8c",
+      "durationFrames": 1057,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "COP_",
+        "YAMA"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x84",
+          "frame": 18,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 0,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x9c",
+          "frame": 37,
+          "actorTag": "AKIR",
+          "commandHex": "a9040600",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x154",
+          "frame": 169,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 5,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x16c",
+          "frame": 226,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 6,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x184",
+          "frame": 282,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 7,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1f4",
+          "frame": 435,
+          "actorTag": "AKIR",
+          "commandHex": "a9040800",
+          "eventIndex": 9,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x26c",
+          "frame": 612,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 13,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x284",
+          "frame": 638,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 14,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x29c",
+          "frame": 666,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 15,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2b4",
+          "frame": 675,
+          "actorTag": "AKIR",
+          "commandHex": "a9040700",
+          "eventIndex": 16,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2cc",
+          "frame": 690,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 17,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2e4",
+          "frame": 697,
+          "actorTag": "AKIR",
+          "commandHex": "a9040600",
+          "eventIndex": 18,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2fc",
+          "frame": 713,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 19,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x314",
+          "frame": 734,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 20,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x32c",
+          "frame": 735,
+          "actorTag": "YAMA",
+          "commandHex": "a9040d00",
+          "eventIndex": 21,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x384",
+          "frame": 790,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 24,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x3bc",
+          "frame": 812,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 25,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x3f4",
+          "frame": 833,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 26,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x40c",
+          "frame": 841,
+          "actorTag": "AKIR",
+          "commandHex": "a9040800",
+          "eventIndex": 27,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x424",
+          "frame": 854,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 28,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x43c",
+          "frame": 857,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 29,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x454",
+          "frame": 880,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 30,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x46c",
+          "frame": 902,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 31,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x484",
+          "frame": 917,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 32,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x49c",
+          "frame": 940,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 33,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x4b4",
+          "frame": 942,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 34,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x4cc",
+          "frame": 965,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 35,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "D0W0/SEQDATA9.AUTH",
+      "byteLength": 3532,
+      "sha256": "57e3421025bcbec1af1ca193397bd746cdf962a16fc9940f44fc7743e3d069f9",
+      "durationFrames": 600,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "YAMA"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x98",
+          "frame": 61,
+          "actorTag": "YAMA",
+          "commandHex": "a9040100",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xb0",
+          "frame": 72,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xe8",
+          "frame": 153,
+          "actorTag": "YAMA",
+          "commandHex": "a9041100",
+          "eventIndex": 4,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x100",
+          "frame": 160,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 5,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x118",
+          "frame": 237,
+          "actorTag": "YAMA",
+          "commandHex": "a9040800",
+          "eventIndex": 6,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x150",
+          "frame": 336,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 8,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x188",
+          "frame": 371,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 10,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "D0W0/SEQDATAA.AUTH",
+      "byteLength": 18524,
+      "sha256": "e90c79d1bfac774bfcd7348af08498111ecd61b6360eafbc295761eaf875a9d7",
+      "durationFrames": 1040,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "COP_",
+        "YAMA"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x8c",
+          "frame": 35,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xe4",
+          "frame": 124,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 3,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1ec",
+          "frame": 439,
+          "actorTag": "AKIR",
+          "commandHex": "a9040800",
+          "eventIndex": 8,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x204",
+          "frame": 458,
+          "actorTag": "AKIR",
+          "commandHex": "a9040800",
+          "eventIndex": 9,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x23c",
+          "frame": 516,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 11,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x254",
+          "frame": 540,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 12,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x26c",
+          "frame": 564,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 13,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x284",
+          "frame": 589,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 14,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x29c",
+          "frame": 605,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 15,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2b4",
+          "frame": 614,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 16,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2cc",
+          "frame": 634,
+          "actorTag": "AKIR",
+          "commandHex": "a9040600",
+          "eventIndex": 17,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2e4",
+          "frame": 639,
+          "actorTag": "YAMA",
+          "commandHex": "a9040800",
+          "eventIndex": 18,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x33c",
+          "frame": 693,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 21,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x38c",
+          "frame": 723,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 22,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x3a4",
+          "frame": 748,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 23,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x3bc",
+          "frame": 772,
+          "actorTag": "AKIR",
+          "commandHex": "a9040700",
+          "eventIndex": 24,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x3cc",
+          "frame": 772,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 25,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x3e4",
+          "frame": 786,
+          "actorTag": "AKIR",
+          "commandHex": "a9040600",
+          "eventIndex": 26,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x3fc",
+          "frame": 788,
+          "actorTag": "AKIR",
+          "commandHex": "a9040800",
+          "eventIndex": 27,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x414",
+          "frame": 795,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 28,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x42c",
+          "frame": 816,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 29,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x444",
+          "frame": 840,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 30,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x45c",
+          "frame": 864,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 31,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x474",
+          "frame": 888,
+          "actorTag": "YAMA",
+          "commandHex": "a9040400",
+          "eventIndex": 32,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "D0W0/SEQDATAB.AUTH",
+      "byteLength": 3724,
+      "sha256": "4dc9bcea8e03279160471f71942096f27fde3475c7afde34d2d5a9cacae65a80",
+      "durationFrames": 600,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "YAMA"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x98",
+          "frame": 61,
+          "actorTag": "YAMA",
+          "commandHex": "a9040100",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xb0",
+          "frame": 72,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xe8",
+          "frame": 153,
+          "actorTag": "YAMA",
+          "commandHex": "a9041100",
+          "eventIndex": 4,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x100",
+          "frame": 160,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 5,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x118",
+          "frame": 230,
+          "actorTag": "YAMA",
+          "commandHex": "a9040800",
+          "eventIndex": 6,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x150",
+          "frame": 336,
+          "actorTag": "YAMA",
+          "commandHex": "a9040200",
+          "eventIndex": 8,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x188",
+          "frame": 371,
+          "actorTag": "YAMA",
+          "commandHex": "a9040300",
+          "eventIndex": 10,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "D0W0/SEQDATAC.AUTH",
+      "byteLength": 11084,
+      "sha256": "cacb30bf13ad287d67396b30d14cf2f769653f71505ad50ee9bce893d1dd0ad9",
+      "durationFrames": 1234,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "COP_",
+        "YAMA"
+      ],
+      "sounds": []
+    },
+    {
+      "path": "DJHN/SEQDATA1.AUTH",
+      "byteLength": 3828,
+      "sha256": "68c2603a2909e3d278f86715ab357c839ce0171e1d5f2f2fa298588d6a02fd86",
+      "durationFrames": 380,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "YKHI"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x98",
+          "frame": 31,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xb0",
+          "frame": 50,
+          "actorTag": "AKIR",
+          "commandHex": "a9041500",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xc8",
+          "frame": 67,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 3,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xe0",
+          "frame": 84,
+          "actorTag": "YKHI",
+          "commandHex": "a9040d00",
+          "eventIndex": 4,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xf8",
+          "frame": 90,
+          "actorTag": "AKIR",
+          "commandHex": "ffffffff",
+          "eventIndex": 5,
+          "stop": true
+        },
+        {
+          "recordOffset": "0x148",
+          "frame": 120,
+          "actorTag": "AKIR",
+          "commandHex": "a9041200",
+          "eventIndex": 8,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1a0",
+          "frame": 267,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 11,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1b8",
+          "frame": 302,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 12,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "DJHN/SEQDATA2.AUTH",
+      "byteLength": 3360,
+      "sha256": "b0adb724799acc25d290362d0da136b187edd82db01b26e5613618b865d36387",
+      "durationFrames": 461,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "YKHI"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x98",
+          "frame": 34,
+          "actorTag": "AKIR",
+          "commandHex": "a9040200",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xb0",
+          "frame": 64,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xc8",
+          "frame": 85,
+          "actorTag": "AKIR",
+          "commandHex": "a9041500",
+          "eventIndex": 3,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xe0",
+          "frame": 88,
+          "actorTag": "AKIR",
+          "commandHex": "a9041700",
+          "eventIndex": 4,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x118",
+          "frame": 109,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 6,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x130",
+          "frame": 130,
+          "actorTag": "AKIR",
+          "commandHex": "a9041600",
+          "eventIndex": 7,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x168",
+          "frame": 245,
+          "actorTag": "AKIR",
+          "commandHex": "a9041700",
+          "eventIndex": 9,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x180",
+          "frame": 296,
+          "actorTag": "AKIR",
+          "commandHex": "a9040200",
+          "eventIndex": 10,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "DJHN/SEQDATA3.AUTH",
+      "byteLength": 11844,
+      "sha256": "e4e1bdf7774df6d3462436bfed88155abe3203cec1ef17a557e4a7d7fff8aee3",
+      "durationFrames": 2260,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "YKHI"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x78",
+          "frame": 103,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 0,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x90",
+          "frame": 125,
+          "actorTag": "AKIR",
+          "commandHex": "a9040e00",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xa8",
+          "frame": 164,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xe0",
+          "frame": 191,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 4,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xf8",
+          "frame": 229,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 5,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x130",
+          "frame": 380,
+          "actorTag": "YKHI",
+          "commandHex": "a9041100",
+          "eventIndex": 7,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x148",
+          "frame": 453,
+          "actorTag": "YKHI",
+          "commandHex": "a9040a00",
+          "eventIndex": 8,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x180",
+          "frame": 480,
+          "actorTag": "YKHI",
+          "commandHex": "a9040b00",
+          "eventIndex": 10,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1b8",
+          "frame": 573,
+          "actorTag": "AKIR",
+          "commandHex": "a9040900",
+          "eventIndex": 12,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1f0",
+          "frame": 628,
+          "actorTag": "AKIR",
+          "commandHex": "a9040f00",
+          "eventIndex": 14,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x288",
+          "frame": 1023,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 19,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2a0",
+          "frame": 1046,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 20,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2d8",
+          "frame": 1090,
+          "actorTag": "AKIR",
+          "commandHex": "a9040800",
+          "eventIndex": 22,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2e8",
+          "frame": 1090,
+          "actorTag": "YKHI",
+          "commandHex": "a9040c00",
+          "eventIndex": 23,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x300",
+          "frame": 1121,
+          "actorTag": "YKHI",
+          "commandHex": "a9040b00",
+          "eventIndex": 24,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x318",
+          "frame": 1152,
+          "actorTag": "AKIR",
+          "commandHex": "a9040900",
+          "eventIndex": 25,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x370",
+          "frame": 1222,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 28,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x388",
+          "frame": 1234,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 29,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x460",
+          "frame": 1635,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 36,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x478",
+          "frame": 1658,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 37,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x490",
+          "frame": 1669,
+          "actorTag": "AKIR",
+          "commandHex": "a9041700",
+          "eventIndex": 38,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x4a8",
+          "frame": 1681,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 39,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x4c0",
+          "frame": 1696,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 40,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x4f8",
+          "frame": 1703,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 42,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x510",
+          "frame": 1716,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 43,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x528",
+          "frame": 1722,
+          "actorTag": "YKHI",
+          "commandHex": "a9040400",
+          "eventIndex": 44,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x578",
+          "frame": 1759,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 45,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x5b0",
+          "frame": 1798,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 47,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x5c8",
+          "frame": 1810,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 48,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x5e0",
+          "frame": 1828,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 49,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x5f8",
+          "frame": 1846,
+          "actorTag": "AKIR",
+          "commandHex": "a9041500",
+          "eventIndex": 50,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x668",
+          "frame": 1872,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 52,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x6c0",
+          "frame": 1968,
+          "actorTag": "YKHI",
+          "commandHex": "a9041700",
+          "eventIndex": 55,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x6d8",
+          "frame": 2028,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 56,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x6f0",
+          "frame": 2032,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 57,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x708",
+          "frame": 2048,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 58,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x720",
+          "frame": 2064,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 59,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x738",
+          "frame": 2086,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 60,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x750",
+          "frame": 2112,
+          "actorTag": "AKIR",
+          "commandHex": "a9041500",
+          "eventIndex": 61,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "DJHN/SEQDATA4.AUTH",
+      "byteLength": 8816,
+      "sha256": "f23a6627236b93ed51d4b3b7e8e52fd78c47b7a2ce1eee55becaca85e77d07df",
+      "durationFrames": 1593,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "YKHI"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x78",
+          "frame": 78,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 0,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x90",
+          "frame": 90,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xa8",
+          "frame": 130,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xe0",
+          "frame": 160,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 4,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xf8",
+          "frame": 196,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 5,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x130",
+          "frame": 306,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 7,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x148",
+          "frame": 354,
+          "actorTag": "YKHI",
+          "commandHex": "a9041100",
+          "eventIndex": 8,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x160",
+          "frame": 376,
+          "actorTag": "YKHI",
+          "commandHex": "a9040d00",
+          "eventIndex": 9,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x178",
+          "frame": 380,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 10,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1b0",
+          "frame": 442,
+          "actorTag": "YKHI",
+          "commandHex": "a9040100",
+          "eventIndex": 12,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1e8",
+          "frame": 512,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 14,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x260",
+          "frame": 806,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 18,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x278",
+          "frame": 846,
+          "actorTag": "YKHI",
+          "commandHex": "a9040c00",
+          "eventIndex": 19,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x290",
+          "frame": 888,
+          "actorTag": "YKHI",
+          "commandHex": "a9040d00",
+          "eventIndex": 20,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2c8",
+          "frame": 1056,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 22,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2e0",
+          "frame": 1058,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 23,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2f8",
+          "frame": 1076,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 24,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x310",
+          "frame": 1078,
+          "actorTag": "AKIR",
+          "commandHex": "a9041500",
+          "eventIndex": 25,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x328",
+          "frame": 1082,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 26,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x340",
+          "frame": 1104,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 27,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x358",
+          "frame": 1116,
+          "actorTag": "YKHI",
+          "commandHex": "a9040400",
+          "eventIndex": 28,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x370",
+          "frame": 1144,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 29,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x3e8",
+          "frame": 1366,
+          "actorTag": "YKHI",
+          "commandHex": "a9041000",
+          "eventIndex": 33,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x400",
+          "frame": 1392,
+          "actorTag": "YKHI",
+          "commandHex": "a9040d00",
+          "eventIndex": 34,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x418",
+          "frame": 1424,
+          "actorTag": "YKHI",
+          "commandHex": "a9040300",
+          "eventIndex": 35,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x430",
+          "frame": 1428,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 36,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x448",
+          "frame": 1448,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 37,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x460",
+          "frame": 1466,
+          "actorTag": "AKIR",
+          "commandHex": "a9040200",
+          "eventIndex": 38,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x478",
+          "frame": 1488,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 39,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x490",
+          "frame": 1504,
+          "actorTag": "AKIR",
+          "commandHex": "a9041500",
+          "eventIndex": 40,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "DJHN/SEQDATA5.AUTH",
+      "byteLength": 7460,
+      "sha256": "0f75af17e4270b05ce3bf4efcba870b0a45010c91d70acabc4df774b7a7e21b1",
+      "durationFrames": 1215,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "YKHI"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0xb8",
+          "frame": 172,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xf0",
+          "frame": 224,
+          "actorTag": "AKIR",
+          "commandHex": "a9041000",
+          "eventIndex": 4,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x128",
+          "frame": 246,
+          "actorTag": "YKHI",
+          "commandHex": "a9040d00",
+          "eventIndex": 6,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x140",
+          "frame": 248,
+          "actorTag": "AKIR",
+          "commandHex": "a9040700",
+          "eventIndex": 7,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x158",
+          "frame": 260,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 8,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x190",
+          "frame": 284,
+          "actorTag": "AKIR",
+          "commandHex": "a9040800",
+          "eventIndex": 10,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1a8",
+          "frame": 322,
+          "actorTag": "AKIR",
+          "commandHex": "a9040f00",
+          "eventIndex": 11,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1e0",
+          "frame": 394,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 13,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1f8",
+          "frame": 442,
+          "actorTag": "YKHI",
+          "commandHex": "a9040e00",
+          "eventIndex": 14,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x250",
+          "frame": 564,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 17,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x268",
+          "frame": 580,
+          "actorTag": "AKIR",
+          "commandHex": "a9040f00",
+          "eventIndex": 18,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2a0",
+          "frame": 604,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 20,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2f8",
+          "frame": 668,
+          "actorTag": "AKIR",
+          "commandHex": "a9041000",
+          "eventIndex": 23,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x310",
+          "frame": 682,
+          "actorTag": "AKIR",
+          "commandHex": "a9040700",
+          "eventIndex": 24,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x328",
+          "frame": 696,
+          "actorTag": "AKIR",
+          "commandHex": "a9040200",
+          "eventIndex": 25,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x3c0",
+          "frame": 1012,
+          "actorTag": "YKHI",
+          "commandHex": "a9041000",
+          "eventIndex": 30,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x3d8",
+          "frame": 1040,
+          "actorTag": "YKHI",
+          "commandHex": "a9040d00",
+          "eventIndex": 31,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x3f0",
+          "frame": 1074,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 32,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x408",
+          "frame": 1088,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 33,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x420",
+          "frame": 1104,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 34,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x438",
+          "frame": 1114,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 35,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x450",
+          "frame": 1116,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 36,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x468",
+          "frame": 1120,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 37,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x480",
+          "frame": 1138,
+          "actorTag": "AKIR",
+          "commandHex": "a9041500",
+          "eventIndex": 38,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x498",
+          "frame": 1168,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 39,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "DJHN/SEQDATA6.AUTH",
+      "byteLength": 5240,
+      "sha256": "14ade9fa18fd408a22b7c05b46d3a1914320e47c589d5a94aa2bd99058d058e9",
+      "durationFrames": 678,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "YKHI"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x138",
+          "frame": 527,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 6,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x150",
+          "frame": 546,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 7,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x168",
+          "frame": 558,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 8,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x180",
+          "frame": 566,
+          "actorTag": "AKIR",
+          "commandHex": "a9040200",
+          "eventIndex": 9,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x198",
+          "frame": 576,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 10,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1b0",
+          "frame": 590,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 11,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1c8",
+          "frame": 596,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 12,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1e0",
+          "frame": 607,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 13,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "DJHN/SEQDATA7.AUTH",
+      "byteLength": 5424,
+      "sha256": "857d8ced7965011235410efe8c20919b9753320665c2d639170bb47ce1f8e62c",
+      "durationFrames": 765,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "YKHI"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0xb8",
+          "frame": 172,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x128",
+          "frame": 218,
+          "actorTag": "AKIR",
+          "commandHex": "a9041000",
+          "eventIndex": 4,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x140",
+          "frame": 246,
+          "actorTag": "AKIR",
+          "commandHex": "a9040200",
+          "eventIndex": 5,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1d8",
+          "frame": 562,
+          "actorTag": "YKHI",
+          "commandHex": "a9041000",
+          "eventIndex": 9,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1f0",
+          "frame": 590,
+          "actorTag": "YKHI",
+          "commandHex": "a9040d00",
+          "eventIndex": 10,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x208",
+          "frame": 624,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 11,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x220",
+          "frame": 638,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 12,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x238",
+          "frame": 654,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 13,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x250",
+          "frame": 670,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 14,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x268",
+          "frame": 678,
+          "actorTag": "AKIR",
+          "commandHex": "a9040200",
+          "eventIndex": 15,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x280",
+          "frame": 690,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 16,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "DJHN_01/SEQDATA1.AUTH",
+      "byteLength": 3860,
+      "sha256": "6aa1575f7d01fd8070d32ff9acedc2ed17d13728917aa5fd85d10e6e4bdb4e5d",
+      "durationFrames": 380,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "YKHI"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x98",
+          "frame": 31,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xb0",
+          "frame": 50,
+          "actorTag": "AKIR",
+          "commandHex": "a9041500",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xc8",
+          "frame": 67,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 3,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x100",
+          "frame": 84,
+          "actorTag": "YKHI",
+          "commandHex": "a9040d00",
+          "eventIndex": 5,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x118",
+          "frame": 90,
+          "actorTag": "AKIR",
+          "commandHex": "ffffffff",
+          "eventIndex": 6,
+          "stop": true
+        },
+        {
+          "recordOffset": "0x148",
+          "frame": 120,
+          "actorTag": "AKIR",
+          "commandHex": "a9041200",
+          "eventIndex": 8,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1c0",
+          "frame": 267,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 11,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1d8",
+          "frame": 302,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 12,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "DJHN_02/SEQDATA2.AUTH",
+      "byteLength": 3360,
+      "sha256": "0cd9558e15a4c79a7765f298015a1a6c988ce6bb17709491341a15809bf895f5",
+      "durationFrames": 461,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "YKHI"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x98",
+          "frame": 34,
+          "actorTag": "AKIR",
+          "commandHex": "a9040200",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xb0",
+          "frame": 64,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xc8",
+          "frame": 85,
+          "actorTag": "AKIR",
+          "commandHex": "a9041500",
+          "eventIndex": 3,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xe0",
+          "frame": 88,
+          "actorTag": "AKIR",
+          "commandHex": "a9041700",
+          "eventIndex": 4,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x118",
+          "frame": 109,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 6,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x130",
+          "frame": 130,
+          "actorTag": "AKIR",
+          "commandHex": "a9041600",
+          "eventIndex": 7,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x168",
+          "frame": 245,
+          "actorTag": "AKIR",
+          "commandHex": "a9041700",
+          "eventIndex": 9,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x180",
+          "frame": 296,
+          "actorTag": "AKIR",
+          "commandHex": "a9040200",
+          "eventIndex": 10,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "DJHN_03/SEQDATA3.AUTH",
+      "byteLength": 12852,
+      "sha256": "c986ea7b6d9d785ccd1fe44435a61d3d28bc427b2b0d3b6ac977cc13e0a1d53d",
+      "durationFrames": 2260,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "YKHI"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x78",
+          "frame": 103,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 0,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x90",
+          "frame": 125,
+          "actorTag": "AKIR",
+          "commandHex": "a9040e00",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xa8",
+          "frame": 164,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xe0",
+          "frame": 191,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 4,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xf8",
+          "frame": 229,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 5,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x130",
+          "frame": 380,
+          "actorTag": "YKHI",
+          "commandHex": "a9041100",
+          "eventIndex": 7,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x148",
+          "frame": 453,
+          "actorTag": "YKHI",
+          "commandHex": "a9040a00",
+          "eventIndex": 8,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x180",
+          "frame": 480,
+          "actorTag": "YKHI",
+          "commandHex": "a9040b00",
+          "eventIndex": 10,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1b8",
+          "frame": 573,
+          "actorTag": "AKIR",
+          "commandHex": "a9040900",
+          "eventIndex": 12,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1f0",
+          "frame": 628,
+          "actorTag": "AKIR",
+          "commandHex": "a9040f00",
+          "eventIndex": 14,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x288",
+          "frame": 1023,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 19,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2a0",
+          "frame": 1046,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 20,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2d8",
+          "frame": 1090,
+          "actorTag": "AKIR",
+          "commandHex": "a9040800",
+          "eventIndex": 22,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2e8",
+          "frame": 1090,
+          "actorTag": "YKHI",
+          "commandHex": "a9040c00",
+          "eventIndex": 23,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x300",
+          "frame": 1121,
+          "actorTag": "YKHI",
+          "commandHex": "a9040b00",
+          "eventIndex": 24,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x318",
+          "frame": 1152,
+          "actorTag": "AKIR",
+          "commandHex": "a9040900",
+          "eventIndex": 25,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x370",
+          "frame": 1222,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 28,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x388",
+          "frame": 1234,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 29,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x460",
+          "frame": 1635,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 36,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x478",
+          "frame": 1658,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 37,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x490",
+          "frame": 1669,
+          "actorTag": "AKIR",
+          "commandHex": "a9041700",
+          "eventIndex": 38,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x4a8",
+          "frame": 1681,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 39,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x4c0",
+          "frame": 1696,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 40,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x4f8",
+          "frame": 1703,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 42,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x510",
+          "frame": 1716,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 43,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x528",
+          "frame": 1722,
+          "actorTag": "YKHI",
+          "commandHex": "a9040400",
+          "eventIndex": 44,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x578",
+          "frame": 1759,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 45,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x5b0",
+          "frame": 1798,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 47,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x5c8",
+          "frame": 1810,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 48,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x5e0",
+          "frame": 1828,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 49,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x5f8",
+          "frame": 1846,
+          "actorTag": "AKIR",
+          "commandHex": "a9041500",
+          "eventIndex": 50,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x668",
+          "frame": 1872,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 52,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x6c0",
+          "frame": 1968,
+          "actorTag": "YKHI",
+          "commandHex": "a9041700",
+          "eventIndex": 55,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x6d8",
+          "frame": 2028,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 56,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x6f0",
+          "frame": 2032,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 57,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x708",
+          "frame": 2048,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 58,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x720",
+          "frame": 2064,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 59,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x738",
+          "frame": 2086,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 60,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x750",
+          "frame": 2112,
+          "actorTag": "AKIR",
+          "commandHex": "a9041500",
+          "eventIndex": 61,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "DJHN_04/SEQDATA4.AUTH",
+      "byteLength": 8816,
+      "sha256": "1205dbc24ee454acfea853370a8213ec4e184888a28164cbeca7ecb4d6ec6609",
+      "durationFrames": 1593,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "YKHI"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x78",
+          "frame": 78,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 0,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x90",
+          "frame": 90,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xa8",
+          "frame": 130,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xe0",
+          "frame": 160,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 4,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xf8",
+          "frame": 196,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 5,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x130",
+          "frame": 306,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 7,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x148",
+          "frame": 354,
+          "actorTag": "YKHI",
+          "commandHex": "a9041100",
+          "eventIndex": 8,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x160",
+          "frame": 376,
+          "actorTag": "YKHI",
+          "commandHex": "a9040d00",
+          "eventIndex": 9,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x178",
+          "frame": 380,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 10,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1b0",
+          "frame": 442,
+          "actorTag": "YKHI",
+          "commandHex": "a9040100",
+          "eventIndex": 12,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1e8",
+          "frame": 512,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 14,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x260",
+          "frame": 806,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 18,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x278",
+          "frame": 846,
+          "actorTag": "YKHI",
+          "commandHex": "a9040c00",
+          "eventIndex": 19,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x290",
+          "frame": 888,
+          "actorTag": "YKHI",
+          "commandHex": "a9040d00",
+          "eventIndex": 20,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2c8",
+          "frame": 1056,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 22,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2e0",
+          "frame": 1058,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 23,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2f8",
+          "frame": 1076,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 24,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x310",
+          "frame": 1078,
+          "actorTag": "AKIR",
+          "commandHex": "a9041500",
+          "eventIndex": 25,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x328",
+          "frame": 1082,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 26,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x340",
+          "frame": 1104,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 27,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x358",
+          "frame": 1116,
+          "actorTag": "YKHI",
+          "commandHex": "a9040400",
+          "eventIndex": 28,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x370",
+          "frame": 1144,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 29,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x3e8",
+          "frame": 1366,
+          "actorTag": "YKHI",
+          "commandHex": "a9041000",
+          "eventIndex": 33,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x400",
+          "frame": 1392,
+          "actorTag": "YKHI",
+          "commandHex": "a9040d00",
+          "eventIndex": 34,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x418",
+          "frame": 1424,
+          "actorTag": "YKHI",
+          "commandHex": "a9040300",
+          "eventIndex": 35,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x430",
+          "frame": 1428,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 36,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x448",
+          "frame": 1448,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 37,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x460",
+          "frame": 1466,
+          "actorTag": "AKIR",
+          "commandHex": "a9040200",
+          "eventIndex": 38,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x478",
+          "frame": 1488,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 39,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x490",
+          "frame": 1504,
+          "actorTag": "AKIR",
+          "commandHex": "a9041500",
+          "eventIndex": 40,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "DJHN_05/SEQDATA5.AUTH",
+      "byteLength": 7460,
+      "sha256": "27761e3fe9e03b2ea8dc6246aab22e5962a5a8926ee6e78b0096e2ee0f39d374",
+      "durationFrames": 1215,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "YKHI"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0xb8",
+          "frame": 172,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xf0",
+          "frame": 224,
+          "actorTag": "AKIR",
+          "commandHex": "a9041000",
+          "eventIndex": 4,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x128",
+          "frame": 246,
+          "actorTag": "YKHI",
+          "commandHex": "a9040d00",
+          "eventIndex": 6,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x140",
+          "frame": 248,
+          "actorTag": "AKIR",
+          "commandHex": "a9040700",
+          "eventIndex": 7,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x158",
+          "frame": 260,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 8,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x190",
+          "frame": 284,
+          "actorTag": "AKIR",
+          "commandHex": "a9040800",
+          "eventIndex": 10,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1a8",
+          "frame": 322,
+          "actorTag": "AKIR",
+          "commandHex": "a9040f00",
+          "eventIndex": 11,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1e0",
+          "frame": 394,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 13,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1f8",
+          "frame": 442,
+          "actorTag": "YKHI",
+          "commandHex": "a9040e00",
+          "eventIndex": 14,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x250",
+          "frame": 564,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 17,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x268",
+          "frame": 580,
+          "actorTag": "AKIR",
+          "commandHex": "a9040f00",
+          "eventIndex": 18,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2a0",
+          "frame": 604,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 20,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2f8",
+          "frame": 668,
+          "actorTag": "AKIR",
+          "commandHex": "a9041000",
+          "eventIndex": 23,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x310",
+          "frame": 682,
+          "actorTag": "AKIR",
+          "commandHex": "a9040700",
+          "eventIndex": 24,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x328",
+          "frame": 696,
+          "actorTag": "AKIR",
+          "commandHex": "a9040200",
+          "eventIndex": 25,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x3c0",
+          "frame": 1012,
+          "actorTag": "YKHI",
+          "commandHex": "a9041000",
+          "eventIndex": 30,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x3d8",
+          "frame": 1040,
+          "actorTag": "YKHI",
+          "commandHex": "a9040d00",
+          "eventIndex": 31,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x3f0",
+          "frame": 1074,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 32,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x408",
+          "frame": 1088,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 33,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x420",
+          "frame": 1104,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 34,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x438",
+          "frame": 1114,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 35,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x450",
+          "frame": 1116,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 36,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x468",
+          "frame": 1120,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 37,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x480",
+          "frame": 1138,
+          "actorTag": "AKIR",
+          "commandHex": "a9041500",
+          "eventIndex": 38,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x498",
+          "frame": 1168,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 39,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "DJHN_06/SEQDATA6.AUTH",
+      "byteLength": 5240,
+      "sha256": "8c5121962e4e80f0a82e0ca80adead60ef9e427f08471990fcabb50867c7f85d",
+      "durationFrames": 678,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "YKHI"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x138",
+          "frame": 527,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 6,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x150",
+          "frame": 546,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 7,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x168",
+          "frame": 558,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 8,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x180",
+          "frame": 566,
+          "actorTag": "AKIR",
+          "commandHex": "a9040200",
+          "eventIndex": 9,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x198",
+          "frame": 576,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 10,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1b0",
+          "frame": 590,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 11,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1c8",
+          "frame": 596,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 12,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1e0",
+          "frame": 607,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 13,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "DJHN_07/SEQDATA7.AUTH",
+      "byteLength": 5424,
+      "sha256": "15d54745fb515de75196b689941fd8fcf89df8fd67886befa0dc3c0ad6f387cc",
+      "durationFrames": 765,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "YKHI"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0xb8",
+          "frame": 172,
+          "actorTag": "YKHI",
+          "commandHex": "a9040200",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x128",
+          "frame": 218,
+          "actorTag": "AKIR",
+          "commandHex": "a9041000",
+          "eventIndex": 4,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x140",
+          "frame": 246,
+          "actorTag": "AKIR",
+          "commandHex": "a9040200",
+          "eventIndex": 5,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1d8",
+          "frame": 562,
+          "actorTag": "YKHI",
+          "commandHex": "a9041000",
+          "eventIndex": 9,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1f0",
+          "frame": 590,
+          "actorTag": "YKHI",
+          "commandHex": "a9040d00",
+          "eventIndex": 10,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x208",
+          "frame": 624,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 11,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x220",
+          "frame": 638,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 12,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x238",
+          "frame": 654,
+          "actorTag": "YKHI",
+          "commandHex": "a9041300",
+          "eventIndex": 13,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x250",
+          "frame": 670,
+          "actorTag": "YKHI",
+          "commandHex": "a9041200",
+          "eventIndex": 14,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x268",
+          "frame": 678,
+          "actorTag": "AKIR",
+          "commandHex": "a9040200",
+          "eventIndex": 15,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x280",
+          "frame": 690,
+          "actorTag": "AKIR",
+          "commandHex": "a9041400",
+          "eventIndex": 16,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "DRAUTH/SEQDATA1.AUTH",
+      "byteLength": 10232,
+      "sha256": "1e4a1c1ce0151c59fec79d9bfc706e14990ee75edf78698713fc28d6065e3357",
+      "durationFrames": 1330,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "HARY",
+        "JONZ",
+        "SERA",
+        "SMTH",
+        "TONY"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0xa8",
+          "frame": 18,
+          "actorTag": "AKIR",
+          "commandHex": "a9040900",
+          "eventIndex": 0,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xd8",
+          "frame": 33,
+          "actorTag": "AKIR",
+          "commandHex": "a9040c00",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x128",
+          "frame": 52,
+          "actorTag": "AKIR",
+          "commandHex": "a9040b00",
+          "eventIndex": 3,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x158",
+          "frame": 89,
+          "actorTag": "SMTH",
+          "commandHex": "a9040600",
+          "eventIndex": 4,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x188",
+          "frame": 109,
+          "actorTag": "SMTH",
+          "commandHex": "a9040800",
+          "eventIndex": 5,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1d8",
+          "frame": 158,
+          "actorTag": "AKIR",
+          "commandHex": "a9040200",
+          "eventIndex": 7,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x228",
+          "frame": 183,
+          "actorTag": "SMTH",
+          "commandHex": "a9040700",
+          "eventIndex": 9,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x258",
+          "frame": 215,
+          "actorTag": "SMTH",
+          "commandHex": "a9040600",
+          "eventIndex": 10,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x288",
+          "frame": 246,
+          "actorTag": "SMTH",
+          "commandHex": "a9040600",
+          "eventIndex": 11,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2d8",
+          "frame": 327,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 13,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x308",
+          "frame": 344,
+          "actorTag": "AKIR",
+          "commandHex": "a9040e00",
+          "eventIndex": 14,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x358",
+          "frame": 399,
+          "actorTag": "SMTH",
+          "commandHex": "a9040800",
+          "eventIndex": 16,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x388",
+          "frame": 443,
+          "actorTag": "SMTH",
+          "commandHex": "a9040700",
+          "eventIndex": 17,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x3b8",
+          "frame": 470,
+          "actorTag": "SMTH",
+          "commandHex": "a9040600",
+          "eventIndex": 18,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x3e8",
+          "frame": 473,
+          "actorTag": "SMTH",
+          "commandHex": "a9040500",
+          "eventIndex": 19,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x418",
+          "frame": 481,
+          "actorTag": "SMTH",
+          "commandHex": "a9040f00",
+          "eventIndex": 20,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x448",
+          "frame": 526,
+          "actorTag": "AKIR",
+          "commandHex": "a9040000",
+          "eventIndex": 21,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x4b0",
+          "frame": 595,
+          "actorTag": "SMTH",
+          "commandHex": "a9040600",
+          "eventIndex": 24,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x560",
+          "frame": 988,
+          "actorTag": "SMTH",
+          "commandHex": "a9040700",
+          "eventIndex": 29,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x590",
+          "frame": 1013,
+          "actorTag": "SMTH",
+          "commandHex": "a9040800",
+          "eventIndex": 30,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x5c0",
+          "frame": 1033,
+          "actorTag": "SMTH",
+          "commandHex": "a9040600",
+          "eventIndex": 31,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x5f0",
+          "frame": 1050,
+          "actorTag": "SMTH",
+          "commandHex": "a9040600",
+          "eventIndex": 32,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x620",
+          "frame": 1055,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 33,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x650",
+          "frame": 1069,
+          "actorTag": "SMTH",
+          "commandHex": "a9040800",
+          "eventIndex": 34,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x680",
+          "frame": 1086,
+          "actorTag": "AKIR",
+          "commandHex": "a9040e00",
+          "eventIndex": 35,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x6b0",
+          "frame": 1120,
+          "actorTag": "AKIR",
+          "commandHex": "a9040a00",
+          "eventIndex": 36,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x6e0",
+          "frame": 1139,
+          "actorTag": "AKIR",
+          "commandHex": "a9040d00",
+          "eventIndex": 37,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x710",
+          "frame": 1156,
+          "actorTag": "AKIR",
+          "commandHex": "a9040a00",
+          "eventIndex": 38,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x778",
+          "frame": 1227,
+          "actorTag": "AKIR",
+          "commandHex": "a9040b00",
+          "eventIndex": 39,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x7a8",
+          "frame": 1244,
+          "actorTag": "AKIR",
+          "commandHex": "a9040900",
+          "eventIndex": 40,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x7d8",
+          "frame": 1248,
+          "actorTag": "SMTH",
+          "commandHex": "a9040700",
+          "eventIndex": 41,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x808",
+          "frame": 1271,
+          "actorTag": "AKIR",
+          "commandHex": "a9040b00",
+          "eventIndex": 42,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x838",
+          "frame": 1298,
+          "actorTag": "AKIR",
+          "commandHex": "a9040c00",
+          "eventIndex": 43,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "DRAUTH/SEQDATA2.AUTH",
+      "byteLength": 7564,
+      "sha256": "a410bfb4d1a82db5bf09cdb05398ad55fc078fe3f31126033f6c20b52e7c83da",
+      "durationFrames": 500,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "HARY",
+        "JONZ",
+        "SERA",
+        "SMTH",
+        "TONY"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0xa8",
+          "frame": 3,
+          "actorTag": "SMTH",
+          "commandHex": "a9040600",
+          "eventIndex": 0,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xd8",
+          "frame": 11,
+          "actorTag": "AKIR",
+          "commandHex": "a9040c00",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x128",
+          "frame": 24,
+          "actorTag": "SMTH",
+          "commandHex": "a9040800",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x158",
+          "frame": 27,
+          "actorTag": "TONY",
+          "commandHex": "a9040300",
+          "eventIndex": 3,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x188",
+          "frame": 31,
+          "actorTag": "AKIR",
+          "commandHex": "a9040b00",
+          "eventIndex": 4,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1b8",
+          "frame": 43,
+          "actorTag": "SMTH",
+          "commandHex": "a9040600",
+          "eventIndex": 5,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1e8",
+          "frame": 55,
+          "actorTag": "AKIR",
+          "commandHex": "a9040900",
+          "eventIndex": 6,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x218",
+          "frame": 78,
+          "actorTag": "AKIR",
+          "commandHex": "a9040c00",
+          "eventIndex": 7,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x268",
+          "frame": 115,
+          "actorTag": "AKIR",
+          "commandHex": "a9040e00",
+          "eventIndex": 9,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2d0",
+          "frame": 130,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 10,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x300",
+          "frame": 208,
+          "actorTag": "TONY",
+          "commandHex": "a9040300",
+          "eventIndex": 11,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x380",
+          "frame": 302,
+          "actorTag": "TONY",
+          "commandHex": "a9040500",
+          "eventIndex": 12,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x3b0",
+          "frame": 331,
+          "actorTag": "TONY",
+          "commandHex": "a9041100",
+          "eventIndex": 13,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x3e0",
+          "frame": 361,
+          "actorTag": "TONY",
+          "commandHex": "a9040100",
+          "eventIndex": 14,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x430",
+          "frame": 407,
+          "actorTag": "JONZ",
+          "commandHex": "a9041000",
+          "eventIndex": 15,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "YBHN/SEQDATA0.AUTH",
+      "byteLength": 11444,
+      "sha256": "590ca02d4dba7437ae84fe3fb35908241092fcee011784b90417497338bdf0df",
+      "durationFrames": 2130,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "HRSK"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x80",
+          "frame": 44,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 0,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xb0",
+          "frame": 64,
+          "actorTag": "AKIR",
+          "commandHex": "a9040600",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xe0",
+          "frame": 67,
+          "actorTag": "HRSK",
+          "commandHex": "a9040100",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x110",
+          "frame": 83,
+          "actorTag": "AKIR",
+          "commandHex": "a9040700",
+          "eventIndex": 3,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x160",
+          "frame": 94,
+          "actorTag": "HRSK",
+          "commandHex": "a9040200",
+          "eventIndex": 5,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x190",
+          "frame": 107,
+          "actorTag": "AKIR",
+          "commandHex": "a9040800",
+          "eventIndex": 6,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1e0",
+          "frame": 130,
+          "actorTag": "HRSK",
+          "commandHex": "a9040300",
+          "eventIndex": 8,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x2b0",
+          "frame": 468,
+          "actorTag": "HRSK",
+          "commandHex": "a9040200",
+          "eventIndex": 14,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x4a0",
+          "frame": 1641,
+          "actorTag": "HRSK",
+          "commandHex": "a9040400",
+          "eventIndex": 29,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x4f0",
+          "frame": 1670,
+          "actorTag": "HRSK",
+          "commandHex": "a9040200",
+          "eventIndex": 31,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x5a0",
+          "frame": 1978,
+          "actorTag": "HRSK",
+          "commandHex": "a9040300",
+          "eventIndex": 36,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x5d0",
+          "frame": 1990,
+          "actorTag": "HRSK",
+          "commandHex": "a9040200",
+          "eventIndex": 37,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x600",
+          "frame": 1994,
+          "actorTag": "AKIR",
+          "commandHex": "a9040000",
+          "eventIndex": 38,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x630",
+          "frame": 2026,
+          "actorTag": "AKIR",
+          "commandHex": "a9040500",
+          "eventIndex": 39,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x660",
+          "frame": 2058,
+          "actorTag": "AKIR",
+          "commandHex": "a9040600",
+          "eventIndex": 40,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "YORU/SEQDATA3.AUTH",
+      "byteLength": 996,
+      "sha256": "cc3c06ebdbdf5ab78425506a82a58c1a35c4d2142a8af61a97ef77b8554884f3",
+      "durationFrames": 59,
+      "timelineComplete": true,
+      "actorTags": [
+        "LUV2"
+      ],
+      "sounds": []
+    },
+    {
+      "path": "YORU/SEQDATA4.AUTH",
+      "byteLength": 996,
+      "sha256": "897bfcddb180e98b48e67b8594bd1f2fbea25ab52f8418526582f4bb055dcfc2",
+      "durationFrames": 70,
+      "timelineComplete": true,
+      "actorTags": [
+        "LUV2"
+      ],
+      "sounds": []
+    },
+    {
+      "path": "YORU/SEQDATA5.AUTH",
+      "byteLength": 996,
+      "sha256": "b0427f8f9de28e9d0c13cc4bd76d04567e3cc2e7557a541ad01bf862380284c2",
+      "durationFrames": 110,
+      "timelineComplete": true,
+      "actorTags": [
+        "LUV2"
+      ],
+      "sounds": []
+    },
+    {
+      "path": "YQ14/SEQDATA1.AUTH",
+      "byteLength": 1820,
+      "sha256": "529bc62c6721402fa265c4952d5d9aae3d9ba42ce0807ee39436935a9f448422",
+      "durationFrames": 70,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "SMTH",
+        "TONY"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0x9c",
+          "frame": 18,
+          "actorTag": "AKIR",
+          "commandHex": "a90f0100",
+          "eventIndex": 0,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xcc",
+          "frame": 35,
+          "actorTag": "AKIR",
+          "commandHex": "a90f0000",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xfc",
+          "frame": 50,
+          "actorTag": "AKIR",
+          "commandHex": "a90f0100",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x12c",
+          "frame": 67,
+          "actorTag": "AKIR",
+          "commandHex": "a90f0000",
+          "eventIndex": 3,
+          "stop": false
+        }
+      ]
+    },
+    {
+      "path": "YQ14/SEQDATA2.AUTH",
+      "byteLength": 29596,
+      "sha256": "e56fd5983791b824f1f7b1ce40629a207df87f5081b723cc7b5d18d1c2af4b58",
+      "durationFrames": 435,
+      "timelineComplete": true,
+      "actorTags": [
+        "AKIR",
+        "BIN_",
+        "SMTH",
+        "TONY"
+      ],
+      "sounds": [
+        {
+          "recordOffset": "0xa8",
+          "frame": 10,
+          "actorTag": "TONY",
+          "commandHex": "a90f0000",
+          "eventIndex": 0,
+          "stop": false
+        },
+        {
+          "recordOffset": "0xd8",
+          "frame": 30,
+          "actorTag": "AKIR",
+          "commandHex": "a90f0100",
+          "eventIndex": 1,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x108",
+          "frame": 40,
+          "actorTag": "TONY",
+          "commandHex": "a90f0400",
+          "eventIndex": 2,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x138",
+          "frame": 51,
+          "actorTag": "AKIR",
+          "commandHex": "a90f0200",
+          "eventIndex": 3,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x168",
+          "frame": 60,
+          "actorTag": "TONY",
+          "commandHex": "a90f0000",
+          "eventIndex": 4,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x198",
+          "frame": 120,
+          "actorTag": "AKIR",
+          "commandHex": "a90f0000",
+          "eventIndex": 5,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1c8",
+          "frame": 139,
+          "actorTag": "TONY",
+          "commandHex": "a90f0000",
+          "eventIndex": 6,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x1f8",
+          "frame": 191,
+          "actorTag": "AKIR",
+          "commandHex": "a90f0100",
+          "eventIndex": 7,
+          "stop": false
+        },
+        {
+          "recordOffset": "0x228",
+          "frame": 208,
+          "actorTag": "TONY",
+          "commandHex": "a90f0100",
+          "eventIndex": 8,
+          "stop": false
+        }
+      ]
+    }
+  ],
+  "semanticBoundary": "AUTH proves command timing relative to its authored sequence. This inventory does not by itself prove which DTPK bank supplies an A904 namespace or which browser interaction launches the sequence."
+}

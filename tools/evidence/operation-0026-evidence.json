@@ -1,0 +1,32 @@
+{
+  "schema": "new-yokosuka-operation-0026-evidence-v1",
+  "generatedBy": "tools/scripting/operations/extract_operation_0026_evidence.py",
+  "sources": {
+    "executable": {
+      "path": ".disc-work/exact/1ST_READ.BIN",
+      "sha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c"
+    },
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 38,
+    "operationHex": "0x0026",
+    "handlerAddress": "0x0c1649a8",
+    "handlerLength": 8,
+    "handlerSha256": "f64c232d66f39fca1f1a485d355fd8f17434527ce525a6412d559f32f3147119",
+    "resultHelperAddress": "0x0c0bb342",
+    "resultHelperLength": 6,
+    "resultHelperSha256": "0e95a398fa69bff19b2b51bfecd66ebcbddc95a59adb8690eafbb32ad4cbb2c2",
+    "globalAddress": "0x0c20c3e0",
+    "provenBehavior": "Loads the dword at fixed address 0x0c20c3e0 and forwards it unchanged through the dispatcher's operation-result slot."
+  },
+  "inventory": {
+    "authoredCallCount": 115,
+    "areaCount": 55,
+    "argumentCounts": {
+      "0": 115
+    },
+    "resultTargetCount": 43,
+    "resultComparisonCount": 60
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "schema": "new-yokosuka-native-debug-format-operation-evidence-v1",
+  "status": "exact-native-format-boundary-and-static-pointer-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 0,
+    "operationHex": "0x0000",
+    "handlerAddress": "0x0c173196",
+    "provenArgumentCounts": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      17
+    ],
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c173196",
+        "length": 52,
+        "sha256": "960e5a04127380ca11ee6edeb40ac3ffbdf1b20ac20ec2e5bc8458fb5c9bb8a4"
+      },
+      "formatWrapper": {
+        "address": "0x0c1dcb74",
+        "length": 34,
+        "sha256": "29c91668186243b962a0d7d537316b2914a04bdf3fd248e184866af505e55923"
+      },
+      "formatCoreSample": {
+        "address": "0x0c1dcb98",
+        "length": 128,
+        "sha256": "6f0035af926676f740a0517478a66d777e854b8790d535ad34e1f05100b9e5e3"
+      },
+      "encodingConversion": {
+        "address": "0x0c1c5100",
+        "length": 74,
+        "sha256": "8e45df02e0cf5e917e64e2c3b7795cfc2f20d54d0e2ddc241f8b296a2bdd27ce"
+      },
+      "resultWriter": {
+        "address": "0x0c0bb342",
+        "length": 6,
+        "sha256": "0e95a398fa69bff19b2b51bfecd66ebcbddc95a59adb8690eafbb32ad4cbb2c2"
+      }
+    },
+    "nativeContract": {
+      "formatWrapper": "0x0c1dcb74",
+      "encodingConversion": "0x0c1c5100",
+      "resultWriter": "0x0c0bb342"
+    },
+    "provenBehavior": "Passes argument zero as a format-string pointer and all remaining raw words as a variadic argument list to the native formatter, converts the formatted buffer through the exact character-encoding routine, and writes the formatter result to the current VM result slot."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 1403,
+    "provenCallCount": 1400,
+    "unresolvedDynamicFormatPointerCallCount": 3,
+    "dialogueRegionCallCount": 51,
+    "argumentCountHistogram": {
+      "1": 951,
+      "2": 386,
+      "3": 40,
+      "4": 11,
+      "5": 6,
+      "17": 6
+    },
+    "dialogueArgumentCountHistogram": {
+      "1": 16,
+      "2": 35
+    },
+    "areaCount": 59
+  },
+  "evidenceBoundary": [
+    "The platform formatter and encoding conversion remain one mandatory adapter.",
+    "Raw variadic words are forwarded without JavaScript format emulation.",
+    "Only calls with a statically recovered format pointer are promoted.",
+    "The three dynamic-format-pointer calls remain unresolved.",
+    "No recovered operation result feeds a branch or stored result target."
+  ]
+}

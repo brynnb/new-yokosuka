@@ -1,0 +1,106 @@
+{
+  "schema": "new-yokosuka-native-cutscene-lifecycle-v1",
+  "resource": "EVSN",
+  "disc": 1,
+  "area": "JD00",
+  "mapinfo": {
+    "path": "extracted_files/data/SCENE/01/JD00/MAPINFO.BIN",
+    "sha256": "8582ed57e13593d7622d24216ef8f93e5393b13fffd2132f70500f9e6ce2a43b"
+  },
+  "owner": {
+    "storyOwnerFunction": "0x5b6f8",
+    "dispatcherFunction": "0x73de4",
+    "dispatcherCalls": [
+      { "call": "0x5bd92", "argument": 1 },
+      { "call": "0x5bdc6", "argument": 0 }
+    ],
+    "activityOwners": ["0x761ca", "0x7691c", "0x76424", "0x76644"],
+    "activityCallbacks": ["0x721f8", "0x72300", "0x729e0"],
+    "activityInstalls": ["0x76382", "0x76ad2", "0x76532", "0x76822"],
+    "activitySlots": [0, 3, 1, 2],
+    "nativeExecutionOrder": [
+      { "kind": "activity", "slot": 0, "call": "0x73e12" },
+      { "kind": "activity", "slot": 3, "call": "0x73e26" },
+      { "kind": "activity", "slot": 1, "call": "0x73e2c" },
+      {
+        "kind": "realtime-interstitial",
+        "function": "0x74960",
+        "call": "0x73e32",
+        "containsActivity": { "slot": 1, "call": "0x7587e" }
+      },
+      { "kind": "activity", "slot": 2, "call": "0x73e38" },
+      { "kind": "cleanup", "function": "0x743d8", "call": "0x73e3e" }
+    ],
+    "containerOperation": "0x013c",
+    "activityOperation": "0x013e"
+  },
+  "resourceCluster": {
+    "range": ["0x81384", "0x814d7"],
+    "archive": "EVSN",
+    "voiceStream": "01NVE.AFS",
+    "soundBank": "A1_NZMVS.SND",
+    "music": ["BGM001.SND", "BGM013.SND"],
+    "battleMusic": "BATTLE_1.SND",
+    "motionBank": "M_01NVE.MOTN"
+  },
+  "retailVoiceExceptions": [
+    {
+      "member": "01NVEA007.str",
+      "authSource": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEA007.aiff",
+      "reason": "the exact retail 01NVE.AFS directory skips from A006 to A008"
+    },
+    {
+      "member": "01NVED007.str",
+      "authSource": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVED007.aiff",
+      "reason": "the exact retail 01NVE.AFS directory contains D001 through D005 only"
+    },
+    {
+      "member": "01NVED008.str",
+      "authSource": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVED008.aiff",
+      "reason": "the exact retail 01NVE.AFS directory contains D001 through D005 only"
+    }
+  ],
+  "dependencies": {
+    "archive": "extracted_files/data/SCENE/01/JD00/EVSN.PKS",
+    "worldActors": {
+      "HRSK": { "identity": "Nozomi Harasaki", "modelCode": "NZM_L" },
+      "ENKI": { "identity": "Akio Enoki", "modelCode": "YAA_L" },
+      "NGSM": { "identity": "Tetsuya Nagashima", "modelCode": "YAB_L" }
+    },
+    "packageActors": {
+      "KKEN": {
+        "identity": "Kyosuke Nishida",
+        "modelCode": "NZG_L",
+        "archiveMember": "NZG_L.CHRM"
+      }
+    },
+    "sceneObjects": {
+      "AIRO": {
+        "identity": "toy airplane",
+        "archiveMember": "OMHT201G.CHRM",
+        "nativeAttachment": {
+          "operation": "0x00e6",
+          "call": "0x72af4",
+          "parentActor": "KKEN",
+          "controlId": 12
+        }
+      }
+    }
+  },
+  "runtimePolicy": {
+    "world": "use the existing JD00 Sakuragaoka composition and coordinate root",
+    "entry": "acquire Ryo and the exact activity-only world/package actors before native activity ownership",
+    "objectOwnership": "AIRO remains one package-owned scene object; its native movement channel and later KKEN control-point attachment must not instantiate duplicate geometry",
+    "audio": "use the exact 01NVE voice stream and A1_NZMVS activity SFX bank; preserve the native BGM changes around the realtime interstitial",
+    "exit": "run the native cleanup boundary and release activity, attachment, face, audio, camera, actor, and control ownership exactly once"
+  },
+  "sources": [
+    ".disc-work/dialogue/native-event-ir.json",
+    "public/data/chars.csv",
+    "tools/evidence/native-activity-owner-candidates.json",
+    "tools/evidence/shenmue1-scripted-scene-inventory.json",
+    "tools/evidence/native-audio-bank-inventory.json"
+  ],
+  "availability": "package-candidate",
+  "productionGate": "The four exact activities and their native repeat are extractable, but selector registration requires a reusable realtime-interstitial adapter, single-owner AIRO movement/attachment support, exact audio, facial presentation, and end-to-end cleanup validation."
+}

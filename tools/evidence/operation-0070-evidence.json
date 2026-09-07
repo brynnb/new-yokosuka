@@ -1,0 +1,187 @@
+{
+  "schema": "new-yokosuka-operation-0070-evidence-v1",
+  "status": "exact-native-momt-vector-slot-routes-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 112,
+    "operationHex": "0x0070",
+    "handlerAddress": "0x0c15761a",
+    "recordTag": "MOMT",
+    "slotSelectors": {
+      "0": 0,
+      "3": 1,
+      "6": 2,
+      "11": 3,
+      "17": 4,
+      "21": 5,
+      "26": 6,
+      "33": 7
+    },
+    "vectorStorage": {
+      "baseOffset": "0x0368",
+      "strideBytes": 12,
+      "slotCount": 8,
+      "primaryPointerTableOffset": "0x001c",
+      "secondaryPointerTableOffset": "0x0044"
+    },
+    "flagRoutes": [
+      {
+        "when": "flags & 0x40000000",
+        "route": "secondary-direct",
+        "pointerTable": "0x0044"
+      },
+      {
+        "when": "!(flags & 0x40000000) && flags & 0x01000000",
+        "route": "primary-direct",
+        "pointerTable": "0x001c"
+      },
+      {
+        "when": "neither flag is set",
+        "route": "secondary-object-transformed",
+        "pointerTable": "0x0044"
+      }
+    ],
+    "verifiedRanges": {
+      "handlerTableEntry": {
+        "address": "0x0c29aba0",
+        "length": 4,
+        "sha256": "0365e9fd4bbc43c8cd19a7c9393deccf3f895333e2e58b2e03dbd8724992a1ec"
+      },
+      "handler": {
+        "address": "0x0c15761a",
+        "length": 94,
+        "sha256": "5958f97944953226c81c95846b26df046de4b9103fd429ac873f2ab0e7ffe746"
+      },
+      "slotSelector": {
+        "address": "0x0c113ecc",
+        "length": 76,
+        "sha256": "63b3a33b138f62112a07497701e82026ae8b9b7d59e2533658de69bf2eaf227b"
+      },
+      "primaryDirectWriter": {
+        "address": "0x0c113f18",
+        "length": 134,
+        "sha256": "1e9eb0b3695471666b0006fb0e1acd11421d4d8eb9e23c46b6a6dced2735282b"
+      },
+      "secondaryDirectWriter": {
+        "address": "0x0c113f9e",
+        "length": 108,
+        "sha256": "c97c63072ef95a76d10611c934a135c74e54ed464fd26fc13947d3d36525435a"
+      },
+      "secondaryObjectTransformWriter": {
+        "address": "0x0c11400a",
+        "length": 158,
+        "sha256": "4619a5453350e27dd082d8b1a437ace83a263496aaf53ce1dfb9d79ff95c0d51"
+      },
+      "objectPlusFourAccessor": {
+        "address": "0x0c0ab0e2",
+        "length": 14,
+        "sha256": "c42ec668a2df1d45e8dbe66ca8a43fe96dad8b10d07483673311df9a3fdcc643"
+      },
+      "affinePointTransform": {
+        "address": "0x0c08d520",
+        "length": 120,
+        "sha256": "2153c2a6f5f04c037612bec68e4a5702754110b5fe711d409da4f51c5df4c58a"
+      }
+    },
+    "nativeContract": {
+      "handlerTableEntry": "0x0c15761a",
+      "objectResolver": "0x0c153956",
+      "secondaryFlagMask": "0x40000000",
+      "secondaryDirectWriter": "0x0c113f9e",
+      "primaryFlagMask": "0x01000000",
+      "primaryDirectWriter": "0x0c113f18",
+      "secondaryObjectTransformWriter": "0x0c11400a",
+      "momtTag": "0x4d544f4d",
+      "associatedRecordResolver": "0x0c0aad5a",
+      "objectPlusFourAccessor": "0x0c0ab0e2",
+      "affinePointTransform": "0x0c08d520"
+    },
+    "provenBehavior": "Resolve argument zero and its literal MOMT record, map argument one through the exact eight-selector table, and copy the three raw words addressed by argument two into MOMT +0x368 + slot*12. Flag 0x40000000 takes precedence and selects the +0x44 pointer table without transforming the vector. Otherwise flag 0x01000000 selects the +0x1c pointer table. With neither flag, the +0x44 route applies the object's direct affine point transform when that transform pointer is present. The unselected pointer-table entry is cleared. An unknown selector returns zero before reading the vector source."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 53,
+    "dialogueRegionCallCount": 2,
+    "areaCounts": {
+      "1:D000": 8,
+      "1:JD00": 7,
+      "1:JOMO": 1,
+      "1:OP00": 4,
+      "2:D000": 2,
+      "2:DKTY": 1,
+      "2:JD00": 3,
+      "2:JOMO": 1,
+      "2:MFSY": 3,
+      "2:MKSG": 6,
+      "2:MKYU": 1,
+      "2:MS08": 2,
+      "2:YDB1": 2,
+      "3:D000": 2,
+      "3:JD00": 3,
+      "3:JOMO": 1,
+      "3:MFBT": 1,
+      "3:MFSY": 2,
+      "3:MKYU": 1,
+      "3:YDB1": 2
+    },
+    "constantObjectTagCounts": {
+      "AKIR": 31,
+      "GORO": 1,
+      "HIRI": 3,
+      "KISY": 1,
+      "OISI": 1,
+      "SYZU": 6,
+      "TONY": 1
+    },
+    "selectorCounts": {
+      "11": 19,
+      "17": 28,
+      "26": 1,
+      "33": 1,
+      "6": 1,
+      "None": 3
+    },
+    "argumentKindCounts": {
+      "0": {
+        "constant": 44,
+        "frame-field": 9
+      },
+      "1": {
+        "constant": 50,
+        "frame-field": 3
+      },
+      "2": {
+        "frame-address": 36,
+        "scene-address": 4,
+        "static-pointer": 13
+      },
+      "3": {
+        "constant": 53
+      }
+    },
+    "flagCounts": {
+      "0x38000000": 15,
+      "0x39000000": 19,
+      "0x78000000": 19
+    },
+    "resultComparisonCount": 0,
+    "resultTargetCount": 0,
+    "op00CallFileOffsets": [
+      "0x9d28",
+      "0x9dce",
+      "0xaa9c",
+      "0xab42"
+    ]
+  },
+  "evidenceBoundary": [
+    "MOMT, selector IDs, field offsets, pointer tables, and flag masks remain low-level executable identities.",
+    "The object-transform route is proven as affine point transformation; no high-level navigation, gaze, or animation-target label is inferred.",
+    "Missing object or MOMT state is not proven as a native no-op and must fail closed in the browser runtime.",
+    "The three authored flag words are corpus observations; runtime routing follows the executable bit tests and their precedence.",
+    "Dynamic object tags, selectors, and vector addresses remain supported rather than being reduced to the OP00 constants."
+  ]
+}

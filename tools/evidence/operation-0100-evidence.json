@@ -1,0 +1,387 @@
+{
+  "schema": "new-yokosuka-native-operation-0100-evidence-v1",
+  "status": "exact-yd01-native-efpt-primary-controller-routes",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 256,
+    "operationHex": "0x0100",
+    "tableEntryAddress": "0x0c29ade0",
+    "handlerAddress": "0x0c15f74c",
+    "handlerLength": 1170,
+    "handlerSha256": "095f5cde693e5db56b240a68b1ca28ee78b21545dfda2283b03323edc40def92",
+    "controllerSelector": 0,
+    "slotCount": 16,
+    "resourceTag": "EFPT",
+    "yd01Routes": {
+      "0": {
+        "argumentCount": 7,
+        "helperAddress": "0x0c0b7bc8",
+        "helperLength": 1292,
+        "helperSha256": "09873041cd438bfb7e2940625167689a9889bedd8f5628e35ae378f46be166c0"
+      },
+      "1": {
+        "argumentCount": 2,
+        "helperAddress": "0x0c0b5c0c",
+        "helperLength": 186,
+        "helperSha256": "66e5aa06c5473969c79fd9c9770b51edd2a727a553b327c2198fe805a57bb1f5"
+      },
+      "2": {
+        "argumentCount": 2,
+        "helperAddress": "0x0c0b5cc6",
+        "helperLength": 198,
+        "helperSha256": "9fa9677fd53f435f69cfb7e65efd63ba480ddad36d8d6b087cc453d6dfe14618"
+      },
+      "3": {
+        "argumentCount": 2,
+        "helperAddress": "0x0c0b5af8",
+        "helperLength": 276,
+        "helperSha256": "34e4284207b12503e8311ea1c2c64f1a3f2dd6cf63cfa6ff3ad8e322dfdfc964"
+      },
+      "7": {
+        "argumentCount": 3,
+        "helperAddress": "0x0c0b5ed4",
+        "helperLength": 72,
+        "helperSha256": "c0a1112b4add46a19501a8c6b5d665574bc43acca7d8dd079742cae29e852c2a"
+      },
+      "8": {
+        "argumentCount": 4,
+        "helperAddress": "0x0c0b5f6e",
+        "helperLength": 80,
+        "helperSha256": "54bcb9f294523957b9f4e86788258198131b2788bbf8dedc2373cb4efe9b7d3a"
+      },
+      "9": {
+        "argumentCount": 5,
+        "helperAddress": "0x0c0b5fe0",
+        "helperLength": 224,
+        "helperSha256": "06e640d98d2074935e5e93dbe05dfeb20d3ba6bc872051275958482cf573f86d"
+      },
+      "11": {
+        "argumentCount": 3,
+        "helperAddress": "0x0c0b61e4",
+        "helperLength": 256,
+        "helperSha256": "41d89fb82afaa0998977f2b9ed0e6352a1a605756bd5006ff6e46551b793b62f"
+      },
+      "12": {
+        "argumentCount": 3,
+        "helperAddress": "0x0c0b62e4",
+        "helperLength": 192,
+        "helperSha256": "846ab6515c29ae2b9c3e5618ba63b718379453e3e7a183ff62e024d23b7621ce"
+      }
+    }
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 557,
+    "areaCount": 18,
+    "selectorCounts": {
+      "0": 34,
+      "1": 52,
+      "2": 33,
+      "3": 41,
+      "4": 6,
+      "5": 12,
+      "6": 38,
+      "7": 59,
+      "8": 49,
+      "9": 46,
+      "10": 41,
+      "11": 45,
+      "12": 46,
+      "13": 4,
+      "14": 8,
+      "15": 7,
+      "16": 18,
+      "50": 1,
+      "100": 1,
+      "101": 1,
+      "102": 1,
+      "103": 1,
+      "105": 1,
+      "106": 1,
+      "107": 3,
+      "108": 1,
+      "109": 1,
+      "110": 2,
+      "111": 2,
+      "112": 1,
+      "113": 1
+    },
+    "argumentCountCounts": {
+      "2": 135,
+      "3": 218,
+      "4": 122,
+      "5": 47,
+      "6": 1,
+      "7": 34
+    },
+    "canonicalSha256": "ded66a3a8f623d26fcf96b33910cf5004c3d3042cc623262d93e2be53a947f2d"
+  },
+  "yd01Inventory": {
+    "authoredCallCount": 9,
+    "canonicalSha256": "4e3d1500577383374abb6d09da3503f3a95e5512acc0f2e03b4cbd09491ea005",
+    "routes": [
+      {
+        "disc": 1,
+        "area": "YD01",
+        "function": "0x2324",
+        "callFileOffset": "0x235c",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x234c"
+          },
+          {
+            "kind": "static-pointer",
+            "value": 11744,
+            "hex": "0x00002de0",
+            "source": "0x2348"
+          },
+          {
+            "kind": "static-pointer",
+            "value": 11756,
+            "hex": "0x00002dec",
+            "source": "0x2340"
+          },
+          {
+            "kind": "constant",
+            "value": 60,
+            "hex": "0x0000003c",
+            "source": "0x2338"
+          },
+          {
+            "kind": "constant",
+            "value": 1020054733,
+            "hex": "0x3ccccccd",
+            "source": "0x2334"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x2332"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x2330"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "YD01",
+        "function": "0x2324",
+        "callFileOffset": "0x2384",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 9,
+            "hex": "0x00000009",
+            "source": "0x2374"
+          },
+          {
+            "kind": "frame-field",
+            "source": "@(0,r14) at 0x2370",
+            "offset": 0
+          },
+          {
+            "kind": "constant",
+            "value": 91,
+            "hex": "0x0000005b",
+            "source": "0x236e"
+          },
+          {
+            "kind": "constant",
+            "value": 72,
+            "hex": "0x00000048",
+            "source": "0x236c"
+          },
+          {
+            "kind": "constant",
+            "value": 25,
+            "hex": "0x00000019",
+            "source": "0x236a"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "YD01",
+        "function": "0x2324",
+        "callFileOffset": "0x23a0",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 8,
+            "hex": "0x00000008",
+            "source": "0x2390"
+          },
+          {
+            "kind": "frame-field",
+            "source": "@(0,r14) at 0x238e",
+            "offset": 0
+          },
+          {
+            "kind": "constant",
+            "value": 1065353216,
+            "hex": "0x3f800000",
+            "source": "0x238c"
+          },
+          {
+            "kind": "constant",
+            "value": 1065353216,
+            "hex": "0x3f800000",
+            "source": "0x238a"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "YD01",
+        "function": "0x2324",
+        "callFileOffset": "0x23b8",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 11,
+            "hex": "0x0000000b",
+            "source": "0x23aa"
+          },
+          {
+            "kind": "frame-field",
+            "source": "@(0,r14) at 0x23a8",
+            "offset": 0
+          },
+          {
+            "kind": "constant",
+            "value": 114,
+            "hex": "0x00000072",
+            "source": "0x23a6"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "YD01",
+        "function": "0x2324",
+        "callFileOffset": "0x23d0",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 12,
+            "hex": "0x0000000c",
+            "source": "0x23c2"
+          },
+          {
+            "kind": "frame-field",
+            "source": "@(0,r14) at 0x23c0",
+            "offset": 0
+          },
+          {
+            "kind": "constant",
+            "value": 17,
+            "hex": "0x00000011",
+            "source": "0x23be"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "YD01",
+        "function": "0x2324",
+        "callFileOffset": "0x23e4",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x23d8"
+          },
+          {
+            "kind": "frame-field",
+            "source": "@(0,r14) at 0x23d6",
+            "offset": 0
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "YD01",
+        "function": "0x2324",
+        "callFileOffset": "0x241e",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 7,
+            "hex": "0x00000007",
+            "source": "0x2410"
+          },
+          {
+            "kind": "frame-field",
+            "source": "@(0,r14) at 0x240e",
+            "offset": 0
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x240c"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "YD01",
+        "function": "0x2324",
+        "callFileOffset": "0x2454",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 2,
+            "hex": "0x00000002",
+            "source": "0x2448"
+          },
+          {
+            "kind": "frame-field",
+            "source": "@(0,r14) at 0x2446",
+            "offset": 0
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "YD01",
+        "function": "0x2324",
+        "callFileOffset": "0x2468",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 3,
+            "hex": "0x00000003",
+            "source": "0x245c"
+          },
+          {
+            "kind": "frame-field",
+            "source": "@(0,r14) at 0x245a",
+            "offset": 0
+          }
+        ]
+      }
+    ]
+  },
+  "evidenceBoundary": [
+    "Operation 0x0100 dispatches a broad native selector family; this recovery promotes only YD01's nine exact authored routes.",
+    "YD01 mode zero forwards two three-word vectors and four scalar words to the exact EFPT creator, then publishes its sixteen-slot handle or -1 when full.",
+    "YD01 modes one, two, and three address exact controller selector zero through separate activate, deactivate, and release helpers.",
+    "YD01 modes seven and eight write one and two raw float32 words; mode nine forwards three authored byte words through the exact packed-field helper.",
+    "YD01 modes eleven and twelve forward one integer word through separate exact controller helpers.",
+    "The full 557-call corpus inventory is pinned, but unlisted selector/argument combinations remain unresolved rather than being promoted as a cross-product."
+  ]
+}

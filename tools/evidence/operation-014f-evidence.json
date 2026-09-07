@@ -1,0 +1,31 @@
+{
+  "schema": "new-yokosuka-operation-014f-evidence-v1",
+  "status": "exact-native-raw-float-word-write-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 335,
+    "operationHex": "0x014f",
+    "tableEntryAddress": "0x0c29af1c",
+    "handlerAddress": "0x0c1667f6",
+    "handlerLength": 8,
+    "handlerSha256": "9078d26b6d3287e43cd4b06df3647ec5f7affa6723d768e98ed6aec7faa0bdb0",
+    "globalFloatWord": "0x0c21bc74",
+    "provenBehavior": "Copies argument zero's raw float32 word unchanged to the global."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 63,
+    "areaCount": 20,
+    "rawWordCounts": {
+      "0": 27,
+      "1053609165": 19,
+      "1056964608": 17
+    }
+  },
+  "evidenceBoundary": [
+    "The value remains a raw float32 word with no inferred units or gameplay-domain name."
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "schema": "new-yokosuka-native-cutscene-lifecycle-v1",
+  "resource": "YBHN",
+  "disc": 1,
+  "area": "D000",
+  "mapinfo": {
+    "path": "extracted_files/data/SCENE/01/D000/MAPINFO.BIN",
+    "sha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e"
+  },
+  "owner": {
+    "reviewedProgram": "disc1-d000-entry-0x7abf4",
+    "entryFunction": "0x7b7d8",
+    "incomingCall": "0x7ae9a",
+    "activityCall": "0x7bc9a",
+    "activityOperation": "0x013e",
+    "slot": 27,
+    "primaryPointer": "0xaf8ae",
+    "secondaryPointer": "0xaf8bb"
+  },
+  "resourceCluster": {
+    "range": ["0xaf882", "0xaf8c8"],
+    "music": "bgm018.snd",
+    "soundBank": "a1_yobi.snd",
+    "archive": "YBHN",
+    "sequence": "seqdata0.bin",
+    "eventModel": "DR15_012"
+  },
+  "ownershipSequence": [
+    {
+      "call": "0x7b7f8",
+      "semantic": "disable-global-runtime-bit-5"
+    },
+    {
+      "call": "0x7b80a",
+      "target": "0xa22f8",
+      "semantic": "suspend-free-conversation-and-runtime-container"
+    },
+    {
+      "call": "0x7b8ce",
+      "semantic": "load-bgm018-resource"
+    },
+    {
+      "call": "0x7b95e",
+      "semantic": "load-a1-yobi-resource"
+    },
+    {
+      "call": "0x7bc5e",
+      "semantic": "take-free-conversation-control"
+    },
+    {
+      "call": "0x7bc76",
+      "semantic": "open-operation-013c-container"
+    },
+    {
+      "call": "0x7bc9a",
+      "semantic": "install-and-run-ybhn-activity"
+    },
+    {
+      "call": "0x7bcb2",
+      "semantic": "close-operation-013c-container"
+    },
+    {
+      "call": "0x7bcce",
+      "semantic": "resolve-event-model-as-EXD0"
+    },
+    {
+      "call": "0x7bcf2",
+      "semantic": "restore-EXD0-world-transform"
+    },
+    {
+      "call": "0x7bd06",
+      "semantic": "restore-EXD0-runtime-flag"
+    },
+    {
+      "call": "0x7bd1a",
+      "semantic": "restore-EXD0-presentation-flag"
+    },
+    {
+      "target": "0xad50",
+      "semantic": "deactivate-slot-27-after-native-cleanup"
+    }
+  ],
+  "runtimePolicy": {
+    "entry": "cutscene director acquires player presentation before activity startup",
+    "exit": "standalone activity completion releases presentation once and restores world music/control",
+    "eventModel": "use the existing exact D000 DR15_012 placement; do not instantiate a duplicate",
+    "music": "reuse the exact BGM018-derived yamanose track for the activity lifetime"
+  },
+  "sources": [
+    ".disc-work/dialogue/native-event-ir.json",
+    "play/data/events/nativeEventPrograms.generated.json",
+    "tools/evidence/d000-auth-audio-banks.json",
+    "tools/evidence/coroutine-deactivate-operation-evidence.json",
+    "play/data/d000-runtime-placements.json"
+  ]
+}

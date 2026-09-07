@@ -1,0 +1,299 @@
+{
+  "schema": "new-yokosuka-native-operation-014b-evidence-v1",
+  "status": "exact-native-two-byte-global-control-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 331,
+    "operationHex": "0x014b",
+    "tableEntryAddress": "0x0c29af0c",
+    "handlerAddress": "0x0c16360a",
+    "handlerLength": 14,
+    "handlerSha256": "c28a3c9cd7ccb8c0b31f1f968c4b22f565288c1039e06dfb4fa4f3153a5bd7c6",
+    "helperAddress": "0x0c17f6a2",
+    "helperLength": 32,
+    "helperSha256": "f39519a3a1a904aea8147231d84bece1ca26b33f7e5f60f7a719f9ecb54e7c81",
+    "modeAddress": "0x0c224dd2",
+    "dependentAddress": "0x0c224dd3"
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 16,
+    "areaCount": 8,
+    "routeCounts": {
+      "1": 3,
+      "2": 2,
+      "6": 3,
+      "7": 6,
+      "8": 2
+    },
+    "calls": [
+      {
+        "disc": 1,
+        "area": "JHD0",
+        "function": "0x3856c",
+        "callFileOffset": "0x38896",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 2,
+            "hex": "0x00000002",
+            "source": "0x3888c"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 1,
+        "area": "JHD0",
+        "function": "0x3856c",
+        "callFileOffset": "0x388a6",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x3889c"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 1,
+        "area": "JHD0",
+        "function": "0x56028",
+        "callFileOffset": "0x5631e",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 2,
+            "hex": "0x00000002",
+            "source": "0x56314"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 1,
+        "area": "JHD0",
+        "function": "0x56028",
+        "callFileOffset": "0x5632e",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x56324"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 1,
+        "area": "JOMO",
+        "function": "0x4df28",
+        "callFileOffset": "0x4e5c8",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 7,
+            "hex": "0x00000007",
+            "source": "0x4e5be"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 1,
+        "area": "JOMO",
+        "function": "0x4ef54",
+        "callFileOffset": "0x4f24e",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 7,
+            "hex": "0x00000007",
+            "source": "0x4f244"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 1,
+        "area": "YD01",
+        "function": "0x2678",
+        "callFileOffset": "0x2740",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x2736"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 2,
+        "area": "JOMO",
+        "function": "0x4df28",
+        "callFileOffset": "0x4e5c8",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 7,
+            "hex": "0x00000007",
+            "source": "0x4e5be"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 2,
+        "area": "JOMO",
+        "function": "0x4ef54",
+        "callFileOffset": "0x4f24e",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 7,
+            "hex": "0x00000007",
+            "source": "0x4f244"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 3,
+        "area": "JOMO",
+        "function": "0x4df28",
+        "callFileOffset": "0x4e5c8",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 7,
+            "hex": "0x00000007",
+            "source": "0x4e5be"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 3,
+        "area": "JOMO",
+        "function": "0x4ef54",
+        "callFileOffset": "0x4f24e",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 7,
+            "hex": "0x00000007",
+            "source": "0x4f244"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 3,
+        "area": "MA00",
+        "function": "0x27f4c",
+        "callFileOffset": "0x29456",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 6,
+            "hex": "0x00000006",
+            "source": "0x2944c"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 3,
+        "area": "MA00",
+        "function": "0x27f4c",
+        "callFileOffset": "0x294d6",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 8,
+            "hex": "0x00000008",
+            "source": "0x294cc"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 3,
+        "area": "MA00",
+        "function": "0x27f4c",
+        "callFileOffset": "0x29552",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 6,
+            "hex": "0x00000006",
+            "source": "0x29548"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 3,
+        "area": "MFSY",
+        "function": "0x67764",
+        "callFileOffset": "0x6801c",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 8,
+            "hex": "0x00000008",
+            "source": "0x68012"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 3,
+        "area": "TERY",
+        "function": "0x9364",
+        "callFileOffset": "0x9818",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 6,
+            "hex": "0x00000006",
+            "source": "0x980e"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      }
+    ]
+  },
+  "evidenceBoundary": [
+    "The handler forwards the low byte of its sole argument to the exact native helper.",
+    "The helper writes the requested byte only when the current mode is not four.",
+    "After that ownership check, current modes four and five clear the adjacent dependent byte.",
+    "All sixteen authored calls use one constant argument and consume no result.",
+    "The gameplay meaning of either byte is not inferred from this state mutation."
+  ]
+}

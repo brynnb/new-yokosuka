@@ -1,0 +1,428 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/build_bebf_audio_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/STREAM/01BEDB.AFS",
+      "sha256": "f796d5be7ffc10322ec7ed0daad839bf3d393b1efbd187e838a0d7d9f1b34fda"
+    },
+    "soundBank": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/SOUND/A1_BADME.SND",
+      "sha256": "d01d1e1e2788ca8b3f2634fdaef444dac54113687a30e57d4619acef926c7c6c"
+    },
+    "authManifest": "play/assets/hazuki/bebf/manifest.json",
+    "resourceBindingEvidence": "tools/evidence/bebf-native-lifecycle.json"
+  },
+  "voices": [
+    {
+      "voiceId": "01BEDBA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BEDB/SOUND/01BEDBA002.aiff",
+      "nativeMember": "01BEDBA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 6144,
+      "nativeSha256": "0919717aa95a529696efe016bbd057fb92a86f0b71aed79655ef2dfb5a1c74b6",
+      "speakerId": "AKID",
+      "sourceText": "A dream?",
+      "displayText": "A dream?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/bebf/voice/01BEDBA002.wav",
+      "byteLength": 24364,
+      "sha256": "64ec8b7c5db305f28574d6c763245f73ad7ea827702b4a4c79b7467e91a74d6f"
+    },
+    {
+      "voiceId": "01BEDBA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BEDB/SOUND/01BEDBA003.aiff",
+      "nativeMember": "01BEDBA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 14336,
+      "nativeSha256": "a0ee0e95ad77b577fa2c29b93cd1161518fc35c098b437a2b439f6d9f8448c9f",
+      "speakerId": "AKID",
+      "sourceText": "=@the cherry blossoms fall=@",
+      "displayText": "...the cherry blossoms fall...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 19
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/bebf/voice/01BEDBA003.wav",
+      "byteLength": 57132,
+      "sha256": "f559a5353b1fcc4e9c86476d4c485525175209f1f436770a7d7fac55bc8b4973"
+    },
+    {
+      "voiceId": "01BEDBA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BEDB/SOUND/01BEDBA004.aiff",
+      "nativeMember": "01BEDBA004.str",
+      "speakerId": "AKID",
+      "sourceText": null,
+      "displayText": null,
+      "lipSync": null,
+      "unavailable": true,
+      "unavailableReason": "AUTH references 01BEDBA004, but the exact retail 01BEDB.AFS directory contains only A001 through A003 and B001 through B003",
+      "evidence": "tools/evidence/bebf-native-lifecycle.json"
+    },
+    {
+      "voiceId": "01BEDBB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BEDB/SOUND/01BEDBB001.aiff",
+      "nativeMember": "01BEDBB001.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 14336,
+      "nativeSha256": "e6f0fbd53b296ef433e3c8594ec3657081b4b247c1a4584f50a1f2410231334b",
+      "speakerId": "SINF",
+      "sourceText": "When the cherry blossoms fall",
+      "displayText": "When the cherry blossoms fall",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 30
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/bebf/voice/01BEDBB001.wav",
+      "byteLength": 57132,
+      "sha256": "10468e5fbb436778d773f0101e4fbd2661370726fff2ec0538b815a69b389bd7"
+    },
+    {
+      "voiceId": "01BEDBB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BEDB/SOUND/01BEDBB002.aiff",
+      "nativeMember": "01BEDBB002.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 14336,
+      "nativeSha256": "f5ce2942c14662ba753f5f937e4c0472408011e3cb3da284f3d417793da35f4c",
+      "speakerId": "SINF",
+      "sourceText": "the dragon shall descend on you.",
+      "displayText": "the dragon shall descend on you.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/bebf/voice/01BEDBB002.wav",
+      "byteLength": 57132,
+      "sha256": "220af57a202f39a58e9fe64d01a9e88d21cb4c30fff4d43b36152d0aca45f22d"
+    },
+    {
+      "voiceId": "01BEDBB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BEDB/SOUND/01BEDBB003.aiff",
+      "nativeMember": "01BEDBB003.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 6144,
+      "nativeSha256": "4dfd50385dd70fb9baeb1d766d6af3e988381a8d8d7fda58f3730dfab6d4fd02",
+      "speakerId": "SINF",
+      "sourceText": "Hurry.",
+      "displayText": "Hurry.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/bebf/voice/01BEDBB003.wav",
+      "byteLength": 24364,
+      "sha256": "72515ed4167c03aecaa67d9fb3b8a90d9e52f06c9ff9430a1ae2789ca0d96579"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BEDA/SE/cloths2/cl03.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/bebf/sfx/a9040100.wav",
+      "byteLength": 127604,
+      "sha256": "2c13979aaaf032ee706d0353819b385a7aca4f3d3d1a6b0e480c83e7a4162737"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BEDA/SE/cloths2/friction4.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/bebf/sfx/a9040200.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BEDA/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/bebf/sfx/a9040300.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    }
+  ]
+}

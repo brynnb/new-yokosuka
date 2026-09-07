@@ -1,0 +1,7535 @@
+{
+  "schema": "new-yokosuka-map-transition-objects-v1",
+  "generatedFrom": "tools/evidence/map-transition-catalog.json",
+  "recordLayout": {
+    "namePointer": "+0x00, relative to SCN3 token",
+    "nativeRecordCount": "+0x04",
+    "controllerIds": [
+      "+0x08",
+      "+0x0c"
+    ],
+    "typeAndZero": [
+      "+0x10 = 2",
+      "+0x14 = 0"
+    ],
+    "scale": "+0x18, three float32 values",
+    "position": "+0x24, three float32 values",
+    "fixedAngleYaw": "+0x30, low 16 bits span one full turn"
+  },
+  "summary": {
+    "mapCount": 86,
+    "doorControllerRecordCount": 86,
+    "exactTransitionAssociatedRecordCount": 70,
+    "ambiguousOrUnroutedRecordCount": 16,
+    "failureCount": 0
+  },
+  "maps": [
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "D000"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/D000/MAPINFO.BIN",
+      "sourceSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+      "scn3FileOffset": "0x1338",
+      "staticDataFileRange": [
+        "0xa2480",
+        "0xb3360"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "ARAR",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "ARAR",
+          "entry": 1
+        },
+        {
+          "scene": 1,
+          "area": "ARAR",
+          "entry": 3
+        },
+        {
+          "scene": 1,
+          "area": "ARAR",
+          "entry": 4
+        },
+        {
+          "scene": 1,
+          "area": "DAZA",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DBHB",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DBYO",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DCBN",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DCHA",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DGCT",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DHQB",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DJAZ",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DKPA",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DKTY",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DMAJ",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DPIZ",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DRHT",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DRME",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DRSA",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DSBA",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DSKI",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DSLI",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DSLT",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DSUS",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DTKY",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DURN",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DYKZ",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "JD00",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "JD00",
+          "entry": 1
+        },
+        {
+          "scene": 1,
+          "area": "TATQ",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "TOKI",
+          "entry": 1
+        },
+        {
+          "scene": 1,
+          "area": "TOKI",
+          "entry": 10
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "ARAR",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "ARAR",
+          "entry": 1
+        },
+        {
+          "scene": 1,
+          "area": "ARAR",
+          "entry": 3
+        },
+        {
+          "scene": 1,
+          "area": "ARAR",
+          "entry": 4
+        },
+        {
+          "scene": 1,
+          "area": "DAZA",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DBHB",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DBYO",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DCBN",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DCHA",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DGCT",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DHQB",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DJAZ",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DKPA",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DKTY",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DMAJ",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DPIZ",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DRHT",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DRME",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DRSA",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DSBA",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DSKI",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DSLI",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DSLT",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DSUS",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DTKY",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DURN",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DYKZ",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "JD00",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "JD00",
+          "entry": 1
+        },
+        {
+          "scene": 1,
+          "area": "TATQ",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "TOKI",
+          "entry": 1
+        },
+        {
+          "scene": 1,
+          "area": "TOKI",
+          "entry": 10
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DR13_013",
+          "recordFileOffset": "0xa8b2c",
+          "nameFileOffset": "0xa88f3",
+          "nameScn3RelativeOffset": "0xa75bb",
+          "nativeRecordCount": 13,
+          "controllerIds": [
+            "0x001602ab",
+            "0x001702ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -122.64665222167969,
+              0.07240000367164612,
+              82.19269561767578
+            ],
+            "yawRaw": "0x000024b1",
+            "yawDegrees": 51.5972900390625
+          },
+          "browserProjection": {
+            "position": [
+              122.64665222167969,
+              0.07240000367164612,
+              82.19269561767578
+            ],
+            "yawDegrees": -51.5972900390625
+          },
+          "transitionAssociation": "ambiguousMultipleOutgoingDestinations"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "DAZA"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/DAZA/MAPINFO.BIN",
+      "sourceSha256": "0017e3ff3f2f899dab42b9629a596bcbadc9dd2e26f9b3468f084772cc79fe40",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1eb50",
+        "0x20cd8"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 2
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 2
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x208c0",
+          "nameFileOffset": "0x208b8",
+          "nameScn3RelativeOffset": "0x208b0",
+          "nativeRecordCount": 13,
+          "controllerIds": [
+            "0x001602ab",
+            "0x001702ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              3.5899999141693115,
+              0.0,
+              0.07199999690055847
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -3.5899999141693115,
+              0.0,
+              0.07199999690055847
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 1,
+            "area": "D000",
+            "entry": 2
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "DBHB"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/DBHB/MAPINFO.BIN",
+      "sourceSha256": "34c9c357ac832d80fd9bd9b8cadbf02a770388a394c65a234d35594bcedfe9a7",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x21504",
+        "0x23a58"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 3
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 3
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x23274",
+          "nameFileOffset": "0x2326c",
+          "nameScn3RelativeOffset": "0x23264",
+          "nativeRecordCount": 2,
+          "controllerIds": [
+            "0x001802ab",
+            "0x001902ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              0.0,
+              0.0,
+              -8.100000381469727
+            ],
+            "yawRaw": "0x00008000",
+            "yawDegrees": 180.0
+          },
+          "browserProjection": {
+            "position": [
+              -0.0,
+              0.0,
+              -8.100000381469727
+            ],
+            "yawDegrees": -180.0
+          },
+          "destination": {
+            "scene": 1,
+            "area": "D000",
+            "entry": 3
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "DBYO"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/DBYO/MAPINFO.BIN",
+      "sourceSha256": "85db5f811d8d856d4895c77bde6cb24e250757d8a243b532b23bba91e3737ce1",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1e948",
+        "0x20adc"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 14
+        },
+        {
+          "scene": 2,
+          "area": "JOMO",
+          "entry": 0
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 14
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x206b8",
+          "nameFileOffset": "0x206b0",
+          "nameScn3RelativeOffset": "0x206a8",
+          "nativeRecordCount": 2,
+          "controllerIds": [
+            "0x001802ab",
+            "0x001902ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              3.5999999046325684,
+              0.0,
+              0.03739999979734421
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -3.5999999046325684,
+              0.0,
+              0.03739999979734421
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 1,
+            "area": "D000",
+            "entry": 14
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "DCBN"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/DCBN/MAPINFO.BIN",
+      "sourceSha256": "2af6d72477e1bd9026fbf3e551dc7550857e0ae0e68191164c203b2297dce8ee",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x28504",
+        "0x2c44c"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 15
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 15
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x2a274",
+          "nameFileOffset": "0x2a26c",
+          "nameScn3RelativeOffset": "0x2a264",
+          "nativeRecordCount": 11,
+          "controllerIds": [
+            "0x000a02ab",
+            "0x000b02ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -0.8999999761581421,
+              0.0,
+              1.4550000429153442
+            ],
+            "yawRaw": "0x00008000",
+            "yawDegrees": 180.0
+          },
+          "browserProjection": {
+            "position": [
+              0.8999999761581421,
+              0.0,
+              1.4550000429153442
+            ],
+            "yawDegrees": -180.0
+          },
+          "destination": {
+            "scene": 1,
+            "area": "D000",
+            "entry": 15
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "DCHA"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/DCHA/MAPINFO.BIN",
+      "sourceSha256": "239581fc139bbe56fe66e9eca60fbac97caa2a11c6deec248ce6feb98614c82d",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1b278",
+        "0x1d410"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 8
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 8
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x1cfe8",
+          "nameFileOffset": "0x1cfe0",
+          "nameScn3RelativeOffset": "0x1cfd8",
+          "nativeRecordCount": 15,
+          "controllerIds": [
+            "0x001202ab",
+            "0x001302ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              0.0,
+              0.0,
+              -4.461100101470947
+            ],
+            "yawRaw": "0x00008000",
+            "yawDegrees": 180.0
+          },
+          "browserProjection": {
+            "position": [
+              -0.0,
+              0.0,
+              -4.461100101470947
+            ],
+            "yawDegrees": -180.0
+          },
+          "destination": {
+            "scene": 1,
+            "area": "D000",
+            "entry": 8
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "DGCT"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/DGCT/MAPINFO.BIN",
+      "sourceSha256": "176200fb608f940b36ed09c267bde8f7b6f7924f037f358519a9149e6195ccea",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x44ab4",
+        "0x48cf0"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 6
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 6
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "AUTO_DOOR",
+          "recordFileOffset": "0x46e04",
+          "nameFileOffset": "0x46df8",
+          "nameScn3RelativeOffset": "0x46df0",
+          "nativeRecordCount": 17,
+          "controllerIds": [
+            "0x000a02ab",
+            "0x000b02ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              2.700000047683716,
+              0.0,
+              0.003000000026077032
+            ],
+            "yawRaw": "0x00008000",
+            "yawDegrees": 180.0
+          },
+          "browserProjection": {
+            "position": [
+              -2.700000047683716,
+              0.0,
+              0.003000000026077032
+            ],
+            "yawDegrees": -180.0
+          },
+          "destination": {
+            "scene": 1,
+            "area": "D000",
+            "entry": 6
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "DJAZ"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/DJAZ/MAPINFO.BIN",
+      "sourceSha256": "9853c59a5e72b7321e7b8bd695bcc3464d8fc1d332b3c3352b2c7751f7c74472",
+      "scn3FileOffset": "0x168",
+      "staticDataFileRange": [
+        "0x2d0a4",
+        "0x30728"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 13
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 13
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x2ee14",
+          "nameFileOffset": "0x2ee0c",
+          "nameScn3RelativeOffset": "0x2eca4",
+          "nativeRecordCount": 28,
+          "controllerIds": [
+            "0x001002ab",
+            "0x001102ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              3.9000000953674316,
+              0.0,
+              0.019999999552965164
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -3.9000000953674316,
+              0.0,
+              0.019999999552965164
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 1,
+            "area": "D000",
+            "entry": 13
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "DKPA"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/DKPA/MAPINFO.BIN",
+      "sourceSha256": "4a54bd41a5222f05b2103f5b0286a1d4c85d7bb64ab9ab108e51abe96f117db5",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1abfc",
+        "0x1cc88"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 25
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 25
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x1cb2c",
+          "nameFileOffset": "0x1cb24",
+          "nameScn3RelativeOffset": "0x1cb1c",
+          "nativeRecordCount": 13,
+          "controllerIds": [
+            "0x001602ab",
+            "0x001702ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              1.7999999523162842,
+              0.0,
+              0.0
+            ],
+            "yawRaw": "0x00008000",
+            "yawDegrees": 180.0
+          },
+          "browserProjection": {
+            "position": [
+              -1.7999999523162842,
+              0.0,
+              0.0
+            ],
+            "yawDegrees": -180.0
+          },
+          "destination": {
+            "scene": 1,
+            "area": "D000",
+            "entry": 25
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "DKTY"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/DKTY/MAPINFO.BIN",
+      "sourceSha256": "311a7af67b9438116d85555956b62bb04465e9afbdbe1a82ca0e4aee77e12fff",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1fce8",
+        "0x22e20"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 7
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 7
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x21a88",
+          "nameFileOffset": "0x21a80",
+          "nameScn3RelativeOffset": "0x21a78",
+          "nativeRecordCount": 15,
+          "controllerIds": [
+            "0x001202ab",
+            "0x001302ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              2.700000047683716,
+              0.0,
+              -0.03999999910593033
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -2.700000047683716,
+              0.0,
+              -0.03999999910593033
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 1,
+            "area": "D000",
+            "entry": 7
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "DPIZ"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/DPIZ/MAPINFO.BIN",
+      "sourceSha256": "99d9e371e53efbda6570444a5a6fcdb89b82e82b6e2cd136e5bc1918d33243f1",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1aa84",
+        "0x1cb30"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 18
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 18
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x1c9d4",
+          "nameFileOffset": "0x1c9cc",
+          "nameScn3RelativeOffset": "0x1c9c4",
+          "nativeRecordCount": 1,
+          "controllerIds": [
+            "0x001802ab",
+            "0x001902ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              0.30000001192092896,
+              0.0,
+              0.0
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -0.30000001192092896,
+              0.0,
+              0.0
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 1,
+            "area": "D000",
+            "entry": 18
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "DRHT"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/DRHT/MAPINFO.BIN",
+      "sourceSha256": "d604b2b8f85bb76fe12a4bdf2882869afa2b8c192417c042006ee19fdc61e02a",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1e960",
+        "0x20b34"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 21
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 21
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x20774",
+          "nameFileOffset": "0x2076c",
+          "nameScn3RelativeOffset": "0x20764",
+          "nativeRecordCount": 2,
+          "controllerIds": [
+            "0x001802ab",
+            "0x001902ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -0.6119999885559082,
+              0.0,
+              3.180000066757202
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              0.6119999885559082,
+              0.0,
+              3.180000066757202
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 1,
+            "area": "D000",
+            "entry": 21
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "DRME"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/DRME/MAPINFO.BIN",
+      "sourceSha256": "2a6cace548f18944dd592fd533cd79dce24154b4b488e677f39222c5fd11a5d3",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1ab1c",
+        "0x1cbe0"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 19
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 19
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x1c88c",
+          "nameFileOffset": "0x1c884",
+          "nameScn3RelativeOffset": "0x1c87c",
+          "nativeRecordCount": 15,
+          "controllerIds": [
+            "0x001002ab",
+            "0x001102ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -2.744999885559082,
+              0.0,
+              0.6000000238418579
+            ],
+            "yawRaw": "0x0000c000",
+            "yawDegrees": 270.0
+          },
+          "browserProjection": {
+            "position": [
+              2.744999885559082,
+              0.0,
+              0.6000000238418579
+            ],
+            "yawDegrees": 90.0
+          },
+          "destination": {
+            "scene": 1,
+            "area": "D000",
+            "entry": 19
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "DRSA"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/DRSA/MAPINFO.BIN",
+      "sourceSha256": "9429fd83a1ac20930f6e55241a41d5e03726bae8e4f941195b40031a82566f5d",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1aadc",
+        "0x1cfb8"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 10
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 10
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOR2",
+          "recordFileOffset": "0x1c8cc",
+          "nameFileOffset": "0x1c8b5",
+          "nameScn3RelativeOffset": "0x1c8ad",
+          "nativeRecordCount": 2,
+          "controllerIds": [
+            "0x001202ab",
+            "0x001302ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              3.1500000953674316,
+              0.0,
+              0.0
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -3.1500000953674316,
+              0.0,
+              0.0
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 1,
+            "area": "D000",
+            "entry": 10
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "DSBA"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/DSBA/MAPINFO.BIN",
+      "sourceSha256": "9c9eb46d13a157affcae72da038bd0968fbd414a3e25cfdc3c9e214332d89ca7",
+      "scn3FileOffset": "0x140",
+      "staticDataFileRange": [
+        "0x1f324",
+        "0x2150c"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 12
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 12
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "SOBA_DOOR",
+          "recordFileOffset": "0x2113c",
+          "nameFileOffset": "0x21130",
+          "nameScn3RelativeOffset": "0x20ff0",
+          "nativeRecordCount": 15,
+          "controllerIds": [
+            "0x001202ab",
+            "0x001302ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              2.700000047683716,
+              0.0,
+              0.0
+            ],
+            "yawRaw": "0x0000005c",
+            "yawDegrees": 0.50537109375
+          },
+          "browserProjection": {
+            "position": [
+              -2.700000047683716,
+              0.0,
+              0.0
+            ],
+            "yawDegrees": -0.50537109375
+          },
+          "destination": {
+            "scene": 1,
+            "area": "D000",
+            "entry": 12
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "DSKI"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/DSKI/MAPINFO.BIN",
+      "sourceSha256": "fd91a31cb4411fb98f1391b0894273326f26cd21ce1679fd2d5be0883c1091d8",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1eaa8",
+        "0x210b8"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 4
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 4
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x20c8c",
+          "nameFileOffset": "0x20c84",
+          "nameScn3RelativeOffset": "0x20c7c",
+          "nativeRecordCount": 13,
+          "controllerIds": [
+            "0x001602ab",
+            "0x001702ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              1.5,
+              0.0,
+              0.019999999552965164
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -1.5,
+              0.0,
+              0.019999999552965164
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 1,
+            "area": "D000",
+            "entry": 4
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "DSLI"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/DSLI/MAPINFO.BIN",
+      "sourceSha256": "6ad5b041a22127bcf90e9d75f3dd7d5bf183beb29fec24ee17cf8047c812f2bc",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x20fc4",
+        "0x234b4"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 20
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 20
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DR02_017",
+          "recordFileOffset": "0x22d38",
+          "nameFileOffset": "0x22d2c",
+          "nameScn3RelativeOffset": "0x22d24",
+          "nativeRecordCount": 2,
+          "controllerIds": [
+            "0x001802ab",
+            "0x001902ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -1.350000023841858,
+              0.0,
+              0.02500000037252903
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              1.350000023841858,
+              0.0,
+              0.02500000037252903
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 1,
+            "area": "D000",
+            "entry": 20
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "DSLT"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/DSLT/MAPINFO.BIN",
+      "sourceSha256": "29fc119e1f8e414dc50a97f6caa28c53b7d5712ad44d283eca90e6f14a24cfc2",
+      "scn3FileOffset": "0x140",
+      "staticDataFileRange": [
+        "0x35570",
+        "0x3aa1c"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 26
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 26
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "TOKOYA_DOOR",
+          "recordFileOffset": "0x3a6c0",
+          "nameFileOffset": "0x3a6b4",
+          "nameScn3RelativeOffset": "0x3a574",
+          "nativeRecordCount": 5,
+          "controllerIds": [
+            "0x001402ab",
+            "0x001502ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              4.199999809265137,
+              0.0,
+              0.03999999910593033
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -4.199999809265137,
+              0.0,
+              0.03999999910593033
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 1,
+            "area": "D000",
+            "entry": 26
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "DSUS"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/DSUS/MAPINFO.BIN",
+      "sourceSha256": "52b007d45b789521bb94d0eed560e3d1a3d76e16b30a4cd5fdb4d65a76a0c3a1",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1f328",
+        "0x215dc"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 22
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 22
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DR15_002",
+          "recordFileOffset": "0x210cc",
+          "nameFileOffset": "0x210c0",
+          "nameScn3RelativeOffset": "0x210b8",
+          "nativeRecordCount": 15,
+          "controllerIds": [
+            "0x001202ab",
+            "0x001302ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -3.5899999141693115,
+              0.0,
+              0.020999999716877937
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              3.5899999141693115,
+              0.0,
+              0.020999999716877937
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 1,
+            "area": "D000",
+            "entry": 22
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "DTKY"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/DTKY/MAPINFO.BIN",
+      "sourceSha256": "9450a432f5f4fd74f5b9762c8c94f4b9fca47ecb6f39c0ee03d60cc41cd72ed2",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1e8ec",
+        "0x20a0c"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 5
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 5
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "TOKOYA_DOOR",
+          "recordFileOffset": "0x20660",
+          "nameFileOffset": "0x20654",
+          "nameScn3RelativeOffset": "0x2064c",
+          "nativeRecordCount": 2,
+          "controllerIds": [
+            "0x001602ab",
+            "0x001702ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              5.099999904632568,
+              0.0,
+              2.700000047683716
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -5.099999904632568,
+              0.0,
+              2.700000047683716
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 1,
+            "area": "D000",
+            "entry": 5
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "DURN"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/DURN/MAPINFO.BIN",
+      "sourceSha256": "d38ba150dca8fc6af4bb97656b1745e4bc3d90dbc8817cc5c78fcc306cd830d5",
+      "scn3FileOffset": "0xe0",
+      "staticDataFileRange": [
+        "0x25824",
+        "0x28338"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 23
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 23
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DR02_015",
+          "recordFileOffset": "0x275c8",
+          "nameFileOffset": "0x275bc",
+          "nameScn3RelativeOffset": "0x274dc",
+          "nativeRecordCount": 2,
+          "controllerIds": [
+            "0x001402ab",
+            "0x001502ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              3.299999952316284,
+              0.0,
+              1.8200000524520874
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -3.299999952316284,
+              0.0,
+              1.8200000524520874
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 1,
+            "area": "D000",
+            "entry": 23
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "DYKZ"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/DYKZ/MAPINFO.BIN",
+      "sourceSha256": "d29a738d3c4157db4724bc47be3d39636f132126772257472da13edae761a2dc",
+      "scn3FileOffset": "0xa8",
+      "staticDataFileRange": [
+        "0x262c4",
+        "0x28758"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 24
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 24
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOR2",
+          "recordFileOffset": "0x280b4",
+          "nameFileOffset": "0x2809d",
+          "nameScn3RelativeOffset": "0x27ff5",
+          "nativeRecordCount": 31,
+          "controllerIds": [
+            "0x000002ab",
+            "0x000102ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              3.5999999046325684,
+              0.0,
+              2.700000047683716
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -3.5999999046325684,
+              0.0,
+              2.700000047683716
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 1,
+            "area": "D000",
+            "entry": 24
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "JABE"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/JABE/MAPINFO.BIN",
+      "sourceSha256": "c11c10154da5aa1d7fa0c0df9a3c3417215936d0d738731a0dbfde04eeec5d5f",
+      "scn3FileOffset": "0xb0",
+      "staticDataFileRange": [
+        "0x2bd5c",
+        "0x2f420"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "JD00",
+          "entry": 3
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "JD00",
+          "entry": 3
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x2dc88",
+          "nameFileOffset": "0x2dc80",
+          "nameScn3RelativeOffset": "0x2dbd0",
+          "nativeRecordCount": 15,
+          "controllerIds": [
+            "0x001202ab",
+            "0x001302ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -0.9200000166893005,
+              0.0,
+              1.7599999904632568
+            ],
+            "yawRaw": "0x00008000",
+            "yawDegrees": 180.0
+          },
+          "browserProjection": {
+            "position": [
+              0.9200000166893005,
+              0.0,
+              1.7599999904632568
+            ],
+            "yawDegrees": -180.0
+          },
+          "destination": {
+            "scene": 1,
+            "area": "JD00",
+            "entry": 3
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "JD00"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/JD00/MAPINFO.BIN",
+      "sourceSha256": "8582ed57e13593d7622d24216ef8f93e5393b13fffd2132f70500f9e6ce2a43b",
+      "scn3FileOffset": "0x5a0",
+      "staticDataFileRange": [
+        "0x78e28",
+        "0x826fc"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 1
+        },
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 11
+        },
+        {
+          "scene": 1,
+          "area": "JABE",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "JOMO",
+          "entry": 3
+        },
+        {
+          "scene": 1,
+          "area": "JU00",
+          "entry": 0
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 1
+        },
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 11
+        },
+        {
+          "scene": 1,
+          "area": "JABE",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "JOMO",
+          "entry": 3
+        },
+        {
+          "scene": 1,
+          "area": "JU00",
+          "entry": 0
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DR01_013",
+          "recordFileOffset": "0x7c3ec",
+          "nameFileOffset": "0x7c302",
+          "nameScn3RelativeOffset": "0x7bd62",
+          "nativeRecordCount": 37,
+          "controllerIds": [
+            "0x001402ab",
+            "0x001502ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              14.739500045776367,
+              0.005667000077664852,
+              20.428770065307617
+            ],
+            "yawRaw": "0xffffc001",
+            "yawDegrees": 270.0054931640625
+          },
+          "browserProjection": {
+            "position": [
+              -14.739500045776367,
+              0.005667000077664852,
+              20.428770065307617
+            ],
+            "yawDegrees": 89.9945068359375
+          },
+          "transitionAssociation": "ambiguousMultipleOutgoingDestinations"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "JOMO"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/JOMO/MAPINFO.BIN",
+      "sourceSha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x8fda4",
+        "0x9d7b4"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "BETD",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DNOZ",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "JBIK",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "JHD0",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "JHD0",
+          "entry": 2
+        },
+        {
+          "scene": 1,
+          "area": "MA00",
+          "entry": 1
+        },
+        {
+          "scene": 1,
+          "area": "MSBS",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "YDMA",
+          "entry": 1
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "BETD",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "DNOZ",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "JBIK",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "JHD0",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "JHD0",
+          "entry": 2
+        },
+        {
+          "scene": 1,
+          "area": "MA00",
+          "entry": 1
+        },
+        {
+          "scene": 1,
+          "area": "MSBS",
+          "entry": 0
+        },
+        {
+          "scene": 1,
+          "area": "YDMA",
+          "entry": 1
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DR23_000",
+          "recordFileOffset": "0x92b38",
+          "nameFileOffset": "0x92ace",
+          "nameScn3RelativeOffset": "0x92ac6",
+          "nativeRecordCount": 23,
+          "controllerIds": [
+            "0x000202ab",
+            "0x000302ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -0.3230000138282776,
+              0.0,
+              -1.8162000179290771
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              0.3230000138282776,
+              0.0,
+              -1.8162000179290771
+            ],
+            "yawDegrees": 0.0
+          },
+          "transitionAssociation": "ambiguousMultipleOutgoingDestinations"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "JU00"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/JU00/MAPINFO.BIN",
+      "sourceSha256": "3887bbf6e00eb152f7cca34d23841cc743ee7345a2db6b7d27e8303f6274924d",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x4d754",
+        "0x52cb8"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "JD00",
+          "entry": 2
+        },
+        {
+          "scene": 1,
+          "area": "JHD0",
+          "entry": 1
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "JD00",
+          "entry": 2
+        },
+        {
+          "scene": 1,
+          "area": "JHD0",
+          "entry": 1
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DR29_000",
+          "recordFileOffset": "0x4f988",
+          "nameFileOffset": "0x4f91e",
+          "nameScn3RelativeOffset": "0x4f916",
+          "nativeRecordCount": 29,
+          "controllerIds": [
+            "0x000c02ab",
+            "0x000d02ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -31.664270401000977,
+              5.738160133361816,
+              54.104209899902344
+            ],
+            "yawRaw": "0x00007fff",
+            "yawDegrees": 179.9945068359375
+          },
+          "browserProjection": {
+            "position": [
+              31.664270401000977,
+              5.738160133361816,
+              54.104209899902344
+            ],
+            "yawDegrees": -179.9945068359375
+          },
+          "transitionAssociation": "ambiguousMultipleOutgoingDestinations"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "TATQ"
+      },
+      "path": ".disc-work/mapinfo/disc1/SCENE/01/TATQ/MAPINFO.BIN",
+      "sourceSha256": "33fc374132d53ed955a4a1704350582afd122b4e86635867808d4c312e6bc4a6",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x215a4",
+        "0x23cdc"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 9
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 1,
+          "area": "D000",
+          "entry": 9
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOR1",
+          "recordFileOffset": "0x23314",
+          "nameFileOffset": "0x2330c",
+          "nameScn3RelativeOffset": "0x23304",
+          "nativeRecordCount": 1,
+          "controllerIds": [
+            "0x001402ab",
+            "0x001502ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              1.7999999523162842,
+              0.0,
+              2.6989998817443848
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -1.7999999523162842,
+              0.0,
+              2.6989998817443848
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 1,
+            "area": "D000",
+            "entry": 9
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "D000"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/D000/MAPINFO.BIN",
+      "sourceSha256": "58f1bc5d5bf8eedd2641544944e33bb25c20999945de52775ff679e87f98a884",
+      "scn3FileOffset": "0x1260",
+      "staticDataFileRange": [
+        "0x8c72c",
+        "0x9bb94"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "ARAR",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "ARAR",
+          "entry": 1
+        },
+        {
+          "scene": 2,
+          "area": "ARAR",
+          "entry": 3
+        },
+        {
+          "scene": 2,
+          "area": "ARAR",
+          "entry": 4
+        },
+        {
+          "scene": 2,
+          "area": "DAZA",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DBHB",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DBYO",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DCBN",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DCHA",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DGCT",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DHQB",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DJAZ",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DKPA",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DKTY",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DMAJ",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DPIZ",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DRHT",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DRME",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DRSA",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DSBA",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DSKI",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DSLI",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DSLT",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DSUS",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DTKY",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DURN",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DYKZ",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "GMCT",
+          "entry": 1
+        },
+        {
+          "scene": 2,
+          "area": "JD00",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "JD00",
+          "entry": 1
+        },
+        {
+          "scene": 2,
+          "area": "JOMO",
+          "entry": 4
+        },
+        {
+          "scene": 2,
+          "area": "JOMO",
+          "entry": 19
+        },
+        {
+          "scene": 2,
+          "area": "MFSY",
+          "entry": 4
+        },
+        {
+          "scene": 2,
+          "area": "TATQ",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "TOKI",
+          "entry": 1
+        },
+        {
+          "scene": 2,
+          "area": "TOKI",
+          "entry": 10
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "ARAR",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "ARAR",
+          "entry": 1
+        },
+        {
+          "scene": 2,
+          "area": "ARAR",
+          "entry": 3
+        },
+        {
+          "scene": 2,
+          "area": "ARAR",
+          "entry": 4
+        },
+        {
+          "scene": 2,
+          "area": "DAZA",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DBHB",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DBYO",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DCBN",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DCHA",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DGCT",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DHQB",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DJAZ",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DKPA",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DKTY",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DMAJ",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DPIZ",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DRHT",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DRME",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DRSA",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DSBA",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DSKI",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DSLI",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DSLT",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DSUS",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DTKY",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DURN",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DYKZ",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "GMCT",
+          "entry": 1
+        },
+        {
+          "scene": 2,
+          "area": "JD00",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "JD00",
+          "entry": 1
+        },
+        {
+          "scene": 2,
+          "area": "JOMO",
+          "entry": 4
+        },
+        {
+          "scene": 2,
+          "area": "JOMO",
+          "entry": 19
+        },
+        {
+          "scene": 2,
+          "area": "MFSY",
+          "entry": 4
+        },
+        {
+          "scene": 2,
+          "area": "TATQ",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "TOKI",
+          "entry": 1
+        },
+        {
+          "scene": 2,
+          "area": "TOKI",
+          "entry": 10
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DR13_013",
+          "recordFileOffset": "0x92f04",
+          "nameFileOffset": "0x92ccb",
+          "nameScn3RelativeOffset": "0x91a6b",
+          "nativeRecordCount": 13,
+          "controllerIds": [
+            "0x001602ab",
+            "0x001702ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -122.64665222167969,
+              0.07240000367164612,
+              82.19269561767578
+            ],
+            "yawRaw": "0x000024b1",
+            "yawDegrees": 51.5972900390625
+          },
+          "browserProjection": {
+            "position": [
+              122.64665222167969,
+              0.07240000367164612,
+              82.19269561767578
+            ],
+            "yawDegrees": -51.5972900390625
+          },
+          "transitionAssociation": "ambiguousMultipleOutgoingDestinations"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "DAZA"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/DAZA/MAPINFO.BIN",
+      "sourceSha256": "fb012dc66332ff9e984f99be13092bc51dbe5b372bf2c879a441f3f890cef63d",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1eb50",
+        "0x20cd8"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 2
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 2
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x208c0",
+          "nameFileOffset": "0x208b8",
+          "nameScn3RelativeOffset": "0x208b0",
+          "nativeRecordCount": 13,
+          "controllerIds": [
+            "0x001602ab",
+            "0x001702ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              3.5899999141693115,
+              0.0,
+              0.07199999690055847
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -3.5899999141693115,
+              0.0,
+              0.07199999690055847
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 2,
+            "area": "D000",
+            "entry": 2
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "DBHB"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/DBHB/MAPINFO.BIN",
+      "sourceSha256": "07f22535f2e0f11470ff5f97b431a8c0f0c7c61a5f4999d47d542f7c7c9615a6",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x21504",
+        "0x23a58"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 3
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 3
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x23274",
+          "nameFileOffset": "0x2326c",
+          "nameScn3RelativeOffset": "0x23264",
+          "nativeRecordCount": 2,
+          "controllerIds": [
+            "0x001802ab",
+            "0x001902ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              0.0,
+              0.0,
+              -8.100000381469727
+            ],
+            "yawRaw": "0x00008000",
+            "yawDegrees": 180.0
+          },
+          "browserProjection": {
+            "position": [
+              -0.0,
+              0.0,
+              -8.100000381469727
+            ],
+            "yawDegrees": -180.0
+          },
+          "destination": {
+            "scene": 2,
+            "area": "D000",
+            "entry": 3
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "DBYO"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/DBYO/MAPINFO.BIN",
+      "sourceSha256": "0175b8e5871759838f9304199824f1aa44f595116de73b85be352612229b5e15",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1ea94",
+        "0x20c28"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 14
+        },
+        {
+          "scene": 2,
+          "area": "JOMO",
+          "entry": 0
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 14
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x20804",
+          "nameFileOffset": "0x207fc",
+          "nameScn3RelativeOffset": "0x207f4",
+          "nativeRecordCount": 2,
+          "controllerIds": [
+            "0x001802ab",
+            "0x001902ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              3.5999999046325684,
+              0.0,
+              0.03739999979734421
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -3.5999999046325684,
+              0.0,
+              0.03739999979734421
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 2,
+            "area": "D000",
+            "entry": 14
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "DCBN"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/DCBN/MAPINFO.BIN",
+      "sourceSha256": "8f61a191bf4ede04a37c3090730178c1e097fd24810f7b78b2f392c65cdc4692",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x28504",
+        "0x2c44c"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 15
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 15
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x2a274",
+          "nameFileOffset": "0x2a26c",
+          "nameScn3RelativeOffset": "0x2a264",
+          "nativeRecordCount": 11,
+          "controllerIds": [
+            "0x000a02ab",
+            "0x000b02ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -0.8999999761581421,
+              0.0,
+              1.4550000429153442
+            ],
+            "yawRaw": "0x00008000",
+            "yawDegrees": 180.0
+          },
+          "browserProjection": {
+            "position": [
+              0.8999999761581421,
+              0.0,
+              1.4550000429153442
+            ],
+            "yawDegrees": -180.0
+          },
+          "destination": {
+            "scene": 2,
+            "area": "D000",
+            "entry": 15
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "DCHA"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/DCHA/MAPINFO.BIN",
+      "sourceSha256": "c1c49253675322d8799cb17a1293df77bf497edd816dd3cac90b0ef8f8190463",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1b14c",
+        "0x1d2e4"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 8
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 8
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x1cebc",
+          "nameFileOffset": "0x1ceb4",
+          "nameScn3RelativeOffset": "0x1ceac",
+          "nativeRecordCount": 15,
+          "controllerIds": [
+            "0x001202ab",
+            "0x001302ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              0.0,
+              0.0,
+              -4.461100101470947
+            ],
+            "yawRaw": "0x00008000",
+            "yawDegrees": 180.0
+          },
+          "browserProjection": {
+            "position": [
+              -0.0,
+              0.0,
+              -4.461100101470947
+            ],
+            "yawDegrees": -180.0
+          },
+          "destination": {
+            "scene": 2,
+            "area": "D000",
+            "entry": 8
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "DGCT"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/DGCT/MAPINFO.BIN",
+      "sourceSha256": "7ca317c65f356de3fe64226754d62f470aa4796da88d95690f04940d9da1a03b",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x44ab4",
+        "0x48cf0"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 6
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 6
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "AUTO_DOOR",
+          "recordFileOffset": "0x46e04",
+          "nameFileOffset": "0x46df8",
+          "nameScn3RelativeOffset": "0x46df0",
+          "nativeRecordCount": 17,
+          "controllerIds": [
+            "0x000a02ab",
+            "0x000b02ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              2.700000047683716,
+              0.0,
+              0.003000000026077032
+            ],
+            "yawRaw": "0x00008000",
+            "yawDegrees": 180.0
+          },
+          "browserProjection": {
+            "position": [
+              -2.700000047683716,
+              0.0,
+              0.003000000026077032
+            ],
+            "yawDegrees": -180.0
+          },
+          "destination": {
+            "scene": 2,
+            "area": "D000",
+            "entry": 6
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "DJAZ"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/DJAZ/MAPINFO.BIN",
+      "sourceSha256": "f6c046d2cb57c199ed97fd3e67f675961fc3cb7832cb32cb7b481ce13fc8aed9",
+      "scn3FileOffset": "0x168",
+      "staticDataFileRange": [
+        "0x2d0a4",
+        "0x30728"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 13
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 13
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x2ee14",
+          "nameFileOffset": "0x2ee0c",
+          "nameScn3RelativeOffset": "0x2eca4",
+          "nativeRecordCount": 28,
+          "controllerIds": [
+            "0x001002ab",
+            "0x001102ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              3.9000000953674316,
+              0.0,
+              0.019999999552965164
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -3.9000000953674316,
+              0.0,
+              0.019999999552965164
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 2,
+            "area": "D000",
+            "entry": 13
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "DKPA"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/DKPA/MAPINFO.BIN",
+      "sourceSha256": "6a868544273d9977d847498dedd03593f3552d5ea630366039d9bffb1db6a3cd",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1abfc",
+        "0x1cc88"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 25
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 25
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x1cb2c",
+          "nameFileOffset": "0x1cb24",
+          "nameScn3RelativeOffset": "0x1cb1c",
+          "nativeRecordCount": 13,
+          "controllerIds": [
+            "0x001602ab",
+            "0x001702ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              1.7999999523162842,
+              0.0,
+              0.0
+            ],
+            "yawRaw": "0x00008000",
+            "yawDegrees": 180.0
+          },
+          "browserProjection": {
+            "position": [
+              -1.7999999523162842,
+              0.0,
+              0.0
+            ],
+            "yawDegrees": -180.0
+          },
+          "destination": {
+            "scene": 2,
+            "area": "D000",
+            "entry": 25
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "DKTY"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/DKTY/MAPINFO.BIN",
+      "sourceSha256": "d76e675e636600ef864a17f6acbcab17c54c0ca74249aa2f8c430d874555abb5",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x247b4",
+        "0x285d8"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 7
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 7
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x26554",
+          "nameFileOffset": "0x2654c",
+          "nameScn3RelativeOffset": "0x26544",
+          "nativeRecordCount": 15,
+          "controllerIds": [
+            "0x001202ab",
+            "0x001302ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              2.700000047683716,
+              0.0,
+              -0.03999999910593033
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -2.700000047683716,
+              0.0,
+              -0.03999999910593033
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 2,
+            "area": "D000",
+            "entry": 7
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "DPIZ"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/DPIZ/MAPINFO.BIN",
+      "sourceSha256": "5669708008a067d019d51e66f60fa7064d9f01045db46ce851c8e994e3ecde39",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1aa84",
+        "0x1cb30"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 18
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 18
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x1c9d4",
+          "nameFileOffset": "0x1c9cc",
+          "nameScn3RelativeOffset": "0x1c9c4",
+          "nativeRecordCount": 1,
+          "controllerIds": [
+            "0x001802ab",
+            "0x001902ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              0.30000001192092896,
+              0.0,
+              0.0
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -0.30000001192092896,
+              0.0,
+              0.0
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 2,
+            "area": "D000",
+            "entry": 18
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "DRHT"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/DRHT/MAPINFO.BIN",
+      "sourceSha256": "1c291d49db284c8675bf3d3503cea83931ed04ca6692a973704ca353537ffa10",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1e960",
+        "0x20b34"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 21
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 21
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x20774",
+          "nameFileOffset": "0x2076c",
+          "nameScn3RelativeOffset": "0x20764",
+          "nativeRecordCount": 2,
+          "controllerIds": [
+            "0x001802ab",
+            "0x001902ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -0.6119999885559082,
+              0.0,
+              3.180000066757202
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              0.6119999885559082,
+              0.0,
+              3.180000066757202
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 2,
+            "area": "D000",
+            "entry": 21
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "DRME"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/DRME/MAPINFO.BIN",
+      "sourceSha256": "e3cf4f64687447e336d5d48090a0afdbaa9548bffb3be3be52069a5327eaae8f",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1ab1c",
+        "0x1cbe0"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 19
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 19
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x1c88c",
+          "nameFileOffset": "0x1c884",
+          "nameScn3RelativeOffset": "0x1c87c",
+          "nativeRecordCount": 15,
+          "controllerIds": [
+            "0x001002ab",
+            "0x001102ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -2.744999885559082,
+              0.0,
+              0.6000000238418579
+            ],
+            "yawRaw": "0x0000c000",
+            "yawDegrees": 270.0
+          },
+          "browserProjection": {
+            "position": [
+              2.744999885559082,
+              0.0,
+              0.6000000238418579
+            ],
+            "yawDegrees": 90.0
+          },
+          "destination": {
+            "scene": 2,
+            "area": "D000",
+            "entry": 19
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "DRSA"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/DRSA/MAPINFO.BIN",
+      "sourceSha256": "dd14fe41c2d73d0aa44784b85cd6145acc1e6151a9487fdec5b6863ee2fab3ee",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1aa5c",
+        "0x1cf38"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 10
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 10
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOR2",
+          "recordFileOffset": "0x1c84c",
+          "nameFileOffset": "0x1c835",
+          "nameScn3RelativeOffset": "0x1c82d",
+          "nativeRecordCount": 2,
+          "controllerIds": [
+            "0x001202ab",
+            "0x001302ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              3.1500000953674316,
+              0.0,
+              0.0
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -3.1500000953674316,
+              0.0,
+              0.0
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 2,
+            "area": "D000",
+            "entry": 10
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "DSBA"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/DSBA/MAPINFO.BIN",
+      "sourceSha256": "ac099dbe0496ed7b758fb616a7a8452a81e7bd8feb35a14d521b6817a2601a69",
+      "scn3FileOffset": "0x140",
+      "staticDataFileRange": [
+        "0x1f324",
+        "0x2150c"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 12
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 12
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "SOBA_DOOR",
+          "recordFileOffset": "0x2113c",
+          "nameFileOffset": "0x21130",
+          "nameScn3RelativeOffset": "0x20ff0",
+          "nativeRecordCount": 15,
+          "controllerIds": [
+            "0x001202ab",
+            "0x001302ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              2.700000047683716,
+              0.0,
+              0.0
+            ],
+            "yawRaw": "0x0000005c",
+            "yawDegrees": 0.50537109375
+          },
+          "browserProjection": {
+            "position": [
+              -2.700000047683716,
+              0.0,
+              0.0
+            ],
+            "yawDegrees": -0.50537109375
+          },
+          "destination": {
+            "scene": 2,
+            "area": "D000",
+            "entry": 12
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "DSKI"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/DSKI/MAPINFO.BIN",
+      "sourceSha256": "17d1f11dda00b6040dab2d3cd914bf05b0caa605d90ed751cbd445f278e80f1e",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x209cc",
+        "0x2325c"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 4
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 4
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x22bb0",
+          "nameFileOffset": "0x22ba8",
+          "nameScn3RelativeOffset": "0x22ba0",
+          "nativeRecordCount": 13,
+          "controllerIds": [
+            "0x001602ab",
+            "0x001702ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              1.5,
+              0.0,
+              0.019999999552965164
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -1.5,
+              0.0,
+              0.019999999552965164
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 2,
+            "area": "D000",
+            "entry": 4
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "DSLI"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/DSLI/MAPINFO.BIN",
+      "sourceSha256": "6f7d5369c4853a450f938158e5b8b03774a3aa74f367212c0b0a8c51f01694f8",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x20fc4",
+        "0x234b4"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 20
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 20
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DR02_017",
+          "recordFileOffset": "0x22d38",
+          "nameFileOffset": "0x22d2c",
+          "nameScn3RelativeOffset": "0x22d24",
+          "nativeRecordCount": 2,
+          "controllerIds": [
+            "0x001802ab",
+            "0x001902ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -1.350000023841858,
+              0.0,
+              0.02500000037252903
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              1.350000023841858,
+              0.0,
+              0.02500000037252903
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 2,
+            "area": "D000",
+            "entry": 20
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "DSLT"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/DSLT/MAPINFO.BIN",
+      "sourceSha256": "55d7f103ec61d79ef9d9a838f2a3ac68dc131ef7348f3347a5b935a5db22f8b3",
+      "scn3FileOffset": "0x140",
+      "staticDataFileRange": [
+        "0x35570",
+        "0x3aa1c"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 26
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 26
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "TOKOYA_DOOR",
+          "recordFileOffset": "0x3a6c0",
+          "nameFileOffset": "0x3a6b4",
+          "nameScn3RelativeOffset": "0x3a574",
+          "nativeRecordCount": 5,
+          "controllerIds": [
+            "0x001402ab",
+            "0x001502ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              4.199999809265137,
+              0.0,
+              0.03999999910593033
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -4.199999809265137,
+              0.0,
+              0.03999999910593033
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 2,
+            "area": "D000",
+            "entry": 26
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "DSUS"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/DSUS/MAPINFO.BIN",
+      "sourceSha256": "b3a55a43cb7351cf6244dd30b09ced29062b8ad2243ed71dac63beff66795134",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1f328",
+        "0x215dc"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 22
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 22
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DR15_002",
+          "recordFileOffset": "0x210cc",
+          "nameFileOffset": "0x210c0",
+          "nameScn3RelativeOffset": "0x210b8",
+          "nativeRecordCount": 15,
+          "controllerIds": [
+            "0x001202ab",
+            "0x001302ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -3.5899999141693115,
+              0.0,
+              0.020999999716877937
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              3.5899999141693115,
+              0.0,
+              0.020999999716877937
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 2,
+            "area": "D000",
+            "entry": 22
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "DTKY"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/DTKY/MAPINFO.BIN",
+      "sourceSha256": "24c4c26475be9c4f54121a148bf815b3d57522d6eee597cffefc08c59c70d7c5",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1e8ec",
+        "0x20a0c"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 5
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 5
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "TOKOYA_DOOR",
+          "recordFileOffset": "0x20660",
+          "nameFileOffset": "0x20654",
+          "nameScn3RelativeOffset": "0x2064c",
+          "nativeRecordCount": 2,
+          "controllerIds": [
+            "0x001602ab",
+            "0x001702ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              5.099999904632568,
+              0.0,
+              2.700000047683716
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -5.099999904632568,
+              0.0,
+              2.700000047683716
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 2,
+            "area": "D000",
+            "entry": 5
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "DURN"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/DURN/MAPINFO.BIN",
+      "sourceSha256": "b1da48a68dcd8ae0103b3798d18291bf28eda04b7861c291cf5a3d952d055e90",
+      "scn3FileOffset": "0xe0",
+      "staticDataFileRange": [
+        "0x25824",
+        "0x28338"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 23
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 23
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DR02_015",
+          "recordFileOffset": "0x275c8",
+          "nameFileOffset": "0x275bc",
+          "nameScn3RelativeOffset": "0x274dc",
+          "nativeRecordCount": 2,
+          "controllerIds": [
+            "0x001402ab",
+            "0x001502ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              3.299999952316284,
+              0.0,
+              1.8200000524520874
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -3.299999952316284,
+              0.0,
+              1.8200000524520874
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 2,
+            "area": "D000",
+            "entry": 23
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "DYKZ"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/DYKZ/MAPINFO.BIN",
+      "sourceSha256": "d29a738d3c4157db4724bc47be3d39636f132126772257472da13edae761a2dc",
+      "scn3FileOffset": "0xa8",
+      "staticDataFileRange": [
+        "0x262c4",
+        "0x28758"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 24
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 24
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOR2",
+          "recordFileOffset": "0x280b4",
+          "nameFileOffset": "0x2809d",
+          "nameScn3RelativeOffset": "0x27ff5",
+          "nativeRecordCount": 31,
+          "controllerIds": [
+            "0x000002ab",
+            "0x000102ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              3.5999999046325684,
+              0.0,
+              2.700000047683716
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -3.5999999046325684,
+              0.0,
+              2.700000047683716
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 2,
+            "area": "D000",
+            "entry": 24
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "JABE"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/JABE/MAPINFO.BIN",
+      "sourceSha256": "b80104908d2a001e83b535ff6c1cbeb9275624edc2ba5888744be8f831b64f7a",
+      "scn3FileOffset": "0xb0",
+      "staticDataFileRange": [
+        "0x2bd5c",
+        "0x2f420"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "JD00",
+          "entry": 3
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "JD00",
+          "entry": 3
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x2dc88",
+          "nameFileOffset": "0x2dc80",
+          "nameScn3RelativeOffset": "0x2dbd0",
+          "nativeRecordCount": 15,
+          "controllerIds": [
+            "0x001202ab",
+            "0x001302ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -0.9200000166893005,
+              0.0,
+              1.7599999904632568
+            ],
+            "yawRaw": "0x00008000",
+            "yawDegrees": 180.0
+          },
+          "browserProjection": {
+            "position": [
+              0.9200000166893005,
+              0.0,
+              1.7599999904632568
+            ],
+            "yawDegrees": -180.0
+          },
+          "destination": {
+            "scene": 2,
+            "area": "JD00",
+            "entry": 3
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "JD00"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/JD00/MAPINFO.BIN",
+      "sourceSha256": "218dbd969148b157828e374d256cfd874e712069f7936b01c94b9eea906d178d",
+      "scn3FileOffset": "0x5a0",
+      "staticDataFileRange": [
+        "0x63338",
+        "0x6cf5c"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 1
+        },
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 11
+        },
+        {
+          "scene": 2,
+          "area": "JABE",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "JOMO",
+          "entry": 3
+        },
+        {
+          "scene": 2,
+          "area": "JU00",
+          "entry": 0
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 1
+        },
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 11
+        },
+        {
+          "scene": 2,
+          "area": "JABE",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "JOMO",
+          "entry": 3
+        },
+        {
+          "scene": 2,
+          "area": "JU00",
+          "entry": 0
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DR01_013",
+          "recordFileOffset": "0x668fc",
+          "nameFileOffset": "0x66812",
+          "nameScn3RelativeOffset": "0x66272",
+          "nativeRecordCount": 37,
+          "controllerIds": [
+            "0x001402ab",
+            "0x001502ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              14.739500045776367,
+              0.005667000077664852,
+              20.428770065307617
+            ],
+            "yawRaw": "0xffffc001",
+            "yawDegrees": 270.0054931640625
+          },
+          "browserProjection": {
+            "position": [
+              -14.739500045776367,
+              0.005667000077664852,
+              20.428770065307617
+            ],
+            "yawDegrees": 89.9945068359375
+          },
+          "transitionAssociation": "ambiguousMultipleOutgoingDestinations"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "JOMO"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/JOMO/MAPINFO.BIN",
+      "sourceSha256": "6a4e6e8d8e71aa450fef6922ebe0036776a94cb498710a562e4418a9338037fe",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x8fda4",
+        "0x9d7b4"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "BETD",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DNOZ",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "JBIK",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "JHD0",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "JHD0",
+          "entry": 2
+        },
+        {
+          "scene": 2,
+          "area": "MA00",
+          "entry": 1
+        },
+        {
+          "scene": 2,
+          "area": "MSBS",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "YDMA",
+          "entry": 1
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "BETD",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "DNOZ",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "JBIK",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "JHD0",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "JHD0",
+          "entry": 2
+        },
+        {
+          "scene": 2,
+          "area": "MA00",
+          "entry": 1
+        },
+        {
+          "scene": 2,
+          "area": "MSBS",
+          "entry": 0
+        },
+        {
+          "scene": 2,
+          "area": "YDMA",
+          "entry": 1
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DR23_000",
+          "recordFileOffset": "0x92b38",
+          "nameFileOffset": "0x92ace",
+          "nameScn3RelativeOffset": "0x92ac6",
+          "nativeRecordCount": 23,
+          "controllerIds": [
+            "0x000202ab",
+            "0x000302ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -0.3230000138282776,
+              0.0,
+              -1.8162000179290771
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              0.3230000138282776,
+              0.0,
+              -1.8162000179290771
+            ],
+            "yawDegrees": 0.0
+          },
+          "transitionAssociation": "ambiguousMultipleOutgoingDestinations"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "JU00"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/JU00/MAPINFO.BIN",
+      "sourceSha256": "3a565890be5cf3a746119b63e8b5aac4cdc5396f8ea8ea3d0f35ba9fb79264c5",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x49278",
+        "0x4ebe4"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "JD00",
+          "entry": 2
+        },
+        {
+          "scene": 2,
+          "area": "JHD0",
+          "entry": 1
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "JD00",
+          "entry": 2
+        },
+        {
+          "scene": 2,
+          "area": "JHD0",
+          "entry": 1
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DR29_000",
+          "recordFileOffset": "0x4b4ac",
+          "nameFileOffset": "0x4b442",
+          "nameScn3RelativeOffset": "0x4b43a",
+          "nativeRecordCount": 29,
+          "controllerIds": [
+            "0x000c02ab",
+            "0x000d02ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -31.664270401000977,
+              5.738160133361816,
+              54.104209899902344
+            ],
+            "yawRaw": "0x00007fff",
+            "yawDegrees": 179.9945068359375
+          },
+          "browserProjection": {
+            "position": [
+              31.664270401000977,
+              5.738160133361816,
+              54.104209899902344
+            ],
+            "yawDegrees": -179.9945068359375
+          },
+          "transitionAssociation": "ambiguousMultipleOutgoingDestinations"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "MKYU"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/MKYU/MAPINFO.BIN",
+      "sourceSha256": "bb38738056a70f868cb48d3bf599f763af8658c0f8b67c55b9baf8c1dfcc14a7",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x4275c",
+        "0x4801c"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "MFSY",
+          "entry": 19
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "MFSY",
+          "entry": 19
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DR02_001",
+          "recordFileOffset": "0x44500",
+          "nameFileOffset": "0x444f4",
+          "nameScn3RelativeOffset": "0x444ec",
+          "nativeRecordCount": 2,
+          "controllerIds": [
+            "0x001e02ab",
+            "0x001f02ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -83.09546661376953,
+              0.0,
+              59.850250244140625
+            ],
+            "yawRaw": "0xffffe001",
+            "yawDegrees": 315.0054931640625
+          },
+          "browserProjection": {
+            "position": [
+              83.09546661376953,
+              0.0,
+              59.850250244140625
+            ],
+            "yawDegrees": 44.9945068359375
+          },
+          "destination": {
+            "scene": 2,
+            "area": "MFSY",
+            "entry": 19
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "MS08"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/MS08/MAPINFO.BIN",
+      "sourceSha256": "693131be8e2106c08975b75959780006dec6a79a981c910819f614b324e73e90",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x29354",
+        "0x2d094"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "JOMO",
+          "entry": 4
+        },
+        {
+          "scene": 2,
+          "area": "JOMO",
+          "entry": 5
+        },
+        {
+          "scene": 2,
+          "area": "MKSG",
+          "entry": 8
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "JOMO",
+          "entry": 4
+        },
+        {
+          "scene": 2,
+          "area": "JOMO",
+          "entry": 5
+        },
+        {
+          "scene": 2,
+          "area": "MKSG",
+          "entry": 8
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x2b0c4",
+          "nameFileOffset": "0x2b0bc",
+          "nameScn3RelativeOffset": "0x2b0b4",
+          "nativeRecordCount": 2,
+          "controllerIds": [
+            "0x001e02ab",
+            "0x001f02ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -27.059999465942383,
+              0.0,
+              -1.7999999523162842
+            ],
+            "yawRaw": "0xffffc000",
+            "yawDegrees": 270.0
+          },
+          "browserProjection": {
+            "position": [
+              27.059999465942383,
+              0.0,
+              -1.7999999523162842
+            ],
+            "yawDegrees": 90.0
+          },
+          "transitionAssociation": "ambiguousMultipleOutgoingDestinations"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "MS8S"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/MS8S/MAPINFO.BIN",
+      "sourceSha256": "0f0914b81f40fb73e87b073d955a1b9f5c46e4b094efeabf1215e3ea16e947c2",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x29628",
+        "0x2c224"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "MFSY",
+          "entry": 5
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "MFSY",
+          "entry": 5
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "MS8S_DOOR",
+          "recordFileOffset": "0x2b51c",
+          "nameFileOffset": "0x2b4f0",
+          "nameScn3RelativeOffset": "0x2b4e8",
+          "nativeRecordCount": 31,
+          "controllerIds": [
+            "0x001e02ab",
+            "0x001f02ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              22.165021896362305,
+              4.28000020980835,
+              139.9397430419922
+            ],
+            "yawRaw": "0xffffe001",
+            "yawDegrees": 315.0054931640625
+          },
+          "browserProjection": {
+            "position": [
+              -22.165021896362305,
+              4.28000020980835,
+              139.9397430419922
+            ],
+            "yawDegrees": 44.9945068359375
+          },
+          "destination": {
+            "scene": 2,
+            "area": "MFSY",
+            "entry": 5
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 2,
+        "scene": 2,
+        "area": "TATQ"
+      },
+      "path": ".disc-work/mapinfo/disc2/SCENE/02/TATQ/MAPINFO.BIN",
+      "sourceSha256": "45eab2fdcb273da4853f76c41e6ecae6e1b8c80a844919fd4775d707de16b2de",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1ab8c",
+        "0x1cbe0"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 9
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 2,
+          "area": "D000",
+          "entry": 9
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOR1",
+          "recordFileOffset": "0x1c8fc",
+          "nameFileOffset": "0x1c8f4",
+          "nameScn3RelativeOffset": "0x1c8ec",
+          "nativeRecordCount": 1,
+          "controllerIds": [
+            "0x001402ab",
+            "0x001502ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              1.7999999523162842,
+              0.0,
+              2.6989998817443848
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -1.7999999523162842,
+              0.0,
+              2.6989998817443848
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 2,
+            "area": "D000",
+            "entry": 9
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "D000"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/D000/MAPINFO.BIN",
+      "sourceSha256": "7601567add571448c95044a1602f094f3d2aebb5e6532b7b754f8dfa6d24cb1b",
+      "scn3FileOffset": "0x1260",
+      "staticDataFileRange": [
+        "0x6e760",
+        "0x7c894"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "ARAR",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "ARAR",
+          "entry": 1
+        },
+        {
+          "scene": 3,
+          "area": "ARAR",
+          "entry": 3
+        },
+        {
+          "scene": 3,
+          "area": "ARAR",
+          "entry": 4
+        },
+        {
+          "scene": 3,
+          "area": "DAZA",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DBHB",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DBYO",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DCBN",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DCHA",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DGCT",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DHQB",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DJAZ",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DKPA",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DKTY",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DMAJ",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DPIZ",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DRHT",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DRME",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DRSA",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DSBA",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DSKI",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DSLI",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DSLT",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DSUS",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DTKY",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DURN",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DYKZ",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "JD00",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "JD00",
+          "entry": 1
+        },
+        {
+          "scene": 3,
+          "area": "MFSY",
+          "entry": 4
+        },
+        {
+          "scene": 3,
+          "area": "TATQ",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "TOKI",
+          "entry": 1
+        },
+        {
+          "scene": 3,
+          "area": "TOKI",
+          "entry": 10
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "ARAR",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "ARAR",
+          "entry": 1
+        },
+        {
+          "scene": 3,
+          "area": "ARAR",
+          "entry": 3
+        },
+        {
+          "scene": 3,
+          "area": "ARAR",
+          "entry": 4
+        },
+        {
+          "scene": 3,
+          "area": "DAZA",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DBHB",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DBYO",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DCBN",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DCHA",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DGCT",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DHQB",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DJAZ",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DKPA",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DKTY",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DMAJ",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DPIZ",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DRHT",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DRME",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DRSA",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DSBA",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DSKI",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DSLI",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DSLT",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DSUS",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DTKY",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DURN",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DYKZ",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "JD00",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "JD00",
+          "entry": 1
+        },
+        {
+          "scene": 3,
+          "area": "MFSY",
+          "entry": 4
+        },
+        {
+          "scene": 3,
+          "area": "TATQ",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "TOKI",
+          "entry": 1
+        },
+        {
+          "scene": 3,
+          "area": "TOKI",
+          "entry": 10
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DR13_013",
+          "recordFileOffset": "0x74d18",
+          "nameFileOffset": "0x74adf",
+          "nameScn3RelativeOffset": "0x7387f",
+          "nativeRecordCount": 13,
+          "controllerIds": [
+            "0x001602ab",
+            "0x001702ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -122.64665222167969,
+              0.07240000367164612,
+              82.19269561767578
+            ],
+            "yawRaw": "0x000024b1",
+            "yawDegrees": 51.5972900390625
+          },
+          "browserProjection": {
+            "position": [
+              122.64665222167969,
+              0.07240000367164612,
+              82.19269561767578
+            ],
+            "yawDegrees": -51.5972900390625
+          },
+          "transitionAssociation": "ambiguousMultipleOutgoingDestinations"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "DBHB"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/DBHB/MAPINFO.BIN",
+      "sourceSha256": "44e9be1de0e51c5e100ef665b26b62fc48eb9a714e682f2d70c28bb2167a508f",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x21504",
+        "0x23a58"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 3
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 3
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x23274",
+          "nameFileOffset": "0x2326c",
+          "nameScn3RelativeOffset": "0x23264",
+          "nativeRecordCount": 2,
+          "controllerIds": [
+            "0x001802ab",
+            "0x001902ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              0.0,
+              0.0,
+              -8.100000381469727
+            ],
+            "yawRaw": "0x00008000",
+            "yawDegrees": 180.0
+          },
+          "browserProjection": {
+            "position": [
+              -0.0,
+              0.0,
+              -8.100000381469727
+            ],
+            "yawDegrees": -180.0
+          },
+          "destination": {
+            "scene": 3,
+            "area": "D000",
+            "entry": 3
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "DBYO"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/DBYO/MAPINFO.BIN",
+      "sourceSha256": "35ee6ce8de85c2adb5f98ec6c72c981d3fae31f1524469214c2e5c371230f7d6",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1e768",
+        "0x208f4"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 2,
+          "area": "JOMO",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 14
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 14
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x204d8",
+          "nameFileOffset": "0x204d0",
+          "nameScn3RelativeOffset": "0x204c8",
+          "nativeRecordCount": 2,
+          "controllerIds": [
+            "0x001802ab",
+            "0x001902ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              3.5999999046325684,
+              0.0,
+              0.03739999979734421
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -3.5999999046325684,
+              0.0,
+              0.03739999979734421
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 3,
+            "area": "D000",
+            "entry": 14
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "DCBN"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/DCBN/MAPINFO.BIN",
+      "sourceSha256": "e3f22721113076d159189e28d5110652edf0e96c2a78ebca4517c03805ddded6",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x285b8",
+        "0x2c500"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 15
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 15
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x2a328",
+          "nameFileOffset": "0x2a320",
+          "nameScn3RelativeOffset": "0x2a318",
+          "nativeRecordCount": 11,
+          "controllerIds": [
+            "0x000a02ab",
+            "0x000b02ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -0.8999999761581421,
+              0.0,
+              1.4550000429153442
+            ],
+            "yawRaw": "0x00008000",
+            "yawDegrees": 180.0
+          },
+          "browserProjection": {
+            "position": [
+              0.8999999761581421,
+              0.0,
+              1.4550000429153442
+            ],
+            "yawDegrees": -180.0
+          },
+          "destination": {
+            "scene": 3,
+            "area": "D000",
+            "entry": 15
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "DCHA"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/DCHA/MAPINFO.BIN",
+      "sourceSha256": "c901f1e25ddecdb72c4f7496239c49c729d26fce87aca662fe7602df4071adf8",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1b14c",
+        "0x1d2e4"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 8
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 8
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x1cebc",
+          "nameFileOffset": "0x1ceb4",
+          "nameScn3RelativeOffset": "0x1ceac",
+          "nativeRecordCount": 15,
+          "controllerIds": [
+            "0x001202ab",
+            "0x001302ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              0.0,
+              0.0,
+              -4.461100101470947
+            ],
+            "yawRaw": "0x00008000",
+            "yawDegrees": 180.0
+          },
+          "browserProjection": {
+            "position": [
+              -0.0,
+              0.0,
+              -4.461100101470947
+            ],
+            "yawDegrees": -180.0
+          },
+          "destination": {
+            "scene": 3,
+            "area": "D000",
+            "entry": 8
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "DGCT"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/DGCT/MAPINFO.BIN",
+      "sourceSha256": "99773d4600b2822ecfdb35f05f8e300ffc0cf6542544eb11d91d6a95528d6ba3",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x44ab4",
+        "0x48cf0"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 6
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 6
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "AUTO_DOOR",
+          "recordFileOffset": "0x46e04",
+          "nameFileOffset": "0x46df8",
+          "nameScn3RelativeOffset": "0x46df0",
+          "nativeRecordCount": 17,
+          "controllerIds": [
+            "0x000a02ab",
+            "0x000b02ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              2.700000047683716,
+              0.0,
+              0.003000000026077032
+            ],
+            "yawRaw": "0x00008000",
+            "yawDegrees": 180.0
+          },
+          "browserProjection": {
+            "position": [
+              -2.700000047683716,
+              0.0,
+              0.003000000026077032
+            ],
+            "yawDegrees": -180.0
+          },
+          "destination": {
+            "scene": 3,
+            "area": "D000",
+            "entry": 6
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "DJAZ"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/DJAZ/MAPINFO.BIN",
+      "sourceSha256": "60922b5ceeee2bf3b8e078d5ddc0da3e61844cb8a6abc0ba96450206216e63ac",
+      "scn3FileOffset": "0x168",
+      "staticDataFileRange": [
+        "0x2d0a4",
+        "0x30728"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 13
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 13
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x2ee14",
+          "nameFileOffset": "0x2ee0c",
+          "nameScn3RelativeOffset": "0x2eca4",
+          "nativeRecordCount": 28,
+          "controllerIds": [
+            "0x001002ab",
+            "0x001102ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              3.9000000953674316,
+              0.0,
+              0.019999999552965164
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -3.9000000953674316,
+              0.0,
+              0.019999999552965164
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 3,
+            "area": "D000",
+            "entry": 13
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "DKPA"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/DKPA/MAPINFO.BIN",
+      "sourceSha256": "855fcaed116c03d6886b124393d36434b33929ed1060375856eea84545fee4f2",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1abfc",
+        "0x1cc88"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 25
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 25
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x1cb2c",
+          "nameFileOffset": "0x1cb24",
+          "nameScn3RelativeOffset": "0x1cb1c",
+          "nativeRecordCount": 13,
+          "controllerIds": [
+            "0x001602ab",
+            "0x001702ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              1.7999999523162842,
+              0.0,
+              0.0
+            ],
+            "yawRaw": "0x00008000",
+            "yawDegrees": 180.0
+          },
+          "browserProjection": {
+            "position": [
+              -1.7999999523162842,
+              0.0,
+              0.0
+            ],
+            "yawDegrees": -180.0
+          },
+          "destination": {
+            "scene": 3,
+            "area": "D000",
+            "entry": 25
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "DKTY"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/DKTY/MAPINFO.BIN",
+      "sourceSha256": "05b5eb19f0163034ab548387a67340cfa802ff7fc5083c731d75286bccf5c22f",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1fce8",
+        "0x22e20"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 7
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 7
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x21a88",
+          "nameFileOffset": "0x21a80",
+          "nameScn3RelativeOffset": "0x21a78",
+          "nativeRecordCount": 15,
+          "controllerIds": [
+            "0x001202ab",
+            "0x001302ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              2.700000047683716,
+              0.0,
+              -0.03999999910593033
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -2.700000047683716,
+              0.0,
+              -0.03999999910593033
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 3,
+            "area": "D000",
+            "entry": 7
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "DOOR"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/DOOR/MAPINFO.BIN",
+      "sourceSha256": "6d52e4852297f8e6ade1108f8f659107d0de9a12add9e9b8c15eda6a3d5b809c",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x9f7c",
+        "0xc3d4"
+      ],
+      "exactOutgoingDestinations": [],
+      "doorTransitionDestinations": [],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DR03_002",
+          "recordFileOffset": "0xc070",
+          "nameFileOffset": "0xbfc6",
+          "nameScn3RelativeOffset": "0xbfbe",
+          "nativeRecordCount": 3,
+          "controllerIds": [
+            "0x001a02ab",
+            "0x001b02ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              4.5,
+              0.0,
+              0.0
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -4.5,
+              0.0,
+              0.0
+            ],
+            "yawDegrees": 0.0
+          },
+          "transitionAssociation": "noExactOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "DPIZ"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/DPIZ/MAPINFO.BIN",
+      "sourceSha256": "13c4eada462161a44f7e2e9a6228320edbfb67ab92f7809d9f74d4634bd45082",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1aa84",
+        "0x1cb30"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 18
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 18
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x1c9d4",
+          "nameFileOffset": "0x1c9cc",
+          "nameScn3RelativeOffset": "0x1c9c4",
+          "nativeRecordCount": 1,
+          "controllerIds": [
+            "0x001802ab",
+            "0x001902ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              0.30000001192092896,
+              0.0,
+              0.0
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -0.30000001192092896,
+              0.0,
+              0.0
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 3,
+            "area": "D000",
+            "entry": 18
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "DRHT"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/DRHT/MAPINFO.BIN",
+      "sourceSha256": "0695c045395bbabf6c418a9344acedcc107ef1a829990eb55e517ce41e416b45",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1e960",
+        "0x20b34"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 21
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 21
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x20774",
+          "nameFileOffset": "0x2076c",
+          "nameScn3RelativeOffset": "0x20764",
+          "nativeRecordCount": 2,
+          "controllerIds": [
+            "0x001802ab",
+            "0x001902ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -0.6119999885559082,
+              0.0,
+              3.180000066757202
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              0.6119999885559082,
+              0.0,
+              3.180000066757202
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 3,
+            "area": "D000",
+            "entry": 21
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "DRME"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/DRME/MAPINFO.BIN",
+      "sourceSha256": "21789ca5cb0eaaa08acc868ce973745b1eeff30c242ff45f80c216c10f62c5dd",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1ab1c",
+        "0x1cbe0"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 19
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 19
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x1c88c",
+          "nameFileOffset": "0x1c884",
+          "nameScn3RelativeOffset": "0x1c87c",
+          "nativeRecordCount": 15,
+          "controllerIds": [
+            "0x001002ab",
+            "0x001102ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -2.744999885559082,
+              0.0,
+              0.6000000238418579
+            ],
+            "yawRaw": "0x0000c000",
+            "yawDegrees": 270.0
+          },
+          "browserProjection": {
+            "position": [
+              2.744999885559082,
+              0.0,
+              0.6000000238418579
+            ],
+            "yawDegrees": 90.0
+          },
+          "destination": {
+            "scene": 3,
+            "area": "D000",
+            "entry": 19
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "DRSA"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/DRSA/MAPINFO.BIN",
+      "sourceSha256": "c93abf629e965580e8a98d65073deac78084874db83cd4e8789b428a531e9dd9",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1aa5c",
+        "0x1cf38"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 10
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 10
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOR2",
+          "recordFileOffset": "0x1c84c",
+          "nameFileOffset": "0x1c835",
+          "nameScn3RelativeOffset": "0x1c82d",
+          "nativeRecordCount": 2,
+          "controllerIds": [
+            "0x001202ab",
+            "0x001302ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              3.1500000953674316,
+              0.0,
+              0.0
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -3.1500000953674316,
+              0.0,
+              0.0
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 3,
+            "area": "D000",
+            "entry": 10
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "DSBA"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/DSBA/MAPINFO.BIN",
+      "sourceSha256": "571c51c144750f7cf0265bec4bc00231fbd9e14403c702802673ae6bedc3a662",
+      "scn3FileOffset": "0x140",
+      "staticDataFileRange": [
+        "0x1f324",
+        "0x2150c"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 12
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 12
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "SOBA_DOOR",
+          "recordFileOffset": "0x2113c",
+          "nameFileOffset": "0x21130",
+          "nameScn3RelativeOffset": "0x20ff0",
+          "nativeRecordCount": 15,
+          "controllerIds": [
+            "0x001202ab",
+            "0x001302ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              2.700000047683716,
+              0.0,
+              0.0
+            ],
+            "yawRaw": "0x0000005c",
+            "yawDegrees": 0.50537109375
+          },
+          "browserProjection": {
+            "position": [
+              -2.700000047683716,
+              0.0,
+              0.0
+            ],
+            "yawDegrees": -0.50537109375
+          },
+          "destination": {
+            "scene": 3,
+            "area": "D000",
+            "entry": 12
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "DSKI"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/DSKI/MAPINFO.BIN",
+      "sourceSha256": "6f9bf01db44d00e402381e315faab9142e0506fe8fe4f3536292910cb02b1f42",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1eaa8",
+        "0x210b8"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 4
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 4
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x20c8c",
+          "nameFileOffset": "0x20c84",
+          "nameScn3RelativeOffset": "0x20c7c",
+          "nativeRecordCount": 13,
+          "controllerIds": [
+            "0x001602ab",
+            "0x001702ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              1.5,
+              0.0,
+              0.019999999552965164
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -1.5,
+              0.0,
+              0.019999999552965164
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 3,
+            "area": "D000",
+            "entry": 4
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "DSLI"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/DSLI/MAPINFO.BIN",
+      "sourceSha256": "af105a74a748cb5a10482f30436a9da20945d7b3e342ea6578db8d6c4037d83d",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x20fc4",
+        "0x234b4"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 20
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 20
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DR02_017",
+          "recordFileOffset": "0x22d38",
+          "nameFileOffset": "0x22d2c",
+          "nameScn3RelativeOffset": "0x22d24",
+          "nativeRecordCount": 2,
+          "controllerIds": [
+            "0x001802ab",
+            "0x001902ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -1.350000023841858,
+              0.0,
+              0.02500000037252903
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              1.350000023841858,
+              0.0,
+              0.02500000037252903
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 3,
+            "area": "D000",
+            "entry": 20
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "DSLT"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/DSLT/MAPINFO.BIN",
+      "sourceSha256": "a40e25a66454504e97838ef30c1837b64ba7009178f609e261370f8394c90503",
+      "scn3FileOffset": "0x140",
+      "staticDataFileRange": [
+        "0x35570",
+        "0x3aa1c"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 26
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 26
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "TOKOYA_DOOR",
+          "recordFileOffset": "0x3a6c0",
+          "nameFileOffset": "0x3a6b4",
+          "nameScn3RelativeOffset": "0x3a574",
+          "nativeRecordCount": 5,
+          "controllerIds": [
+            "0x001402ab",
+            "0x001502ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              4.199999809265137,
+              0.0,
+              0.03999999910593033
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -4.199999809265137,
+              0.0,
+              0.03999999910593033
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 3,
+            "area": "D000",
+            "entry": 26
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "DSUS"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/DSUS/MAPINFO.BIN",
+      "sourceSha256": "17d86612b15d5bb879e1f06f7f99fcb01b26c5c0954dfc2b09b3abdac6ad1c55",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1f328",
+        "0x215dc"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 22
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 22
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DR15_002",
+          "recordFileOffset": "0x210cc",
+          "nameFileOffset": "0x210c0",
+          "nameScn3RelativeOffset": "0x210b8",
+          "nativeRecordCount": 15,
+          "controllerIds": [
+            "0x001202ab",
+            "0x001302ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -3.5899999141693115,
+              0.0,
+              0.020999999716877937
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              3.5899999141693115,
+              0.0,
+              0.020999999716877937
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 3,
+            "area": "D000",
+            "entry": 22
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "DTKY"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/DTKY/MAPINFO.BIN",
+      "sourceSha256": "718b56b0fb2b164982062db4338b06217357788038917781cf0c681ed271506a",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1e8ec",
+        "0x20a0c"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 5
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 5
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "TOKOYA_DOOR",
+          "recordFileOffset": "0x20660",
+          "nameFileOffset": "0x20654",
+          "nameScn3RelativeOffset": "0x2064c",
+          "nativeRecordCount": 2,
+          "controllerIds": [
+            "0x001602ab",
+            "0x001702ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              5.099999904632568,
+              0.0,
+              2.700000047683716
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -5.099999904632568,
+              0.0,
+              2.700000047683716
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 3,
+            "area": "D000",
+            "entry": 5
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "DURN"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/DURN/MAPINFO.BIN",
+      "sourceSha256": "e526cfb5c1a62809190bb213e92bd3b8c04346a279366b0708633ec1bedd499d",
+      "scn3FileOffset": "0xe0",
+      "staticDataFileRange": [
+        "0x25824",
+        "0x28338"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 23
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 23
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DR02_015",
+          "recordFileOffset": "0x275c8",
+          "nameFileOffset": "0x275bc",
+          "nameScn3RelativeOffset": "0x274dc",
+          "nativeRecordCount": 2,
+          "controllerIds": [
+            "0x001402ab",
+            "0x001502ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              3.299999952316284,
+              0.0,
+              1.8200000524520874
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -3.299999952316284,
+              0.0,
+              1.8200000524520874
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 3,
+            "area": "D000",
+            "entry": 23
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "DYKZ"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/DYKZ/MAPINFO.BIN",
+      "sourceSha256": "d29a738d3c4157db4724bc47be3d39636f132126772257472da13edae761a2dc",
+      "scn3FileOffset": "0xa8",
+      "staticDataFileRange": [
+        "0x262c4",
+        "0x28758"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 24
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 24
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOR2",
+          "recordFileOffset": "0x280b4",
+          "nameFileOffset": "0x2809d",
+          "nameScn3RelativeOffset": "0x27ff5",
+          "nativeRecordCount": 31,
+          "controllerIds": [
+            "0x000002ab",
+            "0x000102ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              3.5999999046325684,
+              0.0,
+              2.700000047683716
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -3.5999999046325684,
+              0.0,
+              2.700000047683716
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 3,
+            "area": "D000",
+            "entry": 24
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "JABE"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/JABE/MAPINFO.BIN",
+      "sourceSha256": "f30bbd5ab617d768f6a7ad2b11be737477cdf3f6b53358424cfea4a926d2f4f4",
+      "scn3FileOffset": "0xb0",
+      "staticDataFileRange": [
+        "0x2bd5c",
+        "0x2f420"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "JD00",
+          "entry": 3
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "JD00",
+          "entry": 3
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x2dc88",
+          "nameFileOffset": "0x2dc80",
+          "nameScn3RelativeOffset": "0x2dbd0",
+          "nativeRecordCount": 15,
+          "controllerIds": [
+            "0x001202ab",
+            "0x001302ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -0.9200000166893005,
+              0.0,
+              1.7599999904632568
+            ],
+            "yawRaw": "0x00008000",
+            "yawDegrees": 180.0
+          },
+          "browserProjection": {
+            "position": [
+              0.9200000166893005,
+              0.0,
+              1.7599999904632568
+            ],
+            "yawDegrees": -180.0
+          },
+          "destination": {
+            "scene": 3,
+            "area": "JD00",
+            "entry": 3
+          },
+          "destinationSelectionRule": "allExactOutgoingTransitions",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "JD00"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/JD00/MAPINFO.BIN",
+      "sourceSha256": "e4226a975c1ed35277eb3e6474928eeba0c10ecf4d8e293319c3f4aa76223e78",
+      "scn3FileOffset": "0x878",
+      "staticDataFileRange": [
+        "0x60a94",
+        "0x69edc"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 1
+        },
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 11
+        },
+        {
+          "scene": 3,
+          "area": "FBGG",
+          "entry": 1
+        },
+        {
+          "scene": 3,
+          "area": "JABE",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "JOMO",
+          "entry": 3
+        },
+        {
+          "scene": 3,
+          "area": "JU00",
+          "entry": 0
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 1
+        },
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 11
+        },
+        {
+          "scene": 3,
+          "area": "FBGG",
+          "entry": 1
+        },
+        {
+          "scene": 3,
+          "area": "JABE",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "JOMO",
+          "entry": 3
+        },
+        {
+          "scene": 3,
+          "area": "JU00",
+          "entry": 0
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DR01_013",
+          "recordFileOffset": "0x64058",
+          "nameFileOffset": "0x63f6e",
+          "nameScn3RelativeOffset": "0x636f6",
+          "nativeRecordCount": 37,
+          "controllerIds": [
+            "0x001402ab",
+            "0x001502ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              14.739500045776367,
+              0.005667000077664852,
+              20.428770065307617
+            ],
+            "yawRaw": "0xffffc001",
+            "yawDegrees": 270.0054931640625
+          },
+          "browserProjection": {
+            "position": [
+              -14.739500045776367,
+              0.005667000077664852,
+              20.428770065307617
+            ],
+            "yawDegrees": 89.9945068359375
+          },
+          "transitionAssociation": "ambiguousMultipleOutgoingDestinations"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "JOMO"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/JOMO/MAPINFO.BIN",
+      "sourceSha256": "43c613a944cc021e26793193826cf6e7dde57cd5f55ce1bfa9c1e41ce33c9c89",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x8fda4",
+        "0x9d7b4"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "BETD",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DNOZ",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "JBIK",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "JHD0",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "JHD0",
+          "entry": 2
+        },
+        {
+          "scene": 3,
+          "area": "MA00",
+          "entry": 1
+        },
+        {
+          "scene": 3,
+          "area": "MSBS",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "YDMA",
+          "entry": 1
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "BETD",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "DNOZ",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "JBIK",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "JHD0",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "JHD0",
+          "entry": 2
+        },
+        {
+          "scene": 3,
+          "area": "MA00",
+          "entry": 1
+        },
+        {
+          "scene": 3,
+          "area": "MSBS",
+          "entry": 0
+        },
+        {
+          "scene": 3,
+          "area": "YDMA",
+          "entry": 1
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DR23_000",
+          "recordFileOffset": "0x92b38",
+          "nameFileOffset": "0x92ace",
+          "nameScn3RelativeOffset": "0x92ac6",
+          "nativeRecordCount": 23,
+          "controllerIds": [
+            "0x000202ab",
+            "0x000302ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -0.3230000138282776,
+              0.0,
+              -1.8162000179290771
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              0.3230000138282776,
+              0.0,
+              -1.8162000179290771
+            ],
+            "yawDegrees": 0.0
+          },
+          "transitionAssociation": "ambiguousMultipleOutgoingDestinations"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "JU00"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/JU00/MAPINFO.BIN",
+      "sourceSha256": "93f6d93ebc0561a1cada2ebd2e78dc4cf16f69dc10a8b9af2089bd9b51811f76",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x468c8",
+        "0x4c128"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "JD00",
+          "entry": 2
+        },
+        {
+          "scene": 3,
+          "area": "JHD0",
+          "entry": 1
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "JD00",
+          "entry": 2
+        },
+        {
+          "scene": 3,
+          "area": "JHD0",
+          "entry": 1
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DR29_000",
+          "recordFileOffset": "0x48afc",
+          "nameFileOffset": "0x48a92",
+          "nameScn3RelativeOffset": "0x48a8a",
+          "nativeRecordCount": 29,
+          "controllerIds": [
+            "0x000c02ab",
+            "0x000d02ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -31.664270401000977,
+              5.738160133361816,
+              54.104209899902344
+            ],
+            "yawRaw": "0x00007fff",
+            "yawDegrees": 179.9945068359375
+          },
+          "browserProjection": {
+            "position": [
+              31.664270401000977,
+              5.738160133361816,
+              54.104209899902344
+            ],
+            "yawDegrees": -179.9945068359375
+          },
+          "transitionAssociation": "ambiguousMultipleOutgoingDestinations"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "MKYU"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/MKYU/MAPINFO.BIN",
+      "sourceSha256": "d3aae8aa3a8a03b30a9dc6cf799bc7821ed7b471c28c0a8596663a0c762767ea",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x42c2c",
+        "0x48534"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "MA00",
+          "entry": 1
+        },
+        {
+          "scene": 3,
+          "area": "MFSY",
+          "entry": 19
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "MA00",
+          "entry": 1
+        },
+        {
+          "scene": 3,
+          "area": "MFSY",
+          "entry": 19
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DR02_001",
+          "recordFileOffset": "0x449d0",
+          "nameFileOffset": "0x449c4",
+          "nameScn3RelativeOffset": "0x449bc",
+          "nativeRecordCount": 2,
+          "controllerIds": [
+            "0x001e02ab",
+            "0x001f02ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -83.09546661376953,
+              0.0,
+              59.850250244140625
+            ],
+            "yawRaw": "0xffffe001",
+            "yawDegrees": 315.0054931640625
+          },
+          "browserProjection": {
+            "position": [
+              83.09546661376953,
+              0.0,
+              59.850250244140625
+            ],
+            "yawDegrees": 44.9945068359375
+          },
+          "transitionAssociation": "ambiguousMultipleOutgoingDestinations"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "MS08"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/MS08/MAPINFO.BIN",
+      "sourceSha256": "fdcdeae0525fe2b596d8e67be322bde40ccb9b7c6ea13d2d673e14ba7ef39b07",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x28ffc",
+        "0x2c350"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "MA00",
+          "entry": 1
+        },
+        {
+          "scene": 3,
+          "area": "MFSY",
+          "entry": 1
+        },
+        {
+          "scene": 3,
+          "area": "MKSG",
+          "entry": 8
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "MA00",
+          "entry": 1
+        },
+        {
+          "scene": 3,
+          "area": "MFSY",
+          "entry": 1
+        },
+        {
+          "scene": 3,
+          "area": "MKSG",
+          "entry": 8
+        }
+      ],
+      "doorDestinationSelectionRule": "allExactOutgoingTransitions",
+      "doorControllerRecords": [
+        {
+          "name": "DOOR",
+          "recordFileOffset": "0x2ad6c",
+          "nameFileOffset": "0x2ad64",
+          "nameScn3RelativeOffset": "0x2ad5c",
+          "nativeRecordCount": 2,
+          "controllerIds": [
+            "0x001e02ab",
+            "0x001f02ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              -27.059999465942383,
+              0.0,
+              -1.7999999523162842
+            ],
+            "yawRaw": "0xffffc000",
+            "yawDegrees": 270.0
+          },
+          "browserProjection": {
+            "position": [
+              27.059999465942383,
+              0.0,
+              -1.7999999523162842
+            ],
+            "yawDegrees": 90.0
+          },
+          "transitionAssociation": "ambiguousMultipleOutgoingDestinations"
+        }
+      ]
+    },
+    {
+      "source": {
+        "disc": 3,
+        "scene": 3,
+        "area": "TATQ"
+      },
+      "path": "extracted_disc3_v2/data/SCENE/03/TATQ/MAPINFO.BIN",
+      "sourceSha256": "4284fd2c71c3329a773eca94cac0d63274c251eb065e200d97a8b7ef09d0c863",
+      "scn3FileOffset": "0x8",
+      "staticDataFileRange": [
+        "0x1ab8c",
+        "0x1cbe0"
+      ],
+      "exactOutgoingDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 9
+        }
+      ],
+      "doorTransitionDestinations": [
+        {
+          "scene": 3,
+          "area": "D000",
+          "entry": 9
+        }
+      ],
+      "doorDestinationSelectionRule": "currentSceneOperation019c",
+      "doorControllerRecords": [
+        {
+          "name": "DOR1",
+          "recordFileOffset": "0x1c8fc",
+          "nameFileOffset": "0x1c8f4",
+          "nameScn3RelativeOffset": "0x1c8ec",
+          "nativeRecordCount": 1,
+          "controllerIds": [
+            "0x001402ab",
+            "0x001502ab"
+          ],
+          "controllerType": "0x02ab",
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "nativeTransform": {
+            "position": [
+              1.7999999523162842,
+              0.0,
+              2.6989998817443848
+            ],
+            "yawRaw": "0x00000000",
+            "yawDegrees": 0.0
+          },
+          "browserProjection": {
+            "position": [
+              -1.7999999523162842,
+              0.0,
+              2.6989998817443848
+            ],
+            "yawDegrees": 0.0
+          },
+          "destination": {
+            "scene": 3,
+            "area": "D000",
+            "entry": 9
+          },
+          "destinationSelectionRule": "currentSceneOperation019c",
+          "transitionAssociation": "exactSingleOutgoingDestination"
+        }
+      ]
+    }
+  ],
+  "failures": [],
+  "evidenceBoundary": [
+    "Records are accepted only by the full typed controller structure and a door-shaped authored name.",
+    "A destination is attached only when all statically exact outgoing calls in that MAPINFO deduplicate to one scene/area/entry tuple.",
+    "When operation 0x019c current-scene exit callbacks exist, only those are considered door destinations; unrelated literal recovery/story transitions remain listed but cannot contaminate the door association.",
+    "No distance, mesh-name proximity, browser configuration, or hand-authored room placement participates in extraction.",
+    "The record proves the native door-controller root transform; its interaction-volume dimensions are not yet claimed."
+  ]
+}

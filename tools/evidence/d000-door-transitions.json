@@ -1,0 +1,2376 @@
+{
+  "schema": "new-yokosuka-d000-door-transitions-v1",
+  "source": {
+    "mapinfo": ".disc-work/exact/d000/MAPINFO.BIN",
+    "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+    "doorLogic": "tools/evidence/d000-door-logic.json"
+  },
+  "nativeFlow": {
+    "selectorFrameOffset": 48,
+    "transitionCoroutineFileOffset": "0x7ee88",
+    "operation0030CallFileOffset": "0x7f256",
+    "coroutineArguments": [
+      "mode",
+      "entry",
+      "area",
+      "scene"
+    ],
+    "operationArguments": [
+      "scene",
+      "area",
+      "entry"
+    ]
+  },
+  "summary": {
+    "logicalDoorCount": 65,
+    "directTransitionCount": 18,
+    "resolvedConditionalTransitionCount": 3,
+    "conditionalSelectorCount": 26,
+    "noBranchSelectorCount": 21,
+    "transitionCoroutineCallCount": 29,
+    "resolvedTransitionSelectorCount": 21,
+    "nativeNonTransitionSelectorCount": 44,
+    "unresolvedTransitionSelectorCount": 0,
+    "unresolvedInteractionSelectorCount": 44
+  },
+  "directTransitions": [
+    {
+      "selector": 25,
+      "selectorCompareFileOffset": "0x79468",
+      "caseFileOffset": "0x79480",
+      "coroutineCallFileOffset": "0x79492",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DKTY",
+        "entry": 0
+      },
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 22,
+        "model": "S1_D000_DR13_010.MT5",
+        "position": [
+          71.7677,
+          0.0724,
+          79.457603
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "usesInvisibleProxy": true
+      }
+    },
+    {
+      "selector": 27,
+      "selectorCompareFileOffset": "0x793e0",
+      "caseFileOffset": "0x793f8",
+      "coroutineCallFileOffset": "0x7940a",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DSKI",
+        "entry": 0
+      },
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 97,
+        "model": "S1_D000_DR02_014.MT5",
+        "position": [
+          65.236916,
+          0.072395,
+          95.27832
+        ],
+        "rotationDegrees": [
+          0,
+          -90,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 29,
+      "selectorCompareFileOffset": "0x79424",
+      "caseFileOffset": "0x7943c",
+      "coroutineCallFileOffset": "0x7944e",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DTKY",
+        "entry": 0
+      },
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 91,
+        "model": "S1_D000_DR12_001.MT5",
+        "position": [
+          68.2295,
+          0.08239,
+          53.425629
+        ],
+        "rotationDegrees": [
+          0,
+          -71.5979,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 30,
+      "selectorCompareFileOffset": "0x794ac",
+      "caseFileOffset": "0x794c4",
+      "coroutineCallFileOffset": "0x794d6",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DCHA",
+        "entry": 0
+      },
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 5,
+        "model": "S1_D000_DR02_016.MT5",
+        "position": [
+          126.362854,
+          -1.8,
+          65.0345
+        ],
+        "rotationDegrees": [
+          0,
+          -141.696167,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 31,
+      "selectorCompareFileOffset": "0x7971c",
+      "caseFileOffset": "0x79734",
+      "coroutineCallFileOffset": "0x79746",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "TATQ",
+        "entry": 0
+      },
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 36,
+        "model": "S1_D000_DR02_013.MT5",
+        "position": [
+          53.875557,
+          0.0724,
+          51.425114
+        ],
+        "rotationDegrees": [
+          0,
+          144.497681,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 32,
+      "selectorCompareFileOffset": "0x794f0",
+      "caseFileOffset": "0x79508",
+      "coroutineCallFileOffset": "0x7951a",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DBYO",
+        "entry": 0
+      },
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 33,
+        "model": "S1_D000_DR05_001.MT5",
+        "position": [
+          52.868057,
+          0.0724,
+          40.178917
+        ],
+        "rotationDegrees": [
+          0,
+          -35.496826,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 33,
+      "selectorCompareFileOffset": "0x79534",
+      "caseFileOffset": "0x7954c",
+      "coroutineCallFileOffset": "0x7955e",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DJAZ",
+        "entry": 0
+      },
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 77,
+        "model": "S1_D000_DR13_008.MT5",
+        "position": [
+          30.733089,
+          0.0724,
+          71.916801
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "usesInvisibleProxy": true
+      }
+    },
+    {
+      "selector": 34,
+      "selectorCompareFileOffset": "0x79578",
+      "caseFileOffset": "0x79590",
+      "coroutineCallFileOffset": "0x795a2",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DSBA",
+        "entry": 0
+      },
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 117,
+        "model": "S1_D000_DR13_013.MT5",
+        "position": [
+          115.437263,
+          0.072395,
+          101.619865
+        ],
+        "rotationDegrees": [
+          0,
+          23.499756,
+          0
+        ],
+        "usesInvisibleProxy": true
+      }
+    },
+    {
+      "selector": 36,
+      "selectorCompareFileOffset": "0x79760",
+      "caseFileOffset": "0x79778",
+      "coroutineCallFileOffset": "0x7978a",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DMAJ",
+        "entry": 0
+      },
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 4,
+        "model": "S1_D000_DR02_012.MT5",
+        "position": [
+          93.6605,
+          0.0724,
+          59.617001
+        ],
+        "rotationDegrees": [
+          0,
+          -15.199585,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 37,
+      "selectorCompareFileOffset": "0x797a4",
+      "caseFileOffset": "0x797bc",
+      "coroutineCallFileOffset": "0x797ce",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DPIZ",
+        "entry": 0
+      },
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 8,
+        "model": "S1_D000_DR02_014.MT5",
+        "position": [
+          93.738541,
+          0.0724,
+          58.395317
+        ],
+        "rotationDegrees": [
+          0,
+          -15.199585,
+          0
+        ],
+        "usesInvisibleProxy": true
+      }
+    },
+    {
+      "selector": 38,
+      "selectorCompareFileOffset": "0x797e8",
+      "caseFileOffset": "0x79800",
+      "coroutineCallFileOffset": "0x79812",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DRME",
+        "entry": 0
+      },
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 32,
+        "model": "S1_D000_DR06_008.MT5",
+        "position": [
+          14.397702,
+          0.0724,
+          28.168093
+        ],
+        "rotationDegrees": [
+          0,
+          -39.094849,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 39,
+      "selectorCompareFileOffset": "0x7982c",
+      "caseFileOffset": "0x79844",
+      "coroutineCallFileOffset": "0x79856",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DSLI",
+        "entry": 0
+      },
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 106,
+        "model": "S1_D000_DR01_008.MT5",
+        "position": [
+          111.771889,
+          0.072397,
+          69.613281
+        ],
+        "rotationDegrees": [
+          0,
+          -24.99939,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 40,
+      "selectorCompareFileOffset": "0x79870",
+      "caseFileOffset": "0x79888",
+      "coroutineCallFileOffset": "0x7989a",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DRHT",
+        "entry": 0
+      },
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 30,
+        "model": "S1_D000_DR06_007.MT5",
+        "position": [
+          5.409301,
+          0.0724,
+          25.799999
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 41,
+      "selectorCompareFileOffset": "0x798b4",
+      "caseFileOffset": "0x798cc",
+      "coroutineCallFileOffset": "0x798de",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DSUS",
+        "entry": 0
+      },
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 2,
+        "model": "S1_D000_DR05_001.MT5",
+        "position": [
+          10.311799,
+          0.0724,
+          24
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 42,
+      "selectorCompareFileOffset": "0x798f8",
+      "caseFileOffset": "0x79910",
+      "coroutineCallFileOffset": "0x79922",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DURN",
+        "entry": 0
+      },
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 92,
+        "model": "S1_D000_DR02_013.MT5",
+        "position": [
+          -14.29,
+          0.07,
+          35.618
+        ],
+        "rotationDegrees": [
+          0,
+          180,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 43,
+      "selectorCompareFileOffset": "0x7993c",
+      "caseFileOffset": "0x79954",
+      "coroutineCallFileOffset": "0x79966",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DYKZ",
+        "entry": 0
+      },
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 94,
+        "model": "S1_D000_DR02_014.MT5",
+        "position": [
+          -14.29,
+          0.07,
+          32.956589
+        ],
+        "rotationDegrees": [
+          0,
+          180,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 44,
+      "selectorCompareFileOffset": "0x79980",
+      "caseFileOffset": "0x79998",
+      "coroutineCallFileOffset": "0x799aa",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DKPA",
+        "entry": 0
+      },
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 18,
+        "model": "S1_D000_DR01_006.MT5",
+        "position": [
+          103.136002,
+          2.7724,
+          104.069
+        ],
+        "rotationDegrees": [
+          0,
+          127.996216,
+          0
+        ],
+        "usesInvisibleProxy": true
+      }
+    },
+    {
+      "selector": 45,
+      "selectorCompareFileOffset": "0x799c4",
+      "caseFileOffset": "0x799dc",
+      "coroutineCallFileOffset": "0x799ee",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DSLT",
+        "entry": 0
+      },
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 15,
+        "model": "S1_D000_DR01_006.MT5",
+        "position": [
+          103.136642,
+          0.0724,
+          104.068993
+        ],
+        "rotationDegrees": [
+          0,
+          127.996216,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    }
+  ],
+  "conditionalTransitions": [
+    {
+      "selector": 26,
+      "selectorCompareFileOffset": "0x78f70",
+      "orderedRoutes": [
+        {
+          "condition": {
+            "operator": "all",
+            "terms": [
+              {
+                "operator": "flagClear",
+                "operation": "0x0051",
+                "subcommand": 11,
+                "namespace": 2,
+                "flag": 956
+              },
+              {
+                "operator": "flagClear",
+                "operation": "0x0051",
+                "subcommand": 11,
+                "namespace": 2,
+                "flag": 400
+              }
+            ]
+          },
+          "destination": {
+            "scene": 1,
+            "area": "ARAR",
+            "entry": 1
+          },
+          "sideEffects": [
+            {
+              "operator": "setFlag",
+              "operation": "0x0051",
+              "subcommand": 12,
+              "namespace": 2,
+              "flag": 400,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "condition": {
+            "operator": "all",
+            "terms": [
+              {
+                "operator": "not",
+                "term": {
+                  "operator": "all",
+                  "terms": [
+                    {
+                      "operator": "flagClear",
+                      "operation": "0x0051",
+                      "subcommand": 11,
+                      "namespace": 2,
+                      "flag": 956
+                    },
+                    {
+                      "operator": "flagClear",
+                      "operation": "0x0051",
+                      "subcommand": 11,
+                      "namespace": 2,
+                      "flag": 400
+                    }
+                  ]
+                }
+              },
+              {
+                "operator": "all",
+                "terms": [
+                  {
+                    "operator": "flagClear",
+                    "operation": "0x0051",
+                    "subcommand": 11,
+                    "namespace": 2,
+                    "flag": 360
+                  },
+                  {
+                    "operator": "flagClear",
+                    "operation": "0x0051",
+                    "subcommand": 11,
+                    "namespace": 2,
+                    "flag": 370
+                  }
+                ]
+              },
+              {
+                "operator": "any",
+                "terms": [
+                  {
+                    "operator": "nativePredicateGreaterThan",
+                    "functionFileOffset": "0x13d74",
+                    "callFileOffset": "0x79076",
+                    "arguments": [
+                      24
+                    ],
+                    "threshold": 0
+                  },
+                  {
+                    "operator": "nativePredicateGreaterThan",
+                    "functionFileOffset": "0x13f30",
+                    "callFileOffset": "0x7908c",
+                    "arguments": [
+                      30
+                    ],
+                    "threshold": 240
+                  }
+                ]
+              }
+            ]
+          },
+          "destination": {
+            "scene": 1,
+            "area": "ARAR",
+            "entry": 0
+          },
+          "sideEffects": [
+            {
+              "operator": "setFlag",
+              "operation": "0x0051",
+              "subcommand": 12,
+              "namespace": 2,
+              "flag": 370,
+              "value": 1
+            },
+            {
+              "operator": "nativeScriptBlock",
+              "fileRange": [
+                "0x790d4",
+                "0x79166"
+              ]
+            }
+          ]
+        },
+        {
+          "condition": {
+            "operator": "all",
+            "terms": [
+              {
+                "operator": "not",
+                "term": {
+                  "operator": "all",
+                  "terms": [
+                    {
+                      "operator": "flagClear",
+                      "operation": "0x0051",
+                      "subcommand": 11,
+                      "namespace": 2,
+                      "flag": 956
+                    },
+                    {
+                      "operator": "flagClear",
+                      "operation": "0x0051",
+                      "subcommand": 11,
+                      "namespace": 2,
+                      "flag": 400
+                    }
+                  ]
+                }
+              },
+              {
+                "operator": "all",
+                "terms": [
+                  {
+                    "operator": "flagClear",
+                    "operation": "0x0051",
+                    "subcommand": 11,
+                    "namespace": 2,
+                    "flag": 360
+                  },
+                  {
+                    "operator": "flagClear",
+                    "operation": "0x0051",
+                    "subcommand": 11,
+                    "namespace": 2,
+                    "flag": 370
+                  }
+                ]
+              },
+              {
+                "operator": "not",
+                "term": {
+                  "operator": "any",
+                  "terms": [
+                    {
+                      "operator": "nativePredicateGreaterThan",
+                      "functionFileOffset": "0x13d74",
+                      "callFileOffset": "0x79076",
+                      "arguments": [
+                        24
+                      ],
+                      "threshold": 0
+                    },
+                    {
+                      "operator": "nativePredicateGreaterThan",
+                      "functionFileOffset": "0x13f30",
+                      "callFileOffset": "0x7908c",
+                      "arguments": [
+                        30
+                      ],
+                      "threshold": 240
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "destination": {
+            "scene": 1,
+            "area": "DAZA",
+            "entry": 0
+          }
+        },
+        {
+          "condition": {
+            "operator": "all",
+            "terms": [
+              {
+                "operator": "not",
+                "term": {
+                  "operator": "all",
+                  "terms": [
+                    {
+                      "operator": "flagClear",
+                      "operation": "0x0051",
+                      "subcommand": 11,
+                      "namespace": 2,
+                      "flag": 956
+                    },
+                    {
+                      "operator": "flagClear",
+                      "operation": "0x0051",
+                      "subcommand": 11,
+                      "namespace": 2,
+                      "flag": 400
+                    }
+                  ]
+                }
+              },
+              {
+                "operator": "not",
+                "term": {
+                  "operator": "all",
+                  "terms": [
+                    {
+                      "operator": "flagClear",
+                      "operation": "0x0051",
+                      "subcommand": 11,
+                      "namespace": 2,
+                      "flag": 360
+                    },
+                    {
+                      "operator": "flagClear",
+                      "operation": "0x0051",
+                      "subcommand": 11,
+                      "namespace": 2,
+                      "flag": 370
+                    }
+                  ]
+                }
+              },
+              {
+                "operator": "all",
+                "terms": [
+                  {
+                    "operator": "flagClear",
+                    "operation": "0x0051",
+                    "subcommand": 11,
+                    "namespace": 2,
+                    "flag": 330
+                  },
+                  {
+                    "operator": "flagClear",
+                    "operation": "0x0051",
+                    "subcommand": 11,
+                    "namespace": 2,
+                    "flag": 861
+                  },
+                  {
+                    "operator": "flagClear",
+                    "operation": "0x0051",
+                    "subcommand": 11,
+                    "namespace": 2,
+                    "flag": 350
+                  }
+                ]
+              }
+            ]
+          },
+          "destination": {
+            "scene": 1,
+            "area": "ARAR",
+            "entry": 3
+          }
+        },
+        {
+          "condition": {
+            "operator": "all",
+            "terms": [
+              {
+                "operator": "not",
+                "term": {
+                  "operator": "all",
+                  "terms": [
+                    {
+                      "operator": "flagClear",
+                      "operation": "0x0051",
+                      "subcommand": 11,
+                      "namespace": 2,
+                      "flag": 956
+                    },
+                    {
+                      "operator": "flagClear",
+                      "operation": "0x0051",
+                      "subcommand": 11,
+                      "namespace": 2,
+                      "flag": 400
+                    }
+                  ]
+                }
+              },
+              {
+                "operator": "not",
+                "term": {
+                  "operator": "all",
+                  "terms": [
+                    {
+                      "operator": "flagClear",
+                      "operation": "0x0051",
+                      "subcommand": 11,
+                      "namespace": 2,
+                      "flag": 360
+                    },
+                    {
+                      "operator": "flagClear",
+                      "operation": "0x0051",
+                      "subcommand": 11,
+                      "namespace": 2,
+                      "flag": 370
+                    }
+                  ]
+                }
+              },
+              {
+                "operator": "not",
+                "term": {
+                  "operator": "all",
+                  "terms": [
+                    {
+                      "operator": "flagClear",
+                      "operation": "0x0051",
+                      "subcommand": 11,
+                      "namespace": 2,
+                      "flag": 330
+                    },
+                    {
+                      "operator": "flagClear",
+                      "operation": "0x0051",
+                      "subcommand": 11,
+                      "namespace": 2,
+                      "flag": 861
+                    },
+                    {
+                      "operator": "flagClear",
+                      "operation": "0x0051",
+                      "subcommand": 11,
+                      "namespace": 2,
+                      "flag": 350
+                    }
+                  ]
+                }
+              },
+              {
+                "operator": "all",
+                "terms": [
+                  {
+                    "operator": "flagClear",
+                    "operation": "0x0051",
+                    "subcommand": 11,
+                    "namespace": 2,
+                    "flag": 350
+                  },
+                  {
+                    "operator": "flagClear",
+                    "operation": "0x0051",
+                    "subcommand": 11,
+                    "namespace": 2,
+                    "flag": 360
+                  }
+                ]
+              }
+            ]
+          },
+          "destination": {
+            "scene": 1,
+            "area": "ARAR",
+            "entry": 4
+          },
+          "sideEffects": [
+            {
+              "operator": "setFlag",
+              "operation": "0x0051",
+              "subcommand": 12,
+              "namespace": 2,
+              "flag": 360,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "condition": {
+            "operator": "otherwise"
+          },
+          "destination": {
+            "scene": 1,
+            "area": "DAZA",
+            "entry": 0
+          }
+        }
+      ],
+      "evidence": {
+        "conditionFileRange": [
+          "0x78f88",
+          "0x79318"
+        ],
+        "coroutineCallFileOffsets": [
+          "0x79002",
+          "0x7917a",
+          "0x791a6",
+          "0x7924a",
+          "0x792de",
+          "0x7930e"
+        ],
+        "opaqueNativePredicateTargets": [
+          "0x13d74",
+          "0x13f30"
+        ]
+      },
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 20,
+        "model": "S1_D000_DR01_011.MT5",
+        "position": [
+          117.434776,
+          0.0724,
+          85.034241
+        ],
+        "rotationDegrees": [
+          0,
+          128.397217,
+          0
+        ],
+        "usesInvisibleProxy": true
+      }
+    },
+    {
+      "selector": 28,
+      "selectorCompareFileOffset": "0x79328",
+      "condition": {
+        "operator": "all",
+        "terms": [
+          {
+            "operator": "flagClear",
+            "operation": "0x0051",
+            "subcommand": 11,
+            "namespace": 2,
+            "flag": 70
+          },
+          {
+            "operator": "flagClear",
+            "operation": "0x0051",
+            "subcommand": 11,
+            "namespace": 2,
+            "flag": 100
+          }
+        ]
+      },
+      "whenTrue": {
+        "scene": 1,
+        "area": "DHQB",
+        "entry": 0
+      },
+      "whenFalse": {
+        "scene": 1,
+        "area": "DBHB",
+        "entry": 0
+      },
+      "evidence": {
+        "conditionFileRange": [
+          "0x79340",
+          "0x79382"
+        ],
+        "trueCoroutineCallFileOffset": "0x7939a",
+        "falseCoroutineCallFileOffset": "0x793c6"
+      },
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 10,
+        "model": "S1_D000_DR15_013.MT5",
+        "position": [
+          95.345993,
+          0.0724,
+          67.7024
+        ],
+        "rotationDegrees": [
+          0,
+          154.995117,
+          0
+        ],
+        "usesInvisibleProxy": true
+      }
+    },
+    {
+      "selector": 35,
+      "selectorCompareFileOffset": "0x795bc",
+      "routes": [
+        {
+          "condition": {
+            "operator": "all",
+            "terms": [
+              {
+                "operator": "flagClear",
+                "operation": "0x0051",
+                "subcommand": 11,
+                "namespace": 2,
+                "flag": 160
+              },
+              {
+                "operator": "flagClear",
+                "operation": "0x0051",
+                "subcommand": 11,
+                "namespace": 2,
+                "flag": 180
+              }
+            ]
+          },
+          "destination": {
+            "scene": 1,
+            "area": "TOKI",
+            "entry": 10
+          }
+        },
+        {
+          "condition": {
+            "operator": "all",
+            "terms": [
+              {
+                "operator": "clockBetweenExclusive",
+                "encoding": "HHMM",
+                "after": 1600,
+                "before": 1902
+              },
+              {
+                "operator": "operationEquals",
+                "operation": "0x019c",
+                "value": 2
+              },
+              {
+                "operator": "flagClear",
+                "operation": "0x0051",
+                "subcommand": 11,
+                "namespace": 2,
+                "flag": 818
+              }
+            ]
+          },
+          "destination": {
+            "scene": 1,
+            "area": "TOKI",
+            "entry": 1
+          }
+        },
+        {
+          "condition": {
+            "operator": "otherwise"
+          },
+          "destination": {
+            "scene": 1,
+            "area": "DRSA",
+            "entry": 0
+          }
+        }
+      ],
+      "evidence": {
+        "conditionFileRange": [
+          "0x795d4",
+          "0x796aa"
+        ],
+        "coroutineCallFileOffsets": [
+          "0x79636",
+          "0x796d6",
+          "0x79702"
+        ]
+      },
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 35,
+        "model": "S1_D000_DR15_011.MT5",
+        "position": [
+          56.760239,
+          0.0724,
+          44.021336
+        ],
+        "rotationDegrees": [
+          0,
+          -35.496826,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    }
+  ],
+  "conditionalTransitionCandidates": [
+    {
+      "coroutineCallFileOffset": "0x79002",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "ARAR",
+        "entry": 1
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x7917a",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "ARAR",
+        "entry": 0
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x791a6",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DAZA",
+        "entry": 0
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x7924a",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "ARAR",
+        "entry": 3
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x792de",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "ARAR",
+        "entry": 4
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x7930e",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DAZA",
+        "entry": 0
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x7939a",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DHQB",
+        "entry": 0
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x793c6",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DBHB",
+        "entry": 0
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x7940a",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DSKI",
+        "entry": 0
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x7944e",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DTKY",
+        "entry": 0
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x79492",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DKTY",
+        "entry": 0
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x794d6",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DCHA",
+        "entry": 0
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x7951a",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DBYO",
+        "entry": 0
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x7955e",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DJAZ",
+        "entry": 0
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x795a2",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DSBA",
+        "entry": 0
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x79636",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "TOKI",
+        "entry": 10
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x796d6",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "TOKI",
+        "entry": 1
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x79702",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DRSA",
+        "entry": 0
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x79746",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "TATQ",
+        "entry": 0
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x7978a",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DMAJ",
+        "entry": 0
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x797ce",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DPIZ",
+        "entry": 0
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x79812",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DRME",
+        "entry": 0
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x79856",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DSLI",
+        "entry": 0
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x7989a",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DRHT",
+        "entry": 0
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x798de",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DSUS",
+        "entry": 0
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x79922",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DURN",
+        "entry": 0
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x79966",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DYKZ",
+        "entry": 0
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x799aa",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DKPA",
+        "entry": 0
+      }
+    },
+    {
+      "coroutineCallFileOffset": "0x799ee",
+      "mode": 0,
+      "destination": {
+        "scene": 1,
+        "area": "DSLT",
+        "entry": 0
+      }
+    }
+  ],
+  "conditionalSelectors": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    24,
+    26,
+    28,
+    35
+  ],
+  "noBranchSelectors": [
+    0,
+    23,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64
+  ],
+  "nativeNonTransitionSelectors": [
+    {
+      "selector": 0,
+      "hasSelectorBranch": false,
+      "classification": "noSelectorBranch",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 99,
+        "model": "S1_D000_DR28_001.MT5",
+        "position": [
+          95.490257,
+          0.0724,
+          84.369667
+        ],
+        "rotationDegrees": [
+          0,
+          -24.99939,
+          0
+        ],
+        "usesInvisibleProxy": true
+      }
+    },
+    {
+      "selector": 1,
+      "hasSelectorBranch": true,
+      "classification": "selectorBranchWithoutTransitionCoroutineCall",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 79,
+        "model": "S1_D000_DR15_011.MT5",
+        "position": [
+          40.704201,
+          0.0724,
+          74.147003
+        ],
+        "rotationDegrees": [
+          0,
+          -16.199341,
+          0
+        ],
+        "usesInvisibleProxy": true
+      }
+    },
+    {
+      "selector": 2,
+      "hasSelectorBranch": true,
+      "classification": "selectorBranchWithoutTransitionCoroutineCall",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 90,
+        "model": "S1_D000_DR13_007.MT5",
+        "position": [
+          97.059059,
+          0.0734,
+          61.789459
+        ],
+        "rotationDegrees": [
+          0,
+          -24.99939,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 3,
+      "hasSelectorBranch": true,
+      "classification": "selectorBranchWithoutTransitionCoroutineCall",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 40,
+        "model": "S1_D000_DR01_018.MT5",
+        "position": [
+          31.00709,
+          0.0724,
+          90.011246
+        ],
+        "rotationDegrees": [
+          0,
+          89.994507,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 4,
+      "hasSelectorBranch": true,
+      "classification": "selectorBranchWithoutTransitionCoroutineCall",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 60,
+        "model": "S1_D000_DR01_018.MT5",
+        "position": [
+          31.00709,
+          2.7724,
+          90.011246
+        ],
+        "rotationDegrees": [
+          0,
+          89.994507,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 5,
+      "hasSelectorBranch": true,
+      "classification": "selectorBranchWithoutTransitionCoroutineCall",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 62,
+        "model": "S1_D000_DR01_018.MT5",
+        "position": [
+          31.00709,
+          2.7724,
+          85.511566
+        ],
+        "rotationDegrees": [
+          0,
+          89.994507,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 6,
+      "hasSelectorBranch": true,
+      "classification": "selectorBranchWithoutTransitionCoroutineCall",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 64,
+        "model": "S1_D000_DR01_006.MT5",
+        "position": [
+          31.00709,
+          0.0724,
+          85.511566
+        ],
+        "rotationDegrees": [
+          0,
+          89.994507,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 7,
+      "hasSelectorBranch": true,
+      "classification": "selectorBranchWithoutTransitionCoroutineCall",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 66,
+        "model": "S1_D000_DR01_018.MT5",
+        "position": [
+          9.383801,
+          0.0724,
+          69.625267
+        ],
+        "rotationDegrees": [
+          0,
+          23.197632,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 8,
+      "hasSelectorBranch": true,
+      "classification": "selectorBranchWithoutTransitionCoroutineCall",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 68,
+        "model": "S1_D000_DR01_018.MT5",
+        "position": [
+          9.383801,
+          2.7724,
+          69.625267
+        ],
+        "rotationDegrees": [
+          0,
+          23.197632,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 9,
+      "hasSelectorBranch": true,
+      "classification": "selectorBranchWithoutTransitionCoroutineCall",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 70,
+        "model": "S1_D000_DR01_018.MT5",
+        "position": [
+          5.247641,
+          2.7724,
+          71.39801
+        ],
+        "rotationDegrees": [
+          0,
+          23.197632,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 10,
+      "hasSelectorBranch": true,
+      "classification": "selectorBranchWithoutTransitionCoroutineCall",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 72,
+        "model": "S1_D000_DR01_006.MT5",
+        "position": [
+          5.247641,
+          0.0724,
+          71.39801
+        ],
+        "rotationDegrees": [
+          0,
+          23.197632,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 11,
+      "hasSelectorBranch": true,
+      "classification": "selectorBranchWithoutTransitionCoroutineCall",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 74,
+        "model": "S1_D000_DR01_006.MT5",
+        "position": [
+          51.747093,
+          0.0724,
+          92.310478
+        ],
+        "rotationDegrees": [
+          0,
+          62.797852,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 12,
+      "hasSelectorBranch": true,
+      "classification": "selectorBranchWithoutTransitionCoroutineCall",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 42,
+        "model": "S1_D000_DR01_018.MT5",
+        "position": [
+          51.747093,
+          2.7724,
+          92.310478
+        ],
+        "rotationDegrees": [
+          0,
+          62.797852,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 13,
+      "hasSelectorBranch": true,
+      "classification": "selectorBranchWithoutTransitionCoroutineCall",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 44,
+        "model": "S1_D000_DR01_018.MT5",
+        "position": [
+          49.690144,
+          0.0724,
+          96.312889
+        ],
+        "rotationDegrees": [
+          0,
+          62.797852,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 14,
+      "hasSelectorBranch": true,
+      "classification": "selectorBranchWithoutTransitionCoroutineCall",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 46,
+        "model": "S1_D000_DR01_018.MT5",
+        "position": [
+          49.690144,
+          2.7724,
+          96.312889
+        ],
+        "rotationDegrees": [
+          0,
+          62.797852,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 15,
+      "hasSelectorBranch": true,
+      "classification": "selectorBranchWithoutTransitionCoroutineCall",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 48,
+        "model": "S1_D000_DR01_006.MT5",
+        "position": [
+          47.633221,
+          0.0724,
+          100.315262
+        ],
+        "rotationDegrees": [
+          0,
+          62.797852,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 16,
+      "hasSelectorBranch": true,
+      "classification": "selectorBranchWithoutTransitionCoroutineCall",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 50,
+        "model": "S1_D000_DR01_006.MT5",
+        "position": [
+          47.633221,
+          2.7724,
+          100.315262
+        ],
+        "rotationDegrees": [
+          0,
+          62.797852,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 17,
+      "hasSelectorBranch": true,
+      "classification": "selectorBranchWithoutTransitionCoroutineCall",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 86,
+        "model": "S1_D000_DR01_006.MT5",
+        "position": [
+          -42.01281,
+          5.2474,
+          89.753197
+        ],
+        "rotationDegrees": [
+          0,
+          137.999268,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 18,
+      "hasSelectorBranch": true,
+      "classification": "selectorBranchWithoutTransitionCoroutineCall",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 52,
+        "model": "S1_D000_DR01_006.MT5",
+        "position": [
+          3.060143,
+          0.0724,
+          92.632942
+        ],
+        "rotationDegrees": [
+          0,
+          128.397217,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 19,
+      "hasSelectorBranch": true,
+      "classification": "selectorBranchWithoutTransitionCoroutineCall",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 54,
+        "model": "S1_D000_DR01_018.MT5",
+        "position": [
+          3.060143,
+          2.7724,
+          92.632942
+        ],
+        "rotationDegrees": [
+          0,
+          128.397217,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 20,
+      "hasSelectorBranch": true,
+      "classification": "selectorBranchWithoutTransitionCoroutineCall",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 80,
+        "model": "S1_D000_DR01_018.MT5",
+        "position": [
+          -42.01281,
+          7.9474,
+          89.753197
+        ],
+        "rotationDegrees": [
+          0,
+          137.999268,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 21,
+      "hasSelectorBranch": true,
+      "classification": "selectorBranchWithoutTransitionCoroutineCall",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 56,
+        "model": "S1_D000_DR01_018.MT5",
+        "position": [
+          5.855344,
+          0.0724,
+          96.15963
+        ],
+        "rotationDegrees": [
+          0,
+          128.397217,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 22,
+      "hasSelectorBranch": true,
+      "classification": "selectorBranchWithoutTransitionCoroutineCall",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 84,
+        "model": "S1_D000_DR01_018.MT5",
+        "position": [
+          -38.668617,
+          5.2474,
+          92.764336
+        ],
+        "rotationDegrees": [
+          0,
+          137.999268,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 23,
+      "hasSelectorBranch": false,
+      "classification": "noSelectorBranch",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 58,
+        "model": "S1_D000_DR01_018.MT5",
+        "position": [
+          5.855344,
+          2.7724,
+          96.15963
+        ],
+        "rotationDegrees": [
+          0,
+          128.397217,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 24,
+      "hasSelectorBranch": true,
+      "classification": "selectorBranchWithoutTransitionCoroutineCall",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 82,
+        "model": "S1_D000_DR01_018.MT5",
+        "position": [
+          -38.668617,
+          7.9474,
+          92.764336
+        ],
+        "rotationDegrees": [
+          0,
+          137.999268,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 46,
+      "hasSelectorBranch": false,
+      "classification": "noSelectorBranch",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 14,
+        "model": "S1_D000_DR01_007.MT5",
+        "position": [
+          99.812103,
+          2.7724,
+          99.813797
+        ],
+        "rotationDegrees": [
+          0,
+          127.996216,
+          0
+        ],
+        "usesInvisibleProxy": true
+      }
+    },
+    {
+      "selector": 47,
+      "hasSelectorBranch": false,
+      "classification": "noSelectorBranch",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 11,
+        "model": "S1_D000_DR01_006.MT5",
+        "position": [
+          99.812065,
+          0.0724,
+          99.813805
+        ],
+        "rotationDegrees": [
+          0,
+          127.996216,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 48,
+      "hasSelectorBranch": false,
+      "classification": "noSelectorBranch",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 29,
+        "model": "S1_D000_DR13_009.MT5",
+        "position": [
+          -6.338201,
+          0.0724,
+          25.809999
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 49,
+      "hasSelectorBranch": false,
+      "classification": "noSelectorBranch",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 109,
+        "model": "S1_D000_DR01_009.MT5",
+        "position": [
+          123.658234,
+          0.072396,
+          96.484764
+        ],
+        "rotationDegrees": [
+          0,
+          -101.694946,
+          0
+        ],
+        "usesInvisibleProxy": true
+      }
+    },
+    {
+      "selector": 50,
+      "hasSelectorBranch": false,
+      "classification": "noSelectorBranch",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 110,
+        "model": "S1_D000_DR15_012.MT5",
+        "position": [
+          111.496483,
+          0.072392,
+          103.089706
+        ],
+        "rotationDegrees": [
+          0,
+          -156.494751,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 51,
+      "hasSelectorBranch": false,
+      "classification": "noSelectorBranch",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 102,
+        "model": "S1_D000_DR02_019.MT5",
+        "position": [
+          -7.3624,
+          0.072396,
+          84.918999
+        ],
+        "rotationDegrees": [
+          0,
+          38.397217,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 52,
+      "hasSelectorBranch": false,
+      "classification": "noSelectorBranch",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 118,
+        "model": "S1_D000_DR05_001.MT5",
+        "position": [
+          36.584099,
+          0.0724,
+          35.1745
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 53,
+      "hasSelectorBranch": false,
+      "classification": "noSelectorBranch",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 0,
+        "model": "S1_D000_DR01_011.MT5",
+        "position": [
+          122.646652,
+          0.0724,
+          82.192696
+        ],
+        "rotationDegrees": [
+          0,
+          -51.59729,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 54,
+      "hasSelectorBranch": false,
+      "classification": "noSelectorBranch",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 112,
+        "model": "S1_D000_DR02_017.MT5",
+        "position": [
+          124.66507,
+          0.072396,
+          88.421341
+        ],
+        "rotationDegrees": [
+          0,
+          -101.694946,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 55,
+      "hasSelectorBranch": false,
+      "classification": "noSelectorBranch",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 96,
+        "model": "S1_D000_DR15_014.MT5",
+        "position": [
+          -20.368959,
+          0.082879,
+          49.165401
+        ],
+        "rotationDegrees": [
+          0,
+          89.994507,
+          0
+        ],
+        "usesInvisibleProxy": true
+      }
+    },
+    {
+      "selector": 56,
+      "hasSelectorBranch": false,
+      "classification": "noSelectorBranch",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 101,
+        "model": "S1_D000_DR15_010.MT5",
+        "position": [
+          63.242298,
+          0.0827,
+          66.408501
+        ],
+        "rotationDegrees": [
+          0,
+          90,
+          0
+        ],
+        "usesInvisibleProxy": true
+      }
+    },
+    {
+      "selector": 57,
+      "hasSelectorBranch": false,
+      "classification": "noSelectorBranch",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 26,
+        "model": "S1_D000_DR01_010.MT5",
+        "position": [
+          -38.998093,
+          0.0724,
+          8.073762
+        ],
+        "rotationDegrees": [
+          0,
+          117.196655,
+          0
+        ],
+        "usesInvisibleProxy": true
+      }
+    },
+    {
+      "selector": 58,
+      "hasSelectorBranch": false,
+      "classification": "noSelectorBranch",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 27,
+        "model": "S1_D000_DR02_018.MT5",
+        "position": [
+          -23.00841,
+          0.0724,
+          23.001627
+        ],
+        "rotationDegrees": [
+          0,
+          -62.797852,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    },
+    {
+      "selector": 59,
+      "hasSelectorBranch": false,
+      "classification": "noSelectorBranch",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 115,
+        "model": "S1_D000_DR02_015.MT5",
+        "position": [
+          53.391666,
+          0.072396,
+          80.616402
+        ],
+        "rotationDegrees": [
+          0,
+          -28.097534,
+          0
+        ],
+        "usesInvisibleProxy": true
+      }
+    },
+    {
+      "selector": 60,
+      "hasSelectorBranch": false,
+      "classification": "noSelectorBranch",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 39,
+        "model": "S1_D000_DR13_012.MT5",
+        "position": [
+          20.708447,
+          0.0724,
+          33.008385
+        ],
+        "rotationDegrees": [
+          0,
+          -39.094849,
+          0
+        ],
+        "usesInvisibleProxy": true
+      }
+    },
+    {
+      "selector": 61,
+      "hasSelectorBranch": false,
+      "classification": "noSelectorBranch",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 105,
+        "model": "S1_D000_DR02_020.MT5",
+        "position": [
+          18.435373,
+          0.072397,
+          72.516792
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "usesInvisibleProxy": true
+      }
+    },
+    {
+      "selector": 62,
+      "hasSelectorBranch": false,
+      "classification": "noSelectorBranch",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 24,
+        "model": "S1_D000_DR15_009.MT5",
+        "position": [
+          74.390099,
+          0.2505,
+          68.947693
+        ],
+        "rotationDegrees": [
+          0,
+          180,
+          0
+        ],
+        "usesInvisibleProxy": true
+      }
+    },
+    {
+      "selector": 63,
+      "hasSelectorBranch": false,
+      "classification": "noSelectorBranch",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 89,
+        "model": "S1_D000_DR02_017.MT5",
+        "position": [
+          105.671112,
+          0.0724,
+          92.682182
+        ],
+        "rotationDegrees": [
+          0,
+          -51.59729,
+          0
+        ],
+        "usesInvisibleProxy": true
+      }
+    },
+    {
+      "selector": 64,
+      "hasSelectorBranch": false,
+      "classification": "noSelectorBranch",
+      "sourceDoor": {
+        "visibleStaticDoorIndex": 28,
+        "model": "S1_D000_DR17_002.MT5",
+        "position": [
+          -22.358902,
+          0.0724,
+          32.833599
+        ],
+        "rotationDegrees": [
+          0,
+          180,
+          0
+        ],
+        "usesInvisibleProxy": false
+      }
+    }
+  ],
+  "unresolvedInteractionSelectors": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64
+  ],
+  "evidenceBoundary": "Only immediate selector-equality branches with a literal entry/area/scene tuple and a verified call to 0x7ee88 are classified as direct. Conditional routes are emitted only when the complete native flag/time/operation branch is verified. All 29 calls to the shared transition coroutine are assigned to one of the 21 transition selectors. The other 44 selectors therefore have no warp edge in this dispatcher; their dialogue, denial, locked, or other interaction behavior remains unresolved."
+}

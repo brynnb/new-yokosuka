@@ -1,0 +1,187 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/build_kakg_activity_pack.mjs",
+  "source": {
+    "disc": 1,
+    "path": "extracted_files/data/SCENE/01/JHD0/KAKG.PKS",
+    "sha256": "a8949fed9faa0f0825e43361fc6ece41ebecd411fae21d4e88235008d4d64411",
+    "archiveFormat": "PAKS/IPAC",
+    "members": [
+      {
+        "name": "M_01CRY.MOTN",
+        "byteLength": 43608,
+        "sha256": "3077421e17ccc70225034c4f0fd26bad128566c81aa5e5b3fe722b466a1c3f1f"
+      },
+      {
+        "name": "M_01JAN.MOTN",
+        "byteLength": 213128,
+        "sha256": "4a699bb9955e9cebc60ac2f9efdd6a07f7ddebb25cd435693472024e2525435b"
+      },
+      {
+        "name": "M_01KAK.MOTN",
+        "byteLength": 50412,
+        "sha256": "9055626984e2ee42e446b2da9edc7549cfa8f336eb2770136ba11be54c1575fc"
+      },
+      {
+        "name": "SEQDATK0.AUTH",
+        "byteLength": 1336,
+        "sha256": "c3a4b7d716d6fc8999a4edf50e3e7c0144a14baa0a85327a9680c7a7fdec4efe"
+      },
+      {
+        "name": "SEQDATK1.AUTH",
+        "byteLength": 796,
+        "sha256": "f4e3594b09103c781e50049a75316d1a33e43a216ae5bf6e314d2d9990dcf527"
+      },
+      {
+        "name": "SEQDATK2.AUTH",
+        "byteLength": 19292,
+        "sha256": "5b42a5329495c02803ac6e0cec1054921048088c47ed45f9efb1e0b046066267"
+      },
+      {
+        "name": "SEQDATK3.AUTH",
+        "byteLength": 6120,
+        "sha256": "180c36d23dd813d7b9e2dec39b13169c001a0ae8e754b45368b698eeae859034"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "tools/evidence/kakg-native-lifecycle.json",
+    "resourceName": "KAKG",
+    "variant": "",
+    "selectionRule": "zero-based AUTH-extension ordinal selected by operation-0x013e slot"
+  },
+  "audioManifest": "package-level audioBySlot maps conversational activities to exact independent streams and banks",
+  "motionBanks": [
+    {
+      "bank": 32,
+      "path": "play/assets/hazuki/kakg/M_01KAK.MOTN",
+      "byteLength": 50412,
+      "sha256": "9055626984e2ee42e446b2da9edc7549cfa8f336eb2770136ba11be54c1575fc"
+    },
+    {
+      "bank": 48,
+      "path": "play/assets/hazuki/kakg/M_01CRY.MOTN",
+      "byteLength": 43608,
+      "sha256": "3077421e17ccc70225034c4f0fd26bad128566c81aa5e5b3fe722b466a1c3f1f"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/hazuki/kakg/M_01KAK.MOTN",
+      "byteLength": 50412,
+      "sha256": "9055626984e2ee42e446b2da9edc7549cfa8f336eb2770136ba11be54c1575fc"
+    },
+    {
+      "path": "play/assets/hazuki/kakg/M_01CRY.MOTN",
+      "byteLength": 43608,
+      "sha256": "3077421e17ccc70225034c4f0fd26bad128566c81aa5e5b3fe722b466a1c3f1f"
+    },
+    {
+      "path": "play/assets/hazuki/kakg/SEQDATK2.AUTH",
+      "byteLength": 19292,
+      "sha256": "5b42a5329495c02803ac6e0cec1054921048088c47ed45f9efb1e0b046066267"
+    },
+    {
+      "path": "play/assets/hazuki/kakg/SEQDATK3.AUTH",
+      "byteLength": 6120,
+      "sha256": "180c36d23dd813d7b9e2dec39b13169c001a0ae8e754b45368b698eeae859034"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 2,
+      "primaryPointer": 389479,
+      "secondaryPointer": 389484,
+      "activityId": "KAKG/SEQDATK2.AUTH",
+      "archiveMember": "SEQDATK2.AUTH",
+      "byteLength": 19292,
+      "sha256": "5b42a5329495c02803ac6e0cec1054921048088c47ed45f9efb1e0b046066267",
+      "durationFrames": 2000,
+      "durationSeconds": 66.68333435058594,
+      "frameCount": 43,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 3,
+        "voice": 22,
+        "sound": 20
+      },
+      "actors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 32,
+          "sequenceIndex": 2,
+          "motionName": "AKI_AT3_NEJIRU_UDE_CHASEYUKAWA_0100",
+          "startFrame": 660,
+          "endFrame": 939
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 1,
+          "motionBank": 32,
+          "sequenceIndex": 1,
+          "motionName": "IWA_FUK_AT1_KAKUGO_DEKITEIRU0_0100",
+          "startFrame": 1,
+          "endFrame": 1963
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 281,
+          "motionBank": 32,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_KAKUGO_DEKITEIRU_0100",
+          "startFrame": 281,
+          "endFrame": 1876
+        }
+      ]
+    },
+    {
+      "slot": 3,
+      "primaryPointer": 389485,
+      "secondaryPointer": 389490,
+      "activityId": "KAKG/SEQDATK3.AUTH",
+      "archiveMember": "SEQDATK3.AUTH",
+      "byteLength": 6120,
+      "sha256": "180c36d23dd813d7b9e2dec39b13169c001a0ae8e754b45368b698eeae859034",
+      "durationFrames": 1031,
+      "durationSeconds": 34.38333511352539,
+      "frameCount": 22,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 2,
+        "sound": 12,
+        "voice": 9
+      },
+      "actors": [
+        "AKIR",
+        "INE_"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 48,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT2_INE_KETUISURU_0100",
+          "startFrame": 40,
+          "endFrame": 1071
+        },
+        {
+          "actorTag": "INE_",
+          "frame": 1,
+          "motionBank": 48,
+          "sequenceIndex": 2,
+          "motionName": "JIJ_INE_AT2_INE_KETUISURU_0100",
+          "startFrame": 100,
+          "endFrame": 1117
+        }
+      ]
+    }
+  ]
+}

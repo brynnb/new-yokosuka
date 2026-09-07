@@ -1,0 +1,67 @@
+{
+  "schema": "new-yokosuka-refb-value-operation-evidence-v1",
+  "status": "exact-native-record-write-contract-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 363,
+    "operationHex": "0x016b",
+    "handlerAddress": "0x0c1600aa",
+    "handlerLength": 26,
+    "handlerSha256": "0ef5bd8de656cabd232ff6f130df6370f61e2fa917413900a6290541337a365e",
+    "nativeContract": {
+      "objectResolver": "0x0c153956",
+      "recordWriter": "0x0c1444ac",
+      "recordTag": "REFB",
+      "recordLookup": "0x0c0aad5a"
+    },
+    "recordTag": "REFB",
+    "valueDwordOffset": "record+0x14",
+    "zeroClearDwordOffset": "record+0x18",
+    "stateDwordOffset": "record+0x24",
+    "stateDwordValue": 1,
+    "provenBehavior": "Resolves argument zero, obtains its associated REFB record, writes argument one unchanged to dword +0x14, and writes one to dword +0x24. When argument one is zero, it also writes zero to dword +0x18."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 1326,
+    "provenCallCount": 1324,
+    "unresolvedMalformedCallCount": 2,
+    "dialogueRegionCallCount": 138,
+    "areaCount": 53,
+    "argumentCountCounts": {
+      "0": 2,
+      "2": 1324
+    },
+    "objectArgumentKindCounts": {
+      "constant": 1124,
+      "frame-field": 114,
+      "runtime": 5,
+      "scene-field": 81
+    },
+    "valueArgumentKindCounts": {
+      "constant": 1323,
+      "frame-field": 1
+    },
+    "constantValueCounts": {
+      "0": 158,
+      "1": 736,
+      "2": 427,
+      "3": 2
+    },
+    "dialogueRegionConstantValueCounts": {
+      "0": 21,
+      "1": 68,
+      "2": 49
+    }
+  },
+  "evidenceBoundary": [
+    "REFB is retained only as the executable's exact associated-record tag.",
+    "The gameplay meanings of the three numeric record fields remain unnamed.",
+    "The two authored zero-argument calls are malformed for this handler and remain unresolved.",
+    "A missing object or REFB record is a native no-op, not an inferred error."
+  ]
+}

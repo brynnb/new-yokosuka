@@ -1,0 +1,65 @@
+{
+  "schema": "new-yokosuka-reviewed-actor-labels-v1",
+  "description": "Readable actor labels reviewed from project runtime mappings or an explicitly cited secondary character reference and corroborated by extracted subtitle speaker labels. These are evidence-backed project mappings, but their full expansions are not stored verbatim in the extracted actor resource.",
+  "entries": [
+    {
+      "actorCode": "HARY",
+      "label": "Harry Thompson",
+      "confidence": "high",
+      "labelProvenance": "project-reviewed",
+      "sourceSpeakerLabel": "ハリー",
+      "evidence": [
+        "play/dialogue/NativeDialogueSpeaker.js",
+        "play/data/dialogue/messages/HARY.generated.js"
+      ]
+    },
+    {
+      "actorCode": "IZAW",
+      "label": "Midori Aizawa",
+      "confidence": "medium",
+      "labelProvenance": "project-reviewed",
+      "sourceSpeakerLabel": "碧",
+      "evidence": [
+        "play/data/dialogue/messages/IZAW.generated.js",
+        "tools/evidence/dialogue-actor-resources.json"
+      ],
+      "externalEvidence": [
+        "https://shenmue.fandom.com/wiki/Midori_Aizawa"
+      ],
+      "notes": "The actor resource is IZAW, its message speaker code is IZWA, and the extracted Japanese speaker label is 碧. The full name comes from a secondary character reference, so this remains medium confidence."
+    },
+    {
+      "actorCode": "JONZ",
+      "label": "Jones Henders",
+      "confidence": "high",
+      "labelProvenance": "project-reviewed",
+      "sourceSpeakerLabel": "ジョーンズ",
+      "evidence": [
+        "play/dialogue/NativeDialogueSpeaker.js",
+        "play/data/dialogue/messages/JONZ.generated.js"
+      ]
+    },
+    {
+      "actorCode": "RBRT",
+      "label": "Robert Wells",
+      "confidence": "high",
+      "labelProvenance": "project-reviewed",
+      "sourceSpeakerLabel": "ロバート",
+      "evidence": [
+        "play/dialogue/NativeDialogueSpeaker.js",
+        "play/data/dialogue/messages/RBRT.generated.js"
+      ]
+    },
+    {
+      "actorCode": "SERA",
+      "label": "Takeshi Sera",
+      "confidence": "high",
+      "labelProvenance": "project-reviewed",
+      "sourceSpeakerLabel": "世良",
+      "evidence": [
+        "play/dialogue/NativeDialogueSpeaker.js",
+        "play/data/dialogue/messages/SERA.generated.js"
+      ]
+    }
+  ]
+}

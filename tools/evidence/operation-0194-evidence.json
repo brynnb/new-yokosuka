@@ -1,0 +1,88 @@
+{
+  "schema": "new-yokosuka-operation-0194-evidence-v1",
+  "status": "exact-native-routes-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 404,
+    "operationHex": "0x0194",
+    "handlerAddress": "0x0c16383e",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c16383e",
+        "length": 74,
+        "sha256": "eed294b73945c38ed1f683619787ed8e471f09dd3e71a6618ed00119deb1d8f2"
+      }
+    },
+    "nativeContract": {
+      "handlerTableEntry": "0x0c16383e",
+      "modeZeroHelper": "0x0c0f2dc0",
+      "modeOneHelper": "0x0c0f2de4",
+      "modeTwoHelper": "0x0c0f2e30",
+      "resultWriter": "0x0c0bb342"
+    },
+    "routes": [
+      {
+        "mode": 0,
+        "argumentCount": 2,
+        "forwardedArguments": [
+          1
+        ],
+        "behavior": "Pass argument one to helper 0x0c0f2dc0."
+      },
+      {
+        "mode": 1,
+        "argumentCount": 2,
+        "forwardedArguments": [],
+        "behavior": "Call helper 0x0c0f2de4; argument one is ignored."
+      },
+      {
+        "mode": 2,
+        "argumentCount": 2,
+        "forwardedArguments": [],
+        "behavior": "Call helper 0x0c0f2e30 and return its low byte; argument one is ignored."
+      }
+    ]
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 112,
+    "provenCallCount": 112,
+    "dialogueRegionCallCount": 28,
+    "areaCount": 14,
+    "modeCounts": {
+      "0": 20,
+      "1": 22,
+      "2": 70
+    },
+    "dialogueModeCounts": {
+      "0": 3,
+      "1": 11,
+      "2": 14
+    },
+    "argumentKindCounts": {
+      "0": {
+        "constant": 112
+      },
+      "1": {
+        "constant": 112
+      }
+    },
+    "argumentOneValueCounts": {
+      "0": 112
+    },
+    "resultComparisonCountsByMode": {
+      "2": 20
+    },
+    "resultTargetCount": 0
+  },
+  "evidenceBoundary": [
+    "Only exact two-argument calls with constant modes zero, one, or two and constant-zero argument one receive this semantic.",
+    "The three helper calls and the mode-two low-byte result are executable-proven.",
+    "The helpers' gameplay-domain meaning remains unknown and each remains a mandatory injected adapter.",
+    "No semantics are assigned to unobserved mode values."
+  ]
+}

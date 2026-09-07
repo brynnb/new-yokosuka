@@ -1,0 +1,106 @@
+{
+  "schema": "new-yokosuka-mksg-warehouse-door-transitions-v1",
+  "nativeEdges": [
+    {
+      "source": "MKSG",
+      "destination": {
+        "scene": 2,
+        "area": "MS08",
+        "entry": 0
+      },
+      "callFileOffset": "0x24402",
+      "confidence": "exact-static-dispatch"
+    },
+    {
+      "source": "MKSG",
+      "destination": {
+        "scene": 2,
+        "area": "MFSY",
+        "entry": 1
+      },
+      "callFileOffset": "0x247d6",
+      "confidence": "exact-static-dispatch"
+    }
+  ],
+  "physicalDoorAssociations": [
+    {
+      "objectTag": "dor3",
+      "runtimeDoorIndex": 3,
+      "browserPosition": [
+        22.500490188598633,
+        0,
+        -61.69995880126953
+      ],
+      "role": "Old Warehouse No. 8 entrance",
+      "confidence": "map-topology",
+      "note": "The native dispatch proves the MS08 edge; the door association comes from the authored district topology, not a captured click."
+    },
+    {
+      "objectTag": "dor8",
+      "runtimeDoorIndex": 8,
+      "browserPosition": [
+        66.60260009765625,
+        0,
+        -4.110569953918457
+      ],
+      "role": "compound exit to New Yokosuka Harbor",
+      "confidence": "map-topology",
+      "note": "The native dispatch proves the MFSY edge; the door association comes from the compound entrance topology, not a captured click."
+    }
+  ],
+  "destinationSpawns": [
+    {
+      "area": "MS08",
+      "entry": 0,
+      "capture": "captures/pvr/20260724-173621-frame-793/ram.bin",
+      "taskAddress": "0x8c4a1200",
+      "nativePosition": [
+        -26.5,
+        0,
+        -2.299999952316284
+      ],
+      "nativeYawDegrees": -50.0042724609375,
+      "browserPosition": [
+        26.5,
+        0,
+        -2.299999952316284
+      ],
+      "browserYawDegrees": 50.0042724609375
+    },
+    {
+      "area": "MFSY",
+      "entry": 1,
+      "capture": "captures/pvr/20260724-173916-frame-967/ram.bin",
+      "taskAddress": "0x8c525240",
+      "nativePosition": [
+        -118,
+        0,
+        -12
+      ],
+      "nativeYawDegrees": -90,
+      "browserPosition": [
+        118,
+        0,
+        -12
+      ],
+      "browserYawDegrees": 90
+    }
+  ],
+  "ms08Door": {
+    "mapInfo": ".disc-work/mapinfo/disc2/SCENE/02/MS08/MAPINFO.BIN",
+    "recordFileOffset": "0x2b0bc",
+    "model": "S2_MS08_DR02_021.MT5",
+    "nativePosition": [
+      -27.059999465942383,
+      0,
+      -1.7999999523162842
+    ],
+    "nativeYawDegrees": -90,
+    "browserPosition": [
+      27.059999465942383,
+      0,
+      -1.7999999523162842
+    ],
+    "browserYawDegrees": 90
+  }
+}

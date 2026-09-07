@@ -1,0 +1,1456 @@
+{
+  "schema": "new-yokosuka-dialogue-predicate-values-v6",
+  "evidenceBoundary": [
+    "Value families and comparison directions come from the exact native evaluator and SHA-256-verified callees.",
+    "The three persistent state banks have exact runtime addresses, zero-reset behavior, and native-save offsets; they retain their numeric bank names because story meanings for individual indexes are not invented.",
+    "Runtime component modes 0 through 5 are proven by the native seven-byte calendar update, setter, copier, and Gregorian weekday routines.",
+    "Runtime component mode 6 is persistent yen: the same selector 2 is read and written by native script operations 0x005f/0x0060, and the vending and capsule-toy payment paths subtract their authored yen prices through it.",
+    "Actor-runtime type 5 uses zero for the current conversation actor and nonzero values as indexes into the verified 301-entry actor identity table, then returns that resident actor's field +0x90.",
+    "Scheduled-actor descriptor operation 0x0f is the exact producer of actor field +0x90. Its numeric values remain unlabeled unless a script consumer proves their meaning.",
+    "Native spatial type 6 indexes an exact executable-resident table of thirteen map-scoped X/Z circles; the browser X coordinate is the native X coordinate negated."
+  ],
+  "executableEvidence": {
+    "filename": "1ST_READ.BIN",
+    "runtimeBase": "0xc010000",
+    "sha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "verifiedCodeRanges": {
+      "typedValueResolver": {
+        "runtimeAddress": "0xc15aef8",
+        "size": 76,
+        "sha256": "54f703003755706a8e17903adaa9ce5145e1c248d8d7f1ecf7af8d550368b49b"
+      },
+      "typedValueWriter": {
+        "runtimeAddress": "0xc15af44",
+        "size": 60,
+        "sha256": "8f24e255c1e6f2447d06da1861b72d938c8561b99db2a9682e7479dcc68ce613"
+      },
+      "expressionEvaluator": {
+        "runtimeAddress": "0xc15b10a",
+        "size": 710,
+        "sha256": "12e31bbda3001f111cb51c23d9b17d70aa1092b0cbbf35f717b75cfa36b41dea"
+      },
+      "stateBank2Reader": {
+        "runtimeAddress": "0xc15904c",
+        "size": 42,
+        "sha256": "1aec062881857a6158dadfe122029a307288f03768b476c7b1fb0a2891a2c6ab"
+      },
+      "stateBank2Writer": {
+        "runtimeAddress": "0xc159076",
+        "size": 94,
+        "sha256": "00516eb248046efc8f92b56d381aa795932aa1ea49c5f853b5ddea037d0f1689"
+      },
+      "stateBank3Reader": {
+        "runtimeAddress": "0xc1590f4",
+        "size": 42,
+        "sha256": "33eb14252c100b7b0548f037430a7583998b652cae9b7e8528c67d2c485c77b3"
+      },
+      "stateBank3Writer": {
+        "runtimeAddress": "0xc15911e",
+        "size": 54,
+        "sha256": "d77299812de8e11920ee71c39f97823647f3e70599f251396366e0a67b68122c"
+      },
+      "stateBank4Reader": {
+        "runtimeAddress": "0xc159154",
+        "size": 20,
+        "sha256": "b08dba4319a15bfe57cab9b118ef11e9ab1444dd710f3b8b4d91d9ac069ae021"
+      },
+      "stateBank4Writer": {
+        "runtimeAddress": "0xc159168",
+        "size": 14,
+        "sha256": "69aa304806c16285f3ff74fdeb74f641a89eb6d4a0cbcfb0cd80f5100e597dbf"
+      },
+      "runtimeComponentReader": {
+        "runtimeAddress": "0xc15aff0",
+        "size": 120,
+        "sha256": "d242425b6116835d225b32dc1c26ad344a187ed4df494be55c262da9a5dcaefa"
+      },
+      "persistentValueReader": {
+        "runtimeAddress": "0xc1513cc",
+        "size": 104,
+        "sha256": "6d49ae7c1f396f51a98781a271bd4df137d1b3eac63b42643c9ce9b2a547246c"
+      },
+      "persistentValueWriter": {
+        "runtimeAddress": "0xc151434",
+        "size": 102,
+        "sha256": "8f0363b8e3d62bc7d47c707bcfd634b1e66a70ce133981c6cccbe95218c7c78a"
+      },
+      "scriptPersistentValueReader": {
+        "runtimeAddress": "0xc16b5f6",
+        "size": 28,
+        "sha256": "39b5a6b0b987f4336c1c4f27f278d29e0d4abb26728ec9585bb37c887db56af4"
+      },
+      "scriptPersistentValueWriter": {
+        "runtimeAddress": "0xc16b612",
+        "size": 16,
+        "sha256": "c2c38a7269dffbdbfd0e61aff617655c38400d3fcbac5ea7fe1bdd2822391c96"
+      },
+      "dateTimeAdvance": {
+        "runtimeAddress": "0xc181fb4",
+        "size": 182,
+        "sha256": "ee3d79678ea1a026e2a307bf2bd0cc2cf7a87651e792f18733cf2da79dae70f4"
+      },
+      "dateTimeWeekday": {
+        "runtimeAddress": "0xc1820f8",
+        "size": 108,
+        "sha256": "237edef93c5619caea90cf01514c1fe45b0933183504ce6bd51cab9080f404d3"
+      },
+      "dateTimeSet": {
+        "runtimeAddress": "0xc182164",
+        "size": 74,
+        "sha256": "c2b774e49b5ac2e2eab48f47afb230a25c7a45094ecfefd2fa5c702cfd0bf19e"
+      },
+      "dateTimeCopy": {
+        "runtimeAddress": "0xc1821ae",
+        "size": 32,
+        "sha256": "47ca833037735cc1fe50e2d26cc57ab91ce2833004eeba5d1ef5e97201c5d717"
+      },
+      "actorRuntimeValueReader": {
+        "runtimeAddress": "0xc119888",
+        "size": 68,
+        "sha256": "dfc020b92e35f4163bb7b62cb918c58c190dd792e4c3e4418af49de3ae1d6128"
+      },
+      "actorRuntimeIdentityResolver": {
+        "runtimeAddress": "0xc15ae76",
+        "size": 116,
+        "sha256": "f90b3ebc01ca1da8a589dc90d3a96e18bf853d45741a8ae5b4371e00f818864e"
+      },
+      "actorRuntimeIdentityTable": {
+        "runtimeAddress": "0xc278d08",
+        "size": 1204,
+        "sha256": "5467cf1a4b2f244dcfd41162627c91e8061ac99d05e60ffc7e2576f27b933af3"
+      },
+      "scheduledActorRuntimeValueWriter": {
+        "runtimeAddress": "0xc119622",
+        "size": 14,
+        "sha256": "00764090cb32fd2c6c7fc380abb8978f21b66d77f06416321b172763eebebee8"
+      },
+      "nativeSpatialValueReader": {
+        "runtimeAddress": "0xc15b088",
+        "size": 130,
+        "sha256": "00a1d58b7947140bbe2a7e9ea10f16c3e87f31d29035228ddc60c0a4dbd34235"
+      },
+      "stateBankDescriptor": {
+        "runtimeAddress": "0xc158c72",
+        "size": 30,
+        "sha256": "ccf5a5260be1280a369690e5189652fc3baa3f48d42f0174d34705831f098338"
+      },
+      "stateBankReset": {
+        "runtimeAddress": "0xc159290",
+        "size": 66,
+        "sha256": "abcb370fbac075bca054e1207533975ac5b79146177139575bd95f571008d83e"
+      },
+      "stateBankSaveExport": {
+        "runtimeAddress": "0xc09c854",
+        "size": 54,
+        "sha256": "7a406aa6c789ff8d28f5a6a399455449caa2c0b3e79435836b2cc5000a5b6184"
+      },
+      "stateBankSaveImport": {
+        "runtimeAddress": "0xc09c8b4",
+        "size": 54,
+        "sha256": "d92f20e9f5c7e1847f25d8ed81d98e8f0a51cfc2554de6b330d3c627057c9769"
+      }
+    }
+  },
+  "archiveEvidence": {
+    "filename": "HUMANS.AFS",
+    "sha256": "c61b53f0784442505e491a2bba7dc8f608495922f69acfb253be8c10492570a7",
+    "byteLength": 64901120
+  },
+  "nativeStateBanks": {
+    "resetRoutine": "0xc159290",
+    "descriptorRoutine": "0xc158c72",
+    "saveExportRoutine": "0xc09c854",
+    "saveImportRoutine": "0xc09c8b4",
+    "defaultState": "all bytes zero",
+    "banks": [
+      {
+        "bank": 2,
+        "storage": "bitfield",
+        "runtimeAddress": "0xc223ef8",
+        "capacity": 1024,
+        "byteLength": 128,
+        "reader": "0xc15904c",
+        "writer": "0xc159076",
+        "initialValue": 0,
+        "resetRoutine": "0xc159290",
+        "saveOffset": 304,
+        "saveOffsetHex": "0x130"
+      },
+      {
+        "bank": 3,
+        "storage": "bitfield",
+        "runtimeAddress": "0xc223ef0",
+        "capacity": 64,
+        "byteLength": 8,
+        "reader": "0xc1590f4",
+        "writer": "0xc15911e",
+        "initialValue": 0,
+        "resetRoutine": "0xc159290",
+        "saveOffset": 296,
+        "saveOffsetHex": "0x128"
+      },
+      {
+        "bank": 4,
+        "storage": "byte array",
+        "runtimeAddress": "0xc223f78",
+        "capacity": 32,
+        "byteLength": 32,
+        "reader": "0xc159154",
+        "writer": "0xc159168",
+        "initialValue": 0,
+        "resetRoutine": "0xc159290",
+        "saveOffset": 560,
+        "saveOffsetHex": "0x230"
+      }
+    ]
+  },
+  "nativeValueTypes": [
+    {
+      "type": 1,
+      "encodedGroup": "0x60",
+      "source": "signed 12-bit literal",
+      "writable": false
+    },
+    {
+      "type": 2,
+      "encodedGroup": "0x00",
+      "source": "state bank 2 bit",
+      "capacity": 1024,
+      "writable": true,
+      "operation0051ReadSuboperation": 11,
+      "operation0051WriteSuboperation": 12
+    },
+    {
+      "type": 3,
+      "encodedGroup": "0x20",
+      "source": "state bank 3 bit",
+      "capacity": 64,
+      "writable": true,
+      "operation0051ReadSuboperation": 13,
+      "operation0051WriteSuboperation": 14
+    },
+    {
+      "type": 4,
+      "encodedGroup": "0x40",
+      "source": "state bank 4 byte",
+      "capacity": 32,
+      "writable": true,
+      "operation0051ReadSuboperation": 15,
+      "operation0051WriteSuboperation": 16,
+      "specialEncoding": "0xfff becomes literal -1"
+    },
+    {
+      "type": 1,
+      "encodedGroup": "0xa0",
+      "source": "runtime component mode",
+      "modes": {
+        "0": "year since 1900",
+        "1": "month, 1 through 12",
+        "2": "day of month, 1 through 31",
+        "3": "weekday, Sunday 0 through Saturday 6",
+        "4": "hour, 0 through 23",
+        "5": "minute, 0 through 59",
+        "6": "persistent yen balance"
+      },
+      "writable": false
+    },
+    {
+      "type": 5,
+      "encodedGroup": "0xc0",
+      "source": "current actor or fixed identity-table index resolved to resident actor runtime field +0x90",
+      "zeroIdentityRule": "use current conversation person's identity",
+      "nonzeroIdentityRule": "index the 301-entry table at 0x0c278d08",
+      "runtimeFieldProducer": "scheduled-actor descriptor operation 0x0f",
+      "writable": false
+    },
+    {
+      "type": 6,
+      "encodedGroup": "0xe0",
+      "source": "native indexed spatial comparison result",
+      "validIndexes": "1..13",
+      "writable": false
+    }
+  ],
+  "nativeCalendar": {
+    "runtimeAddress": "0xc225228",
+    "byteLength": 7,
+    "fields": [
+      {
+        "offset": 0,
+        "name": "yearSince1900"
+      },
+      {
+        "offset": 1,
+        "name": "month",
+        "range": "1..12"
+      },
+      {
+        "offset": 2,
+        "name": "dayOfMonth",
+        "range": "1..31"
+      },
+      {
+        "offset": 3,
+        "name": "weekday",
+        "range": "0..6",
+        "zeroValue": "Sunday"
+      },
+      {
+        "offset": 4,
+        "name": "hour",
+        "range": "0..23"
+      },
+      {
+        "offset": 5,
+        "name": "minute",
+        "range": "0..59"
+      },
+      {
+        "offset": 6,
+        "name": "subMinuteTick",
+        "predicateMode": null
+      }
+    ],
+    "weekdayFormula": "(day + floor((13 * adjustedMonth + 8) / 5) + adjustedYear + floor(adjustedYear / 4) - floor(adjustedYear / 100) + floor(adjustedYear / 400)) mod 7",
+    "weekdayAdjustment": "for January and February, add 12 to month and subtract 1 from year",
+    "yearBase": 1900
+  },
+  "nativeCurrency": {
+    "runtimeStructureAddress": "0xc220a20",
+    "runtimeStructureOffset": "0x18",
+    "persistentValueSelector": 2,
+    "scriptReadOperation": "0x005f",
+    "scriptWriteOperation": "0x0060",
+    "unit": "JPY",
+    "independentEvidence": [
+      "The native capsule-toy payment routine reads persistent selector 2, subtracts immediate 100, and writes selector 2.",
+      "The vending affordability and MONEY_LOCK paths independently use selector 2 as their balance."
+    ]
+  },
+  "nativeActorRuntimeValues": {
+    "identityTableAddress": "0xc278d08",
+    "identityTableCount": 301,
+    "zeroIdentityRule": "use current conversation actor identity",
+    "nonzeroIdentityRule": "use the encoded value as an index into fixedIdentities",
+    "runtimeFieldOffset": "0x90",
+    "runtimeFieldQuery": "0xc119888",
+    "runtimeFieldProducer": {
+      "descriptorOperation": "0xf",
+      "handler": "0xc119622",
+      "effect": "copy the descriptor dword at +4 to actor runtime +0x90"
+    },
+    "numericMeaningPolicy": "retain authored integer values until individual script consumers prove semantic labels",
+    "fixedIdentities": [
+      "AKIR",
+      "SORY",
+      "IWAO",
+      "JAKR",
+      "FUKU",
+      "INE_",
+      "KISY",
+      "TAIJ",
+      "CHAI",
+      "KURA",
+      "KURB",
+      "KAME",
+      "JIMY",
+      "TONY",
+      "SMTH",
+      "AKMI",
+      "YOKO",
+      "YUKK",
+      "SYZU",
+      "JUKY",
+      "OISI",
+      "NAMS",
+      "SETA",
+      "MTUK",
+      "HORS",
+      "SNKC",
+      "YOSE",
+      "MRIG",
+      "NITO",
+      "TSUC",
+      "HATO",
+      "ITOI",
+      "TURU",
+      "KURI",
+      "AOKI",
+      "MADA",
+      "ETKO",
+      "BUSS",
+      "TOM_",
+      "HIRA",
+      "HISA",
+      "YURI",
+      "NANS",
+      "HRKO",
+      "AKSK",
+      "MRUA",
+      "HOND",
+      "ONRR",
+      "TATM",
+      "KYUR",
+      "UNO_",
+      "KYOH",
+      "ASDA",
+      "YAMA",
+      "MISM",
+      "KOND",
+      "RNKT",
+      "NORK",
+      null,
+      "YNHS",
+      "KKBN",
+      "YOPA",
+      "CATM",
+      "KJIY",
+      null,
+      "EIIU",
+      "PEDR",
+      "PAUR",
+      "TOM1",
+      "KEBA",
+      "KEBB",
+      "KEBC",
+      "KEBD",
+      "STP1",
+      "SAGA",
+      "MSYU",
+      "RYBI",
+      "KYAS",
+      "SIIN",
+      "SKGK",
+      null,
+      "KIM_",
+      null,
+      "MIKM",
+      "NSMR",
+      "TKYM",
+      "MTUR",
+      "EDST",
+      "MYKN",
+      "TMNY",
+      "MYTY",
+      "HROT",
+      "KYKW",
+      "MWAK",
+      "MKII",
+      "HREO",
+      "SCKO",
+      "EIKK",
+      "KUKT",
+      "JOHN",
+      null,
+      "CMAL",
+      "SATM",
+      "BIKA",
+      "BIKB",
+      "TMMR",
+      "MEYS",
+      "TYHG",
+      "KJHS",
+      "TYMK",
+      null,
+      null,
+      "SIND",
+      "MASR",
+      "ONO_",
+      "MIKI",
+      "HATR",
+      null,
+      "YAMO",
+      "NOMR",
+      "MEGM",
+      "MAYM",
+      "YKDM",
+      "YOS1",
+      "YOS2",
+      "YOB1",
+      "YOB2",
+      "YJJI",
+      "YBBA",
+      "SUMI",
+      "KOMN",
+      "SAJO",
+      null,
+      "SKMT",
+      "KOTA",
+      "YASU",
+      "KAYO",
+      null,
+      null,
+      null,
+      null,
+      "TTYA",
+      "SOBA",
+      "ASOU",
+      "HINA",
+      "YSHY",
+      "MJNT",
+      null,
+      "KKEN",
+      "TKNB",
+      "TOSK",
+      "SERA",
+      "HMRO",
+      "BSJM",
+      "BOB_",
+      "FKSM",
+      "KJMA",
+      "NRSK",
+      "ASNO",
+      "NAKA",
+      "NMKI",
+      "YMGC",
+      "KOGA",
+      "TMRA",
+      "MITA",
+      "YAYI",
+      "HTSI",
+      "JOE_",
+      "SAKI",
+      "MIHO",
+      "ENDO",
+      "YOSI",
+      "TKSA",
+      "TAGW",
+      "RYKO",
+      "IRIE",
+      "KURT",
+      "HANA",
+      "SIMZ",
+      null,
+      "TTAY",
+      "DICK",
+      "MARK",
+      "RBRT",
+      "HARY",
+      "JONZ",
+      "TAKI",
+      "HIRI",
+      "TAKE",
+      "AKTG",
+      "TOKI",
+      "KNJI",
+      "RIKA",
+      "STSI",
+      "GORO",
+      "MKMR",
+      "TDSI",
+      "HRNO",
+      null,
+      "KUDO",
+      "MURI",
+      "FLD1",
+      "FLD2",
+      "FLD3",
+      "FLD4",
+      "FLD5",
+      "FLD6",
+      "FLD7",
+      "FLD8",
+      "FLD9",
+      "FLDA",
+      "FLDB",
+      "FLDC",
+      "FLDD",
+      "KEBE",
+      "KEBF",
+      "KEBG",
+      "KEBH",
+      "KEBI",
+      "KEBJ",
+      "KEBK",
+      "KEBL",
+      "YOHI",
+      "NGAI",
+      "ITOH",
+      "SKRD",
+      "YJIH",
+      "TJMA",
+      "JONO",
+      "UDGW",
+      "OKYS",
+      "ISDA",
+      "MURA",
+      "SNGA",
+      "MITI",
+      "MSTA",
+      "MRSK",
+      "MNWA",
+      "HTNK",
+      "HRSK",
+      "NMNO",
+      "ISYM",
+      "KYMA",
+      "ENKI",
+      "NGSM",
+      "TKHS",
+      "HIDE",
+      "KTRO",
+      "KENI",
+      "KYHN",
+      "YMST",
+      "SNDO",
+      "NMTO",
+      "KWMT",
+      "TAEN",
+      "SZEN",
+      "KYSN",
+      "SATO",
+      "YSKT",
+      "STAK",
+      "IZWA",
+      null,
+      "SGRH",
+      "MTRI",
+      "TERY",
+      "YKHI",
+      "SBNK",
+      "DTRY",
+      null,
+      null,
+      "RINS",
+      "ECHO",
+      null,
+      null,
+      "RKKI",
+      null,
+      "GRKN",
+      "MAGO",
+      "CHRL",
+      null,
+      "MORN",
+      "HDEI",
+      "TEYI",
+      "TOMH",
+      "FLDE",
+      "FLDF",
+      "FLDG",
+      "TMHN",
+      "DJUN",
+      null,
+      "HSOA",
+      "GJHM",
+      "GJBM",
+      "GJHF",
+      "GJBF",
+      "YUMM",
+      "SYKU",
+      "HTSK",
+      "SMIK",
+      "SNJY",
+      "SINF"
+    ],
+    "usage": [
+      {
+        "encodedIndex": 0,
+        "actorCodes": [
+          "AKMI",
+          "AKSK",
+          "AKTG",
+          "AOKI",
+          "ASNO",
+          "ASOU",
+          "CMAL",
+          "DJUN",
+          "ECHO",
+          "ENDO",
+          "FKSM",
+          "FLD1",
+          "FLD2",
+          "FLD3",
+          "FLD4",
+          "FLD5",
+          "FLD6",
+          "FLD7",
+          "FLD8",
+          "FLD9",
+          "FLDA",
+          "FLDB",
+          "FLDC",
+          "FLDD",
+          "FLDE",
+          "FLDF",
+          "FLDG",
+          "FUKU",
+          "GJBF",
+          "GRKN",
+          "HATO",
+          "HATR",
+          "HDEI",
+          "HIRA",
+          "HIRI",
+          "HOND",
+          "HORS",
+          "HRNO",
+          "HTSI",
+          "IRIE",
+          "ISDA",
+          "ITOI",
+          "IZAW",
+          "IZWA",
+          "JOE_",
+          "JONO",
+          "JUKY",
+          "KAYO",
+          "KIM_",
+          "KJMA",
+          "KKBN",
+          "KOGA",
+          "KOKA",
+          "KOMN",
+          "KOTA",
+          "KUDO",
+          "KURI",
+          "KURT",
+          "KYMA",
+          "KYUR",
+          "MADA",
+          "MAGO",
+          "MARK",
+          "MASR",
+          "MEGM",
+          "MEYS",
+          "MIHO",
+          "MIKI",
+          "MIKM",
+          "MITA",
+          "MORN",
+          "MSTA",
+          "MTRI",
+          "MURA",
+          "MURI",
+          "MYKN",
+          "NAKA",
+          "NANS",
+          "NITO",
+          "NRSK",
+          "NSMR",
+          "ONO_",
+          "RKKI",
+          "RYKO",
+          "SAJO",
+          "SAKI",
+          "SERA",
+          "SETA",
+          "SIND",
+          "SKGK",
+          "SKMT",
+          "SKRD",
+          "SNKC",
+          "SOBA",
+          "SUMI",
+          "SYZU",
+          "TAGW",
+          "TAKE",
+          "TATM",
+          "TEYI",
+          "TKSA",
+          "TMHN",
+          "TMMR",
+          "TMRA",
+          "TOMH",
+          "TOM_",
+          "TSUC",
+          "TTYA",
+          "TURU",
+          "TYMK",
+          "UDGW",
+          "UNO_",
+          "YASU",
+          "YAYI",
+          "YKHI",
+          "YMGC",
+          "YOHI",
+          "YOKO",
+          "YOPA",
+          "YOSI",
+          "YSHY",
+          "YUKK",
+          "YURI"
+        ],
+        "expressionIds": [
+          "02c4066239697d17",
+          "070a01a0f8e181a8",
+          "0a81bc403244e642",
+          "31934425c27a6bdd",
+          "35ffcc5d02d961a8",
+          "50eadfa083bf5a0b",
+          "7d571fb44f334eb3",
+          "c24649a081c2b4ab",
+          "e505c0d36c342f68",
+          "f2223e5a3d102c9a"
+        ],
+        "occurrenceCount": 1689,
+        "resolvedIdentity": "currentConversationActor"
+      },
+      {
+        "encodedIndex": 276,
+        "actorCodes": [
+          "ECHO",
+          "SAJO"
+        ],
+        "expressionIds": [
+          "301d5dcf8958072b",
+          "9d148770d51125d2"
+        ],
+        "occurrenceCount": 2,
+        "resolvedIdentity": "GRKN"
+      },
+      {
+        "encodedIndex": 271,
+        "actorCodes": [
+          "GRKN",
+          "SAJO"
+        ],
+        "expressionIds": [
+          "7c72ab1d208275d4",
+          "9d148770d51125d2"
+        ],
+        "occurrenceCount": 2,
+        "resolvedIdentity": "ECHO"
+      },
+      {
+        "encodedIndex": 135,
+        "actorCodes": [
+          "KOTA"
+        ],
+        "expressionIds": [
+          "0f1f3a3ef7c6e7ef",
+          "1fd18c03f52f6e31"
+        ],
+        "occurrenceCount": 50,
+        "resolvedIdentity": "YASU"
+      },
+      {
+        "encodedIndex": 47,
+        "actorCodes": [
+          "KYUR"
+        ],
+        "expressionIds": [
+          "4e759d3a003f0b00"
+        ],
+        "occurrenceCount": 2,
+        "resolvedIdentity": "ONRR"
+      },
+      {
+        "encodedIndex": 233,
+        "actorCodes": [
+          "MITI"
+        ],
+        "expressionIds": [
+          "bb9a9d77fae8bda5"
+        ],
+        "occurrenceCount": 13,
+        "resolvedIdentity": "SNGA"
+      },
+      {
+        "encodedIndex": 29,
+        "actorCodes": [
+          "NITO"
+        ],
+        "expressionIds": [
+          "e2620a2c39ccdb26"
+        ],
+        "occurrenceCount": 1,
+        "resolvedIdentity": "TSUC"
+      },
+      {
+        "encodedIndex": 234,
+        "actorCodes": [
+          "SNGA"
+        ],
+        "expressionIds": [
+          "86025a171cbe3eaf",
+          "fceb27bf10baa380"
+        ],
+        "occurrenceCount": 14,
+        "resolvedIdentity": "MITI"
+      },
+      {
+        "encodedIndex": 189,
+        "actorCodes": [
+          "SOBA"
+        ],
+        "expressionIds": [
+          "525c5fec132c873f"
+        ],
+        "occurrenceCount": 21,
+        "resolvedIdentity": "AKTG"
+      },
+      {
+        "encodedIndex": 63,
+        "actorCodes": [
+          "TSUC"
+        ],
+        "expressionIds": [
+          "413221f0f5b168ea"
+        ],
+        "occurrenceCount": 1,
+        "resolvedIdentity": "KJIY"
+      },
+      {
+        "encodedIndex": 136,
+        "actorCodes": [
+          "YASU"
+        ],
+        "expressionIds": [
+          "8ec90f83f6960300"
+        ],
+        "occurrenceCount": 8,
+        "resolvedIdentity": "KAYO"
+      }
+    ]
+  },
+  "nativeSpatialTable": {
+    "runtimeAddress": "0xc2791c0",
+    "recordCount": 13,
+    "recordSize": 20,
+    "byteLength": 260,
+    "sha256": "3f221dc8b2414408009c0596f891ede7d325b9cf3bf5843df1ea4957e3388ebe",
+    "recordFields": {
+      "+0x00": "four-byte current-map identity",
+      "+0x04": "center X",
+      "+0x08": "stored middle coordinate; not compared",
+      "+0x0c": "center Z",
+      "+0x10": "squared radius"
+    },
+    "comparison": "current map identity equals record map identity and (playerX-centerX)^2 + (playerZ-centerZ)^2 < radiusSquared",
+    "boundaryRule": "strictly inside; the radius boundary is false",
+    "records": [
+      {
+        "index": 1,
+        "mapIdentity": "D000",
+        "runtimePosition": [
+          6.0,
+          0.0,
+          84.0
+        ],
+        "browserPosition": [
+          -6.0,
+          0.0,
+          84.0
+        ],
+        "radiusSquared": 225.0,
+        "radius": 15.0
+      },
+      {
+        "index": 2,
+        "mapIdentity": "D000",
+        "runtimePosition": [
+          12.0,
+          0.0,
+          46.0
+        ],
+        "browserPosition": [
+          -12.0,
+          0.0,
+          46.0
+        ],
+        "radiusSquared": 196.0,
+        "radius": 14.0
+      },
+      {
+        "index": 3,
+        "mapIdentity": "D000",
+        "runtimePosition": [
+          -127.0,
+          0.0,
+          70.0
+        ],
+        "browserPosition": [
+          127.0,
+          0.0,
+          70.0
+        ],
+        "radiusSquared": 400.0,
+        "radius": 20.0
+      },
+      {
+        "index": 4,
+        "mapIdentity": "D000",
+        "runtimePosition": [
+          -20.0,
+          0.0,
+          72.0
+        ],
+        "browserPosition": [
+          20.0,
+          0.0,
+          72.0
+        ],
+        "radiusSquared": 225.0,
+        "radius": 15.0
+      },
+      {
+        "index": 5,
+        "mapIdentity": "D000",
+        "runtimePosition": [
+          -14.0,
+          0.0,
+          28.0
+        ],
+        "browserPosition": [
+          14.0,
+          0.0,
+          28.0
+        ],
+        "radiusSquared": 225.0,
+        "radius": 15.0
+      },
+      {
+        "index": 6,
+        "mapIdentity": "D000",
+        "runtimePosition": [
+          -103.0,
+          0.0,
+          98.0
+        ],
+        "browserPosition": [
+          103.0,
+          0.0,
+          98.0
+        ],
+        "radiusSquared": 100.0,
+        "radius": 10.0
+      },
+      {
+        "index": 7,
+        "mapIdentity": "D000",
+        "runtimePosition": [
+          -41.0,
+          0.0,
+          75.0
+        ],
+        "browserPosition": [
+          41.0,
+          0.0,
+          75.0
+        ],
+        "radiusSquared": 225.0,
+        "radius": 15.0
+      },
+      {
+        "index": 8,
+        "mapIdentity": "D000",
+        "runtimePosition": [
+          38.0,
+          0.0,
+          10.0
+        ],
+        "browserPosition": [
+          -38.0,
+          0.0,
+          10.0
+        ],
+        "radiusSquared": 225.0,
+        "radius": 15.0
+      },
+      {
+        "index": 9,
+        "mapIdentity": "D000",
+        "runtimePosition": [
+          -57.0,
+          0.0,
+          44.0
+        ],
+        "browserPosition": [
+          57.0,
+          0.0,
+          44.0
+        ],
+        "radiusSquared": 225.0,
+        "radius": 15.0
+      },
+      {
+        "index": 10,
+        "mapIdentity": "D000",
+        "runtimePosition": [
+          22.0,
+          0.0,
+          36.0
+        ],
+        "browserPosition": [
+          -22.0,
+          0.0,
+          36.0
+        ],
+        "radiusSquared": 225.0,
+        "radius": 15.0
+      },
+      {
+        "index": 11,
+        "mapIdentity": "MFSY",
+        "runtimePosition": [
+          14.0,
+          0.0,
+          142.0
+        ],
+        "browserPosition": [
+          -14.0,
+          0.0,
+          142.0
+        ],
+        "radiusSquared": 1225.0,
+        "radius": 35.0
+      },
+      {
+        "index": 12,
+        "mapIdentity": "MFSY",
+        "runtimePosition": [
+          -30.0,
+          0.0,
+          91.0
+        ],
+        "browserPosition": [
+          30.0,
+          0.0,
+          91.0
+        ],
+        "radiusSquared": 1225.0,
+        "radius": 35.0
+      },
+      {
+        "index": 13,
+        "mapIdentity": "MFSY",
+        "runtimePosition": [
+          124.0,
+          0.0,
+          51.0
+        ],
+        "browserPosition": [
+          -124.0,
+          0.0,
+          51.0
+        ],
+        "radiusSquared": 400.0,
+        "radius": 20.0
+      }
+    ],
+    "usage": [
+      {
+        "index": 1,
+        "actorCodes": [
+          "ITOH",
+          "NORK",
+          "SKRD",
+          "SUMI",
+          "TJMA"
+        ],
+        "expressionIds": [
+          "c9840fc27a3d96d9"
+        ],
+        "occurrenceCount": 7
+      },
+      {
+        "index": 2,
+        "actorCodes": [
+          "SUMI",
+          "TJMA"
+        ],
+        "expressionIds": [
+          "2945ce5d0187e6aa"
+        ],
+        "occurrenceCount": 3
+      },
+      {
+        "index": 3,
+        "actorCodes": [
+          "NORK",
+          "SUMI",
+          "TJMA"
+        ],
+        "expressionIds": [
+          "60f9770579812502"
+        ],
+        "occurrenceCount": 5
+      },
+      {
+        "index": 4,
+        "actorCodes": [
+          "ITOH",
+          "NORK",
+          "SKRD",
+          "SUMI",
+          "TJMA"
+        ],
+        "expressionIds": [
+          "20a9ef9cadaba2f0"
+        ],
+        "occurrenceCount": 7
+      },
+      {
+        "index": 5,
+        "actorCodes": [
+          "SUMI"
+        ],
+        "expressionIds": [
+          "9dcd8f6ce53ac22f"
+        ],
+        "occurrenceCount": 1
+      },
+      {
+        "index": 6,
+        "actorCodes": [
+          "SKRD",
+          "SUMI"
+        ],
+        "expressionIds": [
+          "cb12391af11df191"
+        ],
+        "occurrenceCount": 2
+      },
+      {
+        "index": 7,
+        "actorCodes": [
+          "SUMI"
+        ],
+        "expressionIds": [
+          "4c7735710d82c902"
+        ],
+        "occurrenceCount": 1
+      },
+      {
+        "index": 8,
+        "actorCodes": [
+          "ITOH",
+          "NORK",
+          "SKRD",
+          "SUMI",
+          "TJMA"
+        ],
+        "expressionIds": [
+          "ec663656a3f94bf2"
+        ],
+        "occurrenceCount": 7
+      },
+      {
+        "index": 9,
+        "actorCodes": [
+          "MIKI",
+          "SUMI"
+        ],
+        "expressionIds": [
+          "7edfea7b028c0788",
+          "c94e9862b00e4e5a"
+        ],
+        "occurrenceCount": 3
+      },
+      {
+        "index": 10,
+        "actorCodes": [
+          "ITOH",
+          "SKRD",
+          "SUMI"
+        ],
+        "expressionIds": [
+          "2cff5888750dc434"
+        ],
+        "occurrenceCount": 3
+      },
+      {
+        "index": 11,
+        "actorCodes": [
+          "ENDO",
+          "FLD2",
+          "FLD3",
+          "FLD5",
+          "FLD7",
+          "FLD8",
+          "FLDA",
+          "FLDB",
+          "FLDC",
+          "FLDD",
+          "FLDE",
+          "FLDG",
+          "HDEI",
+          "HTNK",
+          "ISDA",
+          "KIM_",
+          "KJMA",
+          "KOGA",
+          "KOKA",
+          "KUDO",
+          "KURT",
+          "MIHO",
+          "MITA",
+          "MNWA",
+          "MORN",
+          "MRSK",
+          "MURA",
+          "NAKA",
+          "NRSK",
+          "OKYS",
+          "SAKI",
+          "SKGK",
+          "SNDO",
+          "SYZU",
+          "TAGW",
+          "TEYI",
+          "TKSA",
+          "TOMH",
+          "YAYI",
+          "YMGC",
+          "YOSI",
+          "YSHY"
+        ],
+        "expressionIds": [
+          "90414277e5619fbd"
+        ],
+        "occurrenceCount": 45
+      },
+      {
+        "index": 12,
+        "actorCodes": [
+          "ASNO",
+          "DJUN",
+          "ENDO",
+          "FLD1",
+          "FLD2",
+          "FLD3",
+          "FLD5",
+          "FLD7",
+          "FLD8",
+          "FLDA",
+          "FLDB",
+          "FLDC",
+          "FLDD",
+          "FLDE",
+          "FLDG",
+          "GORO",
+          "HANA",
+          "HDEI",
+          "HTNK",
+          "HTSK",
+          "ISDA",
+          "KIM_",
+          "KISY",
+          "KJMA",
+          "KOGA",
+          "KOKA",
+          "KUDO",
+          "KURT",
+          "MARK",
+          "MIHO",
+          "MITA",
+          "MNWA",
+          "MORN",
+          "MRSK",
+          "MURA",
+          "NAKA",
+          "NRSK",
+          "OKYS",
+          "SAKI",
+          "SIMZ",
+          "SKGK",
+          "SNDO",
+          "SYZU",
+          "TAGW",
+          "TEYI",
+          "TKSA",
+          "TMHN",
+          "TOMH",
+          "YAYI",
+          "YMGC",
+          "YOSI",
+          "YSHY"
+        ],
+        "expressionIds": [
+          "f82aaf750fcdb841"
+        ],
+        "occurrenceCount": 52
+      },
+      {
+        "index": 13,
+        "actorCodes": [
+          "ENDO",
+          "FLD2",
+          "FLD3",
+          "FLD5",
+          "FLD7",
+          "FLD8",
+          "FLDA",
+          "FLDB",
+          "FLDC",
+          "FLDD",
+          "FLDE",
+          "FLDG",
+          "HDEI",
+          "HTNK",
+          "ISDA",
+          "KIM_",
+          "KJMA",
+          "KOGA",
+          "KOKA",
+          "KUDO",
+          "KURT",
+          "MIHO",
+          "MITA",
+          "MNWA",
+          "MORN",
+          "MRSK",
+          "MURA",
+          "NAKA",
+          "NRSK",
+          "OKYS",
+          "SAKI",
+          "SKGK",
+          "SNDO",
+          "SYZU",
+          "TAGW",
+          "TEYI",
+          "TKSA",
+          "TOMH",
+          "YAYI",
+          "YMGC",
+          "YOSI",
+          "YSHY"
+        ],
+        "expressionIds": [
+          "4b3b7ec0188b2b06"
+        ],
+        "occurrenceCount": 42
+      }
+    ]
+  },
+  "nativeOperators": {
+    "0": "terminate",
+    "1": "assign",
+    "2": "increment",
+    "3": "decrement",
+    "4": "isZero",
+    "5": "booleanAnd",
+    "6": "booleanOr",
+    "7": "equal",
+    "8": "notEqual",
+    "9": "greaterThan",
+    "10": "greaterThanOrEqual",
+    "11": "lessThan",
+    "12": "lessThanOrEqual"
+  },
+  "corpus": {
+    "resourceCount": 262,
+    "uniqueExpressionCount": 254,
+    "uniqueExpressionValueKindCounts": {
+      "actorRuntimeIdentity": 25,
+      "literal": 94,
+      "nativeSpatialResult": 14,
+      "nativeValueType2": 196,
+      "nativeValueType4": 4,
+      "operator": 127,
+      "runtimeSelector": 26
+    },
+    "uniqueExpressionOperatorCounts": {
+      "booleanAnd": 10,
+      "booleanOr": 3,
+      "equal": 62,
+      "greaterThan": 1,
+      "greaterThanOrEqual": 12,
+      "isZero": 22,
+      "lessThanOrEqual": 13,
+      "notEqual": 4
+    }
+  }
+}

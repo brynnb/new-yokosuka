@@ -1,0 +1,53 @@
+{
+  "schema": "new-yokosuka-operation-01ad-evidence-v1",
+  "generatedBy": "tools/scripting/operations/extract_operation_01ad_evidence.py",
+  "sources": {
+    "executable": {
+      "path": ".disc-work/exact/1ST_READ.BIN",
+      "sha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c"
+    },
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 429,
+    "operationHex": "0x01ad",
+    "handlerAddress": "0x0c164b72",
+    "handlerLength": 16,
+    "handlerSha256": "9ec2000e95c47542fc38d3022f31168aaff53ec3624d8cf76e7a22cba882900d",
+    "writeHelperAddress": "0x0c13099a",
+    "writeHelperLength": 20,
+    "writeHelperSha256": "1fedc13366051cc1d2d04faa3b946035dc9699f87b2f294b6a0bfbb37a92504a",
+    "tableBaseAddress": "0x0c21c7c4",
+    "recordStrideBytes": 96,
+    "provenBehavior": "Forwards argument one as an unchanged dword and argument zero as the record index. The helper writes the dword at table base + index * 96."
+  },
+  "inventory": {
+    "authoredCallCount": 267,
+    "areaCount": 87,
+    "indexCounts": {
+      "0": 18,
+      "1": 94,
+      "2": 18,
+      "3": 25,
+      "4": 14,
+      "5": 12,
+      "6": 12,
+      "7": 12,
+      "8": 12,
+      "9": 7,
+      "10": 7,
+      "11": 6,
+      "12": 6,
+      "13": 6,
+      "14": 6,
+      "15": 6,
+      "16": 6
+    },
+    "valueCounts": {
+      "0": 70,
+      "1": 197
+    },
+    "resultTargetCount": 0,
+    "resultComparisonCount": 0
+  }
+}

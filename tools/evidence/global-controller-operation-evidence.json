@@ -1,0 +1,225 @@
+{
+  "schema": "new-yokosuka-global-controller-operation-evidence-v1",
+  "status": "exact-native-selector-contract-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 278,
+    "operationHex": "0x0116",
+    "handlerAddress": "0x0c157126",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c157126",
+        "length": 92,
+        "sha256": "b044e63f85ad86f03f1249ca0dba6779cc3c9cf3faba3716e10d5abc31f43224"
+      },
+      "initializer": {
+        "address": "0x0c173df4",
+        "length": 126,
+        "sha256": "30d5b884aae2f5684b96cd1ad62f609476e846afc60cb5be41f407eaafe0ef41"
+      },
+      "sharedSelectorRoutine": {
+        "address": "0x0c173f44",
+        "length": 608,
+        "sha256": "31cff9efbf457b089cbec4bf81c870d1972dbcdc8236012a8012ad6f3634d97f"
+      },
+      "selector2Branch": {
+        "address": "0x0c173f44",
+        "length": 96,
+        "sha256": "2595013d367b84f194348fb97b1df3793b133da4742a5098f4e5b7700a51691b"
+      },
+      "selector3Branch": {
+        "address": "0x0c173fa4",
+        "length": 46,
+        "sha256": "c6ee3a6c9f7e9382d035856f48aea74449a24c60e2ef158c12beb20fb5607f1a"
+      }
+    },
+    "nativeContract": {
+      "resultWriter": {
+        "literalAddress": "0x0c1572c4",
+        "value": "0x0c0bb342"
+      },
+      "selector0Handler": {
+        "literalAddress": "0x0c1572f0",
+        "value": "0x0c173df4"
+      },
+      "selector4Writer": {
+        "literalAddress": "0x0c1572f4",
+        "value": "0x0c173e72"
+      },
+      "selector5Writer": {
+        "literalAddress": "0x0c1572f8",
+        "value": "0x0c173e78"
+      },
+      "sharedSelectorRoutine": {
+        "literalAddress": "0x0c1572fc",
+        "value": "0x0c173f44"
+      },
+      "initializerFlagsBase": {
+        "literalAddress": "0x0c173ee8",
+        "value": "0x0c224768"
+      },
+      "initializerConfiguration": {
+        "literalAddress": "0x0c173eec",
+        "value": "0x0c224788"
+      },
+      "initializerPrimaryIndex": {
+        "literalAddress": "0x0c173ef0",
+        "value": "0x0c22478c"
+      },
+      "initializerWord770": {
+        "literalAddress": "0x0c173ef4",
+        "value": "0x0c224770"
+      },
+      "initializerWord758": {
+        "literalAddress": "0x0c173ef8",
+        "value": "0x0c224758"
+      },
+      "initializerFloat75c": {
+        "literalAddress": "0x0c173f00",
+        "value": "0x0c22475c"
+      },
+      "initializerFloat760": {
+        "literalAddress": "0x0c173f04",
+        "value": "0x0c224760"
+      },
+      "initializerFloat764": {
+        "literalAddress": "0x0c173f0c",
+        "value": "0x0c224764"
+      },
+      "initializerWord7cc": {
+        "literalAddress": "0x0c173f10",
+        "value": "0x0c2247cc"
+      },
+      "initializerWord7c8": {
+        "literalAddress": "0x0c173f14",
+        "value": "0x0c2247c8"
+      },
+      "mode": {
+        "literalAddress": "0x0c173f18",
+        "value": "0x0c29b130"
+      },
+      "initializerWordB138": {
+        "literalAddress": "0x0c173f1c",
+        "value": "0x0c29b138"
+      },
+      "secondaryIndex": {
+        "literalAddress": "0x0c173f20",
+        "value": "0x0c29b134"
+      },
+      "selector5Word": {
+        "literalAddress": "0x0c173f24",
+        "value": "0x0c22483c"
+      },
+      "initializerWord840": {
+        "literalAddress": "0x0c173f28",
+        "value": "0x0c224840"
+      },
+      "initializerWord844": {
+        "literalAddress": "0x0c173f2c",
+        "value": "0x0c224844"
+      },
+      "word848": {
+        "literalAddress": "0x0c173f30",
+        "value": "0x0c224848"
+      },
+      "initializerWord84c": {
+        "literalAddress": "0x0c173f34",
+        "value": "0x0c22484c"
+      },
+      "initializerWordB13c": {
+        "literalAddress": "0x0c173f38",
+        "value": "0x0c29b13c"
+      },
+      "initializerRangeHelper": {
+        "literalAddress": "0x0c173f3c",
+        "value": "0x0c15afb6"
+      },
+      "resetWord7c8": {
+        "literalAddress": "0x0c1740d4",
+        "value": "0x0c2247c8"
+      },
+      "resetWord7cc": {
+        "literalAddress": "0x0c1740d8",
+        "value": "0x0c2247cc"
+      },
+      "resetMode": {
+        "literalAddress": "0x0c1740dc",
+        "value": "0x0c29b130"
+      },
+      "cleanupArgument1": {
+        "literalAddress": "0x0c1740e0",
+        "value": "0x0c2247d1"
+      },
+      "cleanupArgument0": {
+        "literalAddress": "0x0c1740e4",
+        "value": "0x0c2247d0"
+      },
+      "cleanupHelper": {
+        "literalAddress": "0x0c1740e8",
+        "value": "0x0c0e0388"
+      },
+      "resetSecondaryIndex": {
+        "literalAddress": "0x0c1740ec",
+        "value": "0x0c29b134"
+      },
+      "resetWord848": {
+        "literalAddress": "0x0c1740f0",
+        "value": "0x0c224848"
+      }
+    },
+    "selectors": [
+      {
+        "selector": 0,
+        "semanticId": "global-runtime-controller-initialize",
+        "result": -1,
+        "provenBehavior": "Clears flag-byte bits 0x80, 0x40, and 0x20; initializes the exact nineteen global fields; then calls 0x0c15afb6 with arguments 15, 7, and 0."
+      },
+      {
+        "selector": 2,
+        "semanticId": "global-runtime-controller-reset",
+        "result": 0,
+        "provenBehavior": "For current modes 2 through 6, calls 0x0c0e0388 with bytes 0x0c2247d0 and 0x0c2247d1; then clears the exact five controller fields."
+      },
+      {
+        "selector": 3,
+        "semanticId": "global-runtime-controller-status-query",
+        "provenBehavior": "Returns a nonnegative secondary index directly. For a negative index and mode 2, 3, or 5, returns -1 minus the index; otherwise returns -1."
+      }
+    ]
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 558,
+    "provenCallCount": 407,
+    "remainingUnresolvedCallCount": 84,
+    "dialogueRegionCallCount": 87,
+    "areaCount": 52,
+    "selectorCounts": {
+      "0": 77,
+      "1": 32,
+      "2": 192,
+      "3": 138,
+      "4": 48,
+      "5": 19,
+      "4294967295": 52
+    },
+    "dialogueRegionSelectorCounts": {
+      "1": 20,
+      "2": 70,
+      "3": 17,
+      "4": 16,
+      "5": 7
+    }
+  },
+  "evidenceBoundary": [
+    "The owning subsystem remains unnamed.",
+    "Selector zero's pointer is preserved as an uninterpreted native configuration word.",
+    "The initializer and active reset helpers remain explicit runtime adapter calls.",
+    "Selectors -1 and 1 enter a larger state machine and remain unresolved.",
+    "Selectors 4 and 5 are proven separately as fixed global dword writes."
+  ]
+}

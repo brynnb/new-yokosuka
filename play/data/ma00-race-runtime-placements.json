@@ -1,0 +1,176 @@
+{
+  "schema": "new-yokosuka-runtime-placement-manifest-v1",
+  "source": {
+    "capture": "captures/pvr/20260726-003543-frame-196802/ram.bin",
+    "taggedRuntimeObjects": ".disc-work/ma00-race-tagged-runtime-objects.json",
+    "saveState": "Flycast displayed slot 1 (Lua state index 0)",
+    "area": "MA00 forklift race",
+    "coordinateConversion": "browser = [-runtimeX, runtimeY, runtimeZ]",
+    "policy": "source-backed static world fixtures only; racers and people remain scheduled actors"
+  },
+  "summary": {
+    "capturedWorldObjectCount": 32,
+    "capturedModeledWorldObjectCount": 19,
+    "placementCount": 10,
+    "omittedActorTags": [
+      "FRK0",
+      "FRK1",
+      "FRK2",
+      "FRK3",
+      "FRK4",
+      "MARK",
+      "MGDM",
+      "NP06"
+    ],
+    "omittedAlternateStateTags": [
+      "DOR1",
+      "DOR8"
+    ],
+    "unmodeledTriggerTags": [
+      "AZIT",
+      "TOMC",
+      "dor0",
+      "dor1",
+      "dor2",
+      "dor3",
+      "dor4",
+      "dor5",
+      "dor6",
+      "dor7",
+      "dor8",
+      "dor9"
+    ]
+  },
+  "placements": [
+    {
+      "id": "runtime-SHT2",
+      "model": "S3_M3FB_B49M2S2G.MT5",
+      "position": [-31.087400436401367, 1.6887999773025513, 96.2593994140625],
+      "rotationDegrees": [0, 45, 0],
+      "scale": [1, 1, 1],
+      "runtime": {
+        "objectTag": "SHT2",
+        "taskAddress": "0x8c690080",
+        "callbackAddress": "0x0c2df5f8",
+        "placementSource": "runtime-task"
+      }
+    },
+    {
+      "id": "runtime-SHT3",
+      "model": "S3_M3FB_B49M2S2G.MT5",
+      "position": [-22.98979949951172, 1.6887999773025513, 104.36000061035156],
+      "rotationDegrees": [0, 45, 0],
+      "scale": [1, 1, 1],
+      "runtime": {
+        "objectTag": "SHT3",
+        "taskAddress": "0x8c6904e0",
+        "callbackAddress": "0x0c2df5f8",
+        "placementSource": "runtime-task"
+      }
+    },
+    {
+      "id": "runtime-SHT4",
+      "model": "S3_M3FB_B49M2S2G.MT5",
+      "position": [-14.886799812316895, 1.6887999773025513, 112.45999908447266],
+      "rotationDegrees": [0, 45, 0],
+      "scale": [1, 1, 1],
+      "runtime": {
+        "objectTag": "SHT4",
+        "taskAddress": "0x8c690940",
+        "callbackAddress": "0x0c2df5f8",
+        "placementSource": "runtime-task"
+      }
+    },
+    {
+      "id": "runtime-SH18",
+      "model": "S3_M3FB_B49M2S2G.MT5",
+      "position": [104.38500213623047, 1.6887999773025513, 58.54790115356445],
+      "rotationDegrees": [0, 0, 0],
+      "scale": [1, 1, 1],
+      "runtime": {
+        "objectTag": "SH18",
+        "taskAddress": "0x8c690da0",
+        "callbackAddress": "0x0c2df5f8",
+        "placementSource": "runtime-task"
+      }
+    },
+    {
+      "id": "runtime-JIH0",
+      "model": "S3_D000_JIHS5GTG.MT5",
+      "position": [119.69999694824219, 0, 108.5],
+      "rotationDegrees": [0, -90, 0],
+      "scale": [1, 1, 1],
+      "runtime": {
+        "objectTag": "JIH0",
+        "taskAddress": "0x8c691200",
+        "callbackAddress": "0x0c2df5f8",
+        "placementSource": "runtime-task"
+      }
+    },
+    {
+      "id": "runtime-JIH2",
+      "model": "S3_D000_JIHS5GTG.MT5",
+      "position": [-51.900001525878906, 0, 52.599998474121094],
+      "rotationDegrees": [0, 135, 0],
+      "scale": [1, 1, 1],
+      "runtime": {
+        "objectTag": "JIH2",
+        "taskAddress": "0x8c691660",
+        "callbackAddress": "0x0c2df5f8",
+        "placementSource": "runtime-task"
+      }
+    },
+    {
+      "id": "runtime-JIH3",
+      "model": "S3_D000_JIHS5GTG.MT5",
+      "position": [97.5999984741211, 0, 11.699999809265137],
+      "rotationDegrees": [0, 45, 0],
+      "scale": [1, 1, 1],
+      "runtime": {
+        "objectTag": "JIH3",
+        "taskAddress": "0x8c691ac0",
+        "callbackAddress": "0x0c2df5f8",
+        "placementSource": "runtime-task"
+      }
+    },
+    {
+      "id": "runtime-JIH4",
+      "model": "S3_D000_JIHS5GTG.MT5",
+      "position": [-1, 0, 104.80000305175781],
+      "rotationDegrees": [0, 135, 0],
+      "scale": [1, 1, 1],
+      "runtime": {
+        "objectTag": "JIH4",
+        "taskAddress": "0x8c691f20",
+        "callbackAddress": "0x0c2df5f8",
+        "placementSource": "runtime-task"
+      }
+    },
+    {
+      "id": "runtime-DR1C",
+      "model": "S3_MA00_DORK2CLG.MT5",
+      "position": [-35.20199966430664, 2.4800000190734863, 86.33300018310547],
+      "rotationDegrees": [0, 45, 0],
+      "scale": [1, 1, 1],
+      "runtime": {
+        "objectTag": "DR1C",
+        "taskAddress": "0x8c881ac0",
+        "callbackAddress": "0x0c2df5f8",
+        "placementSource": "runtime-task-active-closed-state"
+      }
+    },
+    {
+      "id": "runtime-DR8C",
+      "model": "S3_MA00_DORK2CLG.MT5",
+      "position": [-7.271500110626221, 2.4800000190734863, 135.10499572753906],
+      "rotationDegrees": [0, 135, 0],
+      "scale": [1, 1, 1],
+      "runtime": {
+        "objectTag": "DR8C",
+        "taskAddress": "0x8c881f20",
+        "callbackAddress": "0x0c2df5f8",
+        "placementSource": "runtime-task-active-closed-state"
+      }
+    }
+  ]
+}

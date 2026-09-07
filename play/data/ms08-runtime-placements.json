@@ -1,0 +1,40 @@
+{
+  "schema": "new-yokosuka-runtime-placement-manifest-v1",
+  "area": "MS08",
+  "source": {
+    "mapInfo": ".disc-work/mapinfo/disc2/SCENE/02/MS08/MAPINFO.BIN",
+    "runtimeCapture": "captures/pvr/20260724-173621-frame-793/ram.bin"
+  },
+  "summary": {
+    "placementCount": 1,
+    "modelCount": 1
+  },
+  "placements": [
+    {
+      "id": "static-door-0",
+      "model": "S2_MS08_DR02_021.MT5",
+      "position": [
+        27.059999465942383,
+        0,
+        -1.7999999523162842
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "dor0",
+        "staticDoorIndex": 0,
+        "staticDoorType": 2,
+        "staticSourceOffset": "0x2b0bc",
+        "placementSource": "mapinfo-door-record"
+      }
+    }
+  ]
+}

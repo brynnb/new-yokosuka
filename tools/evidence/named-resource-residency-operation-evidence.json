@@ -1,0 +1,51 @@
+{
+  "schema": "new-yokosuka-named-resource-residency-evidence-v1",
+  "status": "exact-native-mode-paths-and-all-disc-call-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 202,
+    "operationHex": "0x00ca",
+    "handlerAddress": "0x0c16b8c0",
+    "modeDispatcher": "0x0c0b3e70",
+    "resultWriter": "0x0c0bb358",
+    "modes": [
+      {
+        "mode": 0,
+        "targetAddress": "0x0c0b4110",
+        "behavior": "walks the 20 named-resource slots, releases every matching resident entry, and clears its slot"
+      },
+      {
+        "mode": 1,
+        "requestAddress": "0x0c0b3ec4",
+        "completionAddress": "0x0c0b4028",
+        "behavior": "ensures the named resource has a request, then repeats the completion routine until it succeeds"
+      }
+    ],
+    "returnValue": 1,
+    "provenBehavior": "Forwards exact mode and resource-name pointer arguments to the named-resource dispatcher and writes its integer result. Authored mode zero releases matching residency; authored mode one ensures and waits for completed residency."
+  },
+  "allDiscInventory": {
+    "callCount": 1018,
+    "dialogueRegionCallCount": 336,
+    "areaCount": 64,
+    "modeCounts": {
+      "0": 319,
+      "1": 699
+    },
+    "resourceArgumentKindCounts": {
+      "frame-field": 10,
+      "static-pointer": 1008
+    }
+  },
+  "evidenceBoundary": [
+    "Only exact two-argument calls with authored modes zero or one receive this semantic.",
+    "Resource names remain pointer/runtime operands; no nearby string or filename is guessed.",
+    "The native mode-one polling loop is represented by an awaitable load-completion adapter, not a timing heuristic.",
+    "Native modes two and three are not authored and are not exposed by this semantic."
+  ]
+}

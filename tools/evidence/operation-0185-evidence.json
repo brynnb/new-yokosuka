@@ -1,0 +1,60 @@
+{
+  "schema": "new-yokosuka-operation-0185-evidence-v1",
+  "status": "exact-scene-owner-flag-bit-control-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 389,
+    "operationHex": "0x0185",
+    "handlerAddress": "0x0c16b7b0",
+    "flagBitWriterAddress": "0x0c0f0ac6",
+    "currentSceneOwnerAddress": "0x0c217488",
+    "sceneOwnerResolver": "0x0c09766a",
+    "ownerFlagsOffset": "0x00e0",
+    "authoredBitIndices": [
+      0
+    ],
+    "authoredValues": [
+      0,
+      1
+    ],
+    "verifiedRanges": {
+      "operationWrapper": {
+        "address": "0x0c16b7b0",
+        "length": 12,
+        "sha256": "a74b959ec1d14abc61c8c9c9e60562dc8b2ccdfbe7844ac46a2dbd4548f188e0"
+      },
+      "flagBitWriter": {
+        "address": "0x0c0f0ac6",
+        "length": 54,
+        "sha256": "768352be581f3f00a9315da11f324f319e55f79177e0ab3dc85004f994e3542d"
+      },
+      "sceneOwnerResolver": {
+        "address": "0x0c09766a",
+        "length": 14,
+        "sha256": "e6e92c85994bb269cabbf26002f45ecd445e15b46406c59a49ef9481d1a7e57f"
+      }
+    },
+    "provenBehavior": "Resolves the current scene owner's target through owner +0x3c, forms mask 1 << argument zero, and sets that mask in the target dword at +0xe0 when argument one is nonzero or clears it when zero."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 73,
+    "areaCount": 65,
+    "routeCounts": {
+      "bit-0-clear": 45,
+      "bit-0-set": 28
+    },
+    "dialogueRegionCallCount": 0,
+    "resultConsumerCount": 0
+  },
+  "evidenceBoundary": [
+    "Only authored bit index zero with values zero and one is promoted.",
+    "The target ownership chain, field offset, bit mask, and set/clear branches are executable-proven.",
+    "The gameplay-domain meaning of scene-owner flag bit zero remains numeric.",
+    "No unsupported bit index or dynamic call shape is treated as a no-op."
+  ]
+}

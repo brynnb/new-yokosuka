@@ -1,0 +1,45 @@
+{
+  "schema": "new-yokosuka-jhd0-exterior-door-placement-v1",
+  "area": "JHD0",
+  "doors": [
+    {
+      "objectTag": "dor0",
+      "model": "S1_JHD0_DR15_016.MT5",
+      "browserPosition": [3.24, 0, 0],
+      "browserRotationDegrees": [0, 0, 0],
+      "evidence": {
+        "kind": "geometric-alignment",
+        "doorWorldBounds": {
+          "minimum": [2.3550000190734863, 0, -0.03099999949336052],
+          "maximum": [4.125, 2.0999999046325684, 0.03099999949336052]
+        },
+        "doorwayStepXRange": [
+          2.2418469190597534,
+          4.243847012519836
+        ],
+        "capturedEntrySpawn": [
+          2.9900002479553223,
+          1.1416015625,
+          1.090000033378601
+        ],
+        "entrySpawnEvidence": "jhd0-entry-2-spawn.json"
+      }
+    },
+    {
+      "objectTag": "dor1",
+      "model": "S1_JHD0_DR29_000.MT5",
+      "browserPosition": [1, 0.21, 10.9],
+      "browserRotationDegrees": [0, 0, 0],
+      "evidence": {
+        "kind": "exact-mapinfo-and-runtime-match",
+        "mapinfoResourceOffset": "0x5c630",
+        "mapinfoTransformOffset": "0x5c678",
+        "sourcePosition": [-1, 0.20999999344348907, 10.899999618530273],
+        "runtimeCapture": "captures/pvr/20260724-084354-frame-3652",
+        "taskAddress": "0x8c790120",
+        "hmdlAddress": "0x8c8be640",
+        "meshDataMatchedModelOffsets": [4416, 9184]
+      }
+    }
+  ]
+}

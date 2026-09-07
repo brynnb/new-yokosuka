@@ -1,0 +1,75 @@
+{
+  "schema": "new-yokosuka-mapc-record-control-operation-evidence-v1",
+  "status": "exact-native-control-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 351,
+    "operationHex": "0x015f",
+    "handlerAddress": "0x0c1584d4",
+    "recordTag": "MAPC",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c1584d4",
+        "length": 26,
+        "sha256": "2d640b3f97575c3f92f220d2ecdf6f9dafe32f84b22b619513ef6597ab6e0b74"
+      },
+      "objectResolverSample": {
+        "address": "0x0c153956",
+        "length": 64,
+        "sha256": "46e00fc5aa0eb86845d366f0eac4ad78ef1124d2aff4f210e8728b7f1d79e3cd"
+      },
+      "controlHelper": {
+        "address": "0x0c0f5504",
+        "length": 66,
+        "sha256": "3d10c587aba7742bac241978c6ecbfd36bcfbfbdb4405914b37399a0b499c073"
+      },
+      "mapcBitQuery": {
+        "address": "0x0c0aadf6",
+        "length": 56,
+        "sha256": "abfb847f5583e2d2b2aa8f5122bb785866a325643bbb86a30ac2dc632c26e80c"
+      },
+      "mapcBitWrite": {
+        "address": "0x0c0aadac",
+        "length": 74,
+        "sha256": "288e6108df95c513bd7124e70d4e3418036397e249445fbfa38413e5b58323d0"
+      }
+    },
+    "nativeContract": {
+      "objectResolver": "0x0c153956",
+      "controlHelper": "0x0c0f5504",
+      "recordTag": "0x4d415043",
+      "mapcBitQuery": "0x0c0aadf6",
+      "mapcBitWrite": "0x0c0aadac"
+    },
+    "provenBehavior": "Resolves argument zero as an object, resolves its literal MAPC associated record, and sets record dword +0x10 bit zero for nonzero argument one or clears it for zero. A zero value also writes float32 1.0 to resolved-object dword +0x48 even when MAPC is absent. A missing object is a native no-op."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 641,
+    "provenCallCount": 639,
+    "unresolvedDynamicObjectCallCount": 2,
+    "dialogueRegionCallCount": 45,
+    "areaCount": 54,
+    "objectArgumentKindCounts": {
+      "constant": 405,
+      "frame-field": 217,
+      "runtime": 2,
+      "scene-field": 17
+    },
+    "controlValueCounts": {
+      "0": 383,
+      "1": 258
+    }
+  },
+  "evidenceBoundary": [
+    "The literal associated-record tag remains MAPC; no expanded gameplay name is inferred.",
+    "Only control bit zero and resolved-object float dword +0x48 are mutated.",
+    "The pre-write bit query is retained as prior state but no caller consumes the helper result.",
+    "The two dynamically sourced object arguments remain unresolved.",
+    "All 45 dialogue-region calls have exact object operands and are promoted."
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "schema": "new-yokosuka-d000-tko-state-machine-v1",
+  "source": {
+    "mapinfo": ".disc-work/exact/d000/MAPINFO.BIN",
+    "dispatchCalls": ".disc-work/d000-dispatch-calls.json"
+  },
+  "routines": {
+    "pairTransition": {
+      "start": "0x68aee",
+      "endExclusive": "0x68dea",
+      "byteLength": 764,
+      "sha256": "7e4bf33f4b44de61072bc46f3a3b7b74de6c2a31e0d2eb848c3bc32133669b02"
+    },
+    "stateEvaluator": {
+      "start": "0x68f5c",
+      "endExclusive": "0x69784",
+      "byteLength": 2088,
+      "sha256": "08e46b66f0ede1fdfc9fdd9a9f3e8f53b6188054d06044b960c6334dfc32dc9f"
+    },
+    "clockWindowPredicate": {
+      "start": "0x7ed70",
+      "endExclusive": "0x7ee88",
+      "byteLength": 280,
+      "sha256": "0fcdcf4c1ee5c1f0c7a82f9ccc0420c81f4017ab2ba59594bd0170817640da67"
+    }
+  },
+  "clockWindow": {
+    "callFileOffset": "0x690fc",
+    "start": {
+      "hour": 7,
+      "minute": 0
+    },
+    "end": {
+      "hour": 19,
+      "minute": 0
+    },
+    "boundary": "start-inclusive, end-exclusive",
+    "dayBoundaryHour": 6,
+    "sourceClock": {
+      "hourOffset": "scene-context + 0xcc",
+      "minuteOffset": "scene-context + 0xcd"
+    }
+  },
+  "storySelectors": [
+    {
+      "selector": 0,
+      "tags": {
+        "primary": "TKOK",
+        "transition": "TKOM"
+      },
+      "variableRead": {
+        "operation": "0x009a",
+        "callFileOffset": "0x6917c",
+        "variableId": "0x02f3",
+        "valueType": 4,
+        "resultMask": "0x2"
+      }
+    },
+    {
+      "selector": 1,
+      "tags": {
+        "primary": "TKOL",
+        "transition": "TKON"
+      },
+      "variableRead": {
+        "operation": "0x009a",
+        "callFileOffset": "0x6934e",
+        "variableId": "0x0298",
+        "valueType": 4,
+        "resultMask": "0x2"
+      }
+    }
+  ],
+  "exactRecoveredSemantics": [
+    "The TKO pair controller reads two independent typed scene variables.",
+    "Each variable selects between one primary and one transition object tag.",
+    "The controller also evaluates the in-game clock inside [07:00, 19:00).",
+    "The pair transition uses the recovered node-152 spin/slowdown and 0x001f/0x00a8 enable-state routes."
+  ],
+  "remainingBoundary": [
+    "The browser has no Shenmue story-variable service for IDs 0x02f3/0x0298.",
+    "The browser's shared game clock supplies time, but the exact transition is retained in its captured initial state until the two authoritative scene-variable values are available; no click trigger is invented."
+  ]
+}

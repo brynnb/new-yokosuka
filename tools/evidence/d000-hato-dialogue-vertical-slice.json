@@ -1,0 +1,110 @@
+{
+  "schema": "new-yokosuka-dialogue-vertical-slice-v1",
+  "status": "partially-recovered",
+  "area": "D000",
+  "actorCode": "HATO",
+  "voiceId": "F1030B001",
+  "evidenceBoundary": [
+    "The AFS/SRF relationship, speaker ID, voice member, timing hash, dialogue-start operation, global wait, executable target, and HATO dialogue-state update are exact native data or executable behavior.",
+    "The code region's HATO state access proves this is HATO-owned dialogue state rather than a name or proximity inference.",
+    "The SCN3 executable-target table is structural navigation evidence; it is not claimed to be an interaction callback registry.",
+    "The upstream launch, exact direct-call route, persistent flag/hour predicates, and native spatial-selector row are recovered in the linked invocation, selector, and control-dependency evidence.",
+    "The browser uses the recovered native oriented selector geometry and facing tolerance; no implementation-only proximity radius selects this response.",
+    "No Japanese subtitle source or camera instruction has been recovered for this slice. Ryo's exact native prelude/postlude motions and Hato's exact LKPT target/release are recorded separately; the LKPT joint/interpolation adapter remains unresolved."
+  ],
+  "subtitle": {
+    "disc": 1,
+    "archive": "FREE01.AFS",
+    "member": "F1030.SRF",
+    "recordIndex": 9,
+    "speakerId": "HATO",
+    "timingSha256": "c121900b98b1513df5d4688ed0351b066bee78efdb3c1fa2d59674314d12b3e7"
+  },
+  "script": {
+    "source": "SCENE/01/D000/MAPINFO.BIN",
+    "scn3FileOffset": "0x1338",
+    "executableTargetTable": {
+      "fileRange": [
+        "0xb25f8",
+        "0xb3360"
+      ],
+      "entryCount": 858,
+      "targetIndex": 629,
+      "entryFileOffset": "0xb2fcc",
+      "targetRelativeToScn3": "0x7e760",
+      "targetFileOffset": "0x7fa98",
+      "nextTargetFileOffset": "0x7fb60"
+    },
+    "operations": [
+      {
+        "operationId": 109,
+        "operationHex": "0x006d",
+        "callFileOffset": "0x7faae",
+        "arguments": [
+          "F1030B001"
+        ],
+        "meaning": "start native dialogue resource"
+      },
+      {
+        "operationId": 178,
+        "operationHex": "0x00b2",
+        "callFileOffset": "0x7fabe",
+        "arguments": [
+          0
+        ],
+        "meaning": "query both global dialogue channels until inactive"
+      },
+      {
+        "operationId": 431,
+        "operationHex": "0x01af",
+        "callFileOffset": "0x7fb1c",
+        "arguments": [
+          66,
+          "HATO"
+        ],
+        "meaning": "read HATO per-character dialogue state"
+      },
+      {
+        "operationId": 431,
+        "operationHex": "0x01af",
+        "callFileOffset": "0x7fb4a",
+        "arguments": [
+          65,
+          "HATO",
+          "previous state + 1"
+        ],
+        "meaning": "write incremented HATO per-character dialogue state"
+      }
+    ]
+  },
+  "engine": {
+    "operation006d": {
+      "handler": "0x0c16b27e",
+      "resourceStart": [
+        "0x0c0b41f0",
+        "0x0c0b4248"
+      ]
+    },
+    "operation00b2": {
+      "handler": "0x0c16b2ba",
+      "dialogueActiveQuery": "0x0c0b4774"
+    },
+    "operation01af": {
+      "handler": "0x0c16b64e",
+      "stateAccessor": "0x0c151622",
+      "suboperation65": "resolve character tag and write its byte state",
+      "suboperation66": "resolve character tag and read its byte state"
+    }
+  },
+  "browser": {
+    "binding": "play/config/dialogue.js",
+    "runtime": "play/dialogue/DialogueRuntime.js",
+    "voice": {
+      "path": "public/audio/dialogue/F1030B001.wav",
+      "sha256": "c06b35aab84b5a970f4edc485c4bef61c2dfa11ec8346d7f7bf69da614876c9f",
+      "encoding": "PCM signed 16-bit little-endian",
+      "channels": 1,
+      "sampleRate": 14000
+    }
+  }
+}

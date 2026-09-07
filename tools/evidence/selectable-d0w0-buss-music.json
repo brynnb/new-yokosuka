@@ -1,0 +1,242 @@
+{
+  "schema": "new-yokosuka-selectable-d0w0-buss-music-v1",
+  "generatedBy": "tools/cutscenes/audit_selectable_d0w0_buss_music.py",
+  "evidenceBoundary": [
+    "Only the reviewed D0W0 and BUSS owner, wrapper, and callback functions are classified.",
+    "A room-level A83F control with no proven track identity is not promoted to an explicit browser BGM binding.",
+    "AUTH A904 bus/Yamagishi events and A00A/A004 controls are sound effects or control commands, not evidence of a music track."
+  ],
+  "source": {
+    "path": ".disc-work/dialogue/native-event-ir.json",
+    "sha256": "f0996e5e5281a5296c2860a1ee5dc4ca567bc0045c5528c9ad89c331fcd3e2e4",
+    "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e"
+  },
+  "summary": {
+    "selectorEntryCount": 16,
+    "explicitBgmCount": 0,
+    "ambientRoomInheritanceCount": 12,
+    "authoredSilenceCount": 4
+  },
+  "ownerEvidence": {
+    "d0w0": {
+      "activityOwner": "0x5a900",
+      "ownerSoundCalls": [],
+      "roomAudioCalls": [
+        {
+          "callFileOffset": "0x61378",
+          "commandHex": "a83f0000",
+          "exactArguments": [
+            0,
+            0
+          ]
+        },
+        {
+          "callFileOffset": "0x61390",
+          "commandHex": "a0040000",
+          "exactArguments": [
+            2,
+            100
+          ]
+        },
+        {
+          "callFileOffset": "0x5b83c",
+          "commandHex": "a83f0000",
+          "exactArguments": [
+            0,
+            0
+          ]
+        },
+        {
+          "callFileOffset": "0x5b854",
+          "commandHex": "a0040000",
+          "exactArguments": [
+            2,
+            100
+          ]
+        }
+      ]
+    },
+    "buss": {
+      "activityOwner": "0x6e1a0",
+      "ownerSoundCalls": [
+        {
+          "callFileOffset": "0x6e672",
+          "commandHex": "a00a0000",
+          "exactArguments": [
+            1,
+            30
+          ]
+        },
+        {
+          "callFileOffset": "0x6e68a",
+          "commandHex": "a00a0000",
+          "exactArguments": [
+            2,
+            30
+          ]
+        },
+        {
+          "callFileOffset": "0x6e6a2",
+          "commandHex": "a00a0000",
+          "exactArguments": [
+            3,
+            30
+          ]
+        }
+      ],
+      "effectCallbackCalls": [
+        {
+          "callFileOffset": "0x6c456",
+          "commandHex": "a9041d00",
+          "exactArguments": [
+            0,
+            0
+          ]
+        },
+        {
+          "callFileOffset": "0x6c51a",
+          "commandHex": "a9041e00",
+          "exactArguments": [
+            0,
+            0
+          ]
+        },
+        {
+          "callFileOffset": "0x6c70e",
+          "commandHex": "a9041b00",
+          "exactArguments": [
+            0,
+            0
+          ]
+        },
+        {
+          "callFileOffset": "0x6c7ca",
+          "commandHex": "a9041c00",
+          "exactArguments": [
+            0,
+            0
+          ]
+        }
+      ],
+      "postArrivalRoomResume": {
+        "ownerCall": "0x8dc04",
+        "roomAudioCall": "0x8dc32",
+        "commandHex": "a83f0000"
+      }
+    }
+  },
+  "variants": [
+    {
+      "selectorId": "S1-D0W0-01",
+      "resource": "D0W0",
+      "activitySlot": 4,
+      "classification": "ambient-room-inheritance",
+      "evidence": "the activity owner has no sound-dispatch call; room audio control belongs to the wrapper before/after the selected conversation"
+    },
+    {
+      "selectorId": "S1-D0W0-02",
+      "resource": "D0W0",
+      "activitySlot": 5,
+      "classification": "ambient-room-inheritance",
+      "evidence": "the activity owner has no sound-dispatch call; room audio control belongs to the wrapper before/after the selected conversation"
+    },
+    {
+      "selectorId": "S1-D0W0-03",
+      "resource": "D0W0",
+      "activitySlot": 6,
+      "classification": "ambient-room-inheritance",
+      "evidence": "the activity owner has no sound-dispatch call; room audio control belongs to the wrapper before/after the selected conversation"
+    },
+    {
+      "selectorId": "S1-D0W0-04",
+      "resource": "D0W0",
+      "activitySlot": 7,
+      "classification": "ambient-room-inheritance",
+      "evidence": "the activity owner has no sound-dispatch call; room audio control belongs to the wrapper before/after the selected conversation"
+    },
+    {
+      "selectorId": "S1-D0W0-05",
+      "resource": "D0W0",
+      "activitySlot": 8,
+      "classification": "ambient-room-inheritance",
+      "evidence": "the activity owner has no sound-dispatch call; room audio control belongs to the wrapper before/after the selected conversation"
+    },
+    {
+      "selectorId": "S1-D0W0-06",
+      "resource": "D0W0",
+      "activitySlot": 9,
+      "classification": "ambient-room-inheritance",
+      "evidence": "the activity owner has no sound-dispatch call; room audio control belongs to the wrapper before/after the selected conversation"
+    },
+    {
+      "selectorId": "S1-D0W0-07",
+      "resource": "D0W0",
+      "activitySlot": 10,
+      "classification": "ambient-room-inheritance",
+      "evidence": "the activity owner has no sound-dispatch call; room audio control belongs to the wrapper before/after the selected conversation"
+    },
+    {
+      "selectorId": "S1-D0W0-08",
+      "resource": "D0W0",
+      "activitySlot": 11,
+      "classification": "ambient-room-inheritance",
+      "evidence": "the activity owner has no sound-dispatch call; room audio control belongs to the wrapper before/after the selected conversation"
+    },
+    {
+      "selectorId": "S1-D0W0-09",
+      "resource": "D0W0",
+      "activitySlot": 12,
+      "classification": "ambient-room-inheritance",
+      "evidence": "the activity owner has no sound-dispatch call; room audio control belongs to the wrapper before/after the selected conversation"
+    },
+    {
+      "selectorId": "S1-D0W0-10",
+      "resource": "D0W0",
+      "activitySlot": 13,
+      "classification": "ambient-room-inheritance",
+      "evidence": "the activity owner has no sound-dispatch call; room audio control belongs to the wrapper before/after the selected conversation"
+    },
+    {
+      "selectorId": "S1-D0W0-11",
+      "resource": "D0W0",
+      "activitySlot": 14,
+      "classification": "ambient-room-inheritance",
+      "evidence": "the activity owner has no sound-dispatch call; room audio control belongs to the wrapper before/after the selected conversation"
+    },
+    {
+      "selectorId": "S1-D0W0-12",
+      "resource": "D0W0",
+      "activitySlot": 15,
+      "classification": "ambient-room-inheritance",
+      "evidence": "the activity owner has no sound-dispatch call; room audio control belongs to the wrapper before/after the selected conversation"
+    },
+    {
+      "selectorId": "S1-BUSS-01",
+      "resource": "BUSS",
+      "activitySlot": 16,
+      "classification": "authored-silence",
+      "evidence": "the boarding caller and BUSS owner contain no explicit BGM command; owner audio is bus SFX/control only"
+    },
+    {
+      "selectorId": "S1-BUSS-02",
+      "resource": "BUSS",
+      "activitySlot": 16,
+      "classification": "authored-silence",
+      "evidence": "the boarding caller and BUSS owner contain no explicit BGM command; owner audio is bus SFX/control only"
+    },
+    {
+      "selectorId": "S1-BUSS-03",
+      "resource": "BUSS",
+      "activitySlot": 17,
+      "classification": "authored-silence",
+      "evidence": "the BUSS owner contains bus SFX/control only and the caller resumes room audio only after the arrival owner returns"
+    },
+    {
+      "selectorId": "S1-BUSS-04",
+      "resource": "BUSS",
+      "activitySlot": 17,
+      "classification": "authored-silence",
+      "evidence": "the BUSS owner contains bus SFX/control only and the caller resumes room audio only after the arrival owner returns"
+    }
+  ]
+}

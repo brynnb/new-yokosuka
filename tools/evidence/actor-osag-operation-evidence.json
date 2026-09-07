@@ -1,0 +1,98 @@
+{
+  "schema": "new-yokosuka-actor-osag-operation-evidence-v1",
+  "status": "exact-native-handler-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 306,
+    "operationHex": "0x0132",
+    "argumentCount": 1,
+    "handlerAddress": "0x0c131ab6",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c131ab6",
+        "length": 34,
+        "sha256": "94489d7a618b6c8e02029975ef15c1567871b762e6e93a987db38926e5c65744"
+      },
+      "osagHelper": {
+        "address": "0x0c131ad8",
+        "length": 58,
+        "sha256": "9cf2c783612b7ac4e487fc7b339147e01f204bc0356948e058fb61b0c8a22460"
+      },
+      "actorResolver": {
+        "address": "0x0c153956",
+        "length": 58,
+        "sha256": "b99d1c60ec19d8c20dec13ede36b9f81a3b04510da97159b53e03db38deba35f"
+      },
+      "associatedResolver": {
+        "address": "0x0c0aad5a",
+        "length": 50,
+        "sha256": "4c5affee0a1739c5cc4b01e389b4f6af7d2f6147cd09ad667b8e103fb3466c27"
+      },
+      "actorFlagHelper": {
+        "address": "0x0c0adfdc",
+        "length": 38,
+        "sha256": "79104229b3cf76a78d9eed11e9cd4d4bab2b2054acb0cc5680c39e9b91ae531d"
+      }
+    },
+    "nativeContract": {
+      "actorResolver": "0x0c153956",
+      "osagTag": "0x4741534f",
+      "associatedResolver": "0x0c0aad5a",
+      "actorFlagHelper": "0x0c0adfdc"
+    },
+    "osagNodeRoute": {
+      "recordTag": "OSAG",
+      "headPointerOffset": "0x01f0",
+      "nodeStateByteOffset": "0x0f",
+      "nodeStatePreserveMask": "0x0f",
+      "nodeStateSetMask": "0x80",
+      "nextNodePointerOffset": "0x0104"
+    },
+    "actorFlagRoute": {
+      "actorOwnerPointerOffset": "0x40",
+      "ownerFlagPointerOffset": "0x3c",
+      "flagMask": "0x10",
+      "action": "set"
+    },
+    "provenBehavior": "Resolves the actor, walks its optional OSAG node list and rewrites every node byte as (old & 0x0f) | 0x80, then sets mask 0x10 through the actor's optional nested flag byte."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 368,
+    "provenCallCount": 368,
+    "dialogueRegionCallCount": 69,
+    "areaCount": 43,
+    "argumentKindCounts": {
+      "constant": 332,
+      "frame-field": 36
+    },
+    "constantActorTagCounts": {
+      "AKIR": 291,
+      "ENKI": 2,
+      "FUKU": 2,
+      "INE_": 3,
+      "ISYM": 1,
+      "KAME": 1,
+      "KISY": 7,
+      "MEGM": 3,
+      "MEYS": 2,
+      "NGSM": 2,
+      "NMNO": 1,
+      "SINF": 4,
+      "SYZU": 6,
+      "TAIJ": 4,
+      "TOM_": 2,
+      "YAMA": 1
+    }
+  },
+  "evidenceBoundary": [
+    "OSAG remains an exact native record tag.",
+    "The node-byte and actor-flag meanings remain numeric.",
+    "A missing actor, OSAG record, node head, or nested flag pointer follows the native no-op path.",
+    "Runtime state that has not established whether those optional structures exist remains an explicit stop."
+  ]
+}

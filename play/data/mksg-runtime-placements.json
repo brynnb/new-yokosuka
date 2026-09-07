@@ -1,0 +1,527 @@
+{
+  "schema": "new-yokosuka-runtime-placement-manifest-v1",
+  "area": "MKSG",
+  "source": {
+    "runtimeCapture": "captures/pvr/20260724-164607-frame-972/ram.bin",
+    "scheduledActorCrossCheck": "captures/pvr/20260724-165229-frame-285/ram.bin"
+  },
+  "summary": {
+    "placementCount": 19,
+    "modelCount": 9
+  },
+  "placements": [
+    {
+      "id": "runtime-GATL",
+      "model": "S2_MFSY_B49T1SKG.MT5",
+      "position": [
+        0.699999988079071,
+        0,
+        -7.239999771118164
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "GATL",
+        "taskAddress": "0x8c5b7c80",
+        "callbackAddress": "0x0c2de638",
+        "modelAddress": "0x8c4b1c80",
+        "modelByteAgreement": 0.9958745874587459,
+        "placementSource": "runtime-task"
+      }
+    },
+    {
+      "id": "runtime-GATR",
+      "model": "S2_MFSY_B49T1SKG.MT5",
+      "position": [
+        0.699999988079071,
+        0,
+        -10.069999694824219
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "GATR",
+        "taskAddress": "0x8c5b80e0",
+        "callbackAddress": "0x0c2de638",
+        "modelAddress": "0x8c4b1c80",
+        "modelByteAgreement": 0.9958745874587459,
+        "placementSource": "runtime-task"
+      }
+    },
+    {
+      "id": "runtime-TEL_",
+      "model": "S2_MKSG_TELS514G.MT5",
+      "position": [
+        1.7220001220703125,
+        0.7400000095367432,
+        -4.031303405761719
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "TEL_",
+        "taskAddress": "0x8c5b8840",
+        "callbackAddress": "0x0c2de638",
+        "modelAddress": "0x8c580c20",
+        "modelByteAgreement": 0.9798850574712644,
+        "placementSource": "runtime-task"
+      }
+    },
+    {
+      "id": "runtime-ISU_",
+      "model": "S2_MFSY_B05K201G.MT5",
+      "position": [
+        2.552001953125,
+        0,
+        -3.8513031005859375
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "ISU_",
+        "taskAddress": "0x8c5b8ea0",
+        "callbackAddress": "0x0c2de638",
+        "modelAddress": "0x8c4b0080",
+        "modelByteAgreement": 0.9895543175487466,
+        "placementSource": "runtime-task"
+      }
+    },
+    {
+      "id": "runtime-KAIS",
+      "model": "S2_MKSG_KAIS500G.MT5",
+      "position": [
+        3.7706639766693115,
+        0.02962249517440796,
+        -5.364618301391602
+      ],
+      "rotationDegrees": [
+        66.005859375,
+        11.2939453125,
+        -59.425048828125
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "KAIS",
+        "taskAddress": "0x8c69d540",
+        "callbackAddress": "0x0c2de638",
+        "modelAddress": "0x8c600c20",
+        "modelByteAgreement": 0.9788359788359788,
+        "placementSource": "runtime-task"
+      }
+    },
+    {
+      "id": "runtime-CLIP",
+      "model": "S2_MKSG_CLIK300G.MT5",
+      "position": [
+        4.052000045776367,
+        0.9039999842643738,
+        -4.611299991607666
+      ],
+      "rotationDegrees": [
+        0,
+        -159.9993896484375,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "CLIP",
+        "taskAddress": "0x8c69da20",
+        "callbackAddress": "0x0c2de638",
+        "modelAddress": "0x8c5ff3c0",
+        "modelByteAgreement": 0.9865967365967366,
+        "placementSource": "runtime-task"
+      }
+    },
+    {
+      "id": "runtime-PEN_",
+      "model": "S2_MFSY_PENK300G.MT5",
+      "position": [
+        4.021999835968018,
+        0.9079999923706055,
+        -4.541299819946289
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "PEN_",
+        "taskAddress": "0x8c69de80",
+        "callbackAddress": "0x0c2de638",
+        "modelAddress": "0x8c69ae80",
+        "modelByteAgreement": 0.9843342036553525,
+        "placementSource": "runtime-task"
+      }
+    },
+    {
+      "id": "runtime-MAGZ",
+      "model": "S2_MFSY_ZSR3H05G.MT5",
+      "position": [
+        2.2119998931884766,
+        0.9660000205039978,
+        -3.7613000869750977
+      ],
+      "rotationDegrees": [
+        -121.981201171875,
+        72.015380859375,
+        -144.9591064453125
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "MAGZ",
+        "taskAddress": "0x8c69e2e0",
+        "callbackAddress": "0x0c2de638",
+        "modelAddress": "0x8c69b480",
+        "modelByteAgreement": 0.9498100063331222,
+        "placementSource": "runtime-task"
+      }
+    },
+    {
+      "id": "runtime-HAKO",
+      "model": "S2_MKSG_HAK02JM4.MT5",
+      "position": [
+        -17.56800079345703,
+        0,
+        -10.869999885559082
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "HAKO",
+        "taskAddress": "0x8c6af420",
+        "callbackAddress": "0x0c2de638",
+        "modelAddress": "0x8c6009e0",
+        "modelByteAgreement": 0.958041958041958,
+        "placementSource": "runtime-task"
+      }
+    },
+    {
+      "id": "runtime-door-CPAM",
+      "model": "S2_MKSG_DR02_021.MT5",
+      "position": [
+        12.514900207519531,
+        0,
+        -20.047300338745117
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "CPAM",
+        "taskAddress": "0x8c5f9140",
+        "modelAddress": "0x8c4b3440",
+        "modelByteAgreement": 0.9779843444227005,
+        "runtimeDoorIndex": 0,
+        "placementSource": "runtime-hmdl-instance"
+      }
+    },
+    {
+      "id": "runtime-door-dor1",
+      "model": "S2_MKSG_DR02_021.MT5",
+      "position": [
+        22.510129928588867,
+        0,
+        -31.07819938659668
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "dor1",
+        "taskAddress": "0x8c5f9480",
+        "modelAddress": "0x8c4b3440",
+        "modelByteAgreement": 0.9779843444227005,
+        "runtimeDoorIndex": 1,
+        "placementSource": "runtime-hmdl-instance"
+      }
+    },
+    {
+      "id": "runtime-door-dor2",
+      "model": "S2_MKSG_DR02_021.MT5",
+      "position": [
+        12.514909744262695,
+        0,
+        -50.44218826293945
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "dor2",
+        "taskAddress": "0x8c5f9840",
+        "modelAddress": "0x8c4b3440",
+        "modelByteAgreement": 0.9779843444227005,
+        "runtimeDoorIndex": 2,
+        "placementSource": "runtime-hmdl-instance"
+      }
+    },
+    {
+      "id": "runtime-door-dor3",
+      "model": "S2_MKSG_DR02_021.MT5",
+      "position": [
+        22.500490188598633,
+        0,
+        -61.69995880126953
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "dor3",
+        "taskAddress": "0x8c5f9c00",
+        "modelAddress": "0x8c4b3440",
+        "modelByteAgreement": 0.9779843444227005,
+        "runtimeDoorIndex": 3,
+        "placementSource": "runtime-hmdl-instance"
+      }
+    },
+    {
+      "id": "runtime-door-dor4",
+      "model": "S2_MKSG_DR02_021.MT5",
+      "position": [
+        28.085439682006836,
+        0,
+        -81.60724639892578
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "dor4",
+        "taskAddress": "0x8c5f9fc0",
+        "modelAddress": "0x8c4b3440",
+        "modelByteAgreement": 0.9779843444227005,
+        "runtimeDoorIndex": 4,
+        "placementSource": "runtime-hmdl-instance"
+      }
+    },
+    {
+      "id": "runtime-door-dor5",
+      "model": "S2_MKSG_DR02_021.MT5",
+      "position": [
+        45.903011322021484,
+        0,
+        -74.04010772705078
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "dor5",
+        "taskAddress": "0x8c5fa380",
+        "modelAddress": "0x8c4b3440",
+        "modelByteAgreement": 0.9779843444227005,
+        "runtimeDoorIndex": 5,
+        "placementSource": "runtime-hmdl-instance"
+      }
+    },
+    {
+      "id": "runtime-door-dor6",
+      "model": "S2_MKSG_DR02_021.MT5",
+      "position": [
+        54.50321960449219,
+        0,
+        -27.923229217529297
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "dor6",
+        "taskAddress": "0x8c5fa740",
+        "modelAddress": "0x8c4b3440",
+        "modelByteAgreement": 0.9779843444227005,
+        "runtimeDoorIndex": 6,
+        "placementSource": "runtime-hmdl-instance"
+      }
+    },
+    {
+      "id": "runtime-door-dor7",
+      "model": "S2_MKSG_DR02_021.MT5",
+      "position": [
+        3.950000047683716,
+        0,
+        -1.0011999607086182
+      ],
+      "rotationDegrees": [
+        0,
+        89.9945068359375,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "dor7",
+        "taskAddress": "0x8c5fab00",
+        "modelAddress": "0x8c4b3440",
+        "modelByteAgreement": 0.9779843444227005,
+        "runtimeDoorIndex": 7,
+        "placementSource": "runtime-hmdl-instance"
+      }
+    },
+    {
+      "id": "runtime-door-dor8",
+      "model": "S2_MKSG_DR02_021.MT5",
+      "position": [
+        66.60260009765625,
+        0,
+        -4.110569953918457
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "dor8",
+        "taskAddress": "0x8c5faec0",
+        "modelAddress": "0x8c4b3440",
+        "modelByteAgreement": 0.9779843444227005,
+        "runtimeDoorIndex": 8,
+        "placementSource": "runtime-hmdl-instance"
+      }
+    },
+    {
+      "id": "runtime-door-dor9",
+      "model": "S2_MKSG_DR02_021.MT5",
+      "position": [
+        44.4900016784668,
+        0,
+        -50.38045120239258
+      ],
+      "rotationDegrees": [
+        0,
+        180,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "dor9",
+        "taskAddress": "0x8c5fb280",
+        "modelAddress": "0x8c4b3440",
+        "modelByteAgreement": 0.9779843444227005,
+        "runtimeDoorIndex": 9,
+        "placementSource": "runtime-hmdl-instance"
+      }
+    }
+  ]
+}

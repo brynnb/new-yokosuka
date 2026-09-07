@@ -1,0 +1,44 @@
+{
+  "schema": "new-yokosuka-live-actor-momt-state-v1",
+  "status": "complete",
+  "source": {
+    "emulator": "Flycast",
+    "transport": "built-in GDB remote stub",
+    "observationType": "read-only native actor/MOMT resolution during natural gameplay",
+    "guestWrites": false,
+    "artificialHandlerCalls": false
+  },
+  "elapsedSeconds": 1.46,
+  "observation": {
+    "status": "complete",
+    "actorCode": "AKIR",
+    "actorObjectAddress": "0x0c515760",
+    "actorResolverObservationCount": 1,
+    "momtAccessorObservationCount": 1,
+    "parentPointer": "0x00000000",
+    "positionWordOffset": "0x0028",
+    "positionWords": [
+      0,
+      0,
+      0
+    ],
+    "position": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "momtPayloadAddress": "0x0c788edc",
+    "momtRecordScaleWordOffset": "0x0194",
+    "momtPayloadScaleWordOffset": "0x0180",
+    "momtScaleWords": [
+      941621248,
+      0,
+      3142647808
+    ],
+    "momtScale": [
+      3.814697265625e-05,
+      0.0,
+      -0.0031890869140625
+    ]
+  }
+}

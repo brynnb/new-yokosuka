@@ -1,0 +1,5243 @@
+{
+  "schema": "new-yokosuka-d000-interaction-coverage-v1",
+  "source": {
+    "manifest": "play/data/d000-runtime-placements.json",
+    "doorModelAudit": "tools/evidence/d000-door-model-audit.json",
+    "interactionModelAudit": "tools/evidence/d000-interaction-model-audit.json",
+    "dispatchCalls": ".disc-work/d000-dispatch-calls.json",
+    "transformCalls": ".disc-work/d000-sh4-transforms.json",
+    "operationHandlers": "tools/evidence/d000-operation-handlers.json",
+    "phoneBookInteraction": "tools/evidence/d000-phone-book-interaction.json",
+    "gachaInteraction": "tools/evidence/d000-gacha-interaction.json"
+  },
+  "summary": {
+    "placementCount": 154,
+    "browserImplementedCount": 154,
+    "exactNativeSemanticsCount": 135,
+    "unresolvedPlacementCount": 19,
+    "visibleDoorCount": 65,
+    "pairedNode7UnresolvedDoorCount": 0,
+    "pairedNode7ResolvedDoorCount": 15,
+    "gameplayFixtureFallbackCount": 0,
+    "sourceNativeInteractionCount": 11,
+    "dynamicTkoUnresolvedCount": 2,
+    "dynamicTrafficUnresolvedCount": 3,
+    "unclassifiedCount": 0
+  },
+  "unresolved": [
+    {
+      "index": 0,
+      "id": null,
+      "model": "S1_D000_BUSS530G.MT5",
+      "objectTag": "BUS_",
+      "role": "state-dependent-traffic-actor",
+      "browserInteraction": "click to replay the exact AUTH AMOV route; all 16 mixed-bank AUTH motion events are resolved",
+      "unresolved": [
+        "native story-state trigger and simultaneous AKIR motion/movement cutscene staging are not implemented"
+      ]
+    },
+    {
+      "index": 1,
+      "id": null,
+      "model": "S1_D000_C85M201G.MT5",
+      "objectTag": "CAR7",
+      "role": "state-dependent-traffic-actor",
+      "browserInteraction": "exact captured inactive pose below the map",
+      "unresolved": [
+        "active story state or route is absent from available captures and AUTH"
+      ]
+    },
+    {
+      "index": 135,
+      "id": null,
+      "model": "S1_D000_OGM_L.MT5",
+      "objectTag": "BUSS",
+      "role": "state-dependent-traffic-actor",
+      "browserInteraction": "click to replay the exact AUTH AMOV route; all 16 mixed-bank AUTH motion events are resolved",
+      "unresolved": [
+        "native story-state trigger and simultaneous AKIR motion/movement cutscene staging are not implemented"
+      ]
+    },
+    {
+      "index": 136,
+      "id": null,
+      "model": "S1_D000_OMG_DENS501G.MT5",
+      "objectTag": "TBK1",
+      "role": "gameplay-fixture",
+      "browserInteraction": "source-native MOTN plus exact FIXO closed/opened prop swap",
+      "unresolved": [
+        "native AUTH camera/audio, page-selection, and scene-result flow are not implemented"
+      ]
+    },
+    {
+      "index": 137,
+      "id": null,
+      "model": "S1_D000_OMG_GACM400G.MT5",
+      "objectTag": "GBX0",
+      "role": "gameplay-fixture",
+      "browserInteraction": "source-native MOTN plus exact HI_GACH detail-model swap",
+      "unresolved": [
+        "exact 100-yen debit, CCOW category flow, model lists, and collectible lookup/mutation recovered; random split, browser economy/collection, and result presentation remain"
+      ]
+    },
+    {
+      "index": 138,
+      "id": null,
+      "model": "S1_D000_OMG_GACM400G.MT5",
+      "objectTag": "GBX3",
+      "role": "gameplay-fixture",
+      "browserInteraction": "source-native MOTN plus exact HI_GACH detail-model swap",
+      "unresolved": [
+        "exact 100-yen debit, CCOW category flow, model lists, and collectible lookup/mutation recovered; random split, browser economy/collection, and result presentation remain"
+      ]
+    },
+    {
+      "index": 139,
+      "id": null,
+      "model": "S1_D000_OMG_GAT02L0G.MT5",
+      "objectTag": "GCH0",
+      "role": "gameplay-fixture",
+      "browserInteraction": "source-native MOTN plus exact HI_GACH detail-model swap",
+      "unresolved": [
+        "exact 100-yen debit, CCOW category flow, model lists, and collectible lookup/mutation recovered; random split, browser economy/collection, and result presentation remain"
+      ]
+    },
+    {
+      "index": 140,
+      "id": null,
+      "model": "S1_D000_OMG_GAT02L3G.MT5",
+      "objectTag": "GCH3",
+      "role": "gameplay-fixture",
+      "browserInteraction": "source-native MOTN plus exact HI_GACH detail-model swap",
+      "unresolved": [
+        "exact 100-yen debit, CCOW category flow, model lists, and collectible lookup/mutation recovered; random split, browser economy/collection, and result presentation remain"
+      ]
+    },
+    {
+      "index": 141,
+      "id": null,
+      "model": "S1_D000_OMG_HTL02DBG.MT5",
+      "objectTag": "HDCA",
+      "role": "static-scenery-fixture",
+      "browserInteraction": "fixed, non-interactive scenery",
+      "unresolved": [
+        "external gameplay consumer, if any, is not decoded"
+      ]
+    },
+    {
+      "index": 142,
+      "id": null,
+      "model": "S1_D000_OMG_JIHS5GTG.MT5",
+      "objectTag": "VM_0",
+      "role": "gameplay-fixture",
+      "browserInteraction": "source-native MOTN drinking motion, original can prop, and server-authoritative 100-yen purchase/Winning Can result",
+      "unresolved": [
+        "full native AUTH camera, Yukawa, dialogue, refund, and branch staging are not implemented"
+      ]
+    },
+    {
+      "index": 143,
+      "id": null,
+      "model": "S1_D000_OMG_JIHS5GTG.MT5",
+      "objectTag": "VM_0",
+      "role": "gameplay-fixture",
+      "browserInteraction": "source-native MOTN drinking motion, original can prop, and server-authoritative 100-yen purchase/Winning Can result",
+      "unresolved": [
+        "full native AUTH camera, Yukawa, dialogue, refund, and branch staging are not implemented"
+      ]
+    },
+    {
+      "index": 144,
+      "id": null,
+      "model": "S1_D000_OMG_JIHS5GTG.MT5",
+      "objectTag": "VM_0",
+      "role": "gameplay-fixture",
+      "browserInteraction": "source-native MOTN drinking motion, original can prop, and server-authoritative 100-yen purchase/Winning Can result",
+      "unresolved": [
+        "full native AUTH camera, Yukawa, dialogue, refund, and branch staging are not implemented"
+      ]
+    },
+    {
+      "index": 145,
+      "id": null,
+      "model": "S1_D000_OMG_JIHS5GTG.MT5",
+      "objectTag": "VM_0",
+      "role": "gameplay-fixture",
+      "browserInteraction": "source-native MOTN drinking motion, original can prop, and server-authoritative 100-yen purchase/Winning Can result",
+      "unresolved": [
+        "full native AUTH camera, Yukawa, dialogue, refund, and branch staging are not implemented"
+      ]
+    },
+    {
+      "index": 146,
+      "id": null,
+      "model": "S1_D000_OMG_JIHS5GTG.MT5",
+      "objectTag": "VM_1",
+      "role": "gameplay-fixture",
+      "browserInteraction": "source-native MOTN drinking motion, original can prop, and server-authoritative 100-yen purchase/Winning Can result",
+      "unresolved": [
+        "full native AUTH camera, Yukawa, dialogue, refund, and branch staging are not implemented"
+      ]
+    },
+    {
+      "index": 147,
+      "id": null,
+      "model": "S1_D000_OMG_SEGM4SPG.MT5",
+      "objectTag": "DAMY",
+      "role": "state-dependent-scene-anchor",
+      "browserInteraction": "non-rendered, non-interactive anchor",
+      "unresolved": [
+        "native gameplay consumer of the DAMY anchor is not decoded"
+      ]
+    },
+    {
+      "index": 148,
+      "id": null,
+      "model": "S1_D000_OMG_TELM402G.MT5",
+      "objectTag": "TEL0",
+      "role": "gameplay-fixture",
+      "browserInteraction": "source-native MOTN interaction (touchForehead)",
+      "unresolved": [
+        "native inventory, payment, and result-state effects are not decoded"
+      ]
+    },
+    {
+      "index": 151,
+      "id": null,
+      "model": "S1_D000_OMG_TKO0102G.MT5",
+      "objectTag": "TKOM",
+      "role": "state-dependent-animated-fixture",
+      "browserInteraction": "inspect; exact slowdown curve retained but not triggered",
+      "unresolved": [
+        "native selector inputs are exact (story bits 0x02f3/0x0298 and clock window [07:00,19:00)), but the browser has no authoritative story-variable or Shenmue clock service"
+      ]
+    },
+    {
+      "index": 152,
+      "id": null,
+      "model": "S1_D000_OMG_TKO0102G.MT5",
+      "objectTag": "TKON",
+      "role": "state-dependent-animated-fixture",
+      "browserInteraction": "inspect; exact slowdown curve retained but not triggered",
+      "unresolved": [
+        "native selector inputs are exact (story bits 0x02f3/0x0298 and clock window [07:00,19:00)), but the browser has no authoritative story-variable or Shenmue clock service"
+      ]
+    },
+    {
+      "index": 153,
+      "id": null,
+      "model": "S1_D000_OMG_WAGS500G.MT5",
+      "objectTag": "WAGK",
+      "role": "state-dependent-cutscene-prop",
+      "browserInteraction": "none; retained in the captured visible state",
+      "unresolved": [
+        "native nighttime cutscene trigger and AKIR/camera staging are not implemented; WAGK itself has no model animation"
+      ]
+    }
+  ],
+  "placements": [
+    {
+      "index": 0,
+      "id": null,
+      "model": "S1_D000_BUSS530G.MT5",
+      "objectTag": "BUS_",
+      "position": [
+        -50.346893,
+        0,
+        5.975222
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "state-dependent-traffic-actor",
+      "browserInteraction": "click to replay the exact AUTH AMOV route; all 16 mixed-bank AUTH motion events are resolved",
+      "browserImplemented": true,
+      "exactNativeSemantics": false,
+      "unresolved": [
+        "native story-state trigger and simultaneous AKIR motion/movement cutscene staging are not implemented"
+      ],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [
+        {
+          "callFileOffset": "0x6c348",
+          "operationId": "0x00c9",
+          "handlerAddress": "0x0c15820a",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6c36c",
+          "operationId": "0x00c9",
+          "handlerAddress": "0x0c15820a",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6c550",
+          "operationId": "0x0002",
+          "handlerAddress": "0x0c0bb3ac",
+          "argumentIndex": 2
+        },
+        {
+          "callFileOffset": "0x6c63e",
+          "operationId": "0x00c9",
+          "handlerAddress": "0x0c15820a",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6c662",
+          "operationId": "0x00c9",
+          "handlerAddress": "0x0c15820a",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6c686",
+          "operationId": "0x00c9",
+          "handlerAddress": "0x0c15820a",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6c6aa",
+          "operationId": "0x00c9",
+          "handlerAddress": "0x0c15820a",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6c7ec",
+          "operationId": "0x0002",
+          "handlerAddress": "0x0c0bb3ac",
+          "argumentIndex": 2
+        },
+        {
+          "callFileOffset": "0x6c9aa",
+          "operationId": "0x0121",
+          "handlerAddress": "0x0c1583dc",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6c9ca",
+          "operationId": "0x0121",
+          "handlerAddress": "0x0c1583dc",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6ca92",
+          "operationId": "0x00c9",
+          "handlerAddress": "0x0c15820a",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6cb0a",
+          "operationId": "0x00c9",
+          "handlerAddress": "0x0c15820a",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6cf8c",
+          "operationId": "0x00c9",
+          "handlerAddress": "0x0c15820a",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6cfae",
+          "operationId": "0x00c9",
+          "handlerAddress": "0x0c15820a",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6cfd0",
+          "operationId": "0x00c9",
+          "handlerAddress": "0x0c15820a",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6cff2",
+          "operationId": "0x00c9",
+          "handlerAddress": "0x0c15820a",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6d014",
+          "operationId": "0x00c9",
+          "handlerAddress": "0x0c15820a",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6d036",
+          "operationId": "0x00c9",
+          "handlerAddress": "0x0c15820a",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6d210",
+          "operationId": "0x0019",
+          "handlerAddress": "0x0c157678",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6d9d0",
+          "operationId": "0x0166",
+          "handlerAddress": "0x0c167ab4",
+          "argumentIndex": 1
+        },
+        {
+          "callFileOffset": "0x6dc4a",
+          "operationId": "0x0166",
+          "handlerAddress": "0x0c167ab4",
+          "argumentIndex": 1
+        },
+        {
+          "callFileOffset": "0x6de5c",
+          "operationId": "0x0166",
+          "handlerAddress": "0x0c167ab4",
+          "argumentIndex": 1
+        },
+        {
+          "callFileOffset": "0x6df9a",
+          "operationId": "0x0166",
+          "handlerAddress": "0x0c167ab4",
+          "argumentIndex": 1
+        },
+        {
+          "callFileOffset": "0x6e0b0",
+          "operationId": "0x0166",
+          "handlerAddress": "0x0c167ab4",
+          "argumentIndex": 1
+        },
+        {
+          "callFileOffset": "0x7ca4e",
+          "operationId": "0x0166",
+          "handlerAddress": "0x0c167ab4",
+          "argumentIndex": 1
+        },
+        {
+          "callFileOffset": "0x7ca66",
+          "operationId": "0x0166",
+          "handlerAddress": "0x0c167ab4",
+          "argumentIndex": 1
+        }
+      ],
+      "directNativeTransformCalls": [
+        {
+          "callFileOffset": "0x6c348",
+          "node": 153,
+          "mode": 0,
+          "modeName": "set",
+          "position": 0,
+          "rotation": {
+            "staticOffset": "0xca58"
+          },
+          "rotationVector": {
+            "fileOffset": "0xaeed8",
+            "rawHex": [
+              "0x00000000",
+              "0x0000371c",
+              "0x00000000"
+            ],
+            "initialValues": [
+              0,
+              14108,
+              0
+            ],
+            "degrees": [
+              0,
+              77.49755859375,
+              0
+            ]
+          }
+        },
+        {
+          "callFileOffset": "0x6c36c",
+          "node": 154,
+          "mode": 0,
+          "modeName": "set",
+          "position": 0,
+          "rotation": {
+            "staticOffset": "0xca64"
+          },
+          "rotationVector": {
+            "fileOffset": "0xaeee4",
+            "rawHex": [
+              "0x00000000",
+              "0x0000770a",
+              "0x00000000"
+            ],
+            "initialValues": [
+              0,
+              30474,
+              0
+            ],
+            "degrees": [
+              0,
+              167.398681640625,
+              0
+            ]
+          }
+        },
+        {
+          "callFileOffset": "0x6c63e",
+          "node": 157,
+          "mode": 0,
+          "modeName": "set",
+          "position": 0,
+          "rotation": {
+            "staticOffset": "0xca7c"
+          },
+          "rotationVector": {
+            "fileOffset": "0xaeefc",
+            "rawHex": [
+              "0x00000000",
+              "0x0000371c",
+              "0x00000000"
+            ],
+            "initialValues": [
+              0,
+              14108,
+              0
+            ],
+            "degrees": [
+              0,
+              77.49755859375,
+              0
+            ]
+          }
+        },
+        {
+          "callFileOffset": "0x6c662",
+          "node": 158,
+          "mode": 0,
+          "modeName": "set",
+          "position": 0,
+          "rotation": {
+            "staticOffset": "0xca88"
+          },
+          "rotationVector": {
+            "fileOffset": "0xaef08",
+            "rawHex": [
+              "0x00000000",
+              "0xffff88f6",
+              "0x00000000"
+            ],
+            "initialValues": [
+              0,
+              -30474,
+              0
+            ],
+            "degrees": [
+              0,
+              -167.398681640625,
+              0
+            ]
+          }
+        },
+        {
+          "callFileOffset": "0x6c686",
+          "node": 155,
+          "mode": 0,
+          "modeName": "set",
+          "position": 0,
+          "rotation": {
+            "staticOffset": "0xca94"
+          },
+          "rotationVector": {
+            "fileOffset": "0xaef14",
+            "rawHex": [
+              "0x00000000",
+              "0xffffc8e4",
+              "0x00000000"
+            ],
+            "initialValues": [
+              0,
+              -14108,
+              0
+            ],
+            "degrees": [
+              0,
+              -77.49755859375,
+              0
+            ]
+          }
+        },
+        {
+          "callFileOffset": "0x6c6aa",
+          "node": 156,
+          "mode": 0,
+          "modeName": "set",
+          "position": 0,
+          "rotation": {
+            "staticOffset": "0xcaa0"
+          },
+          "rotationVector": {
+            "fileOffset": "0xaef20",
+            "rawHex": [
+              "0x00000000",
+              "0x0000770a",
+              "0x00000000"
+            ],
+            "initialValues": [
+              0,
+              30474,
+              0
+            ],
+            "degrees": [
+              0,
+              167.398681640625,
+              0
+            ]
+          }
+        },
+        {
+          "callFileOffset": "0x6ca92",
+          "node": 196,
+          "mode": 0,
+          "modeName": "set",
+          "position": null,
+          "rotation": 0
+        },
+        {
+          "callFileOffset": "0x6cb0a",
+          "node": 196,
+          "mode": 0,
+          "modeName": "set",
+          "position": null,
+          "rotation": 0
+        },
+        {
+          "callFileOffset": "0x6cf8c",
+          "node": 153,
+          "mode": 0,
+          "modeName": "set",
+          "position": 0,
+          "rotation": null
+        },
+        {
+          "callFileOffset": "0x6cfae",
+          "node": 154,
+          "mode": 0,
+          "modeName": "set",
+          "position": 0,
+          "rotation": null
+        },
+        {
+          "callFileOffset": "0x6cfd0",
+          "node": 157,
+          "mode": 0,
+          "modeName": "set",
+          "position": 0,
+          "rotation": null
+        },
+        {
+          "callFileOffset": "0x6cff2",
+          "node": 158,
+          "mode": 0,
+          "modeName": "set",
+          "position": 0,
+          "rotation": null
+        },
+        {
+          "callFileOffset": "0x6d014",
+          "node": 155,
+          "mode": 0,
+          "modeName": "set",
+          "position": 0,
+          "rotation": null
+        },
+        {
+          "callFileOffset": "0x6d036",
+          "node": 156,
+          "mode": 0,
+          "modeName": "set",
+          "position": 0,
+          "rotation": null
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "id": null,
+      "model": "S1_D000_C85M201G.MT5",
+      "objectTag": "CAR7",
+      "position": [
+        -100,
+        -20,
+        0
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "state-dependent-traffic-actor",
+      "browserInteraction": "exact captured inactive pose below the map",
+      "browserImplemented": true,
+      "exactNativeSemantics": false,
+      "unresolved": [
+        "active story state or route is absent from available captures and AUTH"
+      ],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 2,
+      "id": null,
+      "model": "S1_D000_DBN9901G.MT5",
+      "objectTag": "BN01",
+      "position": [
+        60.700001,
+        0,
+        72
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "street-banner-scenery",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 3,
+      "id": null,
+      "model": "S1_D000_DBN9903G.MT5",
+      "objectTag": "BN03",
+      "position": [
+        68,
+        0,
+        92.75
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "street-banner-scenery",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 4,
+      "id": null,
+      "model": "S1_D000_DBN9905G.MT5",
+      "objectTag": "BN05",
+      "position": [
+        50.5,
+        0,
+        51
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "street-banner-scenery",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 5,
+      "id": null,
+      "model": "S1_D000_DBN9906G.MT5",
+      "objectTag": "BN06",
+      "position": [
+        92.300003,
+        0,
+        59.900002
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "street-banner-scenery",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 6,
+      "id": null,
+      "model": "S1_D000_DBN9907G.MT5",
+      "objectTag": "BN07",
+      "position": [
+        98.199997,
+        0,
+        61.25
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "street-banner-scenery",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 7,
+      "id": null,
+      "model": "S1_D000_DBN9908G.MT5",
+      "objectTag": "BN08",
+      "position": [
+        -2.1322,
+        0,
+        34.099998
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "street-banner-scenery",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 8,
+      "id": null,
+      "model": "S1_D000_DBN9909G.MT5",
+      "objectTag": "BN09",
+      "position": [
+        16.6,
+        0,
+        27.1
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "street-banner-scenery",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 9,
+      "id": null,
+      "model": "S1_D000_DBN9910G.MT5",
+      "objectTag": "BN10",
+      "position": [
+        8.8,
+        0,
+        24.9
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "street-banner-scenery",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 10,
+      "id": null,
+      "model": "S1_D000_DBN9912G.MT5",
+      "objectTag": "BN12",
+      "position": [
+        -26.5,
+        0,
+        11.8
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "street-banner-scenery",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 11,
+      "id": null,
+      "model": "S1_D000_DBN9913G.MT5",
+      "objectTag": "BN13",
+      "position": [
+        -12.9,
+        0,
+        34.299999
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "street-banner-scenery",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 12,
+      "id": null,
+      "model": "S1_D000_DBN9914G.MT5",
+      "objectTag": "BN14",
+      "position": [
+        35.200001,
+        0,
+        37.5
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "street-banner-scenery",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 13,
+      "id": null,
+      "model": "S1_D000_DBN9915G.MT5",
+      "objectTag": "BN15",
+      "position": [
+        52.299999,
+        0,
+        40.400002
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "street-banner-scenery",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 14,
+      "id": null,
+      "model": "S1_D000_DBN9916G.MT5",
+      "objectTag": "BN16",
+      "position": [
+        73,
+        0,
+        66.300003
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "street-banner-scenery",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 15,
+      "id": "static-door-1",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        122.677994,
+        0.072396,
+        82.16787
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 16,
+      "id": "static-door-3",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        9.8618,
+        0.0724,
+        24
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 17,
+      "id": "static-door-7",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        94.172798,
+        0.0724,
+        58.513298
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 18,
+      "id": "static-door-9",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        95.345993,
+        0.0724,
+        67.7024
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 19,
+      "id": "static-door-12",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        100.089127,
+        0.0724,
+        100.168411
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 20,
+      "id": "static-door-13",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        100.089127,
+        2.7724,
+        100.168411
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 21,
+      "id": "static-door-16",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        103.413712,
+        0.0724,
+        104.423607
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 22,
+      "id": "static-door-17",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        103.413712,
+        2.7724,
+        104.423607
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 23,
+      "id": "static-door-19",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        117.714317,
+        0.0724,
+        85.386909
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 24,
+      "id": "static-door-21",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        71.7677,
+        0.0724,
+        79.417603
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 25,
+      "id": "static-door-23",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        74.390099,
+        0.2505,
+        68.9077
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 26,
+      "id": "static-door-25",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        -38.7924,
+        0.0724,
+        8.474
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 27,
+      "id": "static-door-31",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        5.8593,
+        0.0724,
+        25.799999
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 28,
+      "id": "static-door-34",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        52.501701,
+        0.0724,
+        39.917599
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 29,
+      "id": "static-door-37",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        53.517578,
+        0.0724,
+        51.169655
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 30,
+      "id": "static-door-38",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        20.707703,
+        0.0724,
+        33.0093
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 31,
+      "id": "static-door-41",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        31.007092,
+        0.0724,
+        90.461243
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 32,
+      "id": "static-door-43",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        51.541409,
+        2.7724,
+        92.710724
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 33,
+      "id": "static-door-45",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        49.484447,
+        0.0724,
+        96.713135
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 34,
+      "id": "static-door-47",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        49.484447,
+        2.7724,
+        96.713135
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 35,
+      "id": "static-door-49",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        47.427532,
+        0.0724,
+        100.7155
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 36,
+      "id": "static-door-51",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        47.427532,
+        2.7724,
+        100.7155
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 37,
+      "id": "static-door-53",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        3.339661,
+        0.0724,
+        92.985603
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 38,
+      "id": "static-door-55",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        3.339661,
+        2.7724,
+        92.985603
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 39,
+      "id": "static-door-57",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        6.134857,
+        0.0724,
+        96.512291
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 40,
+      "id": "static-door-59",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        6.134857,
+        2.7724,
+        96.512291
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 41,
+      "id": "static-door-61",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        31.007092,
+        2.7724,
+        90.461243
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 42,
+      "id": "static-door-63",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        31.007092,
+        2.7724,
+        85.961563
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 43,
+      "id": "static-door-65",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        31.007092,
+        0.0724,
+        85.961563
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 44,
+      "id": "static-door-67",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        8.970196,
+        0.0724,
+        69.802544
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 45,
+      "id": "static-door-69",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        8.970196,
+        2.7724,
+        69.802544
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 46,
+      "id": "static-door-71",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        4.83403,
+        2.7724,
+        71.575287
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 47,
+      "id": "static-door-73",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        4.83403,
+        0.0724,
+        71.575287
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 48,
+      "id": "static-door-75",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        51.541409,
+        0.0724,
+        92.710724
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 49,
+      "id": "static-door-76",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        30.733089,
+        0.0724,
+        71.916801
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 50,
+      "id": "static-door-78",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        40.69305,
+        0.0724,
+        74.185394
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 51,
+      "id": "static-door-81",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        -41.678394,
+        7.9474,
+        90.054306
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 52,
+      "id": "static-door-83",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        -38.334198,
+        7.9474,
+        93.065445
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 53,
+      "id": "static-door-85",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        -38.334198,
+        5.2474,
+        93.065445
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 54,
+      "id": "static-door-87",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        -41.678394,
+        5.2474,
+        90.054306
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 55,
+      "id": "static-door-93",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        -14.74,
+        0.0724,
+        35.651798
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 56,
+      "id": "static-door-95",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        -20.3689,
+        0.08288,
+        49.165401
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 57,
+      "id": "static-door-100",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        63.242302,
+        0.0827,
+        66.408524
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 58,
+      "id": "static-door-103",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        -7.0097,
+        0.072396,
+        84.639503
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 59,
+      "id": "static-door-104",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        18.885372,
+        0.072397,
+        72.516792
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 60,
+      "id": "static-door-107",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        111.364052,
+        0.072397,
+        69.423103
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 61,
+      "id": "static-door-111",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        111.496498,
+        0.072395,
+        103.089699
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 62,
+      "id": "static-door-119",
+      "model": "S1_D000_DR00_002.MT5",
+      "objectTag": null,
+      "position": [
+        36.134102,
+        0.0704,
+        35.1745
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 63,
+      "id": "static-door-6",
+      "model": "S1_D000_DR00_003.MT5",
+      "objectTag": null,
+      "position": [
+        126.009689,
+        -1.8,
+        65.313385
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 64,
+      "id": "static-door-88",
+      "model": "S1_D000_DR00_003.MT5",
+      "objectTag": null,
+      "position": [
+        105.975586,
+        0.0724,
+        93.001869
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 65,
+      "id": "static-door-98",
+      "model": "S1_D000_DR00_003.MT5",
+      "objectTag": null,
+      "position": [
+        95.490257,
+        0.0724,
+        84.369667
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 66,
+      "id": "static-door-108",
+      "model": "S1_D000_DR00_003.MT5",
+      "objectTag": null,
+      "position": [
+        123.806267,
+        0.072396,
+        95.76992
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 67,
+      "id": "static-door-113",
+      "model": "S1_D000_DR00_003.MT5",
+      "objectTag": null,
+      "position": [
+        124.612915,
+        0.072396,
+        88.870094
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 68,
+      "id": "static-door-114",
+      "model": "S1_D000_DR00_003.MT5",
+      "objectTag": null,
+      "position": [
+        53.788616,
+        0.072396,
+        80.828423
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 69,
+      "id": "static-door-116",
+      "model": "S1_D000_DR00_003.MT5",
+      "objectTag": null,
+      "position": [
+        115.437248,
+        0.072395,
+        101.619835
+      ],
+      "staticDoorType": 1,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "doorway-or-collision-proxy",
+      "browserInteraction": "none",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 70,
+      "id": "static-door-11",
+      "model": "S1_D000_DR01_006.MT5",
+      "objectTag": null,
+      "position": [
+        99.812065,
+        0.0724,
+        99.813805
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 71,
+      "id": "static-door-15",
+      "model": "S1_D000_DR01_006.MT5",
+      "objectTag": null,
+      "position": [
+        103.136642,
+        0.0724,
+        104.068993
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 72,
+      "id": "static-door-18",
+      "model": "S1_D000_DR01_006.MT5",
+      "objectTag": null,
+      "position": [
+        103.136002,
+        2.7724,
+        104.069
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 73,
+      "id": "static-door-48",
+      "model": "S1_D000_DR01_006.MT5",
+      "objectTag": null,
+      "position": [
+        47.633221,
+        0.0724,
+        100.315262
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 74,
+      "id": "static-door-50",
+      "model": "S1_D000_DR01_006.MT5",
+      "objectTag": null,
+      "position": [
+        47.633221,
+        2.7724,
+        100.315262
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 75,
+      "id": "static-door-52",
+      "model": "S1_D000_DR01_006.MT5",
+      "objectTag": null,
+      "position": [
+        3.060143,
+        0.0724,
+        92.632942
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 76,
+      "id": "static-door-64",
+      "model": "S1_D000_DR01_006.MT5",
+      "objectTag": null,
+      "position": [
+        31.00709,
+        0.0724,
+        85.511566
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 77,
+      "id": "static-door-72",
+      "model": "S1_D000_DR01_006.MT5",
+      "objectTag": null,
+      "position": [
+        5.247641,
+        0.0724,
+        71.39801
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 78,
+      "id": "static-door-74",
+      "model": "S1_D000_DR01_006.MT5",
+      "objectTag": null,
+      "position": [
+        51.747093,
+        0.0724,
+        92.310478
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 79,
+      "id": "static-door-86",
+      "model": "S1_D000_DR01_006.MT5",
+      "objectTag": null,
+      "position": [
+        -42.01281,
+        5.2474,
+        89.753197
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 80,
+      "id": "static-door-14",
+      "model": "S1_D000_DR01_007.MT5",
+      "objectTag": null,
+      "position": [
+        99.812103,
+        2.7724,
+        99.813797
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 81,
+      "id": "static-door-106",
+      "model": "S1_D000_DR01_008.MT5",
+      "objectTag": null,
+      "position": [
+        111.771889,
+        0.072397,
+        69.613281
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 82,
+      "id": "static-door-109",
+      "model": "S1_D000_DR01_009.MT5",
+      "objectTag": null,
+      "position": [
+        123.658234,
+        0.072396,
+        96.484764
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 83,
+      "id": "static-door-26",
+      "model": "S1_D000_DR01_010.MT5",
+      "objectTag": null,
+      "position": [
+        -38.998093,
+        0.0724,
+        8.073762
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 84,
+      "id": "static-door-0",
+      "model": "S1_D000_DR01_011.MT5",
+      "objectTag": null,
+      "position": [
+        122.646652,
+        0.0724,
+        82.192696
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 85,
+      "id": "static-door-20",
+      "model": "S1_D000_DR01_011.MT5",
+      "objectTag": null,
+      "position": [
+        117.434776,
+        0.0724,
+        85.034241
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 86,
+      "id": "static-door-40",
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "position": [
+        31.00709,
+        0.0724,
+        90.011246
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 87,
+      "id": "static-door-42",
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "position": [
+        51.747093,
+        2.7724,
+        92.310478
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 88,
+      "id": "static-door-44",
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "position": [
+        49.690144,
+        0.0724,
+        96.312889
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 89,
+      "id": "static-door-46",
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "position": [
+        49.690144,
+        2.7724,
+        96.312889
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 90,
+      "id": "static-door-54",
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "position": [
+        3.060143,
+        2.7724,
+        92.632942
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 91,
+      "id": "static-door-56",
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "position": [
+        5.855344,
+        0.0724,
+        96.15963
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 92,
+      "id": "static-door-58",
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "position": [
+        5.855344,
+        2.7724,
+        96.15963
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 93,
+      "id": "static-door-60",
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "position": [
+        31.00709,
+        2.7724,
+        90.011246
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 94,
+      "id": "static-door-62",
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "position": [
+        31.00709,
+        2.7724,
+        85.511566
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 95,
+      "id": "static-door-66",
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "position": [
+        9.383801,
+        0.0724,
+        69.625267
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 96,
+      "id": "static-door-68",
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "position": [
+        9.383801,
+        2.7724,
+        69.625267
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 97,
+      "id": "static-door-70",
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "position": [
+        5.247641,
+        2.7724,
+        71.39801
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 98,
+      "id": "static-door-80",
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "position": [
+        -42.01281,
+        7.9474,
+        89.753197
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 99,
+      "id": "static-door-82",
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "position": [
+        -38.668617,
+        7.9474,
+        92.764336
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 100,
+      "id": "static-door-84",
+      "model": "S1_D000_DR01_018.MT5",
+      "objectTag": null,
+      "position": [
+        -38.668617,
+        5.2474,
+        92.764336
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 101,
+      "id": "static-door-4",
+      "model": "S1_D000_DR02_012.MT5",
+      "objectTag": null,
+      "position": [
+        93.6605,
+        0.0724,
+        59.617001
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 102,
+      "id": "static-door-36",
+      "model": "S1_D000_DR02_013.MT5",
+      "objectTag": null,
+      "position": [
+        53.875557,
+        0.0724,
+        51.425114
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 103,
+      "id": "static-door-92",
+      "model": "S1_D000_DR02_013.MT5",
+      "objectTag": null,
+      "position": [
+        -14.29,
+        0.07,
+        35.618
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 104,
+      "id": "static-door-8",
+      "model": "S1_D000_DR02_014.MT5",
+      "objectTag": null,
+      "position": [
+        93.738541,
+        0.0724,
+        58.395317
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 105,
+      "id": "static-door-94",
+      "model": "S1_D000_DR02_014.MT5",
+      "objectTag": null,
+      "position": [
+        -14.29,
+        0.07,
+        32.956589
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 106,
+      "id": "static-door-97",
+      "model": "S1_D000_DR02_014.MT5",
+      "objectTag": null,
+      "position": [
+        65.236916,
+        0.072395,
+        95.27832
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 107,
+      "id": "static-door-115",
+      "model": "S1_D000_DR02_015.MT5",
+      "objectTag": null,
+      "position": [
+        53.391666,
+        0.072396,
+        80.616402
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 108,
+      "id": "static-door-5",
+      "model": "S1_D000_DR02_016.MT5",
+      "objectTag": null,
+      "position": [
+        126.362854,
+        -1.8,
+        65.0345
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 109,
+      "id": "static-door-89",
+      "model": "S1_D000_DR02_017.MT5",
+      "objectTag": null,
+      "position": [
+        105.671112,
+        0.0724,
+        92.682182
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 110,
+      "id": "static-door-112",
+      "model": "S1_D000_DR02_017.MT5",
+      "objectTag": null,
+      "position": [
+        124.66507,
+        0.072396,
+        88.421341
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 111,
+      "id": "static-door-27",
+      "model": "S1_D000_DR02_018.MT5",
+      "objectTag": null,
+      "position": [
+        -23.00841,
+        0.0724,
+        23.001627
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 112,
+      "id": "static-door-102",
+      "model": "S1_D000_DR02_019.MT5",
+      "objectTag": null,
+      "position": [
+        -7.3624,
+        0.072396,
+        84.918999
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 113,
+      "id": "static-door-105",
+      "model": "S1_D000_DR02_020.MT5",
+      "objectTag": null,
+      "position": [
+        18.435373,
+        0.072397,
+        72.516792
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 114,
+      "id": "static-door-2",
+      "model": "S1_D000_DR05_001.MT5",
+      "objectTag": null,
+      "position": [
+        10.311799,
+        0.0724,
+        24
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 115,
+      "id": "static-door-33",
+      "model": "S1_D000_DR05_001.MT5",
+      "objectTag": null,
+      "position": [
+        52.868057,
+        0.0724,
+        40.178917
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 116,
+      "id": "static-door-118",
+      "model": "S1_D000_DR05_001.MT5",
+      "objectTag": null,
+      "position": [
+        36.584099,
+        0.0724,
+        35.1745
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 117,
+      "id": "static-door-30",
+      "model": "S1_D000_DR06_007.MT5",
+      "objectTag": null,
+      "position": [
+        5.409301,
+        0.0724,
+        25.799999
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 118,
+      "id": "static-door-32",
+      "model": "S1_D000_DR06_008.MT5",
+      "objectTag": null,
+      "position": [
+        14.397702,
+        0.0724,
+        28.168093
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 119,
+      "id": "static-door-91",
+      "model": "S1_D000_DR12_001.MT5",
+      "objectTag": null,
+      "position": [
+        68.2295,
+        0.08239,
+        53.425629
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 120,
+      "id": "static-door-90",
+      "model": "S1_D000_DR13_007.MT5",
+      "objectTag": null,
+      "position": [
+        97.059059,
+        0.0734,
+        61.789459
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "side-selected node-7/node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 121,
+      "id": "static-door-77",
+      "model": "S1_D000_DR13_008.MT5",
+      "objectTag": null,
+      "position": [
+        30.733089,
+        0.0724,
+        71.916801
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "side-selected node-7/node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 122,
+      "id": "static-door-29",
+      "model": "S1_D000_DR13_009.MT5",
+      "objectTag": null,
+      "position": [
+        -6.338201,
+        0.0724,
+        25.809999
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "side-selected node-7/node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 123,
+      "id": "static-door-22",
+      "model": "S1_D000_DR13_010.MT5",
+      "objectTag": null,
+      "position": [
+        71.7677,
+        0.0724,
+        79.457603
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "side-selected node-7/node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 124,
+      "id": "static-door-39",
+      "model": "S1_D000_DR13_012.MT5",
+      "objectTag": null,
+      "position": [
+        20.708447,
+        0.0724,
+        33.008385
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "side-selected node-7/node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 125,
+      "id": "static-door-117",
+      "model": "S1_D000_DR13_013.MT5",
+      "objectTag": null,
+      "position": [
+        115.437263,
+        0.072395,
+        101.619865
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "side-selected node-7/node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 126,
+      "id": "static-door-24",
+      "model": "S1_D000_DR15_009.MT5",
+      "objectTag": null,
+      "position": [
+        74.390099,
+        0.2505,
+        68.947693
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "side-selected node-7/node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 127,
+      "id": "static-door-101",
+      "model": "S1_D000_DR15_010.MT5",
+      "objectTag": null,
+      "position": [
+        63.242298,
+        0.0827,
+        66.408501
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "side-selected node-7/node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 128,
+      "id": "static-door-35",
+      "model": "S1_D000_DR15_011.MT5",
+      "objectTag": null,
+      "position": [
+        56.760239,
+        0.0724,
+        44.021336
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "side-selected node-7/node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 129,
+      "id": "static-door-79",
+      "model": "S1_D000_DR15_011.MT5",
+      "objectTag": null,
+      "position": [
+        40.704201,
+        0.0724,
+        74.147003
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "side-selected node-7/node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 130,
+      "id": "static-door-110",
+      "model": "S1_D000_DR15_012.MT5",
+      "objectTag": null,
+      "position": [
+        111.496483,
+        0.072392,
+        103.089706
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "side-selected node-7/node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 131,
+      "id": "static-door-10",
+      "model": "S1_D000_DR15_013.MT5",
+      "objectTag": null,
+      "position": [
+        95.345993,
+        0.0724,
+        67.7024
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "side-selected node-7/node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 132,
+      "id": "static-door-96",
+      "model": "S1_D000_DR15_014.MT5",
+      "objectTag": null,
+      "position": [
+        -20.368959,
+        0.082879,
+        49.165401
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "side-selected node-7/node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 133,
+      "id": "static-door-28",
+      "model": "S1_D000_DR17_002.MT5",
+      "objectTag": null,
+      "position": [
+        -22.358902,
+        0.0724,
+        32.833599
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "side-selected node-7/node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 134,
+      "id": "static-door-99",
+      "model": "S1_D000_DR28_001.MT5",
+      "objectTag": null,
+      "position": [
+        95.490257,
+        0.0724,
+        84.369667
+      ],
+      "staticDoorType": 2,
+      "behavior": {
+        "kind": "d000-door",
+        "renderNodeKey": 12,
+        "alternateRenderNodeKey": 7,
+        "endpointFixedTurnMagnitude": 16679,
+        "evidence": "d000-selector-53-door-call-trace.json",
+        "routeEvidence": "d000-door-node-route.json"
+      },
+      "role": "visible-door-leaf",
+      "browserInteraction": "side-selected node-7/node-12 door transition",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 135,
+      "id": null,
+      "model": "S1_D000_OGM_L.MT5",
+      "objectTag": "BUSS",
+      "position": [
+        -48.01432,
+        0.726606,
+        3.987722
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "none"
+      },
+      "role": "state-dependent-traffic-actor",
+      "browserInteraction": "click to replay the exact AUTH AMOV route; all 16 mixed-bank AUTH motion events are resolved",
+      "browserImplemented": true,
+      "exactNativeSemantics": false,
+      "unresolved": [
+        "native story-state trigger and simultaneous AKIR motion/movement cutscene staging are not implemented"
+      ],
+      "modelRouteVerified": null,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 136,
+      "id": null,
+      "model": "S1_D000_OMG_DENS501G.MT5",
+      "objectTag": "TBK1",
+      "position": [
+        -38.161098,
+        1.002,
+        10.1892
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "inspect",
+        "label": "Examine",
+        "interactionEmoteId": "dobuitaPhoneBook"
+      },
+      "role": "gameplay-fixture",
+      "browserInteraction": "source-native MOTN plus exact FIXO closed/opened prop swap",
+      "browserImplemented": true,
+      "exactNativeSemantics": false,
+      "unresolved": [
+        "native AUTH camera/audio, page-selection, and scene-result flow are not implemented"
+      ],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [
+        {
+          "callFileOffset": "0x116fa",
+          "operationId": "0x016b",
+          "handlerAddress": "0x0c1600aa",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x11712",
+          "operationId": "0x015b",
+          "handlerAddress": "0x0c1600d2",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x118f2",
+          "operationId": "0x016b",
+          "handlerAddress": "0x0c1600aa",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x1284a",
+          "operationId": "0x0018",
+          "handlerAddress": "0x0c157530",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x1286a",
+          "operationId": "0x001d",
+          "handlerAddress": "0x0c15787a",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x1298e",
+          "operationId": "0x0018",
+          "handlerAddress": "0x0c157530",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6a4ea",
+          "operationId": "0x0139",
+          "handlerAddress": "0x0c165544",
+          "argumentIndex": 1
+        },
+        {
+          "callFileOffset": "0x6a79a",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6a9c6",
+          "operationId": "0x0019",
+          "handlerAddress": "0x0c157678",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6a9e0",
+          "operationId": "0x001c",
+          "handlerAddress": "0x0c157bdc",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6ac68",
+          "operationId": "0x0018",
+          "handlerAddress": "0x0c157530",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6ac86",
+          "operationId": "0x001d",
+          "handlerAddress": "0x0c15787a",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6b2a2",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6b2b6",
+          "operationId": "0x00a8",
+          "handlerAddress": "0x0c157f36",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6b2de",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6b3c8",
+          "operationId": "0x00e6",
+          "handlerAddress": "0x0c1577fe",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6b614",
+          "operationId": "0x001b",
+          "handlerAddress": "0x0c157830",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6b628",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6bc4a",
+          "operationId": "0x001b",
+          "handlerAddress": "0x0c157830",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6bc72",
+          "operationId": "0x016b",
+          "handlerAddress": "0x0c1600aa",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6c070",
+          "operationId": "0x0019",
+          "handlerAddress": "0x0c157678",
+          "argumentIndex": 0
+        }
+      ],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 137,
+      "id": null,
+      "model": "S1_D000_OMG_GACM400G.MT5",
+      "objectTag": "GBX0",
+      "position": [
+        -24.21,
+        0,
+        32.072
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "inspect",
+        "label": "Capsule toy",
+        "interactionEmoteId": "dobuitaGacha"
+      },
+      "role": "gameplay-fixture",
+      "browserInteraction": "source-native MOTN plus exact HI_GACH detail-model swap",
+      "browserImplemented": true,
+      "exactNativeSemantics": false,
+      "unresolved": [
+        "exact 100-yen debit, CCOW category flow, model lists, and collectible lookup/mutation recovered; random split, browser economy/collection, and result presentation remain"
+      ],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 138,
+      "id": null,
+      "model": "S1_D000_OMG_GACM400G.MT5",
+      "objectTag": "GBX3",
+      "position": [
+        -23.46,
+        0,
+        32.072
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "inspect",
+        "label": "Capsule toy",
+        "interactionEmoteId": "dobuitaGacha"
+      },
+      "role": "gameplay-fixture",
+      "browserInteraction": "source-native MOTN plus exact HI_GACH detail-model swap",
+      "browserImplemented": true,
+      "exactNativeSemantics": false,
+      "unresolved": [
+        "exact 100-yen debit, CCOW category flow, model lists, and collectible lookup/mutation recovered; random split, browser economy/collection, and result presentation remain"
+      ],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 139,
+      "id": null,
+      "model": "S1_D000_OMG_GAT02L0G.MT5",
+      "objectTag": "GCH0",
+      "position": [
+        -24.5,
+        0,
+        32.16
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "inspect",
+        "label": "Capsule toy machine",
+        "interactionEmoteId": "dobuitaGacha"
+      },
+      "role": "gameplay-fixture",
+      "browserInteraction": "source-native MOTN plus exact HI_GACH detail-model swap",
+      "browserImplemented": true,
+      "exactNativeSemantics": false,
+      "unresolved": [
+        "exact 100-yen debit, CCOW category flow, model lists, and collectible lookup/mutation recovered; random split, browser economy/collection, and result presentation remain"
+      ],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 140,
+      "id": null,
+      "model": "S1_D000_OMG_GAT02L3G.MT5",
+      "objectTag": "GCH3",
+      "position": [
+        -23.75,
+        0,
+        32.16
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "inspect",
+        "label": "Capsule toy machine",
+        "interactionEmoteId": "dobuitaGacha"
+      },
+      "role": "gameplay-fixture",
+      "browserInteraction": "source-native MOTN plus exact HI_GACH detail-model swap",
+      "browserImplemented": true,
+      "exactNativeSemantics": false,
+      "unresolved": [
+        "exact 100-yen debit, CCOW category flow, model lists, and collectible lookup/mutation recovered; random split, browser economy/collection, and result presentation remain"
+      ],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 141,
+      "id": null,
+      "model": "S1_D000_OMG_HTL02DBG.MT5",
+      "objectTag": "HDCA",
+      "position": [
+        15.9,
+        0,
+        38.400002
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "passive-scenery",
+        "evidence": "d000-static-fixtures.json"
+      },
+      "role": "static-scenery-fixture",
+      "browserInteraction": "fixed, non-interactive scenery",
+      "browserImplemented": true,
+      "exactNativeSemantics": false,
+      "unresolved": [
+        "external gameplay consumer, if any, is not decoded"
+      ],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [
+        {
+          "callFileOffset": "0x697ba",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        }
+      ],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 142,
+      "id": null,
+      "model": "S1_D000_OMG_JIHS5GTG.MT5",
+      "objectTag": "VM_0",
+      "position": [
+        -17.95,
+        0.0724,
+        25.969
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "vending-machine",
+        "label": "Drink vending machine",
+        "evidence": "vending-machines.json"
+      },
+      "role": "gameplay-fixture",
+      "browserInteraction": "source-native MOTN drinking motion, original can prop, and server-authoritative 100-yen purchase/Winning Can result",
+      "browserImplemented": true,
+      "exactNativeSemantics": false,
+      "unresolved": [
+        "full native AUTH camera, Yukawa, dialogue, refund, and branch staging are not implemented"
+      ],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [
+        {
+          "callFileOffset": "0x7c69a",
+          "operationId": "0x00a8",
+          "handlerAddress": "0x0c157f36",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x7c6f2",
+          "operationId": "0x00a8",
+          "handlerAddress": "0x0c157f36",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x7c720",
+          "operationId": "0x0018",
+          "handlerAddress": "0x0c157530",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x7c73e",
+          "operationId": "0x001d",
+          "handlerAddress": "0x0c15787a",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x8bea6",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x8beba",
+          "operationId": "0x0046",
+          "handlerAddress": "0x0c1587dc",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x8c7aa",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x8ce7a",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        }
+      ],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 143,
+      "id": null,
+      "model": "S1_D000_OMG_JIHS5GTG.MT5",
+      "objectTag": "VM_0",
+      "position": [
+        15.99,
+        0.0724,
+        72.260063
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "vending-machine",
+        "label": "Drink vending machine",
+        "evidence": "vending-machines.json"
+      },
+      "role": "gameplay-fixture",
+      "browserInteraction": "source-native MOTN drinking motion, original can prop, and server-authoritative 100-yen purchase/Winning Can result",
+      "browserImplemented": true,
+      "exactNativeSemantics": false,
+      "unresolved": [
+        "full native AUTH camera, Yukawa, dialogue, refund, and branch staging are not implemented"
+      ],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [
+        {
+          "callFileOffset": "0x7c69a",
+          "operationId": "0x00a8",
+          "handlerAddress": "0x0c157f36",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x7c6f2",
+          "operationId": "0x00a8",
+          "handlerAddress": "0x0c157f36",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x7c720",
+          "operationId": "0x0018",
+          "handlerAddress": "0x0c157530",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x7c73e",
+          "operationId": "0x001d",
+          "handlerAddress": "0x0c15787a",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x8bea6",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x8beba",
+          "operationId": "0x0046",
+          "handlerAddress": "0x0c1587dc",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x8c7aa",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x8ce7a",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        }
+      ],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 144,
+      "id": null,
+      "model": "S1_D000_OMG_JIHS5GTG.MT5",
+      "objectTag": "VM_0",
+      "position": [
+        97.89,
+        0.0724,
+        96.826
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "vending-machine",
+        "label": "Drink vending machine",
+        "evidence": "vending-machines.json"
+      },
+      "role": "gameplay-fixture",
+      "browserInteraction": "source-native MOTN drinking motion, original can prop, and server-authoritative 100-yen purchase/Winning Can result",
+      "browserImplemented": true,
+      "exactNativeSemantics": false,
+      "unresolved": [
+        "full native AUTH camera, Yukawa, dialogue, refund, and branch staging are not implemented"
+      ],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [
+        {
+          "callFileOffset": "0x7c69a",
+          "operationId": "0x00a8",
+          "handlerAddress": "0x0c157f36",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x7c6f2",
+          "operationId": "0x00a8",
+          "handlerAddress": "0x0c157f36",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x7c720",
+          "operationId": "0x0018",
+          "handlerAddress": "0x0c157530",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x7c73e",
+          "operationId": "0x001d",
+          "handlerAddress": "0x0c15787a",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x8bea6",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x8beba",
+          "operationId": "0x0046",
+          "handlerAddress": "0x0c1587dc",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x8c7aa",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x8ce7a",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        }
+      ],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 145,
+      "id": null,
+      "model": "S1_D000_OMG_JIHS5GTG.MT5",
+      "objectTag": "VM_0",
+      "position": [
+        108.8248,
+        0.0724,
+        74.6069
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "vending-machine",
+        "label": "Drink vending machine",
+        "evidence": "vending-machines.json"
+      },
+      "role": "gameplay-fixture",
+      "browserInteraction": "source-native MOTN drinking motion, original can prop, and server-authoritative 100-yen purchase/Winning Can result",
+      "browserImplemented": true,
+      "exactNativeSemantics": false,
+      "unresolved": [
+        "full native AUTH camera, Yukawa, dialogue, refund, and branch staging are not implemented"
+      ],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [
+        {
+          "callFileOffset": "0x7c69a",
+          "operationId": "0x00a8",
+          "handlerAddress": "0x0c157f36",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x7c6f2",
+          "operationId": "0x00a8",
+          "handlerAddress": "0x0c157f36",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x7c720",
+          "operationId": "0x0018",
+          "handlerAddress": "0x0c157530",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x7c73e",
+          "operationId": "0x001d",
+          "handlerAddress": "0x0c15787a",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x8bea6",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x8beba",
+          "operationId": "0x0046",
+          "handlerAddress": "0x0c1587dc",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x8c7aa",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x8ce7a",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        }
+      ],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 146,
+      "id": null,
+      "model": "S1_D000_OMG_JIHS5GTG.MT5",
+      "objectTag": "VM_1",
+      "position": [
+        70.8,
+        0.0724,
+        56.6
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "vending-machine",
+        "label": "Drink vending machine",
+        "evidence": "vending-machines.json"
+      },
+      "role": "gameplay-fixture",
+      "browserInteraction": "source-native MOTN drinking motion, original can prop, and server-authoritative 100-yen purchase/Winning Can result",
+      "browserImplemented": true,
+      "exactNativeSemantics": false,
+      "unresolved": [
+        "full native AUTH camera, Yukawa, dialogue, refund, and branch staging are not implemented"
+      ],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [
+        {
+          "callFileOffset": "0x7c6ae",
+          "operationId": "0x00a8",
+          "handlerAddress": "0x0c157f36",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x7c706",
+          "operationId": "0x00a8",
+          "handlerAddress": "0x0c157f36",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x7c758",
+          "operationId": "0x0018",
+          "handlerAddress": "0x0c157530",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x7c776",
+          "operationId": "0x001d",
+          "handlerAddress": "0x0c15787a",
+          "argumentIndex": 0
+        }
+      ],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 147,
+      "id": null,
+      "model": "S1_D000_OMG_SEGM4SPG.MT5",
+      "objectTag": "DAMY",
+      "position": [
+        -24.125,
+        0,
+        32.310001
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "passive-anchor",
+        "initiallyEnabled": false,
+        "evidence": "d000-passive-anchor.json"
+      },
+      "role": "state-dependent-scene-anchor",
+      "browserInteraction": "non-rendered, non-interactive anchor",
+      "browserImplemented": true,
+      "exactNativeSemantics": false,
+      "unresolved": [
+        "native gameplay consumer of the DAMY anchor is not decoded"
+      ],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [
+        {
+          "callFileOffset": "0x51ba8",
+          "operationId": "0x00a8",
+          "handlerAddress": "0x0c157f36",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x51bbc",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x51dce",
+          "operationId": "0x00a8",
+          "handlerAddress": "0x0c157f36",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x57c64",
+          "operationId": "0x0043",
+          "handlerAddress": "0x0c157c88",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x57c7c",
+          "operationId": "0x0018",
+          "handlerAddress": "0x0c157530",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x57c90",
+          "operationId": "0x0043",
+          "handlerAddress": "0x0c157c88",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x57cac",
+          "operationId": "0x0019",
+          "handlerAddress": "0x0c157678",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x57cda",
+          "operationId": "0x0043",
+          "handlerAddress": "0x0c157c88",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x57cf6",
+          "operationId": "0x001d",
+          "handlerAddress": "0x0c15787a",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x57d0a",
+          "operationId": "0x0043",
+          "handlerAddress": "0x0c157c88",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x57d22",
+          "operationId": "0x001c",
+          "handlerAddress": "0x0c157bdc",
+          "argumentIndex": 0
+        }
+      ],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 148,
+      "id": null,
+      "model": "S1_D000_OMG_TELM402G.MT5",
+      "objectTag": "TEL0",
+      "position": [
+        -38.533001,
+        0.97,
+        9.521
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "inspect",
+        "label": "Telephone booth",
+        "interactionEmoteId": "touchForehead"
+      },
+      "role": "gameplay-fixture",
+      "browserInteraction": "source-native MOTN interaction (touchForehead)",
+      "browserImplemented": true,
+      "exactNativeSemantics": false,
+      "unresolved": [
+        "native inventory, payment, and result-state effects are not decoded"
+      ],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [],
+      "directNativeTransformCalls": []
+    },
+    {
+      "index": 149,
+      "id": null,
+      "model": "S1_D000_OMG_TKO0101G.MT5",
+      "objectTag": "TKOK",
+      "position": [
+        -21.471901,
+        0.0724,
+        26.688601
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "inspect",
+        "label": "Examine",
+        "initiallyEnabled": true,
+        "ambientAnimation": {
+          "kind": "d000-tko-node-spin",
+          "renderNodeKey": 152,
+          "sourceFixedTurnsPerTick": -910,
+          "gameHz": 30,
+          "autoPlay": true,
+          "evidence": "d000-tko-node-spin.json"
+        }
+      },
+      "role": "ambient-animated-fixture",
+      "browserInteraction": "inspect plus exact node-152 spin",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [
+        {
+          "callFileOffset": "0x69254",
+          "operationId": "0x00c9",
+          "handlerAddress": "0x0c15820a",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6967e",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x696b6",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x696da",
+          "operationId": "0x00a8",
+          "handlerAddress": "0x0c157f36",
+          "argumentIndex": 0
+        }
+      ],
+      "directNativeTransformCalls": [
+        {
+          "callFileOffset": "0x69254",
+          "node": 152,
+          "mode": 1,
+          "modeName": "add",
+          "position": 0,
+          "rotation": {
+            "staticOffset": "0xbd08"
+          },
+          "rotationVector": {
+            "fileOffset": "0xae188",
+            "rawHex": [
+              "0x00000000",
+              "0xfffffc72",
+              "0x00000000"
+            ],
+            "initialValues": [
+              0,
+              -910,
+              0
+            ],
+            "degrees": [
+              0,
+              -4.998779296875,
+              0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 150,
+      "id": null,
+      "model": "S1_D000_OMG_TKO0101G.MT5",
+      "objectTag": "TKOL",
+      "position": [
+        -3.4863,
+        0.072,
+        82.835297
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "inspect",
+        "label": "Examine",
+        "initiallyEnabled": false,
+        "ambientAnimation": {
+          "kind": "d000-tko-node-spin",
+          "renderNodeKey": 152,
+          "sourceFixedTurnsPerTick": -910,
+          "gameHz": 30,
+          "autoPlay": false,
+          "evidence": "d000-tko-node-spin.json"
+        }
+      },
+      "role": "ambient-animated-fixture",
+      "browserInteraction": "inspect plus exact node-152 spin",
+      "browserImplemented": true,
+      "exactNativeSemantics": true,
+      "unresolved": [],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [
+        {
+          "callFileOffset": "0x69440",
+          "operationId": "0x00c9",
+          "handlerAddress": "0x0c15820a",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6970a",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x69742",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x69766",
+          "operationId": "0x00a8",
+          "handlerAddress": "0x0c157f36",
+          "argumentIndex": 0
+        }
+      ],
+      "directNativeTransformCalls": [
+        {
+          "callFileOffset": "0x69440",
+          "node": 152,
+          "mode": 1,
+          "modeName": "add",
+          "position": 0,
+          "rotation": {
+            "staticOffset": "0xbd08"
+          },
+          "rotationVector": {
+            "fileOffset": "0xae188",
+            "rawHex": [
+              "0x00000000",
+              "0xfffffc72",
+              "0x00000000"
+            ],
+            "initialValues": [
+              0,
+              -910,
+              0
+            ],
+            "degrees": [
+              0,
+              -4.998779296875,
+              0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 151,
+      "id": null,
+      "model": "S1_D000_OMG_TKO0102G.MT5",
+      "objectTag": "TKOM",
+      "position": [
+        -21.471901,
+        0.0724,
+        26.688601
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "inspect",
+        "label": "Examine",
+        "initiallyEnabled": false,
+        "stateTransitionAnimation": {
+          "kind": "d000-tko-node-slowdown",
+          "renderNodeKey": 152,
+          "counterTicks": 40,
+          "sourceFixedTurnsPerTick": {
+            "initial": -888,
+            "final": -30,
+            "step": 22
+          },
+          "autoPlay": false,
+          "evidence": "d000-tko-node-slowdown.json"
+        },
+        "initialStateEvidence": "d000-tko-initial-state.json",
+        "stateMachineEvidence": "d000-tko-state-machine.json"
+      },
+      "role": "state-dependent-animated-fixture",
+      "browserInteraction": "inspect; exact slowdown curve retained but not triggered",
+      "browserImplemented": true,
+      "exactNativeSemantics": false,
+      "unresolved": [
+        "native selector inputs are exact (story bits 0x02f3/0x0298 and clock window [07:00,19:00)), but the browser has no authoritative story-variable or Shenmue clock service"
+      ],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [
+        {
+          "callFileOffset": "0x69324",
+          "operationId": "0x00c9",
+          "handlerAddress": "0x0c15820a",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6960e",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x69636",
+          "operationId": "0x00a8",
+          "handlerAddress": "0x0c157f36",
+          "argumentIndex": 0
+        }
+      ],
+      "directNativeTransformCalls": [
+        {
+          "callFileOffset": "0x69324",
+          "node": 152,
+          "mode": 1,
+          "modeName": "add",
+          "position": 0,
+          "rotation": null
+        }
+      ]
+    },
+    {
+      "index": 152,
+      "id": null,
+      "model": "S1_D000_OMG_TKO0102G.MT5",
+      "objectTag": "TKON",
+      "position": [
+        -3.4863,
+        0.072,
+        82.835297
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "inspect",
+        "label": "Examine",
+        "initiallyEnabled": true,
+        "stateTransitionAnimation": {
+          "kind": "d000-tko-node-slowdown",
+          "renderNodeKey": 152,
+          "counterTicks": 40,
+          "sourceFixedTurnsPerTick": {
+            "initial": -888,
+            "final": -30,
+            "step": 22
+          },
+          "autoPlay": false,
+          "evidence": "d000-tko-node-slowdown.json"
+        },
+        "initialStateEvidence": "d000-tko-initial-state.json",
+        "stateMachineEvidence": "d000-tko-state-machine.json"
+      },
+      "role": "state-dependent-animated-fixture",
+      "browserInteraction": "inspect; exact slowdown curve retained but not triggered",
+      "browserImplemented": true,
+      "exactNativeSemantics": false,
+      "unresolved": [
+        "native selector inputs are exact (story bits 0x02f3/0x0298 and clock window [07:00,19:00)), but the browser has no authoritative story-variable or Shenmue clock service"
+      ],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [
+        {
+          "callFileOffset": "0x69510",
+          "operationId": "0x00c9",
+          "handlerAddress": "0x0c15820a",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x69622",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x6964a",
+          "operationId": "0x00a8",
+          "handlerAddress": "0x0c157f36",
+          "argumentIndex": 0
+        }
+      ],
+      "directNativeTransformCalls": [
+        {
+          "callFileOffset": "0x69510",
+          "node": 152,
+          "mode": 1,
+          "modeName": "add",
+          "position": 0,
+          "rotation": null
+        }
+      ]
+    },
+    {
+      "index": 153,
+      "id": null,
+      "model": "S1_D000_OMG_WAGS500G.MT5",
+      "objectTag": "WAGK",
+      "position": [
+        -4.3093,
+        0,
+        27.1614
+      ],
+      "staticDoorType": null,
+      "behavior": {
+        "kind": "state-dependent-cutscene-prop",
+        "initiallyEnabled": true,
+        "evidence": "d000-static-fixtures.json"
+      },
+      "role": "state-dependent-cutscene-prop",
+      "browserInteraction": "none; retained in the captured visible state",
+      "browserImplemented": true,
+      "exactNativeSemantics": false,
+      "unresolved": [
+        "native nighttime cutscene trigger and AKIR/camera staging are not implemented; WAGK itself has no model animation"
+      ],
+      "modelRouteVerified": true,
+      "directNativeDispatchCalls": [
+        {
+          "callFileOffset": "0x7df42",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x7df7a",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x7df9e",
+          "operationId": "0x00a8",
+          "handlerAddress": "0x0c157f36",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x7e18a",
+          "operationId": "0x00a8",
+          "handlerAddress": "0x0c157f36",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x7e1d2",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x7e20a",
+          "operationId": "0x001f",
+          "handlerAddress": "0x0c157e12",
+          "argumentIndex": 0
+        },
+        {
+          "callFileOffset": "0x7e22e",
+          "operationId": "0x00a8",
+          "handlerAddress": "0x0c157f36",
+          "argumentIndex": 0
+        }
+      ],
+      "directNativeTransformCalls": []
+    }
+  ]
+}

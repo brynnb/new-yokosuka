@@ -1,0 +1,94 @@
+{
+  "schema": "new-yokosuka-operation-0071-evidence-v1",
+  "status": "exact-three-channel-float-word-contract-and-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 113,
+    "operationHex": "0x0071",
+    "handlerAddress": "0x0c156ce4",
+    "stateBaseAddress": "0x0c2019f0",
+    "channelOffsets": [
+      "0x0104",
+      "0x0108",
+      "0x010c"
+    ],
+    "modes": [
+      {
+        "mode": 0,
+        "channel": 0,
+        "behavior": "write and return prior word"
+      },
+      {
+        "mode": 1,
+        "channel": 0,
+        "behavior": "read current word"
+      },
+      {
+        "mode": 2,
+        "channel": 1,
+        "behavior": "write and return prior word"
+      },
+      {
+        "mode": 3,
+        "channel": 1,
+        "behavior": "read current word"
+      },
+      {
+        "mode": 4,
+        "channel": 2,
+        "behavior": "write and return prior word"
+      },
+      {
+        "mode": 5,
+        "channel": 2,
+        "behavior": "read current word; not authored"
+      }
+    ],
+    "provenBehavior": "Even modes write argument one's raw float32 word to one of three fixed fields and return that field's prior word. Odd modes return the matching current word without mutation.",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c156ce4",
+        "length": 142,
+        "sha256": "02590c1045adcc089456c0b1563c892c91f0e46092418247c45d11a2b93eec4e"
+      },
+      "channelAccessors": {
+        "address": "0x0c09f1b0",
+        "length": 48,
+        "sha256": "d8f79ea9f9789c552b0c8aa4a9dc6787e537518b66adf386fb7de1cca418c9dd"
+      }
+    }
+  },
+  "allDiscInventory": {
+    "callCount": 794,
+    "dialogueRegionCallCount": 17,
+    "areaCount": 43,
+    "modeCounts": {
+      "0": 410,
+      "1": 5,
+      "2": 347,
+      "3": 3,
+      "4": 29
+    },
+    "argumentOneKindCounts": {
+      "constant": 776,
+      "frame-field": 11,
+      "runtime": 3,
+      "scene-field": 4
+    },
+    "dialogueModeCounts": {
+      "0": 10,
+      "2": 7
+    }
+  },
+  "evidenceBoundary": [
+    "The three fixed fields retain numeric channel identities; no visual or gameplay label is inferred.",
+    "Mode five is proven in the handler but remains outside compilation because no authored call uses it.",
+    "A read or prior-value consumer stops when the corresponding word has not been established exactly.",
+    "All values remain raw float32 words; no host-number reinterpretation is used for storage."
+  ]
+}

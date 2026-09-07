@@ -1,0 +1,70 @@
+{
+  "schema": "new-yokosuka-native-cutscene-lifecycle-v1",
+  "resource": "HIHY",
+  "disc": 1,
+  "area": "JHD0",
+  "mapinfo": {
+    "path": "extracted_files/data/SCENE/01/JHD0/MAPINFO.BIN",
+    "sha256": "e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca"
+  },
+  "owner": {
+    "playerFacingEntryFunction": "0x37d56",
+    "parentStoryController": "0x28cec",
+    "parentCallFileOffset": "0x29b0e",
+    "activityOperation": "0x013e",
+    "binding": {
+      "slot": 0,
+      "callFileOffset": "0x3823c",
+      "primaryPointer": "0x5ecb3",
+      "secondaryPointer": "0x5ecb8",
+      "selection": "HIHY.PKS AUTH-extension ordinal zero = SEQDATA5.AUTH"
+    }
+  },
+  "nativeLifecycle": {
+    "enter": [
+      "disable player interaction and gameplay presentation",
+      "open /scene/01/JHD0/HIHY",
+      "load A0125B stream and tsm003 sound environment",
+      "hide POK2/POS2 and resident FUKU while the activity owns presentation"
+    ],
+    "activity": "run slot 0 through the native activity wait boundary",
+    "exit": [
+      "restore resident FUKU and POK2/POS2",
+      "release slot and HIHY archive",
+      "restore f1doujou/BGM009 room audio, camera, gameplay, and interaction"
+    ]
+  },
+  "resourceCluster": {
+    "archive": "extracted_files/data/SCENE/01/JHD0/HIHY.PKS",
+    "archiveSha256": "6fee93fbde9d7f778b776ba2dfe2d1487e333d1cc72110cc9a23e0929481a705",
+    "activity": "SEQDATA5.AUTH",
+    "motionBank": "M_0125.MOTN",
+    "voiceStream": "A0125B.AFS",
+    "ownerSoundEnvironment": "tsm003.snd"
+  },
+  "dependencies": {
+    "actors": {
+      "IWAO": "archive-local IWA_M.CHRM body variant with shared exact IWA texture pack",
+      "JAKR": "canonical JKA_M.CHRM (byte-identical to the archive member)",
+      "MOON": "archive-local MAP12.MAPM AUTH scene object"
+    },
+    "faces": {
+      "IWAO": "global exact IWA_F.MT5/IWA_FTBL.BIN and native TALK poses",
+      "JAKR": "global exact JKA_F.MT5/JKA_FTBL.BIN and native TALK poses"
+    }
+  },
+  "runtimePolicy": {
+    "world": "reuse the JHD0 Hazuki grounds composition and coordinate root",
+    "actors": "package-local body variants use generic package actor ownership; byte-identical canonical bodies are not duplicated",
+    "audio": "play the exact A0125B voices; AUTH contains no sound commands, so tsm003 is not misrepresented as an activity SFX bank",
+    "exit": "release activity, face, audio, camera, actor, scene-object, and control ownership exactly once"
+  },
+  "sources": [
+    ".disc-work/dialogue/native-event-ir.json",
+    "tools/evidence/native-activity-owner-candidates.json",
+    "tools/evidence/shenmue1-scripted-scene-inventory.json",
+    "tools/evidence/native-audio-bank-inventory.json"
+  ],
+  "availability": "package-candidate",
+  "productionGate": "Exact archive members, native voices, both actors and faces, MOON scene object, world composition, and fail-closed cleanup are required."
+}

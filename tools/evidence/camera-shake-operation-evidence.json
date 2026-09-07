@@ -1,0 +1,97 @@
+{
+  "schema": "new-yokosuka-camera-shake-operation-evidence-v1",
+  "status": "exact-native-envelope-contract-and-full-ir-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 216,
+    "operationHex": "0x00d8",
+    "argumentCount": 3,
+    "handlerAddress": "0x0c1570ca",
+    "verifiedRanges": {
+      "handlerTableEntry": {
+        "address": "0x0c29ad40",
+        "length": 4,
+        "sha256": "f92467804cedc6ca5ba26f822770e37623de71d9c6ea72d4ccf020fb97934034"
+      },
+      "handler": {
+        "address": "0x0c1570ca",
+        "length": 20,
+        "sha256": "ac3fd476fabec85d353cc065b20fa7accf8f0c4d6102c4e90e2544dea7cadd3b"
+      },
+      "envelopeWriter": {
+        "address": "0x0c09f540",
+        "length": 66,
+        "sha256": "1f608a84a2e0e3a59bfb0bd7304a345a9a92bc442b3d5bdecb6b6f0a39a12490"
+      }
+    },
+    "nativeContract": {
+      "handlerTableEntry": "0x0c1570ca",
+      "envelopeWriter": "0x0c09f540",
+      "horizontalAmplitudeGlobal": "0x0c201b48",
+      "verticalAmplitudeGlobal": "0x0c201b4c",
+      "retentionGlobal": "0x0c201b50"
+    },
+    "provenBehavior": "Interpret all three arguments as float32 words. When the third float is greater than zero, copy the arguments to the horizontal-amplitude, vertical-amplitude, and retention globals. Otherwise write +0.0, +0.0, and +1.0. The adjacent native update consumes these globals as a decaying random translation applied through the current transform matrix."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 30,
+    "argumentShapes": [
+      {
+        "kinds": [
+          "constant",
+          "constant",
+          "constant"
+        ],
+        "count": 18
+      },
+      {
+        "kinds": [
+          "frame-field",
+          "frame-field",
+          "frame-field"
+        ],
+        "count": 11
+      },
+      {
+        "kinds": [
+          "frame-field",
+          "frame-field",
+          "runtime"
+        ],
+        "count": 1
+      }
+    ],
+    "dialogueRegionCallCount": 6,
+    "op00": [
+      {
+        "disc": 1,
+        "area": "OP00",
+        "functionFileOffset": "0xfadc",
+        "callFileOffset": "0xfc74",
+        "dialogue": false,
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(4,r14) at 0xfc66",
+            "offset": 4
+          },
+          {
+            "kind": "frame-field",
+            "source": "@(0,r14) at 0xfc64",
+            "offset": 0
+          },
+          {
+            "kind": "runtime",
+            "source": "sts at 0xfc62"
+          }
+        ],
+        "resultTarget": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,589 @@
+{
+  "schema": "new-yokosuka-shenmue1-secondary-motion-collision-v1",
+  "source": {
+    "executable": ".disc-work/exact/1ST_READ.BIN",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "runtimeObservation": {
+      "actorTag": "KOK",
+      "actorAddress": "0x0c736e48",
+      "actorProfilePointerOffset": "0x20",
+      "actorProfilePointer": "0x0c297f98",
+      "collisionCall": "0x0c133aa2",
+      "observedFrames": 12,
+      "osagChainRecordCount": 14,
+      "osagChainRecordStride": "0x140",
+      "osagSourcePointerOffset": "0x08",
+      "osagModeOffset": "0x0e",
+      "osagModes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "saveStateSha256": "5b57c010537c11ed893610ac6b848b90468a3d6348bc9fdf19f2127f8f3a98bb"
+    }
+  },
+  "native": {
+    "actorCollisionBuilder": "0x0c132058",
+    "controllerResolver": "0x0c10c442",
+    "controllerRecordLookup": "0x0c092ea0",
+    "pointTransform": "0x0c1d28e0",
+    "pointWriter": "0x0c1d14a0",
+    "collisionSpanDispatcher": "0x0c094934",
+    "variableRadiusPolyline": "0x0c094b78",
+    "collisionCorrection": "0x0c094b34",
+    "secondaryMotionHandler": "0x0c132e14",
+    "controllerTypeTable": "0x0c297d30",
+    "pointScaleLiteral": "0x0c132890",
+    "pointScale": 0.01,
+    "spanLayout": [
+      {
+        "offset": "0x000",
+        "pointCount": 2
+      },
+      {
+        "offset": "0x020",
+        "pointCount": 2
+      },
+      {
+        "offset": "0x040",
+        "pointCount": 4
+      },
+      {
+        "offset": "0x080",
+        "pointCount": 2
+      },
+      {
+        "offset": "0x0a0",
+        "pointCount": 2
+      },
+      {
+        "offset": "0x0c0",
+        "pointCount": 2
+      },
+      {
+        "offset": "0x0e0",
+        "pointCount": 2
+      },
+      {
+        "offset": "0x100",
+        "pointCount": 2
+      },
+      {
+        "offset": "0x120",
+        "pointCount": 2
+      },
+      {
+        "offset": "0x140",
+        "pointCount": 4
+      },
+      {
+        "offset": "0x180",
+        "pointCount": 2
+      },
+      {
+        "offset": "0x1a0",
+        "pointCount": 2
+      }
+    ],
+    "projection": {
+      "endpointBias": 0.10000000149011612,
+      "interiorLow": 0.4000000059604645,
+      "interiorHigh": 0.6000000238418579,
+      "segmentLengthSquaredFloor": 1.0000000116860974e-07,
+      "normalLengthFloor": 9.999999747378752e-05
+    },
+    "nodeCollision": {
+      "sourceVectorOffset": "0x20",
+      "runtimeModeOffset": "0x0e",
+      "runtimeModeMask": "0x1f",
+      "sourceSelection": "childSourceOrSelf",
+      "runtimeModeDerivation": "chainOrdinalLowFiveBits",
+      "radiusLengthScaleByMode": {
+        "0": 0.7999999523162842,
+        "1": 1.0,
+        "2": 1.1999999284744263,
+        "default": 1.5
+      },
+      "clearanceByMode": {
+        "0": 0.014999999664723873,
+        "default": 0.009999999776482582
+      }
+    }
+  },
+  "profiles": {
+    "KOK": {
+      "sourceAddress": "0x0c297f98",
+      "sourceSha256": "10117d57163ccbc107ea75133c4f87b3f4e3e28a1a3fcfea450eaa98f77474e9",
+      "motion": {
+        "retainedDisplacement": 0.5999999642372131,
+        "downwardStepByMode": {
+          "0": 0.02499999850988388,
+          "1": 0.02499999850988388,
+          "2": 0.034999996423721313,
+          "3": 0.029999999329447746,
+          "default": 0.02499999850988388
+        }
+      },
+      "points": [
+        {
+          "controllerType": 47,
+          "localPosition": [
+            0.01,
+            0.0,
+            0.12
+          ],
+          "radius": 0.11,
+          "sourceBytes": [
+            1,
+            0,
+            12,
+            11
+          ]
+        },
+        {
+          "controllerType": 47,
+          "localPosition": [
+            0.04,
+            0.0,
+            0.04
+          ],
+          "radius": 0.08,
+          "sourceBytes": [
+            4,
+            0,
+            4,
+            8
+          ]
+        },
+        {
+          "controllerType": 47,
+          "localPosition": [
+            0.01,
+            0.0,
+            0.08
+          ],
+          "radius": 0.08,
+          "sourceBytes": [
+            1,
+            0,
+            8,
+            8
+          ]
+        },
+        {
+          "controllerType": 47,
+          "localPosition": [
+            0.01,
+            0.0,
+            -0.07
+          ],
+          "radius": 0.09,
+          "sourceBytes": [
+            1,
+            0,
+            -7,
+            9
+          ]
+        },
+        {
+          "controllerType": 2,
+          "localPosition": [
+            0.25,
+            0.0,
+            -0.12
+          ],
+          "radius": 0.14,
+          "sourceBytes": [
+            25,
+            0,
+            -12,
+            14
+          ]
+        },
+        {
+          "controllerType": 2,
+          "localPosition": [
+            0.25,
+            0.0,
+            0.12
+          ],
+          "radius": 0.14,
+          "sourceBytes": [
+            25,
+            0,
+            12,
+            14
+          ]
+        },
+        {
+          "controllerType": 2,
+          "localPosition": [
+            -0.01,
+            0.01,
+            0.07
+          ],
+          "radius": 0.11,
+          "sourceBytes": [
+            -1,
+            1,
+            7,
+            11
+          ]
+        },
+        {
+          "controllerType": 2,
+          "localPosition": [
+            -0.01,
+            -0.01,
+            -0.07
+          ],
+          "radius": 0.11,
+          "sourceBytes": [
+            -1,
+            -1,
+            -7,
+            11
+          ]
+        },
+        {
+          "controllerType": 7,
+          "localPosition": [
+            -0.01,
+            0.0,
+            -0.15
+          ],
+          "radius": 0.1,
+          "sourceBytes": [
+            -1,
+            0,
+            -15,
+            10
+          ]
+        },
+        {
+          "controllerType": 7,
+          "localPosition": [
+            0.04,
+            0.01,
+            0.05
+          ],
+          "radius": 0.12,
+          "sourceBytes": [
+            4,
+            1,
+            5,
+            12
+          ]
+        },
+        {
+          "controllerType": 13,
+          "localPosition": [
+            -0.01,
+            0.0,
+            0.15
+          ],
+          "radius": 0.1,
+          "sourceBytes": [
+            -1,
+            0,
+            15,
+            10
+          ]
+        },
+        {
+          "controllerType": 13,
+          "localPosition": [
+            0.04,
+            0.01,
+            -0.05
+          ],
+          "radius": 0.12,
+          "sourceBytes": [
+            4,
+            1,
+            -5,
+            12
+          ]
+        },
+        {
+          "controllerType": 9,
+          "localPosition": [
+            0.02,
+            0.0,
+            0.01
+          ],
+          "radius": 0.09,
+          "sourceBytes": [
+            2,
+            0,
+            1,
+            9
+          ]
+        },
+        {
+          "controllerType": 9,
+          "localPosition": [
+            0.24,
+            0.0,
+            0.0
+          ],
+          "radius": 0.09,
+          "sourceBytes": [
+            24,
+            0,
+            0,
+            9
+          ]
+        },
+        {
+          "controllerType": 15,
+          "localPosition": [
+            0.02,
+            0.0,
+            -0.01
+          ],
+          "radius": 0.09,
+          "sourceBytes": [
+            2,
+            0,
+            -1,
+            9
+          ]
+        },
+        {
+          "controllerType": 15,
+          "localPosition": [
+            0.24,
+            0.0,
+            0.0
+          ],
+          "radius": 0.09,
+          "sourceBytes": [
+            24,
+            0,
+            0,
+            9
+          ]
+        },
+        {
+          "controllerType": 10,
+          "localPosition": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "radius": 0.09,
+          "sourceBytes": [
+            0,
+            0,
+            0,
+            9
+          ]
+        },
+        {
+          "controllerType": 10,
+          "localPosition": [
+            0.32,
+            -0.02,
+            0.0
+          ],
+          "radius": 0.1,
+          "sourceBytes": [
+            32,
+            -2,
+            0,
+            10
+          ]
+        },
+        {
+          "controllerType": 16,
+          "localPosition": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "radius": 0.09,
+          "sourceBytes": [
+            0,
+            0,
+            0,
+            9
+          ]
+        },
+        {
+          "controllerType": 16,
+          "localPosition": [
+            0.32,
+            -0.02,
+            0.0
+          ],
+          "radius": 0.1,
+          "sourceBytes": [
+            32,
+            -2,
+            0,
+            10
+          ]
+        },
+        {
+          "controllerType": 20,
+          "localPosition": [
+            -0.01,
+            0.0,
+            -0.06
+          ],
+          "radius": 0.12,
+          "sourceBytes": [
+            -1,
+            0,
+            -6,
+            12
+          ]
+        },
+        {
+          "controllerType": 20,
+          "localPosition": [
+            -0.01,
+            0.0,
+            0.06
+          ],
+          "radius": 0.12,
+          "sourceBytes": [
+            -1,
+            0,
+            6,
+            12
+          ]
+        },
+        {
+          "controllerType": 20,
+          "localPosition": [
+            0.2,
+            -0.02,
+            0.04
+          ],
+          "radius": 0.18,
+          "sourceBytes": [
+            20,
+            -2,
+            4,
+            18
+          ]
+        },
+        {
+          "controllerType": 20,
+          "localPosition": [
+            0.2,
+            -0.02,
+            -0.04
+          ],
+          "radius": 0.18,
+          "sourceBytes": [
+            20,
+            -2,
+            -4,
+            18
+          ]
+        },
+        {
+          "controllerType": 24,
+          "localPosition": [
+            0.0,
+            0.01,
+            0.01
+          ],
+          "radius": 0.14,
+          "sourceBytes": [
+            0,
+            1,
+            1,
+            14
+          ]
+        },
+        {
+          "controllerType": 24,
+          "localPosition": [
+            0.34,
+            -0.01,
+            0.02
+          ],
+          "radius": 0.13,
+          "sourceBytes": [
+            34,
+            -1,
+            2,
+            13
+          ]
+        },
+        {
+          "controllerType": 31,
+          "localPosition": [
+            0.0,
+            0.01,
+            -0.01
+          ],
+          "radius": 0.14,
+          "sourceBytes": [
+            0,
+            1,
+            -1,
+            14
+          ]
+        },
+        {
+          "controllerType": 31,
+          "localPosition": [
+            0.34,
+            -0.01,
+            -0.02
+          ],
+          "radius": 0.13,
+          "sourceBytes": [
+            34,
+            -1,
+            -2,
+            13
+          ]
+        }
+      ]
+    }
+  },
+  "code": {
+    "actorCollisionBuilder": {
+      "start": "0x0c132708",
+      "endExclusive": "0x0c132880",
+      "sha256": "7fad9afa2c2a42925abd63749378b70b94d4a562662a860fadb71dd1ac112b2d"
+    },
+    "secondaryMotionHandler": {
+      "start": "0x0c132e14",
+      "endExclusive": "0x0c133b4c",
+      "sha256": "48ff605c76108c07bcef574d38258f951a5a3322ed831a439ceec19b34e468f9"
+    },
+    "collisionSpanDispatcher": {
+      "start": "0x0c094934",
+      "endExclusive": "0x0c094a92",
+      "sha256": "ce1f6c63fdfaf1b2caf0a42565737146ce674b65c3186d78fce9617f4cd26ad6"
+    },
+    "collisionCorrection": {
+      "start": "0x0c094b34",
+      "endExclusive": "0x0c094b70",
+      "sha256": "2e1e295281f7905ca29c155af7b923449f5d22d7c78ed5f9496ca3c98c9b563b"
+    },
+    "variableRadiusPolyline": {
+      "start": "0x0c094b78",
+      "endExclusive": "0x0c094c60",
+      "sha256": "3b86963ea13edaaae46f7d98ae3c10071e81d92d220cdc875bc0d6ad38a85469"
+    }
+  }
+}

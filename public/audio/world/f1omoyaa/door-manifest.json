@@ -1,0 +1,217 @@
+{
+  "schema": "new-yokosuka-jomo-door-audio-pack-v2",
+  "generatedBy": "tools/build_jomo_door_audio_pack.mjs",
+  "source": {
+    "bank": "extracted_files/data/SCENE/01/SOUND/F1OMOYAA.SND",
+    "bankSha256": "41cdccd04ef8f4835a946f3f1ada404d4f1607adbae6c4bf8da5b825d23c9abb",
+    "evidence": "tools/evidence/jomo-door-audio.json",
+    "evidenceSha256": "9a71bb6fda42bf4a77d9822f6e778f2fbde7ba53a224b5bf61a7a92fe817e84d",
+    "decoder": {
+      "tool": "DTPKDump",
+      "commit": "a323c0e7e80af05e17e5bb291a9b20e55a3f9455"
+    }
+  },
+  "encoding": {
+    "container": "WebM",
+    "codec": "Opus",
+    "bitrate": "48k",
+    "application": "lowdelay"
+  },
+  "tracks": [
+    {
+      "commandHex": "ab020000",
+      "phase": "openingStart",
+      "models": [
+        "S1_JOMO_DR01_015.MT5",
+        "S1_JOMO_DR01_016.MT5"
+      ],
+      "group": "ab02",
+      "track": 0,
+      "compositionHex": "c0df3e4380ff",
+      "playbackId": 62,
+      "sampleId": 16,
+      "rawVolume": 67,
+      "dtpkRate": "0xe800",
+      "sampleRate": 11025,
+      "decodedSource": "F1OMOYAA_00_105_SPD_62_Sample_10_Rate_E800.wav",
+      "asset": "ab020000.webm",
+      "byteLength": 5431,
+      "sha256": "15b5425ceb83cb2154d10006ecc6325de7f2e3c299ad6b13a61a3947f89eb6e8"
+    },
+    {
+      "commandHex": "ab020100",
+      "phase": "closingStart",
+      "models": [
+        "S1_JOMO_DR01_015.MT5",
+        "S1_JOMO_DR01_016.MT5"
+      ],
+      "group": "ab02",
+      "track": 1,
+      "compositionHex": "c0df3f5080ff",
+      "playbackId": 63,
+      "sampleId": 15,
+      "rawVolume": 80,
+      "dtpkRate": "0xe800",
+      "sampleRate": 11025,
+      "decodedSource": "F1OMOYAA_00_45_SPD_29_Sample_0F_Rate_E800.wav",
+      "asset": "ab020100.webm",
+      "byteLength": 9070,
+      "sha256": "8b5948444da21f5cb4d2e94bd23f10b5a9ded2ad7306cbd02b5a654d9483facf"
+    },
+    {
+      "commandHex": "ab020200",
+      "phase": "openingStart",
+      "models": [
+        "S1_JOMO_DR15_026.MT5",
+        "S1_JOMO_DR23_000.MT5"
+      ],
+      "group": "ab02",
+      "track": 2,
+      "compositionHex": "c0df403a80ff",
+      "playbackId": 64,
+      "sampleId": 20,
+      "rawVolume": 58,
+      "dtpkRate": "0xe800",
+      "sampleRate": 11025,
+      "decodedSource": "F1OMOYAA_00_107_SPD_64_Sample_14_Rate_E800.wav",
+      "asset": "ab020200.webm",
+      "byteLength": 12565,
+      "sha256": "205de675de6487adc4d6d1ca9cb030197ffe35783ed726ec3f38e271bcbf2e0c"
+    },
+    {
+      "commandHex": "ab020300",
+      "phase": "closingStart",
+      "models": [
+        "S1_JOMO_DR15_026.MT5",
+        "S1_JOMO_DR23_000.MT5"
+      ],
+      "group": "ab02",
+      "track": 3,
+      "compositionHex": "c0df414680ff",
+      "playbackId": 65,
+      "sampleId": 19,
+      "rawVolume": 70,
+      "dtpkRate": "0xe800",
+      "sampleRate": 11025,
+      "decodedSource": "F1OMOYAA_01_00_SPD_65_Sample_13_Rate_E800.wav",
+      "asset": "ab020300.webm",
+      "byteLength": 9866,
+      "sha256": "19db6e1f72f22abb155806b209d82115f2fd59c2b7f7d0d8f639d81da2d8967e"
+    },
+    {
+      "commandHex": "ab020400",
+      "phase": "openingStart",
+      "models": [
+        "S1_JOMO_DR15_029.MT5"
+      ],
+      "group": "ab02",
+      "track": 4,
+      "compositionHex": "c0df423280ff",
+      "playbackId": 66,
+      "sampleId": 55,
+      "rawVolume": 50,
+      "dtpkRate": "0xe800",
+      "sampleRate": 11025,
+      "decodedSource": "F1OMOYAA_01_01_SPD_66_Sample_37_Rate_E800.wav",
+      "asset": "ab020400.webm",
+      "byteLength": 8497,
+      "sha256": "7fcb98f53aeae71c042ca4a0a80cf39d31a7f2f52a6873d514552ab8dbeef563"
+    },
+    {
+      "commandHex": "ab020500",
+      "phase": "closingStart",
+      "models": [
+        "S1_JOMO_DR15_029.MT5"
+      ],
+      "group": "ab02",
+      "track": 5,
+      "compositionHex": "c0df434b80ff",
+      "playbackId": 67,
+      "sampleId": 54,
+      "rawVolume": 75,
+      "dtpkRate": "0xe800",
+      "sampleRate": 11025,
+      "decodedSource": "F1OMOYAA_01_02_SPD_67_Sample_36_Rate_E800.wav",
+      "asset": "ab020500.webm",
+      "byteLength": 11442,
+      "sha256": "645b1ace068a0b14b3d9c6df8b6d5ea602c197b2d2c9841b3501380fb4f9a7c3"
+    },
+    {
+      "commandHex": "ab020600",
+      "phase": "openingStart",
+      "models": [
+        "S1_JOMO_DR15_028.MT5"
+      ],
+      "group": "ab02",
+      "track": 6,
+      "compositionHex": "c0df443280ff",
+      "playbackId": 68,
+      "sampleId": 34,
+      "rawVolume": 50,
+      "dtpkRate": "0xe800",
+      "sampleRate": 11025,
+      "decodedSource": "F1OMOYAA_01_03_SPD_68_Sample_22_Rate_E800.wav",
+      "asset": "ab020600.webm",
+      "byteLength": 12856,
+      "sha256": "7f600a00d8e693bbca2223161b9fda7b17714db278ad6a5cfef18d695b4425d5"
+    },
+    {
+      "commandHex": "ab020700",
+      "phase": "closingStart",
+      "models": [
+        "S1_JOMO_DR15_028.MT5"
+      ],
+      "group": "ab02",
+      "track": 7,
+      "compositionHex": "c0df454680ff",
+      "playbackId": 69,
+      "sampleId": 33,
+      "rawVolume": 70,
+      "dtpkRate": "0xe800",
+      "sampleRate": 11025,
+      "decodedSource": "F1OMOYAA_01_04_SPD_69_Sample_21_Rate_E800.wav",
+      "asset": "ab020700.webm",
+      "byteLength": 16679,
+      "sha256": "ec471bd4c19fd5fd14caaa6a1aac6296bd201266af596aeb48d379da504c7666"
+    },
+    {
+      "commandHex": "ab020800",
+      "phase": "openingStart",
+      "models": [
+        "S1_JOMO_DR15_016.MT5"
+      ],
+      "group": "ab02",
+      "track": 8,
+      "compositionHex": "c0df463d80ff",
+      "playbackId": 70,
+      "sampleId": 22,
+      "rawVolume": 61,
+      "dtpkRate": "0xe800",
+      "sampleRate": 11025,
+      "decodedSource": "F1OMOYAA_01_05_SPD_70_Sample_16_Rate_E800.wav",
+      "asset": "ab020800.webm",
+      "byteLength": 13102,
+      "sha256": "064357e5a458c9898172a81b72e72cfef1c34fbe0fb468902dc348680a04e3aa"
+    },
+    {
+      "commandHex": "ab020900",
+      "phase": "closingStart",
+      "models": [
+        "S1_JOMO_DR15_016.MT5"
+      ],
+      "group": "ab02",
+      "track": 9,
+      "compositionHex": "c0df474180ff",
+      "playbackId": 71,
+      "sampleId": 21,
+      "rawVolume": 65,
+      "dtpkRate": "0xe800",
+      "sampleRate": 11025,
+      "decodedSource": "F1OMOYAA_01_06_SPD_71_Sample_15_Rate_E800.wav",
+      "asset": "ab020900.webm",
+      "byteLength": 12995,
+      "sha256": "5bd9e1d7d64660c5bdcd49267b06ae2f8dc98d8c3588d41cab03410a01e21233"
+    }
+  ],
+  "runtimeStatus": "Wired to all seven model rows. Generated SH-4 consumers select field 2 at opening start and field 3 at closing start; synchronized retail traces close both phase routes."
+}

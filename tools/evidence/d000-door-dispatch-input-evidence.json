@@ -1,0 +1,117 @@
+{
+  "schema": "new-yokosuka-d000-door-dispatch-input-evidence-v1",
+  "status": "exact",
+  "source": {
+    "mapinfo": ".disc-work/mapinfo/disc1/SCENE/01/D000/MAPINFO.BIN",
+    "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+    "ram": "captures/pvr/20260724-010057-frame-4933/ram.bin",
+    "ramSha256": "2fe05abcb3984460e76e31179681bdb8f247c85b9c2eafd34b29a05e5f1ea346",
+    "dispatchCalls": ".disc-work/d000-dispatch-calls.json",
+    "operationHandlers": "tools/evidence/d000-operation-handlers.json"
+  },
+  "doorCoroutine": {
+    "routineFileOffset": "0x783b4",
+    "preconditionQuery": {
+      "operation": "0x01ae",
+      "argument": 0,
+      "callFileOffset": "0x783c6",
+      "handlerAddress": "0x0c1658d0"
+    },
+    "eventControlQuery": {
+      "operation": "0x0031",
+      "argument": 1,
+      "callFileOffset": "0x783ea",
+      "meaning": "current event/coroutine control field; not the logical door selector",
+      "nativeRecordOffset": 8,
+      "width": "u16"
+    },
+    "selectorInputDataflow": {
+      "resumedArgumentFrameOffset": 60,
+      "selectorLocalFrameOffset": 48,
+      "copyInstructionFileOffsets": [
+        "0x7840c",
+        "0x78410",
+        "0x78412"
+      ],
+      "firstDispatchReadFileOffset": "0x78416"
+    }
+  },
+  "nativeOperation0031": {
+    "operationTableAddress": "0x0c29a9e0",
+    "tableEntryAddress": "0x0c29aaa4",
+    "handlerAddress": "0x0c16b4c8",
+    "currentEventGetterAddress": "0x0c0f0b3c",
+    "recordOffsetterAddress": "0x0c137482",
+    "resultWriterAddress": "0x0c0bb342",
+    "currentSceneOwnerGlobal": "0x0c217488",
+    "recordBase": "FUN_0c0f0b3c() + 4; FUN_0c0f0b3c() follows the current scene owner at 0x0c217488 through owner +0x3c, then +0x04",
+    "fieldRoutes": [
+      {
+        "argument": 0,
+        "width": "u16",
+        "recordOffset": 4
+      },
+      {
+        "argument": 1,
+        "width": "u16",
+        "recordOffset": 8
+      },
+      {
+        "argument": 2,
+        "width": "u16",
+        "recordOffset": 10
+      },
+      {
+        "argument": 3,
+        "width": "u8",
+        "recordOffset": 12
+      },
+      {
+        "argument": 4,
+        "width": "u8",
+        "recordOffset": 13
+      },
+      {
+        "argument": 5,
+        "width": "u8",
+        "recordOffset": 14
+      },
+      {
+        "argument": 6,
+        "width": "u8",
+        "recordOffset": 15
+      },
+      {
+        "argument": 7,
+        "width": "u16",
+        "recordOffset": 18
+      }
+    ],
+    "resultWrite": "*( *(resultContext + 4) + 0x0c )"
+  },
+  "captureCorpus": {
+    "root": "captures",
+    "d000CaptureCount": 216,
+    "operation0031Argument1Values": [
+      {
+        "value": 0,
+        "count": 213
+      },
+      {
+        "value": 1024,
+        "count": 2
+      },
+      {
+        "value": 4096,
+        "count": 1
+      }
+    ],
+    "logicalDoorSelectorRange": [
+      0,
+      64
+    ],
+    "conclusion": "Observed operation-0x0031 argument-1 values are coroutine/event control states, not D000 logical door selectors."
+  },
+  "conclusion": "D000's door dispatcher branches on a distinct caller/resume argument copied from stack +60 to frame +48. The supplier of that argument remains upstream and unresolved.",
+  "evidenceBoundary": "This proves the dispatch input boundary and the complete 0x0031 field layout. It does not yet prove who supplies the selector, nor event availability, opening-hour gating, or store state."
+}

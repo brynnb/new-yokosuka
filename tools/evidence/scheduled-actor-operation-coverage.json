@@ -1,0 +1,431 @@
+{
+  "schema": "new-yokosuka-scheduled-actor-operation-coverage-v1",
+  "generatedFrom": "play/data/scheduled-actors.json",
+  "nativeEvidence": {
+    "dispatcherAddress": "0x0c119444",
+    "extensionDispatcherAddress": "0x0c0f5b28",
+    "operation19HandlerAddress": "0x0c11f804",
+    "operation19ControllerRequestAddress": "0x0c10d77c",
+    "operation08HandlerAddress": "0x0c1195d8",
+    "operation08ActorAreaCodeOffset": "0x0c",
+    "operation08LinkedActorLookupAddress": "0x0c11bf5c",
+    "operation08LinkedActorPointerOffset": "0x7c",
+    "operation08Evidence": "tools/evidence/scheduled-actor-area-residency-evidence.json",
+    "operation09HandlerAddress": "0x0c1195fc",
+    "operation09ActorStateOffset": "0x14",
+    "operation0fHandlerAddress": "0x0c119622",
+    "operation0fActorOffset": "0x90",
+    "operation0fQueryAddress": "0x0c119888",
+    "operation28HandlerAddress": "0x0c119608",
+    "operation28ActorOffset": "0x149",
+    "operation35ActorOffset": "0x1c0",
+    "operation35RouteCompletionStateOffset": "0xf4",
+    "operation35RouteCompletionInstallAddress": "0x0c11faba",
+    "operation35Evidence": "tools/evidence/scheduled-actor-route-completion-evidence.json",
+    "operation38ActorOffset": "0x1d1",
+    "operation38RefreshAddress": "0x0c11a382",
+    "operationDirectStateEvidence": "tools/evidence/scheduled-actor-direct-state-evidence.json"
+  },
+  "evidenceBoundary": "Coverage distinguishes exact browser behavior, native operations proven to have no visible scheduler effect, partially reconstructed behavior, and exact operands retained without a visible consumer. A retained numeric field is not claimed as a reproduced world behavior.",
+  "summary": {
+    "operationOccurrenceCount": 17480,
+    "operationFamilyCount": 39,
+    "exactFamilyCount": 20,
+    "exactNoVisibleEffectFamilyCount": 13,
+    "partialFamilyCount": 6,
+    "retainedWithoutVisibleConsumerFamilyCount": 0,
+    "uncoveredFamilyCount": 0
+  },
+  "operationFamilies": [
+    {
+      "operation": 0,
+      "operationHex": "0x00",
+      "occurrenceCount": 605,
+      "actorCodeCount": 219,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "descriptor terminal",
+      "browserStatus": "exact",
+      "browserEffect": "stop traversal while retaining proven actor state"
+    },
+    {
+      "operation": 1,
+      "operationHex": "0x01",
+      "occurrenceCount": 1567,
+      "actorCodeCount": 166,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "state/behavior handler",
+      "browserStatus": "exact",
+      "browserEffect": "native route movement"
+    },
+    {
+      "operation": 2,
+      "operationHex": "0x02",
+      "occurrenceCount": 1219,
+      "actorCodeCount": 135,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "state/behavior handler",
+      "browserStatus": "exact",
+      "browserEffect": "registered motion-state selection"
+    },
+    {
+      "operation": 3,
+      "operationHex": "0x03",
+      "occurrenceCount": 2654,
+      "actorCodeCount": 206,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "state/behavior handler",
+      "browserStatus": "exact",
+      "browserEffect": "static position and facing"
+    },
+    {
+      "operation": 4,
+      "operationHex": "0x04",
+      "occurrenceCount": 610,
+      "actorCodeCount": 190,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "descriptor terminal",
+      "browserStatus": "exact",
+      "browserEffect": "stop traversal while retaining proven actor state"
+    },
+    {
+      "operation": 5,
+      "operationHex": "0x05",
+      "occurrenceCount": 175,
+      "actorCodeCount": 11,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "current-operation clear",
+      "browserStatus": "exact no-visible-effect",
+      "browserEffect": "clear native current-operation state; retain transform"
+    },
+    {
+      "operation": 7,
+      "operationHex": "0x07",
+      "occurrenceCount": 692,
+      "actorCodeCount": 124,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "state/behavior handler",
+      "browserStatus": "exact",
+      "browserEffect": "descriptor-clock wait"
+    },
+    {
+      "operation": 8,
+      "operationHex": "0x08",
+      "occurrenceCount": 1257,
+      "actorCodeCount": 219,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "state/behavior handler",
+      "browserStatus": "exact",
+      "browserEffect": "area selection"
+    },
+    {
+      "operation": 9,
+      "operationHex": "0x09",
+      "occurrenceCount": 1553,
+      "actorCodeCount": 219,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "state/behavior handler",
+      "browserStatus": "exact",
+      "browserEffect": "native lifecycle state and exact definition-default motion reset"
+    },
+    {
+      "operation": 11,
+      "operationHex": "0x0b",
+      "occurrenceCount": 61,
+      "actorCodeCount": 14,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "synchronous payload pass-through",
+      "browserStatus": "exact no-visible-effect",
+      "browserEffect": "advance synchronously; no scheduler-side state write"
+    },
+    {
+      "operation": 12,
+      "operationHex": "0x0c",
+      "occurrenceCount": 98,
+      "actorCodeCount": 32,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "synchronous payload pass-through",
+      "browserStatus": "exact no-visible-effect",
+      "browserEffect": "advance synchronously; no scheduler-side state write"
+    },
+    {
+      "operation": 13,
+      "operationHex": "0x0d",
+      "occurrenceCount": 922,
+      "actorCodeCount": 115,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "synchronous payload pass-through",
+      "browserStatus": "exact no-visible-effect",
+      "browserEffect": "advance synchronously; no scheduler-side state write"
+    },
+    {
+      "operation": 15,
+      "operationHex": "0x0f",
+      "occurrenceCount": 1573,
+      "actorCodeCount": 207,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "state/behavior handler",
+      "browserStatus": "exact",
+      "browserEffect": "script-queryable actor state register at +0x90"
+    },
+    {
+      "operation": 16,
+      "operationHex": "0x10",
+      "occurrenceCount": 378,
+      "actorCodeCount": 88,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "state/behavior handler",
+      "browserStatus": "exact",
+      "browserEffect": "registered actor-local object transform and attachment"
+    },
+    {
+      "operation": 17,
+      "operationHex": "0x11",
+      "occurrenceCount": 360,
+      "actorCodeCount": 83,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "state/behavior handler",
+      "browserStatus": "exact",
+      "browserEffect": "registered actor-local object release transition"
+    },
+    {
+      "operation": 21,
+      "operationHex": "0x15",
+      "occurrenceCount": 239,
+      "actorCodeCount": 50,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "synchronous payload pass-through",
+      "browserStatus": "exact no-visible-effect",
+      "browserEffect": "advance synchronously; no scheduler-side state write"
+    },
+    {
+      "operation": 22,
+      "operationHex": "0x16",
+      "occurrenceCount": 116,
+      "actorCodeCount": 59,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "state/behavior handler",
+      "browserStatus": "partial",
+      "browserEffect": "timed subordinate controller; exact gates and proven placements"
+    },
+    {
+      "operation": 23,
+      "operationHex": "0x17",
+      "occurrenceCount": 329,
+      "actorCodeCount": 76,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "state/behavior handler",
+      "browserStatus": "partial",
+      "browserEffect": "linked interaction registration and subtype-1 ambient motion"
+    },
+    {
+      "operation": 24,
+      "operationHex": "0x18",
+      "occurrenceCount": 15,
+      "actorCodeCount": 10,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "state/behavior handler",
+      "browserStatus": "partial",
+      "browserEffect": "linked interaction gate and numeric control payload"
+    },
+    {
+      "operation": 25,
+      "operationHex": "0x19",
+      "occurrenceCount": 164,
+      "actorCodeCount": 35,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "state/behavior handler",
+      "browserStatus": "exact",
+      "browserEffect": "direct motion-controller install/teardown"
+    },
+    {
+      "operation": 26,
+      "operationHex": "0x1a",
+      "occurrenceCount": 775,
+      "actorCodeCount": 107,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "state/behavior handler",
+      "browserStatus": "exact",
+      "browserEffect": "registered motion/control selection"
+    },
+    {
+      "operation": 28,
+      "operationHex": "0x1c",
+      "occurrenceCount": 114,
+      "actorCodeCount": 18,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "state/behavior handler",
+      "browserStatus": "partial",
+      "browserEffect": "secondary-object route and attachment movement"
+    },
+    {
+      "operation": 29,
+      "operationHex": "0x1d",
+      "occurrenceCount": 10,
+      "actorCodeCount": 9,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "synchronous no-op handler",
+      "browserStatus": "exact no-visible-effect",
+      "browserEffect": "native handler 0x0c11f934 returns without changing state"
+    },
+    {
+      "operation": 32,
+      "operationHex": "0x20",
+      "occurrenceCount": 347,
+      "actorCodeCount": 138,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "continuation-pointer registration",
+      "browserStatus": "exact no-visible-effect",
+      "browserEffect": "advance synchronously; browser has no native pointer"
+    },
+    {
+      "operation": 33,
+      "operationHex": "0x21",
+      "occurrenceCount": 371,
+      "actorCodeCount": 72,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "synchronous payload pass-through",
+      "browserStatus": "exact no-visible-effect",
+      "browserEffect": "advance synchronously; no scheduler-side state write"
+    },
+    {
+      "operation": 34,
+      "operationHex": "0x22",
+      "occurrenceCount": 53,
+      "actorCodeCount": 19,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "state/behavior handler",
+      "browserStatus": "partial",
+      "browserEffect": "variable-motion gate and exact candidate domain"
+    },
+    {
+      "operation": 36,
+      "operationHex": "0x24",
+      "occurrenceCount": 178,
+      "actorCodeCount": 29,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "state/behavior handler",
+      "browserStatus": "exact",
+      "browserEffect": "secondary-object attachment placement"
+    },
+    {
+      "operation": 40,
+      "operationHex": "0x28",
+      "occurrenceCount": 66,
+      "actorCodeCount": 23,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "state/behavior handler",
+      "browserStatus": "exact",
+      "browserEffect": "strict boolean actor controller mode at +0x149"
+    },
+    {
+      "operation": 42,
+      "operationHex": "0x2a",
+      "occurrenceCount": 41,
+      "actorCodeCount": 19,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "state/behavior handler",
+      "browserStatus": "partial",
+      "browserEffect": "linked scene-object state request and numeric payload"
+    },
+    {
+      "operation": 43,
+      "operationHex": "0x2b",
+      "occurrenceCount": 6,
+      "actorCodeCount": 4,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "state/behavior handler",
+      "browserStatus": "exact",
+      "browserEffect": "resident-character selection"
+    },
+    {
+      "operation": 47,
+      "operationHex": "0x2f",
+      "occurrenceCount": 16,
+      "actorCodeCount": 1,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "state/behavior handler",
+      "browserStatus": "exact",
+      "browserEffect": "actor model override"
+    },
+    {
+      "operation": 48,
+      "operationHex": "0x30",
+      "occurrenceCount": 128,
+      "actorCodeCount": 27,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "state/behavior handler",
+      "browserStatus": "exact",
+      "browserEffect": "registered mode-7 action motion-controller install/teardown"
+    },
+    {
+      "operation": 53,
+      "operationHex": "0x35",
+      "occurrenceCount": 46,
+      "actorCodeCount": 14,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "state/behavior handler",
+      "browserStatus": "exact",
+      "browserEffect": "operation-1 route-completion motion override"
+    },
+    {
+      "operation": 54,
+      "operationHex": "0x36",
+      "occurrenceCount": 49,
+      "actorCodeCount": 10,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "synchronous payload pass-through",
+      "browserStatus": "exact no-visible-effect",
+      "browserEffect": "advance synchronously; no scheduler-side state write"
+    },
+    {
+      "operation": 55,
+      "operationHex": "0x37",
+      "occurrenceCount": 245,
+      "actorCodeCount": 65,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "synchronous payload pass-through",
+      "browserStatus": "exact no-visible-effect",
+      "browserEffect": "advance synchronously; no scheduler-side state write"
+    },
+    {
+      "operation": 56,
+      "operationHex": "0x38",
+      "occurrenceCount": 353,
+      "actorCodeCount": 29,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "state/behavior handler",
+      "browserStatus": "exact",
+      "browserEffect": "actor bounds/control-footprint mode at +0x1d1"
+    },
+    {
+      "operation": 57,
+      "operationHex": "0x39",
+      "occurrenceCount": 39,
+      "actorCodeCount": 15,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "synchronous payload pass-through",
+      "browserStatus": "exact no-visible-effect",
+      "browserEffect": "advance synchronously; no scheduler-side state write"
+    },
+    {
+      "operation": 60,
+      "operationHex": "0x3c",
+      "occurrenceCount": 24,
+      "actorCodeCount": 9,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "synchronous payload pass-through",
+      "browserStatus": "exact no-visible-effect",
+      "browserEffect": "advance synchronously; no scheduler-side state write"
+    },
+    {
+      "operation": 61,
+      "operationHex": "0x3d",
+      "occurrenceCount": 32,
+      "actorCodeCount": 17,
+      "sourceProgramVariantCount": 1,
+      "nativeClass": "synchronous payload pass-through",
+      "browserStatus": "exact no-visible-effect",
+      "browserEffect": "advance synchronously; no scheduler-side state write"
+    }
+  ]
+}

@@ -1,0 +1,220 @@
+{
+  "schema": "new-yokosuka-native-clock-record-operation-evidence-v2",
+  "status": "exact-native-read-write-and-all-disc-address-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operations": [
+    {
+      "operationId": 88,
+      "operationHex": "0x0058",
+      "semanticId": "native-clock-record-write",
+      "handlerAddress": "0x0c170768",
+      "recordByteLength": 7,
+      "recordLayout": [
+        {
+          "offset": 0,
+          "field": "yearSince1900",
+          "range": [
+            0,
+            99
+          ]
+        },
+        {
+          "offset": 1,
+          "field": "month",
+          "range": [
+            1,
+            12
+          ]
+        },
+        {
+          "offset": 2,
+          "field": "day",
+          "range": [
+            1,
+            31
+          ]
+        },
+        {
+          "offset": 3,
+          "field": "weekdaySundayZero",
+          "range": [
+            0,
+            6
+          ]
+        },
+        {
+          "offset": 4,
+          "field": "hour",
+          "range": [
+            0,
+            23
+          ]
+        },
+        {
+          "offset": 5,
+          "field": "minute",
+          "range": [
+            0,
+            59
+          ]
+        },
+        {
+          "offset": 6,
+          "field": "second",
+          "range": [
+            0,
+            59
+          ]
+        }
+      ],
+      "provenBehavior": "Dereferences the sole argument as a source pointer, normalizes its year/month/day/hour/minute/second fields with the native calendar routine, recomputes weekdaySundayZero, and installs the seven-byte result at fixed native clock record 0x0c225228."
+    },
+    {
+      "operationId": 89,
+      "operationHex": "0x0059",
+      "semanticId": "native-clock-record-copy",
+      "handlerAddress": "0x0c170776",
+      "sourceRecordAddress": "0x0c225228",
+      "recordByteLength": 7,
+      "verifiedRanges": {
+        "writeHandler": {
+          "address": "0x0c170768",
+          "length": 14,
+          "sha256": "8b865c9da7a39c3efddfe2e9a5569e8a1b6fba32d5b5e1d41fee70e0c3e8dc5d"
+        },
+        "copyHandler": {
+          "address": "0x0c170776",
+          "length": 14,
+          "sha256": "cafab67259c8bcc276b106e560ce85ba564af36c2bd077d04d129600d2475b1c"
+        },
+        "copyHelper": {
+          "address": "0x0c1821ae",
+          "length": 32,
+          "sha256": "47ca833037735cc1fe50e2d26cc57ab91ce2833004eeba5d1ef5e97201c5d717"
+        },
+        "clockRefresh": {
+          "address": "0x0c182164",
+          "length": 74,
+          "sha256": "c2b774e49b5ac2e2eab48f47afb230a25c7a45094ecfefd2fa5c702cfd0bf19e"
+        },
+        "calendarAddNormalize": {
+          "address": "0x0c181dc4",
+          "length": 286,
+          "sha256": "8f75c7315c2fb62ec6b3b242709df044424829c21b2a2b441f2a3b7559d7e828"
+        },
+        "weekdayRefresh": {
+          "address": "0x0c1820f8",
+          "length": 108,
+          "sha256": "237edef93c5619caea90cf01514c1fe45b0933183504ce6bd51cab9080f404d3"
+        }
+      },
+      "nativeContract": {
+        "writeHelper": "0x0c182164",
+        "copyHelper": "0x0c1821ae",
+        "clockRecord": "0x0c225228"
+      },
+      "recordLayout": [
+        {
+          "offset": 0,
+          "field": "yearSince1900",
+          "range": [
+            0,
+            99
+          ]
+        },
+        {
+          "offset": 1,
+          "field": "month",
+          "range": [
+            1,
+            12
+          ]
+        },
+        {
+          "offset": 2,
+          "field": "day",
+          "range": [
+            1,
+            31
+          ]
+        },
+        {
+          "offset": 3,
+          "field": "weekdaySundayZero",
+          "range": [
+            0,
+            6
+          ]
+        },
+        {
+          "offset": 4,
+          "field": "hour",
+          "range": [
+            0,
+            23
+          ]
+        },
+        {
+          "offset": 5,
+          "field": "minute",
+          "range": [
+            0,
+            59
+          ]
+        },
+        {
+          "offset": 6,
+          "field": "second",
+          "range": [
+            0,
+            59
+          ]
+        }
+      ],
+      "provenBehavior": "Dereferences the sole argument as a destination pointer and copies bytes zero through six, unchanged and in order, from fixed native clock record 0x0c225228."
+    }
+  ],
+  "allDiscInventory": {
+    "authoredCallCount": 671,
+    "provenCallCount": 671,
+    "areaCount": 111,
+    "byOperation": {
+      "0x0058": {
+        "provenCallCount": 103,
+        "dialogueRegionCallCount": 10,
+        "addressKindCounts": {
+          "frame-address": 76,
+          "scene-address": 27
+        },
+        "dialogueAddressKindCounts": {
+          "frame-address": 5,
+          "scene-address": 5
+        }
+      },
+      "0x0059": {
+        "provenCallCount": 568,
+        "dialogueRegionCallCount": 47,
+        "addressKindCounts": {
+          "frame-address": 507,
+          "scene-address": 61
+        },
+        "dialogueAddressKindCounts": {
+          "frame-address": 43,
+          "scene-address": 4
+        }
+      }
+    }
+  },
+  "evidenceBoundary": [
+    "All sources and destinations are exact r14-relative frame addresses or r9-relative scene addresses.",
+    "The hash-pinned zero-delta calendar-add routine proves rollover normalization for seconds, minutes, hours, Gregorian month lengths, leap years, months, and two-digit years; the separate weekday routine proves the Sunday-zero weekday byte.",
+    "A native clock-record provider must derive from the authoritative game clock; host wall-clock or browser-time substitution is not permitted.",
+    "The fixed record's update cadence and persistence ownership remain outside this operation's contract.",
+    "Neither recovered operation result feeds a branch or stored result target."
+  ]
+}

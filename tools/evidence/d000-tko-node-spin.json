@@ -1,0 +1,55 @@
+{
+  "schema": "new-yokosuka-d000-tko-node-spin-v1",
+  "source": {
+    "mapinfo": ".disc-work/exact/d000/MAPINFO.BIN",
+    "trace": ".disc-work/d000-call-trace.csv"
+  },
+  "operation": {
+    "dispatcherOperation": "0x000000c9",
+    "mode": 1,
+    "modeName": "add",
+    "node": 152,
+    "rotationVectorFileOffset": "0xae188",
+    "sourceFixedTurnsPerTick": [
+      0,
+      -910,
+      0
+    ],
+    "sourceDegreesPerTick": [
+      0.0,
+      -4.998779296875,
+      0.0
+    ],
+    "gameHz": 30,
+    "browserYReflection": "Mt5Loader maps source rotation Y to Babylon -Y",
+    "browserDegreesPerSecond": 149.96337890625
+  },
+  "staticCalls": [
+    {
+      "objectTag": "TKOK",
+      "callFileOffset": "0x69254",
+      "operation": "0x000000c9",
+      "node": 152,
+      "mode": 1,
+      "rotationVectorFileOffset": "0xae188"
+    },
+    {
+      "objectTag": "TKOL",
+      "callFileOffset": "0x69440",
+      "operation": "0x000000c9",
+      "node": 152,
+      "mode": 1,
+      "rotationVectorFileOffset": "0xae188"
+    }
+  ],
+  "runtimeObservations": [
+    {
+      "objectTag": "TKOK",
+      "pc": "0x0c42e994",
+      "node": 152,
+      "rotationPointer": "0x0c4738c8",
+      "mode": 1,
+      "callCount": 11696
+    }
+  ]
+}

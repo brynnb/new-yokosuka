@@ -1,0 +1,249 @@
+{
+  "schema": "new-yokosuka-dialogue-actor-entry-routes-v1",
+  "evidenceBoundary": [
+    "The native executable, selector, expression evaluator, value resolver, and entry-marker scanner ranges are SHA-256 verified.",
+    "Routing begins at exact SCNF static pointer +0x14 and is bounded by the exact message-table pointer at +0x18.",
+    "The report follows native control flow from the selector entry. It does not linearly reinterpret embedded entry bodies as selector opcodes.",
+    "Expression operands retain native value types. Ordered comparison directions follow the verified lower-stack-left evaluator behavior.",
+    "Graph edges preserve cycles and shared branches. No actor name, schedule, proximity, or manually authored dialogue rule affects routing."
+  ],
+  "executableEvidence": {
+    "filename": "1ST_READ.BIN",
+    "runtimeBase": "0xc010000",
+    "sha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "verifiedCodeRanges": {
+      "initialEntrySelector": {
+        "runtimeAddress": "0xc15b3f8",
+        "size": 248,
+        "sha256": "06f350e2f60e04554e24fba3dd13f769a3a88538e4da204a11c43ce2eebcfc22"
+      },
+      "prefixExpressionEvaluator": {
+        "runtimeAddress": "0xc15b10a",
+        "size": 710,
+        "sha256": "12e31bbda3001f111cb51c23d9b17d70aa1092b0cbbf35f717b75cfa36b41dea"
+      },
+      "expressionValueResolver": {
+        "runtimeAddress": "0xc15aef8",
+        "size": 76,
+        "sha256": "54f703003755706a8e17903adaa9ce5145e1c248d8d7f1ecf7af8d550368b49b"
+      },
+      "entryMarkerScanner": {
+        "runtimeAddress": "0xc15bf02",
+        "size": 54,
+        "sha256": "e042ab9e2838b6cd06ee99b09a3d633c849eb1aefe5ed3a75b3d663e251eccb0"
+      }
+    }
+  },
+  "archiveEvidence": {
+    "filename": "HUMANS.AFS",
+    "sha256": "c61b53f0784442505e491a2bba7dc8f608495922f69acfb253be8c10492570a7",
+    "byteLength": 64901120
+  },
+  "nativeSchema": {
+    "staticRoutingPointerOffset": "0x14",
+    "runtimeRoutingPointerOffset": "0x40",
+    "staticMessageTablePointerOffset": "0x18",
+    "runtimeMessageTablePointerOffset": "0x44",
+    "entryMarkerClass": "0x10",
+    "entryBodyAddress": "marker + 2",
+    "branchDisplacements": "signed, relative to the first byte after each instruction",
+    "expressionEncoding": "typed reverse-Polish stack program",
+    "operators": {
+      "0": "terminate",
+      "1": "assign",
+      "2": "increment",
+      "3": "decrement",
+      "4": "isZero",
+      "5": "booleanAnd",
+      "6": "booleanOr",
+      "7": "equal",
+      "8": "notEqual",
+      "9": "greaterThan",
+      "10": "greaterThanOrEqual",
+      "11": "lessThan",
+      "12": "lessThanOrEqual"
+    }
+  },
+  "summary": {
+    "resourceCount": 262,
+    "uniqueActorCodeCount": 257,
+    "graphNodeCount": 48434,
+    "graphEdgeCount": 51906,
+    "entryMarkerCount": 4327,
+    "entryStateVariantCount": 9937,
+    "uniqueExpressionCount": 254,
+    "expressionBytecodeOccurrenceCount": 13665,
+    "terminationCounts": {
+      "nativeNullReturn": 256
+    },
+    "uniqueExpressionOperatorCounts": {
+      "booleanAnd": 10,
+      "booleanOr": 3,
+      "equal": 62,
+      "greaterThan": 1,
+      "greaterThanOrEqual": 12,
+      "isZero": 22,
+      "lessThanOrEqual": 13,
+      "notEqual": 4
+    }
+  },
+  "examples": [
+    {
+      "actorCode": "AKMI",
+      "resourceSha256": "7db288d86571f431be93696f529359690ff5676e44d52c341af5e707a8db85f1",
+      "routingStartOffset": "0x68",
+      "routingEndOffsetExclusive": "0x1650",
+      "routingBytesSha256": "0b08481e7c53c3b8e0e45790e91a9a6e69013d874a963b9ce05b3faa4a51958c",
+      "nodeCount": 942,
+      "edgeCount": 1175,
+      "expressionCount": 56,
+      "entryMarkerCount": 25,
+      "entryStateVariantCount": 56,
+      "entries": [
+        {
+          "markerOffset": "0xe5c",
+          "bodyOffset": "0xe5e",
+          "bodyEndOffsetExclusive": "0xeb4",
+          "bodyByteLength": 86,
+          "incomingExpressionIds": [
+            "a9c2e5d258703d8e",
+            "c7aaf038f8937667"
+          ]
+        },
+        {
+          "markerOffset": "0xebc",
+          "bodyOffset": "0xebe",
+          "bodyEndOffsetExclusive": "0xf27",
+          "bodyByteLength": 105,
+          "incomingExpressionIds": [
+            "a9c2e5d258703d8e",
+            "c7aaf038f8937667"
+          ]
+        },
+        {
+          "markerOffset": "0xf2f",
+          "bodyOffset": "0xf31",
+          "bodyEndOffsetExclusive": "0xf85",
+          "bodyByteLength": 84,
+          "incomingExpressionIds": [
+            "a9c2e5d258703d8e",
+            "c7aaf038f8937667"
+          ]
+        }
+      ],
+      "expressionExamples": [
+        {
+          "id": "01aec67531f96162",
+          "ast": {
+            "kind": "nativeValueType2",
+            "value": 168,
+            "nativeValueType": 2
+          },
+          "occurrences": [
+            {
+              "startOffset": "0x82a",
+              "endOffsetExclusive": "0x82d",
+              "byteLength": 3,
+              "rawSha256": "bd27484eb52373f79e79d91581f28688570330e6f65f4884bc65402d150feb3f",
+              "remainingStackDepth": 1
+            }
+          ]
+        },
+        {
+          "id": "02588d822d6fe2e0",
+          "ast": {
+            "kind": "nativeValueType2",
+            "value": 200,
+            "nativeValueType": 2
+          },
+          "occurrences": [
+            {
+              "startOffset": "0x6db",
+              "endOffsetExclusive": "0x6de",
+              "byteLength": 3,
+              "rawSha256": "ed4d330249e57186b6bfb50abcd15bb8e37316c5e6270c2084ee3c2acc5b6e99",
+              "remainingStackDepth": 1
+            }
+          ]
+        }
+      ],
+      "terminations": [
+        {
+          "nodeId": "0x164c:a9c2e5d258703d8e",
+          "kind": "nativeNullReturn",
+          "opcode": "0xff"
+        }
+      ]
+    },
+    {
+      "actorCode": "BOB_",
+      "resourceSha256": "f3f3e259dd47bb66846186312ecba2a383ba19497e618258cb2b7623de94f200",
+      "routingStartOffset": "0x68",
+      "routingEndOffsetExclusive": "0xe4",
+      "routingBytesSha256": "d40b742c14e426587b725e48af6d6b165542a0c1cb2a10bcca1649ee14a3433e",
+      "nodeCount": 16,
+      "edgeCount": 15,
+      "expressionCount": 4,
+      "entryMarkerCount": 1,
+      "entryStateVariantCount": 4,
+      "entries": [
+        {
+          "markerOffset": "0x8f",
+          "bodyOffset": "0x91",
+          "bodyEndOffsetExclusive": "0xde",
+          "bodyByteLength": 77,
+          "incomingExpressionIds": [
+            "4a98c47c3f1cb89f",
+            "a9c2e5d258703d8e",
+            "c7aaf038f8937667",
+            "f6dbc59410c0a9b6"
+          ]
+        }
+      ],
+      "expressionExamples": [
+        {
+          "id": "4a98c47c3f1cb89f",
+          "ast": {
+            "kind": "nativeValueType2",
+            "value": 641,
+            "nativeValueType": 2
+          },
+          "occurrences": [
+            {
+              "startOffset": "0x84",
+              "endOffsetExclusive": "0x87",
+              "byteLength": 3,
+              "rawSha256": "7106af377ed511b3e8ce2cbb38db80c40a336ecf55b3007b027a42c872c4488d",
+              "remainingStackDepth": 1
+            }
+          ]
+        },
+        {
+          "id": "a9c2e5d258703d8e",
+          "ast": {
+            "kind": "literal",
+            "value": 0,
+            "nativeValueType": 1
+          },
+          "occurrences": [
+            {
+              "startOffset": "0x9a",
+              "endOffsetExclusive": "0x9d",
+              "byteLength": 3,
+              "rawSha256": "1428a70eddd61ee222035b1f2d3431cfe73e1f462cf35ab9b825af589676d10e",
+              "remainingStackDepth": 1
+            }
+          ]
+        }
+      ],
+      "terminations": [
+        {
+          "nodeId": "0xe0:a9c2e5d258703d8e",
+          "kind": "nativeNullReturn",
+          "opcode": "0xff"
+        }
+      ]
+    }
+  ],
+  "fullReport": ".disc-work/dialogue/actor-conversation-entry-routes.json"
+}

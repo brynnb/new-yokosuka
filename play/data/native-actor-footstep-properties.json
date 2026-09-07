@@ -1,0 +1,49 @@
+{
+  "schema": "new-yokosuka-native-actor-footstep-properties-v1",
+  "nativeBehavior": {
+    "callback": "FUN_0c17bb14",
+    "callbackAddress": "0x0c17bb14",
+    "callbackSize": 168,
+    "callbackSha256": "e3b5840bcc80408988e8acd30c3c9ce01e3d0fc11d14272ecc59fad97f0cb3e9",
+    "propertyLookup": "FUN_0c0aad5a",
+    "propertyLookupAddress": "0x0c0aad5a",
+    "propertyLookupSize": 52,
+    "propertyLookupSha256": "14abed9a9089fed352b450240afd7cf7dd112eca734db9e98d97a45a47aa05eb",
+    "actorPropertyTreeOffset": "0x9c",
+    "propertyKey": "STEP",
+    "enabledByteOffsetFromProperty": 1,
+    "surfaceByteOffsetFromProperty": 2
+  },
+  "actors": {
+    "AKIR": {
+      "areas": {
+        "MFSY": {
+          "enabled": true,
+          "surfaceIndex": 0,
+          "evidence": {
+            "capture": "captures/pvr/20260724-164834-frame-5057/ram.bin",
+            "captureSha256": "70984ec3c9dfb0c71727429cbc8df9e5d2d4f2408871775a3c0abc3429751ce2",
+            "taskAddress": "0x8c525240",
+            "actorAddress": "0x8c5253f4",
+            "propertyRootFieldAddress": "0x8c525490",
+            "propertyNodeAddress": "0x8c5254e8",
+            "propertyBytes": "00010000"
+          }
+        },
+        "JOMO": {
+          "enabled": true,
+          "surfaceIndex": 3,
+          "evidence": {
+            "capture": "captures/pvr/20260723-191152-frame-4977/ram.bin",
+            "captureSha256": "bdd15bcf3ef56d27fd3f04dd316a9e7029f9d8139113f93629a7273f5f63d1d8",
+            "taskAddress": "0x8c519980",
+            "actorAddress": "0x8c519b34",
+            "propertyRootFieldAddress": "0x8c519bd0",
+            "propertyNodeAddress": "0x8c519c28",
+            "propertyBytes": "00010300"
+          }
+        }
+      }
+    }
+  }
+}

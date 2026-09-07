@@ -1,0 +1,61 @@
+{
+  "schema": "new-yokosuka-d000-entry-spawns-v1",
+  "coordinateConversion": {
+    "position": "browser X = -native X; browser Z = native Z",
+    "yaw": "browser yaw = -native Y fixed-turn angle"
+  },
+  "entries": [
+    {
+      "entry": 0,
+      "description": "bus-road entry",
+      "capture": "captures/pvr/20260724-010057-frame-4933",
+      "nativePosition": [
+        49.81758499145508,
+        1.8256276845932007,
+        6.245860576629639
+      ],
+      "browserPosition": [
+        -49.81758499145508,
+        0,
+        6.245860576629639
+      ],
+      "nativeYawRaw": 14896,
+      "browserYawRadians": -1.428136113521532
+    },
+    {
+      "entry": 1,
+      "description": "north Dobuita entry from the Sakuragaoka road",
+      "capture": "captures/pvr/20260724-010149-frame-5325",
+      "nativePosition": [
+        13.229999542236328,
+        1.1416015625,
+        98.86000061035156
+      ],
+      "browserPosition": [
+        -13.229999542236328,
+        0,
+        98.86000061035156
+      ],
+      "nativeYawRaw": 0,
+      "browserYawRadians": 0
+    },
+    {
+      "entry": 2,
+      "description": "You Arcade/store-side entry previously used incorrectly",
+      "capture": "captures/pvr/20260724-005903-frame-4074",
+      "nativePosition": [
+        -71.3603286743164,
+        1.1416015625,
+        80.25000762939453
+      ],
+      "browserPosition": [
+        71.3603286743164,
+        0,
+        80.25000762939453
+      ],
+      "nativeYawRaw": -1441,
+      "browserYawRadians": 0.13815414470895057
+    }
+  ],
+  "conclusion": "The Hazuki-side route must enter D000 at entry 1, not the previously reused entry-2/store-side spawn."
+}

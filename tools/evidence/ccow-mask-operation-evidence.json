@@ -1,0 +1,171 @@
+{
+  "schema": "new-yokosuka-ccow-mask-operation-evidence-v2",
+  "status": "exact-native-record-mask-contract-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 70,
+    "operationHex": "0x0046",
+    "handlerAddress": "0x0c1587dc",
+    "handlerLength": 164,
+    "handlerSha256": "06e25cc0362335db802f2e9431b4dd59c24f2bcdc38e3097f9b2e3b98ee65929",
+    "nativeContract": {
+      "objectResolver": "0x0c153956",
+      "clearMask": "0x0c0a3a08",
+      "setMask": "0x0c0a39e0",
+      "queryMask": "0x0c0a3a4c",
+      "resultWriter": "0x0c0bb358",
+      "recordTag": "CCOW",
+      "recordLookup": "0x0c0aad5a",
+      "fixedBitObjectResolver": "0x0c153956",
+      "fixedBitSetMask": "0x0c0a39e0",
+      "fixedBitClearMask": "0x0c0a3a08"
+    },
+    "recordTag": "CCOW",
+    "flagsWordOffset": "record+0x08",
+    "mutationStateByteOffset": "record+0x05",
+    "mutationStateByteValue": 0,
+    "modes": [
+      {
+        "mode": 1,
+        "action": "set",
+        "mask": "0x00000007"
+      },
+      {
+        "mode": 2,
+        "action": "clear",
+        "mask": "0x00000007"
+      },
+      {
+        "mode": 3,
+        "action": "set",
+        "mask": "0x00000002"
+      },
+      {
+        "mode": 4,
+        "action": "clear",
+        "mask": "0x00000002"
+      },
+      {
+        "mode": 5,
+        "action": "set",
+        "mask": "0x00000004"
+      },
+      {
+        "mode": 6,
+        "action": "clear",
+        "mask": "0x00000004"
+      },
+      {
+        "mode": 7,
+        "action": "query",
+        "mask": "0x00000004"
+      },
+      {
+        "mode": 8,
+        "action": "query",
+        "mask": "0x00000002"
+      },
+      {
+        "mode": 9,
+        "action": "set",
+        "mask": "0x00002000"
+      },
+      {
+        "mode": 10,
+        "action": "clear",
+        "mask": "0x00002000"
+      }
+    ],
+    "provenBehavior": "Resolves argument zero, obtains its associated CCOW record, and sets, clears, or queries exact masks in the record's 32-bit flags word at +0x08. Set and clear paths also write zero to record byte +0x05. Every path returns zero except a successful query, which returns one."
+  },
+  "fixedBitOperation": {
+    "operationId": 93,
+    "operationHex": "0x005d",
+    "handlerAddress": "0x0c158880",
+    "handlerLength": 62,
+    "handlerSha256": "f9777ca16062ba2948045c51f01f9f2cd3467e69b8d653ae8ecbb50e33c31d99",
+    "recordTag": "CCOW",
+    "flagsWordOffset": "record+0x08",
+    "mutationStateByteOffset": "record+0x05",
+    "mutationStateByteValue": 0,
+    "modes": [
+      {
+        "mode": 0,
+        "action": "no-op",
+        "mask": null
+      },
+      {
+        "mode": 1,
+        "action": "set",
+        "mask": "0x00000080"
+      },
+      {
+        "mode": 2,
+        "action": "clear",
+        "mask": "0x00000080"
+      }
+    ],
+    "provenBehavior": "Resolves argument zero. Mode zero returns without a CCOW lookup. Modes one and two obtain the exact CCOW associated record, clear byte +0x05, and respectively set or clear bit 0x00000080 in the flags word at +0x08. Missing objects or records are native no-ops."
+  },
+  "allDiscInventory": {
+    "callCount": 1182,
+    "dialogueRegionCallCount": 142,
+    "areaCount": 63,
+    "modeCounts": {
+      "1": 386,
+      "2": 603,
+      "3": 58,
+      "4": 39,
+      "5": 17,
+      "6": 48,
+      "7": 4,
+      "8": 1,
+      "9": 13,
+      "10": 13
+    },
+    "dialogueRegionModeCounts": {
+      "1": 51,
+      "2": 78,
+      "3": 3,
+      "4": 6,
+      "6": 4
+    },
+    "objectArgumentKindCounts": {
+      "constant": 632,
+      "frame-field": 461,
+      "runtime": 73,
+      "scene-field": 16
+    }
+  },
+  "fixedBitAllDiscInventory": {
+    "callCount": 311,
+    "dialogueRegionCallCount": 9,
+    "areaCount": 29,
+    "modeCounts": {
+      "0": 8,
+      "1": 189,
+      "2": 114
+    },
+    "dialogueRegionModeCounts": {
+      "1": 4,
+      "2": 5
+    },
+    "objectArgumentKindCounts": {
+      "constant": 93,
+      "frame-field": 178,
+      "runtime": 40
+    }
+  },
+  "evidenceBoundary": [
+    "CCOW is retained only as the executable's exact associated-record tag.",
+    "All 1,182 authored calls use one of the ten exact native modes.",
+    "The individual flags' gameplay meanings remain numeric and unnamed.",
+    "A missing object or CCOW record is a native no-op and query false, not an inferred error.",
+    "Operation 0x005d's fixed bit remains numeric and unnamed; no gameplay role is inferred."
+  ]
+}

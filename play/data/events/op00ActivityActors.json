@@ -1,0 +1,19 @@
+{
+  "schema": "new-yokosuka-native-activity-actors-v1",
+  "sources": {
+    "scene": "play/data/events/op00-introduction-scene.json",
+    "inventory": "play/assets/introduction/op00/asset-inventory.generated.json",
+    "rule": "Existing canonical character assets referenced by the OP00 scene manifest"
+  },
+  "modelCodes": ["INE_M", "FUK_M", "IWA_M", "BLA_M", "BLB_M", "KOK_M"],
+  "worlds": {
+    "op00": [
+      { "actorCode": "INE_", "label": "Ine Hayata", "modelCode": "INE_M", "activityOnly": true },
+      { "actorCode": "FUKU", "label": "Masayuki Fukuhara", "modelCode": "FUK_M", "activityOnly": true },
+      { "actorCode": "IWAO", "label": "Iwao Hazuki", "modelCode": "IWA_M", "activityOnly": true },
+      { "actorCode": "KURA", "label": "Man in black A", "modelCode": "BLA_M", "activityOnly": true },
+      { "actorCode": "KURB", "label": "Man in black B", "modelCode": "BLB_M", "activityOnly": true },
+      { "actorCode": "SORY", "label": "Lan Di", "modelCode": "KOK_M", "activityOnly": true }
+    ]
+  }
+}

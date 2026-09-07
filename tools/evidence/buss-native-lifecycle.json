@@ -1,0 +1,83 @@
+{
+  "schema": "new-yokosuka-native-cutscene-lifecycle-v1",
+  "resource": "BUSS",
+  "disc": 1,
+  "area": "D000",
+  "mapinfo": {
+    "path": "extracted_files/data/SCENE/01/D000/MAPINFO.BIN",
+    "sha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e"
+  },
+  "owner": {
+    "playerFacingEntryFunction": "0x6e1a0",
+    "callers": [
+      { "function": "0x6d9b4", "callFileOffset": "0x6e018" },
+      { "function": "0x8d548", "callFileOffset": "0x8dc04" }
+    ],
+    "activityOperation": "0x013e",
+    "branches": [
+      {
+        "slot": 16,
+        "purpose": "boarding",
+        "selection": "native operation 0x0009 selects SEQDATA1.AUTH or SEQDATA4.AUTH",
+        "bindings": [
+          { "callFileOffset": "0x6e37a", "primaryPointer": "0xaf00f", "secondaryPointer": "0xaf01c" },
+          { "callFileOffset": "0x6e3b6", "primaryPointer": "0xaf021", "secondaryPointer": "0xaf02e" }
+        ]
+      },
+      {
+        "slot": 17,
+        "purpose": "arrival",
+        "selection": "native operation 0x0009 selects SEQDATA2.AUTH or SEQDATA5.AUTH",
+        "bindings": [
+          { "callFileOffset": "0x6e56a", "primaryPointer": "0xaf055", "secondaryPointer": "0xaf062" },
+          { "callFileOffset": "0x6e5ee", "primaryPointer": "0xaf067", "secondaryPointer": "0xaf074" }
+        ]
+      }
+    ]
+  },
+  "nativeLifecycle": {
+    "enter": [
+      "disable gameplay presentation and interaction",
+      "load A1_BUSNO.SND before either activity branch",
+      "resolve the resident BUS_ object and initialize the native activity container"
+    ],
+    "activity": "run the selected slot-16 or slot-17 AUTH through its native wait boundary",
+    "exit": [
+      "apply the authored scene fade and bus sound transitions",
+      "release activity slot 17 and its BUSS resource container",
+      "restore camera, gameplay presentation, and interaction"
+    ]
+  },
+  "resourceCluster": {
+    "archive": "extracted_files/data/SCENE/01/D000/BUSS.PKS",
+    "archiveSha256": "9a2dfb19a2f7d134ee0b046cfaa6802861590e3918e30fa918eff6809a5be323",
+    "activities": ["SEQDATA1.AUTH", "SEQDATA4.AUTH", "SEQDATA2.AUTH", "SEQDATA5.AUTH"],
+    "motionBanks": ["M_01BUS.MOTN", ".disc-work/runtime-motion/MOTION.BIN"],
+    "soundBank": "extracted_files/data/SCENE/01/SOUND/A1_BUSNO.SND",
+    "voiceStream": null
+  },
+  "dependencies": {
+    "actors": {
+      "AKIR": "canonical player body",
+      "BUSS": "canonical S1_D000_OGM_L.MT5 model (the exact archive-local OGM_L.CHRM payload) using canonical Dobuita textures",
+      "BUS_": "canonical resident S1_D000_BUSS530G.MT5 bus body"
+    },
+    "excludedObjects": {
+      "CAR7": "archive-local traffic model is parked below the map and is absent from every BUSS AUTH actor list"
+    }
+  },
+  "runtimePolicy": {
+    "variants": "expose all four exact authored variants in the selector; do not invent deterministic replacement for native random selection",
+    "assets": "reuse the resident bus, canonical OGM_L model, and global MOTION.BIN; package only the exact archive-local activity motion bank",
+    "audio": "sound-only activity pack; no fabricated voice AFS or subtitle resource",
+    "exit": "release activity, audio, camera, actor, scene-object, and control ownership exactly once"
+  },
+  "sources": [
+    ".disc-work/dialogue/native-event-ir.json",
+    "tools/evidence/native-activity-owner-candidates.json",
+    "tools/evidence/d000-bus-assets.json",
+    "tools/evidence/d000-auth-audio-banks.json"
+  ],
+  "availability": "production",
+  "productionGate": "All four bindings, both exact motion banks, resident bus ownership, archive-local driver, sound-only audio, and fail-closed cleanup must pass."
+}

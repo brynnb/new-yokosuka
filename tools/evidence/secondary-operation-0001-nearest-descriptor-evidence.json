@@ -1,0 +1,77 @@
+{
+  "schema": "new-yokosuka-secondary-operation-0001-nearest-descriptor-evidence-v1",
+  "status": "exact-native-handler-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "verifiedNativeRanges": {
+    "commandHandler": {
+      "runtimeAddress": "0x0c15dd4c",
+      "size": 322,
+      "sha256": "a0c6b8c022a0350cbc4d3be3240519b62b356e28ec62b74abf435bfb73bc21f0"
+    },
+    "nearestDescriptorQuery": {
+      "runtimeAddress": "0x0c15f126",
+      "size": 124,
+      "sha256": "34eea7ff6deee383873e2a891769969e67daa4ba6cc2cedbd8670c6e1b101cbc"
+    },
+    "indirectIndexLookup": {
+      "runtimeAddress": "0x0c15f018",
+      "size": 72,
+      "sha256": "974e1a773237af47fd6b6708ea1365bd68cc14f9bfffa21b00777ff2004a7d5b"
+    },
+    "squaredThreeVectorDistance": {
+      "runtimeAddress": "0x0c0914c0",
+      "size": 28,
+      "sha256": "0299ea2ab026303da1876ef538b775135f61d56bbad949894c97040640e6fcbe"
+    }
+  },
+  "operation": {
+    "secondaryOperationId": 1,
+    "subcommand": 5,
+    "argumentCount": 2,
+    "recordKey": 2,
+    "recordVectorWordOffsets": [
+      5,
+      6,
+      7
+    ],
+    "distance": "float32 squared three-component Euclidean distance",
+    "tieBehavior": "first descriptor wins because replacement is strictly less-than",
+    "notFoundResult": -1
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 12,
+    "resultConsumedCount": 12,
+    "callsByDisc": {
+      "1": 4,
+      "2": 4,
+      "3": 4
+    },
+    "targetVectors": [
+      {
+        "words": [
+          1082130432,
+          0,
+          3222064333
+        ],
+        "callCount": 6
+      },
+      {
+        "words": [
+          1099410964,
+          0,
+          1066863165
+        ],
+        "callCount": 6
+      }
+    ]
+  },
+  "evidenceBoundary": [
+    "Only exact two-argument subcommand-5 calls with a complete static three-word target receive this semantic.",
+    "Descriptor and key values remain numeric; no interaction-domain name is inferred.",
+    "Missing exact room-manager vectors stop explicitly instead of using a guessed location."
+  ]
+}

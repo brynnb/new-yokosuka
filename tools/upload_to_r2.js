@@ -1,105 +1,168 @@
-import fs from 'fs';
-import path from 'path';
-import { S3Client, HeadObjectCommand } from '@aws-sdk/client-s3';
-import { Upload } from '@aws-sdk/lib-storage';
-import dotenv from 'dotenv';
-import { fileURLToPath } from 'url';
+import { createHash } from "node:crypto";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
-dotenv.config();
+import {
+  buildUploadPlan,
+  parseArguments,
+  usage,
+} from "./lib/R2AssetUploadPlan.js";
+import {
+  S3AssetUploadTransport,
+  WorkerAssetUploadTransport,
+} from "./lib/R2AssetUploadTransport.js";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const MODELS_DIR = path.join(__dirname, 'web-viewer/public/models');
-const BUCKET = process.env.R2_BUCKET_NAME;
-const PREFIX = 'shenmue'; // Use a different folder as requested
+const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
+const repositoryRoot = path.resolve(scriptDirectory, "..");
 
-if (!process.env.R2_ACCESS_KEY_ID || !process.env.R2_SECRET_ACCESS_KEY || !process.env.R2_ENDPOINT) {
-    console.error('Error: R2 credentials missing in .env');
-    process.exit(1);
+function loadLocalEnvironment() {
+  const environmentPath = path.join(repositoryRoot, ".env");
+  if (typeof process.loadEnvFile === "function" && fs.existsSync(environmentPath)) {
+    process.loadEnvFile(environmentPath);
+  }
 }
 
-const s3Client = new S3Client({
-    region: 'auto',
+function requireR2Configuration() {
+  const names = [
+    "R2_ACCESS_KEY_ID",
+    "R2_SECRET_ACCESS_KEY",
+    "R2_ENDPOINT",
+    "R2_BUCKET_NAME",
+  ];
+  const missing = names.filter((name) => !process.env[name]);
+  if (missing.length > 0) {
+    throw new Error(`Missing R2 configuration: ${missing.join(", ")}`);
+  }
+  return {
+    accessKeyId: process.env.R2_ACCESS_KEY_ID,
+    secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
     endpoint: process.env.R2_ENDPOINT,
-    credentials: {
-        accessKeyId: process.env.R2_ACCESS_KEY_ID,
-        secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
-    },
-});
-
-async function uploadFile(filePath, key) {
-    const stats = fs.statSync(filePath);
-    try {
-        // Skip if same size
-        const head = await s3Client.send(new HeadObjectCommand({ Bucket: BUCKET, Key: key }));
-        if (head.ContentLength === stats.size) {
-            return 'skipped';
-        }
-    } catch (e) {
-        // Not found, proceed
-    }
-
-    const fileStream = fs.createReadStream(filePath);
-    const parallelUploads3 = new Upload({
-        client: s3Client,
-        params: {
-            Bucket: BUCKET,
-            Key: key,
-            Body: fileStream,
-            ContentType: key.endsWith('.MT5') ? 'application/octet-stream' :
-                key.endsWith('.json') ? 'application/json' :
-                    key.endsWith('.bin') ? 'application/octet-stream' :
-                        'application/octet-stream'
-        },
-    });
-
-    await parallelUploads3.done();
-    return 'uploaded';
+    bucket: process.env.R2_BUCKET_NAME,
+  };
 }
 
-async function run() {
-    if (!fs.existsSync(MODELS_DIR)) {
-        console.error(`Directory not found: ${MODELS_DIR}`);
-        return;
+function hashFile(filename) {
+  return new Promise((resolve, reject) => {
+    const hash = createHash("sha256");
+    const input = fs.createReadStream(filename);
+    input.on("error", reject);
+    input.on("data", (chunk) => hash.update(chunk));
+    input.on("end", () => resolve(hash.digest("hex")));
+  });
+}
+
+async function uploadTask(transport, item, force) {
+  let sha256;
+  if (!force) {
+    const remote = await transport.head(item.key);
+    if (remote?.size === item.size && remote.sha256) {
+      sha256 = await hashFile(item.filePath);
+      if (remote.sha256 === sha256) return "skipped";
     }
+  }
 
-    const files = fs.readdirSync(MODELS_DIR);
+  sha256 ??= await hashFile(item.filePath);
+  await transport.put(item, sha256);
+  const verified = await transport.head(item.key);
+  if (verified?.size !== item.size || verified?.sha256 !== sha256) {
+    throw new Error(`Post-upload verification failed: ${item.key}`);
+  }
+  return "uploaded";
+}
 
-    // Add models.json which is one level up in /public
-    const modelsJsonPath = path.join(__dirname, 'web-viewer/public/models.json');
-    const uploadTasks = files.map(f => ({ path: path.join(MODELS_DIR, f), key: `${PREFIX}/${f}` }));
-    if (fs.existsSync(modelsJsonPath)) {
-        uploadTasks.push({ path: modelsJsonPath, key: `${PREFIX}/models.json` });
-    }
-
-    console.log(`Starting upload of ${uploadTasks.length} tasks to R2 folder: ${PREFIX}/`);
-
-    let uploaded = 0;
-    let skipped = 0;
-    let failed = 0;
-
-    for (let i = 0; i < uploadTasks.length; i++) {
-        const task = uploadTasks[i];
-        if (fs.statSync(task.path).isDirectory()) continue;
-
+async function runPhase(transport, items, options, totals) {
+  let cursor = 0;
+  const workers = Array.from(
+    { length: Math.min(options.concurrency, items.length) },
+    async () => {
+      while (cursor < items.length) {
+        const item = items[cursor];
+        cursor += 1;
         try {
-            const result = await uploadFile(task.path, task.key);
-            if (result === 'uploaded') uploaded++;
-            else skipped++;
-
-            if ((i + 1) % 50 === 0 || i === uploadTasks.length - 1) {
-                console.log(`Progress: ${i + 1}/${uploadTasks.length} | Uploaded: ${uploaded} | Skipped: ${skipped}`);
-            }
-        } catch (e) {
-            console.error(`Failed to upload ${task.key}: ${e.message}`);
-            failed++;
+          const result = await uploadTask(transport, item, options.force);
+          totals[result] += 1;
+        } catch (error) {
+          totals.failed += 1;
+          console.error(`Failed ${item.key}: ${error.message}`);
         }
-    }
-
-    console.log(`\nUpload complete!`);
-    console.log(`- Total: ${uploadTasks.length}`);
-    console.log(`- Uploaded: ${uploaded}`);
-    console.log(`- Skipped: ${skipped}`);
-    console.log(`- Failed: ${failed}`);
+        totals.processed += 1;
+        if (totals.processed % 50 === 0 || totals.processed === totals.total) {
+          console.log(
+            `Progress ${totals.processed}/${totals.total}: `
+            + `${totals.uploaded} uploaded, ${totals.skipped} unchanged, ${totals.failed} failed`,
+          );
+        }
+      }
+    },
+  );
+  await Promise.all(workers);
 }
 
-run().catch(console.error);
+function formatBytes(bytes) {
+  const units = ["B", "KiB", "MiB", "GiB"];
+  let value = bytes;
+  let unit = units[0];
+  for (let index = 1; value >= 1024 && index < units.length; index += 1) {
+    value /= 1024;
+    unit = units[index];
+  }
+  return `${value.toFixed(unit === "B" ? 0 : 1)} ${unit}`;
+}
+
+function printPlan(plan, options) {
+  const bytes = plan.reduce((sum, item) => sum + item.size, 0);
+  console.log(
+    `${options.dryRun ? "Dry run" : "Publishing"}: ${plan.length} objects, ${formatBytes(bytes)}`,
+  );
+  for (const game of ["s1", "s2", "runtime"]) {
+    const selected = plan.filter((item) => item.game === game);
+    if (selected.length === 0) continue;
+    const gameBytes = selected.reduce((sum, item) => sum + item.size, 0);
+    console.log(`- ${game.toUpperCase()}: ${selected.length} objects, ${formatBytes(gameBytes)}`);
+  }
+  console.log(`- Prefix: ${options.prefix}/`);
+  console.log("- Catalogs publish last; remote objects are never deleted");
+}
+
+export async function run(argv = process.argv.slice(2)) {
+  loadLocalEnvironment();
+  const options = parseArguments(argv);
+  if (options.help) {
+    console.log(usage());
+    return;
+  }
+
+  const plan = buildUploadPlan(options);
+  printPlan(plan, options);
+  if (options.dryRun) return;
+
+  const transport = options.workerUrl
+    ? new WorkerAssetUploadTransport(options.workerUrl, { requestTimeoutMs: options.requestTimeoutMs })
+    : new S3AssetUploadTransport(requireR2Configuration());
+  const totals = {
+    total: plan.length,
+    processed: 0,
+    uploaded: 0,
+    skipped: 0,
+    failed: 0,
+  };
+  const content = plan.filter((item) => item.phase === "content");
+  const catalogs = plan.filter((item) => item.phase === "catalog");
+
+  await runPhase(transport, content, options, totals);
+  if (totals.failed > 0) {
+    throw new Error("Content upload failed; catalogs were not published");
+  }
+  await runPhase(transport, catalogs, { ...options, concurrency: 1 }, totals);
+  if (totals.failed > 0) throw new Error("Catalog upload failed");
+
+  console.log(`Upload complete: ${totals.uploaded} uploaded, ${totals.skipped} unchanged`);
+}
+
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+  run().catch((error) => {
+    console.error(`Asset upload failed: ${error.message}`);
+    process.exitCode = 1;
+  });
+}

@@ -1,0 +1,88 @@
+{
+  "schema": "new-yokosuka-d000-hato-invocation-evidence-v1",
+  "status": "exact-to-native-coroutine-launch",
+  "source": {
+    "mapinfo": ".disc-work/mapinfo/disc1/SCENE/01/D000/MAPINFO.BIN",
+    "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e"
+  },
+  "scn3": {
+    "fileOffset": "0x1338",
+    "staticBaseFileOffset": "0xa2480"
+  },
+  "generatedTargets": {
+    "outerDispatcher": {
+      "targetIndex": 535,
+      "targetFileOffset": "0x7a17c",
+      "directCallers": [],
+      "invocation": {
+        "operationId": 2,
+        "callFileOffset": "0x76906",
+        "targetLiteralFileOffset": "0x76934",
+        "targetRelativeToScn3": "0x78e44",
+        "argumentCount": 0
+      }
+    },
+    "hatoDialogue": {
+      "targetIndex": 629,
+      "targetFileOffset": "0x7fa98"
+    }
+  },
+  "directCallChain": [
+    {
+      "callerRoutine": "0x7a17c",
+      "callFileOffset": "0x7a696",
+      "calleeRoutine": "0x7abf4"
+    },
+    {
+      "callerRoutine": "0x7abf4",
+      "callFileOffset": "0x7ac72",
+      "calleeRoutine": "0x8002c"
+    },
+    {
+      "callerRoutine": "0x8002c",
+      "callFileOffset": "0x800d0",
+      "calleeRoutine": "0x7fa98"
+    }
+  ],
+  "predicateAtRoutine0x7abf4": {
+    "allRequired": [
+      {
+        "kind": "engine-operation-result",
+        "operationId": 81,
+        "arguments": [
+          11,
+          100
+        ],
+        "requiredResult": 0,
+        "engineMeaning": "mode 11 reads bit 100 from persistent flag bank 2"
+      },
+      {
+        "kind": "game-hour-range",
+        "relativeOffset": "0x000000cc",
+        "minimumInclusive": 7,
+        "maximumInclusive": 18,
+        "semanticMeaning": "SCN3 scene-context hour, populated from the native game clock by operation 0x0059"
+      },
+      {
+        "kind": "module-static-value-equality",
+        "relativeOffset": "0x00000084",
+        "requiredValue": 6,
+        "semanticMeaning": "one-based result of native spatial selector operation 0x0181; exact zero-based result 5"
+      }
+    ]
+  },
+  "engineOperation0051": {
+    "handler": "0x0c1592e0",
+    "mode11Reader": "0x0c15af80",
+    "descriptorReader": "0x0c15aef8",
+    "flagBank2Reader": "0x0c15904c",
+    "flagBank2Representation": "bounds-checked packed bit array; mode 12 is the paired writer"
+  },
+  "engineOperation0002": {
+    "handler": "0x0c0bb3ac",
+    "coroutineConstructor": "0x0c0bb1d6",
+    "behavior": "construct a child SCN3 coroutine from the supplied absolute target and arguments, then store it on the caller coroutine"
+  },
+  "conclusion": "D000 launches generated target 535 as a zero-argument child coroutine through engine operation 0x0002. That coroutine reaches the HATO dialogue through three exact direct SCN3 calls after a persistent-flag, game-hour, and native spatial-selection tests.",
+  "evidenceBoundary": "The launch, call offsets, target indices, operation operands, required branch result, and raw static-field predicates are exact. Selector 6 is now connected to zero-based result 5 from native spatial selector operation 0x0181. No story name is assigned to flag 100 or to authored spatial record 5."
+}

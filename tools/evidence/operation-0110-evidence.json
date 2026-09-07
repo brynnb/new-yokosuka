@@ -1,0 +1,82 @@
+{
+  "schema": "new-yokosuka-operation-0110-evidence-v1",
+  "status": "exact-figp-byte-pair-write-and-full-corpus",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 272,
+    "operationHex": "0x0110",
+    "handlerAddress": "0x0c09c2c4",
+    "recordTag": "FIGP",
+    "fieldOffsets": [
+      "0x11",
+      "0x12"
+    ],
+    "nativeContract": {
+      "operationTableHandler": "0x0c09c2c4",
+      "objectResolver": "0x0c153956",
+      "recordTagWord": "FIGP",
+      "recordLookupHelper": "0x0c0aad5a"
+    },
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c09c2c4",
+        "length": 24,
+        "sha256": "cbae3105aca4070c56ee2a90cca2b15272a4910f4d45eac805fa46d9cf26934b"
+      },
+      "bytePairHelper": {
+        "address": "0x0c09bc7c",
+        "length": 44,
+        "sha256": "741731dd897d74ceaf046b1a76af98cdb32757ce53eba3a4d1fe14a767fd4ce8"
+      },
+      "recordLookup": {
+        "address": "0x0c0aad5a",
+        "length": 52,
+        "sha256": "14abed9a9089fed352b450240afd7cf7dd112eca734db9e98d97a45a47aa05eb"
+      }
+    },
+    "provenBehavior": "Resolves argument zero through the shared object resolver, looks up its literal FIGP associated record, and writes the low byte of argument one to record +0x11 and the low byte of argument two to record +0x12. A missing object or FIGP record is an exact native no-op."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 64,
+    "dialogueRegionCallCount": 3,
+    "areaCount": 20,
+    "argumentShapes": {
+      "constant,constant,constant": 21,
+      "frame-field,constant,constant": 29,
+      "frame-field,frame-field,constant": 9,
+      "frame-field,frame-field,frame-field": 2,
+      "scene-field,constant,constant": 3
+    },
+    "argumentKindCounts": {
+      "0": {
+        "constant": 21,
+        "frame-field": 40,
+        "scene-field": 3
+      },
+      "1": {
+        "constant": 53,
+        "frame-field": 11
+      },
+      "2": {
+        "constant": 62,
+        "frame-field": 2
+      }
+    },
+    "op00CallFileOffsets": [
+      "0x604",
+      "0x676",
+      "0x1592c"
+    ]
+  },
+  "evidenceBoundary": [
+    "FIGP is retained as the executable's exact four-byte record tag.",
+    "The two byte fields remain offset-derived because their visual or gameplay meaning is not proved.",
+    "All 64 exact three-argument authored shapes receive the semantic; no argument values are narrowed beyond low-byte storage.",
+    "No legacy playlist metadata contributes to this evidence."
+  ]
+}

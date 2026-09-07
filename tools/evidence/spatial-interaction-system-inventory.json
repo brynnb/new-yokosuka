@@ -1,0 +1,5855 @@
+{
+  "schema": "new-yokosuka-spatial-interaction-system-inventory-v3",
+  "status": "exact-operation-launch-record-and-result-routing-inventory",
+  "evidenceBoundary": "Operation calls, modes, generated-function ownership, child coroutine launches, sentinel-terminated 24-byte spatial records, and custom-width entries are exact. Runtime byte identity is separately proven for D000. The generated one-based selector array writes are exact. Higher-level interaction labels and non-width override entry semantics remain unresolved.",
+  "summary": {
+    "mapinfoScanned": 136,
+    "mapsWithOperation0181": 24,
+    "operation0181Calls": 96,
+    "modeCounts": {
+      "0": 24,
+      "1": 24,
+      "2": 48
+    },
+    "modeZeroCallsWithSerializedSource": 21,
+    "modeZeroCallsWithoutRecoveredLaunchSource": 3,
+    "modeZeroCallsWithRecoveredResultRouting": 24,
+    "serializedSpatialRecords": 178,
+    "customHalfWidthEntries": 88
+  },
+  "maps": [
+    {
+      "disc": 1,
+      "area": "D000",
+      "source": "extracted_files/data/SCENE/01/D000/MAPINFO.BIN",
+      "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+      "scn3FileOffset": "0x1338",
+      "initialFunctionFileOffset": "0x8e3fc",
+      "operation0181CallCount": 4,
+      "modeCounts": {
+        "0": 1,
+        "1": 1,
+        "2": 2
+      },
+      "serializedSources": [
+        {
+          "launchCallFileOffset": "0x767ea",
+          "fileOffset": "0xaf57c",
+          "recordStrideBytes": 24,
+          "recordCount": 18,
+          "records": [
+            {
+              "index": 0,
+              "fileOffset": "0xaf57c",
+              "position": [
+                18.329999923706055,
+                0.22499999403953552,
+                60.88750076293945
+              ],
+              "requiredFacingRaw": 32768,
+              "selectorFlags": 1048832,
+              "auxiliaryWord": 8,
+              "usesCustomHalfWidth": true,
+              "rawHex": "d7a392416666663ecd8c7342008000000001100008000000",
+              "lateralHalfWidth": 1.0
+            },
+            {
+              "index": 1,
+              "fileOffset": "0xaf594",
+              "position": [
+                18.41900062561035,
+                1.7999999523162842,
+                62.99020004272461
+              ],
+              "requiredFacingRaw": 0,
+              "selectorFlags": 264,
+              "auxiliaryWord": 8,
+              "usesCustomHalfWidth": true,
+              "rawHex": "1d5a93416666e63ff7f57b42000000000801000008000000",
+              "lateralHalfWidth": 1.0
+            },
+            {
+              "index": 2,
+              "fileOffset": "0xaf5ac",
+              "position": [
+                19.520299911499023,
+                2.0250000953674316,
+                65.0645980834961
+              ],
+              "requiredFacingRaw": 39321,
+              "selectorFlags": 1048832,
+              "auxiliaryWord": 15,
+              "usesCustomHalfWidth": true,
+              "rawHex": "93299c419a9901401321824299990000000110000f000000",
+              "lateralHalfWidth": 1.0
+            },
+            {
+              "index": 3,
+              "fileOffset": "0xaf5c4",
+              "position": [
+                22.151399612426758,
+                5.400000095367432,
+                68.33480072021484
+              ],
+              "requiredFacingRaw": 6553,
+              "selectorFlags": 264,
+              "auxiliaryWord": 15,
+              "usesCustomHalfWidth": true,
+              "rawHex": "1136b141cdccac406bab884299190000080100000f000000",
+              "lateralHalfWidth": 1.0
+            },
+            {
+              "index": 4,
+              "fileOffset": "0xaf5dc",
+              "position": [
+                -120.79949951171875,
+                -1.5729999542236328,
+                78.31430053710938
+              ],
+              "requiredFacingRaw": 42143,
+              "selectorFlags": 1048832,
+              "auxiliaryWord": 8,
+              "usesCustomHalfWidth": true,
+              "rawHex": "5899f1c21058c9bfeca09c429fa400000001100008000000",
+              "lateralHalfWidth": 0.5
+            },
+            {
+              "index": 5,
+              "fileOffset": "0xaf5f4",
+              "position": [
+                -119.13939666748047,
+                0.0,
+                79.6144027709961
+              ],
+              "requiredFacingRaw": 9375,
+              "selectorFlags": 264,
+              "auxiliaryWord": 8,
+              "usesCustomHalfWidth": true,
+              "rawHex": "5f47eec200000000933a9f429f2400000801000008000000",
+              "lateralHalfWidth": 0.5
+            },
+            {
+              "index": 6,
+              "fileOffset": "0xaf60c",
+              "position": [
+                -101.99629974365234,
+                0.29670000076293945,
+                99.62940216064453
+              ],
+              "requiredFacingRaw": 25486,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "1bfecbc210e9973e4142c7428e630000000010000c000000"
+            },
+            {
+              "index": 7,
+              "fileOffset": "0xaf624",
+              "position": [
+                -103.98269653320312,
+                2.75,
+                102.19850158691406
+              ],
+              "requiredFacingRaw": 58254,
+              "selectorFlags": 8,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "24f7cfc200003040a265cc428ee30000080000000c000000"
+            },
+            {
+              "index": 8,
+              "fileOffset": "0xaf63c",
+              "position": [
+                -51.18949890136719,
+                0.29600000381469727,
+                97.4197998046875
+              ],
+              "requiredFacingRaw": 37501,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "0cc24cc2508d973ef0d6c2427d920000000010000c000000"
+            },
+            {
+              "index": 9,
+              "fileOffset": "0xaf654",
+              "position": [
+                -49.68230056762695,
+                2.7716000080108643,
+                100.29869842529297
+              ],
+              "requiredFacingRaw": 4642,
+              "selectorFlags": 9,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "adba46c2e5613140ef98c84222120000090000000c000000"
+            },
+            {
+              "index": 10,
+              "fileOffset": "0xaf66c",
+              "position": [
+                -32.910400390625,
+                0.29600000381469727,
+                88.20760345458984
+              ],
+              "requiredFacingRaw": 33314,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "40a403c2508d973e4b6ab04222820000000010000c000000"
+            },
+            {
+              "index": 11,
+              "fileOffset": "0xaf684",
+              "position": [
+                -32.722198486328125,
+                2.7716000080108643,
+                91.50360107421875
+              ],
+              "requiredFacingRaw": 546,
+              "selectorFlags": 8,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "88e302c2e5613140d801b74222020000080000000c000000"
+            },
+            {
+              "index": 12,
+              "fileOffset": "0xaf69c",
+              "position": [
+                -7.646399974822998,
+                0.29600000381469727,
+                72.42960357666016
+              ],
+              "requiredFacingRaw": 11468,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "4faff4c0508d973ef5db9042cc2c0000000010000c000000"
+            },
+            {
+              "index": 13,
+              "fileOffset": "0xaf6b4",
+              "position": [
+                -10.606100082397461,
+                2.7716000080108643,
+                70.964599609375
+              ],
+              "requiredFacingRaw": 44252,
+              "selectorFlags": 8,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "96b229c1e5613140e0ed8d42dcac0000080000000c000000"
+            },
+            {
+              "index": 14,
+              "fileOffset": "0xaf6cc",
+              "position": [
+                -6.244999885559082,
+                0.29600000381469727,
+                93.552001953125
+              ],
+              "requiredFacingRaw": 26594,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "0ad7c7c0508d973ea01abb42e2670000000010000c000000"
+            },
+            {
+              "index": 15,
+              "fileOffset": "0xaf6e4",
+              "position": [
+                -8.141200065612793,
+                2.7716000080108643,
+                96.25769805908203
+              ],
+              "requiredFacingRaw": 59346,
+              "selectorFlags": 8,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "5b4202c1e5613140f183c042d2e70000080000000c000000"
+            },
+            {
+              "index": 16,
+              "fileOffset": "0xaf6fc",
+              "position": [
+                38.7333984375,
+                5.4741997718811035,
+                90.1436996459961
+              ],
+              "requiredFacingRaw": 24576,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "00ef1a42a52caf409349b44200600000000010000c000000"
+            },
+            {
+              "index": 17,
+              "fileOffset": "0xaf714",
+              "position": [
+                36.39970016479492,
+                7.952499866485596,
+                92.4854965209961
+              ],
+              "requiredFacingRaw": 57344,
+              "selectorFlags": 8,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "4b991142e17afe4093f8b84200e00000080000000c000000"
+            }
+          ],
+          "terminator": {
+            "fileOffset": "0xaf72c",
+            "raw": "0x47c35000"
+          },
+          "customHalfWidthTable": {
+            "startsImmediatelyAfterRecordTerminator": true,
+            "entryStrideBytes": 12,
+            "entries": [
+              {
+                "type": 0,
+                "recordIndex": 0,
+                "rawValue": 1065353216,
+                "fileOffset": "0xaf730",
+                "lateralHalfWidth": 1.0
+              },
+              {
+                "type": 0,
+                "recordIndex": 1,
+                "rawValue": 1065353216,
+                "fileOffset": "0xaf73c",
+                "lateralHalfWidth": 1.0
+              },
+              {
+                "type": 0,
+                "recordIndex": 2,
+                "rawValue": 1065353216,
+                "fileOffset": "0xaf748",
+                "lateralHalfWidth": 1.0
+              },
+              {
+                "type": 0,
+                "recordIndex": 3,
+                "rawValue": 1065353216,
+                "fileOffset": "0xaf754",
+                "lateralHalfWidth": 1.0
+              },
+              {
+                "type": 0,
+                "recordIndex": 4,
+                "rawValue": 1056964608,
+                "fileOffset": "0xaf760",
+                "lateralHalfWidth": 0.5
+              },
+              {
+                "type": 0,
+                "recordIndex": 5,
+                "rawValue": 1056964608,
+                "fileOffset": "0xaf76c",
+                "lateralHalfWidth": 0.5
+              }
+            ],
+            "terminatorFileOffset": "0xaf778"
+          }
+        }
+      ],
+      "calls": [
+        {
+          "callFileOffset": "0x148a",
+          "functionFileOffset": "0x13ac",
+          "mode": 0,
+          "argumentCount": 6,
+          "selectorResultRouting": {
+            "sceneSelectorArrayBaseOffset": "0x84",
+            "playerIndexFrameOffset": "0x58",
+            "selectorResultFrameOffset": "0x4c",
+            "arrayElementStrideBytes": 4,
+            "storedValue": "operation 0x0181 result + 1",
+            "notSelectedStoredValue": 0,
+            "writeFileOffset": "0x16d8"
+          },
+          "coroutineLaunches": [
+            {
+              "callFileOffset": "0x767ea",
+              "sourceFunctionFileOffset": "0x767b4",
+              "argumentCount": 6
+            }
+          ],
+          "childArguments": [
+            {
+              "kind": "constant",
+              "value": 1380535105,
+              "hex": "0x52494b41",
+              "ascii": "AKIR",
+              "source": "0x767ce"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x767ca"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x767c6"
+            },
+            {
+              "kind": "static-pointer",
+              "value": 718204,
+              "hex": "0x000af57c",
+              "source": "0x767c4"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x767be"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x767bc"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x1c00",
+          "functionFileOffset": "0x13ac",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x1f8c",
+          "functionFileOffset": "0x13ac",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x72a8",
+          "functionFileOffset": "0x7240",
+          "mode": 1,
+          "argumentCount": 1
+        }
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DMAJ",
+      "source": "extracted_files/data/SCENE/01/DMAJ/MAPINFO.BIN",
+      "mapinfoSha256": "8531e5deb57c2320bcafd1a89a5d5302349972d8e359e0cfe065cccfac2e360f",
+      "scn3FileOffset": "0x8",
+      "initialFunctionFileOffset": "0x21d94",
+      "operation0181CallCount": 4,
+      "modeCounts": {
+        "0": 1,
+        "1": 1,
+        "2": 2
+      },
+      "serializedSources": [
+        {
+          "launchCallFileOffset": "0x22642",
+          "fileOffset": "0x24844",
+          "recordStrideBytes": 24,
+          "recordCount": 2,
+          "records": [
+            {
+              "index": 0,
+              "fileOffset": "0x24844",
+              "position": [
+                0.6800000071525574,
+                0.0,
+                -2.700000047683716
+              ],
+              "requiredFacingRaw": 0,
+              "selectorFlags": 1073152,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "7b142e3f00000000cdcc2cc000000000006010000c000000"
+            },
+            {
+              "index": 1,
+              "fileOffset": "0x2485c",
+              "position": [
+                0.6800000071525574,
+                2.700000047683716,
+                -6.0
+              ],
+              "requiredFacingRaw": 32768,
+              "selectorFlags": 24584,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "7b142e3fcdcc2c400000c0c000800000086000000c000000"
+            }
+          ],
+          "terminator": {
+            "fileOffset": "0x24874",
+            "raw": "0x47c35000"
+          },
+          "customHalfWidthTable": {
+            "startsImmediatelyAfterRecordTerminator": true,
+            "entryStrideBytes": 12,
+            "entries": [],
+            "terminatorFileOffset": null
+          }
+        }
+      ],
+      "calls": [
+        {
+          "callFileOffset": "0x17f7e",
+          "functionFileOffset": "0x17e9e",
+          "mode": 0,
+          "argumentCount": 6,
+          "selectorResultRouting": {
+            "sceneSelectorArrayBaseOffset": "0x1b8",
+            "playerIndexFrameOffset": "0x58",
+            "selectorResultFrameOffset": "0x4c",
+            "arrayElementStrideBytes": 4,
+            "storedValue": "operation 0x0181 result + 1",
+            "notSelectedStoredValue": 0,
+            "writeFileOffset": "0x181dc"
+          },
+          "coroutineLaunches": [
+            {
+              "callFileOffset": "0x22642",
+              "sourceFunctionFileOffset": "0x225e4",
+              "argumentCount": 6
+            }
+          ],
+          "childArguments": [
+            {
+              "kind": "constant",
+              "value": 1380535105,
+              "hex": "0x52494b41",
+              "ascii": "AKIR",
+              "source": "0x22626"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x22622"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x2261e"
+            },
+            {
+              "kind": "static-pointer",
+              "value": 149572,
+              "hex": "0x00024844",
+              "source": "0x2261a"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x22614"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x22612"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x18714",
+          "functionFileOffset": "0x17e9e",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x18aac",
+          "functionFileOffset": "0x17e9e",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x1de60",
+          "functionFileOffset": "0x1ddf8",
+          "mode": 1,
+          "argumentCount": 1
+        }
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DYKZ",
+      "source": "extracted_files/data/SCENE/01/DYKZ/MAPINFO.BIN",
+      "mapinfoSha256": "d29a738d3c4157db4724bc47be3d39636f132126772257472da13edae761a2dc",
+      "scn3FileOffset": "0xa8",
+      "initialFunctionFileOffset": "0x25adc",
+      "operation0181CallCount": 4,
+      "modeCounts": {
+        "0": 1,
+        "1": 1,
+        "2": 2
+      },
+      "serializedSources": [
+        {
+          "launchCallFileOffset": "0x25bfa",
+          "fileOffset": "0x284bc",
+          "recordStrideBytes": 24,
+          "recordCount": 4,
+          "records": [
+            {
+              "index": 0,
+              "fileOffset": "0x284bc",
+              "position": [
+                3.8320000171661377,
+                0.0,
+                -0.8934999704360962
+              ],
+              "requiredFacingRaw": 0,
+              "selectorFlags": 24832,
+              "auxiliaryWord": 6,
+              "usesCustomHalfWidth": true,
+              "rawHex": "7d3f7540000000006abc64bf000000000061000006000000",
+              "lateralHalfWidth": 0.30000001192092896
+            },
+            {
+              "index": 1,
+              "fileOffset": "0x284d4",
+              "position": [
+                3.8320000171661377,
+                1.350000023841858,
+                -2.4035000801086426
+              ],
+              "requiredFacingRaw": 32768,
+              "selectorFlags": 24840,
+              "auxiliaryWord": 6,
+              "usesCustomHalfWidth": true,
+              "rawHex": "7d3f7540cdccac3ff2d219c0008000000861000006000000",
+              "lateralHalfWidth": 0.30000001192092896
+            },
+            {
+              "index": 2,
+              "fileOffset": "0x284ec",
+              "position": [
+                2.4000000953674316,
+                1.350000023841858,
+                -2.700000047683716
+              ],
+              "requiredFacingRaw": 32768,
+              "selectorFlags": 40960,
+              "auxiliaryWord": 6,
+              "usesCustomHalfWidth": false,
+              "rawHex": "9a991940cdccac3fcdcc2cc00080000000a0000006000000"
+            },
+            {
+              "index": 3,
+              "fileOffset": "0x28504",
+              "position": [
+                2.473900079727173,
+                2.700000047683716,
+                -1.2999999523162842
+              ],
+              "requiredFacingRaw": 0,
+              "selectorFlags": 24840,
+              "auxiliaryWord": 6,
+              "usesCustomHalfWidth": true,
+              "rawHex": "61541e40cdcc2c406666a6bf000000000861000006000000",
+              "lateralHalfWidth": 0.30000001192092896
+            }
+          ],
+          "terminator": {
+            "fileOffset": "0x2851c",
+            "raw": "0x47c35000"
+          },
+          "customHalfWidthTable": {
+            "startsImmediatelyAfterRecordTerminator": true,
+            "entryStrideBytes": 12,
+            "entries": [
+              {
+                "type": 0,
+                "recordIndex": 0,
+                "rawValue": 1050253722,
+                "fileOffset": "0x28520",
+                "lateralHalfWidth": 0.30000001192092896
+              },
+              {
+                "type": 0,
+                "recordIndex": 1,
+                "rawValue": 1050253722,
+                "fileOffset": "0x2852c",
+                "lateralHalfWidth": 0.30000001192092896
+              },
+              {
+                "type": 0,
+                "recordIndex": 2,
+                "rawValue": 1041865114,
+                "fileOffset": "0x28538",
+                "lateralHalfWidth": 0.15000000596046448
+              },
+              {
+                "type": 0,
+                "recordIndex": 3,
+                "rawValue": 1050253722,
+                "fileOffset": "0x28544",
+                "lateralHalfWidth": 0.30000001192092896
+              }
+            ],
+            "terminatorFileOffset": "0x28550"
+          }
+        }
+      ],
+      "calls": [
+        {
+          "callFileOffset": "0x1c7b6",
+          "functionFileOffset": "0x1c6d4",
+          "mode": 0,
+          "argumentCount": 6,
+          "selectorResultRouting": {
+            "sceneSelectorArrayBaseOffset": "0x440",
+            "playerIndexFrameOffset": "0x58",
+            "selectorResultFrameOffset": "0x4c",
+            "arrayElementStrideBytes": 4,
+            "storedValue": "operation 0x0181 result + 1",
+            "notSelectedStoredValue": 0,
+            "writeFileOffset": "0x1ca14"
+          },
+          "coroutineLaunches": [
+            {
+              "callFileOffset": "0x25bfa",
+              "sourceFunctionFileOffset": "0x25adc",
+              "argumentCount": 6
+            }
+          ],
+          "childArguments": [
+            {
+              "kind": "constant",
+              "value": 1380535105,
+              "hex": "0x52494b41",
+              "ascii": "AKIR",
+              "source": "0x25bde"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x25bda"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x25bd6"
+            },
+            {
+              "kind": "static-pointer",
+              "value": 165052,
+              "hex": "0x000284bc",
+              "source": "0x25bd4"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x25bce"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x25bcc"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x1cf4c",
+          "functionFileOffset": "0x1c6d4",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x1d2e4",
+          "functionFileOffset": "0x1c6d4",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x22698",
+          "functionFileOffset": "0x22630",
+          "mode": 1,
+          "argumentCount": 1
+        }
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "JABE",
+      "source": "extracted_files/data/SCENE/01/JABE/MAPINFO.BIN",
+      "mapinfoSha256": "c11c10154da5aa1d7fa0c0df9a3c3417215936d0d738731a0dbfde04eeec5d5f",
+      "scn3FileOffset": "0xb0",
+      "initialFunctionFileOffset": "0x2b5a4",
+      "operation0181CallCount": 4,
+      "modeCounts": {
+        "0": 1,
+        "1": 1,
+        "2": 2
+      },
+      "serializedSources": [],
+      "calls": [
+        {
+          "callFileOffset": "0x202",
+          "functionFileOffset": "0x124",
+          "mode": 0,
+          "argumentCount": 6,
+          "selectorResultRouting": {
+            "sceneSelectorArrayBaseOffset": "0x84",
+            "playerIndexFrameOffset": "0x58",
+            "selectorResultFrameOffset": "0x4c",
+            "arrayElementStrideBytes": 4,
+            "storedValue": "operation 0x0181 result + 1",
+            "notSelectedStoredValue": 0,
+            "writeFileOffset": "0x450"
+          },
+          "coroutineLaunches": []
+        },
+        {
+          "callFileOffset": "0x978",
+          "functionFileOffset": "0x124",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0xd04",
+          "functionFileOffset": "0x124",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x6020",
+          "functionFileOffset": "0x5fb8",
+          "mode": 1,
+          "argumentCount": 1
+        }
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "JD00",
+      "source": "extracted_files/data/SCENE/01/JD00/MAPINFO.BIN",
+      "mapinfoSha256": "8582ed57e13593d7622d24216ef8f93e5393b13fffd2132f70500f9e6ce2a43b",
+      "scn3FileOffset": "0x5a0",
+      "initialFunctionFileOffset": "0x76b90",
+      "operation0181CallCount": 4,
+      "modeCounts": {
+        "0": 1,
+        "1": 1,
+        "2": 2
+      },
+      "serializedSources": [
+        {
+          "launchCallFileOffset": "0x76fa2",
+          "fileOffset": "0x80c28",
+          "recordStrideBytes": 24,
+          "recordCount": 14,
+          "records": [
+            {
+              "index": 0,
+              "fileOffset": "0x80c28",
+              "position": [
+                -17.735200881958008,
+                0.22499999403953552,
+                -0.09350000321865082
+              ],
+              "requiredFacingRaw": 63169,
+              "selectorFlags": 1048832,
+              "auxiliaryWord": 6,
+              "usesCustomHalfWidth": true,
+              "rawHex": "b1e18dc16666663eee7cbfbdc1f600000001100006000000",
+              "lateralHalfWidth": 0.5
+            },
+            {
+              "index": 1,
+              "fileOffset": "0x80c40",
+              "position": [
+                -17.402299880981445,
+                1.5740000009536743,
+                -1.551900029182434
+              ],
+              "requiredFacingRaw": 30401,
+              "selectorFlags": 264,
+              "auxiliaryWord": 6,
+              "usesCustomHalfWidth": true,
+              "rawHex": "e9378bc1d578c93fa9a4c6bfc17600000801000006000000",
+              "lateralHalfWidth": 0.5
+            },
+            {
+              "index": 2,
+              "fileOffset": "0x80c58",
+              "position": [
+                -10.432700157165527,
+                0.22499999403953552,
+                21.87220001220703
+              ],
+              "requiredFacingRaw": 16384,
+              "selectorFlags": 1048832,
+              "auxiliaryWord": 5,
+              "usesCustomHalfWidth": true,
+              "rawHex": "57ec26c16666663e44faae41004000000001100005000000",
+              "lateralHalfWidth": 0.4000000059604645
+            },
+            {
+              "index": 3,
+              "fileOffset": "0x80c70",
+              "position": [
+                -11.631199836730957,
+                1.1495000123977661,
+                21.890499114990234
+              ],
+              "requiredFacingRaw": 49152,
+              "selectorFlags": 264,
+              "auxiliaryWord": 5,
+              "usesCustomHalfWidth": true,
+              "rawHex": "65193ac1d122933fbe1faf4100c000000801000005000000",
+              "lateralHalfWidth": 0.4000000059604645
+            },
+            {
+              "index": 4,
+              "fileOffset": "0x80c88",
+              "position": [
+                -14.403599739074707,
+                0.22499999403953552,
+                7.0609002113342285
+              ],
+              "requiredFacingRaw": 16384,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 5,
+              "usesCustomHalfWidth": false,
+              "rawHex": "257566c16666663ee5f2e140004000000000100005000000"
+            },
+            {
+              "index": 5,
+              "fileOffset": "0x80ca0",
+              "position": [
+                -15.596599578857422,
+                1.0,
+                7.0721001625061035
+              ],
+              "requiredFacingRaw": 49152,
+              "selectorFlags": 8,
+              "auxiliaryWord": 5,
+              "usesCustomHalfWidth": false,
+              "rawHex": "ac8b79c10000803fa54ee24000c000000800000005000000"
+            },
+            {
+              "index": 6,
+              "fileOffset": "0x80cb8",
+              "position": [
+                -24.61829948425293,
+                1.2587000131607056,
+                6.298399925231934
+              ],
+              "requiredFacingRaw": 32768,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 8,
+              "usesCustomHalfWidth": false,
+              "rawHex": "47f2c4c1151da13f7e8cc940008000000000100008000000"
+            },
+            {
+              "index": 7,
+              "fileOffset": "0x80cd0",
+              "position": [
+                -24.61389923095703,
+                3.0927000045776367,
+                8.40060043334961
+              ],
+              "requiredFacingRaw": 0,
+              "selectorFlags": 8,
+              "auxiliaryWord": 8,
+              "usesCustomHalfWidth": false,
+              "rawHex": "44e9c4c1ccee4540dc680641000000000800000008000000"
+            },
+            {
+              "index": 8,
+              "fileOffset": "0x80ce8",
+              "position": [
+                14.461999893188477,
+                0.2093999981880188,
+                28.30620002746582
+              ],
+              "requiredFacingRaw": 64261,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": false,
+              "rawHex": "5a646741f46c563e1973e24105fb00000000100003000000"
+            },
+            {
+              "index": 9,
+              "fileOffset": "0x80d00",
+              "position": [
+                14.657600402832031,
+                0.65829998254776,
+                27.645000457763672
+              ],
+              "requiredFacingRaw": 31493,
+              "selectorFlags": 8,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": false,
+              "rawHex": "88856a415986283ff628dd41057b00000800000003000000"
+            },
+            {
+              "index": 10,
+              "fileOffset": "0x80d18",
+              "position": [
+                -13.810400009155273,
+                1.3233000040054321,
+                24.48080062866211
+              ],
+              "requiredFacingRaw": 30219,
+              "selectorFlags": 1064960,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "66f75cc1e561a93faed8c3410b760000004010000c000000"
+            },
+            {
+              "index": 11,
+              "fileOffset": "0x80d30",
+              "position": [
+                -14.608799934387207,
+                3.8117001056671143,
+                27.68160057067871
+              ],
+              "requiredFacingRaw": 62987,
+              "selectorFlags": 16392,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "a5bd69c1e5f27340eb73dd410bf60000084000000c000000"
+            },
+            {
+              "index": 12,
+              "fileOffset": "0x80d48",
+              "position": [
+                -13.053500175476074,
+                1.315600037574768,
+                30.81909942626953
+              ],
+              "requiredFacingRaw": 32768,
+              "selectorFlags": 1064960,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "23db50c19565a83f848df64100800000004010000c000000"
+            },
+            {
+              "index": 13,
+              "fileOffset": "0x80d60",
+              "position": [
+                -13.029199600219727,
+                3.8062000274658203,
+                34.121299743652344
+              ],
+              "requiredFacingRaw": 0,
+              "selectorFlags": 16392,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "9a7750c1c8987340367c084200000000084000000c000000"
+            }
+          ],
+          "terminator": {
+            "fileOffset": "0x80d78",
+            "raw": "0x47c35000"
+          },
+          "customHalfWidthTable": {
+            "startsImmediatelyAfterRecordTerminator": true,
+            "entryStrideBytes": 12,
+            "entries": [
+              {
+                "type": 0,
+                "recordIndex": 0,
+                "rawValue": 1056964608,
+                "fileOffset": "0x80d7c",
+                "lateralHalfWidth": 0.5
+              },
+              {
+                "type": 0,
+                "recordIndex": 1,
+                "rawValue": 1056964608,
+                "fileOffset": "0x80d88",
+                "lateralHalfWidth": 0.5
+              },
+              {
+                "type": 0,
+                "recordIndex": 2,
+                "rawValue": 1053609165,
+                "fileOffset": "0x80d94",
+                "lateralHalfWidth": 0.4000000059604645
+              },
+              {
+                "type": 0,
+                "recordIndex": 3,
+                "rawValue": 1053609165,
+                "fileOffset": "0x80da0",
+                "lateralHalfWidth": 0.4000000059604645
+              }
+            ],
+            "terminatorFileOffset": "0x80dac"
+          }
+        }
+      ],
+      "calls": [
+        {
+          "callFileOffset": "0x6f2",
+          "functionFileOffset": "0x614",
+          "mode": 0,
+          "argumentCount": 6,
+          "selectorResultRouting": {
+            "sceneSelectorArrayBaseOffset": "0x84",
+            "playerIndexFrameOffset": "0x58",
+            "selectorResultFrameOffset": "0x4c",
+            "arrayElementStrideBytes": 4,
+            "storedValue": "operation 0x0181 result + 1",
+            "notSelectedStoredValue": 0,
+            "writeFileOffset": "0x940"
+          },
+          "coroutineLaunches": [
+            {
+              "callFileOffset": "0x76fa2",
+              "sourceFunctionFileOffset": "0x76b90",
+              "argumentCount": 6
+            }
+          ],
+          "childArguments": [
+            {
+              "kind": "constant",
+              "value": 1380535105,
+              "hex": "0x52494b41",
+              "ascii": "AKIR",
+              "source": "0x76f86"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x76f82"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x76f7e"
+            },
+            {
+              "kind": "static-pointer",
+              "value": 527400,
+              "hex": "0x00080c28",
+              "source": "0x76f7a"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x76f74"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x76f72"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0xe68",
+          "functionFileOffset": "0x614",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x11f4",
+          "functionFileOffset": "0x614",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x6510",
+          "functionFileOffset": "0x64a8",
+          "mode": 1,
+          "argumentCount": 1
+        }
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "JHD0",
+      "source": "extracted_files/data/SCENE/01/JHD0/MAPINFO.BIN",
+      "mapinfoSha256": "e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca",
+      "scn3FileOffset": "0x8",
+      "initialFunctionFileOffset": "0x537d4",
+      "operation0181CallCount": 4,
+      "modeCounts": {
+        "0": 1,
+        "1": 1,
+        "2": 2
+      },
+      "serializedSources": [
+        {
+          "launchCallFileOffset": "0x378d6",
+          "fileOffset": "0x5ec18",
+          "recordStrideBytes": 24,
+          "recordCount": 2,
+          "records": [
+            {
+              "index": 0,
+              "fileOffset": "0x5ec18",
+              "position": [
+                0.4000000059604645,
+                0.0,
+                -22.5
+              ],
+              "requiredFacingRaw": 16384,
+              "selectorFlags": 40192,
+              "auxiliaryWord": 4,
+              "usesCustomHalfWidth": true,
+              "rawHex": "cdcccc3e000000000000b4c100400000009d000004000000",
+              "lateralHalfWidth": 0.6000000238418579
+            },
+            {
+              "index": 1,
+              "fileOffset": "0x5ec30",
+              "position": [
+                -0.550000011920929,
+                1.0,
+                -22.5
+              ],
+              "requiredFacingRaw": 49152,
+              "selectorFlags": 39176,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": true,
+              "rawHex": "cdcc0cbf0000803f0000b4c100c000000899000003000000",
+              "lateralHalfWidth": 0.6000000238418579
+            }
+          ],
+          "terminator": {
+            "fileOffset": "0x5ec48",
+            "raw": "0x47c35000"
+          },
+          "customHalfWidthTable": {
+            "startsImmediatelyAfterRecordTerminator": true,
+            "entryStrideBytes": 12,
+            "entries": [
+              {
+                "type": 0,
+                "recordIndex": 0,
+                "rawValue": 1058642330,
+                "fileOffset": "0x5ec4c",
+                "lateralHalfWidth": 0.6000000238418579
+              },
+              {
+                "type": 0,
+                "recordIndex": 1,
+                "rawValue": 1058642330,
+                "fileOffset": "0x5ec58",
+                "lateralHalfWidth": 0.6000000238418579
+              },
+              {
+                "type": 1,
+                "recordIndex": 0,
+                "rawValue": 0,
+                "fileOffset": "0x5ec64"
+              },
+              {
+                "type": 2,
+                "recordIndex": 1,
+                "rawValue": 1,
+                "fileOffset": "0x5ec70"
+              },
+              {
+                "type": 2,
+                "recordIndex": 0,
+                "rawValue": 2,
+                "fileOffset": "0x5ec7c"
+              }
+            ],
+            "terminatorFileOffset": "0x5ec88"
+          }
+        }
+      ],
+      "calls": [
+        {
+          "callFileOffset": "0x158",
+          "functionFileOffset": "0x7c",
+          "mode": 0,
+          "argumentCount": 6,
+          "selectorResultRouting": {
+            "sceneSelectorArrayBaseOffset": "0x18",
+            "playerIndexFrameOffset": "0x58",
+            "selectorResultFrameOffset": "0x4c",
+            "arrayElementStrideBytes": 4,
+            "storedValue": "operation 0x0181 result + 1",
+            "notSelectedStoredValue": 0,
+            "writeFileOffset": "0x3a0"
+          },
+          "coroutineLaunches": [
+            {
+              "callFileOffset": "0x378d6",
+              "sourceFunctionFileOffset": "0x378a0",
+              "argumentCount": 6
+            }
+          ],
+          "childArguments": [
+            {
+              "kind": "constant",
+              "value": 1380535105,
+              "hex": "0x52494b41",
+              "ascii": "AKIR",
+              "source": "0x378ba"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x378b6"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x378b2"
+            },
+            {
+              "kind": "static-pointer",
+              "value": 388120,
+              "hex": "0x0005ec18",
+              "source": "0x378b0"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x378aa"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x378a8"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x8a0",
+          "functionFileOffset": "0x7c",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0xc10",
+          "functionFileOffset": "0x7c",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x5d00",
+          "functionFileOffset": "0x5c9c",
+          "mode": 1,
+          "argumentCount": 1
+        }
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "JU00",
+      "source": "extracted_files/data/SCENE/01/JU00/MAPINFO.BIN",
+      "mapinfoSha256": "3887bbf6e00eb152f7cca34d23841cc743ee7345a2db6b7d27e8303f6274924d",
+      "scn3FileOffset": "0x8",
+      "initialFunctionFileOffset": "0x4d284",
+      "operation0181CallCount": 4,
+      "modeCounts": {
+        "0": 1,
+        "1": 1,
+        "2": 2
+      },
+      "serializedSources": [
+        {
+          "launchCallFileOffset": "0x42856",
+          "fileOffset": "0x52214",
+          "recordStrideBytes": 24,
+          "recordCount": 16,
+          "records": [
+            {
+              "index": 0,
+              "fileOffset": "0x52214",
+              "position": [
+                -49.930999755859375,
+                7.0,
+                98.00779724121094
+              ],
+              "requiredFacingRaw": 22499,
+              "selectorFlags": 33024,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": true,
+              "rawHex": "58b947c20000e040fe03c442e35700000081000003000000",
+              "lateralHalfWidth": 1.0
+            },
+            {
+              "index": 1,
+              "fileOffset": "0x5222c",
+              "position": [
+                -50.436798095703125,
+                7.649799823760986,
+                98.3197021484375
+              ],
+              "requiredFacingRaw": 55267,
+              "selectorFlags": 33032,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": true,
+              "rawHex": "48bf49c229cbf440b0a3c442e3d700000881000003000000",
+              "lateralHalfWidth": 1.0
+            },
+            {
+              "index": 2,
+              "fileOffset": "0x52244",
+              "position": [
+                -29.563400268554688,
+                2.2699999809265137,
+                70.56269836425781
+              ],
+              "requiredFacingRaw": 16748,
+              "selectorFlags": 256,
+              "auxiliaryWord": 4,
+              "usesCustomHalfWidth": true,
+              "rawHex": "d881ecc1ae4711401a208d426c4100000001000004000000",
+              "lateralHalfWidth": 0.5
+            },
+            {
+              "index": 3,
+              "fileOffset": "0x5225c",
+              "position": [
+                -30.457700729370117,
+                2.950000047683716,
+                70.56310272216797
+              ],
+              "requiredFacingRaw": 49516,
+              "selectorFlags": 264,
+              "auxiliaryWord": 4,
+              "usesCustomHalfWidth": true,
+              "rawHex": "5fa9f3c1cdcc3c404f208d426cc100000801000004000000",
+              "lateralHalfWidth": 0.699999988079071
+            },
+            {
+              "index": 4,
+              "fileOffset": "0x52274",
+              "position": [
+                -29.069400787353516,
+                1.149999976158142,
+                67.23780059814453
+              ],
+              "requiredFacingRaw": 35498,
+              "selectorFlags": 256,
+              "auxiliaryWord": 5,
+              "usesCustomHalfWidth": true,
+              "rawHex": "228ee8c13333933fc1798642aa8a00000001000005000000",
+              "lateralHalfWidth": 0.699999988079071
+            },
+            {
+              "index": 5,
+              "fileOffset": "0x5228c",
+              "position": [
+                -28.840900421142578,
+                2.049999952316284,
+                68.4198989868164
+              ],
+              "requiredFacingRaw": 2730,
+              "selectorFlags": 264,
+              "auxiliaryWord": 5,
+              "usesCustomHalfWidth": true,
+              "rawHex": "2abae6c133330340fdd68842aa0a00000801000005000000",
+              "lateralHalfWidth": 0.699999988079071
+            },
+            {
+              "index": 6,
+              "fileOffset": "0x522a4",
+              "position": [
+                -35.58570098876953,
+                2.0999999046325684,
+                44.635101318359375
+              ],
+              "requiredFacingRaw": 5279,
+              "selectorFlags": 8448,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": true,
+              "rawHex": "c2570ec266660640588a32429f1400000021000003000000",
+              "lateralHalfWidth": 1.600000023841858
+            },
+            {
+              "index": 7,
+              "fileOffset": "0x522bc",
+              "position": [
+                -35.89360046386719,
+                2.5999999046325684,
+                44.14440155029297
+              ],
+              "requiredFacingRaw": 38065,
+              "selectorFlags": 8456,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": true,
+              "rawHex": "0c930fc266662640de933042b19400000821000003000000",
+              "lateralHalfWidth": 1.600000023841858
+            },
+            {
+              "index": 8,
+              "fileOffset": "0x522d4",
+              "position": [
+                -37.13600158691406,
+                2.134999990463257,
+                52.17530059814453
+              ],
+              "requiredFacingRaw": 36044,
+              "selectorFlags": 256,
+              "auxiliaryWord": 5,
+              "usesCustomHalfWidth": true,
+              "rawHex": "448b14c2d7a3084082b35042cc8c00000001000005000000",
+              "lateralHalfWidth": 0.30000001192092896
+            },
+            {
+              "index": 9,
+              "fileOffset": "0x522ec",
+              "position": [
+                -36.7598991394043,
+                3.050600051879883,
+                53.3213996887207
+              ],
+              "requiredFacingRaw": 3276,
+              "selectorFlags": 264,
+              "auxiliaryWord": 5,
+              "usesCustomHalfWidth": true,
+              "rawHex": "230a13c2083d43401d495542cc0c00000801000005000000",
+              "lateralHalfWidth": 0.30000001192092896
+            },
+            {
+              "index": 10,
+              "fileOffset": "0x52304",
+              "position": [
+                -37.650699615478516,
+                2.796099901199341,
+                41.206600189208984
+              ],
+              "requiredFacingRaw": 5461,
+              "selectorFlags": 8194,
+              "auxiliaryWord": 2,
+              "usesCustomHalfWidth": false,
+              "rawHex": "519a16c24df332408fd32442551500000220000002000000"
+            },
+            {
+              "index": 11,
+              "fileOffset": "0x5231c",
+              "position": [
+                -37.925201416015625,
+                3.242000102996826,
+                40.710601806640625
+              ],
+              "requiredFacingRaw": 38229,
+              "selectorFlags": 8202,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": false,
+              "rawHex": "68b317c2ee7c4f40a8d72242559500000a20000003000000"
+            },
+            {
+              "index": 12,
+              "fileOffset": "0x52334",
+              "position": [
+                -38.419498443603516,
+                3.478100061416626,
+                39.857601165771484
+              ],
+              "requiredFacingRaw": 5461,
+              "selectorFlags": 40962,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": false,
+              "rawHex": "91ad19c231995e402f6e1f425515000002a0000003000000"
+            },
+            {
+              "index": 13,
+              "fileOffset": "0x5234c",
+              "position": [
+                -38.78379821777344,
+                3.9410998821258545,
+                39.2307014465332
+              ],
+              "requiredFacingRaw": 38229,
+              "selectorFlags": 24586,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": false,
+              "rawHex": "9c221bc2fb3a7c403dec1c42559500000a60000003000000"
+            },
+            {
+              "index": 14,
+              "fileOffset": "0x52364",
+              "position": [
+                -38.82659912109375,
+                3.240000009536743,
+                59.1349983215332
+              ],
+              "requiredFacingRaw": 364,
+              "selectorFlags": 16384,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "704e1bc2295c4f403d8a6c426c010000004000000c000000"
+            },
+            {
+              "index": 15,
+              "fileOffset": "0x5237c",
+              "position": [
+                -38.94449996948242,
+                5.710000038146973,
+                55.83169937133789
+              ],
+              "requiredFacingRaw": 33241,
+              "selectorFlags": 16392,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "2bc71bc252b8b640a9535f42d9810000084000000c000000"
+            }
+          ],
+          "terminator": {
+            "fileOffset": "0x52394",
+            "raw": "0x47c35000"
+          },
+          "customHalfWidthTable": {
+            "startsImmediatelyAfterRecordTerminator": true,
+            "entryStrideBytes": 12,
+            "entries": [
+              {
+                "type": 0,
+                "recordIndex": 0,
+                "rawValue": 1065353216,
+                "fileOffset": "0x52398",
+                "lateralHalfWidth": 1.0
+              },
+              {
+                "type": 0,
+                "recordIndex": 1,
+                "rawValue": 1065353216,
+                "fileOffset": "0x523a4",
+                "lateralHalfWidth": 1.0
+              },
+              {
+                "type": 0,
+                "recordIndex": 2,
+                "rawValue": 1056964608,
+                "fileOffset": "0x523b0",
+                "lateralHalfWidth": 0.5
+              },
+              {
+                "type": 0,
+                "recordIndex": 3,
+                "rawValue": 1060320051,
+                "fileOffset": "0x523bc",
+                "lateralHalfWidth": 0.699999988079071
+              },
+              {
+                "type": 0,
+                "recordIndex": 4,
+                "rawValue": 1060320051,
+                "fileOffset": "0x523c8",
+                "lateralHalfWidth": 0.699999988079071
+              },
+              {
+                "type": 0,
+                "recordIndex": 5,
+                "rawValue": 1060320051,
+                "fileOffset": "0x523d4",
+                "lateralHalfWidth": 0.699999988079071
+              },
+              {
+                "type": 0,
+                "recordIndex": 6,
+                "rawValue": 1070386381,
+                "fileOffset": "0x523e0",
+                "lateralHalfWidth": 1.600000023841858
+              },
+              {
+                "type": 0,
+                "recordIndex": 7,
+                "rawValue": 1070386381,
+                "fileOffset": "0x523ec",
+                "lateralHalfWidth": 1.600000023841858
+              },
+              {
+                "type": 0,
+                "recordIndex": 8,
+                "rawValue": 1050253722,
+                "fileOffset": "0x523f8",
+                "lateralHalfWidth": 0.30000001192092896
+              },
+              {
+                "type": 0,
+                "recordIndex": 9,
+                "rawValue": 1050253722,
+                "fileOffset": "0x52404",
+                "lateralHalfWidth": 0.30000001192092896
+              }
+            ],
+            "terminatorFileOffset": "0x52410"
+          }
+        }
+      ],
+      "calls": [
+        {
+          "callFileOffset": "0x158",
+          "functionFileOffset": "0x7c",
+          "mode": 0,
+          "argumentCount": 6,
+          "selectorResultRouting": {
+            "sceneSelectorArrayBaseOffset": "0x18",
+            "playerIndexFrameOffset": "0x58",
+            "selectorResultFrameOffset": "0x4c",
+            "arrayElementStrideBytes": 4,
+            "storedValue": "operation 0x0181 result + 1",
+            "notSelectedStoredValue": 0,
+            "writeFileOffset": "0x3a0"
+          },
+          "coroutineLaunches": [
+            {
+              "callFileOffset": "0x42856",
+              "sourceFunctionFileOffset": "0x42820",
+              "argumentCount": 6
+            }
+          ],
+          "childArguments": [
+            {
+              "kind": "constant",
+              "value": 1380535105,
+              "hex": "0x52494b41",
+              "ascii": "AKIR",
+              "source": "0x4283a"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x42836"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x42832"
+            },
+            {
+              "kind": "static-pointer",
+              "value": 336404,
+              "hex": "0x00052214",
+              "source": "0x42830"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x4282a"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x42828"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x8a0",
+          "functionFileOffset": "0x7c",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0xc10",
+          "functionFileOffset": "0x7c",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x5d00",
+          "functionFileOffset": "0x5c9c",
+          "mode": 1,
+          "argumentCount": 1
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "source": "extracted_disc2_v2/data/SCENE/02/D000/MAPINFO.BIN",
+      "mapinfoSha256": "58f1bc5d5bf8eedd2641544944e33bb25c20999945de52775ff679e87f98a884",
+      "scn3FileOffset": "0x1260",
+      "initialFunctionFileOffset": "0x6d31c",
+      "operation0181CallCount": 4,
+      "modeCounts": {
+        "0": 1,
+        "1": 1,
+        "2": 2
+      },
+      "serializedSources": [
+        {
+          "launchCallFileOffset": "0x5fce2",
+          "fileOffset": "0x9854c",
+          "recordStrideBytes": 24,
+          "recordCount": 18,
+          "records": [
+            {
+              "index": 0,
+              "fileOffset": "0x9854c",
+              "position": [
+                18.329999923706055,
+                0.22499999403953552,
+                60.88750076293945
+              ],
+              "requiredFacingRaw": 32768,
+              "selectorFlags": 1048832,
+              "auxiliaryWord": 8,
+              "usesCustomHalfWidth": true,
+              "rawHex": "d7a392416666663ecd8c7342008000000001100008000000",
+              "lateralHalfWidth": 1.0
+            },
+            {
+              "index": 1,
+              "fileOffset": "0x98564",
+              "position": [
+                18.41900062561035,
+                1.7999999523162842,
+                62.99020004272461
+              ],
+              "requiredFacingRaw": 0,
+              "selectorFlags": 264,
+              "auxiliaryWord": 8,
+              "usesCustomHalfWidth": true,
+              "rawHex": "1d5a93416666e63ff7f57b42000000000801000008000000",
+              "lateralHalfWidth": 1.0
+            },
+            {
+              "index": 2,
+              "fileOffset": "0x9857c",
+              "position": [
+                19.520299911499023,
+                2.0250000953674316,
+                65.0645980834961
+              ],
+              "requiredFacingRaw": 39321,
+              "selectorFlags": 1048832,
+              "auxiliaryWord": 15,
+              "usesCustomHalfWidth": true,
+              "rawHex": "93299c419a9901401321824299990000000110000f000000",
+              "lateralHalfWidth": 1.0
+            },
+            {
+              "index": 3,
+              "fileOffset": "0x98594",
+              "position": [
+                22.151399612426758,
+                5.400000095367432,
+                68.33480072021484
+              ],
+              "requiredFacingRaw": 6553,
+              "selectorFlags": 264,
+              "auxiliaryWord": 15,
+              "usesCustomHalfWidth": true,
+              "rawHex": "1136b141cdccac406bab884299190000080100000f000000",
+              "lateralHalfWidth": 1.0
+            },
+            {
+              "index": 4,
+              "fileOffset": "0x985ac",
+              "position": [
+                -120.79949951171875,
+                -1.5729999542236328,
+                78.31430053710938
+              ],
+              "requiredFacingRaw": 42143,
+              "selectorFlags": 1048832,
+              "auxiliaryWord": 8,
+              "usesCustomHalfWidth": true,
+              "rawHex": "5899f1c21058c9bfeca09c429fa400000001100008000000",
+              "lateralHalfWidth": 0.5
+            },
+            {
+              "index": 5,
+              "fileOffset": "0x985c4",
+              "position": [
+                -119.13939666748047,
+                0.0,
+                79.6144027709961
+              ],
+              "requiredFacingRaw": 9375,
+              "selectorFlags": 264,
+              "auxiliaryWord": 8,
+              "usesCustomHalfWidth": true,
+              "rawHex": "5f47eec200000000933a9f429f2400000801000008000000",
+              "lateralHalfWidth": 0.5
+            },
+            {
+              "index": 6,
+              "fileOffset": "0x985dc",
+              "position": [
+                -101.99629974365234,
+                0.29670000076293945,
+                99.62940216064453
+              ],
+              "requiredFacingRaw": 25486,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "1bfecbc210e9973e4142c7428e630000000010000c000000"
+            },
+            {
+              "index": 7,
+              "fileOffset": "0x985f4",
+              "position": [
+                -103.98269653320312,
+                2.75,
+                102.19850158691406
+              ],
+              "requiredFacingRaw": 58254,
+              "selectorFlags": 8,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "24f7cfc200003040a265cc428ee30000080000000c000000"
+            },
+            {
+              "index": 8,
+              "fileOffset": "0x9860c",
+              "position": [
+                -51.18949890136719,
+                0.29600000381469727,
+                97.4197998046875
+              ],
+              "requiredFacingRaw": 37501,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "0cc24cc2508d973ef0d6c2427d920000000010000c000000"
+            },
+            {
+              "index": 9,
+              "fileOffset": "0x98624",
+              "position": [
+                -49.68230056762695,
+                2.7716000080108643,
+                100.29869842529297
+              ],
+              "requiredFacingRaw": 4642,
+              "selectorFlags": 9,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "adba46c2e5613140ef98c84222120000090000000c000000"
+            },
+            {
+              "index": 10,
+              "fileOffset": "0x9863c",
+              "position": [
+                -32.910400390625,
+                0.29600000381469727,
+                88.20760345458984
+              ],
+              "requiredFacingRaw": 33314,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "40a403c2508d973e4b6ab04222820000000010000c000000"
+            },
+            {
+              "index": 11,
+              "fileOffset": "0x98654",
+              "position": [
+                -32.722198486328125,
+                2.7716000080108643,
+                91.50360107421875
+              ],
+              "requiredFacingRaw": 546,
+              "selectorFlags": 8,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "88e302c2e5613140d801b74222020000080000000c000000"
+            },
+            {
+              "index": 12,
+              "fileOffset": "0x9866c",
+              "position": [
+                -7.646399974822998,
+                0.29600000381469727,
+                72.42960357666016
+              ],
+              "requiredFacingRaw": 11468,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "4faff4c0508d973ef5db9042cc2c0000000010000c000000"
+            },
+            {
+              "index": 13,
+              "fileOffset": "0x98684",
+              "position": [
+                -10.606100082397461,
+                2.7716000080108643,
+                70.964599609375
+              ],
+              "requiredFacingRaw": 44252,
+              "selectorFlags": 8,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "96b229c1e5613140e0ed8d42dcac0000080000000c000000"
+            },
+            {
+              "index": 14,
+              "fileOffset": "0x9869c",
+              "position": [
+                -6.244999885559082,
+                0.29600000381469727,
+                93.552001953125
+              ],
+              "requiredFacingRaw": 26594,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "0ad7c7c0508d973ea01abb42e2670000000010000c000000"
+            },
+            {
+              "index": 15,
+              "fileOffset": "0x986b4",
+              "position": [
+                -8.141200065612793,
+                2.7716000080108643,
+                96.25769805908203
+              ],
+              "requiredFacingRaw": 59346,
+              "selectorFlags": 8,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "5b4202c1e5613140f183c042d2e70000080000000c000000"
+            },
+            {
+              "index": 16,
+              "fileOffset": "0x986cc",
+              "position": [
+                38.7333984375,
+                5.4741997718811035,
+                90.1436996459961
+              ],
+              "requiredFacingRaw": 24576,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "00ef1a42a52caf409349b44200600000000010000c000000"
+            },
+            {
+              "index": 17,
+              "fileOffset": "0x986e4",
+              "position": [
+                36.39970016479492,
+                7.952499866485596,
+                92.4854965209961
+              ],
+              "requiredFacingRaw": 57344,
+              "selectorFlags": 8,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "4b991142e17afe4093f8b84200e00000080000000c000000"
+            }
+          ],
+          "terminator": {
+            "fileOffset": "0x986fc",
+            "raw": "0x47c35000"
+          },
+          "customHalfWidthTable": {
+            "startsImmediatelyAfterRecordTerminator": true,
+            "entryStrideBytes": 12,
+            "entries": [
+              {
+                "type": 0,
+                "recordIndex": 0,
+                "rawValue": 1065353216,
+                "fileOffset": "0x98700",
+                "lateralHalfWidth": 1.0
+              },
+              {
+                "type": 0,
+                "recordIndex": 1,
+                "rawValue": 1065353216,
+                "fileOffset": "0x9870c",
+                "lateralHalfWidth": 1.0
+              },
+              {
+                "type": 0,
+                "recordIndex": 2,
+                "rawValue": 1065353216,
+                "fileOffset": "0x98718",
+                "lateralHalfWidth": 1.0
+              },
+              {
+                "type": 0,
+                "recordIndex": 3,
+                "rawValue": 1065353216,
+                "fileOffset": "0x98724",
+                "lateralHalfWidth": 1.0
+              },
+              {
+                "type": 0,
+                "recordIndex": 4,
+                "rawValue": 1056964608,
+                "fileOffset": "0x98730",
+                "lateralHalfWidth": 0.5
+              },
+              {
+                "type": 0,
+                "recordIndex": 5,
+                "rawValue": 1056964608,
+                "fileOffset": "0x9873c",
+                "lateralHalfWidth": 0.5
+              }
+            ],
+            "terminatorFileOffset": "0x98748"
+          }
+        }
+      ],
+      "calls": [
+        {
+          "callFileOffset": "0x13b2",
+          "functionFileOffset": "0x12d4",
+          "mode": 0,
+          "argumentCount": 6,
+          "selectorResultRouting": {
+            "sceneSelectorArrayBaseOffset": "0x84",
+            "playerIndexFrameOffset": "0x58",
+            "selectorResultFrameOffset": "0x4c",
+            "arrayElementStrideBytes": 4,
+            "storedValue": "operation 0x0181 result + 1",
+            "notSelectedStoredValue": 0,
+            "writeFileOffset": "0x1600"
+          },
+          "coroutineLaunches": [
+            {
+              "callFileOffset": "0x5fce2",
+              "sourceFunctionFileOffset": "0x5fcac",
+              "argumentCount": 6
+            }
+          ],
+          "childArguments": [
+            {
+              "kind": "constant",
+              "value": 1380535105,
+              "hex": "0x52494b41",
+              "ascii": "AKIR",
+              "source": "0x5fcc6"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x5fcc2"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x5fcbe"
+            },
+            {
+              "kind": "static-pointer",
+              "value": 623948,
+              "hex": "0x0009854c",
+              "source": "0x5fcbc"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x5fcb6"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x5fcb4"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x1b28",
+          "functionFileOffset": "0x12d4",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x1eb4",
+          "functionFileOffset": "0x12d4",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x71d0",
+          "functionFileOffset": "0x7168",
+          "mode": 1,
+          "argumentCount": 1
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DMAJ",
+      "source": "extracted_disc2_v2/data/SCENE/02/DMAJ/MAPINFO.BIN",
+      "mapinfoSha256": "19e61f609ed055c388ba316dbce5b8d3a8aaf0f178c38390bbcb74610c0abced",
+      "scn3FileOffset": "0x8",
+      "initialFunctionFileOffset": "0x21d94",
+      "operation0181CallCount": 4,
+      "modeCounts": {
+        "0": 1,
+        "1": 1,
+        "2": 2
+      },
+      "serializedSources": [
+        {
+          "launchCallFileOffset": "0x22642",
+          "fileOffset": "0x24844",
+          "recordStrideBytes": 24,
+          "recordCount": 2,
+          "records": [
+            {
+              "index": 0,
+              "fileOffset": "0x24844",
+              "position": [
+                0.6800000071525574,
+                0.0,
+                -2.700000047683716
+              ],
+              "requiredFacingRaw": 0,
+              "selectorFlags": 1073152,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "7b142e3f00000000cdcc2cc000000000006010000c000000"
+            },
+            {
+              "index": 1,
+              "fileOffset": "0x2485c",
+              "position": [
+                0.6800000071525574,
+                2.700000047683716,
+                -6.0
+              ],
+              "requiredFacingRaw": 32768,
+              "selectorFlags": 24584,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "7b142e3fcdcc2c400000c0c000800000086000000c000000"
+            }
+          ],
+          "terminator": {
+            "fileOffset": "0x24874",
+            "raw": "0x47c35000"
+          },
+          "customHalfWidthTable": {
+            "startsImmediatelyAfterRecordTerminator": true,
+            "entryStrideBytes": 12,
+            "entries": [],
+            "terminatorFileOffset": null
+          }
+        }
+      ],
+      "calls": [
+        {
+          "callFileOffset": "0x17f7e",
+          "functionFileOffset": "0x17e9e",
+          "mode": 0,
+          "argumentCount": 6,
+          "selectorResultRouting": {
+            "sceneSelectorArrayBaseOffset": "0x1b8",
+            "playerIndexFrameOffset": "0x58",
+            "selectorResultFrameOffset": "0x4c",
+            "arrayElementStrideBytes": 4,
+            "storedValue": "operation 0x0181 result + 1",
+            "notSelectedStoredValue": 0,
+            "writeFileOffset": "0x181dc"
+          },
+          "coroutineLaunches": [
+            {
+              "callFileOffset": "0x22642",
+              "sourceFunctionFileOffset": "0x225e4",
+              "argumentCount": 6
+            }
+          ],
+          "childArguments": [
+            {
+              "kind": "constant",
+              "value": 1380535105,
+              "hex": "0x52494b41",
+              "ascii": "AKIR",
+              "source": "0x22626"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x22622"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x2261e"
+            },
+            {
+              "kind": "static-pointer",
+              "value": 149572,
+              "hex": "0x00024844",
+              "source": "0x2261a"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x22614"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x22612"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x18714",
+          "functionFileOffset": "0x17e9e",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x18aac",
+          "functionFileOffset": "0x17e9e",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x1de60",
+          "functionFileOffset": "0x1ddf8",
+          "mode": 1,
+          "argumentCount": 1
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DYKZ",
+      "source": "extracted_disc2_v2/data/SCENE/02/DYKZ/MAPINFO.BIN",
+      "mapinfoSha256": "d29a738d3c4157db4724bc47be3d39636f132126772257472da13edae761a2dc",
+      "scn3FileOffset": "0xa8",
+      "initialFunctionFileOffset": "0x25adc",
+      "operation0181CallCount": 4,
+      "modeCounts": {
+        "0": 1,
+        "1": 1,
+        "2": 2
+      },
+      "serializedSources": [
+        {
+          "launchCallFileOffset": "0x25bfa",
+          "fileOffset": "0x284bc",
+          "recordStrideBytes": 24,
+          "recordCount": 4,
+          "records": [
+            {
+              "index": 0,
+              "fileOffset": "0x284bc",
+              "position": [
+                3.8320000171661377,
+                0.0,
+                -0.8934999704360962
+              ],
+              "requiredFacingRaw": 0,
+              "selectorFlags": 24832,
+              "auxiliaryWord": 6,
+              "usesCustomHalfWidth": true,
+              "rawHex": "7d3f7540000000006abc64bf000000000061000006000000",
+              "lateralHalfWidth": 0.30000001192092896
+            },
+            {
+              "index": 1,
+              "fileOffset": "0x284d4",
+              "position": [
+                3.8320000171661377,
+                1.350000023841858,
+                -2.4035000801086426
+              ],
+              "requiredFacingRaw": 32768,
+              "selectorFlags": 24840,
+              "auxiliaryWord": 6,
+              "usesCustomHalfWidth": true,
+              "rawHex": "7d3f7540cdccac3ff2d219c0008000000861000006000000",
+              "lateralHalfWidth": 0.30000001192092896
+            },
+            {
+              "index": 2,
+              "fileOffset": "0x284ec",
+              "position": [
+                2.4000000953674316,
+                1.350000023841858,
+                -2.700000047683716
+              ],
+              "requiredFacingRaw": 32768,
+              "selectorFlags": 40960,
+              "auxiliaryWord": 6,
+              "usesCustomHalfWidth": false,
+              "rawHex": "9a991940cdccac3fcdcc2cc00080000000a0000006000000"
+            },
+            {
+              "index": 3,
+              "fileOffset": "0x28504",
+              "position": [
+                2.473900079727173,
+                2.700000047683716,
+                -1.2999999523162842
+              ],
+              "requiredFacingRaw": 0,
+              "selectorFlags": 24840,
+              "auxiliaryWord": 6,
+              "usesCustomHalfWidth": true,
+              "rawHex": "61541e40cdcc2c406666a6bf000000000861000006000000",
+              "lateralHalfWidth": 0.30000001192092896
+            }
+          ],
+          "terminator": {
+            "fileOffset": "0x2851c",
+            "raw": "0x47c35000"
+          },
+          "customHalfWidthTable": {
+            "startsImmediatelyAfterRecordTerminator": true,
+            "entryStrideBytes": 12,
+            "entries": [
+              {
+                "type": 0,
+                "recordIndex": 0,
+                "rawValue": 1050253722,
+                "fileOffset": "0x28520",
+                "lateralHalfWidth": 0.30000001192092896
+              },
+              {
+                "type": 0,
+                "recordIndex": 1,
+                "rawValue": 1050253722,
+                "fileOffset": "0x2852c",
+                "lateralHalfWidth": 0.30000001192092896
+              },
+              {
+                "type": 0,
+                "recordIndex": 2,
+                "rawValue": 1041865114,
+                "fileOffset": "0x28538",
+                "lateralHalfWidth": 0.15000000596046448
+              },
+              {
+                "type": 0,
+                "recordIndex": 3,
+                "rawValue": 1050253722,
+                "fileOffset": "0x28544",
+                "lateralHalfWidth": 0.30000001192092896
+              }
+            ],
+            "terminatorFileOffset": "0x28550"
+          }
+        }
+      ],
+      "calls": [
+        {
+          "callFileOffset": "0x1c7b6",
+          "functionFileOffset": "0x1c6d4",
+          "mode": 0,
+          "argumentCount": 6,
+          "selectorResultRouting": {
+            "sceneSelectorArrayBaseOffset": "0x440",
+            "playerIndexFrameOffset": "0x58",
+            "selectorResultFrameOffset": "0x4c",
+            "arrayElementStrideBytes": 4,
+            "storedValue": "operation 0x0181 result + 1",
+            "notSelectedStoredValue": 0,
+            "writeFileOffset": "0x1ca14"
+          },
+          "coroutineLaunches": [
+            {
+              "callFileOffset": "0x25bfa",
+              "sourceFunctionFileOffset": "0x25adc",
+              "argumentCount": 6
+            }
+          ],
+          "childArguments": [
+            {
+              "kind": "constant",
+              "value": 1380535105,
+              "hex": "0x52494b41",
+              "ascii": "AKIR",
+              "source": "0x25bde"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x25bda"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x25bd6"
+            },
+            {
+              "kind": "static-pointer",
+              "value": 165052,
+              "hex": "0x000284bc",
+              "source": "0x25bd4"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x25bce"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x25bcc"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x1cf4c",
+          "functionFileOffset": "0x1c6d4",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x1d2e4",
+          "functionFileOffset": "0x1c6d4",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x22698",
+          "functionFileOffset": "0x22630",
+          "mode": 1,
+          "argumentCount": 1
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "JABE",
+      "source": "extracted_disc2_v2/data/SCENE/02/JABE/MAPINFO.BIN",
+      "mapinfoSha256": "b80104908d2a001e83b535ff6c1cbeb9275624edc2ba5888744be8f831b64f7a",
+      "scn3FileOffset": "0xb0",
+      "initialFunctionFileOffset": "0x2b5a4",
+      "operation0181CallCount": 4,
+      "modeCounts": {
+        "0": 1,
+        "1": 1,
+        "2": 2
+      },
+      "serializedSources": [],
+      "calls": [
+        {
+          "callFileOffset": "0x202",
+          "functionFileOffset": "0x124",
+          "mode": 0,
+          "argumentCount": 6,
+          "selectorResultRouting": {
+            "sceneSelectorArrayBaseOffset": "0x84",
+            "playerIndexFrameOffset": "0x58",
+            "selectorResultFrameOffset": "0x4c",
+            "arrayElementStrideBytes": 4,
+            "storedValue": "operation 0x0181 result + 1",
+            "notSelectedStoredValue": 0,
+            "writeFileOffset": "0x450"
+          },
+          "coroutineLaunches": []
+        },
+        {
+          "callFileOffset": "0x978",
+          "functionFileOffset": "0x124",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0xd04",
+          "functionFileOffset": "0x124",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x6020",
+          "functionFileOffset": "0x5fb8",
+          "mode": 1,
+          "argumentCount": 1
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "JD00",
+      "source": "extracted_disc2_v2/data/SCENE/02/JD00/MAPINFO.BIN",
+      "mapinfoSha256": "218dbd969148b157828e374d256cfd874e712069f7936b01c94b9eea906d178d",
+      "scn3FileOffset": "0x5a0",
+      "initialFunctionFileOffset": "0x610b4",
+      "operation0181CallCount": 4,
+      "modeCounts": {
+        "0": 1,
+        "1": 1,
+        "2": 2
+      },
+      "serializedSources": [
+        {
+          "launchCallFileOffset": "0x614c0",
+          "fileOffset": "0x6b0e8",
+          "recordStrideBytes": 24,
+          "recordCount": 14,
+          "records": [
+            {
+              "index": 0,
+              "fileOffset": "0x6b0e8",
+              "position": [
+                -17.735200881958008,
+                0.22499999403953552,
+                -0.09350000321865082
+              ],
+              "requiredFacingRaw": 63169,
+              "selectorFlags": 1048832,
+              "auxiliaryWord": 6,
+              "usesCustomHalfWidth": true,
+              "rawHex": "b1e18dc16666663eee7cbfbdc1f600000001100006000000",
+              "lateralHalfWidth": 0.5
+            },
+            {
+              "index": 1,
+              "fileOffset": "0x6b100",
+              "position": [
+                -17.402299880981445,
+                1.5740000009536743,
+                -1.551900029182434
+              ],
+              "requiredFacingRaw": 30401,
+              "selectorFlags": 264,
+              "auxiliaryWord": 6,
+              "usesCustomHalfWidth": true,
+              "rawHex": "e9378bc1d578c93fa9a4c6bfc17600000801000006000000",
+              "lateralHalfWidth": 0.5
+            },
+            {
+              "index": 2,
+              "fileOffset": "0x6b118",
+              "position": [
+                -10.432700157165527,
+                0.22499999403953552,
+                21.87220001220703
+              ],
+              "requiredFacingRaw": 16384,
+              "selectorFlags": 1048832,
+              "auxiliaryWord": 5,
+              "usesCustomHalfWidth": true,
+              "rawHex": "57ec26c16666663e44faae41004000000001100005000000",
+              "lateralHalfWidth": 0.4000000059604645
+            },
+            {
+              "index": 3,
+              "fileOffset": "0x6b130",
+              "position": [
+                -11.631199836730957,
+                1.1495000123977661,
+                21.890499114990234
+              ],
+              "requiredFacingRaw": 49152,
+              "selectorFlags": 264,
+              "auxiliaryWord": 5,
+              "usesCustomHalfWidth": true,
+              "rawHex": "65193ac1d122933fbe1faf4100c000000801000005000000",
+              "lateralHalfWidth": 0.4000000059604645
+            },
+            {
+              "index": 4,
+              "fileOffset": "0x6b148",
+              "position": [
+                -14.403599739074707,
+                0.22499999403953552,
+                7.0609002113342285
+              ],
+              "requiredFacingRaw": 16384,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 5,
+              "usesCustomHalfWidth": false,
+              "rawHex": "257566c16666663ee5f2e140004000000000100005000000"
+            },
+            {
+              "index": 5,
+              "fileOffset": "0x6b160",
+              "position": [
+                -15.596599578857422,
+                1.0,
+                7.0721001625061035
+              ],
+              "requiredFacingRaw": 49152,
+              "selectorFlags": 8,
+              "auxiliaryWord": 5,
+              "usesCustomHalfWidth": false,
+              "rawHex": "ac8b79c10000803fa54ee24000c000000800000005000000"
+            },
+            {
+              "index": 6,
+              "fileOffset": "0x6b178",
+              "position": [
+                -24.61829948425293,
+                1.2587000131607056,
+                6.298399925231934
+              ],
+              "requiredFacingRaw": 32768,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 8,
+              "usesCustomHalfWidth": false,
+              "rawHex": "47f2c4c1151da13f7e8cc940008000000000100008000000"
+            },
+            {
+              "index": 7,
+              "fileOffset": "0x6b190",
+              "position": [
+                -24.61389923095703,
+                3.0927000045776367,
+                8.40060043334961
+              ],
+              "requiredFacingRaw": 0,
+              "selectorFlags": 8,
+              "auxiliaryWord": 8,
+              "usesCustomHalfWidth": false,
+              "rawHex": "44e9c4c1ccee4540dc680641000000000800000008000000"
+            },
+            {
+              "index": 8,
+              "fileOffset": "0x6b1a8",
+              "position": [
+                14.461999893188477,
+                0.2093999981880188,
+                28.30620002746582
+              ],
+              "requiredFacingRaw": 64261,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": false,
+              "rawHex": "5a646741f46c563e1973e24105fb00000000100003000000"
+            },
+            {
+              "index": 9,
+              "fileOffset": "0x6b1c0",
+              "position": [
+                14.657600402832031,
+                0.65829998254776,
+                27.645000457763672
+              ],
+              "requiredFacingRaw": 31493,
+              "selectorFlags": 8,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": false,
+              "rawHex": "88856a415986283ff628dd41057b00000800000003000000"
+            },
+            {
+              "index": 10,
+              "fileOffset": "0x6b1d8",
+              "position": [
+                -13.810400009155273,
+                1.3233000040054321,
+                24.48080062866211
+              ],
+              "requiredFacingRaw": 30219,
+              "selectorFlags": 1064960,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "66f75cc1e561a93faed8c3410b760000004010000c000000"
+            },
+            {
+              "index": 11,
+              "fileOffset": "0x6b1f0",
+              "position": [
+                -14.608799934387207,
+                3.8117001056671143,
+                27.68160057067871
+              ],
+              "requiredFacingRaw": 62987,
+              "selectorFlags": 16392,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "a5bd69c1e5f27340eb73dd410bf60000084000000c000000"
+            },
+            {
+              "index": 12,
+              "fileOffset": "0x6b208",
+              "position": [
+                -13.053500175476074,
+                1.315600037574768,
+                30.81909942626953
+              ],
+              "requiredFacingRaw": 32768,
+              "selectorFlags": 1064960,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "23db50c19565a83f848df64100800000004010000c000000"
+            },
+            {
+              "index": 13,
+              "fileOffset": "0x6b220",
+              "position": [
+                -13.029199600219727,
+                3.8062000274658203,
+                34.121299743652344
+              ],
+              "requiredFacingRaw": 0,
+              "selectorFlags": 16392,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "9a7750c1c8987340367c084200000000084000000c000000"
+            }
+          ],
+          "terminator": {
+            "fileOffset": "0x6b238",
+            "raw": "0x47c35000"
+          },
+          "customHalfWidthTable": {
+            "startsImmediatelyAfterRecordTerminator": true,
+            "entryStrideBytes": 12,
+            "entries": [
+              {
+                "type": 0,
+                "recordIndex": 0,
+                "rawValue": 1056964608,
+                "fileOffset": "0x6b23c",
+                "lateralHalfWidth": 0.5
+              },
+              {
+                "type": 0,
+                "recordIndex": 1,
+                "rawValue": 1056964608,
+                "fileOffset": "0x6b248",
+                "lateralHalfWidth": 0.5
+              },
+              {
+                "type": 0,
+                "recordIndex": 2,
+                "rawValue": 1053609165,
+                "fileOffset": "0x6b254",
+                "lateralHalfWidth": 0.4000000059604645
+              },
+              {
+                "type": 0,
+                "recordIndex": 3,
+                "rawValue": 1053609165,
+                "fileOffset": "0x6b260",
+                "lateralHalfWidth": 0.4000000059604645
+              }
+            ],
+            "terminatorFileOffset": "0x6b26c"
+          }
+        }
+      ],
+      "calls": [
+        {
+          "callFileOffset": "0x6f2",
+          "functionFileOffset": "0x614",
+          "mode": 0,
+          "argumentCount": 6,
+          "selectorResultRouting": {
+            "sceneSelectorArrayBaseOffset": "0x84",
+            "playerIndexFrameOffset": "0x58",
+            "selectorResultFrameOffset": "0x4c",
+            "arrayElementStrideBytes": 4,
+            "storedValue": "operation 0x0181 result + 1",
+            "notSelectedStoredValue": 0,
+            "writeFileOffset": "0x940"
+          },
+          "coroutineLaunches": [
+            {
+              "callFileOffset": "0x614c0",
+              "sourceFunctionFileOffset": "0x610b4",
+              "argumentCount": 6
+            }
+          ],
+          "childArguments": [
+            {
+              "kind": "constant",
+              "value": 1380535105,
+              "hex": "0x52494b41",
+              "ascii": "AKIR",
+              "source": "0x614a4"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x614a0"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x6149c"
+            },
+            {
+              "kind": "static-pointer",
+              "value": 438504,
+              "hex": "0x0006b0e8",
+              "source": "0x61498"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x61492"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x61490"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0xe68",
+          "functionFileOffset": "0x614",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x11f4",
+          "functionFileOffset": "0x614",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x6510",
+          "functionFileOffset": "0x64a8",
+          "mode": 1,
+          "argumentCount": 1
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "JHD0",
+      "source": "extracted_disc2_v2/data/SCENE/02/JHD0/MAPINFO.BIN",
+      "mapinfoSha256": "09bc11af0ea9d9bb8496fc8da74e15f3dfc2e667a4b0572726f24873c4d9c466",
+      "scn3FileOffset": "0x8",
+      "initialFunctionFileOffset": "0x4a864",
+      "operation0181CallCount": 4,
+      "modeCounts": {
+        "0": 1,
+        "1": 1,
+        "2": 2
+      },
+      "serializedSources": [
+        {
+          "launchCallFileOffset": "0x38e5a",
+          "fileOffset": "0x54f24",
+          "recordStrideBytes": 24,
+          "recordCount": 2,
+          "records": [
+            {
+              "index": 0,
+              "fileOffset": "0x54f24",
+              "position": [
+                0.4000000059604645,
+                0.0,
+                -22.5
+              ],
+              "requiredFacingRaw": 16384,
+              "selectorFlags": 40192,
+              "auxiliaryWord": 4,
+              "usesCustomHalfWidth": true,
+              "rawHex": "cdcccc3e000000000000b4c100400000009d000004000000",
+              "lateralHalfWidth": 0.6000000238418579
+            },
+            {
+              "index": 1,
+              "fileOffset": "0x54f3c",
+              "position": [
+                -0.550000011920929,
+                1.0,
+                -22.5
+              ],
+              "requiredFacingRaw": 49152,
+              "selectorFlags": 39176,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": true,
+              "rawHex": "cdcc0cbf0000803f0000b4c100c000000899000003000000",
+              "lateralHalfWidth": 0.6000000238418579
+            }
+          ],
+          "terminator": {
+            "fileOffset": "0x54f54",
+            "raw": "0x47c35000"
+          },
+          "customHalfWidthTable": {
+            "startsImmediatelyAfterRecordTerminator": true,
+            "entryStrideBytes": 12,
+            "entries": [
+              {
+                "type": 0,
+                "recordIndex": 0,
+                "rawValue": 1058642330,
+                "fileOffset": "0x54f58",
+                "lateralHalfWidth": 0.6000000238418579
+              },
+              {
+                "type": 0,
+                "recordIndex": 1,
+                "rawValue": 1058642330,
+                "fileOffset": "0x54f64",
+                "lateralHalfWidth": 0.6000000238418579
+              },
+              {
+                "type": 1,
+                "recordIndex": 0,
+                "rawValue": 0,
+                "fileOffset": "0x54f70"
+              },
+              {
+                "type": 2,
+                "recordIndex": 1,
+                "rawValue": 1,
+                "fileOffset": "0x54f7c"
+              },
+              {
+                "type": 2,
+                "recordIndex": 0,
+                "rawValue": 2,
+                "fileOffset": "0x54f88"
+              }
+            ],
+            "terminatorFileOffset": "0x54f94"
+          }
+        }
+      ],
+      "calls": [
+        {
+          "callFileOffset": "0x158",
+          "functionFileOffset": "0x7c",
+          "mode": 0,
+          "argumentCount": 6,
+          "selectorResultRouting": {
+            "sceneSelectorArrayBaseOffset": "0x18",
+            "playerIndexFrameOffset": "0x58",
+            "selectorResultFrameOffset": "0x4c",
+            "arrayElementStrideBytes": 4,
+            "storedValue": "operation 0x0181 result + 1",
+            "notSelectedStoredValue": 0,
+            "writeFileOffset": "0x3a0"
+          },
+          "coroutineLaunches": [
+            {
+              "callFileOffset": "0x38e5a",
+              "sourceFunctionFileOffset": "0x38e24",
+              "argumentCount": 6
+            }
+          ],
+          "childArguments": [
+            {
+              "kind": "constant",
+              "value": 1380535105,
+              "hex": "0x52494b41",
+              "ascii": "AKIR",
+              "source": "0x38e3e"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x38e3a"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x38e36"
+            },
+            {
+              "kind": "static-pointer",
+              "value": 347940,
+              "hex": "0x00054f24",
+              "source": "0x38e34"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x38e2e"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x38e2c"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x8a0",
+          "functionFileOffset": "0x7c",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0xc10",
+          "functionFileOffset": "0x7c",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x5d00",
+          "functionFileOffset": "0x5c9c",
+          "mode": 1,
+          "argumentCount": 1
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "JU00",
+      "source": "extracted_disc2_v2/data/SCENE/02/JU00/MAPINFO.BIN",
+      "mapinfoSha256": "3a565890be5cf3a746119b63e8b5aac4cdc5396f8ea8ea3d0f35ba9fb79264c5",
+      "scn3FileOffset": "0x8",
+      "initialFunctionFileOffset": "0x48da8",
+      "operation0181CallCount": 4,
+      "modeCounts": {
+        "0": 1,
+        "1": 1,
+        "2": 2
+      },
+      "serializedSources": [
+        {
+          "launchCallFileOffset": "0x444a6",
+          "fileOffset": "0x4e328",
+          "recordStrideBytes": 24,
+          "recordCount": 16,
+          "records": [
+            {
+              "index": 0,
+              "fileOffset": "0x4e328",
+              "position": [
+                -49.930999755859375,
+                7.0,
+                98.00779724121094
+              ],
+              "requiredFacingRaw": 22499,
+              "selectorFlags": 33024,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": true,
+              "rawHex": "58b947c20000e040fe03c442e35700000081000003000000",
+              "lateralHalfWidth": 1.0
+            },
+            {
+              "index": 1,
+              "fileOffset": "0x4e340",
+              "position": [
+                -50.436798095703125,
+                7.649799823760986,
+                98.3197021484375
+              ],
+              "requiredFacingRaw": 55267,
+              "selectorFlags": 33032,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": true,
+              "rawHex": "48bf49c229cbf440b0a3c442e3d700000881000003000000",
+              "lateralHalfWidth": 1.0
+            },
+            {
+              "index": 2,
+              "fileOffset": "0x4e358",
+              "position": [
+                -29.563400268554688,
+                2.2699999809265137,
+                70.56269836425781
+              ],
+              "requiredFacingRaw": 16748,
+              "selectorFlags": 256,
+              "auxiliaryWord": 4,
+              "usesCustomHalfWidth": true,
+              "rawHex": "d881ecc1ae4711401a208d426c4100000001000004000000",
+              "lateralHalfWidth": 0.5
+            },
+            {
+              "index": 3,
+              "fileOffset": "0x4e370",
+              "position": [
+                -30.457700729370117,
+                2.950000047683716,
+                70.56310272216797
+              ],
+              "requiredFacingRaw": 49516,
+              "selectorFlags": 264,
+              "auxiliaryWord": 4,
+              "usesCustomHalfWidth": true,
+              "rawHex": "5fa9f3c1cdcc3c404f208d426cc100000801000004000000",
+              "lateralHalfWidth": 0.699999988079071
+            },
+            {
+              "index": 4,
+              "fileOffset": "0x4e388",
+              "position": [
+                -29.069400787353516,
+                1.149999976158142,
+                67.23780059814453
+              ],
+              "requiredFacingRaw": 35498,
+              "selectorFlags": 256,
+              "auxiliaryWord": 5,
+              "usesCustomHalfWidth": true,
+              "rawHex": "228ee8c13333933fc1798642aa8a00000001000005000000",
+              "lateralHalfWidth": 0.699999988079071
+            },
+            {
+              "index": 5,
+              "fileOffset": "0x4e3a0",
+              "position": [
+                -28.840900421142578,
+                2.049999952316284,
+                68.4198989868164
+              ],
+              "requiredFacingRaw": 2730,
+              "selectorFlags": 264,
+              "auxiliaryWord": 5,
+              "usesCustomHalfWidth": true,
+              "rawHex": "2abae6c133330340fdd68842aa0a00000801000005000000",
+              "lateralHalfWidth": 0.699999988079071
+            },
+            {
+              "index": 6,
+              "fileOffset": "0x4e3b8",
+              "position": [
+                -35.58570098876953,
+                2.0999999046325684,
+                44.635101318359375
+              ],
+              "requiredFacingRaw": 5279,
+              "selectorFlags": 8448,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": true,
+              "rawHex": "c2570ec266660640588a32429f1400000021000003000000",
+              "lateralHalfWidth": 1.600000023841858
+            },
+            {
+              "index": 7,
+              "fileOffset": "0x4e3d0",
+              "position": [
+                -35.89360046386719,
+                2.5999999046325684,
+                44.14440155029297
+              ],
+              "requiredFacingRaw": 38065,
+              "selectorFlags": 8456,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": true,
+              "rawHex": "0c930fc266662640de933042b19400000821000003000000",
+              "lateralHalfWidth": 1.600000023841858
+            },
+            {
+              "index": 8,
+              "fileOffset": "0x4e3e8",
+              "position": [
+                -37.13600158691406,
+                2.134999990463257,
+                52.17530059814453
+              ],
+              "requiredFacingRaw": 36044,
+              "selectorFlags": 256,
+              "auxiliaryWord": 5,
+              "usesCustomHalfWidth": true,
+              "rawHex": "448b14c2d7a3084082b35042cc8c00000001000005000000",
+              "lateralHalfWidth": 0.30000001192092896
+            },
+            {
+              "index": 9,
+              "fileOffset": "0x4e400",
+              "position": [
+                -36.7598991394043,
+                3.050600051879883,
+                53.3213996887207
+              ],
+              "requiredFacingRaw": 3276,
+              "selectorFlags": 264,
+              "auxiliaryWord": 5,
+              "usesCustomHalfWidth": true,
+              "rawHex": "230a13c2083d43401d495542cc0c00000801000005000000",
+              "lateralHalfWidth": 0.30000001192092896
+            },
+            {
+              "index": 10,
+              "fileOffset": "0x4e418",
+              "position": [
+                -37.650699615478516,
+                2.796099901199341,
+                41.206600189208984
+              ],
+              "requiredFacingRaw": 5461,
+              "selectorFlags": 8194,
+              "auxiliaryWord": 2,
+              "usesCustomHalfWidth": false,
+              "rawHex": "519a16c24df332408fd32442551500000220000002000000"
+            },
+            {
+              "index": 11,
+              "fileOffset": "0x4e430",
+              "position": [
+                -37.925201416015625,
+                3.242000102996826,
+                40.710601806640625
+              ],
+              "requiredFacingRaw": 38229,
+              "selectorFlags": 8202,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": false,
+              "rawHex": "68b317c2ee7c4f40a8d72242559500000a20000003000000"
+            },
+            {
+              "index": 12,
+              "fileOffset": "0x4e448",
+              "position": [
+                -38.419498443603516,
+                3.478100061416626,
+                39.857601165771484
+              ],
+              "requiredFacingRaw": 5461,
+              "selectorFlags": 40962,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": false,
+              "rawHex": "91ad19c231995e402f6e1f425515000002a0000003000000"
+            },
+            {
+              "index": 13,
+              "fileOffset": "0x4e460",
+              "position": [
+                -38.78379821777344,
+                3.9410998821258545,
+                39.2307014465332
+              ],
+              "requiredFacingRaw": 38229,
+              "selectorFlags": 24586,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": false,
+              "rawHex": "9c221bc2fb3a7c403dec1c42559500000a60000003000000"
+            },
+            {
+              "index": 14,
+              "fileOffset": "0x4e478",
+              "position": [
+                -38.82659912109375,
+                3.240000009536743,
+                59.1349983215332
+              ],
+              "requiredFacingRaw": 364,
+              "selectorFlags": 16384,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "704e1bc2295c4f403d8a6c426c010000004000000c000000"
+            },
+            {
+              "index": 15,
+              "fileOffset": "0x4e490",
+              "position": [
+                -38.94449996948242,
+                5.710000038146973,
+                55.83169937133789
+              ],
+              "requiredFacingRaw": 33241,
+              "selectorFlags": 16392,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "2bc71bc252b8b640a9535f42d9810000084000000c000000"
+            }
+          ],
+          "terminator": {
+            "fileOffset": "0x4e4a8",
+            "raw": "0x47c35000"
+          },
+          "customHalfWidthTable": {
+            "startsImmediatelyAfterRecordTerminator": true,
+            "entryStrideBytes": 12,
+            "entries": [
+              {
+                "type": 0,
+                "recordIndex": 0,
+                "rawValue": 1065353216,
+                "fileOffset": "0x4e4ac",
+                "lateralHalfWidth": 1.0
+              },
+              {
+                "type": 0,
+                "recordIndex": 1,
+                "rawValue": 1065353216,
+                "fileOffset": "0x4e4b8",
+                "lateralHalfWidth": 1.0
+              },
+              {
+                "type": 0,
+                "recordIndex": 2,
+                "rawValue": 1056964608,
+                "fileOffset": "0x4e4c4",
+                "lateralHalfWidth": 0.5
+              },
+              {
+                "type": 0,
+                "recordIndex": 3,
+                "rawValue": 1060320051,
+                "fileOffset": "0x4e4d0",
+                "lateralHalfWidth": 0.699999988079071
+              },
+              {
+                "type": 0,
+                "recordIndex": 4,
+                "rawValue": 1060320051,
+                "fileOffset": "0x4e4dc",
+                "lateralHalfWidth": 0.699999988079071
+              },
+              {
+                "type": 0,
+                "recordIndex": 5,
+                "rawValue": 1060320051,
+                "fileOffset": "0x4e4e8",
+                "lateralHalfWidth": 0.699999988079071
+              },
+              {
+                "type": 0,
+                "recordIndex": 6,
+                "rawValue": 1070386381,
+                "fileOffset": "0x4e4f4",
+                "lateralHalfWidth": 1.600000023841858
+              },
+              {
+                "type": 0,
+                "recordIndex": 7,
+                "rawValue": 1070386381,
+                "fileOffset": "0x4e500",
+                "lateralHalfWidth": 1.600000023841858
+              },
+              {
+                "type": 0,
+                "recordIndex": 8,
+                "rawValue": 1050253722,
+                "fileOffset": "0x4e50c",
+                "lateralHalfWidth": 0.30000001192092896
+              },
+              {
+                "type": 0,
+                "recordIndex": 9,
+                "rawValue": 1050253722,
+                "fileOffset": "0x4e518",
+                "lateralHalfWidth": 0.30000001192092896
+              }
+            ],
+            "terminatorFileOffset": "0x4e524"
+          }
+        }
+      ],
+      "calls": [
+        {
+          "callFileOffset": "0x158",
+          "functionFileOffset": "0x7c",
+          "mode": 0,
+          "argumentCount": 6,
+          "selectorResultRouting": {
+            "sceneSelectorArrayBaseOffset": "0x18",
+            "playerIndexFrameOffset": "0x58",
+            "selectorResultFrameOffset": "0x4c",
+            "arrayElementStrideBytes": 4,
+            "storedValue": "operation 0x0181 result + 1",
+            "notSelectedStoredValue": 0,
+            "writeFileOffset": "0x3a0"
+          },
+          "coroutineLaunches": [
+            {
+              "callFileOffset": "0x444a6",
+              "sourceFunctionFileOffset": "0x44470",
+              "argumentCount": 6
+            }
+          ],
+          "childArguments": [
+            {
+              "kind": "constant",
+              "value": 1380535105,
+              "hex": "0x52494b41",
+              "ascii": "AKIR",
+              "source": "0x4448a"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x44486"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x44482"
+            },
+            {
+              "kind": "static-pointer",
+              "value": 320296,
+              "hex": "0x0004e328",
+              "source": "0x44480"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x4447a"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x44478"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x8a0",
+          "functionFileOffset": "0x7c",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0xc10",
+          "functionFileOffset": "0x7c",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x5d00",
+          "functionFileOffset": "0x5c9c",
+          "mode": 1,
+          "argumentCount": 1
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "MS08",
+      "source": "extracted_disc2_v2/data/SCENE/02/MS08/MAPINFO.BIN",
+      "mapinfoSha256": "693131be8e2106c08975b75959780006dec6a79a981c910819f614b324e73e90",
+      "scn3FileOffset": "0x8",
+      "initialFunctionFileOffset": "0x232a4",
+      "operation0181CallCount": 4,
+      "modeCounts": {
+        "0": 1,
+        "1": 1,
+        "2": 2
+      },
+      "serializedSources": [
+        {
+          "launchCallFileOffset": "0x2382a",
+          "fileOffset": "0x2be10",
+          "recordStrideBytes": 24,
+          "recordCount": 4,
+          "records": [
+            {
+              "index": 0,
+              "fileOffset": "0x2be10",
+              "position": [
+                -22.5,
+                0.20000000298023224,
+                -18.950000762939453
+              ],
+              "requiredFacingRaw": 49152,
+              "selectorFlags": 1048832,
+              "auxiliaryWord": 24,
+              "usesCustomHalfWidth": true,
+              "rawHex": "0000b4c1cdcc4c3e9a9997c100c000000001100018000000",
+              "lateralHalfWidth": 0.550000011920929
+            },
+            {
+              "index": 1,
+              "fileOffset": "0x2be28",
+              "position": [
+                -15.600000381469727,
+                5.300000190734863,
+                -18.950000762939453
+              ],
+              "requiredFacingRaw": 16384,
+              "selectorFlags": 265,
+              "auxiliaryWord": 24,
+              "usesCustomHalfWidth": true,
+              "rawHex": "9a9979c19a99a9409a9997c1004000000901000018000000",
+              "lateralHalfWidth": 0.550000011920929
+            },
+            {
+              "index": 2,
+              "fileOffset": "0x2be40",
+              "position": [
+                -22.5,
+                0.20000000298023224,
+                -0.8999999761581421
+              ],
+              "requiredFacingRaw": 49152,
+              "selectorFlags": 1048832,
+              "auxiliaryWord": 24,
+              "usesCustomHalfWidth": true,
+              "rawHex": "0000b4c1cdcc4c3e666666bf00c000000001100018000000",
+              "lateralHalfWidth": 0.550000011920929
+            },
+            {
+              "index": 3,
+              "fileOffset": "0x2be58",
+              "position": [
+                -15.600000381469727,
+                5.300000190734863,
+                -0.8999999761581421
+              ],
+              "requiredFacingRaw": 16384,
+              "selectorFlags": 265,
+              "auxiliaryWord": 24,
+              "usesCustomHalfWidth": true,
+              "rawHex": "9a9979c19a99a940666666bf004000000901000018000000",
+              "lateralHalfWidth": 0.550000011920929
+            }
+          ],
+          "terminator": {
+            "fileOffset": "0x2be70",
+            "raw": "0x47c35000"
+          },
+          "customHalfWidthTable": {
+            "startsImmediatelyAfterRecordTerminator": true,
+            "entryStrideBytes": 12,
+            "entries": [
+              {
+                "type": 0,
+                "recordIndex": 0,
+                "rawValue": 1057803469,
+                "fileOffset": "0x2be74",
+                "lateralHalfWidth": 0.550000011920929
+              },
+              {
+                "type": 0,
+                "recordIndex": 1,
+                "rawValue": 1057803469,
+                "fileOffset": "0x2be80",
+                "lateralHalfWidth": 0.550000011920929
+              },
+              {
+                "type": 0,
+                "recordIndex": 2,
+                "rawValue": 1057803469,
+                "fileOffset": "0x2be8c",
+                "lateralHalfWidth": 0.550000011920929
+              },
+              {
+                "type": 0,
+                "recordIndex": 3,
+                "rawValue": 1057803469,
+                "fileOffset": "0x2be98",
+                "lateralHalfWidth": 0.550000011920929
+              }
+            ],
+            "terminatorFileOffset": "0x2bea4"
+          }
+        }
+      ],
+      "calls": [
+        {
+          "callFileOffset": "0x17f7e",
+          "functionFileOffset": "0x17e9e",
+          "mode": 0,
+          "argumentCount": 6,
+          "selectorResultRouting": {
+            "sceneSelectorArrayBaseOffset": "0x1b8",
+            "playerIndexFrameOffset": "0x58",
+            "selectorResultFrameOffset": "0x4c",
+            "arrayElementStrideBytes": 4,
+            "storedValue": "operation 0x0181 result + 1",
+            "notSelectedStoredValue": 0,
+            "writeFileOffset": "0x181dc"
+          },
+          "coroutineLaunches": [
+            {
+              "callFileOffset": "0x2382a",
+              "sourceFunctionFileOffset": "0x237a0",
+              "argumentCount": 6
+            }
+          ],
+          "childArguments": [
+            {
+              "kind": "constant",
+              "value": 1380535105,
+              "hex": "0x52494b41",
+              "ascii": "AKIR",
+              "source": "0x2380e"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x2380a"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x23806"
+            },
+            {
+              "kind": "static-pointer",
+              "value": 179728,
+              "hex": "0x0002be10",
+              "source": "0x23804"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x237fe"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x237fc"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x18714",
+          "functionFileOffset": "0x17e9e",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x18aac",
+          "functionFileOffset": "0x17e9e",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x1de60",
+          "functionFileOffset": "0x1ddf8",
+          "mode": 1,
+          "argumentCount": 1
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "MS8S",
+      "source": "extracted_disc2_v2/data/SCENE/02/MS8S/MAPINFO.BIN",
+      "mapinfoSha256": "0f0914b81f40fb73e87b073d955a1b9f5c46e4b094efeabf1215e3ea16e947c2",
+      "scn3FileOffset": "0x8",
+      "initialFunctionFileOffset": "0x28664",
+      "operation0181CallCount": 4,
+      "modeCounts": {
+        "0": 1,
+        "1": 1,
+        "2": 2
+      },
+      "serializedSources": [
+        {
+          "launchCallFileOffset": "0x28920",
+          "fileOffset": "0x2b71c",
+          "recordStrideBytes": 24,
+          "recordCount": 2,
+          "records": [
+            {
+              "index": 0,
+              "fileOffset": "0x2b71c",
+              "position": [
+                8.566200256347656,
+                0.22499999403953552,
+                151.6309051513672
+              ],
+              "requiredFacingRaw": 40960,
+              "selectorFlags": 1048832,
+              "auxiliaryWord": 19,
+              "usesCustomHalfWidth": true,
+              "rawHex": "280f09416666663e83a1174300a000000001100013000000",
+              "lateralHalfWidth": 0.5
+            },
+            {
+              "index": 1,
+              "fileOffset": "0x2b734",
+              "position": [
+                12.384400367736816,
+                4.275000095367432,
+                155.443603515625
+              ],
+              "requiredFacingRaw": 8192,
+              "selectorFlags": 264,
+              "auxiliaryWord": 19,
+              "usesCustomHalfWidth": true,
+              "rawHex": "81264641cdcc884090711b43002000000801000013000000",
+              "lateralHalfWidth": 0.5
+            }
+          ],
+          "terminator": {
+            "fileOffset": "0x2b74c",
+            "raw": "0x47c35000"
+          },
+          "customHalfWidthTable": {
+            "startsImmediatelyAfterRecordTerminator": true,
+            "entryStrideBytes": 12,
+            "entries": [
+              {
+                "type": 0,
+                "recordIndex": 0,
+                "rawValue": 1056964608,
+                "fileOffset": "0x2b750",
+                "lateralHalfWidth": 0.5
+              },
+              {
+                "type": 0,
+                "recordIndex": 1,
+                "rawValue": 1056964608,
+                "fileOffset": "0x2b75c",
+                "lateralHalfWidth": 0.5
+              }
+            ],
+            "terminatorFileOffset": "0x2b768"
+          }
+        }
+      ],
+      "calls": [
+        {
+          "callFileOffset": "0x18a2a",
+          "functionFileOffset": "0x1894a",
+          "mode": 0,
+          "argumentCount": 6,
+          "selectorResultRouting": {
+            "sceneSelectorArrayBaseOffset": "0x1b8",
+            "playerIndexFrameOffset": "0x58",
+            "selectorResultFrameOffset": "0x4c",
+            "arrayElementStrideBytes": 4,
+            "storedValue": "operation 0x0181 result + 1",
+            "notSelectedStoredValue": 0,
+            "writeFileOffset": "0x18c88"
+          },
+          "coroutineLaunches": [
+            {
+              "callFileOffset": "0x28920",
+              "sourceFunctionFileOffset": "0x28664",
+              "argumentCount": 6
+            }
+          ],
+          "childArguments": [
+            {
+              "kind": "constant",
+              "value": 1380535105,
+              "hex": "0x52494b41",
+              "ascii": "AKIR",
+              "source": "0x28904"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x28900"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x288fc"
+            },
+            {
+              "kind": "static-pointer",
+              "value": 177948,
+              "hex": "0x0002b71c",
+              "source": "0x288fa"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x288f4"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x288f2"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x191c0",
+          "functionFileOffset": "0x1894a",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x19558",
+          "functionFileOffset": "0x1894a",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x1e90c",
+          "functionFileOffset": "0x1e8a4",
+          "mode": 1,
+          "argumentCount": 1
+        }
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "D000",
+      "source": "extracted_disc3_v2/data/SCENE/03/D000/MAPINFO.BIN",
+      "mapinfoSha256": "7601567add571448c95044a1602f094f3d2aebb5e6532b7b754f8dfa6d24cb1b",
+      "scn3FileOffset": "0x1260",
+      "initialFunctionFileOffset": "0x6b6f4",
+      "operation0181CallCount": 4,
+      "modeCounts": {
+        "0": 1,
+        "1": 1,
+        "2": 2
+      },
+      "serializedSources": [
+        {
+          "launchCallFileOffset": "0x60d0a",
+          "fileOffset": "0x7a3f0",
+          "recordStrideBytes": 24,
+          "recordCount": 18,
+          "records": [
+            {
+              "index": 0,
+              "fileOffset": "0x7a3f0",
+              "position": [
+                18.329999923706055,
+                0.22499999403953552,
+                60.88750076293945
+              ],
+              "requiredFacingRaw": 32768,
+              "selectorFlags": 1048832,
+              "auxiliaryWord": 8,
+              "usesCustomHalfWidth": true,
+              "rawHex": "d7a392416666663ecd8c7342008000000001100008000000",
+              "lateralHalfWidth": 1.0
+            },
+            {
+              "index": 1,
+              "fileOffset": "0x7a408",
+              "position": [
+                18.41900062561035,
+                1.7999999523162842,
+                62.99020004272461
+              ],
+              "requiredFacingRaw": 0,
+              "selectorFlags": 264,
+              "auxiliaryWord": 8,
+              "usesCustomHalfWidth": true,
+              "rawHex": "1d5a93416666e63ff7f57b42000000000801000008000000",
+              "lateralHalfWidth": 1.0
+            },
+            {
+              "index": 2,
+              "fileOffset": "0x7a420",
+              "position": [
+                19.520299911499023,
+                2.0250000953674316,
+                65.0645980834961
+              ],
+              "requiredFacingRaw": 39321,
+              "selectorFlags": 1048832,
+              "auxiliaryWord": 15,
+              "usesCustomHalfWidth": true,
+              "rawHex": "93299c419a9901401321824299990000000110000f000000",
+              "lateralHalfWidth": 1.0
+            },
+            {
+              "index": 3,
+              "fileOffset": "0x7a438",
+              "position": [
+                22.151399612426758,
+                5.400000095367432,
+                68.33480072021484
+              ],
+              "requiredFacingRaw": 6553,
+              "selectorFlags": 264,
+              "auxiliaryWord": 15,
+              "usesCustomHalfWidth": true,
+              "rawHex": "1136b141cdccac406bab884299190000080100000f000000",
+              "lateralHalfWidth": 1.0
+            },
+            {
+              "index": 4,
+              "fileOffset": "0x7a450",
+              "position": [
+                -120.79949951171875,
+                -1.5729999542236328,
+                78.31430053710938
+              ],
+              "requiredFacingRaw": 42143,
+              "selectorFlags": 1048832,
+              "auxiliaryWord": 8,
+              "usesCustomHalfWidth": true,
+              "rawHex": "5899f1c21058c9bfeca09c429fa400000001100008000000",
+              "lateralHalfWidth": 0.5
+            },
+            {
+              "index": 5,
+              "fileOffset": "0x7a468",
+              "position": [
+                -119.13939666748047,
+                0.0,
+                79.6144027709961
+              ],
+              "requiredFacingRaw": 9375,
+              "selectorFlags": 264,
+              "auxiliaryWord": 8,
+              "usesCustomHalfWidth": true,
+              "rawHex": "5f47eec200000000933a9f429f2400000801000008000000",
+              "lateralHalfWidth": 0.5
+            },
+            {
+              "index": 6,
+              "fileOffset": "0x7a480",
+              "position": [
+                -101.99629974365234,
+                0.29670000076293945,
+                99.62940216064453
+              ],
+              "requiredFacingRaw": 25486,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "1bfecbc210e9973e4142c7428e630000000010000c000000"
+            },
+            {
+              "index": 7,
+              "fileOffset": "0x7a498",
+              "position": [
+                -103.98269653320312,
+                2.75,
+                102.19850158691406
+              ],
+              "requiredFacingRaw": 58254,
+              "selectorFlags": 8,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "24f7cfc200003040a265cc428ee30000080000000c000000"
+            },
+            {
+              "index": 8,
+              "fileOffset": "0x7a4b0",
+              "position": [
+                -51.18949890136719,
+                0.29600000381469727,
+                97.4197998046875
+              ],
+              "requiredFacingRaw": 37501,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "0cc24cc2508d973ef0d6c2427d920000000010000c000000"
+            },
+            {
+              "index": 9,
+              "fileOffset": "0x7a4c8",
+              "position": [
+                -49.68230056762695,
+                2.7716000080108643,
+                100.29869842529297
+              ],
+              "requiredFacingRaw": 4642,
+              "selectorFlags": 9,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "adba46c2e5613140ef98c84222120000090000000c000000"
+            },
+            {
+              "index": 10,
+              "fileOffset": "0x7a4e0",
+              "position": [
+                -32.910400390625,
+                0.29600000381469727,
+                88.20760345458984
+              ],
+              "requiredFacingRaw": 33314,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "40a403c2508d973e4b6ab04222820000000010000c000000"
+            },
+            {
+              "index": 11,
+              "fileOffset": "0x7a4f8",
+              "position": [
+                -32.722198486328125,
+                2.7716000080108643,
+                91.50360107421875
+              ],
+              "requiredFacingRaw": 546,
+              "selectorFlags": 8,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "88e302c2e5613140d801b74222020000080000000c000000"
+            },
+            {
+              "index": 12,
+              "fileOffset": "0x7a510",
+              "position": [
+                -7.646399974822998,
+                0.29600000381469727,
+                72.42960357666016
+              ],
+              "requiredFacingRaw": 11468,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "4faff4c0508d973ef5db9042cc2c0000000010000c000000"
+            },
+            {
+              "index": 13,
+              "fileOffset": "0x7a528",
+              "position": [
+                -10.606100082397461,
+                2.7716000080108643,
+                70.964599609375
+              ],
+              "requiredFacingRaw": 44252,
+              "selectorFlags": 8,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "96b229c1e5613140e0ed8d42dcac0000080000000c000000"
+            },
+            {
+              "index": 14,
+              "fileOffset": "0x7a540",
+              "position": [
+                -6.244999885559082,
+                0.29600000381469727,
+                93.552001953125
+              ],
+              "requiredFacingRaw": 26594,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "0ad7c7c0508d973ea01abb42e2670000000010000c000000"
+            },
+            {
+              "index": 15,
+              "fileOffset": "0x7a558",
+              "position": [
+                -8.141200065612793,
+                2.7716000080108643,
+                96.25769805908203
+              ],
+              "requiredFacingRaw": 59346,
+              "selectorFlags": 8,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "5b4202c1e5613140f183c042d2e70000080000000c000000"
+            },
+            {
+              "index": 16,
+              "fileOffset": "0x7a570",
+              "position": [
+                38.7333984375,
+                5.4741997718811035,
+                90.1436996459961
+              ],
+              "requiredFacingRaw": 24576,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "00ef1a42a52caf409349b44200600000000010000c000000"
+            },
+            {
+              "index": 17,
+              "fileOffset": "0x7a588",
+              "position": [
+                36.39970016479492,
+                7.952499866485596,
+                92.4854965209961
+              ],
+              "requiredFacingRaw": 57344,
+              "selectorFlags": 8,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "4b991142e17afe4093f8b84200e00000080000000c000000"
+            }
+          ],
+          "terminator": {
+            "fileOffset": "0x7a5a0",
+            "raw": "0x47c35000"
+          },
+          "customHalfWidthTable": {
+            "startsImmediatelyAfterRecordTerminator": true,
+            "entryStrideBytes": 12,
+            "entries": [
+              {
+                "type": 0,
+                "recordIndex": 0,
+                "rawValue": 1065353216,
+                "fileOffset": "0x7a5a4",
+                "lateralHalfWidth": 1.0
+              },
+              {
+                "type": 0,
+                "recordIndex": 1,
+                "rawValue": 1065353216,
+                "fileOffset": "0x7a5b0",
+                "lateralHalfWidth": 1.0
+              },
+              {
+                "type": 0,
+                "recordIndex": 2,
+                "rawValue": 1065353216,
+                "fileOffset": "0x7a5bc",
+                "lateralHalfWidth": 1.0
+              },
+              {
+                "type": 0,
+                "recordIndex": 3,
+                "rawValue": 1065353216,
+                "fileOffset": "0x7a5c8",
+                "lateralHalfWidth": 1.0
+              },
+              {
+                "type": 0,
+                "recordIndex": 4,
+                "rawValue": 1056964608,
+                "fileOffset": "0x7a5d4",
+                "lateralHalfWidth": 0.5
+              },
+              {
+                "type": 0,
+                "recordIndex": 5,
+                "rawValue": 1056964608,
+                "fileOffset": "0x7a5e0",
+                "lateralHalfWidth": 0.5
+              }
+            ],
+            "terminatorFileOffset": "0x7a5ec"
+          }
+        }
+      ],
+      "calls": [
+        {
+          "callFileOffset": "0x13b2",
+          "functionFileOffset": "0x12d4",
+          "mode": 0,
+          "argumentCount": 6,
+          "selectorResultRouting": {
+            "sceneSelectorArrayBaseOffset": "0x84",
+            "playerIndexFrameOffset": "0x58",
+            "selectorResultFrameOffset": "0x4c",
+            "arrayElementStrideBytes": 4,
+            "storedValue": "operation 0x0181 result + 1",
+            "notSelectedStoredValue": 0,
+            "writeFileOffset": "0x1600"
+          },
+          "coroutineLaunches": [
+            {
+              "callFileOffset": "0x60d0a",
+              "sourceFunctionFileOffset": "0x60cd4",
+              "argumentCount": 6
+            }
+          ],
+          "childArguments": [
+            {
+              "kind": "constant",
+              "value": 1380535105,
+              "hex": "0x52494b41",
+              "ascii": "AKIR",
+              "source": "0x60cee"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x60cea"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x60ce6"
+            },
+            {
+              "kind": "static-pointer",
+              "value": 500720,
+              "hex": "0x0007a3f0",
+              "source": "0x60ce4"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x60cde"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x60cdc"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x1b28",
+          "functionFileOffset": "0x12d4",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x1eb4",
+          "functionFileOffset": "0x12d4",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x71d0",
+          "functionFileOffset": "0x7168",
+          "mode": 1,
+          "argumentCount": 1
+        }
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DMAJ",
+      "source": "extracted_disc3_v2/data/SCENE/03/DMAJ/MAPINFO.BIN",
+      "mapinfoSha256": "429a25b96ad847282f8acfb1280af9b7c86de99d8de3bd946226595669bd85bb",
+      "scn3FileOffset": "0x8",
+      "initialFunctionFileOffset": "0x21d94",
+      "operation0181CallCount": 4,
+      "modeCounts": {
+        "0": 1,
+        "1": 1,
+        "2": 2
+      },
+      "serializedSources": [
+        {
+          "launchCallFileOffset": "0x22642",
+          "fileOffset": "0x24844",
+          "recordStrideBytes": 24,
+          "recordCount": 2,
+          "records": [
+            {
+              "index": 0,
+              "fileOffset": "0x24844",
+              "position": [
+                0.6800000071525574,
+                0.0,
+                -2.700000047683716
+              ],
+              "requiredFacingRaw": 0,
+              "selectorFlags": 1073152,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "7b142e3f00000000cdcc2cc000000000006010000c000000"
+            },
+            {
+              "index": 1,
+              "fileOffset": "0x2485c",
+              "position": [
+                0.6800000071525574,
+                2.700000047683716,
+                -6.0
+              ],
+              "requiredFacingRaw": 32768,
+              "selectorFlags": 24584,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "7b142e3fcdcc2c400000c0c000800000086000000c000000"
+            }
+          ],
+          "terminator": {
+            "fileOffset": "0x24874",
+            "raw": "0x47c35000"
+          },
+          "customHalfWidthTable": {
+            "startsImmediatelyAfterRecordTerminator": true,
+            "entryStrideBytes": 12,
+            "entries": [],
+            "terminatorFileOffset": null
+          }
+        }
+      ],
+      "calls": [
+        {
+          "callFileOffset": "0x17f7e",
+          "functionFileOffset": "0x17e9e",
+          "mode": 0,
+          "argumentCount": 6,
+          "selectorResultRouting": {
+            "sceneSelectorArrayBaseOffset": "0x1b8",
+            "playerIndexFrameOffset": "0x58",
+            "selectorResultFrameOffset": "0x4c",
+            "arrayElementStrideBytes": 4,
+            "storedValue": "operation 0x0181 result + 1",
+            "notSelectedStoredValue": 0,
+            "writeFileOffset": "0x181dc"
+          },
+          "coroutineLaunches": [
+            {
+              "callFileOffset": "0x22642",
+              "sourceFunctionFileOffset": "0x225e4",
+              "argumentCount": 6
+            }
+          ],
+          "childArguments": [
+            {
+              "kind": "constant",
+              "value": 1380535105,
+              "hex": "0x52494b41",
+              "ascii": "AKIR",
+              "source": "0x22626"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x22622"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x2261e"
+            },
+            {
+              "kind": "static-pointer",
+              "value": 149572,
+              "hex": "0x00024844",
+              "source": "0x2261a"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x22614"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x22612"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x18714",
+          "functionFileOffset": "0x17e9e",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x18aac",
+          "functionFileOffset": "0x17e9e",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x1de60",
+          "functionFileOffset": "0x1ddf8",
+          "mode": 1,
+          "argumentCount": 1
+        }
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DYKZ",
+      "source": "extracted_disc3_v2/data/SCENE/03/DYKZ/MAPINFO.BIN",
+      "mapinfoSha256": "d29a738d3c4157db4724bc47be3d39636f132126772257472da13edae761a2dc",
+      "scn3FileOffset": "0xa8",
+      "initialFunctionFileOffset": "0x25adc",
+      "operation0181CallCount": 4,
+      "modeCounts": {
+        "0": 1,
+        "1": 1,
+        "2": 2
+      },
+      "serializedSources": [
+        {
+          "launchCallFileOffset": "0x25bfa",
+          "fileOffset": "0x284bc",
+          "recordStrideBytes": 24,
+          "recordCount": 4,
+          "records": [
+            {
+              "index": 0,
+              "fileOffset": "0x284bc",
+              "position": [
+                3.8320000171661377,
+                0.0,
+                -0.8934999704360962
+              ],
+              "requiredFacingRaw": 0,
+              "selectorFlags": 24832,
+              "auxiliaryWord": 6,
+              "usesCustomHalfWidth": true,
+              "rawHex": "7d3f7540000000006abc64bf000000000061000006000000",
+              "lateralHalfWidth": 0.30000001192092896
+            },
+            {
+              "index": 1,
+              "fileOffset": "0x284d4",
+              "position": [
+                3.8320000171661377,
+                1.350000023841858,
+                -2.4035000801086426
+              ],
+              "requiredFacingRaw": 32768,
+              "selectorFlags": 24840,
+              "auxiliaryWord": 6,
+              "usesCustomHalfWidth": true,
+              "rawHex": "7d3f7540cdccac3ff2d219c0008000000861000006000000",
+              "lateralHalfWidth": 0.30000001192092896
+            },
+            {
+              "index": 2,
+              "fileOffset": "0x284ec",
+              "position": [
+                2.4000000953674316,
+                1.350000023841858,
+                -2.700000047683716
+              ],
+              "requiredFacingRaw": 32768,
+              "selectorFlags": 40960,
+              "auxiliaryWord": 6,
+              "usesCustomHalfWidth": false,
+              "rawHex": "9a991940cdccac3fcdcc2cc00080000000a0000006000000"
+            },
+            {
+              "index": 3,
+              "fileOffset": "0x28504",
+              "position": [
+                2.473900079727173,
+                2.700000047683716,
+                -1.2999999523162842
+              ],
+              "requiredFacingRaw": 0,
+              "selectorFlags": 24840,
+              "auxiliaryWord": 6,
+              "usesCustomHalfWidth": true,
+              "rawHex": "61541e40cdcc2c406666a6bf000000000861000006000000",
+              "lateralHalfWidth": 0.30000001192092896
+            }
+          ],
+          "terminator": {
+            "fileOffset": "0x2851c",
+            "raw": "0x47c35000"
+          },
+          "customHalfWidthTable": {
+            "startsImmediatelyAfterRecordTerminator": true,
+            "entryStrideBytes": 12,
+            "entries": [
+              {
+                "type": 0,
+                "recordIndex": 0,
+                "rawValue": 1050253722,
+                "fileOffset": "0x28520",
+                "lateralHalfWidth": 0.30000001192092896
+              },
+              {
+                "type": 0,
+                "recordIndex": 1,
+                "rawValue": 1050253722,
+                "fileOffset": "0x2852c",
+                "lateralHalfWidth": 0.30000001192092896
+              },
+              {
+                "type": 0,
+                "recordIndex": 2,
+                "rawValue": 1041865114,
+                "fileOffset": "0x28538",
+                "lateralHalfWidth": 0.15000000596046448
+              },
+              {
+                "type": 0,
+                "recordIndex": 3,
+                "rawValue": 1050253722,
+                "fileOffset": "0x28544",
+                "lateralHalfWidth": 0.30000001192092896
+              }
+            ],
+            "terminatorFileOffset": "0x28550"
+          }
+        }
+      ],
+      "calls": [
+        {
+          "callFileOffset": "0x1c7b6",
+          "functionFileOffset": "0x1c6d4",
+          "mode": 0,
+          "argumentCount": 6,
+          "selectorResultRouting": {
+            "sceneSelectorArrayBaseOffset": "0x440",
+            "playerIndexFrameOffset": "0x58",
+            "selectorResultFrameOffset": "0x4c",
+            "arrayElementStrideBytes": 4,
+            "storedValue": "operation 0x0181 result + 1",
+            "notSelectedStoredValue": 0,
+            "writeFileOffset": "0x1ca14"
+          },
+          "coroutineLaunches": [
+            {
+              "callFileOffset": "0x25bfa",
+              "sourceFunctionFileOffset": "0x25adc",
+              "argumentCount": 6
+            }
+          ],
+          "childArguments": [
+            {
+              "kind": "constant",
+              "value": 1380535105,
+              "hex": "0x52494b41",
+              "ascii": "AKIR",
+              "source": "0x25bde"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x25bda"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x25bd6"
+            },
+            {
+              "kind": "static-pointer",
+              "value": 165052,
+              "hex": "0x000284bc",
+              "source": "0x25bd4"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x25bce"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x25bcc"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x1cf4c",
+          "functionFileOffset": "0x1c6d4",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x1d2e4",
+          "functionFileOffset": "0x1c6d4",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x22698",
+          "functionFileOffset": "0x22630",
+          "mode": 1,
+          "argumentCount": 1
+        }
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "JABE",
+      "source": "extracted_disc3_v2/data/SCENE/03/JABE/MAPINFO.BIN",
+      "mapinfoSha256": "f30bbd5ab617d768f6a7ad2b11be737477cdf3f6b53358424cfea4a926d2f4f4",
+      "scn3FileOffset": "0xb0",
+      "initialFunctionFileOffset": "0x2b5a4",
+      "operation0181CallCount": 4,
+      "modeCounts": {
+        "0": 1,
+        "1": 1,
+        "2": 2
+      },
+      "serializedSources": [],
+      "calls": [
+        {
+          "callFileOffset": "0x202",
+          "functionFileOffset": "0x124",
+          "mode": 0,
+          "argumentCount": 6,
+          "selectorResultRouting": {
+            "sceneSelectorArrayBaseOffset": "0x84",
+            "playerIndexFrameOffset": "0x58",
+            "selectorResultFrameOffset": "0x4c",
+            "arrayElementStrideBytes": 4,
+            "storedValue": "operation 0x0181 result + 1",
+            "notSelectedStoredValue": 0,
+            "writeFileOffset": "0x450"
+          },
+          "coroutineLaunches": []
+        },
+        {
+          "callFileOffset": "0x978",
+          "functionFileOffset": "0x124",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0xd04",
+          "functionFileOffset": "0x124",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x6020",
+          "functionFileOffset": "0x5fb8",
+          "mode": 1,
+          "argumentCount": 1
+        }
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "JD00",
+      "source": "extracted_disc3_v2/data/SCENE/03/JD00/MAPINFO.BIN",
+      "mapinfoSha256": "e4226a975c1ed35277eb3e6474928eeba0c10ecf4d8e293319c3f4aa76223e78",
+      "scn3FileOffset": "0x878",
+      "initialFunctionFileOffset": "0x5e6cc",
+      "operation0181CallCount": 4,
+      "modeCounts": {
+        "0": 1,
+        "1": 1,
+        "2": 2
+      },
+      "serializedSources": [
+        {
+          "launchCallFileOffset": "0x5ead8",
+          "fileOffset": "0x68844",
+          "recordStrideBytes": 24,
+          "recordCount": 14,
+          "records": [
+            {
+              "index": 0,
+              "fileOffset": "0x68844",
+              "position": [
+                -17.735200881958008,
+                0.22499999403953552,
+                -0.09350000321865082
+              ],
+              "requiredFacingRaw": 63169,
+              "selectorFlags": 1048832,
+              "auxiliaryWord": 6,
+              "usesCustomHalfWidth": true,
+              "rawHex": "b1e18dc16666663eee7cbfbdc1f600000001100006000000",
+              "lateralHalfWidth": 0.5
+            },
+            {
+              "index": 1,
+              "fileOffset": "0x6885c",
+              "position": [
+                -17.402299880981445,
+                1.5740000009536743,
+                -1.551900029182434
+              ],
+              "requiredFacingRaw": 30401,
+              "selectorFlags": 264,
+              "auxiliaryWord": 6,
+              "usesCustomHalfWidth": true,
+              "rawHex": "e9378bc1d578c93fa9a4c6bfc17600000801000006000000",
+              "lateralHalfWidth": 0.5
+            },
+            {
+              "index": 2,
+              "fileOffset": "0x68874",
+              "position": [
+                -10.432700157165527,
+                0.22499999403953552,
+                21.87220001220703
+              ],
+              "requiredFacingRaw": 16384,
+              "selectorFlags": 1048832,
+              "auxiliaryWord": 5,
+              "usesCustomHalfWidth": true,
+              "rawHex": "57ec26c16666663e44faae41004000000001100005000000",
+              "lateralHalfWidth": 0.4000000059604645
+            },
+            {
+              "index": 3,
+              "fileOffset": "0x6888c",
+              "position": [
+                -11.631199836730957,
+                1.1495000123977661,
+                21.890499114990234
+              ],
+              "requiredFacingRaw": 49152,
+              "selectorFlags": 264,
+              "auxiliaryWord": 5,
+              "usesCustomHalfWidth": true,
+              "rawHex": "65193ac1d122933fbe1faf4100c000000801000005000000",
+              "lateralHalfWidth": 0.4000000059604645
+            },
+            {
+              "index": 4,
+              "fileOffset": "0x688a4",
+              "position": [
+                -14.403599739074707,
+                0.22499999403953552,
+                7.0609002113342285
+              ],
+              "requiredFacingRaw": 16384,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 5,
+              "usesCustomHalfWidth": false,
+              "rawHex": "257566c16666663ee5f2e140004000000000100005000000"
+            },
+            {
+              "index": 5,
+              "fileOffset": "0x688bc",
+              "position": [
+                -15.596599578857422,
+                1.0,
+                7.0721001625061035
+              ],
+              "requiredFacingRaw": 49152,
+              "selectorFlags": 8,
+              "auxiliaryWord": 5,
+              "usesCustomHalfWidth": false,
+              "rawHex": "ac8b79c10000803fa54ee24000c000000800000005000000"
+            },
+            {
+              "index": 6,
+              "fileOffset": "0x688d4",
+              "position": [
+                -24.61829948425293,
+                1.2587000131607056,
+                6.298399925231934
+              ],
+              "requiredFacingRaw": 32768,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 8,
+              "usesCustomHalfWidth": false,
+              "rawHex": "47f2c4c1151da13f7e8cc940008000000000100008000000"
+            },
+            {
+              "index": 7,
+              "fileOffset": "0x688ec",
+              "position": [
+                -24.61389923095703,
+                3.0927000045776367,
+                8.40060043334961
+              ],
+              "requiredFacingRaw": 0,
+              "selectorFlags": 8,
+              "auxiliaryWord": 8,
+              "usesCustomHalfWidth": false,
+              "rawHex": "44e9c4c1ccee4540dc680641000000000800000008000000"
+            },
+            {
+              "index": 8,
+              "fileOffset": "0x68904",
+              "position": [
+                14.461999893188477,
+                0.2093999981880188,
+                28.30620002746582
+              ],
+              "requiredFacingRaw": 64261,
+              "selectorFlags": 1048576,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": false,
+              "rawHex": "5a646741f46c563e1973e24105fb00000000100003000000"
+            },
+            {
+              "index": 9,
+              "fileOffset": "0x6891c",
+              "position": [
+                14.657600402832031,
+                0.65829998254776,
+                27.645000457763672
+              ],
+              "requiredFacingRaw": 31493,
+              "selectorFlags": 8,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": false,
+              "rawHex": "88856a415986283ff628dd41057b00000800000003000000"
+            },
+            {
+              "index": 10,
+              "fileOffset": "0x68934",
+              "position": [
+                -13.810400009155273,
+                1.3233000040054321,
+                24.48080062866211
+              ],
+              "requiredFacingRaw": 30219,
+              "selectorFlags": 1064960,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "66f75cc1e561a93faed8c3410b760000004010000c000000"
+            },
+            {
+              "index": 11,
+              "fileOffset": "0x6894c",
+              "position": [
+                -14.608799934387207,
+                3.8117001056671143,
+                27.68160057067871
+              ],
+              "requiredFacingRaw": 62987,
+              "selectorFlags": 16392,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "a5bd69c1e5f27340eb73dd410bf60000084000000c000000"
+            },
+            {
+              "index": 12,
+              "fileOffset": "0x68964",
+              "position": [
+                -13.053500175476074,
+                1.315600037574768,
+                30.81909942626953
+              ],
+              "requiredFacingRaw": 32768,
+              "selectorFlags": 1064960,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "23db50c19565a83f848df64100800000004010000c000000"
+            },
+            {
+              "index": 13,
+              "fileOffset": "0x6897c",
+              "position": [
+                -13.029199600219727,
+                3.8062000274658203,
+                34.121299743652344
+              ],
+              "requiredFacingRaw": 0,
+              "selectorFlags": 16392,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "9a7750c1c8987340367c084200000000084000000c000000"
+            }
+          ],
+          "terminator": {
+            "fileOffset": "0x68994",
+            "raw": "0x47c35000"
+          },
+          "customHalfWidthTable": {
+            "startsImmediatelyAfterRecordTerminator": true,
+            "entryStrideBytes": 12,
+            "entries": [
+              {
+                "type": 0,
+                "recordIndex": 0,
+                "rawValue": 1056964608,
+                "fileOffset": "0x68998",
+                "lateralHalfWidth": 0.5
+              },
+              {
+                "type": 0,
+                "recordIndex": 1,
+                "rawValue": 1056964608,
+                "fileOffset": "0x689a4",
+                "lateralHalfWidth": 0.5
+              },
+              {
+                "type": 0,
+                "recordIndex": 2,
+                "rawValue": 1053609165,
+                "fileOffset": "0x689b0",
+                "lateralHalfWidth": 0.4000000059604645
+              },
+              {
+                "type": 0,
+                "recordIndex": 3,
+                "rawValue": 1053609165,
+                "fileOffset": "0x689bc",
+                "lateralHalfWidth": 0.4000000059604645
+              }
+            ],
+            "terminatorFileOffset": "0x689c8"
+          }
+        }
+      ],
+      "calls": [
+        {
+          "callFileOffset": "0x9ca",
+          "functionFileOffset": "0x8ec",
+          "mode": 0,
+          "argumentCount": 6,
+          "selectorResultRouting": {
+            "sceneSelectorArrayBaseOffset": "0x84",
+            "playerIndexFrameOffset": "0x58",
+            "selectorResultFrameOffset": "0x4c",
+            "arrayElementStrideBytes": 4,
+            "storedValue": "operation 0x0181 result + 1",
+            "notSelectedStoredValue": 0,
+            "writeFileOffset": "0xc18"
+          },
+          "coroutineLaunches": [
+            {
+              "callFileOffset": "0x5ead8",
+              "sourceFunctionFileOffset": "0x5e6cc",
+              "argumentCount": 6
+            }
+          ],
+          "childArguments": [
+            {
+              "kind": "constant",
+              "value": 1380535105,
+              "hex": "0x52494b41",
+              "ascii": "AKIR",
+              "source": "0x5eabc"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x5eab8"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x5eab4"
+            },
+            {
+              "kind": "static-pointer",
+              "value": 428100,
+              "hex": "0x00068844",
+              "source": "0x5eab0"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x5eaaa"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x5eaa8"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x1140",
+          "functionFileOffset": "0x8ec",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x14cc",
+          "functionFileOffset": "0x8ec",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x67e8",
+          "functionFileOffset": "0x6780",
+          "mode": 1,
+          "argumentCount": 1
+        }
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "JHD0",
+      "source": "extracted_disc3_v2/data/SCENE/03/JHD0/MAPINFO.BIN",
+      "mapinfoSha256": "edb13c21387f4ad3768bcc3fa4886ef42328c364066e40375a924abceb7b513f",
+      "scn3FileOffset": "0x8",
+      "initialFunctionFileOffset": "0x42228",
+      "operation0181CallCount": 4,
+      "modeCounts": {
+        "0": 1,
+        "1": 1,
+        "2": 2
+      },
+      "serializedSources": [
+        {
+          "launchCallFileOffset": "0x3244a",
+          "fileOffset": "0x4bd60",
+          "recordStrideBytes": 24,
+          "recordCount": 2,
+          "records": [
+            {
+              "index": 0,
+              "fileOffset": "0x4bd60",
+              "position": [
+                0.4000000059604645,
+                0.0,
+                -22.5
+              ],
+              "requiredFacingRaw": 16384,
+              "selectorFlags": 40192,
+              "auxiliaryWord": 4,
+              "usesCustomHalfWidth": true,
+              "rawHex": "cdcccc3e000000000000b4c100400000009d000004000000",
+              "lateralHalfWidth": 0.6000000238418579
+            },
+            {
+              "index": 1,
+              "fileOffset": "0x4bd78",
+              "position": [
+                -0.550000011920929,
+                1.0,
+                -22.5
+              ],
+              "requiredFacingRaw": 49152,
+              "selectorFlags": 39176,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": true,
+              "rawHex": "cdcc0cbf0000803f0000b4c100c000000899000003000000",
+              "lateralHalfWidth": 0.6000000238418579
+            }
+          ],
+          "terminator": {
+            "fileOffset": "0x4bd90",
+            "raw": "0x47c35000"
+          },
+          "customHalfWidthTable": {
+            "startsImmediatelyAfterRecordTerminator": true,
+            "entryStrideBytes": 12,
+            "entries": [
+              {
+                "type": 0,
+                "recordIndex": 0,
+                "rawValue": 1058642330,
+                "fileOffset": "0x4bd94",
+                "lateralHalfWidth": 0.6000000238418579
+              },
+              {
+                "type": 0,
+                "recordIndex": 1,
+                "rawValue": 1058642330,
+                "fileOffset": "0x4bda0",
+                "lateralHalfWidth": 0.6000000238418579
+              },
+              {
+                "type": 1,
+                "recordIndex": 0,
+                "rawValue": 0,
+                "fileOffset": "0x4bdac"
+              },
+              {
+                "type": 2,
+                "recordIndex": 1,
+                "rawValue": 1,
+                "fileOffset": "0x4bdb8"
+              },
+              {
+                "type": 2,
+                "recordIndex": 0,
+                "rawValue": 2,
+                "fileOffset": "0x4bdc4"
+              }
+            ],
+            "terminatorFileOffset": "0x4bdd0"
+          }
+        }
+      ],
+      "calls": [
+        {
+          "callFileOffset": "0x158",
+          "functionFileOffset": "0x7c",
+          "mode": 0,
+          "argumentCount": 6,
+          "selectorResultRouting": {
+            "sceneSelectorArrayBaseOffset": "0x18",
+            "playerIndexFrameOffset": "0x58",
+            "selectorResultFrameOffset": "0x4c",
+            "arrayElementStrideBytes": 4,
+            "storedValue": "operation 0x0181 result + 1",
+            "notSelectedStoredValue": 0,
+            "writeFileOffset": "0x3a0"
+          },
+          "coroutineLaunches": [
+            {
+              "callFileOffset": "0x3244a",
+              "sourceFunctionFileOffset": "0x32414",
+              "argumentCount": 6
+            }
+          ],
+          "childArguments": [
+            {
+              "kind": "constant",
+              "value": 1380535105,
+              "hex": "0x52494b41",
+              "ascii": "AKIR",
+              "source": "0x3242e"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x3242a"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x32426"
+            },
+            {
+              "kind": "static-pointer",
+              "value": 310624,
+              "hex": "0x0004bd60",
+              "source": "0x32424"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x3241e"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x3241c"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x8a0",
+          "functionFileOffset": "0x7c",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0xc10",
+          "functionFileOffset": "0x7c",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x5d00",
+          "functionFileOffset": "0x5c9c",
+          "mode": 1,
+          "argumentCount": 1
+        }
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "JU00",
+      "source": "extracted_disc3_v2/data/SCENE/03/JU00/MAPINFO.BIN",
+      "mapinfoSha256": "93f6d93ebc0561a1cada2ebd2e78dc4cf16f69dc10a8b9af2089bd9b51811f76",
+      "scn3FileOffset": "0x8",
+      "initialFunctionFileOffset": "0x463f8",
+      "operation0181CallCount": 4,
+      "modeCounts": {
+        "0": 1,
+        "1": 1,
+        "2": 2
+      },
+      "serializedSources": [
+        {
+          "launchCallFileOffset": "0x41fb6",
+          "fileOffset": "0x4b89c",
+          "recordStrideBytes": 24,
+          "recordCount": 16,
+          "records": [
+            {
+              "index": 0,
+              "fileOffset": "0x4b89c",
+              "position": [
+                -49.930999755859375,
+                7.0,
+                98.00779724121094
+              ],
+              "requiredFacingRaw": 22499,
+              "selectorFlags": 33024,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": true,
+              "rawHex": "58b947c20000e040fe03c442e35700000081000003000000",
+              "lateralHalfWidth": 1.0
+            },
+            {
+              "index": 1,
+              "fileOffset": "0x4b8b4",
+              "position": [
+                -50.436798095703125,
+                7.649799823760986,
+                98.3197021484375
+              ],
+              "requiredFacingRaw": 55267,
+              "selectorFlags": 33032,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": true,
+              "rawHex": "48bf49c229cbf440b0a3c442e3d700000881000003000000",
+              "lateralHalfWidth": 1.0
+            },
+            {
+              "index": 2,
+              "fileOffset": "0x4b8cc",
+              "position": [
+                -29.563400268554688,
+                2.2699999809265137,
+                70.56269836425781
+              ],
+              "requiredFacingRaw": 16748,
+              "selectorFlags": 256,
+              "auxiliaryWord": 4,
+              "usesCustomHalfWidth": true,
+              "rawHex": "d881ecc1ae4711401a208d426c4100000001000004000000",
+              "lateralHalfWidth": 0.5
+            },
+            {
+              "index": 3,
+              "fileOffset": "0x4b8e4",
+              "position": [
+                -30.457700729370117,
+                2.950000047683716,
+                70.56310272216797
+              ],
+              "requiredFacingRaw": 49516,
+              "selectorFlags": 264,
+              "auxiliaryWord": 4,
+              "usesCustomHalfWidth": true,
+              "rawHex": "5fa9f3c1cdcc3c404f208d426cc100000801000004000000",
+              "lateralHalfWidth": 0.699999988079071
+            },
+            {
+              "index": 4,
+              "fileOffset": "0x4b8fc",
+              "position": [
+                -29.069400787353516,
+                1.149999976158142,
+                67.23780059814453
+              ],
+              "requiredFacingRaw": 35498,
+              "selectorFlags": 256,
+              "auxiliaryWord": 5,
+              "usesCustomHalfWidth": true,
+              "rawHex": "228ee8c13333933fc1798642aa8a00000001000005000000",
+              "lateralHalfWidth": 0.699999988079071
+            },
+            {
+              "index": 5,
+              "fileOffset": "0x4b914",
+              "position": [
+                -28.840900421142578,
+                2.049999952316284,
+                68.4198989868164
+              ],
+              "requiredFacingRaw": 2730,
+              "selectorFlags": 264,
+              "auxiliaryWord": 5,
+              "usesCustomHalfWidth": true,
+              "rawHex": "2abae6c133330340fdd68842aa0a00000801000005000000",
+              "lateralHalfWidth": 0.699999988079071
+            },
+            {
+              "index": 6,
+              "fileOffset": "0x4b92c",
+              "position": [
+                -35.58570098876953,
+                2.0999999046325684,
+                44.635101318359375
+              ],
+              "requiredFacingRaw": 5279,
+              "selectorFlags": 8448,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": true,
+              "rawHex": "c2570ec266660640588a32429f1400000021000003000000",
+              "lateralHalfWidth": 1.600000023841858
+            },
+            {
+              "index": 7,
+              "fileOffset": "0x4b944",
+              "position": [
+                -35.89360046386719,
+                2.5999999046325684,
+                44.14440155029297
+              ],
+              "requiredFacingRaw": 38065,
+              "selectorFlags": 8456,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": true,
+              "rawHex": "0c930fc266662640de933042b19400000821000003000000",
+              "lateralHalfWidth": 1.600000023841858
+            },
+            {
+              "index": 8,
+              "fileOffset": "0x4b95c",
+              "position": [
+                -37.13600158691406,
+                2.134999990463257,
+                52.17530059814453
+              ],
+              "requiredFacingRaw": 36044,
+              "selectorFlags": 256,
+              "auxiliaryWord": 5,
+              "usesCustomHalfWidth": true,
+              "rawHex": "448b14c2d7a3084082b35042cc8c00000001000005000000",
+              "lateralHalfWidth": 0.30000001192092896
+            },
+            {
+              "index": 9,
+              "fileOffset": "0x4b974",
+              "position": [
+                -36.7598991394043,
+                3.050600051879883,
+                53.3213996887207
+              ],
+              "requiredFacingRaw": 3276,
+              "selectorFlags": 264,
+              "auxiliaryWord": 5,
+              "usesCustomHalfWidth": true,
+              "rawHex": "230a13c2083d43401d495542cc0c00000801000005000000",
+              "lateralHalfWidth": 0.30000001192092896
+            },
+            {
+              "index": 10,
+              "fileOffset": "0x4b98c",
+              "position": [
+                -37.650699615478516,
+                2.796099901199341,
+                41.206600189208984
+              ],
+              "requiredFacingRaw": 5461,
+              "selectorFlags": 8194,
+              "auxiliaryWord": 2,
+              "usesCustomHalfWidth": false,
+              "rawHex": "519a16c24df332408fd32442551500000220000002000000"
+            },
+            {
+              "index": 11,
+              "fileOffset": "0x4b9a4",
+              "position": [
+                -37.925201416015625,
+                3.242000102996826,
+                40.710601806640625
+              ],
+              "requiredFacingRaw": 38229,
+              "selectorFlags": 8202,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": false,
+              "rawHex": "68b317c2ee7c4f40a8d72242559500000a20000003000000"
+            },
+            {
+              "index": 12,
+              "fileOffset": "0x4b9bc",
+              "position": [
+                -38.419498443603516,
+                3.478100061416626,
+                39.857601165771484
+              ],
+              "requiredFacingRaw": 5461,
+              "selectorFlags": 40962,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": false,
+              "rawHex": "91ad19c231995e402f6e1f425515000002a0000003000000"
+            },
+            {
+              "index": 13,
+              "fileOffset": "0x4b9d4",
+              "position": [
+                -38.78379821777344,
+                3.9410998821258545,
+                39.2307014465332
+              ],
+              "requiredFacingRaw": 38229,
+              "selectorFlags": 24586,
+              "auxiliaryWord": 3,
+              "usesCustomHalfWidth": false,
+              "rawHex": "9c221bc2fb3a7c403dec1c42559500000a60000003000000"
+            },
+            {
+              "index": 14,
+              "fileOffset": "0x4b9ec",
+              "position": [
+                -38.82659912109375,
+                3.240000009536743,
+                59.1349983215332
+              ],
+              "requiredFacingRaw": 364,
+              "selectorFlags": 16384,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "704e1bc2295c4f403d8a6c426c010000004000000c000000"
+            },
+            {
+              "index": 15,
+              "fileOffset": "0x4ba04",
+              "position": [
+                -38.94449996948242,
+                5.710000038146973,
+                55.83169937133789
+              ],
+              "requiredFacingRaw": 33241,
+              "selectorFlags": 16392,
+              "auxiliaryWord": 12,
+              "usesCustomHalfWidth": false,
+              "rawHex": "2bc71bc252b8b640a9535f42d9810000084000000c000000"
+            }
+          ],
+          "terminator": {
+            "fileOffset": "0x4ba1c",
+            "raw": "0x47c35000"
+          },
+          "customHalfWidthTable": {
+            "startsImmediatelyAfterRecordTerminator": true,
+            "entryStrideBytes": 12,
+            "entries": [
+              {
+                "type": 0,
+                "recordIndex": 0,
+                "rawValue": 1065353216,
+                "fileOffset": "0x4ba20",
+                "lateralHalfWidth": 1.0
+              },
+              {
+                "type": 0,
+                "recordIndex": 1,
+                "rawValue": 1065353216,
+                "fileOffset": "0x4ba2c",
+                "lateralHalfWidth": 1.0
+              },
+              {
+                "type": 0,
+                "recordIndex": 2,
+                "rawValue": 1056964608,
+                "fileOffset": "0x4ba38",
+                "lateralHalfWidth": 0.5
+              },
+              {
+                "type": 0,
+                "recordIndex": 3,
+                "rawValue": 1060320051,
+                "fileOffset": "0x4ba44",
+                "lateralHalfWidth": 0.699999988079071
+              },
+              {
+                "type": 0,
+                "recordIndex": 4,
+                "rawValue": 1060320051,
+                "fileOffset": "0x4ba50",
+                "lateralHalfWidth": 0.699999988079071
+              },
+              {
+                "type": 0,
+                "recordIndex": 5,
+                "rawValue": 1060320051,
+                "fileOffset": "0x4ba5c",
+                "lateralHalfWidth": 0.699999988079071
+              },
+              {
+                "type": 0,
+                "recordIndex": 6,
+                "rawValue": 1070386381,
+                "fileOffset": "0x4ba68",
+                "lateralHalfWidth": 1.600000023841858
+              },
+              {
+                "type": 0,
+                "recordIndex": 7,
+                "rawValue": 1070386381,
+                "fileOffset": "0x4ba74",
+                "lateralHalfWidth": 1.600000023841858
+              },
+              {
+                "type": 0,
+                "recordIndex": 8,
+                "rawValue": 1050253722,
+                "fileOffset": "0x4ba80",
+                "lateralHalfWidth": 0.30000001192092896
+              },
+              {
+                "type": 0,
+                "recordIndex": 9,
+                "rawValue": 1050253722,
+                "fileOffset": "0x4ba8c",
+                "lateralHalfWidth": 0.30000001192092896
+              }
+            ],
+            "terminatorFileOffset": "0x4ba98"
+          }
+        }
+      ],
+      "calls": [
+        {
+          "callFileOffset": "0x158",
+          "functionFileOffset": "0x7c",
+          "mode": 0,
+          "argumentCount": 6,
+          "selectorResultRouting": {
+            "sceneSelectorArrayBaseOffset": "0x18",
+            "playerIndexFrameOffset": "0x58",
+            "selectorResultFrameOffset": "0x4c",
+            "arrayElementStrideBytes": 4,
+            "storedValue": "operation 0x0181 result + 1",
+            "notSelectedStoredValue": 0,
+            "writeFileOffset": "0x3a0"
+          },
+          "coroutineLaunches": [
+            {
+              "callFileOffset": "0x41fb6",
+              "sourceFunctionFileOffset": "0x41f80",
+              "argumentCount": 6
+            }
+          ],
+          "childArguments": [
+            {
+              "kind": "constant",
+              "value": 1380535105,
+              "hex": "0x52494b41",
+              "ascii": "AKIR",
+              "source": "0x41f9a"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x41f96"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x41f92"
+            },
+            {
+              "kind": "static-pointer",
+              "value": 309404,
+              "hex": "0x0004b89c",
+              "source": "0x41f90"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x41f8a"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x41f88"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x8a0",
+          "functionFileOffset": "0x7c",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0xc10",
+          "functionFileOffset": "0x7c",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x5d00",
+          "functionFileOffset": "0x5c9c",
+          "mode": 1,
+          "argumentCount": 1
+        }
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "MS08",
+      "source": "extracted_disc3_v2/data/SCENE/03/MS08/MAPINFO.BIN",
+      "mapinfoSha256": "fdcdeae0525fe2b596d8e67be322bde40ccb9b7c6ea13d2d673e14ba7ef39b07",
+      "scn3FileOffset": "0x8",
+      "initialFunctionFileOffset": "0x28240",
+      "operation0181CallCount": 4,
+      "modeCounts": {
+        "0": 1,
+        "1": 1,
+        "2": 2
+      },
+      "serializedSources": [
+        {
+          "launchCallFileOffset": "0x28364",
+          "fileOffset": "0x2af5c",
+          "recordStrideBytes": 24,
+          "recordCount": 4,
+          "records": [
+            {
+              "index": 0,
+              "fileOffset": "0x2af5c",
+              "position": [
+                -22.5,
+                0.20000000298023224,
+                -18.950000762939453
+              ],
+              "requiredFacingRaw": 49152,
+              "selectorFlags": 1048832,
+              "auxiliaryWord": 24,
+              "usesCustomHalfWidth": true,
+              "rawHex": "0000b4c1cdcc4c3e9a9997c100c000000001100018000000",
+              "lateralHalfWidth": 0.550000011920929
+            },
+            {
+              "index": 1,
+              "fileOffset": "0x2af74",
+              "position": [
+                -15.600000381469727,
+                5.300000190734863,
+                -18.950000762939453
+              ],
+              "requiredFacingRaw": 16384,
+              "selectorFlags": 265,
+              "auxiliaryWord": 24,
+              "usesCustomHalfWidth": true,
+              "rawHex": "9a9979c19a99a9409a9997c1004000000901000018000000",
+              "lateralHalfWidth": 0.550000011920929
+            },
+            {
+              "index": 2,
+              "fileOffset": "0x2af8c",
+              "position": [
+                -22.5,
+                0.20000000298023224,
+                -0.8999999761581421
+              ],
+              "requiredFacingRaw": 49152,
+              "selectorFlags": 1048832,
+              "auxiliaryWord": 24,
+              "usesCustomHalfWidth": true,
+              "rawHex": "0000b4c1cdcc4c3e666666bf00c000000001100018000000",
+              "lateralHalfWidth": 0.550000011920929
+            },
+            {
+              "index": 3,
+              "fileOffset": "0x2afa4",
+              "position": [
+                -15.600000381469727,
+                5.300000190734863,
+                -0.8999999761581421
+              ],
+              "requiredFacingRaw": 16384,
+              "selectorFlags": 265,
+              "auxiliaryWord": 24,
+              "usesCustomHalfWidth": true,
+              "rawHex": "9a9979c19a99a940666666bf004000000901000018000000",
+              "lateralHalfWidth": 0.550000011920929
+            }
+          ],
+          "terminator": {
+            "fileOffset": "0x2afbc",
+            "raw": "0x47c35000"
+          },
+          "customHalfWidthTable": {
+            "startsImmediatelyAfterRecordTerminator": true,
+            "entryStrideBytes": 12,
+            "entries": [
+              {
+                "type": 0,
+                "recordIndex": 0,
+                "rawValue": 1057803469,
+                "fileOffset": "0x2afc0",
+                "lateralHalfWidth": 0.550000011920929
+              },
+              {
+                "type": 0,
+                "recordIndex": 1,
+                "rawValue": 1057803469,
+                "fileOffset": "0x2afcc",
+                "lateralHalfWidth": 0.550000011920929
+              },
+              {
+                "type": 0,
+                "recordIndex": 2,
+                "rawValue": 1057803469,
+                "fileOffset": "0x2afd8",
+                "lateralHalfWidth": 0.550000011920929
+              },
+              {
+                "type": 0,
+                "recordIndex": 3,
+                "rawValue": 1057803469,
+                "fileOffset": "0x2afe4",
+                "lateralHalfWidth": 0.550000011920929
+              }
+            ],
+            "terminatorFileOffset": "0x2aff0"
+          }
+        }
+      ],
+      "calls": [
+        {
+          "callFileOffset": "0x19962",
+          "functionFileOffset": "0x19880",
+          "mode": 0,
+          "argumentCount": 6,
+          "selectorResultRouting": {
+            "sceneSelectorArrayBaseOffset": "0x1c8",
+            "playerIndexFrameOffset": "0x58",
+            "selectorResultFrameOffset": "0x4c",
+            "arrayElementStrideBytes": 4,
+            "storedValue": "operation 0x0181 result + 1",
+            "notSelectedStoredValue": 0,
+            "writeFileOffset": "0x19bc0"
+          },
+          "coroutineLaunches": [
+            {
+              "callFileOffset": "0x28364",
+              "sourceFunctionFileOffset": "0x28240",
+              "argumentCount": 6
+            }
+          ],
+          "childArguments": [
+            {
+              "kind": "constant",
+              "value": 1380535105,
+              "hex": "0x52494b41",
+              "ascii": "AKIR",
+              "source": "0x28348"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x28344"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x28340"
+            },
+            {
+              "kind": "static-pointer",
+              "value": 175964,
+              "hex": "0x0002af5c",
+              "source": "0x2833e"
+            },
+            {
+              "kind": "constant",
+              "value": 2,
+              "hex": "0x00000002",
+              "source": "0x28338"
+            },
+            {
+              "kind": "constant",
+              "value": 0,
+              "hex": "0x00000000",
+              "source": "0x28336"
+            }
+          ]
+        },
+        {
+          "callFileOffset": "0x1a0f8",
+          "functionFileOffset": "0x19880",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x1a490",
+          "functionFileOffset": "0x19880",
+          "mode": 2,
+          "argumentCount": 4
+        },
+        {
+          "callFileOffset": "0x1f844",
+          "functionFileOffset": "0x1f7dc",
+          "mode": 1,
+          "argumentCount": 1
+        }
+      ]
+    }
+  ]
+}

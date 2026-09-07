@@ -1,0 +1,4211 @@
+{
+  "schema": "new-yokosuka-d000-active-door-bindings-v1",
+  "source": {
+    "staticDoors": "tools/evidence/d000-static-door-placements.json",
+    "captures": [
+      "captures/pvr/20260724-005903-frame-4074",
+      "captures/pvr/20260724-012936-frame-2726",
+      "captures/pvr/20260724-013551-frame-6489",
+      "captures/pvr/20260724-013556-frame-6592",
+      "captures/pvr/20260724-013601-frame-6688",
+      "captures/pvr/20260724-013606-frame-6776",
+      "captures/pvr/20260724-013611-frame-6875",
+      "captures/pvr/20260724-013616-frame-6978",
+      "captures/pvr/20260724-013621-frame-7092",
+      "captures/pvr/20260724-013635-frame-7370",
+      "captures/pvr/20260724-013640-frame-7479",
+      "captures/pvr/20260724-013645-frame-7568",
+      "captures/pvr/20260724-013650-frame-7633",
+      "captures/pvr/20260724-013655-frame-7728",
+      "captures/pvr/20260724-013700-frame-7838",
+      "captures/pvr/20260724-013705-frame-7946"
+    ]
+  },
+  "method": {
+    "handleTable": "context + 0x22c contains dor0 through dor9",
+    "selectorTable": "context + 0x18c + slot * 4",
+    "taskTag": "TASK + 0x168",
+    "join": "exact browser-space XYZ transform against MAPINFO static doors",
+    "epsilon": 0.002
+  },
+  "summary": {
+    "captureCount": 16,
+    "bindingObservationCount": 144,
+    "recoveredStaticDoorCount": 40,
+    "staticDoorCount": 120,
+    "selectorConflictCount": 0
+  },
+  "recoveredDoors": [
+    {
+      "staticDoorIndex": 0,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_011.MT5",
+      "runtimeDoorSelector": 53,
+      "observationCount": 2
+    },
+    {
+      "staticDoorIndex": 2,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR05_001.MT5",
+      "runtimeDoorSelector": 41,
+      "observationCount": 6
+    },
+    {
+      "staticDoorIndex": 4,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_012.MT5",
+      "runtimeDoorSelector": 36,
+      "observationCount": 1
+    },
+    {
+      "staticDoorIndex": 5,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_016.MT5",
+      "runtimeDoorSelector": 30,
+      "observationCount": 3
+    },
+    {
+      "staticDoorIndex": 8,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_014.MT5",
+      "runtimeDoorSelector": 37,
+      "observationCount": 4
+    },
+    {
+      "staticDoorIndex": 9,
+      "staticDoorType": 1,
+      "model": "S1_D000_DR00_002.MT5",
+      "runtimeDoorSelector": 28,
+      "observationCount": 3
+    },
+    {
+      "staticDoorIndex": 11,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_006.MT5",
+      "runtimeDoorSelector": 47,
+      "observationCount": 1
+    },
+    {
+      "staticDoorIndex": 14,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_007.MT5",
+      "runtimeDoorSelector": 46,
+      "observationCount": 1
+    },
+    {
+      "staticDoorIndex": 20,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_011.MT5",
+      "runtimeDoorSelector": 26,
+      "observationCount": 2
+    },
+    {
+      "staticDoorIndex": 22,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR13_010.MT5",
+      "runtimeDoorSelector": 25,
+      "observationCount": 4
+    },
+    {
+      "staticDoorIndex": 24,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR15_009.MT5",
+      "runtimeDoorSelector": 62,
+      "observationCount": 3
+    },
+    {
+      "staticDoorIndex": 27,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_018.MT5",
+      "runtimeDoorSelector": 58,
+      "observationCount": 2
+    },
+    {
+      "staticDoorIndex": 28,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR17_002.MT5",
+      "runtimeDoorSelector": 64,
+      "observationCount": 2
+    },
+    {
+      "staticDoorIndex": 29,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR13_009.MT5",
+      "runtimeDoorSelector": 48,
+      "observationCount": 3
+    },
+    {
+      "staticDoorIndex": 30,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR06_007.MT5",
+      "runtimeDoorSelector": 40,
+      "observationCount": 5
+    },
+    {
+      "staticDoorIndex": 32,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR06_008.MT5",
+      "runtimeDoorSelector": 38,
+      "observationCount": 3
+    },
+    {
+      "staticDoorIndex": 33,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR05_001.MT5",
+      "runtimeDoorSelector": 32,
+      "observationCount": 5
+    },
+    {
+      "staticDoorIndex": 35,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR15_011.MT5",
+      "runtimeDoorSelector": 35,
+      "observationCount": 4
+    },
+    {
+      "staticDoorIndex": 36,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_013.MT5",
+      "runtimeDoorSelector": 31,
+      "observationCount": 3
+    },
+    {
+      "staticDoorIndex": 39,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR13_012.MT5",
+      "runtimeDoorSelector": 60,
+      "observationCount": 3
+    },
+    {
+      "staticDoorIndex": 40,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "runtimeDoorSelector": 3,
+      "observationCount": 5
+    },
+    {
+      "staticDoorIndex": 60,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "runtimeDoorSelector": 4,
+      "observationCount": 6
+    },
+    {
+      "staticDoorIndex": 62,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "runtimeDoorSelector": 5,
+      "observationCount": 3
+    },
+    {
+      "staticDoorIndex": 64,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_006.MT5",
+      "runtimeDoorSelector": 6,
+      "observationCount": 6
+    },
+    {
+      "staticDoorIndex": 66,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "runtimeDoorSelector": 7,
+      "observationCount": 9
+    },
+    {
+      "staticDoorIndex": 68,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "runtimeDoorSelector": 8,
+      "observationCount": 11
+    },
+    {
+      "staticDoorIndex": 70,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "runtimeDoorSelector": 9,
+      "observationCount": 9
+    },
+    {
+      "staticDoorIndex": 72,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_006.MT5",
+      "runtimeDoorSelector": 10,
+      "observationCount": 1
+    },
+    {
+      "staticDoorIndex": 76,
+      "staticDoorType": 1,
+      "model": "S1_D000_DR00_002.MT5",
+      "runtimeDoorSelector": 33,
+      "observationCount": 2
+    },
+    {
+      "staticDoorIndex": 90,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR13_007.MT5",
+      "runtimeDoorSelector": 2,
+      "observationCount": 7
+    },
+    {
+      "staticDoorIndex": 91,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR12_001.MT5",
+      "runtimeDoorSelector": 29,
+      "observationCount": 5
+    },
+    {
+      "staticDoorIndex": 92,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_013.MT5",
+      "runtimeDoorSelector": 42,
+      "observationCount": 2
+    },
+    {
+      "staticDoorIndex": 94,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_014.MT5",
+      "runtimeDoorSelector": 43,
+      "observationCount": 3
+    },
+    {
+      "staticDoorIndex": 97,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_014.MT5",
+      "runtimeDoorSelector": 27,
+      "observationCount": 1
+    },
+    {
+      "staticDoorIndex": 101,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR15_010.MT5",
+      "runtimeDoorSelector": 56,
+      "observationCount": 4
+    },
+    {
+      "staticDoorIndex": 105,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_020.MT5",
+      "runtimeDoorSelector": 61,
+      "observationCount": 1
+    },
+    {
+      "staticDoorIndex": 106,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_008.MT5",
+      "runtimeDoorSelector": 39,
+      "observationCount": 2
+    },
+    {
+      "staticDoorIndex": 112,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_017.MT5",
+      "runtimeDoorSelector": 54,
+      "observationCount": 1
+    },
+    {
+      "staticDoorIndex": 115,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_015.MT5",
+      "runtimeDoorSelector": 59,
+      "observationCount": 2
+    },
+    {
+      "staticDoorIndex": 118,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR05_001.MT5",
+      "runtimeDoorSelector": 52,
+      "observationCount": 4
+    }
+  ],
+  "conflicts": [],
+  "bindings": [
+    {
+      "capture": "captures/pvr/20260724-005903-frame-4074",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 0,
+      "objectTag": "dor0",
+      "taskAddress": "0x8c929400",
+      "runtimePosition": [
+        -71.7677,
+        0.0724,
+        79.457603
+      ],
+      "browserPosition": [
+        71.7677,
+        0.0724,
+        79.457603
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 25,
+      "staticDoorIndex": 22,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR13_010.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-005903-frame-4074",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 1,
+      "objectTag": "dor1",
+      "taskAddress": "0x8c9297c0",
+      "runtimePosition": [
+        -65.236916,
+        0.072395,
+        95.27832
+      ],
+      "browserPosition": [
+        65.236916,
+        0.072395,
+        95.27832
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        90.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 27,
+      "staticDoorIndex": 97,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_014.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-005903-frame-4074",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 2,
+      "objectTag": "dor2",
+      "taskAddress": "0x8c929b80",
+      "runtimePosition": [
+        -97.059059,
+        0.0734,
+        61.789459
+      ],
+      "browserPosition": [
+        97.059059,
+        0.0734,
+        61.789459
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        24.99939,
+        0.0
+      ],
+      "runtimeDoorSelector": 2,
+      "staticDoorIndex": 90,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR13_007.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-005903-frame-4074",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 3,
+      "objectTag": "dor3",
+      "taskAddress": "0x8c929f40",
+      "runtimePosition": [
+        -31.00709,
+        0.0724,
+        90.011246
+      ],
+      "browserPosition": [
+        31.00709,
+        0.0724,
+        90.011246
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -89.994507,
+        0.0
+      ],
+      "runtimeDoorSelector": 3,
+      "staticDoorIndex": 40,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-005903-frame-4074",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 4,
+      "objectTag": "dor4",
+      "taskAddress": "0x8c92a300",
+      "runtimePosition": [
+        -31.00709,
+        2.7724,
+        90.011246
+      ],
+      "browserPosition": [
+        31.00709,
+        2.7724,
+        90.011246
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -89.994507,
+        0.0
+      ],
+      "runtimeDoorSelector": 4,
+      "staticDoorIndex": 60,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-005903-frame-4074",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 5,
+      "objectTag": "dor5",
+      "taskAddress": "0x8c92a6c0",
+      "runtimePosition": [
+        -31.00709,
+        2.7724,
+        85.511566
+      ],
+      "browserPosition": [
+        31.00709,
+        2.7724,
+        85.511566
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -89.994507,
+        0.0
+      ],
+      "runtimeDoorSelector": 5,
+      "staticDoorIndex": 62,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-005903-frame-4074",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 6,
+      "objectTag": "dor6",
+      "taskAddress": "0x8c92aa80",
+      "runtimePosition": [
+        -31.00709,
+        0.0724,
+        85.511566
+      ],
+      "browserPosition": [
+        31.00709,
+        0.0724,
+        85.511566
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -89.994507,
+        0.0
+      ],
+      "runtimeDoorSelector": 6,
+      "staticDoorIndex": 64,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_006.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-005903-frame-4074",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 7,
+      "objectTag": "dor7",
+      "taskAddress": "0x8c92ae40",
+      "runtimePosition": [
+        -9.383801,
+        0.0724,
+        69.625267
+      ],
+      "browserPosition": [
+        9.383801,
+        0.0724,
+        69.625267
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 7,
+      "staticDoorIndex": 66,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-005903-frame-4074",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 9,
+      "objectTag": "dor9",
+      "taskAddress": "0x8c9fa000",
+      "runtimePosition": [
+        -5.247641,
+        2.7724,
+        71.39801
+      ],
+      "browserPosition": [
+        5.247641,
+        2.7724,
+        71.39801
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 9,
+      "staticDoorIndex": 70,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-012936-frame-2726",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 0,
+      "objectTag": "dor0",
+      "taskAddress": "0x8c929400",
+      "runtimePosition": [
+        -71.7677,
+        0.0724,
+        79.457603
+      ],
+      "browserPosition": [
+        71.7677,
+        0.0724,
+        79.457603
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 25,
+      "staticDoorIndex": 22,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR13_010.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-012936-frame-2726",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 1,
+      "objectTag": "dor1",
+      "taskAddress": "0x8c9297c0",
+      "runtimePosition": [
+        -56.760239,
+        0.0724,
+        44.021336
+      ],
+      "browserPosition": [
+        56.760239,
+        0.0724,
+        44.021336
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        35.496826,
+        0.0
+      ],
+      "runtimeDoorSelector": 35,
+      "staticDoorIndex": 35,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR15_011.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-012936-frame-2726",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 2,
+      "objectTag": "dor2",
+      "taskAddress": "0x8c929b80",
+      "runtimePosition": [
+        -53.875557,
+        0.0724,
+        51.425114
+      ],
+      "browserPosition": [
+        53.875557,
+        0.0724,
+        51.425114
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -144.497681,
+        0.0
+      ],
+      "runtimeDoorSelector": 31,
+      "staticDoorIndex": 36,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_013.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-012936-frame-2726",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 3,
+      "objectTag": "dor3",
+      "taskAddress": "0x8c929f40",
+      "runtimePosition": [
+        -63.242298,
+        0.0827,
+        66.408501
+      ],
+      "browserPosition": [
+        63.242298,
+        0.0827,
+        66.408501
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -90.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 56,
+      "staticDoorIndex": 101,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR15_010.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-012936-frame-2726",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 4,
+      "objectTag": "dor4",
+      "taskAddress": "0x8c92a300",
+      "runtimePosition": [
+        -74.390099,
+        0.2505,
+        68.947693
+      ],
+      "browserPosition": [
+        74.390099,
+        0.2505,
+        68.947693
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -180.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 62,
+      "staticDoorIndex": 24,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR15_009.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-012936-frame-2726",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 5,
+      "objectTag": "dor5",
+      "taskAddress": "0x8c92a6c0",
+      "runtimePosition": [
+        -36.584099,
+        0.0724,
+        35.1745
+      ],
+      "browserPosition": [
+        36.584099,
+        0.0724,
+        35.1745
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 52,
+      "staticDoorIndex": 118,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR05_001.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-012936-frame-2726",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 6,
+      "objectTag": "dor6",
+      "taskAddress": "0x8c92aa80",
+      "runtimePosition": [
+        -52.868057,
+        0.0724,
+        40.178917
+      ],
+      "browserPosition": [
+        52.868057,
+        0.0724,
+        40.178917
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        35.496826,
+        0.0
+      ],
+      "runtimeDoorSelector": 32,
+      "staticDoorIndex": 33,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR05_001.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-012936-frame-2726",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 7,
+      "objectTag": "dor7",
+      "taskAddress": "0x8c92ae40",
+      "runtimePosition": [
+        -68.2295,
+        0.08239,
+        53.425629
+      ],
+      "browserPosition": [
+        68.2295,
+        0.08239,
+        53.425629
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        71.5979,
+        0.0
+      ],
+      "runtimeDoorSelector": 29,
+      "staticDoorIndex": 91,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR12_001.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-012936-frame-2726",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 9,
+      "objectTag": "dor9",
+      "taskAddress": "0x8c9fa000",
+      "runtimePosition": [
+        -9.383801,
+        2.7724,
+        69.625267
+      ],
+      "browserPosition": [
+        9.383801,
+        2.7724,
+        69.625267
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 8,
+      "staticDoorIndex": 68,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013551-frame-6489",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 0,
+      "objectTag": "dor0",
+      "taskAddress": "0x8c929400",
+      "runtimePosition": [
+        -52.868057,
+        0.0724,
+        40.178917
+      ],
+      "browserPosition": [
+        52.868057,
+        0.0724,
+        40.178917
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        35.496826,
+        0.0
+      ],
+      "runtimeDoorSelector": 32,
+      "staticDoorIndex": 33,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR05_001.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013551-frame-6489",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 1,
+      "objectTag": "dor1",
+      "taskAddress": "0x8c9297c0",
+      "runtimePosition": [
+        -97.059059,
+        0.0734,
+        61.789459
+      ],
+      "browserPosition": [
+        97.059059,
+        0.0734,
+        61.789459
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        24.99939,
+        0.0
+      ],
+      "runtimeDoorSelector": 2,
+      "staticDoorIndex": 90,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR13_007.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013551-frame-6489",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 2,
+      "objectTag": "dor2",
+      "taskAddress": "0x8c929b80",
+      "runtimePosition": [
+        -93.6605,
+        0.0724,
+        59.617001
+      ],
+      "browserPosition": [
+        93.6605,
+        0.0724,
+        59.617001
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        15.199585,
+        0.0
+      ],
+      "runtimeDoorSelector": 36,
+      "staticDoorIndex": 4,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_012.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013551-frame-6489",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 3,
+      "objectTag": "dor3",
+      "taskAddress": "0x8c929f40",
+      "runtimePosition": [
+        -95.345993,
+        0.0724,
+        67.7024
+      ],
+      "browserPosition": [
+        95.345993,
+        0.0724,
+        67.7024
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -154.995117,
+        0.0
+      ],
+      "runtimeDoorSelector": 28,
+      "staticDoorIndex": 9,
+      "staticDoorType": 1,
+      "model": "S1_D000_DR00_002.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013551-frame-6489",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 4,
+      "objectTag": "dor4",
+      "taskAddress": "0x8c92a300",
+      "runtimePosition": [
+        -53.875557,
+        0.0724,
+        51.425114
+      ],
+      "browserPosition": [
+        53.875557,
+        0.0724,
+        51.425114
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -144.497681,
+        0.0
+      ],
+      "runtimeDoorSelector": 31,
+      "staticDoorIndex": 36,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_013.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013551-frame-6489",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 5,
+      "objectTag": "dor5",
+      "taskAddress": "0x8c92a6c0",
+      "runtimePosition": [
+        -93.738541,
+        0.0724,
+        58.395317
+      ],
+      "browserPosition": [
+        93.738541,
+        0.0724,
+        58.395317
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        15.199585,
+        0.0
+      ],
+      "runtimeDoorSelector": 37,
+      "staticDoorIndex": 8,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_014.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013551-frame-6489",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 6,
+      "objectTag": "dor6",
+      "taskAddress": "0x8c92aa80",
+      "runtimePosition": [
+        -68.2295,
+        0.08239,
+        53.425629
+      ],
+      "browserPosition": [
+        68.2295,
+        0.08239,
+        53.425629
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        71.5979,
+        0.0
+      ],
+      "runtimeDoorSelector": 29,
+      "staticDoorIndex": 91,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR12_001.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013551-frame-6489",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 7,
+      "objectTag": "dor7",
+      "taskAddress": "0x8c92ae40",
+      "runtimePosition": [
+        -63.242298,
+        0.0827,
+        66.408501
+      ],
+      "browserPosition": [
+        63.242298,
+        0.0827,
+        66.408501
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -90.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 56,
+      "staticDoorIndex": 101,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR15_010.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013551-frame-6489",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 9,
+      "objectTag": "dor9",
+      "taskAddress": "0x8c9fa000",
+      "runtimePosition": [
+        -53.391666,
+        0.072396,
+        80.616402
+      ],
+      "browserPosition": [
+        53.391666,
+        0.072396,
+        80.616402
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        28.097534,
+        0.0
+      ],
+      "runtimeDoorSelector": 59,
+      "staticDoorIndex": 115,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_015.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013556-frame-6592",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 0,
+      "objectTag": "dor0",
+      "taskAddress": "0x8c929400",
+      "runtimePosition": [
+        -14.397702,
+        0.0724,
+        28.168093
+      ],
+      "browserPosition": [
+        14.397702,
+        0.0724,
+        28.168093
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        39.094849,
+        0.0
+      ],
+      "runtimeDoorSelector": 38,
+      "staticDoorIndex": 32,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR06_008.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013556-frame-6592",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 1,
+      "objectTag": "dor1",
+      "taskAddress": "0x8c9297c0",
+      "runtimePosition": [
+        -5.409301,
+        0.0724,
+        25.799999
+      ],
+      "browserPosition": [
+        5.409301,
+        0.0724,
+        25.799999
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 40,
+      "staticDoorIndex": 30,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR06_007.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013556-frame-6592",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 2,
+      "objectTag": "dor2",
+      "taskAddress": "0x8c929b80",
+      "runtimePosition": [
+        14.29,
+        0.07,
+        35.618
+      ],
+      "browserPosition": [
+        -14.29,
+        0.07,
+        35.618
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -180.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 42,
+      "staticDoorIndex": 92,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_013.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013556-frame-6592",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 3,
+      "objectTag": "dor3",
+      "taskAddress": "0x8c929f40",
+      "runtimePosition": [
+        22.358902,
+        0.0724,
+        32.833599
+      ],
+      "browserPosition": [
+        -22.358902,
+        0.0724,
+        32.833599
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -180.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 64,
+      "staticDoorIndex": 28,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR17_002.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013556-frame-6592",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 4,
+      "objectTag": "dor4",
+      "taskAddress": "0x8c92a300",
+      "runtimePosition": [
+        -10.311799,
+        0.0724,
+        24.0
+      ],
+      "browserPosition": [
+        10.311799,
+        0.0724,
+        24.0
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 41,
+      "staticDoorIndex": 2,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR05_001.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013556-frame-6592",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 5,
+      "objectTag": "dor5",
+      "taskAddress": "0x8c92a6c0",
+      "runtimePosition": [
+        6.338201,
+        0.0724,
+        25.809999
+      ],
+      "browserPosition": [
+        -6.338201,
+        0.0724,
+        25.809999
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 48,
+      "staticDoorIndex": 29,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR13_009.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013556-frame-6592",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 6,
+      "objectTag": "dor6",
+      "taskAddress": "0x8c92aa80",
+      "runtimePosition": [
+        -20.708447,
+        0.0724,
+        33.008385
+      ],
+      "browserPosition": [
+        20.708447,
+        0.0724,
+        33.008385
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        39.094849,
+        0.0
+      ],
+      "runtimeDoorSelector": 60,
+      "staticDoorIndex": 39,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR13_012.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013556-frame-6592",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 7,
+      "objectTag": "dor7",
+      "taskAddress": "0x8c92ae40",
+      "runtimePosition": [
+        23.00841,
+        0.0724,
+        23.001627
+      ],
+      "browserPosition": [
+        -23.00841,
+        0.0724,
+        23.001627
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        62.797852,
+        0.0
+      ],
+      "runtimeDoorSelector": 58,
+      "staticDoorIndex": 27,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013556-frame-6592",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 9,
+      "objectTag": "dor9",
+      "taskAddress": "0x8c9fa000",
+      "runtimePosition": [
+        14.29,
+        0.07,
+        32.956589
+      ],
+      "browserPosition": [
+        -14.29,
+        0.07,
+        32.956589
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -180.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 43,
+      "staticDoorIndex": 94,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_014.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013601-frame-6688",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 0,
+      "objectTag": "dor0",
+      "taskAddress": "0x8c929400",
+      "runtimePosition": [
+        14.29,
+        0.07,
+        32.956589
+      ],
+      "browserPosition": [
+        -14.29,
+        0.07,
+        32.956589
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -180.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 43,
+      "staticDoorIndex": 94,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_014.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013601-frame-6688",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 1,
+      "objectTag": "dor1",
+      "taskAddress": "0x8c9297c0",
+      "runtimePosition": [
+        23.00841,
+        0.0724,
+        23.001627
+      ],
+      "browserPosition": [
+        -23.00841,
+        0.0724,
+        23.001627
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        62.797852,
+        0.0
+      ],
+      "runtimeDoorSelector": 58,
+      "staticDoorIndex": 27,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013601-frame-6688",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 2,
+      "objectTag": "dor2",
+      "taskAddress": "0x8c929b80",
+      "runtimePosition": [
+        -5.247641,
+        2.7724,
+        71.39801
+      ],
+      "browserPosition": [
+        5.247641,
+        2.7724,
+        71.39801
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 9,
+      "staticDoorIndex": 70,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013601-frame-6688",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 3,
+      "objectTag": "dor3",
+      "taskAddress": "0x8c929f40",
+      "runtimePosition": [
+        -10.311799,
+        0.0724,
+        24.0
+      ],
+      "browserPosition": [
+        10.311799,
+        0.0724,
+        24.0
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 41,
+      "staticDoorIndex": 2,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR05_001.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013601-frame-6688",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 4,
+      "objectTag": "dor4",
+      "taskAddress": "0x8c92a300",
+      "runtimePosition": [
+        22.358902,
+        0.0724,
+        32.833599
+      ],
+      "browserPosition": [
+        -22.358902,
+        0.0724,
+        32.833599
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -180.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 64,
+      "staticDoorIndex": 28,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR17_002.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013601-frame-6688",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 5,
+      "objectTag": "dor5",
+      "taskAddress": "0x8c92a6c0",
+      "runtimePosition": [
+        -5.409301,
+        0.0724,
+        25.799999
+      ],
+      "browserPosition": [
+        5.409301,
+        0.0724,
+        25.799999
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 40,
+      "staticDoorIndex": 30,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR06_007.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013601-frame-6688",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 6,
+      "objectTag": "dor6",
+      "taskAddress": "0x8c92aa80",
+      "runtimePosition": [
+        14.29,
+        0.07,
+        35.618
+      ],
+      "browserPosition": [
+        -14.29,
+        0.07,
+        35.618
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -180.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 42,
+      "staticDoorIndex": 92,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_013.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013601-frame-6688",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 7,
+      "objectTag": "dor7",
+      "taskAddress": "0x8c92ae40",
+      "runtimePosition": [
+        6.338201,
+        0.0724,
+        25.809999
+      ],
+      "browserPosition": [
+        -6.338201,
+        0.0724,
+        25.809999
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 48,
+      "staticDoorIndex": 29,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR13_009.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013601-frame-6688",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 9,
+      "objectTag": "dor9",
+      "taskAddress": "0x8c9fa000",
+      "runtimePosition": [
+        -9.383801,
+        2.7724,
+        69.625267
+      ],
+      "browserPosition": [
+        9.383801,
+        2.7724,
+        69.625267
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 8,
+      "staticDoorIndex": 68,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013606-frame-6776",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 0,
+      "objectTag": "dor0",
+      "taskAddress": "0x8c929400",
+      "runtimePosition": [
+        14.29,
+        0.07,
+        32.956589
+      ],
+      "browserPosition": [
+        -14.29,
+        0.07,
+        32.956589
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -180.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 43,
+      "staticDoorIndex": 94,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_014.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013606-frame-6776",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 1,
+      "objectTag": "dor1",
+      "taskAddress": "0x8c9297c0",
+      "runtimePosition": [
+        -31.00709,
+        0.0724,
+        85.511566
+      ],
+      "browserPosition": [
+        31.00709,
+        0.0724,
+        85.511566
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -89.994507,
+        0.0
+      ],
+      "runtimeDoorSelector": 6,
+      "staticDoorIndex": 64,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_006.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013606-frame-6776",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 2,
+      "objectTag": "dor2",
+      "taskAddress": "0x8c929b80",
+      "runtimePosition": [
+        -5.247641,
+        2.7724,
+        71.39801
+      ],
+      "browserPosition": [
+        5.247641,
+        2.7724,
+        71.39801
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 9,
+      "staticDoorIndex": 70,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013606-frame-6776",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 3,
+      "objectTag": "dor3",
+      "taskAddress": "0x8c929f40",
+      "runtimePosition": [
+        -10.311799,
+        0.0724,
+        24.0
+      ],
+      "browserPosition": [
+        10.311799,
+        0.0724,
+        24.0
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 41,
+      "staticDoorIndex": 2,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR05_001.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013606-frame-6776",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 4,
+      "objectTag": "dor4",
+      "taskAddress": "0x8c92a300",
+      "runtimePosition": [
+        -9.383801,
+        2.7724,
+        69.625267
+      ],
+      "browserPosition": [
+        9.383801,
+        2.7724,
+        69.625267
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 8,
+      "staticDoorIndex": 68,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013606-frame-6776",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 5,
+      "objectTag": "dor5",
+      "taskAddress": "0x8c92a6c0",
+      "runtimePosition": [
+        -5.409301,
+        0.0724,
+        25.799999
+      ],
+      "browserPosition": [
+        5.409301,
+        0.0724,
+        25.799999
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 40,
+      "staticDoorIndex": 30,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR06_007.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013606-frame-6776",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 6,
+      "objectTag": "dor6",
+      "taskAddress": "0x8c92aa80",
+      "runtimePosition": [
+        -31.00709,
+        2.7724,
+        90.011246
+      ],
+      "browserPosition": [
+        31.00709,
+        2.7724,
+        90.011246
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -89.994507,
+        0.0
+      ],
+      "runtimeDoorSelector": 4,
+      "staticDoorIndex": 60,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013606-frame-6776",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 7,
+      "objectTag": "dor7",
+      "taskAddress": "0x8c92ae40",
+      "runtimePosition": [
+        6.338201,
+        0.0724,
+        25.809999
+      ],
+      "browserPosition": [
+        -6.338201,
+        0.0724,
+        25.809999
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 48,
+      "staticDoorIndex": 29,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR13_009.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013606-frame-6776",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 9,
+      "objectTag": "dor9",
+      "taskAddress": "0x8c9fa000",
+      "runtimePosition": [
+        -9.383801,
+        0.0724,
+        69.625267
+      ],
+      "browserPosition": [
+        9.383801,
+        0.0724,
+        69.625267
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 7,
+      "staticDoorIndex": 66,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013611-frame-6875",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 0,
+      "objectTag": "dor0",
+      "taskAddress": "0x8c929400",
+      "runtimePosition": [
+        -5.247641,
+        0.0724,
+        71.39801
+      ],
+      "browserPosition": [
+        5.247641,
+        0.0724,
+        71.39801
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 10,
+      "staticDoorIndex": 72,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_006.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013611-frame-6875",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 1,
+      "objectTag": "dor1",
+      "taskAddress": "0x8c9297c0",
+      "runtimePosition": [
+        -30.733089,
+        0.0724,
+        71.916801
+      ],
+      "browserPosition": [
+        30.733089,
+        0.0724,
+        71.916801
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 33,
+      "staticDoorIndex": 76,
+      "staticDoorType": 1,
+      "model": "S1_D000_DR00_002.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013611-frame-6875",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 2,
+      "objectTag": "dor2",
+      "taskAddress": "0x8c929b80",
+      "runtimePosition": [
+        -5.247641,
+        2.7724,
+        71.39801
+      ],
+      "browserPosition": [
+        5.247641,
+        2.7724,
+        71.39801
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 9,
+      "staticDoorIndex": 70,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013611-frame-6875",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 3,
+      "objectTag": "dor3",
+      "taskAddress": "0x8c929f40",
+      "runtimePosition": [
+        -10.311799,
+        0.0724,
+        24.0
+      ],
+      "browserPosition": [
+        10.311799,
+        0.0724,
+        24.0
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 41,
+      "staticDoorIndex": 2,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR05_001.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013611-frame-6875",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 4,
+      "objectTag": "dor4",
+      "taskAddress": "0x8c92a300",
+      "runtimePosition": [
+        -9.383801,
+        2.7724,
+        69.625267
+      ],
+      "browserPosition": [
+        9.383801,
+        2.7724,
+        69.625267
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 8,
+      "staticDoorIndex": 68,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013611-frame-6875",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 5,
+      "objectTag": "dor5",
+      "taskAddress": "0x8c92a6c0",
+      "runtimePosition": [
+        -5.409301,
+        0.0724,
+        25.799999
+      ],
+      "browserPosition": [
+        5.409301,
+        0.0724,
+        25.799999
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 40,
+      "staticDoorIndex": 30,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR06_007.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013611-frame-6875",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 6,
+      "objectTag": "dor6",
+      "taskAddress": "0x8c92aa80",
+      "runtimePosition": [
+        -36.584099,
+        0.0724,
+        35.1745
+      ],
+      "browserPosition": [
+        36.584099,
+        0.0724,
+        35.1745
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 52,
+      "staticDoorIndex": 118,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR05_001.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013611-frame-6875",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 7,
+      "objectTag": "dor7",
+      "taskAddress": "0x8c92ae40",
+      "runtimePosition": [
+        -9.383801,
+        0.0724,
+        69.625267
+      ],
+      "browserPosition": [
+        9.383801,
+        0.0724,
+        69.625267
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 7,
+      "staticDoorIndex": 66,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013611-frame-6875",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 9,
+      "objectTag": "dor9",
+      "taskAddress": "0x8c9fa000",
+      "runtimePosition": [
+        -18.435373,
+        0.072397,
+        72.516792
+      ],
+      "browserPosition": [
+        18.435373,
+        0.072397,
+        72.516792
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 61,
+      "staticDoorIndex": 105,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_020.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013616-frame-6978",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 0,
+      "objectTag": "dor0",
+      "taskAddress": "0x8c929400",
+      "runtimePosition": [
+        -14.397702,
+        0.0724,
+        28.168093
+      ],
+      "browserPosition": [
+        14.397702,
+        0.0724,
+        28.168093
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        39.094849,
+        0.0
+      ],
+      "runtimeDoorSelector": 38,
+      "staticDoorIndex": 32,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR06_008.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013616-frame-6978",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 1,
+      "objectTag": "dor1",
+      "taskAddress": "0x8c9297c0",
+      "runtimePosition": [
+        -53.875557,
+        0.0724,
+        51.425114
+      ],
+      "browserPosition": [
+        53.875557,
+        0.0724,
+        51.425114
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -144.497681,
+        0.0
+      ],
+      "runtimeDoorSelector": 31,
+      "staticDoorIndex": 36,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_013.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013616-frame-6978",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 2,
+      "objectTag": "dor2",
+      "taskAddress": "0x8c929b80",
+      "runtimePosition": [
+        -20.708447,
+        0.0724,
+        33.008385
+      ],
+      "browserPosition": [
+        20.708447,
+        0.0724,
+        33.008385
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        39.094849,
+        0.0
+      ],
+      "runtimeDoorSelector": 60,
+      "staticDoorIndex": 39,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR13_012.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013616-frame-6978",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 3,
+      "objectTag": "dor3",
+      "taskAddress": "0x8c929f40",
+      "runtimePosition": [
+        -52.868057,
+        0.0724,
+        40.178917
+      ],
+      "browserPosition": [
+        52.868057,
+        0.0724,
+        40.178917
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        35.496826,
+        0.0
+      ],
+      "runtimeDoorSelector": 32,
+      "staticDoorIndex": 33,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR05_001.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013616-frame-6978",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 4,
+      "objectTag": "dor4",
+      "taskAddress": "0x8c92a300",
+      "runtimePosition": [
+        -9.383801,
+        2.7724,
+        69.625267
+      ],
+      "browserPosition": [
+        9.383801,
+        2.7724,
+        69.625267
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 8,
+      "staticDoorIndex": 68,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013616-frame-6978",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 5,
+      "objectTag": "dor5",
+      "taskAddress": "0x8c92a6c0",
+      "runtimePosition": [
+        -36.584099,
+        0.0724,
+        35.1745
+      ],
+      "browserPosition": [
+        36.584099,
+        0.0724,
+        35.1745
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 52,
+      "staticDoorIndex": 118,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR05_001.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013616-frame-6978",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 6,
+      "objectTag": "dor6",
+      "taskAddress": "0x8c92aa80",
+      "runtimePosition": [
+        -68.2295,
+        0.08239,
+        53.425629
+      ],
+      "browserPosition": [
+        68.2295,
+        0.08239,
+        53.425629
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        71.5979,
+        0.0
+      ],
+      "runtimeDoorSelector": 29,
+      "staticDoorIndex": 91,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR12_001.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013616-frame-6978",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 7,
+      "objectTag": "dor7",
+      "taskAddress": "0x8c92ae40",
+      "runtimePosition": [
+        -9.383801,
+        0.0724,
+        69.625267
+      ],
+      "browserPosition": [
+        9.383801,
+        0.0724,
+        69.625267
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 7,
+      "staticDoorIndex": 66,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013616-frame-6978",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 9,
+      "objectTag": "dor9",
+      "taskAddress": "0x8c9fa000",
+      "runtimePosition": [
+        -56.760239,
+        0.0724,
+        44.021336
+      ],
+      "browserPosition": [
+        56.760239,
+        0.0724,
+        44.021336
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        35.496826,
+        0.0
+      ],
+      "runtimeDoorSelector": 35,
+      "staticDoorIndex": 35,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR15_011.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013621-frame-7092",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 0,
+      "objectTag": "dor0",
+      "taskAddress": "0x8c929400",
+      "runtimePosition": [
+        -14.397702,
+        0.0724,
+        28.168093
+      ],
+      "browserPosition": [
+        14.397702,
+        0.0724,
+        28.168093
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        39.094849,
+        0.0
+      ],
+      "runtimeDoorSelector": 38,
+      "staticDoorIndex": 32,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR06_008.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013621-frame-7092",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 1,
+      "objectTag": "dor1",
+      "taskAddress": "0x8c9297c0",
+      "runtimePosition": [
+        -31.00709,
+        2.7724,
+        85.511566
+      ],
+      "browserPosition": [
+        31.00709,
+        2.7724,
+        85.511566
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -89.994507,
+        0.0
+      ],
+      "runtimeDoorSelector": 5,
+      "staticDoorIndex": 62,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013621-frame-7092",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 2,
+      "objectTag": "dor2",
+      "taskAddress": "0x8c929b80",
+      "runtimePosition": [
+        -97.059059,
+        0.0734,
+        61.789459
+      ],
+      "browserPosition": [
+        97.059059,
+        0.0734,
+        61.789459
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        24.99939,
+        0.0
+      ],
+      "runtimeDoorSelector": 2,
+      "staticDoorIndex": 90,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR13_007.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013621-frame-7092",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 3,
+      "objectTag": "dor3",
+      "taskAddress": "0x8c929f40",
+      "runtimePosition": [
+        -31.00709,
+        0.0724,
+        90.011246
+      ],
+      "browserPosition": [
+        31.00709,
+        0.0724,
+        90.011246
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -89.994507,
+        0.0
+      ],
+      "runtimeDoorSelector": 3,
+      "staticDoorIndex": 40,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013621-frame-7092",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 4,
+      "objectTag": "dor4",
+      "taskAddress": "0x8c92a300",
+      "runtimePosition": [
+        -9.383801,
+        2.7724,
+        69.625267
+      ],
+      "browserPosition": [
+        9.383801,
+        2.7724,
+        69.625267
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 8,
+      "staticDoorIndex": 68,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013621-frame-7092",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 5,
+      "objectTag": "dor5",
+      "taskAddress": "0x8c92a6c0",
+      "runtimePosition": [
+        -10.311799,
+        0.0724,
+        24.0
+      ],
+      "browserPosition": [
+        10.311799,
+        0.0724,
+        24.0
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 41,
+      "staticDoorIndex": 2,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR05_001.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013621-frame-7092",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 6,
+      "objectTag": "dor6",
+      "taskAddress": "0x8c92aa80",
+      "runtimePosition": [
+        -31.00709,
+        0.0724,
+        85.511566
+      ],
+      "browserPosition": [
+        31.00709,
+        0.0724,
+        85.511566
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -89.994507,
+        0.0
+      ],
+      "runtimeDoorSelector": 6,
+      "staticDoorIndex": 64,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_006.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013621-frame-7092",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 7,
+      "objectTag": "dor7",
+      "taskAddress": "0x8c92ae40",
+      "runtimePosition": [
+        -9.383801,
+        0.0724,
+        69.625267
+      ],
+      "browserPosition": [
+        9.383801,
+        0.0724,
+        69.625267
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 7,
+      "staticDoorIndex": 66,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013621-frame-7092",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 9,
+      "objectTag": "dor9",
+      "taskAddress": "0x8c9fa000",
+      "runtimePosition": [
+        -31.00709,
+        2.7724,
+        90.011246
+      ],
+      "browserPosition": [
+        31.00709,
+        2.7724,
+        90.011246
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -89.994507,
+        0.0
+      ],
+      "runtimeDoorSelector": 4,
+      "staticDoorIndex": 60,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013635-frame-7370",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 0,
+      "objectTag": "dor0",
+      "taskAddress": "0x8c929400",
+      "runtimePosition": [
+        -30.733089,
+        0.0724,
+        71.916801
+      ],
+      "browserPosition": [
+        30.733089,
+        0.0724,
+        71.916801
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 33,
+      "staticDoorIndex": 76,
+      "staticDoorType": 1,
+      "model": "S1_D000_DR00_002.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013635-frame-7370",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 1,
+      "objectTag": "dor1",
+      "taskAddress": "0x8c9297c0",
+      "runtimePosition": [
+        -10.311799,
+        0.0724,
+        24.0
+      ],
+      "browserPosition": [
+        10.311799,
+        0.0724,
+        24.0
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 41,
+      "staticDoorIndex": 2,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR05_001.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013635-frame-7370",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 2,
+      "objectTag": "dor2",
+      "taskAddress": "0x8c929b80",
+      "runtimePosition": [
+        -36.584099,
+        0.0724,
+        35.1745
+      ],
+      "browserPosition": [
+        36.584099,
+        0.0724,
+        35.1745
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 52,
+      "staticDoorIndex": 118,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR05_001.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013635-frame-7370",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 3,
+      "objectTag": "dor3",
+      "taskAddress": "0x8c929f40",
+      "runtimePosition": [
+        -5.409301,
+        0.0724,
+        25.799999
+      ],
+      "browserPosition": [
+        5.409301,
+        0.0724,
+        25.799999
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 40,
+      "staticDoorIndex": 30,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR06_007.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013635-frame-7370",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 4,
+      "objectTag": "dor4",
+      "taskAddress": "0x8c92a300",
+      "runtimePosition": [
+        -20.708447,
+        0.0724,
+        33.008385
+      ],
+      "browserPosition": [
+        20.708447,
+        0.0724,
+        33.008385
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        39.094849,
+        0.0
+      ],
+      "runtimeDoorSelector": 60,
+      "staticDoorIndex": 39,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR13_012.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013635-frame-7370",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 5,
+      "objectTag": "dor5",
+      "taskAddress": "0x8c92a6c0",
+      "runtimePosition": [
+        -9.383801,
+        0.0724,
+        69.625267
+      ],
+      "browserPosition": [
+        9.383801,
+        0.0724,
+        69.625267
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 7,
+      "staticDoorIndex": 66,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013635-frame-7370",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 6,
+      "objectTag": "dor6",
+      "taskAddress": "0x8c92aa80",
+      "runtimePosition": [
+        -9.383801,
+        2.7724,
+        69.625267
+      ],
+      "browserPosition": [
+        9.383801,
+        2.7724,
+        69.625267
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 8,
+      "staticDoorIndex": 68,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013635-frame-7370",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 7,
+      "objectTag": "dor7",
+      "taskAddress": "0x8c92ae40",
+      "runtimePosition": [
+        -5.247641,
+        2.7724,
+        71.39801
+      ],
+      "browserPosition": [
+        5.247641,
+        2.7724,
+        71.39801
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 9,
+      "staticDoorIndex": 70,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013635-frame-7370",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 9,
+      "objectTag": "dor9",
+      "taskAddress": "0x8c9fa000",
+      "runtimePosition": [
+        -52.868057,
+        0.0724,
+        40.178917
+      ],
+      "browserPosition": [
+        52.868057,
+        0.0724,
+        40.178917
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        35.496826,
+        0.0
+      ],
+      "runtimeDoorSelector": 32,
+      "staticDoorIndex": 33,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR05_001.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013640-frame-7479",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 0,
+      "objectTag": "dor0",
+      "taskAddress": "0x8c929400",
+      "runtimePosition": [
+        -9.383801,
+        2.7724,
+        69.625267
+      ],
+      "browserPosition": [
+        9.383801,
+        2.7724,
+        69.625267
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 8,
+      "staticDoorIndex": 68,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013640-frame-7479",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 1,
+      "objectTag": "dor1",
+      "taskAddress": "0x8c9297c0",
+      "runtimePosition": [
+        -31.00709,
+        2.7724,
+        90.011246
+      ],
+      "browserPosition": [
+        31.00709,
+        2.7724,
+        90.011246
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -89.994507,
+        0.0
+      ],
+      "runtimeDoorSelector": 4,
+      "staticDoorIndex": 60,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013640-frame-7479",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 2,
+      "objectTag": "dor2",
+      "taskAddress": "0x8c929b80",
+      "runtimePosition": [
+        -5.247641,
+        2.7724,
+        71.39801
+      ],
+      "browserPosition": [
+        5.247641,
+        2.7724,
+        71.39801
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 9,
+      "staticDoorIndex": 70,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013640-frame-7479",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 3,
+      "objectTag": "dor3",
+      "taskAddress": "0x8c929f40",
+      "runtimePosition": [
+        -97.059059,
+        0.0734,
+        61.789459
+      ],
+      "browserPosition": [
+        97.059059,
+        0.0734,
+        61.789459
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        24.99939,
+        0.0
+      ],
+      "runtimeDoorSelector": 2,
+      "staticDoorIndex": 90,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR13_007.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013640-frame-7479",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 4,
+      "objectTag": "dor4",
+      "taskAddress": "0x8c92a300",
+      "runtimePosition": [
+        -31.00709,
+        0.0724,
+        90.011246
+      ],
+      "browserPosition": [
+        31.00709,
+        0.0724,
+        90.011246
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -89.994507,
+        0.0
+      ],
+      "runtimeDoorSelector": 3,
+      "staticDoorIndex": 40,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013640-frame-7479",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 5,
+      "objectTag": "dor5",
+      "taskAddress": "0x8c92a6c0",
+      "runtimePosition": [
+        -56.760239,
+        0.0724,
+        44.021336
+      ],
+      "browserPosition": [
+        56.760239,
+        0.0724,
+        44.021336
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        35.496826,
+        0.0
+      ],
+      "runtimeDoorSelector": 35,
+      "staticDoorIndex": 35,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR15_011.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013640-frame-7479",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 6,
+      "objectTag": "dor6",
+      "taskAddress": "0x8c92aa80",
+      "runtimePosition": [
+        -31.00709,
+        0.0724,
+        85.511566
+      ],
+      "browserPosition": [
+        31.00709,
+        0.0724,
+        85.511566
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -89.994507,
+        0.0
+      ],
+      "runtimeDoorSelector": 6,
+      "staticDoorIndex": 64,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_006.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013640-frame-7479",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 7,
+      "objectTag": "dor7",
+      "taskAddress": "0x8c92ae40",
+      "runtimePosition": [
+        -9.383801,
+        0.0724,
+        69.625267
+      ],
+      "browserPosition": [
+        9.383801,
+        0.0724,
+        69.625267
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 7,
+      "staticDoorIndex": 66,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013640-frame-7479",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 9,
+      "objectTag": "dor9",
+      "taskAddress": "0x8c9fa000",
+      "runtimePosition": [
+        -52.868057,
+        0.0724,
+        40.178917
+      ],
+      "browserPosition": [
+        52.868057,
+        0.0724,
+        40.178917
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        35.496826,
+        0.0
+      ],
+      "runtimeDoorSelector": 32,
+      "staticDoorIndex": 33,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR05_001.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013645-frame-7568",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 0,
+      "objectTag": "dor0",
+      "taskAddress": "0x8c929400",
+      "runtimePosition": [
+        -53.391666,
+        0.072396,
+        80.616402
+      ],
+      "browserPosition": [
+        53.391666,
+        0.072396,
+        80.616402
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        28.097534,
+        0.0
+      ],
+      "runtimeDoorSelector": 59,
+      "staticDoorIndex": 115,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_015.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013645-frame-7568",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 1,
+      "objectTag": "dor1",
+      "taskAddress": "0x8c9297c0",
+      "runtimePosition": [
+        -63.242298,
+        0.0827,
+        66.408501
+      ],
+      "browserPosition": [
+        63.242298,
+        0.0827,
+        66.408501
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -90.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 56,
+      "staticDoorIndex": 101,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR15_010.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013645-frame-7568",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 2,
+      "objectTag": "dor2",
+      "taskAddress": "0x8c929b80",
+      "runtimePosition": [
+        -95.345993,
+        0.0724,
+        67.7024
+      ],
+      "browserPosition": [
+        95.345993,
+        0.0724,
+        67.7024
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -154.995117,
+        0.0
+      ],
+      "runtimeDoorSelector": 28,
+      "staticDoorIndex": 9,
+      "staticDoorType": 1,
+      "model": "S1_D000_DR00_002.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013645-frame-7568",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 3,
+      "objectTag": "dor3",
+      "taskAddress": "0x8c929f40",
+      "runtimePosition": [
+        -71.7677,
+        0.0724,
+        79.457603
+      ],
+      "browserPosition": [
+        71.7677,
+        0.0724,
+        79.457603
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 25,
+      "staticDoorIndex": 22,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR13_010.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013645-frame-7568",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 4,
+      "objectTag": "dor4",
+      "taskAddress": "0x8c92a300",
+      "runtimePosition": [
+        -68.2295,
+        0.08239,
+        53.425629
+      ],
+      "browserPosition": [
+        68.2295,
+        0.08239,
+        53.425629
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        71.5979,
+        0.0
+      ],
+      "runtimeDoorSelector": 29,
+      "staticDoorIndex": 91,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR12_001.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013645-frame-7568",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 5,
+      "objectTag": "dor5",
+      "taskAddress": "0x8c92a6c0",
+      "runtimePosition": [
+        -56.760239,
+        0.0724,
+        44.021336
+      ],
+      "browserPosition": [
+        56.760239,
+        0.0724,
+        44.021336
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        35.496826,
+        0.0
+      ],
+      "runtimeDoorSelector": 35,
+      "staticDoorIndex": 35,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR15_011.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013645-frame-7568",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 6,
+      "objectTag": "dor6",
+      "taskAddress": "0x8c92aa80",
+      "runtimePosition": [
+        -74.390099,
+        0.2505,
+        68.947693
+      ],
+      "browserPosition": [
+        74.390099,
+        0.2505,
+        68.947693
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -180.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 62,
+      "staticDoorIndex": 24,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR15_009.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013645-frame-7568",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 7,
+      "objectTag": "dor7",
+      "taskAddress": "0x8c92ae40",
+      "runtimePosition": [
+        -97.059059,
+        0.0734,
+        61.789459
+      ],
+      "browserPosition": [
+        97.059059,
+        0.0734,
+        61.789459
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        24.99939,
+        0.0
+      ],
+      "runtimeDoorSelector": 2,
+      "staticDoorIndex": 90,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR13_007.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013645-frame-7568",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 9,
+      "objectTag": "dor9",
+      "taskAddress": "0x8c9fa000",
+      "runtimePosition": [
+        -93.738541,
+        0.0724,
+        58.395317
+      ],
+      "browserPosition": [
+        93.738541,
+        0.0724,
+        58.395317
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        15.199585,
+        0.0
+      ],
+      "runtimeDoorSelector": 37,
+      "staticDoorIndex": 8,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_014.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013650-frame-7633",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 0,
+      "objectTag": "dor0",
+      "taskAddress": "0x8c929400",
+      "runtimePosition": [
+        -126.362854,
+        -1.8,
+        65.0345
+      ],
+      "browserPosition": [
+        126.362854,
+        -1.8,
+        65.0345
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        141.696167,
+        0.0
+      ],
+      "runtimeDoorSelector": 30,
+      "staticDoorIndex": 5,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_016.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013650-frame-7633",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 1,
+      "objectTag": "dor1",
+      "taskAddress": "0x8c9297c0",
+      "runtimePosition": [
+        -111.771889,
+        0.072397,
+        69.613281
+      ],
+      "browserPosition": [
+        111.771889,
+        0.072397,
+        69.613281
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        24.99939,
+        0.0
+      ],
+      "runtimeDoorSelector": 39,
+      "staticDoorIndex": 106,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_008.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013650-frame-7633",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 2,
+      "objectTag": "dor2",
+      "taskAddress": "0x8c929b80",
+      "runtimePosition": [
+        -74.390099,
+        0.2505,
+        68.947693
+      ],
+      "browserPosition": [
+        74.390099,
+        0.2505,
+        68.947693
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -180.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 62,
+      "staticDoorIndex": 24,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR15_009.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013650-frame-7633",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 3,
+      "objectTag": "dor3",
+      "taskAddress": "0x8c929f40",
+      "runtimePosition": [
+        -71.7677,
+        0.0724,
+        79.457603
+      ],
+      "browserPosition": [
+        71.7677,
+        0.0724,
+        79.457603
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 25,
+      "staticDoorIndex": 22,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR13_010.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013650-frame-7633",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 4,
+      "objectTag": "dor4",
+      "taskAddress": "0x8c92a300",
+      "runtimePosition": [
+        -68.2295,
+        0.08239,
+        53.425629
+      ],
+      "browserPosition": [
+        68.2295,
+        0.08239,
+        53.425629
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        71.5979,
+        0.0
+      ],
+      "runtimeDoorSelector": 29,
+      "staticDoorIndex": 91,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR12_001.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013650-frame-7633",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 5,
+      "objectTag": "dor5",
+      "taskAddress": "0x8c92a6c0",
+      "runtimePosition": [
+        -63.242298,
+        0.0827,
+        66.408501
+      ],
+      "browserPosition": [
+        63.242298,
+        0.0827,
+        66.408501
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -90.0,
+        0.0
+      ],
+      "runtimeDoorSelector": 56,
+      "staticDoorIndex": 101,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR15_010.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013650-frame-7633",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 6,
+      "objectTag": "dor6",
+      "taskAddress": "0x8c92aa80",
+      "runtimePosition": [
+        -95.345993,
+        0.0724,
+        67.7024
+      ],
+      "browserPosition": [
+        95.345993,
+        0.0724,
+        67.7024
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -154.995117,
+        0.0
+      ],
+      "runtimeDoorSelector": 28,
+      "staticDoorIndex": 9,
+      "staticDoorType": 1,
+      "model": "S1_D000_DR00_002.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013650-frame-7633",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 7,
+      "objectTag": "dor7",
+      "taskAddress": "0x8c92ae40",
+      "runtimePosition": [
+        -93.738541,
+        0.0724,
+        58.395317
+      ],
+      "browserPosition": [
+        93.738541,
+        0.0724,
+        58.395317
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        15.199585,
+        0.0
+      ],
+      "runtimeDoorSelector": 37,
+      "staticDoorIndex": 8,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_014.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013650-frame-7633",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 9,
+      "objectTag": "dor9",
+      "taskAddress": "0x8c9fa000",
+      "runtimePosition": [
+        -97.059059,
+        0.0734,
+        61.789459
+      ],
+      "browserPosition": [
+        97.059059,
+        0.0734,
+        61.789459
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        24.99939,
+        0.0
+      ],
+      "runtimeDoorSelector": 2,
+      "staticDoorIndex": 90,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR13_007.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013655-frame-7728",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 0,
+      "objectTag": "dor0",
+      "taskAddress": "0x8c929400",
+      "runtimePosition": [
+        -9.383801,
+        0.0724,
+        69.625267
+      ],
+      "browserPosition": [
+        9.383801,
+        0.0724,
+        69.625267
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 7,
+      "staticDoorIndex": 66,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013655-frame-7728",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 1,
+      "objectTag": "dor1",
+      "taskAddress": "0x8c9297c0",
+      "runtimePosition": [
+        -5.247641,
+        2.7724,
+        71.39801
+      ],
+      "browserPosition": [
+        5.247641,
+        2.7724,
+        71.39801
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 9,
+      "staticDoorIndex": 70,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013655-frame-7728",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 2,
+      "objectTag": "dor2",
+      "taskAddress": "0x8c929b80",
+      "runtimePosition": [
+        -31.00709,
+        0.0724,
+        90.011246
+      ],
+      "browserPosition": [
+        31.00709,
+        0.0724,
+        90.011246
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -89.994507,
+        0.0
+      ],
+      "runtimeDoorSelector": 3,
+      "staticDoorIndex": 40,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013655-frame-7728",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 3,
+      "objectTag": "dor3",
+      "taskAddress": "0x8c929f40",
+      "runtimePosition": [
+        -9.383801,
+        2.7724,
+        69.625267
+      ],
+      "browserPosition": [
+        9.383801,
+        2.7724,
+        69.625267
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 8,
+      "staticDoorIndex": 68,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013655-frame-7728",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 4,
+      "objectTag": "dor4",
+      "taskAddress": "0x8c92a300",
+      "runtimePosition": [
+        -31.00709,
+        2.7724,
+        90.011246
+      ],
+      "browserPosition": [
+        31.00709,
+        2.7724,
+        90.011246
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -89.994507,
+        0.0
+      ],
+      "runtimeDoorSelector": 4,
+      "staticDoorIndex": 60,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013655-frame-7728",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 5,
+      "objectTag": "dor5",
+      "taskAddress": "0x8c92a6c0",
+      "runtimePosition": [
+        -31.00709,
+        2.7724,
+        85.511566
+      ],
+      "browserPosition": [
+        31.00709,
+        2.7724,
+        85.511566
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -89.994507,
+        0.0
+      ],
+      "runtimeDoorSelector": 5,
+      "staticDoorIndex": 62,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013655-frame-7728",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 6,
+      "objectTag": "dor6",
+      "taskAddress": "0x8c92aa80",
+      "runtimePosition": [
+        -31.00709,
+        0.0724,
+        85.511566
+      ],
+      "browserPosition": [
+        31.00709,
+        0.0724,
+        85.511566
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -89.994507,
+        0.0
+      ],
+      "runtimeDoorSelector": 6,
+      "staticDoorIndex": 64,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_006.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013655-frame-7728",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 7,
+      "objectTag": "dor7",
+      "taskAddress": "0x8c92ae40",
+      "runtimePosition": [
+        -93.738541,
+        0.0724,
+        58.395317
+      ],
+      "browserPosition": [
+        93.738541,
+        0.0724,
+        58.395317
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        15.199585,
+        0.0
+      ],
+      "runtimeDoorSelector": 37,
+      "staticDoorIndex": 8,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_014.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013655-frame-7728",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 9,
+      "objectTag": "dor9",
+      "taskAddress": "0x8c9fa000",
+      "runtimePosition": [
+        -97.059059,
+        0.0734,
+        61.789459
+      ],
+      "browserPosition": [
+        97.059059,
+        0.0734,
+        61.789459
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        24.99939,
+        0.0
+      ],
+      "runtimeDoorSelector": 2,
+      "staticDoorIndex": 90,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR13_007.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013700-frame-7838",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 0,
+      "objectTag": "dor0",
+      "taskAddress": "0x8c929400",
+      "runtimePosition": [
+        -99.812065,
+        0.0724,
+        99.813805
+      ],
+      "browserPosition": [
+        99.812065,
+        0.0724,
+        99.813805
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -127.996216,
+        0.0
+      ],
+      "runtimeDoorSelector": 47,
+      "staticDoorIndex": 11,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_006.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013700-frame-7838",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 1,
+      "objectTag": "dor1",
+      "taskAddress": "0x8c9297c0",
+      "runtimePosition": [
+        -5.247641,
+        2.7724,
+        71.39801
+      ],
+      "browserPosition": [
+        5.247641,
+        2.7724,
+        71.39801
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 9,
+      "staticDoorIndex": 70,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013700-frame-7838",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 2,
+      "objectTag": "dor2",
+      "taskAddress": "0x8c929b80",
+      "runtimePosition": [
+        -117.434776,
+        0.0724,
+        85.034241
+      ],
+      "browserPosition": [
+        117.434776,
+        0.0724,
+        85.034241
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -128.397217,
+        0.0
+      ],
+      "runtimeDoorSelector": 26,
+      "staticDoorIndex": 20,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_011.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013700-frame-7838",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 3,
+      "objectTag": "dor3",
+      "taskAddress": "0x8c929f40",
+      "runtimePosition": [
+        -9.383801,
+        2.7724,
+        69.625267
+      ],
+      "browserPosition": [
+        9.383801,
+        2.7724,
+        69.625267
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 8,
+      "staticDoorIndex": 68,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013700-frame-7838",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 4,
+      "objectTag": "dor4",
+      "taskAddress": "0x8c92a300",
+      "runtimePosition": [
+        -111.771889,
+        0.072397,
+        69.613281
+      ],
+      "browserPosition": [
+        111.771889,
+        0.072397,
+        69.613281
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        24.99939,
+        0.0
+      ],
+      "runtimeDoorSelector": 39,
+      "staticDoorIndex": 106,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_008.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013700-frame-7838",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 5,
+      "objectTag": "dor5",
+      "taskAddress": "0x8c92a6c0",
+      "runtimePosition": [
+        -124.66507,
+        0.072396,
+        88.421341
+      ],
+      "browserPosition": [
+        124.66507,
+        0.072396,
+        88.421341
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        101.694946,
+        0.0
+      ],
+      "runtimeDoorSelector": 54,
+      "staticDoorIndex": 112,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_017.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013700-frame-7838",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 6,
+      "objectTag": "dor6",
+      "taskAddress": "0x8c92aa80",
+      "runtimePosition": [
+        -99.812103,
+        2.7724,
+        99.813797
+      ],
+      "browserPosition": [
+        99.812103,
+        2.7724,
+        99.813797
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -127.996216,
+        0.0
+      ],
+      "runtimeDoorSelector": 46,
+      "staticDoorIndex": 14,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_007.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013700-frame-7838",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 7,
+      "objectTag": "dor7",
+      "taskAddress": "0x8c92ae40",
+      "runtimePosition": [
+        -126.362854,
+        -1.8,
+        65.0345
+      ],
+      "browserPosition": [
+        126.362854,
+        -1.8,
+        65.0345
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        141.696167,
+        0.0
+      ],
+      "runtimeDoorSelector": 30,
+      "staticDoorIndex": 5,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_016.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013700-frame-7838",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 9,
+      "objectTag": "dor9",
+      "taskAddress": "0x8c9fa000",
+      "runtimePosition": [
+        -122.646652,
+        0.0724,
+        82.192696
+      ],
+      "browserPosition": [
+        122.646652,
+        0.0724,
+        82.192696
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        51.59729,
+        0.0
+      ],
+      "runtimeDoorSelector": 53,
+      "staticDoorIndex": 0,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_011.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013705-frame-7946",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 0,
+      "objectTag": "dor0",
+      "taskAddress": "0x8c929400",
+      "runtimePosition": [
+        -31.00709,
+        0.0724,
+        85.511566
+      ],
+      "browserPosition": [
+        31.00709,
+        0.0724,
+        85.511566
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -89.994507,
+        0.0
+      ],
+      "runtimeDoorSelector": 6,
+      "staticDoorIndex": 64,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_006.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013705-frame-7946",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 1,
+      "objectTag": "dor1",
+      "taskAddress": "0x8c9297c0",
+      "runtimePosition": [
+        -5.247641,
+        2.7724,
+        71.39801
+      ],
+      "browserPosition": [
+        5.247641,
+        2.7724,
+        71.39801
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 9,
+      "staticDoorIndex": 70,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013705-frame-7946",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 2,
+      "objectTag": "dor2",
+      "taskAddress": "0x8c929b80",
+      "runtimePosition": [
+        -117.434776,
+        0.0724,
+        85.034241
+      ],
+      "browserPosition": [
+        117.434776,
+        0.0724,
+        85.034241
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -128.397217,
+        0.0
+      ],
+      "runtimeDoorSelector": 26,
+      "staticDoorIndex": 20,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_011.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013705-frame-7946",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 3,
+      "objectTag": "dor3",
+      "taskAddress": "0x8c929f40",
+      "runtimePosition": [
+        -9.383801,
+        0.0724,
+        69.625267
+      ],
+      "browserPosition": [
+        9.383801,
+        0.0724,
+        69.625267
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 7,
+      "staticDoorIndex": 66,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013705-frame-7946",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 4,
+      "objectTag": "dor4",
+      "taskAddress": "0x8c92a300",
+      "runtimePosition": [
+        -31.00709,
+        2.7724,
+        90.011246
+      ],
+      "browserPosition": [
+        31.00709,
+        2.7724,
+        90.011246
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -89.994507,
+        0.0
+      ],
+      "runtimeDoorSelector": 4,
+      "staticDoorIndex": 60,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013705-frame-7946",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 5,
+      "objectTag": "dor5",
+      "taskAddress": "0x8c92a6c0",
+      "runtimePosition": [
+        -31.00709,
+        0.0724,
+        90.011246
+      ],
+      "browserPosition": [
+        31.00709,
+        0.0724,
+        90.011246
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -89.994507,
+        0.0
+      ],
+      "runtimeDoorSelector": 3,
+      "staticDoorIndex": 40,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013705-frame-7946",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 6,
+      "objectTag": "dor6",
+      "taskAddress": "0x8c92aa80",
+      "runtimePosition": [
+        -9.383801,
+        2.7724,
+        69.625267
+      ],
+      "browserPosition": [
+        9.383801,
+        2.7724,
+        69.625267
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        -23.197632,
+        0.0
+      ],
+      "runtimeDoorSelector": 8,
+      "staticDoorIndex": 68,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_018.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013705-frame-7946",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 7,
+      "objectTag": "dor7",
+      "taskAddress": "0x8c92ae40",
+      "runtimePosition": [
+        -126.362854,
+        -1.8,
+        65.0345
+      ],
+      "browserPosition": [
+        126.362854,
+        -1.8,
+        65.0345
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        141.696167,
+        0.0
+      ],
+      "runtimeDoorSelector": 30,
+      "staticDoorIndex": 5,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR02_016.MT5",
+      "joinDistance": 0.0
+    },
+    {
+      "capture": "captures/pvr/20260724-013705-frame-7946",
+      "scriptContextAddress": "0x8c49f74c",
+      "slot": 9,
+      "objectTag": "dor9",
+      "taskAddress": "0x8c9fa000",
+      "runtimePosition": [
+        -122.646652,
+        0.0724,
+        82.192696
+      ],
+      "browserPosition": [
+        122.646652,
+        0.0724,
+        82.192696
+      ],
+      "runtimeRotationDegrees": [
+        0.0,
+        51.59729,
+        0.0
+      ],
+      "runtimeDoorSelector": 53,
+      "staticDoorIndex": 0,
+      "staticDoorType": 2,
+      "model": "S1_D000_DR01_011.MT5",
+      "joinDistance": 0.0
+    }
+  ]
+}

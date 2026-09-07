@@ -1,0 +1,3601 @@
+{
+  "schema": "new-yokosuka-d000-door-logic-v1",
+  "source": {
+    "mapinfo": ".disc-work/exact/d000/MAPINFO.BIN",
+    "staticDoors": "tools/evidence/d000-static-door-placements.json",
+    "ram": "captures/pvr/20260724-013823-frame-9042/ram.bin",
+    "observedBindings": "tools/evidence/d000-active-door-bindings.json"
+  },
+  "method": {
+    "logicalRecordCount": 65,
+    "logicalRecordWords": 13,
+    "logicalRecordsOffset": "0xa776c",
+    "placementIndexMapOffset": "0xa84d4",
+    "runtimeLogicalRecordsRamOffset": "0x46ceac",
+    "proxyNormalization": "type-1 mapped record followed by its adjacent type-2 door-leaf record selects the visible record"
+  },
+  "summary": {
+    "logicalDoorCount": 65,
+    "visibleDoorCount": 65,
+    "invisibleProxyPairCount": 19,
+    "observedBindingCount": 40,
+    "observedMismatchCount": 0
+  },
+  "doors": [
+    {
+      "selector": 0,
+      "mappedStaticDoorIndex": 98,
+      "visibleStaticDoorIndex": 99,
+      "usesInvisibleProxy": true,
+      "model": "S1_D000_DR28_001.MT5",
+      "position": [
+        95.490257,
+        0.0724,
+        84.369667
+      ],
+      "rotationDegrees": [
+        0,
+        -24.99939,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa776c",
+        "placementMapEntry": 0,
+        "placementMapOffset": "0xa84d4",
+        "recordWords": [
+          "0x00000000",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46ceac",
+        "recordWords": [
+          "0x00000000",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x000047bd",
+          "0x00000002",
+          "0x00000002",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 1,
+      "mappedStaticDoorIndex": 78,
+      "visibleStaticDoorIndex": 79,
+      "usesInvisibleProxy": true,
+      "model": "S1_D000_DR15_011.MT5",
+      "position": [
+        40.704201,
+        0.0724,
+        74.147003
+      ],
+      "rotationDegrees": [
+        0,
+        -16.199341,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa77a0",
+        "placementMapEntry": 3,
+        "placementMapOffset": "0xa84e0",
+        "recordWords": [
+          "0x00000003",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46cee0",
+        "recordWords": [
+          "0x00000003",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x0000393a",
+          "0x00000001",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 2,
+      "mappedStaticDoorIndex": 90,
+      "visibleStaticDoorIndex": 90,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR13_007.MT5",
+      "position": [
+        97.059059,
+        0.0734,
+        61.789459
+      ],
+      "rotationDegrees": [
+        0,
+        -24.99939,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa77d4",
+        "placementMapEntry": 6,
+        "placementMapOffset": "0xa84ec",
+        "recordWords": [
+          "0x00000006",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46cf14",
+        "recordWords": [
+          "0x00000006",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x000011a9",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 3,
+      "mappedStaticDoorIndex": 40,
+      "visibleStaticDoorIndex": 40,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_018.MT5",
+      "position": [
+        31.00709,
+        0.0724,
+        90.011246
+      ],
+      "rotationDegrees": [
+        0,
+        89.994507,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7808",
+        "placementMapEntry": 8,
+        "placementMapOffset": "0xa84f4",
+        "recordWords": [
+          "0x00000008",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46cf48",
+        "recordWords": [
+          "0x00000008",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x000017cb",
+          "0x00000006",
+          "0x00000001",
+          "0xffffffff",
+          "0x002102ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 4,
+      "mappedStaticDoorIndex": 60,
+      "visibleStaticDoorIndex": 60,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_018.MT5",
+      "position": [
+        31.00709,
+        2.7724,
+        90.011246
+      ],
+      "rotationDegrees": [
+        0,
+        89.994507,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa783c",
+        "placementMapEntry": 11,
+        "placementMapOffset": "0xa8500",
+        "recordWords": [
+          "0x0000000b",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46cf7c",
+        "recordWords": [
+          "0x0000000b",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x000017cb",
+          "0x00000006",
+          "0x00000001",
+          "0xffffffff",
+          "0x002102ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 5,
+      "mappedStaticDoorIndex": 62,
+      "visibleStaticDoorIndex": 62,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_018.MT5",
+      "position": [
+        31.00709,
+        2.7724,
+        85.511566
+      ],
+      "rotationDegrees": [
+        0,
+        89.994507,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7870",
+        "placementMapEntry": 14,
+        "placementMapOffset": "0xa850c",
+        "recordWords": [
+          "0x0000000e",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46cfb0",
+        "recordWords": [
+          "0x0000000e",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00002471",
+          "0x00000006",
+          "0x00000001",
+          "0xffffffff",
+          "0x002102ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 6,
+      "mappedStaticDoorIndex": 64,
+      "visibleStaticDoorIndex": 64,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_006.MT5",
+      "position": [
+        31.00709,
+        0.0724,
+        85.511566
+      ],
+      "rotationDegrees": [
+        0,
+        89.994507,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa78a4",
+        "placementMapEntry": 17,
+        "placementMapOffset": "0xa8518",
+        "recordWords": [
+          "0x00000011",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46cfe4",
+        "recordWords": [
+          "0x00000011",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00002471",
+          "0x00000007",
+          "0x00000001",
+          "0x00000001",
+          "0x002102ab",
+          "0x002902ab",
+          "0x002802ab",
+          "0x4f544148"
+        ]
+      }
+    },
+    {
+      "selector": 7,
+      "mappedStaticDoorIndex": 66,
+      "visibleStaticDoorIndex": 66,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_018.MT5",
+      "position": [
+        9.383801,
+        0.0724,
+        69.625267
+      ],
+      "rotationDegrees": [
+        0,
+        23.197632,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa78d8",
+        "placementMapEntry": 20,
+        "placementMapOffset": "0xa8524",
+        "recordWords": [
+          "0x00000014",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d018",
+        "recordWords": [
+          "0x00000014",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00001a60",
+          "0x00000006",
+          "0x00000001",
+          "0xffffffff",
+          "0x002102ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 8,
+      "mappedStaticDoorIndex": 68,
+      "visibleStaticDoorIndex": 68,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_018.MT5",
+      "position": [
+        9.383801,
+        2.7724,
+        69.625267
+      ],
+      "rotationDegrees": [
+        0,
+        23.197632,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa790c",
+        "placementMapEntry": 23,
+        "placementMapOffset": "0xa8530",
+        "recordWords": [
+          "0x00000017",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d04c",
+        "recordWords": [
+          "0x00000017",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00006812",
+          "0x00000006",
+          "0x00000001",
+          "0xffffffff",
+          "0x002102ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 9,
+      "mappedStaticDoorIndex": 70,
+      "visibleStaticDoorIndex": 70,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_018.MT5",
+      "position": [
+        5.247641,
+        2.7724,
+        71.39801
+      ],
+      "rotationDegrees": [
+        0,
+        23.197632,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7940",
+        "placementMapEntry": 26,
+        "placementMapOffset": "0xa853c",
+        "recordWords": [
+          "0x0000001a",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d080",
+        "recordWords": [
+          "0x0000001a",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00003234",
+          "0x00000006",
+          "0x00000001",
+          "0xffffffff",
+          "0x002102ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 10,
+      "mappedStaticDoorIndex": 72,
+      "visibleStaticDoorIndex": 72,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_006.MT5",
+      "position": [
+        5.247641,
+        0.0724,
+        71.39801
+      ],
+      "rotationDegrees": [
+        0,
+        23.197632,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7974",
+        "placementMapEntry": 29,
+        "placementMapOffset": "0xa8548",
+        "recordWords": [
+          "0x0000001d",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d0b4",
+        "recordWords": [
+          "0x0000001d",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x0000454e",
+          "0x00000006",
+          "0x00000001",
+          "0xffffffff",
+          "0x002102ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 11,
+      "mappedStaticDoorIndex": 74,
+      "visibleStaticDoorIndex": 74,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_006.MT5",
+      "position": [
+        51.747093,
+        0.0724,
+        92.310478
+      ],
+      "rotationDegrees": [
+        0,
+        62.797852,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa79a8",
+        "placementMapEntry": 32,
+        "placementMapOffset": "0xa8554",
+        "recordWords": [
+          "0x00000020",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d0e8",
+        "recordWords": [
+          "0x00000020",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00006060",
+          "0x00000006",
+          "0x00000001",
+          "0xffffffff",
+          "0x002102ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 12,
+      "mappedStaticDoorIndex": 42,
+      "visibleStaticDoorIndex": 42,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_018.MT5",
+      "position": [
+        51.747093,
+        2.7724,
+        92.310478
+      ],
+      "rotationDegrees": [
+        0,
+        62.797852,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa79dc",
+        "placementMapEntry": 35,
+        "placementMapOffset": "0xa8560",
+        "recordWords": [
+          "0x00000023",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d11c",
+        "recordWords": [
+          "0x00000023",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00005df6",
+          "0x00000007",
+          "0x00000001",
+          "0x00000001",
+          "0x002102ab",
+          "0x002902ab",
+          "0x002802ab",
+          "0x524f4f44"
+        ]
+      }
+    },
+    {
+      "selector": 13,
+      "mappedStaticDoorIndex": 44,
+      "visibleStaticDoorIndex": 44,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_018.MT5",
+      "position": [
+        49.690144,
+        0.0724,
+        96.312889
+      ],
+      "rotationDegrees": [
+        0,
+        62.797852,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7a10",
+        "placementMapEntry": 38,
+        "placementMapOffset": "0xa856c",
+        "recordWords": [
+          "0x00000026",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d150",
+        "recordWords": [
+          "0x00000026",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x0000193d",
+          "0x00000006",
+          "0x00000001",
+          "0xffffffff",
+          "0x002102ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 14,
+      "mappedStaticDoorIndex": 46,
+      "visibleStaticDoorIndex": 46,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_018.MT5",
+      "position": [
+        49.690144,
+        2.7724,
+        96.312889
+      ],
+      "rotationDegrees": [
+        0,
+        62.797852,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7a44",
+        "placementMapEntry": 41,
+        "placementMapOffset": "0xa8578",
+        "recordWords": [
+          "0x00000029",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d184",
+        "recordWords": [
+          "0x00000029",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x0000193d",
+          "0x00000007",
+          "0x00000001",
+          "0x00000002",
+          "0x002102ab",
+          "0x002902ab",
+          "0x002802ab",
+          "0x524f4f44"
+        ]
+      }
+    },
+    {
+      "selector": 15,
+      "mappedStaticDoorIndex": 48,
+      "visibleStaticDoorIndex": 48,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_006.MT5",
+      "position": [
+        47.633221,
+        0.0724,
+        100.315262
+      ],
+      "rotationDegrees": [
+        0,
+        62.797852,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7a78",
+        "placementMapEntry": 44,
+        "placementMapOffset": "0xa8584",
+        "recordWords": [
+          "0x0000002c",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d1b8",
+        "recordWords": [
+          "0x0000002c",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00001932",
+          "0x00000007",
+          "0x00000001",
+          "0x00000005",
+          "0x002102ab",
+          "0x002902ab",
+          "0x002802ab",
+          "0x49525559"
+        ]
+      }
+    },
+    {
+      "selector": 16,
+      "mappedStaticDoorIndex": 50,
+      "visibleStaticDoorIndex": 50,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_006.MT5",
+      "position": [
+        47.633221,
+        2.7724,
+        100.315262
+      ],
+      "rotationDegrees": [
+        0,
+        62.797852,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7aac",
+        "placementMapEntry": 47,
+        "placementMapOffset": "0xa8590",
+        "recordWords": [
+          "0x0000002f",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d1ec",
+        "recordWords": [
+          "0x0000002f",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00001932",
+          "0x00000006",
+          "0x00000001",
+          "0xffffffff",
+          "0x002102ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 17,
+      "mappedStaticDoorIndex": 86,
+      "visibleStaticDoorIndex": 86,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_006.MT5",
+      "position": [
+        -42.01281,
+        5.2474,
+        89.753197
+      ],
+      "rotationDegrees": [
+        0,
+        137.999268,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7ae0",
+        "placementMapEntry": 50,
+        "placementMapOffset": "0xa859c",
+        "recordWords": [
+          "0x00000032",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d220",
+        "recordWords": [
+          "0x00000032",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00000000",
+          "0x00000007",
+          "0x00000001",
+          "0x00000000",
+          "0x002102ab",
+          "0x002902ab",
+          "0x002802ab",
+          "0x4f544d4e"
+        ]
+      }
+    },
+    {
+      "selector": 18,
+      "mappedStaticDoorIndex": 52,
+      "visibleStaticDoorIndex": 52,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_006.MT5",
+      "position": [
+        3.060143,
+        0.0724,
+        92.632942
+      ],
+      "rotationDegrees": [
+        0,
+        128.397217,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7b14",
+        "placementMapEntry": 53,
+        "placementMapOffset": "0xa85a8",
+        "recordWords": [
+          "0x00000035",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d254",
+        "recordWords": [
+          "0x00000035",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x000055a3",
+          "0x00000006",
+          "0x00000001",
+          "0xffffffff",
+          "0x002102ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 19,
+      "mappedStaticDoorIndex": 54,
+      "visibleStaticDoorIndex": 54,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_018.MT5",
+      "position": [
+        3.060143,
+        2.7724,
+        92.632942
+      ],
+      "rotationDegrees": [
+        0,
+        128.397217,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7b48",
+        "placementMapEntry": 56,
+        "placementMapOffset": "0xa85b4",
+        "recordWords": [
+          "0x00000038",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d288",
+        "recordWords": [
+          "0x00000038",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00005067",
+          "0x00000006",
+          "0x00000001",
+          "0xffffffff",
+          "0x002102ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 20,
+      "mappedStaticDoorIndex": 80,
+      "visibleStaticDoorIndex": 80,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_018.MT5",
+      "position": [
+        -42.01281,
+        7.9474,
+        89.753197
+      ],
+      "rotationDegrees": [
+        0,
+        137.999268,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7b7c",
+        "placementMapEntry": 59,
+        "placementMapOffset": "0xa85c0",
+        "recordWords": [
+          "0x0000003b",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d2bc",
+        "recordWords": [
+          "0x0000003b",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00000000",
+          "0x00000007",
+          "0x00000001",
+          "0x00000001",
+          "0x002102ab",
+          "0x002902ab",
+          "0x002802ab",
+          "0x49524948"
+        ]
+      }
+    },
+    {
+      "selector": 21,
+      "mappedStaticDoorIndex": 56,
+      "visibleStaticDoorIndex": 56,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_018.MT5",
+      "position": [
+        5.855344,
+        0.0724,
+        96.15963
+      ],
+      "rotationDegrees": [
+        0,
+        128.397217,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7bb0",
+        "placementMapEntry": 62,
+        "placementMapOffset": "0xa85cc",
+        "recordWords": [
+          "0x0000003e",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d2f0",
+        "recordWords": [
+          "0x0000003e",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00000000",
+          "0x00000006",
+          "0x00000001",
+          "0xffffffff",
+          "0x002102ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 22,
+      "mappedStaticDoorIndex": 84,
+      "visibleStaticDoorIndex": 84,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_018.MT5",
+      "position": [
+        -38.668617,
+        5.2474,
+        92.764336
+      ],
+      "rotationDegrees": [
+        0,
+        137.999268,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7be4",
+        "placementMapEntry": 65,
+        "placementMapOffset": "0xa85d8",
+        "recordWords": [
+          "0x00000041",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d324",
+        "recordWords": [
+          "0x00000041",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00000000",
+          "0x00000007",
+          "0x00000001",
+          "0x00000000",
+          "0x002102ab",
+          "0x002902ab",
+          "0x002802ab",
+          "0x4e4d4f4b"
+        ]
+      }
+    },
+    {
+      "selector": 23,
+      "mappedStaticDoorIndex": 58,
+      "visibleStaticDoorIndex": 58,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_018.MT5",
+      "position": [
+        5.855344,
+        2.7724,
+        96.15963
+      ],
+      "rotationDegrees": [
+        0,
+        128.397217,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7c18",
+        "placementMapEntry": 68,
+        "placementMapOffset": "0xa85e4",
+        "recordWords": [
+          "0x00000044",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d358",
+        "recordWords": [
+          "0x00000044",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00000000",
+          "0x00000006",
+          "0x00000001",
+          "0xffffffff",
+          "0x002102ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 24,
+      "mappedStaticDoorIndex": 82,
+      "visibleStaticDoorIndex": 82,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_018.MT5",
+      "position": [
+        -38.668617,
+        7.9474,
+        92.764336
+      ],
+      "rotationDegrees": [
+        0,
+        137.999268,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7c4c",
+        "placementMapEntry": 71,
+        "placementMapOffset": "0xa85f0",
+        "recordWords": [
+          "0x00000047",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d38c",
+        "recordWords": [
+          "0x00000047",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00000000",
+          "0x00000007",
+          "0x00000001",
+          "0x00000000",
+          "0x002102ab",
+          "0x002902ab",
+          "0x002802ab",
+          "0x4f4a4153"
+        ]
+      }
+    },
+    {
+      "selector": 25,
+      "mappedStaticDoorIndex": 21,
+      "visibleStaticDoorIndex": 22,
+      "usesInvisibleProxy": true,
+      "model": "S1_D000_DR13_010.MT5",
+      "position": [
+        71.7677,
+        0.0724,
+        79.457603
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7c80",
+        "placementMapEntry": 74,
+        "placementMapOffset": "0xa85fc",
+        "recordWords": [
+          "0x0000004a",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d3c0",
+        "recordWords": [
+          "0x0000004a",
+          "0x00000120",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x0000217e",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 26,
+      "mappedStaticDoorIndex": 19,
+      "visibleStaticDoorIndex": 20,
+      "usesInvisibleProxy": true,
+      "model": "S1_D000_DR01_011.MT5",
+      "position": [
+        117.434776,
+        0.0724,
+        85.034241
+      ],
+      "rotationDegrees": [
+        0,
+        128.397217,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7cb4",
+        "placementMapEntry": 77,
+        "placementMapOffset": "0xa8608",
+        "recordWords": [
+          "0x0000004d",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d3f4",
+        "recordWords": [
+          "0x0000004d",
+          "0x00000122",
+          "0x00640064",
+          "0x43d69246",
+          "0x4286ba05",
+          "0x00007daf",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 27,
+      "mappedStaticDoorIndex": 97,
+      "visibleStaticDoorIndex": 97,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR02_014.MT5",
+      "position": [
+        65.236916,
+        0.072395,
+        95.27832
+      ],
+      "rotationDegrees": [
+        0,
+        -90,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7ce8",
+        "placementMapEntry": 80,
+        "placementMapOffset": "0xa8614",
+        "recordWords": [
+          "0x00000050",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d428",
+        "recordWords": [
+          "0x00000050",
+          "0x00000122",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00001c6c",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 28,
+      "mappedStaticDoorIndex": 9,
+      "visibleStaticDoorIndex": 10,
+      "usesInvisibleProxy": true,
+      "model": "S1_D000_DR15_013.MT5",
+      "position": [
+        95.345993,
+        0.0724,
+        67.7024
+      ],
+      "rotationDegrees": [
+        0,
+        154.995117,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7d1c",
+        "placementMapEntry": 82,
+        "placementMapOffset": "0xa861c",
+        "recordWords": [
+          "0x00000052",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d45c",
+        "recordWords": [
+          "0x00000052",
+          "0x000001a0",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00001f72",
+          "0x00000005",
+          "0x00000004",
+          "0xffffffff",
+          "0x002402ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 29,
+      "mappedStaticDoorIndex": 91,
+      "visibleStaticDoorIndex": 91,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR12_001.MT5",
+      "position": [
+        68.2295,
+        0.08239,
+        53.425629
+      ],
+      "rotationDegrees": [
+        0,
+        -71.5979,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7d50",
+        "placementMapEntry": 85,
+        "placementMapOffset": "0xa8628",
+        "recordWords": [
+          "0x00000055",
+          "0x00000000",
+          "0x006e006e",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d490",
+        "recordWords": [
+          "0x00000055",
+          "0x00000000",
+          "0x006e006e",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00001eb3",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 30,
+      "mappedStaticDoorIndex": 5,
+      "visibleStaticDoorIndex": 5,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR02_016.MT5",
+      "position": [
+        126.362854,
+        -1.8,
+        65.0345
+      ],
+      "rotationDegrees": [
+        0,
+        -141.696167,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7d84",
+        "placementMapEntry": 87,
+        "placementMapOffset": "0xa8630",
+        "recordWords": [
+          "0x00000057",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d4c4",
+        "recordWords": [
+          "0x00000057",
+          "0x00000002",
+          "0x00640064",
+          "0x43bf03f8",
+          "0x4393758c",
+          "0x00000d8a",
+          "0x00000003",
+          "0x00000002",
+          "0xffffffff",
+          "0x002302ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 31,
+      "mappedStaticDoorIndex": 36,
+      "visibleStaticDoorIndex": 36,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR02_013.MT5",
+      "position": [
+        53.875557,
+        0.0724,
+        51.425114
+      ],
+      "rotationDegrees": [
+        0,
+        144.497681,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7db8",
+        "placementMapEntry": 90,
+        "placementMapOffset": "0xa863c",
+        "recordWords": [
+          "0x0000005a",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d4f8",
+        "recordWords": [
+          "0x0000005a",
+          "0x00000122",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00000c96",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 32,
+      "mappedStaticDoorIndex": 33,
+      "visibleStaticDoorIndex": 33,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR05_001.MT5",
+      "position": [
+        52.868057,
+        0.0724,
+        40.178917
+      ],
+      "rotationDegrees": [
+        0,
+        -35.496826,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7dec",
+        "placementMapEntry": 93,
+        "placementMapOffset": "0xa8648",
+        "recordWords": [
+          "0x0000005d",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d52c",
+        "recordWords": [
+          "0x0000005d",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00001252",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 33,
+      "mappedStaticDoorIndex": 76,
+      "visibleStaticDoorIndex": 77,
+      "usesInvisibleProxy": true,
+      "model": "S1_D000_DR13_008.MT5",
+      "position": [
+        30.733089,
+        0.0724,
+        71.916801
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7e20",
+        "placementMapEntry": 96,
+        "placementMapOffset": "0xa8654",
+        "recordWords": [
+          "0x00000060",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d560",
+        "recordWords": [
+          "0x00000060",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00002220",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 34,
+      "mappedStaticDoorIndex": 116,
+      "visibleStaticDoorIndex": 117,
+      "usesInvisibleProxy": true,
+      "model": "S1_D000_DR13_013.MT5",
+      "position": [
+        115.437263,
+        0.072395,
+        101.619865
+      ],
+      "rotationDegrees": [
+        0,
+        23.499756,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7e54",
+        "placementMapEntry": 99,
+        "placementMapOffset": "0xa8660",
+        "recordWords": [
+          "0x00000063",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d594",
+        "recordWords": [
+          "0x00000063",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00000000",
+          "0x00000003",
+          "0x00000002",
+          "0xffffffff",
+          "0x002302ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 35,
+      "mappedStaticDoorIndex": 35,
+      "visibleStaticDoorIndex": 35,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR15_011.MT5",
+      "position": [
+        56.760239,
+        0.0724,
+        44.021336
+      ],
+      "rotationDegrees": [
+        0,
+        -35.496826,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7e88",
+        "placementMapEntry": 102,
+        "placementMapOffset": "0xa866c",
+        "recordWords": [
+          "0x00000066",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d5c8",
+        "recordWords": [
+          "0x00000066",
+          "0x00000120",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00000af8",
+          "0x00000005",
+          "0x00000004",
+          "0xffffffff",
+          "0x002402ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 36,
+      "mappedStaticDoorIndex": 4,
+      "visibleStaticDoorIndex": 4,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR02_012.MT5",
+      "position": [
+        93.6605,
+        0.0724,
+        59.617001
+      ],
+      "rotationDegrees": [
+        0,
+        -15.199585,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7ebc",
+        "placementMapEntry": 104,
+        "placementMapOffset": "0xa8674",
+        "recordWords": [
+          "0x00000068",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d5fc",
+        "recordWords": [
+          "0x00000068",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00001e6f",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 37,
+      "mappedStaticDoorIndex": 7,
+      "visibleStaticDoorIndex": 8,
+      "usesInvisibleProxy": true,
+      "model": "S1_D000_DR02_014.MT5",
+      "position": [
+        93.738541,
+        0.0724,
+        58.395317
+      ],
+      "rotationDegrees": [
+        0,
+        -15.199585,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7ef0",
+        "placementMapEntry": 106,
+        "placementMapOffset": "0xa867c",
+        "recordWords": [
+          "0x0000006a",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d630",
+        "recordWords": [
+          "0x0000006a",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00001df7",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 38,
+      "mappedStaticDoorIndex": 32,
+      "visibleStaticDoorIndex": 32,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR06_008.MT5",
+      "position": [
+        14.397702,
+        0.0724,
+        28.168093
+      ],
+      "rotationDegrees": [
+        0,
+        -39.094849,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7f24",
+        "placementMapEntry": 109,
+        "placementMapOffset": "0xa8688",
+        "recordWords": [
+          "0x0000006d",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d664",
+        "recordWords": [
+          "0x0000006d",
+          "0x00000122",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x0000053a",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 39,
+      "mappedStaticDoorIndex": 106,
+      "visibleStaticDoorIndex": 106,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_008.MT5",
+      "position": [
+        111.771889,
+        0.072397,
+        69.613281
+      ],
+      "rotationDegrees": [
+        0,
+        -24.99939,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7f58",
+        "placementMapEntry": 111,
+        "placementMapOffset": "0xa8690",
+        "recordWords": [
+          "0x0000006f",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d698",
+        "recordWords": [
+          "0x0000006f",
+          "0x00000120",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00001b5b",
+          "0x00000003",
+          "0x00000002",
+          "0xffffffff",
+          "0x002302ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 40,
+      "mappedStaticDoorIndex": 30,
+      "visibleStaticDoorIndex": 30,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR06_007.MT5",
+      "position": [
+        5.409301,
+        0.0724,
+        25.799999
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7f8c",
+        "placementMapEntry": 114,
+        "placementMapOffset": "0xa869c",
+        "recordWords": [
+          "0x00000072",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d6cc",
+        "recordWords": [
+          "0x00000072",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00001264",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 41,
+      "mappedStaticDoorIndex": 2,
+      "visibleStaticDoorIndex": 2,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR05_001.MT5",
+      "position": [
+        10.311799,
+        0.0724,
+        24
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7fc0",
+        "placementMapEntry": 117,
+        "placementMapOffset": "0xa86a8",
+        "recordWords": [
+          "0x00000075",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d700",
+        "recordWords": [
+          "0x00000075",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00000a4a",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 42,
+      "mappedStaticDoorIndex": 92,
+      "visibleStaticDoorIndex": 92,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR02_013.MT5",
+      "position": [
+        -14.29,
+        0.07,
+        35.618
+      ],
+      "rotationDegrees": [
+        0,
+        180,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa7ff4",
+        "placementMapEntry": 120,
+        "placementMapOffset": "0xa86b4",
+        "recordWords": [
+          "0x00000078",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d734",
+        "recordWords": [
+          "0x00000078",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00002100",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 43,
+      "mappedStaticDoorIndex": 94,
+      "visibleStaticDoorIndex": 94,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR02_014.MT5",
+      "position": [
+        -14.29,
+        0.07,
+        32.956589
+      ],
+      "rotationDegrees": [
+        0,
+        180,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa8028",
+        "placementMapEntry": 123,
+        "placementMapOffset": "0xa86c0",
+        "recordWords": [
+          "0x0000007b",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d768",
+        "recordWords": [
+          "0x0000007b",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00001f01",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 44,
+      "mappedStaticDoorIndex": 17,
+      "visibleStaticDoorIndex": 18,
+      "usesInvisibleProxy": true,
+      "model": "S1_D000_DR01_006.MT5",
+      "position": [
+        103.136002,
+        2.7724,
+        104.069
+      ],
+      "rotationDegrees": [
+        0,
+        127.996216,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa805c",
+        "placementMapEntry": 125,
+        "placementMapOffset": "0xa86c8",
+        "recordWords": [
+          "0x0000007d",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d79c",
+        "recordWords": [
+          "0x0000007d",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00000000",
+          "0x00000007",
+          "0x00000001",
+          "0x00000006",
+          "0x002102ab",
+          "0x002902ab",
+          "0x002802ab",
+          "0x594b554a"
+        ]
+      }
+    },
+    {
+      "selector": 45,
+      "mappedStaticDoorIndex": 15,
+      "visibleStaticDoorIndex": 15,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_006.MT5",
+      "position": [
+        103.136642,
+        0.0724,
+        104.068993
+      ],
+      "rotationDegrees": [
+        0,
+        127.996216,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa8090",
+        "placementMapEntry": 128,
+        "placementMapOffset": "0xa86d4",
+        "recordWords": [
+          "0x00000080",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d7d0",
+        "recordWords": [
+          "0x00000080",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00000000",
+          "0x00000006",
+          "0x00000001",
+          "0xffffffff",
+          "0x002102ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 46,
+      "mappedStaticDoorIndex": 13,
+      "visibleStaticDoorIndex": 14,
+      "usesInvisibleProxy": true,
+      "model": "S1_D000_DR01_007.MT5",
+      "position": [
+        99.812103,
+        2.7724,
+        99.813797
+      ],
+      "rotationDegrees": [
+        0,
+        127.996216,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa80c4",
+        "placementMapEntry": 131,
+        "placementMapOffset": "0xa86e0",
+        "recordWords": [
+          "0x00000083",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d804",
+        "recordWords": [
+          "0x00000083",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00005d62",
+          "0x00000003",
+          "0x00000004",
+          "0xffffffff",
+          "0x002302ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 47,
+      "mappedStaticDoorIndex": 11,
+      "visibleStaticDoorIndex": 11,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_006.MT5",
+      "position": [
+        99.812065,
+        0.0724,
+        99.813805
+      ],
+      "rotationDegrees": [
+        0,
+        127.996216,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa80f8",
+        "placementMapEntry": 134,
+        "placementMapOffset": "0xa86ec",
+        "recordWords": [
+          "0x00000086",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d838",
+        "recordWords": [
+          "0x00000086",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00006007",
+          "0x00000006",
+          "0x00000001",
+          "0xffffffff",
+          "0x002102ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 48,
+      "mappedStaticDoorIndex": 29,
+      "visibleStaticDoorIndex": 29,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR13_009.MT5",
+      "position": [
+        -6.338201,
+        0.0724,
+        25.809999
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa812c",
+        "placementMapEntry": 137,
+        "placementMapOffset": "0xa86f8",
+        "recordWords": [
+          "0x00000089",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d86c",
+        "recordWords": [
+          "0x00000089",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x0000017f",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 49,
+      "mappedStaticDoorIndex": 108,
+      "visibleStaticDoorIndex": 109,
+      "usesInvisibleProxy": true,
+      "model": "S1_D000_DR01_009.MT5",
+      "position": [
+        123.658234,
+        0.072396,
+        96.484764
+      ],
+      "rotationDegrees": [
+        0,
+        -101.694946,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa8160",
+        "placementMapEntry": 139,
+        "placementMapOffset": "0xa8700",
+        "recordWords": [
+          "0x0000008b",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d8a0",
+        "recordWords": [
+          "0x0000008b",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00001c18",
+          "0x00000003",
+          "0x00000002",
+          "0xffffffff",
+          "0x002302ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 50,
+      "mappedStaticDoorIndex": 110,
+      "visibleStaticDoorIndex": 110,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR15_012.MT5",
+      "position": [
+        111.496483,
+        0.072392,
+        103.089706
+      ],
+      "rotationDegrees": [
+        0,
+        -156.494751,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa8194",
+        "placementMapEntry": 142,
+        "placementMapOffset": "0xa870c",
+        "recordWords": [
+          "0x0000008e",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d8d4",
+        "recordWords": [
+          "0x0000008e",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00000000",
+          "0x00000005",
+          "0x00000002",
+          "0xffffffff",
+          "0x002402ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 51,
+      "mappedStaticDoorIndex": 102,
+      "visibleStaticDoorIndex": 102,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR02_019.MT5",
+      "position": [
+        -7.3624,
+        0.072396,
+        84.918999
+      ],
+      "rotationDegrees": [
+        0,
+        38.397217,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa81c8",
+        "placementMapEntry": 145,
+        "placementMapOffset": "0xa8718",
+        "recordWords": [
+          "0x00000091",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d908",
+        "recordWords": [
+          "0x00000091",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00001203",
+          "0x00000001",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 52,
+      "mappedStaticDoorIndex": 118,
+      "visibleStaticDoorIndex": 118,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR05_001.MT5",
+      "position": [
+        36.584099,
+        0.0724,
+        35.1745
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa81fc",
+        "placementMapEntry": 148,
+        "placementMapOffset": "0xa8724",
+        "recordWords": [
+          "0x00000094",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d93c",
+        "recordWords": [
+          "0x00000094",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 53,
+      "mappedStaticDoorIndex": 0,
+      "visibleStaticDoorIndex": 0,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR01_011.MT5",
+      "position": [
+        122.646652,
+        0.0724,
+        82.192696
+      ],
+      "rotationDegrees": [
+        0,
+        -51.59729,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa8230",
+        "placementMapEntry": 151,
+        "placementMapOffset": "0xa8730",
+        "recordWords": [
+          "0x00000097",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d970",
+        "recordWords": [
+          "0x00000097",
+          "0x00000120",
+          "0x00640064",
+          "0x4156e735",
+          "0x410bb4ce",
+          "0x00001067",
+          "0x00000004",
+          "0x00000004",
+          "0xffffffff",
+          "0x002402ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 54,
+      "mappedStaticDoorIndex": 112,
+      "visibleStaticDoorIndex": 112,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR02_017.MT5",
+      "position": [
+        124.66507,
+        0.072396,
+        88.421341
+      ],
+      "rotationDegrees": [
+        0,
+        -101.694946,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa8264",
+        "placementMapEntry": 154,
+        "placementMapOffset": "0xa873c",
+        "recordWords": [
+          "0x0000009a",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d9a4",
+        "recordWords": [
+          "0x0000009a",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x000020ee",
+          "0x00000003",
+          "0x00000002",
+          "0xffffffff",
+          "0x002302ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 55,
+      "mappedStaticDoorIndex": 95,
+      "visibleStaticDoorIndex": 96,
+      "usesInvisibleProxy": true,
+      "model": "S1_D000_DR15_014.MT5",
+      "position": [
+        -20.368959,
+        0.082879,
+        49.165401
+      ],
+      "rotationDegrees": [
+        0,
+        89.994507,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa8298",
+        "placementMapEntry": 157,
+        "placementMapOffset": "0xa8748",
+        "recordWords": [
+          "0x0000009d",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46d9d8",
+        "recordWords": [
+          "0x0000009d",
+          "0x000001a0",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x000062e8",
+          "0x00000005",
+          "0x00000004",
+          "0xffffffff",
+          "0x002402ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 56,
+      "mappedStaticDoorIndex": 100,
+      "visibleStaticDoorIndex": 101,
+      "usesInvisibleProxy": true,
+      "model": "S1_D000_DR15_010.MT5",
+      "position": [
+        63.242298,
+        0.0827,
+        66.408501
+      ],
+      "rotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa82cc",
+        "placementMapEntry": 160,
+        "placementMapOffset": "0xa8754",
+        "recordWords": [
+          "0x000000a0",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46da0c",
+        "recordWords": [
+          "0x000000a0",
+          "0x00000120",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00002bbf",
+          "0x00000005",
+          "0x00000004",
+          "0xffffffff",
+          "0x002402ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 57,
+      "mappedStaticDoorIndex": 25,
+      "visibleStaticDoorIndex": 26,
+      "usesInvisibleProxy": true,
+      "model": "S1_D000_DR01_010.MT5",
+      "position": [
+        -38.998093,
+        0.0724,
+        8.073762
+      ],
+      "rotationDegrees": [
+        0,
+        117.196655,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa8300",
+        "placementMapEntry": 163,
+        "placementMapOffset": "0xa8760",
+        "recordWords": [
+          "0x000000a3",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46da40",
+        "recordWords": [
+          "0x000000a3",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00002696",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 58,
+      "mappedStaticDoorIndex": 27,
+      "visibleStaticDoorIndex": 27,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR02_018.MT5",
+      "position": [
+        -23.00841,
+        0.0724,
+        23.001627
+      ],
+      "rotationDegrees": [
+        0,
+        -62.797852,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa8334",
+        "placementMapEntry": 166,
+        "placementMapOffset": "0xa876c",
+        "recordWords": [
+          "0x000000a6",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46da74",
+        "recordWords": [
+          "0x000000a6",
+          "0x00000120",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x0000176e",
+          "0x00000004",
+          "0x00000004",
+          "0xffffffff",
+          "0x002402ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 59,
+      "mappedStaticDoorIndex": 114,
+      "visibleStaticDoorIndex": 115,
+      "usesInvisibleProxy": true,
+      "model": "S1_D000_DR02_015.MT5",
+      "position": [
+        53.391666,
+        0.072396,
+        80.616402
+      ],
+      "rotationDegrees": [
+        0,
+        -28.097534,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa8368",
+        "placementMapEntry": 168,
+        "placementMapOffset": "0xa8774",
+        "recordWords": [
+          "0x000000a8",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46daa8",
+        "recordWords": [
+          "0x000000a8",
+          "0x00000120",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00002645",
+          "0x00000003",
+          "0x00000004",
+          "0xffffffff",
+          "0x002302ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 60,
+      "mappedStaticDoorIndex": 38,
+      "visibleStaticDoorIndex": 39,
+      "usesInvisibleProxy": true,
+      "model": "S1_D000_DR13_012.MT5",
+      "position": [
+        20.708447,
+        0.0724,
+        33.008385
+      ],
+      "rotationDegrees": [
+        0,
+        -39.094849,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa839c",
+        "placementMapEntry": 171,
+        "placementMapOffset": "0xa8780",
+        "recordWords": [
+          "0x000000ab",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46dadc",
+        "recordWords": [
+          "0x000000ab",
+          "0x00000120",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x000019e8",
+          "0x00000004",
+          "0x00000004",
+          "0xffffffff",
+          "0x002402ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 61,
+      "mappedStaticDoorIndex": 104,
+      "visibleStaticDoorIndex": 105,
+      "usesInvisibleProxy": true,
+      "model": "S1_D000_DR02_020.MT5",
+      "position": [
+        18.435373,
+        0.072397,
+        72.516792
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa83d0",
+        "placementMapEntry": 174,
+        "placementMapOffset": "0xa878c",
+        "recordWords": [
+          "0x000000ae",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46db10",
+        "recordWords": [
+          "0x000000ae",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x000023bc",
+          "0x00000001",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 62,
+      "mappedStaticDoorIndex": 23,
+      "visibleStaticDoorIndex": 24,
+      "usesInvisibleProxy": true,
+      "model": "S1_D000_DR15_009.MT5",
+      "position": [
+        74.390099,
+        0.2505,
+        68.947693
+      ],
+      "rotationDegrees": [
+        0,
+        180,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa8404",
+        "placementMapEntry": 177,
+        "placementMapOffset": "0xa8798",
+        "recordWords": [
+          "0x000000b1",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46db44",
+        "recordWords": [
+          "0x000000b1",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00007ed3",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 63,
+      "mappedStaticDoorIndex": 88,
+      "visibleStaticDoorIndex": 89,
+      "usesInvisibleProxy": true,
+      "model": "S1_D000_DR02_017.MT5",
+      "position": [
+        105.671112,
+        0.0724,
+        92.682182
+      ],
+      "rotationDegrees": [
+        0,
+        -51.59729,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa8438",
+        "placementMapEntry": 180,
+        "placementMapOffset": "0xa87a4",
+        "recordWords": [
+          "0x000000b4",
+          "0x00000000",
+          "0x00640064",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46db78",
+        "recordWords": [
+          "0x000000b4",
+          "0x00000002",
+          "0x00640064",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00004d9f",
+          "0x00000003",
+          "0x00000004",
+          "0xffffffff",
+          "0x002302ab",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    },
+    {
+      "selector": 64,
+      "mappedStaticDoorIndex": 28,
+      "visibleStaticDoorIndex": 28,
+      "usesInvisibleProxy": false,
+      "model": "S1_D000_DR17_002.MT5",
+      "position": [
+        -22.358902,
+        0.0724,
+        32.833599
+      ],
+      "rotationDegrees": [
+        0,
+        180,
+        0
+      ],
+      "source": {
+        "logicalRecordOffset": "0xa846c",
+        "placementMapEntry": 183,
+        "placementMapOffset": "0xa87b0",
+        "recordWords": [
+          "0x000000b7",
+          "0x00000000",
+          "0x00650065",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      },
+      "runtime": {
+        "logicalRecordRamOffset": "0x46dbac",
+        "recordWords": [
+          "0x000000b7",
+          "0x00000120",
+          "0x00650065",
+          "0x47c34ff3",
+          "0x47c34ff3",
+          "0x00000813",
+          "0x00000000",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff",
+          "0xffffffff"
+        ]
+      }
+    }
+  ]
+}

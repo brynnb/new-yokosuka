@@ -1,0 +1,193 @@
+{
+  "schema": "new-yokosuka-native-operation-0047-evidence-v1",
+  "status": "exact-native-efpt-controller-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 71,
+    "operationHex": "0x0047",
+    "tableEntryAddress": "0x0c29aafc",
+    "handlerAddress": "0x0c15feae",
+    "handlerLength": 488,
+    "handlerSha256": "754769128a63165a75a1e3afd1032b5a09c6c83b35e9913a9faf6424895c227c",
+    "resultWriter": "0x0c0bb342",
+    "routes": {
+      "0": {
+        "argumentCount": 6,
+        "helperAddress": "0x0c0b9890"
+      },
+      "1": {
+        "argumentCount": 2,
+        "helperAddress": "0x0c0b5c0c"
+      },
+      "2": {
+        "argumentCount": 2,
+        "helperAddress": "0x0c0b5cc6"
+      },
+      "3": {
+        "argumentCount": 2,
+        "helperAddress": "0x0c0b5af8"
+      },
+      "6": {
+        "argumentCount": 4,
+        "helperAddress": "0x0c0b5e60"
+      },
+      "7": {
+        "argumentCount": 3,
+        "helperAddress": "0x0c0b5ed4"
+      },
+      "10": {
+        "argumentCount": 3,
+        "helperAddress": "0x0c0b60c0"
+      },
+      "13": {
+        "argumentCount": 4,
+        "helperAddress": "0x0c0b5f6e"
+      },
+      "15": {
+        "argumentCount": 1,
+        "helperAddress": "0x0c0b9af0"
+      }
+    }
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 102,
+    "dialogueRegionCallCount": 0,
+    "areaCount": 7,
+    "modeCounts": {
+      "0": 25,
+      "1": 25,
+      "2": 4,
+      "3": 4,
+      "6": 7,
+      "7": 4,
+      "10": 4,
+      "13": 4,
+      "15": 25
+    },
+    "argumentKindCountsByMode": {
+      "0": {
+        "0": {
+          "constant": 25
+        },
+        "1": {
+          "frame-address": 25
+        },
+        "2": {
+          "frame-address": 25
+        },
+        "3": {
+          "constant": 25
+        },
+        "4": {
+          "constant": 25
+        },
+        "5": {
+          "constant": 25
+        }
+      },
+      "1": {
+        "0": {
+          "constant": 25
+        },
+        "1": {
+          "frame-field": 21,
+          "runtime": 1,
+          "scene-field": 3
+        }
+      },
+      "2": {
+        "0": {
+          "constant": 4
+        },
+        "1": {
+          "runtime": 1,
+          "scene-field": 3
+        }
+      },
+      "3": {
+        "0": {
+          "constant": 4
+        },
+        "1": {
+          "runtime": 1,
+          "scene-field": 3
+        }
+      },
+      "6": {
+        "0": {
+          "constant": 7
+        },
+        "1": {
+          "frame-field": 3,
+          "runtime": 1,
+          "scene-field": 3
+        },
+        "2": {
+          "frame-address": 7
+        },
+        "3": {
+          "frame-address": 7
+        }
+      },
+      "7": {
+        "0": {
+          "constant": 4
+        },
+        "1": {
+          "runtime": 1,
+          "scene-field": 3
+        },
+        "2": {
+          "constant": 4
+        }
+      },
+      "10": {
+        "0": {
+          "constant": 4
+        },
+        "1": {
+          "runtime": 1,
+          "scene-field": 3
+        },
+        "2": {
+          "constant": 4
+        }
+      },
+      "13": {
+        "0": {
+          "constant": 4
+        },
+        "1": {
+          "runtime": 1,
+          "scene-field": 3
+        },
+        "2": {
+          "constant": 4
+        },
+        "3": {
+          "constant": 4
+        }
+      },
+      "15": {
+        "0": {
+          "constant": 25
+        }
+      }
+    },
+    "resultTargetCount": 25
+  },
+  "evidenceBoundary": [
+    "Operation 0x0047 owns nine exact authored EFPT routes: 0, 1, 2, 3, 6, 7, 10, 13, and 15.",
+    "Mode zero forwards two three-word vectors, a count word, one raw float32 word, and a control word to the exact EFPT creation helper; it publishes the returned slot handle.",
+    "The native EFPT creator searches exactly eight slots and returns -1 when every slot is occupied.",
+    "Modes one, two, and three forward one handle through separate exact helpers using fixed native controller selector two.",
+    "Mode six forwards one handle and two three-word vectors; modes seven and ten forward one raw float32 word; mode thirteen forwards two raw float32 words.",
+    "Mode fifteen invokes the independent EFPT global reset helper and consumes no handle.",
+    "No authored route other than mode zero consumes a result."
+  ]
+}

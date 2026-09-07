@@ -1,0 +1,219 @@
+{
+  "schema": "new-yokosuka-runtime-placement-instance-audit-v1",
+  "source": {
+    "manifest": "tools/evidence/betd-mapinfo-placements.json",
+    "assetBase": "https://pub-c3aa1dfd53424ee9af1b87ad19954589.r2.dev/shenmue"
+  },
+  "summary": {
+    "expectedPlacementCount": 6,
+    "distinctExpectedPlacementCount": 6,
+    "instantiatedPlacementCount": 6,
+    "rootCount": 6,
+    "renderableVertexCount": 2061,
+    "failedRecordCount": 0,
+    "missingPlacementCount": 0,
+    "status": "verified",
+    "failures": [],
+    "missingPlacementKeys": []
+  },
+  "records": [
+    {
+      "placementId": "DORR-4",
+      "model": "S1_BETD_DDRR1001.MT5",
+      "objectTag": "DORR",
+      "rootIndex": 0,
+      "vertexCount": 344,
+      "renderableMeshCount": 3,
+      "visibleMeshCount": 3,
+      "expectedPosition": [
+        -2.3610000610351562,
+        1.0550999641418457,
+        -23.454700469970703
+      ],
+      "actualPosition": [
+        -2.3610000610351562,
+        1.0550999641418457,
+        -23.454700469970703
+      ],
+      "worldBounds": {
+        "min": [
+          -2.384551269952525,
+          1.0599889643490314,
+          -23.54480145897275
+        ],
+        "max": [
+          -1.3501706975331111,
+          3.0596110820770264,
+          -23.129591123366907
+        ]
+      },
+      "failures": [],
+      "status": "verified"
+    },
+    {
+      "placementId": "DORL-5",
+      "model": "S1_BETD_DDRR1002.MT5",
+      "objectTag": "DORL",
+      "rootIndex": 0,
+      "vertexCount": 428,
+      "renderableMeshCount": 6,
+      "visibleMeshCount": 6,
+      "expectedPosition": [
+        -2.3610000610351562,
+        1.059999942779541,
+        -21.434900283813477
+      ],
+      "actualPosition": [
+        -2.3610000610351562,
+        1.059999942779541,
+        -21.434900283813477
+      ],
+      "worldBounds": {
+        "min": [
+          -2.387563970259737,
+          1.0599989427795435,
+          -21.75996024936934
+        ],
+        "max": [
+          -1.3504565007927112,
+          3.059619903564453,
+          -21.344269088226497
+        ]
+      },
+      "failures": [],
+      "status": "verified"
+    },
+    {
+      "placementId": "SECD-6",
+      "model": "S1_BETD_DKTR101G.MT5",
+      "objectTag": "SECD",
+      "rootIndex": 0,
+      "vertexCount": 353,
+      "renderableMeshCount": 6,
+      "visibleMeshCount": 6,
+      "expectedPosition": [
+        -11.300000190734863,
+        1.1095000505447388,
+        -22.450000762939453
+      ],
+      "actualPosition": [
+        -11.300000190734863,
+        1.1095000505447388,
+        -22.450000762939453
+      ],
+      "worldBounds": {
+        "min": [
+          -11.393374189734459,
+          1.1084920505527407,
+          -23.451000809669495
+        ],
+        "max": [
+          -10.284499168395996,
+          3.0604970455169678,
+          -21.44900071620941
+        ]
+      },
+      "failures": [],
+      "status": "verified"
+    },
+    {
+      "placementId": "GART-7",
+      "model": "S1_BETD_GART201G.MT5",
+      "objectTag": "GART",
+      "rootIndex": 0,
+      "vertexCount": 80,
+      "renderableMeshCount": 3,
+      "visibleMeshCount": 3,
+      "expectedPosition": [
+        -6.805799961090088,
+        3.4744999408721924,
+        -16.572799682617188
+      ],
+      "actualPosition": [
+        -6.805799961090088,
+        3.4744999408721924,
+        -16.572799682617188
+      ],
+      "worldBounds": {
+        "min": [
+          -7.704207956790924,
+          3.2141066155420033,
+          -16.69788023905788
+        ],
+        "max": [
+          -5.907391965389252,
+          3.7348932662023815,
+          -16.447719126176494
+        ]
+      },
+      "failures": [],
+      "status": "verified"
+    },
+    {
+      "placementId": "KAK1-8",
+      "model": "S1_BETD_KAKS509G.MT5",
+      "objectTag": "KAK1",
+      "rootIndex": 0,
+      "vertexCount": 428,
+      "renderableMeshCount": 4,
+      "visibleMeshCount": 4,
+      "expectedPosition": [
+        -11.243900299072266,
+        2.972100019454956,
+        -23.097000122070312
+      ],
+      "actualPosition": [
+        -11.243900299072266,
+        2.972100019454956,
+        -23.097000122070312
+      ],
+      "worldBounds": {
+        "min": [
+          -11.249356299173087,
+          1.1279433707859998,
+          -23.775202670304637
+        ],
+        "max": [
+          -11.211856298148632,
+          2.9828940192237496,
+          -22.788224245584075
+        ]
+      },
+      "failures": [],
+      "status": "verified"
+    },
+    {
+      "placementId": "KAK2-9",
+      "model": "S1_BETD_KAKS505G.MT5",
+      "objectTag": "KAK2",
+      "rootIndex": 0,
+      "vertexCount": 428,
+      "renderableMeshCount": 4,
+      "visibleMeshCount": 4,
+      "expectedPosition": [
+        -11.241999626159668,
+        2.972100019454956,
+        -21.836999893188477
+      ],
+      "actualPosition": [
+        -11.241999626159668,
+        2.972100019454956,
+        -21.836999893188477
+      ],
+      "worldBounds": {
+        "min": [
+          -11.24745562626049,
+          1.1279433707859998,
+          -22.5152024414228
+        ],
+        "max": [
+          -11.209955625236034,
+          2.9828940192237496,
+          -21.52822401670224
+        ]
+      },
+      "failures": [],
+      "status": "verified"
+    }
+  ]
+}

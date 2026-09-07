@@ -1,0 +1,208 @@
+{
+  "schema": "new-yokosuka-dialogue-participant-routes-v1",
+  "evidenceBoundary": [
+    "The current runtime person supplies its participant FOURCC table and authored count. The receiver copies at most eight terminated entries to the active command table.",
+    "Commands 0x032..0x03b dispatch active-table ordinal command-0x031 through native handler 0x0c16175c. Commands 0x08c..0x095 write ordinal command-0x08b to the selected-participant slot and set its flag.",
+    "For an enabled 0x032..0x03b participant, handler 0x0c16175c records the selected FOURCC, resets prior target and AKIR control, and submits an actor motion-point request at the participant's current position minus 0.001 on native X with native up axis [0,1,0].",
+    "A natural Flycast conversation independently reached this path and supplied the exact self-offset point without guest writes or artificial handler calls; animation naming and timing remain unassigned.",
+    "Commands 0x028..0x031 execute the separate native pair-selection handler. That handler selects two distinct entries from ordinals 1..3, except 0x02a fixes ordinals 1 and 2. Its later consumer meaning remains unnamed.",
+    "An ordinal beyond the terminated participant table resolves to no participant. The browser runtime preserves null instead of substituting the conversation owner or another actor."
+  ],
+  "executableEvidence": {
+    "filename": "1ST_READ.BIN",
+    "sha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "verifiedCodeRanges": {
+      "runtimePersonParticipantResolver": {
+        "runtimeAddress": "0xc159234",
+        "size": 62,
+        "sha256": "878592c97a32dfc04e55d0f76f20934acdb895ca5efc9a8e9851893b72d143be"
+      },
+      "activeParticipantTableCopy": {
+        "runtimeAddress": "0xc1623e8",
+        "size": 52,
+        "sha256": "d14bd0cd3f6f9c89c5913958c4fb4dba7e61e63455d63856cb2822980c5d9c72"
+      },
+      "nativeCommandReceiver": {
+        "runtimeAddress": "0xc160efe",
+        "size": 542,
+        "sha256": "d7507b9009d7b2d195e166cfec36a1fdca5c94c832c26128df1dd85426ce5699"
+      },
+      "randomParticipantPairSelection": {
+        "runtimeAddress": "0xc161140",
+        "size": 102,
+        "sha256": "15b8b5f3e2b6a02c9daf5ba4f4fcbddb847a305529837a56822418a23c71d336"
+      },
+      "participantControlDispatch": {
+        "runtimeAddress": "0xc16175c",
+        "size": 228,
+        "sha256": "5bcffc1c19a40bdc34a0724a3a8afa4db6aaf719fefaa5eadc0cfe02cf804910"
+      },
+      "actorMotionPointRequest": {
+        "runtimeAddress": "0xc0fef0e",
+        "size": 368,
+        "sha256": "aeecf11416e8145639853dc548dddafc2e77a601f224611af6ae5429201dc749"
+      }
+    }
+  },
+  "activeParticipantTable": {
+    "runtimePersonTableOffset": "0x28",
+    "runtimePersonCountOffset": "0x16",
+    "resolverAddress": "0xc159234",
+    "copyAddress": "0xc1623e8",
+    "storageAddress": "0xc224270",
+    "capacity": 8,
+    "terminator": 0
+  },
+  "commandFamilies": {
+    "participantControlDispatch": {
+      "firstCommand": "0x32",
+      "lastCommand": "0x3b",
+      "indexExpression": "commandWord - 0x31",
+      "handlerAddress": "0xc16175c",
+      "excludedTargetFourcc": "CATM",
+      "participantEnabledFlagsAddress": "0xc224401",
+      "selectedParticipantTableAddress": "0xc22437c",
+      "participantControlFlagsAddress": "0xc22435c",
+      "priorControlResetAddress": "0xc162acc",
+      "priorControlResetTargets": [
+        "selected participant",
+        "AKIR"
+      ],
+      "motionRequestAddress": "0xc0fef0e",
+      "motionTargetExpression": "[participant.x - 0.001, participant.y, participant.z]",
+      "motionAxis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "liveEvidence": "tools/evidence/live-dialogue-participant-control-emulator-evidence.json"
+    },
+    "selectedParticipantWrite": {
+      "firstCommand": "0x8c",
+      "lastCommand": "0x95",
+      "indexExpression": "commandWord - 0x8b",
+      "selectedParticipantAddress": "0xc2243a0",
+      "selectedParticipantFlagAddress": "0xc224370"
+    },
+    "participantPairSelection": {
+      "firstCommand": "0x28",
+      "lastCommand": "0x31",
+      "handlerAddress": "0xc161140",
+      "randomOrdinals": [
+        1,
+        2,
+        3
+      ],
+      "requiresDistinctOrdinals": true,
+      "fixedCommand": "0x2a",
+      "fixedOrdinals": [
+        1,
+        2
+      ]
+    }
+  },
+  "summary": {
+    "resourceCount": 262,
+    "participantTableLengthCounts": {
+      "2": 262
+    },
+    "resourceCountBeginningWithAkir": 262,
+    "participantRouteCommandSiteCount": 5483,
+    "participantRouteCommands": [
+      {
+        "commandWord": "0x32",
+        "participantTableIndex": 1,
+        "behavior": "participantControlDispatch",
+        "handlerAddress": "0xc16175c",
+        "siteCount": 5117,
+        "sourceActorResourceCount": 238
+      },
+      {
+        "commandWord": "0x33",
+        "participantTableIndex": 2,
+        "behavior": "participantControlDispatch",
+        "handlerAddress": "0xc16175c",
+        "siteCount": 102,
+        "sourceActorResourceCount": 11
+      },
+      {
+        "commandWord": "0x34",
+        "participantTableIndex": 3,
+        "behavior": "participantControlDispatch",
+        "handlerAddress": "0xc16175c",
+        "siteCount": 16,
+        "sourceActorResourceCount": 5
+      },
+      {
+        "commandWord": "0x35",
+        "participantTableIndex": 4,
+        "behavior": "participantControlDispatch",
+        "handlerAddress": "0xc16175c",
+        "siteCount": 36,
+        "sourceActorResourceCount": 4
+      },
+      {
+        "commandWord": "0x36",
+        "participantTableIndex": 5,
+        "behavior": "participantControlDispatch",
+        "handlerAddress": "0xc16175c",
+        "siteCount": 7,
+        "sourceActorResourceCount": 2
+      },
+      {
+        "commandWord": "0x8c",
+        "participantTableIndex": 1,
+        "behavior": "selectedParticipantWrite",
+        "selectedParticipantAddress": "0xc2243a0",
+        "selectedParticipantFlagAddress": "0xc224370",
+        "siteCount": 68,
+        "sourceActorResourceCount": 9
+      },
+      {
+        "commandWord": "0x8d",
+        "participantTableIndex": 2,
+        "behavior": "selectedParticipantWrite",
+        "selectedParticipantAddress": "0xc2243a0",
+        "selectedParticipantFlagAddress": "0xc224370",
+        "siteCount": 133,
+        "sourceActorResourceCount": 10
+      },
+      {
+        "commandWord": "0x8e",
+        "participantTableIndex": 3,
+        "behavior": "selectedParticipantWrite",
+        "selectedParticipantAddress": "0xc2243a0",
+        "selectedParticipantFlagAddress": "0xc224370",
+        "siteCount": 4,
+        "sourceActorResourceCount": 4
+      }
+    ],
+    "participantPairCommandSiteCount": 751,
+    "participantPairCommandCounts": [
+      {
+        "commandWord": "0x28",
+        "siteCount": 595
+      },
+      {
+        "commandWord": "0x29",
+        "siteCount": 43
+      },
+      {
+        "commandWord": "0x2a",
+        "siteCount": 15
+      },
+      {
+        "commandWord": "0x2b",
+        "siteCount": 68
+      },
+      {
+        "commandWord": "0x2c",
+        "siteCount": 27
+      },
+      {
+        "commandWord": "0x2e",
+        "siteCount": 3
+      }
+    ]
+  }
+}

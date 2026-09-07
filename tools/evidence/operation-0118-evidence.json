@@ -1,0 +1,132 @@
+{
+  "schema": "new-yokosuka-operation-0118-evidence-v1",
+  "status": "exact-four-mode-contract-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 280,
+    "operationHex": "0x0118",
+    "handlerAddress": "0x0c1648ac",
+    "objectDwordOffset": "0x00b8",
+    "objectFloatOffset": "0x00bc",
+    "globalFallbackDwordAddress": "0x0c224a0c",
+    "globalFallbackFloatAddress": "0x0c224a10",
+    "modes": [
+      {
+        "mode": 0,
+        "behavior": "clear indexed bit and return prior bit"
+      },
+      {
+        "mode": 1,
+        "behavior": "set indexed bit and return prior bit"
+      },
+      {
+        "mode": 2,
+        "behavior": "replace dword with low-N-bits mask"
+      },
+      {
+        "mode": 3,
+        "behavior": "write raw float32 word"
+      }
+    ],
+    "provenBehavior": "The handler resolves argument zero. Modes zero and one clear or set argument two's indexed bit in dword +0xb8 and return whether it was previously set. Mode two replaces +0xb8 with a mask containing argument two low bits. Mode three writes argument two's raw float32 word to +0xbc. A null resolution uses fixed global fields instead of becoming a no-op.",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c1648ac",
+        "length": 138,
+        "sha256": "d2384760f42a5ecffdfdc954c17903a48b87f6083dfa037f05b61fe455f70a89"
+      },
+      "fieldHelpers": {
+        "address": "0x0c179c88",
+        "length": 226,
+        "sha256": "1db6df1a3932eac91a4528534a54dde26ea85c8050593d99d4eff5f76e8edc43"
+      },
+      "readDwordB8": {
+        "address": "0x0c0abdfc",
+        "length": 16,
+        "sha256": "4dc5149fe3a0d62188b3f95426afa25af66e3ef48655552b6327091ad590d02c"
+      },
+      "writeDwordB8": {
+        "address": "0x0c0abe0c",
+        "length": 28,
+        "sha256": "dffe7fc72f631ce451cc35033782bc5c803641f810510b39861f7b12049eec9b"
+      },
+      "writeFloatBc": {
+        "address": "0x0c0abe28",
+        "length": 20,
+        "sha256": "ce405eb461567fcdc863fd92d199e98f208dcc3bda3a220e134c1ae75705f349"
+      }
+    }
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 433,
+    "compiledCallCount": 431,
+    "uncompiledZeroArgumentCallCount": 2,
+    "dialogueRegionCallCount": 2,
+    "areaCount": 40,
+    "modeCounts": {
+      "0": 88,
+      "1": 114,
+      "2": 228,
+      "3": 1
+    },
+    "modeValueCounts": {
+      "0": {
+        "0": 2,
+        "1": 21,
+        "2": 19,
+        "3": 10,
+        "4": 7,
+        "5": 8,
+        "6": 3,
+        "7": 3,
+        "8": 3,
+        "9": 3,
+        "10": 4,
+        "11": 4,
+        "12": 1
+      },
+      "1": {
+        "0": 3,
+        "1": 28,
+        "2": 5,
+        "3": 26,
+        "4": 1,
+        "5": 12,
+        "6": 6,
+        "7": 3,
+        "8": 14,
+        "9": 3,
+        "10": 2,
+        "11": 4,
+        "14": 6,
+        "15": 1
+      },
+      "2": {
+        "0": 23,
+        "1": 175,
+        "2": 14,
+        "3": 3,
+        "4": 13
+      },
+      "3": {
+        "1106247680": 1
+      }
+    },
+    "objectArgumentKindCounts": {
+      "constant": 334,
+      "frame-field": 92,
+      "runtime": 5
+    }
+  },
+  "evidenceBoundary": [
+    "The object and global fields remain numeric; no gameplay role is inferred.",
+    "The two zero-argument calls remain unresolved and uncompiled.",
+    "Modes zero and one require an exact prior dword before mutation; no default flags are invented.",
+    "Object availability comes from an explicit identity adapter, never proximity."
+  ]
+}

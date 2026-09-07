@@ -1,0 +1,148 @@
+{
+  "schema": "new-yokosuka-native-playlist-removal-audit-v1",
+  "generatedBy": "tools/cutscenes/audit_native_playlist_removal.mjs",
+  "productionPlaylistConsumers": [],
+  "bebf": {
+    "program": {
+      "id": "disc1-jomo-bebf-nightmare-owner-0x4bf5c",
+      "disc": 1,
+      "area": "JOMO",
+      "mapinfoSha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
+      "entryFunction": "0x4bf5c",
+      "helperFunction": "0x4b4f8"
+    },
+    "bindings": [
+      {
+        "slot": 60,
+        "primaryPointer": 615895,
+        "secondaryPointer": 615908,
+        "callFileOffsets": [
+          "0x4c0e6"
+        ]
+      },
+      {
+        "slot": 61,
+        "primaryPointer": 615913,
+        "secondaryPointer": 615926,
+        "callFileOffsets": [
+          "0x4c10a"
+        ]
+      },
+      {
+        "slot": 62,
+        "primaryPointer": 615931,
+        "secondaryPointer": 615944,
+        "callFileOffsets": [
+          "0x4c12e"
+        ]
+      },
+      {
+        "slot": 63,
+        "primaryPointer": 615949,
+        "secondaryPointer": 615962,
+        "callFileOffsets": [
+          "0x4c152"
+        ]
+      }
+    ],
+    "ownerCalls": [
+      {
+        "slot": 60,
+        "callFileOffset": "0x4c244",
+        "helperFunction": "0x4b4f8"
+      },
+      {
+        "slot": 61,
+        "callFileOffset": "0x4c27a",
+        "helperFunction": "0x4b4f8"
+      },
+      {
+        "slot": 62,
+        "callFileOffset": "0x4c2b0",
+        "helperFunction": "0x4b4f8"
+      },
+      {
+        "slot": 60,
+        "callFileOffset": "0x4c30e",
+        "helperFunction": "0x4b4f8"
+      },
+      {
+        "slot": 63,
+        "callFileOffset": "0x4c344",
+        "helperFunction": "0x4b4f8"
+      },
+      {
+        "slot": 62,
+        "callFileOffset": "0x4c37a",
+        "helperFunction": "0x4b4f8"
+      }
+    ],
+    "callOrderMatchesCanonicalEvidence": true,
+    "unresolvedOperations": [],
+    "blockers": [],
+    "cutoverReady": true
+  },
+  "op00": {
+    "program": {
+      "id": "S1-OP00-A0114",
+      "disc": 1,
+      "area": "OP00",
+      "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+      "entryFunction": "0x20350",
+      "schema": "new-yokosuka-native-cutscene-program-v1"
+    },
+    "identityMatches": true,
+    "authoredResourceSelection": {
+      "kind": "embedded-authored-path-family",
+      "pathToken": "/AUTH01/0114/",
+      "selectedSlots": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "ownerCallCount": 24,
+      "exactResourceCount": 24,
+      "resourcesAreExact": true,
+      "completionBoundarySlot": 24
+    },
+    "compiler": {
+      "status": "compiled",
+      "firstBlocker": null,
+      "unresolvedOperationTypeCount": 0,
+      "unresolvedOperationCallCount": 0
+    },
+    "activityTransport": {
+      "schema": "new-yokosuka-aseq-activity-pack-v1",
+      "activityCount": 24,
+      "independentlyPackaged": true
+    },
+    "blockers": [],
+    "cutoverReady": true
+  },
+  "legacySurface": {
+    "references": [],
+    "complete": true
+  },
+  "cutoverComplete": true
+}

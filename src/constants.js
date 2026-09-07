@@ -1,6 +1,6 @@
 // Time-of-day presets based on real Shenmue footage:
-// Day = normal daylight, Sunset (~4:30pm) = orange sky but windows still unlit,
-// Evening (~6:30pm) = dark sky + lit windows/lanterns/signs,
+// Day = normal daylight, Sunset = orange sky but windows still unlit,
+// Evening = dark sky + lit windows/lanterns/signs,
 // Night = same dark sky as evening.
 export const timeOfDayPresets = [
   {
@@ -100,52 +100,22 @@ export const timeToMapIndex = {
 export const seasonPresets = [
   { name: "Summer", index: 0 },
   { name: "Winter", index: 1 },
-  { name: "Show All", index: -1 },
 ];
 
-// Zone variant groups: defines which MAP files are mutually exclusive.
-// Each group has a 'type' that controls which toggle drives it:
-//   - "season": controlled by the Season button (Summer/Winter/Show All)
-//   - "time":   controlled by the Time button (Day/Sunset/Evening/Night)
-// 'variants' is an array where each entry is either:
-//   - a string suffix (e.g. "MAP03") for a single file, or
-//   - an array of suffixes (e.g. ["MAP17","MAP18","MAP19"]) for multi-file groups.
-// The index in the variants array matches the toggle preset index.
-// For "time" groups: 0=Day, 1=Sunset, 2=Evening, 3=Night.
-//   If only 2 entries are provided, index 0=Day and index 1=Night (maps to presets 0-1 vs 2-3).
-export const ZONE_VARIANTS = {
-  BETD: {
-    label: "Hazuki Residence Exterior",
-    groups: [
-      { name: "Ground", type: "season", variants: ["MAP03", "MAP04"] },
-      { name: "Small Plants", type: "season", variants: ["MAP08", "MAP09"] },
-      { name: "Trees", type: "season", variants: ["MAP10", "MAP11"] },
-      { name: "Foliage", type: "season", variants: ["MAP06", "MAP07", "MAP05"] },
-    ],
-  },
-  D000: {
-    label: "Dobuita",
-    groups: [
-      // Background buildings: MAP02=day, MAP03=night
-      { name: "Background", type: "time", variants: ["MAP02", "MAP02", "MAP03", "MAP03"] },
-      // Windows: MAP17+18+19=day, MAP20+21+22=night/evening
-      { name: "Windows", type: "time", variants: [
-        ["MAP17", "MAP18", "MAP19"],
-        ["MAP17", "MAP18", "MAP19"],
-        ["MAP20", "MAP21", "MAP22"],
-        ["MAP20", "MAP21", "MAP22"],
-      ]},
-      // Roads/foliage: MAP23=summer, MAP24=winter
-      { name: "Roads", type: "season", variants: ["MAP23", "MAP24"] },
-    ],
-  },
-};
+export const weatherPresets = [
+  { name: "Clear", id: "clear", index: 0 },
+  { name: "Overcast", id: "overcast", index: 1 },
+  { name: "Rain", id: "rain", index: 2 },
+  { name: "Snow", id: "snow", index: 3 },
+];
+
+// Compatibility export for the viewer and existing callers. The canonical
+// definitions now live with each source in data/scene-compositions.json.
+export { SCENE_VARIANT_PROFILES as ZONE_VARIANTS } from "./SceneCompositions.js";
 
 // Interior scene codes (no exterior sky visible)
 export const INTERIOR_SCENES = [
   "JOMO",
-  "JD00",
-  "JHD0",
   "DCBN",
   "DGCT",
   "DAZA",
@@ -168,6 +138,12 @@ export const INTERIOR_SCENES = [
 ];
 
 // Asset Resolution Logic
-export const R2_URL = import.meta.env.VITE_ASSET_URL;
+export const R2_URL = import.meta.env?.VITE_ASSET_URL
+  || (import.meta.env?.DEV
+    ? "/r2-assets"
+    : "https://pub-c3aa1dfd53424ee9af1b87ad19954589.r2.dev");
 export const R2_PREFIX = "shenmue";
-export const OFFLINE_MODE = import.meta.env.VITE_OFFLINE_ASSETS === "true";
+export const DIALOGUE_VOICE_URL =
+  import.meta.env?.VITE_DIALOGUE_VOICE_URL
+  || `${R2_URL}/dialogue/voices/v1`;
+export const OFFLINE_MODE = import.meta.env?.VITE_OFFLINE_ASSETS === "true";

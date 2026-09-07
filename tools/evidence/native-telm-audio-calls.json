@@ -1,0 +1,1582 @@
+{
+  "schema": "new-yokosuka-native-telm-audio-calls-v1",
+  "status": "exact-controller-commands-and-state-reachability",
+  "generatedBy": "tools/audio/extract_native_telm_audio.mjs",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "runtimeBase": "0x0c010000"
+  },
+  "controller": {
+    "range": [
+      "0xc16d40a",
+      "0xc16fbc2"
+    ],
+    "stateTableAddress": "0xc16d6a4",
+    "stateDispatchBaseAddress": "0xc16d67e",
+    "stateCount": 22,
+    "typedCommandDispatcherAddress": "0xc17a91c"
+  },
+  "summary": {
+    "stateCount": 22,
+    "controllerSoundCallCount": 24,
+    "stateReachableSoundCallCount": 23,
+    "initializationSoundCallCount": 1,
+    "uniqueCommandCount": 10,
+    "commandCounts": {
+      "ab050000": 1,
+      "ab050100": 1,
+      "ab050200": 1,
+      "ab050300": 1,
+      "ab050600": 6,
+      "ab050700": 9,
+      "ab060000": 1,
+      "ab060100": 2,
+      "ab060200": 1,
+      "ab060300": 1
+    }
+  },
+  "states": [
+    {
+      "state": 0,
+      "tableAddress": "0xc16d6a4",
+      "relative": 82,
+      "targetAddress": "0xc16d6d0",
+      "soundCallAddresses": []
+    },
+    {
+      "state": 1,
+      "tableAddress": "0xc16d6a6",
+      "relative": 322,
+      "targetAddress": "0xc16d7c0",
+      "soundCallAddresses": [
+        "0xc16d960",
+        "0xc16d972"
+      ]
+    },
+    {
+      "state": 2,
+      "tableAddress": "0xc16d6a8",
+      "relative": 824,
+      "targetAddress": "0xc16d9b6",
+      "soundCallAddresses": [
+        "0xc16db7e"
+      ]
+    },
+    {
+      "state": 3,
+      "tableAddress": "0xc16d6aa",
+      "relative": 1734,
+      "targetAddress": "0xc16dd44",
+      "soundCallAddresses": [
+        "0xc16ddf8",
+        "0xc16de0a"
+      ]
+    },
+    {
+      "state": 4,
+      "tableAddress": "0xc16d6ac",
+      "relative": 2074,
+      "targetAddress": "0xc16de98",
+      "soundCallAddresses": []
+    },
+    {
+      "state": 5,
+      "tableAddress": "0xc16d6ae",
+      "relative": 7390,
+      "targetAddress": "0xc16f35c",
+      "soundCallAddresses": [
+        "0xc16f398",
+        "0xc16f42c",
+        "0xc16f490",
+        "0xc16f61a",
+        "0xc16f62c"
+      ]
+    },
+    {
+      "state": 6,
+      "tableAddress": "0xc16d6b0",
+      "relative": 8968,
+      "targetAddress": "0xc16f986",
+      "soundCallAddresses": []
+    },
+    {
+      "state": 7,
+      "tableAddress": "0xc16d6b2",
+      "relative": 8270,
+      "targetAddress": "0xc16f6cc",
+      "soundCallAddresses": [
+        "0xc16f6f2"
+      ]
+    },
+    {
+      "state": 8,
+      "tableAddress": "0xc16d6b4",
+      "relative": 6520,
+      "targetAddress": "0xc16eff6",
+      "soundCallAddresses": [
+        "0xc16f108",
+        "0xc16f152",
+        "0xc16f1ec"
+      ]
+    },
+    {
+      "state": 9,
+      "tableAddress": "0xc16d6b6",
+      "relative": 8968,
+      "targetAddress": "0xc16f986",
+      "soundCallAddresses": []
+    },
+    {
+      "state": 10,
+      "tableAddress": "0xc16d6b8",
+      "relative": 8968,
+      "targetAddress": "0xc16f986",
+      "soundCallAddresses": []
+    },
+    {
+      "state": 11,
+      "tableAddress": "0xc16d6ba",
+      "relative": 8968,
+      "targetAddress": "0xc16f986",
+      "soundCallAddresses": []
+    },
+    {
+      "state": 12,
+      "tableAddress": "0xc16d6bc",
+      "relative": 2382,
+      "targetAddress": "0xc16dfcc",
+      "soundCallAddresses": [
+        "0xc16e6fa"
+      ]
+    },
+    {
+      "state": 13,
+      "tableAddress": "0xc16d6be",
+      "relative": 4306,
+      "targetAddress": "0xc16e750",
+      "soundCallAddresses": [
+        "0xc16e7e8"
+      ]
+    },
+    {
+      "state": 14,
+      "tableAddress": "0xc16d6c0",
+      "relative": 4482,
+      "targetAddress": "0xc16e800",
+      "soundCallAddresses": [
+        "0xc16e832",
+        "0xc16e9f0"
+      ]
+    },
+    {
+      "state": 15,
+      "tableAddress": "0xc16d6c2",
+      "relative": 5082,
+      "targetAddress": "0xc16ea58",
+      "soundCallAddresses": [
+        "0xc16eaea"
+      ]
+    },
+    {
+      "state": 16,
+      "tableAddress": "0xc16d6c4",
+      "relative": 5248,
+      "targetAddress": "0xc16eafe",
+      "soundCallAddresses": [
+        "0xc16ec02"
+      ]
+    },
+    {
+      "state": 17,
+      "tableAddress": "0xc16d6c6",
+      "relative": 8336,
+      "targetAddress": "0xc16f70e",
+      "soundCallAddresses": []
+    },
+    {
+      "state": 18,
+      "tableAddress": "0xc16d6c8",
+      "relative": 1386,
+      "targetAddress": "0xc16dbe8",
+      "soundCallAddresses": [
+        "0xc16dc98",
+        "0xc16dcaa"
+      ]
+    },
+    {
+      "state": 19,
+      "tableAddress": "0xc16d6ca",
+      "relative": 8968,
+      "targetAddress": "0xc16f986",
+      "soundCallAddresses": []
+    },
+    {
+      "state": 20,
+      "tableAddress": "0xc16d6cc",
+      "relative": 7206,
+      "targetAddress": "0xc16f2a4",
+      "soundCallAddresses": [
+        "0xc16f34c"
+      ]
+    },
+    {
+      "state": 21,
+      "tableAddress": "0xc16d6ce",
+      "relative": 8746,
+      "targetAddress": "0xc16f8a8",
+      "soundCallAddresses": []
+    }
+  ],
+  "calls": [
+    {
+      "dispatcherLoadAddress": "0xc16d4a6",
+      "dispatcherLiteralAddress": "0xc16d5a4",
+      "callAddress": "0xc16d4ac",
+      "commandLoadAddress": "0xc16d4aa",
+      "commandLiteralAddress": "0xc16d5a0",
+      "commandWord": 394667,
+      "commandHex": "ab050600",
+      "reachableFromStates": [],
+      "bankMatches": [
+        {
+          "sha256": "d25eb40cdfc129a09f380922752891bd47e6e1714a0ddb4556fea6875dad2f59",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 1,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SOUND/SYSTEM1.SND"
+            }
+          ]
+        }
+      ],
+      "bankResolution": "unique-system1-bank"
+    },
+    {
+      "dispatcherLoadAddress": "0xc16d95a",
+      "dispatcherLiteralAddress": "0xc16da5c",
+      "callAddress": "0xc16d960",
+      "commandLoadAddress": "0xc16d95e",
+      "commandLiteralAddress": "0xc16da58",
+      "commandWord": 460203,
+      "commandHex": "ab050700",
+      "reachableFromStates": [
+        1
+      ],
+      "bankMatches": [
+        {
+          "sha256": "d25eb40cdfc129a09f380922752891bd47e6e1714a0ddb4556fea6875dad2f59",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 1,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SOUND/SYSTEM1.SND"
+            }
+          ]
+        }
+      ],
+      "bankResolution": "unique-system1-bank"
+    },
+    {
+      "dispatcherLoadAddress": "0xc16d96c",
+      "dispatcherLiteralAddress": "0xc16da5c",
+      "callAddress": "0xc16d972",
+      "commandLoadAddress": "0xc16d970",
+      "commandLiteralAddress": "0xc16da34",
+      "commandWord": 1707,
+      "commandHex": "ab060000",
+      "reachableFromStates": [
+        1
+      ],
+      "bankMatches": [
+        {
+          "sha256": "f5081d8a679a51ed490a8fe2f1ba06bc68a749841935d7803d757abf968ad0ff",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "SCENE/01/SOUND/F1ABESHO.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SCENE/02/SOUND/F1ABESHO.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SCENE/03/SOUND/F1ABESHO.SND"
+            }
+          ]
+        },
+        {
+          "sha256": "e77a6ea473b62e6356fe9b0152ec285b6ee115ef75cd912c443852ff6ff118be",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "SCENE/01/SOUND/F1DOBUIT.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SCENE/02/SOUND/F1DOBUIT.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SCENE/03/SOUND/F1DOBUIT.SND"
+            }
+          ]
+        },
+        {
+          "sha256": "1a085ba02d31f7f627a72d7c87ec8bd4d0af64ceed536c96114e15976bb3650f",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "SCENE/01/SOUND/F1JUTADN.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SCENE/02/SOUND/F1JUTADN.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SCENE/03/SOUND/F1JUTADN.SND"
+            }
+          ]
+        },
+        {
+          "sha256": "41cdccd04ef8f4835a946f3f1ada404d4f1607adbae6c4bf8da5b825d23c9abb",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "SCENE/01/SOUND/F1OMOYAA.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SCENE/02/SOUND/F1OMOYAA.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SCENE/03/SOUND/F1OMOYAA.SND"
+            }
+          ]
+        },
+        {
+          "sha256": "bb3b0a0961c3ac56950f2f7d5a64634f345d970c1941c4252f4d6bfb965bfce8",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "SCENE/01/SOUND/F1TOMATO.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SCENE/02/SOUND/F1TOMATO.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SCENE/03/SOUND/F1TOMATO.SND"
+            }
+          ]
+        },
+        {
+          "sha256": "33515f416d62abf3048d1fef7bd0987d85135bdccb3da9f6b321a23f48850467",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "SCENE/01/SOUND/F1YOKOSU.SND"
+            }
+          ]
+        },
+        {
+          "sha256": "909ab958302a9acabe9fee3e562a7a6d1f0f7af477ae1525b94d7e76beafbeaf",
+          "sources": [
+            {
+              "disc": 2,
+              "path": "SCENE/02/SOUND/F1YOKOSU.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SCENE/03/SOUND/F1YOKOSU.SND"
+            }
+          ]
+        }
+      ],
+      "bankResolution": "runtime-location-bank-required"
+    },
+    {
+      "dispatcherLoadAddress": "0xc16db78",
+      "dispatcherLiteralAddress": "0xc16dbe4",
+      "callAddress": "0xc16db7e",
+      "commandLoadAddress": "0xc16db7c",
+      "commandLiteralAddress": "0xc16dbe0",
+      "commandWord": 394667,
+      "commandHex": "ab050600",
+      "reachableFromStates": [
+        2
+      ],
+      "bankMatches": [
+        {
+          "sha256": "d25eb40cdfc129a09f380922752891bd47e6e1714a0ddb4556fea6875dad2f59",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 1,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SOUND/SYSTEM1.SND"
+            }
+          ]
+        }
+      ],
+      "bankResolution": "unique-system1-bank"
+    },
+    {
+      "dispatcherLoadAddress": "0xc16dc94",
+      "dispatcherLiteralAddress": "0xc16dd30",
+      "callAddress": "0xc16dc98",
+      "commandLoadAddress": "0xc16dc96",
+      "commandLiteralAddress": "0xc16dd2c",
+      "commandWord": 132779,
+      "commandHex": "ab060200",
+      "reachableFromStates": [
+        18
+      ],
+      "bankMatches": [
+        {
+          "sha256": "e77a6ea473b62e6356fe9b0152ec285b6ee115ef75cd912c443852ff6ff118be",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "SCENE/01/SOUND/F1DOBUIT.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SCENE/02/SOUND/F1DOBUIT.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SCENE/03/SOUND/F1DOBUIT.SND"
+            }
+          ]
+        },
+        {
+          "sha256": "1a085ba02d31f7f627a72d7c87ec8bd4d0af64ceed536c96114e15976bb3650f",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "SCENE/01/SOUND/F1JUTADN.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SCENE/02/SOUND/F1JUTADN.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SCENE/03/SOUND/F1JUTADN.SND"
+            }
+          ]
+        },
+        {
+          "sha256": "33515f416d62abf3048d1fef7bd0987d85135bdccb3da9f6b321a23f48850467",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "SCENE/01/SOUND/F1YOKOSU.SND"
+            }
+          ]
+        },
+        {
+          "sha256": "909ab958302a9acabe9fee3e562a7a6d1f0f7af477ae1525b94d7e76beafbeaf",
+          "sources": [
+            {
+              "disc": 2,
+              "path": "SCENE/02/SOUND/F1YOKOSU.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SCENE/03/SOUND/F1YOKOSU.SND"
+            }
+          ]
+        }
+      ],
+      "bankResolution": "runtime-location-bank-required"
+    },
+    {
+      "dispatcherLoadAddress": "0xc16dca6",
+      "dispatcherLiteralAddress": "0xc16dd30",
+      "callAddress": "0xc16dcaa",
+      "commandLoadAddress": "0xc16dca8",
+      "commandLiteralAddress": "0xc16dd34",
+      "commandWord": 394667,
+      "commandHex": "ab050600",
+      "reachableFromStates": [
+        18
+      ],
+      "bankMatches": [
+        {
+          "sha256": "d25eb40cdfc129a09f380922752891bd47e6e1714a0ddb4556fea6875dad2f59",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 1,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SOUND/SYSTEM1.SND"
+            }
+          ]
+        }
+      ],
+      "bankResolution": "unique-system1-bank"
+    },
+    {
+      "dispatcherLoadAddress": "0xc16ddf4",
+      "dispatcherLiteralAddress": "0xc16de88",
+      "callAddress": "0xc16ddf8",
+      "commandLoadAddress": "0xc16ddf6",
+      "commandLiteralAddress": "0xc16de84",
+      "commandWord": 460203,
+      "commandHex": "ab050700",
+      "reachableFromStates": [
+        3
+      ],
+      "bankMatches": [
+        {
+          "sha256": "d25eb40cdfc129a09f380922752891bd47e6e1714a0ddb4556fea6875dad2f59",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 1,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SOUND/SYSTEM1.SND"
+            }
+          ]
+        }
+      ],
+      "bankResolution": "unique-system1-bank"
+    },
+    {
+      "dispatcherLoadAddress": "0xc16de06",
+      "dispatcherLiteralAddress": "0xc16de88",
+      "callAddress": "0xc16de0a",
+      "commandLoadAddress": "0xc16de08",
+      "commandLiteralAddress": "0xc16de8c",
+      "commandWord": 67243,
+      "commandHex": "ab060100",
+      "reachableFromStates": [
+        3
+      ],
+      "bankMatches": [
+        {
+          "sha256": "f5081d8a679a51ed490a8fe2f1ba06bc68a749841935d7803d757abf968ad0ff",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "SCENE/01/SOUND/F1ABESHO.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SCENE/02/SOUND/F1ABESHO.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SCENE/03/SOUND/F1ABESHO.SND"
+            }
+          ]
+        },
+        {
+          "sha256": "e77a6ea473b62e6356fe9b0152ec285b6ee115ef75cd912c443852ff6ff118be",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "SCENE/01/SOUND/F1DOBUIT.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SCENE/02/SOUND/F1DOBUIT.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SCENE/03/SOUND/F1DOBUIT.SND"
+            }
+          ]
+        },
+        {
+          "sha256": "1a085ba02d31f7f627a72d7c87ec8bd4d0af64ceed536c96114e15976bb3650f",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "SCENE/01/SOUND/F1JUTADN.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SCENE/02/SOUND/F1JUTADN.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SCENE/03/SOUND/F1JUTADN.SND"
+            }
+          ]
+        },
+        {
+          "sha256": "41cdccd04ef8f4835a946f3f1ada404d4f1607adbae6c4bf8da5b825d23c9abb",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "SCENE/01/SOUND/F1OMOYAA.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SCENE/02/SOUND/F1OMOYAA.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SCENE/03/SOUND/F1OMOYAA.SND"
+            }
+          ]
+        },
+        {
+          "sha256": "bb3b0a0961c3ac56950f2f7d5a64634f345d970c1941c4252f4d6bfb965bfce8",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "SCENE/01/SOUND/F1TOMATO.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SCENE/02/SOUND/F1TOMATO.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SCENE/03/SOUND/F1TOMATO.SND"
+            }
+          ]
+        },
+        {
+          "sha256": "33515f416d62abf3048d1fef7bd0987d85135bdccb3da9f6b321a23f48850467",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "SCENE/01/SOUND/F1YOKOSU.SND"
+            }
+          ]
+        },
+        {
+          "sha256": "909ab958302a9acabe9fee3e562a7a6d1f0f7af477ae1525b94d7e76beafbeaf",
+          "sources": [
+            {
+              "disc": 2,
+              "path": "SCENE/02/SOUND/F1YOKOSU.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SCENE/03/SOUND/F1YOKOSU.SND"
+            }
+          ]
+        }
+      ],
+      "bankResolution": "runtime-location-bank-required"
+    },
+    {
+      "dispatcherLoadAddress": "0xc16e6f8",
+      "dispatcherLiteralAddress": "0xc16e74c",
+      "callAddress": "0xc16e6fa",
+      "commandLoadAddress": "0xc16e6f6",
+      "commandLiteralAddress": "0xc16e748",
+      "commandWord": 460203,
+      "commandHex": "ab050700",
+      "reachableFromStates": [
+        12
+      ],
+      "bankMatches": [
+        {
+          "sha256": "d25eb40cdfc129a09f380922752891bd47e6e1714a0ddb4556fea6875dad2f59",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 1,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SOUND/SYSTEM1.SND"
+            }
+          ]
+        }
+      ],
+      "bankResolution": "unique-system1-bank"
+    },
+    {
+      "dispatcherLoadAddress": "0xc16e7e2",
+      "dispatcherLiteralAddress": "0xc16e8d4",
+      "callAddress": "0xc16e7e8",
+      "commandLoadAddress": "0xc16e7e6",
+      "commandLiteralAddress": "0xc16e8d0",
+      "commandWord": 460203,
+      "commandHex": "ab050700",
+      "reachableFromStates": [
+        13
+      ],
+      "bankMatches": [
+        {
+          "sha256": "d25eb40cdfc129a09f380922752891bd47e6e1714a0ddb4556fea6875dad2f59",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 1,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SOUND/SYSTEM1.SND"
+            }
+          ]
+        }
+      ],
+      "bankResolution": "unique-system1-bank"
+    },
+    {
+      "dispatcherLoadAddress": "0xc16e82e",
+      "dispatcherLiteralAddress": "0xc16e8d4",
+      "callAddress": "0xc16e832",
+      "commandLoadAddress": "0xc16e830",
+      "commandLiteralAddress": "0xc16e8ac",
+      "commandWord": 1451,
+      "commandHex": "ab050000",
+      "reachableFromStates": [
+        14
+      ],
+      "bankMatches": [
+        {
+          "sha256": "d25eb40cdfc129a09f380922752891bd47e6e1714a0ddb4556fea6875dad2f59",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 1,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SOUND/SYSTEM1.SND"
+            }
+          ]
+        }
+      ],
+      "bankResolution": "unique-system1-bank"
+    },
+    {
+      "dispatcherLoadAddress": "0xc16e9ea",
+      "dispatcherLiteralAddress": "0xc16ea54",
+      "callAddress": "0xc16e9f0",
+      "commandLoadAddress": "0xc16e9ee",
+      "commandLiteralAddress": "0xc16ea50",
+      "commandWord": 66987,
+      "commandHex": "ab050100",
+      "reachableFromStates": [
+        14
+      ],
+      "bankMatches": [
+        {
+          "sha256": "d25eb40cdfc129a09f380922752891bd47e6e1714a0ddb4556fea6875dad2f59",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 1,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SOUND/SYSTEM1.SND"
+            }
+          ]
+        }
+      ],
+      "bankResolution": "unique-system1-bank"
+    },
+    {
+      "dispatcherLoadAddress": "0xc16eae8",
+      "dispatcherLiteralAddress": "0xc16eb74",
+      "callAddress": "0xc16eaea",
+      "commandLoadAddress": "0xc16eae6",
+      "commandLiteralAddress": "0xc16eb70",
+      "commandWord": 132523,
+      "commandHex": "ab050200",
+      "reachableFromStates": [
+        15
+      ],
+      "bankMatches": [
+        {
+          "sha256": "d25eb40cdfc129a09f380922752891bd47e6e1714a0ddb4556fea6875dad2f59",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 1,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SOUND/SYSTEM1.SND"
+            }
+          ]
+        }
+      ],
+      "bankResolution": "unique-system1-bank"
+    },
+    {
+      "dispatcherLoadAddress": "0xc16ec00",
+      "dispatcherLiteralAddress": "0xc16ecf4",
+      "callAddress": "0xc16ec02",
+      "commandLoadAddress": "0xc16ebfe",
+      "commandLiteralAddress": "0xc16ecf0",
+      "commandWord": 198059,
+      "commandHex": "ab050300",
+      "reachableFromStates": [
+        16
+      ],
+      "bankMatches": [
+        {
+          "sha256": "d25eb40cdfc129a09f380922752891bd47e6e1714a0ddb4556fea6875dad2f59",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 1,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SOUND/SYSTEM1.SND"
+            }
+          ]
+        }
+      ],
+      "bankResolution": "unique-system1-bank"
+    },
+    {
+      "dispatcherLoadAddress": "0xc16f102",
+      "dispatcherLiteralAddress": "0xc16f180",
+      "callAddress": "0xc16f108",
+      "commandLoadAddress": "0xc16f106",
+      "commandLiteralAddress": "0xc16f17c",
+      "commandWord": 394667,
+      "commandHex": "ab050600",
+      "reachableFromStates": [
+        8
+      ],
+      "bankMatches": [
+        {
+          "sha256": "d25eb40cdfc129a09f380922752891bd47e6e1714a0ddb4556fea6875dad2f59",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 1,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SOUND/SYSTEM1.SND"
+            }
+          ]
+        }
+      ],
+      "bankResolution": "unique-system1-bank"
+    },
+    {
+      "dispatcherLoadAddress": "0xc16f14c",
+      "dispatcherLiteralAddress": "0xc16f180",
+      "callAddress": "0xc16f152",
+      "commandLoadAddress": "0xc16f150",
+      "commandLiteralAddress": "0xc16f188",
+      "commandWord": 460203,
+      "commandHex": "ab050700",
+      "reachableFromStates": [
+        8
+      ],
+      "bankMatches": [
+        {
+          "sha256": "d25eb40cdfc129a09f380922752891bd47e6e1714a0ddb4556fea6875dad2f59",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 1,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SOUND/SYSTEM1.SND"
+            }
+          ]
+        }
+      ],
+      "bankResolution": "unique-system1-bank"
+    },
+    {
+      "dispatcherLoadAddress": "0xc16f1e6",
+      "dispatcherLiteralAddress": "0xc16f28c",
+      "callAddress": "0xc16f1ec",
+      "commandLoadAddress": "0xc16f1ea",
+      "commandLiteralAddress": "0xc16f288",
+      "commandWord": 460203,
+      "commandHex": "ab050700",
+      "reachableFromStates": [
+        8
+      ],
+      "bankMatches": [
+        {
+          "sha256": "d25eb40cdfc129a09f380922752891bd47e6e1714a0ddb4556fea6875dad2f59",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 1,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SOUND/SYSTEM1.SND"
+            }
+          ]
+        }
+      ],
+      "bankResolution": "unique-system1-bank"
+    },
+    {
+      "dispatcherLoadAddress": "0xc16f34a",
+      "dispatcherLiteralAddress": "0xc16f40c",
+      "callAddress": "0xc16f34c",
+      "commandLoadAddress": "0xc16f348",
+      "commandLiteralAddress": "0xc16f408",
+      "commandWord": 198315,
+      "commandHex": "ab060300",
+      "reachableFromStates": [
+        20
+      ],
+      "bankMatches": [
+        {
+          "sha256": "e77a6ea473b62e6356fe9b0152ec285b6ee115ef75cd912c443852ff6ff118be",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "SCENE/01/SOUND/F1DOBUIT.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SCENE/02/SOUND/F1DOBUIT.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SCENE/03/SOUND/F1DOBUIT.SND"
+            }
+          ]
+        },
+        {
+          "sha256": "1a085ba02d31f7f627a72d7c87ec8bd4d0af64ceed536c96114e15976bb3650f",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "SCENE/01/SOUND/F1JUTADN.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SCENE/02/SOUND/F1JUTADN.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SCENE/03/SOUND/F1JUTADN.SND"
+            }
+          ]
+        },
+        {
+          "sha256": "33515f416d62abf3048d1fef7bd0987d85135bdccb3da9f6b321a23f48850467",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "SCENE/01/SOUND/F1YOKOSU.SND"
+            }
+          ]
+        },
+        {
+          "sha256": "909ab958302a9acabe9fee3e562a7a6d1f0f7af477ae1525b94d7e76beafbeaf",
+          "sources": [
+            {
+              "disc": 2,
+              "path": "SCENE/02/SOUND/F1YOKOSU.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SCENE/03/SOUND/F1YOKOSU.SND"
+            }
+          ]
+        }
+      ],
+      "bankResolution": "runtime-location-bank-required"
+    },
+    {
+      "dispatcherLoadAddress": "0xc16f392",
+      "dispatcherLiteralAddress": "0xc16f40c",
+      "callAddress": "0xc16f398",
+      "commandLoadAddress": "0xc16f396",
+      "commandLiteralAddress": "0xc16f410",
+      "commandWord": 394667,
+      "commandHex": "ab050600",
+      "reachableFromStates": [
+        5
+      ],
+      "bankMatches": [
+        {
+          "sha256": "d25eb40cdfc129a09f380922752891bd47e6e1714a0ddb4556fea6875dad2f59",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 1,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SOUND/SYSTEM1.SND"
+            }
+          ]
+        }
+      ],
+      "bankResolution": "unique-system1-bank"
+    },
+    {
+      "dispatcherLoadAddress": "0xc16f426",
+      "dispatcherLiteralAddress": "0xc16f550",
+      "callAddress": "0xc16f42c",
+      "commandLoadAddress": "0xc16f42a",
+      "commandLiteralAddress": "0xc16f54c",
+      "commandWord": 460203,
+      "commandHex": "ab050700",
+      "reachableFromStates": [
+        5
+      ],
+      "bankMatches": [
+        {
+          "sha256": "d25eb40cdfc129a09f380922752891bd47e6e1714a0ddb4556fea6875dad2f59",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 1,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SOUND/SYSTEM1.SND"
+            }
+          ]
+        }
+      ],
+      "bankResolution": "unique-system1-bank"
+    },
+    {
+      "dispatcherLoadAddress": "0xc16f48a",
+      "dispatcherLiteralAddress": "0xc16f550",
+      "callAddress": "0xc16f490",
+      "commandLoadAddress": "0xc16f48e",
+      "commandLiteralAddress": "0xc16f54c",
+      "commandWord": 460203,
+      "commandHex": "ab050700",
+      "reachableFromStates": [
+        5
+      ],
+      "bankMatches": [
+        {
+          "sha256": "d25eb40cdfc129a09f380922752891bd47e6e1714a0ddb4556fea6875dad2f59",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 1,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SOUND/SYSTEM1.SND"
+            }
+          ]
+        }
+      ],
+      "bankResolution": "unique-system1-bank"
+    },
+    {
+      "dispatcherLoadAddress": "0xc16f614",
+      "dispatcherLiteralAddress": "0xc16f6bc",
+      "callAddress": "0xc16f61a",
+      "commandLoadAddress": "0xc16f618",
+      "commandLiteralAddress": "0xc16f6b8",
+      "commandWord": 460203,
+      "commandHex": "ab050700",
+      "reachableFromStates": [
+        5
+      ],
+      "bankMatches": [
+        {
+          "sha256": "d25eb40cdfc129a09f380922752891bd47e6e1714a0ddb4556fea6875dad2f59",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 1,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SOUND/SYSTEM1.SND"
+            }
+          ]
+        }
+      ],
+      "bankResolution": "unique-system1-bank"
+    },
+    {
+      "dispatcherLoadAddress": "0xc16f628",
+      "dispatcherLiteralAddress": "0xc16f6bc",
+      "callAddress": "0xc16f62c",
+      "commandLoadAddress": "0xc16f62a",
+      "commandLiteralAddress": "0xc16f6c0",
+      "commandWord": 67243,
+      "commandHex": "ab060100",
+      "reachableFromStates": [
+        5
+      ],
+      "bankMatches": [
+        {
+          "sha256": "f5081d8a679a51ed490a8fe2f1ba06bc68a749841935d7803d757abf968ad0ff",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "SCENE/01/SOUND/F1ABESHO.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SCENE/02/SOUND/F1ABESHO.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SCENE/03/SOUND/F1ABESHO.SND"
+            }
+          ]
+        },
+        {
+          "sha256": "e77a6ea473b62e6356fe9b0152ec285b6ee115ef75cd912c443852ff6ff118be",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "SCENE/01/SOUND/F1DOBUIT.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SCENE/02/SOUND/F1DOBUIT.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SCENE/03/SOUND/F1DOBUIT.SND"
+            }
+          ]
+        },
+        {
+          "sha256": "1a085ba02d31f7f627a72d7c87ec8bd4d0af64ceed536c96114e15976bb3650f",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "SCENE/01/SOUND/F1JUTADN.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SCENE/02/SOUND/F1JUTADN.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SCENE/03/SOUND/F1JUTADN.SND"
+            }
+          ]
+        },
+        {
+          "sha256": "41cdccd04ef8f4835a946f3f1ada404d4f1607adbae6c4bf8da5b825d23c9abb",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "SCENE/01/SOUND/F1OMOYAA.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SCENE/02/SOUND/F1OMOYAA.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SCENE/03/SOUND/F1OMOYAA.SND"
+            }
+          ]
+        },
+        {
+          "sha256": "bb3b0a0961c3ac56950f2f7d5a64634f345d970c1941c4252f4d6bfb965bfce8",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "SCENE/01/SOUND/F1TOMATO.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SCENE/02/SOUND/F1TOMATO.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SCENE/03/SOUND/F1TOMATO.SND"
+            }
+          ]
+        },
+        {
+          "sha256": "33515f416d62abf3048d1fef7bd0987d85135bdccb3da9f6b321a23f48850467",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "SCENE/01/SOUND/F1YOKOSU.SND"
+            }
+          ]
+        },
+        {
+          "sha256": "909ab958302a9acabe9fee3e562a7a6d1f0f7af477ae1525b94d7e76beafbeaf",
+          "sources": [
+            {
+              "disc": 2,
+              "path": "SCENE/02/SOUND/F1YOKOSU.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SCENE/03/SOUND/F1YOKOSU.SND"
+            }
+          ]
+        }
+      ],
+      "bankResolution": "runtime-location-bank-required"
+    },
+    {
+      "dispatcherLoadAddress": "0xc16f6f0",
+      "dispatcherLiteralAddress": "0xc16f748",
+      "callAddress": "0xc16f6f2",
+      "commandLoadAddress": "0xc16f6ee",
+      "commandLiteralAddress": "0xc16f744",
+      "commandWord": 394667,
+      "commandHex": "ab050600",
+      "reachableFromStates": [
+        7
+      ],
+      "bankMatches": [
+        {
+          "sha256": "d25eb40cdfc129a09f380922752891bd47e6e1714a0ddb4556fea6875dad2f59",
+          "sources": [
+            {
+              "disc": 1,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 1,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 2,
+              "path": "SOUND/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "MISC/SYSTEM1.SND"
+            },
+            {
+              "disc": 3,
+              "path": "SOUND/SYSTEM1.SND"
+            }
+          ]
+        }
+      ],
+      "bankResolution": "unique-system1-bank"
+    }
+  ],
+  "semanticBoundary": [
+    "State reachability follows native SH-4 direct control flow, delay slots, and locally constant tail jumps without executing subroutine calls.",
+    "AB05 commands uniquely resolve to SYSTEM1.SND in the all-disc catalog.",
+    "AB06 commands are supplied by the active location bank; catalog matches remain candidates until a location or MAPINFO context selects one.",
+    "Numeric controller states and tracks are not assigned inferred action names without independent script, animation, or emulator evidence.",
+    "Address 0x0c17a91c is a shared typed-command dispatcher, not an audio-only function. These TELM sites are sound calls because their recovered constant commands are AB05/AB06."
+  ]
+}

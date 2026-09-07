@@ -1,0 +1,340 @@
+{
+  "schema": "new-yokosuka-scene-compositions-v1",
+  "families": {
+    "op00-cinematic": {
+      "label": "OP00 Cinematic Stage",
+      "sources": ["OP00"]
+    },
+    "op02-cinematic": {
+      "label": "OP02 Cinematic Stage",
+      "sources": ["OP02"]
+    },
+    "hazuki-grounds": {
+      "label": "Hazuki Residence Grounds",
+      "sources": ["BETD", "JHD0"]
+    },
+    "yamanose": {
+      "label": "Yamanose",
+      "sources": ["JU00"]
+    },
+    "sakuragaoka": {
+      "label": "Sakuragaoka",
+      "sources": ["JD00"]
+    },
+    "dobuita": {
+      "label": "Dobuita",
+      "sources": ["D000"]
+    },
+    "new-yokosuka-harbor": {
+      "label": "New Yokosuka Harbor",
+      "sources": ["MFSY"]
+    },
+    "old-warehouse-district": {
+      "label": "Old Warehouse District",
+      "sources": ["MKSG"]
+    }
+  },
+  "sources": {
+    "OP00": {
+      "family": "op00-cinematic",
+      "label": "OP00 Cinematic Stage",
+      "prefix": "S1_OP00",
+      "baseAssets": [
+        "OMO", "JIMENHAL", "NAIB", "OMADO", "OOSAKI", "JYUU"
+      ],
+      "residentAssets": [
+        "OMO", "JIMENHAL", "NAIB", "NIWAKAL", "OMADO", "OOSAKI", "JYUU"
+      ],
+      "groups": [
+        { "name": "Warm-season yard", "type": "season", "variants": ["NIWAKAL", null] }
+      ],
+      "surfaceGroups": [
+        {
+          "name": "Snow-covered ground",
+          "type": "season",
+          "assets": ["JIMENHAL"],
+          "variants": [null, ["736e6f775f620000"]]
+        }
+      ],
+      "provenance": "Dedicated OP99 cinematic geometry. JIMENHAL is the shared foundation and explicitly requests snow_b; NIWAKAL has no snow texture and duplicates foundation surfaces, so the browser composition treats it as the mutually exclusive warm-season yard layer."
+    },
+    "OP02": {
+      "family": "op02-cinematic",
+      "label": "OP02 Cliff Cinematic Stage",
+      "prefix": "S1_OP02",
+      "baseAssets": ["MAP", "MAP01", "MAP02", "MAP03"],
+      "residentAssets": ["MAP", "MAP01", "MAP02", "MAP03"],
+      "groups": [],
+      "provenance": "Self-contained OP02 stage assembled from the SHD2 and SHDR native resource packages."
+    },
+    "BETD": {
+      "family": "hazuki-grounds",
+      "label": "Hazuki Residence Grounds (viewer source)",
+      "prefix": "S1_BETD",
+      "baseAssets": ["MAP", "MAP01", "MAP02"],
+      "residentAssets": [
+        "MAP", "MAP01", "MAP02", "MAP03", "MAP04", "MAP05",
+        "MAP06", "MAP07", "MAP08", "MAP09", "MAP10", "MAP11"
+      ],
+      "groups": [
+        { "name": "Ground", "type": "season", "variants": ["MAP03", "MAP04"] },
+        { "name": "Small Plants", "type": "season", "variants": ["MAP08", "MAP09"] },
+        { "name": "Trees", "type": "season", "variants": ["MAP10", "MAP11"] },
+        { "name": "Foliage", "type": "season", "variants": ["MAP06", "MAP07", "MAP05"] }
+      ],
+      "provenance": "Existing asset-viewer summer/winter composition"
+    },
+    "JHD0": {
+      "family": "hazuki-grounds",
+      "label": "Hazuki Residence Grounds (play source)",
+      "prefix": "S1_JHD0",
+      "baseAssets": ["MAP", "MAP01", "MAP02", "MAP12"],
+      "residentAssets": [
+        "MAP", "MAP01", "MAP02", "MAP05", "MAP06", "MAP07",
+        "MAP08", "MAP09", "MAP10", "MAP11", "MAP12"
+      ],
+      "groups": [
+        { "name": "Small Plants", "type": "season", "variants": ["MAP08", "MAP09"] },
+        { "name": "Trees", "type": "season", "variants": ["MAP10", "MAP11"] },
+        { "name": "Foliage", "type": "season", "variants": ["MAP06", "MAP07", "MAP05"] }
+      ],
+      "provenance": "Playable JHD0 source; coplanar MAP03/MAP04 ground replacements remain non-resident"
+    },
+    "JU00": {
+      "family": "yamanose",
+      "label": "Yamanose",
+      "prefix": "S1_JU00",
+      "baseAssets": ["MAP", "MAP01"],
+      "residentAssets": [
+        "MAP", "MAP01", "MAP02", "MAP03", "MAP04", "MAP05",
+        "MAP06", "MAP07", "MAP08", "MAP09", "MAP10", "MAP11"
+      ],
+      "groups": [
+        { "name": "Windows A", "type": "time", "variants": ["MAP02", "MAP02", "MAP03", "MAP03"] },
+        { "name": "Windows B", "type": "time", "variants": ["MAP04", "MAP04", "MAP05", "MAP05"] },
+        { "name": "Windows C", "type": "time", "variants": ["MAP06", "MAP06", "MAP07", "MAP07"] },
+        { "name": "Distant scenery", "type": "season", "variants": ["MAP08", "MAP09"] },
+        { "name": "Trees", "type": "season", "variants": ["MAP10", "MAP11"] }
+      ]
+    },
+    "JD00": {
+      "family": "sakuragaoka",
+      "label": "Sakuragaoka",
+      "prefix": "S1_JD00",
+      "baseAssets": ["MAP", "MAP01"],
+      "residentAssets": [
+        "MAP", "MAP01", "MAP02", "MAP03", "MAP04", "MAP05",
+        "MAP06", "MAP07", "MAP08", "MAP09", "MAP10", "MAP11", "MAP12"
+      ],
+      "groups": [
+        { "name": "Windows A", "type": "time", "variants": ["MAP02", "MAP02", "MAP03", "MAP03"] },
+        { "name": "Windows B", "type": "time", "variants": ["MAP04", "MAP04", "MAP05", "MAP05"] },
+        { "name": "Windows C", "type": "time", "variants": ["MAP06", "MAP06", "MAP07", "MAP07"] },
+        { "name": "Distant scenery", "type": "season", "variants": ["MAP08", "MAP09"] },
+        { "name": "Trees", "type": "season", "variants": ["MAP10", "MAP11"] },
+        { "name": "Snow", "type": "weather", "variants": [null, null, null, "MAP12"] }
+      ]
+    },
+    "D000": {
+      "family": "dobuita",
+      "label": "Dobuita",
+      "prefix": "S1_D000",
+      "baseAssets": [
+        "MAP", "MAP01", "MAP04", "MAP05", "MAP06", "MAP07", "MAP08",
+        "MAP09", "MAP10", "MAP11", "MAP12", "MAP13", "MAP14", "MAP15", "MAP16"
+      ],
+      "residentAssets": [
+        "MAP", "MAP01", "MAP02", "MAP03", "MAP04", "MAP05", "MAP06",
+        "MAP07", "MAP08", "MAP09", "MAP10", "MAP11", "MAP12", "MAP13",
+        "MAP14", "MAP15", "MAP16", "MAP17", "MAP18", "MAP19", "MAP20",
+        "MAP21", "MAP22", "MAP23", "MAP24"
+      ],
+      "groups": [
+        { "name": "Background", "type": "time", "variants": ["MAP02", "MAP02", "MAP03", "MAP03"] },
+        {
+          "name": "Windows",
+          "type": "time",
+          "variants": [
+            ["MAP17", "MAP18", "MAP19"],
+            ["MAP17", "MAP18", "MAP19"],
+            ["MAP20", "MAP21", "MAP22"],
+            ["MAP20", "MAP21", "MAP22"]
+          ]
+        },
+        { "name": "Roads", "type": "season", "variants": ["MAP23", "MAP24"] }
+      ],
+      "alwaysHide": ["MAP25", "MAP26"],
+      "provenance": "MAP25/MAP26 remain unidentified optional holiday decorations"
+    },
+    "MFSY": {
+      "family": "new-yokosuka-harbor",
+      "label": "New Yokosuka Harbor",
+      "prefix": "S2_MFSY",
+      "baseAssets": ["MAP", "MAP01", "MAP03", "MAP05", "MAP07", "MAP10", "MAP11", "MAP18"],
+      "residentAssets": [
+        "MAP", "MAP01", "MAP02", "MAP03", "MAP04", "MAP05", "MAP06",
+        "MAP07", "MAP08", "MAP10", "MAP11", "MAP12", "MAP13", "MAP14",
+        "MAP17", "MAP18"
+      ],
+      "groups": [
+        { "name": "Ground", "type": "time", "variants": ["MAP02", "MAP02", "MAP04", "MAP04"] },
+        { "name": "Scenery A", "type": "time", "variants": ["MAP08", "MAP08", "MAP06", "MAP06"] },
+        { "name": "Scenery B", "type": "time", "variants": ["MAP12", "MAP12", "MAP14", "MAP14"] },
+        { "name": "Night activity", "type": "time", "variants": ["MAP17", "MAP17", "MAP13", "MAP13"] }
+      ],
+      "alwaysHide": ["MAP16"]
+    },
+    "MKSG": {
+      "family": "old-warehouse-district",
+      "label": "Old Warehouse District",
+      "prefix": "S2_MKSG",
+      "baseAssets": [
+        "MAP", "MAP01", "MAP03", "MAP04", "MAP05", "MAP06", "MAP07", "MAP08"
+      ],
+      "residentAssets": [
+        "MAP", "MAP01", "MAP02", "MAP03", "MAP04", "MAP05",
+        "MAP06", "MAP07", "MAP08"
+      ],
+      "groups": [
+        { "name": "Snow", "type": "weather", "variants": [null, null, null, "MAP02"] }
+      ]
+    }
+  },
+  "variantProfiles": {
+    "AK00": {
+      "label": "Fortune's Pier",
+      "groups": [
+        { "name": "Day/night scenery", "type": "time", "variants": ["MAP06", "MAP06", "MAP07", "MAP07"] }
+      ]
+    },
+    "AR02": {
+      "label": "Worker's Pier",
+      "groups": [
+        { "name": "Day/night scenery", "type": "time", "variants": ["MAP13", "MAP13", "MAP12", "MAP12"] }
+      ]
+    },
+    "AR03": {
+      "label": "Queen's Street",
+      "groups": [
+        { "name": "Day/night scenery", "type": "time", "variants": ["MAP06", "MAP06", "MAP05", "MAP05"] }
+      ]
+    },
+    "WB00": {
+      "label": "Scarlet Hills",
+      "groups": [
+        { "name": "Night windows", "type": "time", "variants": [null, null, "MAP04", "MAP04"] }
+      ]
+    },
+    "WE00": {
+      "label": "Golden Quarter",
+      "groups": [
+        { "name": "Day/night scenery", "type": "time", "variants": ["MAP08", "MAP08", "MAP09", "MAP09"] }
+      ]
+    },
+    "WK00": {
+      "label": "South Carmain Quarter",
+      "groups": [
+        { "name": "Night windows", "type": "time", "variants": [null, null, "MAP05", "MAP05"] }
+      ]
+    },
+    "WN00": {
+      "label": "Lucky Charm Quarter",
+      "groups": [
+        { "name": "Day/night scenery", "type": "time", "variants": ["MAP03", "MAP03", "MAP04", "MAP04"] }
+      ]
+    },
+    "WR00": {
+      "label": "White Dynasty Quarter",
+      "groups": [
+        { "name": "Night windows", "type": "time", "variants": [null, null, "MAP07", "MAP07"] }
+      ]
+    },
+    "WS00": {
+      "label": "Green Market Quarter",
+      "groups": [
+        { "name": "Night windows", "type": "time", "variants": [null, null, "MAP11", "MAP11"] }
+      ]
+    },
+    "WT00": {
+      "label": "Wise Men's Quarter",
+      "groups": [
+        { "name": "Night windows", "type": "time", "variants": [null, null, "MAP04", "MAP04"] }
+      ]
+    },
+    "AK09": {
+      "label": "Fortune's Pier (alias)",
+      "groups": [
+        { "name": "Day/night scenery", "type": "time", "variants": ["MAP06", "MAP06", "MAP07", "MAP07"] }
+      ]
+    },
+    "AR09": {
+      "label": "Queen's Street (alias)",
+      "groups": [
+        { "name": "Day/night scenery", "type": "time", "variants": ["MAP06", "MAP06", "MAP05", "MAP05"] }
+      ]
+    },
+    "ARBT": {
+      "label": "Fortune's Pier (battle alias)",
+      "groups": [
+        { "name": "Day/night scenery", "type": "time", "variants": ["MAP06", "MAP06", "MAP07", "MAP07"] }
+      ]
+    },
+    "CWON": {
+      "label": "Worker's Pier (alias)",
+      "groups": [
+        { "name": "Day/night scenery", "type": "time", "variants": ["MAP13", "MAP13", "MAP12", "MAP12"] }
+      ]
+    },
+    "WK09": {
+      "label": "South Carmain Quarter (alias)",
+      "groups": [
+        { "name": "Night windows", "type": "time", "variants": [null, null, "MAP05", "MAP05"] }
+      ]
+    },
+    "WS09": {
+      "label": "Green Market Quarter (alias)",
+      "groups": [
+        { "name": "Night windows", "type": "time", "variants": [null, null, "MAP11", "MAP11"] }
+      ]
+    }
+  },
+  "scenes": {
+    "op00-introduction": {
+      "label": "Introduction — Iwao's Murder",
+      "family": "op00-cinematic",
+      "source": "OP00",
+      "context": {
+        "timeOfDayIndex": 0,
+        "season": "winter",
+        "seasonIndex": 1,
+        "weather": "snow",
+        "weatherIndex": 3
+      },
+      "overlays": [
+        {
+          "label": "OP00 authored scene objects",
+          "prefix": "S1_OP00",
+          "assets": [
+            "B023H01G", "BMWS703G",
+            "DDRR1001", "DDRR1002", "DRGS502G", "YUKS502G", "YUKS503G"
+          ]
+        }
+      ],
+      "provenance": "Self-contained OP00 winter stage: OP99 environment geometry with the warm-season NIWAKAL layer excluded, plus authored scene objects; no BETD or JHD0 map assets"
+    },
+    "op02-opening": {
+      "label": "Opening Vision — Shenhua and the Hawk",
+      "family": "op02-cinematic",
+      "source": "OP02",
+      "context": {
+        "timeOfDayIndex": 0,
+        "season": "summer",
+        "seasonIndex": 0,
+        "weather": "clear",
+        "weatherIndex": 0
+      },
+      "overlays": [],
+      "provenance": "Exact OP02 MAP/MAP01/MAP02/MAP03 environment used by native entry 00 (A0100)."
+    }
+  }
+}

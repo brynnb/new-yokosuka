@@ -1,0 +1,136 @@
+{
+  "schema": "new-yokosuka-actor-xmpt-operation-evidence-v3",
+  "status": "exact-native-handlers-controller-state-machine-coupling-and-hato-dataflow",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "mapinfo": "Disc 1 D000/MAPINFO.BIN",
+    "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e"
+  },
+  "requestOperation": {
+    "operationId": 357,
+    "operationHex": "0x0165",
+    "handlerAddress": "0x0c166a7c",
+    "handlerSha256": "d97e2febc1e7ab375177429216a189f909218ebfe6f6199d2ecb175204eb0384",
+    "requestCoreAddress": "0x0c0febc0",
+    "requestCoreSha256": "a1788568795b3b9e26cb339c0490d522c6509cfd60a54cb32413252d5bd52576",
+    "actorResolverAddress": "0x0c153956",
+    "recordTag": "XMPT",
+    "arguments": [
+      {
+        "index": 0,
+        "meaning": "actor reference"
+      },
+      {
+        "index": 1,
+        "meaning": "optional pointer to an exact three-float vector"
+      },
+      {
+        "index": 2,
+        "meaning": "word copied unchanged to XMPT +0x88"
+      },
+      {
+        "index": 3,
+        "meaning": "dword copied unchanged to XMPT +0x20"
+      },
+      {
+        "index": 4,
+        "meaning": "optional pointer to 24 supplemental bytes copied to XMPT +0x24 through +0x3b"
+      }
+    ],
+    "fixedRequestCoreArguments": {
+      "selector": 0,
+      "selectorSource": "handler-pushed literal zero"
+    },
+    "provenBehavior": "Resolves the actor, installs or reuses its literal XMPT record, copies the supplied vector or the actor controller's native vector into XMPT +0x00/+0x04/+0x08, stores the exact word and dword request fields at +0x88 and +0x20, optionally copies 24 supplemental bytes to +0x24 through +0x3b, and dispatches fixed selector zero to the actor controller."
+  },
+  "stateZeroQueryOperation": {
+    "operationId": 366,
+    "operationHex": "0x016e",
+    "handlerAddress": "0x0c166adc",
+    "handlerSha256": "c6353df9661e63a518fa9b6be2914f2082ed2ac88a1750b6051864c9015de221",
+    "queryAddress": "0x0c0fed8e",
+    "querySha256": "85e01644213c1ee3017b3df6890aab66ed13369e0ea24700db3ee0739a9e8d5f",
+    "provenReturnValue": "one exactly when the actor has an XMPT record, XMPT +0x18 is nonzero, and XMPT +0x1c equals zero; otherwise zero"
+  },
+  "controllerUpdate": {
+    "address": "0x0c0fd1fc",
+    "sha256": "76a48e543b56631a4d1d32cbdbcc8702770d62c606600136c913e82a655bd946",
+    "dispatchPointerAddress": "0x0c0fee20",
+    "dispatchTarget": "0x0c0fd1fc",
+    "stateFieldOffset": "0x18",
+    "selectorFieldOffset": "0x1c",
+    "initialStateBySelector": {
+      "0": 3,
+      "1": 1,
+      "2": 6,
+      "3": 1,
+      "4": 1,
+      "5": 3,
+      "6": 6
+    },
+    "lookPointCoupling": {
+      "installHelperAddress": "0x0c0fdd24",
+      "installHelperSha256": "ef8fa2f349627b3b44900f4a9246012aa4884a4c2e84408c3187e18d4e547595",
+      "releaseHelperAddress": "0x0c0fde7e",
+      "releaseHelperSha256": "6cb7a2a16cb424d1b921e69417873300d1c819e6d7ae22fddba783d08f25fa9f",
+      "recordTag": "LKPT",
+      "installSelector": 15,
+      "installSelectorMappedWord": "0x8066",
+      "releaseSelectorSigned": -15,
+      "releaseSelectorMappedWord": "0x8066",
+      "mode": 0,
+      "admittedXmptSelectors": [
+        1,
+        3,
+        4,
+        6
+      ]
+    },
+    "selectorZeroLifecycle": {
+      "initialState": 3,
+      "approachState": 3,
+      "approachWaitState": 4,
+      "facingConvergenceState": 5,
+      "finalAlignmentState": 7,
+      "finalAlignmentWaitState": 8,
+      "cleanupState": 11,
+      "terminalState": 0,
+      "motionRequestSource": "low 16 bits of XMPT +0x20 request dword",
+      "controllerRequestWordOffset": "actor +0x66",
+      "nearTargetBoundary": 0.7,
+      "shortRouteBoundary": 0.05,
+      "shortRouteOffset": -0.1,
+      "farRouteOffset": -0.2,
+      "maximumFacingStepRaw": 2730,
+      "convergenceDistance": 0.3,
+      "provenSelectorZeroBehavior": "State three prepares the approach endpoint, writes it through the actor transform setter, and starts the approach motion. The far path used by Hato and D000 selector 61 constructs an endpoint 0.2 native units before the supplied target. State four waits for actor +0x66 to clear and reads the actor transform back into the XMPT record. State five performs bounded facing and exact 0.3-unit convergence work. State seven starts the final motion against the original target and the request word at XMPT +0x88; state eight again waits for actor +0x66 to clear. State eleven then falls through native cleanup to terminal state zero."
+    },
+    "provenBehavior": "The request dispatches the literal XMPT record to the native update state machine. On its first update, selector zero enters state three; selectors one, three, and four enter state one; selectors two and six enter state six; selector five enters state three. The same controller owns an exact LKPT coupling path that installs selector 15 and releases selector -15 through the native look-point controller. Selector zero preserves the distinct approach, convergence, final-alignment, cleanup, and terminal phases listed above."
+  },
+  "hatoConversation": {
+    "phase": "cleanup",
+    "requestCallFileOffset": "0x7fdfc",
+    "queryCallFileOffset": "0x7fe0c",
+    "actorCode": "AKIR",
+    "targetVector": [
+      -121.16000366210938,
+      -1.7999999523162842,
+      77.94000244140625
+    ],
+    "requestWord": 42143,
+    "requestDword": "0x8000055e",
+    "requestSelector": 0,
+    "supplementalRecordPointer": 0,
+    "firstControllerState": 3,
+    "waitsWhileQueryReturnsOne": true,
+    "exitsWhenQueryReturnsZero": true
+  },
+  "evidenceBoundary": [
+    "XMPT is retained as the literal native record tag; a higher-level movement or path label is not inferred.",
+    "The exact target vector, request fields, fixed selector, and status-loop polarity in Hato's cleanup are static data: the coroutine waits while operation 0x016e returns one and exits when it returns zero.",
+    "The browser must not substitute proximity completion for the exact XMPT state-zero query.",
+    "XMPT completion belongs to the recovered native controller state machine. Its state transitions, motion requests, orientation work, and exact LKPT coupling must not be collapsed into a timer, teleport, or distance threshold."
+  ]
+}

@@ -1,0 +1,1006 @@
+{
+  "schema": "new-yokosuka-player-portal-state-requirements-v1",
+  "generatedFrom": "tools/evidence/player-portal-inventory.json",
+  "summary": {
+    "conditionalBranchCount": 11,
+    "conditionalDoorSelectorCount": 3,
+    "persistentFlagCount": 12,
+    "nativePredicateCount": 2,
+    "atomOperatorCounts": {
+      "clockBetweenExclusive": 1,
+      "flagClear": 33,
+      "nativePredicateGreaterThan": 4,
+      "operationEquals": 1
+    }
+  },
+  "persistentFlags": [
+    {
+      "namespace": 2,
+      "flag": 70,
+      "nativeOperation": "0x0051",
+      "readSubcommand": 11
+    },
+    {
+      "namespace": 2,
+      "flag": 100,
+      "nativeOperation": "0x0051",
+      "readSubcommand": 11
+    },
+    {
+      "namespace": 2,
+      "flag": 160,
+      "nativeOperation": "0x0051",
+      "readSubcommand": 11
+    },
+    {
+      "namespace": 2,
+      "flag": 180,
+      "nativeOperation": "0x0051",
+      "readSubcommand": 11
+    },
+    {
+      "namespace": 2,
+      "flag": 330,
+      "nativeOperation": "0x0051",
+      "readSubcommand": 11
+    },
+    {
+      "namespace": 2,
+      "flag": 350,
+      "nativeOperation": "0x0051",
+      "readSubcommand": 11
+    },
+    {
+      "namespace": 2,
+      "flag": 360,
+      "nativeOperation": "0x0051",
+      "readSubcommand": 11
+    },
+    {
+      "namespace": 2,
+      "flag": 370,
+      "nativeOperation": "0x0051",
+      "readSubcommand": 11
+    },
+    {
+      "namespace": 2,
+      "flag": 400,
+      "nativeOperation": "0x0051",
+      "readSubcommand": 11
+    },
+    {
+      "namespace": 2,
+      "flag": 818,
+      "nativeOperation": "0x0051",
+      "readSubcommand": 11
+    },
+    {
+      "namespace": 2,
+      "flag": 861,
+      "nativeOperation": "0x0051",
+      "readSubcommand": 11
+    },
+    {
+      "namespace": 2,
+      "flag": 956,
+      "nativeOperation": "0x0051",
+      "readSubcommand": 11
+    }
+  ],
+  "nativePredicates": [
+    {
+      "functionFileOffset": "0x13d74",
+      "arguments": [
+        24
+      ],
+      "threshold": 0,
+      "status": "requires native predicate recovery"
+    },
+    {
+      "functionFileOffset": "0x13f30",
+      "arguments": [
+        30
+      ],
+      "threshold": 240,
+      "status": "requires native predicate recovery"
+    }
+  ],
+  "branches": [
+    {
+      "transitionClass": "nonPortalTransitions",
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "D000",
+        "doorSelector": 26,
+        "branchIndex": 0,
+        "selectorCompareFileOffset": "0x78f70"
+      },
+      "destination": {
+        "scene": 1,
+        "area": "ARAR",
+        "entry": 1
+      },
+      "condition": {
+        "operator": "all",
+        "terms": [
+          {
+            "operator": "flagClear",
+            "operation": "0x0051",
+            "subcommand": 11,
+            "namespace": 2,
+            "flag": 956
+          },
+          {
+            "operator": "flagClear",
+            "operation": "0x0051",
+            "subcommand": 11,
+            "namespace": 2,
+            "flag": 400
+          }
+        ]
+      },
+      "stateAtoms": [
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 956
+        },
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 400
+        }
+      ]
+    },
+    {
+      "transitionClass": "nonPortalTransitions",
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "D000",
+        "doorSelector": 26,
+        "branchIndex": 1,
+        "selectorCompareFileOffset": "0x78f70"
+      },
+      "destination": {
+        "scene": 1,
+        "area": "ARAR",
+        "entry": 0
+      },
+      "condition": {
+        "operator": "all",
+        "terms": [
+          {
+            "operator": "not",
+            "term": {
+              "operator": "all",
+              "terms": [
+                {
+                  "operator": "flagClear",
+                  "operation": "0x0051",
+                  "subcommand": 11,
+                  "namespace": 2,
+                  "flag": 956
+                },
+                {
+                  "operator": "flagClear",
+                  "operation": "0x0051",
+                  "subcommand": 11,
+                  "namespace": 2,
+                  "flag": 400
+                }
+              ]
+            }
+          },
+          {
+            "operator": "all",
+            "terms": [
+              {
+                "operator": "flagClear",
+                "operation": "0x0051",
+                "subcommand": 11,
+                "namespace": 2,
+                "flag": 360
+              },
+              {
+                "operator": "flagClear",
+                "operation": "0x0051",
+                "subcommand": 11,
+                "namespace": 2,
+                "flag": 370
+              }
+            ]
+          },
+          {
+            "operator": "any",
+            "terms": [
+              {
+                "operator": "nativePredicateGreaterThan",
+                "functionFileOffset": "0x13d74",
+                "callFileOffset": "0x79076",
+                "arguments": [
+                  24
+                ],
+                "threshold": 0
+              },
+              {
+                "operator": "nativePredicateGreaterThan",
+                "functionFileOffset": "0x13f30",
+                "callFileOffset": "0x7908c",
+                "arguments": [
+                  30
+                ],
+                "threshold": 240
+              }
+            ]
+          }
+        ]
+      },
+      "stateAtoms": [
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 956
+        },
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 400
+        },
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 360
+        },
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 370
+        },
+        {
+          "operator": "nativePredicateGreaterThan",
+          "functionFileOffset": "0x13d74",
+          "callFileOffset": "0x79076",
+          "arguments": [
+            24
+          ],
+          "threshold": 0
+        },
+        {
+          "operator": "nativePredicateGreaterThan",
+          "functionFileOffset": "0x13f30",
+          "callFileOffset": "0x7908c",
+          "arguments": [
+            30
+          ],
+          "threshold": 240
+        }
+      ]
+    },
+    {
+      "transitionClass": "portals",
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "D000",
+        "doorSelector": 26,
+        "branchIndex": 2,
+        "selectorCompareFileOffset": "0x78f70"
+      },
+      "destination": {
+        "scene": 1,
+        "area": "DAZA",
+        "entry": 0
+      },
+      "condition": {
+        "operator": "all",
+        "terms": [
+          {
+            "operator": "not",
+            "term": {
+              "operator": "all",
+              "terms": [
+                {
+                  "operator": "flagClear",
+                  "operation": "0x0051",
+                  "subcommand": 11,
+                  "namespace": 2,
+                  "flag": 956
+                },
+                {
+                  "operator": "flagClear",
+                  "operation": "0x0051",
+                  "subcommand": 11,
+                  "namespace": 2,
+                  "flag": 400
+                }
+              ]
+            }
+          },
+          {
+            "operator": "all",
+            "terms": [
+              {
+                "operator": "flagClear",
+                "operation": "0x0051",
+                "subcommand": 11,
+                "namespace": 2,
+                "flag": 360
+              },
+              {
+                "operator": "flagClear",
+                "operation": "0x0051",
+                "subcommand": 11,
+                "namespace": 2,
+                "flag": 370
+              }
+            ]
+          },
+          {
+            "operator": "not",
+            "term": {
+              "operator": "any",
+              "terms": [
+                {
+                  "operator": "nativePredicateGreaterThan",
+                  "functionFileOffset": "0x13d74",
+                  "callFileOffset": "0x79076",
+                  "arguments": [
+                    24
+                  ],
+                  "threshold": 0
+                },
+                {
+                  "operator": "nativePredicateGreaterThan",
+                  "functionFileOffset": "0x13f30",
+                  "callFileOffset": "0x7908c",
+                  "arguments": [
+                    30
+                  ],
+                  "threshold": 240
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "stateAtoms": [
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 956
+        },
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 400
+        },
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 360
+        },
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 370
+        },
+        {
+          "operator": "nativePredicateGreaterThan",
+          "functionFileOffset": "0x13d74",
+          "callFileOffset": "0x79076",
+          "arguments": [
+            24
+          ],
+          "threshold": 0
+        },
+        {
+          "operator": "nativePredicateGreaterThan",
+          "functionFileOffset": "0x13f30",
+          "callFileOffset": "0x7908c",
+          "arguments": [
+            30
+          ],
+          "threshold": 240
+        }
+      ]
+    },
+    {
+      "transitionClass": "nonPortalTransitions",
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "D000",
+        "doorSelector": 26,
+        "branchIndex": 3,
+        "selectorCompareFileOffset": "0x78f70"
+      },
+      "destination": {
+        "scene": 1,
+        "area": "ARAR",
+        "entry": 3
+      },
+      "condition": {
+        "operator": "all",
+        "terms": [
+          {
+            "operator": "not",
+            "term": {
+              "operator": "all",
+              "terms": [
+                {
+                  "operator": "flagClear",
+                  "operation": "0x0051",
+                  "subcommand": 11,
+                  "namespace": 2,
+                  "flag": 956
+                },
+                {
+                  "operator": "flagClear",
+                  "operation": "0x0051",
+                  "subcommand": 11,
+                  "namespace": 2,
+                  "flag": 400
+                }
+              ]
+            }
+          },
+          {
+            "operator": "not",
+            "term": {
+              "operator": "all",
+              "terms": [
+                {
+                  "operator": "flagClear",
+                  "operation": "0x0051",
+                  "subcommand": 11,
+                  "namespace": 2,
+                  "flag": 360
+                },
+                {
+                  "operator": "flagClear",
+                  "operation": "0x0051",
+                  "subcommand": 11,
+                  "namespace": 2,
+                  "flag": 370
+                }
+              ]
+            }
+          },
+          {
+            "operator": "all",
+            "terms": [
+              {
+                "operator": "flagClear",
+                "operation": "0x0051",
+                "subcommand": 11,
+                "namespace": 2,
+                "flag": 330
+              },
+              {
+                "operator": "flagClear",
+                "operation": "0x0051",
+                "subcommand": 11,
+                "namespace": 2,
+                "flag": 861
+              },
+              {
+                "operator": "flagClear",
+                "operation": "0x0051",
+                "subcommand": 11,
+                "namespace": 2,
+                "flag": 350
+              }
+            ]
+          }
+        ]
+      },
+      "stateAtoms": [
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 956
+        },
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 400
+        },
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 360
+        },
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 370
+        },
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 330
+        },
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 861
+        },
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 350
+        }
+      ]
+    },
+    {
+      "transitionClass": "nonPortalTransitions",
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "D000",
+        "doorSelector": 26,
+        "branchIndex": 4,
+        "selectorCompareFileOffset": "0x78f70"
+      },
+      "destination": {
+        "scene": 1,
+        "area": "ARAR",
+        "entry": 4
+      },
+      "condition": {
+        "operator": "all",
+        "terms": [
+          {
+            "operator": "not",
+            "term": {
+              "operator": "all",
+              "terms": [
+                {
+                  "operator": "flagClear",
+                  "operation": "0x0051",
+                  "subcommand": 11,
+                  "namespace": 2,
+                  "flag": 956
+                },
+                {
+                  "operator": "flagClear",
+                  "operation": "0x0051",
+                  "subcommand": 11,
+                  "namespace": 2,
+                  "flag": 400
+                }
+              ]
+            }
+          },
+          {
+            "operator": "not",
+            "term": {
+              "operator": "all",
+              "terms": [
+                {
+                  "operator": "flagClear",
+                  "operation": "0x0051",
+                  "subcommand": 11,
+                  "namespace": 2,
+                  "flag": 360
+                },
+                {
+                  "operator": "flagClear",
+                  "operation": "0x0051",
+                  "subcommand": 11,
+                  "namespace": 2,
+                  "flag": 370
+                }
+              ]
+            }
+          },
+          {
+            "operator": "not",
+            "term": {
+              "operator": "all",
+              "terms": [
+                {
+                  "operator": "flagClear",
+                  "operation": "0x0051",
+                  "subcommand": 11,
+                  "namespace": 2,
+                  "flag": 330
+                },
+                {
+                  "operator": "flagClear",
+                  "operation": "0x0051",
+                  "subcommand": 11,
+                  "namespace": 2,
+                  "flag": 861
+                },
+                {
+                  "operator": "flagClear",
+                  "operation": "0x0051",
+                  "subcommand": 11,
+                  "namespace": 2,
+                  "flag": 350
+                }
+              ]
+            }
+          },
+          {
+            "operator": "all",
+            "terms": [
+              {
+                "operator": "flagClear",
+                "operation": "0x0051",
+                "subcommand": 11,
+                "namespace": 2,
+                "flag": 350
+              },
+              {
+                "operator": "flagClear",
+                "operation": "0x0051",
+                "subcommand": 11,
+                "namespace": 2,
+                "flag": 360
+              }
+            ]
+          }
+        ]
+      },
+      "stateAtoms": [
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 956
+        },
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 400
+        },
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 360
+        },
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 370
+        },
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 330
+        },
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 861
+        },
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 350
+        },
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 350
+        },
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 360
+        }
+      ]
+    },
+    {
+      "transitionClass": "portals",
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "D000",
+        "doorSelector": 26,
+        "branchIndex": 5,
+        "selectorCompareFileOffset": "0x78f70"
+      },
+      "destination": {
+        "scene": 1,
+        "area": "DAZA",
+        "entry": 0
+      },
+      "condition": {
+        "operator": "otherwise"
+      },
+      "stateAtoms": []
+    },
+    {
+      "transitionClass": "nonPortalTransitions",
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "D000",
+        "doorSelector": 28,
+        "branchIndex": 0,
+        "selectorCompareFileOffset": "0x79328"
+      },
+      "destination": {
+        "scene": 1,
+        "area": "DHQB",
+        "entry": 0
+      },
+      "condition": {
+        "operator": "all",
+        "terms": [
+          {
+            "operator": "flagClear",
+            "operation": "0x0051",
+            "subcommand": 11,
+            "namespace": 2,
+            "flag": 70
+          },
+          {
+            "operator": "flagClear",
+            "operation": "0x0051",
+            "subcommand": 11,
+            "namespace": 2,
+            "flag": 100
+          }
+        ]
+      },
+      "stateAtoms": [
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 70
+        },
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 100
+        }
+      ]
+    },
+    {
+      "transitionClass": "portals",
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "D000",
+        "doorSelector": 28,
+        "branchIndex": 1,
+        "selectorCompareFileOffset": "0x79328"
+      },
+      "destination": {
+        "scene": 1,
+        "area": "DBHB",
+        "entry": 0
+      },
+      "condition": {
+        "operator": "not",
+        "term": {
+          "operator": "all",
+          "terms": [
+            {
+              "operator": "flagClear",
+              "operation": "0x0051",
+              "subcommand": 11,
+              "namespace": 2,
+              "flag": 70
+            },
+            {
+              "operator": "flagClear",
+              "operation": "0x0051",
+              "subcommand": 11,
+              "namespace": 2,
+              "flag": 100
+            }
+          ]
+        }
+      },
+      "stateAtoms": [
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 70
+        },
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 100
+        }
+      ]
+    },
+    {
+      "transitionClass": "nonPortalTransitions",
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "D000",
+        "doorSelector": 35,
+        "branchIndex": 0,
+        "selectorCompareFileOffset": "0x795bc"
+      },
+      "destination": {
+        "scene": 1,
+        "area": "TOKI",
+        "entry": 10
+      },
+      "condition": {
+        "operator": "all",
+        "terms": [
+          {
+            "operator": "flagClear",
+            "operation": "0x0051",
+            "subcommand": 11,
+            "namespace": 2,
+            "flag": 160
+          },
+          {
+            "operator": "flagClear",
+            "operation": "0x0051",
+            "subcommand": 11,
+            "namespace": 2,
+            "flag": 180
+          }
+        ]
+      },
+      "stateAtoms": [
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 160
+        },
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 180
+        }
+      ]
+    },
+    {
+      "transitionClass": "nonPortalTransitions",
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "D000",
+        "doorSelector": 35,
+        "branchIndex": 1,
+        "selectorCompareFileOffset": "0x795bc"
+      },
+      "destination": {
+        "scene": 1,
+        "area": "TOKI",
+        "entry": 1
+      },
+      "condition": {
+        "operator": "all",
+        "terms": [
+          {
+            "operator": "clockBetweenExclusive",
+            "encoding": "HHMM",
+            "after": 1600,
+            "before": 1902
+          },
+          {
+            "operator": "operationEquals",
+            "operation": "0x019c",
+            "value": 2
+          },
+          {
+            "operator": "flagClear",
+            "operation": "0x0051",
+            "subcommand": 11,
+            "namespace": 2,
+            "flag": 818
+          }
+        ]
+      },
+      "stateAtoms": [
+        {
+          "operator": "clockBetweenExclusive",
+          "encoding": "HHMM",
+          "after": 1600,
+          "before": 1902
+        },
+        {
+          "operator": "operationEquals",
+          "operation": "0x019c",
+          "value": 2
+        },
+        {
+          "operator": "flagClear",
+          "operation": "0x0051",
+          "subcommand": 11,
+          "namespace": 2,
+          "flag": 818
+        }
+      ]
+    },
+    {
+      "transitionClass": "portals",
+      "source": {
+        "disc": 1,
+        "scene": 1,
+        "area": "D000",
+        "doorSelector": 35,
+        "branchIndex": 2,
+        "selectorCompareFileOffset": "0x795bc"
+      },
+      "destination": {
+        "scene": 1,
+        "area": "DRSA",
+        "entry": 0
+      },
+      "condition": {
+        "operator": "otherwise"
+      },
+      "stateAtoms": []
+    }
+  ],
+  "evidenceBoundary": "This inventory preserves only condition trees already recovered from native transition control flow. It does not assign default flag values, synthesize story state, or choose a fallback branch. A conditional portal remains non-executable until every atom in its selected native condition can be evaluated exactly."
+}

@@ -1,0 +1,1262 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="./browser.css">
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/gif" href="/favicon.gif" />
+  <link rel="canonical" href="https://www.newyokosuka.com/asset-viewer/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Asset Viewer — New Yokosuka</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --accent: #168da0;
+      --accent-hover: #1aa0b5;
+      --accent-soft: rgb(22 141 160 / 0.16);
+      --panel: #17181f;
+      --panel-raised: rgb(255 255 255 / 0.04);
+      --panel-hover: rgb(255 255 255 / 0.085);
+      --border: rgb(255 255 255 / 0.09);
+      --text: #f5f5f2;
+      --muted: #9299a3;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    :is(
+      a[href],
+      button,
+      select,
+      summary,
+      input[type="button"],
+      input[type="submit"],
+      input[type="reset"],
+      input[type="checkbox"],
+      input[type="radio"],
+      input[type="range"],
+      label:has(input[type="checkbox"], input[type="radio"], input[type="range"]),
+      [role="button"],
+      [role="checkbox"],
+      [role="radio"],
+      [role="slider"],
+      [role="switch"],
+      [role="tab"],
+      [role="menuitem"],
+      [role="option"]
+    ):not(:disabled, [aria-disabled="true"]) {
+      cursor: pointer !important;
+    }
+
+    :is(
+      button,
+      select,
+      input,
+      [role="button"],
+      [role="checkbox"],
+      [role="radio"],
+      [role="slider"],
+      [role="switch"],
+      [role="tab"],
+      [role="menuitem"],
+      [role="option"]
+    ):is(:disabled, [aria-disabled="true"]) {
+      cursor: not-allowed !important;
+    }
+
+    html {
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      overflow-x: hidden;
+      background-color: #111217;
+      font-family:
+        "Inter",
+        system-ui,
+        -apple-system,
+        sans-serif;
+      color: var(--text);
+      display: flex;
+    }
+
+    #renderCanvas {
+      width: 100%;
+      height: 100%;
+      touch-action: none;
+      display: block;
+      outline: none;
+    }
+
+    #sidebar {
+      width: 375px;
+      min-width: 375px;
+      flex-shrink: 0;
+      height: 100vh;
+      background: var(--panel);
+      border-right: 1px solid var(--border);
+      box-shadow: 12px 0 35px rgb(0 0 0 / 0.18);
+      display: flex;
+      flex-direction: column;
+      z-index: 10;
+    }
+
+    #sidebar-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 8px;
+      background: rgb(23 24 31 / 0.94);
+      color: #fff;
+      font: inherit;
+      font-size: 1.25rem;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(12px);
+      z-index: 320;
+    }
+
+    .pointer-hint-mobile {
+      display: none;
+    }
+
+    #viewer-camera-controls {
+      position: absolute;
+      right: 20px;
+      top: 64px;
+      z-index: 150;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+      max-width: calc(100% - 40px);
+    }
+
+    #viewer-camera-controls[hidden] { display: none; }
+
+    #viewer-camera-controls > button {
+      padding: 10px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      background: rgba(22, 22, 29, 0.8);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      color: #fff;
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+
+    #viewer-camera-controls > button:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    #fly-controls-btn:hover,
+    #fly-controls-btn.active {
+      border-color: var(--accent);
+      background: rgba(45, 45, 60, 0.92);
+    }
+
+    #fly-controls-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    #fly-controls-btn.active {
+      display: none;
+    }
+
+    #controls-overlay {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      z-index: 100;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      padding: 10px 20px;
+      transform: translateX(-50%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      background: rgba(22, 22, 29, 0.7);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      font-size: 0.7rem;
+      white-space: nowrap;
+    }
+
+    .control-hint {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .control-hint span {
+      margin-left: 3px;
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    kbd {
+      min-width: 22px;
+      padding: 3px 5px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font: inherit;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    #sidebar-header {
+      padding: 23px 20px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 17px;
+      color: #9fa6b0;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .back-link:hover {
+      color: #fff;
+    }
+
+    h1 {
+      margin: 0 0 5px 0;
+      color: var(--text);
+      font-size: 1.1rem;
+      font-weight: 650;
+    }
+
+    .subtitle {
+      font-size: 0.75rem;
+      opacity: 0.5;
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+
+    .game-selector {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 4px;
+      margin-top: 14px;
+      padding: 4px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: rgb(0 0 0 / 0.22);
+    }
+
+    .game-selector button {
+      min-height: 34px;
+      padding: 0 8px;
+      border: 1px solid transparent;
+      border-radius: 5px;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+
+    .game-selector button:hover {
+      color: #fff;
+      background: var(--panel-hover);
+    }
+
+    .game-selector button.active {
+      border-color: rgb(22 141 160 / 0.65);
+      background: var(--accent-soft);
+      color: #75c8d3;
+    }
+
+    #model-list {
+      flex-grow: 1;
+      overflow-y: auto;
+      min-height: 0;
+      padding: 10px;
+      list-style: none;
+      margin: 0;
+    }
+
+    #audio-player-root {
+      position: absolute;
+      inset: 0;
+      z-index: 250;
+    }
+
+    #model-list::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    #model-list::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+    }
+
+    .model-row {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 5px;
+      padding: 0;
+    }
+
+    .model-item {
+      flex-grow: 1;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .model-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .model-item.active {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: #75c8d3;
+    }
+
+    .scene-btn {
+      padding: 0 10px;
+      background: var(--accent);
+      border: 1px solid rgb(255 255 255 / 0.12);
+      border-radius: 6px;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .scene-btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .scene-btn:active {
+      transform: translateY(0);
+    }
+
+    .nav-controls {
+      display: flex;
+      gap: 5px;
+    }
+
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      border-radius: 4px;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-btn:active {
+      transform: scale(0.95);
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .spinner-large {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      width: 80px;
+      height: 80px;
+      border: 6px solid rgb(22 141 160 / 0.12);
+      border-top: 6px solid var(--accent);
+      border-radius: 50%;
+      display: none;
+      animation: spin 1s linear infinite;
+      z-index: 100;
+      filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.5));
+    }
+
+    .loading-active .spinner-large {
+      display: block;
+    }
+
+    /* Model Grouping Styles */
+    .model-group {
+      margin-bottom: 5px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .group-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #ccc;
+      transition: all 0.2s;
+    }
+
+    .group-header:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    .group-header::before {
+      content: "▸";
+      margin-right: 8px;
+      transition: transform 0.2s;
+      display: inline-block;
+      font-size: 0.7rem;
+    }
+
+    .group-header.expanded::before {
+      transform: rotate(90deg);
+    }
+
+    .group-header.expanded {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      color: #75c8d3;
+      background: var(--accent-soft);
+    }
+
+    .group-header span {
+      flex-grow: 1;
+    }
+
+    .group-items {
+      list-style: none;
+      padding: 0 0 0 15px;
+      margin: 0;
+      background: rgba(0, 0, 0, 0.2);
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+
+    .group-items .model-item {
+      background: transparent;
+      border-radius: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      padding: 6px 10px;
+      font-size: 0.75rem;
+    }
+
+    .group-items .model-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .group-items .model-item.uncatalogued-collection-model {
+      color: rgba(255, 255, 255, 0.48);
+      font-style: italic;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .main-views {
+      margin: 0 0 18px;
+      padding: 4px 0 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+    }
+
+    .main-views-title {
+      margin: 0 0 9px;
+      padding: 0 4px;
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .main-views-list {
+      display: grid;
+      gap: 5px;
+    }
+
+    .main-view-button {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      color: rgba(255, 255, 255, 0.82);
+      font: inherit;
+      font-size: 0.8rem;
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+
+    .main-view-button:hover {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(255, 255, 255, 0.16);
+      color: #fff;
+    }
+
+    .main-view-button.active {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      color: #75c8d3;
+    }
+
+    .main-view-component-button {
+      width: calc(100% - 12px);
+      margin-left: 12px;
+      padding: 7px 10px;
+      border-left-color: rgba(117, 200, 211, 0.35);
+      background: rgba(255, 255, 255, 0.025);
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 0.74rem;
+    }
+
+    /* Category Grouping Styles */
+    .category-group {
+      margin-bottom: 15px;
+    }
+
+    .collection-models {
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+    }
+
+    .collection-models-list {
+      max-height: min(52vh, 520px);
+      overflow-y: auto;
+    }
+
+    .category-header {
+      padding: 10px;
+      background: var(--panel-raised);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: 650;
+      font-size: 0.82rem;
+      color: #dfe2e5;
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .category-header:hover {
+      background: var(--panel-hover);
+      border-color: rgb(255 255 255 / 0.16);
+    }
+
+    .category-header::before {
+      content: "▸";
+      margin-right: 10px;
+      transition: transform 0.2s;
+      display: inline-block;
+    }
+
+    .category-header.expanded::before {
+      transform: rotate(90deg);
+    }
+
+    .category-header.expanded {
+      color: #75c8d3;
+      background: var(--accent-soft);
+      border-color: rgb(22 141 160 / 0.55);
+    }
+
+    .category-header > span {
+      flex-grow: 1;
+    }
+
+    .category-content {
+      padding-left: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    @media (max-width: 850px) {
+      body {
+        display: block;
+        height: 100dvh;
+      }
+
+      #sidebar {
+        position: fixed;
+        inset: 0 auto 0 0;
+        width: min(88vw, 375px);
+        min-width: 0;
+        height: 100dvh;
+        z-index: 300;
+        box-shadow: 12px 0 32px rgba(0, 0, 0, 0.45);
+        transition: transform 0.22s ease;
+      }
+
+      body.asset-sidebar-collapsed #sidebar {
+        transform: translateX(-100%);
+      }
+
+      #sidebar-toggle {
+        display: flex;
+        top: max(12px, env(safe-area-inset-top));
+        left: calc(min(88vw, 375px) - 52px);
+        transition: left 0.22s ease, background 0.2s ease;
+      }
+
+      body.asset-sidebar-collapsed #sidebar-toggle {
+        left: max(12px, env(safe-area-inset-left));
+      }
+
+      #canvas-container {
+        position: fixed !important;
+        inset: 0;
+        width: 100vw;
+        height: 100dvh;
+      }
+
+      #discord-btn {
+        top: max(12px, env(safe-area-inset-top)) !important;
+      }
+
+      #export-fab,
+      #export-options-modal,
+      #lighting-toggle-btn,
+      #lighting-panel,
+      #fly-controls-btn {
+        display: none !important;
+      }
+
+      .pointer-hint-desktop {
+        display: none;
+      }
+
+      .pointer-hint-mobile {
+        display: inline;
+      }
+
+    }
+
+    /* Lighting Debug Panel */
+    #lighting-panel {
+      position: absolute;
+      top: 50px;
+      right: 12px;
+      width: 280px;
+      max-height: calc(100vh - 70px);
+      overflow-y: auto;
+      background: rgba(22, 22, 29, 0.92);
+      backdrop-filter: blur(12px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      z-index: 150;
+      font-size: 0.72rem;
+      color: #ccc;
+      transition: opacity 0.2s;
+    }
+
+    #lighting-panel.hidden {
+      display: none;
+    }
+
+    #lighting-panel::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    #lighting-panel::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 2px;
+    }
+
+    .lp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: sticky;
+      top: 0;
+      background: rgba(22, 22, 29, 0.98);
+      border-radius: 12px 12px 0 0;
+      z-index: 1;
+    }
+
+    .lp-header h3 {
+      margin: 0;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #75c8d3;
+    }
+
+    .lp-header button {
+      background: none;
+      border: none;
+      color: #888;
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0 4px;
+    }
+
+    .lp-header button:hover {
+      color: white;
+    }
+
+    .lp-section {
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .lp-section h4 {
+      margin: 0 0 8px 0;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .lp-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .lp-row label {
+      width: 70px;
+      flex-shrink: 0;
+      font-size: 0.68rem;
+      color: #999;
+    }
+
+    .lp-row input[type="range"] {
+      flex: 1;
+      height: 4px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      outline: none;
+    }
+
+    .lp-row input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+    }
+
+    .lp-row input[type="color"] {
+      width: 28px;
+      height: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+      background: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .lp-row .lp-value {
+      width: 36px;
+      text-align: right;
+      font-size: 0.65rem;
+      color: #75c8d3;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .lp-copy-btn {
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0;
+      background: var(--accent);
+      border: 1px solid rgb(255 255 255 / 0.12);
+      border-radius: 6px;
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: filter 0.2s;
+    }
+
+    .lp-copy-btn:hover {
+      filter: brightness(1.1);
+    }
+
+    .lp-actions {
+      padding: 6px 14px 14px;
+    }
+
+    #lighting-toggle-btn {
+      position: absolute;
+      top: 12px;
+      right: 200px;
+      z-index: 100;
+      padding: 8px 14px;
+      background: rgba(22, 22, 29, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: all 0.2s;
+    }
+
+    #lighting-toggle-btn:hover {
+      background: rgba(45, 45, 60, 0.9);
+      border-color: var(--accent);
+    }
+
+    #select-model-prompt {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 1.2rem;
+      font-weight: 500;
+      pointer-events: none;
+      z-index: 50;
+    }
+
+    #select-model-prompt.hidden {
+      display: none;
+    }
+
+    /* Floating Export Button */
+    #export-fab {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background: rgba(22, 22, 29, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      z-index: 150;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    #export-fab:hover {
+      background: rgba(45, 45, 60, 0.9);
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    #export-options-modal {
+      position: absolute;
+      bottom: 70px;
+      left: 20px;
+      background: rgba(22, 22, 29, 0.95);
+      backdrop-filter: blur(15px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 200;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      min-width: 220px;
+      animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes modalSlideUp {
+      from {
+        transform: translateY(10px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .export-option-btn {
+      padding: 10px 15px;
+      border-radius: 8px;
+      border: none;
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .export-option-btn.glb {
+      background: #168da0;
+    }
+
+    .export-option-btn.obj {
+      background: #28738a;
+    }
+
+    .export-option-btn.mtl {
+      background: #76548f;
+    }
+
+    .export-option-btn.stl {
+      background: #45434d;
+    }
+
+    .export-option-btn.usdz {
+      background: #8b4f79;
+    }
+
+    .export-option-btn.babylon {
+      background: #3f7f6d;
+    }
+
+    .export-option-btn:hover {
+      filter: brightness(1.1);
+      transform: translateX(5px);
+    }
+  </style>
+</head>
+
+<body class="asset-sidebar-collapsed">
+  <button
+    id="sidebar-toggle"
+    type="button"
+    aria-controls="sidebar"
+    aria-expanded="true"
+    aria-label="Collapse asset browser"
+    title="Collapse asset browser"
+  >‹</button>
+  <div id="sidebar">
+    <div id="sidebar-header">
+      <a class="back-link" href="/">← Back to Homepage</a>
+      <div style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          ">
+        <h1>Shenmue Asset Viewer</h1>
+        <div class="nav-controls">
+          <button class="nav-btn" id="prev-btn" title="Previous (Up Arrow)">
+            ↑
+          </button>
+          <button class="nav-btn" id="next-btn" title="Next (Down Arrow)">
+            ↓
+          </button>
+        </div>
+      </div>
+      <p class="subtitle" id="asset-format-subtitle">Extracted .MT5 Models</p>
+      <div class="game-selector" role="group" aria-label="Select asset type">
+        <button id="shenmue-game-btn" class="active" type="button" aria-pressed="true">
+          Shenmue
+        </button>
+        <button id="shenmue2-game-btn" type="button" aria-pressed="false">
+          Shenmue II
+        </button>
+        <button id="audio-game-btn" type="button" aria-pressed="false">
+          Audio
+        </button>
+      </div>
+      <div id="scene-mode-controls" style="display: flex; gap: 5px; margin-top: 10px">
+        <button class="scene-btn" id="sky-btn" style="flex-grow: 1; height: 32px">
+          Time: Day
+        </button>
+        <button class="scene-btn hidden" id="season-btn" style="flex-grow: 1; height: 32px">
+          Season: Summer
+        </button>
+      </div>
+    </div>
+    <div class="asset-browser-tools">
+      <label for="asset-search">Find a location or asset</label>
+      <input id="asset-search" type="search" placeholder="Name or original code…" autocomplete="off">
+      <button id="asset-collapse-all" class="scene-btn" type="button">Collapse all</button>
+      <span id="asset-search-status" role="status" aria-live="polite"></span>
+    </div>
+    <div id="model-list">
+      <!-- Models will be loaded here -->
+    </div>
+    <div id="audio-catalog-root" class="hidden"></div>
+  </div>
+  <div id="canvas-container" style="flex: 1; position: relative">
+    <div id="audio-player-root" class="hidden"></div>
+    <canvas id="renderCanvas"></canvas>
+    <a href="https://discord.gg/vH4GPChWKY" target="_blank" rel="noopener noreferrer" id="discord-btn" style="
+          position: absolute;
+          top: 12px;
+          right: 12px;
+          z-index: 100;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 8px 14px;
+          background: #5865F2;
+          color: white;
+          text-decoration: none;
+          border-radius: 8px;
+          font-size: 0.8rem;
+          font-weight: 600;
+          letter-spacing: 0.02em;
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+          transition: all 0.2s;
+        "
+      onmouseover="this.style.background='#4752C4'; this.style.transform='translateY(-1px)'; this.style.boxShadow='0 6px 16px rgba(0,0,0,0.4)'"
+      onmouseout="this.style.background='#5865F2'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.3)'">
+      <svg width="20" height="15" viewBox="0 0 127.14 96.36" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z" />
+      </svg>
+      Join the Discord!
+    </a>
+    <button id="lighting-toggle-btn">Lighting</button>
+    <div id="lighting-panel" class="hidden">
+      <div class="lp-header">
+        <h3>Lighting Controls</h3>
+        <button id="lp-close">&times;</button>
+      </div>
+
+      <div class="lp-section">
+        <h4>Scene</h4>
+        <div class="lp-row">
+          <label>Ambient</label>
+          <input type="color" id="lp-ambient-color" value="#4d4d4d">
+        </div>
+        <div class="lp-row">
+          <label>Amb. Intensity</label>
+          <input type="range" id="lp-ambient-intensity" min="0" max="2" step="0.05" value="1">
+          <span class="lp-value" id="lp-ambient-intensity-val">1.00</span>
+        </div>
+      </div>
+
+      <div class="lp-section">
+        <h4>Hemispheric Light</h4>
+        <div class="lp-row">
+          <label>Intensity</label>
+          <input type="range" id="lp-hemi-intensity" min="0" max="3" step="0.05" value="1.2">
+          <span class="lp-value" id="lp-hemi-intensity-val">1.20</span>
+        </div>
+        <div class="lp-row">
+          <label>Sky Color</label>
+          <input type="color" id="lp-hemi-diffuse" value="#ffffff">
+        </div>
+        <div class="lp-row">
+          <label>Ground Color</label>
+          <input type="color" id="lp-hemi-ground" value="#1a1a26">
+        </div>
+        <div class="lp-row">
+          <label>Dir Y</label>
+          <input type="range" id="lp-hemi-dir-y" min="-1" max="1" step="0.1" value="1">
+          <span class="lp-value" id="lp-hemi-dir-y-val">1.0</span>
+        </div>
+      </div>
+
+      <div class="lp-section">
+        <h4>Sun (Top-Down)</h4>
+        <div class="lp-row">
+          <label>Intensity</label>
+          <input type="range" id="lp-sky-intensity" min="0" max="3" step="0.05" value="1.5">
+          <span class="lp-value" id="lp-sky-intensity-val">1.50</span>
+        </div>
+        <div class="lp-row">
+          <label>Color</label>
+          <input type="color" id="lp-sky-color" value="#ffffff">
+        </div>
+      </div>
+
+      <div class="lp-section">
+        <h4>Directional Light</h4>
+        <div class="lp-row">
+          <label>Intensity</label>
+          <input type="range" id="lp-dir-intensity" min="0" max="3" step="0.05" value="1.0">
+          <span class="lp-value" id="lp-dir-intensity-val">1.00</span>
+        </div>
+        <div class="lp-row">
+          <label>Color</label>
+          <input type="color" id="lp-dir-color" value="#ffffff">
+        </div>
+        <div class="lp-row">
+          <label>Dir X</label>
+          <input type="range" id="lp-dir-x" min="-3" max="3" step="0.1" value="-1">
+          <span class="lp-value" id="lp-dir-x-val">-1.0</span>
+        </div>
+        <div class="lp-row">
+          <label>Dir Y</label>
+          <input type="range" id="lp-dir-y" min="-3" max="3" step="0.1" value="-2">
+          <span class="lp-value" id="lp-dir-y-val">-2.0</span>
+        </div>
+        <div class="lp-row">
+          <label>Dir Z</label>
+          <input type="range" id="lp-dir-z" min="-3" max="3" step="0.1" value="-1">
+          <span class="lp-value" id="lp-dir-z-val">-1.0</span>
+        </div>
+      </div>
+
+      <div class="lp-section">
+        <h4>Fill Light (Point)</h4>
+        <div class="lp-row">
+          <label>Intensity</label>
+          <input type="range" id="lp-fill-intensity" min="0" max="3" step="0.05" value="0.8">
+          <span class="lp-value" id="lp-fill-intensity-val">0.80</span>
+        </div>
+        <div class="lp-row">
+          <label>Color</label>
+          <input type="color" id="lp-fill-color" value="#ffffff">
+        </div>
+      </div>
+
+      <div class="lp-section">
+        <h4>Material (Global)</h4>
+        <div class="lp-row">
+          <label>Emissive</label>
+          <input type="color" id="lp-emissive-color" value="#141414">
+        </div>
+      </div>
+
+      <div class="lp-actions">
+        <button class="lp-copy-btn" id="lp-copy-values">Copy Values to Clipboard</button>
+      </div>
+    </div>
+    <div id="select-model-prompt">
+      <p style="font-size: 2rem; margin-bottom: 10px">📁</p>
+      <p>Select a model from the sidebar to view</p>
+    </div>
+    <div id="pointer-hint" style="
+          position: absolute;
+          bottom: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          padding: 10px 20px;
+          background: rgba(22, 22, 29, 0.7);
+          backdrop-filter: blur(10px);
+          border-radius: 12px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+          color: #75c8d3;
+          font-size: 0.75rem;
+          font-weight: 600;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          pointer-events: none;
+          transition: all 0.3s;
+          z-index: 100;
+        ">
+      <span class="pointer-hint-desktop">Right-drag · Rotate &nbsp; Wheel · Zoom</span>
+      <span class="pointer-hint-mobile">Drag · Rotate &nbsp; Pinch · Zoom</span>
+    </div>
+    <div id="controls-overlay" class="hidden" aria-label="Flying camera controls">
+      <div class="control-hint">
+        <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><span>MOVE</span>
+      </div>
+      <div class="control-hint"><kbd>SPACE</kbd><span>UP</span></div>
+      <div class="control-hint"><kbd>C</kbd><span>DOWN</span></div>
+      <div class="control-hint"><kbd>Q</kbd><span>SLOW</span></div>
+      <div class="control-hint"><kbd>E</kbd><span>FAST</span></div>
+      <div class="control-hint" id="speed-display" style="color: #75c8d3; font-weight: bold">
+        1.0x
+      </div>
+    </div>
+    <div id="viewer-camera-controls" role="group" aria-label="Camera views">
+      <button id="overview-view-btn" type="button" title="Frame all loaded geometry" disabled>Overview</button>
+      <button id="interior-view-btn" type="button" title="No validated interior entrance loaded" disabled>Interior view</button>
+      <button id="fly-controls-btn" type="button" aria-pressed="false">Fly camera</button>
+    </div>
+    <div class="spinner-large"></div>
+
+    <!-- Export Menu -->
+    <button id="export-fab"><span>📥</span> Export Model</button>
+
+    <div id="export-options-modal" class="hidden">
+      <div style="
+            font-size: 0.7rem;
+            color: #888;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: bold;
+          ">
+        Select Format
+      </div>
+      <button class="export-option-btn glb" id="export-glb-btn">
+        <span>📦</span> GLB (glTF)
+      </button>
+      <button class="export-option-btn obj" id="export-full-obj-btn">
+        <span>�</span> OBJ (Full: OBJ + MTL)
+      </button>
+      <button class="export-option-btn obj" id="export-obj-btn">
+        <span>📐</span> OBJ (Geometry Only)
+      </button>
+      <button class="export-option-btn mtl" id="export-mtl-btn">
+        <span>🎨</span> MTL (Material Lib)
+      </button>
+      <button class="export-option-btn stl" id="export-stl-btn">
+        <span>🖨️</span> STL (3D Print)
+    </div>
+  </div>
+
+  <script type="module" src="/main.js"></script>
+  <script type="module" src="/asset-viewer/audio/main.jsx"></script>
+
+</body>
+
+</html>

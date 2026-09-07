@@ -1,0 +1,222 @@
+{
+  "schema": "new-yokosuka-interior-door-model-audit-v1",
+  "generatedFrom": "play/data/native-map-transitions.json",
+  "assetBase": "https://pub-c3aa1dfd53424ee9af1b87ad19954589.r2.dev/shenmue",
+  "method": "Resolve door assets from exact CHRT DefImage bindings, exact authored names, or a unique native-area door asset; load every resolved MT5 through the production loader; and require native render node 12 used by the proven generic door route.",
+  "summary": {
+    "transitionCount": 12,
+    "resolvedModelCount": 12,
+    "verifiedModelCount": 12,
+    "unresolvedModelCount": 0,
+    "failureCount": 0
+  },
+  "models": [
+    {
+      "area": "DBYO",
+      "model": "S1_DBYO_DR02_017.MT5",
+      "status": "verified",
+      "sha256": "808033bf1c09379c939bfa981c36d5de66dee04e3bb5e56bca05044c93d5caad",
+      "byteLength": 6388,
+      "renderKeys": [
+        -1,
+        8,
+        12,
+        13
+      ],
+      "primaryMovingNode": 12,
+      "alternateMovingNodePresent": false,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x206b8"
+    },
+    {
+      "area": "DCHA",
+      "model": "S1_DCHA_DR15_025.MT5",
+      "status": "verified",
+      "sha256": "24294119f01b29ed7f2f3a9ece0f162bfd4cebbd5500d77534d9411842e47175",
+      "byteLength": 1472,
+      "renderKeys": [
+        -1,
+        7,
+        12
+      ],
+      "primaryMovingNode": 12,
+      "alternateMovingNodePresent": true,
+      "modelResolution": "uniqueDoorAssetInNativeAreaCatalog",
+      "controllerRecordFileOffset": "0x1cfe8"
+    },
+    {
+      "area": "DJAZ",
+      "model": "S1_DJAZ_DR28_001.MT5",
+      "status": "verified",
+      "sha256": "0a0a43080a6e99eace9ab8c72dd828a5ba7b6904f81b094bff7cc3cca1459047",
+      "byteLength": 12664,
+      "renderKeys": [
+        -1,
+        5,
+        7,
+        8,
+        10,
+        12,
+        13
+      ],
+      "primaryMovingNode": 12,
+      "alternateMovingNodePresent": true,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x2ee14"
+    },
+    {
+      "area": "DKTY",
+      "model": "S1_DKTY_DR15-017.MT5",
+      "status": "verified",
+      "sha256": "b1795f6a9cae44f031a65acc9f4763a3a4fd59a122422ddbcb0c0090e3ef1b48",
+      "byteLength": 4384,
+      "renderKeys": [
+        -1,
+        7,
+        12
+      ],
+      "primaryMovingNode": 12,
+      "alternateMovingNodePresent": true,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x21a88"
+    },
+    {
+      "area": "DPIZ",
+      "model": "S1_DPIZ_DR01_009.MT5",
+      "status": "verified",
+      "sha256": "472737bb8380da2d0e2c182150589a05604c45957783bd8b0d9483844b83c089",
+      "byteLength": 31060,
+      "renderKeys": [
+        -1,
+        8,
+        12,
+        13
+      ],
+      "primaryMovingNode": 12,
+      "alternateMovingNodePresent": false,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x1c9d4"
+    },
+    {
+      "area": "DRME",
+      "model": "S1_DRME_DR15_012.MT5",
+      "status": "verified",
+      "sha256": "6e17a8eeca698ec09849f87503d887e16952ea585555231642731f456e146216",
+      "byteLength": 55700,
+      "renderKeys": [
+        -1,
+        5,
+        7,
+        8,
+        10,
+        12,
+        13
+      ],
+      "primaryMovingNode": 12,
+      "alternateMovingNodePresent": true,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x1c88c"
+    },
+    {
+      "area": "DSKI",
+      "model": "S1_DSKI_DR13_012.MT5",
+      "status": "verified",
+      "sha256": "bb7979fdac96850d3bfbf038633700028e6134836ebc3e85a21ef06c19ddd5da",
+      "byteLength": 7192,
+      "renderKeys": [
+        -1,
+        5,
+        7,
+        8,
+        10,
+        12,
+        13
+      ],
+      "primaryMovingNode": 12,
+      "alternateMovingNodePresent": true,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x20c8c"
+    },
+    {
+      "area": "DSLI",
+      "model": "S1_DSLI_DR02_017.MT5",
+      "status": "verified",
+      "sha256": "808033bf1c09379c939bfa981c36d5de66dee04e3bb5e56bca05044c93d5caad",
+      "byteLength": 6388,
+      "renderKeys": [
+        -1,
+        8,
+        12,
+        13
+      ],
+      "primaryMovingNode": 12,
+      "alternateMovingNodePresent": false,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x22d38"
+    },
+    {
+      "area": "DTKY",
+      "model": "S1_DTKY_DR02_025.MT5",
+      "status": "verified",
+      "sha256": "0ca9a1075e6c73d690b50e523e7c4b1872d9e1a359e6261c49d14a79f7de8769",
+      "byteLength": 16248,
+      "renderKeys": [
+        -1,
+        12
+      ],
+      "primaryMovingNode": 12,
+      "alternateMovingNodePresent": false,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x20660"
+    },
+    {
+      "area": "DURN",
+      "model": "S1_DURN_DR02_015.MT5",
+      "status": "verified",
+      "sha256": "aaaa59df85a81d16063a16c378e3a222a622180e519fd7f5331a30579211bcd6",
+      "byteLength": 7924,
+      "renderKeys": [
+        -1,
+        8,
+        12,
+        13
+      ],
+      "primaryMovingNode": 12,
+      "alternateMovingNodePresent": false,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x275c8"
+    },
+    {
+      "area": "DYKZ",
+      "model": "S1_DYKZ_DR02_024.MT5",
+      "status": "verified",
+      "sha256": "1b4867ff77dc149d898c13adbdef652d4e5b1169366f1cd3e1057e1b6ced0108",
+      "byteLength": 3884,
+      "renderKeys": [
+        -1,
+        12
+      ],
+      "primaryMovingNode": 12,
+      "alternateMovingNodePresent": false,
+      "modelResolution": "exactChrtDefImageBinding",
+      "controllerRecordFileOffset": "0x280b4"
+    },
+    {
+      "area": "TATQ",
+      "model": "S1_TATQ_DR01_017.MT5",
+      "status": "verified",
+      "sha256": "a5112268c075675527206ab1188a9dff6f783eb48bf1ebf4d6c905ed0e7e0c06",
+      "byteLength": 5764,
+      "renderKeys": [
+        -1,
+        12
+      ],
+      "primaryMovingNode": 12,
+      "alternateMovingNodePresent": false,
+      "modelResolution": "uniqueDoorAssetInNativeAreaCatalog",
+      "controllerRecordFileOffset": "0x23314"
+    }
+  ],
+  "failures": [],
+  "evidenceBoundary": "This proves pickable authored door geometry and the moving node for all resolved models. DYKZ DOR2 is independently selected by the native CHARA.CHRT DefImage binding rather than by filename or appearance."
+}

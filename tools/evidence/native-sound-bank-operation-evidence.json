@@ -1,0 +1,82 @@
+{
+  "schema": "new-yokosuka-native-sound-bank-operation-evidence-v1",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "mapinfo": "Disc 1 D000/MAPINFO.BIN",
+    "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e"
+  },
+  "operation": {
+    "operationId": 243,
+    "operationHex": "0x00f3",
+    "argumentCount": 8,
+    "handlerAddress": "0x0c16b350",
+    "handlerTargetAddress": "0x0c17a160",
+    "stateAddress": "0x0c20c3d8"
+  },
+  "helpers": {
+    "reconcile": "0x0c17a160",
+    "installSlot": "0x0c17a24e",
+    "releaseSlot": "0x0c17a2ea",
+    "slotMatchesRequest": "0x0c17a632",
+    "stringComparator": "0x0c179e0e",
+    "freeSentinelAddress": "0x0c27b0f0",
+    "freeSentinel": "FREE"
+  },
+  "verifiedRanges": {
+    "handler": {
+      "address": "0x0c16b350",
+      "size": 8,
+      "sha256": "1c8b2669297efad1d2ac9009ae635a3b829c9e9b7f1dfdd0358eb81e6b36d4ce"
+    },
+    "reconciler": {
+      "address": "0x0c17a160",
+      "size": 238,
+      "sha256": "29d18a68838ffa37a21e7b714b52c4cd7cc929bc5fc1867c65b2187de64b92b3"
+    },
+    "installOrRelease": {
+      "address": "0x0c17a24e",
+      "size": 156,
+      "sha256": "81035a9f9252152d836026c9e71fa217935f7bbf50eb5244baaef79db03b6fa9"
+    },
+    "slotMatchesRequest": {
+      "address": "0x0c17a632",
+      "size": 38,
+      "sha256": "e954581dae6a1a3a01edd39fd390fbccbf2de4a6d7d5091456f69b7d8c4dadf9"
+    }
+  },
+  "provenBehavior": [
+    "The handler forwards the native argument array to a fixed eight-slot reconciler.",
+    "A null request skips both comparison and installation for that slot, preserving its current occupant.",
+    "A non-null request releases a mismatched current occupant before installation.",
+    "The exact string FREE releases the selected slot and does not install a bank.",
+    "Every other non-null request is passed to the native sound-bank installation path in its authored slot."
+  ],
+  "d000Selector18": {
+    "functionFileOffset": "0x84b60",
+    "blockFileOffset": "0x84b8e",
+    "callFileOffset": "0x84bcc",
+    "argumentPointers": [
+      "0x00000000",
+      "0x00000000",
+      "0x000b132c",
+      "0x000b1337",
+      "0x000b133c",
+      "0x000b1349",
+      "0x000b1356",
+      "0x000b135b"
+    ],
+    "request": [
+      null,
+      null,
+      "bgm013.snd",
+      "FREE",
+      "a1_senfk.snd",
+      "battle_1.snd",
+      "FREE",
+      "FREE"
+    ]
+  },
+  "evidenceBoundary": "This proves ordered sound-bank residency behavior. It does not equate the operation with immediate playback, synthesize missing audio assets, or assign meanings to the individual slot numbers."
+}

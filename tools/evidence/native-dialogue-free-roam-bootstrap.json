@@ -1,0 +1,33 @@
+{
+  "schema": "new-yokosuka-native-dialogue-free-roam-bootstrap-v1",
+  "purpose": "Native persistent state immediately after Shenmue's opening sequence, before browser free roam begins.",
+  "source": {
+    "fileName": "v3241.VMS",
+    "sha256": "588785532bc8b1bbcb2281ea40735cd3368b2d1a92fbf8924e0bc65d782b4a5e",
+    "containerFormat": "SHEU",
+    "slot": 1,
+    "slotSaveBufferOffset": "0xee8",
+    "slotSaveBufferLength": "0x1800",
+    "mapIdentityAtSaveOffset0xd8": "JOMO"
+  },
+  "nativeState": {
+    "bank2SaveOffset": "0x130",
+    "bank2SetBits": [2, 3, 5, 6, 7],
+    "bank3SaveOffset": "0x128",
+    "bank3SetBits": [0, 2, 4, 5, 7, 9, 10, 13, 14, 33, 34, 35, 36, 38, 39, 40, 41],
+    "bank4SaveOffset": "0x230",
+    "bank4Values": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  },
+  "validation": {
+    "actorCode": "FUKU",
+    "selectedBodyOffset": "0x356",
+    "firstVoiceIds": [
+      "F1004A007",
+      "F1004B006",
+      "F1004A008",
+      "F1004B007",
+      "F1004A009",
+      "F1004B008"
+    ]
+  }
+}

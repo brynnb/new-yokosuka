@@ -1,0 +1,83 @@
+{
+  "schema": "new-yokosuka-shenmue-object-action-selector-families-v1",
+  "executable": "1ST_READ.BIN",
+  "loadBase": "0x0c010000",
+  "statePointerAddress": "0x0c216498",
+  "savedSelectorOffset": "0x0292",
+  "dispatcher": {
+    "invoke": "0x0c0cac06",
+    "perFrame": "0x0c0cae40"
+  },
+  "mt5NodeLayout": {
+    "0x08": "rotation X, fixed-turn integer",
+    "0x0c": "rotation Y, fixed-turn integer",
+    "0x10": "rotation Z, fixed-turn integer",
+    "0x20": "position X, float",
+    "0x24": "position Y, float",
+    "0x28": "position Z, float",
+    "0x2c": "child pointer",
+    "0x30": "sibling pointer",
+    "0x34": "parent pointer"
+  },
+  "sharedInitializer": "0x0c0d7110",
+  "families": [
+    {
+      "selectors": [0, 1, 2, 3],
+      "invokeHandler": "0x0c0d0c6c",
+      "perFrameManager": "0x0c0caff4",
+      "transformChannel": null,
+      "status": "manager-bound-channel-unresolved"
+    },
+    {
+      "selectors": [10, 11],
+      "invokeHandler": "0x0c0d1c40",
+      "perFrameManager": "0x0c0cb3b8",
+      "transformChannel": "positionX",
+      "nodeOffset": "0x20",
+      "valueType": "float",
+      "perFrameWriters": ["0x0c0d29cc", "0x0c0d2d12"],
+      "capturedWriteInstruction": "0x0c0d2aaa",
+      "status": "statically-proven-and-runtime-validated"
+    },
+    {
+      "selectors": [20, 21],
+      "invokeHandler": "0x0c0d2e70",
+      "perFrameManager": "0x0c0cb884",
+      "transformChannel": "rotationY",
+      "nodeOffset": "0x0c",
+      "valueType": "fixedTurnInteger",
+      "perFrameWriters": ["0x0c0d3990"],
+      "writerInstructions": ["0x0c0d3a8c", "0x0c0d3a98"],
+      "status": "statically-proven"
+    },
+    {
+      "selectors": [30],
+      "invokeHandler": "0x0c0d3c8c",
+      "perFrameManager": "0x0c0cbc72",
+      "transformChannel": "compoundPositionAndHierarchy",
+      "nodeOffsetsRead": ["0x20", "0x24", "0x28", "0x2c"],
+      "status": "statically-bounded-semantics-unresolved"
+    },
+    {
+      "selectors": [40],
+      "invokeHandler": "0x0c0d51b8",
+      "perFrameManager": "0x0c0cbfd0",
+      "transformChannel": null,
+      "status": "manager-bound-channel-unresolved"
+    },
+    {
+      "selectors": [50],
+      "invokeHandler": "0x0c0d5c56",
+      "perFrameManager": "0x0c0cc2e0",
+      "transformChannel": null,
+      "status": "manager-bound-channel-unresolved"
+    },
+    {
+      "selectors": [60],
+      "invokeHandler": "0x0c0d6898",
+      "perFrameManager": "0x0c0cc5ea",
+      "transformChannel": null,
+      "status": "manager-bound-channel-unresolved"
+    }
+  ]
+}

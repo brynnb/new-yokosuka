@@ -1,0 +1,53 @@
+{
+  "schema": "new-yokosuka-d000-door-61-closed-check-v1",
+  "status": "exact-control-presentation-dialogue-and-audio-route",
+  "source": {
+    "mapinfo": "Disc 1 D000/MAPINFO.BIN",
+    "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+    "dialogueArchive": "Disc 1 STREAM/SA1088.AFS",
+    "dialogueArchiveSha256": "0cff29cb2f9a1af46fda182ede40c2ddb17de906f92e6ee8b3cf62d836eee438",
+    "soundBank": "Disc 1 SOUND/F1DOBUIT.SND",
+    "soundBankSha256": "e77a6ea473b62e6356fe9b0152ec285b6ee115ef75cd912c443852ff6ff118be"
+  },
+  "selection": {
+    "logicalDoorSelector": 61,
+    "visibleDoorIndex": 105,
+    "model": "S1_D000_DR02_020.MT5",
+    "browserPosition": [18.435373, 0.072397, 72.516792],
+    "targetIndex": 532,
+    "regionStartFileOffset": "0x7557c"
+  },
+  "alignment": {
+    "helperFileOffset": "0x6faa0",
+    "actorCode": "AKIR",
+    "targetNative": [-19.149999618530273, 0.07240000367164612, 72.97000122070312],
+    "requestWord": 1820,
+    "requestDword": 594,
+    "stateSelector": 0
+  },
+  "motion": {
+    "request": 28677,
+    "name": "AKI_HITORIGOTO_R_RYURIHATUTEN",
+    "motionFile": "M_D000.MOTN",
+    "parameters": [-1, -1, 40, 1.2000000476837158],
+    "soundCuePhases": [58, 82],
+    "dialogueReleasePhase": 150,
+    "completionStatusMask": 2
+  },
+  "sound": {
+    "commandHex": "a9054200",
+    "group": "a905",
+    "track": 66,
+    "compositionHex": "c0df0e6d80ff",
+    "playbackId": 14,
+    "sampleId": 25,
+    "dtpkRate": "0xe500",
+    "sampleRate": 9500
+  },
+  "branches": {
+    "randomRangeInclusive": [1, 3],
+    "onOrAfterApril1": ["SA1088A001", "SA1088A002", "SA1088A003"],
+    "beforeApril1AtOrAfter0500": ["SA1088A002", "SA1088A004", "SA1088A003"],
+    "beforeApril1Before0500": ["SA1088A005", "SA1088A002", "SA1088A003"]
+  }
+}

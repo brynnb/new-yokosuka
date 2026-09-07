@@ -1,0 +1,1818 @@
+{
+  "schema": "new-yokosuka-dialogue-coverage-v1",
+  "evidenceBoundary": [
+    "This file contains aggregate counts only; the full inventories remain in ignored local research storage.",
+    "A script reference is an exact MAPINFO static-string match to a native voice member ID.",
+    "A dialogue start is an exact operation-0x006d dispatch whose first argument resolves to a native voice member ID.",
+    "These counts do not prove interaction ownership, story predicates, facing, camera, or authored animation."
+  ],
+  "inventory": {
+    "archiveCount": 374,
+    "subtitleArchiveCount": 371,
+    "exactVoiceAlignedArchiveCount": 368,
+    "voiceMemberCount": 40224,
+    "subtitleMemberCount": 886,
+    "subtitleRecordCount": 40422,
+    "speakerIdCount": 199
+  },
+  "alignment": {
+    "subtitleArchiveCoverage": 0.9919137466307277,
+    "unalignedSubtitleArchiveCount": 3
+  },
+  "scriptReferences": {
+    "referenceCount": 15221,
+    "uniqueVoiceIdCount": 3176,
+    "areaCount": 69,
+    "areas": [
+      {
+        "disc": 1,
+        "area": "D000",
+        "referenceCount": 1093,
+        "uniqueVoiceIdCount": 704
+      },
+      {
+        "disc": 1,
+        "area": "DBHB",
+        "referenceCount": 29,
+        "uniqueVoiceIdCount": 22
+      },
+      {
+        "disc": 1,
+        "area": "DBYO",
+        "referenceCount": 19,
+        "uniqueVoiceIdCount": 19
+      },
+      {
+        "disc": 1,
+        "area": "DCBN",
+        "referenceCount": 54,
+        "uniqueVoiceIdCount": 46
+      },
+      {
+        "disc": 1,
+        "area": "DGCT",
+        "referenceCount": 146,
+        "uniqueVoiceIdCount": 109
+      },
+      {
+        "disc": 1,
+        "area": "DHQB",
+        "referenceCount": 49,
+        "uniqueVoiceIdCount": 49
+      },
+      {
+        "disc": 1,
+        "area": "DJAZ",
+        "referenceCount": 66,
+        "uniqueVoiceIdCount": 63
+      },
+      {
+        "disc": 1,
+        "area": "DKTY",
+        "referenceCount": 51,
+        "uniqueVoiceIdCount": 46
+      },
+      {
+        "disc": 1,
+        "area": "DSLI",
+        "referenceCount": 29,
+        "uniqueVoiceIdCount": 22
+      },
+      {
+        "disc": 1,
+        "area": "DSLT",
+        "referenceCount": 83,
+        "uniqueVoiceIdCount": 71
+      },
+      {
+        "disc": 1,
+        "area": "DURN",
+        "referenceCount": 190,
+        "uniqueVoiceIdCount": 166
+      },
+      {
+        "disc": 1,
+        "area": "JABE",
+        "referenceCount": 47,
+        "uniqueVoiceIdCount": 38
+      },
+      {
+        "disc": 1,
+        "area": "JD00",
+        "referenceCount": 904,
+        "uniqueVoiceIdCount": 556
+      },
+      {
+        "disc": 1,
+        "area": "JHD0",
+        "referenceCount": 163,
+        "uniqueVoiceIdCount": 134
+      },
+      {
+        "disc": 1,
+        "area": "JOMO",
+        "referenceCount": 922,
+        "uniqueVoiceIdCount": 562
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "referenceCount": 143,
+        "uniqueVoiceIdCount": 108
+      },
+      {
+        "disc": 1,
+        "area": "TATQ",
+        "referenceCount": 4,
+        "uniqueVoiceIdCount": 3
+      },
+      {
+        "disc": 1,
+        "area": "YQ14",
+        "referenceCount": 19,
+        "uniqueVoiceIdCount": 19
+      },
+      {
+        "disc": 2,
+        "area": "D000",
+        "referenceCount": 979,
+        "uniqueVoiceIdCount": 621
+      },
+      {
+        "disc": 2,
+        "area": "DBHB",
+        "referenceCount": 29,
+        "uniqueVoiceIdCount": 22
+      },
+      {
+        "disc": 2,
+        "area": "DBYO",
+        "referenceCount": 19,
+        "uniqueVoiceIdCount": 19
+      },
+      {
+        "disc": 2,
+        "area": "DCBN",
+        "referenceCount": 54,
+        "uniqueVoiceIdCount": 46
+      },
+      {
+        "disc": 2,
+        "area": "DGCT",
+        "referenceCount": 146,
+        "uniqueVoiceIdCount": 109
+      },
+      {
+        "disc": 2,
+        "area": "DJAZ",
+        "referenceCount": 66,
+        "uniqueVoiceIdCount": 63
+      },
+      {
+        "disc": 2,
+        "area": "DKTY",
+        "referenceCount": 51,
+        "uniqueVoiceIdCount": 46
+      },
+      {
+        "disc": 2,
+        "area": "DSLI",
+        "referenceCount": 29,
+        "uniqueVoiceIdCount": 22
+      },
+      {
+        "disc": 2,
+        "area": "DSLT",
+        "referenceCount": 83,
+        "uniqueVoiceIdCount": 71
+      },
+      {
+        "disc": 2,
+        "area": "DURN",
+        "referenceCount": 190,
+        "uniqueVoiceIdCount": 166
+      },
+      {
+        "disc": 2,
+        "area": "JABE",
+        "referenceCount": 47,
+        "uniqueVoiceIdCount": 38
+      },
+      {
+        "disc": 2,
+        "area": "JD00",
+        "referenceCount": 841,
+        "uniqueVoiceIdCount": 496
+      },
+      {
+        "disc": 2,
+        "area": "JHD0",
+        "referenceCount": 116,
+        "uniqueVoiceIdCount": 90
+      },
+      {
+        "disc": 2,
+        "area": "JOMO",
+        "referenceCount": 922,
+        "uniqueVoiceIdCount": 562
+      },
+      {
+        "disc": 2,
+        "area": "JU00",
+        "referenceCount": 153,
+        "uniqueVoiceIdCount": 115
+      },
+      {
+        "disc": 2,
+        "area": "MFSY",
+        "referenceCount": 1057,
+        "uniqueVoiceIdCount": 697
+      },
+      {
+        "disc": 2,
+        "area": "MK80",
+        "referenceCount": 37,
+        "uniqueVoiceIdCount": 37
+      },
+      {
+        "disc": 2,
+        "area": "MKSG",
+        "referenceCount": 152,
+        "uniqueVoiceIdCount": 139
+      },
+      {
+        "disc": 2,
+        "area": "MKYU",
+        "referenceCount": 133,
+        "uniqueVoiceIdCount": 118
+      },
+      {
+        "disc": 2,
+        "area": "MS08",
+        "referenceCount": 68,
+        "uniqueVoiceIdCount": 54
+      },
+      {
+        "disc": 2,
+        "area": "MS8S",
+        "referenceCount": 36,
+        "uniqueVoiceIdCount": 31
+      },
+      {
+        "disc": 2,
+        "area": "YDB1",
+        "referenceCount": 197,
+        "uniqueVoiceIdCount": 127
+      },
+      {
+        "disc": 3,
+        "area": "D000",
+        "referenceCount": 889,
+        "uniqueVoiceIdCount": 534
+      },
+      {
+        "disc": 3,
+        "area": "DBHB",
+        "referenceCount": 29,
+        "uniqueVoiceIdCount": 22
+      },
+      {
+        "disc": 3,
+        "area": "DBYO",
+        "referenceCount": 19,
+        "uniqueVoiceIdCount": 19
+      },
+      {
+        "disc": 3,
+        "area": "DCBN",
+        "referenceCount": 54,
+        "uniqueVoiceIdCount": 46
+      },
+      {
+        "disc": 3,
+        "area": "DGCT",
+        "referenceCount": 146,
+        "uniqueVoiceIdCount": 109
+      },
+      {
+        "disc": 3,
+        "area": "DJAZ",
+        "referenceCount": 66,
+        "uniqueVoiceIdCount": 63
+      },
+      {
+        "disc": 3,
+        "area": "DKTY",
+        "referenceCount": 51,
+        "uniqueVoiceIdCount": 46
+      },
+      {
+        "disc": 3,
+        "area": "DSLI",
+        "referenceCount": 29,
+        "uniqueVoiceIdCount": 22
+      },
+      {
+        "disc": 3,
+        "area": "DSLT",
+        "referenceCount": 83,
+        "uniqueVoiceIdCount": 71
+      },
+      {
+        "disc": 3,
+        "area": "DURN",
+        "referenceCount": 190,
+        "uniqueVoiceIdCount": 166
+      },
+      {
+        "disc": 3,
+        "area": "JABE",
+        "referenceCount": 47,
+        "uniqueVoiceIdCount": 38
+      },
+      {
+        "disc": 3,
+        "area": "JD00",
+        "referenceCount": 841,
+        "uniqueVoiceIdCount": 496
+      },
+      {
+        "disc": 3,
+        "area": "JHD0",
+        "referenceCount": 110,
+        "uniqueVoiceIdCount": 84
+      },
+      {
+        "disc": 3,
+        "area": "JOMO",
+        "referenceCount": 922,
+        "uniqueVoiceIdCount": 562
+      },
+      {
+        "disc": 3,
+        "area": "JU00",
+        "referenceCount": 125,
+        "uniqueVoiceIdCount": 92
+      },
+      {
+        "disc": 3,
+        "area": "M3FB",
+        "referenceCount": 9,
+        "uniqueVoiceIdCount": 9
+      },
+      {
+        "disc": 3,
+        "area": "MA00",
+        "referenceCount": 176,
+        "uniqueVoiceIdCount": 159
+      },
+      {
+        "disc": 3,
+        "area": "MB9Q",
+        "referenceCount": 19,
+        "uniqueVoiceIdCount": 19
+      },
+      {
+        "disc": 3,
+        "area": "MBQC",
+        "referenceCount": 24,
+        "uniqueVoiceIdCount": 23
+      },
+      {
+        "disc": 3,
+        "area": "MC5Q",
+        "referenceCount": 4,
+        "uniqueVoiceIdCount": 3
+      },
+      {
+        "disc": 3,
+        "area": "MEND",
+        "referenceCount": 139,
+        "uniqueVoiceIdCount": 108
+      },
+      {
+        "disc": 3,
+        "area": "MFBT",
+        "referenceCount": 13,
+        "uniqueVoiceIdCount": 13
+      },
+      {
+        "disc": 3,
+        "area": "MFSY",
+        "referenceCount": 1401,
+        "uniqueVoiceIdCount": 971
+      },
+      {
+        "disc": 3,
+        "area": "MK80",
+        "referenceCount": 37,
+        "uniqueVoiceIdCount": 37
+      },
+      {
+        "disc": 3,
+        "area": "MKSG",
+        "referenceCount": 2,
+        "uniqueVoiceIdCount": 2
+      },
+      {
+        "disc": 3,
+        "area": "MKYU",
+        "referenceCount": 135,
+        "uniqueVoiceIdCount": 120
+      },
+      {
+        "disc": 3,
+        "area": "MS08",
+        "referenceCount": 39,
+        "uniqueVoiceIdCount": 39
+      },
+      {
+        "disc": 3,
+        "area": "TERY",
+        "referenceCount": 12,
+        "uniqueVoiceIdCount": 12
+      },
+      {
+        "disc": 3,
+        "area": "YDB1",
+        "referenceCount": 194,
+        "uniqueVoiceIdCount": 125
+      }
+    ]
+  },
+  "dialogueOperations": {
+    "invocationCount": 13897,
+    "uniqueVoiceIdCount": 2823,
+    "followedByGlobalDialogueActiveCheckCount": 1565,
+    "areaCount": 64,
+    "mapinfoWithExecutableTargetTableCount": 126,
+    "executableTargetEntryCount": 16619,
+    "invocationWithExecutableTargetContextCount": 13897,
+    "areas": [
+      {
+        "disc": 1,
+        "area": "D000",
+        "invocationCount": 1064
+      },
+      {
+        "disc": 1,
+        "area": "DBHB",
+        "invocationCount": 30
+      },
+      {
+        "disc": 1,
+        "area": "DBYO",
+        "invocationCount": 19
+      },
+      {
+        "disc": 1,
+        "area": "DCBN",
+        "invocationCount": 54
+      },
+      {
+        "disc": 1,
+        "area": "DGCT",
+        "invocationCount": 43
+      },
+      {
+        "disc": 1,
+        "area": "DHQB",
+        "invocationCount": 49
+      },
+      {
+        "disc": 1,
+        "area": "DJAZ",
+        "invocationCount": 66
+      },
+      {
+        "disc": 1,
+        "area": "DKTY",
+        "invocationCount": 51
+      },
+      {
+        "disc": 1,
+        "area": "DSLI",
+        "invocationCount": 30
+      },
+      {
+        "disc": 1,
+        "area": "DSLT",
+        "invocationCount": 83
+      },
+      {
+        "disc": 1,
+        "area": "DURN",
+        "invocationCount": 190
+      },
+      {
+        "disc": 1,
+        "area": "JABE",
+        "invocationCount": 47
+      },
+      {
+        "disc": 1,
+        "area": "JD00",
+        "invocationCount": 869
+      },
+      {
+        "disc": 1,
+        "area": "JHD0",
+        "invocationCount": 160
+      },
+      {
+        "disc": 1,
+        "area": "JOMO",
+        "invocationCount": 922
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "invocationCount": 17
+      },
+      {
+        "disc": 1,
+        "area": "TATQ",
+        "invocationCount": 5
+      },
+      {
+        "disc": 2,
+        "area": "D000",
+        "invocationCount": 950
+      },
+      {
+        "disc": 2,
+        "area": "DBHB",
+        "invocationCount": 30
+      },
+      {
+        "disc": 2,
+        "area": "DBYO",
+        "invocationCount": 19
+      },
+      {
+        "disc": 2,
+        "area": "DCBN",
+        "invocationCount": 54
+      },
+      {
+        "disc": 2,
+        "area": "DGCT",
+        "invocationCount": 43
+      },
+      {
+        "disc": 2,
+        "area": "DJAZ",
+        "invocationCount": 66
+      },
+      {
+        "disc": 2,
+        "area": "DKTY",
+        "invocationCount": 51
+      },
+      {
+        "disc": 2,
+        "area": "DSLI",
+        "invocationCount": 30
+      },
+      {
+        "disc": 2,
+        "area": "DSLT",
+        "invocationCount": 83
+      },
+      {
+        "disc": 2,
+        "area": "DURN",
+        "invocationCount": 190
+      },
+      {
+        "disc": 2,
+        "area": "JABE",
+        "invocationCount": 47
+      },
+      {
+        "disc": 2,
+        "area": "JD00",
+        "invocationCount": 810
+      },
+      {
+        "disc": 2,
+        "area": "JHD0",
+        "invocationCount": 113
+      },
+      {
+        "disc": 2,
+        "area": "JOMO",
+        "invocationCount": 922
+      },
+      {
+        "disc": 2,
+        "area": "MFSY",
+        "invocationCount": 1043
+      },
+      {
+        "disc": 2,
+        "area": "MKSG",
+        "invocationCount": 19
+      },
+      {
+        "disc": 2,
+        "area": "MKYU",
+        "invocationCount": 62
+      },
+      {
+        "disc": 2,
+        "area": "MS08",
+        "invocationCount": 69
+      },
+      {
+        "disc": 2,
+        "area": "MS8S",
+        "invocationCount": 40
+      },
+      {
+        "disc": 2,
+        "area": "YDB1",
+        "invocationCount": 207
+      },
+      {
+        "disc": 3,
+        "area": "D000",
+        "invocationCount": 857
+      },
+      {
+        "disc": 3,
+        "area": "DBHB",
+        "invocationCount": 30
+      },
+      {
+        "disc": 3,
+        "area": "DBYO",
+        "invocationCount": 19
+      },
+      {
+        "disc": 3,
+        "area": "DCBN",
+        "invocationCount": 54
+      },
+      {
+        "disc": 3,
+        "area": "DGCT",
+        "invocationCount": 43
+      },
+      {
+        "disc": 3,
+        "area": "DJAZ",
+        "invocationCount": 66
+      },
+      {
+        "disc": 3,
+        "area": "DKTY",
+        "invocationCount": 51
+      },
+      {
+        "disc": 3,
+        "area": "DSLI",
+        "invocationCount": 30
+      },
+      {
+        "disc": 3,
+        "area": "DSLT",
+        "invocationCount": 83
+      },
+      {
+        "disc": 3,
+        "area": "DURN",
+        "invocationCount": 190
+      },
+      {
+        "disc": 3,
+        "area": "FBGG",
+        "invocationCount": 1
+      },
+      {
+        "disc": 3,
+        "area": "JABE",
+        "invocationCount": 47
+      },
+      {
+        "disc": 3,
+        "area": "JD00",
+        "invocationCount": 810
+      },
+      {
+        "disc": 3,
+        "area": "JHD0",
+        "invocationCount": 107
+      },
+      {
+        "disc": 3,
+        "area": "JOMO",
+        "invocationCount": 922
+      },
+      {
+        "disc": 3,
+        "area": "M3FB",
+        "invocationCount": 9
+      },
+      {
+        "disc": 3,
+        "area": "MA00",
+        "invocationCount": 167
+      },
+      {
+        "disc": 3,
+        "area": "MB9Q",
+        "invocationCount": 19
+      },
+      {
+        "disc": 3,
+        "area": "MBQC",
+        "invocationCount": 24
+      },
+      {
+        "disc": 3,
+        "area": "MEND",
+        "invocationCount": 135
+      },
+      {
+        "disc": 3,
+        "area": "MFBT",
+        "invocationCount": 14
+      },
+      {
+        "disc": 3,
+        "area": "MFSY",
+        "invocationCount": 1387
+      },
+      {
+        "disc": 3,
+        "area": "MKSG",
+        "invocationCount": 2
+      },
+      {
+        "disc": 3,
+        "area": "MKYU",
+        "invocationCount": 64
+      },
+      {
+        "disc": 3,
+        "area": "MS08",
+        "invocationCount": 2
+      },
+      {
+        "disc": 3,
+        "area": "TERY",
+        "invocationCount": 13
+      },
+      {
+        "disc": 3,
+        "area": "YDB1",
+        "invocationCount": 204
+      }
+    ]
+  },
+  "dialogueCodeRegions": {
+    "regionCount": 1285,
+    "voiceInvocationCount": 13897,
+    "uniqueVoiceIdCount": 2823,
+    "operationCount": 39852,
+    "uniqueOperationIdCount": 189,
+    "regionWithActorTagCount": 344,
+    "regionWithCharacterStateAccessCount": 3,
+    "characterStateAccessCount": 6,
+    "voiceRecordLinkCount": 14208,
+    "semanticizedOperationCount": 25403,
+    "operationIds": [
+      {
+        "operationId": 0,
+        "operationHex": "0x0000",
+        "count": 55
+      },
+      {
+        "operationId": 2,
+        "operationHex": "0x0002",
+        "count": 679
+      },
+      {
+        "operationId": 3,
+        "operationHex": "0x0003",
+        "count": 88
+      },
+      {
+        "operationId": 5,
+        "operationHex": "0x0005",
+        "count": 5
+      },
+      {
+        "operationId": 8,
+        "operationHex": "0x0008",
+        "count": 7
+      },
+      {
+        "operationId": 9,
+        "operationHex": "0x0009",
+        "count": 771
+      },
+      {
+        "operationId": 10,
+        "operationHex": "0x000a",
+        "count": 27
+      },
+      {
+        "operationId": 11,
+        "operationHex": "0x000b",
+        "count": 8
+      },
+      {
+        "operationId": 14,
+        "operationHex": "0x000e",
+        "count": 161
+      },
+      {
+        "operationId": 16,
+        "operationHex": "0x0010",
+        "count": 7
+      },
+      {
+        "operationId": 17,
+        "operationHex": "0x0011",
+        "count": 677
+      },
+      {
+        "operationId": 18,
+        "operationHex": "0x0012",
+        "count": 10
+      },
+      {
+        "operationId": 19,
+        "operationHex": "0x0013",
+        "count": 2
+      },
+      {
+        "operationId": 24,
+        "operationHex": "0x0018",
+        "count": 390
+      },
+      {
+        "operationId": 25,
+        "operationHex": "0x0019",
+        "count": 309
+      },
+      {
+        "operationId": 26,
+        "operationHex": "0x001a",
+        "count": 3
+      },
+      {
+        "operationId": 27,
+        "operationHex": "0x001b",
+        "count": 101
+      },
+      {
+        "operationId": 28,
+        "operationHex": "0x001c",
+        "count": 55
+      },
+      {
+        "operationId": 29,
+        "operationHex": "0x001d",
+        "count": 343
+      },
+      {
+        "operationId": 30,
+        "operationHex": "0x001e",
+        "count": 20
+      },
+      {
+        "operationId": 31,
+        "operationHex": "0x001f",
+        "count": 527
+      },
+      {
+        "operationId": 32,
+        "operationHex": "0x0020",
+        "count": 24
+      },
+      {
+        "operationId": 33,
+        "operationHex": "0x0021",
+        "count": 2
+      },
+      {
+        "operationId": 35,
+        "operationHex": "0x0023",
+        "count": 4
+      },
+      {
+        "operationId": 37,
+        "operationHex": "0x0025",
+        "count": 26
+      },
+      {
+        "operationId": 38,
+        "operationHex": "0x0026",
+        "count": 1
+      },
+      {
+        "operationId": 39,
+        "operationHex": "0x0027",
+        "count": 19
+      },
+      {
+        "operationId": 40,
+        "operationHex": "0x0028",
+        "count": 806
+      },
+      {
+        "operationId": 41,
+        "operationHex": "0x0029",
+        "count": 166
+      },
+      {
+        "operationId": 42,
+        "operationHex": "0x002a",
+        "count": 57
+      },
+      {
+        "operationId": 43,
+        "operationHex": "0x002b",
+        "count": 75
+      },
+      {
+        "operationId": 44,
+        "operationHex": "0x002c",
+        "count": 210
+      },
+      {
+        "operationId": 45,
+        "operationHex": "0x002d",
+        "count": 716
+      },
+      {
+        "operationId": 46,
+        "operationHex": "0x002e",
+        "count": 257
+      },
+      {
+        "operationId": 48,
+        "operationHex": "0x0030",
+        "count": 28
+      },
+      {
+        "operationId": 49,
+        "operationHex": "0x0031",
+        "count": 71
+      },
+      {
+        "operationId": 53,
+        "operationHex": "0x0035",
+        "count": 7
+      },
+      {
+        "operationId": 54,
+        "operationHex": "0x0036",
+        "count": 3
+      },
+      {
+        "operationId": 59,
+        "operationHex": "0x003b",
+        "count": 3
+      },
+      {
+        "operationId": 60,
+        "operationHex": "0x003c",
+        "count": 9
+      },
+      {
+        "operationId": 61,
+        "operationHex": "0x003d",
+        "count": 62
+      },
+      {
+        "operationId": 62,
+        "operationHex": "0x003e",
+        "count": 11
+      },
+      {
+        "operationId": 63,
+        "operationHex": "0x003f",
+        "count": 62
+      },
+      {
+        "operationId": 64,
+        "operationHex": "0x0040",
+        "count": 385
+      },
+      {
+        "operationId": 66,
+        "operationHex": "0x0042",
+        "count": 95
+      },
+      {
+        "operationId": 67,
+        "operationHex": "0x0043",
+        "count": 34
+      },
+      {
+        "operationId": 70,
+        "operationHex": "0x0046",
+        "count": 160
+      },
+      {
+        "operationId": 73,
+        "operationHex": "0x0049",
+        "count": 3
+      },
+      {
+        "operationId": 76,
+        "operationHex": "0x004c",
+        "count": 44
+      },
+      {
+        "operationId": 77,
+        "operationHex": "0x004d",
+        "count": 1
+      },
+      {
+        "operationId": 78,
+        "operationHex": "0x004e",
+        "count": 67
+      },
+      {
+        "operationId": 79,
+        "operationHex": "0x004f",
+        "count": 612
+      },
+      {
+        "operationId": 80,
+        "operationHex": "0x0050",
+        "count": 9
+      },
+      {
+        "operationId": 81,
+        "operationHex": "0x0051",
+        "count": 1461
+      },
+      {
+        "operationId": 84,
+        "operationHex": "0x0054",
+        "count": 7
+      },
+      {
+        "operationId": 88,
+        "operationHex": "0x0058",
+        "count": 10
+      },
+      {
+        "operationId": 89,
+        "operationHex": "0x0059",
+        "count": 48
+      },
+      {
+        "operationId": 93,
+        "operationHex": "0x005d",
+        "count": 9
+      },
+      {
+        "operationId": 94,
+        "operationHex": "0x005e",
+        "count": 84
+      },
+      {
+        "operationId": 95,
+        "operationHex": "0x005f",
+        "count": 32
+      },
+      {
+        "operationId": 96,
+        "operationHex": "0x0060",
+        "count": 24
+      },
+      {
+        "operationId": 97,
+        "operationHex": "0x0061",
+        "count": 3
+      },
+      {
+        "operationId": 99,
+        "operationHex": "0x0063",
+        "count": 2
+      },
+      {
+        "operationId": 100,
+        "operationHex": "0x0064",
+        "count": 12
+      },
+      {
+        "operationId": 101,
+        "operationHex": "0x0065",
+        "count": 85
+      },
+      {
+        "operationId": 102,
+        "operationHex": "0x0066",
+        "count": 62
+      },
+      {
+        "operationId": 106,
+        "operationHex": "0x006a",
+        "count": 10
+      },
+      {
+        "operationId": 108,
+        "operationHex": "0x006c",
+        "count": 550
+      },
+      {
+        "operationId": 109,
+        "operationHex": "0x006d",
+        "count": 14190
+      },
+      {
+        "operationId": 110,
+        "operationHex": "0x006e",
+        "count": 1
+      },
+      {
+        "operationId": 111,
+        "operationHex": "0x006f",
+        "count": 3
+      },
+      {
+        "operationId": 112,
+        "operationHex": "0x0070",
+        "count": 2
+      },
+      {
+        "operationId": 113,
+        "operationHex": "0x0071",
+        "count": 27
+      },
+      {
+        "operationId": 114,
+        "operationHex": "0x0072",
+        "count": 16
+      },
+      {
+        "operationId": 115,
+        "operationHex": "0x0073",
+        "count": 6
+      },
+      {
+        "operationId": 116,
+        "operationHex": "0x0074",
+        "count": 13
+      },
+      {
+        "operationId": 117,
+        "operationHex": "0x0075",
+        "count": 162
+      },
+      {
+        "operationId": 120,
+        "operationHex": "0x0078",
+        "count": 25
+      },
+      {
+        "operationId": 129,
+        "operationHex": "0x0081",
+        "count": 122
+      },
+      {
+        "operationId": 130,
+        "operationHex": "0x0082",
+        "count": 1
+      },
+      {
+        "operationId": 131,
+        "operationHex": "0x0083",
+        "count": 1
+      },
+      {
+        "operationId": 132,
+        "operationHex": "0x0084",
+        "count": 5
+      },
+      {
+        "operationId": 136,
+        "operationHex": "0x0088",
+        "count": 3
+      },
+      {
+        "operationId": 137,
+        "operationHex": "0x0089",
+        "count": 6
+      },
+      {
+        "operationId": 140,
+        "operationHex": "0x008c",
+        "count": 10
+      },
+      {
+        "operationId": 143,
+        "operationHex": "0x008f",
+        "count": 37
+      },
+      {
+        "operationId": 145,
+        "operationHex": "0x0091",
+        "count": 24
+      },
+      {
+        "operationId": 148,
+        "operationHex": "0x0094",
+        "count": 19
+      },
+      {
+        "operationId": 152,
+        "operationHex": "0x0098",
+        "count": 7
+      },
+      {
+        "operationId": 153,
+        "operationHex": "0x0099",
+        "count": 181
+      },
+      {
+        "operationId": 154,
+        "operationHex": "0x009a",
+        "count": 40
+      },
+      {
+        "operationId": 155,
+        "operationHex": "0x009b",
+        "count": 4
+      },
+      {
+        "operationId": 156,
+        "operationHex": "0x009c",
+        "count": 87
+      },
+      {
+        "operationId": 157,
+        "operationHex": "0x009d",
+        "count": 1
+      },
+      {
+        "operationId": 159,
+        "operationHex": "0x009f",
+        "count": 6
+      },
+      {
+        "operationId": 161,
+        "operationHex": "0x00a1",
+        "count": 4
+      },
+      {
+        "operationId": 162,
+        "operationHex": "0x00a2",
+        "count": 14
+      },
+      {
+        "operationId": 168,
+        "operationHex": "0x00a8",
+        "count": 126
+      },
+      {
+        "operationId": 172,
+        "operationHex": "0x00ac",
+        "count": 84
+      },
+      {
+        "operationId": 178,
+        "operationHex": "0x00b2",
+        "count": 10360
+      },
+      {
+        "operationId": 181,
+        "operationHex": "0x00b5",
+        "count": 1
+      },
+      {
+        "operationId": 182,
+        "operationHex": "0x00b6",
+        "count": 6
+      },
+      {
+        "operationId": 184,
+        "operationHex": "0x00b8",
+        "count": 10
+      },
+      {
+        "operationId": 185,
+        "operationHex": "0x00b9",
+        "count": 6
+      },
+      {
+        "operationId": 198,
+        "operationHex": "0x00c6",
+        "count": 3
+      },
+      {
+        "operationId": 200,
+        "operationHex": "0x00c8",
+        "count": 20
+      },
+      {
+        "operationId": 201,
+        "operationHex": "0x00c9",
+        "count": 20
+      },
+      {
+        "operationId": 202,
+        "operationHex": "0x00ca",
+        "count": 436
+      },
+      {
+        "operationId": 211,
+        "operationHex": "0x00d3",
+        "count": 2
+      },
+      {
+        "operationId": 212,
+        "operationHex": "0x00d4",
+        "count": 3
+      },
+      {
+        "operationId": 216,
+        "operationHex": "0x00d8",
+        "count": 6
+      },
+      {
+        "operationId": 221,
+        "operationHex": "0x00dd",
+        "count": 4
+      },
+      {
+        "operationId": 223,
+        "operationHex": "0x00df",
+        "count": 238
+      },
+      {
+        "operationId": 230,
+        "operationHex": "0x00e6",
+        "count": 100
+      },
+      {
+        "operationId": 231,
+        "operationHex": "0x00e7",
+        "count": 22
+      },
+      {
+        "operationId": 235,
+        "operationHex": "0x00eb",
+        "count": 40
+      },
+      {
+        "operationId": 236,
+        "operationHex": "0x00ec",
+        "count": 41
+      },
+      {
+        "operationId": 241,
+        "operationHex": "0x00f1",
+        "count": 110
+      },
+      {
+        "operationId": 243,
+        "operationHex": "0x00f3",
+        "count": 4
+      },
+      {
+        "operationId": 244,
+        "operationHex": "0x00f4",
+        "count": 8
+      },
+      {
+        "operationId": 245,
+        "operationHex": "0x00f5",
+        "count": 2
+      },
+      {
+        "operationId": 247,
+        "operationHex": "0x00f7",
+        "count": 25
+      },
+      {
+        "operationId": 251,
+        "operationHex": "0x00fb",
+        "count": 5
+      },
+      {
+        "operationId": 253,
+        "operationHex": "0x00fd",
+        "count": 1
+      },
+      {
+        "operationId": 255,
+        "operationHex": "0x00ff",
+        "count": 12
+      },
+      {
+        "operationId": 256,
+        "operationHex": "0x0100",
+        "count": 7
+      },
+      {
+        "operationId": 270,
+        "operationHex": "0x010e",
+        "count": 4
+      },
+      {
+        "operationId": 271,
+        "operationHex": "0x010f",
+        "count": 2
+      },
+      {
+        "operationId": 272,
+        "operationHex": "0x0110",
+        "count": 3
+      },
+      {
+        "operationId": 275,
+        "operationHex": "0x0113",
+        "count": 38
+      },
+      {
+        "operationId": 278,
+        "operationHex": "0x0116",
+        "count": 139
+      },
+      {
+        "operationId": 279,
+        "operationHex": "0x0117",
+        "count": 21
+      },
+      {
+        "operationId": 280,
+        "operationHex": "0x0118",
+        "count": 2
+      },
+      {
+        "operationId": 282,
+        "operationHex": "0x011a",
+        "count": 14
+      },
+      {
+        "operationId": 288,
+        "operationHex": "0x0120",
+        "count": 37
+      },
+      {
+        "operationId": 289,
+        "operationHex": "0x0121",
+        "count": 6
+      },
+      {
+        "operationId": 292,
+        "operationHex": "0x0124",
+        "count": 1
+      },
+      {
+        "operationId": 306,
+        "operationHex": "0x0132",
+        "count": 69
+      },
+      {
+        "operationId": 312,
+        "operationHex": "0x0138",
+        "count": 1
+      },
+      {
+        "operationId": 313,
+        "operationHex": "0x0139",
+        "count": 98
+      },
+      {
+        "operationId": 314,
+        "operationHex": "0x013a",
+        "count": 7
+      },
+      {
+        "operationId": 316,
+        "operationHex": "0x013c",
+        "count": 48
+      },
+      {
+        "operationId": 318,
+        "operationHex": "0x013e",
+        "count": 25
+      },
+      {
+        "operationId": 320,
+        "operationHex": "0x0140",
+        "count": 12
+      },
+      {
+        "operationId": 322,
+        "operationHex": "0x0142",
+        "count": 1
+      },
+      {
+        "operationId": 323,
+        "operationHex": "0x0143",
+        "count": 81
+      },
+      {
+        "operationId": 329,
+        "operationHex": "0x0149",
+        "count": 11
+      },
+      {
+        "operationId": 331,
+        "operationHex": "0x014b",
+        "count": 3
+      },
+      {
+        "operationId": 339,
+        "operationHex": "0x0153",
+        "count": 16
+      },
+      {
+        "operationId": 344,
+        "operationHex": "0x0158",
+        "count": 12
+      },
+      {
+        "operationId": 347,
+        "operationHex": "0x015b",
+        "count": 60
+      },
+      {
+        "operationId": 348,
+        "operationHex": "0x015c",
+        "count": 10
+      },
+      {
+        "operationId": 351,
+        "operationHex": "0x015f",
+        "count": 49
+      },
+      {
+        "operationId": 352,
+        "operationHex": "0x0160",
+        "count": 3
+      },
+      {
+        "operationId": 357,
+        "operationHex": "0x0165",
+        "count": 10
+      },
+      {
+        "operationId": 358,
+        "operationHex": "0x0166",
+        "count": 341
+      },
+      {
+        "operationId": 363,
+        "operationHex": "0x016b",
+        "count": 142
+      },
+      {
+        "operationId": 364,
+        "operationHex": "0x016c",
+        "count": 157
+      },
+      {
+        "operationId": 365,
+        "operationHex": "0x016d",
+        "count": 40
+      },
+      {
+        "operationId": 366,
+        "operationHex": "0x016e",
+        "count": 9
+      },
+      {
+        "operationId": 368,
+        "operationHex": "0x0170",
+        "count": 3
+      },
+      {
+        "operationId": 374,
+        "operationHex": "0x0176",
+        "count": 11
+      },
+      {
+        "operationId": 378,
+        "operationHex": "0x017a",
+        "count": 49
+      },
+      {
+        "operationId": 381,
+        "operationHex": "0x017d",
+        "count": 6
+      },
+      {
+        "operationId": 382,
+        "operationHex": "0x017e",
+        "count": 7
+      },
+      {
+        "operationId": 388,
+        "operationHex": "0x0184",
+        "count": 219
+      },
+      {
+        "operationId": 389,
+        "operationHex": "0x0185",
+        "count": 1
+      },
+      {
+        "operationId": 392,
+        "operationHex": "0x0188",
+        "count": 3
+      },
+      {
+        "operationId": 394,
+        "operationHex": "0x018a",
+        "count": 1
+      },
+      {
+        "operationId": 396,
+        "operationHex": "0x018c",
+        "count": 1
+      },
+      {
+        "operationId": 398,
+        "operationHex": "0x018e",
+        "count": 30
+      },
+      {
+        "operationId": 403,
+        "operationHex": "0x0193",
+        "count": 24
+      },
+      {
+        "operationId": 404,
+        "operationHex": "0x0194",
+        "count": 28
+      },
+      {
+        "operationId": 405,
+        "operationHex": "0x0195",
+        "count": 268
+      },
+      {
+        "operationId": 409,
+        "operationHex": "0x0199",
+        "count": 42
+      },
+      {
+        "operationId": 412,
+        "operationHex": "0x019c",
+        "count": 19
+      },
+      {
+        "operationId": 413,
+        "operationHex": "0x019d",
+        "count": 5
+      },
+      {
+        "operationId": 414,
+        "operationHex": "0x019e",
+        "count": 2
+      },
+      {
+        "operationId": 415,
+        "operationHex": "0x019f",
+        "count": 38
+      },
+      {
+        "operationId": 421,
+        "operationHex": "0x01a5",
+        "count": 24
+      },
+      {
+        "operationId": 424,
+        "operationHex": "0x01a8",
+        "count": 1
+      },
+      {
+        "operationId": 425,
+        "operationHex": "0x01a9",
+        "count": 15
+      },
+      {
+        "operationId": 429,
+        "operationHex": "0x01ad",
+        "count": 2
+      },
+      {
+        "operationId": 430,
+        "operationHex": "0x01ae",
+        "count": 42
+      },
+      {
+        "operationId": 431,
+        "operationHex": "0x01af",
+        "count": 35
+      },
+      {
+        "operationId": 432,
+        "operationHex": "0x01b0",
+        "count": 3
+      },
+      {
+        "operationId": 452,
+        "operationHex": "0x01c4",
+        "count": 23
+      },
+      {
+        "operationId": 454,
+        "operationHex": "0x01c6",
+        "count": 16
+      },
+      {
+        "operationId": 455,
+        "operationHex": "0x01c7",
+        "count": 70
+      }
+    ]
+  },
+  "operationHandlers": {
+    "status": "verified",
+    "dispatcherAddress": "0x0c0bb69c",
+    "tableAddress": "0x0c29a9e0",
+    "resolvedHandlerCount": 189,
+    "failureCount": 0
+  },
+  "nativeCallGraph": {
+    "mapinfoCount": 64,
+    "skippedMapinfoCount": 0,
+    "functionCount": 18231,
+    "directCallEdgeCount": 34772,
+    "coroutineLaunchCount": 7049,
+    "dialogueRegionCount": 1285,
+    "dialogueRegionWithLaunchPathCount": 1278,
+    "dialogueRegionWithUnresolvedDynamicRootCount": 7,
+    "dialogueLaunchPathCoverage": 0.9945525291828794
+  },
+  "nativeSpatialInteractions": {
+    "mapinfoScanned": 136,
+    "mapsWithOperation0181": 24,
+    "operation0181Calls": 96,
+    "modeZeroCallsWithSerializedSource": 21,
+    "modeZeroCallsWithoutRecoveredLaunchSource": 3,
+    "serializedSpatialRecords": 178,
+    "customHalfWidthEntries": 88
+  },
+  "nativeDialogueControlFlow": {
+    "mapinfoCount": 64,
+    "dialoguePathFunctionCount": 2069,
+    "basicBlockCount": 206789,
+    "sceneFieldComparisonCount": 31,
+    "nativeOperationCallCount": 55991,
+    "directCallCount": 7939,
+    "childCoroutineLaunchCount": 3228,
+    "dialogueRegionCount": 1285,
+    "unresolvedControlTransferCount": 0
+  },
+  "nativeDialogueControlDependencies": {
+    "mapinfoCount": 1,
+    "branchExclusiveDependencyCount": 1,
+    "trueDialogueRegionCount": 1,
+    "falseDialogueRegionCount": 0
+  },
+  "nativeDialogueInteractionCandidates": {
+    "candidateCount": 1285,
+    "candidateWithActorTagCount": 344,
+    "candidateWithSingleActorTagCount": 144,
+    "candidateWithCompleteSubtitleProvenanceCount": 1227,
+    "candidateWithRecoveredLaunchPathCount": 1278,
+    "candidateWithBranchExclusiveTriggerCount": 1,
+    "runtimeReadyCandidateCount": 1,
+    "unresolvedIssueCounts": {
+      "ambiguous-subtitle-provenance": 38,
+      "missing-subtitle-provenance": 20,
+      "multiple-exact-actor-tags": 200,
+      "no-branch-exclusive-trigger-route": 1284,
+      "no-exact-actor-tag": 941,
+      "no-recovered-launch-path": 7,
+      "unresolved-dynamic-scheduler-root": 7
+    }
+  },
+  "nativeEventIr": {
+    "mapinfoCount": 64,
+    "functionCount": 11998,
+    "blockCount": 511476,
+    "actionCount": 175993,
+    "engineOperationCount": 142071,
+    "provenEngineOperationCount": 56808,
+    "unresolvedEngineOperationCount": 85263,
+    "directCallCount": 27904,
+    "childCoroutineLaunchCount": 6018,
+    "dialogueRegionCount": 1278
+  },
+  "nativeScriptedEventControlFlow": {
+    "mapinfoCount": 64,
+    "scriptedEventFunctionCount": 11998,
+    "basicBlockCount": 511476,
+    "sceneFieldComparisonCount": 79,
+    "nativeOperationCallCount": 148089,
+    "directCallCount": 27904,
+    "childCoroutineLaunchCount": 6018,
+    "dialogueRegionCount": 1278,
+    "unresolvedControlTransferCount": 0
+  }
+}

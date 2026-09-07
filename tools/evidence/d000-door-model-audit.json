@@ -1,0 +1,699 @@
+{
+  "schema": "new-yokosuka-d000-door-model-audit-v1",
+  "source": {
+    "logicalDoors": "tools/evidence/d000-door-logic.json",
+    "modelsDirectory": ".disc-work/exact/d000/mpk00-pks"
+  },
+  "method": "Load every distinct visible D000 door through the production MT5 loader and verify the primary render-node route selected by the native generic door operation.",
+  "summary": {
+    "logicalDoorCount": 65,
+    "distinctModelCount": 34,
+    "primaryNode12VerifiedCount": 34,
+    "pairedNode7ModelCount": 14,
+    "failureCount": 0
+  },
+  "failures": [],
+  "models": [
+    {
+      "model": "S1_D000_DR01_006.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR01_006.CHRM",
+      "logicalDoorCount": 10,
+      "selectors": [
+        6,
+        10,
+        11,
+        15,
+        16,
+        17,
+        18,
+        44,
+        45,
+        47
+      ],
+      "logicalRecordFlags": {
+        "0x00000002": 10
+      },
+      "renderKeys": [
+        -1,
+        12
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": false
+    },
+    {
+      "model": "S1_D000_DR01_007.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR01_007.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        46
+      ],
+      "logicalRecordFlags": {
+        "0x00000002": 1
+      },
+      "renderKeys": [
+        -1,
+        8,
+        12,
+        13
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": false
+    },
+    {
+      "model": "S1_D000_DR01_008.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR01_008.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        39
+      ],
+      "logicalRecordFlags": {
+        "0x00000120": 1
+      },
+      "renderKeys": [
+        -1,
+        8,
+        12,
+        13
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": false
+    },
+    {
+      "model": "S1_D000_DR01_009.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR01_009.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        49
+      ],
+      "logicalRecordFlags": {
+        "0x00000002": 1
+      },
+      "renderKeys": [
+        -1,
+        8,
+        12,
+        13
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": false
+    },
+    {
+      "model": "S1_D000_DR01_010.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR01_010.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        57
+      ],
+      "logicalRecordFlags": {
+        "0x00000002": 1
+      },
+      "renderKeys": [
+        -1,
+        12
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": false
+    },
+    {
+      "model": "S1_D000_DR01_011.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR01_011.CHRM",
+      "logicalDoorCount": 2,
+      "selectors": [
+        26,
+        53
+      ],
+      "logicalRecordFlags": {
+        "0x00000120": 1,
+        "0x00000122": 1
+      },
+      "renderKeys": [
+        -1,
+        10,
+        12
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": false
+    },
+    {
+      "model": "S1_D000_DR01_018.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR01_018.CHRM",
+      "logicalDoorCount": 15,
+      "selectors": [
+        3,
+        4,
+        5,
+        7,
+        8,
+        9,
+        12,
+        13,
+        14,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "logicalRecordFlags": {
+        "0x00000002": 15
+      },
+      "renderKeys": [
+        -1,
+        12
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": false
+    },
+    {
+      "model": "S1_D000_DR02_012.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR02_012.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        36
+      ],
+      "logicalRecordFlags": {
+        "0x00000002": 1
+      },
+      "renderKeys": [
+        -1,
+        12
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": false
+    },
+    {
+      "model": "S1_D000_DR02_013.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR02_013.CHRM",
+      "logicalDoorCount": 2,
+      "selectors": [
+        31,
+        42
+      ],
+      "logicalRecordFlags": {
+        "0x00000002": 1,
+        "0x00000122": 1
+      },
+      "renderKeys": [
+        -1,
+        12
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": false
+    },
+    {
+      "model": "S1_D000_DR02_014.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR02_014.CHRM",
+      "logicalDoorCount": 3,
+      "selectors": [
+        27,
+        37,
+        43
+      ],
+      "logicalRecordFlags": {
+        "0x00000002": 2,
+        "0x00000122": 1
+      },
+      "renderKeys": [
+        -1,
+        12
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": false
+    },
+    {
+      "model": "S1_D000_DR02_015.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR02_015.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        59
+      ],
+      "logicalRecordFlags": {
+        "0x00000120": 1
+      },
+      "renderKeys": [
+        -1,
+        8,
+        12,
+        13
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": false
+    },
+    {
+      "model": "S1_D000_DR02_016.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR02_016.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        30
+      ],
+      "logicalRecordFlags": {
+        "0x00000002": 1
+      },
+      "renderKeys": [
+        -1,
+        8,
+        12,
+        13
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": false
+    },
+    {
+      "model": "S1_D000_DR02_017.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR02_017.CHRM",
+      "logicalDoorCount": 2,
+      "selectors": [
+        54,
+        63
+      ],
+      "logicalRecordFlags": {
+        "0x00000002": 2
+      },
+      "renderKeys": [
+        -1,
+        8,
+        12,
+        13
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": false
+    },
+    {
+      "model": "S1_D000_DR02_018.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR02_018.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        58
+      ],
+      "logicalRecordFlags": {
+        "0x00000120": 1
+      },
+      "renderKeys": [
+        -1,
+        8,
+        12,
+        13
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": false
+    },
+    {
+      "model": "S1_D000_DR02_019.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR02_019.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        51
+      ],
+      "logicalRecordFlags": {
+        "0x00000002": 1
+      },
+      "renderKeys": [
+        -1,
+        8,
+        12,
+        13
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": false
+    },
+    {
+      "model": "S1_D000_DR02_020.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR02_020.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        61
+      ],
+      "logicalRecordFlags": {
+        "0x00000002": 1
+      },
+      "renderKeys": [
+        -1,
+        10,
+        12
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": false
+    },
+    {
+      "model": "S1_D000_DR05_001.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR05_001.CHRM",
+      "logicalDoorCount": 3,
+      "selectors": [
+        32,
+        41,
+        52
+      ],
+      "logicalRecordFlags": {
+        "0x00000002": 3
+      },
+      "renderKeys": [
+        -1,
+        12
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": false
+    },
+    {
+      "model": "S1_D000_DR06_007.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR06_007.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        40
+      ],
+      "logicalRecordFlags": {
+        "0x00000002": 1
+      },
+      "renderKeys": [
+        -1,
+        12
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": false
+    },
+    {
+      "model": "S1_D000_DR06_008.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR06_008.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        38
+      ],
+      "logicalRecordFlags": {
+        "0x00000122": 1
+      },
+      "renderKeys": [
+        -1,
+        12
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": false
+    },
+    {
+      "model": "S1_D000_DR12_001.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR12_001.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        29
+      ],
+      "logicalRecordFlags": {
+        "0x00000000": 1
+      },
+      "renderKeys": [
+        -1,
+        12
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": false
+    },
+    {
+      "model": "S1_D000_DR13_007.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR13_007.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        2
+      ],
+      "logicalRecordFlags": {
+        "0x00000002": 1
+      },
+      "renderKeys": [
+        -1,
+        7,
+        12
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": true
+    },
+    {
+      "model": "S1_D000_DR13_008.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR13_008.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        33
+      ],
+      "logicalRecordFlags": {
+        "0x00000002": 1
+      },
+      "renderKeys": [
+        -1,
+        7,
+        12
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": true
+    },
+    {
+      "model": "S1_D000_DR13_009.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR13_009.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        48
+      ],
+      "logicalRecordFlags": {
+        "0x00000002": 1
+      },
+      "renderKeys": [
+        -1,
+        5,
+        7,
+        10,
+        12
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": true
+    },
+    {
+      "model": "S1_D000_DR13_010.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR13_010.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        25
+      ],
+      "logicalRecordFlags": {
+        "0x00000120": 1
+      },
+      "renderKeys": [
+        -1,
+        5,
+        7,
+        8,
+        10,
+        12,
+        13
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": true
+    },
+    {
+      "model": "S1_D000_DR13_012.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR13_012.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        60
+      ],
+      "logicalRecordFlags": {
+        "0x00000120": 1
+      },
+      "renderKeys": [
+        -1,
+        5,
+        7,
+        8,
+        10,
+        12,
+        13
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": true
+    },
+    {
+      "model": "S1_D000_DR13_013.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR13_013.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        34
+      ],
+      "logicalRecordFlags": {
+        "0x00000002": 1
+      },
+      "renderKeys": [
+        -1,
+        7,
+        8,
+        12,
+        13
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": true
+    },
+    {
+      "model": "S1_D000_DR15_009.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR15_009.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        62
+      ],
+      "logicalRecordFlags": {
+        "0x00000002": 1
+      },
+      "renderKeys": [
+        -1,
+        7,
+        12
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": true
+    },
+    {
+      "model": "S1_D000_DR15_010.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR15_010.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        56
+      ],
+      "logicalRecordFlags": {
+        "0x00000120": 1
+      },
+      "renderKeys": [
+        -1,
+        5,
+        7,
+        8,
+        10,
+        12,
+        13
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": true
+    },
+    {
+      "model": "S1_D000_DR15_011.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR15_011.CHRM",
+      "logicalDoorCount": 2,
+      "selectors": [
+        1,
+        35
+      ],
+      "logicalRecordFlags": {
+        "0x00000002": 1,
+        "0x00000120": 1
+      },
+      "renderKeys": [
+        -1,
+        5,
+        7,
+        8,
+        10,
+        12,
+        13
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": true
+    },
+    {
+      "model": "S1_D000_DR15_012.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR15_012.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        50
+      ],
+      "logicalRecordFlags": {
+        "0x00000002": 1
+      },
+      "renderKeys": [
+        -1,
+        5,
+        7,
+        8,
+        10,
+        12,
+        13
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": true
+    },
+    {
+      "model": "S1_D000_DR15_013.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR15_013.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        28
+      ],
+      "logicalRecordFlags": {
+        "0x000001a0": 1
+      },
+      "renderKeys": [
+        -1,
+        5,
+        7,
+        8,
+        10,
+        12,
+        13
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": true
+    },
+    {
+      "model": "S1_D000_DR15_014.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR15_014.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        55
+      ],
+      "logicalRecordFlags": {
+        "0x000001a0": 1
+      },
+      "renderKeys": [
+        -1,
+        5,
+        7,
+        8,
+        10,
+        12,
+        13
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": true
+    },
+    {
+      "model": "S1_D000_DR17_002.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR17_002.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        64
+      ],
+      "logicalRecordFlags": {
+        "0x00000120": 1
+      },
+      "renderKeys": [
+        -1,
+        7,
+        12
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": true
+    },
+    {
+      "model": "S1_D000_DR28_001.MT5",
+      "sourceFile": ".disc-work/exact/d000/mpk00-pks/DR28_001.CHRM",
+      "logicalDoorCount": 1,
+      "selectors": [
+        0
+      ],
+      "logicalRecordFlags": {
+        "0x00000002": 1
+      },
+      "renderKeys": [
+        -1,
+        5,
+        7,
+        8,
+        10,
+        12,
+        13
+      ],
+      "primaryNode12Present": true,
+      "pairedNode7Present": true
+    }
+  ]
+}

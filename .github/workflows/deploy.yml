@@ -1,4 +1,4 @@
-name: Deploy New Yokosuka
+name: Deploy New Yokosuka Client
 
 on:
   push:
@@ -18,40 +18,123 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
+      - name: Check documentation links
+        run: npm run docs:check
+
+      - name: Check tooling layout and imports
+        run: npm run tools:check
+
+      - name: Test multiplayer client
+        run: node --test tests/MultiplayerClient.test.js tests/RemotePlayerManager.test.js
+
+      - name: Test atomic frontend releases
+        run: node --test tests/FrontendRelease.test.js tests/LuckyBreakPackage.test.js
 
       - name: Build project
         env:
-          VITE_ASSET_URL: https://pub-04034701bf7545f291744990c97678b9.r2.dev
+          # The full S1/S2 asset catalog exceeds Node's default 2 GB heap while
+          # Rollup renders chunks. Keep the build within the hosted runner's
+          # available memory instead of relying on Node's process default.
+          NODE_OPTIONS: --max-old-space-size=4096
+          VITE_ASSET_URL: https://pub-c3aa1dfd53424ee9af1b87ad19954589.r2.dev
           VITE_OFFLINE_ASSETS: "false"
-        run: npm run build
+        run: |
+          started_at=$SECONDS
+          npm run build
+          echo "::notice title=Frontend build duration::$((SECONDS - started_at)) seconds"
 
       - name: Deploy to Server
         env:
           DEPLOY_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ vars.DEPLOY_USER }}
+          DEPLOY_APP_DIR: ${{ vars.DEPLOY_APP_DIR }}
+          DEPLOY_KNOWN_HOSTS: ${{ vars.DEPLOY_KNOWN_HOSTS }}
         run: |
-          # Self-healing SSH key logic
-          eval $(ssh-agent -s)
-          
-          # Detect missing headers and wrap if necessary
-          CLEAN_KEY=$(echo "$DEPLOY_KEY" | tr -d '\r')
-          if [[ ! "$CLEAN_KEY" == *"BEGIN"* ]]; then
-            echo "Healed missing SSH headers"
-            (echo "-----BEGIN OPENSSH PRIVATE KEY-----"; echo "$CLEAN_KEY"; echo "-----END OPENSSH PRIVATE KEY-----") | ssh-add -
-          else
-            echo "$CLEAN_KEY" | ssh-add -
+          for name in DEPLOY_KEY DEPLOY_HOST DEPLOY_USER DEPLOY_APP_DIR DEPLOY_KNOWN_HOSTS; do
+            if [[ -z "${!name:-}" ]]; then
+              echo "::error::Missing deployment setting: ${name}"
+              exit 1
+            fi
+          done
+          if [[ ! "$DEPLOY_HOST" =~ ^[A-Za-z0-9.-]+$ ]] \
+            || [[ ! "$DEPLOY_USER" =~ ^[a-z_][a-z0-9_-]*$ ]] \
+            || [[ ! "$DEPLOY_APP_DIR" =~ ^/[A-Za-z0-9._/-]+$ ]]; then
+            echo "::error::Deployment host, user, or application path is malformed"
+            exit 1
           fi
-          
-          SSH_OPTS="-o StrictHostKeyChecking=no"
-          HOST="ubuntu@54.68.252.253"
-          APP_DIR="/home/ubuntu/app/new-yokosuka"
 
-          # Upload frontend
-          ssh $SSH_OPTS $HOST "sudo rm -rf $APP_DIR/dist && mkdir -p $APP_DIR/dist && sudo chown -R ubuntu:ubuntu $APP_DIR"
-          tar czf - -C dist . | ssh $SSH_OPTS $HOST "cd $APP_DIR/dist && tar xzf -"
+          known_hosts_file="${RUNNER_TEMP}/new-yokosuka-known_hosts"
+          umask 077
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" | tr -d '\r' > "$known_hosts_file"
+          if ! ssh-keygen -F "$DEPLOY_HOST" -f "$known_hosts_file" >/dev/null; then
+            echo "::error::DEPLOY_KNOWN_HOSTS has no entry for DEPLOY_HOST"
+            exit 1
+          fi
 
-          # Reload Caddy
-          ssh $SSH_OPTS $HOST "sudo systemctl reload caddy"
+          eval "$(ssh-agent -s)"
+          trap 'ssh-agent -k >/dev/null' EXIT
+          printf '%s\n' "$DEPLOY_KEY" | tr -d '\r' | ssh-add -
+
+          SSH_OPTS=(
+            -o BatchMode=yes
+            -o StrictHostKeyChecking=yes
+            -o "UserKnownHostsFile=${known_hosts_file}"
+          )
+          REMOTE="${DEPLOY_USER}@${DEPLOY_HOST}"
+          APP_DIR="$DEPLOY_APP_DIR"
+          RELEASE_ID="${GITHUB_SHA}"
+
+          # Validate persistent extracted assets before replacing the live build.
+          ssh "${SSH_OPTS[@]}" "$REMOTE" "set -e; cd '$APP_DIR/assets'; printf '%s  %s\n' 'aca6a41b967b9f9f92ad847c9495e780058b8194e359bca9a9c2763b0d337b23' 'MOTION.BIN' 'c552168abe318805f65a515a5f5c4133bab1c4eb9c74a4c931aa30046bae5ee1' 'M_FGT1.BIN' | sha256sum --check --strict"
+
+          # Stage the complete frontend without touching the currently live release.
+          scp "${SSH_OPTS[@]}" deploy/frontend-release.sh "${REMOTE}:/tmp/new-yokosuka-frontend-release"
+          ssh "${SSH_OPTS[@]}" "$REMOTE" "chmod 755 /tmp/new-yokosuka-frontend-release; mkdir -p '$APP_DIR/releases'"
+          tar czf - -C dist . | ssh "${SSH_OPTS[@]}" "$REMOTE" "/tmp/new-yokosuka-frontend-release stage '$APP_DIR' '$RELEASE_ID'"
+
+          # Keep browser documents fresh while caching content-hashed bundles.
+          scp "${SSH_OPTS[@]}" deploy/new-yokosuka-cache.caddy "${REMOTE}:/tmp/new-yokosuka-cache.caddy"
+          ssh "${SSH_OPTS[@]}" "$REMOTE" "sudo install -m 0644 /tmp/new-yokosuka-cache.caddy /etc/caddy/new-yokosuka-cache.caddy; sudo grep -qF 'import /etc/caddy/new-yokosuka-cache.caddy' /etc/caddy/Caddyfile; sudo caddy validate --adapter caddyfile --config /etc/caddy/Caddyfile"
+
+          # The backend is deployed from its own repository. Refuse to expose a
+          # new client release while that separately managed service is unhealthy.
+          ssh "${SSH_OPTS[@]}" "$REMOTE" "curl --fail --silent --retry 15 --retry-delay 1 --retry-all-errors http://127.0.0.1:8084/healthz"
+
+          # Capture the exact content-hashed play entry before changing the live
+          # release. Vite intentionally does not preserve source entry names.
+          ASSET_PATH=$(grep -oE '/assets/[A-Za-z0-9_-]+\.js' dist/play/index.html | head -n 1)
+          if [[ -z "$ASSET_PATH" ]]; then
+            echo "::error::The built play page has no JavaScript entry asset"
+            exit 1
+          fi
+
+          # Atomically expose the completed frontend and load the validated cache policy.
+          ssh "${SSH_OPTS[@]}" "$REMOTE" "set -e; /tmp/new-yokosuka-frontend-release activate '$APP_DIR' '$RELEASE_ID'; sudo systemctl reload caddy"
+
+          # Verify the public cache contract as part of every deployment.
+          if ! {
+            curl --fail --silent --show-error --retry 8 --retry-delay 1 \
+              -D /tmp/new-yokosuka-play-headers \
+              -o /tmp/new-yokosuka-play-document \
+              https://www.newyokosuka.com/play/ &&
+            grep -qi '^cache-control: no-cache, must-revalidate' /tmp/new-yokosuka-play-headers &&
+            grep -qF "$ASSET_PATH" /tmp/new-yokosuka-play-document &&
+            curl --fail --silent --show-error \
+              -D /tmp/new-yokosuka-asset-headers -o /dev/null \
+              "https://www.newyokosuka.com$ASSET_PATH" &&
+            grep -qi '^cache-control: public, max-age=31536000, immutable' /tmp/new-yokosuka-asset-headers;
+          }; then
+            ssh "${SSH_OPTS[@]}" "$REMOTE" "set -e; /tmp/new-yokosuka-frontend-release rollback '$APP_DIR' '$RELEASE_ID'; sudo systemctl reload caddy"
+            exit 1
+          fi
+
+          # Retain the live release and two rollback releases after verification.
+          ssh "${SSH_OPTS[@]}" "$REMOTE" "/tmp/new-yokosuka-frontend-release prune '$APP_DIR' '$RELEASE_ID' 3"

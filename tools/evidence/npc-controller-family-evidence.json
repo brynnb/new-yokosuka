@@ -1,0 +1,5795 @@
+{
+  "schema": "new-yokosuka-npc-controller-family-evidence-v1",
+  "generatedAt": "2026-07-28T04:54:39.565Z",
+  "sources": {
+    "executableControllerField": "actor +0x6c controller, signed word +0x1c4",
+    "scheduledActorCatalog": "play/data/scheduled-actors.json",
+    "captureRoot": "captures/pvr",
+    "scannedCaptureCount": 505,
+    "contributingCaptureCount": 191
+  },
+  "interpretationPolicy": "A browser model mapping is emitted only when every resolved live observation for every catalogued actor using that model agrees on one of the executable's 21 controller-family indices. Conflicts remain visible and are never guessed.",
+  "actors": [
+    {
+      "actorCode": "AOKI",
+      "modelCodes": [
+        "BUR_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 10,
+          "count": 88
+        }
+      ],
+      "consistentFamilyIndex": 10,
+      "observationCount": 88,
+      "observations": [
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-005903-frame-4074/ram.bin",
+          "captureSha256": "654eb8eaabec45514d8ac8b88e8237667731e5aff030a113db01844749e69796"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-011940-frame-718/ram.bin",
+          "captureSha256": "d77634f27dd248f1ebf0d576b2f391b3e2a77b4d26c177f6ef06abc790ca4453"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-012106-frame-903/ram.bin",
+          "captureSha256": "8d0169b19674de2b9627064661daf6aaf5131eb566068fc53c57c9e95fc1bf21"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-012222-frame-2403/ram.bin",
+          "captureSha256": "618b7786539372261e22fa1a54f88fb745e0b4170288216d7bc8f38e4136e850"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-012245-frame-2866/ram.bin",
+          "captureSha256": "178e8632db6a694df25fa382ea4abc4fd7d8db0b7ed2e8fffe767183e8ef81e9"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-012737-frame-1176/ram.bin",
+          "captureSha256": "b9485c532d2418d07d52fb22cefb99ecd684b4e7ac17c9e2632b3269ada3c104"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-012837-frame-2116/ram.bin",
+          "captureSha256": "850262ca48bc52344f2272be33d897f5b06ec38ba382ca41808c5335f568be36"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015720-frame-1062/ram.bin",
+          "captureSha256": "b8e134bba2a009754423dc0002d337821a81d7a9fe5aaddc84c327aca6f89727"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015806-frame-1986/ram.bin",
+          "captureSha256": "a3c3a3d7c975be72d19df40ee8934257b0d91a28f2e163e074552ee7894a8392"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015806-frame-1989/ram.bin",
+          "captureSha256": "36eb74770c6a4a4379d87b5e23d04fa353527e5f6a3d19955fb2c9449c0a0476"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015807-frame-1992/ram.bin",
+          "captureSha256": "8de8ccddb10b67f1a0362e104df24e9d8265a7fd4d5420242f98ab736c93191d"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015807-frame-1994/ram.bin",
+          "captureSha256": "0cfe8f1f2793f8aa9ddd82eaff2d6f28843d627157b3ba24b196e6ca2d0504b0"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020047-frame-382/ram.bin",
+          "captureSha256": "f668e06d452a128994734b8ffaffb07a014daa5c44550d94b3604c7ef1fcc2c0"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020112-frame-878/ram.bin",
+          "captureSha256": "202195d0cfed023ed16c5601897c384d15148e4807793ce39762f773d799ebf1"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020112-frame-883/ram.bin",
+          "captureSha256": "6e01ebfbf35d962bdb37cafd9dca267094c9d81964082937e30facfac9f7eae3"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020113-frame-886/ram.bin",
+          "captureSha256": "a8b4e2de98ec94273d72fdd22ac141d21d155e342f12e57c1c28fe517625750a"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020738-frame-620/ram.bin",
+          "captureSha256": "a2c86fb207469546aec13e01674f2a91717e54ca79f8725224fe66e45c2f5989"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020935-frame-2950/ram.bin",
+          "captureSha256": "b2186b1fc2bfd747457ee0f8dd7d4636f12d45675dfc6546d097c7452d1c6157"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021013-frame-3549/ram.bin",
+          "captureSha256": "8375194ec30f3448e3feb5dc443368b8128a2314c8c4102b67e089361f15a7d0"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021300-frame-6870/ram.bin",
+          "captureSha256": "f80b60f94d3806bb8a89ccbf7e1eaccb714d01707d2c5a24fcdb7daea88533b9"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021300-frame-6876/ram.bin",
+          "captureSha256": "58e0b7408c04a90b00051fc87cb4eac075782dec9918c2e9a38e054494b76e4e"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021300-frame-6879/ram.bin",
+          "captureSha256": "da3b7504797accc8a08954b92a7625b4aa9cb53b442ce6fa5554105686dfb8e7"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021300-frame-6883/ram.bin",
+          "captureSha256": "0038958c3879ba0448487b8699c2f8fdcf7450aed1d976b56be717d6b4d85386"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021301-frame-6893/ram.bin",
+          "captureSha256": "dd422abb211bf5a626e241b86a8c86d66d4285b6e555be3a0304b669941c4e0c"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021302-frame-6913/ram.bin",
+          "captureSha256": "3152920d7cb17cb58855a57a6a8b6f71c5c3e13704324c394d1d0f4e22ebb042"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021303-frame-6930/ram.bin",
+          "captureSha256": "42dd3e5cffcf07234ae21e9a8247122321429a9fe1abd09415c79debdd4ce5f8"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021303-frame-6936/ram.bin",
+          "captureSha256": "552bd16d0d844703c4e887ecbf6d1b2b66675f261d6536c5b2493c2f8de1c0b3"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021303-frame-6940/ram.bin",
+          "captureSha256": "af384e1c63ae3daa12f21db6c36d28fe15c0d9dcc6a042f18002b7153a85be7a"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021303-frame-6947/ram.bin",
+          "captureSha256": "2c370ba7cd9c92bf125cc16f8a60259fc3a4bbecd036bd78d4fcded5ac616c0b"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021304-frame-6960/ram.bin",
+          "captureSha256": "0adb54f57962a625157dcb1de9eb767180c81da813d5a3a111914eea37dd139c"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021305-frame-6980/ram.bin",
+          "captureSha256": "45d360c876988fb263a2e0cff8c48a3e06688eb6d1d6562d1bdbf0236a65c479"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021412-frame-583/ram.bin",
+          "captureSha256": "f02bb49df2d9a1bea3cc5138374febc1fffd0e8cbbf15080070d37236a44b7dd"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021412-frame-589/ram.bin",
+          "captureSha256": "bbad994825ad746d74c5685c7fda878b74204f2d4f708a340675056c5cad48ab"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021412-frame-592/ram.bin",
+          "captureSha256": "16bf617e329e444282778be9fa93d5c44f3d7c602f410e485cb09144ceb181f8"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021413-frame-597/ram.bin",
+          "captureSha256": "009b6010b40ef813080f48c50ce9167c80421c046a42b8a994a6abf5c225ed01"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021413-frame-607/ram.bin",
+          "captureSha256": "028bed715179a0e32f8c474a4996e2ffb89db38a2443e36531cdef3fa58572a9"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021414-frame-627/ram.bin",
+          "captureSha256": "37a8e3c332b0e1f225b28027b6db04561dbce41d14f873ea2a2740b75bb64786"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021415-frame-643/ram.bin",
+          "captureSha256": "477aa2604a4c9e73a9167fcda76181a3489531670a1703c5e6429b09bd154740"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021415-frame-649/ram.bin",
+          "captureSha256": "186484a1000f3c0ef3ecaebe350a883a00183bd5aaf1cbf7e27def8910d88ca0"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021415-frame-653/ram.bin",
+          "captureSha256": "4caccfef5ab8fc937d910e7757578d52068578adc3d55ebfe5980ceb7b8ca273"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021416-frame-660/ram.bin",
+          "captureSha256": "1edd038d13210226d637cc74e1df800e5addaa1c8d07cd34844e76d789136a18"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021416-frame-673/ram.bin",
+          "captureSha256": "91d129a5f3132a10d724fec6ffb14f666b7f2f5cfa16c5033a18feb57a6a91cb"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021417-frame-693/ram.bin",
+          "captureSha256": "07b6adf0404258875985945545a3cf3fdd419ef5e17c44c8bf6ea18b0ad50fd7"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021559-frame-2713/ram.bin",
+          "captureSha256": "7cb83e16f693f71e16c3b598859f19992232f0558f55281b6a17adb13ab7ffe6"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021559-frame-2719/ram.bin",
+          "captureSha256": "501db1ecf87f6694af049d192c72fe13799acc76aecc7774e35b8e760e880066"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021559-frame-2721/ram.bin",
+          "captureSha256": "ac98b518c9f1027834e773f5a2b1aeb257cde883cb9467e56b78c66b28e7851a"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021559-frame-2726/ram.bin",
+          "captureSha256": "30c010d317c3e8c4633a6d400adc791258c9a5cf30257b4c523eecca4961761c"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021600-frame-2736/ram.bin",
+          "captureSha256": "95ce543737bd80bb07fc295d584d5f4cbb641362fe95be2ed94258ebbac863dc"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021601-frame-2756/ram.bin",
+          "captureSha256": "d5089616e3aed6b8fc177c17b4cfb01a7cc17e6b3cb182d63a36ff2c69bcbf5f"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021602-frame-2773/ram.bin",
+          "captureSha256": "775eb0ae1d4fce60e3f3cc227eb265e23e96103290828e03ed971e4ffd105758"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021602-frame-2779/ram.bin",
+          "captureSha256": "5a9ca6cc0b4e2186d4dd9af81e5df4f5deb5271466dfc40a7af359d7dfcea520"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021602-frame-2783/ram.bin",
+          "captureSha256": "9c1e26895d55371068f1d61beeef90f58442cc3ce5a3b88428917dd37d12f15f"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021602-frame-2789/ram.bin",
+          "captureSha256": "b388ef206096c99a1c6178a4b7c6f5b3e1f1af636faf228c38f93f3f668431ac"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021603-frame-2803/ram.bin",
+          "captureSha256": "10ef9dc4dc99cd64e913acf56e9509358033a6a33ca62fb5629e8aef319a7c01"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-021604-frame-2823/ram.bin",
+          "captureSha256": "079d1061d3fe0e329749e881c29bb533c9c30380965526246da1d222aa661800"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-022707-frame-2007/ram.bin",
+          "captureSha256": "328a275f89807eb985573ff80b4510e17e04338ab650a5d6b4151de282331ea9"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-023933-frame-1173/ram.bin",
+          "captureSha256": "79d26756dd84ae7c5eeb1d933d25fdbc840b8edd35312c29e8fe95f0e663495f"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-023934-frame-1179/ram.bin",
+          "captureSha256": "234f2cf1dcf9e9d753bdfbe99f5be406c99fbbe0e7fea110e14fc8c94e000695"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-023934-frame-1182/ram.bin",
+          "captureSha256": "63cd825eaf4496cfe5f5bc073ad0902091495b6f2e8c8c06b8a5549fac6bfc8a"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-023934-frame-1186/ram.bin",
+          "captureSha256": "793cc8a503acf0aecaa9336ab053f0f8f389b6d227ab0ab86cfdf3de707f1c73"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-023934-frame-1195/ram.bin",
+          "captureSha256": "5361d85fb86c3344d882a2676cb50ba9a99b618f3330e3b46dea8ec3d833843e"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024157-frame-827/ram.bin",
+          "captureSha256": "94f2edea24f70d1cd5d30d362ed6de236f1d4d5486e771ff09c2b5b3445c93d6"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024157-frame-833/ram.bin",
+          "captureSha256": "3d94664f9b5c26eb18a62c8cb456d305005d8b8d485a8382e1271b94c545e9a6"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024157-frame-836/ram.bin",
+          "captureSha256": "1018a52aa1b5b729e906414c9a9424b4ab98be90ed5150464bf17563db964548"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024158-frame-841/ram.bin",
+          "captureSha256": "e5d31d6f0d3a4c4184624b447d29a9d5a499708b906472720f53087942c44584"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024158-frame-850/ram.bin",
+          "captureSha256": "d77bedbde756fe68f74432765a25c584a66e822bcb93f1c1b8797b926bd4efa4"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024432-frame-893/ram.bin",
+          "captureSha256": "aed6de8fd8d9fa9fe45bc76e3ab8f11e8640f4c0ceca9db25db1398728f7c009"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024433-frame-899/ram.bin",
+          "captureSha256": "df88e6ce9ac67cd5be20cf1d6e6332c7b90ff43ce54d0adf7feec60c846f2e09"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024433-frame-902/ram.bin",
+          "captureSha256": "585ac3402cd0005e4217bec2d431116b7346c46f57c011d78712a554f1540b6e"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024433-frame-907/ram.bin",
+          "captureSha256": "738539785dbeeab634adc199d73519ed98e827c42da978d1ab507dea19d1808e"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024434-frame-916/ram.bin",
+          "captureSha256": "1039968f097f44ad7406a00445bbf5667ea6e996b9c4ecf551997b7678614bbf"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024715-frame-871/ram.bin",
+          "captureSha256": "f67b58627633811f8e670523e417a9317d3cc49ce42f66793639bcbbec19ea31"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024716-frame-877/ram.bin",
+          "captureSha256": "e45e1f81175bbc3d0997bf9e57ec04ec86533363bb03f8d88a1e9bc6d385bd2e"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024716-frame-880/ram.bin",
+          "captureSha256": "dbaf2e732cb3d3f5ae4fafd7b781fc13eeebc59fd4e42ff7b71c818d58758383"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024716-frame-885/ram.bin",
+          "captureSha256": "d62a3462f5e7b23b15ec71691690aa4b95dc37c9984741e70ac3bf4d055a7a4c"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024717-frame-894/ram.bin",
+          "captureSha256": "8801c946711e6771a83cf0314ba7078b78d8cd67784cc31ab2b0c43dd7b4ef9f"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-025523-frame-601/ram.bin",
+          "captureSha256": "41788b51e262dc18f43c2903a535bbb85bc9d555d007d3fefb791236adb5ea1f"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-025523-frame-607/ram.bin",
+          "captureSha256": "d4ae303f8064bc881ea33efd62042743e4b8ec485487ebe11d6f9941bc3f3149"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-025523-frame-610/ram.bin",
+          "captureSha256": "633f80345b8394126052017b70530ee295d36dbe32cf1b39254c1e5655e96650"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-025524-frame-615/ram.bin",
+          "captureSha256": "186c73ba6bcc62c9a6fb90092d7e7d50b360173ebbf1e7fe4d625ecbff011bdc"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-025524-frame-625/ram.bin",
+          "captureSha256": "c095bee2dbb1b0db33a7bc43e8a30cfc90c57e49a345b1044fe9586111b54bf1"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-025525-frame-645/ram.bin",
+          "captureSha256": "ffd944d1085b169c62ec297a60509ae98c2a614a07ac29b484672acf8e910784"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-025526-frame-661/ram.bin",
+          "captureSha256": "6128380a8ca9bb60a8af6919ab7d308a9058de0eace9643ebe9b341d4b898987"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-025526-frame-667/ram.bin",
+          "captureSha256": "0afc8418ff6566d9c1b49e79c5e5b6f20a84a7977e01ffeaf10286ae5c8c6598"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-025526-frame-671/ram.bin",
+          "captureSha256": "9c62afa69cb8ca10cd5f098bcc10b3937788b4ab00c612428691bd521b17abc4"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-025527-frame-678/ram.bin",
+          "captureSha256": "3e8595b8fa917d1eb81933524dec5db0dccee9d2e69f7eb6db18523653d10f04"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-025527-frame-691/ram.bin",
+          "captureSha256": "122c96f028a12f313e18ce8d65361e44035f3a3be39b5fb0f425e5b98b5109fd"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-025528-frame-711/ram.bin",
+          "captureSha256": "7ee7b5cd1341abb6d247fb0d2d17fb5c2a1a730db974df3bddba4ccdab5ef910"
+        }
+      ]
+    },
+    {
+      "actorCode": "ETKO",
+      "modelCodes": [
+        "JOJ_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 12,
+          "count": 12
+        }
+      ],
+      "consistentFamilyIndex": 12,
+      "observationCount": 12,
+      "observations": [
+        {
+          "familyIndex": 12,
+          "capture": "captures/pvr/20260724-015838-frame-2412/ram.bin",
+          "captureSha256": "b6069546a6827cedb9592e35aa7a8bda63d2e7f030d10d00c60ac0a8d79d0298"
+        },
+        {
+          "familyIndex": 12,
+          "capture": "captures/pvr/20260724-015838-frame-2414/ram.bin",
+          "captureSha256": "418b5fb95c9ebcd1b930ba317de1236bda6202f1fd5d14de65a637254e2c818c"
+        },
+        {
+          "familyIndex": 12,
+          "capture": "captures/pvr/20260724-015838-frame-2416/ram.bin",
+          "captureSha256": "9fb03d7adf73864a96c98cd722a7a4632c073cb5d9ad9cb557acb2bb6d09a7df"
+        },
+        {
+          "familyIndex": 12,
+          "capture": "captures/pvr/20260724-015839-frame-2418/ram.bin",
+          "captureSha256": "d62c09d79e0ed227016bc0ea6e9b8459a93f59e9ca1b53f0653e42ff4754cd2d"
+        },
+        {
+          "familyIndex": 12,
+          "capture": "captures/pvr/20260724-015839-frame-2420/ram.bin",
+          "captureSha256": "8dd50f7fc41d86e0ec747ddf8c52a675e9a4930fbe5402751f84029ec80ce3b1"
+        },
+        {
+          "familyIndex": 12,
+          "capture": "captures/pvr/20260724-015839-frame-2422/ram.bin",
+          "captureSha256": "d359c5ee1e02bc0f076fa47c95f59688f756f3e10d6fc0b9bab3d3be46299630"
+        },
+        {
+          "familyIndex": 12,
+          "capture": "captures/pvr/20260724-015839-frame-2424/ram.bin",
+          "captureSha256": "644f32476f12dde12d29b05020ed110e60768dff764b7bc564097fbb70e519e5"
+        },
+        {
+          "familyIndex": 12,
+          "capture": "captures/pvr/20260724-015839-frame-2426/ram.bin",
+          "captureSha256": "3490d4375ffffabc7d03f7f041ab5d0f00cf1c00c79e9d32c977735093d6bc45"
+        },
+        {
+          "familyIndex": 12,
+          "capture": "captures/pvr/20260724-015839-frame-2428/ram.bin",
+          "captureSha256": "b90a91912f45334d81b0eb46f23130ab0233e94e76394449254c151c10dd6396"
+        },
+        {
+          "familyIndex": 12,
+          "capture": "captures/pvr/20260724-015839-frame-2430/ram.bin",
+          "captureSha256": "238ee8aa4a74bd8d929464ae9f2bf69113dac63edbcfc2a0648ed0a09920a1e1"
+        },
+        {
+          "familyIndex": 12,
+          "capture": "captures/pvr/20260724-015839-frame-2432/ram.bin",
+          "captureSha256": "fedad1b9d290b6a4e12232ca034ea029e24377e7a29c82eb6ad53813269fa21e"
+        },
+        {
+          "familyIndex": 12,
+          "capture": "captures/pvr/20260724-015840-frame-2434/ram.bin",
+          "captureSha256": "e7d9fce9729634201f5aa953d1efee818cfb146a493591396dd88a95d20a6e46"
+        }
+      ]
+    },
+    {
+      "actorCode": "FKSM",
+      "modelCodes": [
+        "FKS_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 19,
+          "count": 3
+        }
+      ],
+      "consistentFamilyIndex": 19,
+      "observationCount": 3,
+      "observations": [
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260724-164249-frame-3193/ram.bin",
+          "captureSha256": "57cda3d7d38d9e00048b9a57134fa6a6a5bd54ef3347923c0a1bb0686b3ec482"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260726-010505-frame-630/ram.bin",
+          "captureSha256": "6c12a91b7d1058540e3de413992b730370e94602a7bf4a9dc395dc441f2c7c52"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260726-081448-frame-34522/ram.bin",
+          "captureSha256": "02e40f95bf7eb3df0626cf68bf61872e796604b57e02b9dbf81299fcdf23c987"
+        }
+      ]
+    },
+    {
+      "actorCode": "FUKU",
+      "modelCodes": [
+        "FUK_M"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 10,
+          "count": 7
+        }
+      ],
+      "consistentFamilyIndex": 10,
+      "observationCount": 7,
+      "observations": [
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260723-102735-frame-197/ram.bin",
+          "captureSha256": "16a7665571e3cf515e54cdbaf9ef156f966c26681171b33f69cc31be5c49d0c7"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260723-102736-frame-216/ram.bin",
+          "captureSha256": "55e784e58def0a349fb3996d9fb20a32eb899c7e0ce8053e9387fd66dfbe2785"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260723-102736-frame-227/ram.bin",
+          "captureSha256": "08f23d756f9cc24d463236653e8f82bfad32ce09fd3d64aceb806101b00cd39c"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260723-102737-frame-242/ram.bin",
+          "captureSha256": "c72453cc71aab9ec30be55214eea3a2d7238968c12f20d692162222374f3e7db"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260723-102738-frame-272/ram.bin",
+          "captureSha256": "445dab318619ba76dc69bbb993340f3a3507420a49f5716652d9aa6d71f4d55f"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260723-104723-frame-420/ram.bin",
+          "captureSha256": "85367de49610bf6be9459f2a520515b796e14cf01b268e0cc815203e8650c6e4"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-084354-frame-3652/ram.bin",
+          "captureSha256": "684edec1f90918b9e959c2bbb88ceb7eec0eee40a22b521b687330f540b4807a"
+        }
+      ]
+    },
+    {
+      "actorCode": "GJBF",
+      "modelCodes": [
+        "HWB_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 19,
+          "count": 2
+        }
+      ],
+      "consistentFamilyIndex": 19,
+      "observationCount": 2,
+      "observations": [
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260727-194248-frame-3256/ram.bin",
+          "captureSha256": "2a86290791191120dabffd28c484c56d936140ec240e626aacd78c53f586259b"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260727-194708-frame-3587/ram.bin",
+          "captureSha256": "f8b0a5d9049fff755fe56f9e026e203e11de164d5a7e72930d619715d78d3a3e"
+        }
+      ]
+    },
+    {
+      "actorCode": "HATO",
+      "modelCodes": [
+        "BAT_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 10,
+          "count": 70
+        }
+      ],
+      "consistentFamilyIndex": 10,
+      "observationCount": 70,
+      "observations": [
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-013650-frame-7633/ram.bin",
+          "captureSha256": "97787b56ee4b1724105b6aca87bcab2697ed1df110ba811547d47826d57a746e"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-013655-frame-7728/ram.bin",
+          "captureSha256": "32a0a67681c85dd4b369a43311a6f642af345adad249d7c2973314975c4c9b3a"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-013700-frame-7838/ram.bin",
+          "captureSha256": "b7f3edc3b837e1dcc55d3c0cc7daec2961353b3b24aed6c52c5eb043b570f63b"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-013705-frame-7946/ram.bin",
+          "captureSha256": "ed046b20025ac94c6641f05ac5b365830d406a001a6f872e2f52adf355a5597f"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-013823-frame-9042/ram.bin",
+          "captureSha256": "de797956e927c3f7777d9bac5cc4b029129a4f3177411fb53d73c83ac982da00"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015202-frame-17924/ram.bin",
+          "captureSha256": "6a316facb5ea52be43d2137209630ccb38507ebd5e650abf48c963888bf8f77c"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015322-frame-19278/ram.bin",
+          "captureSha256": "0f523a4b3e5f1357584d68b900f2a6d57580f7afd79b053721aa9fb675826aaa"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015806-frame-1986/ram.bin",
+          "captureSha256": "a3c3a3d7c975be72d19df40ee8934257b0d91a28f2e163e074552ee7894a8392"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015806-frame-1989/ram.bin",
+          "captureSha256": "36eb74770c6a4a4379d87b5e23d04fa353527e5f6a3d19955fb2c9449c0a0476"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015807-frame-1992/ram.bin",
+          "captureSha256": "8de8ccddb10b67f1a0362e104df24e9d8265a7fd4d5420242f98ab736c93191d"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015807-frame-1994/ram.bin",
+          "captureSha256": "0cfe8f1f2793f8aa9ddd82eaff2d6f28843d627157b3ba24b196e6ca2d0504b0"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015807-frame-1997/ram.bin",
+          "captureSha256": "4458f16595c9b8b0a066e9732cdada9ba073f0b0b81581d1f780b959b6bc88bd"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015807-frame-2000/ram.bin",
+          "captureSha256": "2d2473eaf5ed3f502d08d195f19151b249aeb32fe1bb4a315e53995232d4193b"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015807-frame-2002/ram.bin",
+          "captureSha256": "76c981cfc03c10b827478ff5cf53fe8cd4106175a69648ee11acc9b023b56333"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015807-frame-2005/ram.bin",
+          "captureSha256": "7d82e75373e9156c215db7d102b91af6f57a90e0b9671c9742f3111f660264a0"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015807-frame-2007/ram.bin",
+          "captureSha256": "119eef1c08945ed02b3b458e2d3f485f9cb867d1e57b3585584f193c25ae0507"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015807-frame-2010/ram.bin",
+          "captureSha256": "fb7c45d918209b63f996a80aa830c7e351b3178524176df69e6aa6ca0143ba07"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015808-frame-2012/ram.bin",
+          "captureSha256": "08ec3139faf5502bc84ac65353c5ff924b86e8b0a117bc3eb412514bc78ff776"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015808-frame-2015/ram.bin",
+          "captureSha256": "6e4e174699b780d6dfc670d034a6ef4f43e57dba89cb648621d308e65599b597"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015808-frame-2017/ram.bin",
+          "captureSha256": "9f0a0aa8decfc192dee682d508eb3cd1801334c6aacd437107028f00e5a912de"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015808-frame-2020/ram.bin",
+          "captureSha256": "b569e2512ac99a7a34ad34fddf1fb280b52604e7126a863512461298d8514c45"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015808-frame-2023/ram.bin",
+          "captureSha256": "6ea3c147043e482b975a23acb88d5cfbed6054222b564761bd0eb3c03075d212"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020112-frame-878/ram.bin",
+          "captureSha256": "202195d0cfed023ed16c5601897c384d15148e4807793ce39762f773d799ebf1"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020112-frame-883/ram.bin",
+          "captureSha256": "6e01ebfbf35d962bdb37cafd9dca267094c9d81964082937e30facfac9f7eae3"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020113-frame-886/ram.bin",
+          "captureSha256": "a8b4e2de98ec94273d72fdd22ac141d21d155e342f12e57c1c28fe517625750a"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020113-frame-890/ram.bin",
+          "captureSha256": "9d7d8718ff6eee3d0509300bc72845dc8f49a23d9af99ec83ffbbb56f63075f4"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020113-frame-897/ram.bin",
+          "captureSha256": "981df49166f3afa81c496fd09a478ba0755fb723ab745187f3195a31fc2cd3be"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020114-frame-912/ram.bin",
+          "captureSha256": "1cb62b7f08e07494df6ab1958a270bb44c358bb1dcbc1766b2c2bb2c55e0857c"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020115-frame-925/ram.bin",
+          "captureSha256": "a139a0e0d8f49795a147fb3ea239e0c6117eb9066bd5dba17bc39313a293e1b0"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020115-frame-929/ram.bin",
+          "captureSha256": "23f85c6f818ca62ebd9d34a3eac989566e89f81e4beb4e8e720073615704d4e1"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020116-frame-932/ram.bin",
+          "captureSha256": "3d6c57cdc9722d48a5147c3b2f27346954dea666f7b5498534783f5e2cd7cb5d"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020116-frame-936/ram.bin",
+          "captureSha256": "a3a32a998a066c4b3b9af42138e9f3b93a4d87f43ffcff3ddb9f48079358a775"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020117-frame-944/ram.bin",
+          "captureSha256": "fc2f0b810f5465824a15f42e3797d319b33440eaeaffcad0927fe4aec184dd1b"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020118-frame-956/ram.bin",
+          "captureSha256": "6ed589b0395ddf27f4e7c66df2154efde53ff365a6cfd781ba62aa69c3860ae4"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-023934-frame-1195/ram.bin",
+          "captureSha256": "5361d85fb86c3344d882a2676cb50ba9a99b618f3330e3b46dea8ec3d833843e"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-023935-frame-1212/ram.bin",
+          "captureSha256": "aaed5e578c24537fd3b612183a575308b1190ec01185c5e458c45a6fe649e928"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-023936-frame-1225/ram.bin",
+          "captureSha256": "89abcb809b74ec52c79eea58f7ec2cbf028a0143f91a1585b8111c35e131c1b1"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-023937-frame-1229/ram.bin",
+          "captureSha256": "d4db24b6eb21b9885f6d31ee71d469b609b8e5bf025901a1b9b63f491f152ee4"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-023937-frame-1232/ram.bin",
+          "captureSha256": "3ed8184df7902343b2f3b085bd347bda1a229ae78db88e8fac408e14134ebf4f"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-023937-frame-1237/ram.bin",
+          "captureSha256": "9f43df4e1b0112f7fb4390f2c2a34ca39815eda22979b9596a07ff11eff11f5b"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-023938-frame-1247/ram.bin",
+          "captureSha256": "beed2ffe586148da91603050b7966895d319d34f1484583796a7b1449b169560"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-023939-frame-1262/ram.bin",
+          "captureSha256": "2cb4c19056d22e417612a5ce1f7c664b353a0a7e0470995f3c14ff252fd13d90"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024158-frame-850/ram.bin",
+          "captureSha256": "d77bedbde756fe68f74432765a25c584a66e822bcb93f1c1b8797b926bd4efa4"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024159-frame-866/ram.bin",
+          "captureSha256": "4db428ad21bc28b53112a92c022ad446b63066430132b4a2b8a44e0973c7a48f"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024200-frame-879/ram.bin",
+          "captureSha256": "071ea627b8736668c6040df45fb0523172ead4f0ef7d305c2d74501b3d604efa"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024200-frame-883/ram.bin",
+          "captureSha256": "b6fecf9f55804902ab1afe8f3400ff94ac9e57dbca5c3dabd6610b83f4a33c5b"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024200-frame-886/ram.bin",
+          "captureSha256": "c4d6b13299710ee07c9754e325debbcfffdc691d9bcec5cef950b6a04cac57b7"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024201-frame-891/ram.bin",
+          "captureSha256": "23ae9075102c86db1b0ca2a10765dc3f2851bcd73f1676b74f8350be6ad45aa9"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024201-frame-901/ram.bin",
+          "captureSha256": "41bce24dae2057f56826df05adc5d64f30cae468671e63fab83eeda439193b49"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024202-frame-915/ram.bin",
+          "captureSha256": "015d5c284b033ae959cd313c02a173db9c4ae1a55dbc2f55804c04ac0426e6df"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024434-frame-916/ram.bin",
+          "captureSha256": "1039968f097f44ad7406a00445bbf5667ea6e996b9c4ecf551997b7678614bbf"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024435-frame-932/ram.bin",
+          "captureSha256": "c6e6d5666d34c262d87ab61c904a5cea70628ae2898a117ab6615700752345c9"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024436-frame-945/ram.bin",
+          "captureSha256": "bd99f44164b59d27f6babd443812c8dd9a906c957f8baa9721bdcf4bb8f75ad2"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024436-frame-949/ram.bin",
+          "captureSha256": "550e1439884acde4d04ad5341e396b2175c4b5adcbc12eb7e4a9fe0038f26e96"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024436-frame-952/ram.bin",
+          "captureSha256": "44991f1c77a30888c8e5b27d1d4819a6fb5569deb20a5119e30c92797f35dafb"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024436-frame-957/ram.bin",
+          "captureSha256": "292823a26923a5ab9b0caeb42869a001f5759070d1d24e09f04d0971a108b074"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024437-frame-967/ram.bin",
+          "captureSha256": "98380801cd50b341efd11e445f0e8cc57475478143bf337c585b6b138e9acd06"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024438-frame-982/ram.bin",
+          "captureSha256": "8e7e98562d83bea260d2a2e0e946969f953ec9cd8518fa0e2afc102550102f2d"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024717-frame-894/ram.bin",
+          "captureSha256": "8801c946711e6771a83cf0314ba7078b78d8cd67784cc31ab2b0c43dd7b4ef9f"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024717-frame-910/ram.bin",
+          "captureSha256": "0aff0f0e86578dabb6a35fc3ee2bfa931671b28fa5497d4e855004c600398114"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024718-frame-923/ram.bin",
+          "captureSha256": "06161cbba2293741bfab6ae9e7968e5ce6310ec72badfd5e810548c8f5378bf3"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024719-frame-927/ram.bin",
+          "captureSha256": "19e7541faaf51097d3a2b235c900fb214ac00f49fe5a44e0b5487cbd12aa9f38"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024719-frame-930/ram.bin",
+          "captureSha256": "2dbfa9fdbd7c11f813ed6f8d85991f02749ef14280fc9194755ec68e0039e77d"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024719-frame-935/ram.bin",
+          "captureSha256": "087ebf0bbc2e6225d36da69fd208861cd2966b5da123da9ce259e62c25d5b77b"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024720-frame-945/ram.bin",
+          "captureSha256": "38974a868a868d77f0ca5db6fa747625b3eacaa76ef122fae6b1c9cf11e5cd97"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024721-frame-960/ram.bin",
+          "captureSha256": "8139e0bc9f3c861c4559ac3d121320b40439cb44ec814cd751a94f296b1588f0"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260727-195058-frame-36125/ram.bin",
+          "captureSha256": "095c41ae26c0e96baf4117a3ccd9b7a022d4e73f1b4b00d5f8a992438add0fa8"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260727-195440-frame-128/ram.bin",
+          "captureSha256": "dcc1f52f10eba12fb55a46ef868694e13976b3541e95248e74843b303c7d34fb"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260727-200313-frame-443/ram.bin",
+          "captureSha256": "f684785725c33b413249ce5a960481be8cc95246e882dae398293adfcc213de9"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260727-200728-frame-28658/ram.bin",
+          "captureSha256": "93908dfa27ad49dbe87074dfe129ad5c8927d55ef5fbcead7deb81758952a610"
+        }
+      ]
+    },
+    {
+      "actorCode": "HATR",
+      "modelCodes": [
+        "HTR_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 0,
+          "count": 1
+        }
+      ],
+      "consistentFamilyIndex": 0,
+      "observationCount": 1,
+      "observations": [
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260727-195058-frame-36125/ram.bin",
+          "captureSha256": "095c41ae26c0e96baf4117a3ccd9b7a022d4e73f1b4b00d5f8a992438add0fa8"
+        }
+      ]
+    },
+    {
+      "actorCode": "HOND",
+      "modelCodes": [
+        "HND_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 0,
+          "count": 4
+        }
+      ],
+      "consistentFamilyIndex": 0,
+      "observationCount": 4,
+      "observations": [
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-013655-frame-7728/ram.bin",
+          "captureSha256": "32a0a67681c85dd4b369a43311a6f642af345adad249d7c2973314975c4c9b3a"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260727-195058-frame-36125/ram.bin",
+          "captureSha256": "095c41ae26c0e96baf4117a3ccd9b7a022d4e73f1b4b00d5f8a992438add0fa8"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260727-195440-frame-128/ram.bin",
+          "captureSha256": "dcc1f52f10eba12fb55a46ef868694e13976b3541e95248e74843b303c7d34fb"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260727-200313-frame-443/ram.bin",
+          "captureSha256": "f684785725c33b413249ce5a960481be8cc95246e882dae398293adfcc213de9"
+        }
+      ]
+    },
+    {
+      "actorCode": "HREO",
+      "modelCodes": [
+        "HPI_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 15,
+          "count": 1
+        }
+      ],
+      "consistentFamilyIndex": 15,
+      "observationCount": 1,
+      "observations": [
+        {
+          "familyIndex": 15,
+          "capture": "captures/pvr/20260727-200728-frame-28658/ram.bin",
+          "captureSha256": "93908dfa27ad49dbe87074dfe129ad5c8927d55ef5fbcead7deb81758952a610"
+        }
+      ]
+    },
+    {
+      "actorCode": "HROT",
+      "modelCodes": [
+        "HPD_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 15,
+          "count": 3
+        }
+      ],
+      "consistentFamilyIndex": 15,
+      "observationCount": 3,
+      "observations": [
+        {
+          "familyIndex": 15,
+          "capture": "captures/pvr/20260727-195058-frame-36125/ram.bin",
+          "captureSha256": "095c41ae26c0e96baf4117a3ccd9b7a022d4e73f1b4b00d5f8a992438add0fa8"
+        },
+        {
+          "familyIndex": 15,
+          "capture": "captures/pvr/20260727-195440-frame-128/ram.bin",
+          "captureSha256": "dcc1f52f10eba12fb55a46ef868694e13976b3541e95248e74843b303c7d34fb"
+        },
+        {
+          "familyIndex": 15,
+          "capture": "captures/pvr/20260727-200313-frame-443/ram.bin",
+          "captureSha256": "f684785725c33b413249ce5a960481be8cc95246e882dae398293adfcc213de9"
+        }
+      ]
+    },
+    {
+      "actorCode": "HRSK",
+      "modelCodes": [
+        "NZM_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 15,
+          "count": 3
+        }
+      ],
+      "consistentFamilyIndex": 15,
+      "observationCount": 3,
+      "observations": [
+        {
+          "familyIndex": 15,
+          "capture": "captures/pvr/20260724-012858-frame-2401/ram.bin",
+          "captureSha256": "93ea77c6e7b4c066d01389aec1f1bdd56e8fe872b3c298742301018473daee7c"
+        },
+        {
+          "familyIndex": 15,
+          "capture": "captures/pvr/20260724-012936-frame-2726/ram.bin",
+          "captureSha256": "e8daed2298622f37b15490a1964b73ba3c8001f631f92ecf1351563024f1f273"
+        },
+        {
+          "familyIndex": 15,
+          "capture": "captures/pvr/20260727-200728-frame-28658/ram.bin",
+          "captureSha256": "93908dfa27ad49dbe87074dfe129ad5c8927d55ef5fbcead7deb81758952a610"
+        }
+      ]
+    },
+    {
+      "actorCode": "ISYM",
+      "modelCodes": [
+        "SHY_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 15,
+          "count": 1
+        }
+      ],
+      "consistentFamilyIndex": 15,
+      "observationCount": 1,
+      "observations": [
+        {
+          "familyIndex": 15,
+          "capture": "captures/pvr/20260724-010149-frame-5325/ram.bin",
+          "captureSha256": "ecde1489086d961047b1e9ed385ef43d4ab58ede49935d5db628acd37671a5fa"
+        }
+      ]
+    },
+    {
+      "actorCode": "ITOH",
+      "modelCodes": [
+        "RFB_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 0,
+          "count": 1
+        }
+      ],
+      "consistentFamilyIndex": 0,
+      "observationCount": 1,
+      "observations": [
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-013650-frame-7633/ram.bin",
+          "captureSha256": "97787b56ee4b1724105b6aca87bcab2697ed1df110ba811547d47826d57a746e"
+        }
+      ]
+    },
+    {
+      "actorCode": "ITOI",
+      "modelCodes": [
+        "WAP_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 7,
+          "count": 5
+        }
+      ],
+      "consistentFamilyIndex": 7,
+      "observationCount": 5,
+      "observations": [
+        {
+          "familyIndex": 7,
+          "capture": "captures/pvr/20260724-012339-frame-3556/ram.bin",
+          "captureSha256": "de64b0f08625df27deb3f3c4d41d6593f007b0f893d66d6e365fe59fd474a30d"
+        },
+        {
+          "familyIndex": 7,
+          "capture": "captures/pvr/20260724-012403-frame-3762/ram.bin",
+          "captureSha256": "520b922c3546f79a9a45fdce173afb07c2dca552248eef53cb21d07037c402a5"
+        },
+        {
+          "familyIndex": 7,
+          "capture": "captures/pvr/20260724-012426-frame-3933/ram.bin",
+          "captureSha256": "d2dfd163fe1157f55c8aabf28ec9391d5326d5d3d57a23f245ab4fa147a7cac6"
+        },
+        {
+          "familyIndex": 7,
+          "capture": "captures/pvr/20260727-194248-frame-3256/ram.bin",
+          "captureSha256": "2a86290791191120dabffd28c484c56d936140ec240e626aacd78c53f586259b"
+        },
+        {
+          "familyIndex": 7,
+          "capture": "captures/pvr/20260727-194708-frame-3587/ram.bin",
+          "captureSha256": "f8b0a5d9049fff755fe56f9e026e203e11de164d5a7e72930d619715d78d3a3e"
+        }
+      ]
+    },
+    {
+      "actorCode": "IZWA",
+      "modelCodes": [
+        "FRG_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 12,
+          "count": 3
+        }
+      ],
+      "consistentFamilyIndex": 12,
+      "observationCount": 3,
+      "observations": [
+        {
+          "familyIndex": 12,
+          "capture": "captures/pvr/20260724-164249-frame-3193/ram.bin",
+          "captureSha256": "57cda3d7d38d9e00048b9a57134fa6a6a5bd54ef3347923c0a1bb0686b3ec482"
+        },
+        {
+          "familyIndex": 12,
+          "capture": "captures/pvr/20260726-010505-frame-630/ram.bin",
+          "captureSha256": "6c12a91b7d1058540e3de413992b730370e94602a7bf4a9dc395dc441f2c7c52"
+        },
+        {
+          "familyIndex": 12,
+          "capture": "captures/pvr/20260726-081448-frame-34522/ram.bin",
+          "captureSha256": "02e40f95bf7eb3df0626cf68bf61872e796604b57e02b9dbf81299fcdf23c987"
+        }
+      ]
+    },
+    {
+      "actorCode": "JONO",
+      "modelCodes": [
+        "YPB_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 10,
+          "count": 3
+        }
+      ],
+      "consistentFamilyIndex": 10,
+      "observationCount": 3,
+      "observations": [
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-164249-frame-3193/ram.bin",
+          "captureSha256": "57cda3d7d38d9e00048b9a57134fa6a6a5bd54ef3347923c0a1bb0686b3ec482"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260726-010505-frame-630/ram.bin",
+          "captureSha256": "6c12a91b7d1058540e3de413992b730370e94602a7bf4a9dc395dc441f2c7c52"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260726-081448-frame-34522/ram.bin",
+          "captureSha256": "02e40f95bf7eb3df0626cf68bf61872e796604b57e02b9dbf81299fcdf23c987"
+        }
+      ]
+    },
+    {
+      "actorCode": "KJIY",
+      "modelCodes": [
+        "BIB_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 0,
+          "count": 3
+        }
+      ],
+      "consistentFamilyIndex": 0,
+      "observationCount": 3,
+      "observations": [
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-013823-frame-9042/ram.bin",
+          "captureSha256": "de797956e927c3f7777d9bac5cc4b029129a4f3177411fb53d73c83ac982da00"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-015202-frame-17924/ram.bin",
+          "captureSha256": "6a316facb5ea52be43d2137209630ccb38507ebd5e650abf48c963888bf8f77c"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-015322-frame-19278/ram.bin",
+          "captureSha256": "0f523a4b3e5f1357584d68b900f2a6d57580f7afd79b053721aa9fb675826aaa"
+        }
+      ]
+    },
+    {
+      "actorCode": "KNJI",
+      "modelCodes": [
+        "GKA_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 4,
+          "count": 6
+        }
+      ],
+      "consistentFamilyIndex": 4,
+      "observationCount": 6,
+      "observations": [
+        {
+          "familyIndex": 4,
+          "capture": "captures/pvr/20260724-012426-frame-3933/ram.bin",
+          "captureSha256": "d2dfd163fe1157f55c8aabf28ec9391d5326d5d3d57a23f245ab4fa147a7cac6"
+        },
+        {
+          "familyIndex": 4,
+          "capture": "captures/pvr/20260724-020116-frame-932/ram.bin",
+          "captureSha256": "3d6c57cdc9722d48a5147c3b2f27346954dea666f7b5498534783f5e2cd7cb5d"
+        },
+        {
+          "familyIndex": 4,
+          "capture": "captures/pvr/20260724-020116-frame-936/ram.bin",
+          "captureSha256": "a3a32a998a066c4b3b9af42138e9f3b93a4d87f43ffcff3ddb9f48079358a775"
+        },
+        {
+          "familyIndex": 4,
+          "capture": "captures/pvr/20260724-020117-frame-944/ram.bin",
+          "captureSha256": "fc2f0b810f5465824a15f42e3797d319b33440eaeaffcad0927fe4aec184dd1b"
+        },
+        {
+          "familyIndex": 4,
+          "capture": "captures/pvr/20260724-020118-frame-956/ram.bin",
+          "captureSha256": "6ed589b0395ddf27f4e7c66df2154efde53ff365a6cfd781ba62aa69c3860ae4"
+        },
+        {
+          "familyIndex": 4,
+          "capture": "captures/pvr/20260727-200728-frame-28658/ram.bin",
+          "captureSha256": "93908dfa27ad49dbe87074dfe129ad5c8927d55ef5fbcead7deb81758952a610"
+        }
+      ]
+    },
+    {
+      "actorCode": "KUKT",
+      "modelCodes": [
+        "HPY_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 15,
+          "count": 2
+        }
+      ],
+      "consistentFamilyIndex": 15,
+      "observationCount": 2,
+      "observations": [
+        {
+          "familyIndex": 15,
+          "capture": "captures/pvr/20260724-012858-frame-2401/ram.bin",
+          "captureSha256": "93ea77c6e7b4c066d01389aec1f1bdd56e8fe872b3c298742301018473daee7c"
+        },
+        {
+          "familyIndex": 15,
+          "capture": "captures/pvr/20260724-012936-frame-2726/ram.bin",
+          "captureSha256": "e8daed2298622f37b15490a1964b73ba3c8001f631f92ecf1351563024f1f273"
+        }
+      ]
+    },
+    {
+      "actorCode": "KURI",
+      "modelCodes": [
+        "KZM_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 10,
+          "count": 5
+        }
+      ],
+      "consistentFamilyIndex": 10,
+      "observationCount": 5,
+      "observations": [
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-012339-frame-3556/ram.bin",
+          "captureSha256": "de64b0f08625df27deb3f3c4d41d6593f007b0f893d66d6e365fe59fd474a30d"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-012403-frame-3762/ram.bin",
+          "captureSha256": "520b922c3546f79a9a45fdce173afb07c2dca552248eef53cb21d07037c402a5"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-012426-frame-3933/ram.bin",
+          "captureSha256": "d2dfd163fe1157f55c8aabf28ec9391d5326d5d3d57a23f245ab4fa147a7cac6"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260727-194248-frame-3256/ram.bin",
+          "captureSha256": "2a86290791191120dabffd28c484c56d936140ec240e626aacd78c53f586259b"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260727-194708-frame-3587/ram.bin",
+          "captureSha256": "f8b0a5d9049fff755fe56f9e026e203e11de164d5a7e72930d619715d78d3a3e"
+        }
+      ]
+    },
+    {
+      "actorCode": "KWMT",
+      "modelCodes": [
+        "NPB_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 0,
+          "count": 21
+        }
+      ],
+      "consistentFamilyIndex": 0,
+      "observationCount": 21,
+      "observations": [
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-012426-frame-3933/ram.bin",
+          "captureSha256": "d2dfd163fe1157f55c8aabf28ec9391d5326d5d3d57a23f245ab4fa147a7cac6"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-020117-frame-944/ram.bin",
+          "captureSha256": "fc2f0b810f5465824a15f42e3797d319b33440eaeaffcad0927fe4aec184dd1b"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-020118-frame-956/ram.bin",
+          "captureSha256": "6ed589b0395ddf27f4e7c66df2154efde53ff365a6cfd781ba62aa69c3860ae4"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-024159-frame-866/ram.bin",
+          "captureSha256": "4db428ad21bc28b53112a92c022ad446b63066430132b4a2b8a44e0973c7a48f"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-024200-frame-879/ram.bin",
+          "captureSha256": "071ea627b8736668c6040df45fb0523172ead4f0ef7d305c2d74501b3d604efa"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-024200-frame-883/ram.bin",
+          "captureSha256": "b6fecf9f55804902ab1afe8f3400ff94ac9e57dbca5c3dabd6610b83f4a33c5b"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-024200-frame-886/ram.bin",
+          "captureSha256": "c4d6b13299710ee07c9754e325debbcfffdc691d9bcec5cef950b6a04cac57b7"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-024201-frame-891/ram.bin",
+          "captureSha256": "23ae9075102c86db1b0ca2a10765dc3f2851bcd73f1676b74f8350be6ad45aa9"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-024201-frame-901/ram.bin",
+          "captureSha256": "41bce24dae2057f56826df05adc5d64f30cae468671e63fab83eeda439193b49"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-024202-frame-915/ram.bin",
+          "captureSha256": "015d5c284b033ae959cd313c02a173db9c4ae1a55dbc2f55804c04ac0426e6df"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-024435-frame-932/ram.bin",
+          "captureSha256": "c6e6d5666d34c262d87ab61c904a5cea70628ae2898a117ab6615700752345c9"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-024436-frame-945/ram.bin",
+          "captureSha256": "bd99f44164b59d27f6babd443812c8dd9a906c957f8baa9721bdcf4bb8f75ad2"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-024436-frame-949/ram.bin",
+          "captureSha256": "550e1439884acde4d04ad5341e396b2175c4b5adcbc12eb7e4a9fe0038f26e96"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-024436-frame-952/ram.bin",
+          "captureSha256": "44991f1c77a30888c8e5b27d1d4819a6fb5569deb20a5119e30c92797f35dafb"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-024436-frame-957/ram.bin",
+          "captureSha256": "292823a26923a5ab9b0caeb42869a001f5759070d1d24e09f04d0971a108b074"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-024717-frame-910/ram.bin",
+          "captureSha256": "0aff0f0e86578dabb6a35fc3ee2bfa931671b28fa5497d4e855004c600398114"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-024718-frame-923/ram.bin",
+          "captureSha256": "06161cbba2293741bfab6ae9e7968e5ce6310ec72badfd5e810548c8f5378bf3"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-024719-frame-927/ram.bin",
+          "captureSha256": "19e7541faaf51097d3a2b235c900fb214ac00f49fe5a44e0b5487cbd12aa9f38"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-024719-frame-930/ram.bin",
+          "captureSha256": "2dbfa9fdbd7c11f813ed6f8d85991f02749ef14280fc9194755ec68e0039e77d"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-024719-frame-935/ram.bin",
+          "captureSha256": "087ebf0bbc2e6225d36da69fd208861cd2966b5da123da9ce259e62c25d5b77b"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-024720-frame-945/ram.bin",
+          "captureSha256": "38974a868a868d77f0ca5db6fa747625b3eacaa76ef122fae6b1c9cf11e5cd97"
+        }
+      ]
+    },
+    {
+      "actorCode": "MAGO",
+      "modelCodes": [
+        "QHT_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 4,
+          "count": 4
+        }
+      ],
+      "consistentFamilyIndex": 4,
+      "observationCount": 4,
+      "observations": [
+        {
+          "familyIndex": 4,
+          "capture": "captures/pvr/20260724-012339-frame-3556/ram.bin",
+          "captureSha256": "de64b0f08625df27deb3f3c4d41d6593f007b0f893d66d6e365fe59fd474a30d"
+        },
+        {
+          "familyIndex": 4,
+          "capture": "captures/pvr/20260724-012403-frame-3762/ram.bin",
+          "captureSha256": "520b922c3546f79a9a45fdce173afb07c2dca552248eef53cb21d07037c402a5"
+        },
+        {
+          "familyIndex": 4,
+          "capture": "captures/pvr/20260724-012426-frame-3933/ram.bin",
+          "captureSha256": "d2dfd163fe1157f55c8aabf28ec9391d5326d5d3d57a23f245ab4fa147a7cac6"
+        },
+        {
+          "familyIndex": 4,
+          "capture": "captures/pvr/20260724-013640-frame-7479/ram.bin",
+          "captureSha256": "f0485d09100669f8ca84d1d8f2a6390182226f8f1fae6b6e7319d30623daf824"
+        }
+      ]
+    },
+    {
+      "actorCode": "MARK",
+      "modelCodes": [
+        "GIC_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 10,
+          "count": 5
+        }
+      ],
+      "consistentFamilyIndex": 10,
+      "observationCount": 5,
+      "observations": [
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260726-001534-frame-163030/ram.bin",
+          "captureSha256": "02f24de143108e06c6c79dd77d5700db27c2ef56df164db01ea36e3776c59b6e"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260726-003543-frame-196802/ram.bin",
+          "captureSha256": "76c83756cd6129b8dae4835ffbf90040f1fb901d8c1459cb582b2b33323fa9a8"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260726-003554-frame-197131/ram.bin",
+          "captureSha256": "20fe8246f405c1d98c90e2b864fc8dfec4dc46676b30ae8450760f472674ba51"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260726-010220-frame-37505/ram.bin",
+          "captureSha256": "6a516d1da063aee6cdcda67481cc6f702b4450c0e0f1eb9d00a14d046b7c660d"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260726-010321-frame-39334/ram.bin",
+          "captureSha256": "4e9aaaa450cc5a9c0049ace10ae27d5fdf75f3068a5e86dde86ccbd952ca9077"
+        }
+      ]
+    },
+    {
+      "actorCode": "MASR",
+      "modelCodes": [
+        "BGA_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 0,
+          "count": 3
+        }
+      ],
+      "consistentFamilyIndex": 0,
+      "observationCount": 3,
+      "observations": [
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260727-195058-frame-36125/ram.bin",
+          "captureSha256": "095c41ae26c0e96baf4117a3ccd9b7a022d4e73f1b4b00d5f8a992438add0fa8"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260727-195440-frame-128/ram.bin",
+          "captureSha256": "dcc1f52f10eba12fb55a46ef868694e13976b3541e95248e74843b303c7d34fb"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260727-200313-frame-443/ram.bin",
+          "captureSha256": "f684785725c33b413249ce5a960481be8cc95246e882dae398293adfcc213de9"
+        }
+      ]
+    },
+    {
+      "actorCode": "MEGM",
+      "modelCodes": [
+        "SIA_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 8,
+          "count": 3
+        }
+      ],
+      "consistentFamilyIndex": 8,
+      "observationCount": 3,
+      "observations": [
+        {
+          "familyIndex": 8,
+          "capture": "captures/pvr/20260724-100412-frame-18879/ram.bin",
+          "captureSha256": "85e249d107028f65de45159f694056aaecffa8507b303872d0d22b3b10f783d5"
+        },
+        {
+          "familyIndex": 8,
+          "capture": "captures/pvr/20260724-100608-frame-22364/ram.bin",
+          "captureSha256": "350448ac50e0f80c53b5137e38d4462a47050dd952aea9a8322f512cde118627"
+        },
+        {
+          "familyIndex": 8,
+          "capture": "captures/pvr/20260724-100646-frame-23483/ram.bin",
+          "captureSha256": "859a43dc4478cb86d07d348e4af90738b0a6da905eccda5c8f4ebe37b979ecf1"
+        }
+      ]
+    },
+    {
+      "actorCode": "MIHO",
+      "modelCodes": [
+        "MIH_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 19,
+          "count": 2
+        }
+      ],
+      "consistentFamilyIndex": 19,
+      "observationCount": 2,
+      "observations": [
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260727-195440-frame-128/ram.bin",
+          "captureSha256": "dcc1f52f10eba12fb55a46ef868694e13976b3541e95248e74843b303c7d34fb"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260727-200313-frame-443/ram.bin",
+          "captureSha256": "f684785725c33b413249ce5a960481be8cc95246e882dae398293adfcc213de9"
+        }
+      ]
+    },
+    {
+      "actorCode": "MIKI",
+      "modelCodes": [
+        "SHB_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 12,
+          "count": 3
+        }
+      ],
+      "consistentFamilyIndex": 12,
+      "observationCount": 3,
+      "observations": [
+        {
+          "familyIndex": 12,
+          "capture": "captures/pvr/20260727-195058-frame-36125/ram.bin",
+          "captureSha256": "095c41ae26c0e96baf4117a3ccd9b7a022d4e73f1b4b00d5f8a992438add0fa8"
+        },
+        {
+          "familyIndex": 12,
+          "capture": "captures/pvr/20260727-195440-frame-128/ram.bin",
+          "captureSha256": "dcc1f52f10eba12fb55a46ef868694e13976b3541e95248e74843b303c7d34fb"
+        },
+        {
+          "familyIndex": 12,
+          "capture": "captures/pvr/20260727-200313-frame-443/ram.bin",
+          "captureSha256": "f684785725c33b413249ce5a960481be8cc95246e882dae398293adfcc213de9"
+        }
+      ]
+    },
+    {
+      "actorCode": "MYKN",
+      "modelCodes": [
+        "KRN_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 15,
+          "count": 4
+        }
+      ],
+      "consistentFamilyIndex": 15,
+      "observationCount": 4,
+      "observations": [
+        {
+          "familyIndex": 15,
+          "capture": "captures/pvr/20260724-015410-frame-19777/ram.bin",
+          "captureSha256": "63d66b87bc0f8a4f47e396522fe1cdc7daf591c37a86ac019e598d4ef61243d2"
+        },
+        {
+          "familyIndex": 15,
+          "capture": "captures/pvr/20260724-015453-frame-20213/ram.bin",
+          "captureSha256": "9ff9155951e5b0d545a538933ea399dab26a0d4ae5af1130a1c51354e0a249e2"
+        },
+        {
+          "familyIndex": 15,
+          "capture": "captures/pvr/20260724-015516-frame-20358/ram.bin",
+          "captureSha256": "c6986ca5ca27d11e8f90c88651616501f9bbbfc3382e80e75296966bd50d2e79"
+        },
+        {
+          "familyIndex": 15,
+          "capture": "captures/pvr/20260724-015539-frame-20487/ram.bin",
+          "captureSha256": "52c89138c2427106e687962ddc9698057bf28677b462c755c12d1508a127a9e6"
+        }
+      ]
+    },
+    {
+      "actorCode": "NITO",
+      "modelCodes": [
+        "GAT_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 10,
+          "count": 1
+        }
+      ],
+      "consistentFamilyIndex": 10,
+      "observationCount": 1,
+      "observations": [
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260726-002424-frame-178913/ram.bin",
+          "captureSha256": "1a7f25648ccdee340a0f001d96f4e0ca73970adc841a42fd2730db823fc699e4"
+        }
+      ]
+    },
+    {
+      "actorCode": "NSMR",
+      "modelCodes": [
+        "X72_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 10,
+          "count": 4
+        }
+      ],
+      "consistentFamilyIndex": 10,
+      "observationCount": 4,
+      "observations": [
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015410-frame-19777/ram.bin",
+          "captureSha256": "63d66b87bc0f8a4f47e396522fe1cdc7daf591c37a86ac019e598d4ef61243d2"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015453-frame-20213/ram.bin",
+          "captureSha256": "9ff9155951e5b0d545a538933ea399dab26a0d4ae5af1130a1c51354e0a249e2"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015516-frame-20358/ram.bin",
+          "captureSha256": "c6986ca5ca27d11e8f90c88651616501f9bbbfc3382e80e75296966bd50d2e79"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-015539-frame-20487/ram.bin",
+          "captureSha256": "52c89138c2427106e687962ddc9698057bf28677b462c755c12d1508a127a9e6"
+        }
+      ]
+    },
+    {
+      "actorCode": "SCKO",
+      "modelCodes": [
+        "HPJ_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 15,
+          "count": 1
+        }
+      ],
+      "consistentFamilyIndex": 15,
+      "observationCount": 1,
+      "observations": [
+        {
+          "familyIndex": 15,
+          "capture": "captures/pvr/20260727-200728-frame-28658/ram.bin",
+          "captureSha256": "93908dfa27ad49dbe87074dfe129ad5c8927d55ef5fbcead7deb81758952a610"
+        }
+      ]
+    },
+    {
+      "actorCode": "SKRD",
+      "modelCodes": [
+        "NKK_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 0,
+          "count": 2
+        }
+      ],
+      "consistentFamilyIndex": 0,
+      "observationCount": 2,
+      "observations": [
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-005903-frame-4074/ram.bin",
+          "captureSha256": "654eb8eaabec45514d8ac8b88e8237667731e5aff030a113db01844749e69796"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-013650-frame-7633/ram.bin",
+          "captureSha256": "97787b56ee4b1724105b6aca87bcab2697ed1df110ba811547d47826d57a746e"
+        }
+      ]
+    },
+    {
+      "actorCode": "TAEN",
+      "modelCodes": [
+        "OBA_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 19,
+          "count": 23
+        }
+      ],
+      "consistentFamilyIndex": 19,
+      "observationCount": 23,
+      "observations": [
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260724-020114-frame-912/ram.bin",
+          "captureSha256": "1cb62b7f08e07494df6ab1958a270bb44c358bb1dcbc1766b2c2bb2c55e0857c"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260724-020115-frame-925/ram.bin",
+          "captureSha256": "a139a0e0d8f49795a147fb3ea239e0c6117eb9066bd5dba17bc39313a293e1b0"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260724-020115-frame-929/ram.bin",
+          "captureSha256": "23f85c6f818ca62ebd9d34a3eac989566e89f81e4beb4e8e720073615704d4e1"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260724-020116-frame-932/ram.bin",
+          "captureSha256": "3d6c57cdc9722d48a5147c3b2f27346954dea666f7b5498534783f5e2cd7cb5d"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260724-020116-frame-936/ram.bin",
+          "captureSha256": "a3a32a998a066c4b3b9af42138e9f3b93a4d87f43ffcff3ddb9f48079358a775"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260724-020117-frame-944/ram.bin",
+          "captureSha256": "fc2f0b810f5465824a15f42e3797d319b33440eaeaffcad0927fe4aec184dd1b"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260724-020118-frame-956/ram.bin",
+          "captureSha256": "6ed589b0395ddf27f4e7c66df2154efde53ff365a6cfd781ba62aa69c3860ae4"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260724-023938-frame-1247/ram.bin",
+          "captureSha256": "beed2ffe586148da91603050b7966895d319d34f1484583796a7b1449b169560"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260724-023939-frame-1262/ram.bin",
+          "captureSha256": "2cb4c19056d22e417612a5ce1f7c664b353a0a7e0470995f3c14ff252fd13d90"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260724-024201-frame-901/ram.bin",
+          "captureSha256": "41bce24dae2057f56826df05adc5d64f30cae468671e63fab83eeda439193b49"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260724-024202-frame-915/ram.bin",
+          "captureSha256": "015d5c284b033ae959cd313c02a173db9c4ae1a55dbc2f55804c04ac0426e6df"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260724-024436-frame-945/ram.bin",
+          "captureSha256": "bd99f44164b59d27f6babd443812c8dd9a906c957f8baa9721bdcf4bb8f75ad2"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260724-024436-frame-949/ram.bin",
+          "captureSha256": "550e1439884acde4d04ad5341e396b2175c4b5adcbc12eb7e4a9fe0038f26e96"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260724-024436-frame-952/ram.bin",
+          "captureSha256": "44991f1c77a30888c8e5b27d1d4819a6fb5569deb20a5119e30c92797f35dafb"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260724-024436-frame-957/ram.bin",
+          "captureSha256": "292823a26923a5ab9b0caeb42869a001f5759070d1d24e09f04d0971a108b074"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260724-024437-frame-967/ram.bin",
+          "captureSha256": "98380801cd50b341efd11e445f0e8cc57475478143bf337c585b6b138e9acd06"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260724-024438-frame-982/ram.bin",
+          "captureSha256": "8e7e98562d83bea260d2a2e0e946969f953ec9cd8518fa0e2afc102550102f2d"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260724-024718-frame-923/ram.bin",
+          "captureSha256": "06161cbba2293741bfab6ae9e7968e5ce6310ec72badfd5e810548c8f5378bf3"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260724-024719-frame-927/ram.bin",
+          "captureSha256": "19e7541faaf51097d3a2b235c900fb214ac00f49fe5a44e0b5487cbd12aa9f38"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260724-024719-frame-930/ram.bin",
+          "captureSha256": "2dbfa9fdbd7c11f813ed6f8d85991f02749ef14280fc9194755ec68e0039e77d"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260724-024719-frame-935/ram.bin",
+          "captureSha256": "087ebf0bbc2e6225d36da69fd208861cd2966b5da123da9ce259e62c25d5b77b"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260724-024720-frame-945/ram.bin",
+          "captureSha256": "38974a868a868d77f0ca5db6fa747625b3eacaa76ef122fae6b1c9cf11e5cd97"
+        },
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260724-024721-frame-960/ram.bin",
+          "captureSha256": "8139e0bc9f3c861c4559ac3d121320b40439cb44ec814cd751a94f296b1588f0"
+        }
+      ]
+    },
+    {
+      "actorCode": "TKNB",
+      "modelCodes": [
+        "PAN_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 10,
+          "count": 42
+        }
+      ],
+      "consistentFamilyIndex": 10,
+      "observationCount": 42,
+      "observations": [
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020112-frame-878/ram.bin",
+          "captureSha256": "202195d0cfed023ed16c5601897c384d15148e4807793ce39762f773d799ebf1"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020112-frame-883/ram.bin",
+          "captureSha256": "6e01ebfbf35d962bdb37cafd9dca267094c9d81964082937e30facfac9f7eae3"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020113-frame-886/ram.bin",
+          "captureSha256": "a8b4e2de98ec94273d72fdd22ac141d21d155e342f12e57c1c28fe517625750a"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020113-frame-890/ram.bin",
+          "captureSha256": "9d7d8718ff6eee3d0509300bc72845dc8f49a23d9af99ec83ffbbb56f63075f4"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020113-frame-897/ram.bin",
+          "captureSha256": "981df49166f3afa81c496fd09a478ba0755fb723ab745187f3195a31fc2cd3be"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020114-frame-912/ram.bin",
+          "captureSha256": "1cb62b7f08e07494df6ab1958a270bb44c358bb1dcbc1766b2c2bb2c55e0857c"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020115-frame-925/ram.bin",
+          "captureSha256": "a139a0e0d8f49795a147fb3ea239e0c6117eb9066bd5dba17bc39313a293e1b0"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020115-frame-929/ram.bin",
+          "captureSha256": "23f85c6f818ca62ebd9d34a3eac989566e89f81e4beb4e8e720073615704d4e1"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020116-frame-932/ram.bin",
+          "captureSha256": "3d6c57cdc9722d48a5147c3b2f27346954dea666f7b5498534783f5e2cd7cb5d"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020116-frame-936/ram.bin",
+          "captureSha256": "a3a32a998a066c4b3b9af42138e9f3b93a4d87f43ffcff3ddb9f48079358a775"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020117-frame-944/ram.bin",
+          "captureSha256": "fc2f0b810f5465824a15f42e3797d319b33440eaeaffcad0927fe4aec184dd1b"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-020118-frame-956/ram.bin",
+          "captureSha256": "6ed589b0395ddf27f4e7c66df2154efde53ff365a6cfd781ba62aa69c3860ae4"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-023935-frame-1212/ram.bin",
+          "captureSha256": "aaed5e578c24537fd3b612183a575308b1190ec01185c5e458c45a6fe649e928"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-023936-frame-1225/ram.bin",
+          "captureSha256": "89abcb809b74ec52c79eea58f7ec2cbf028a0143f91a1585b8111c35e131c1b1"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-023937-frame-1229/ram.bin",
+          "captureSha256": "d4db24b6eb21b9885f6d31ee71d469b609b8e5bf025901a1b9b63f491f152ee4"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-023937-frame-1232/ram.bin",
+          "captureSha256": "3ed8184df7902343b2f3b085bd347bda1a229ae78db88e8fac408e14134ebf4f"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-023937-frame-1237/ram.bin",
+          "captureSha256": "9f43df4e1b0112f7fb4390f2c2a34ca39815eda22979b9596a07ff11eff11f5b"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-023938-frame-1247/ram.bin",
+          "captureSha256": "beed2ffe586148da91603050b7966895d319d34f1484583796a7b1449b169560"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-023939-frame-1262/ram.bin",
+          "captureSha256": "2cb4c19056d22e417612a5ce1f7c664b353a0a7e0470995f3c14ff252fd13d90"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024159-frame-866/ram.bin",
+          "captureSha256": "4db428ad21bc28b53112a92c022ad446b63066430132b4a2b8a44e0973c7a48f"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024200-frame-879/ram.bin",
+          "captureSha256": "071ea627b8736668c6040df45fb0523172ead4f0ef7d305c2d74501b3d604efa"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024200-frame-883/ram.bin",
+          "captureSha256": "b6fecf9f55804902ab1afe8f3400ff94ac9e57dbca5c3dabd6610b83f4a33c5b"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024200-frame-886/ram.bin",
+          "captureSha256": "c4d6b13299710ee07c9754e325debbcfffdc691d9bcec5cef950b6a04cac57b7"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024201-frame-891/ram.bin",
+          "captureSha256": "23ae9075102c86db1b0ca2a10765dc3f2851bcd73f1676b74f8350be6ad45aa9"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024201-frame-901/ram.bin",
+          "captureSha256": "41bce24dae2057f56826df05adc5d64f30cae468671e63fab83eeda439193b49"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024202-frame-915/ram.bin",
+          "captureSha256": "015d5c284b033ae959cd313c02a173db9c4ae1a55dbc2f55804c04ac0426e6df"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024435-frame-932/ram.bin",
+          "captureSha256": "c6e6d5666d34c262d87ab61c904a5cea70628ae2898a117ab6615700752345c9"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024436-frame-945/ram.bin",
+          "captureSha256": "bd99f44164b59d27f6babd443812c8dd9a906c957f8baa9721bdcf4bb8f75ad2"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024436-frame-949/ram.bin",
+          "captureSha256": "550e1439884acde4d04ad5341e396b2175c4b5adcbc12eb7e4a9fe0038f26e96"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024436-frame-952/ram.bin",
+          "captureSha256": "44991f1c77a30888c8e5b27d1d4819a6fb5569deb20a5119e30c92797f35dafb"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024436-frame-957/ram.bin",
+          "captureSha256": "292823a26923a5ab9b0caeb42869a001f5759070d1d24e09f04d0971a108b074"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024437-frame-967/ram.bin",
+          "captureSha256": "98380801cd50b341efd11e445f0e8cc57475478143bf337c585b6b138e9acd06"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024438-frame-982/ram.bin",
+          "captureSha256": "8e7e98562d83bea260d2a2e0e946969f953ec9cd8518fa0e2afc102550102f2d"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024717-frame-910/ram.bin",
+          "captureSha256": "0aff0f0e86578dabb6a35fc3ee2bfa931671b28fa5497d4e855004c600398114"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024718-frame-923/ram.bin",
+          "captureSha256": "06161cbba2293741bfab6ae9e7968e5ce6310ec72badfd5e810548c8f5378bf3"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024719-frame-927/ram.bin",
+          "captureSha256": "19e7541faaf51097d3a2b235c900fb214ac00f49fe5a44e0b5487cbd12aa9f38"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024719-frame-930/ram.bin",
+          "captureSha256": "2dbfa9fdbd7c11f813ed6f8d85991f02749ef14280fc9194755ec68e0039e77d"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024719-frame-935/ram.bin",
+          "captureSha256": "087ebf0bbc2e6225d36da69fd208861cd2966b5da123da9ce259e62c25d5b77b"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024720-frame-945/ram.bin",
+          "captureSha256": "38974a868a868d77f0ca5db6fa747625b3eacaa76ef122fae6b1c9cf11e5cd97"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-024721-frame-960/ram.bin",
+          "captureSha256": "8139e0bc9f3c861c4559ac3d121320b40439cb44ec814cd751a94f296b1588f0"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260727-195440-frame-128/ram.bin",
+          "captureSha256": "dcc1f52f10eba12fb55a46ef868694e13976b3541e95248e74843b303c7d34fb"
+        },
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260727-200313-frame-443/ram.bin",
+          "captureSha256": "f684785725c33b413249ce5a960481be8cc95246e882dae398293adfcc213de9"
+        }
+      ]
+    },
+    {
+      "actorCode": "TOKI",
+      "modelCodes": [
+        "TKI_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 7,
+          "count": 1
+        }
+      ],
+      "consistentFamilyIndex": 7,
+      "observationCount": 1,
+      "observations": [
+        {
+          "familyIndex": 7,
+          "capture": "captures/pvr/20260724-012936-frame-2726/ram.bin",
+          "captureSha256": "e8daed2298622f37b15490a1964b73ba3c8001f631f92ecf1351563024f1f273"
+        }
+      ]
+    },
+    {
+      "actorCode": "TSUC",
+      "modelCodes": [
+        "MCZ_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 0,
+          "count": 4
+        }
+      ],
+      "consistentFamilyIndex": 0,
+      "observationCount": 4,
+      "observations": [
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-013705-frame-7946/ram.bin",
+          "captureSha256": "ed046b20025ac94c6641f05ac5b365830d406a001a6f872e2f52adf355a5597f"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-013823-frame-9042/ram.bin",
+          "captureSha256": "de797956e927c3f7777d9bac5cc4b029129a4f3177411fb53d73c83ac982da00"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-015202-frame-17924/ram.bin",
+          "captureSha256": "6a316facb5ea52be43d2137209630ccb38507ebd5e650abf48c963888bf8f77c"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-015322-frame-19278/ram.bin",
+          "captureSha256": "0f523a4b3e5f1357584d68b900f2a6d57580f7afd79b053721aa9fb675826aaa"
+        }
+      ]
+    },
+    {
+      "actorCode": "TURU",
+      "modelCodes": [
+        "SCA_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 10,
+          "count": 1
+        }
+      ],
+      "consistentFamilyIndex": 10,
+      "observationCount": 1,
+      "observations": [
+        {
+          "familyIndex": 10,
+          "capture": "captures/pvr/20260724-012426-frame-3933/ram.bin",
+          "captureSha256": "d2dfd163fe1157f55c8aabf28ec9391d5326d5d3d57a23f245ab4fa147a7cac6"
+        }
+      ]
+    },
+    {
+      "actorCode": "YOB1",
+      "modelCodes": [
+        "YEC_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 19,
+          "count": 1
+        }
+      ],
+      "consistentFamilyIndex": 19,
+      "observationCount": 1,
+      "observations": [
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260724-012403-frame-3762/ram.bin",
+          "captureSha256": "520b922c3546f79a9a45fdce173afb07c2dca552248eef53cb21d07037c402a5"
+        }
+      ]
+    },
+    {
+      "actorCode": "YOS2",
+      "modelCodes": [
+        "YEB_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 0,
+          "count": 11
+        }
+      ],
+      "consistentFamilyIndex": 0,
+      "observationCount": 11,
+      "observations": [
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-012936-frame-2726/ram.bin",
+          "captureSha256": "e8daed2298622f37b15490a1964b73ba3c8001f631f92ecf1351563024f1f273"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-020935-frame-2950/ram.bin",
+          "captureSha256": "b2186b1fc2bfd747457ee0f8dd7d4636f12d45675dfc6546d097c7452d1c6157"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-021559-frame-2726/ram.bin",
+          "captureSha256": "30c010d317c3e8c4633a6d400adc791258c9a5cf30257b4c523eecca4961761c"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-021600-frame-2736/ram.bin",
+          "captureSha256": "95ce543737bd80bb07fc295d584d5f4cbb641362fe95be2ed94258ebbac863dc"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-021601-frame-2756/ram.bin",
+          "captureSha256": "d5089616e3aed6b8fc177c17b4cfb01a7cc17e6b3cb182d63a36ff2c69bcbf5f"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-021602-frame-2773/ram.bin",
+          "captureSha256": "775eb0ae1d4fce60e3f3cc227eb265e23e96103290828e03ed971e4ffd105758"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-021602-frame-2779/ram.bin",
+          "captureSha256": "5a9ca6cc0b4e2186d4dd9af81e5df4f5deb5271466dfc40a7af359d7dfcea520"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-021602-frame-2783/ram.bin",
+          "captureSha256": "9c1e26895d55371068f1d61beeef90f58442cc3ce5a3b88428917dd37d12f15f"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-021602-frame-2789/ram.bin",
+          "captureSha256": "b388ef206096c99a1c6178a4b7c6f5b3e1f1af636faf228c38f93f3f668431ac"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-021603-frame-2803/ram.bin",
+          "captureSha256": "10ef9dc4dc99cd64e913acf56e9509358033a6a33ca62fb5629e8aef319a7c01"
+        },
+        {
+          "familyIndex": 0,
+          "capture": "captures/pvr/20260724-021604-frame-2823/ram.bin",
+          "captureSha256": "079d1061d3fe0e329749e881c29bb533c9c30380965526246da1d222aa661800"
+        }
+      ]
+    },
+    {
+      "actorCode": "YOSE",
+      "modelCodes": [
+        "BWW_L"
+      ],
+      "familyCounts": [
+        {
+          "familyIndex": 19,
+          "count": 1
+        }
+      ],
+      "consistentFamilyIndex": 19,
+      "observationCount": 1,
+      "observations": [
+        {
+          "familyIndex": 19,
+          "capture": "captures/pvr/20260727-200728-frame-28658/ram.bin",
+          "captureSha256": "93908dfa27ad49dbe87074dfe129ad5c8927d55ef5fbcead7deb81758952a610"
+        }
+      ]
+    }
+  ],
+  "models": [
+    {
+      "modelCode": "BAT_L",
+      "familyIndices": [
+        10
+      ],
+      "consistentFamilyIndex": 10,
+      "actors": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10,
+          "observationCount": 70
+        }
+      ]
+    },
+    {
+      "modelCode": "BGA_L",
+      "familyIndices": [
+        0
+      ],
+      "consistentFamilyIndex": 0,
+      "actors": [
+        {
+          "actorCode": "MASR",
+          "familyIndex": 0,
+          "observationCount": 3
+        }
+      ]
+    },
+    {
+      "modelCode": "BIB_L",
+      "familyIndices": [
+        0
+      ],
+      "consistentFamilyIndex": 0,
+      "actors": [
+        {
+          "actorCode": "KJIY",
+          "familyIndex": 0,
+          "observationCount": 3
+        }
+      ]
+    },
+    {
+      "modelCode": "BUR_L",
+      "familyIndices": [
+        10
+      ],
+      "consistentFamilyIndex": 10,
+      "actors": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10,
+          "observationCount": 88
+        }
+      ]
+    },
+    {
+      "modelCode": "BWW_L",
+      "familyIndices": [
+        19
+      ],
+      "consistentFamilyIndex": 19,
+      "actors": [
+        {
+          "actorCode": "YOSE",
+          "familyIndex": 19,
+          "observationCount": 1
+        }
+      ]
+    },
+    {
+      "modelCode": "FKS_L",
+      "familyIndices": [
+        19
+      ],
+      "consistentFamilyIndex": 19,
+      "actors": [
+        {
+          "actorCode": "FKSM",
+          "familyIndex": 19,
+          "observationCount": 3
+        }
+      ]
+    },
+    {
+      "modelCode": "FRG_L",
+      "familyIndices": [
+        12
+      ],
+      "consistentFamilyIndex": 12,
+      "actors": [
+        {
+          "actorCode": "IZWA",
+          "familyIndex": 12,
+          "observationCount": 3
+        }
+      ]
+    },
+    {
+      "modelCode": "FUK_M",
+      "familyIndices": [
+        10
+      ],
+      "consistentFamilyIndex": 10,
+      "actors": [
+        {
+          "actorCode": "FUKU",
+          "familyIndex": 10,
+          "observationCount": 7
+        }
+      ]
+    },
+    {
+      "modelCode": "GAT_L",
+      "familyIndices": [
+        10
+      ],
+      "consistentFamilyIndex": 10,
+      "actors": [
+        {
+          "actorCode": "NITO",
+          "familyIndex": 10,
+          "observationCount": 1
+        }
+      ]
+    },
+    {
+      "modelCode": "GIC_L",
+      "familyIndices": [
+        10
+      ],
+      "consistentFamilyIndex": 10,
+      "actors": [
+        {
+          "actorCode": "MARK",
+          "familyIndex": 10,
+          "observationCount": 5
+        }
+      ]
+    },
+    {
+      "modelCode": "GKA_L",
+      "familyIndices": [
+        4
+      ],
+      "consistentFamilyIndex": 4,
+      "actors": [
+        {
+          "actorCode": "KNJI",
+          "familyIndex": 4,
+          "observationCount": 6
+        }
+      ]
+    },
+    {
+      "modelCode": "HND_L",
+      "familyIndices": [
+        0
+      ],
+      "consistentFamilyIndex": 0,
+      "actors": [
+        {
+          "actorCode": "HOND",
+          "familyIndex": 0,
+          "observationCount": 4
+        }
+      ]
+    },
+    {
+      "modelCode": "HPD_L",
+      "familyIndices": [
+        15
+      ],
+      "consistentFamilyIndex": 15,
+      "actors": [
+        {
+          "actorCode": "HROT",
+          "familyIndex": 15,
+          "observationCount": 3
+        }
+      ]
+    },
+    {
+      "modelCode": "HPI_L",
+      "familyIndices": [
+        15
+      ],
+      "consistentFamilyIndex": 15,
+      "actors": [
+        {
+          "actorCode": "HREO",
+          "familyIndex": 15,
+          "observationCount": 1
+        }
+      ]
+    },
+    {
+      "modelCode": "HPJ_L",
+      "familyIndices": [
+        15
+      ],
+      "consistentFamilyIndex": 15,
+      "actors": [
+        {
+          "actorCode": "SCKO",
+          "familyIndex": 15,
+          "observationCount": 1
+        }
+      ]
+    },
+    {
+      "modelCode": "HPY_L",
+      "familyIndices": [
+        15
+      ],
+      "consistentFamilyIndex": 15,
+      "actors": [
+        {
+          "actorCode": "KUKT",
+          "familyIndex": 15,
+          "observationCount": 2
+        }
+      ]
+    },
+    {
+      "modelCode": "HTR_L",
+      "familyIndices": [
+        0
+      ],
+      "consistentFamilyIndex": 0,
+      "actors": [
+        {
+          "actorCode": "HATR",
+          "familyIndex": 0,
+          "observationCount": 1
+        }
+      ]
+    },
+    {
+      "modelCode": "HWB_L",
+      "familyIndices": [
+        19
+      ],
+      "consistentFamilyIndex": 19,
+      "actors": [
+        {
+          "actorCode": "GJBF",
+          "familyIndex": 19,
+          "observationCount": 2
+        }
+      ]
+    },
+    {
+      "modelCode": "JOJ_L",
+      "familyIndices": [
+        12
+      ],
+      "consistentFamilyIndex": 12,
+      "actors": [
+        {
+          "actorCode": "ETKO",
+          "familyIndex": 12,
+          "observationCount": 12
+        }
+      ]
+    },
+    {
+      "modelCode": "KRN_L",
+      "familyIndices": [
+        15
+      ],
+      "consistentFamilyIndex": 15,
+      "actors": [
+        {
+          "actorCode": "MYKN",
+          "familyIndex": 15,
+          "observationCount": 4
+        }
+      ]
+    },
+    {
+      "modelCode": "KZM_L",
+      "familyIndices": [
+        10
+      ],
+      "consistentFamilyIndex": 10,
+      "actors": [
+        {
+          "actorCode": "KURI",
+          "familyIndex": 10,
+          "observationCount": 5
+        }
+      ]
+    },
+    {
+      "modelCode": "MCZ_L",
+      "familyIndices": [
+        0
+      ],
+      "consistentFamilyIndex": 0,
+      "actors": [
+        {
+          "actorCode": "TSUC",
+          "familyIndex": 0,
+          "observationCount": 4
+        }
+      ]
+    },
+    {
+      "modelCode": "MIH_L",
+      "familyIndices": [
+        19
+      ],
+      "consistentFamilyIndex": 19,
+      "actors": [
+        {
+          "actorCode": "MIHO",
+          "familyIndex": 19,
+          "observationCount": 2
+        }
+      ]
+    },
+    {
+      "modelCode": "NKK_L",
+      "familyIndices": [
+        0
+      ],
+      "consistentFamilyIndex": 0,
+      "actors": [
+        {
+          "actorCode": "SKRD",
+          "familyIndex": 0,
+          "observationCount": 2
+        }
+      ]
+    },
+    {
+      "modelCode": "NPB_L",
+      "familyIndices": [
+        0
+      ],
+      "consistentFamilyIndex": 0,
+      "actors": [
+        {
+          "actorCode": "KWMT",
+          "familyIndex": 0,
+          "observationCount": 21
+        }
+      ]
+    },
+    {
+      "modelCode": "NZM_L",
+      "familyIndices": [
+        15
+      ],
+      "consistentFamilyIndex": 15,
+      "actors": [
+        {
+          "actorCode": "HRSK",
+          "familyIndex": 15,
+          "observationCount": 3
+        }
+      ]
+    },
+    {
+      "modelCode": "OBA_L",
+      "familyIndices": [
+        19
+      ],
+      "consistentFamilyIndex": 19,
+      "actors": [
+        {
+          "actorCode": "TAEN",
+          "familyIndex": 19,
+          "observationCount": 23
+        }
+      ]
+    },
+    {
+      "modelCode": "PAN_L",
+      "familyIndices": [
+        10
+      ],
+      "consistentFamilyIndex": 10,
+      "actors": [
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10,
+          "observationCount": 42
+        }
+      ]
+    },
+    {
+      "modelCode": "QHT_L",
+      "familyIndices": [
+        4
+      ],
+      "consistentFamilyIndex": 4,
+      "actors": [
+        {
+          "actorCode": "MAGO",
+          "familyIndex": 4,
+          "observationCount": 4
+        }
+      ]
+    },
+    {
+      "modelCode": "RFB_L",
+      "familyIndices": [
+        0
+      ],
+      "consistentFamilyIndex": 0,
+      "actors": [
+        {
+          "actorCode": "ITOH",
+          "familyIndex": 0,
+          "observationCount": 1
+        }
+      ]
+    },
+    {
+      "modelCode": "SCA_L",
+      "familyIndices": [
+        10
+      ],
+      "consistentFamilyIndex": 10,
+      "actors": [
+        {
+          "actorCode": "TURU",
+          "familyIndex": 10,
+          "observationCount": 1
+        }
+      ]
+    },
+    {
+      "modelCode": "SHB_L",
+      "familyIndices": [
+        12
+      ],
+      "consistentFamilyIndex": 12,
+      "actors": [
+        {
+          "actorCode": "MIKI",
+          "familyIndex": 12,
+          "observationCount": 3
+        }
+      ]
+    },
+    {
+      "modelCode": "SHY_L",
+      "familyIndices": [
+        15
+      ],
+      "consistentFamilyIndex": 15,
+      "actors": [
+        {
+          "actorCode": "ISYM",
+          "familyIndex": 15,
+          "observationCount": 1
+        }
+      ]
+    },
+    {
+      "modelCode": "SIA_L",
+      "familyIndices": [
+        8
+      ],
+      "consistentFamilyIndex": 8,
+      "actors": [
+        {
+          "actorCode": "MEGM",
+          "familyIndex": 8,
+          "observationCount": 3
+        }
+      ]
+    },
+    {
+      "modelCode": "TKI_L",
+      "familyIndices": [
+        7
+      ],
+      "consistentFamilyIndex": 7,
+      "actors": [
+        {
+          "actorCode": "TOKI",
+          "familyIndex": 7,
+          "observationCount": 1
+        }
+      ]
+    },
+    {
+      "modelCode": "WAP_L",
+      "familyIndices": [
+        7
+      ],
+      "consistentFamilyIndex": 7,
+      "actors": [
+        {
+          "actorCode": "ITOI",
+          "familyIndex": 7,
+          "observationCount": 5
+        }
+      ]
+    },
+    {
+      "modelCode": "X72_L",
+      "familyIndices": [
+        10
+      ],
+      "consistentFamilyIndex": 10,
+      "actors": [
+        {
+          "actorCode": "NSMR",
+          "familyIndex": 10,
+          "observationCount": 4
+        }
+      ]
+    },
+    {
+      "modelCode": "YEB_L",
+      "familyIndices": [
+        0
+      ],
+      "consistentFamilyIndex": 0,
+      "actors": [
+        {
+          "actorCode": "YOS2",
+          "familyIndex": 0,
+          "observationCount": 11
+        }
+      ]
+    },
+    {
+      "modelCode": "YEC_L",
+      "familyIndices": [
+        19
+      ],
+      "consistentFamilyIndex": 19,
+      "actors": [
+        {
+          "actorCode": "YOB1",
+          "familyIndex": 19,
+          "observationCount": 1
+        }
+      ]
+    },
+    {
+      "modelCode": "YPB_L",
+      "familyIndices": [
+        10
+      ],
+      "consistentFamilyIndex": 10,
+      "actors": [
+        {
+          "actorCode": "JONO",
+          "familyIndex": 10,
+          "observationCount": 3
+        }
+      ]
+    }
+  ],
+  "captures": [
+    {
+      "path": "captures/pvr/20260723-102735-frame-197/ram.bin",
+      "sha256": "16a7665571e3cf515e54cdbaf9ef156f966c26681171b33f69cc31be5c49d0c7",
+      "observations": [
+        {
+          "actorCode": "FUKU",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260723-102736-frame-216/ram.bin",
+      "sha256": "55e784e58def0a349fb3996d9fb20a32eb899c7e0ce8053e9387fd66dfbe2785",
+      "observations": [
+        {
+          "actorCode": "FUKU",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260723-102736-frame-227/ram.bin",
+      "sha256": "08f23d756f9cc24d463236653e8f82bfad32ce09fd3d64aceb806101b00cd39c",
+      "observations": [
+        {
+          "actorCode": "FUKU",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260723-102737-frame-242/ram.bin",
+      "sha256": "c72453cc71aab9ec30be55214eea3a2d7238968c12f20d692162222374f3e7db",
+      "observations": [
+        {
+          "actorCode": "FUKU",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260723-102738-frame-272/ram.bin",
+      "sha256": "445dab318619ba76dc69bbb993340f3a3507420a49f5716652d9aa6d71f4d55f",
+      "observations": [
+        {
+          "actorCode": "FUKU",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260723-104723-frame-420/ram.bin",
+      "sha256": "85367de49610bf6be9459f2a520515b796e14cf01b268e0cc815203e8650c6e4",
+      "observations": [
+        {
+          "actorCode": "FUKU",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-005903-frame-4074/ram.bin",
+      "sha256": "654eb8eaabec45514d8ac8b88e8237667731e5aff030a113db01844749e69796",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "SKRD",
+          "familyIndex": 0
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-010149-frame-5325/ram.bin",
+      "sha256": "ecde1489086d961047b1e9ed385ef43d4ab58ede49935d5db628acd37671a5fa",
+      "observations": [
+        {
+          "actorCode": "ISYM",
+          "familyIndex": 15
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-011940-frame-718/ram.bin",
+      "sha256": "d77634f27dd248f1ebf0d576b2f391b3e2a77b4d26c177f6ef06abc790ca4453",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-012106-frame-903/ram.bin",
+      "sha256": "8d0169b19674de2b9627064661daf6aaf5131eb566068fc53c57c9e95fc1bf21",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-012222-frame-2403/ram.bin",
+      "sha256": "618b7786539372261e22fa1a54f88fb745e0b4170288216d7bc8f38e4136e850",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-012245-frame-2866/ram.bin",
+      "sha256": "178e8632db6a694df25fa382ea4abc4fd7d8db0b7ed2e8fffe767183e8ef81e9",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-012339-frame-3556/ram.bin",
+      "sha256": "de64b0f08625df27deb3f3c4d41d6593f007b0f893d66d6e365fe59fd474a30d",
+      "observations": [
+        {
+          "actorCode": "ITOI",
+          "familyIndex": 7
+        },
+        {
+          "actorCode": "KURI",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "MAGO",
+          "familyIndex": 4
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-012403-frame-3762/ram.bin",
+      "sha256": "520b922c3546f79a9a45fdce173afb07c2dca552248eef53cb21d07037c402a5",
+      "observations": [
+        {
+          "actorCode": "ITOI",
+          "familyIndex": 7
+        },
+        {
+          "actorCode": "KURI",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "MAGO",
+          "familyIndex": 4
+        },
+        {
+          "actorCode": "YOB1",
+          "familyIndex": 19
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-012426-frame-3933/ram.bin",
+      "sha256": "d2dfd163fe1157f55c8aabf28ec9391d5326d5d3d57a23f245ab4fa147a7cac6",
+      "observations": [
+        {
+          "actorCode": "ITOI",
+          "familyIndex": 7
+        },
+        {
+          "actorCode": "KNJI",
+          "familyIndex": 4
+        },
+        {
+          "actorCode": "KURI",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KWMT",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "MAGO",
+          "familyIndex": 4
+        },
+        {
+          "actorCode": "TURU",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-012737-frame-1176/ram.bin",
+      "sha256": "b9485c532d2418d07d52fb22cefb99ecd684b4e7ac17c9e2632b3269ada3c104",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-012837-frame-2116/ram.bin",
+      "sha256": "850262ca48bc52344f2272be33d897f5b06ec38ba382ca41808c5335f568be36",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-012858-frame-2401/ram.bin",
+      "sha256": "93ea77c6e7b4c066d01389aec1f1bdd56e8fe872b3c298742301018473daee7c",
+      "observations": [
+        {
+          "actorCode": "HRSK",
+          "familyIndex": 15
+        },
+        {
+          "actorCode": "KUKT",
+          "familyIndex": 15
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-012936-frame-2726/ram.bin",
+      "sha256": "e8daed2298622f37b15490a1964b73ba3c8001f631f92ecf1351563024f1f273",
+      "observations": [
+        {
+          "actorCode": "HRSK",
+          "familyIndex": 15
+        },
+        {
+          "actorCode": "KUKT",
+          "familyIndex": 15
+        },
+        {
+          "actorCode": "TOKI",
+          "familyIndex": 7
+        },
+        {
+          "actorCode": "YOS2",
+          "familyIndex": 0
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-013640-frame-7479/ram.bin",
+      "sha256": "f0485d09100669f8ca84d1d8f2a6390182226f8f1fae6b6e7319d30623daf824",
+      "observations": [
+        {
+          "actorCode": "MAGO",
+          "familyIndex": 4
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-013650-frame-7633/ram.bin",
+      "sha256": "97787b56ee4b1724105b6aca87bcab2697ed1df110ba811547d47826d57a746e",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "ITOH",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "SKRD",
+          "familyIndex": 0
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-013655-frame-7728/ram.bin",
+      "sha256": "32a0a67681c85dd4b369a43311a6f642af345adad249d7c2973314975c4c9b3a",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "HOND",
+          "familyIndex": 0
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-013700-frame-7838/ram.bin",
+      "sha256": "b7f3edc3b837e1dcc55d3c0cc7daec2961353b3b24aed6c52c5eb043b570f63b",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-013705-frame-7946/ram.bin",
+      "sha256": "ed046b20025ac94c6641f05ac5b365830d406a001a6f872e2f52adf355a5597f",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "TSUC",
+          "familyIndex": 0
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-013823-frame-9042/ram.bin",
+      "sha256": "de797956e927c3f7777d9bac5cc4b029129a4f3177411fb53d73c83ac982da00",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KJIY",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "TSUC",
+          "familyIndex": 0
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015202-frame-17924/ram.bin",
+      "sha256": "6a316facb5ea52be43d2137209630ccb38507ebd5e650abf48c963888bf8f77c",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KJIY",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "TSUC",
+          "familyIndex": 0
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015322-frame-19278/ram.bin",
+      "sha256": "0f523a4b3e5f1357584d68b900f2a6d57580f7afd79b053721aa9fb675826aaa",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KJIY",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "TSUC",
+          "familyIndex": 0
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015410-frame-19777/ram.bin",
+      "sha256": "63d66b87bc0f8a4f47e396522fe1cdc7daf591c37a86ac019e598d4ef61243d2",
+      "observations": [
+        {
+          "actorCode": "MYKN",
+          "familyIndex": 15
+        },
+        {
+          "actorCode": "NSMR",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015453-frame-20213/ram.bin",
+      "sha256": "9ff9155951e5b0d545a538933ea399dab26a0d4ae5af1130a1c51354e0a249e2",
+      "observations": [
+        {
+          "actorCode": "MYKN",
+          "familyIndex": 15
+        },
+        {
+          "actorCode": "NSMR",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015516-frame-20358/ram.bin",
+      "sha256": "c6986ca5ca27d11e8f90c88651616501f9bbbfc3382e80e75296966bd50d2e79",
+      "observations": [
+        {
+          "actorCode": "MYKN",
+          "familyIndex": 15
+        },
+        {
+          "actorCode": "NSMR",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015539-frame-20487/ram.bin",
+      "sha256": "52c89138c2427106e687962ddc9698057bf28677b462c755c12d1508a127a9e6",
+      "observations": [
+        {
+          "actorCode": "MYKN",
+          "familyIndex": 15
+        },
+        {
+          "actorCode": "NSMR",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015720-frame-1062/ram.bin",
+      "sha256": "b8e134bba2a009754423dc0002d337821a81d7a9fe5aaddc84c327aca6f89727",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015806-frame-1986/ram.bin",
+      "sha256": "a3c3a3d7c975be72d19df40ee8934257b0d91a28f2e163e074552ee7894a8392",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015806-frame-1989/ram.bin",
+      "sha256": "36eb74770c6a4a4379d87b5e23d04fa353527e5f6a3d19955fb2c9449c0a0476",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015807-frame-1992/ram.bin",
+      "sha256": "8de8ccddb10b67f1a0362e104df24e9d8265a7fd4d5420242f98ab736c93191d",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015807-frame-1994/ram.bin",
+      "sha256": "0cfe8f1f2793f8aa9ddd82eaff2d6f28843d627157b3ba24b196e6ca2d0504b0",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015807-frame-1997/ram.bin",
+      "sha256": "4458f16595c9b8b0a066e9732cdada9ba073f0b0b81581d1f780b959b6bc88bd",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015807-frame-2000/ram.bin",
+      "sha256": "2d2473eaf5ed3f502d08d195f19151b249aeb32fe1bb4a315e53995232d4193b",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015807-frame-2002/ram.bin",
+      "sha256": "76c981cfc03c10b827478ff5cf53fe8cd4106175a69648ee11acc9b023b56333",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015807-frame-2005/ram.bin",
+      "sha256": "7d82e75373e9156c215db7d102b91af6f57a90e0b9671c9742f3111f660264a0",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015807-frame-2007/ram.bin",
+      "sha256": "119eef1c08945ed02b3b458e2d3f485f9cb867d1e57b3585584f193c25ae0507",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015807-frame-2010/ram.bin",
+      "sha256": "fb7c45d918209b63f996a80aa830c7e351b3178524176df69e6aa6ca0143ba07",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015808-frame-2012/ram.bin",
+      "sha256": "08ec3139faf5502bc84ac65353c5ff924b86e8b0a117bc3eb412514bc78ff776",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015808-frame-2015/ram.bin",
+      "sha256": "6e4e174699b780d6dfc670d034a6ef4f43e57dba89cb648621d308e65599b597",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015808-frame-2017/ram.bin",
+      "sha256": "9f0a0aa8decfc192dee682d508eb3cd1801334c6aacd437107028f00e5a912de",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015808-frame-2020/ram.bin",
+      "sha256": "b569e2512ac99a7a34ad34fddf1fb280b52604e7126a863512461298d8514c45",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015808-frame-2023/ram.bin",
+      "sha256": "6ea3c147043e482b975a23acb88d5cfbed6054222b564761bd0eb3c03075d212",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015838-frame-2412/ram.bin",
+      "sha256": "b6069546a6827cedb9592e35aa7a8bda63d2e7f030d10d00c60ac0a8d79d0298",
+      "observations": [
+        {
+          "actorCode": "ETKO",
+          "familyIndex": 12
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015838-frame-2414/ram.bin",
+      "sha256": "418b5fb95c9ebcd1b930ba317de1236bda6202f1fd5d14de65a637254e2c818c",
+      "observations": [
+        {
+          "actorCode": "ETKO",
+          "familyIndex": 12
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015838-frame-2416/ram.bin",
+      "sha256": "9fb03d7adf73864a96c98cd722a7a4632c073cb5d9ad9cb557acb2bb6d09a7df",
+      "observations": [
+        {
+          "actorCode": "ETKO",
+          "familyIndex": 12
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015839-frame-2418/ram.bin",
+      "sha256": "d62c09d79e0ed227016bc0ea6e9b8459a93f59e9ca1b53f0653e42ff4754cd2d",
+      "observations": [
+        {
+          "actorCode": "ETKO",
+          "familyIndex": 12
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015839-frame-2420/ram.bin",
+      "sha256": "8dd50f7fc41d86e0ec747ddf8c52a675e9a4930fbe5402751f84029ec80ce3b1",
+      "observations": [
+        {
+          "actorCode": "ETKO",
+          "familyIndex": 12
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015839-frame-2422/ram.bin",
+      "sha256": "d359c5ee1e02bc0f076fa47c95f59688f756f3e10d6fc0b9bab3d3be46299630",
+      "observations": [
+        {
+          "actorCode": "ETKO",
+          "familyIndex": 12
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015839-frame-2424/ram.bin",
+      "sha256": "644f32476f12dde12d29b05020ed110e60768dff764b7bc564097fbb70e519e5",
+      "observations": [
+        {
+          "actorCode": "ETKO",
+          "familyIndex": 12
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015839-frame-2426/ram.bin",
+      "sha256": "3490d4375ffffabc7d03f7f041ab5d0f00cf1c00c79e9d32c977735093d6bc45",
+      "observations": [
+        {
+          "actorCode": "ETKO",
+          "familyIndex": 12
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015839-frame-2428/ram.bin",
+      "sha256": "b90a91912f45334d81b0eb46f23130ab0233e94e76394449254c151c10dd6396",
+      "observations": [
+        {
+          "actorCode": "ETKO",
+          "familyIndex": 12
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015839-frame-2430/ram.bin",
+      "sha256": "238ee8aa4a74bd8d929464ae9f2bf69113dac63edbcfc2a0648ed0a09920a1e1",
+      "observations": [
+        {
+          "actorCode": "ETKO",
+          "familyIndex": 12
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015839-frame-2432/ram.bin",
+      "sha256": "fedad1b9d290b6a4e12232ca034ea029e24377e7a29c82eb6ad53813269fa21e",
+      "observations": [
+        {
+          "actorCode": "ETKO",
+          "familyIndex": 12
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-015840-frame-2434/ram.bin",
+      "sha256": "e7d9fce9729634201f5aa953d1efee818cfb146a493591396dd88a95d20a6e46",
+      "observations": [
+        {
+          "actorCode": "ETKO",
+          "familyIndex": 12
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-020047-frame-382/ram.bin",
+      "sha256": "f668e06d452a128994734b8ffaffb07a014daa5c44550d94b3604c7ef1fcc2c0",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-020112-frame-878/ram.bin",
+      "sha256": "202195d0cfed023ed16c5601897c384d15148e4807793ce39762f773d799ebf1",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-020112-frame-883/ram.bin",
+      "sha256": "6e01ebfbf35d962bdb37cafd9dca267094c9d81964082937e30facfac9f7eae3",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-020113-frame-886/ram.bin",
+      "sha256": "a8b4e2de98ec94273d72fdd22ac141d21d155e342f12e57c1c28fe517625750a",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-020113-frame-890/ram.bin",
+      "sha256": "9d7d8718ff6eee3d0509300bc72845dc8f49a23d9af99ec83ffbbb56f63075f4",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-020113-frame-897/ram.bin",
+      "sha256": "981df49166f3afa81c496fd09a478ba0755fb723ab745187f3195a31fc2cd3be",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-020114-frame-912/ram.bin",
+      "sha256": "1cb62b7f08e07494df6ab1958a270bb44c358bb1dcbc1766b2c2bb2c55e0857c",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "TAEN",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-020115-frame-925/ram.bin",
+      "sha256": "a139a0e0d8f49795a147fb3ea239e0c6117eb9066bd5dba17bc39313a293e1b0",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "TAEN",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-020115-frame-929/ram.bin",
+      "sha256": "23f85c6f818ca62ebd9d34a3eac989566e89f81e4beb4e8e720073615704d4e1",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "TAEN",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-020116-frame-932/ram.bin",
+      "sha256": "3d6c57cdc9722d48a5147c3b2f27346954dea666f7b5498534783f5e2cd7cb5d",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KNJI",
+          "familyIndex": 4
+        },
+        {
+          "actorCode": "TAEN",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-020116-frame-936/ram.bin",
+      "sha256": "a3a32a998a066c4b3b9af42138e9f3b93a4d87f43ffcff3ddb9f48079358a775",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KNJI",
+          "familyIndex": 4
+        },
+        {
+          "actorCode": "TAEN",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-020117-frame-944/ram.bin",
+      "sha256": "fc2f0b810f5465824a15f42e3797d319b33440eaeaffcad0927fe4aec184dd1b",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KNJI",
+          "familyIndex": 4
+        },
+        {
+          "actorCode": "KWMT",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "TAEN",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-020118-frame-956/ram.bin",
+      "sha256": "6ed589b0395ddf27f4e7c66df2154efde53ff365a6cfd781ba62aa69c3860ae4",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KNJI",
+          "familyIndex": 4
+        },
+        {
+          "actorCode": "KWMT",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "TAEN",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-020738-frame-620/ram.bin",
+      "sha256": "a2c86fb207469546aec13e01674f2a91717e54ca79f8725224fe66e45c2f5989",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-020935-frame-2950/ram.bin",
+      "sha256": "b2186b1fc2bfd747457ee0f8dd7d4636f12d45675dfc6546d097c7452d1c6157",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "YOS2",
+          "familyIndex": 0
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021013-frame-3549/ram.bin",
+      "sha256": "8375194ec30f3448e3feb5dc443368b8128a2314c8c4102b67e089361f15a7d0",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021300-frame-6870/ram.bin",
+      "sha256": "f80b60f94d3806bb8a89ccbf7e1eaccb714d01707d2c5a24fcdb7daea88533b9",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021300-frame-6876/ram.bin",
+      "sha256": "58e0b7408c04a90b00051fc87cb4eac075782dec9918c2e9a38e054494b76e4e",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021300-frame-6879/ram.bin",
+      "sha256": "da3b7504797accc8a08954b92a7625b4aa9cb53b442ce6fa5554105686dfb8e7",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021300-frame-6883/ram.bin",
+      "sha256": "0038958c3879ba0448487b8699c2f8fdcf7450aed1d976b56be717d6b4d85386",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021301-frame-6893/ram.bin",
+      "sha256": "dd422abb211bf5a626e241b86a8c86d66d4285b6e555be3a0304b669941c4e0c",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021302-frame-6913/ram.bin",
+      "sha256": "3152920d7cb17cb58855a57a6a8b6f71c5c3e13704324c394d1d0f4e22ebb042",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021303-frame-6930/ram.bin",
+      "sha256": "42dd3e5cffcf07234ae21e9a8247122321429a9fe1abd09415c79debdd4ce5f8",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021303-frame-6936/ram.bin",
+      "sha256": "552bd16d0d844703c4e887ecbf6d1b2b66675f261d6536c5b2493c2f8de1c0b3",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021303-frame-6940/ram.bin",
+      "sha256": "af384e1c63ae3daa12f21db6c36d28fe15c0d9dcc6a042f18002b7153a85be7a",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021303-frame-6947/ram.bin",
+      "sha256": "2c370ba7cd9c92bf125cc16f8a60259fc3a4bbecd036bd78d4fcded5ac616c0b",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021304-frame-6960/ram.bin",
+      "sha256": "0adb54f57962a625157dcb1de9eb767180c81da813d5a3a111914eea37dd139c",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021305-frame-6980/ram.bin",
+      "sha256": "45d360c876988fb263a2e0cff8c48a3e06688eb6d1d6562d1bdbf0236a65c479",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021412-frame-583/ram.bin",
+      "sha256": "f02bb49df2d9a1bea3cc5138374febc1fffd0e8cbbf15080070d37236a44b7dd",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021412-frame-589/ram.bin",
+      "sha256": "bbad994825ad746d74c5685c7fda878b74204f2d4f708a340675056c5cad48ab",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021412-frame-592/ram.bin",
+      "sha256": "16bf617e329e444282778be9fa93d5c44f3d7c602f410e485cb09144ceb181f8",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021413-frame-597/ram.bin",
+      "sha256": "009b6010b40ef813080f48c50ce9167c80421c046a42b8a994a6abf5c225ed01",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021413-frame-607/ram.bin",
+      "sha256": "028bed715179a0e32f8c474a4996e2ffb89db38a2443e36531cdef3fa58572a9",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021414-frame-627/ram.bin",
+      "sha256": "37a8e3c332b0e1f225b28027b6db04561dbce41d14f873ea2a2740b75bb64786",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021415-frame-643/ram.bin",
+      "sha256": "477aa2604a4c9e73a9167fcda76181a3489531670a1703c5e6429b09bd154740",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021415-frame-649/ram.bin",
+      "sha256": "186484a1000f3c0ef3ecaebe350a883a00183bd5aaf1cbf7e27def8910d88ca0",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021415-frame-653/ram.bin",
+      "sha256": "4caccfef5ab8fc937d910e7757578d52068578adc3d55ebfe5980ceb7b8ca273",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021416-frame-660/ram.bin",
+      "sha256": "1edd038d13210226d637cc74e1df800e5addaa1c8d07cd34844e76d789136a18",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021416-frame-673/ram.bin",
+      "sha256": "91d129a5f3132a10d724fec6ffb14f666b7f2f5cfa16c5033a18feb57a6a91cb",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021417-frame-693/ram.bin",
+      "sha256": "07b6adf0404258875985945545a3cf3fdd419ef5e17c44c8bf6ea18b0ad50fd7",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021559-frame-2713/ram.bin",
+      "sha256": "7cb83e16f693f71e16c3b598859f19992232f0558f55281b6a17adb13ab7ffe6",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021559-frame-2719/ram.bin",
+      "sha256": "501db1ecf87f6694af049d192c72fe13799acc76aecc7774e35b8e760e880066",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021559-frame-2721/ram.bin",
+      "sha256": "ac98b518c9f1027834e773f5a2b1aeb257cde883cb9467e56b78c66b28e7851a",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021559-frame-2726/ram.bin",
+      "sha256": "30c010d317c3e8c4633a6d400adc791258c9a5cf30257b4c523eecca4961761c",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "YOS2",
+          "familyIndex": 0
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021600-frame-2736/ram.bin",
+      "sha256": "95ce543737bd80bb07fc295d584d5f4cbb641362fe95be2ed94258ebbac863dc",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "YOS2",
+          "familyIndex": 0
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021601-frame-2756/ram.bin",
+      "sha256": "d5089616e3aed6b8fc177c17b4cfb01a7cc17e6b3cb182d63a36ff2c69bcbf5f",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "YOS2",
+          "familyIndex": 0
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021602-frame-2773/ram.bin",
+      "sha256": "775eb0ae1d4fce60e3f3cc227eb265e23e96103290828e03ed971e4ffd105758",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "YOS2",
+          "familyIndex": 0
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021602-frame-2779/ram.bin",
+      "sha256": "5a9ca6cc0b4e2186d4dd9af81e5df4f5deb5271466dfc40a7af359d7dfcea520",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "YOS2",
+          "familyIndex": 0
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021602-frame-2783/ram.bin",
+      "sha256": "9c1e26895d55371068f1d61beeef90f58442cc3ce5a3b88428917dd37d12f15f",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "YOS2",
+          "familyIndex": 0
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021602-frame-2789/ram.bin",
+      "sha256": "b388ef206096c99a1c6178a4b7c6f5b3e1f1af636faf228c38f93f3f668431ac",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "YOS2",
+          "familyIndex": 0
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021603-frame-2803/ram.bin",
+      "sha256": "10ef9dc4dc99cd64e913acf56e9509358033a6a33ca62fb5629e8aef319a7c01",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "YOS2",
+          "familyIndex": 0
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-021604-frame-2823/ram.bin",
+      "sha256": "079d1061d3fe0e329749e881c29bb533c9c30380965526246da1d222aa661800",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "YOS2",
+          "familyIndex": 0
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-022707-frame-2007/ram.bin",
+      "sha256": "328a275f89807eb985573ff80b4510e17e04338ab650a5d6b4151de282331ea9",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-023933-frame-1173/ram.bin",
+      "sha256": "79d26756dd84ae7c5eeb1d933d25fdbc840b8edd35312c29e8fe95f0e663495f",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-023934-frame-1179/ram.bin",
+      "sha256": "234f2cf1dcf9e9d753bdfbe99f5be406c99fbbe0e7fea110e14fc8c94e000695",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-023934-frame-1182/ram.bin",
+      "sha256": "63cd825eaf4496cfe5f5bc073ad0902091495b6f2e8c8c06b8a5549fac6bfc8a",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-023934-frame-1186/ram.bin",
+      "sha256": "793cc8a503acf0aecaa9336ab053f0f8f389b6d227ab0ab86cfdf3de707f1c73",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-023934-frame-1195/ram.bin",
+      "sha256": "5361d85fb86c3344d882a2676cb50ba9a99b618f3330e3b46dea8ec3d833843e",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-023935-frame-1212/ram.bin",
+      "sha256": "aaed5e578c24537fd3b612183a575308b1190ec01185c5e458c45a6fe649e928",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-023936-frame-1225/ram.bin",
+      "sha256": "89abcb809b74ec52c79eea58f7ec2cbf028a0143f91a1585b8111c35e131c1b1",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-023937-frame-1229/ram.bin",
+      "sha256": "d4db24b6eb21b9885f6d31ee71d469b609b8e5bf025901a1b9b63f491f152ee4",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-023937-frame-1232/ram.bin",
+      "sha256": "3ed8184df7902343b2f3b085bd347bda1a229ae78db88e8fac408e14134ebf4f",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-023937-frame-1237/ram.bin",
+      "sha256": "9f43df4e1b0112f7fb4390f2c2a34ca39815eda22979b9596a07ff11eff11f5b",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-023938-frame-1247/ram.bin",
+      "sha256": "beed2ffe586148da91603050b7966895d319d34f1484583796a7b1449b169560",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "TAEN",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-023939-frame-1262/ram.bin",
+      "sha256": "2cb4c19056d22e417612a5ce1f7c664b353a0a7e0470995f3c14ff252fd13d90",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "TAEN",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024157-frame-827/ram.bin",
+      "sha256": "94f2edea24f70d1cd5d30d362ed6de236f1d4d5486e771ff09c2b5b3445c93d6",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024157-frame-833/ram.bin",
+      "sha256": "3d94664f9b5c26eb18a62c8cb456d305005d8b8d485a8382e1271b94c545e9a6",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024157-frame-836/ram.bin",
+      "sha256": "1018a52aa1b5b729e906414c9a9424b4ab98be90ed5150464bf17563db964548",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024158-frame-841/ram.bin",
+      "sha256": "e5d31d6f0d3a4c4184624b447d29a9d5a499708b906472720f53087942c44584",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024158-frame-850/ram.bin",
+      "sha256": "d77bedbde756fe68f74432765a25c584a66e822bcb93f1c1b8797b926bd4efa4",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024159-frame-866/ram.bin",
+      "sha256": "4db428ad21bc28b53112a92c022ad446b63066430132b4a2b8a44e0973c7a48f",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KWMT",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024200-frame-879/ram.bin",
+      "sha256": "071ea627b8736668c6040df45fb0523172ead4f0ef7d305c2d74501b3d604efa",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KWMT",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024200-frame-883/ram.bin",
+      "sha256": "b6fecf9f55804902ab1afe8f3400ff94ac9e57dbca5c3dabd6610b83f4a33c5b",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KWMT",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024200-frame-886/ram.bin",
+      "sha256": "c4d6b13299710ee07c9754e325debbcfffdc691d9bcec5cef950b6a04cac57b7",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KWMT",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024201-frame-891/ram.bin",
+      "sha256": "23ae9075102c86db1b0ca2a10765dc3f2851bcd73f1676b74f8350be6ad45aa9",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KWMT",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024201-frame-901/ram.bin",
+      "sha256": "41bce24dae2057f56826df05adc5d64f30cae468671e63fab83eeda439193b49",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KWMT",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "TAEN",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024202-frame-915/ram.bin",
+      "sha256": "015d5c284b033ae959cd313c02a173db9c4ae1a55dbc2f55804c04ac0426e6df",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KWMT",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "TAEN",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024432-frame-893/ram.bin",
+      "sha256": "aed6de8fd8d9fa9fe45bc76e3ab8f11e8640f4c0ceca9db25db1398728f7c009",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024433-frame-899/ram.bin",
+      "sha256": "df88e6ce9ac67cd5be20cf1d6e6332c7b90ff43ce54d0adf7feec60c846f2e09",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024433-frame-902/ram.bin",
+      "sha256": "585ac3402cd0005e4217bec2d431116b7346c46f57c011d78712a554f1540b6e",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024433-frame-907/ram.bin",
+      "sha256": "738539785dbeeab634adc199d73519ed98e827c42da978d1ab507dea19d1808e",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024434-frame-916/ram.bin",
+      "sha256": "1039968f097f44ad7406a00445bbf5667ea6e996b9c4ecf551997b7678614bbf",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024435-frame-932/ram.bin",
+      "sha256": "c6e6d5666d34c262d87ab61c904a5cea70628ae2898a117ab6615700752345c9",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KWMT",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024436-frame-945/ram.bin",
+      "sha256": "bd99f44164b59d27f6babd443812c8dd9a906c957f8baa9721bdcf4bb8f75ad2",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KWMT",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "TAEN",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024436-frame-949/ram.bin",
+      "sha256": "550e1439884acde4d04ad5341e396b2175c4b5adcbc12eb7e4a9fe0038f26e96",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KWMT",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "TAEN",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024436-frame-952/ram.bin",
+      "sha256": "44991f1c77a30888c8e5b27d1d4819a6fb5569deb20a5119e30c92797f35dafb",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KWMT",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "TAEN",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024436-frame-957/ram.bin",
+      "sha256": "292823a26923a5ab9b0caeb42869a001f5759070d1d24e09f04d0971a108b074",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KWMT",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "TAEN",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024437-frame-967/ram.bin",
+      "sha256": "98380801cd50b341efd11e445f0e8cc57475478143bf337c585b6b138e9acd06",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "TAEN",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024438-frame-982/ram.bin",
+      "sha256": "8e7e98562d83bea260d2a2e0e946969f953ec9cd8518fa0e2afc102550102f2d",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "TAEN",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024715-frame-871/ram.bin",
+      "sha256": "f67b58627633811f8e670523e417a9317d3cc49ce42f66793639bcbbec19ea31",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024716-frame-877/ram.bin",
+      "sha256": "e45e1f81175bbc3d0997bf9e57ec04ec86533363bb03f8d88a1e9bc6d385bd2e",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024716-frame-880/ram.bin",
+      "sha256": "dbaf2e732cb3d3f5ae4fafd7b781fc13eeebc59fd4e42ff7b71c818d58758383",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024716-frame-885/ram.bin",
+      "sha256": "d62a3462f5e7b23b15ec71691690aa4b95dc37c9984741e70ac3bf4d055a7a4c",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024717-frame-894/ram.bin",
+      "sha256": "8801c946711e6771a83cf0314ba7078b78d8cd67784cc31ab2b0c43dd7b4ef9f",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024717-frame-910/ram.bin",
+      "sha256": "0aff0f0e86578dabb6a35fc3ee2bfa931671b28fa5497d4e855004c600398114",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KWMT",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024718-frame-923/ram.bin",
+      "sha256": "06161cbba2293741bfab6ae9e7968e5ce6310ec72badfd5e810548c8f5378bf3",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KWMT",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "TAEN",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024719-frame-927/ram.bin",
+      "sha256": "19e7541faaf51097d3a2b235c900fb214ac00f49fe5a44e0b5487cbd12aa9f38",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KWMT",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "TAEN",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024719-frame-930/ram.bin",
+      "sha256": "2dbfa9fdbd7c11f813ed6f8d85991f02749ef14280fc9194755ec68e0039e77d",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KWMT",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "TAEN",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024719-frame-935/ram.bin",
+      "sha256": "087ebf0bbc2e6225d36da69fd208861cd2966b5da123da9ce259e62c25d5b77b",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KWMT",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "TAEN",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024720-frame-945/ram.bin",
+      "sha256": "38974a868a868d77f0ca5db6fa747625b3eacaa76ef122fae6b1c9cf11e5cd97",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "KWMT",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "TAEN",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-024721-frame-960/ram.bin",
+      "sha256": "8139e0bc9f3c861c4559ac3d121320b40439cb44ec814cd751a94f296b1588f0",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "TAEN",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-025523-frame-601/ram.bin",
+      "sha256": "41788b51e262dc18f43c2903a535bbb85bc9d555d007d3fefb791236adb5ea1f",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-025523-frame-607/ram.bin",
+      "sha256": "d4ae303f8064bc881ea33efd62042743e4b8ec485487ebe11d6f9941bc3f3149",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-025523-frame-610/ram.bin",
+      "sha256": "633f80345b8394126052017b70530ee295d36dbe32cf1b39254c1e5655e96650",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-025524-frame-615/ram.bin",
+      "sha256": "186c73ba6bcc62c9a6fb90092d7e7d50b360173ebbf1e7fe4d625ecbff011bdc",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-025524-frame-625/ram.bin",
+      "sha256": "c095bee2dbb1b0db33a7bc43e8a30cfc90c57e49a345b1044fe9586111b54bf1",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-025525-frame-645/ram.bin",
+      "sha256": "ffd944d1085b169c62ec297a60509ae98c2a614a07ac29b484672acf8e910784",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-025526-frame-661/ram.bin",
+      "sha256": "6128380a8ca9bb60a8af6919ab7d308a9058de0eace9643ebe9b341d4b898987",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-025526-frame-667/ram.bin",
+      "sha256": "0afc8418ff6566d9c1b49e79c5e5b6f20a84a7977e01ffeaf10286ae5c8c6598",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-025526-frame-671/ram.bin",
+      "sha256": "9c62afa69cb8ca10cd5f098bcc10b3937788b4ab00c612428691bd521b17abc4",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-025527-frame-678/ram.bin",
+      "sha256": "3e8595b8fa917d1eb81933524dec5db0dccee9d2e69f7eb6db18523653d10f04",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-025527-frame-691/ram.bin",
+      "sha256": "122c96f028a12f313e18ce8d65361e44035f3a3be39b5fb0f425e5b98b5109fd",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-025528-frame-711/ram.bin",
+      "sha256": "7ee7b5cd1341abb6d247fb0d2d17fb5c2a1a730db974df3bddba4ccdab5ef910",
+      "observations": [
+        {
+          "actorCode": "AOKI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-084354-frame-3652/ram.bin",
+      "sha256": "684edec1f90918b9e959c2bbb88ceb7eec0eee40a22b521b687330f540b4807a",
+      "observations": [
+        {
+          "actorCode": "FUKU",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-100412-frame-18879/ram.bin",
+      "sha256": "85e249d107028f65de45159f694056aaecffa8507b303872d0d22b3b10f783d5",
+      "observations": [
+        {
+          "actorCode": "MEGM",
+          "familyIndex": 8
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-100608-frame-22364/ram.bin",
+      "sha256": "350448ac50e0f80c53b5137e38d4462a47050dd952aea9a8322f512cde118627",
+      "observations": [
+        {
+          "actorCode": "MEGM",
+          "familyIndex": 8
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-100646-frame-23483/ram.bin",
+      "sha256": "859a43dc4478cb86d07d348e4af90738b0a6da905eccda5c8f4ebe37b979ecf1",
+      "observations": [
+        {
+          "actorCode": "MEGM",
+          "familyIndex": 8
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260724-164249-frame-3193/ram.bin",
+      "sha256": "57cda3d7d38d9e00048b9a57134fa6a6a5bd54ef3347923c0a1bb0686b3ec482",
+      "observations": [
+        {
+          "actorCode": "FKSM",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "IZWA",
+          "familyIndex": 12
+        },
+        {
+          "actorCode": "JONO",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260726-001534-frame-163030/ram.bin",
+      "sha256": "02f24de143108e06c6c79dd77d5700db27c2ef56df164db01ea36e3776c59b6e",
+      "observations": [
+        {
+          "actorCode": "MARK",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260726-002424-frame-178913/ram.bin",
+      "sha256": "1a7f25648ccdee340a0f001d96f4e0ca73970adc841a42fd2730db823fc699e4",
+      "observations": [
+        {
+          "actorCode": "NITO",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260726-003543-frame-196802/ram.bin",
+      "sha256": "76c83756cd6129b8dae4835ffbf90040f1fb901d8c1459cb582b2b33323fa9a8",
+      "observations": [
+        {
+          "actorCode": "MARK",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260726-003554-frame-197131/ram.bin",
+      "sha256": "20fe8246f405c1d98c90e2b864fc8dfec4dc46676b30ae8450760f472674ba51",
+      "observations": [
+        {
+          "actorCode": "MARK",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260726-010220-frame-37505/ram.bin",
+      "sha256": "6a516d1da063aee6cdcda67481cc6f702b4450c0e0f1eb9d00a14d046b7c660d",
+      "observations": [
+        {
+          "actorCode": "MARK",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260726-010321-frame-39334/ram.bin",
+      "sha256": "4e9aaaa450cc5a9c0049ace10ae27d5fdf75f3068a5e86dde86ccbd952ca9077",
+      "observations": [
+        {
+          "actorCode": "MARK",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260726-010505-frame-630/ram.bin",
+      "sha256": "6c12a91b7d1058540e3de413992b730370e94602a7bf4a9dc395dc441f2c7c52",
+      "observations": [
+        {
+          "actorCode": "FKSM",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "IZWA",
+          "familyIndex": 12
+        },
+        {
+          "actorCode": "JONO",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260726-081448-frame-34522/ram.bin",
+      "sha256": "02e40f95bf7eb3df0626cf68bf61872e796604b57e02b9dbf81299fcdf23c987",
+      "observations": [
+        {
+          "actorCode": "FKSM",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "IZWA",
+          "familyIndex": 12
+        },
+        {
+          "actorCode": "JONO",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260727-194248-frame-3256/ram.bin",
+      "sha256": "2a86290791191120dabffd28c484c56d936140ec240e626aacd78c53f586259b",
+      "observations": [
+        {
+          "actorCode": "GJBF",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "ITOI",
+          "familyIndex": 7
+        },
+        {
+          "actorCode": "KURI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260727-194708-frame-3587/ram.bin",
+      "sha256": "f8b0a5d9049fff755fe56f9e026e203e11de164d5a7e72930d619715d78d3a3e",
+      "observations": [
+        {
+          "actorCode": "GJBF",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "ITOI",
+          "familyIndex": 7
+        },
+        {
+          "actorCode": "KURI",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260727-195058-frame-36125/ram.bin",
+      "sha256": "095c41ae26c0e96baf4117a3ccd9b7a022d4e73f1b4b00d5f8a992438add0fa8",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "HATR",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "HOND",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "HROT",
+          "familyIndex": 15
+        },
+        {
+          "actorCode": "MASR",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "MIKI",
+          "familyIndex": 12
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260727-195440-frame-128/ram.bin",
+      "sha256": "dcc1f52f10eba12fb55a46ef868694e13976b3541e95248e74843b303c7d34fb",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "HOND",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "HROT",
+          "familyIndex": 15
+        },
+        {
+          "actorCode": "MASR",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "MIHO",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "MIKI",
+          "familyIndex": 12
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260727-200313-frame-443/ram.bin",
+      "sha256": "f684785725c33b413249ce5a960481be8cc95246e882dae398293adfcc213de9",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "HOND",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "HROT",
+          "familyIndex": 15
+        },
+        {
+          "actorCode": "MASR",
+          "familyIndex": 0
+        },
+        {
+          "actorCode": "MIHO",
+          "familyIndex": 19
+        },
+        {
+          "actorCode": "MIKI",
+          "familyIndex": 12
+        },
+        {
+          "actorCode": "TKNB",
+          "familyIndex": 10
+        }
+      ],
+      "ambiguities": []
+    },
+    {
+      "path": "captures/pvr/20260727-200728-frame-28658/ram.bin",
+      "sha256": "93908dfa27ad49dbe87074dfe129ad5c8927d55ef5fbcead7deb81758952a610",
+      "observations": [
+        {
+          "actorCode": "HATO",
+          "familyIndex": 10
+        },
+        {
+          "actorCode": "HREO",
+          "familyIndex": 15
+        },
+        {
+          "actorCode": "HRSK",
+          "familyIndex": 15
+        },
+        {
+          "actorCode": "KNJI",
+          "familyIndex": 4
+        },
+        {
+          "actorCode": "SCKO",
+          "familyIndex": 15
+        },
+        {
+          "actorCode": "YOSE",
+          "familyIndex": 19
+        }
+      ],
+      "ambiguities": []
+    }
+  ]
+}

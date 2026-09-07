@@ -1,0 +1,163 @@
+{
+  "schema": "new-yokosuka-jomo-ryo-motion-evidence-v1",
+  "status": "native-pose-matched-player-idle",
+  "generatedBy": "tools/animation/extract_jomo_ryo_motion_evidence.mjs",
+  "source": {
+    "motionBank": "MOTION/MOTION.BIN",
+    "motionBankSha256": "512abe68b26a2a8bf78c8011b54faf01f9c3e0ce3e4d0b56491161eec3565dec",
+    "sequenceCount": 1559,
+    "captures": [
+      {
+        "frameCount": 147,
+        "ramSha256": "a11e95a3f55dfc3399d0973c80c85753792c22713bd5c2a174663565e92cd2db",
+        "motmCurrentFrame": 12,
+        "motmRenderedFrame": 11
+      },
+      {
+        "frameCount": 156,
+        "ramSha256": "3807fb7e887425f382be75d7a1c6ebe160c198a45ef9fda031e11a36ce99cf79",
+        "motmCurrentFrame": 21,
+        "motmRenderedFrame": 20
+      },
+      {
+        "frameCount": 160,
+        "ramSha256": "05789d4dc72d6cabc7223f8438f6c86a2b105c2fe27a2dc84b038f601dfc338f",
+        "motmCurrentFrame": 25,
+        "motmRenderedFrame": 24
+      }
+    ]
+  },
+  "runtime": {
+    "ryoMotmTagAddress": "0x0c51a950",
+    "matrixBaseAddress": "0x0cc06e80",
+    "matrixCount": 37,
+    "matrixStrideBytes": 64,
+    "comparison": "Root-normalized 37-matrix deltas at the MOTM rendered frames are compared with every decodable retail player sequence. Root/world placement is removed."
+  },
+  "match": {
+    "winner": {
+      "sequenceIndex": 902,
+      "sequenceName": "AKI_AKI_TATI_IWA_L",
+      "durationFrames": 60,
+      "relativeDeltaError": 0.054167323978754844,
+      "rootMeanSquareDeltaError": 0.00042639662066719743,
+      "maximumAbsoluteDeltaError": 0.004652958942301,
+      "comparedValues": 418
+    },
+    "runnerUp": {
+      "sequenceIndex": 756,
+      "sequenceName": "AKI_AKI_THINK_L_LP",
+      "durationFrames": 60,
+      "relativeDeltaError": 0.9841867554670425,
+      "rootMeanSquareDeltaError": 0.007260032321943081,
+      "maximumAbsoluteDeltaError": 0.029678725478819126,
+      "comparedValues": 476
+    },
+    "runnerUpErrorRatio": 18.16938115408939,
+    "ranking": [
+      {
+        "sequenceIndex": 902,
+        "sequenceName": "AKI_AKI_TATI_IWA_L",
+        "durationFrames": 60,
+        "relativeDeltaError": 0.054167323978754844,
+        "rootMeanSquareDeltaError": 0.00042639662066719743,
+        "maximumAbsoluteDeltaError": 0.004652958942301,
+        "comparedValues": 418
+      },
+      {
+        "sequenceIndex": 756,
+        "sequenceName": "AKI_AKI_THINK_L_LP",
+        "durationFrames": 60,
+        "relativeDeltaError": 0.9841867554670425,
+        "rootMeanSquareDeltaError": 0.007260032321943081,
+        "maximumAbsoluteDeltaError": 0.029678725478819126,
+        "comparedValues": 476
+      },
+      {
+        "sequenceIndex": 1051,
+        "sequenceName": "EXB_YKI_AKI_STANDBY1",
+        "durationFrames": 100,
+        "relativeDeltaError": 1,
+        "rootMeanSquareDeltaError": 0.007890742095781363,
+        "maximumAbsoluteDeltaError": 0.027273929962005283,
+        "comparedValues": 416
+      },
+      {
+        "sequenceIndex": 1053,
+        "sequenceName": "EXB_YKI_AKI_STANDBY3",
+        "durationFrames": 50,
+        "relativeDeltaError": 1,
+        "rootMeanSquareDeltaError": 0.007890742095781363,
+        "maximumAbsoluteDeltaError": 0.027273929962005283,
+        "comparedValues": 416
+      },
+      {
+        "sequenceIndex": 1488,
+        "sequenceName": "SIN_NOZ_YS45_R_ST",
+        "durationFrames": 60,
+        "relativeDeltaError": 1,
+        "rootMeanSquareDeltaError": 0.007890742095781363,
+        "maximumAbsoluteDeltaError": 0.027273929962005283,
+        "comparedValues": 416
+      },
+      {
+        "sequenceIndex": 1489,
+        "sequenceName": "SIN_NOZ_YS90_R_ST",
+        "durationFrames": 60,
+        "relativeDeltaError": 1,
+        "rootMeanSquareDeltaError": 0.007890742095781363,
+        "maximumAbsoluteDeltaError": 0.027273929962005283,
+        "comparedValues": 416
+      },
+      {
+        "sequenceIndex": 1487,
+        "sequenceName": "SIN_NOZ_YS00_R_ST",
+        "durationFrames": 60,
+        "relativeDeltaError": 1.000014742291074,
+        "rootMeanSquareDeltaError": 0.007890858423398128,
+        "maximumAbsoluteDeltaError": 0.027273929962005283,
+        "comparedValues": 416
+      },
+      {
+        "sequenceIndex": 1052,
+        "sequenceName": "EXB_YKI_AKI_STANDBY2",
+        "durationFrames": 68,
+        "relativeDeltaError": 1.0120342198373802,
+        "rootMeanSquareDeltaError": 0.007966573565957081,
+        "maximumAbsoluteDeltaError": 0.027273929962005283,
+        "comparedValues": 418
+      },
+      {
+        "sequenceIndex": 662,
+        "sequenceName": "AKI_AKI_STAND_DOWN_LP",
+        "durationFrames": 60,
+        "relativeDeltaError": 1.0346386559799452,
+        "rootMeanSquareDeltaError": 0.008164066796663604,
+        "maximumAbsoluteDeltaError": 0.02630560815790689,
+        "comparedValues": 416
+      },
+      {
+        "sequenceIndex": 667,
+        "sequenceName": "AKI_AKI_UDEKUMI_LP",
+        "durationFrames": 60,
+        "relativeDeltaError": 1.0524142740185263,
+        "rootMeanSquareDeltaError": 0.008304329614199166,
+        "maximumAbsoluteDeltaError": 0.03792146627005191,
+        "comparedValues": 416
+      }
+    ],
+    "interpretation": "The frozen drawer samples show Ryo continuing the ordinary 60-frame AKI_AKI_TATI_IWA_L idle. They do not show a drawer-specific Ryo interaction motion."
+  },
+  "authoredAudio": {
+    "actionMetadataOffset": "0x00003628",
+    "firstOpcode": 20,
+    "soundCues": [],
+    "surfaceSoundCues": [],
+    "conclusion": "The matched native player idle has no authored sound or surface-sound cues. JOMO drawer audio must therefore remain on the object/room interaction route unless independent evidence proves another owner."
+  },
+  "evidenceBoundary": {
+    "proven": "Retail capture matrices identify the resident Ryo motion as AKI_AKI_TATI_IWA_L with a large ranking separation.",
+    "notProven": "This does not identify the drawer object's own audio command or authorize assigning an auditioned sound.",
+    "policy": "keep-drawer-command-unresolved-no-guessed-mapping"
+  }
+}

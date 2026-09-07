@@ -1,0 +1,249 @@
+diff --git a/core/hw/pvr/pvr_capture.cpp b/core/hw/pvr/pvr_capture.cpp
+index 70a16786c..2f98f63c3 100644
+--- a/core/hw/pvr/pvr_capture.cpp
++++ b/core/hw/pvr/pvr_capture.cpp
+@@ -4,14 +4,17 @@
+ #include "pvr_mem.h"
+ #include "pvr_regs.h"
+ #include "hw/sh4/sh4_mem.h"
++#include "hw/sh4/sh4_core.h"
+ #include "rend/TexCache.h"
+ #include "log/Log.h"
+ 
++#include <algorithm>
+ #include <atomic>
+ #include <chrono>
+ #include <cmath>
+ #include <csignal>
+ #include <cstdlib>
++#include <cstring>
+ #include <filesystem>
+ #include <fstream>
+ #include <iomanip>
+@@ -294,6 +297,170 @@ void request()
+ 	NOTICE_LOG(PVR, "PowerVR frame capture requested");
+ }
+ 
++void captureNativeClothTrackBoundary()
++{
++	struct State
++	{
++		bool initialized = false;
++		bool finished = false;
++		bool headerWritten = false;
++		u32 targetModel = 0x2052474d;
++		u32 groupAddress = 0;
++		u32 sampleCount = 0;
++		u32 lastSlot = 0xffffffff;
++		u32 lastFrame = 0xffffffff;
++		u32 terminalSlot = 5;
++		u32 terminalFrame = 57;
++		u16 rowCount = 0;
++		u16 columnCount = 0;
++		std::string path;
++		std::ofstream output;
++	};
++	static State state;
++	if (!state.initialized)
++	{
++		state.initialized = true;
++		const char *path = std::getenv("FLYCAST_CLOTH_TRACK_OUTPUT");
++		if (path == nullptr || path[0] == '\0')
++		{
++			state.finished = true;
++			return;
++		}
++		state.path = path;
++		if (const char *value = std::getenv("FLYCAST_CLOTH_TRACK_MODEL"))
++			state.targetModel = std::strtoul(value, nullptr, 0);
++		if (const char *value = std::getenv("FLYCAST_CLOTH_TRACK_TERMINAL_SLOT"))
++			state.terminalSlot = std::strtoul(value, nullptr, 0);
++		if (const char *value = std::getenv("FLYCAST_CLOTH_TRACK_TERMINAL_FRAME"))
++			state.terminalFrame = std::strtoul(value, nullptr, 0);
++		if (const char *value = std::getenv("FLYCAST_CLOTH_TRACK_ROWS"))
++			state.rowCount = std::strtoul(value, nullptr, 0);
++		if (const char *value = std::getenv("FLYCAST_CLOTH_TRACK_COLUMNS"))
++			state.columnCount = std::strtoul(value, nullptr, 0);
++		state.output.open(state.path, std::ios::binary | std::ios::trunc);
++		if (!state.output)
++		{
++			ERROR_LOG(PVR, "Cannot create native cloth track %s", state.path.c_str());
++			state.finished = true;
++		}
++	}
++	if (state.finished)
++		return;
++
++	const u32 active = ReadMem32(0x0c222b00);
++	if (active == 0)
++		return;
++	const u32 resource = ReadMem32(active + 0x0c);
++	u32 slot = 0xffffffff;
++	u32 matches = 0;
++	for (u32 candidate = 0; candidate < 70; candidate++)
++	{
++		if (ReadMem32(0x0c222588 + candidate * 0x14 + 4) == resource)
++		{
++			slot = candidate;
++			matches++;
++		}
++	}
++	if (matches != 1)
++		return;
++	const u32 frame = ReadMem32(active + 0x2c);
++	if (state.sampleCount != 0 && slot == state.lastSlot && frame <= state.lastFrame)
++		return;
++
++	if (state.groupAddress == 0)
++	{
++		const u32 candidate = Sh4cntx.r[14];
++		const u32 owner = ReadMem32(candidate + 0x80);
++		const u32 vertexCount = ReadMem32(candidate + 0x08);
++		const u32 vertexState = ReadMem32(candidate + 0x0c);
++		if (owner == 0 || ReadMem32(owner + 0x2c) != state.targetModel
++				|| vertexCount == 0 || vertexCount >= 10000
++				|| vertexState < 0x0c000000 || vertexState >= 0x0d000000)
++			return;
++		state.groupAddress = candidate;
++	}
++
++	if (!state.headerWritten)
++	{
++		unsigned char header[40] = {};
++		std::memcpy(header, "NYCLTH01", 8);
++		header[8] = 2;
++		header[10] = 40;
++		const u32 vertexCount = ReadMem32(state.groupAddress + 0x08);
++		if (state.rowCount == 0 || state.columnCount == 0
++				|| state.rowCount * state.columnCount != vertexCount)
++		{
++			ERROR_LOG(PVR, "Native cloth track topology does not match %u vertices", vertexCount);
++			state.finished = true;
++			state.output.close();
++			return;
++		}
++		const u32 vertexState = ReadMem32(state.groupAddress + 0x0c);
++		for (u32 vertex = 0; vertex < vertexCount; vertex++)
++		{
++			float values[6];
++			for (u32 component = 0; component < 6; component++)
++			{
++				const u32 word = ReadMem32(vertexState + (vertex * 6 + component) * 4);
++				std::memcpy(&values[component], &word, 4);
++			}
++			const float dx = values[3] - values[0];
++			const float dy = values[4] - values[1];
++			const float dz = values[5] - values[2];
++			if (!std::isfinite(dx) || !std::isfinite(dy) || !std::isfinite(dz)
++					|| dx * dx + dy * dy + dz * dz <= 1.0e-6f)
++				return;
++		}
++		std::memcpy(header + 16, &vertexCount, 4);
++		const u16 controlType = ReadMem16(state.groupAddress + 0x04);
++		std::memcpy(header + 20, &controlType, 2);
++		std::memcpy(header + 22, &state.rowCount, 2);
++		std::memcpy(header + 24, &state.columnCount, 2);
++		header[26] = 6;
++		std::memcpy(header + 28, &state.targetModel, 4);
++		const float scale = 1.0f / 8192.0f;
++		std::memcpy(header + 32, &scale, 4);
++		state.output.write(reinterpret_cast<const char *>(header), sizeof(header));
++		state.headerWritten = true;
++		NOTICE_LOG(PVR, "Native cloth track started at AUTH slot %u frame %u", slot, frame);
++	}
++
++	const u32 owner = ReadMem32(state.groupAddress + 0x80);
++	if (owner == 0 || ReadMem32(owner + 0x2c) != state.targetModel)
++		return;
++	state.lastSlot = slot;
++	state.lastFrame = frame;
++	const u16 slot16 = slot;
++	const u16 reserved = 0;
++	state.output.write(reinterpret_cast<const char *>(&slot16), 2);
++	state.output.write(reinterpret_cast<const char *>(&reserved), 2);
++	state.output.write(reinterpret_cast<const char *>(&frame), 4);
++	const u32 vertexCount = ReadMem32(state.groupAddress + 0x08);
++	const u32 vertexState = ReadMem32(state.groupAddress + 0x0c);
++	for (u32 component = 0; component < vertexCount * 6; component++)
++	{
++		const u32 word = ReadMem32(vertexState + component * 4);
++		float value;
++		std::memcpy(&value, &word, 4);
++		const long quantized = std::lround(value * 8192.0f);
++		const s16 sample = static_cast<s16>(std::max(-32768L, std::min(32767L, quantized)));
++		state.output.write(reinterpret_cast<const char *>(&sample), 2);
++	}
++	state.sampleCount++;
++	state.output.flush();
++
++	if (slot == state.terminalSlot && frame >= state.terminalFrame)
++	{
++		state.output.seekp(12);
++		state.output.write(reinterpret_cast<const char *>(&state.sampleCount), 4);
++		state.output.close();
++		std::ofstream done(state.path + ".done");
++		done << state.sampleCount << '\n';
++		state.finished = true;
++		NOTICE_LOG(PVR, "Native cloth track completed with %u samples", state.sampleCount);
++	}
++}
++
+ void captureIfRequested(TA_context& context)
+ {
+ 	if (context.rend.isRTT)
+diff --git a/core/hw/pvr/pvr_capture.h b/core/hw/pvr/pvr_capture.h
+index 71a502204..e3e0e057a 100644
+--- a/core/hw/pvr/pvr_capture.h
++++ b/core/hw/pvr/pvr_capture.h
+@@ -12,4 +12,7 @@ void request();
+ // texture-cache metadata all describe the exact input to the host renderer.
+ void captureIfRequested(TA_context& context);
+ 
++// Records the configured native cloth group at its model-local output boundary.
++void captureNativeClothTrackBoundary();
++
+ }
+diff --git a/core/hw/sh4/dyna/decoder.cpp b/core/hw/sh4/dyna/decoder.cpp
+index 1fff5eefd..e897f3a09 100644
+--- a/core/hw/sh4/dyna/decoder.cpp
++++ b/core/hw/sh4/dyna/decoder.cpp
+@@ -963,6 +963,17 @@ bool dec_DecodeBlock(RuntimeBlockInfo* rbi,u32 max_cycles)
+ 	
+ 	for(;;)
+ 	{
++		if (state.cpu.rpc == 0x0c0aea38 && !state.cpu.is_delayslot)
++		{
++			shil_opcode capture;
++			capture.op = shop_ifb;
++			capture.rs1 = shil_param(1);
++			capture.rs2 = shil_param(state.cpu.rpc);
++			capture.rs3 = shil_param(0x0009);
++			capture.guest_offs = state.cpu.rpc - blk->vaddr;
++			capture.delay_slot = false;
++			blk->oplist.push_back(capture);
++		}
+ 		switch(state.NextOp)
+ 		{
+ 		case NDO_Delayslot:
+diff --git a/core/hw/sh4/interpr/sh4_opcodes.cpp b/core/hw/sh4/interpr/sh4_opcodes.cpp
+index 95f72e6fe..21a933894 100644
+--- a/core/hw/sh4/interpr/sh4_opcodes.cpp
++++ b/core/hw/sh4/interpr/sh4_opcodes.cpp
+@@ -12,6 +12,7 @@
+ #include "debug/gdb_server.h"
+ #include "hw/sh4/dyna/decoder.h"
+ #include "emulator.h"
++#include "hw/pvr/pvr_capture.h"
+ 
+ #include <cstdio>
+ #include <cstdlib>
+@@ -1268,6 +1269,8 @@ sh4op(i1100_1011_iiii_iiii)
+ //nop
+ sh4op(i0000_0000_0000_1001)
+ {
++	if (ctx->pc == 0x0c0aea38)
++		pvr_capture::captureNativeClothTrackBoundary();
+ }
+ 
+ //************************ TLB/Cache ************************
+

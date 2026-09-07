@@ -1,0 +1,72 @@
+{
+  "schema": "new-yokosuka-native-aseq-lifecycle-v1",
+  "resource": "TGMA",
+  "disc": 1,
+  "area": "JHD0",
+  "owner": {
+    "programId": "disc1-jhd0-fukusan-letter-0x545f8",
+    "entryFunction": "0x545f8",
+    "motionLoadCall": "0x54c2a",
+    "fukuharaVariantCall": "0x54c4c",
+    "activityOpenCall": "0x54cc0",
+    "callbackLaunchCall": "0x23210",
+    "callbackFunction": "0x232fc"
+  },
+  "activity": {
+    "slot": 0,
+    "primaryPointer": "0x601b8",
+    "secondaryPointer": "0x601bd",
+    "archiveMember": "SEQDATA4.AUTH",
+    "durationFrames": 954
+  },
+  "letter": {
+    "objectTag": "TEGS",
+    "archiveMember": "MALS509G.CHRM",
+    "attachment": {
+      "operation": "0x00e6",
+      "callFileOffset": "0x2360a",
+      "frame": 1,
+      "parentActorTag": "AKIR",
+      "controlId": 18,
+      "translation": [0.12300000339746475, 0.01600000075995922, -0.052000001072883606],
+      "rotationRaw": [54413, 53684, 22373]
+    },
+    "presentation": [
+      { "callFileOffset": "0x23876", "frame": 350, "mode": 1, "visible": true },
+      { "callFileOffset": "0x23bbe", "frame": 800, "mode": 2, "visible": false }
+    ],
+    "hinges": [
+      { "nodeKey": 152, "mode": "set", "frame": 1, "rotationRaw": [0, 0, 1274] },
+      { "nodeKey": 153, "mode": "set", "frame": 1, "rotationRaw": [0, 0, 1274] },
+      { "nodeKey": 152, "mode": "add", "firstFrame": 400, "lastFrame": 423, "rotationRaw": [0, 0, 1274] },
+      { "nodeKey": 153, "mode": "add", "firstFrame": 415, "lastFrame": 438, "rotationRaw": [0, 0, 1274] },
+      { "nodeKey": 153, "mode": "add", "firstFrame": 760, "lastFrame": 783, "rotationRaw": [0, 0, -1274] },
+      { "nodeKey": 152, "mode": "add", "firstFrame": 775, "lastFrame": 798, "rotationRaw": [0, 0, -1274] }
+    ]
+  },
+  "dependencies": {
+    "fukuharaBodyModel": "FUB_M",
+    "motionBank": "M_0139.MOTN",
+    "voiceStream": "A0139.AFS",
+    "soundBank": "A1_INET2.SND"
+  },
+  "callbackPresentation": {
+    "compactIr": "tools/evidence/tgma-native-callback-ir.json",
+    "detailedHandCues": 5,
+    "handPoseTables": ["0x5cb58", "0x5cd20", "0x5cee8"],
+    "faceClipCues": 12,
+    "faceGazeCues": 36,
+    "gazeIntervals": [
+      { "firstFrame": 466, "lastFrame": 486, "sourceActor": "AKIR", "targetActor": "FUKU", "targetSelector": 5 },
+      { "firstFrame": 791, "lastFrame": 803, "sourceActor": "AKIR", "targetActor": "FUKU", "targetSelector": 5 }
+    ],
+    "gazeResetFrames": [487, 804]
+  },
+  "evidenceBoundary": [
+    "All frames are derived from the generated callback's exact frame predicates, not captured playback.",
+    "Operation 0x00e6 uses the engine-proven attached-object descriptor.",
+    "Operation 0x00c9 uses the engine-proven named HMDL node transform descriptor.",
+    "The package keeps attachment, presentation, and articulated-node timelines independent because the native program does."
+    ,"Hand, expression, and gaze records are compiled from the compact native callback IR rather than copied into runtime code."
+  ]
+}

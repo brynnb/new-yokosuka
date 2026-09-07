@@ -1,0 +1,45 @@
+{
+  "schema": "new-yokosuka-persistent-script-bit-evidence-v1",
+  "status": "exact-native-handler-and-all-disc-call-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 32,
+    "operationHex": "0x0020",
+    "handlerAddress": "0x0c15860c",
+    "bitWriterAddress": "0x0c0f0b5e",
+    "companionReaderAddress": "0x0c0f0bc2",
+    "nativeSaveByteOffset": "0x059c",
+    "capacityBits": 256,
+    "ownerSelector": 0,
+    "provenBehavior": "The handler forwards argument one as a bit index and argument two as a Boolean to the shared native-save bit writer. Nonzero sets the indexed bit and zero clears it while preserving every other bit. The writer rejects indices outside 0..255."
+  },
+  "allDiscInventory": {
+    "callCount": 2080,
+    "dialogueRegionCallCount": 18,
+    "areaCount": 99,
+    "indexArgumentKinds": {
+      "constant": 64,
+      "frame-field": 2016
+    },
+    "valueArgumentKinds": {
+      "constant": 1888,
+      "frame-field": 192
+    },
+    "valueCounts": {
+      "0": 425,
+      "1": 1463
+    }
+  },
+  "evidenceBoundary": [
+    "The save offset, capacity, index/value ABI, and set/clear polarity are exact.",
+    "A frame-sourced value remains constrained at runtime to the native Boolean domain zero or one.",
+    "All authored bit indices now have exact constant or coroutine-frame provenance.",
+    "The player-facing meaning of each bit index remains deliberately unassigned.",
+    "The persistent owner is transported as bounded snapshot metadata; it is not room state."
+  ]
+}

@@ -1,0 +1,249 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/build_yq14_activity_pack.mjs",
+  "source": {
+    "disc": 1,
+    "path": "extracted_files/data/SCENE/01/D000/YQ14.PKS",
+    "sha256": "78080bd152e5fd49afc311dc721ceee8383f8fec19e453a8e915376b5d702a1e",
+    "archiveFormat": "PAKS/IPAC",
+    "members": [
+      {
+        "name": "BINS501G.CHRM",
+        "byteLength": 2132,
+        "sha256": "77bc11a2d715a76838a2df1f98a16f498a95c2319867515d1a88428ee50e8e4d"
+      },
+      {
+        "name": "C95T1HK1.CHRM",
+        "byteLength": 1292,
+        "sha256": "e7b5390215c2a174c2b392bbdac008a2d7c7014faf5e491696b31921b862ef6c"
+      },
+      {
+        "name": "C95T1HKG.CHRM",
+        "byteLength": 34528,
+        "sha256": "593e6265ca7b38b4fc8c47c81f4c1a525d1a8c1d9b617eb2a88157ceb28bc543"
+      },
+      {
+        "name": "DBR0100G.CHRM",
+        "byteLength": 11160,
+        "sha256": "ac635db3c6da1e26aebd7bb998a673c89a0d289924fbc0550f1d21fbf834e81c"
+      },
+      {
+        "name": "DRMK0002.CHRM",
+        "byteLength": 1660,
+        "sha256": "0524ff1b1a84fd54ff8bf57809b5c43f753dccc62f72f93ba4507bac2bd82018"
+      },
+      {
+        "name": "DYNAMICS.DYNM",
+        "byteLength": 219812,
+        "sha256": "bf56441991312407db2e8479b989829ecd711d2155ec8c789962c80c2e588e85"
+      },
+      {
+        "name": "HAK02JMG.CHRM",
+        "byteLength": 2080,
+        "sha256": "dcc36eb97c2adbac2d7c4057b1ddacfa78e8d5bd04968484a353b07b689289cc"
+      },
+      {
+        "name": "SEQDATA1.AUTH",
+        "byteLength": 1820,
+        "sha256": "529bc62c6721402fa265c4952d5d9aae3d9ba42ce0807ee39436935a9f448422"
+      },
+      {
+        "name": "SEQDATA2.AUTH",
+        "byteLength": 29596,
+        "sha256": "e56fd5983791b824f1f7b1ce40629a207df87f5081b723cc7b5d18d1c2af4b58"
+      },
+      {
+        "name": "YKDS500G.CHRM",
+        "byteLength": 7776,
+        "sha256": "3176b44a5d6344b20ce6f4291a95d848a83b7f28c40f11a1199b26a7bc8fb9fc"
+      },
+      {
+        "name": "YKDS501G.CHRM",
+        "byteLength": 8268,
+        "sha256": "2b1d852061e532119d0581578ad918e74d6494e9c39c9c2e525651d7abbe828d"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "play/data/events/nativeEventPrograms.generated.json",
+    "resourceName": "YQ14",
+    "variant": "",
+    "selectionRule": "zero-based AUTH-extension ordinal selected by operation-0x013e slot"
+  },
+  "audioManifest": "public/audio/world/yq14/manifest.json",
+  "sceneObjects": {
+    "BIN_": {
+      "model": "BERHI204",
+      "browserFilename": "S1_YQ14_BINS501G.MT5",
+      "assetPath": "play/assets/dobuita/yq14/BINS501G.CHRM",
+      "lifecycle": {
+        "kind": "auth-scoped"
+      },
+      "nativeBinding": {
+        "mapinfo": "extracted_files/data/SCENE/01/YQ14/MAPINFO.BIN",
+        "mapinfoSha256": "84ba191106cbc8f882790468bd8a7054f207bf7375e32355519fb6f49bc904bf",
+        "chrtOffset": "0x6241c",
+        "image": "BEER",
+        "defImageModel": "BERHI204",
+        "archiveMember": "BINS501G.CHRM",
+        "archiveMemberSha256": "77bc11a2d715a76838a2df1f98a16f498a95c2319867515d1a88428ee50e8e4d"
+      }
+    }
+  },
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/account/M_ZAKO.MOTN",
+      "byteLength": 168080,
+      "sha256": "0562507487c808d2e1ad80f5e2fd2a3527172e01fd79501c64134db1ffccac3d"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/account/M_ZAKO.MOTN",
+      "byteLength": 168080,
+      "sha256": "0562507487c808d2e1ad80f5e2fd2a3527172e01fd79501c64134db1ffccac3d"
+    },
+    {
+      "path": "play/assets/dobuita/yq14/SEQDATA1.AUTH",
+      "byteLength": 1820,
+      "sha256": "529bc62c6721402fa265c4952d5d9aae3d9ba42ce0807ee39436935a9f448422"
+    },
+    {
+      "path": "play/assets/dobuita/yq14/SEQDATA2.AUTH",
+      "byteLength": 29596,
+      "sha256": "e56fd5983791b824f1f7b1ce40629a207df87f5081b723cc7b5d18d1c2af4b58"
+    },
+    {
+      "path": "play/assets/dobuita/yq14/BINS501G.CHRM",
+      "byteLength": 2132,
+      "sha256": "77bc11a2d715a76838a2df1f98a16f498a95c2319867515d1a88428ee50e8e4d"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "primaryPointer": 718875,
+      "secondaryPointer": 718888,
+      "activityId": "YQ14/SEQDATA1.AUTH",
+      "archiveMember": "SEQDATA1.AUTH",
+      "byteLength": 1820,
+      "sha256": "529bc62c6721402fa265c4952d5d9aae3d9ba42ce0807ee39436935a9f448422",
+      "durationFrames": 70,
+      "durationSeconds": 2.3499999046325684,
+      "frameCount": 5,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "motion": 3,
+        "sound": 4
+      },
+      "actors": [
+        "SMTH",
+        "TONY",
+        "AKIR"
+      ],
+      "motions": [
+        {
+          "actorTag": "SMTH",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "F1ERROR1",
+          "startFrame": 301,
+          "endFrame": 670
+        },
+        {
+          "actorTag": "TONY",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "F1ERROR0",
+          "startFrame": 41,
+          "endFrame": 380
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "F1ERROR2",
+          "startFrame": 612,
+          "endFrame": 691
+        }
+      ]
+    },
+    {
+      "slot": 1,
+      "primaryPointer": 718893,
+      "secondaryPointer": 718906,
+      "activityId": "YQ14/SEQDATA2.AUTH",
+      "archiveMember": "SEQDATA2.AUTH",
+      "byteLength": 29596,
+      "sha256": "e56fd5983791b824f1f7b1ce40629a207df87f5081b723cc7b5d18d1c2af4b58",
+      "durationFrames": 435,
+      "durationSeconds": 14.516666412353516,
+      "frameCount": 13,
+      "commandCounts": {
+        "camera": 1,
+        "move": 4,
+        "motion": 5,
+        "sound": 9,
+        "voice": 2
+      },
+      "actors": [
+        "BIN_",
+        "SMTH",
+        "TONY",
+        "AKIR"
+      ],
+      "motions": [
+        {
+          "actorTag": "SMTH",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "F1ERROR1",
+          "startFrame": 371,
+          "endFrame": 670
+        },
+        {
+          "actorTag": "TONY",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "F1ERROR0",
+          "startFrame": 81,
+          "endFrame": 380
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AK_SY_PU_SYO_L2",
+          "startFrame": 41,
+          "endFrame": 638
+        },
+        {
+          "actorTag": "SMTH",
+          "frame": 301,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "F1ERROR1",
+          "startFrame": 741,
+          "endFrame": 1007
+        },
+        {
+          "actorTag": "TONY",
+          "frame": 301,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "F1ERROR0",
+          "startFrame": 351,
+          "endFrame": 642
+        }
+      ]
+    }
+  ]
+}

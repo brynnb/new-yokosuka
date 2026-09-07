@@ -1,0 +1,78 @@
+{
+  "schema": "new-yokosuka-jomo-goro-telephone-audio-pack-v1",
+  "generatedBy": "tools/build_jomo_goro_telephone_audio_pack.mjs",
+  "source": {
+    "bank": "extracted_files/data/SCENE/01/SOUND/F1OMOYAA.SND",
+    "bankSha256": "41cdccd04ef8f4835a946f3f1ada404d4f1607adbae6c4bf8da5b825d23c9abb",
+    "evidence": [
+      {
+        "path": "tools/evidence/jomo-goro-telephone-vertical-slice.json",
+        "sha256": "dbd64c71e00a258d2a36334e24898fc1407e743b7a036c13ad46e24c5b556ccb"
+      },
+      {
+        "path": "tools/evidence/native-audio-bank-inventory.json",
+        "sha256": "f20cd726eb64f5d2d5a6b6abf72156ef37f78cbe6e6aad9e77c98f86b39cee49"
+      }
+    ],
+    "decoder": {
+      "tool": "DTPKDump",
+      "commit": "a323c0e7e80af05e17e5bb291a9b20e55a3f9455"
+    }
+  },
+  "encoding": {
+    "container": "WAV",
+    "codec": "PCM signed 16-bit little-endian",
+    "channels": 1
+  },
+  "purpose": "exact JOMO Goro incoming-call ring, answer, and hang-up cues",
+  "tracks": [
+    {
+      "phase": "ring",
+      "commandHex": "a9056500",
+      "group": "a905",
+      "track": 101,
+      "playbackId": 57,
+      "sampleId": 13,
+      "rawVolume": 127,
+      "compositionHex": "c0df397f80ff",
+      "dtpkRate": "0xe800",
+      "sampleRate": 11025,
+      "decodedSource": "F1OMOYAA_00_98_SPD_57_Sample_0D_Rate_E800.wav",
+      "asset": "a9056500.wav",
+      "byteLength": 52964,
+      "sha256": "117028906c0c57f85c498d1e5f1fcd836479d2a77c9efffcb88cd1fd49259615"
+    },
+    {
+      "phase": "answer",
+      "commandHex": "ab060000",
+      "group": "ab06",
+      "track": 0,
+      "playbackId": 72,
+      "sampleId": 27,
+      "rawVolume": 121,
+      "compositionHex": "c0df487980ff",
+      "dtpkRate": "0xe800",
+      "sampleRate": 11025,
+      "decodedSource": "F1OMOYAA_01_07_SPD_72_Sample_1B_Rate_E800.wav",
+      "asset": "ab060000.wav",
+      "byteLength": 6276,
+      "sha256": "78ab6dfd885c46c520e2da4c173c89f3a9aaa41a7dc927d68814c558702add04"
+    },
+    {
+      "phase": "hangup",
+      "commandHex": "ab060100",
+      "group": "ab06",
+      "track": 1,
+      "playbackId": 73,
+      "sampleId": 26,
+      "rawVolume": 95,
+      "compositionHex": "c0df495f80ff",
+      "dtpkRate": "0xe800",
+      "sampleRate": 11025,
+      "decodedSource": "F1OMOYAA_01_08_SPD_73_Sample_1A_Rate_E800.wav",
+      "asset": "ab060100.wav",
+      "byteLength": 27116,
+      "sha256": "591376434a54d6cbb5c94814f1a51b8691a44d312a92ba75e7b3e6ef0a03fac6"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "schema": "new-yokosuka-native-cutscene-lifecycle-v1",
+  "resource": "JHW0",
+  "disc": 1,
+  "area": "JHD0",
+  "mapinfo": {
+    "path": "extracted_files/data/SCENE/01/JHD0/MAPINFO.BIN",
+    "sha256": "e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca"
+  },
+  "owner": {
+    "playerFacingEntryFunction": "0x464bc",
+    "activityOwnerFunction": "0x45308",
+    "directCall": "0x464c6",
+    "containerOpen": "0x457ce",
+    "activityInstalls": ["0x4582e", "0x45852", "0x45876", "0x4589a", "0x458be", "0x458e2", "0x45906", "0x4592a"],
+    "containerOperation": "0x013c",
+    "activityOperation": "0x013e",
+    "slots": [9, 10, 11, 12, 13, 14, 15, 16]
+  },
+  "resourceCluster": {
+    "range": ["0x5f5de", "0x5f69d"],
+    "archive": "JHW0",
+    "voiceStream": "E1017.AFS",
+    "soundBank": "A1_FUKW.SND",
+    "music": "BGM099.SND",
+    "motionBanks": ["M_01FUK.MOTN", "M_JHW0.MOTN"]
+  },
+  "dependencies": {
+    "archive": "extracted_files/data/SCENE/01/JHD0/JHW0.PKS",
+    "actors": ["AKIR", "FUKU"],
+    "sceneObjects": []
+  },
+  "runtimePolicy": {
+    "world": "use the existing JHD0 Hazuki grounds composition and coordinate root",
+    "entry": "the cutscene director acquires Ryo and Fuku-san presentation before one selected native activity",
+    "music": "play the exact hash-pinned BGM099 render for the selected activity lifetime",
+    "exit": "release activity, face, audio, camera, music, actor, and control ownership exactly once"
+  },
+  "sources": [
+    ".disc-work/dialogue/native-event-ir.json",
+    "tools/evidence/native-activity-owner-candidates.json",
+    "tools/evidence/shenmue1-scripted-scene-inventory.json",
+    "tools/evidence/native-audio-bank-inventory.json"
+  ],
+  "availability": "package-candidate",
+  "productionGate": "All eight exact activities, complete motion data, exact audio, both actors, facial assets, world composition, BGM099, and cleanup must be verified before selector registration."
+}

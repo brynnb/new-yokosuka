@@ -1,0 +1,58 @@
+{
+  "schema": "new-yokosuka-native-cutscene-lifecycle-v1",
+  "resource": "KAKG",
+  "disc": 1,
+  "area": "JHD0",
+  "mapinfo": {
+    "path": "extracted_files/data/SCENE/01/JHD0/MAPINFO.BIN",
+    "sha256": "e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca"
+  },
+  "owner": {
+    "playerFacingEntryFunction": "0x3cfa0",
+    "parentStoryController": "0x545f8",
+    "activityOperation": "0x013e",
+    "bindings": [
+      { "slot": 0, "primaryPointer": "0x5f15b", "secondaryPointer": "0x5f160", "role": "resident-object staging" },
+      { "slot": 1, "primaryPointer": "0x5f161", "secondaryPointer": "0x5f166", "role": "resident-object staging" },
+      { "slot": 2, "primaryPointer": "0x5f167", "secondaryPointer": "0x5f16c", "role": "Ryo and Fuku-san conversation" },
+      { "slot": 3, "primaryPointer": "0x5f16d", "secondaryPointer": "0x5f172", "role": "Ryo and Ine-san conversation" }
+    ]
+  },
+  "resourceCluster": {
+    "archive": "KAKG",
+    "fukusan": {
+      "activity": "SEQDATK2.AUTH",
+      "motionBank": "M_01KAK.MOTN",
+      "voiceStream": "01KAK.AFS",
+      "soundBank": "A1_KAKGO.SND",
+      "music": "BGM085.SND"
+    },
+    "inesan": {
+      "activity": "SEQDATK3.AUTH",
+      "motionBank": "M_01CRY.MOTN",
+      "voiceStream": "A01124.AFS",
+      "soundBank": "A1_INET1.SND",
+      "music": "BGM049.SND"
+    }
+  },
+  "dependencies": {
+    "archive": "extracted_files/data/SCENE/01/JHD0/KAKG.PKS",
+    "actors": ["AKIR", "FUKU", "INE_"],
+    "sceneObjects": []
+  },
+  "runtimePolicy": {
+    "world": "use the existing JHD0 Hazuki grounds composition and coordinate root",
+    "selection": "expose only slots 2 and 3 as standalone conversational cutscenes; slots 0 and 1 stage the resident KAWA object and are not independent scenes",
+    "audio": "select the exact voice stream and sound bank by native activity slot",
+    "music": "select BGM085 for slot 2 and BGM049 for slot 3",
+    "exit": "release activity, face, audio, camera, music, actor, and control ownership exactly once"
+  },
+  "sources": [
+    ".disc-work/dialogue/native-event-ir.json",
+    "tools/evidence/native-activity-owner-candidates.json",
+    "tools/evidence/shenmue1-scripted-scene-inventory.json",
+    "tools/evidence/native-audio-bank-inventory.json"
+  ],
+  "availability": "package-candidate",
+  "productionGate": "Both conversational activities require exact archive members, motions, slot-selected audio, native music, actors, facial assets, world composition, and fail-closed cleanup."
+}

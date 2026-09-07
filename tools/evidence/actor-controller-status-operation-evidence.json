@@ -1,0 +1,45 @@
+{
+  "schema": "new-yokosuka-actor-controller-status-operation-evidence-v1",
+  "status": "exact-two-selector-native-contract",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 116,
+    "operationHex": "0x0074",
+    "handlerAddress": "0x0c164d7a",
+    "handlerLength": 124,
+    "handlerSha256": "6e6d10746a2a3a974951ac9d1583fe40692b6a3d66964daa88dcda7e39355de4",
+    "selectorOneHelperAddress": "0x0c0df244",
+    "selectorOneHelperLength": 68,
+    "selectorOneHelperSha256": "c918897eb5d86b1c4d35e904d21d01d5bbcd232b31ed0f2d68f159f5a895dc77",
+    "provenSelectors": [
+      0,
+      1
+    ],
+    "unusedArgumentIndex": 2,
+    "provenBehavior": "The handler resolves argument zero as an actor. Selector zero returns a signed controller byte, normalizing native state 8 to -1. Selector one checks both authored actor task records, retains the latter available task result, and normalizes values below one to -1. Argument two is not read."
+  },
+  "inventory": {
+    "authoredCallCount": 530,
+    "provenCallCount": 529,
+    "unresolvedCallCount": 1,
+    "selectorCounts": {
+      "0": 193,
+      "1": 336
+    },
+    "actorArgumentKinds": {
+      "constant": 306,
+      "frame-field": 219,
+      "runtime": 4
+    }
+  },
+  "evidenceBoundary": [
+    "The handler and selector-one helper bytes are SHA-256 verified.",
+    "The browser runtime must obtain the actor/controller result from an authoritative actor adapter.",
+    "Missing actors or controller state remain explicit stops; no default status is inferred."
+  ]
+}

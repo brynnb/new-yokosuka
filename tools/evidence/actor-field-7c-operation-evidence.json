@@ -1,0 +1,70 @@
+{
+  "schema": "new-yokosuka-actor-field-7c-operation-evidence-v1",
+  "status": "exact-two-argument-contract-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 289,
+    "operationHex": "0x0121",
+    "handlerAddress": "0x0c1583dc",
+    "actorFieldOffset": "0x007c",
+    "actorFieldWidth": 4,
+    "writeModes": [
+      0,
+      1,
+      2,
+      4,
+      8,
+      9
+    ],
+    "readMode": 11,
+    "provenBehavior": "The exact two-argument routes resolve argument zero as an actor. Authored modes zero, one, two, four, eight, and nine write that mode as a dword at actor offset +0x7c, then return the field. Authored mode eleven only returns the current field. A missing actor returns 0xffffffff.",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c1583dc",
+        "length": 212,
+        "sha256": "95f610439ac6a414916c976288252538b8e2a15564b4ae6dc35b698e1428b598"
+      },
+      "writeDword7c": {
+        "address": "0x0c0ab2a0",
+        "length": 12,
+        "sha256": "41f4b082fb6f4d5a15438e1ef99b8290b32195b921f6b92f39d70f682f0ac1e0"
+      },
+      "readDword7c": {
+        "address": "0x0c0ab2ac",
+        "length": 16,
+        "sha256": "60354a0c734f23401408592fce82dc2909862137183cb02181963391dc0c43d5"
+      }
+    }
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 435,
+    "compiledTwoArgumentCallCount": 402,
+    "uncompiledOtherShapeCount": 33,
+    "dialogueRegionCallCount": 6,
+    "areaCount": 61,
+    "modeCounts": {
+      "0": 110,
+      "1": 2,
+      "2": 16,
+      "4": 265,
+      "8": 3,
+      "9": 3,
+      "11": 3
+    },
+    "actorArgumentKindCounts": {
+      "constant": 260,
+      "frame-field": 138,
+      "scene-field": 4
+    }
+  },
+  "evidenceBoundary": [
+    "The dword remains an opaque actor field; no gameplay label is inferred.",
+    "The 33 authored zero-, three-, and four-argument routes remain unresolved.",
+    "An available actor's mode-eleven read fails closed if its initial dword is unknown and the result is consumed."
+  ]
+}

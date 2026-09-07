@@ -1,0 +1,106 @@
+{
+  "schema": "new-yokosuka-motion-resource-request-operation-evidence-v1",
+  "status": "exact-native-request-routing-and-full-ir-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 132,
+    "operationHex": "0x0084",
+    "argumentCount": 3,
+    "handlerAddress": "0x0c165fd2",
+    "verifiedRanges": {
+      "handlerTableEntry": {
+        "address": "0x0c29abf0",
+        "length": 4,
+        "sha256": "71e573567fb35edb1cf63d1b4b23ab29688cba202b654f4bd5955c9e1fedd667"
+      },
+      "handler": {
+        "address": "0x0c165fd2",
+        "length": 78,
+        "sha256": "099fc64c27f190e23d3451548c9d820d2a01d6c64dc1283d197462d1e719a97a"
+      },
+      "stringCompare": {
+        "address": "0x0c1dc710",
+        "length": 114,
+        "sha256": "7fb80bf6a25a2799896e5a0d773df768c4df79a69abcc2a82ca60b03ce11db2c"
+      },
+      "sceneRequestBuilder": {
+        "address": "0x0c10bb10",
+        "length": 70,
+        "sha256": "85083c7390855b7ba42798ae89be257591ec031e06df403cfb28bda47151ebd3"
+      },
+      "miscRequestBuilder": {
+        "address": "0x0c10bae2",
+        "length": 16,
+        "sha256": "f9bad6b3ccb4bf6835ddcc9ddad429981abcaf2077cb22378126a2aa0b9e1f1f"
+      },
+      "requestQueue": {
+        "address": "0x0c10ba8a",
+        "length": 88,
+        "sha256": "9c06668e249d9a49b5898f5411bb6dd94519e03394bc1473e797a8b7e97ee25e"
+      },
+      "resultWriter": {
+        "address": "0x0c0bb342",
+        "length": 6,
+        "sha256": "0e95a398fa69bff19b2b51bfecd66ebcbddc95a59adb8690eafbb32ad4cbb2c2"
+      }
+    },
+    "nativeContract": {
+      "handlerTableEntry": "0x0c165fd2",
+      "globalMotionObjectFilename": "M_MOBJ.BIN",
+      "stringCompare": "0x0c1dc710",
+      "globalMotionDoorFilename": "M_MDOR.BIN",
+      "miscDirectory": "misc",
+      "miscRequestBuilder": "0x0c10bae2",
+      "sceneRequestBuilder": "0x0c10bb10",
+      "resultWriter": "0x0c0bb342",
+      "sceneDirectoryFormat": "scene/%02d/%c%c%c%c",
+      "resourceTypeWord": "0x49544f4d",
+      "requestQueue": "0x0c0be5ee"
+    },
+    "provenBehavior": "Resolve argument two as a filename. M_MOBJ.BIN and M_MDOR.BIN are requested from misc; every other filename is requested from scene/%02d/%c%c%c%c using signed argument zero and the four little-endian bytes of argument one. Queue the request as MOTI and write its returned handle to the operation result."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 245,
+    "exactOperandCallCount": 245,
+    "unresolvedWrapperCallCount": 0,
+    "currentSceneResultCallCount": 134,
+    "dialogueRegionCallCount": 4,
+    "resultTargetCount": 53,
+    "argumentKindShapes": {
+      "constant,constant,static-pointer": 95,
+      "frame-field,constant,static-pointer": 12,
+      "operation-result,constant,static-pointer": 134,
+      "scene-field,constant,static-pointer": 4
+    },
+    "discCounts": {
+      "1": 79,
+      "2": 79,
+      "3": 87
+    },
+    "op00": {
+      "callFileOffsets": [
+        "0x15476",
+        "0x15492",
+        "0x154ca",
+        "0x154e6"
+      ],
+      "filenamePointers": [
+        "0x000223c3",
+        "0x000223cf",
+        "0x000223e5",
+        "0x000223f1"
+      ]
+    }
+  },
+  "evidenceBoundary": [
+    "The operation queues a MOTI resource request; it does not itself parse or play the returned motion data.",
+    "The two global filenames and all path routing are executable-backed and are not scene-specific policy.",
+    "The structural IR proves all 245 authored calls, including 134 generated wrappers that preserve the area and filename across current-scene query 0x019c and consume its exact operation result as the disc argument.",
+    "The request handle is an opaque native queue identity. A browser adapter must allocate its own stable handle rather than treating a filename as the result."
+  ]
+}

@@ -1,0 +1,206 @@
+{
+  "schema": "new-yokosuka-jomo-goro-telephone-vertical-slice-v2",
+  "evidenceBoundary": [
+    "This record describes only behavior directly recovered from Disc 1 JOMO MAPINFO and the aligned SA1093 subtitle/voice archive.",
+    "The JOMO room controller dispatches this scene as native command 39. It is an automatic incoming call, not a player-use route on TEL_.",
+    "Function 0x8aafc proves the upstream scene/disc and bank-2 predicates that select controller command 39.",
+    "Native TEL_ operation 0x00f1 modes 0 and 1 and their consumer prove the exact receiver-to-hand binding. Modes 11 and 12 retain exact low-level vector copies because their complete controller meaning is still unresolved."
+  ],
+  "sources": {
+    "mapinfo": {
+      "locator": "disc1/SCENE/01/JOMO/MAPINFO.BIN",
+      "sha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9"
+    },
+    "dialogueArchive": {
+      "locator": "disc3/SCENE/03/STREAM/SA1093.AFS",
+      "sha256": "970cf23cb0df835cf0c2cde35341847cd79ee60b3a23440c298613c708f47fdc",
+      "byteLength": 714752,
+      "exactVoiceAlignment": true
+    },
+    "derivedIr": ".disc-work/dialogue/native-event-ir.json",
+    "telmBindingEvidence": "tools/evidence/tagged-telm-control-operation-evidence.json"
+  },
+  "route": {
+    "roomController": "0x8bd7c",
+    "nativeCommand": 39,
+    "dispatchComparisonBlock": "0x8d170",
+    "dispatchCallOffset": "0x8d18a",
+    "sceneEntryFunction": "0x7c2a8",
+    "ringCoroutine": "0x7dd1c",
+    "telephoneObjectTag": "TEL_",
+    "telephoneModel": "S1_JOMO_TELS514G.MT5",
+    "triggerClassification": "automatic-incoming-call",
+    "upstreamEligibility": {
+      "function": "0x8aafc",
+      "requiredCurrentSceneDisc": 3,
+      "requiredBank2": [
+        {"index": 410, "comparison": "not-equal", "value": 0},
+        {"index": 420, "comparison": "equal", "value": 0}
+      ],
+      "armingLatch": {
+        "index": 415,
+        "behaviorWhenClear": "write one and return without selecting an event",
+        "behaviorWhenSet": "continue to command selection"
+      },
+      "selectedRoomCommand": 39,
+      "exactCommandWrites": ["0x8ac0c", "0x8ace8", "0x8ad94"],
+      "result": "The first eligible evaluation arms bank-2 index 415. A later eligible JOMO evaluation selects command 39."
+    }
+  },
+  "selection": {
+    "stateBank": 2,
+    "branches": [
+      {
+        "condition": {"index": 820, "equals": 0},
+        "function": "0x7c670",
+        "afterConversation": {"index": 820, "value": 1}
+      },
+      {
+        "condition": {"index": 820, "notEquals": 0, "andIndex": 821, "equals": 0},
+        "function": "0x7cdda",
+        "afterConversation": {"index": 821, "value": 1}
+      },
+      {
+        "condition": {"index": 820, "notEquals": 0, "andIndex": 821, "notEquals": 0},
+        "function": "0x7d45a"
+      }
+    ]
+  },
+  "sharedPhysicalSequence": {
+    "initialCamera": 3031,
+    "ringSoundCommand": "0x006505a9",
+    "answerHelper": {
+      "function": "0x7dada",
+      "delayByBranch": {"first": 123, "second": 145, "repeat": 145},
+      "soundCommand": "0x000006ab",
+      "actor": "AKIR",
+      "object": "TEL_",
+      "exactObjectOperations": [
+        {"suboperation": 0, "arguments": ["TEL_", "AKIR", 3]},
+        {"suboperation": 11, "thirdArgument": "frame-vector-at-12"},
+        {"suboperation": 12, "thirdArgument": "frame-vector-at-0"}
+      ]
+    },
+    "hangupHelper": {
+      "function": "0x7dc3c",
+      "delayByBranch": {"first": 904, "second": 850, "repeat": 850},
+      "soundCommand": "0x000106ab",
+      "actor": "AKIR",
+      "object": "TEL_",
+      "exactObjectOperations": [
+        {"suboperation": 1, "arguments": ["TEL_"]},
+        {"suboperation": 11, "thirdArgumentStaticPointer": "0x9a590"},
+        {"suboperation": 12, "thirdArgumentStaticPointer": "0x9a59c"}
+      ]
+    },
+    "receiverBinding": {
+      "telephoneRenderControl": 3,
+      "actor": "AKIR",
+      "selector": 3,
+      "actorRenderKey": -66,
+      "actorRuntimeMatrixIndex": 30,
+      "bodySide": "left",
+      "handCorrection": {
+        "translation": [0.02499999850988388, 0.07499999552965164, 0.0],
+        "rotationAxis": "z",
+        "rotationFixedTurnRaw": 16384,
+        "rotationDegrees": 90
+      },
+      "proof": "The TELM update consumer at 0x0c16bb8c resolves telephone control 3, routes selector 3 to AKIR render key -66/runtime matrix 30, composes the exact correction, and installs that matrix on the telephone control. Mode 1 clears the corresponding binding."
+    }
+  },
+  "conversations": [
+    {
+      "name": "first-missed-work-call",
+      "function": "0x7c670",
+      "playerMotion": 8254,
+      "cameraGroups": [
+        {"camera": 3032, "voices": ["SA1093A001", "SA1093B001", "SA1093A002"]},
+        {"camera": 3033, "voices": ["SA1093B002", "SA1093B003", "SA1093A003", "SA1093B004", "SA1093B005"]},
+        {"camera": 3034, "voices": ["SA1093B006", "SA1093A004", "SA1093B007"]}
+      ]
+    },
+    {
+      "name": "second-missed-work-call",
+      "function": "0x7cdda",
+      "playerMotion": 8255,
+      "cameraGroups": [
+        {"camera": 3035, "voices": ["SA1093A001", "SA1093B001", "SA1093A005"]},
+        {"camera": 3036, "voices": ["SA1093B008", "SA1093B009", "SA1093A006", "SA1093B006"]},
+        {"camera": 3037, "voices": ["SA1093A004", "SA1093B007"]}
+      ]
+    },
+    {
+      "name": "repeat-missed-work-call",
+      "function": "0x7d45a",
+      "playerMotion": 8255,
+      "cameraGroups": [
+        {"camera": 3035, "voices": ["SA1093A001", "SA1093B001", "SA1093A005"]},
+        {"camera": 3036, "voices": ["SA1093B008", "SA1093B011", "SA1093A007", "SA1093B010"]},
+        {"camera": 3037, "voices": ["SA1093A004", "SA1093B012"]}
+      ]
+    }
+  ],
+  "lines": {
+    "SA1093A001": {"speaker": "AKIR", "text": "Hello?"},
+    "SA1093A002": {"speaker": "AKIR", "text": "Yo."},
+    "SA1093A003": {"speaker": "AKIR", "text": "Sorry."},
+    "SA1093A004": {"speaker": "AKIR", "text": "Gotcha."},
+    "SA1093A005": {"speaker": "AKIR", "text": "Oh."},
+    "SA1093A006": {"speaker": "AKIR", "text": "Yeah."},
+    "SA1093A007": {"speaker": "AKIR", "text": "Sorry..."},
+    "SA1093B001": {"speaker": "GORO", "text": "Hey Bro! It's Goro."},
+    "SA1093B002": {"speaker": "GORO", "text": "Don't {yo} me!"},
+    "SA1093B003": {"speaker": "GORO", "text": "Where the hell were you\nyesterday?"},
+    "SA1093B004": {"speaker": "GORO", "text": "I lied to the foreman\nand covered for you."},
+    "SA1093B005": {"speaker": "GORO", "text": "But, you've got to come today."},
+    "SA1093B006": {"speaker": "GORO", "text": "12 noon at Warehouse No. 1."},
+    "SA1093B007": {"speaker": "GORO", "text": "See you then."},
+    "SA1093B008": {"speaker": "GORO", "text": "Don't {Oh} me!"},
+    "SA1093B009": {"speaker": "GORO", "text": "You're coming today, right Bro?"},
+    "SA1093B010": {"speaker": "GORO", "text": "12 noon, Warehouse No. 1."},
+    "SA1093B011": {"speaker": "GORO", "text": "Come on Bro! Get with it!"},
+    "SA1093B012": {"speaker": "GORO", "text": "You'd better be there!"}
+  },
+  "excludedNearbyScene": {
+    "function": "0x7dd94",
+    "archive": "SA1094",
+    "reason": "This is Fuku-san giving Ryo Iwao's photograph; pho1 is the photograph prop, not a telephone actor or object."
+  },
+  "implementation": {
+    "officialYarnDefinition": "server/internal/officialscript/telephone.go",
+    "databaseSlug": "original-jomo-goro-telephone",
+    "commandSchema": "new-yokosuka-commands-v5",
+    "nativeSourcesTable": "script_version_native_sources",
+    "automaticGateDisposition": "pass_trigger commits the proven bit-415 arming latch before any visible yield and continues lower-priority trigger selection",
+    "automaticDispatch": {
+      "browserRuntime": "play/scripts/ScriptAutomaticEventRuntime.js",
+      "serverOwner": "server/internal/realtime/script_events.go",
+      "lifecycle": "one authoritative automatic-candidate evaluation per room residency; leaving and later re-entering creates the later eligible JOMO evaluation proved by the room controller",
+      "nativeFallback": "only an explicit no-script/unavailable result delegates this residency to the native automatic runtime; a published candidate that declines still owns the dispatch"
+    },
+    "presentationSequences": [
+      "jomo.telephone.ring.sa1093",
+      "jomo.telephone.answer.sa1093.first",
+      "jomo.telephone.answer.sa1093.later",
+      "jomo.telephone.hangup.sa1093.first",
+      "jomo.telephone.hangup.sa1093.later"
+    ],
+    "babylonPresentation": {
+      "catalog": "play/scripts/ScriptEventPresentationCatalog.js",
+      "timelineRuntime": "play/scripts/TelephonePresentationRuntime.js",
+      "receiverAdapter": "play/scripts/TelephoneReceiverBabylonAdapter.js",
+      "ownershipAdapter": "play/scripts/ScriptEventBabylonAdapters.js",
+      "status": "executable-exact-bounded-adapter",
+      "cleanup": "The event transaction owns the player motion and telephone timeline; cancellation, failure, world replacement, disconnect, and rollback restore the receiver's original parent, local transform, and frozen-matrix state."
+    },
+    "serverIntegrationCoverage": [
+      "multi-source import idempotency and published-child immutability",
+      "arming pass followed by a lower-priority automatic candidate",
+      "first, second, and repeat camera/sequence order",
+      "first, second, and repeat voice-ID order",
+      "bit-820 and bit-821 transactional branch progression"
+    ],
+    "remainingBoundary": "The exact receiver binding required by this call is implemented. TELM modes 11 and 12 retain their recovered values but their complete controller interpretation remains unresolved and is not used as a guessed visual transform. Natural in-game observation is still required to compare the finished Babylon presentation with the original scene."
+  }
+}

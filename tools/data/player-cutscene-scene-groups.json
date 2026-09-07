@@ -1,0 +1,40 @@
+{
+  "schema": "new-yokosuka-player-cutscene-scene-groups-v1",
+  "evidenceBoundary": [
+    "Groups follow reviewed native owner and trigger routes; archive names alone do not define scenes.",
+    "A selector entry may expose one fragment or one variant and therefore is not counted as an independent owner scene by default.",
+    "Unresolved resource selections remain unclassified owner candidates and are never promoted to missing cinematics by inference."
+  ],
+  "selectedGroups": [
+    {"id":"opening-vision","label":"Opening Vision — Shenhua and the Hawk","classification":"complete-owner-scene","selectorIds":["S1-OP02-00"]},
+    {"id":"iwao-murder","label":"Introduction — Iwao's Murder","classification":"complete-owner-scene","selectorIds":["S1-000"]},
+    {"id":"drauth","label":"DRAUTH owner activity set","classification":"owner-bound-fragment-set","programIds":["disc1-d000-selector-18-0x84b60"],"resourceNames":["DRAUTH"],"selectorIds":["S1-DRAUTH-01","S1-DRAUTH-02"]},
+    {"id":"heartbeats-alley","label":"Heartbeats alley confrontation","classification":"ordered-fragment-set","programIds":["disc1-d000-entry-0x7abf4"],"resourceNames":["YQ14"],"selectorIds":["S1-YQ14-01","S1-YQ14-02"]},
+    {"id":"nozomi-waits","label":"Nozomi waits for Ryo","classification":"complete-activity-scene","programIds":["disc1-d000-entry-0x7abf4"],"resourceNames":["YBHN"],"selectorIds":["S1-YBHN-01"]},
+    {"id":"vending-encounters","label":"Vending-machine encounters","classification":"gameplay-variant-family","programIds":["disc1-d000-vending-owner-a-0x8c768","disc1-d000-vending-owner-b-0x8ce38"],"resourceNames":["DJHN"],"selectorIds":["S1-DJHN-01","S1-DJHN-02","S1-DJHN-03","S1-DJHN-04","S1-DJHN-05","S1-DJHN-06","S1-DJHN-07"]},
+    {"id":"yamagishi-conversations","label":"Yamagishi conversations","classification":"gameplay-variant-family","programIds":["disc1-d000-yamagishi-owner-0x5b904"],"resourceNames":["D0W0"],"selectorIds":["S1-D0W0-01","S1-D0W0-02","S1-D0W0-03","S1-D0W0-04","S1-D0W0-05","S1-D0W0-06","S1-D0W0-07","S1-D0W0-08","S1-D0W0-09","S1-D0W0-10","S1-D0W0-11","S1-D0W0-12"]},
+    {"id":"nozomi-tears","label":"Nozomi's dedicated-map scenes","classification":"ordered-fragment-set","programIds":["disc1-jd00-nozomi-tears-owner-0x5c958"],"resourceNames":["DNOZ"],"selectorIds":["S1-DNOZ-01","S1-DNOZ-02"],"discoverySceneIds":["dnoz-selector-0","dnoz-selector-1"],"includeResearchBindings":true,"ownerCompletionBlocker":"the selected canonical packs use exact loose DNOZ owner sources; the older JD00 archive-owner bindings remain research provenance"},
+    {"id":"nozomi-rescue","label":"Nozomi rescue","classification":"selected-composite-preview","programIds":["disc1-jd00-nozomi-rescue-owner-0x5b6f8"],"resourceNames":["EVSN"],"selectorIds":["S1-EVSN-01","S1-EVSN-02"]},
+    {"id":"kitten-care","label":"Yamanose kitten-care event","classification":"selected-composite-preview-owner-incomplete","programIds":["disc1-ju00-kitten-care-owner-0x27554"],"resourceNames":["CATA1"],"selectorIds":["S1-CATA1-01"],"includeResearchBindings":true,"ownerCompletionBlocker":"realtime interstitial and persistent CATM/BOX1 state replay"},
+    {"id":"fukusan-training","label":"Fuku-san move training","classification":"gameplay-variant-family","programIds":["disc1-jhd0-fukusan-move-training-0x464bc"],"resourceNames":["JHW0"],"selectorIds":["S1-JHW0-01","S1-JHW0-02","S1-JHW0-03","S1-JHW0-04","S1-JHW0-05","S1-JHW0-06","S1-JHW0-07","S1-JHW0-08"]},
+    {"id":"iwao-death-discussion","label":"Ryo and Fuku-san discuss Iwao's death","classification":"complete-owner-scene","programIds":["disc1-jhd0-fukusan-iwao-death-0x3aec8"],"selectorIds":["S1-MSKA-01"]},
+    {"id":"hazuki-conversations","label":"Hazuki grounds conversations","classification":"activity-variant-family","programIds":["disc1-jhd0-kakg-owner-0x3cfa0"],"resourceNames":["KAKG"],"selectorIds":["S1-KAKG-01","S1-KAKG-02"]},
+    {"id":"harbor-bus-transitions","label":"Harbor bus travel transitions","classification":"transition-variant-family","programIds":["disc1-d000-bus-travel-owner-0x6e1a0"],"resourceNames":["BUSS"],"selectorIds":["S1-BUSS-01","S1-BUSS-02","S1-BUSS-03","S1-BUSS-04"]},
+    {"id":"fukusan-letter","label":"Fuku-san's letter","classification":"selected-activity-preview-owner-incomplete","programIds":["disc1-jhd0-fukusan-letter-0x545f8"],"resourceNames":["TGMA"],"selectorIds":["S1-TGMA-01"],"includeResearchBindings":true,"ownerCompletionBlocker":"FUB native talk-pose evaluation"},
+    {"id":"young-ryo-memory","label":"Iwao and young Ryo memory","classification":"complete-owner-scene","programIds":["disc1-jhd0-iwao-young-ryo-memory-0x37d56"],"selectorIds":["S1-HIHY-01"]},
+    {"id":"shenhua-nightmare","label":"Shenhua nightmare","classification":"complete-owner-scene","programIds":["disc1-jomo-bebf-nightmare-owner-0x4bf5c"],"selectorIds":["S1-BEBF-01"]},
+    {"id":"sakura-training-memory","label":"Sakura training memory","classification":"complete-owner-scene","programIds":["disc1-yd01-sakura-training-owner-0x2678"],"selectorIds":["S1-SAKR-01"]},
+    {"id":"phoenix-mirror","label":"Ryo and Fuku-san discover the Phoenix mirror","classification":"complete-owner-scene","resourceNames":["HOUO"],"selectorIds":["S1-HOUO-01"],"discoverySceneIds":["houo-phoenix-mirror"]},
+    {"id":"shenhua-dream-visions","label":"Shenhua dream and vision activities","classification":"owner-trigger-variant-family","resourceNames":["KKYA","KKYB","KKYC","KKYD","KKYE","KKYF"],"selectorIds":["S1-KKYA-01","S1-KKYB-01","S1-KKYC-01","S1-KKYD-01","S1-KKYE-01","S1-KKYF-01"],"discoverySceneIds":["kkya-vision","kkyb-vision","kkyc-vision","kkyd-vision","kkye-vision","kkyf-vision"]},
+    {"id":"toki-asada-conversation","label":"Ryo and Asada at the Tomato store","classification":"complete-owner-scene","resourceNames":["TOKI"],"selectorIds":["S1-TOKI-01"],"discoverySceneIds":["toki-asada-conversation"]}
+  ],
+  "missingScenes": [],
+  "reviewedNonScenes": [
+    {"id":"phone-book","classification":"specialized-gameplay-timeline","programIds":["disc1-d000-phone-book-0x6a49c"],"resourceNames":["AUTH"],"reason":"The AUTH is owned by the phone-book control interaction, not a standalone cinematic."},
+    {"id":"kakg-resident-staging","classification":"resident-object-staging","programIds":["disc1-jhd0-kakg-owner-0x3cfa0"],"resourceNames":["KAKG"],"archiveMembers":["SEQDATK0.AUTH","SEQDATK1.AUTH"],"reason":"These slots stage KAWA for the two already-selected conversations and are not independent scenes."}
+  ],
+  "duplicateCandidates": [
+    {"candidateId":"d1:JHD0:installer:0x3e7ec","canonicalGroupId":"hazuki-conversations"},
+    {"candidateId":"d1:JHD0:installer:0x537d4","canonicalGroupId":"hazuki-conversations"}
+  ]
+}

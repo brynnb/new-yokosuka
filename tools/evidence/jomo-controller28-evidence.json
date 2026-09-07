@@ -1,0 +1,278 @@
+{
+  "schema": "new-yokosuka-jomo-controller28-evidence-v1",
+  "status": "exact-native-controller-configuration-boundary",
+  "generatedBy": "tools/worlds/extract_jomo_controller28_evidence.py",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "jomoMapinfo": "SCENE/01/JOMO/MAPINFO.BIN",
+    "jomoMapinfoSha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
+    "verifiedWindows": [
+      {
+        "name": "jomoSelectedRecordControllerSetup",
+        "source": "mapinfo",
+        "start": "0x00083780",
+        "endExclusive": "0x00083840",
+        "sha256": "8d89a47d783ef72e6d49fca3d834788e5c1eb9e514583879c0c103d2a6eaacf4"
+      },
+      {
+        "name": "jomoControllerParameterTables",
+        "source": "mapinfo",
+        "start": "0x0009c670",
+        "endExclusive": "0x0009c690",
+        "sha256": "32d181685389c249d2c5bb5522fbcb259235e8457b1e13199d9bf66154d751a3"
+      },
+      {
+        "name": "operation0066",
+        "source": "executable",
+        "start": "0x0c1644dc",
+        "endExclusive": "0x0c1645aa",
+        "sha256": "42141c546b1359e4430c5712b6a4c934865b50f49b0aca5341f6ce3923aef87b"
+      },
+      {
+        "name": "operation006a",
+        "source": "executable",
+        "start": "0x0c1645f6",
+        "endExclusive": "0x0c164606",
+        "sha256": "2c4a96c2ee28651f94c234d1de77adc0a209192f24b733c40e539efef8e3d7aa"
+      },
+      {
+        "name": "controllerInitializer",
+        "source": "executable",
+        "start": "0x0c0ec3b0",
+        "endExclusive": "0x0c0ec3e4",
+        "sha256": "f137f40bf2693e37698829e06d07137dcb1350f2173d5b48a68cf1127a11d97d"
+      },
+      {
+        "name": "controllerVectorSetter",
+        "source": "executable",
+        "start": "0x0c0eb1d0",
+        "endExclusive": "0x0c0eb292",
+        "sha256": "518835ed7d71c8abc7a40938f0edfdf284a811c63c7889f8c7270c13360fec8c"
+      }
+    ]
+  },
+  "selectedRecordSetup": {
+    "fileRange": [
+      "0x00083780",
+      "0x00083840"
+    ],
+    "controllerId": 28,
+    "calls": [
+      {
+        "callFileOffset": "0x83798",
+        "operationId": "0x006a",
+        "controllerId": 28,
+        "inputs": [
+          {
+            "argumentIndex": 1,
+            "kind": "runtime-address",
+            "selectedSetupFrameOffset": 32
+          },
+          {
+            "argumentIndex": 2,
+            "kind": "runtime-address",
+            "selectedSetupFrameOffset": 20
+          }
+        ]
+      },
+      {
+        "callFileOffset": "0x837b4",
+        "operationId": "0x0066",
+        "controllerId": 28,
+        "selector": 2,
+        "valueWord": "0x0009c670",
+        "valueKind": "pointer-to-four-float-table",
+        "tableFileOffset": "0x0009c670"
+      },
+      {
+        "callFileOffset": "0x837cc",
+        "operationId": "0x0066",
+        "controllerId": 28,
+        "selector": 4,
+        "valueWord": "0x3f59999a",
+        "valueKind": "float-bits",
+        "floatValue": 0.8500000238418579
+      },
+      {
+        "callFileOffset": "0x837e4",
+        "operationId": "0x0066",
+        "controllerId": 28,
+        "selector": 5,
+        "valueWord": "0x40e00000",
+        "valueKind": "float-bits",
+        "floatValue": 7.0
+      },
+      {
+        "callFileOffset": "0x83800",
+        "operationId": "0x0066",
+        "controllerId": 28,
+        "selector": 6,
+        "valueWord": "0x0009c680",
+        "valueKind": "pointer-to-four-float-table",
+        "tableFileOffset": "0x0009c680"
+      },
+      {
+        "callFileOffset": "0x83818",
+        "operationId": "0x0066",
+        "controllerId": 28,
+        "selector": 10,
+        "valueWord": "0x00001d4c",
+        "valueKind": "integer",
+        "integerValue": 7500
+      }
+    ],
+    "parameterTables": [
+      {
+        "fileOffset": "0x0009c670",
+        "usedBySelector": 2,
+        "words": [
+          "0x3f47ae14",
+          "0x3f51eb85",
+          "0x3f170a3d",
+          "0x3eeb851f"
+        ],
+        "floats": [
+          0.7799999713897705,
+          0.8199999928474426,
+          0.5899999737739563,
+          0.46000000834465027
+        ],
+        "classification": "four-float-controller-parameter-table"
+      },
+      {
+        "fileOffset": "0x0009c680",
+        "usedBySelector": 6,
+        "words": [
+          "0x3f63d70a",
+          "0x3f63d70a",
+          "0x3e051eb8",
+          "0x3ec7ae14"
+        ],
+        "floats": [
+          0.8899999856948853,
+          0.8899999856948853,
+          0.12999999523162842,
+          0.38999998569488525
+        ],
+        "classification": "four-float-controller-parameter-table"
+      }
+    ]
+  },
+  "engine": {
+    "operation0066": {
+      "handlerAddress": "0x0c1644dc",
+      "descriptorLayout": [
+        "word 0: controller ID",
+        "word 1: selector",
+        "word 2: value or value pointer"
+      ],
+      "selectorTargets": [
+        {
+          "selector": 0,
+          "targetAddress": "0x0c0eb0dc"
+        },
+        {
+          "selector": 1,
+          "targetAddress": "0x0c0eb1c8"
+        },
+        {
+          "selector": 2,
+          "targetAddress": "0x0c0eb1d0"
+        },
+        {
+          "selector": 3,
+          "targetAddress": "0x0c0eb390"
+        },
+        {
+          "selector": 4,
+          "targetAddress": "0x0c0eb398"
+        },
+        {
+          "selector": 5,
+          "targetAddress": "0x0c0eb4a8"
+        },
+        {
+          "selector": 6,
+          "targetAddress": "0x0c0eb5a6"
+        },
+        {
+          "selector": 7,
+          "targetAddress": "0x0c0eb63a"
+        },
+        {
+          "selector": 8,
+          "targetAddress": "0x0c0eb714"
+        },
+        {
+          "selector": 9,
+          "targetAddress": "0x0c0eb832"
+        },
+        {
+          "selector": 10,
+          "targetAddress": "0x0c0eb848"
+        },
+        {
+          "selector": 11,
+          "targetAddress": "0x0c0eb048"
+        }
+      ],
+      "selector2Semantics": {
+        "targetAddress": "0x0c0eb1d0",
+        "source": "four consecutive float words at supplied pointer",
+        "primaryControllerDestinationOffsets": [
+          "0x08",
+          "0x0c",
+          "0x10",
+          "0x14"
+        ],
+        "secondaryController": "same four values are mirrored"
+      }
+    },
+    "operation006a": {
+      "handlerAddress": "0x0c1645f6",
+      "forwardTargetAddress": "0x0c0ec3b0",
+      "forwardedArguments": [
+        "descriptor word 0 as r4",
+        "descriptor word 1 as r5",
+        "descriptor word 2 as r6"
+      ]
+    },
+    "controllerInitializer": {
+      "address": "0x0c0ec3b0",
+      "steps": [
+        {
+          "action": "initialize-controller",
+          "targetAddress": "0x0c0eb988"
+        },
+        {
+          "action": "set-selector-0",
+          "value": 4,
+          "targetAddress": "0x0c0eb0dc"
+        },
+        {
+          "action": "set-selector-7",
+          "source": "operation argument 1",
+          "targetAddress": "0x0c0eb63a"
+        },
+        {
+          "action": "set-selector-8",
+          "source": "operation argument 2",
+          "targetAddress": "0x0c0eb714"
+        },
+        {
+          "action": "activate-controller",
+          "value": 1,
+          "targetAddress": "0x0c0eaf8e"
+        }
+      ]
+    }
+  },
+  "motionBoundary": {
+    "correction": "Neither 0x0009c670 nor 0x0009c680 is a string pointer. Both point to four-float controller parameter tables.",
+    "proven": "The selected JOMO record configures and activates controller 28 with runtime addresses, two four-float tables, scalar parameters, and integer 7500.",
+    "unresolved": "These calls do not identify Ryo's selected interaction motion or establish a motion-owned audio cue.",
+    "policy": "do-not-infer-motion-or-audio-from-debug-strings"
+  }
+}

@@ -1,1272 +1,644 @@
 <!doctype html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/gif" href="/favicon.gif" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>New Yokosuka - Shenmue Asset Viewer</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      overflow-x: hidden;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-      overflow-x: hidden;
-      background-color: #0d0d12;
-      font-family:
-        "Inter",
-        system-ui,
-        -apple-system,
-        sans-serif;
-      color: white;
-      display: flex;
-    }
-
-    #renderCanvas {
-      width: 100%;
-      height: 100%;
-      touch-action: none;
-      display: block;
-      outline: none;
-    }
-
-    #sidebar {
-      width: 375px;
-      min-width: 375px;
-      flex-shrink: 0;
-      height: 100vh;
-      background: #16161d;
-      border-right: 1px solid rgba(255, 255, 255, 0.1);
-      display: flex;
-      flex-direction: column;
-      z-index: 10;
-    }
-
-    #sidebar-header {
-      padding: 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    h1 {
-      margin: 0 0 5px 0;
-      font-size: 1.1rem;
-      font-weight: 600;
-      background: linear-gradient(90deg, #ff8a00, #e52e71);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .subtitle {
-      font-size: 0.75rem;
-      opacity: 0.5;
-      margin-bottom: 0;
-      margin-top: 0;
-    }
-
-    #model-list {
-      flex-grow: 1;
-      overflow-y: auto;
-      min-height: 0;
-      padding: 10px;
-      list-style: none;
-      margin: 0;
-    }
-
-    #model-list::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    #model-list::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 3px;
-    }
-
-    .model-row {
-      display: flex;
-      gap: 5px;
-      margin-bottom: 5px;
-      padding: 0;
-    }
-
-    .model-item {
-      flex-grow: 1;
-      padding: 8px 12px;
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.8rem;
-      transition: all 0.2s;
-      border: 1px solid transparent;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .model-item:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.1);
-    }
-
-    .model-item.active {
-      background: rgba(255, 138, 0, 0.15);
-      border-color: #ff8a00;
-      color: #ff8a00;
-    }
-
-    .scene-btn {
-      padding: 0 10px;
-      background: #e52e71;
-      border: none;
-      border-radius: 6px;
-      color: white;
-      font-size: 0.7rem;
-      font-weight: 600;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.2s;
-    }
-
-    .scene-btn:hover {
-      background: #ff2e81;
-      transform: translateY(-1px);
-    }
-
-    .scene-btn:active {
-      transform: translateY(0);
-    }
-
-    .nav-controls {
-      display: flex;
-      gap: 5px;
-    }
-
-    .nav-btn {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: white;
-      border-radius: 4px;
-      width: 32px;
-      height: 32px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      transition: all 0.2s;
-    }
-
-    .nav-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-
-    .nav-btn:active {
-      transform: scale(0.95);
-    }
-
-    #status-bar {
-      padding: 12px 20px;
-      font-size: 0.75rem;
-      background: #0d0d12;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      color: #888;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: all 0.3s ease;
-    }
-
-    #status-bar.loading {
-      background: #1a1a24;
-      color: #ff8a00;
-    }
-
-    .spinner {
-      width: 14px;
-      height: 14px;
-      border: 2px solid rgba(255, 138, 0, 0.2);
-      border-top: 2px solid #ff8a00;
-      border-radius: 50%;
-      display: none;
-      animation: spin 0.8s linear infinite;
-    }
-
-    #status-bar.loading .spinner {
-      display: block;
-    }
-
-    @keyframes spin {
-      0% {
-        transform: rotate(0deg);
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="New Yokosuka is an unofficial, fan-made Shenmue MMO experience playable entirely in your browser."
+    />
+    <link rel="icon" type="image/gif" href="/favicon.gif" />
+    <link rel="stylesheet" href="/src/fonts.css" />
+    <title>New Yokosuka — A Shenmue MMO Experience</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #132d32;
+        --muted: #5f7476;
+        --paper: #f4f0e6;
+        --paper-bright: #fcfaf4;
+        --teal: #168da0;
+        --teal-dark: #086273;
+        --red: #bd4136;
+        --line: rgba(19, 45, 50, 0.17);
+        font-family: var(--ny-font-family);
       }
 
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    .spinner-large {
-      position: absolute;
-      bottom: 30px;
-      right: 30px;
-      width: 80px;
-      height: 80px;
-      border: 6px solid rgba(255, 138, 0, 0.1);
-      border-top: 6px solid #ff8a00;
-      border-radius: 50%;
-      display: none;
-      animation: spin 1s linear infinite;
-      z-index: 100;
-      filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.5));
-    }
-
-    .loading-active .spinner-large {
-      display: block;
-    }
-
-    /* Model Grouping Styles */
-    .model-group {
-      margin-bottom: 5px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .group-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px 12px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #ccc;
-      transition: all 0.2s;
-    }
-
-    .group-header:hover {
-      background: rgba(255, 255, 255, 0.1);
-      color: white;
-    }
-
-    .group-header::before {
-      content: "▸";
-      margin-right: 8px;
-      transition: transform 0.2s;
-      display: inline-block;
-      font-size: 0.7rem;
-    }
-
-    .group-header.expanded::before {
-      transform: rotate(90deg);
-    }
-
-    .group-header.expanded {
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-      color: #ff8a00;
-      background: rgba(255, 138, 0, 0.05);
-    }
-
-    .group-header span {
-      flex-grow: 1;
-    }
-
-    .group-items {
-      list-style: none;
-      padding: 0 0 0 15px;
-      margin: 0;
-      background: rgba(0, 0, 0, 0.2);
-      border-bottom-left-radius: 6px;
-      border-bottom-right-radius: 6px;
-    }
-
-    .group-items .model-item {
-      background: transparent;
-      border-radius: 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-      padding: 6px 10px;
-      font-size: 0.75rem;
-    }
-
-    .group-items .model-item:hover {
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    /* Category Grouping Styles */
-    .category-group {
-      margin-bottom: 15px;
-    }
-
-    .category-header {
-      padding: 10px;
-      background: #1d1d26;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 0.9rem;
-      color: #ff8a00;
-      display: flex;
-      align-items: center;
-      margin-bottom: 5px;
-      border-left: 3px solid #ff8a00;
-    }
-
-    .category-header:hover {
-      background: #252530;
-    }
-
-    .category-header::before {
-      content: "▸";
-      margin-right: 10px;
-      transition: transform 0.2s;
-      display: inline-block;
-    }
-
-    .category-header.expanded::before {
-      transform: rotate(90deg);
-    }
-
-    .category-header.expanded {
-      background: #2d2d3a;
-    }
-
-    .category-content {
-      padding-left: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    /* Controls Overlay */
-    #controls-overlay {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 15px;
-      padding: 10px 20px;
-      background: rgba(22, 22, 29, 0.7);
-      backdrop-filter: blur(10px);
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-      z-index: 100;
-      pointer-events: none;
-      transition: opacity 0.3s;
-    }
-
-    .control-hint {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.8);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .control-hint kbd {
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 4px;
-      padding: 2px 6px;
-      min-width: 14px;
-      text-align: center;
-      color: #ff8a00;
-      font-family: inherit;
-      border-bottom: 2px solid rgba(0, 0, 0, 0.3);
-      font-size: 0.7rem;
-    }
-
-    .control-hint span {
-      opacity: 0.6;
-    }
-
-    /* Modal Styles */
-    #welcome-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(8px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      transition: opacity 0.4s ease;
-      overflow-y: auto;
-      overflow-x: hidden;
-      padding: 40px 0;
-    }
-
-    #welcome-modal.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    #mobile-warning-modal,
-    #firefox-warning-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(8px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1001;
-      transition: opacity 0.4s ease;
-    }
-
-    #mobile-warning-modal.hidden,
-    #firefox-warning-modal.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    #mobile-warning-modal .modal-body,
-    #firefox-warning-modal .modal-body {
-      width: 100%;
-    }
-
-    .modal-content {
-      background: #16161d;
-      width: 95%;
-      max-width: 1000px;
-      max-height: 90vh;
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      overflow-y: auto;
-      position: relative;
-      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
-      display: flex;
-      flex-direction: column;
-      animation: modalSlide 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .modal-main {
-      display: flex;
-      flex-direction: row;
-    }
-
-    @keyframes modalSlide {
-      from {
-        transform: translateY(20px);
-        opacity: 0;
+      * {
+        box-sizing: border-box;
       }
 
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    .modal-image-container {
-      width: 45%;
-      background: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-top-left-radius: 20px;
-      overflow: hidden;
-    }
-
-    .modal-image {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-
-    .modal-body {
-      width: 55%;
-      padding: 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    @media (max-width: 850px) {
-      #welcome-modal {
-        align-items: flex-start;
-        padding: 20px 0;
+      :is(
+        a[href],
+        button,
+        select,
+        summary,
+        input[type="button"],
+        input[type="submit"],
+        input[type="reset"],
+        input[type="checkbox"],
+        input[type="radio"],
+        input[type="range"],
+        label:has(input[type="checkbox"], input[type="radio"], input[type="range"]),
+        [role="button"],
+        [role="checkbox"],
+        [role="radio"],
+        [role="slider"],
+        [role="switch"],
+        [role="tab"],
+        [role="menuitem"],
+        [role="option"]
+      ):not(:disabled, [aria-disabled="true"]) {
+        cursor: pointer !important;
       }
 
-      .modal-content {
-        max-height: none;
-        width: 100%;
-        max-width: 100%;
-        border-radius: 0;
+      :is(
+        button,
+        select,
+        input,
+        [role="button"],
+        [role="checkbox"],
+        [role="radio"],
+        [role="slider"],
+        [role="switch"],
+        [role="tab"],
+        [role="menuitem"],
+        [role="option"]
+      ):is(:disabled, [aria-disabled="true"]) {
+        cursor: not-allowed !important;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-width: 320px;
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 12% 16%, rgba(22, 141, 160, 0.09), transparent 27rem),
+          linear-gradient(135deg, rgba(255, 255, 255, 0.42), transparent 45%),
+          var(--paper);
+      }
+
+      body::before {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        content: "";
+        opacity: 0.28;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
         overflow: hidden;
-        flex-shrink: 0;
-        margin-bottom: 0;
-        border: none;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
       }
 
-      .modal-main {
-        flex-direction: column;
+      .shell {
+        width: min(1180px, calc(100% - 48px));
+        margin: 0 auto;
       }
 
-      .modal-image-container {
+      main {
+        display: grid;
+        grid-template-columns: minmax(320px, 0.85fr) minmax(0, 1.15fr);
+        align-items: center;
+        gap: clamp(48px, 7vw, 104px);
+        min-height: calc(100vh - 90px);
+        padding: 72px 0;
+      }
+
+      .intro {
+        max-width: 660px;
+        margin: 0;
+        color: var(--muted);
+        font-size: clamp(1rem, 1.35vw, 1.16rem);
+        line-height: 1.72;
+      }
+
+      .intro strong {
+        color: var(--ink);
+        font-weight: 750;
+      }
+
+      .project-description {
+        display: grid;
+        gap: 18px;
+        max-width: 660px;
+        margin-top: 24px;
+        padding-top: 24px;
+        border-top: 1px solid var(--line);
+      }
+
+      .project-description p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.72;
+      }
+
+      .project-description a {
+        color: var(--teal-dark);
+        font-weight: inherit;
+        text-underline-offset: 3px;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 34px;
+      }
+
+      .browser-note {
+        margin: 10px 0 0;
+        color: #91a0a1;
+        font-size: 0.72rem;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 52px;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 0 22px;
+        border: 1px solid var(--ink);
+        color: var(--paper-bright);
+        background: var(--ink);
+        font: inherit;
+        font-size: 0.82rem;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-decoration: none;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition:
+          transform 160ms ease,
+          box-shadow 160ms ease,
+          background 160ms ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 9px 22px rgba(19, 45, 50, 0.17);
+      }
+
+      .button:not(.secondary):hover {
+        background: var(--teal-dark);
+        border-color: var(--teal-dark);
+      }
+
+      .button svg {
+        width: 16px;
+        height: 16px;
+        fill: none;
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.8;
+      }
+
+      .button svg.discord-icon {
+        fill: currentColor;
+        stroke: none;
+      }
+
+      .button.secondary {
+        color: var(--ink);
+        background: transparent;
+      }
+
+      .button.secondary:hover {
+        color: var(--paper-bright);
+        background: var(--teal-dark);
+        border-color: var(--teal-dark);
+      }
+
+      .button:disabled {
+        cursor: default;
+      }
+
+      .button:disabled:hover {
+        box-shadow: none;
+        transform: none;
+      }
+
+      .project-card {
+        position: relative;
+        isolation: isolate;
+        width: min(100%, 480px);
+        padding: clamp(18px, 3vw, 30px);
+        background: #f7f5f0;
+        box-shadow: 0 35px 80px rgba(30, 58, 60, 0.15);
+        transform: rotate(1.5deg);
+      }
+
+      .project-card::before,
+      .project-card::after {
+        position: absolute;
+        z-index: 1;
+        width: 74px;
+        height: 25px;
+        content: "";
+        background: rgba(200, 186, 144, 0.55);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+      }
+
+      .project-card::before {
+        top: 13px;
+        left: -26px;
+        transform: rotate(-43deg);
+      }
+
+      .project-card::after {
+        right: -24px;
+        bottom: 17px;
+        transform: rotate(-38deg);
+      }
+
+      .project-card img {
+        position: relative;
+        z-index: 0;
+        display: block;
         width: 100%;
-        height: 200px;
-        border-top-right-radius: 20px;
+        height: auto;
+        aspect-ratio: 1;
+        object-fit: contain;
+        filter: contrast(0.96) saturate(0.86);
       }
 
-      .modal-image {
-        width: 100%;
-        height: 100%;
+      .card-caption {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 14px;
+        padding-top: 12px;
+        color: var(--muted);
+        border-top: 1px solid var(--line);
+        font-size: 0.66rem;
+        font-weight: 800;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
       }
 
-      .modal-body {
-        width: 100%;
-        padding: 30px;
-      }
-    }
-
-    .modal-body h2 {
-      margin-top: 0;
-      font-size: 1.5rem;
-      background: linear-gradient(90deg, #ff8a00, #e52e71);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .modal-body p {
-      line-height: 1.6;
-      font-size: 0.95rem;
-      color: #ccc;
-      margin-bottom: 20px;
-    }
-
-    .modal-body a {
-      color: #ff8a00;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .modal-body a:hover {
-      color: #e52e71;
-      text-decoration: underline;
-    }
-
-    .modal-footer {
-      padding: 20px 30px;
-      background: rgba(0, 0, 0, 0.2);
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      font-size: 0.75rem;
-      color: #666;
-      line-height: 1.4;
-    }
-
-    .close-modal-btn {
-      margin-top: 10px;
-      padding: 12px 24px;
-      background: linear-gradient(90deg, #ff8a00, #e52e71);
-      border: none;
-      border-radius: 8px;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-      width: 100%;
-      transition:
-        transform 0.2s,
-        filter 0.2s;
-    }
-
-    .close-modal-btn:hover {
-      filter: brightness(1.1);
-      transform: translateY(-1px);
-    }
-
-    .github-link {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      font-weight: 600;
-    }
-
-    /* Lighting Debug Panel */
-    #lighting-panel {
-      position: absolute;
-      top: 50px;
-      right: 12px;
-      width: 280px;
-      max-height: calc(100vh - 70px);
-      overflow-y: auto;
-      background: rgba(22, 22, 29, 0.92);
-      backdrop-filter: blur(12px);
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-      z-index: 150;
-      font-size: 0.72rem;
-      color: #ccc;
-      transition: opacity 0.2s;
-    }
-
-    #lighting-panel.hidden {
-      display: none;
-    }
-
-    #lighting-panel::-webkit-scrollbar {
-      width: 4px;
-    }
-
-    #lighting-panel::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 2px;
-    }
-
-    .lp-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      position: sticky;
-      top: 0;
-      background: rgba(22, 22, 29, 0.98);
-      border-radius: 12px 12px 0 0;
-      z-index: 1;
-    }
-
-    .lp-header h3 {
-      margin: 0;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #ff8a00;
-    }
-
-    .lp-header button {
-      background: none;
-      border: none;
-      color: #888;
-      cursor: pointer;
-      font-size: 1rem;
-      padding: 0 4px;
-    }
-
-    .lp-header button:hover {
-      color: white;
-    }
-
-    .lp-section {
-      padding: 10px 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .lp-section h4 {
-      margin: 0 0 8px 0;
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: #aaa;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .lp-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 6px;
-    }
-
-    .lp-row label {
-      width: 70px;
-      flex-shrink: 0;
-      font-size: 0.68rem;
-      color: #999;
-    }
-
-    .lp-row input[type="range"] {
-      flex: 1;
-      height: 4px;
-      -webkit-appearance: none;
-      appearance: none;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 2px;
-      outline: none;
-    }
-
-    .lp-row input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: #ff8a00;
-      cursor: pointer;
-    }
-
-    .lp-row input[type="color"] {
-      width: 28px;
-      height: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 4px;
-      background: none;
-      cursor: pointer;
-      padding: 0;
-    }
-
-    .lp-row .lp-value {
-      width: 36px;
-      text-align: right;
-      font-size: 0.65rem;
-      color: #ff8a00;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .lp-copy-btn {
-      width: 100%;
-      padding: 8px;
-      margin: 10px 0;
-      background: linear-gradient(90deg, #ff8a00, #e52e71);
-      border: none;
-      border-radius: 6px;
-      color: white;
-      font-size: 0.72rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: filter 0.2s;
-    }
-
-    .lp-copy-btn:hover {
-      filter: brightness(1.1);
-    }
-
-    .lp-actions {
-      padding: 6px 14px 14px;
-    }
-
-    #lighting-toggle-btn {
-      position: absolute;
-      top: 12px;
-      right: 200px;
-      z-index: 100;
-      padding: 8px 14px;
-      background: rgba(22, 22, 29, 0.8);
-      backdrop-filter: blur(10px);
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: white;
-      font-size: 0.75rem;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      transition: all 0.2s;
-    }
-
-    #lighting-toggle-btn:hover {
-      background: rgba(45, 45, 60, 0.9);
-      border-color: #ff8a00;
-    }
-
-    #select-model-prompt {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      color: rgba(255, 255, 255, 0.5);
-      font-size: 1.2rem;
-      font-weight: 500;
-      pointer-events: none;
-      z-index: 50;
-    }
-
-    #select-model-prompt.hidden {
-      display: none;
-    }
-
-    /* Floating Export Button */
-    #export-fab {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      padding: 10px 20px;
-      background: rgba(22, 22, 29, 0.8);
-      backdrop-filter: blur(10px);
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: white;
-      font-size: 0.8rem;
-      font-weight: 600;
-      cursor: pointer;
-      z-index: 150;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.2s;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-
-    #export-fab:hover {
-      background: rgba(45, 45, 60, 0.9);
-      transform: translateY(-2px);
-      border-color: #ff8a00;
-    }
-
-    #export-options-modal {
-      position: absolute;
-      bottom: 70px;
-      left: 20px;
-      background: rgba(22, 22, 29, 0.95);
-      backdrop-filter: blur(15px);
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 15px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      z-index: 200;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-      min-width: 220px;
-      animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    @keyframes modalSlideUp {
-      from {
-        transform: translateY(10px);
-        opacity: 0;
+      footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 24px;
+        min-height: 90px;
+        color: var(--muted);
+        border-top: 1px solid var(--line);
+        font-size: 0.74rem;
       }
 
-      to {
-        transform: translateY(0);
-        opacity: 1;
+      footer p {
+        margin: 0;
       }
-    }
 
-    .export-option-btn {
-      padding: 10px 15px;
-      border-radius: 8px;
-      border: none;
-      color: white;
-      font-size: 0.8rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: all 0.2s;
-    }
+      footer p:last-child {
+        text-align: right;
+      }
 
-    .export-option-btn.glb {
-      background: linear-gradient(90deg, #ff8a00, #e52d27);
-    }
+      footer a {
+        color: var(--ink);
+        font-weight: 800;
+        text-underline-offset: 4px;
+      }
 
-    .export-option-btn.obj {
-      background: linear-gradient(90deg, #2193b0, #6dd5ed);
-    }
+      .credits-trigger {
+        display: inline-block;
+        margin-top: 8px;
+        padding: 0;
+        color: var(--ink);
+        background: none;
+        border: 0;
+        font: inherit;
+        font-weight: 800;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        cursor: pointer;
+      }
 
-    .export-option-btn.mtl {
-      background: linear-gradient(90deg, #7b1fa2, #9c27b0);
-    }
+      .credits-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: grid;
+        padding: 24px;
+        place-items: center;
+        background: rgba(19, 45, 50, 0.66);
+        backdrop-filter: blur(6px);
+      }
 
-    .export-option-btn.stl {
-      background: linear-gradient(90deg, #373331, #4b4453);
-    }
+      .credits-modal[hidden] {
+        display: none;
+      }
 
-    .export-option-btn.usdz {
-      background: linear-gradient(90deg, #ee0979, #ff6a00);
-    }
+      .credits-dialog {
+        position: relative;
+        width: min(100%, 580px);
+        max-height: min(720px, calc(100vh - 48px));
+        padding: clamp(28px, 5vw, 46px);
+        overflow: auto;
+        background: var(--paper-bright);
+        border: 1px solid var(--line);
+        box-shadow: 0 30px 80px rgba(7, 27, 30, 0.3);
+      }
 
-    .export-option-btn.babylon {
-      background: linear-gradient(90deg, #00b09b, #96c93d);
-    }
+      .credits-dialog h2 {
+        margin: 0;
+        font-size: clamp(1.45rem, 4vw, 2rem);
+      }
 
-    .export-option-btn:hover {
-      filter: brightness(1.1);
-      transform: translateX(5px);
-    }
-  </style>
-</head>
+      .credits-dialog > p {
+        margin: 12px 0 0;
+        color: var(--muted);
+        line-height: 1.6;
+      }
 
-<body>
-  <div id="sidebar">
-    <div id="sidebar-header">
-      <div style="
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-          ">
-        <h1>Shenmue Asset Viewer</h1>
-        <div class="nav-controls">
-          <button class="nav-btn" id="prev-btn" title="Previous (Up Arrow)">
-            ↑
-          </button>
-          <button class="nav-btn" id="next-btn" title="Next (Down Arrow)">
-            ↓
-          </button>
-        </div>
-      </div>
-      <p class="subtitle">Extracted .MT5 Models</p>
-      <div style="display: flex; gap: 5px; margin-top: 10px">
-        <button class="scene-btn" id="sky-btn" style="flex-grow: 1; height: 32px; background: #444">
-          Time: Day
-        </button>
-        <button class="scene-btn hidden" id="season-btn" style="flex-grow: 1; height: 32px; background: #2a6e2a">
-          Season: Summer
-        </button>
-      </div>
-    </div>
-    <ul id="model-list">
-      <!-- Models will be loaded here -->
-    </ul>
-    <div id="status-bar">
-      <div class="spinner"></div>
-      <div>Status: <span id="status">Reading catalog...</span></div>
-    </div>
-  </div>
-  <div id="canvas-container" style="flex: 1; position: relative">
-    <canvas id="renderCanvas"></canvas>
-    <a href="https://discord.gg/vH4GPChWKY" target="_blank" rel="noopener noreferrer" id="discord-btn" style="
-          position: absolute;
-          top: 12px;
-          right: 12px;
-          z-index: 100;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          padding: 8px 14px;
-          background: #5865F2;
-          color: white;
-          text-decoration: none;
-          border-radius: 8px;
-          font-size: 0.8rem;
-          font-weight: 600;
-          letter-spacing: 0.02em;
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-          transition: all 0.2s;
-        "
-      onmouseover="this.style.background='#4752C4'; this.style.transform='translateY(-1px)'; this.style.boxShadow='0 6px 16px rgba(0,0,0,0.4)'"
-      onmouseout="this.style.background='#5865F2'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.3)'">
-      <svg width="20" height="15" viewBox="0 0 127.14 96.36" fill="white" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z" />
-      </svg>
-      Join the Discord!
-    </a>
-    <button id="lighting-toggle-btn">Lighting</button>
-    <div id="lighting-panel" class="hidden">
-      <div class="lp-header">
-        <h3>Lighting Controls</h3>
-        <button id="lp-close">&times;</button>
-      </div>
+      .credits-list {
+        display: grid;
+        gap: 18px;
+        margin: 28px 0;
+        padding: 0;
+        list-style: none;
+      }
 
-      <div class="lp-section">
-        <h4>Scene</h4>
-        <div class="lp-row">
-          <label>Ambient</label>
-          <input type="color" id="lp-ambient-color" value="#4d4d4d">
-        </div>
-        <div class="lp-row">
-          <label>Amb. Intensity</label>
-          <input type="range" id="lp-ambient-intensity" min="0" max="2" step="0.05" value="1">
-          <span class="lp-value" id="lp-ambient-intensity-val">1.00</span>
-        </div>
-      </div>
+      .credits-list li {
+        padding-top: 18px;
+        color: var(--muted);
+        border-top: 1px solid var(--line);
+        line-height: 1.55;
+      }
 
-      <div class="lp-section">
-        <h4>Hemispheric Light</h4>
-        <div class="lp-row">
-          <label>Intensity</label>
-          <input type="range" id="lp-hemi-intensity" min="0" max="3" step="0.05" value="1.2">
-          <span class="lp-value" id="lp-hemi-intensity-val">1.20</span>
-        </div>
-        <div class="lp-row">
-          <label>Sky Color</label>
-          <input type="color" id="lp-hemi-diffuse" value="#ffffff">
-        </div>
-        <div class="lp-row">
-          <label>Ground Color</label>
-          <input type="color" id="lp-hemi-ground" value="#1a1a26">
-        </div>
-        <div class="lp-row">
-          <label>Dir Y</label>
-          <input type="range" id="lp-hemi-dir-y" min="-1" max="1" step="0.1" value="1">
-          <span class="lp-value" id="lp-hemi-dir-y-val">1.0</span>
-        </div>
-      </div>
+      .credits-list a {
+        color: var(--ink);
+        font-weight: 800;
+        text-underline-offset: 4px;
+      }
 
-      <div class="lp-section">
-        <h4>Sun (Top-Down)</h4>
-        <div class="lp-row">
-          <label>Intensity</label>
-          <input type="range" id="lp-sky-intensity" min="0" max="3" step="0.05" value="1.5">
-          <span class="lp-value" id="lp-sky-intensity-val">1.50</span>
-        </div>
-        <div class="lp-row">
-          <label>Color</label>
-          <input type="color" id="lp-sky-color" value="#ffffff">
-        </div>
-      </div>
+      .credits-close {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        color: var(--ink);
+        background: transparent;
+        border: 1px solid var(--line);
+        font: inherit;
+        font-size: 1.2rem;
+        cursor: pointer;
+      }
 
-      <div class="lp-section">
-        <h4>Directional Light</h4>
-        <div class="lp-row">
-          <label>Intensity</label>
-          <input type="range" id="lp-dir-intensity" min="0" max="3" step="0.05" value="1.0">
-          <span class="lp-value" id="lp-dir-intensity-val">1.00</span>
-        </div>
-        <div class="lp-row">
-          <label>Color</label>
-          <input type="color" id="lp-dir-color" value="#ffffff">
-        </div>
-        <div class="lp-row">
-          <label>Dir X</label>
-          <input type="range" id="lp-dir-x" min="-3" max="3" step="0.1" value="-1">
-          <span class="lp-value" id="lp-dir-x-val">-1.0</span>
-        </div>
-        <div class="lp-row">
-          <label>Dir Y</label>
-          <input type="range" id="lp-dir-y" min="-3" max="3" step="0.1" value="-2">
-          <span class="lp-value" id="lp-dir-y-val">-2.0</span>
-        </div>
-        <div class="lp-row">
-          <label>Dir Z</label>
-          <input type="range" id="lp-dir-z" min="-3" max="3" step="0.1" value="-1">
-          <span class="lp-value" id="lp-dir-z-val">-1.0</span>
-        </div>
-      </div>
+      .credits-close:hover {
+        color: var(--paper-bright);
+        background: var(--ink);
+      }
 
-      <div class="lp-section">
-        <h4>Fill Light (Point)</h4>
-        <div class="lp-row">
-          <label>Intensity</label>
-          <input type="range" id="lp-fill-intensity" min="0" max="3" step="0.05" value="0.8">
-          <span class="lp-value" id="lp-fill-intensity-val">0.80</span>
-        </div>
-        <div class="lp-row">
-          <label>Color</label>
-          <input type="color" id="lp-fill-color" value="#ffffff">
-        </div>
-      </div>
+      body.credits-open {
+        overflow: hidden;
+      }
 
-      <div class="lp-section">
-        <h4>Material (Global)</h4>
-        <div class="lp-row">
-          <label>Emissive</label>
-          <input type="color" id="lp-emissive-color" value="#141414">
-        </div>
-      </div>
+      @media (max-width: 840px) {
+        .shell {
+          width: min(100% - 32px, 680px);
+        }
 
-      <div class="lp-actions">
-        <button class="lp-copy-btn" id="lp-copy-values">Copy Values to Clipboard</button>
-      </div>
-    </div>
-    <div id="select-model-prompt">
-      <p style="font-size: 2rem; margin-bottom: 10px">📁</p>
-      <p>Select a model from the sidebar to view</p>
-    </div>
-    <div id="pointer-hint" style="
-          position: absolute;
-          bottom: 20px;
-          left: 50%;
-          transform: translateX(-50%);
-          padding: 10px 20px;
-          background: rgba(22, 22, 29, 0.7);
-          backdrop-filter: blur(10px);
-          border-radius: 12px;
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-          color: #ff8a00;
-          font-size: 0.75rem;
-          font-weight: 600;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          pointer-events: none;
-          transition: all 0.3s;
-          z-index: 100;
-        ">
-      Click inside renderer to control view
-    </div>
-    <div class="spinner-large"></div>
-    <div id="controls-overlay" class="hidden">
-      <div class="control-hint">
-        <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> <span>MOVE</span>
-      </div>
-      <div class="control-hint"><kbd>SPACE</kbd> <span>UP</span></div>
-      <div class="control-hint"><kbd>C</kbd> <span>DOWN</span></div>
-      <div class="control-hint"><kbd>Q</kbd> <span>SLOW</span></div>
-      <div class="control-hint"><kbd>E</kbd> <span>FAST</span></div>
-      <div class="control-hint" id="speed-display" style="color: #ff8a00; font-weight: bold">
-        1.0x
-      </div>
-    </div>
+        main {
+          grid-template-columns: 1fr;
+          gap: 64px;
+          min-height: auto;
+          padding-top: 60px;
+        }
 
-    <!-- Export Menu -->
-    <button id="export-fab"><span>📥</span> Export Model</button>
+        .project-card {
+          width: min(90%, 520px);
+          justify-self: center;
+        }
 
-    <div id="export-options-modal" class="hidden">
-      <div style="
-            font-size: 0.7rem;
-            color: #888;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-weight: bold;
-          ">
-        Select Format
-      </div>
-      <button class="export-option-btn glb" id="export-glb-btn">
-        <span>📦</span> GLB (glTF)
-      </button>
-      <button class="export-option-btn obj" id="export-full-obj-btn">
-        <span>�</span> OBJ (Full: OBJ + MTL)
-      </button>
-      <button class="export-option-btn obj" id="export-obj-btn">
-        <span>📐</span> OBJ (Geometry Only)
-      </button>
-      <button class="export-option-btn mtl" id="export-mtl-btn">
-        <span>🎨</span> MTL (Material Lib)
-      </button>
-      <button class="export-option-btn stl" id="export-stl-btn">
-        <span>🖨️</span> STL (3D Print)
-    </div>
-  </div>
+      }
 
-  <div id="welcome-modal">
-    <div class="modal-content">
-      <div class="modal-main">
-        <div class="modal-image-container">
-          <img src="newyokosuka.jpeg" alt="New Yokosuka" class="modal-image" />
-        </div>
-        <div class="modal-body">
-          <h2>An Online Shenmue Asset Viewer</h2>
+      @media (max-width: 560px) {
+        .actions,
+        .button {
+          width: 100%;
+        }
+
+        footer {
+          grid-template-columns: 1fr;
+          gap: 10px;
+          padding: 25px 0;
+        }
+
+        footer p:last-child {
+          text-align: left;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        .button {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <figure class="project-card">
+        <img
+          src="/newyokosuka.png"
+          alt="New Yokosuka phoenix artwork"
+          width="1024"
+          height="1024"
+        />
+        <figcaption class="card-caption">
+          <span>Shenmue I</span>
+          <span>Yokosuka · 1986</span>
+        </figcaption>
+      </figure>
+
+      <section class="hero-copy" aria-labelledby="page-title">
+        <h1 id="page-title" class="sr-only">New Yokosuka</h1>
+        <p class="intro">
+          <strong>New Yokosuka is an unofficial Shenmue MMO experience.</strong>
+          Based on the 1999 Sega Dreamcast classic <cite>Shenmue</cite>, it is
+          playable entirely in your browser—no installation required. Explore
+          the original world of New Yokosuka with other players, race
+          forklifts, work at the harbor, engage in combat, play arcade games,
+          talk to NPCs, and collect vending-machine toys.
+        </p>
+        <div class="project-description">
           <p>
-            New Yokosuka is a proof-of-concept web-based model viewer for the
-            original Dreamcast version of
-            <a href="https://en.wikipedia.org/wiki/Shenmue" target="_blank">Shenmue</a>. My ambition for this project is
-            to extract the harbor area of
-            Shenmue 1 along with its forklifts models to recreate the daily
-            forklift job from the original game. The model extraction is
-            complete, but the re-implementation of assets into a new game
-            engine will be a future phase of work.
+            The project has two main components: multiplayer world exploration
+            and a general asset viewer and downloader. All assets were reverse
+            engineered from the original Dreamcast game discs, building on
+            existing projects alongside substantial new original work.
           </p>
           <p>
-            It currently renders binary .MT5 models directly in your browser,
-            utilizing custom parsers to process scenario and map data from
-            across the game's multiple discs. The viewer imports model data
-            into the Babylon.js engine, which allows for easy exporting into
-            GLTF formats for use in other engines, modeling software, or 3D
-            printing.
+            This is a fan-made project created by me,
+            <a href="https://www.brynnbateman.com/" target="_blank" rel="noreferrer">Brynn</a>,
+            and I’d love to hear your feedback in the
+            <a href="https://discord.gg/vH4GPChWKY" target="_blank" rel="noopener noreferrer">Discord</a>.
           </p>
-          <p style="font-weight: 500; margin-top: 10px">
-            Made by
-            <a href="https://www.brynnbateman.com/" target="_blank">Brynn</a>
-            - Hire me!
-          </p>
-
-          <a href="https://github.com/brynnb/new-yokosuka" target="_blank" class="github-link">
-            You can see the full project information on the project's GitHub
-          </a>
-
-          <button class="close-modal-btn" id="close-modal">
-            Enter Viewer
-          </button>
         </div>
-      </div>
-      <div class="modal-footer">
-        Shenmue is a registered trademark of SEGA. This project is a
-        non-commercial, fan-made tool intended for educational and research
-        purposes only. It is not affiliated with, endorsed by, or sponsored by
-        SEGA. All original game assets, models, and related content are the
-        property of their respective trademark and copyright holders.
-      </div>
-    </div>
-  </div>
-
-  <script type="module" src="/main.js"></script>
-
-  <div id="mobile-warning-modal" class="hidden">
-    <div class="modal-content" style="max-width: 500px">
-      <div class="modal-body" style="text-align: center; padding: 40px">
-        <h2 style="margin-bottom: 20px">🖥️ Desktop Recommended</h2>
-        <p>
-          This asset viewer is designed for desktop browsers and larger screen
-          resolutions. You may experience limited functionality or display
-          issues on mobile devices and smaller screens.
-        </p>
-        <p style="margin-bottom: 25px">
-          <a href="https://www.youtube.com/watch?v=MbIwqwUXzaI" target="_blank" style="
-                color: #ff8a00;
-                text-decoration: underline;
-                font-weight: 500;
-              ">
-            View a video of it in action on Youtube!
+        <div class="actions">
+          <a class="button" href="/play/">
+            Play Online
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M7 4h9v9"></path>
+              <path d="M16 4 5 15"></path>
+            </svg>
           </a>
-        </p>
+          <a
+            class="button secondary"
+            href="https://discord.gg/vH4GPChWKY"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Join Discord
+            <svg
+              class="discord-icon"
+              viewBox="0 0 127.14 96.36"
+              aria-hidden="true"
+            >
+              <path d="M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.11 0A72.37 72.37 0 0 0 45.64 0 105.89 105.89 0 0 0 19.39 8.09C2.79 32.65-1.71 56.6.54 80.21A105.73 105.73 0 0 0 32.71 96.36a77.7 77.7 0 0 0 6.89-11.11 68.42 68.42 0 0 1-10.85-5.18c.91-.66 1.8-1.34 2.66-2a75.57 75.57 0 0 0 64.32 0c.87.71 1.76 1.39 2.66 2a68.68 68.68 0 0 1-10.87 5.19 77 77 0 0 0 6.89 11.1A105.25 105.25 0 0 0 126.6 80.22C129.24 52.84 122.09 29.11 107.7 8.07ZM42.45 65.69C36.18 65.69 31 60 31 53s5-12.74 11.43-12.74S54 46 53.89 53s-5.05 12.69-11.44 12.69Zm42.24 0C78.41 65.69 73.25 60 73.25 53s5-12.74 11.44-12.74S96.23 46 96.12 53s-5.04 12.69-11.43 12.69Z"></path>
+            </svg>
+          </a>
+          <a class="button secondary" href="/asset-viewer/">
+            Explore Assets
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M4 10h12"></path>
+              <path d="m11 5 5 5-5 5"></path>
+            </svg>
+          </a>
+        </div>
+        <p class="browser-note">Desktop browsers are recommended</p>
+      </section>
+    </main>
 
-        <button class="close-modal-btn" id="close-mobile-warning">
-          Continue Anyway
-        </button>
-      </div>
-    </div>
-  </div>
+    <footer class="shell">
+      <p class="footer-credit">
+        Made by
+        <a href="https://www.brynnbateman.com/" target="_blank" rel="noreferrer">Brynn</a>
+        — <a href="https://www.brynnbateman.com/" target="_blank" rel="noreferrer">Hire me!</a>
+        <br />
+        <button class="credits-trigger" id="credits-trigger" type="button">Credits</button>
+      </p>
+      <p> Shenmue is a registered trademark of SEGA. This project is a non-commercial, fan-made tool intended for educational and research purposes only. It is not affiliated with, endorsed by, or sponsored by SEGA. All original game assets, models, and related content are the property of their respective trademark and copyright holders. </p>
+    </footer>
 
-  <div id="firefox-warning-modal" class="hidden">
-    <div class="modal-content" style="max-width: 500px">
-      <div class="modal-body" style="text-align: center; padding: 40px">
-        <h2 style="margin-bottom: 20px">🦊 Chrome Recommended</h2>
+    <div class="credits-modal" id="credits-modal" hidden>
+      <section
+        class="credits-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="credits-title"
+      >
+        <button
+          class="credits-close"
+          id="credits-close"
+          type="button"
+          aria-label="Close credits"
+        >×</button>
+        <h2 id="credits-title">Credits &amp; Resources</h2>
         <p>
-          It looks like you're using Firefox. This viewer works best in
-          <strong>Google Chrome</strong> or other Chromium-based browsers.
+          New Yokosuka builds on years of Shenmue community research and
+          open-source tooling.
         </p>
-        <p>
-          Firefox has a long-standing bug that causes cursor drift when
-          navigating around in 3D with a locked cursor, which can make the
-          viewing experience frustrating.
-        </p>
-        <p style="margin-bottom: 25px">
-          For the best experience, we recommend switching to
-          <a href="https://www.google.com/chrome/" target="_blank" style="
-                color: #ff8a00;
-                text-decoration: underline;
-                font-weight: 500;
-              ">
-            Google Chrome</a>.
-        </p>
-
-        <button class="close-modal-btn" id="close-firefox-warning">
-          Continue Anyway
-        </button>
-      </div>
+        <ul class="credits-list">
+          <li>Tom Bowen - combat animation data.</li>
+          <li>
+            <a href="https://github.com/seiche/Shenmue-Export-Tools" target="_blank" rel="noreferrer">
+              Shenmue Export Tools
+            </a>
+            — technical documentation and extraction research.
+          </li>
+          <li>
+            <a href="https://wulinshu.com/wiki/index.php" target="_blank" rel="noreferrer">
+              Wulinshu Wiki
+            </a>
+            — Shenmue format documentation and data-structure references,
+            <a href="https://wulinshu.com/wiki/index.php/Items_(SM2)" target="_blank" rel="noreferrer">Shenmue II item names</a>,
+            <a href="https://wulinshu.com/wiki/index.php/Map_IDs_(SM2)" target="_blank" rel="noreferrer">map names</a>, and
+            <a href="https://wulinshu.com/wiki/index.php/Music_Tracks_(SM2)" target="_blank" rel="noreferrer">Shenmue II music filename-to-title mappings</a>,
+            based on Nameless Legacy’s spreadsheet and wiki contributors’ research.
+          </li>
+          <li>
+            <a href="https://github.com/LemonHaze420/wudecon" target="_blank" rel="noreferrer">
+              Wudecon
+            </a>
+            — format research notes and decoding logic.
+          </li>
+          <li>
+            <a href="https://github.com/AltoRetrato/gditools3" target="_blank" rel="noreferrer">
+              gditools3
+            </a>
+            — GD-ROM extraction tooling.
+          </li>
+          <li>
+            <a href="https://github.com/EmulatorJS/EmulatorJS" target="_blank" rel="noreferrer">
+              EmulatorJS
+            </a>
+            — browser-based emulation used by the playable arcade cabinets.
+          </li>
+          <li>
+            <a href="https://github.com/finalburnneo/FBNeo" target="_blank" rel="noreferrer">
+              FinalBurn Neo
+            </a>
+            — arcade hardware emulation powering Hang-On and Space Harrier.
+          </li>
+        </ul>
+        <p>And, of course, thanks to Shenmue’s original developers.</p>
+      </section>
     </div>
-  </div>
 
-  <script>
-    // Show Firefox warning modal if user is on Firefox
-    if (navigator.userAgent.toLowerCase().includes("firefox")) {
-      const firefoxModal = document.getElementById("firefox-warning-modal");
-      if (firefoxModal) firefoxModal.classList.remove("hidden");
-      const closeBtn = document.getElementById("close-firefox-warning");
-      if (closeBtn) {
-        closeBtn.addEventListener("click", () => {
-          firefoxModal.classList.add("hidden");
-        });
+    <script>
+      const creditsTrigger = document.getElementById("credits-trigger");
+      const creditsModal = document.getElementById("credits-modal");
+      const creditsClose = document.getElementById("credits-close");
+
+      function setCreditsOpen(open) {
+        creditsModal.hidden = !open;
+        document.body.classList.toggle("credits-open", open);
+        if (open) {
+          creditsClose.focus();
+        } else {
+          creditsTrigger.focus();
+        }
       }
-    }
-  </script>
-</body>
 
+      creditsTrigger.addEventListener("click", () => setCreditsOpen(true));
+      creditsClose.addEventListener("click", () => setCreditsOpen(false));
+      creditsModal.addEventListener("click", (event) => {
+        if (event.target === creditsModal) setCreditsOpen(false);
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !creditsModal.hidden) {
+          setCreditsOpen(false);
+        }
+      });
+    </script>
+  </body>
 </html>

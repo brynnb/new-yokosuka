@@ -1,0 +1,58 @@
+{
+  "schema": "new-yokosuka-operation-017e-evidence-v1",
+  "status": "exact-native-handler-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "verifiedNativeRanges": {
+    "operationHandler": {
+      "runtimeAddress": "0x0c166c8e",
+      "size": 48,
+      "sha256": "8c70b0a99bcb71f52b770730950e4efb4f2be7f2af867c3c7af938bb071cf157"
+    },
+    "objectRecordResolver": {
+      "runtimeAddress": "0x0c153956",
+      "size": 60,
+      "sha256": "9f17c0e1e76d43fadc6671985324c0d702b079d170f73aa16e3fdc58d4534d09"
+    },
+    "xmptQuery": {
+      "runtimeAddress": "0x0c0fed8e",
+      "size": 52,
+      "sha256": "85e01644213c1ee3017b3df6890aab66ed13369e0ea24700db3ee0739a9e8d5f"
+    }
+  },
+  "operation": {
+    "operationId": 382,
+    "operationHex": "0x017e",
+    "argumentCount": 1,
+    "objectRecordTag": "XMPT",
+    "recordActiveOffset": "0x18",
+    "recordSelectorOffset": "0x1c",
+    "requiredSelector": 5,
+    "matchedResult": 1,
+    "unmatchedResult": 0
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 298,
+    "areaCount": 96,
+    "callsByDisc": {
+      "1": 90,
+      "2": 106,
+      "3": 102
+    },
+    "argumentKinds": {
+      "constant": 9,
+      "frame-field": 96,
+      "runtime": 193
+    },
+    "storedResultCount": 0
+  },
+  "evidenceBoundary": [
+    "Only exact one-argument operation 0x017e receives this semantic.",
+    "The resolved object and literal XMPT associated-record route are shared with the existing native actor XMPT owner.",
+    "The handler queries XMPT activity and selector five; it does not advance, create, or delete the record."
+  ]
+}

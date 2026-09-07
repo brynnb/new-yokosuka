@@ -1,0 +1,59 @@
+{
+  "schema": "new-yokosuka-d000-door-callback-table-evidence-v2",
+  "status": "exact",
+  "source": {
+    "mapinfo": ".disc-work/mapinfo/disc1/SCENE/01/D000/MAPINFO.BIN",
+    "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+    "ram": "captures/pvr/20260724-010057-frame-4933/ram.bin",
+    "ramSha256": "2fe05abcb3984460e76e31179681bdb8f247c85b9c2eafd34b29a05e5f1ea346"
+  },
+  "scn3": {
+    "fileOffset": "0x00001338",
+    "tokenSize": 729128,
+    "tokenEndFileOffset": "0x000b3360",
+    "staticDataRelative": "0x000a1148",
+    "codeRelative": "0x00000030",
+    "loadedAddress": "0x0c3c6a78",
+    "runtimeObjectAddress": "0x0c49f5e0"
+  },
+  "publicExportTable": {
+    "discovery": "live SCN3 runtime fields +0x0c (table pointer) and +0x10 (entry count), mapped back into MAPINFO",
+    "fileOffset": "0x000b11cc",
+    "relativeOffset": "0x000afe94",
+    "loadedAddress": "0x0c47690c",
+    "entryCount": 6,
+    "relativeTargets": [
+      "0x00082180",
+      "0x00082190",
+      "0x000821a0",
+      "0x00082220",
+      "0x000822a0",
+      "0x00082320"
+    ],
+    "allTargetsHaveGeneratedCoroutinePrologue": true,
+    "capturedTableByteExact": true
+  },
+  "generatedExecutableTargetTable": {
+    "discovery": "maximal SCN3-token suffix of unique aligned relative targets whose code begins mov.l r14,@-r13; sts.l pr,@-r13",
+    "fileOffset": "0x000b25f8",
+    "relativeOffset": "0x000b12c0",
+    "loadedAddress": "0x0c477d38",
+    "entryCount": 858,
+    "precedingWord": 0,
+    "allTargetsHaveGeneratedCoroutinePrologue": true,
+    "capturedTableByteExact": true,
+    "consumerRole": "unresolved; it is not the public export table"
+  },
+  "doorDispatcher": {
+    "generatedTargetIndexZeroBased": 570,
+    "tableEntryFileOffset": "0x000b2ee0",
+    "tableEntryLoadedAddress": "0x0c478620",
+    "relativeTarget": "0x0007707c",
+    "targetFileOffset": "0x000783b4",
+    "targetLoadedAddress": "0x0c43daf4",
+    "isPublicExport": false,
+    "generatedCoroutinePrologue": "e62d224d"
+  },
+  "conclusion": "D000 exposes 6 public SCN3 exports. The logical-door dispatcher is generated target 570 in a separate 858-entry table and is not a public export.",
+  "evidenceBoundary": "Both table boundaries, targets, loaded addresses, and the public/non-public distinction are exact. The engine consumer that indirectly selects generated target 570 and supplies its resumed logical-door selector remains unresolved."
+}

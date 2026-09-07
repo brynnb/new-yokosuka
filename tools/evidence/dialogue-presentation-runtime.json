@@ -1,0 +1,118 @@
+{
+  "schema": "new-yokosuka-dialogue-presentation-runtime-evidence-v1",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "loadAddress": "0x0c010000",
+    "consumerAddress": "0x0c15c158",
+    "messageConstructorAddress": "0x0c15b5a8"
+  },
+  "voice": {
+    "startAddress": "0x0c0b41fc",
+    "activeQueryAddress": "0x0c0b4774",
+    "releaseAddress": "0x0c0b448c",
+    "channelCount": 2,
+    "speakerActorStoredAtChannelOffset": "0x28",
+    "deadlineBehavior": "when authored cumulative presentation time is reached, release the bound voice channel if it remains active"
+  },
+  "textPresentation": {
+    "startAddress": "0x0c153460",
+    "cleanupAddress": "0x0c153666",
+    "behavior": "used as a distinct presentation path when the message has no resolved voice handle",
+    "nonClaim": "the internal UI object and every native mode value are not yet semantically named"
+  },
+  "timeline": {
+    "clock": "cumulative authored seconds from the constructor command records",
+    "audioEndedAdvancesLine": false,
+    "commandDeadlineAdvancesLine": true,
+    "nativeCommandTickSeconds": 0.03333333333333333,
+    "zeroTimeCommandsPreserveOrder": true,
+    "backgroundCatchup": "process all commands whose cumulative timestamps have passed in source order"
+  },
+  "outerBodyDispatch": {
+    "bodyInterpreterAddress": "0x0c15cecc",
+    "class30CallLiteralAddress": "0x0c15d1c0",
+    "resolvedClass30TargetAddress": "0x0c15a150",
+    "resolvedBehavior": "enqueue the encoded operand as a native presentation command and yield native state 7 until receiver acknowledgement",
+    "browserBehavior": "dispatch the exact command word through the recovered native command receiver route, then continue the body interpreter",
+    "state5Behavior": "internal resumable body transition; continue from the exact cursor already produced by the body interpreter",
+    "externalEventBehavior": "nativeEvent records remain explicit blocking events until their native consumers are recovered",
+    "internalTransitionLimit": 64,
+    "uniqueActorCorpusBaseline": {
+      "resourceIds": 257,
+      "messageGroup": 255,
+      "completeWithoutMessage": 2,
+      "context": "zeroed state banks and actor/runtime values, 1986-01-01 00:00 UTC, zero yen, deterministic first random branch"
+    }
+  },
+  "participantStaging": {
+    "initializationAddress": "0x0c15c0b8",
+    "messageBodyStartAddress": "0x0c15cecc",
+    "participantReferenceAddress": "0x0c15c058",
+    "activeParticipantArrayAddress": "0x0c222e80",
+    "behavior": "copy the actor resource participant table, then reference each participant before presentation starts",
+    "nonClaim": "the two participant index lists remain unnamed; authored FACE targets are recovered independently from static record +0x28"
+  },
+  "nativeCommandDispatch": {
+    "enqueueWrapperAddress": "0x0c15a150",
+    "queueEnqueueAddress": "0x0c153810",
+    "queueDequeueAddress": "0x0c1538a2",
+    "queueStorageAddress": "0x0c222580",
+    "receiverAddress": "0x0c160efe",
+    "inlineCommands": {
+      "0x010": "handled in the conversation consumer without queueing",
+      "0xfc00": "handled in the conversation consumer without queueing"
+    },
+    "receiverFamilies": [
+      {
+        "range": "0x028 through 0x031",
+        "handlerAddress": "0x0c161140",
+        "provenBehavior": "selects two distinct entries from active participant-table ordinals 1 through 3; command 0x02a fixes ordinals 1 and 2",
+        "nonClaim": "the later consumer meaning of the selected pair remains unnamed"
+      },
+      {
+        "range": "0x032 through 0x03b",
+        "handlerAddress": "0x0c16175c",
+        "participantTableIndex": "command - 0x031"
+      },
+      {
+        "range": "0x08c through 0x095",
+        "participantTableIndex": "command - 0x08b",
+        "selectedParticipantAddress": "0x0c2243a0",
+        "selectedParticipantFlagAddress": "0x0c224370"
+      },
+      {
+        "range": "0x014 through 0x01d and 0x078 through 0x081",
+        "handlerAddress": "0x0c16188c",
+        "provenBehavior": "resolves the authored participant and AKIR scene objects, selects an authored scene-space target, and forwards it to the participant FACE controller",
+        "facingTargetTableStaticRecordOffset": "0x28",
+        "facingTargetByteLength": 12,
+        "facingTargetIndex": "command - 0x014 or command - 0x078",
+        "resourceCountWithFacingTargetTable": 34,
+        "authoredFacingTargetCount": 65,
+        "authoredFacingCommandSiteCount": 239,
+        "lowerFamilyAppliesControlStateTransition": true,
+        "upperFamilyAppliesControlStateTransition": false,
+        "faceControllerTypeLiteral": "FACE",
+        "faceControllerTargetWriterAddress": "0x0c0bc784"
+      },
+      {
+        "value": "0x00d",
+        "handlerAddress": "0x0c161e54"
+      },
+      {
+        "values": [
+          "0x00a",
+          "0x00f"
+        ],
+        "handlerAddress": "0x0c161f22"
+      }
+    ]
+  },
+  "runtime": {
+    "module": "play/dialogue/NativeDialoguePresentationTimeline.js",
+    "callerDrivenClock": true,
+    "usesAbsoluteElapsedTime": true,
+    "interpretsUnknownNativeCommands": false,
+    "participantRouteEvidence": "tools/evidence/dialogue-participant-routes.json"
+  }
+}

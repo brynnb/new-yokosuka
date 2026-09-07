@@ -1,0 +1,516 @@
+{
+  "schema": "new-yokosuka-native-operation-0156-evidence-v1",
+  "status": "exact-native-fens-envelope-contract-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 342,
+    "operationHex": "0x0156",
+    "tableEntryAddress": "0x0c29af38",
+    "handlerAddress": "0x0c163656",
+    "handlerLength": 52,
+    "handlerSha256": "6b5b746331064a7d4390e8fe7ba167eaeb2f06f4b3a2b6317cf3f51548827338",
+    "modeHelpers": {
+      "0": "0x0c17ed38",
+      "1": "0x0c17edc2"
+    },
+    "nativeState": {
+      "singleton": "0x0c224cd0",
+      "selectorByte": "0x0c224d20",
+      "stepWord": "0x0c224d1e",
+      "levelWord": "0x0c224d1c",
+      "directionByte": "0x0c224d21"
+    },
+    "divisionHelper": "0x0c1dc294"
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 16,
+    "dialogueRegionCallCount": 0,
+    "areaCount": 7,
+    "routeCounts": {
+      "0,5,60": 4,
+      "0,5,80": 2,
+      "0,9,1": 1,
+      "1,0,1": 4,
+      "1,0,50": 1,
+      "1,0,60": 4
+    },
+    "calls": [
+      {
+        "disc": 1,
+        "area": "JHD0",
+        "function": "0x25234",
+        "callFileOffset": "0x2533a",
+        "dialogue": false,
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x2532c"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x2532a"
+          },
+          {
+            "kind": "constant",
+            "value": 60,
+            "hex": "0x0000003c",
+            "source": "0x25328"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 1,
+        "area": "JHD0",
+        "function": "0x25424",
+        "callFileOffset": "0x25546",
+        "dialogue": false,
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x25538"
+          },
+          {
+            "kind": "constant",
+            "value": 5,
+            "hex": "0x00000005",
+            "source": "0x25536"
+          },
+          {
+            "kind": "constant",
+            "value": 80,
+            "hex": "0x00000050",
+            "source": "0x25534"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 1,
+        "area": "JOMO",
+        "function": "0x645f8",
+        "callFileOffset": "0x6482a",
+        "dialogue": false,
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x6481c"
+          },
+          {
+            "kind": "constant",
+            "value": 5,
+            "hex": "0x00000005",
+            "source": "0x6481a"
+          },
+          {
+            "kind": "constant",
+            "value": 60,
+            "hex": "0x0000003c",
+            "source": "0x64818"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 1,
+        "area": "JOMO",
+        "function": "0x645f8",
+        "callFileOffset": "0x649f2",
+        "dialogue": false,
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x649e4"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x649e2"
+          },
+          {
+            "kind": "constant",
+            "value": 60,
+            "hex": "0x0000003c",
+            "source": "0x649e0"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 1,
+        "area": "JOMO",
+        "function": "0x645f8",
+        "callFileOffset": "0x64aba",
+        "dialogue": false,
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x64aac"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x64aaa"
+          },
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x64aa8"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 1,
+        "area": "YD01",
+        "function": "0x7c",
+        "callFileOffset": "0x110",
+        "dialogue": false,
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x102"
+          },
+          {
+            "kind": "constant",
+            "value": 5,
+            "hex": "0x00000005",
+            "source": "0x100"
+          },
+          {
+            "kind": "constant",
+            "value": 60,
+            "hex": "0x0000003c",
+            "source": "0xfe"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 1,
+        "area": "YD01",
+        "function": "0x70c",
+        "callFileOffset": "0x20f6",
+        "dialogue": false,
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x20e8"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x20e6"
+          },
+          {
+            "kind": "constant",
+            "value": 50,
+            "hex": "0x00000032",
+            "source": "0x20e4"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 2,
+        "area": "JHD0",
+        "function": "0x25424",
+        "callFileOffset": "0x25546",
+        "dialogue": false,
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x25538"
+          },
+          {
+            "kind": "constant",
+            "value": 5,
+            "hex": "0x00000005",
+            "source": "0x25536"
+          },
+          {
+            "kind": "constant",
+            "value": 80,
+            "hex": "0x00000050",
+            "source": "0x25534"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 2,
+        "area": "JOMO",
+        "function": "0x645f8",
+        "callFileOffset": "0x6482a",
+        "dialogue": false,
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x6481c"
+          },
+          {
+            "kind": "constant",
+            "value": 5,
+            "hex": "0x00000005",
+            "source": "0x6481a"
+          },
+          {
+            "kind": "constant",
+            "value": 60,
+            "hex": "0x0000003c",
+            "source": "0x64818"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 2,
+        "area": "JOMO",
+        "function": "0x645f8",
+        "callFileOffset": "0x649f2",
+        "dialogue": false,
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x649e4"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x649e2"
+          },
+          {
+            "kind": "constant",
+            "value": 60,
+            "hex": "0x0000003c",
+            "source": "0x649e0"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 2,
+        "area": "JOMO",
+        "function": "0x645f8",
+        "callFileOffset": "0x64aba",
+        "dialogue": false,
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x64aac"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x64aaa"
+          },
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x64aa8"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 3,
+        "area": "JOMO",
+        "function": "0x645f8",
+        "callFileOffset": "0x6482a",
+        "dialogue": false,
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x6481c"
+          },
+          {
+            "kind": "constant",
+            "value": 5,
+            "hex": "0x00000005",
+            "source": "0x6481a"
+          },
+          {
+            "kind": "constant",
+            "value": 60,
+            "hex": "0x0000003c",
+            "source": "0x64818"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 3,
+        "area": "JOMO",
+        "function": "0x645f8",
+        "callFileOffset": "0x649f2",
+        "dialogue": false,
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x649e4"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x649e2"
+          },
+          {
+            "kind": "constant",
+            "value": 60,
+            "hex": "0x0000003c",
+            "source": "0x649e0"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 3,
+        "area": "JOMO",
+        "function": "0x645f8",
+        "callFileOffset": "0x64aba",
+        "dialogue": false,
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x64aac"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x64aaa"
+          },
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x64aa8"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 3,
+        "area": "MEND",
+        "function": "0x10bd8",
+        "callFileOffset": "0x10d1e",
+        "dialogue": false,
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x10d10"
+          },
+          {
+            "kind": "constant",
+            "value": 9,
+            "hex": "0x00000009",
+            "source": "0x10d0e"
+          },
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x10d0c"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      },
+      {
+        "disc": 3,
+        "area": "MEND",
+        "function": "0x10bd8",
+        "callFileOffset": "0x10fce",
+        "dialogue": false,
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x10fc0"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x10fbe"
+          },
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x10fbc"
+          }
+        ],
+        "resultComparison": null,
+        "resultTarget": null
+      }
+    ]
+  },
+  "evidenceBoundary": [
+    "The operation has an exact three-word ABI: mode, selector, and duration.",
+    "Mode zero creates the FENS singleton only when absent, stores the selector byte, computes floor(256 / duration), starts at level zero, and selects the rising route.",
+    "Mode one recomputes floor(256 / duration), starts at level 255, and selects the falling route; its selector operand is not consumed by the native helper.",
+    "The engine-owned FENS update advances or reduces the level by the computed step and clamps it to the native 0..255 range.",
+    "No authored call reads an operation result."
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "schema": "new-yokosuka-dialogue-interaction-candidate-summary-v1",
+  "evidenceBoundary": [
+    "Candidates are native executable dialogue regions, not inferred click interactions.",
+    "Actor tags, subtitle records, launch paths, and trigger routes are retained only from exact source relationships.",
+    "A missing trigger route is explicit and prevents runtime-ready status; names, locations, and proximity never fill that gap.",
+    "The detailed report includes localized text and remains in ignored local research storage."
+  ],
+  "summary": {
+    "candidateCount": 1285,
+    "candidateWithActorTagCount": 344,
+    "candidateWithSingleActorTagCount": 144,
+    "candidateWithCompleteSubtitleProvenanceCount": 1227,
+    "candidateWithRecoveredLaunchPathCount": 1278,
+    "candidateWithBranchExclusiveTriggerCount": 1,
+    "runtimeReadyCandidateCount": 1,
+    "unresolvedIssueCounts": {
+      "ambiguous-subtitle-provenance": 38,
+      "missing-subtitle-provenance": 20,
+      "multiple-exact-actor-tags": 200,
+      "no-branch-exclusive-trigger-route": 1284,
+      "no-exact-actor-tag": 941,
+      "no-recovered-launch-path": 7,
+      "unresolved-dynamic-scheduler-root": 7
+    }
+  },
+  "fullReport": ".disc-work/dialogue/interaction-candidates.json"
+}

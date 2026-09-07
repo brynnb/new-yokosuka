@@ -1,0 +1,886 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/build_kakg_ine_audio_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/STREAM/A01124.AFS",
+      "sha256": "7ac4574163fbd50637288bcf2a16869c6b36a928ce7693bf8bd771ef85902d2d"
+    },
+    "soundBank": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/SOUND/A1_INET1.SND",
+      "sha256": "e704d025dc933590abca20824c032bf469fedb7a6787445b48e631a7aa365823"
+    },
+    "authManifest": "play/assets/hazuki/kakg/manifest.json",
+    "resourceBindingEvidence": "tools/evidence/kakg-native-lifecycle.json"
+  },
+  "voices": [
+    {
+      "voiceId": "A01124A001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRY/SOUND/A01124A001.aiff",
+      "nativeMember": "A01124A001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 14336,
+      "nativeSha256": "29e1cadda5ffbe0ca670ddc9cc87becbcb4faf0fa6609f963121f1d07e2fed87",
+      "speakerId": "AKIR",
+      "sourceText": "Ine-san=@ You overheard ?",
+      "displayText": "Ine-san... You overheard ?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 31
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-ine/voice/A01124A001.wav",
+      "byteLength": 57132,
+      "sha256": "dbd771cbd8b6e7a707f767edf3de067f242751c04d79e03f40b01b2b3159855c"
+    },
+    {
+      "voiceId": "A01124A002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRY/SOUND/A01124A002.aiff",
+      "nativeMember": "A01124A002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 14336,
+      "nativeSha256": "5ebd93e74e7854d1e88dcae47d6600676594b5831465209868cb95110cfc4f5f",
+      "speakerId": "AKIR",
+      "sourceText": "I have to.＆Please step aside.",
+      "displayText": "I have to.\nPlease step aside.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 21
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-ine/voice/A01124A002.wav",
+      "byteLength": 57132,
+      "sha256": "dd2425a975cab375a11513318bd5a4eeb0a9ec8bd97f5c5a50bb57da1b5c376f"
+    },
+    {
+      "voiceId": "A01124A003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRY/SOUND/A01124A003.aiff",
+      "nativeMember": "A01124A003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 16384,
+      "nativeSha256": "a201d8dc5fd0325b42298f600ccc79a402c6b4776ebba759bb42258ed7774211",
+      "speakerId": "AKIR",
+      "sourceText": "I can't believe my father killed someone=@",
+      "displayText": "I can't believe my father killed someone...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-ine/voice/A01124A003.wav",
+      "byteLength": 65324,
+      "sha256": "936bcb2400f39ea582a7514850ba63c4b2185b743d692a4a1f20357d5d447052"
+    },
+    {
+      "voiceId": "A01124B001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRY/SOUND/A01124B001.aiff",
+      "nativeMember": "A01124B001.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 16384,
+      "nativeSha256": "e48a32dff305af148352a1e4ac0c63bc606c1082aa30d87fcd143cf0aa6ba375",
+      "speakerId": "INE_",
+      "sourceText": "Please don't pursue this, Ryo-san.",
+      "displayText": "Please don't pursue this, Ryo-san.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 26
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-ine/voice/A01124B001.wav",
+      "byteLength": 65324,
+      "sha256": "cd3bd44a0f7e2e81411c27c1f19b06b1c3bda302094d44b0115843dfafa66a32"
+    },
+    {
+      "voiceId": "A01124B002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRY/SOUND/A01124B002.aiff",
+      "nativeMember": "A01124B002.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 8192,
+      "nativeSha256": "d682e6b64b156c851766b699c1a7000c56ce47579ec7bc7e1daba07f4ec1918c",
+      "speakerId": "INE_",
+      "sourceText": "I'm begging you.",
+      "displayText": "I'm begging you.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-ine/voice/A01124B002.wav",
+      "byteLength": 32556,
+      "sha256": "a99dc988cb9b5412904572f64a7bd5246b574b989e59cd3155aadf2770536efe"
+    },
+    {
+      "voiceId": "A01124B003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRY/SOUND/A01124B003.aiff",
+      "nativeMember": "A01124B003.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 24576,
+      "nativeSha256": "afb9ad6f7e9947c346a8fbbcad6be0b52bca687c8a18cd7c6f9982411266bb1a",
+      "speakerId": "INE_",
+      "sourceText": "Respect Hazuki-sensei's will and＆look after the Dojo.",
+      "displayText": "Respect Hazuki-sensei's will and\nlook after the Dojo.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-ine/voice/A01124B003.wav",
+      "byteLength": 98092,
+      "sha256": "da571d7a0c77f8e20fc3117572698228e55cd520230cf1f4896c1edc6d893794"
+    },
+    {
+      "voiceId": "A01124B004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRY/SOUND/A01124B004.aiff",
+      "nativeMember": "A01124B004.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 6144,
+      "nativeSha256": "b4e72b39000aca643def802502599688e55cd23b5c441f3cdd16b5b434a1367d",
+      "speakerId": "INE_",
+      "sourceText": "Ryo-san=@",
+      "displayText": "Ryo-san...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-ine/voice/A01124B004.wav",
+      "byteLength": 24364,
+      "sha256": "cbed4e59d8ccdc0fc2abb2ad9614d54298bb2b8f52f16ba0d124ecaec4909a29"
+    },
+    {
+      "voiceId": "A01124B005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRY/SOUND/A01124B005.aiff",
+      "nativeMember": "A01124B005.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 6144,
+      "nativeSha256": "6600674b3fce2f325cf195995e98ac1c220536f4fb86cbda68a3618692cd342d",
+      "speakerId": "INE_",
+      "sourceText": "Please wait!",
+      "displayText": "Please wait!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-ine/voice/A01124B005.wav",
+      "byteLength": 24364,
+      "sha256": "5672aa0d85f26dc186ebd97f2136ae060acea48cb12034e9e40135e80c02aa72"
+    },
+    {
+      "voiceId": "A01124B006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRY/SOUND/A01124B006.aiff",
+      "nativeMember": "A01124B006.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 14336,
+      "nativeSha256": "ef748f582cacd92df289b8cbbb548c8bddd454e93ca154995f050b00f241c494",
+      "speakerId": "INE_",
+      "sourceText": "There's something I must give to you.",
+      "displayText": "There's something I must give to you.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kakg-ine/voice/A01124B006.wav",
+      "byteLength": 57132,
+      "sha256": "45fec8d097d9967761e3dc7b12fddcfefe157cc5af844391aa00b6472fb719a0"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRY/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 0,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kakg-ine/sfx/a9040000.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRY/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 1,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kakg-ine/sfx/a9040100.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRY/SE/foot/sneaker2.aiff",
+      "playbackId": 2,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kakg-ine/sfx/a9040200.wav",
+      "byteLength": 9884,
+      "sha256": "342317970a8e9592dc512f800e330aa960c8a019c08ebcec1e370e4fcf3eeea6"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRY/SE/foot/sneaker6.aiff",
+      "playbackId": 3,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kakg-ine/sfx/a9040300.wav",
+      "byteLength": 6732,
+      "sha256": "ffd69610dc83bb696747a13eb445b3e6ce8f5bf844e4ee3a48b2d7fcd3a699b3"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRY/SE/foot/sneaker1.aiff",
+      "playbackId": 4,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kakg-ine/sfx/a9040400.wav",
+      "byteLength": 10956,
+      "sha256": "6d2cb5b6730ad60d94a60190a579ef97fa51c0d54b9a35c1105bf342793dd63c"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRY/SE/foot/sneaker5.aiff",
+      "playbackId": 5,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kakg-ine/sfx/a9040500.wav",
+      "byteLength": 10804,
+      "sha256": "0334446f014be77a677e0e4e97f7e1604c7dc5b356bef53103d39acc9081f9e1"
+    }
+  ]
+}

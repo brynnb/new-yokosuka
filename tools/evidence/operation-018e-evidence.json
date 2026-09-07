@@ -1,0 +1,55 @@
+{
+  "schema": "new-yokosuka-operation-018e-evidence-v1",
+  "status": "exact-fixed-byte-write-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 398,
+    "operationHex": "0x018e",
+    "handlerAddress": "0x0c1637fc",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c1637fc",
+        "length": 14,
+        "sha256": "27cc8ca68290aa4e5179d68f9a4598e0983749aa0fc3fd4848fde63dffc47475"
+      },
+      "byteWriter": {
+        "address": "0x0c0ad794",
+        "length": 6,
+        "sha256": "c399938d2e941a046874a5b207323a4ca550744eff8a5ffbf5cc836eea151ce6"
+      }
+    },
+    "nativeContract": {
+      "handlerTableEntry": "0x0c1637fc",
+      "byteWriter": "0x0c0ad794",
+      "fixedByteAddress": "0x0c201fe0"
+    },
+    "fixedByteAddress": "0x0c201fe0",
+    "provenBehavior": "Write argument zero's low byte to fixed global byte 0x0c201fe0. Every authored argument is exactly zero or one."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 124,
+    "provenCallCount": 124,
+    "dialogueRegionCallCount": 30,
+    "areaCount": 20,
+    "valueCounts": {
+      "0": 55,
+      "1": 69
+    },
+    "dialogueValueCounts": {
+      "0": 15,
+      "1": 15
+    },
+    "resultComparisonCount": 0,
+    "resultTargetCount": 0
+  },
+  "evidenceBoundary": [
+    "Only the two authored values zero and one receive this semantic.",
+    "The absolute address, byte width, and unchanged low-byte write are executable-proven.",
+    "The byte's owner and consumer-side meaning remain unknown."
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "schema": "new-yokosuka-native-event-motion-manifest-v1",
+  "generatedFrom": {
+    "programPackSha256": "f0e0c837f438719f21a25843e0df40c731b702f5ee24c9a8814ea4a699c67d21",
+    "motionBankSha256": "aca6a41b967b9f9f92ad847c9495e780058b8194e359bca9a9c2763b0d337b23",
+    "bank": "MOTION.BIN",
+    "indexRule": "one-based request N resolves to zero-based sequence N - 1",
+    "supplementalBanks": [
+      {
+        "requestBank": 112,
+        "motionFile": "M_D000.MOTN",
+        "source": "play/assets/dobuita/M_D000.MOTN",
+        "sha256": "102a00b99c7d354e7c62ca712a3cbb95d32439065ef741e365d4b9dab0934991",
+        "indexRule": "low-byte one-based"
+      }
+    ]
+  },
+  "evidenceBoundary": [
+    "Only constant native actor-motion requests and the low request word of constant XMPT controller requests inside the packaged static program closures are included.",
+    "Unbanked names and indices are read directly from the exact MOTION.BIN sequence table.",
+    "Declared nonzero request banks resolve only through their SHA-256-pinned motion file and explicit low-byte one-based index rule.",
+    "Runtime-valued and undeclared-bank requests remain unresolved and fail closed."
+  ],
+  "motions": [
+    {
+      "request": 40,
+      "index": 39,
+      "name": "AKI_AKI_L_STAND"
+    },
+    {
+      "request": 86,
+      "index": 85,
+      "name": "AKI_AKI_STAND_L"
+    },
+    {
+      "request": 100,
+      "index": 99,
+      "name": "AKI_AKI_TURN180_L"
+    },
+    {
+      "request": 102,
+      "index": 101,
+      "name": "AKI_AKI_WALK_LP"
+    },
+    {
+      "request": 903,
+      "index": 902,
+      "name": "AKI_AKI_TATI_IWA_L"
+    },
+    {
+      "request": 1374,
+      "index": 1373,
+      "name": "AKI_AKI_WALK_SP2_LP"
+    },
+    {
+      "request": 28679,
+      "index": 6,
+      "name": "AKI_MEKURU_TELBOOK_LP_F",
+      "motionFile": "M_D000.MOTN"
+    },
+    {
+      "request": 28681,
+      "index": 8,
+      "name": "AKI_OKU_TELBOOK_90_F",
+      "motionFile": "M_D000.MOTN"
+    },
+    {
+      "request": 28682,
+      "index": 9,
+      "name": "AKI_OPEN_TELBOOK_F",
+      "motionFile": "M_D000.MOTN"
+    },
+    {
+      "request": 28683,
+      "index": 10,
+      "name": "AKI_OPEN_TELBOOK_LP_F",
+      "motionFile": "M_D000.MOTN"
+    },
+    {
+      "request": 28687,
+      "index": 14,
+      "name": "AKI_TORU_TELBOOK_90_F",
+      "motionFile": "M_D000.MOTN"
+    }
+  ]
+}

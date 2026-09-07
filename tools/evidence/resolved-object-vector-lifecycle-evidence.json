@@ -1,0 +1,230 @@
+{
+  "schema": "new-yokosuka-resolved-object-vector-lifecycle-v1",
+  "status": "exact-native-handlers-and-all-disc-call-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "nativeContract": {
+    "initializer": {
+      "objectResolver": 202717526,
+      "associatedVectorRead": 202027054,
+      "directVectorRead": 202026768,
+      "zComponentMask": 134217728,
+      "yComponentMask": 268435456,
+      "xComponentMask": 536870912,
+      "replaceMask": 2147483648,
+      "associatedVectorWrite": 202027090,
+      "directVectorWrite": 202026802,
+      "activationWrite": 202027504
+    },
+    "baseQuery": {
+      "directVectorRead": "0x0c0aaf10",
+      "associatedVectorRead": "0x0c0ab02e",
+      "directIndexedQuery": "0x0c113c3c",
+      "associatedIndexedQuery": "0x0c113ca8"
+    },
+    "indexedQuery": {
+      "recordTag": "0x4d544f4d",
+      "associatedRecordResolver": "0x0c0aad5a",
+      "indexedVectorLookup": "0x0c10c400",
+      "directTransformAccessor": "0x0c0ab0e2",
+      "directPointInverseTransform": "0x0c08d5a0",
+      "directBaseFallback": "0x0c0aaf10",
+      "associatedBaseFallback": "0x0c0ab02e",
+      "selectorListLookup": "0x0c092ea0",
+      "verifiedRanges": {
+        "directIndexedHelper": {
+          "address": "0x0c113c3c",
+          "length": 108,
+          "sha256": "dbca637bf748ddcdc87e390713c06efd1c5b07a8a3e6e065fe2adcd99f03c4af"
+        },
+        "associatedIndexedHelper": {
+          "address": "0x0c113ca8",
+          "length": 64,
+          "sha256": "d68d3aac5c4042260b8dc17b15b07fbf2e2402e9378104e16134f1be1d2b2baf"
+        },
+        "indexedVectorLookup": {
+          "address": "0x0c10c400",
+          "length": 66,
+          "sha256": "ff0ea81a1bccb07e5e581a9c486d511e980fd1a87e0960a0fd669873ba9ea666"
+        },
+        "directPointInverseTransform": {
+          "address": "0x0c08d5a0",
+          "length": 156,
+          "sha256": "d4b6f2bddbd419c770a4c89e87b596a783d5f37a8202b5df81c400e94159025c"
+        },
+        "directZeroFallbackIndexedHelper": {
+          "address": "0x0c113d08",
+          "length": 88,
+          "sha256": "4be40178f35bbcc47913ed837a64c68db952d8dacb4dac4dcaba759a2aab33c2"
+        }
+      }
+    }
+  },
+  "initializer": {
+    "operationId": 24,
+    "operationHex": "0x0018",
+    "handlerAddress": "0x0c157530",
+    "handlerLength": 234,
+    "handlerSha256": "37fa8af0f26b2617d25e231afbaaa0a85b9abab65719272789d75328d63a1a6d",
+    "provenBehavior": "Resolves argument zero as an object; reads either its direct or associated three-float vector according to flag bit 0x40000000; replaces selected components when bit 0x80000000 is set or adds them otherwise; selects X, Y, and Z with bits 0x20000000, 0x10000000, and 0x08000000; writes the vector through the matching path; then writes one to the resolved object's word at byte offset 0x84.",
+    "inventory": {
+      "callCount": 4349,
+      "dialogueRegionCallCount": 359,
+      "areaCount": 110,
+      "flagCounts": {
+        "0x28000000": 218,
+        "0x38000000": 3718,
+        "0x78000000": 381,
+        "0xa8000000": 18,
+        "0xb8000000": 14
+      },
+      "objectArgumentKindCounts": {
+        "constant": 2041,
+        "frame-field": 2186,
+        "runtime": 27,
+        "scene-field": 95
+      }
+    },
+    "unselectedMalformedCallCount": 0
+  },
+  "baseVectorQuery": {
+    "operationId": 25,
+    "operationHex": "0x0019",
+    "handlerAddress": "0x0c157678",
+    "handlerLength": 208,
+    "handlerSha256": "58185d168fd3ef71fa0f3a732616dfc3a321aa664d9a230b95cb81d0eac273c1",
+    "selector": "0xffffffff",
+    "provenBehavior": "When argument one is -1, resolves argument zero and copies its direct three-float vector to the destination supplied by argument two; argument-three bit 0x40000000 selects the associated-object transform path instead.",
+    "inventory": {
+      "callCount": 4042,
+      "dialogueRegionCallCount": 139,
+      "areaCount": 112,
+      "flagCounts": {
+        "0x00000000": 3288,
+        "0x40000000": 754
+      },
+      "objectArgumentKindCounts": {
+        "constant": 1035,
+        "frame-field": 2527,
+        "runtime": 24,
+        "scene-field": 456
+      }
+    },
+    "remainingIndexedOrUnresolvedCallCount": 1901
+  },
+  "indexedVectorQuery": {
+    "operationId": 25,
+    "operationHex": "0x0019",
+    "handlerAddress": "0x0c157678",
+    "recordTag": "MOTM",
+    "selectors": [
+      0,
+      2,
+      4,
+      5,
+      6,
+      9,
+      11,
+      12,
+      17,
+      18,
+      20,
+      25,
+      26,
+      27,
+      33
+    ],
+    "flags": [
+      "0x00000000",
+      "0x40000000"
+    ],
+    "provenBehavior": "For a nonnegative authored selector, resolves the object's literal MOTM record and scans its 72-byte component list until the matching signed selector byte or -1 sentinel. A match copies the selected matrix translation at offsets +0x30/+0x34/+0x38. The direct flag-zero route then applies the object's exact inverse point transform when its pointer is present; the associated route keeps the copied vector. A missing MOTM record or selector match falls back to the same direct or associated base-vector read used by selector -1.",
+    "inventory": {
+      "callCount": 721,
+      "dialogueRegionCallCount": 148,
+      "areaCount": 71,
+      "flagCounts": {
+        "0x00000000": 233,
+        "0x40000000": 488
+      },
+      "objectArgumentKindCounts": {
+        "constant": 461,
+        "frame-field": 238,
+        "scene-field": 22
+      }
+    },
+    "selectorCounts": {
+      "0": 2,
+      "2": 2,
+      "4": 182,
+      "5": 164,
+      "6": 28,
+      "9": 3,
+      "11": 1,
+      "12": 24,
+      "17": 8,
+      "18": 103,
+      "20": 3,
+      "25": 1,
+      "26": 96,
+      "27": 7,
+      "33": 97
+    },
+    "unselectedMalformedCallCount": 28
+  },
+  "frameSelectorVectorQuery": {
+    "operationId": 25,
+    "operationHex": "0x0019",
+    "handlerAddress": "0x0c157678",
+    "selectorSource": "coroutine-frame dword",
+    "flags": [
+      "0x00000000",
+      "0x40000000"
+    ],
+    "provenBehavior": "Reads the signed selector from the exact coroutine frame. A value of -1 takes the matching direct or associated base vector path; every other value takes the same MOTM lookup and native fallback path as a constant selector.",
+    "inventory": {
+      "callCount": 480,
+      "dialogueRegionCallCount": 0,
+      "areaCount": 96,
+      "flagCounts": {
+        "0x40000000": 480
+      },
+      "objectArgumentKindCounts": {
+        "frame-field": 480
+      }
+    }
+  },
+  "zeroFallbackVectorQuery": {
+    "operationId": 25,
+    "operationHex": "0x0019",
+    "handlerAddress": "0x0c157678",
+    "helperAddress": "0x0c113d08",
+    "flag": "0x01000000",
+    "provenBehavior": "Selector -1 copies the direct base vector. Every other selector resolves the associated MOTM component, applies the direct inverse point transform on a match, and writes three float32 zero words when the record or selector is absent.",
+    "inventory": {
+      "callCount": 672,
+      "dialogueRegionCallCount": 0,
+      "areaCount": 96,
+      "flagCounts": {
+        "0x01000000": 672
+      },
+      "objectArgumentKindCounts": {
+        "frame-field": 672
+      }
+    }
+  },
+  "evidenceBoundary": [
+    "Only exact three-argument 0x0018 calls using the five authored flag words receive the initializer semantic.",
+    "Only four-argument 0x0019 calls with selector -1 and an exact authored direct/associated flag receive the base-query semantic.",
+    "All 721 well-formed constant-indexed and 480 exact frame-selector 0x0019 calls use the two proven direct/associated paths.",
+    "All 672 exact 0x01000000 calls use the separately pinned zero-fallback direct-space helper.",
+    "Twenty-eight calls with incomplete operands remain unresolved.",
+    "MOTM remains a literal native record tag; individual selector meanings are not named.",
+    "An exact MOTM record/list result and, for a direct matched component, exact object-transform state are runtime prerequisites.",
+    "No object-specific story label is inferred from a four-byte tag."
+  ]
+}

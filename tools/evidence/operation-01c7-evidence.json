@@ -1,0 +1,138 @@
+{
+  "schema": "new-yokosuka-operation-01c7-evidence-v1",
+  "status": "exact-native-routes-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 455,
+    "operationHex": "0x01c7",
+    "handlerAddress": "0x0c16a1dc",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c16a1dc",
+        "length": 234,
+        "sha256": "a33120557018df140979eba731212c05e1362d6b81609036ef6a4cbfcd3fcca1"
+      },
+      "recordApply": {
+        "address": "0x0c14a9be",
+        "length": 106,
+        "sha256": "27edcd5f911a1be45b779a0ef4da678ba9034ad476f56dba214cde1b81808b3b"
+      },
+      "statusQuery": {
+        "address": "0x0c14aad6",
+        "length": 16,
+        "sha256": "68a6a881c250527c13a9ba2927efb9118b89652293a060eaa51fa9b76358dfdf"
+      },
+      "byteWrite": {
+        "address": "0x0c14aae8",
+        "length": 6,
+        "sha256": "e8c6f1b1e2695dbfb6296e4a73b896a7e88c892cc175d62c337652a696654e05"
+      },
+      "byteRead": {
+        "address": "0x0c14aaee",
+        "length": 8,
+        "sha256": "88921667975fb5a15cb7d2d889c8dc95ca19f7107ee3340cab6c2e39f61678d5"
+      },
+      "floatRead": {
+        "address": "0x0c14aaf6",
+        "length": 30,
+        "sha256": "a1c26ea2acde41b2c0a51c46aa3e4d12c6fc081080c2b6594808a07ce549cfa0"
+      },
+      "floatWrite": {
+        "address": "0x0c14ab14",
+        "length": 30,
+        "sha256": "fe471e65a25e9db12eda2d4973c03db8df5688f73d381d33ef5d130841f83f29"
+      },
+      "booleanWrite": {
+        "address": "0x0c14ab38",
+        "length": 6,
+        "sha256": "1eec1721c820200d84d308c51cdc4d4ff207e67a1fa92a2bf72ed57fed8585eb"
+      }
+    },
+    "nativeContract": {
+      "integerResultWriter": "0x0c0bb342",
+      "statusQuery": "0x0c14aad6",
+      "recordApply": "0x0c14a9be",
+      "booleanWrite": "0x0c14ab38",
+      "byteRead": "0x0c14aaee",
+      "byteWrite": "0x0c14aae8",
+      "floatRead": "0x0c14aaf6",
+      "floatResultWriter": "0x0c0bb348",
+      "floatWrite": "0x0c14ab14",
+      "parameterBuffer": "0x0c2203a3",
+      "copyFourBytes": "0x0c1dc8d8",
+      "recordApplySource": "0x0c220370",
+      "statusByte": "0x0c2203a1",
+      "booleanDword": "0x0c2203c4"
+    },
+    "routes": [
+      {
+        "mode": 0,
+        "argumentCount": 1,
+        "behavior": "Return -1 when byte 0x0c2203a1 is nonzero; otherwise return zero."
+      },
+      {
+        "mode": 1,
+        "argumentCount": 1,
+        "behavior": "Delegate to the exact record-apply helper using fixed record 0x0c220370."
+      },
+      {
+        "mode": 2,
+        "argumentCount": 2,
+        "behavior": "Write argument one normalized to zero or one into dword 0x0c2203c4."
+      },
+      {
+        "mode": 3,
+        "submodes": {
+          "0": "Read an unsigned byte from 0x0c2203a3 + argument two.",
+          "1": "Return that byte, then write argument three's low byte to the same address.",
+          "2": "Read a float32 from 0x0c2203a3 + argument two.",
+          "3": "Return that float32, then write argument three as float32 to the same address."
+        }
+      }
+    ]
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 690,
+    "provenCallCount": 690,
+    "dialogueRegionCallCount": 62,
+    "areaCount": 57,
+    "argumentKindCounts": {
+      "0": {
+        "constant": 690
+      },
+      "1": {
+        "constant": 580
+      },
+      "2": {
+        "constant": 317
+      },
+      "3": {
+        "constant": 103,
+        "frame-field": 8,
+        "runtime": 77,
+        "scene-field": 8
+      }
+    },
+    "routeCounts": {
+      "mode-0": 55,
+      "mode-1": 55,
+      "mode-2": 263,
+      "mode-3-submode-0": 120,
+      "mode-3-submode-1": 195,
+      "mode-3-submode-2": 1,
+      "mode-3-submode-3": 1
+    }
+  },
+  "evidenceBoundary": [
+    "The operation retains its numeric identity; no gameplay-domain label is inferred.",
+    "The mode-one record-apply helper remains a mandatory external adapter.",
+    "The fixed globals are not assigned to scene persistence without ownership evidence.",
+    "Only the seven exact authored mode, submode, and argument-count shapes are promoted.",
+    "Runtime operands remain interpreter stops when no exact resolver is supplied."
+  ]
+}

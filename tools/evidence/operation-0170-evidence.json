@@ -1,0 +1,117 @@
+{
+  "schema": "new-yokosuka-operation-0170-evidence-v1",
+  "status": "exact-native-map-render-preparation-invalidate-and-rebuild",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "programPack": "play/data/events/nativeEventPrograms.generated.json"
+  },
+  "operation": {
+    "operationId": 368,
+    "operationHex": "0x0170",
+    "handlerAddress": "0x0c164be6",
+    "slotCount": 32,
+    "slotRecordAddress": "0x0c21c768",
+    "selector": {
+      "allSlots": -1,
+      "indexedRange": "0..31"
+    },
+    "provenModes": [
+      {
+        "mode": 0,
+        "behavior": "recursively clears render-preparation bit 0x10 on each present selected MAP model hierarchy and clears that slot's retained preparation pointer"
+      },
+      {
+        "mode": 1,
+        "behavior": "allocates hierarchy-sized PRER workspace, applies the current native render/light preparation to each present selected MAP model, and marks preparation made"
+      }
+    ],
+    "mapIdentity": {
+      "base": "MAP.MT5",
+      "numbered": "MAP%02d.MT5",
+      "sourceChunks": [
+        "MAPR",
+        "MAPP",
+        "MAPE",
+        "MAPT"
+      ],
+      "workspaceTagBytes": "PRER"
+    },
+    "d000Selector18": {
+      "invalidateCall": "0x85e06",
+      "invalidateArguments": [
+        -1,
+        0
+      ],
+      "rebuildCall": "0x8601e",
+      "rebuildArguments": [
+        -1,
+        1
+      ]
+    },
+    "babylonAdapter": {
+      "stateOwner": "play/world/NativeMapRenderPreparationState.js",
+      "semanticHandler": "play/events/NativeOperation0170Runtime.js",
+      "equivalentBoundary": "resynchronize light sources and mark light-dependent materials dirty on only the exact loaded MAP layers",
+      "transactional": true
+    },
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c164be6",
+        "length": 128,
+        "sha256": "6e5ac52258438c4a1f432cd10c159a4ecd0f7368101939bed1fb7fa07bcc03f6"
+      },
+      "mapInitialize": {
+        "address": "0x0c13060c",
+        "length": 334,
+        "sha256": "e7c47d1cba685295cae4cad38aedbf86423dfa74d0e26a99e6b26655cd73660d"
+      },
+      "slotResolver": {
+        "address": "0x0c13075a",
+        "length": 38,
+        "sha256": "f5de306a4adb3709033609242bd188f17d9926695bcbf01c86a6e98d144cf321"
+      },
+      "modeZeroIndexed": {
+        "address": "0x0c131022",
+        "length": 54,
+        "sha256": "a09a3cda1bf319c9e7a19c1f0f5d40759914be76b9c8ade9cd4b560ed685a456"
+      },
+      "modeZeroAll": {
+        "address": "0x0c131058",
+        "length": 34,
+        "sha256": "bd004ac419c0d33b3cdf6da4a7cbd7e2c7e2075bc56e27b72326fc41bd0f6c30"
+      },
+      "modeOneIndexed": {
+        "address": "0x0c130e60",
+        "length": 202,
+        "sha256": "4c60000e44cf59d9b4f90acaa9d254ee479c815744075e7a354f30b772cf17b0"
+      },
+      "modeOneAll": {
+        "address": "0x0c130f2a",
+        "length": 248,
+        "sha256": "ece764e8fa5f325033243902af59076d8a537d93160fe7e89ed672cb4534789d"
+      },
+      "recursiveInvalidator": {
+        "address": "0x0c0fc0a0",
+        "length": 52,
+        "sha256": "509c8267fe31c39e2ea2583631cf8541bfca7169ea0aca7ec780d37da89b907b"
+      },
+      "renderPreparation": {
+        "address": "0x0c0fc012",
+        "length": 56,
+        "sha256": "6b014654c168b89b7d7a54ed50a0df8f02ec47044d6dbc6d00d46ba17d91b37e"
+      },
+      "workspaceAllocate": {
+        "address": "0x0c0fbefe",
+        "length": 44,
+        "sha256": "00881aaa80a527ae030ebdaebcaa85bc2ba382fb881bd8d85ed375a8f765571d"
+      }
+    }
+  },
+  "evidenceBoundary": [
+    "Operation 0x0170 controls Dreamcast render preparation for exact native MAP model slots; it does not select story state, collision visibility, actors, or a nearby scene object.",
+    "D000 selector 18 invalidates all present MAP slots before changing presentation state and rebuilds all present slots afterward.",
+    "Babylon does not recreate the Dreamcast PRER workspace; its explicit equivalent resynchronizes MAP mesh light sources and dirties their light-dependent materials.",
+    "The adapter is transaction-owned and targets only exact MAP layers; it does not accept these calls as no-ops or broaden them to arbitrary scene meshes."
+  ]
+}

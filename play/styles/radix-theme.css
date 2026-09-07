@@ -1,0 +1,455 @@
+.new-yokosuka-theme,
+:root {
+  /* Shared portal layers. Radix renders dialogs and floating controls as
+     separate children of the document, so DOM nesting cannot establish their
+     visual order. Keep the relationship explicit for every converted UI. */
+  --ny-layer-dialog: 10020;
+  --ny-layer-floating-control: 10030;
+}
+
+.new-yokosuka-theme {
+  /* Project-wide Radix overrides live here so future converted UI stays
+     aligned with the existing New Yokosuka palette. */
+  --default-font-family: var(--ny-font-family);
+  --heading-font-family: var(--ny-font-family);
+  --strong-font-family: var(--ny-font-family);
+  --ny-accent: #67d9e8;
+  --ny-accent-hover: #8ce5f0;
+  --ny-accent-text: #087985;
+  --ny-accent-contrast: #071114;
+  --accent-9: var(--ny-accent);
+  --accent-10: var(--ny-accent-hover);
+  --accent-11: var(--ny-accent-text);
+  --accent-contrast: var(--ny-accent-contrast);
+  --focus-8: rgb(103 217 232 / 0.72);
+}
+
+.new-yokosuka-theme-dark {
+  --ny-accent-text: #8ce5f0;
+  --color-overlay: rgb(4 8 11 / 0.42);
+}
+
+.new-yokosuka-theme.radix-themes[data-is-root-theme="true"] {
+  position: static;
+  z-index: auto;
+  min-height: 0;
+}
+
+.new-yokosuka-theme-contents {
+  display: contents;
+}
+
+/* Reusable non-accent action: a neutral light surface with dark text. */
+.ny-button-light.rt-Button,
+.ny-button-light.rt-IconButton,
+.account-control.ny-button-light {
+  --accent-9: #fff;
+  --accent-10: #e9edef;
+  --accent-contrast: #080b0c;
+  color: #080b0c;
+  background-color: #fff;
+}
+
+.ny-button-light.rt-Button:hover:not(:disabled),
+.ny-button-light.rt-Button:focus-visible,
+.ny-button-light.rt-IconButton:hover:not(:disabled),
+.ny-button-light.rt-IconButton:focus-visible,
+.account-control.ny-button-light:hover:not(:disabled),
+.account-control.ny-button-light:focus-visible {
+  color: #000;
+  background-color: #e9edef;
+}
+
+.ny-button-light.rt-Button:active:not(:disabled),
+.ny-button-light.rt-IconButton:active:not(:disabled),
+.account-control.ny-button-light:active:not(:disabled) {
+  background-color: #dce2e5;
+}
+
+/* Explicit primary actions must also survive Radix portals, which are not
+   guaranteed to remain descendants of the project Theme wrapper. */
+.ny-button-primary.rt-Button {
+  --accent-9: var(--ny-accent, #67d9e8);
+  --accent-10: var(--ny-accent-hover, #8ce5f0);
+  --accent-a9: var(--ny-accent, #67d9e8);
+  --accent-a10: var(--ny-accent-hover, #8ce5f0);
+  --accent-contrast: var(--ny-accent-contrast, #071114);
+  color: var(--ny-accent-contrast, #071114);
+  background-color: var(--ny-accent, #67d9e8);
+}
+
+.ny-button-primary.rt-Button:hover:not(:disabled),
+.ny-button-primary.rt-Button:focus-visible {
+  color: var(--ny-accent-contrast, #071114);
+  background-color: var(--ny-accent-hover, #8ce5f0);
+}
+
+.ny-button-primary.rt-Button:active:not(:disabled) {
+  background-color: #4cc9dc;
+}
+
+/* Accent buttons retain dark, readable text through every interaction state. */
+.new-yokosuka-theme .rt-Button:not(.ny-button-light):not(
+  .character-slot-button
+):not(.danger):not([data-accent-color="gray"]),
+.new-yokosuka-theme .rt-Button:not(.ny-button-light):not(
+  .character-slot-button
+):not(.danger):not([data-accent-color="gray"]):hover:not(:disabled),
+.new-yokosuka-theme .rt-Button:not(.ny-button-light):not(
+  .character-slot-button
+):not(.danger):not([data-accent-color="gray"]):focus-visible,
+.new-yokosuka-theme .rt-Button:not(.ny-button-light):not(
+  .character-slot-button
+):not(.danger):not([data-accent-color="gray"]):active:not(:disabled) {
+  color: #071114;
+}
+
+.new-yokosuka-theme .account-control.rt-Button {
+  border-radius: var(--radius-2, 6px);
+}
+
+.new-yokosuka-theme .account-control.account-button-big.rt-Button {
+  min-height: 48px;
+  font-size: 14px;
+}
+
+.new-yokosuka-theme .character-create-back.rt-Button {
+  margin-top: auto;
+}
+
+/* Radix buttons are flex by default; character slots retain their authored
+   two-column desktop card layout. */
+.new-yokosuka-theme .character-slot-button.rt-Button {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  align-content: center;
+  justify-content: stretch;
+  color: #193239;
+  background: rgb(255 255 255 / 0.72);
+  border-color: rgb(20 67 76 / 0.18);
+  box-shadow: none;
+}
+
+.new-yokosuka-theme .character-slot-button.rt-Button::after {
+  display: none;
+}
+
+.new-yokosuka-theme .character-slot-button.rt-Button:hover:not(:disabled),
+.new-yokosuka-theme .character-slot-button.rt-Button:focus-visible {
+  color: #0d242a;
+  background: rgb(255 255 255 / 0.88);
+  border-color: rgb(8 121 133 / 0.42);
+}
+
+.settings-checkbox-label,
+.settings-slider-row,
+.settings-slider,
+.settings-slider * {
+  cursor: pointer;
+}
+
+/* Keep the settings inputs on the same exact teal as primary actions. */
+.settings-slider,
+.settings-checkbox-label .rt-CheckboxRoot {
+  --accent-9: var(--ny-accent);
+  --accent-10: var(--ny-accent-hover);
+  --accent-a9: var(--ny-accent);
+  --accent-a10: var(--ny-accent-hover);
+  --accent-contrast: var(--ny-accent-contrast);
+}
+
+.settings-slider .rt-SliderRange,
+.settings-checkbox-label .rt-CheckboxRoot:where(
+  [data-state="checked"],
+  [data-state="indeterminate"]
+)::before {
+  background-color: var(--accent-9);
+}
+
+.settings-slider[data-disabled],
+.settings-slider[data-disabled] * {
+  cursor: not-allowed;
+}
+
+/* Radix resets buttons with `all: unset` after the legacy game stylesheet.
+   Restate the positioned sidebar control in the Radix layer so it remains
+   outside normal flow. */
+.sidebar .sidebar-toggle {
+  position: absolute;
+  top: 15px;
+  right: 14px;
+  z-index: 3;
+}
+
+.app.sidebar-collapsed .sidebar .sidebar-toggle {
+  top: 8px;
+  right: 8px;
+}
+
+/* Select menus are portalled beside the game shell. Keep them above the
+   Babylon canvas and its floating HUD panels. */
+.sidebar-select-content {
+  --accent-9: var(--ny-accent, #67d9e8);
+  --accent-contrast: var(--ny-accent-contrast, #071114);
+}
+
+.sidebar-select-content.rt-SelectContent
+  .rt-SelectItem[data-highlighted] {
+  color: var(--accent-contrast);
+  background-color: var(--accent-9);
+}
+
+.new-yokosuka-theme .sidebar-server-status {
+  color: var(--ny-accent-text);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.new-yokosuka-theme .sidebar-title {
+  font-size: 20px;
+}
+
+/* Native game overlays use z-index values up to 10010. Radix dialogs portal
+   to the document root, so they need to sit above both account and game UI. */
+.rt-BaseDialogOverlay {
+  z-index: var(--ny-layer-dialog);
+}
+
+/* Dropdowns, popovers, tooltips, and item-aligned selects are portalled
+   separately from their owning dialog. They are interactive children of that
+   dialog and must therefore occupy the next shared layer above it. */
+.rt-PopperContent,
+.rt-SelectContent {
+  z-index: var(--ny-layer-floating-control);
+}
+
+/* Settings uses the same Radix dialog behavior as the other game dialogs,
+   with its established account-menu and in-game backdrop treatments. */
+.rt-DialogOverlay:has(.settings-dialog-frame-light)::before {
+  background: linear-gradient(
+    rgb(6 9 13 / 0.06),
+    rgb(6 9 13 / 0.2)
+  );
+}
+
+.rt-DialogOverlay:has(.settings-dialog-frame-dark)::before {
+  background: rgb(4 8 11 / 0.42);
+}
+
+.rt-DialogOverlay:has(.settings-dialog-frame-dark) {
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
+}
+
+.rt-DialogOverlay:has(.settings-dialog-frame)
+  .rt-DialogScrollPadding {
+  padding: 22px;
+}
+
+.rt-DialogOverlay:has(.settings-dialog-frame[data-state="closed"]) {
+  display: none;
+}
+
+@media (max-width: 850px) {
+  .sidebar .sidebar-toggle,
+  .app.sidebar-collapsed .sidebar .sidebar-toggle {
+    top: 0;
+    right: 0;
+  }
+}
+
+.account-shell-radix.rt-Card,
+.settings-dialog-card-light.rt-Card {
+  /* Keep account menus equally legible in Firefox and Chromium. Browser
+     backdrop-filter compositing differs noticeably over the animated scene,
+     so opacity comes from the panel itself instead of the blur effect. */
+  --card-background-color: rgb(238 246 247 / 0.6);
+  --backdrop-filter-panel: none;
+}
+
+.account-shell-radix.rt-Card {
+  padding: 26px;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-2, 6px);
+  box-shadow: 0 28px 90px rgb(17 55 75 / 0.28);
+}
+
+.settings-dialog-card.rt-Card,
+.settings-reset-dialog.rt-AlertDialogContent {
+  border-radius: var(--radius-2, 6px);
+}
+
+.settings-reset-dialog-light.rt-AlertDialogContent {
+  background-color: rgb(238 246 247 / 0.6);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.account-shell-radix.rt-Card::after {
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.72),
+    inset 0 0 0 2px rgb(8 121 133 / 0.14);
+}
+
+.account-shell-radix.account-shell-entry {
+  height: 400px;
+}
+
+.account-shell-radix .account-header h1 {
+  color: #12272d;
+}
+
+.account-shell-radix.account-shell-welcome .account-header h1 {
+  font-size: clamp(16px, 4vw, 32px);
+  white-space: nowrap;
+}
+
+.account-shell-radix .account-kicker {
+  color: var(--ny-accent-text);
+}
+
+.account-shell-radix .account-kicker.offline {
+  color: #b42318;
+}
+
+.account-shell-radix .account-copy {
+  color: #435b63;
+}
+
+.account-shell-radix .account-form label {
+  color: #304a52;
+}
+
+.account-shell-radix .account-form input {
+  color: #142b31;
+  background: rgb(255 255 255 / 0.46);
+  border-color: rgb(20 67 76 / 0.2);
+}
+
+.account-shell-radix .account-form input::placeholder {
+  color: #647b82;
+}
+
+.account-shell-radix .character-create-form input {
+  background: rgb(255 255 255 / 0.82);
+}
+
+.account-shell-radix .account-control.danger {
+  color: #8f211a;
+  background: rgb(255 231 228 / 0.48);
+  border-color: rgb(180 52 43 / 0.34);
+}
+
+.account-shell-radix .account-control.danger:hover:not(:disabled) {
+  color: #721a15;
+  background: rgb(255 218 214 / 0.68);
+  border-color: rgb(180 52 43 / 0.56);
+}
+
+.account-shell-radix .character-slot.empty {
+  color: #587078;
+}
+
+.account-shell-radix .character-slot.empty:hover:not(:disabled) {
+  color: #263f47;
+}
+
+.account-shell-radix .character-slot-number,
+.account-shell-radix .character-slot small {
+  color: #597179;
+}
+
+.account-shell-radix .character-detail,
+.account-shell-radix .cutscene-list-item {
+  background:
+    radial-gradient(
+      circle at 50% 28%,
+      rgb(103 217 232 / 0.24),
+      transparent 52%
+    ),
+    rgb(255 255 255 / 0.62);
+  border-color: rgb(20 67 76 / 0.16);
+}
+
+.account-shell-radix .cutscene-list-item strong {
+  color: #152c32;
+}
+
+.account-shell-radix .cutscene-list-item small {
+  color: #4f6870;
+}
+
+.account-shell-radix .cutscene-list-item:hover,
+.account-shell-radix .cutscene-list-item:focus-visible {
+  border-color: rgb(8 121 133 / 0.42);
+}
+
+.account-shell-radix .character-slot.selected,
+.account-shell-radix .character-slot.selected:hover:not(:disabled),
+.account-shell-radix .cutscene-list-item.selected {
+  background:
+    linear-gradient(90deg, rgb(103 217 232 / 0.8), rgb(103 217 232 / 0.45)),
+    rgb(255 255 255 / 0.94);
+  border-color: var(--ny-accent);
+  box-shadow: 0 0 0 3px rgb(103 217 232 / 0.52);
+}
+
+.account-shell-radix .cutscene-list-item.selected small {
+  color: #087985;
+  font-weight: 800;
+}
+
+.account-shell-radix .character-create-preview {
+  background:
+    radial-gradient(
+      circle at 50% 28%,
+      rgb(103 217 232 / 0.24),
+      transparent 52%
+    ),
+    rgb(255 255 255 / 0.18);
+  border-color: rgb(20 67 76 / 0.16);
+}
+
+.account-shell-radix .character-detail-copy,
+.account-shell-radix .character-model-picker {
+  border-color: rgb(20 67 76 / 0.14);
+}
+
+.account-shell-radix .character-detail-copy h2,
+.account-shell-radix .character-model-picker-controls strong {
+  color: #152c32;
+}
+
+.account-shell-radix .character-detail-copy p,
+.account-shell-radix .character-preview-status {
+  color: #4f6870;
+}
+
+.account-shell-radix .character-create-form {
+  background: rgb(255 255 255 / 0.18);
+  border-color: rgb(20 67 76 / 0.16);
+}
+
+.account-shell-radix .character-name-guidance {
+  color: #36545c;
+  background: rgb(207 241 245 / 0.78);
+  border-color: rgb(8 121 133 / 0.2);
+}
+
+@media (max-width: 760px) {
+  .account-shell-radix.rt-Card {
+    padding: 18px;
+  }
+}
+
+@media (max-height: 456px) {
+  .account-gate {
+    padding-block: 12px;
+    place-items: start center;
+  }
+}

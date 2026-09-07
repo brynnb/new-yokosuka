@@ -1,0 +1,1427 @@
+{
+  "schema": "new-yokosuka-dialogue-actor-body-routes-v1",
+  "evidenceBoundary": [
+    "The outer conversation interpreter and nested message constructor are represented separately, matching native dispatch.",
+    "F2 uses its verified two-stage state-5 continuation at opcode +4; F5 stores a target but falls through.",
+    "Branches may enter shared routines outside a marker's encoded body span but never outside the actor routing stream.",
+    "F9 paths requiring runtime +0x5c and progress-marker redirects remain explicit dynamic boundaries.",
+    "Class C0 target fields and signedness reproduce the verified native mid-opcode handler; selectors with no native target remain no-ops.",
+    "External animation, presentation, and input completion are labeled on edges but are not assigned guessed timing or gameplay meaning."
+  ],
+  "executableEvidence": {
+    "filename": "1ST_READ.BIN",
+    "runtimeBase": "0xc010000",
+    "sha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "verifiedCodeRanges": {
+      "nestedMessageConstructor": {
+        "runtimeAddress": "0xc15b5a8",
+        "size": 2148,
+        "sha256": "d110f85863b08b3b955960fc2de267f6156bd3917f7510c41c69beece744f0dc"
+      },
+      "conversationStartPointerSelector": {
+        "runtimeAddress": "0xc15ccf6",
+        "size": 462,
+        "sha256": "7f2f3467af0231a4abd5f9a4a2f8873d6673a224c4dcf66ada5f8b3124e78a94"
+      },
+      "lowOpcodeHandler": {
+        "runtimeAddress": "0xc15cecc",
+        "size": 724,
+        "sha256": "0292ee19b44a9a41a8a9da9c41e9e8fd2460c7064ae0b7fe84c34a0b08c2288a"
+      },
+      "midOpcodeHandler": {
+        "runtimeAddress": "0xc15d1d0",
+        "size": 332,
+        "sha256": "e1f9cfc85f88d481c66f693981eec3502569fa38ca87d37c07de040d52be5405"
+      },
+      "eventOpcodeHandler": {
+        "runtimeAddress": "0xc15d31c",
+        "size": 602,
+        "sha256": "14fea17f16a0a79f54cc8049951feb0d8821a3e69235a39503a7f5adb6d2eacf"
+      },
+      "controlOpcodeHandler": {
+        "runtimeAddress": "0xc15d584",
+        "size": 776,
+        "sha256": "420b48ac66182676e6fc16824028875ef4b580dbdfd806b5d89daf78233b4586"
+      },
+      "outerDispatchLoop": {
+        "runtimeAddress": "0xc15d88c",
+        "size": 384,
+        "sha256": "9d67cafb63467755d000799ab218491798714d35da5b3d9013170207d1f7d3c1"
+      }
+    }
+  },
+  "archiveEvidence": {
+    "filename": "HUMANS.AFS",
+    "sha256": "c61b53f0784442505e491a2bba7dc8f608495922f69acfb253be8c10492570a7",
+    "byteLength": 64901120
+  },
+  "summary": {
+    "resourceCount": 262,
+    "bodyCount": 4327,
+    "graphNodeCount": 49455,
+    "graphEdgeCount": 47228,
+    "messageGroupCount": 10672,
+    "uniqueMessageSelectionSiteCount": 57373,
+    "selectedResourceMessageIndexCount": 26215,
+    "dynamicBoundaryCount": 494,
+    "terminationCounts": {
+      "conversationLifecycleTransition": 3856,
+      "nestedDynamicContinuation": 471,
+      "progressTableMayRedirect": 23
+    },
+    "runtimeFieldWrites": [
+      {
+        "scope": "manager",
+        "offset": "0x11",
+        "value": 66,
+        "count": 295
+      },
+      {
+        "scope": "manager",
+        "offset": "0x11",
+        "value": 67,
+        "count": 6
+      },
+      {
+        "scope": "person",
+        "offset": "0x10",
+        "value": 11,
+        "count": 233
+      },
+      {
+        "scope": "person",
+        "offset": "0x10",
+        "value": 12,
+        "count": 93
+      }
+    ],
+    "nativePresentationCommands": [
+      {
+        "commandWord": 10,
+        "count": 9
+      },
+      {
+        "commandWord": 11,
+        "count": 4
+      },
+      {
+        "commandWord": 12,
+        "count": 6
+      },
+      {
+        "commandWord": 13,
+        "count": 7
+      },
+      {
+        "commandWord": 14,
+        "count": 2
+      },
+      {
+        "commandWord": 15,
+        "count": 7
+      },
+      {
+        "commandWord": 16,
+        "count": 51
+      },
+      {
+        "commandWord": 17,
+        "count": 2
+      },
+      {
+        "commandWord": 20,
+        "count": 106
+      },
+      {
+        "commandWord": 21,
+        "count": 46
+      },
+      {
+        "commandWord": 22,
+        "count": 13
+      },
+      {
+        "commandWord": 23,
+        "count": 10
+      },
+      {
+        "commandWord": 24,
+        "count": 13
+      },
+      {
+        "commandWord": 26,
+        "count": 9
+      },
+      {
+        "commandWord": 27,
+        "count": 2
+      },
+      {
+        "commandWord": 28,
+        "count": 5
+      },
+      {
+        "commandWord": 29,
+        "count": 1
+      },
+      {
+        "commandWord": 30,
+        "count": 3
+      },
+      {
+        "commandWord": 31,
+        "count": 2
+      },
+      {
+        "commandWord": 32,
+        "count": 1
+      },
+      {
+        "commandWord": 33,
+        "count": 6
+      },
+      {
+        "commandWord": 34,
+        "count": 33
+      },
+      {
+        "commandWord": 36,
+        "count": 4
+      },
+      {
+        "commandWord": 37,
+        "count": 2
+      },
+      {
+        "commandWord": 39,
+        "count": 6
+      },
+      {
+        "commandWord": 40,
+        "count": 595
+      },
+      {
+        "commandWord": 41,
+        "count": 43
+      },
+      {
+        "commandWord": 42,
+        "count": 15
+      },
+      {
+        "commandWord": 43,
+        "count": 68
+      },
+      {
+        "commandWord": 44,
+        "count": 27
+      },
+      {
+        "commandWord": 46,
+        "count": 3
+      },
+      {
+        "commandWord": 50,
+        "count": 5117
+      },
+      {
+        "commandWord": 51,
+        "count": 102
+      },
+      {
+        "commandWord": 52,
+        "count": 16
+      },
+      {
+        "commandWord": 53,
+        "count": 36
+      },
+      {
+        "commandWord": 54,
+        "count": 7
+      },
+      {
+        "commandWord": 60,
+        "count": 6
+      },
+      {
+        "commandWord": 65,
+        "count": 1
+      },
+      {
+        "commandWord": 70,
+        "count": 1
+      },
+      {
+        "commandWord": 103,
+        "count": 6
+      },
+      {
+        "commandWord": 106,
+        "count": 1
+      },
+      {
+        "commandWord": 120,
+        "count": 17
+      },
+      {
+        "commandWord": 121,
+        "count": 7
+      },
+      {
+        "commandWord": 122,
+        "count": 1
+      },
+      {
+        "commandWord": 125,
+        "count": 9
+      },
+      {
+        "commandWord": 130,
+        "count": 25
+      },
+      {
+        "commandWord": 131,
+        "count": 29
+      },
+      {
+        "commandWord": 132,
+        "count": 10
+      },
+      {
+        "commandWord": 135,
+        "count": 14
+      },
+      {
+        "commandWord": 140,
+        "count": 68
+      },
+      {
+        "commandWord": 141,
+        "count": 133
+      },
+      {
+        "commandWord": 142,
+        "count": 4
+      },
+      {
+        "commandWord": 165,
+        "count": 1
+      },
+      {
+        "commandWord": 170,
+        "count": 1
+      },
+      {
+        "commandWord": 201,
+        "count": 1
+      },
+      {
+        "commandWord": 202,
+        "count": 3
+      },
+      {
+        "commandWord": 203,
+        "count": 4
+      },
+      {
+        "commandWord": 204,
+        "count": 2
+      },
+      {
+        "commandWord": 206,
+        "count": 3
+      },
+      {
+        "commandWord": 207,
+        "count": 1
+      },
+      {
+        "commandWord": 245,
+        "count": 5
+      },
+      {
+        "commandWord": 263,
+        "count": 1
+      },
+      {
+        "commandWord": 350,
+        "count": 4
+      },
+      {
+        "commandWord": 520,
+        "count": 11
+      },
+      {
+        "commandWord": 525,
+        "count": 1
+      },
+      {
+        "commandWord": 554,
+        "count": 1
+      },
+      {
+        "commandWord": 556,
+        "count": 1
+      },
+      {
+        "commandWord": 557,
+        "count": 4
+      },
+      {
+        "commandWord": 558,
+        "count": 4
+      },
+      {
+        "commandWord": 559,
+        "count": 1
+      },
+      {
+        "commandWord": 563,
+        "count": 3
+      },
+      {
+        "commandWord": 564,
+        "count": 2
+      },
+      {
+        "commandWord": 568,
+        "count": 3
+      },
+      {
+        "commandWord": 570,
+        "count": 1
+      },
+      {
+        "commandWord": 575,
+        "count": 1
+      },
+      {
+        "commandWord": 576,
+        "count": 3
+      },
+      {
+        "commandWord": 577,
+        "count": 1
+      },
+      {
+        "commandWord": 578,
+        "count": 2
+      },
+      {
+        "commandWord": 579,
+        "count": 1
+      },
+      {
+        "commandWord": 580,
+        "count": 1
+      },
+      {
+        "commandWord": 581,
+        "count": 9
+      },
+      {
+        "commandWord": 582,
+        "count": 8
+      },
+      {
+        "commandWord": 583,
+        "count": 1
+      },
+      {
+        "commandWord": 586,
+        "count": 2
+      },
+      {
+        "commandWord": 588,
+        "count": 1
+      },
+      {
+        "commandWord": 590,
+        "count": 6
+      },
+      {
+        "commandWord": 594,
+        "count": 13
+      },
+      {
+        "commandWord": 595,
+        "count": 7
+      },
+      {
+        "commandWord": 598,
+        "count": 1
+      },
+      {
+        "commandWord": 601,
+        "count": 1
+      },
+      {
+        "commandWord": 602,
+        "count": 6
+      },
+      {
+        "commandWord": 603,
+        "count": 41
+      },
+      {
+        "commandWord": 604,
+        "count": 14
+      },
+      {
+        "commandWord": 605,
+        "count": 12
+      },
+      {
+        "commandWord": 608,
+        "count": 6
+      },
+      {
+        "commandWord": 609,
+        "count": 7
+      },
+      {
+        "commandWord": 610,
+        "count": 3
+      },
+      {
+        "commandWord": 611,
+        "count": 5
+      },
+      {
+        "commandWord": 612,
+        "count": 1
+      },
+      {
+        "commandWord": 613,
+        "count": 5
+      },
+      {
+        "commandWord": 615,
+        "count": 1
+      },
+      {
+        "commandWord": 618,
+        "count": 1
+      },
+      {
+        "commandWord": 620,
+        "count": 1
+      },
+      {
+        "commandWord": 627,
+        "count": 1
+      },
+      {
+        "commandWord": 641,
+        "count": 26
+      },
+      {
+        "commandWord": 643,
+        "count": 2
+      },
+      {
+        "commandWord": 645,
+        "count": 1
+      },
+      {
+        "commandWord": 647,
+        "count": 1
+      },
+      {
+        "commandWord": 649,
+        "count": 6
+      },
+      {
+        "commandWord": 650,
+        "count": 3
+      },
+      {
+        "commandWord": 652,
+        "count": 3
+      },
+      {
+        "commandWord": 653,
+        "count": 1
+      },
+      {
+        "commandWord": 655,
+        "count": 2
+      },
+      {
+        "commandWord": 656,
+        "count": 1
+      },
+      {
+        "commandWord": 657,
+        "count": 3
+      },
+      {
+        "commandWord": 659,
+        "count": 1
+      },
+      {
+        "commandWord": 663,
+        "count": 5
+      },
+      {
+        "commandWord": 664,
+        "count": 5
+      },
+      {
+        "commandWord": 666,
+        "count": 1
+      },
+      {
+        "commandWord": 672,
+        "count": 1
+      },
+      {
+        "commandWord": 673,
+        "count": 1
+      },
+      {
+        "commandWord": 674,
+        "count": 7
+      },
+      {
+        "commandWord": 675,
+        "count": 1
+      },
+      {
+        "commandWord": 676,
+        "count": 1
+      },
+      {
+        "commandWord": 679,
+        "count": 2
+      },
+      {
+        "commandWord": 684,
+        "count": 2
+      },
+      {
+        "commandWord": 701,
+        "count": 2
+      },
+      {
+        "commandWord": 703,
+        "count": 2
+      },
+      {
+        "commandWord": 709,
+        "count": 5
+      },
+      {
+        "commandWord": 715,
+        "count": 1
+      },
+      {
+        "commandWord": 732,
+        "count": 17
+      },
+      {
+        "commandWord": 756,
+        "count": 1
+      },
+      {
+        "commandWord": 757,
+        "count": 6
+      },
+      {
+        "commandWord": 765,
+        "count": 1
+      },
+      {
+        "commandWord": 768,
+        "count": 1
+      },
+      {
+        "commandWord": 770,
+        "count": 1
+      },
+      {
+        "commandWord": 775,
+        "count": 4
+      },
+      {
+        "commandWord": 776,
+        "count": 3
+      },
+      {
+        "commandWord": 783,
+        "count": 9
+      },
+      {
+        "commandWord": 792,
+        "count": 8
+      },
+      {
+        "commandWord": 795,
+        "count": 1
+      },
+      {
+        "commandWord": 797,
+        "count": 1
+      }
+    ],
+    "eventOpcodes": [
+      {
+        "opcode": "0xe0",
+        "operation": "randomBlock",
+        "count": 1913
+      },
+      {
+        "opcode": "0xe1",
+        "operation": "submitNativeEventAndYield",
+        "count": 2
+      }
+    ],
+    "eventOperations": {
+      "randomBlock": 1913,
+      "submitNativeEventAndYield": 2
+    },
+    "submittedNativeEventSites": [
+      {
+        "actorCode": "MEGM",
+        "resourceSha256": "823e98d32b092e04e023ab37c2bf3ff5ece98ffa3bfd1dde8d8a3a890cdbc0a7",
+        "afsEntryIndex": 401,
+        "markerOffset": "0x2b7",
+        "opcodeOffset": "0x2ef",
+        "payloadByte": 80,
+        "nativeArguments": [
+          23,
+          35,
+          25,
+          26
+        ]
+      },
+      {
+        "actorCode": "TSUC",
+        "resourceSha256": "a7b04fe1f9a077fe8fb5b61c2b502ae08ef8017ec444a9cdb04786aba510f790",
+        "afsEntryIndex": 661,
+        "markerOffset": "0x1d1",
+        "opcodeOffset": "0x219",
+        "payloadByte": 60,
+        "nativeArguments": [
+          -1,
+          59,
+          60,
+          -1
+        ]
+      }
+    ]
+  },
+  "examples": [
+    {
+      "actorCode": "AKMI",
+      "resourceSha256": "7db288d86571f431be93696f529359690ff5676e44d52c341af5e707a8db85f1",
+      "messageCount": 190,
+      "bodies": [
+        {
+          "markerOffset": "0xe5c",
+          "bodyOffset": "0xe5e",
+          "nodeCount": 1,
+          "messageSelections": [],
+          "nativeCommands": [],
+          "dynamicBoundaryCount": 0
+        },
+        {
+          "markerOffset": "0xebc",
+          "bodyOffset": "0xebe",
+          "nodeCount": 1,
+          "messageSelections": [],
+          "nativeCommands": [],
+          "dynamicBoundaryCount": 0
+        },
+        {
+          "markerOffset": "0xf2f",
+          "bodyOffset": "0xf31",
+          "nodeCount": 1,
+          "messageSelections": [],
+          "nativeCommands": [],
+          "dynamicBoundaryCount": 0
+        },
+        {
+          "markerOffset": "0xf8d",
+          "bodyOffset": "0xf8f",
+          "nodeCount": 1,
+          "messageSelections": [],
+          "nativeCommands": [],
+          "dynamicBoundaryCount": 0
+        },
+        {
+          "markerOffset": "0xff8",
+          "bodyOffset": "0xffa",
+          "nodeCount": 1,
+          "messageSelections": [],
+          "nativeCommands": [],
+          "dynamicBoundaryCount": 0
+        },
+        {
+          "markerOffset": "0x1065",
+          "bodyOffset": "0x1067",
+          "nodeCount": 5,
+          "messageSelections": [
+            {
+              "opcodeOffset": "0x106f",
+              "messageIndex": 48
+            },
+            {
+              "opcodeOffset": "0x1075",
+              "messageIndex": 49
+            },
+            {
+              "opcodeOffset": "0x1077",
+              "messageIndex": 46
+            },
+            {
+              "opcodeOffset": "0x1079",
+              "messageIndex": 50
+            },
+            {
+              "opcodeOffset": "0x107f",
+              "messageIndex": 51
+            },
+            {
+              "opcodeOffset": "0x1081",
+              "messageIndex": 52
+            },
+            {
+              "opcodeOffset": "0x1083",
+              "messageIndex": 53
+            },
+            {
+              "opcodeOffset": "0x1089",
+              "messageIndex": 54
+            },
+            {
+              "opcodeOffset": "0x108b",
+              "messageIndex": 55
+            },
+            {
+              "opcodeOffset": "0x108d",
+              "messageIndex": 56
+            },
+            {
+              "opcodeOffset": "0x1091",
+              "messageIndex": 57
+            }
+          ],
+          "nativeCommands": [
+            {
+              "opcodeOffset": "0x1093",
+              "commandWord": 50,
+              "nativeTickAdvance": 1
+            }
+          ],
+          "dynamicBoundaryCount": 0
+        },
+        {
+          "markerOffset": "0x109e",
+          "bodyOffset": "0x10a0",
+          "nodeCount": 1,
+          "messageSelections": [],
+          "nativeCommands": [],
+          "dynamicBoundaryCount": 0
+        },
+        {
+          "markerOffset": "0x10f4",
+          "bodyOffset": "0x10f6",
+          "nodeCount": 6,
+          "messageSelections": [
+            {
+              "opcodeOffset": "0x1100",
+              "messageIndex": 7
+            },
+            {
+              "opcodeOffset": "0x1102",
+              "messageIndex": 1
+            },
+            {
+              "opcodeOffset": "0x1104",
+              "messageIndex": 67
+            },
+            {
+              "opcodeOffset": "0x110a",
+              "messageIndex": 68
+            },
+            {
+              "opcodeOffset": "0x1110",
+              "messageIndex": 69
+            },
+            {
+              "opcodeOffset": "0x1116",
+              "messageIndex": 70
+            },
+            {
+              "opcodeOffset": "0x111a",
+              "messageIndex": 57
+            }
+          ],
+          "nativeCommands": [
+            {
+              "opcodeOffset": "0x111c",
+              "commandWord": 50,
+              "nativeTickAdvance": 1
+            }
+          ],
+          "dynamicBoundaryCount": 0
+        },
+        {
+          "markerOffset": "0x1127",
+          "bodyOffset": "0x1129",
+          "nodeCount": 1,
+          "messageSelections": [],
+          "nativeCommands": [],
+          "dynamicBoundaryCount": 0
+        },
+        {
+          "markerOffset": "0x118a",
+          "bodyOffset": "0x118c",
+          "nodeCount": 1,
+          "messageSelections": [],
+          "nativeCommands": [],
+          "dynamicBoundaryCount": 0
+        },
+        {
+          "markerOffset": "0x11e2",
+          "bodyOffset": "0x11e4",
+          "nodeCount": 1,
+          "messageSelections": [],
+          "nativeCommands": [],
+          "dynamicBoundaryCount": 0
+        },
+        {
+          "markerOffset": "0x1240",
+          "bodyOffset": "0x1242",
+          "nodeCount": 1,
+          "messageSelections": [],
+          "nativeCommands": [],
+          "dynamicBoundaryCount": 0
+        },
+        {
+          "markerOffset": "0x129a",
+          "bodyOffset": "0x129c",
+          "nodeCount": 1,
+          "messageSelections": [],
+          "nativeCommands": [],
+          "dynamicBoundaryCount": 0
+        },
+        {
+          "markerOffset": "0x12e6",
+          "bodyOffset": "0x12e8",
+          "nodeCount": 5,
+          "messageSelections": [
+            {
+              "opcodeOffset": "0x12f0",
+              "messageIndex": 7
+            },
+            {
+              "opcodeOffset": "0x12f6",
+              "messageIndex": 122
+            },
+            {
+              "opcodeOffset": "0x12fc",
+              "messageIndex": 123
+            },
+            {
+              "opcodeOffset": "0x1300",
+              "messageIndex": 13
+            }
+          ],
+          "nativeCommands": [
+            {
+              "opcodeOffset": "0x1302",
+              "commandWord": 50,
+              "nativeTickAdvance": 1
+            }
+          ],
+          "dynamicBoundaryCount": 0
+        },
+        {
+          "markerOffset": "0x130d",
+          "bodyOffset": "0x130f",
+          "nodeCount": 1,
+          "messageSelections": [],
+          "nativeCommands": [],
+          "dynamicBoundaryCount": 0
+        },
+        {
+          "markerOffset": "0x135c",
+          "bodyOffset": "0x135e",
+          "nodeCount": 1,
+          "messageSelections": [],
+          "nativeCommands": [],
+          "dynamicBoundaryCount": 0
+        },
+        {
+          "markerOffset": "0x13b8",
+          "bodyOffset": "0x13ba",
+          "nodeCount": 1,
+          "messageSelections": [],
+          "nativeCommands": [],
+          "dynamicBoundaryCount": 0
+        },
+        {
+          "markerOffset": "0x1410",
+          "bodyOffset": "0x1412",
+          "nodeCount": 1,
+          "messageSelections": [],
+          "nativeCommands": [],
+          "dynamicBoundaryCount": 0
+        },
+        {
+          "markerOffset": "0x1460",
+          "bodyOffset": "0x1462",
+          "nodeCount": 1,
+          "messageSelections": [],
+          "nativeCommands": [],
+          "dynamicBoundaryCount": 0
+        },
+        {
+          "markerOffset": "0x149f",
+          "bodyOffset": "0x14a1",
+          "nodeCount": 7,
+          "messageSelections": [
+            {
+              "opcodeOffset": "0x14a7",
+              "messageIndex": 7
+            },
+            {
+              "opcodeOffset": "0x14a9",
+              "messageIndex": 160
+            },
+            {
+              "opcodeOffset": "0x14ab",
+              "messageIndex": 161
+            },
+            {
+              "opcodeOffset": "0x14ad",
+              "messageIndex": 162
+            },
+            {
+              "opcodeOffset": "0x14af",
+              "messageIndex": 46
+            },
+            {
+              "opcodeOffset": "0x14b1",
+              "messageIndex": 163
+            },
+            {
+              "opcodeOffset": "0x14b3",
+              "messageIndex": 164
+            },
+            {
+              "opcodeOffset": "0x14be",
+              "messageIndex": 165
+            },
+            {
+              "opcodeOffset": "0x14c4",
+              "messageIndex": 166
+            },
+            {
+              "opcodeOffset": "0x14ca",
+              "messageIndex": 167
+            },
+            {
+              "opcodeOffset": "0x14d0",
+              "messageIndex": 168
+            },
+            {
+              "opcodeOffset": "0x14d4",
+              "messageIndex": 169
+            },
+            {
+              "opcodeOffset": "0x14d6",
+              "messageIndex": 170
+            }
+          ],
+          "nativeCommands": [
+            {
+              "opcodeOffset": "0x14d8",
+              "commandWord": 50,
+              "nativeTickAdvance": 1
+            }
+          ],
+          "dynamicBoundaryCount": 0
+        },
+        {
+          "markerOffset": "0x14e3",
+          "bodyOffset": "0x14e5",
+          "nodeCount": 1,
+          "messageSelections": [],
+          "nativeCommands": [],
+          "dynamicBoundaryCount": 0
+        },
+        {
+          "markerOffset": "0x152c",
+          "bodyOffset": "0x152e",
+          "nodeCount": 9,
+          "messageSelections": [
+            {
+              "opcodeOffset": "0x1536",
+              "messageIndex": 7
+            },
+            {
+              "opcodeOffset": "0x1538",
+              "messageIndex": 171
+            },
+            {
+              "opcodeOffset": "0x153e",
+              "messageIndex": 172
+            },
+            {
+              "opcodeOffset": "0x1544",
+              "messageIndex": 173
+            },
+            {
+              "opcodeOffset": "0x154c",
+              "messageIndex": 174
+            },
+            {
+              "opcodeOffset": "0x1552",
+              "messageIndex": 175
+            },
+            {
+              "opcodeOffset": "0x155a",
+              "messageIndex": 176
+            },
+            {
+              "opcodeOffset": "0x1560",
+              "messageIndex": 177
+            },
+            {
+              "opcodeOffset": "0x156d",
+              "messageIndex": 28
+            },
+            {
+              "opcodeOffset": "0x156f",
+              "messageIndex": 178
+            }
+          ],
+          "nativeCommands": [
+            {
+              "opcodeOffset": "0x1571",
+              "commandWord": 50,
+              "nativeTickAdvance": 1
+            }
+          ],
+          "dynamicBoundaryCount": 0
+        },
+        {
+          "markerOffset": "0x157c",
+          "bodyOffset": "0x157e",
+          "nodeCount": 19,
+          "messageSelections": [
+            {
+              "opcodeOffset": "0x158a",
+              "messageIndex": 7
+            },
+            {
+              "opcodeOffset": "0x159e",
+              "messageIndex": 179
+            },
+            {
+              "opcodeOffset": "0x15a4",
+              "messageIndex": 180
+            },
+            {
+              "opcodeOffset": "0x15aa",
+              "messageIndex": 181
+            },
+            {
+              "opcodeOffset": "0x1590",
+              "messageIndex": 28
+            },
+            {
+              "opcodeOffset": "0x159e",
+              "messageIndex": 179
+            },
+            {
+              "opcodeOffset": "0x15a4",
+              "messageIndex": 180
+            },
+            {
+              "opcodeOffset": "0x15aa",
+              "messageIndex": 181
+            },
+            {
+              "opcodeOffset": "0x1596",
+              "messageIndex": 29
+            },
+            {
+              "opcodeOffset": "0x159e",
+              "messageIndex": 179
+            },
+            {
+              "opcodeOffset": "0x15a4",
+              "messageIndex": 180
+            },
+            {
+              "opcodeOffset": "0x15aa",
+              "messageIndex": 181
+            },
+            {
+              "opcodeOffset": "0x15bd",
+              "messageIndex": 172
+            },
+            {
+              "opcodeOffset": "0x15cb",
+              "messageIndex": 182
+            },
+            {
+              "opcodeOffset": "0x15d1",
+              "messageIndex": 183
+            },
+            {
+              "opcodeOffset": "0x15d9",
+              "messageIndex": 184
+            },
+            {
+              "opcodeOffset": "0x15df",
+              "messageIndex": 185
+            },
+            {
+              "opcodeOffset": "0x15e3",
+              "messageIndex": 13
+            },
+            {
+              "opcodeOffset": "0x15c3",
+              "messageIndex": 173
+            },
+            {
+              "opcodeOffset": "0x15cb",
+              "messageIndex": 182
+            },
+            {
+              "opcodeOffset": "0x15d1",
+              "messageIndex": 183
+            },
+            {
+              "opcodeOffset": "0x15d9",
+              "messageIndex": 184
+            },
+            {
+              "opcodeOffset": "0x15df",
+              "messageIndex": 185
+            },
+            {
+              "opcodeOffset": "0x15e3",
+              "messageIndex": 13
+            }
+          ],
+          "nativeCommands": [
+            {
+              "opcodeOffset": "0x15e5",
+              "commandWord": 50,
+              "nativeTickAdvance": 1
+            },
+            {
+              "opcodeOffset": "0x15e5",
+              "commandWord": 50,
+              "nativeTickAdvance": 1
+            }
+          ],
+          "dynamicBoundaryCount": 0
+        },
+        {
+          "markerOffset": "0x15f0",
+          "bodyOffset": "0x15f2",
+          "nodeCount": 10,
+          "messageSelections": [
+            {
+              "opcodeOffset": "0x1600",
+              "messageIndex": 28
+            },
+            {
+              "opcodeOffset": "0x160e",
+              "messageIndex": 186
+            },
+            {
+              "opcodeOffset": "0x1614",
+              "messageIndex": 187
+            },
+            {
+              "opcodeOffset": "0x161c",
+              "messageIndex": 172
+            },
+            {
+              "opcodeOffset": "0x1622",
+              "messageIndex": 173
+            },
+            {
+              "opcodeOffset": "0x162a",
+              "messageIndex": 188
+            },
+            {
+              "opcodeOffset": "0x1630",
+              "messageIndex": 189
+            },
+            {
+              "opcodeOffset": "0x1634",
+              "messageIndex": 13
+            },
+            {
+              "opcodeOffset": "0x1606",
+              "messageIndex": 29
+            },
+            {
+              "opcodeOffset": "0x160e",
+              "messageIndex": 186
+            },
+            {
+              "opcodeOffset": "0x1614",
+              "messageIndex": 187
+            },
+            {
+              "opcodeOffset": "0x161c",
+              "messageIndex": 172
+            },
+            {
+              "opcodeOffset": "0x1622",
+              "messageIndex": 173
+            },
+            {
+              "opcodeOffset": "0x162a",
+              "messageIndex": 188
+            },
+            {
+              "opcodeOffset": "0x1630",
+              "messageIndex": 189
+            },
+            {
+              "opcodeOffset": "0x1634",
+              "messageIndex": 13
+            }
+          ],
+          "nativeCommands": [
+            {
+              "opcodeOffset": "0x1636",
+              "commandWord": 50,
+              "nativeTickAdvance": 1
+            },
+            {
+              "opcodeOffset": "0x1636",
+              "commandWord": 50,
+              "nativeTickAdvance": 1
+            }
+          ],
+          "dynamicBoundaryCount": 0
+        },
+        {
+          "markerOffset": "0x1641",
+          "bodyOffset": "0x1643",
+          "nodeCount": 3,
+          "messageSelections": [
+            {
+              "opcodeOffset": "0x1647",
+              "messageIndex": 28
+            }
+          ],
+          "nativeCommands": [],
+          "dynamicBoundaryCount": 0
+        }
+      ]
+    },
+    {
+      "actorCode": "BOB_",
+      "resourceSha256": "f3f3e259dd47bb66846186312ecba2a383ba19497e618258cb2b7623de94f200",
+      "messageCount": 10,
+      "bodies": [
+        {
+          "markerOffset": "0x8f",
+          "bodyOffset": "0x91",
+          "nodeCount": 9,
+          "messageSelections": [
+            {
+              "opcodeOffset": "0x9d",
+              "messageIndex": 0
+            },
+            {
+              "opcodeOffset": "0xab",
+              "messageIndex": 2
+            },
+            {
+              "opcodeOffset": "0xb1",
+              "messageIndex": 3
+            },
+            {
+              "opcodeOffset": "0xb7",
+              "messageIndex": 4
+            },
+            {
+              "opcodeOffset": "0xbf",
+              "messageIndex": 5
+            },
+            {
+              "opcodeOffset": "0xc5",
+              "messageIndex": 6
+            },
+            {
+              "opcodeOffset": "0xcb",
+              "messageIndex": 7
+            },
+            {
+              "opcodeOffset": "0xd1",
+              "messageIndex": 8
+            },
+            {
+              "opcodeOffset": "0xd7",
+              "messageIndex": 9
+            },
+            {
+              "opcodeOffset": "0xa3",
+              "messageIndex": 1
+            },
+            {
+              "opcodeOffset": "0xab",
+              "messageIndex": 2
+            },
+            {
+              "opcodeOffset": "0xb1",
+              "messageIndex": 3
+            },
+            {
+              "opcodeOffset": "0xb7",
+              "messageIndex": 4
+            },
+            {
+              "opcodeOffset": "0xbf",
+              "messageIndex": 5
+            },
+            {
+              "opcodeOffset": "0xc5",
+              "messageIndex": 6
+            },
+            {
+              "opcodeOffset": "0xcb",
+              "messageIndex": 7
+            },
+            {
+              "opcodeOffset": "0xd1",
+              "messageIndex": 8
+            },
+            {
+              "opcodeOffset": "0xd7",
+              "messageIndex": 9
+            }
+          ],
+          "nativeCommands": [
+            {
+              "opcodeOffset": "0xdb",
+              "commandWord": 50,
+              "nativeTickAdvance": 1
+            },
+            {
+              "opcodeOffset": "0xdb",
+              "commandWord": 50,
+              "nativeTickAdvance": 1
+            }
+          ],
+          "dynamicBoundaryCount": 0
+        }
+      ]
+    }
+  ]
+}

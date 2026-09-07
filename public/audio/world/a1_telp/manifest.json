@@ -1,0 +1,108 @@
+{
+  "schema": "new-yokosuka-d000-phone-book-audio-pack-v1",
+  "generatedBy": "tools/build_d000_phone_book_audio_pack.mjs",
+  "source": {
+    "bank": "extracted_files/data/SCENE/01/SOUND/A1_TELP.SND",
+    "byteLength": 76516,
+    "sha256": "70b37d84b73c8823bbbaaac641ee34bb462d52783c989aca35df410cc4f786d6",
+    "commandGroup": "a904",
+    "commandGroupTrackCount": 13,
+    "evidence": "tools/evidence/d000-phone-book-audio.json",
+    "evidenceSha256": "a09b8920aad586b95bb14889f4f5962dfb8e419501ab8c18c5f228e80c8a72ab"
+  },
+  "decoder": {
+    "repository": "https://github.com/Preppy/dtpkdump",
+    "commit": "a323c0e7e80af05e17e5bb291a9b20e55a3f9455",
+    "command": "python DTPKDump.py -wavconv A1_TELP.SND",
+    "wavNormalization": "remove DTPKDump's four 64-bit-size padding words"
+  },
+  "encoding": {
+    "container": "webm",
+    "codec": "opus",
+    "bitRate": 48000,
+    "variableBitRate": true,
+    "application": "lowdelay"
+  },
+  "purpose": "native D000 AUTH telephone-book interaction effects",
+  "runtimeStatus": "packaged but intentionally unwired pending exact cross-motion timing",
+  "tracks": [
+    {
+      "commandHex": "a9040000",
+      "track": 0,
+      "playbackId": 0,
+      "sampleId": 0,
+      "dtpkRate": "0xee1d",
+      "sampleRate": 16000,
+      "rawVolume": 115,
+      "compositionHex": "c0df007380ff",
+      "decodedSource": "A1_TELP_00_00_SPD_00_Sample_00_Rate_EE1D.wav",
+      "byteLength": 6540,
+      "sha256": "8190800b6fbfd7fa1f01ef1eb77a7e44baccc7c188e99d7d7901e6b5a1872a3c"
+    },
+    {
+      "commandHex": "a9040100",
+      "track": 1,
+      "playbackId": 1,
+      "sampleId": 1,
+      "dtpkRate": "0xeb1d",
+      "sampleRate": 14000,
+      "rawVolume": 110,
+      "compositionHex": "c0df016e80ff",
+      "decodedSource": "A1_TELP_00_01_SPD_01_Sample_01_Rate_EB1D.wav",
+      "byteLength": 5374,
+      "sha256": "831d030b0823d907cf322dc7bd0c0854a1fa13262205826be9ec64bb65cf493c"
+    },
+    {
+      "commandHex": "a9040700",
+      "track": 7,
+      "playbackId": 7,
+      "sampleId": 8,
+      "dtpkRate": "0xee1d",
+      "sampleRate": 16000,
+      "rawVolume": 100,
+      "compositionHex": "c0df076480ff",
+      "decodedSource": "A1_TELP_00_07_SPD_07_Sample_08_Rate_EE1D.wav",
+      "byteLength": 5879,
+      "sha256": "81639a3a1a681bb04d652dda7c5c1f3e27175370617a3752051e30bdb371ae93"
+    },
+    {
+      "commandHex": "a9040800",
+      "track": 8,
+      "playbackId": 8,
+      "sampleId": 9,
+      "dtpkRate": "0xee1d",
+      "sampleRate": 16000,
+      "rawVolume": 100,
+      "compositionHex": "c0df086480ff",
+      "decodedSource": "A1_TELP_00_08_SPD_08_Sample_09_Rate_EE1D.wav",
+      "byteLength": 4634,
+      "sha256": "9dde291a227645dccd927578f75984eb7db498e5992ffc56734146430f255c61"
+    },
+    {
+      "commandHex": "a9040a00",
+      "track": 10,
+      "playbackId": 10,
+      "sampleId": 11,
+      "dtpkRate": "0xee1d",
+      "sampleRate": 16000,
+      "rawVolume": 100,
+      "compositionHex": "c0df0a6480ff",
+      "decodedSource": "A1_TELP_00_10_SPD_10_Sample_0B_Rate_EE1D.wav",
+      "byteLength": 7523,
+      "sha256": "542cdf72ce0e7aca4573c9793b33241a34b351bf1c7373b997d560b0c5d16356"
+    },
+    {
+      "commandHex": "a9040b00",
+      "track": 11,
+      "playbackId": 11,
+      "sampleId": 12,
+      "dtpkRate": "0xee1d",
+      "sampleRate": 16000,
+      "rawVolume": 100,
+      "compositionHex": "c0df0b6480ff",
+      "decodedSource": "A1_TELP_00_11_SPD_11_Sample_0C_Rate_EE1D.wav",
+      "byteLength": 4817,
+      "sha256": "1fa53c9e7d9f401855d396348b09a48ef87f69b85a1bbe80804b010e959ea820"
+    }
+  ]
+}

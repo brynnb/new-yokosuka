@@ -1,0 +1,130 @@
+{
+  "schema": "new-yokosuka-actor-momt-scaled-offset-evidence-v1",
+  "status": "exact-mode-zero-native-handler-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 42,
+    "operationHex": "0x002a",
+    "argumentCount": 3,
+    "handlerAddress": "0x0c165cd4",
+    "provenMode": 0,
+    "verifiedRanges": {
+      "modeZeroHandler": {
+        "address": "0x0c165cd4",
+        "length": 336,
+        "sha256": "1b2ab7318a65522961ca7cc27446cefd675631044afb9085d280d9de149132bf"
+      },
+      "actorResolverSample": {
+        "address": "0x0c153956",
+        "length": 64,
+        "sha256": "46e00fc5aa0eb86845d366f0eac4ad78ef1124d2aff4f210e8728b7f1d79e3cd"
+      },
+      "momtAccessor": {
+        "address": "0x0c113a76",
+        "length": 30,
+        "sha256": "69d657beb0f052b69809a44353767e8d1d78164f4255489734802b15c7027f35"
+      },
+      "momtVectorReader": {
+        "address": "0x0c1144f6",
+        "length": 24,
+        "sha256": "af76dfdb72fe4a84ad12c0ff76c1b702d0b4f75140ab31f96e0f569e2297bd43"
+      },
+      "actorPositionOffset": {
+        "address": "0x0c0ab186",
+        "length": 86,
+        "sha256": "348c6d88a42e9188f06c238d5fb79f445d1b25efcf9e0f57d09986de45cf7411"
+      },
+      "sceneRegistryUnlink": {
+        "address": "0x0c152e82",
+        "length": 92,
+        "sha256": "376a15375677a80e98e63068037825507f4ef8c7f750fda9d1c57189ccb7f39b"
+      }
+    },
+    "nativeContract": {
+      "defaultVector": "0x0c279660",
+      "actorResolver": "0x0c153956",
+      "momtAccessor": "0x0c113a76",
+      "currentSceneOwner": "0x0c217488",
+      "ownerResolver": "0x0c09766a",
+      "sceneRegistryUnlink": "0x0c152e82",
+      "momtVectorReader": "0x0c1144f6",
+      "actorPositionOffset": "0x0c0ab186"
+    },
+    "recordTag": "MOMT",
+    "momtScaleWordOffsets": [
+      "record+0x0194",
+      "record+0x0198",
+      "record+0x019c"
+    ],
+    "actorPositionWordOffsets": [
+      "actor+0x40",
+      "actor+0x44",
+      "actor+0x48"
+    ],
+    "provenBehavior": "Mode zero resolves argument zero as an actor and obtains its associated MOMT record. It reads the three raw MOMT float words at record offsets +0x0194/+0x0198/+0x019c, multiplies them componentwise in float32 by the three raw float words at argument one's pointer, optionally applies the actor's native parent transform, and float32-adds the result to actor position words +0x40/+0x44/+0x48. A missing actor is a no-op; a resolved actor without MOMT takes the exact current-scene registry unlink path. Both early exits occur before argument one is dereferenced."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 112,
+    "provenCallCount": 99,
+    "unresolvedModeOneCallCount": 13,
+    "dialogueRegionCallCount": 57,
+    "provenDialogueRegionCallCount": 57,
+    "areaCount": 33,
+    "provenAreaCount": 30,
+    "argumentKindCounts": {
+      "0": {
+        "constant": 74,
+        "frame-field": 34,
+        "runtime": 4
+      },
+      "1": {
+        "frame-field": 2,
+        "runtime": 7,
+        "static-pointer": 103
+      },
+      "2": {
+        "constant": 112
+      }
+    },
+    "provenArgumentKindCounts": {
+      "0": {
+        "constant": 63,
+        "frame-field": 32,
+        "runtime": 4
+      },
+      "1": {
+        "runtime": 2,
+        "static-pointer": 97
+      },
+      "2": {
+        "constant": 99
+      }
+    },
+    "dialogueArgumentKindCounts": {
+      "0": {
+        "constant": 41,
+        "frame-field": 12,
+        "runtime": 4
+      },
+      "1": {
+        "runtime": 2,
+        "static-pointer": 55
+      },
+      "2": {
+        "constant": 57
+      }
+    }
+  },
+  "evidenceBoundary": [
+    "Only exact selector zero is promoted; the 13 selector-one calls remain unresolved.",
+    "MOMT and all field offsets retain their native low-level identities.",
+    "The optional parent-space transform remains an explicit injected adapter.",
+    "Actor/MOMT availability and pointer reads remain ordered native prerequisites.",
+    "No spatial intent, persistence owner, or flattened gameplay effect is inferred."
+  ]
+}

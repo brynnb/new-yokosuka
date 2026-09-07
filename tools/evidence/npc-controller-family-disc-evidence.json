@@ -1,0 +1,3979 @@
+{
+  "schema": "new-yokosuka-npc-controller-family-disc-evidence-v1",
+  "sources": {
+    "executableFunction": "FUN_0c0faef2",
+    "executableRule": "selected HRCM hierarchy node low word > 0x7000 ? nodeType - 0x7001 : 0",
+    "assetManifests": [
+      "play/data/scheduled-actor-assets.json",
+      "tools/evidence/native-activity-actor-assets.json"
+    ],
+    "assetDirectory": "play/assets/characters",
+    "ramCrossCheck": "tools/evidence/npc-controller-family-evidence.json"
+  },
+  "evidenceBoundary": "Each mapping is decoded from the root hierarchy node of the exact CHRM bytes extracted from HUMANS.AFS. The asset SHA-256 must match the archive provenance manifest. Retained live-RAM observations are an independent cross-check and must agree; they are not used to choose or infer a family.",
+  "summary": {
+    "modelCount": 231,
+    "exportedModelCodeCount": 234,
+    "familyCounts": {
+      "0": 79,
+      "3": 3,
+      "4": 10,
+      "7": 24,
+      "8": 5,
+      "10": 54,
+      "12": 18,
+      "15": 15,
+      "16": 3,
+      "18": 2,
+      "19": 18
+    },
+    "ramCrossCheckCount": 40,
+    "ramMismatchCount": 0
+  },
+  "models": [
+    {
+      "modelCode": "AME_L",
+      "mappedModelCode": "AME_L",
+      "assetModelCode": "AME_L",
+      "modelFile": "AME_L.CHRM",
+      "modelSha256": "d99f46e484eb33736ba5bc51b5faf9fb1a541d570e172165d8e0f24cb8f74689",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        655
+      ],
+      "hierarchyOffset": 45456,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "ASD_L",
+      "mappedModelCode": "ASD_L",
+      "assetModelCode": "ASD_L",
+      "modelFile": "ASD_L.CHRM",
+      "modelSha256": "9fc53e597403653e220ccf3463017ef94991a5a5469511374753b06167c574da",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        433
+      ],
+      "hierarchyOffset": 26536,
+      "rootNodeFlag": "0x00007008",
+      "rootNodeType": "0x7008",
+      "familyIndex": 7,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "ASO_L",
+      "mappedModelCode": "ASO_L",
+      "assetModelCode": "ASO_L",
+      "modelFile": "ASO_L.CHRM",
+      "modelSha256": "70e9d9b63cf3368a633e3af1f73f6b73de6b8d746a7d6f88a4d2f61da908e0cc",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        15
+      ],
+      "hierarchyOffset": 29336,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "BAT_L",
+      "mappedModelCode": "BAT_L",
+      "assetModelCode": "BAT_L",
+      "modelFile": "BAT_L.CHRM",
+      "modelSha256": "715ddeac6c1969799b1712936669aa6c9d5bca8e91cf3f4483889d056471c7aa",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        229
+      ],
+      "hierarchyOffset": 34560,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": 10,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "BAU_L",
+      "mappedModelCode": "BAU_L",
+      "assetModelCode": "BAU_L",
+      "modelFile": "BAU_L.CHRM",
+      "modelSha256": "da8cb5676361491094c49d99a0c4934c89a0d1c26e328f6d9b2f0cba00e9c6cb",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        527
+      ],
+      "hierarchyOffset": 27576,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "BCA_L",
+      "mappedModelCode": "BCA_L",
+      "assetModelCode": "BCA_L",
+      "modelFile": "BCA_L.CHRM",
+      "modelSha256": "f18b467c8672f8fd39e74fea289b1d5be3b7d5031f2010c66d7b837a30864111",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        333
+      ],
+      "hierarchyOffset": 28112,
+      "rootNodeFlag": "0x00007005",
+      "rootNodeType": "0x7005",
+      "familyIndex": 4,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "BGA_L",
+      "mappedModelCode": "BGA_L",
+      "assetModelCode": "BGA_L",
+      "modelFile": "BGA_L.CHRM",
+      "modelSha256": "8e3dd2dd36c5d848d337a8b65782fbfe6479b557a7b28b5ddb1a10379d6c2ac6",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        397
+      ],
+      "hierarchyOffset": 30144,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": 0,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "BGM_L",
+      "mappedModelCode": "BGM_L",
+      "assetModelCode": "BGM_L",
+      "modelFile": "BGM_L.CHRM",
+      "modelSha256": "7f263bd928d0df35cb33752783dce215b75c02a9cc36d1fa3af1550a9190b55f",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        567
+      ],
+      "hierarchyOffset": 28392,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "BIB_L",
+      "mappedModelCode": "BIB_L",
+      "assetModelCode": "BIB_L",
+      "modelFile": "BIB_L.CHRM",
+      "modelSha256": "f501fe44e9e0477a45b36efa34ff4df58aa850628a67ea73802398ee4eac8c82",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        341
+      ],
+      "hierarchyOffset": 27864,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": 0,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "BUR_L",
+      "mappedModelCode": "BUR_L",
+      "assetModelCode": "BUR_L",
+      "modelFile": "BUR_L.CHRM",
+      "modelSha256": "49dbd69d0fc120946fc559fdb4b38ee26b10c4fc33ce594852f434de42feb6d2",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        7
+      ],
+      "hierarchyOffset": 30920,
+      "rootNodeFlag": "0x0001700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": 10,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "BWW_L",
+      "mappedModelCode": "BWW_L",
+      "assetModelCode": "BWW_L",
+      "modelFile": "BWW_L.CHRM",
+      "modelSha256": "731ac620d0007256530e9a3b8173ba334da78149a9aeeb6a4a90c5a9f1c6b3fb",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        721
+      ],
+      "hierarchyOffset": 29952,
+      "rootNodeFlag": "0x00007014",
+      "rootNodeType": "0x7014",
+      "familyIndex": 19,
+      "ramFamilyIndex": 19,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "CHU_L",
+      "mappedModelCode": "CHU_L",
+      "assetModelCode": "CHU_L",
+      "modelFile": "CHU_L.CHRM",
+      "modelSha256": "da94a9e0d91e302a4f37e1407590958b7596e905c0a3f59fc1f727da9b2b6543",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        677
+      ],
+      "hierarchyOffset": 36320,
+      "rootNodeFlag": "0x00007008",
+      "rootNodeType": "0x7008",
+      "familyIndex": 7,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "CMA_L",
+      "mappedModelCode": "CMA_L",
+      "assetModelCode": "CMA_L",
+      "modelFile": "CMA_L.CHRM",
+      "modelSha256": "72eb0e43fc12946c7ee10c223dd0da3eaafd598bf3b9b1a399cc16b2e79af76b",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        141
+      ],
+      "hierarchyOffset": 31832,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "CT3_M",
+      "mappedModelCode": "CT3_M",
+      "assetModelCode": "CT3_M",
+      "modelFile": "CT3_M.CHRM",
+      "modelSha256": "0582183221fd5ed2145095d27f31e0240b3a4d0db7423e3c42efcf6377ccdd59",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        135
+      ],
+      "hierarchyOffset": 23872,
+      "rootNodeFlag": "0x00007011",
+      "rootNodeType": "0x7011",
+      "familyIndex": 16,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "CT4_M",
+      "mappedModelCode": "CT4_M",
+      "assetModelCode": "CT4_M",
+      "modelFile": "CT4_M.CHRM",
+      "modelSha256": "60562c2637e70f8888104eaad1ef682429ad0deaafc2574fa566d5b948260a33",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        133
+      ],
+      "hierarchyOffset": 23872,
+      "rootNodeFlag": "0x00007011",
+      "rootNodeType": "0x7011",
+      "familyIndex": 16,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "CT5_M",
+      "mappedModelCode": "CT5_M",
+      "assetModelCode": "CT5_M",
+      "modelFile": "CT5_M.CHRM",
+      "modelSha256": "2bd90ffbfc869380628c963fba1cd08bcaee1968d7a4be7507b54c5be9a77498",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        131
+      ],
+      "hierarchyOffset": 23872,
+      "rootNodeFlag": "0x00007011",
+      "rootNodeType": "0x7011",
+      "familyIndex": 16,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "DG2_M",
+      "mappedModelCode": "DG2_M",
+      "assetModelCode": "DG2_M",
+      "modelFile": "DG2_M.CHRM",
+      "modelSha256": "4631de00c822c3876ef613126f0b1188c0b184d3a60b0cb5548dfe3fcf7c8861",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        147
+      ],
+      "hierarchyOffset": 15040,
+      "rootNodeFlag": "0x00007013",
+      "rootNodeType": "0x7013",
+      "familyIndex": 18,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "DG3_M",
+      "mappedModelCode": "DG3_M",
+      "assetModelCode": "DG3_M",
+      "modelFile": "DG3_M.CHRM",
+      "modelSha256": "32eca4781cbf177305de5aaf4f5324637dc05ca36ea6a9f88987a55b77f014f1",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        149
+      ],
+      "hierarchyOffset": 15040,
+      "rootNodeFlag": "0x00007013",
+      "rootNodeType": "0x7013",
+      "familyIndex": 18,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "DOR_L",
+      "mappedModelCode": "DOR_L",
+      "assetModelCode": "DOR_L",
+      "modelFile": "DOR_L.CHRM",
+      "modelSha256": "a9b765015fce662afa189b245ffff0713d6006b3920841c3a178402066510c0b",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        613
+      ],
+      "hierarchyOffset": 31392,
+      "rootNodeFlag": "0x00017001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "DRV_L",
+      "mappedModelCode": "DRV_L",
+      "assetModelCode": "DRV_L",
+      "modelFile": "DRV_L.CHRM",
+      "modelSha256": "c22ab3ff29b7ad88a142327711c14780586b1f2e0edaf5a29c6c33a60db8fb9e",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        605
+      ],
+      "hierarchyOffset": 28240,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "FKS_L",
+      "mappedModelCode": "FKS_L",
+      "assetModelCode": "FKS_L",
+      "modelFile": "FKS_L.CHRM",
+      "modelSha256": "9ad32821da6734bb063a7a142d90f07f2cae7a34a6a55d1f7ca1549f2d0d105a",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        175
+      ],
+      "hierarchyOffset": 32352,
+      "rootNodeFlag": "0x00007014",
+      "rootNodeType": "0x7014",
+      "familyIndex": 19,
+      "ramFamilyIndex": 19,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "FLA_L",
+      "mappedModelCode": "FLA_L",
+      "assetModelCode": "FLA_L",
+      "modelFile": "FLA_L.CHRM",
+      "modelSha256": "798f5ddd3e8234ca6fcd67232e1ab4c146d06c711e696aad8e49db0c72a275bb",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        177
+      ],
+      "hierarchyOffset": 27136,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "FLB_L",
+      "mappedModelCode": "FLB_L",
+      "assetModelCode": "FLB_L",
+      "modelFile": "FLB_L.CHRM",
+      "modelSha256": "0ecc1e00d79d90f547fabea66d0639495d488b0bdf03ee74e48d35391bc76841",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        179
+      ],
+      "hierarchyOffset": 28056,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "FLC_L",
+      "mappedModelCode": "FLC_L",
+      "assetModelCode": "FLC_L",
+      "modelFile": "FLC_L.CHRM",
+      "modelSha256": "e1b6b8f55167bf06fafe7938316b0d9e869ff46fb39c3aa13c40be9b817a5c2b",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        181
+      ],
+      "hierarchyOffset": 29600,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "FLD_L",
+      "mappedModelCode": "FLD_L",
+      "assetModelCode": "FLD_L",
+      "modelFile": "FLD_L.CHRM",
+      "modelSha256": "503bd7b7bb7aaff7830a0218fa9b223f51bc722654387885a4d86420f955d965",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        183
+      ],
+      "hierarchyOffset": 30096,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "FLE_L",
+      "mappedModelCode": "FLE_L",
+      "assetModelCode": "FLE_L",
+      "modelFile": "FLE_L.CHRM",
+      "modelSha256": "22133f8c1f7a0677da828048805eece8ec043411bb52c507cb312b15c4025522",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        185
+      ],
+      "hierarchyOffset": 28168,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "FLF_L",
+      "mappedModelCode": "FLF_L",
+      "assetModelCode": "FLF_L",
+      "modelFile": "FLF_L.CHRM",
+      "modelSha256": "5e23365c5e6f456ca12245880aecc15e70ef771cfb20dea040286b1531c61c82",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        187
+      ],
+      "hierarchyOffset": 28872,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "FLG_L",
+      "mappedModelCode": "FLG_L",
+      "assetModelCode": "FLG_L",
+      "modelFile": "FLG_L.CHRM",
+      "modelSha256": "6714fea55797346c12afda1857a378bdd01a876ea33bd2a4e30692f5e9827046",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        189
+      ],
+      "hierarchyOffset": 28840,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "FLH_L",
+      "mappedModelCode": "FLH_L",
+      "assetModelCode": "FLH_L",
+      "modelFile": "FLH_L.CHRM",
+      "modelSha256": "746a8d3f64828802a7c4c179668e90127d35170454f7ec1912ea762669b03eaa",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        191
+      ],
+      "hierarchyOffset": 29952,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "FLI_L",
+      "mappedModelCode": "FLI_L",
+      "assetModelCode": "FLI_L",
+      "modelFile": "FLI_L.CHRM",
+      "modelSha256": "c671d01ddd52d487acb66caa09caf671b7c7f42f5506ebfbb1b53bf343a70526",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        725
+      ],
+      "hierarchyOffset": 26720,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "FLJ_L",
+      "mappedModelCode": "FLJ_L",
+      "assetModelCode": "FLJ_L",
+      "modelFile": "FLJ_L.CHRM",
+      "modelSha256": "3250a04267f57cc3024e380a7321144b1e80a6f8186ab824671544e8ce56dd00",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        195
+      ],
+      "hierarchyOffset": 27064,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "FLK_L",
+      "mappedModelCode": "FLK_L",
+      "assetModelCode": "FLK_L",
+      "modelFile": "FLK_L.CHRM",
+      "modelSha256": "ad03c961151725591c1a17d1b1574a426ee96c1a7510f39afbd55531910c0706",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        197
+      ],
+      "hierarchyOffset": 27760,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "FLL_L",
+      "mappedModelCode": "FLL_L",
+      "assetModelCode": "FLL_L",
+      "modelFile": "FLL_L.CHRM",
+      "modelSha256": "32313343218d62d83f5af1880c01ae72279ee6a738631a4d3d890752d88f5a14",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        199
+      ],
+      "hierarchyOffset": 28472,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "FLM_L",
+      "mappedModelCode": "FLM_L",
+      "assetModelCode": "FLM_L",
+      "modelFile": "FLM_L.CHRM",
+      "modelSha256": "017df79b792027c2b15d21f9d7865be8c779989c686a50a639399b2c5f5797ed",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        201
+      ],
+      "hierarchyOffset": 28552,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "FLN_L",
+      "mappedModelCode": "FLN_L",
+      "assetModelCode": "FLN_L",
+      "modelFile": "FLN_L.CHRM",
+      "modelSha256": "7ef02cff34c174cd527ce3da31025622536cbfb3a7bf02d663a06767c9887598",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        203
+      ],
+      "hierarchyOffset": 27528,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "FLO_L",
+      "mappedModelCode": "FLO_L",
+      "assetModelCode": "FLO_L",
+      "modelFile": "FLO_L.CHRM",
+      "modelSha256": "6f746f57729758a6e4e8025dd52b0d4fac4b96038b75b1971d396c4827b2e610",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        205
+      ],
+      "hierarchyOffset": 28376,
+      "rootNodeFlag": "0x00017001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "FLP_L",
+      "mappedModelCode": "FLP_L",
+      "assetModelCode": "FLP_L",
+      "modelFile": "FLP_L.CHRM",
+      "modelSha256": "814a822f81f2cc6a42474db5f54a6be38958acf68a1fadafa1406edc67bea135",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        207
+      ],
+      "hierarchyOffset": 30016,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "FRA_L",
+      "mappedModelCode": "FRA_L",
+      "assetModelCode": "FRA_L",
+      "modelFile": "FRA_L.CHRM",
+      "modelSha256": "9d78cd69c406560a00bf8bbf4cb1aba5cf5ccad8d16eeb3f04289aaff5d70fa9",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        471
+      ],
+      "hierarchyOffset": 30824,
+      "rootNodeFlag": "0x00047001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "FRB_L",
+      "mappedModelCode": "FRB_L",
+      "assetModelCode": "FRB_L",
+      "modelFile": "FRB_L.CHRM",
+      "modelSha256": "2125592194122caf84f199d40b8ddb1a94aff53c0d94ad02721925f1e7d3ade3",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        737
+      ],
+      "hierarchyOffset": 33336,
+      "rootNodeFlag": "0x0000700d",
+      "rootNodeType": "0x700d",
+      "familyIndex": 12,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "FRG_L",
+      "mappedModelCode": "FRG_L",
+      "assetModelCode": "FRG_L",
+      "modelFile": "FRG_L.CHRM",
+      "modelSha256": "d0679a8a3dd7af2161321c7bf8e541b8516c933f563cf628357f35629e751b50",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        283,
+        285
+      ],
+      "hierarchyOffset": 35160,
+      "rootNodeFlag": "0x0000700d",
+      "rootNodeType": "0x700d",
+      "familyIndex": 12,
+      "ramFamilyIndex": 12,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "FRO_L",
+      "mappedModelCode": "FRO_L",
+      "assetModelCode": "FRO_L",
+      "modelFile": "FRO_L.CHRM",
+      "modelSha256": "e98e58464d801c9dc14eede5ce03f068439174cbdbab3deb9f150352e47b5a80",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        245
+      ],
+      "hierarchyOffset": 48288,
+      "rootNodeFlag": "0x0000700d",
+      "rootNodeType": "0x700d",
+      "familyIndex": 12,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "FSB_L",
+      "mappedModelCode": "FSB_L",
+      "assetModelCode": "FSB_L",
+      "modelFile": "FSB_L.CHRM",
+      "modelSha256": "d222547cecc89b13ae8623e5b3964f075bbf9668408513580fe90f1ba6a02bb2",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        361
+      ],
+      "hierarchyOffset": 28568,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "FSC_L",
+      "mappedModelCode": "FSC_L",
+      "assetModelCode": "FSC_L",
+      "modelFile": "FSC_L.CHRM",
+      "modelSha256": "0c4b9e6d01629d7787d04b967527ad0881f0a382fa0aa732aca0cbd772c7b3b4",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        447
+      ],
+      "hierarchyOffset": 30192,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "FUB_M",
+      "mappedModelCode": "FUB_M",
+      "assetModelCode": "FUB_M",
+      "modelFile": "FUB_M.CHRM",
+      "modelSha256": "fde101c8d6be2f1d0ce21f9263101074be4a8058b35f9207ef5419ef70d69e18",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        211
+      ],
+      "hierarchyOffset": 39696,
+      "rootNodeFlag": "0x0004700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "FUK_M",
+      "mappedModelCode": "FUK_M",
+      "assetModelCode": "FUK_M",
+      "modelFile": "FUK_M.CHRM",
+      "modelSha256": "f3643d1ec78e591d11a857d9a5c95fa3c092a18bd43d6c91a4f87dfb9d9caa85",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        211
+      ],
+      "hierarchyOffset": 42224,
+      "rootNodeFlag": "0x0004700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": 10,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "FUU_L",
+      "mappedModelCode": "FUU_L",
+      "assetModelCode": "FUU_L",
+      "modelFile": "FUU_L.CHRM",
+      "modelSha256": "28302d6208407e365fb6cbb6fb4d022882d0b99395946a51c24ebd078659ea5b",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        301
+      ],
+      "hierarchyOffset": 26712,
+      "rootNodeFlag": "0x00007008",
+      "rootNodeType": "0x7008",
+      "familyIndex": 7,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "FUW_L",
+      "mappedModelCode": "FUW_L",
+      "assetModelCode": "FUW_L",
+      "modelFile": "FUW_L.CHRM",
+      "modelSha256": "673b29de3ac39fcf550c0bb446f8c9a360aa104391580f8dd107e2b2b1750a51",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        509
+      ],
+      "hierarchyOffset": 30760,
+      "rootNodeFlag": "0x00007008",
+      "rootNodeType": "0x7008",
+      "familyIndex": 7,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "GAT_L",
+      "mappedModelCode": "GAT_L",
+      "assetModelCode": "GAT_L",
+      "modelFile": "GAT_L.CHRM",
+      "modelSha256": "d5bc1a56d66adba2bc574ca49919699234246a0471d498777c84f61d780817d5",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        465
+      ],
+      "hierarchyOffset": 27376,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": 10,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "GIB_M",
+      "mappedModelCode": "GIB_M",
+      "assetModelCode": "GIB_M",
+      "modelFile": "GIB_M.CHRM",
+      "modelSha256": "b956ac0f012ca3c7316589e71331bd889fbab30c4bd8bd39cb6ff98f8537f511",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        565
+      ],
+      "hierarchyOffset": 36232,
+      "rootNodeFlag": "0x0001700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "GIC_L",
+      "mappedModelCode": "GIC_L",
+      "assetModelCode": "GIC_L",
+      "modelFile": "GIC_L.CHRM",
+      "modelSha256": "720b0407311bc1165a186e5fb9534d8f5ec222819f92a23b44bdf0f9acd2cc9e",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        395
+      ],
+      "hierarchyOffset": 25824,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": 10,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "GIE_L",
+      "mappedModelCode": "GIE_L",
+      "assetModelCode": "GIE_L",
+      "modelFile": "GIE_L.CHRM",
+      "modelSha256": "816357b8cbb14675207efcacffd9b8a42dcbcc366f66d4858e4cf15a99ad5e68",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        227
+      ],
+      "hierarchyOffset": 28280,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "GIF_L",
+      "mappedModelCode": "GIF_L",
+      "assetModelCode": "GIF_L",
+      "modelFile": "GIF_L.CHRM",
+      "modelSha256": "d45e25679d8fc084cafb9c27fe5e320f4fa13815cecacfaf516cf22beb8b078c",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        297
+      ],
+      "hierarchyOffset": 27184,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "GIJ_M",
+      "mappedModelCode": "GIJ_M",
+      "assetModelCode": "GIJ_M",
+      "modelFile": "GIJ_M.CHRM",
+      "modelSha256": "cd2841b5fb8ea656055ce2309320917b13b3f64c5134f161534dfb3974b426e1",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        657
+      ],
+      "hierarchyOffset": 36512,
+      "rootNodeFlag": "0x0004700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "GKA_L",
+      "mappedModelCode": "GKA_L",
+      "assetModelCode": "GKA_L",
+      "modelFile": "GKA_L.CHRM",
+      "modelSha256": "e19f46164712db8d91f2e9b9c4a45d645bef44bf7957a95b325f0c09f364392a",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        347
+      ],
+      "hierarchyOffset": 28648,
+      "rootNodeFlag": "0x00007005",
+      "rootNodeType": "0x7005",
+      "familyIndex": 4,
+      "ramFamilyIndex": 4,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "GKB_L",
+      "mappedModelCode": "GKB_L",
+      "assetModelCode": "GKB_L",
+      "modelFile": "GKB_L.CHRM",
+      "modelSha256": "b017f1249ffbc239c5979dc34be0d13aa3575da002b4044355b2e8058afea452",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        503
+      ],
+      "hierarchyOffset": 31624,
+      "rootNodeFlag": "0x00007005",
+      "rootNodeType": "0x7005",
+      "familyIndex": 4,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "GRL_L",
+      "mappedModelCode": "GRL_L",
+      "assetModelCode": "GRL_L",
+      "modelFile": "GRL_L.CHRM",
+      "modelSha256": "ef5f342570a97cca2fed1053e241d732ae1b96d588219b7a10298c2cbdbea4da",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        529
+      ],
+      "hierarchyOffset": 33080,
+      "rootNodeFlag": "0x00007014",
+      "rootNodeType": "0x7014",
+      "familyIndex": 19,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "HJB_L",
+      "mappedModelCode": "HJB_L",
+      "assetModelCode": "HJB_L",
+      "modelFile": "HJB_L.CHRM",
+      "modelSha256": "3419f8ebc7dd82c17a9b08ac4d8b9843ee8bdf833c6a4a76a80e069608bd28d7",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        215
+      ],
+      "hierarchyOffset": 27840,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "HJW_L",
+      "mappedModelCode": "HJW_L",
+      "assetModelCode": "HJW_L",
+      "modelFile": "HJW_L.CHRM",
+      "modelSha256": "a78928a9b63637421ac5d5988a4a39bde24a843fd5e1a49ad29b2901085e1228",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        219
+      ],
+      "hierarchyOffset": 28952,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "HND_L",
+      "mappedModelCode": "HND_L",
+      "assetModelCode": "HND_L",
+      "modelFile": "HND_L.CHRM",
+      "modelSha256": "b7ab22543255b6b8150e60950ce4a3ad616aaeea86d159ea782920cfac89109c",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        249
+      ],
+      "hierarchyOffset": 29944,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": 0,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "HOB_L",
+      "mappedModelCode": "HOB_L",
+      "assetModelCode": "HOB_L",
+      "modelFile": "HOB_L.CHRM",
+      "modelSha256": "b9791834f8f10f3277398170c75ace69174764a16a23d5400eb25b4c6c89f2f0",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        713
+      ],
+      "hierarchyOffset": 31136,
+      "rootNodeFlag": "0x0000700d",
+      "rootNodeType": "0x700d",
+      "familyIndex": 12,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "HOS_L",
+      "mappedModelCode": "HOS_L",
+      "assetModelCode": "HOS_L",
+      "modelFile": "HOS_L.CHRM",
+      "modelSha256": "823442c73f6348bd7436fe7e48c9e50b4dce9ce5bb88d5190dd786e177cc0406",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        1
+      ],
+      "hierarchyOffset": 38984,
+      "rootNodeFlag": "0x0001700d",
+      "rootNodeType": "0x700d",
+      "familyIndex": 12,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "HPD_L",
+      "mappedModelCode": "HPD_L",
+      "assetModelCode": "HPD_L",
+      "modelFile": "HPD_L.CHRM",
+      "modelSha256": "fdd2cd2aa763aaaf244ab881abad92ce51ed77274b38f54c13f0945a197fa9f2",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        259
+      ],
+      "hierarchyOffset": 30712,
+      "rootNodeFlag": "0x00007010",
+      "rootNodeType": "0x7010",
+      "familyIndex": 15,
+      "ramFamilyIndex": 15,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "HPF_L",
+      "mappedModelCode": "HPF_L",
+      "assetModelCode": "HPF_L",
+      "modelFile": "HPF_L.CHRM",
+      "modelSha256": "4932dd7f716ee0383f3bd1fc67b95ccda314e8d67517d4d9b2da8c31b14bdbf8",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        257
+      ],
+      "hierarchyOffset": 49160,
+      "rootNodeFlag": "0x00007010",
+      "rootNodeType": "0x7010",
+      "familyIndex": 15,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "HPI_L",
+      "mappedModelCode": "HPI_L",
+      "assetModelCode": "HPI_L",
+      "modelFile": "HPI_L.CHRM",
+      "modelSha256": "04ab06d3cd7560117af608e4803c777bc708549563a7342536f4783845bbbaca",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        253
+      ],
+      "hierarchyOffset": 38904,
+      "rootNodeFlag": "0x00007010",
+      "rootNodeType": "0x7010",
+      "familyIndex": 15,
+      "ramFamilyIndex": 15,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "HPJ_L",
+      "mappedModelCode": "HPJ_L",
+      "assetModelCode": "HPJ_L",
+      "modelFile": "HPJ_L.CHRM",
+      "modelSha256": "6778c75668d3c7051305a43f977da985fbb0994850eac3e645ac3902130e2072",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        537
+      ],
+      "hierarchyOffset": 45872,
+      "rootNodeFlag": "0x00007010",
+      "rootNodeType": "0x7010",
+      "familyIndex": 15,
+      "ramFamilyIndex": 15,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "HPX_L",
+      "mappedModelCode": "HPX_L",
+      "assetModelCode": "HPX_L",
+      "modelFile": "HPX_L.CHRM",
+      "modelSha256": "84f913c0e1b9d88b0dd6fa0cf787382f9ef6ce6f56685c55f8b7fa930d80e936",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        163
+      ],
+      "hierarchyOffset": 41264,
+      "rootNodeFlag": "0x00007010",
+      "rootNodeType": "0x7010",
+      "familyIndex": 15,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "HPY_L",
+      "mappedModelCode": "HPY_L",
+      "assetModelCode": "HPY_L",
+      "modelFile": "HPY_L.CHRM",
+      "modelSha256": "84af22c07e5e7ccf3ed9f086f237a29c89d389335f954cd641f312a262235b89",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        363
+      ],
+      "hierarchyOffset": 39232,
+      "rootNodeFlag": "0x00007010",
+      "rootNodeType": "0x7010",
+      "familyIndex": 15,
+      "ramFamilyIndex": 15,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "HSA_L",
+      "mappedModelCode": "HSA_L",
+      "assetModelCode": "HSA_L",
+      "modelFile": "HSA_L.CHRM",
+      "modelSha256": "88d088b24a7903ed696840abdce80a91c2d449a92121e5cc327f81965a08f1d4",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        735
+      ],
+      "hierarchyOffset": 32424,
+      "rootNodeFlag": "0x0000700d",
+      "rootNodeType": "0x700d",
+      "familyIndex": 12,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "HSB_L",
+      "mappedModelCode": "HSB_L",
+      "assetModelCode": "HSB_L",
+      "modelFile": "HSB_L.CHRM",
+      "modelSha256": "9401af9055c873cddfa76e51993752f0fa1be6420ba70e596689f6801eec2e88",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        597
+      ],
+      "hierarchyOffset": 35488,
+      "rootNodeFlag": "0x0001700d",
+      "rootNodeType": "0x700d",
+      "familyIndex": 12,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "HTR_L",
+      "mappedModelCode": "HTR_L",
+      "assetModelCode": "HTR_L",
+      "modelFile": "HTR_L.CHRM",
+      "modelSha256": "1af4a30eba890f91cbf37f045680d4f0cd440ae5f674d26a1d8998b4e6bd112f",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        231
+      ],
+      "hierarchyOffset": 27984,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": 0,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "HWB_L",
+      "mappedModelCode": "HWB_L",
+      "assetModelCode": "HWB_L",
+      "modelFile": "HWB_L.CHRM",
+      "modelSha256": "e0d17fad2601bec33b6d9653a3b8db553fbd31b26e2860412f03172cb79a0ec7",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        213
+      ],
+      "hierarchyOffset": 28272,
+      "rootNodeFlag": "0x00007014",
+      "rootNodeType": "0x7014",
+      "familyIndex": 19,
+      "ramFamilyIndex": 19,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "INE_M",
+      "mappedModelCode": "INE_M",
+      "assetModelCode": "INE_M",
+      "modelFile": "INE_M.CHRM",
+      "modelSha256": "b2dcbee2e80237f4bc2953436baf43db642d2561e776a36f96b8ea9d0f863d6b",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        269
+      ],
+      "hierarchyOffset": 41408,
+      "rootNodeFlag": "0x00007008",
+      "rootNodeType": "0x7008",
+      "familyIndex": 7,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "JEA_L",
+      "mappedModelCode": "JEA_L",
+      "assetModelCode": "JEA_L",
+      "modelFile": "JEA_L.CHRM",
+      "modelSha256": "2e4b49f81a1a51083b83905ade70fec38a4ca5add5b19b68e13b2ed2470ab521",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        3
+      ],
+      "hierarchyOffset": 30216,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "JMA_L",
+      "mappedModelCode": "JMA_L",
+      "assetModelCode": "JMA_L",
+      "modelFile": "JMA_L.CHRM",
+      "modelSha256": "97ab0c1d104227b26606d345f12d20208a4dfa422f1a4971aabeea64943ff0db",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        513
+      ],
+      "hierarchyOffset": 34752,
+      "rootNodeFlag": "0x00007014",
+      "rootNodeType": "0x7014",
+      "familyIndex": 19,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "JMB_L",
+      "mappedModelCode": "JMB_L",
+      "assetModelCode": "JMB_L",
+      "modelFile": "JMB_L.CHRM",
+      "modelSha256": "ac77efdaf822df20c6abccf8ef32e38bfd9be75ce885c0dd778132c72ae1c7fc",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        271
+      ],
+      "hierarchyOffset": 35280,
+      "rootNodeFlag": "0x00007010",
+      "rootNodeType": "0x7010",
+      "familyIndex": 15,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "JMC_L",
+      "mappedModelCode": "JMC_L",
+      "assetModelCode": "JMC_L",
+      "modelFile": "JMC_L.CHRM",
+      "modelSha256": "95ef953a88940dda8f31b49063c64fcf73ad01ced3d62885c9b3a20801b234d8",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        273
+      ],
+      "hierarchyOffset": 32104,
+      "rootNodeFlag": "0x00007004",
+      "rootNodeType": "0x7004",
+      "familyIndex": 3,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "JMD_L",
+      "mappedModelCode": "JMD_L",
+      "assetModelCode": "JMD_L",
+      "modelFile": "JMD_L.CHRM",
+      "modelSha256": "ee3803cdda268ac53e3f900a149dd6f3bfb827d4569f631d143e9a253426e9b9",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        445
+      ],
+      "hierarchyOffset": 31344,
+      "rootNodeFlag": "0x00007008",
+      "rootNodeType": "0x7008",
+      "familyIndex": 7,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "JME_L",
+      "mappedModelCode": "JME_",
+      "assetModelCode": "JME_L",
+      "modelFile": "JME_L.CHRM",
+      "modelSha256": "a0c372617c1e24df92dc606fe6a0d202fae7c42b359acffc81a631bd061cfb6d",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        569
+      ],
+      "hierarchyOffset": 35896,
+      "rootNodeFlag": "0x0000700d",
+      "rootNodeType": "0x700d",
+      "familyIndex": 12,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "JMF_L",
+      "mappedModelCode": "JMF_L",
+      "assetModelCode": "JMF_L",
+      "modelFile": "JMF_L.CHRM",
+      "modelSha256": "6d5ce749bc789a1413c21f65fb40e6aeb9a2acd64d6000db6cfebb41b2ce5da2",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        419
+      ],
+      "hierarchyOffset": 36584,
+      "rootNodeFlag": "0x00007010",
+      "rootNodeType": "0x7010",
+      "familyIndex": 15,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "JMG_L",
+      "mappedModelCode": "JMG_L",
+      "assetModelCode": "JMG_L",
+      "modelFile": "JMG_L.CHRM",
+      "modelSha256": "dbb6b9d0b20836babdc67fc871099e7f15686d2e98ef8310b9487fe0db37e7de",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        435
+      ],
+      "hierarchyOffset": 36176,
+      "rootNodeFlag": "0x0000700d",
+      "rootNodeType": "0x700d",
+      "familyIndex": 12,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "JOE_L",
+      "mappedModelCode": "JOE_L",
+      "assetModelCode": "JOE_L",
+      "modelFile": "JOE_L.CHRM",
+      "modelSha256": "0c84acad5b2e40a7c157b654c136c2f7156e4fda1a8418b477373238cb400861",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        291
+      ],
+      "hierarchyOffset": 31336,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "JOJ_L",
+      "mappedModelCode": "JOJ_M",
+      "assetModelCode": "JOJ_L",
+      "modelFile": "JOJ_L.CHRM",
+      "modelSha256": "564b4705a202357a168e29aeadf42b4c2a7b871fedfc3ee51398521383aff3bb",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        169
+      ],
+      "hierarchyOffset": 34560,
+      "rootNodeFlag": "0x0001700d",
+      "rootNodeType": "0x700d",
+      "familyIndex": 12,
+      "ramFamilyIndex": 12,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "KAO_L",
+      "mappedModelCode": "KAO_L",
+      "assetModelCode": "KAO_L",
+      "modelFile": "KAO_L.CHRM",
+      "modelSha256": "b0a749a88d7d0ac0b29b1895f5ddc3126c830a0f7fba46030a50e5bffbd19d4c",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        303,
+        403
+      ],
+      "hierarchyOffset": 35968,
+      "rootNodeFlag": "0x0004700d",
+      "rootNodeType": "0x700d",
+      "familyIndex": 12,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KAS_L",
+      "mappedModelCode": "KAS_L",
+      "assetModelCode": "KAS_L",
+      "modelFile": "KAS_L.CHRM",
+      "modelSha256": "1f9a891e2642eb4bc1d4bc252c2d3d354bfc700eb40c9f6d37e1115e1b468684",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        11
+      ],
+      "hierarchyOffset": 28256,
+      "rootNodeFlag": "0x00007008",
+      "rootNodeType": "0x7008",
+      "familyIndex": 7,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KEB_L",
+      "mappedModelCode": "KEB_L",
+      "assetModelCode": "KEB_L",
+      "modelFile": "KEB_L.CHRM",
+      "modelSha256": "7fc791b3793c7065df5c85492e8ef12c17e688ca108ef6bb7217e8a20e17a640",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        309
+      ],
+      "hierarchyOffset": 35336,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KHI_L",
+      "mappedModelCode": "KHI_L",
+      "assetModelCode": "KHI_L",
+      "modelFile": "KHI_L.CHRM",
+      "modelSha256": "ac1ad66b6bb1d902fb05cb4c0425bf46ac659bcb7c834e6183279d36c145d78f",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        699
+      ],
+      "hierarchyOffset": 34344,
+      "rootNodeFlag": "0x00007008",
+      "rootNodeType": "0x7008",
+      "familyIndex": 7,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KHY_L",
+      "mappedModelCode": "KHY_L",
+      "assetModelCode": "KHY_L",
+      "modelFile": "KHY_L.CHRM",
+      "modelSha256": "12994f958c3685870007e1b5a8a23a4d4da31a61d867956baf40ffac9224f9fc",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        383
+      ],
+      "hierarchyOffset": 36864,
+      "rootNodeFlag": "0x0000700d",
+      "rootNodeType": "0x700d",
+      "familyIndex": 12,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KIM_L",
+      "mappedModelCode": "KIM_L",
+      "assetModelCode": "KIM_L",
+      "modelFile": "KIM_L.CHRM",
+      "modelSha256": "f85a675f74908e65edbd5a9e1dd534a527bbe58f204e4cc4d504ca4a87e6684a",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        17,
+        335
+      ],
+      "hierarchyOffset": 28776,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KIS_M",
+      "mappedModelCode": "KIS_M",
+      "assetModelCode": "KIS_M",
+      "modelFile": "KIS_M.CHRM",
+      "modelSha256": "37432c3c181395f49f5f08eff6223f6b7df47c2042b83d3784d68ffcba2f3359",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        337
+      ],
+      "hierarchyOffset": 47704,
+      "rootNodeFlag": "0x0004700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KJM_L",
+      "mappedModelCode": "KJM_L",
+      "assetModelCode": "KJM_L",
+      "modelFile": "KJM_L.CHRM",
+      "modelSha256": "15a6587c62a16c73216fee00c41e14194bb16753cd7529ec0a8a9562fcc1ec66",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        343
+      ],
+      "hierarchyOffset": 33344,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KMB_L",
+      "mappedModelCode": "KMB_L",
+      "assetModelCode": "KMB_L",
+      "modelFile": "KMB_L.CHRM",
+      "modelSha256": "66ed9bcfe03389db0f9422b87b259e055ab5d0f1a4e45c3bb986836ac7102f66",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        221
+      ],
+      "hierarchyOffset": 32720,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KMN_L",
+      "mappedModelCode": "KMN_L",
+      "assetModelCode": "KMN_L",
+      "modelFile": "KMN_L.CHRM",
+      "modelSha256": "7a447bcf53dc734eda8b9cb4dbce62a7b1e917f7c49c9dcabeaa358b87a76db0",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        353
+      ],
+      "hierarchyOffset": 26592,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KOG_L",
+      "mappedModelCode": "KOG_L",
+      "assetModelCode": "KOG_L",
+      "modelFile": "KOG_L.CHRM",
+      "modelSha256": "292a143def5bd64ef2c3c747336377312521942f279837ae258162ef567b3e6f",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        599
+      ],
+      "hierarchyOffset": 32136,
+      "rootNodeFlag": "0x00007008",
+      "rootNodeType": "0x7008",
+      "familyIndex": 7,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KOM_L",
+      "mappedModelCode": "KOM_L",
+      "assetModelCode": "KOM_L",
+      "modelFile": "KOM_L.CHRM",
+      "modelSha256": "0e9020a9fe87daf4156c02c84c101f54194e182da12bfa0e97cef6c752674de8",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        345
+      ],
+      "hierarchyOffset": 27048,
+      "rootNodeFlag": "0x00017005",
+      "rootNodeType": "0x7005",
+      "familyIndex": 4,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KOT_L",
+      "mappedModelCode": "KOT_L",
+      "assetModelCode": "KOT_L",
+      "modelFile": "KOT_L.CHRM",
+      "modelSha256": "d66329c26e273813bae6b604d4b9e2660e9972348e5bb8a1b92d4e059762bbdd",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        485
+      ],
+      "hierarchyOffset": 29984,
+      "rootNodeFlag": "0x00017008",
+      "rootNodeType": "0x7008",
+      "familyIndex": 7,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KRN_L",
+      "mappedModelCode": "KRN_L",
+      "assetModelCode": "KRN_L",
+      "modelFile": "KRN_L.CHRM",
+      "modelSha256": "42bc59c644423966aea8edbdd0585b28426150acaf5c4e8912e89706ca6bbbf2",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        451
+      ],
+      "hierarchyOffset": 32936,
+      "rootNodeFlag": "0x00007010",
+      "rootNodeType": "0x7010",
+      "familyIndex": 15,
+      "ramFamilyIndex": 15,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "KTA_L",
+      "mappedModelCode": "KTA_L",
+      "assetModelCode": "KTA_L",
+      "modelFile": "KTA_L.CHRM",
+      "modelSha256": "4eb0a98d1b052d2a9123e84da5ab3a6c5e570f6859ee301a3543dec4ca008448",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        357
+      ],
+      "hierarchyOffset": 29232,
+      "rootNodeFlag": "0x00007005",
+      "rootNodeType": "0x7005",
+      "familyIndex": 4,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KUU_L",
+      "mappedModelCode": "KUU_L",
+      "assetModelCode": "KUU_L",
+      "modelFile": "KUU_L.CHRM",
+      "modelSha256": "7622a29b70f7b4b8a18a6353734f93be67318fac09f9ee6ca11c8bc91391b031",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        387
+      ],
+      "hierarchyOffset": 30768,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KVB_L",
+      "mappedModelCode": "KVB_L",
+      "assetModelCode": "KVB_L",
+      "modelFile": "KVB_L.CHRM",
+      "modelSha256": "0de717a76e9106631c5c58368f189b833f85a77fc4344d717d060569a453796c",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        311
+      ],
+      "hierarchyOffset": 35088,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KVC_L",
+      "mappedModelCode": "KVC_L",
+      "assetModelCode": "KVC_L",
+      "modelFile": "KVC_L.CHRM",
+      "modelSha256": "596a2db190b40bbec07bd39d7c02d58578d0daeac161d008ee4c2bdd64d1dcd4",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        313
+      ],
+      "hierarchyOffset": 33560,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KVD_L",
+      "mappedModelCode": "KVD_L",
+      "assetModelCode": "KVD_L",
+      "modelFile": "KVD_L.CHRM",
+      "modelSha256": "61f564b20517f12d11ab3bc29070f818b1a11a13355458f4f3d83d169a8197f5",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        315
+      ],
+      "hierarchyOffset": 32320,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KVE_L",
+      "mappedModelCode": "KVE_L",
+      "assetModelCode": "KVE_L",
+      "modelFile": "KVE_L.CHRM",
+      "modelSha256": "b8376347a2d2c0b426dd312fcd6963ada66215cb4269556a039e94fb72243844",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        317
+      ],
+      "hierarchyOffset": 31480,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KVF_L",
+      "mappedModelCode": "KVF_L",
+      "assetModelCode": "KVF_L",
+      "modelFile": "KVF_L.CHRM",
+      "modelSha256": "750bbc1a12166fa4653ce76902d355963f117e3eeb7a9cf7cb6e4bff81bb8282",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        319
+      ],
+      "hierarchyOffset": 31528,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KVG_L",
+      "mappedModelCode": "KVG_L",
+      "assetModelCode": "KVG_L",
+      "modelFile": "KVG_L.CHRM",
+      "modelSha256": "614b4874acc471e135c6ce4839b542730f10252e27b2891754fd841b996f2fa2",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        321
+      ],
+      "hierarchyOffset": 31752,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KVH_L",
+      "mappedModelCode": "KVH_L",
+      "assetModelCode": "KVH_L",
+      "modelFile": "KVH_L.CHRM",
+      "modelSha256": "e42a7e9bf4baa0fdd852e1dfd626fd57fef75fd0fad8eb403aa82cb6e7d4bcda",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        323
+      ],
+      "hierarchyOffset": 31728,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KVI_L",
+      "mappedModelCode": "KVI_L",
+      "assetModelCode": "KVI_L",
+      "modelFile": "KVI_L.CHRM",
+      "modelSha256": "ab1bfd59fef34de1cb954099b9918583116803a9ec34b1802a6604f9c2075680",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        325
+      ],
+      "hierarchyOffset": 31856,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KVJ_L",
+      "mappedModelCode": "KVJ_L",
+      "assetModelCode": "KVJ_L",
+      "modelFile": "KVJ_L.CHRM",
+      "modelSha256": "1493c714234ac5b8f6892c65664fee0f4783166eb19c26a254713f2211a0b87c",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        327
+      ],
+      "hierarchyOffset": 33728,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KVK_L",
+      "mappedModelCode": "KVK_L",
+      "assetModelCode": "KVK_L",
+      "modelFile": "KVK_L.CHRM",
+      "modelSha256": "b099636e94746bb5ed20eead200bdf3685a35a52f5c61483749a16327331ecd2",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        329
+      ],
+      "hierarchyOffset": 33072,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KVL_L",
+      "mappedModelCode": "KVL_L",
+      "assetModelCode": "KVL_L",
+      "modelFile": "KVL_L.CHRM",
+      "modelSha256": "4e5021449c965f4c63030b4d460ea34203f5aabb78ba4c972ec63ea29d106292",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        331
+      ],
+      "hierarchyOffset": 31544,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KWA_L",
+      "mappedModelCode": "KWA_L",
+      "assetModelCode": "KWA_L",
+      "modelFile": "KWA_L.CHRM",
+      "modelSha256": "fa27bd22ce1517576b3b24617df90a6c5d7bf41a5b17e8cc1abaa970def3240a",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        633
+      ],
+      "hierarchyOffset": 29752,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KWB_L",
+      "mappedModelCode": "KWB_L",
+      "assetModelCode": "KWB_L",
+      "modelFile": "KWB_L.CHRM",
+      "modelSha256": "68aeeadb6a7a8d615037d59d69c3995df7c713b9f1aa36c1dff0909c87033bde",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        145
+      ],
+      "hierarchyOffset": 30096,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KWD_L",
+      "mappedModelCode": "KWD_L",
+      "assetModelCode": "KWD_L",
+      "modelFile": "KWD_L.CHRM",
+      "modelSha256": "c6b56336631acc0cfbf89f50bbcafc1ab917058a229e42fc78b423d7ea04ddf3",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        641
+      ],
+      "hierarchyOffset": 32664,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KYF_L",
+      "mappedModelCode": "KYF_L",
+      "assetModelCode": "KYF_L",
+      "modelFile": "KYF_L.CHRM",
+      "modelSha256": "dec53d90a7520e5f26d04c033f3d5b341b5a253950c9f3556a76f62c27246047",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        415
+      ],
+      "hierarchyOffset": 30344,
+      "rootNodeFlag": "0x0000700d",
+      "rootNodeType": "0x700d",
+      "familyIndex": 12,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KYK_L",
+      "mappedModelCode": "KYK_L",
+      "assetModelCode": "KYK_L",
+      "modelFile": "KYK_L.CHRM",
+      "modelSha256": "92374250cbce8425f4f42aafee58df321368e24ebbd61f5b9219662a15d5d2f7",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        305
+      ],
+      "hierarchyOffset": 28488,
+      "rootNodeFlag": "0x00007009",
+      "rootNodeType": "0x7009",
+      "familyIndex": 8,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KYS_L",
+      "mappedModelCode": "KYS_L",
+      "assetModelCode": "KYS_L",
+      "modelFile": "KYS_L.CHRM",
+      "modelSha256": "58e82b7b32b97ce2d60e3179d88a543dac801269ef33609742ad4dbacc6bc86a",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        375
+      ],
+      "hierarchyOffset": 31448,
+      "rootNodeFlag": "0x0000700d",
+      "rootNodeType": "0x700d",
+      "familyIndex": 12,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "KZM_L",
+      "mappedModelCode": "KZM_L",
+      "assetModelCode": "KZM_L",
+      "modelFile": "KZM_L.CHRM",
+      "modelSha256": "80ae32b38230231d1e4dd7925bbcb68272d3823bb46f32f67ec4a19739a1dfda",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        369
+      ],
+      "hierarchyOffset": 31200,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": 10,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "MAL_L",
+      "mappedModelCode": "MAL_L",
+      "assetModelCode": "MAL_L",
+      "modelFile": "MAL_L.CHRM",
+      "modelSha256": "0945a1cc94bbe92c5690c8ee585ae01629590850cbabf69a37fb92ccbb504452",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        429
+      ],
+      "hierarchyOffset": 35600,
+      "rootNodeFlag": "0x00007004",
+      "rootNodeType": "0x7004",
+      "familyIndex": 3,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "MCZ_L",
+      "mappedModelCode": "MCZ_L",
+      "assetModelCode": "MCZ_L",
+      "modelFile": "MCZ_L.CHRM",
+      "modelSha256": "b4c83ab508f5b1f855ce146278ca98344339a519d85c44e00cc20ac836b3690b",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        661
+      ],
+      "hierarchyOffset": 46328,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": 0,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "MIB_L",
+      "mappedModelCode": "MIB_L",
+      "assetModelCode": "MIB_L",
+      "modelFile": "MIB_L.CHRM",
+      "modelSha256": "d4289d3e2b2a32a94b1786b0968c4bc7ab546b769a21731453b59771fe67610c",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        239
+      ],
+      "hierarchyOffset": 49168,
+      "rootNodeFlag": "0x00007010",
+      "rootNodeType": "0x7010",
+      "familyIndex": 15,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "MIH_L",
+      "mappedModelCode": "MIH_L",
+      "assetModelCode": "MIH_L",
+      "modelFile": "MIH_L.CHRM",
+      "modelSha256": "866677805d64b2eeda43db1109afddfc296704ea1d7b0a85ba260157561ebd6e",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        405
+      ],
+      "hierarchyOffset": 30704,
+      "rootNodeFlag": "0x00007014",
+      "rootNodeType": "0x7014",
+      "familyIndex": 19,
+      "ramFamilyIndex": 19,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "MIR_L",
+      "mappedModelCode": "MIR_L",
+      "assetModelCode": "MIR_L",
+      "modelFile": "MIR_L.CHRM",
+      "modelSha256": "0ca6e005b3c8e7d381909cd62d38f892e7f80604b2fffc6033e1d64d1dabdd42",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        425
+      ],
+      "hierarchyOffset": 27120,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "MJA_L",
+      "mappedModelCode": "MJA_L",
+      "assetModelCode": "MJA_L",
+      "modelFile": "MJA_L.CHRM",
+      "modelSha256": "2eb0fc026550552a3f66e698650140cb56553e1bc3f4720b181a9cb8bbc80dac",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        19
+      ],
+      "hierarchyOffset": 32320,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "MJB_L",
+      "mappedModelCode": "MJB_L",
+      "assetModelCode": "MJB_L",
+      "modelFile": "MJB_L.CHRM",
+      "modelSha256": "f4ed7715a97d554360ba109a4acae8c43647207d576ae80117dad3ba9cdda94f",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        21
+      ],
+      "hierarchyOffset": 32520,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "MRU_L",
+      "mappedModelCode": "MRU_L",
+      "assetModelCode": "MRU_L",
+      "modelFile": "MRU_L.CHRM",
+      "modelSha256": "b80429f6dff74477c86710e748a7daef9012098cc1291ca48ea7d2c19f401c3e",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        441
+      ],
+      "hierarchyOffset": 29168,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "MTK_L",
+      "mappedModelCode": "MTK_L",
+      "assetModelCode": "MTK_L",
+      "modelFile": "MTK_L.CHRM",
+      "modelSha256": "93cfaa7f984ea4d64b97141b1a94ce84c629b1e6d85997add837d656ac57bef6",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        443
+      ],
+      "hierarchyOffset": 30056,
+      "rootNodeFlag": "0x00007014",
+      "rootNodeType": "0x7014",
+      "familyIndex": 19,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "MYT_L",
+      "mappedModelCode": "MYT_L",
+      "assetModelCode": "MYT_L",
+      "modelFile": "MYT_L.CHRM",
+      "modelSha256": "e95f07000fa6d5a855921c5a26f16900e55fcba82ca12419b14e90a58c2faf46",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        635
+      ],
+      "hierarchyOffset": 30344,
+      "rootNodeFlag": "0x00007014",
+      "rootNodeType": "0x7014",
+      "familyIndex": 19,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "NAN_L",
+      "mappedModelCode": "NAN_L",
+      "assetModelCode": "NAN_L",
+      "modelFile": "NAN_L.CHRM",
+      "modelSha256": "3f44517f4f5d4fe9d56a509609102be5858db39763eae89315ba6c4c59bdd5a5",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        459
+      ],
+      "hierarchyOffset": 31136,
+      "rootNodeFlag": "0x00007014",
+      "rootNodeType": "0x7014",
+      "familyIndex": 19,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "NKK_L",
+      "mappedModelCode": "NKK_L",
+      "assetModelCode": "NKK_L",
+      "modelFile": "NKK_L.CHRM",
+      "modelSha256": "1270220abc37aee6a31040c8dcebd6389c07e8ccd191752367fb2e31d2a8fc7f",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        559
+      ],
+      "hierarchyOffset": 37544,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": 0,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "NMR_L",
+      "mappedModelCode": "NMR_L",
+      "assetModelCode": "NMR_L",
+      "modelFile": "NMR_L.CHRM",
+      "modelSha256": "5e396f09e2103cb523378ff7b2cf6e701c4a9610c7d0515d84ce756f1f6be5a7",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        473
+      ],
+      "hierarchyOffset": 27912,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "NPB_L",
+      "mappedModelCode": "NPB_L",
+      "assetModelCode": "NPB_L",
+      "modelFile": "NPB_L.CHRM",
+      "modelSha256": "05d4d46d35fc1792af402539e3958fdc83470cf0e118dbbe469c363e43cb34b4",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        373
+      ],
+      "hierarchyOffset": 28832,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": 0,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "NRS_L",
+      "mappedModelCode": "NRS_L",
+      "assetModelCode": "NRS_L",
+      "modelFile": "NRS_L.CHRM",
+      "modelSha256": "1457904e9ed9bcc1f7f640aa9778f3386ceddd43c3811524f7a967c15fcb967b",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        479,
+        571
+      ],
+      "hierarchyOffset": 31992,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "NZM_L",
+      "mappedModelCode": "NZM_M",
+      "assetModelCode": "NZM_L",
+      "modelFile": "NZM_L.CHRM",
+      "modelSha256": "909396cf72e8ebcbb95d7ceef6e1881fe813e8cca9474c0aafc7ba3a8b50c11e",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        261
+      ],
+      "hierarchyOffset": 53672,
+      "rootNodeFlag": "0x00007010",
+      "rootNodeType": "0x7010",
+      "familyIndex": 15,
+      "ramFamilyIndex": 15,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "OBA_L",
+      "mappedModelCode": "OBA_L",
+      "assetModelCode": "OBA_L",
+      "modelFile": "OBA_L.CHRM",
+      "modelSha256": "8d6e37a7a51edefd5b6c6f93a6983374b0b89ea94587a8c64ab83c5f5284b995",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        603
+      ],
+      "hierarchyOffset": 29344,
+      "rootNodeFlag": "0x00007014",
+      "rootNodeType": "0x7014",
+      "familyIndex": 19,
+      "ramFamilyIndex": 19,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "ONL_L",
+      "mappedModelCode": "ONL_L",
+      "assetModelCode": "ONL_L",
+      "modelFile": "ONL_L.CHRM",
+      "modelSha256": "ea2366675b7624ac1088c525157d95034da20c9a5a31fd14e7548baa93ef9b23",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        491
+      ],
+      "hierarchyOffset": 30504,
+      "rootNodeFlag": "0x00007014",
+      "rootNodeType": "0x7014",
+      "familyIndex": 19,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "ONO_L",
+      "mappedModelCode": "ONO_L",
+      "assetModelCode": "ONO_L",
+      "modelFile": "ONO_L.CHRM",
+      "modelSha256": "39bed2e6f10034ab980c00246ddf3f7fd97c99aaa5ed1a3628210c3eb2ed80f5",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        489
+      ],
+      "hierarchyOffset": 38208,
+      "rootNodeFlag": "0x00047008",
+      "rootNodeType": "0x7008",
+      "familyIndex": 7,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "ORI_L",
+      "mappedModelCode": "ORI_L",
+      "assetModelCode": "ORI_L",
+      "modelFile": "ORI_L.CHRM",
+      "modelSha256": "025ccc7d1f32eb931bb330ceb534e6b14f6d273fa1ad623a6cd5bfac96ca7569",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        255
+      ],
+      "hierarchyOffset": 33040,
+      "rootNodeFlag": "0x0001700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "OYA_L",
+      "mappedModelCode": "OYA_L",
+      "assetModelCode": "OYA_L",
+      "modelFile": "OYA_L.CHRM",
+      "modelSha256": "6b6d71d54f9078e4075a22ff777154e9dd79aef1a2da74173e5166e669719131",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        385
+      ],
+      "hierarchyOffset": 34184,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "OYB_L",
+      "mappedModelCode": "OYB_L",
+      "assetModelCode": "OYB_L",
+      "modelFile": "OYB_L.CHRM",
+      "modelSha256": "f91ce65945c0d7d3bf647499e87148f26a296ba734d307e2bc52f2f2013706e9",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        533
+      ],
+      "hierarchyOffset": 34200,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "OYC_L",
+      "mappedModelCode": "OYC_L",
+      "assetModelCode": "OYC_L",
+      "modelFile": "OYC_L.CHRM",
+      "modelSha256": "abb3a06506f016547acb4bfa18591f42b0593fe53e790fc4a45b4934a30baa68",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        727
+      ],
+      "hierarchyOffset": 29424,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "OYD_L",
+      "mappedModelCode": "OYD_L",
+      "assetModelCode": "OYD_L",
+      "modelFile": "OYD_L.CHRM",
+      "modelSha256": "d57c424d9768a870957b41e46efb851a1abea839404f29e9d60d2e2404eb13f5",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        545
+      ],
+      "hierarchyOffset": 29784,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "PAN_L",
+      "mappedModelCode": "PAN_L",
+      "assetModelCode": "PAN_L",
+      "modelFile": "PAN_L.CHRM",
+      "modelSha256": "2c6eeeae6faf3d50c8d507d21c19b3c146a1709a30a204a8f17025b095b40783",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        9,
+        627
+      ],
+      "hierarchyOffset": 30840,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": 10,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "QHB_L",
+      "mappedModelCode": "QHB_L",
+      "assetModelCode": "QHB_L",
+      "modelFile": "QHB_L.CHRM",
+      "modelSha256": "dd5974141ac49a7549f4020ca13ba8818c9dc309a88967c425c8d490a04464d8",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        159
+      ],
+      "hierarchyOffset": 27656,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "QHT_L",
+      "mappedModelCode": "QHT_L",
+      "assetModelCode": "QHT_L",
+      "modelFile": "QHT_L.CHRM",
+      "modelSha256": "e1f2009577766001ef4bb99153ae524c7e23c21c435c8bd34fe082a4e2fa5910",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        393
+      ],
+      "hierarchyOffset": 30072,
+      "rootNodeFlag": "0x00007005",
+      "rootNodeType": "0x7005",
+      "familyIndex": 4,
+      "ramFamilyIndex": 4,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "RED_L",
+      "mappedModelCode": "RED_L",
+      "assetModelCode": "RED_L",
+      "modelFile": "RED_L.CHRM",
+      "modelSha256": "fc31c2411f8dccef42459a3d6712ec21b2c0f1f8454350df444c5f06cd7758da",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        511
+      ],
+      "hierarchyOffset": 31824,
+      "rootNodeFlag": "0x0000700d",
+      "rootNodeType": "0x700d",
+      "familyIndex": 12,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "RFA_L",
+      "mappedModelCode": "RFA_L",
+      "assetModelCode": "RFA_L",
+      "modelFile": "RFA_L.CHRM",
+      "modelSha256": "edd9637012c36e00dc934293611dd3de39052675f677f98599570024e39dae63",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        671
+      ],
+      "hierarchyOffset": 29824,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "RFB_L",
+      "mappedModelCode": "RFB_L",
+      "assetModelCode": "RFB_L",
+      "modelFile": "RFB_L.CHRM",
+      "modelSha256": "1241cb8bb48b1e4f1a2927cdab7de820279b21937c7a18720a522461d5ce91ef",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        277
+      ],
+      "hierarchyOffset": 30816,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": 0,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "RFC_L",
+      "mappedModelCode": "RFC_L",
+      "assetModelCode": "RFC_L",
+      "modelFile": "RFC_L.CHRM",
+      "modelSha256": "e51c351b3f3af66ed1bf0e9155eccbdf7f5ad561d970389e24ef77e328972bc5",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        693
+      ],
+      "hierarchyOffset": 31048,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "RFD_L",
+      "mappedModelCode": "RFD_L",
+      "assetModelCode": "RFD_L",
+      "modelFile": "RFD_L.CHRM",
+      "modelSha256": "fef863c2e217cfd7f585019806969cb70cb0f208aafc534f59e32473d5f78fdb",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        623
+      ],
+      "hierarchyOffset": 36576,
+      "rootNodeFlag": "0x00007010",
+      "rootNodeType": "0x7010",
+      "familyIndex": 15,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "RSS_L",
+      "mappedModelCode": "RSS_L",
+      "assetModelCode": "RSS_L",
+      "modelFile": "RSS_L.CHRM",
+      "modelSha256": "1fb2170eaf66e4fe77d6c732fa7bc1c642730b5881af18477758e66c736dd9b4",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        505
+      ],
+      "hierarchyOffset": 27216,
+      "rootNodeFlag": "0x00007008",
+      "rootNodeType": "0x7008",
+      "familyIndex": 7,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SAB_L",
+      "mappedModelCode": "SAB_L",
+      "assetModelCode": "SAB_L",
+      "modelFile": "SAB_L.CHRM",
+      "modelSha256": "8d3c7587d2ea68d651f6182120fc3803a88b80889e5de0742896c7fa7001608c",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        267
+      ],
+      "hierarchyOffset": 27376,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SAC_L",
+      "mappedModelCode": "SAC_L",
+      "assetModelCode": "SAC_L",
+      "modelFile": "SAC_L.CHRM",
+      "modelSha256": "c5295334387128a52d500b3454417e16accfcf918f49a637d98e7e7dd27cab9e",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        561
+      ],
+      "hierarchyOffset": 26560,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SAD_L",
+      "mappedModelCode": "SAD_L",
+      "assetModelCode": "SAD_L",
+      "modelFile": "SAD_L.CHRM",
+      "modelSha256": "6ccf950a45ff14fa3e3b01416ca9dddca4dedbc010eec69e4c8369a46a2dac03",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        573
+      ],
+      "hierarchyOffset": 27000,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SAG_L",
+      "mappedModelCode": "SAG_L",
+      "assetModelCode": "SAG_L",
+      "modelFile": "SAG_L.CHRM",
+      "modelSha256": "03745153b17ee3d864742ba82f9ff3e4eb5eaf9b699fbacb218f77dd1cdc34ae",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        483,
+        515,
+        517,
+        519,
+        521,
+        523,
+        639,
+        653,
+        729
+      ],
+      "hierarchyOffset": 26008,
+      "rootNodeFlag": "0x00017001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SAK_L",
+      "mappedModelCode": "SAK_L",
+      "assetModelCode": "SAK_L",
+      "modelFile": "SAK_L.CHRM",
+      "modelSha256": "f6d59d78eadc694dc364a2a75f68376d53cc7261bca0e134ced5f5ecafed5068",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        575
+      ],
+      "hierarchyOffset": 27064,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SBY_L",
+      "mappedModelCode": "SBY_L",
+      "assetModelCode": "SBY_L",
+      "modelFile": "SBY_L.CHRM",
+      "modelSha256": "47b76ca4f75b3c4eb847329280282571400b9f91e36e4b652a671e5e19f61916",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        577
+      ],
+      "hierarchyOffset": 28392,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SCA_L",
+      "mappedModelCode": "SCA_L",
+      "assetModelCode": "SCA_L",
+      "modelFile": "SCA_L.CHRM",
+      "modelSha256": "bbbb6dfd21e323595117df6c7b57faa3a5a0daa6278db43051d8b2baa6a74289",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        667
+      ],
+      "hierarchyOffset": 27976,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": 10,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "SEU_L",
+      "mappedModelCode": "SEU_L",
+      "assetModelCode": "SEU_L",
+      "modelFile": "SEU_L.CHRM",
+      "modelSha256": "781ccff13d64d1e8c4893db70d2f892ba3bd85de45b35607f5568f7e92e8352c",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        543
+      ],
+      "hierarchyOffset": 31088,
+      "rootNodeFlag": "0x00007008",
+      "rootNodeType": "0x7008",
+      "familyIndex": 7,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SGA_L",
+      "mappedModelCode": "SGA_L",
+      "assetModelCode": "SGA_L",
+      "modelFile": "SGA_L.CHRM",
+      "modelSha256": "ded386715637871c6206f137bb30d575aefbd99978a52ddb5c1789b1a7d7c6d1",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        13
+      ],
+      "hierarchyOffset": 29216,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SGB_L",
+      "mappedModelCode": "SGB_L",
+      "assetModelCode": "SGB_L",
+      "modelFile": "SGB_L.CHRM",
+      "modelSha256": "9de6d311f155072e480b4cc01d02e290529d0979a26a5116d462354a13cb84da",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        455
+      ],
+      "hierarchyOffset": 30056,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SGC_L",
+      "mappedModelCode": "SGC_L",
+      "assetModelCode": "SGC_L",
+      "modelFile": "SGC_L.CHRM",
+      "modelSha256": "2a9218abc47123df9729edf2f0858c7b6f6282e0fb7a97e00436379777d5ea03",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        467
+      ],
+      "hierarchyOffset": 45240,
+      "rootNodeFlag": "0x00007004",
+      "rootNodeType": "0x7004",
+      "familyIndex": 3,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SGD_L",
+      "mappedModelCode": "SGD_L",
+      "assetModelCode": "SGD_L",
+      "modelFile": "SGD_L.CHRM",
+      "modelSha256": "84e5fd22549b9358cffe77186cff7acaa68c6ced7fd5a520b52ce1dd43954288",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        701
+      ],
+      "hierarchyOffset": 28368,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SGE_L",
+      "mappedModelCode": "SGE_L",
+      "assetModelCode": "SGE_L",
+      "modelFile": "SGE_L.CHRM",
+      "modelSha256": "7808a776627cf21772c73bf64ccf0719965b7536f16e30704ef09b599138dd3e",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        349
+      ],
+      "hierarchyOffset": 28664,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SGF_L",
+      "mappedModelCode": "SGF_L",
+      "assetModelCode": "SGF_L",
+      "modelFile": "SGF_L.CHRM",
+      "modelSha256": "d292c54fc191562b0a9cacd7ee109fcad6084ba6229de9a1dd6c971d88cefea9",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        193
+      ],
+      "hierarchyOffset": 28200,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SGG_L",
+      "mappedModelCode": "SGG_L",
+      "assetModelCode": "SGG_L",
+      "modelFile": "SGG_L.CHRM",
+      "modelSha256": "5110c718ac7594e5f39ca7dd4cee4374d644914e8b2decc875e03f897fcf1e53",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        417
+      ],
+      "hierarchyOffset": 29432,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SGH_L",
+      "mappedModelCode": "SGH_L",
+      "assetModelCode": "SGH_L",
+      "modelFile": "SGH_L.CHRM",
+      "modelSha256": "0553e3070cd88d0742df4c521490d72018d298cdb1123e57cf03915a8c0a10e4",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        265
+      ],
+      "hierarchyOffset": 29728,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SGI_L",
+      "mappedModelCode": "SGI_L",
+      "assetModelCode": "SGI_L",
+      "modelFile": "SGI_L.CHRM",
+      "modelSha256": "6b03a668cda9f902ecf017500985435eb8cebcdceeb4acacbf15aa939ea9f241",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        165
+      ],
+      "hierarchyOffset": 29864,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SGJ_L",
+      "mappedModelCode": "SGJ_L",
+      "assetModelCode": "SGJ_L",
+      "modelFile": "SGJ_L.CHRM",
+      "modelSha256": "a2b919018dcc6884c22b812d5a1845ab031010a24bfd2a060586c3bbd3d9bb93",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        723
+      ],
+      "hierarchyOffset": 42720,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SGK_L",
+      "mappedModelCode": "SGK_L",
+      "assetModelCode": "SGK_L",
+      "modelFile": "SGK_L.CHRM",
+      "modelSha256": "8408141d0e03e2c13a50be65b2d4624c5d5c3d79cf9df1941080dbc03b24a7fe",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        629
+      ],
+      "hierarchyOffset": 30664,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SGL_L",
+      "mappedModelCode": "SGL_L",
+      "assetModelCode": "SGL_L",
+      "modelFile": "SGL_L.CHRM",
+      "modelSha256": "9e89edcc6d43beeb4933dcfdb26febe2d991aa29c345327c4fe399687d03b9cc",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        371
+      ],
+      "hierarchyOffset": 29960,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SGM_L",
+      "mappedModelCode": "SGM_L",
+      "assetModelCode": "SGM_L",
+      "modelFile": "SGM_L.CHRM",
+      "modelSha256": "c34193b8c5a4449d6428879d499d40adf007b2bcb2e252e48707f4bd2849551b",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        427
+      ],
+      "hierarchyOffset": 26200,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SGN_L",
+      "mappedModelCode": "SGN_L",
+      "assetModelCode": "SGN_L",
+      "modelFile": "SGN_L.CHRM",
+      "modelSha256": "0b6efe1af501e59834e18a954ee1de9a1de7942f5f37a50093e0063396bca20a",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        235
+      ],
+      "hierarchyOffset": 26112,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SGO_L",
+      "mappedModelCode": "SGO_L",
+      "assetModelCode": "SGO_L",
+      "modelFile": "SGO_L.CHRM",
+      "modelSha256": "653235435feba8ce9f9713bc3c99b6c2c3fb6d7ca99f3629c26b8eb5a23d193c",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        619
+      ],
+      "hierarchyOffset": 28472,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SGP_L",
+      "mappedModelCode": "SGP_L",
+      "assetModelCode": "SGP_L",
+      "modelFile": "SGP_L.CHRM",
+      "modelSha256": "a6d9291892d70b1bc21cb67b796a7560c9a1e62b10b8a2b91fbaaba41999e3ab",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        651
+      ],
+      "hierarchyOffset": 26544,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SHA_L",
+      "mappedModelCode": "SHA_L",
+      "assetModelCode": "SHA_L",
+      "modelFile": "SHA_L.CHRM",
+      "modelSha256": "23fae766fa5292cb6b478b056489e004716c4094a53e55945d0e97b56dcb7a63",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        477
+      ],
+      "hierarchyOffset": 34168,
+      "rootNodeFlag": "0x00007010",
+      "rootNodeType": "0x7010",
+      "familyIndex": 15,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SHB_L",
+      "mappedModelCode": "SHB_L",
+      "assetModelCode": "SHB_L",
+      "modelFile": "SHB_L.CHRM",
+      "modelSha256": "39d0ca9759c087e47709affd8356a4896625efdeb692af7ddbef688eab5ed9cc",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        409,
+        423
+      ],
+      "hierarchyOffset": 31800,
+      "rootNodeFlag": "0x0000700d",
+      "rootNodeType": "0x700d",
+      "familyIndex": 12,
+      "ramFamilyIndex": 12,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "SHE_L",
+      "mappedModelCode": "SHE_L",
+      "assetModelCode": "SHE_L",
+      "modelFile": "SHE_L.CHRM",
+      "modelSha256": "a0c6457d8a4656c62e956aa7060ad3abe6024d0a0f929cbf60b39e695dbc9d75",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        381
+      ],
+      "hierarchyOffset": 28760,
+      "rootNodeFlag": "0x0000700d",
+      "rootNodeType": "0x700d",
+      "familyIndex": 12,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SHX_L",
+      "mappedModelCode": "SHX_L",
+      "assetModelCode": "SHX_L",
+      "modelFile": "SHX_L.CHRM",
+      "modelSha256": "f823e783885b2d02a14c151bff6b496016b30b1bfb7a51f939980a5342c3fa22",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        469
+      ],
+      "hierarchyOffset": 30896,
+      "rootNodeFlag": "0x00007010",
+      "rootNodeType": "0x7010",
+      "familyIndex": 15,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SHY_L",
+      "mappedModelCode": "SHY_L",
+      "assetModelCode": "SHY_L",
+      "modelFile": "SHY_L.CHRM",
+      "modelSha256": "1e8e33368b3ed66c531f49350197d07b8562228784cec1b2f9800d9536254994",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        275
+      ],
+      "hierarchyOffset": 33072,
+      "rootNodeFlag": "0x00007010",
+      "rootNodeType": "0x7010",
+      "familyIndex": 15,
+      "ramFamilyIndex": 15,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "SIA_L",
+      "mappedModelCode": "SIA_L",
+      "assetModelCode": "SIA_L",
+      "modelFile": "SIA_L.CHRM",
+      "modelSha256": "e99ac49a755d32f43f19410af3dd408114c507916f468fd1ea4c55f2f139e2a8",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        401
+      ],
+      "hierarchyOffset": 33392,
+      "rootNodeFlag": "0x00007009",
+      "rootNodeType": "0x7009",
+      "familyIndex": 8,
+      "ramFamilyIndex": 8,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "SIB_L",
+      "mappedModelCode": "SIB_L",
+      "assetModelCode": "SIB_L",
+      "modelFile": "SIB_L.CHRM",
+      "modelSha256": "8d1e39fdba9caefa906475a438e62b2f5692b91c63b3a8f4cbd78cd88fff1d72",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        399
+      ],
+      "hierarchyOffset": 32888,
+      "rootNodeFlag": "0x00007014",
+      "rootNodeType": "0x7014",
+      "familyIndex": 19,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SMK_L",
+      "mappedModelCode": "SMK_L",
+      "assetModelCode": "SMK_L",
+      "modelFile": "SMK_L.CHRM",
+      "modelSha256": "77c09caa6517c7bfe14491cfb37978f5ff2d709d0f83c0ee82d3b86af5a9b32a",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        359
+      ],
+      "hierarchyOffset": 32016,
+      "rootNodeFlag": "0x00007005",
+      "rootNodeType": "0x7005",
+      "familyIndex": 4,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SMT_L",
+      "mappedModelCode": "SMT_L",
+      "assetModelCode": "SMT_L",
+      "modelFile": "SMT_L.CHRM",
+      "modelSha256": "5f13c532905f4979cf78f7f657541671bb16a2a5a992452621c821cdec247701",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        557
+      ],
+      "hierarchyOffset": 28808,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SMY_L",
+      "mappedModelCode": "SMY_L",
+      "assetModelCode": "SMY_L",
+      "modelFile": "SMY_L.CHRM",
+      "modelSha256": "9157fe0667f645c4552411f30e436d5f3bee74341642b780b2cef16712243929",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        595
+      ],
+      "hierarchyOffset": 30560,
+      "rootNodeFlag": "0x00007014",
+      "rootNodeType": "0x7014",
+      "familyIndex": 19,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SND_L",
+      "mappedModelCode": "SND_L",
+      "assetModelCode": "SND_L",
+      "modelFile": "SND_L.CHRM",
+      "modelSha256": "c66ab13d1f72b6f052df67c3178277d63c17c8c4ad45d01a007146ef721026d9",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        551
+      ],
+      "hierarchyOffset": 32096,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SNT_L",
+      "mappedModelCode": "SNT_L",
+      "assetModelCode": "SNT_L",
+      "modelFile": "SNT_L.CHRM",
+      "modelSha256": "e4fee63c0fa7d9b573508655aeed378f0fb7cf83f5248bf7818bc416f0a4895f",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        531
+      ],
+      "hierarchyOffset": 32688,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SOU_L",
+      "mappedModelCode": "SOU_L",
+      "assetModelCode": "SOU_L",
+      "modelFile": "SOU_L.CHRM",
+      "modelSha256": "f208071cfc6e2915e0af63a2f141d084911dafbf35a2d7f6f4009235b2e7f817",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        525,
+        555
+      ],
+      "hierarchyOffset": 29576,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SSI_L",
+      "mappedModelCode": "SSI_L",
+      "assetModelCode": "SSI_L",
+      "modelFile": "SSI_L.CHRM",
+      "modelSha256": "91c916e94647b51581904324bae72d9b4c3c880e4fa77f172236d83e3fb88e27",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        223
+      ],
+      "hierarchyOffset": 32632,
+      "rootNodeFlag": "0x00007008",
+      "rootNodeType": "0x7008",
+      "familyIndex": 7,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SVA_L",
+      "mappedModelCode": "SVA_L",
+      "assetModelCode": "SVA_L",
+      "modelFile": "SVA_L.CHRM",
+      "modelSha256": "b56d5bacddad91a13c698fed5580a16cfb7f8fd216241050db82700868b42b15",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        225
+      ],
+      "hierarchyOffset": 28360,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "SVB_L",
+      "mappedModelCode": "SVB_L",
+      "assetModelCode": "SVB_L",
+      "modelFile": "SVB_L.CHRM",
+      "modelSha256": "2788605343fd9a849e4951478daf6aa78749773a81f21f8f11e7af8b81070b0a",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        549
+      ],
+      "hierarchyOffset": 28096,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "TAT_M",
+      "mappedModelCode": "TAT_M",
+      "assetModelCode": "TAT_M",
+      "modelFile": "TAT_M.CHRM",
+      "modelSha256": "0d0f27106221699127bf33d1664cc7024bcbce72bd449eeea31d408ffca52f82",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        251
+      ],
+      "hierarchyOffset": 49784,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "THK_L",
+      "mappedModelCode": "THK_L",
+      "assetModelCode": "THK_L",
+      "modelFile": "THK_L.CHRM",
+      "modelSha256": "ffd4e85f95a8349b25ecfd3a73442d778c0bf51c4089b0e5e6ef17a304059774",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        625
+      ],
+      "hierarchyOffset": 30880,
+      "rootNodeFlag": "0x00007005",
+      "rootNodeType": "0x7005",
+      "familyIndex": 4,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "TJH_L",
+      "mappedModelCode": "TJH_L",
+      "assetModelCode": "TJH_L",
+      "modelFile": "TJH_L.CHRM",
+      "modelSha256": "4077f24f2184dfa375544de6bdb8731b38793899dc5f258af7d28b3cd44f7e7e",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        237
+      ],
+      "hierarchyOffset": 28784,
+      "rootNodeFlag": "0x00007005",
+      "rootNodeType": "0x7005",
+      "familyIndex": 4,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "TKI_L",
+      "mappedModelCode": "TKI_L",
+      "assetModelCode": "TKI_L",
+      "modelFile": "TKI_L.CHRM",
+      "modelSha256": "427b6129f6ab2b6ad94fb9dabfa8619344e4d326347f2d3e9e89a2598cd0aa26",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        643
+      ],
+      "hierarchyOffset": 31840,
+      "rootNodeFlag": "0x00007008",
+      "rootNodeType": "0x7008",
+      "familyIndex": 7,
+      "ramFamilyIndex": 7,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "TOF_L",
+      "mappedModelCode": "TOF_L",
+      "assetModelCode": "TOF_L",
+      "modelFile": "TOF_L.CHRM",
+      "modelSha256": "b2d7aff620282e34621c7bef37d07bb4c6221b144ab2a04fbf4d066079a6df8d",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        587
+      ],
+      "hierarchyOffset": 28160,
+      "rootNodeFlag": "0x00007008",
+      "rootNodeType": "0x7008",
+      "familyIndex": 7,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "TOK_L",
+      "mappedModelCode": "TOK_L",
+      "assetModelCode": "TOK_L",
+      "modelFile": "TOK_L.CHRM",
+      "modelSha256": "b02a46d8ad78e8f0487e513d3a70c5047c768e43714c3f4f4e33622338f98111",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        391
+      ],
+      "hierarchyOffset": 28216,
+      "rootNodeFlag": "0x0001700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "TOS_L",
+      "mappedModelCode": "TOS_L",
+      "assetModelCode": "TOS_L",
+      "modelFile": "TOS_L.CHRM",
+      "modelSha256": "610d523895f7532d7a31a33dca78e2bdc03500ff21d6509c15407c0b83006d73",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        659
+      ],
+      "hierarchyOffset": 30960,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "TPL_L",
+      "mappedModelCode": "TPL_L",
+      "assetModelCode": "TPL_L",
+      "modelFile": "TPL_L.CHRM",
+      "modelSha256": "86f7519a9991282e830b5882b3b7883c118574047cf684bd6a6a4a669e079811",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        339
+      ],
+      "hierarchyOffset": 32192,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "TPR_L",
+      "mappedModelCode": "TPR_L",
+      "assetModelCode": "TPR_L",
+      "modelFile": "TPR_L.CHRM",
+      "modelSha256": "59f81cf6736eda6200927f00a0c2e767571d4d8f9e503d820908bdbdc39bf911",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        663
+      ],
+      "hierarchyOffset": 30272,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "TTY_L",
+      "mappedModelCode": "TTY_L",
+      "assetModelCode": "TTY_L",
+      "modelFile": "TTY_L.CHRM",
+      "modelSha256": "9605b275d6b6109357d1714cfce7f26fd0a941ed601b3f5edbb9ff1beda32bcb",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        665
+      ],
+      "hierarchyOffset": 27336,
+      "rootNodeFlag": "0x00007009",
+      "rootNodeType": "0x7009",
+      "familyIndex": 8,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "TUB_L",
+      "mappedModelCode": "TUB_L",
+      "assetModelCode": "TUB_L",
+      "modelFile": "TUB_L.CHRM",
+      "modelSha256": "e7a34d2a1d835f28596de4d899d23e6544ec43108c39f48e468e20979307a25e",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        241
+      ],
+      "hierarchyOffset": 28792,
+      "rootNodeFlag": "0x00007008",
+      "rootNodeType": "0x7008",
+      "familyIndex": 7,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "TUW_L",
+      "mappedModelCode": "TUW_L",
+      "assetModelCode": "TUW_L",
+      "modelFile": "TUW_L.CHRM",
+      "modelSha256": "ff216b38ac7fe794ae095ea7b9e6ef7b3b44670f662ce4aa44949202221dc35f",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        539
+      ],
+      "hierarchyOffset": 31880,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "UBA_L",
+      "mappedModelCode": "UBA_L",
+      "assetModelCode": "UBA_L",
+      "modelFile": "UBA_L.CHRM",
+      "modelSha256": "da14b019ea0fe514312018136af2460b077f3c2018e18dd38917c2f78555379a",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        703
+      ],
+      "hierarchyOffset": 30168,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "WAP_L",
+      "mappedModelCode": "WAP_L",
+      "assetModelCode": "WAP_L",
+      "modelFile": "WAP_L.CHRM",
+      "modelSha256": "fa6d839e0c0f25486ca27d402ca61bb23a6f9f8050a8bac7ac1df27b0275bdbd",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        279
+      ],
+      "hierarchyOffset": 26224,
+      "rootNodeFlag": "0x00007008",
+      "rootNodeType": "0x7008",
+      "familyIndex": 7,
+      "ramFamilyIndex": 7,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "WDB_L",
+      "mappedModelCode": "WDB_L",
+      "assetModelCode": "WDB_L",
+      "modelFile": "WDB_L.CHRM",
+      "modelSha256": "698f5074e48f3bb10aabae28185d399f6ce538d65dc35c09403b3bffc527ab4a",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        673
+      ],
+      "hierarchyOffset": 30288,
+      "rootNodeFlag": "0x0000700d",
+      "rootNodeType": "0x700d",
+      "familyIndex": 12,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "X32_L",
+      "mappedModelCode": "X32_L",
+      "assetModelCode": "X32_L",
+      "modelFile": "X32_L.CHRM",
+      "modelSha256": "c8e72ec2a9217f19eb1c52ecf8c4f96e5bf817218c477ce2bdcbc761c42deb24",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        507
+      ],
+      "hierarchyOffset": 26776,
+      "rootNodeFlag": "0x00007008",
+      "rootNodeType": "0x7008",
+      "familyIndex": 7,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "X61_L",
+      "mappedModelCode": "X61_L",
+      "assetModelCode": "X61_L",
+      "modelFile": "X61_L.CHRM",
+      "modelSha256": "9ec9d36a2a706b462d434dff84d6668abb3c071ec357e748140dedc7d527107f",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        731
+      ],
+      "hierarchyOffset": 29608,
+      "rootNodeFlag": "0x00017009",
+      "rootNodeType": "0x7009",
+      "familyIndex": 8,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "X70_L",
+      "mappedModelCode": "X70_L",
+      "assetModelCode": "X70_L",
+      "modelFile": "X70_L.CHRM",
+      "modelSha256": "81d1998958e903180328a39af9f3792e71fd9592b26eec6c2e862c297965d6c4",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        411
+      ],
+      "hierarchyOffset": 26032,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "X72_L",
+      "mappedModelCode": "X72_L",
+      "assetModelCode": "X72_L",
+      "modelFile": "X72_L.CHRM",
+      "modelSha256": "d87e12ef88a0a1d3a803ae2c42d17f1247467ba339264fb36cbd02d20eb0f6d6",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        481
+      ],
+      "hierarchyOffset": 26616,
+      "rootNodeFlag": "0x0001700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": 10,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "X77_L",
+      "mappedModelCode": "X77_L",
+      "assetModelCode": "X77_L",
+      "modelFile": "X77_L.CHRM",
+      "modelSha256": "ec94d88b7ee889179060e17e58d31a86a96f24f6b7f7311f5a100be641fc4d4d",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        355
+      ],
+      "hierarchyOffset": 27624,
+      "rootNodeFlag": "0x00017014",
+      "rootNodeType": "0x7014",
+      "familyIndex": 19,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "YAA_L",
+      "mappedModelCode": "YAA_L",
+      "assetModelCode": "YAA_L",
+      "modelFile": "YAA_L.CHRM",
+      "modelSha256": "2412e2652691802cd1672ebf0b1dc74ed3811ca9c88d28c82b3fb91a228c9cd3",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        167
+      ],
+      "hierarchyOffset": 33256,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "YAB_L",
+      "mappedModelCode": "YAB_L",
+      "assetModelCode": "YAB_L",
+      "modelFile": "YAB_L.CHRM",
+      "modelSha256": "69a973a3bae3ff9d9196c1d27c38d6fb2f69f996bf32c6c7c62e88ea8a6a8701",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        463
+      ],
+      "hierarchyOffset": 31976,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "YAM_L",
+      "mappedModelCode": "YAM_L",
+      "assetModelCode": "YAM_L",
+      "modelFile": "YAM_L.CHRM",
+      "modelSha256": "fad12e12c5756c60cc0047c5b67dd765c9fcc3684bd05c37599efa048365d5b6",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        299
+      ],
+      "hierarchyOffset": 38728,
+      "rootNodeFlag": "0x00007014",
+      "rootNodeType": "0x7014",
+      "familyIndex": 19,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "YDA_L",
+      "mappedModelCode": "YDA_L",
+      "assetModelCode": "YDA_L",
+      "modelFile": "YDA_L.CHRM",
+      "modelSha256": "2eba97245fbae305d32f936e4b47281ba54611788e7e3543db29a006205314fb",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        697
+      ],
+      "hierarchyOffset": 30608,
+      "rootNodeFlag": "0x00007009",
+      "rootNodeType": "0x7009",
+      "familyIndex": 8,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "YEB_L",
+      "mappedModelCode": "YEB_L",
+      "assetModelCode": "YEB_L",
+      "modelFile": "YEB_L.CHRM",
+      "modelSha256": "43935e648585f378740517bfd5098158e27f6de7ae3996285b077c49ab80f3b4",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        719
+      ],
+      "hierarchyOffset": 30192,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": 0,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "YEC_L",
+      "mappedModelCode": "YEC_L",
+      "assetModelCode": "YEC_L",
+      "modelFile": "YEC_L.CHRM",
+      "modelSha256": "bcc760d716b44b34f9e498733e2234054f2a65d3d5c4c45834592d47cf06ba23",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        389,
+        707
+      ],
+      "hierarchyOffset": 27424,
+      "rootNodeFlag": "0x00007014",
+      "rootNodeType": "0x7014",
+      "familyIndex": 19,
+      "ramFamilyIndex": 19,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "YED_L",
+      "mappedModelCode": "YED_L",
+      "assetModelCode": "YED_L",
+      "modelFile": "YED_L.CHRM",
+      "modelSha256": "057e4fbe0ae93f98381e1b15b1cf0346efacde4d679881bdb5c9f494ad08ea0b",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        601,
+        709
+      ],
+      "hierarchyOffset": 28104,
+      "rootNodeFlag": "0x00007014",
+      "rootNodeType": "0x7014",
+      "familyIndex": 19,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "YEF_L",
+      "mappedModelCode": "YEF_L",
+      "assetModelCode": "YEF_L",
+      "modelFile": "YEF_L.CHRM",
+      "modelSha256": "7ea5bf9304813ab20b98b7f4c4682194dbece4dbe11b07413361f0ea99143fc3",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        695
+      ],
+      "hierarchyOffset": 28576,
+      "rootNodeFlag": "0x00007008",
+      "rootNodeType": "0x7008",
+      "familyIndex": 7,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "YGG_L",
+      "mappedModelCode": "YGG_L",
+      "assetModelCode": "YGG_L",
+      "modelFile": "YGG_L.CHRM",
+      "modelSha256": "8d235104bd152d9752aa117b1230aedf5900b8aef9794fb80caeab9f987ddaf9",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        5
+      ],
+      "hierarchyOffset": 28960,
+      "rootNodeFlag": "0x00007008",
+      "rootNodeType": "0x7008",
+      "familyIndex": 7,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "YHI_L",
+      "mappedModelCode": "YHI_L",
+      "assetModelCode": "YHI_L",
+      "modelFile": "YHI_L.CHRM",
+      "modelSha256": "e858493f0f6347451c1df3c61aecc676699799d30bc0d6fa1b0df5d1929c88a3",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        711
+      ],
+      "hierarchyOffset": 30352,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "YKZ_L",
+      "mappedModelCode": "YKZ_L",
+      "assetModelCode": "YKZ_L",
+      "modelFile": "YKZ_L.CHRM",
+      "modelSha256": "0905c3fecdbc1b5ac7d7344e09f66a907dc6296fdfc26764dbdb8e01788914d9",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        669
+      ],
+      "hierarchyOffset": 29520,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "YMG_L",
+      "mappedModelCode": "YMG_L",
+      "assetModelCode": "YMG_L",
+      "modelFile": "YMG_L.CHRM",
+      "modelSha256": "badf47be9783e37e19e63b244c228d2bfebcfe5c172f502d3b141e9708c622b2",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        683
+      ],
+      "hierarchyOffset": 33512,
+      "rootNodeFlag": "0x00017008",
+      "rootNodeType": "0x7008",
+      "familyIndex": 7,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "YMO_L",
+      "mappedModelCode": "YMO_L",
+      "assetModelCode": "YMO_L",
+      "modelFile": "YMO_L.CHRM",
+      "modelSha256": "d1f152c54cbdea130d4e633973f8b28570977e03b2f421854959e58047d4362d",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        685
+      ],
+      "hierarchyOffset": 34032,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "YOP_L",
+      "mappedModelCode": "YOP_L",
+      "assetModelCode": "YOP_L",
+      "modelFile": "YOP_L.CHRM",
+      "modelSha256": "e1ce9b38a5ddf479c20b2538bd371e9742581b9f00a6b3dfce3bbed3a136a909",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        715
+      ],
+      "hierarchyOffset": 25896,
+      "rootNodeFlag": "0x00007008",
+      "rootNodeType": "0x7008",
+      "familyIndex": 7,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "YPA_L",
+      "mappedModelCode": "YPA_L",
+      "assetModelCode": "YPA_L",
+      "modelFile": "YPA_L.CHRM",
+      "modelSha256": "afcb9b1bcd9362e701fa96eab68850140cac474448d6f2d00fd7ef8323d7b810",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        439
+      ],
+      "hierarchyOffset": 32144,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "YPB_L",
+      "mappedModelCode": "YPB_L",
+      "assetModelCode": "YPB_L",
+      "modelFile": "YPB_L.CHRM",
+      "modelSha256": "719f4880feb9302f57eda109431eda506c8297c8fa673b1e7793a574b1926b20",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        295
+      ],
+      "hierarchyOffset": 27440,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": 10,
+      "agreesWithRam": true
+    },
+    {
+      "modelCode": "YSO_L",
+      "mappedModelCode": "YSO_L",
+      "assetModelCode": "YSO_L",
+      "modelFile": "YSO_L.CHRM",
+      "modelSha256": "42347fbe3d1cd35851594491bb227fa09950e46779d76207954f8648d1ce0c0f",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        687
+      ],
+      "hierarchyOffset": 32576,
+      "rootNodeFlag": "0x00007005",
+      "rootNodeType": "0x7005",
+      "familyIndex": 4,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "YYI_L",
+      "mappedModelCode": "YYI_L",
+      "assetModelCode": "YYI_L",
+      "modelFile": "YYI_L.CHRM",
+      "modelSha256": "988a422044a37673d911201e254733ccef1dc9a2e41227316ab39372ee0b5404",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        689
+      ],
+      "hierarchyOffset": 30456,
+      "rootNodeFlag": "0x00007014",
+      "rootNodeType": "0x7014",
+      "familyIndex": 19,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "ZZA_L",
+      "mappedModelCode": "ZZA_L",
+      "assetModelCode": "ZZA_L",
+      "modelFile": "ZZA_L.CHRM",
+      "modelSha256": "fd3a2b0ed7331d6fbb423e109f2fe4e9951364e333b03a49a83b620d5609b5e6",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        611
+      ],
+      "hierarchyOffset": 30160,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "ZZB_L",
+      "mappedModelCode": "ZZB_L",
+      "assetModelCode": "ZZB_L",
+      "modelFile": "ZZB_L.CHRM",
+      "modelSha256": "9b8f9e6f66e08fa19279c2e7f850406484351e86ca24ae1b6f90515795bf23d1",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        243
+      ],
+      "hierarchyOffset": 27232,
+      "rootNodeFlag": "0x00007001",
+      "rootNodeType": "0x7001",
+      "familyIndex": 0,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "ZZC_L",
+      "mappedModelCode": "ZZC_L",
+      "assetModelCode": "ZZC_L",
+      "modelFile": "ZZC_L.CHRM",
+      "modelSha256": "f66d962e4877ee58d34155259a2c85092b21f39e8632fa823859f9b595048e33",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        609
+      ],
+      "hierarchyOffset": 31032,
+      "rootNodeFlag": "0x0000700b",
+      "rootNodeType": "0x700b",
+      "familyIndex": 10,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    },
+    {
+      "modelCode": "ZZE_L",
+      "mappedModelCode": "ZZE_L",
+      "assetModelCode": "ZZE_L",
+      "modelFile": "ZZE_L.CHRM",
+      "modelSha256": "284e2aeeddb7094786a046771e7b4a43b7c01c4f4164197b2374fc47c03ee106",
+      "sourceArchive": "HUMANS.AFS",
+      "sourceEntryIndices": [
+        461
+      ],
+      "hierarchyOffset": 33544,
+      "rootNodeFlag": "0x00007008",
+      "rootNodeType": "0x7008",
+      "familyIndex": 7,
+      "ramFamilyIndex": null,
+      "agreesWithRam": null
+    }
+  ]
+}

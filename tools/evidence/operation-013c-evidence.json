@@ -1,0 +1,210 @@
+{
+  "schema": "new-yokosuka-operation-013c-evidence-v3",
+  "status": "exact-ten-route-native-contract-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 316,
+    "operationHex": "0x013c",
+    "handlerAddress": "0x0c15f484",
+    "provenRoutes": [
+      {
+        "majorRoute": 0,
+        "selector": 0
+      },
+      {
+        "majorRoute": 0,
+        "selector": 2
+      },
+      {
+        "majorRoute": 0,
+        "selector": 5
+      },
+      {
+        "majorRoute": 0,
+        "selector": 6
+      },
+      {
+        "majorRoute": 0,
+        "selector": 8
+      },
+      {
+        "majorRoute": 0,
+        "selector": 10
+      },
+      {
+        "majorRoute": 1,
+        "selector": 0
+      },
+      {
+        "majorRoute": 1,
+        "selector": 1
+      },
+      {
+        "majorRoute": 2,
+        "selector": 1
+      },
+      {
+        "majorRoute": 2,
+        "selector": 2
+      }
+    ],
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c15f484",
+        "length": 712,
+        "sha256": "3f14a8b1ff3162066eedbab80b9f120bdabe6105320c35e174e918c4cc0de353"
+      },
+      "createWrapper": {
+        "address": "0x0c138f0c",
+        "length": 46,
+        "sha256": "9ff3779cf9bc509272600667948df2ca019693dbe2b83519e25a40ff04099357"
+      },
+      "releaseHelper": {
+        "address": "0x0c138f9a",
+        "length": 66,
+        "sha256": "d32587d7defc5013cab56e98896bd4d6361ba6db1129b83b5a9b74a86037082c"
+      },
+      "recordResolver": {
+        "address": "0x0c1393f0",
+        "length": 100,
+        "sha256": "5ac92abe5781c24748a5d66cecb11f9b4ec7fe1ab798afb8a87bd199cc63e713"
+      },
+      "record52Installer": {
+        "address": "0x0c139ac0",
+        "length": 78,
+        "sha256": "325835765eee67a3c5de911c0470528440d4226b6ceff2e3a767633aca8eb2c5"
+      },
+      "activityQuery": {
+        "address": "0x0c139b4c",
+        "length": 72,
+        "sha256": "4289b46e9c59e1cd7351861c8eddc9197f135da5f8eb5f1035c1b95fddcdd2cc"
+      },
+      "word08Query": {
+        "address": "0x0c139cb8",
+        "length": 60,
+        "sha256": "940e657470d12fa6f8def822dfd0799454eb3159b481e903c794d4d0f788cedd"
+      },
+      "word08Writer": {
+        "address": "0x0c139cf4",
+        "length": 40,
+        "sha256": "b3d8c91241f233b6233613b0f26f962948e34186767ebb06363dd579c6104c33"
+      },
+      "archiveAcquire": {
+        "address": "0x0c1391e0",
+        "length": 268,
+        "sha256": "314c3246c461365fb2b70940fd20f119c0fda50b0a4d01ece047da2d1b434206"
+      },
+      "archiveRelease": {
+        "address": "0x0c1392ec",
+        "length": 92,
+        "sha256": "4f316d94ad61947ef8f3a55373dc9178df32614da15e9c77c7bd22bd8caae780"
+      },
+      "archiveActivityLookup": {
+        "address": "0x0c139454",
+        "length": 150,
+        "sha256": "0e06e6d34a077f8564f7ab52e4e5182fb1194b7c4231c27d9f09489c0a051fd8"
+      },
+      "archiveActivityStart": {
+        "address": "0x0c1390b0",
+        "length": 270,
+        "sha256": "1fe0448d67f9c05431f2c3051cbe3093c5e9e5876cfb0a1d5d043117fe754f20"
+      },
+      "activeRecord56Query": {
+        "address": "0x0c139b0e",
+        "length": 30,
+        "sha256": "3298ba81200ca9f2482b604513fb09cd082030a9d0f1e6fd2dbc60c13dd4df92"
+      },
+      "platformWord72Writer": {
+        "address": "0x0c139bb6",
+        "length": 80,
+        "sha256": "ad51a2b24dc261a5a7c843bc797a179d66f59efbbc12c0266d931ba3077e9474"
+      }
+    },
+    "fixedContainerAddress": "0x0c21da10",
+    "provenBehavior": "Major route 2 selector 1 writes argument two to fixed container dword +0x08. Its selector 2 resolves argument two through the 32-record table and, only after the native range/family/nonzero-+0x04 checks, installs it at container +0x34. Major route 0 selector 2 reports whether container +0x38/+0x3c/+0x40 or the platform fallback is active. Selector 5 reports whether argument two resolves. Selector 6 releases a resolved record and clears +0x34 when it was that record. Selector 0 rejects an already-resolved argument three; otherwise it clears container +0x44, creates from arguments two/three, and installs success at +0x38. Major route 1 selector 0 acquires one of four exact reference-counted two-string archive records and selector 1 releases it. Major route 0 selector 8 locates an existing subordinate archive activity, waits while container +0x38 is owned, or starts the exact indexed activity. Selector 10 writes argument two to the fixed platform controller dword +0x48, substituting the native default 3000 when the authored argument is zero."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 1751,
+    "provenCallCount": 1701,
+    "unresolvedCallCount": 50,
+    "dialogueRegionCallCount": 43,
+    "provenDialogueRegionCallCount": 43,
+    "routeCounts": {
+      "0,0": 235,
+      "0,2": 278,
+      "0,5": 66,
+      "0,6": 292,
+      "0,8": 67,
+      "0,10": 45,
+      "1,0": 2,
+      "1,1": 1,
+      "2,1": 587,
+      "2,2": 128
+    },
+    "dialogueRouteCounts": {
+      "0,0": 6,
+      "0,2": 6,
+      "0,5": 2,
+      "0,6": 11,
+      "2,1": 16,
+      "2,2": 2
+    },
+    "areaCount": 58,
+    "argumentKindCounts": {
+      "0": {
+        "constant": 1701
+      },
+      "1": {
+        "constant": 1701
+      },
+      "2": {
+        "constant": 632,
+        "frame-field": 84,
+        "missing": 278,
+        "scene-field": 66,
+        "static-pointer": 641
+      },
+      "3": {
+        "constant": 67,
+        "frame-field": 36,
+        "missing": 1397,
+        "static-pointer": 201
+      },
+      "4": {
+        "constant": 67,
+        "missing": 1634
+      }
+    },
+    "dialogueArgumentKindCounts": {
+      "0": {
+        "constant": 43
+      },
+      "1": {
+        "constant": 43
+      },
+      "2": {
+        "constant": 16,
+        "missing": 6,
+        "static-pointer": 21
+      },
+      "3": {
+        "missing": 37,
+        "static-pointer": 6
+      },
+      "4": {
+        "missing": 43
+      }
+    }
+  },
+  "evidenceBoundary": [
+    "The fixed container and raw offsets remain numerically named.",
+    "Record creation, release, and the platform activity fallback are mandatory adapters rather than browser substitutes.",
+    "Offset-52 eligibility must be explicitly configured from the native range, family, and record-word checks.",
+    "The other 50 non-dialogue calls remain unresolved."
+  ]
+}

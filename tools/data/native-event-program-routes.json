@@ -1,0 +1,516 @@
+{
+  "schema": "new-yokosuka-native-event-program-routes-v1",
+  "routes": [
+    {
+      "id": "disc1-d000-entry-0x7abf4",
+      "disc": 1,
+      "area": "D000",
+      "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+      "entryFunction": "0x7abf4",
+      "eventCameras": {
+        "catalog": "tools/evidence/d000-event-camera-catalog.json",
+        "cameraNumbers": [
+          2950,
+          2952,
+          2954
+        ],
+        "evidence": [
+          "tools/evidence/event-camera-operation-evidence.json",
+          "tools/evidence/d000-hato-conversation-flow.json"
+        ]
+      },
+      "scriptedInteractions": [
+        {
+          "actorCode": "HATO",
+          "entryFunction": "0x8002c",
+          "dialogueEntryFunction": "0x7fa98",
+          "nativeSpatialRecordIndex": 5,
+          "activation": {
+            "persistentFlag": {
+              "bank": 2,
+              "index": 100,
+              "requiredValue": 0
+            },
+            "hourRange": {
+              "minimumInclusive": 7,
+              "maximumInclusive": 18
+            },
+            "nativeSpatialRecord": {
+              "position": [
+                -119.13939666748047,
+                0.0,
+                79.6144027709961
+              ],
+              "requiredFacingRaw": 9375,
+              "facingToleranceRaw": 16384,
+              "lateralHalfWidth": 0.5,
+              "verticalHalfExtent": 0.3999999761581421,
+              "longitudinalHalfExtent": 0.5999999642372131
+            }
+          },
+          "evidence": [
+            "tools/evidence/d000-hato-dialogue-vertical-slice.json",
+            "tools/evidence/d000-hato-conversation-flow.json"
+          ]
+        }
+      ],
+      "evidence": [
+        "tools/evidence/d000-hato-invocation-evidence.json",
+        "tools/evidence/d000-interaction-selector-evidence.json",
+        "tools/evidence/dialogue-control-dependencies.json"
+      ]
+    },
+    {
+      "id": "disc1-d000-phone-book-0x6a49c",
+      "disc": 1,
+      "area": "D000",
+      "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+      "entryFunction": "0x6a49c",
+      "staticStrings": [
+        {
+          "pointer": 51716,
+          "value": "/scene/01/D000/",
+          "sourceFileOffset": "0xaee84"
+        },
+        {
+          "pointer": 51732,
+          "value": "DESA",
+          "sourceFileOffset": "0xaee94"
+        }
+      ],
+      "staticVectors": [
+        {
+          "pointer": 664704,
+          "words": [1065353216, 1065353216, 1065353216],
+          "sourceFileOffset": "0xa2480"
+        }
+      ],
+      "eventCameras": {
+        "catalog": "tools/evidence/d000-event-camera-catalog.json",
+        "cameraNumbers": [
+          4310
+        ],
+        "evidence": [
+          "tools/evidence/d000-event-camera-catalog.json",
+          "tools/evidence/d000-phone-book-interaction.json"
+        ]
+      },
+      "motionBanks": [
+        {
+          "requestBank": 112,
+          "motionFile": "M_D000.MOTN",
+          "source": "play/assets/dobuita/M_D000.MOTN",
+          "sha256": "102a00b99c7d354e7c62ca712a3cbb95d32439065ef741e365d4b9dab0934991",
+          "indexRule": "low-byte one-based"
+        }
+      ],
+      "roomControllers": [
+        {
+          "id": "disc1-d000-primary-interaction-owner",
+          "entryFunction": "0x69b14",
+          "launch": {
+            "sourceFunction": "0x8d548",
+            "callFileOffset": "0x8da8a",
+            "operationHex": "0x0002",
+            "argumentCount": 0
+          },
+          "poll": {
+            "functionFileOffset": "0x69b14",
+            "callFileOffset": "0x69be0",
+            "operationHex": "0x0116",
+            "selector": -1
+          },
+          "dispatches": [
+            {
+              "eventCodes": ["TEL0", "0x00000085"],
+              "targetFunction": "0x2d8da",
+              "resetCallFileOffset": "0x69c32",
+              "callFileOffset": "0x69c3a"
+            },
+            {
+              "eventCodes": ["TBK1"],
+              "targetFunction": "0x6a49c",
+              "guardCallFileOffsets": ["0x69c7a", "0x69c92"],
+              "callFileOffset": "0x69cf6"
+            },
+            {
+              "eventCodes": ["GCH0", "GCH1", "GCH2", "GCH4", "GCH5", "GCH3"],
+              "targetFunction": "0x5614c",
+              "callFileOffset": "0x69d88"
+            },
+            {
+              "eventCodes": ["0x00000086"],
+              "runtimeSelector": 19,
+              "callFileOffset": "0x69dd4"
+            }
+          ],
+          "maintenance": {
+            "statusQueryCallFileOffset": "0x69e14",
+            "statusDispatchFunction": "0x69f7c",
+            "terminalStatusFunction": "0x6ae6c",
+            "countdownCallFileOffset": "0x69e8e",
+            "loopBlock": "0x69b96"
+          },
+          "evidence": [
+            "tools/evidence/d000-primary-interaction-owner.json",
+            "tools/evidence/live-d000-global-controller-poll-emulator-evidence.json"
+          ]
+        }
+      ],
+      "scriptedInteractions": [
+        {
+          "actorCode": "AKIR",
+          "objectTag": "TBK1",
+          "entryFunction": "0x6a49c",
+          "dialogueEntryFunction": "0x6b06c",
+          "activation": {
+            "kind": "tagged-object-action",
+            "objectTag": "TBK1",
+            "action": 1
+          },
+          "evidence": [
+            "tools/evidence/d000-phone-book-interaction.json",
+            ".disc-work/dialogue/native-event-ir.json"
+          ]
+        }
+      ],
+      "evidence": [
+        "tools/evidence/d000-phone-book-interaction.json",
+        "tools/evidence/d000-primary-interaction-owner.json",
+        ".disc-work/dialogue/native-event-ir.json"
+      ]
+    },
+    {
+      "id": "disc1-d000-selector-18-0x84b60",
+      "disc": 1,
+      "area": "D000",
+      "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+      "entryFunction": "0x84b60",
+      "staticStrings": [
+        {
+          "pointer": 725804,
+          "value": "bgm013.snd",
+          "sourceFileOffset": "0xb132c"
+        },
+        {
+          "pointer": 725815,
+          "value": "FREE",
+          "sourceFileOffset": "0xb1337"
+        },
+        {
+          "pointer": 725820,
+          "value": "a1_senfk.snd",
+          "sourceFileOffset": "0xb133c"
+        },
+        {
+          "pointer": 725833,
+          "value": "battle_1.snd",
+          "sourceFileOffset": "0xb1349"
+        },
+        {
+          "pointer": 725846,
+          "value": "FREE",
+          "sourceFileOffset": "0xb1356"
+        },
+        {
+          "pointer": 725851,
+          "value": "FREE",
+          "sourceFileOffset": "0xb135b"
+        }
+      ],
+      "eventCameras": {
+        "catalog": "tools/evidence/d000-event-camera-catalog.json",
+        "cameraNumbers": [
+          3010,
+          3011,
+          3012,
+          3013,
+          3015,
+          3016,
+          3017,
+          3018,
+          3019,
+          3020,
+          3021,
+          3022
+        ],
+        "evidence": [
+          "tools/evidence/d000-event-camera-catalog.json",
+          ".disc-work/dialogue/native-event-ir.json"
+        ]
+      },
+      "automaticEvents": [
+        {
+          "id": "d000-selector-18",
+          "actorCode": "TONY",
+          "gateEntryFunction": "0x77e80",
+          "matchedReturnValue": 18,
+          "entryFunction": "0x84b60",
+          "dialogueEntryFunction": "0x88868",
+          "evidence": [
+            ".disc-work/dialogue/native-event-ir.json",
+            "tools/evidence/native-clock-record-operation-evidence.json",
+            "tools/evidence/spatial-bounds-query-evidence.json",
+            "tools/evidence/native-free-conversation.json"
+          ]
+        }
+      ],
+      "evidence": [
+        ".disc-work/dialogue/native-event-ir.json",
+        "tools/evidence/native-clock-record-operation-evidence.json",
+        "tools/evidence/spatial-bounds-query-evidence.json",
+        "tools/evidence/native-free-conversation.json"
+      ]
+    },
+    {
+      "id": "disc1-d000-vending-owner-a-0x8c768",
+      "disc": 1,
+      "area": "D000",
+      "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+      "entryFunction": "0x8c768",
+      "evidence": [
+        "tools/evidence/d000-vending-interaction.json",
+        "tools/evidence/djhn-native-lifecycle.json"
+      ]
+    },
+    {
+      "id": "disc1-d000-vending-owner-b-0x8ce38",
+      "disc": 1,
+      "area": "D000",
+      "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+      "entryFunction": "0x8ce38",
+      "evidence": [
+        "tools/evidence/d000-vending-interaction.json",
+        "tools/evidence/djhn-native-lifecycle.json"
+      ]
+    },
+    {
+      "id": "disc1-d000-bus-travel-owner-0x6e1a0",
+      "disc": 1,
+      "area": "D000",
+      "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+      "entryFunction": "0x6e1a0",
+      "activityOwnerFunctions": ["0x6e1a0"],
+      "activityBindingCallOffsets": [
+        "0x6e37a",
+        "0x6e3b6",
+        "0x6e56a",
+        "0x6e5ee"
+      ],
+      "evidence": [
+        "tools/evidence/buss-native-lifecycle.json",
+        "tools/evidence/d000-bus-assets.json",
+        "tools/evidence/d000-auth-audio-banks.json"
+      ]
+    },
+    {
+      "id": "disc1-d000-yamagishi-owner-0x5b904",
+      "disc": 1,
+      "area": "D000",
+      "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+      "entryFunction": "0x5b904",
+      "evidence": [
+        "tools/evidence/d0w0-native-lifecycle.json",
+        "tools/evidence/d000-auth-audio-banks.json"
+      ]
+    },
+    {
+      "id": "disc1-jd00-nozomi-tears-owner-0x5c958",
+      "disc": 1,
+      "area": "JD00",
+      "mapinfoSha256": "8582ed57e13593d7622d24216ef8f93e5393b13fffd2132f70500f9e6ce2a43b",
+      "entryFunction": "0x5c958",
+      "evidence": [
+        "tools/evidence/dnoz-native-lifecycle.json",
+        "tools/evidence/native-activity-owner-candidates.json"
+      ]
+    },
+    {
+      "id": "disc1-jd00-nozomi-rescue-owner-0x5b6f8",
+      "disc": 1,
+      "area": "JD00",
+      "mapinfoSha256": "8582ed57e13593d7622d24216ef8f93e5393b13fffd2132f70500f9e6ce2a43b",
+      "entryFunction": "0x5b6f8",
+      "activityOwnerFunctions": ["0x761ca", "0x76424", "0x76644", "0x7691c"],
+      "activityBindingCallOffsets": ["0x76382", "0x76532", "0x76822", "0x76ad2"],
+      "evidence": [
+        "tools/evidence/evsn-native-lifecycle.json",
+        "tools/evidence/native-activity-owner-candidates.json"
+      ]
+    },
+    {
+      "id": "disc1-ju00-kitten-care-owner-0x27554",
+      "disc": 1,
+      "area": "JU00",
+      "mapinfoSha256": "3887bbf6e00eb152f7cca34d23841cc743ee7345a2db6b7d27e8303f6274924d",
+      "entryFunction": "0x27554",
+      "activityOwnerFunctions": ["0x2aa70"],
+      "directEntryState": {
+        "0x2aa70": {
+          "sceneFields": [
+            { "offset": 640, "width": 4, "value": 4294967295 }
+          ],
+          "objectBaseVectors": [
+            {
+              "objectTag": "CATM",
+              "vector": [34.670799255371094, 2.615000009536743, 38.51959991455078]
+            }
+          ],
+          "operation001cObjects": [
+            {
+              "objectTag": "CATM",
+              "present": true,
+              "directWords": [0, 22027, 0],
+              "associatedWords": [0, 22027, 0]
+            }
+          ],
+          "evidence": [
+            "tools/evidence/cata1-native-lifecycle.json",
+            ".disc-work/dialogue/native-event-ir.json#0x376ae",
+            "play/data/ju00-runtime-placements.json#CATM",
+            "tools/evidence/ju00-operation-001c-objects.json#CATM"
+          ]
+        }
+      },
+      "staticStrings": [
+        { "pointer": 334724, "value": "FREE", "sourceFileOffset": "0x51b84" },
+        { "pointer": 334729, "value": "FREE", "sourceFileOffset": "0x51b89" },
+        { "pointer": 334734, "value": "FREE", "sourceFileOffset": "0x51b8e" },
+        { "pointer": 334739, "value": "FREE", "sourceFileOffset": "0x51b93" },
+        { "pointer": 334744, "value": "FREE", "sourceFileOffset": "0x51b98" },
+        { "pointer": 334749, "value": "FREE", "sourceFileOffset": "0x51b9d" },
+        { "pointer": 334754, "value": "bgm051.snd", "sourceFileOffset": "0x51ba2" },
+        { "pointer": 334765, "value": "a1_neko1.snd", "sourceFileOffset": "0x51bad" },
+        { "pointer": 334778, "value": "01CAT1", "sourceFileOffset": "0x51bba" },
+        { "pointer": 334785, "value": "seqdata0.bin", "sourceFileOffset": "0x51bc1" },
+        { "pointer": 334798, "value": "CATA1", "sourceFileOffset": "0x51bce" },
+        { "pointer": 334804, "value": "seqdata1.bin", "sourceFileOffset": "0x51bd4" },
+        { "pointer": 334817, "value": "CATA1", "sourceFileOffset": "0x51be1" },
+        { "pointer": 334823, "value": "seqdata2.bin", "sourceFileOffset": "0x51be7" },
+        { "pointer": 334836, "value": "CATA1", "sourceFileOffset": "0x51bf4" },
+        { "pointer": 334842, "value": "01CAT1", "sourceFileOffset": "0x51bfa" },
+        { "pointer": 334849, "value": "FREE", "sourceFileOffset": "0x51c01" },
+        { "pointer": 334854, "value": "FREE", "sourceFileOffset": "0x51c06" },
+        { "pointer": 334859, "value": "FREE", "sourceFileOffset": "0x51c0b" },
+        { "pointer": 334864, "value": "FREE", "sourceFileOffset": "0x51c10" },
+        { "pointer": 334869, "value": "FREE", "sourceFileOffset": "0x51c15" },
+        { "pointer": 334874, "value": "FREE", "sourceFileOffset": "0x51c1a" },
+        { "pointer": 334879, "value": "SELECT", "sourceFileOffset": "0x51c1f" },
+        { "pointer": 334886, "value": "f1jutaup.snd", "sourceFileOffset": "0x51c26" },
+        { "pointer": 334899, "value": "CATA1", "sourceFileOffset": "0x51c33" }
+      ],
+      "staticVectors": [
+        {
+          "pointer": 334696,
+          "words": [1050253722, 1050253722, 1050253722],
+          "sourceFileOffset": "0x51b68"
+        },
+        {
+          "pointer": 334712,
+          "words": [1050253722, 1050253722, 1050253722],
+          "sourceFileOffset": "0x51b78"
+        }
+      ],
+      "activityBindingCallOffsets": ["0x2b040", "0x2b552", "0x2b5fa"],
+      "evidence": [
+        "tools/evidence/cata1-native-lifecycle.json",
+        "tools/evidence/native-activity-owner-candidates.json"
+      ]
+    },
+    {
+      "id": "disc1-jhd0-fukusan-move-training-0x464bc",
+      "disc": 1,
+      "area": "JHD0",
+      "mapinfoSha256": "e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca",
+      "entryFunction": "0x464bc",
+      "evidence": [
+        "tools/evidence/jhw0-native-lifecycle.json",
+        "tools/evidence/native-activity-owner-candidates.json"
+      ]
+    },
+    {
+      "id": "disc1-jhd0-fukusan-iwao-death-0x3aec8",
+      "disc": 1,
+      "area": "JHD0",
+      "mapinfoSha256": "e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca",
+      "entryFunction": "0x3aec8",
+      "evidence": [
+        "tools/evidence/mska-native-lifecycle.json",
+        "tools/evidence/native-activity-owner-candidates.json"
+      ]
+    },
+    {
+      "id": "disc1-jhd0-kakg-owner-0x3cfa0",
+      "disc": 1,
+      "area": "JHD0",
+      "mapinfoSha256": "e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca",
+      "entryFunction": "0x3cfa0",
+      "evidence": [
+        "tools/evidence/kakg-native-lifecycle.json",
+        "tools/evidence/native-activity-owner-candidates.json"
+      ]
+    },
+    {
+      "id": "disc1-jhd0-iwao-young-ryo-memory-0x37d56",
+      "disc": 1,
+      "area": "JHD0",
+      "mapinfoSha256": "e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca",
+      "entryFunction": "0x37d56",
+      "staticStrings": [
+        {
+          "pointer": 382048,
+          "value": "scroll",
+          "sourceFileOffset": "0x5d460"
+        },
+        {
+          "pointer": 382055,
+          "value": "SCROLL25.SPR",
+          "sourceFileOffset": "0x5d467"
+        }
+      ],
+      "evidence": [
+        "tools/evidence/hihy-native-lifecycle.json",
+        "tools/evidence/native-activity-owner-candidates.json"
+      ]
+    },
+    {
+      "id": "disc1-jhd0-fukusan-letter-0x545f8",
+      "disc": 1,
+      "area": "JHD0",
+      "mapinfoSha256": "e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca",
+      "entryFunction": "0x545f8",
+      "activityOwnerFunctions": ["0x545f8"],
+      "activityBindingCallOffsets": ["0x54cc0"],
+      "evidence": [
+        "tools/evidence/tgma-native-blocker.json",
+        "tools/evidence/native-activity-owner-candidates.json"
+      ]
+    },
+    {
+      "id": "disc1-yd01-sakura-training-owner-0x2678",
+      "disc": 1,
+      "area": "YD01",
+      "mapinfoSha256": "245459a1f9936e5582954375bff9b49ced48000d301b2bbf19e135b145494baa",
+      "entryFunction": "0x2678",
+      "evidence": [
+        "tools/evidence/sakr-native-lifecycle.json",
+        "tools/evidence/native-activity-owner-candidates.json"
+      ]
+    },
+    {
+      "id": "disc1-jomo-bebf-nightmare-owner-0x4bf5c",
+      "disc": 1,
+      "area": "JOMO",
+      "mapinfoSha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
+      "entryFunction": "0x4bf5c",
+      "activityOwnerFunctions": ["0x4bf5c"],
+      "activityBindingCallOffsets": [
+        "0x4c0e6", "0x4c10a", "0x4c12e", "0x4c152"
+      ],
+      "evidence": [
+        "tools/evidence/bebf-native-lifecycle.json",
+        "tools/evidence/native-activity-owner-candidates.json"
+      ]
+    }
+  ]
+}

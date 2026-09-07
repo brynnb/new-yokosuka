@@ -1,0 +1,21 @@
+{
+  "schema": "new-yokosuka-scheduled-actors-v1",
+  "source": {
+    "capture": "captures/pvr/20260726-003543-frame-196802/ram.bin",
+    "taggedRuntimeObjects": ".disc-work/ma00-race-tagged-runtime-objects.json",
+    "coordinateConversion": "browser = [-runtimeX, runtimeY, runtimeZ]"
+  },
+  "actors": [
+    {
+      "actorCode": "MGDM",
+      "label": "Mark",
+      "model": "S3_M3FB_FONS505G.MT5",
+      "worldId": "ma00race",
+      "position": [66, 0, 109.5],
+      "rotationDegrees": [0, 90, 0],
+      "taskAddress": "0x8c882380",
+      "callbackAddress": "0x0c2df5f8",
+      "activeCondition": "forklift-race-event"
+    }
+  ]
+}

@@ -1,0 +1,294 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/build_sakr_activity_pack.mjs",
+  "source": {
+    "disc": 1,
+    "path": "extracted_files/data/SCENE/01/YD01/SAKR.PKS",
+    "sha256": "dbe1067dd36caa78e75afd9343af2cbd052efdc60eca3096116d371a0c2ef57d",
+    "archiveFormat": "PAKS/IPAC",
+    "members": [
+      {
+        "name": "IWA_B.CHRM",
+        "byteLength": 13332,
+        "sha256": "5669a7b91deb767bcaf92fa7af591e7e623cb5c4cdd59a2569c5b3a3d1e00108"
+      },
+      {
+        "name": "IWA_F.CHRM",
+        "byteLength": 13324,
+        "sha256": "4172b7fc4415f8376045b560542be6f81ff32463f3780224ba4ac5e03eea8e25"
+      },
+      {
+        "name": "IWA_FTBL.BIN",
+        "byteLength": 4544,
+        "sha256": "406ceb8399fba2ef989af0871b47c42ad62e2a1aadf536eba39f2af4c78501c3"
+      },
+      {
+        "name": "IWA_HM.BIN",
+        "byteLength": 9264,
+        "sha256": "e9ac04b80a5b7f693d6af299683073906c5a2bd0d47d88676a6707501bfb0e06"
+      },
+      {
+        "name": "IWA_M.CHRM",
+        "byteLength": 64000,
+        "sha256": "df9d4ab5b9e98c26214877345586be217a1307e62ef1089bced6c71b3e8615da"
+      },
+      {
+        "name": "IWA_TL.CHRM",
+        "byteLength": 12980,
+        "sha256": "d951b8720a3c2c35f6b0f13f634c0e074eee50f81caca090fe1069d5437017a9"
+      },
+      {
+        "name": "IWA_TR.CHRM",
+        "byteLength": 13036,
+        "sha256": "9fecfb97887c6cd63d2e054cbbcbd191968ac7ebf2d9a23bde23d0e9829b144e"
+      },
+      {
+        "name": "JKB_F.CHRM",
+        "byteLength": 16248,
+        "sha256": "c0e7590a873365602e06fe8d85aeb3591cad116efb5902d13350a054abc64f19"
+      },
+      {
+        "name": "JKB_FTBL.BIN",
+        "byteLength": 6144,
+        "sha256": "ca13ce45c2c5e1829c87c9144d5e5f8f2e1fc0a43f3a5fd186821f71bcedc8ff"
+      },
+      {
+        "name": "JKB_HM.BIN",
+        "byteLength": 9168,
+        "sha256": "e7529472af95b35041d5cf7647ece11e764f404d6f433aeb581241b4732dac02"
+      },
+      {
+        "name": "JKB_M.CHRM",
+        "byteLength": 52008,
+        "sha256": "9717c743c1931d131276c7f9d971f675e06df229b85a74bd4738ff5f776ca28d"
+      },
+      {
+        "name": "JKB_TL.CHRM",
+        "byteLength": 12916,
+        "sha256": "728476d7967e2673728ddf9aa6792c06d96756ffeb028ffb2575f159d90dc742"
+      },
+      {
+        "name": "JKB_TR.CHRM",
+        "byteLength": 12820,
+        "sha256": "be4c8f6c6e4edaa5be1eaf437c50a03c62c549b414165ca54d336f7a0a778af7"
+      },
+      {
+        "name": "MAP.MAPM",
+        "byteLength": 463496,
+        "sha256": "d4efa0ba05868ecc57aae3191c1cd190b2de3d5b2d5b3753e50fd892b64a9231"
+      },
+      {
+        "name": "MAP01.MAPM",
+        "byteLength": 69344,
+        "sha256": "179816471d652ca06a54994cc9a5b882476d10a34507d11b25c9c743a9a71bbd"
+      },
+      {
+        "name": "MAP02.MAPM",
+        "byteLength": 31484,
+        "sha256": "e670614125ac0163d091361c35c4b19c9586008309e9857a291d9fc06a2efa06"
+      },
+      {
+        "name": "MAP03.MAPM",
+        "byteLength": 86648,
+        "sha256": "da42727763a50488da66ba97ac2f78bb08d146a1fcb45c327167a2767823e62d"
+      },
+      {
+        "name": "M_0128.MOTN",
+        "byteLength": 109628,
+        "sha256": "984f330945ea22747915019c0c0afc5e50941551263db9bcef7090c9a8bfd2fa"
+      },
+      {
+        "name": "SEQDATA0.AUTH",
+        "byteLength": 9264,
+        "sha256": "e2160469503e7faf9b850ad1513f7dc67aea33288fbbee3d626003599b338aee"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "tools/evidence/sakr-native-lifecycle.json",
+    "resourceName": "SAKR",
+    "variant": "",
+    "selectionRule": "exact member SEQDATA0.AUTH selected by slot 0"
+  },
+  "audioManifest": "public/audio/world/sakr/manifest.json",
+  "packageActors": {
+    "IWAO": {
+      "label": "Iwao Hazuki",
+      "modelCode": "IWA_M",
+      "browserFilename": "S1_YD01_IWA_M.MT5",
+      "assetFormat": "MT5",
+      "characterScale": 1
+    },
+    "JAKR": {
+      "label": "Young Ryo Hazuki",
+      "modelCode": "JKB_M",
+      "browserFilename": "S1_YD01_JKB_M.MT5",
+      "assetFormat": "MT5",
+      "characterScale": 1
+    }
+  },
+  "motionBanks": [
+    {
+      "bank": 17,
+      "path": "play/assets/yd01/sakr/M_0128.MOTN",
+      "byteLength": 109628,
+      "sha256": "984f330945ea22747915019c0c0afc5e50941551263db9bcef7090c9a8bfd2fa"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/yd01/sakr/M_0128.MOTN",
+      "byteLength": 109628,
+      "sha256": "984f330945ea22747915019c0c0afc5e50941551263db9bcef7090c9a8bfd2fa"
+    },
+    {
+      "path": "play/assets/yd01/sakr/SEQDATA0.AUTH",
+      "byteLength": 9264,
+      "sha256": "e2160469503e7faf9b850ad1513f7dc67aea33288fbbee3d626003599b338aee"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "primaryPointer": 11673,
+      "secondaryPointer": 11686,
+      "activityId": "SAKR/SEQDATA0.AUTH",
+      "archiveMember": "SEQDATA0.AUTH",
+      "byteLength": 9264,
+      "sha256": "e2160469503e7faf9b850ad1513f7dc67aea33288fbbee3d626003599b338aee",
+      "durationFrames": 1559,
+      "durationSeconds": 51.983333587646484,
+      "frameCount": 27,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 13,
+        "voice": 12,
+        "sound": 6
+      },
+      "actors": [
+        "IWAO",
+        "JAKR"
+      ],
+      "motions": [
+        {
+          "actorTag": "IWAO",
+          "frame": 1,
+          "motionBank": 17,
+          "sequenceIndex": 0,
+          "motionName": "IWA_OSIERU_RIMONTYOUTYU_KAISOU_0112",
+          "startFrame": 1,
+          "endFrame": 2
+        },
+        {
+          "actorTag": "JAKR",
+          "frame": 1,
+          "motionBank": 17,
+          "sequenceIndex": 5,
+          "motionName": "GAK_JAK_OSIERU_RIMONTYOUTYU_KAISOU_0122",
+          "startFrame": 154,
+          "endFrame": 155
+        },
+        {
+          "actorTag": "IWAO",
+          "frame": 145,
+          "motionBank": 17,
+          "sequenceIndex": 0,
+          "motionName": "IWA_OSIERU_RIMONTYOUTYU_KAISOU_0112",
+          "startFrame": 1,
+          "endFrame": 199
+        },
+        {
+          "actorTag": "IWAO",
+          "frame": 344,
+          "motionBank": 17,
+          "sequenceIndex": 0,
+          "motionName": "IWA_OSIERU_RIMONTYOUTYU_KAISOU_0112",
+          "startFrame": 155,
+          "endFrame": 175
+        },
+        {
+          "actorTag": "IWAO",
+          "frame": 365,
+          "motionBank": 17,
+          "sequenceIndex": 0,
+          "motionName": "IWA_OSIERU_RIMONTYOUTYU_KAISOU_0112",
+          "startFrame": 155,
+          "endFrame": 645
+        },
+        {
+          "actorTag": "JAKR",
+          "frame": 365,
+          "motionBank": 17,
+          "sequenceIndex": 5,
+          "motionName": "GAK_JAK_OSIERU_RIMONTYOUTYU_KAISOU_0122",
+          "startFrame": 155,
+          "endFrame": 645
+        },
+        {
+          "actorTag": "IWAO",
+          "frame": 856,
+          "motionBank": 17,
+          "sequenceIndex": 0,
+          "motionName": "IWA_OSIERU_RIMONTYOUTYU_KAISOU_0112",
+          "startFrame": 601,
+          "endFrame": 645
+        },
+        {
+          "actorTag": "JAKR",
+          "frame": 856,
+          "motionBank": 17,
+          "sequenceIndex": 5,
+          "motionName": "GAK_JAK_OSIERU_RIMONTYOUTYU_KAISOU_0122",
+          "startFrame": 601,
+          "endFrame": 645
+        },
+        {
+          "actorTag": "IWAO",
+          "frame": 901,
+          "motionBank": 17,
+          "sequenceIndex": 0,
+          "motionName": "IWA_OSIERU_RIMONTYOUTYU_KAISOU_0112",
+          "startFrame": 601,
+          "endFrame": 999
+        },
+        {
+          "actorTag": "JAKR",
+          "frame": 901,
+          "motionBank": 17,
+          "sequenceIndex": 5,
+          "motionName": "GAK_JAK_OSIERU_RIMONTYOUTYU_KAISOU_0122",
+          "startFrame": 601,
+          "endFrame": 995
+        },
+        {
+          "actorTag": "JAKR",
+          "frame": 1296,
+          "motionBank": 17,
+          "sequenceIndex": 5,
+          "motionName": "GAK_JAK_OSIERU_RIMONTYOUTYU_KAISOU_0122",
+          "startFrame": 995,
+          "endFrame": 1105
+        },
+        {
+          "actorTag": "IWAO",
+          "frame": 1300,
+          "motionBank": 17,
+          "sequenceIndex": 0,
+          "motionName": "IWA_OSIERU_RIMONTYOUTYU_KAISOU_0112",
+          "startFrame": 996,
+          "endFrame": 1092
+        },
+        {
+          "actorTag": "IWAO",
+          "frame": 1397,
+          "motionBank": 17,
+          "sequenceIndex": 0,
+          "motionName": "IWA_OSIERU_RIMONTYOUTYU_KAISOU_0112",
+          "startFrame": 1022,
+          "endFrame": 1154
+        }
+      ]
+    }
+  ]
+}

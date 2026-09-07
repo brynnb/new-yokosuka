@@ -1,0 +1,392 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/build_evsn_activity_pack.mjs",
+  "source": {
+    "disc": 1,
+    "path": "extracted_files/data/SCENE/01/JD00/EVSN.PKS",
+    "sha256": "a940f2b2b624638fc7a27364eb6045a88fa10e7717a185ebac2f0cbd1c35275a",
+    "archiveFormat": "PAKS/IPAC",
+    "members": [
+      {
+        "name": "M_01NVE.MOTN",
+        "byteLength": 312076,
+        "sha256": "1636d2fef481b116512016361ceaadd970e4b5c2d1d9e4252c1b871fbca22386"
+      },
+      {
+        "name": "NZG_L.CHRM",
+        "byteLength": 32872,
+        "sha256": "a12c2320e9d2ab69386e7dcfa38367de6299f8e921071a562f65ddae2dc9e881"
+      },
+      {
+        "name": "OMHT201G.CHRM",
+        "byteLength": 6136,
+        "sha256": "8c9cbbe4b0e3ed4e7b2e4ada1d9165c388d4b24eeecb402b1c892775a9c4f5c4"
+      },
+      {
+        "name": "SEQDATA1.AUTH",
+        "byteLength": 3252,
+        "sha256": "dcf1b9718432e56bac5516b735187171faf4039b3da41bf982c3072340c69240"
+      },
+      {
+        "name": "SEQDATA2.AUTH",
+        "byteLength": 30792,
+        "sha256": "73877745a6e80bbbfc785b319972299ae81dff5b512390adb28fcbcc92daf8b7"
+      },
+      {
+        "name": "SEQDATA3.AUTH",
+        "byteLength": 90788,
+        "sha256": "6e9875e3507e52d696f92eddf3a5d354d9943b28718700136d394ef7b7e7e750"
+      },
+      {
+        "name": "SEQDATA4.AUTH",
+        "byteLength": 3732,
+        "sha256": "8f17a245f4f1f09df580d07b88cd7c8bb20636dd515e6f647d1339b96bf73411"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "tools/evidence/evsn-native-lifecycle.json",
+    "resourceName": "EVSN",
+    "variant": "",
+    "selectionRule": "zero-based AUTH-extension ordinal selected by operation-0x013e slots 0 through 3"
+  },
+  "audioManifest": "public/audio/world/evsn/manifest.json",
+  "sceneObjects": {
+    "AIRO": {
+      "model": "OMHT201",
+      "browserFilename": "S1_JD00_OMHT201G.MT5",
+      "assetPath": "play/assets/sakuragaoka/evsn/OMHT201G.CHRM",
+      "lifecycle": {
+        "kind": "native-composite-owner"
+      },
+      "nativeBinding": {
+        "archiveMember": "OMHT201G.CHRM",
+        "archiveMemberSha256": "8c9cbbe4b0e3ed4e7b2e4ada1d9165c388d4b24eeecb402b1c892775a9c4f5c4",
+        "attachmentOperation": "0x00e6",
+        "attachmentCall": "0x72af4",
+        "parentActorTag": "KKEN",
+        "controlId": 12
+      }
+    }
+  },
+  "packageActors": {
+    "KKEN": {
+      "label": "Kyosuke Nishida",
+      "modelCode": "NZG_L",
+      "assetPath": "play/assets/sakuragaoka/evsn/NZG_L.CHRM",
+      "browserFilename": "S1_JD00_NZG_L.MT5",
+      "assetFormat": "MT5",
+      "characterScale": 1
+    }
+  },
+  "actorTags": [
+    "AKIR",
+    "ENKI",
+    "HRSK",
+    "NGSM",
+    "AIRO",
+    "KKEN"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/sakuragaoka/evsn/M_01NVE.MOTN",
+      "byteLength": 312076,
+      "sha256": "1636d2fef481b116512016361ceaadd970e4b5c2d1d9e4252c1b871fbca22386"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/sakuragaoka/evsn/M_01NVE.MOTN",
+      "byteLength": 312076,
+      "sha256": "1636d2fef481b116512016361ceaadd970e4b5c2d1d9e4252c1b871fbca22386"
+    },
+    {
+      "path": "play/assets/sakuragaoka/evsn/SEQDATA1.AUTH",
+      "byteLength": 3252,
+      "sha256": "dcf1b9718432e56bac5516b735187171faf4039b3da41bf982c3072340c69240"
+    },
+    {
+      "path": "play/assets/sakuragaoka/evsn/SEQDATA2.AUTH",
+      "byteLength": 30792,
+      "sha256": "73877745a6e80bbbfc785b319972299ae81dff5b512390adb28fcbcc92daf8b7"
+    },
+    {
+      "path": "play/assets/sakuragaoka/evsn/SEQDATA3.AUTH",
+      "byteLength": 90788,
+      "sha256": "6e9875e3507e52d696f92eddf3a5d354d9943b28718700136d394ef7b7e7e750"
+    },
+    {
+      "path": "play/assets/sakuragaoka/evsn/SEQDATA4.AUTH",
+      "byteLength": 3732,
+      "sha256": "8f17a245f4f1f09df580d07b88cd7c8bb20636dd515e6f647d1339b96bf73411"
+    },
+    {
+      "path": "play/assets/sakuragaoka/evsn/NZG_L.CHRM",
+      "byteLength": 32872,
+      "sha256": "a12c2320e9d2ab69386e7dcfa38367de6299f8e921071a562f65ddae2dc9e881"
+    },
+    {
+      "path": "play/assets/sakuragaoka/evsn/OMHT201G.CHRM",
+      "byteLength": 6136,
+      "sha256": "8c9cbbe4b0e3ed4e7b2e4ada1d9165c388d4b24eeecb402b1c892775a9c4f5c4"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "primaryPointer": 529554,
+      "secondaryPointer": 529559,
+      "activityId": "EVSN/SEQDATA1.AUTH",
+      "archiveMember": "SEQDATA1.AUTH",
+      "byteLength": 3252,
+      "sha256": "dcf1b9718432e56bac5516b735187171faf4039b3da41bf982c3072340c69240",
+      "durationFrames": 230,
+      "durationSeconds": 7.800000190734863,
+      "frameCount": 9,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "motion": 1,
+        "voice": 3,
+        "sound": 5
+      },
+      "actors": [
+        "AKIR",
+        "ENKI",
+        "HRSK"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_KIDUKU_NOZ_NOZVSENO_0100",
+          "startFrame": 1,
+          "endFrame": 233
+        }
+      ]
+    },
+    {
+      "slot": 1,
+      "primaryPointer": 529570,
+      "secondaryPointer": 529575,
+      "activityId": "EVSN/SEQDATA2.AUTH",
+      "archiveMember": "SEQDATA2.AUTH",
+      "byteLength": 30792,
+      "sha256": "73877745a6e80bbbfc785b319972299ae81dff5b512390adb28fcbcc92daf8b7",
+      "durationFrames": 1671,
+      "durationSeconds": 55.71666717529297,
+      "frameCount": 77,
+      "commandCounts": {
+        "camera": 1,
+        "move": 6,
+        "motion": 8,
+        "effect": 9,
+        "voice": 19,
+        "sound": 47
+      },
+      "actors": [
+        "NGSM",
+        "HRSK",
+        "AKIR",
+        "ENKI",
+        "AIRO",
+        "KKEN"
+      ],
+      "motions": [
+        {
+          "actorTag": "NGSM",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 15,
+          "motionName": "YKI_NAG_AT1_KARAMARERU_KARAMARERUNOZ_0100",
+          "startFrame": 329,
+          "endFrame": 2155
+        },
+        {
+          "actorTag": "HRSK",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 11,
+          "motionName": "SIN_NOZ_AT1_KARAMARERU_KARAMARERUNOZ_0100",
+          "startFrame": 329,
+          "endFrame": 2134
+        },
+        {
+          "actorTag": "ENKI",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 13,
+          "motionName": "YKI_ENO_AT1_TASUKERU_KARAMARERUNOZ0_0100",
+          "startFrame": 35,
+          "endFrame": 978
+        },
+        {
+          "actorTag": "KKEN",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "GAK_KID_AT1_TASUKERARERU_KARAMARERUNOZ_0100",
+          "startFrame": 155,
+          "endFrame": 1810
+        },
+        {
+          "actorTag": "ENKI",
+          "frame": 945,
+          "motionBank": 16,
+          "sequenceIndex": 13,
+          "motionName": "YKI_ENO_AT1_TASUKERU_KARAMARERUNOZ0_0100",
+          "startFrame": 1141,
+          "endFrame": 1540
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1226,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AT2_TASUKERU_NOZVSENO_0100",
+          "startFrame": 30,
+          "endFrame": 148
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1345,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "AKI_AT1_TASUKERU_KARAMARERUNOZ0_0100",
+          "startFrame": 194,
+          "endFrame": 543
+        },
+        {
+          "actorTag": "ENKI",
+          "frame": 1345,
+          "motionBank": 16,
+          "sequenceIndex": 13,
+          "motionName": "YKI_ENO_AT1_TASUKERU_KARAMARERUNOZ0_0100",
+          "startFrame": 1540,
+          "endFrame": 1890
+        }
+      ]
+    },
+    {
+      "slot": 2,
+      "primaryPointer": 529602,
+      "secondaryPointer": 529607,
+      "activityId": "EVSN/SEQDATA3.AUTH",
+      "archiveMember": "SEQDATA3.AUTH",
+      "byteLength": 90788,
+      "sha256": "6e9875e3507e52d696f92eddf3a5d354d9943b28718700136d394ef7b7e7e750",
+      "durationFrames": 1080,
+      "durationSeconds": 36.66666793823242,
+      "frameCount": 47,
+      "commandCounts": {
+        "camera": 1,
+        "move": 5,
+        "motion": 6,
+        "effect": 13,
+        "voice": 12,
+        "sound": 21
+      },
+      "actors": [
+        "NGSM",
+        "HRSK",
+        "AKIR",
+        "ENKI",
+        "KKEN"
+      ],
+      "motions": [
+        {
+          "actorTag": "NGSM",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "YKI_NAG_AT2_YARARERU_NIGERU_KARAMARERUNOZ_0100",
+          "startFrame": 421,
+          "endFrame": 695
+        },
+        {
+          "actorTag": "HRSK",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 12,
+          "motionName": "SIN_NOZ_AT2_IIKIKASERU_KARAMARERUNOZ_0100",
+          "startFrame": 281,
+          "endFrame": 691
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "AKI_AT2_IIKIKASERU_KARAMARERUNOZ_0100",
+          "startFrame": 351,
+          "endFrame": 1426
+        },
+        {
+          "actorTag": "ENKI",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 14,
+          "motionName": "YKI_ENO_AT2_YARARERU_NIGERU_KARAMARERUNOZ_0100",
+          "startFrame": 341,
+          "endFrame": 671
+        },
+        {
+          "actorTag": "KKEN",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 9,
+          "motionName": "GAK_KID_AT2_ARIGATOU_SARU_KARAMARERUNOZ_0100",
+          "startFrame": 51,
+          "endFrame": 581
+        },
+        {
+          "actorTag": "HRSK",
+          "frame": 412,
+          "motionBank": 16,
+          "sequenceIndex": 12,
+          "motionName": "SIN_NOZ_AT2_IIKIKASERU_KARAMARERUNOZ_0100",
+          "startFrame": 731,
+          "endFrame": 1426
+        }
+      ]
+    },
+    {
+      "slot": 3,
+      "primaryPointer": 529618,
+      "secondaryPointer": 529623,
+      "activityId": "EVSN/SEQDATA4.AUTH",
+      "archiveMember": "SEQDATA4.AUTH",
+      "byteLength": 3732,
+      "sha256": "8f17a245f4f1f09df580d07b88cd7c8bb20636dd515e6f647d1339b96bf73411",
+      "durationFrames": 220,
+      "durationSeconds": 7.800000190734863,
+      "frameCount": 9,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "motion": 1,
+        "voice": 3,
+        "sound": 5
+      },
+      "actors": [
+        "AKIR",
+        "ENKI",
+        "HRSK"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_KIDUKU_NOZ_NOZVSENO_0100",
+          "startFrame": 1,
+          "endFrame": 233
+        }
+      ]
+    }
+  ]
+}

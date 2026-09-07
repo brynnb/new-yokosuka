@@ -1,0 +1,155 @@
+{
+  "schema": "new-yokosuka-d000-phone-book-audio-v1",
+  "status": "verified",
+  "generatedBy": "tools/audio/audit_d000_phone_book_audio.mjs",
+  "source": {
+    "auth": {
+      "path": ".disc-work/exact/d000/unpacked/AUTH/SEQDATA0.AUTH",
+      "byteLength": 3404,
+      "sha256": "cded8b9c546b7ea3a4a4e0c3dbff9c3bfb31c2a9c3abc263e05414c352409c60"
+    },
+    "motion": {
+      "path": ".disc-work/exact/d000/unpacked/AUTH/M_01TE.MOTN",
+      "byteLength": 135728,
+      "sha256": "6fe13710cb2cc8ecb8dbcb107ce3befd328b481db1d1e8ddb405a7c7578b6451"
+    },
+    "mapinfo": {
+      "path": ".disc-work/exact/d000/MAPINFO.BIN",
+      "byteLength": 868708,
+      "sha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e"
+    },
+    "bank": {
+      "path": "extracted_files/data/SCENE/01/SOUND/A1_TELP.SND",
+      "byteLength": 76516,
+      "sha256": "70b37d84b73c8823bbbaaac641ee34bb462d52783c989aca35df410cc4f786d6"
+    }
+  },
+  "resourceCluster": {
+    "mapinfoRange": [
+      "0xaea94",
+      "0xaeae1"
+    ],
+    "soundBank": {
+      "name": "a1_telp.snd",
+      "offset": "0xaea94"
+    },
+    "authResourceType": {
+      "name": "AUTH",
+      "offset": "0xaeabf"
+    },
+    "authSequence": {
+      "name": "seqdata0.bin",
+      "offset": "0xaeac4"
+    },
+    "package": {
+      "name": "01TEL",
+      "offset": "0xaead6"
+    }
+  },
+  "timeline": {
+    "durationFrames": 890,
+    "actors": [
+      "AKIR"
+    ],
+    "timelineComplete": true,
+    "motions": [
+      {
+        "recordOffset": "0x34",
+        "timelineFrame": 0,
+        "actorTag": "AKIR",
+        "motionId": "0x1418",
+        "sequenceNumber": 24,
+        "sequenceIndex": 23,
+        "motionName": "AKI_SIRABERU_DENWATYOU_ETC_TABACOYA_0100",
+        "startFrame": 18,
+        "endFrame": 925,
+        "motionDurationFrames": 925
+      }
+    ],
+    "sounds": [
+      {
+        "recordOffset": "0x54",
+        "timelineFrame": 59,
+        "actorTag": "AKIR",
+        "commandHex": "a9040000",
+        "eventIndex": 0,
+        "motionName": "AKI_SIRABERU_DENWATYOU_ETC_TABACOYA_0100",
+        "motionLocalFrame": 77,
+        "motionFrameResolved": true
+      },
+      {
+        "recordOffset": "0x6c",
+        "timelineFrame": 131,
+        "actorTag": "AKIR",
+        "commandHex": "a9040700",
+        "eventIndex": 1,
+        "motionName": "AKI_SIRABERU_DENWATYOU_ETC_TABACOYA_0100",
+        "motionLocalFrame": 149,
+        "motionFrameResolved": true
+      },
+      {
+        "recordOffset": "0x84",
+        "timelineFrame": 189,
+        "actorTag": "AKIR",
+        "commandHex": "a9040800",
+        "eventIndex": 2,
+        "motionName": "AKI_SIRABERU_DENWATYOU_ETC_TABACOYA_0100",
+        "motionLocalFrame": 207,
+        "motionFrameResolved": true
+      },
+      {
+        "recordOffset": "0x9c",
+        "timelineFrame": 253,
+        "actorTag": "AKIR",
+        "commandHex": "a9040700",
+        "eventIndex": 3,
+        "motionName": "AKI_SIRABERU_DENWATYOU_ETC_TABACOYA_0100",
+        "motionLocalFrame": 271,
+        "motionFrameResolved": true
+      },
+      {
+        "recordOffset": "0xb4",
+        "timelineFrame": 313,
+        "actorTag": "AKIR",
+        "commandHex": "a9040a00",
+        "eventIndex": 4,
+        "motionName": "AKI_SIRABERU_DENWATYOU_ETC_TABACOYA_0100",
+        "motionLocalFrame": 331,
+        "motionFrameResolved": true
+      },
+      {
+        "recordOffset": "0xcc",
+        "timelineFrame": 402,
+        "actorTag": "AKIR",
+        "commandHex": "a9040b00",
+        "eventIndex": 5,
+        "motionName": "AKI_SIRABERU_DENWATYOU_ETC_TABACOYA_0100",
+        "motionLocalFrame": 420,
+        "motionFrameResolved": true
+      },
+      {
+        "recordOffset": "0x144",
+        "timelineFrame": 856,
+        "actorTag": "AKIR",
+        "commandHex": "a9040100",
+        "eventIndex": 9,
+        "motionName": "AKI_SIRABERU_DENWATYOU_ETC_TABACOYA_0100",
+        "motionLocalFrame": 874,
+        "motionFrameResolved": true
+      }
+    ]
+  },
+  "exactConclusions": [
+    "D000 MAPINFO directly associates A1_TELP.SND, AUTH/SEQDATA0, and package 01TEL in one resource cluster.",
+    "The AUTH motion reference resolves to the complete phone-book inspection sequence in M_01TE.MOTN.",
+    "All seven A904 sound events resolve to exact local frames in that authored motion interval."
+  ],
+  "browserStatus": {
+    "runtimeStatus": "packaged but intentionally unwired",
+    "unresolved": [
+      "The browser stages three shorter M_D000.MOTN phone-book phases rather than the long M_01TE AUTH sequence.",
+      "AUTH local frames must not be copied to those separate clips until their temporal correspondence is independently proven."
+    ]
+  },
+  "failures": []
+}

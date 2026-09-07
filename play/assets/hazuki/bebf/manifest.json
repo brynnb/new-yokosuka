@@ -1,0 +1,266 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/build_bebf_activity_pack.mjs",
+  "source": {
+    "disc": 1,
+    "path": "extracted_files/data/SCENE/01/JOMO/BEBF.PKS",
+    "sha256": "b380638f300587c15a02cc6d4e73a9aa7a37a39ca2a7964f9ced9653bf4ec6bd",
+    "archiveFormat": "PAKS/IPAC",
+    "members": [
+      {
+        "name": "M_01BEDB.MOTN",
+        "byteLength": 53740,
+        "sha256": "18101bae8cc89914b150af6049d3fbb2b9954c9f3041c5a2189b00c449191c8c"
+      },
+      {
+        "name": "SEQDATA0.AUTH",
+        "byteLength": 1636,
+        "sha256": "dca3e9c06e0a166c8c1b6378611edcf17784293aa2ccd2c091e65b41527dd569"
+      },
+      {
+        "name": "SEQDATA1.AUTH",
+        "byteLength": 2304,
+        "sha256": "72739216b17bc1e18154c3d5da46f55243d3df819fe62615d0a197caac086c51"
+      },
+      {
+        "name": "SEQDATA2.AUTH",
+        "byteLength": 2404,
+        "sha256": "c454590be0b1d00e10cf7df1b1c01f39a873df085e62443065a1453f50edef15"
+      },
+      {
+        "name": "SEQDATA3.AUTH",
+        "byteLength": 1584,
+        "sha256": "e03c42fbda49a4f52d708e727deed4b526238b03a72df6f94ea35aa9fac8ae8d"
+      },
+      {
+        "name": "SIN_F.CHRM",
+        "byteLength": 15076,
+        "sha256": "7fb76c9d3b86c780cc0d111c8c9b8011cd1123c73ef1dd5295677eb666e5d767"
+      },
+      {
+        "name": "SIN_FTBL.BIN",
+        "byteLength": 8092,
+        "sha256": "9ce6c79f85666df9d19bdce9210d975aa60ad3b6e68bd97f5770a56b090bb9e7"
+      },
+      {
+        "name": "SIN_HM.BIN",
+        "byteLength": 8632,
+        "sha256": "6245a820d3b4e69388cde3bea95f2d9b0bc3246a77e8ff2254d586e6398fc589"
+      },
+      {
+        "name": "SIN_M.CHRM",
+        "byteLength": 119772,
+        "sha256": "3c060c6f7800e055b3cdb6ada82a3a97443e5bfd7feacd9babda67653fb8a3cb"
+      },
+      {
+        "name": "SIN_TL.CHRM",
+        "byteLength": 12676,
+        "sha256": "d0c2c59ead198eef047313c5852726df5b1ffd0d903baa4e95254e7f38468be0"
+      },
+      {
+        "name": "SIN_TR.CHRM",
+        "byteLength": 12764,
+        "sha256": "6427c37fbdba8b721a0ed0580c89bc9513260f5a1a4df9d5af25fc5226b3962e"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "tools/evidence/bebf-native-lifecycle.json",
+    "resourceName": "BEBF",
+    "variant": "",
+    "selectionRule": "four exact AUTH members selected by native slots 60 through 63"
+  },
+  "audioManifest": "public/audio/world/bebf/manifest.json",
+  "playerActorAliases": [
+    "AKID"
+  ],
+  "packageActors": {
+    "SINF": {
+      "label": "Shenhua Ling",
+      "modelCode": "SIN_M",
+      "browserFilename": "S3_JOMO_SIN_M.MT5",
+      "assetFormat": "MT5",
+      "characterScale": 1
+    }
+  },
+  "ownerAudioCommands": [
+    {
+      "commandHex": "a83f0000",
+      "exactArguments": [
+        0,
+        0
+      ],
+      "kind": "music",
+      "trackId": "bgm129",
+      "callFileOffsets": [
+        "0x4bbb0"
+      ]
+    }
+  ],
+  "motionBanks": [
+    {
+      "bank": 29,
+      "path": "play/assets/hazuki/bebf/M_01BEDB.MOTN",
+      "byteLength": 53740,
+      "sha256": "18101bae8cc89914b150af6049d3fbb2b9954c9f3041c5a2189b00c449191c8c"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/hazuki/bebf/M_01BEDB.MOTN",
+      "byteLength": 53740,
+      "sha256": "18101bae8cc89914b150af6049d3fbb2b9954c9f3041c5a2189b00c449191c8c"
+    },
+    {
+      "path": "play/assets/hazuki/bebf/SEQDATA0.AUTH",
+      "byteLength": 1636,
+      "sha256": "dca3e9c06e0a166c8c1b6378611edcf17784293aa2ccd2c091e65b41527dd569"
+    },
+    {
+      "path": "play/assets/hazuki/bebf/SEQDATA1.AUTH",
+      "byteLength": 2304,
+      "sha256": "72739216b17bc1e18154c3d5da46f55243d3df819fe62615d0a197caac086c51"
+    },
+    {
+      "path": "play/assets/hazuki/bebf/SEQDATA2.AUTH",
+      "byteLength": 2404,
+      "sha256": "c454590be0b1d00e10cf7df1b1c01f39a873df085e62443065a1453f50edef15"
+    },
+    {
+      "path": "play/assets/hazuki/bebf/SEQDATA3.AUTH",
+      "byteLength": 1584,
+      "sha256": "e03c42fbda49a4f52d708e727deed4b526238b03a72df6f94ea35aa9fac8ae8d"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 60,
+      "primaryPointer": 615895,
+      "secondaryPointer": 615908,
+      "activityId": "BEBF/SEQDATA0.AUTH",
+      "archiveMember": "SEQDATA0.AUTH",
+      "byteLength": 1636,
+      "sha256": "dca3e9c06e0a166c8c1b6378611edcf17784293aa2ccd2c091e65b41527dd569",
+      "durationFrames": 260,
+      "durationSeconds": 8.683333396911621,
+      "frameCount": 3,
+      "commandCounts": {
+        "camera": 1,
+        "move": 1,
+        "motion": 1,
+        "sound": 3
+      },
+      "actors": [
+        "AKID"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKID",
+          "frame": 1,
+          "motionBank": 29,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_UNASARERU_SHENFA_BADENDING15MAE_0100",
+          "startFrame": 211,
+          "endFrame": 1522
+        }
+      ]
+    },
+    {
+      "slot": 61,
+      "primaryPointer": 615913,
+      "secondaryPointer": 615926,
+      "activityId": "BEBF/SEQDATA1.AUTH",
+      "archiveMember": "SEQDATA1.AUTH",
+      "byteLength": 2304,
+      "sha256": "72739216b17bc1e18154c3d5da46f55243d3df819fe62615d0a197caac086c51",
+      "durationFrames": 700,
+      "durationSeconds": 23.350000381469727,
+      "frameCount": 4,
+      "commandCounts": {
+        "camera": 1,
+        "move": 1,
+        "motion": 1,
+        "voice": 3
+      },
+      "actors": [
+        "SINF"
+      ],
+      "motions": [
+        {
+          "actorTag": "SINF",
+          "frame": 1,
+          "motionBank": 29,
+          "sequenceIndex": 2,
+          "motionName": "SIN_AT1_YUME_FURIMUKU_BADENDING15MAE_0100",
+          "startFrame": 501,
+          "endFrame": 1091
+        }
+      ]
+    },
+    {
+      "slot": 62,
+      "primaryPointer": 615931,
+      "secondaryPointer": 615944,
+      "activityId": "BEBF/SEQDATA2.AUTH",
+      "archiveMember": "SEQDATA2.AUTH",
+      "byteLength": 2404,
+      "sha256": "c454590be0b1d00e10cf7df1b1c01f39a873df085e62443065a1453f50edef15",
+      "durationFrames": 370,
+      "durationSeconds": 12.350000381469727,
+      "frameCount": 5,
+      "commandCounts": {
+        "camera": 1,
+        "move": 1,
+        "motion": 1,
+        "sound": 1,
+        "voice": 3
+      },
+      "actors": [
+        "AKID"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKID",
+          "frame": 1,
+          "motionBank": 29,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_UNASARERU_SHENFA_BADENDING15MAE_0100",
+          "startFrame": 1012,
+          "endFrame": 1522
+        }
+      ]
+    },
+    {
+      "slot": 63,
+      "primaryPointer": 615949,
+      "secondaryPointer": 615962,
+      "activityId": "BEBF/SEQDATA3.AUTH",
+      "archiveMember": "SEQDATA3.AUTH",
+      "byteLength": 1584,
+      "sha256": "e03c42fbda49a4f52d708e727deed4b526238b03a72df6f94ea35aa9fac8ae8d",
+      "durationFrames": 700,
+      "durationSeconds": 23.350000381469727,
+      "frameCount": 4,
+      "commandCounts": {
+        "camera": 1,
+        "move": 1,
+        "motion": 1,
+        "voice": 3
+      },
+      "actors": [
+        "SINF"
+      ],
+      "motions": [
+        {
+          "actorTag": "SINF",
+          "frame": 1,
+          "motionBank": 29,
+          "sequenceIndex": 2,
+          "motionName": "SIN_AT1_YUME_FURIMUKU_BADENDING15MAE_0100",
+          "startFrame": 501,
+          "endFrame": 1091
+        }
+      ]
+    }
+  ]
+}

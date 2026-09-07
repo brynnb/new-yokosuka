@@ -1,0 +1,65 @@
+{
+  "schema": "new-yokosuka-mfsy-static-door-node12-v1",
+  "status": "verified-structural-route",
+  "source": {
+    "mapinfo": ".disc-work/mapinfo/disc2/SCENE/02/MFSY/MAPINFO.BIN",
+    "mapinfoSha256": "53ccad493265183650bb00aae9189be66bd2564808dfc96483dcf1944f39d988",
+    "model": ".disc-work/harbor-models/S2_MFSY_DR02_021.MT5",
+    "modelSha256": "31954c649c174054dcdb00f22d683ecf4f7866a197ee15f3176ef4a57e410da6"
+  },
+  "staticTable": {
+    "type2RecordCount": 14,
+    "type2RecordIndices": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      14,
+      16,
+      18,
+      20,
+      22,
+      24,
+      26
+    ],
+    "model": "S2_MFSY_DR02_021.MT5"
+  },
+  "modelAudit": {
+    "renderKeys": [
+      -1,
+      12
+    ],
+    "movingRenderKey": 12,
+    "localBounds": {
+      "minimum": [
+        0,
+        0,
+        -0.05000000074505806
+      ],
+      "maximum": [
+        0.8999999761581421,
+        2.0999999046325684,
+        0
+      ]
+    },
+    "pivotAtLeafEdge": true
+  },
+  "control": {
+    "recordIndex": 17,
+    "model": "S2_MFSY_DR00_008.MT5",
+    "staticDoorType": 1,
+    "renderKeys": [
+      -1
+    ],
+    "classification": "surrounding-static-geometry"
+  },
+  "browserBinding": {
+    "behavior": "d000-door",
+    "reason": "The shared native exterior-door route animates render node 12. MFSY's type-2 records all instantiate the same edge-pivoted node-12 leaf; their paired type-1 records have no routed child.",
+    "curveEvidence": "tools/evidence/d000-selector-53-door-call-trace.json",
+    "sideSelectionEvidence": "tools/evidence/d000-door-node-route.json"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "schema": "new-yokosuka-dialogue-control-dependencies-v1",
+  "evidenceBoundary": [
+    "Every listed relation is branch-exclusive reachability in the recovered native SH-4 control-flow graph.",
+    "Comparison outcomes account for the compiler's intervening SH-4 boolean-normalization instructions; bt/bf direction is not guessed.",
+    "Dialogue descendants are reached only through exact direct calls or exact child-coroutine launch targets.",
+    "Comparisons without a resolvable branch, compound paths that reconverge before their action, and dynamic transfers remain absent rather than inferred."
+  ],
+  "summary": {
+    "mapinfoCount": 1,
+    "branchExclusiveDependencyCount": 1,
+    "trueDialogueRegionCount": 1,
+    "falseDialogueRegionCount": 0
+  },
+  "maps": [
+    {
+      "disc": 1,
+      "area": "D000",
+      "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+      "dependencies": [
+        {
+          "functionFileOffset": "0x7abf4",
+          "comparison": {
+            "fieldOffset": "0x84",
+            "loadWidth": 4,
+            "signedLoad": false,
+            "comparison": "cmp/eq",
+            "leftOperand": "r5",
+            "rightOperand": "r4",
+            "constant": 6,
+            "fieldLoadFileOffset": "0x7ac50",
+            "compareFileOffset": "0x7ac58",
+            "resolvedBranch": {
+              "branchFileOffset": "0x7ac60",
+              "branchMnemonic": "bf",
+              "branchTargetFileOffset": "0x7ac70",
+              "branchFallthroughFileOffset": "0x7ac62",
+              "comparisonTrueSuccessor": "0x7ac70",
+              "comparisonFalseSuccessor": "0x7ac62"
+            }
+          },
+          "whenComparisonTrue": {
+            "exclusiveBlockCount": 1,
+            "exclusiveDirectCalls": [
+              {
+                "callFileOffset": "0x7ac72",
+                "targetFileOffset": "0x8002c"
+              }
+            ],
+            "exclusiveChildCoroutineLaunches": [],
+            "dialogueDescendants": [
+              {
+                "functionFileOffset": "0x7fa98",
+                "executableTargetIndex": 629,
+                "voiceIds": [
+                  "F1030B001"
+                ],
+                "actorTags": [
+                  "HATO"
+                ]
+              }
+            ]
+          },
+          "whenComparisonFalse": {
+            "exclusiveBlockCount": 1,
+            "exclusiveDirectCalls": [],
+            "exclusiveChildCoroutineLaunches": [],
+            "dialogueDescendants": []
+          }
+        }
+      ]
+    }
+  ]
+}

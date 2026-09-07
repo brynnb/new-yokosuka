@@ -1,0 +1,133 @@
+{
+  "schema": "new-yokosuka-object-dword-5c-evidence-v2",
+  "status": "exact-shared-field-writes-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 247,
+    "operationHex": "0x00f7",
+    "handlerAddress": "0x0c15836a",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c15836a",
+        "length": 76,
+        "sha256": "7f39f35fc46993cabc129102ed2e315c079c60792dba330716c09d018fd20e9e"
+      },
+      "objectResolver": {
+        "address": "0x0c153956",
+        "length": 58,
+        "sha256": "b99d1c60ec19d8c20dec13ede36b9f81a3b04510da97159b53e03db38deba35f"
+      },
+      "bitQuery": {
+        "address": "0x0c0ab400",
+        "length": 22,
+        "sha256": "b34d1f80e5a6678affc05257b8f30f9cac918a7f7ce28211300c900ce3c45caf"
+      },
+      "bitWrite": {
+        "address": "0x0c0ab3e0",
+        "length": 32,
+        "sha256": "ea2cd01dbea91db3568fa2054caad4f6f9d4f53c414a55f0198b6c314693ef6e"
+      },
+      "resultWriter": {
+        "address": "0x0c0bb358",
+        "length": 24,
+        "sha256": "1f1cca937e2227515fbd34524641ab98be38beded5d6b7ea5799864bf23a6eda"
+      },
+      "lowFlagHandler": {
+        "address": "0x0c173542",
+        "length": 26,
+        "sha256": "53faea44af7001c6213a029669c14f42582f15809d6076514cd055dcd0625075"
+      },
+      "lowFlagWrite": {
+        "address": "0x0c0aac08",
+        "length": 36,
+        "sha256": "3ec1169546cffa4bbc04bc6d1c0b2c6fbe3b5d92bbd2d54a4e9f8c8b8bb008a8"
+      },
+      "invalidationGenerationIncrement": {
+        "address": "0x0c0f0e16",
+        "length": 22,
+        "sha256": "9d6cae62d01162abac5567a5efea2ef953b8d1612f0660eda368438880377a09"
+      }
+    },
+    "nativeContract": {
+      "handlerTableEntry": "0x0c15836a",
+      "objectResolver": "0x0c153956",
+      "bitQuery": "0x0c0ab400",
+      "resultWriter": "0x0c0bb358",
+      "bitWrite": "0x0c0ab3e0"
+    },
+    "provenBehavior": "Resolve argument zero, return the old state of mask 0x00000040 in object dword +0x5c, then clear that mask for argument one zero, set it for argument one one, or leave the dword unchanged for every other value.",
+    "missingObjectBehavior": "The query returns zero and the write is a no-op."
+  },
+  "lowFlagOperation": {
+    "operationId": 77,
+    "operationHex": "0x004d",
+    "handlerAddress": "0x0c173542",
+    "nativeContract": {
+      "handlerTableEntry": "0x0c173542",
+      "objectResolver": "0x0c153956",
+      "lowFlagWrite": "0x0c0aac08",
+      "invalidationGenerationIncrement": "0x0c0f0e16"
+    },
+    "provenBehavior": "Resolve argument zero. A present object clears bit zero of dword +0x5c, additionally sets bit one when argument one is zero, and increments the native invalidation generation. A missing object is a no-op.",
+    "allDiscInventory": {
+      "authoredCallCount": 142,
+      "provenCallCount": 142,
+      "dialogueRegionCallCount": 1,
+      "areaCount": 98,
+      "argumentKindCounts": {
+        "0": {
+          "constant": 32,
+          "frame-field": 12,
+          "runtime": 98
+        },
+        "1": {
+          "constant": 142
+        }
+      },
+      "authoredCommandCounts": {
+        "1": 142
+      },
+      "resultComparisonCount": 0,
+      "resultTargetCount": 0
+    }
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 332,
+    "provenCallCount": 332,
+    "dialogueRegionCallCount": 25,
+    "areaCount": 102,
+    "argumentKindCounts": {
+      "0": {
+        "constant": 222,
+        "frame-field": 109,
+        "unresolved": 1
+      },
+      "1": {
+        "constant": 331,
+        "operation-result": 1
+      }
+    },
+    "constantCommandCounts": {
+      "0": 170,
+      "1": 161
+    },
+    "dialogueCommandCounts": {
+      "0": 12,
+      "1": 13
+    },
+    "resultComparisonCount": 0,
+    "resultTargetCount": 0
+  },
+  "evidenceBoundary": [
+    "All 332 authored calls have the exact two-argument shape.",
+    "The old bit is written to the native result slot before mutation.",
+    "Only commands zero and one mutate the field.",
+    "The field owner and consumer-side gameplay meaning remain unknown.",
+    "The shared invalidation generation is preserved as numeric lifecycle state rather than assigned a gameplay-domain name."
+  ]
+}

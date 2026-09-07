@@ -1,0 +1,170 @@
+{
+  "schema": "new-yokosuka-d000-scripted-store-state-v1",
+  "source": {
+    "nativeLayerState": "play/data/native-map-layer-states.json",
+    "geometry": "tools/evidence/d000-map-layer-geometry.json",
+    "physicalDoors": "tools/evidence/d000-door-logic.json"
+  },
+  "evidenceBoundary": "Layers are exact native clock assignments and geometry is exact decoded MT5 geometry. Door associations require exact horizontal point-in-component-AABB containment; no nearest-door threshold or store-name inference is used. This establishes spatial containment only, not dispatch, player access, opening hours, or a missing portal.",
+  "summary": {
+    "standaloneClockOverlays": 2,
+    "overlaysWithContainedDoorSources": 2,
+    "containedDoorSources": 2
+  },
+  "overlays": [
+    {
+      "layer": 13,
+      "classification": "standalone-native-clock-overlay",
+      "openWindow": {
+        "kind": "native-clock-window",
+        "startMinute": 480,
+        "endMinute": 1050,
+        "dayBoundaryHour": 6,
+        "boundary": "start-inclusive, end-exclusive"
+      },
+      "activeOutsideOpenWindow": true,
+      "geometry": {
+        "componentCount": 3,
+        "triangleCount": 20,
+        "minimum": [
+          104.073775,
+          0.372396,
+          91.160859
+        ],
+        "maximum": [
+          106.869106,
+          5.177137,
+          95.577741
+        ]
+      },
+      "exactHorizontalContainmentBindings": [
+        {
+          "componentIndex": 1,
+          "meshName": "mt5_tex_1",
+          "triangleCount": 6,
+          "minimum": [
+            104.073775,
+            3.407137,
+            91.651338
+          ],
+          "maximum": [
+            106.869106,
+            5.177137,
+            95.177825
+          ],
+          "containedDoorSources": [
+            {
+              "selector": 63,
+              "dispatchKind": "unresolved",
+              "destination": null,
+              "sourceDoor": {
+                "visibleStaticDoorIndex": 89,
+                "model": "S1_D000_DR02_017.MT5",
+                "position": [
+                  105.671112,
+                  0.0724,
+                  92.682182
+                ],
+                "rotationDegrees": [
+                  0,
+                  -51.59729,
+                  0
+                ],
+                "usesInvisibleProxy": true
+              }
+            }
+          ]
+        }
+      ],
+      "evidence": {
+        "predicateCallFileOffset": "0x7d03a",
+        "compareFileOffset": "0x7d040",
+        "branchFileOffset": "0x7d042",
+        "trueSuccessorFileOffset": "0x7d058",
+        "falseSuccessorFileOffset": "0x7d044",
+        "routine": {
+          "startFileOffset": "0x7cf06",
+          "endFileOffsetExclusive": "0x7d100",
+          "sha256": "f3b53f1d8db30eac3f4ad06c26fa714e5e8c9165c35b34d0dc6afc383de7ec22"
+        }
+      }
+    },
+    {
+      "layer": 14,
+      "classification": "standalone-native-clock-overlay",
+      "openWindow": {
+        "kind": "native-clock-window",
+        "startMinute": 480,
+        "endMinute": 1170,
+        "dayBoundaryHour": 6,
+        "boundary": "start-inclusive, end-exclusive"
+      },
+      "activeOutsideOpenWindow": true,
+      "geometry": {
+        "componentCount": 3,
+        "triangleCount": 18,
+        "minimum": [
+          124.123582,
+          -1.500031,
+          64.311985
+        ],
+        "maximum": [
+          126.810018,
+          1.699968,
+          65.953823
+        ]
+      },
+      "exactHorizontalContainmentBindings": [
+        {
+          "componentIndex": 0,
+          "meshName": "mt5_tex_0",
+          "triangleCount": 2,
+          "minimum": [
+            124.769553,
+            0.799968,
+            64.311985
+          ],
+          "maximum": [
+            126.810018,
+            1.699968,
+            65.923352
+          ],
+          "containedDoorSources": [
+            {
+              "selector": 30,
+              "dispatchKind": "unresolved",
+              "destination": null,
+              "sourceDoor": {
+                "visibleStaticDoorIndex": 5,
+                "model": "S1_D000_DR02_016.MT5",
+                "position": [
+                  126.362854,
+                  -1.8,
+                  65.0345
+                ],
+                "rotationDegrees": [
+                  0,
+                  -141.696167,
+                  0
+                ],
+                "usesInvisibleProxy": false
+              }
+            }
+          ]
+        }
+      ],
+      "evidence": {
+        "predicateCallFileOffset": "0x7d0a2",
+        "compareFileOffset": "0x7d0a8",
+        "branchFileOffset": "0x7d0aa",
+        "trueSuccessorFileOffset": "0x7d0c0",
+        "falseSuccessorFileOffset": "0x7d0ac",
+        "routine": {
+          "startFileOffset": "0x7cf06",
+          "endFileOffsetExclusive": "0x7d100",
+          "sha256": "f3b53f1d8db30eac3f4ad06c26fa714e5e8c9165c35b34d0dc6afc383de7ec22"
+        }
+      }
+    }
+  ]
+}

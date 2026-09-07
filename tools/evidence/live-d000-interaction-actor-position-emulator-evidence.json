@@ -1,0 +1,54 @@
+{
+  "schema": "new-yokosuka-live-actor-position-inspection-v3",
+  "status": "complete",
+  "source": {
+    "emulator": "Flycast",
+    "transport": "built-in GDB remote stub",
+    "observationType": "read-only live actor resolver results during natural gameplay",
+    "guestWrites": false,
+    "artificialHandlerCalls": false,
+    "roomMapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e"
+  },
+  "elapsedSeconds": 16.731,
+  "resolverObservationCount": 1,
+  "actors": {
+    "AKIR": {
+      "actorCode": "AKIR",
+      "actorObjectAddress": "0x0c515760",
+      "actorPosition": [
+        -64.72794342041016,
+        0.0,
+        72.422119140625
+      ],
+      "d000InteractionContext": {
+        "moduleIdentityMatches": [
+          "0x0c3c6a78"
+        ],
+        "loadedScn3Address": "0x0c3c6a78",
+        "loadedInteractionTableAddress": "0x0c474cbc",
+        "contextMatches": [
+          "0x0c49f74c"
+        ],
+        "status": "compared",
+        "contextAddress": "0x0c49f74c",
+        "sceneByte105RelativeOffset": "0x105",
+        "sceneByte105RawHex": "0x00",
+        "sceneByte105": 0,
+        "roomVectorRelativeOffset": "0xd4",
+        "roomVector": [
+          -64.72794342041016,
+          0.0,
+          72.422119140625
+        ],
+        "actorPosition": [
+          -64.72794342041016,
+          0.0,
+          72.422119140625
+        ],
+        "floatWordsByteExact": true,
+        "roomVectorRawHex": "b57481c20000000020d89042",
+        "actorPositionRawHex": "b57481c20000000020d89042"
+      }
+    }
+  }
+}

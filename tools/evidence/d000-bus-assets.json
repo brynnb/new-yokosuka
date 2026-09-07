@@ -1,0 +1,542 @@
+{
+  "schema": "new-yokosuka-d000-bus-assets-v1",
+  "status": "verified",
+  "source": {
+    "captureDirectory": "captures/pvr/20260724-010057-frame-4933",
+    "sourceModel": ".disc-work/humans-models/entry_033/00_BUSS530G.CHRM",
+    "carSource": ".disc-work/exact/d000/unpacked/BUSS/C85M201G.CHRM",
+    "authSequences": [
+      ".disc-work/exact/d000/unpacked/BUSS/SEQDATA2.AUTH",
+      ".disc-work/exact/d000/unpacked/BUSS/SEQDATA5.AUTH"
+    ],
+    "motionPackages": [
+      ".disc-work/exact/d000/unpacked/BUSS/M_01BUS.MOTN",
+      ".disc-work/runtime-motion/MOTION.BIN"
+    ]
+  },
+  "modelBinding": {
+    "runtimeAddress": "0x8ca2c9a0",
+    "sourceBytes": 100360,
+    "matchingBytes": 99374,
+    "byteAgreement": 0.990175368672778,
+    "renderKeys": [
+      -1,
+      8,
+      13,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      162,
+      163,
+      172,
+      173,
+      182,
+      193,
+      194,
+      195,
+      196
+    ],
+    "visibleInstanceStatus": "verified"
+  },
+  "runtime": {
+    "busController": {
+      "objectTag": "BUS_",
+      "taskAddress": "0x8ca23860",
+      "callbackAddress": "0x0c2de638",
+      "model": null,
+      "modelSource": null,
+      "modelAddress": null,
+      "modelAgreement": null,
+      "renderNodeAddress": "0x8ca23c80",
+      "meshAddress": null,
+      "placementClass": "world",
+      "runtimePosition": [
+        50.346893310546875,
+        0,
+        5.975221633911133
+      ],
+      "browserPosition": [
+        -50.346893310546875,
+        0,
+        5.975221633911133
+      ],
+      "runtimeRotationDegrees": [
+        0,
+        62.677001953125,
+        0
+      ],
+      "browserRotationDegrees": [
+        0,
+        -62.677001953125,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    "driver": {
+      "objectTag": "BUSS",
+      "taskAddress": "0x8ca209c0",
+      "callbackAddress": "0x0c2de638",
+      "model": "OGM_L.MT5",
+      "modelSource": ".disc-work/exact/d000/unpacked/BUSS/OGM_L.CHRM",
+      "modelAddress": "0x8ca14ae0",
+      "modelAgreement": 0.9692487349163098,
+      "renderNodeAddress": "0x8ca20de0",
+      "meshAddress": "0x8ca14e00",
+      "placementClass": "world",
+      "runtimePosition": [
+        48.014320373535156,
+        0.7266058921813965,
+        3.987722158432007
+      ],
+      "browserPosition": [
+        -48.014320373535156,
+        0.7266058921813965,
+        3.987722158432007
+      ],
+      "runtimeRotationDegrees": [
+        0,
+        65.0390625,
+        0
+      ],
+      "browserRotationDegrees": [
+        0,
+        -65.0390625,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    "inactiveCar": {
+      "objectTag": "CAR7",
+      "taskAddress": "0x8ca23180",
+      "callbackAddress": "0x0c2de638",
+      "model": "C85M201G.MT5",
+      "modelSource": ".disc-work/exact/d000/unpacked/BUSS/C85M201G.CHRM",
+      "modelAddress": "0x8c9fe400",
+      "modelAgreement": 0.9871167645140247,
+      "renderNodeAddress": "0x8ca235a0",
+      "meshAddress": "0x8c9ffe88",
+      "placementClass": "world",
+      "runtimePosition": [
+        100,
+        -20,
+        0
+      ],
+      "browserPosition": [
+        -100,
+        -20,
+        0
+      ],
+      "runtimeRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "browserRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    }
+  },
+  "authoredMovement": {
+    "identicalSequence2And5": true,
+    "sequences": [
+      {
+        "source": ".disc-work/exact/d000/unpacked/BUSS/SEQDATA2.AUTH",
+        "chunkOffset": "0x7e0",
+        "chunkSize": 2204,
+        "durationSeconds": 8.216666221618652,
+        "actors": [
+          {
+            "index": 0,
+            "tag": "BUS_",
+            "initialPose": {
+              "x": 50.346900939941406,
+              "y": 0,
+              "z": 5.975222110748291,
+              "rotationX": -0.0008759999764151871,
+              "rotationY": 62.68159484863281,
+              "rotationZ": 0
+            },
+            "durationSeconds": 8.216666221618652
+          },
+          {
+            "index": 1,
+            "tag": "BUSS",
+            "initialPose": {
+              "x": 48.01432800292969,
+              "y": 0.726606011390686,
+              "z": 3.987722873687744,
+              "rotationX": 0,
+              "rotationY": 65.03951263427734,
+              "rotationZ": 0
+            },
+            "durationSeconds": 8.216666221618652
+          },
+          {
+            "index": 2,
+            "tag": "AKIR",
+            "initialPose": {
+              "x": 49.815006256103516,
+              "y": 0.7096419930458069,
+              "z": 6.2395758628845215,
+              "rotationX": 0,
+              "rotationY": -203.51463317871094,
+              "rotationZ": 0
+            },
+            "durationSeconds": 8.216666221618652
+          }
+        ]
+      },
+      {
+        "source": ".disc-work/exact/d000/unpacked/BUSS/SEQDATA5.AUTH",
+        "chunkOffset": "0x840",
+        "chunkSize": 2204,
+        "durationSeconds": 8.216666221618652,
+        "actors": [
+          {
+            "index": 0,
+            "tag": "BUS_",
+            "initialPose": {
+              "x": 50.346900939941406,
+              "y": 0,
+              "z": 5.975222110748291,
+              "rotationX": -0.0008759999764151871,
+              "rotationY": 62.68159484863281,
+              "rotationZ": 0
+            },
+            "durationSeconds": 8.216666221618652
+          },
+          {
+            "index": 1,
+            "tag": "BUSS",
+            "initialPose": {
+              "x": 48.01432800292969,
+              "y": 0.726606011390686,
+              "z": 3.987722873687744,
+              "rotationX": 0,
+              "rotationY": 65.03951263427734,
+              "rotationZ": 0
+            },
+            "durationSeconds": 8.216666221618652
+          },
+          {
+            "index": 2,
+            "tag": "AKIR",
+            "initialPose": {
+              "x": 49.815006256103516,
+              "y": 0.7096419930458069,
+              "z": 6.2395758628845215,
+              "rotationX": 0,
+              "rotationY": -203.51463317871094,
+              "rotationZ": 0
+            },
+            "durationSeconds": 8.216666221618652
+          }
+        ]
+      }
+    ]
+  },
+  "authoredMotions": [
+    {
+      "source": ".disc-work/exact/d000/unpacked/BUSS/SEQDATA1.AUTH",
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "motionBank": 16,
+          "sequenceNumber": 1,
+          "sequenceIndex": 0,
+          "motionName": "AKI_NORU_BUS_A_0100",
+          "startFrame": 152,
+          "endFrame": 275,
+          "durationFrames": 379
+        },
+        {
+          "actorTag": "BUSS",
+          "motionBank": 16,
+          "sequenceNumber": 10,
+          "sequenceIndex": 9,
+          "motionName": "YKI_UTS_BAS_65_LP_F",
+          "startFrame": 1,
+          "endFrame": 72,
+          "durationFrames": 72
+        },
+        {
+          "actorTag": "AKIR",
+          "motionBank": 16,
+          "sequenceNumber": 9,
+          "sequenceIndex": 8,
+          "motionName": "AKI_SUWARU_ORIRU_ETC_BUS_A_0100",
+          "startFrame": 31,
+          "endFrame": 434,
+          "durationFrames": 784
+        }
+      ]
+    },
+    {
+      "source": ".disc-work/exact/d000/unpacked/BUSS/SEQDATA2.AUTH",
+      "motions": [
+        {
+          "actorTag": "BUSS",
+          "motionBank": 16,
+          "sequenceNumber": 7,
+          "sequenceIndex": 6,
+          "motionName": "OTH_TKA_CHECKSURU_RYOUKIN_BUS_0100",
+          "startFrame": 105,
+          "endFrame": 295,
+          "durationFrames": 295
+        },
+        {
+          "actorTag": "AKIR",
+          "motionBank": 16,
+          "sequenceNumber": 5,
+          "sequenceIndex": 4,
+          "motionName": "AKI_ORIRU_WALK_BUS_0100",
+          "startFrame": 1,
+          "endFrame": 165,
+          "durationFrames": 207
+        },
+        {
+          "actorTag": "AKIR",
+          "motionBank": 2,
+          "sequenceNumber": 223,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36,
+          "durationFrames": 47
+        },
+        {
+          "actorTag": "AKIR",
+          "motionBank": 2,
+          "sequenceNumber": 223,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36,
+          "durationFrames": 47
+        },
+        {
+          "actorTag": "AKIR",
+          "motionBank": 2,
+          "sequenceNumber": 223,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36,
+          "durationFrames": 47
+        }
+      ]
+    },
+    {
+      "source": ".disc-work/exact/d000/unpacked/BUSS/SEQDATA4.AUTH",
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "motionBank": 16,
+          "sequenceNumber": 1,
+          "sequenceIndex": 0,
+          "motionName": "AKI_NORU_BUS_A_0100",
+          "startFrame": 152,
+          "endFrame": 275,
+          "durationFrames": 379
+        },
+        {
+          "actorTag": "BUSS",
+          "motionBank": 16,
+          "sequenceNumber": 10,
+          "sequenceIndex": 9,
+          "motionName": "YKI_UTS_BAS_65_LP_F",
+          "startFrame": 1,
+          "endFrame": 72,
+          "durationFrames": 72
+        },
+        {
+          "actorTag": "AKIR",
+          "motionBank": 16,
+          "sequenceNumber": 9,
+          "sequenceIndex": 8,
+          "motionName": "AKI_SUWARU_ORIRU_ETC_BUS_A_0100",
+          "startFrame": 53,
+          "endFrame": 434,
+          "durationFrames": 784
+        }
+      ]
+    },
+    {
+      "source": ".disc-work/exact/d000/unpacked/BUSS/SEQDATA5.AUTH",
+      "motions": [
+        {
+          "actorTag": "BUSS",
+          "motionBank": 16,
+          "sequenceNumber": 7,
+          "sequenceIndex": 6,
+          "motionName": "OTH_TKA_CHECKSURU_RYOUKIN_BUS_0100",
+          "startFrame": 105,
+          "endFrame": 295,
+          "durationFrames": 295
+        },
+        {
+          "actorTag": "AKIR",
+          "motionBank": 16,
+          "sequenceNumber": 5,
+          "sequenceIndex": 4,
+          "motionName": "AKI_ORIRU_WALK_BUS_0100",
+          "startFrame": 1,
+          "endFrame": 165,
+          "durationFrames": 207
+        },
+        {
+          "actorTag": "AKIR",
+          "motionBank": 2,
+          "sequenceNumber": 223,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36,
+          "durationFrames": 47
+        },
+        {
+          "actorTag": "AKIR",
+          "motionBank": 2,
+          "sequenceNumber": 223,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36,
+          "durationFrames": 47
+        },
+        {
+          "actorTag": "AKIR",
+          "motionBank": 2,
+          "sequenceNumber": 223,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36,
+          "durationFrames": 47
+        }
+      ]
+    }
+  ],
+  "browser": {
+    "busPlacement": {
+      "model": "S1_D000_BUSS530G.MT5",
+      "assetFile": "BUSS530G.CHRM",
+      "texturePackFile": "BUSS530G_textures.bin",
+      "position": [
+        -50.346893,
+        0,
+        5.975222
+      ],
+      "rotationDegrees": [
+        0,
+        -62.677002,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "BUS_",
+        "callbackAddress": "0x0c2de638",
+        "taskAddress": "0x8ca23860",
+        "modelAddress": "0x8ca2c9a0",
+        "placementSource": "d000-bus-runtime-plus-auth-initial-pose",
+        "sourceModel": "HUMANS.AFS entry 33 / BUSS530G.CHRM",
+        "modelByteAgreement": 0.990175368672778,
+        "authoredMovement": [
+          "BUSS/SEQDATA2.AUTH",
+          "BUSS/SEQDATA5.AUTH"
+        ],
+        "authoredMovementFile": "SEQDATA2.AUTH",
+        "authoredMovementActorIndex": 0,
+        "stateDependent": true
+      }
+    },
+    "driverPlacement": {
+      "model": "S1_D000_OGM_L.MT5",
+      "position": [
+        -48.01432,
+        0.726606,
+        3.987722
+      ],
+      "rotationDegrees": [
+        0,
+        -65.039063,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "BUSS",
+        "callbackAddress": "0x0c2de638",
+        "taskAddress": "0x8ca209c0",
+        "modelAddress": "0x8ca14ae0",
+        "placementSource": "d000-bus-runtime-plus-auth-initial-pose",
+        "authoredMovement": [
+          "BUSS/SEQDATA2.AUTH",
+          "BUSS/SEQDATA5.AUTH"
+        ],
+        "authoredMovementFile": "SEQDATA2.AUTH",
+        "authoredMovementActorIndex": 1,
+        "stateDependent": true
+      }
+    },
+    "inactiveCarPlacement": {
+      "model": "S1_D000_C85M201G.MT5",
+      "assetFile": "C85M201G.CHRM",
+      "texturePackModel": "S1_D000_MAP.MT5",
+      "position": [
+        -100,
+        -20,
+        0
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": "CAR7",
+        "callbackAddress": "0x0c2de638",
+        "taskAddress": "0x8ca23180",
+        "modelAddress": "0x8c9fe400",
+        "placementSource": "d000-captured-inactive-traffic-state",
+        "sourceModel": "BUSS.PKS / C85M201G.CHRM",
+        "modelByteAgreement": 0.9871167645140247,
+        "stateDependent": true,
+        "inactiveBelowMap": true
+      }
+    },
+    "inactiveCarInstanceStatus": "verified"
+  },
+  "failures": []
+}

@@ -1,0 +1,98 @@
+{
+  "schema": "new-yokosuka-secondary-operation-0001-runtime-slot-evidence-v1",
+  "status": "exact-native-handler-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "verifiedNativeRanges": {
+    "commandHandler": {
+      "runtimeAddress": "0x0c15dd4c",
+      "size": 322,
+      "sha256": "a0c6b8c022a0350cbc4d3be3240519b62b356e28ec62b74abf435bfb73bc21f0"
+    },
+    "slotAllocate": {
+      "runtimeAddress": "0x0c15dede",
+      "size": 152,
+      "sha256": "468a3792a4b9fdeed5f1887dcdf48a6ae6274b3e5fc3ebff744b4abcced8dbfe"
+    },
+    "freeSlotQuery": {
+      "runtimeAddress": "0x0c15e3d2",
+      "size": 46,
+      "sha256": "789bda14b0c5876a3c0edae583d0914a0b73349878dedf51910a71752ea0c0fc"
+    },
+    "slotStatusConsume": {
+      "runtimeAddress": "0x0c15e1dc",
+      "size": 112,
+      "sha256": "255acdbe79e6ab373c1f4e1968d527e6c47131582428661ea1aabb72c232d9c0"
+    }
+  },
+  "runtimeSlotLayout": {
+    "slotCount": 16,
+    "slotSizeBytes": 24,
+    "firstWordOffset": 0,
+    "secondWordOffset": 4,
+    "statusWordOffset": 12,
+    "clearedWordOffset": 16,
+    "controlWordOffset": 20,
+    "freeStatus": -3
+  },
+  "subcommands": [
+    {
+      "subcommand": 6,
+      "authoredCallCount": 9,
+      "resultConsumedCount": 9,
+      "behavior": "Allocates the first slot whose status is -3, writes argument two at word zero and argument one at word one, writes status 2, zero, and control 5 at words three through five, and returns the slot index or -1."
+    },
+    {
+      "subcommand": 13,
+      "authoredCallCount": 9,
+      "resultConsumedCount": 9,
+      "behavior": "Returns status values -2 through 2 unchanged, returns -1 for every other status, and clears slot word five."
+    }
+  ],
+  "areas": [
+    {
+      "disc": 1,
+      "area": "DBYO"
+    },
+    {
+      "disc": 1,
+      "area": "DSLT"
+    },
+    {
+      "disc": 1,
+      "area": "JOMO"
+    },
+    {
+      "disc": 2,
+      "area": "DBYO"
+    },
+    {
+      "disc": 2,
+      "area": "DSLT"
+    },
+    {
+      "disc": 2,
+      "area": "JOMO"
+    },
+    {
+      "disc": 3,
+      "area": "DBYO"
+    },
+    {
+      "disc": 3,
+      "area": "DSLT"
+    },
+    {
+      "disc": 3,
+      "area": "JOMO"
+    }
+  ],
+  "evidenceBoundary": [
+    "Only exact subcommands 6 and 13 with their complete authored argument shapes receive these semantics.",
+    "The six runtime-slot words remain numeric; no gameplay-domain labels are inferred.",
+    "Missing room-manager state stops explicitly instead of fabricating a slot result."
+  ]
+}

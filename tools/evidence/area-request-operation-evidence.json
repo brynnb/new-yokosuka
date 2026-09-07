@@ -1,0 +1,101 @@
+{
+  "schema": "new-yokosuka-area-request-operation-evidence-v1",
+  "status": "exact-native-record-write-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 391,
+    "operationHex": "0x0187",
+    "handlerAddress": "0x0c16b4b6",
+    "recordWriterAddress": "0x0c0f0a86",
+    "recordWrites": [
+      {
+        "argument": 2,
+        "offset": "0xd0"
+      },
+      {
+        "argument": 1,
+        "offset": "0xd4"
+      },
+      {
+        "argument": 3,
+        "offset": "0xd8"
+      },
+      {
+        "argument": 0,
+        "offset": "0xdc"
+      }
+    ],
+    "pendingFlag": {
+      "offset": "0xcc",
+      "orMask": "0x00000001"
+    },
+    "provenBehavior": "Writes all four arguments unchanged to the current native area-request record at offsets +0xdc, +0xd4, +0xd0, and +0xd8 respectively, then sets bit zero at +0xcc."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 15,
+    "provenCallCount": 15,
+    "areaCount": 8,
+    "areas": [
+      {
+        "disc": 1,
+        "area": "DGCT"
+      },
+      {
+        "disc": 1,
+        "area": "JOMO"
+      },
+      {
+        "disc": 1,
+        "area": "OP02"
+      },
+      {
+        "disc": 2,
+        "area": "DGCT"
+      },
+      {
+        "disc": 2,
+        "area": "JOMO"
+      },
+      {
+        "disc": 3,
+        "area": "DGCT"
+      },
+      {
+        "disc": 3,
+        "area": "JOMO"
+      },
+      {
+        "disc": 3,
+        "area": "MEND"
+      }
+    ],
+    "op02Calls": [
+      {
+        "callFileOffset": "0x1a26",
+        "words": [
+          4,
+          1,
+          842027087,
+          49
+        ]
+      },
+      {
+        "callFileOffset": "0x24c0",
+        "words": [
+          4,
+          1,
+          842027087,
+          0
+        ]
+      }
+    ]
+  },
+  "evidenceBoundary": [
+    "The four record words remain named by their executable offsets; their higher-level enum meanings are not guessed.",
+    "The operation records a request. A separate presentation owner must decide when and how to consume the pending record."
+  ]
+}

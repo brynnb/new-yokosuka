@@ -1,0 +1,65 @@
+{
+  "schema": "new-yokosuka-light-preset-operation-evidence-v1",
+  "status": "exact-native-lght-selection-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 271,
+    "operationHex": "0x010f",
+    "handlerAddress": "0x0c1646f2",
+    "presetSelectorAddress": "0x0c0ec01e",
+    "presetTableAddress": "0x0c2172fc",
+    "slotCount": 24,
+    "resourceSignature": "LGHT",
+    "provenBehavior": "Reads the signed argument as one of 24 LGHT resource slots. A negative, out-of-range, absent, or null slot returns without mutation; a present LGHT child is applied immediately."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 317,
+    "provenCallCount": 317,
+    "argumentKinds": {
+      "constant": 311,
+      "frame-field": 6
+    },
+    "constantPresetCounts": {
+      "0": 139,
+      "1": 27,
+      "2": 28,
+      "3": 55,
+      "4": 12,
+      "5": 5,
+      "6": 6,
+      "7": 3,
+      "8": 8,
+      "9": 12,
+      "10": 6,
+      "11": 2,
+      "12": 4,
+      "13": 1,
+      "14": 1,
+      "15": 1,
+      "16": 1
+    },
+    "areaCount": 114,
+    "op02Calls": [
+      {
+        "callFileOffset": "0x13ae",
+        "presetIndex": 1
+      },
+      {
+        "callFileOffset": "0x21e2",
+        "presetIndex": 0
+      },
+      {
+        "callFileOffset": "0x2342",
+        "presetIndex": 0
+      }
+    ]
+  },
+  "evidenceBoundary": [
+    "The MAPINFO LGHT child order is the authoritative preset index; no time-of-day label is inferred.",
+    "The six frame-field selectors remain runtime-bound and retain the native 0..23 bounds check."
+  ]
+}

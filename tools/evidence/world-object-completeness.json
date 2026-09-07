@@ -1,0 +1,432 @@
+{
+  "schema": "new-yokosuka-world-object-completeness-v1",
+  "status": "incomplete",
+  "worlds": {
+    "interior": {
+      "status": "verified",
+      "evidence": {
+        "staticMapModels": [
+          "S1_JOMO_MAP.MT5",
+          "S1_JOMO_MAP01.MT5",
+          "S1_JOMO_MAP02.MT5",
+          "S1_JOMO_MAP03.MT5",
+          "S1_JOMO_MAP04.MT5",
+          "S1_JOMO_MAP05.MT5",
+          "S1_JOMO_MAP06.MT5",
+          "S1_JOMO_MAP07.MT5",
+          "S1_JOMO_MAP08.MT5"
+        ],
+        "activeRuntimeInstances": 146,
+        "finalPlacements": 155,
+        "staticDoorRecords": 18,
+        "coveredStaticDoorRecords": 18,
+        "missingStaticDoorIndices": [],
+        "entranceDoor": {
+          "id": "static-door-14",
+          "model": "S1_JOMO_DR15_016.MT5",
+          "position": [
+            -14.886,
+            -0.219,
+            6.3261
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "runtime": {
+            "modelAddress": null,
+            "hmdlAddress": null,
+            "taskAddress": "0x8c6601c0",
+            "callbackAddress": "0x00000000",
+            "objectTag": "dor0",
+            "staticDoorIndex": 14,
+            "staticDoorType": 2,
+            "staticDoorModelIndex": 4,
+            "staticSourceOffset": "0x92d40",
+            "placementSource": "runtime-task-and-jomo-static-door-table"
+          }
+        },
+        "visibleInstanceAudit": "verified",
+        "implementedTaggedInteractions": 147,
+        "activeTaggedPlacements": 147,
+        "verifiedInteractionModels": 105
+      },
+      "gaps": []
+    },
+    "exterior": {
+      "status": "verified",
+      "evidence": {
+        "nativeArea": "JHD0",
+        "staticMapModels": [
+          "S1_JHD0_MAP.MT5",
+          "S1_JHD0_MAP01.MT5",
+          "S1_JHD0_MAP02.MT5",
+          "S1_JHD0_MAP03.MT5",
+          "S1_JHD0_MAP04.MT5",
+          "S1_JHD0_MAP05.MT5",
+          "S1_JHD0_MAP06.MT5",
+          "S1_JHD0_MAP07.MT5",
+          "S1_JHD0_MAP08.MT5",
+          "S1_JHD0_MAP09.MT5",
+          "S1_JHD0_MAP10.MT5",
+          "S1_JHD0_MAP11.MT5",
+          "S1_JHD0_MAP12.MT5"
+        ],
+        "runtimeCapture": "captures/pvr/20260724-084354-frame-3652",
+        "capturedObjectTags": 78,
+        "finalPlacements": 34,
+        "instantiatedPlacements": 34,
+        "visibleInstanceAudit": "verified"
+      },
+      "gaps": []
+    },
+    "dobuita": {
+      "status": "incomplete",
+      "evidence": {
+        "staticMapModels": [
+          "S1_D000_MAP.MT5",
+          "S1_D000_MAP01.MT5",
+          "S1_D000_MAP02.MT5",
+          "S1_D000_MAP03.MT5",
+          "S1_D000_MAP04.MT5",
+          "S1_D000_MAP05.MT5",
+          "S1_D000_MAP06.MT5",
+          "S1_D000_MAP07.MT5",
+          "S1_D000_MAP08.MT5",
+          "S1_D000_MAP09.MT5",
+          "S1_D000_MAP10.MT5",
+          "S1_D000_MAP11.MT5",
+          "S1_D000_MAP12.MT5",
+          "S1_D000_MAP13.MT5",
+          "S1_D000_MAP14.MT5",
+          "S1_D000_MAP15.MT5",
+          "S1_D000_MAP16.MT5",
+          "S1_D000_MAP17.MT5",
+          "S1_D000_MAP18.MT5",
+          "S1_D000_MAP19.MT5",
+          "S1_D000_MAP20.MT5",
+          "S1_D000_MAP21.MT5",
+          "S1_D000_MAP22.MT5",
+          "S1_D000_MAP23.MT5",
+          "S1_D000_MAP24.MT5",
+          "S1_D000_MAP25.MT5",
+          "S1_D000_MAP26.MT5"
+        ],
+        "runtimePlacements": 34,
+        "staticDoorPlacements": 120,
+        "logicalDoorBindings": 65,
+        "finalPlacements": 154,
+        "visibleInstanceAudit": "verified",
+        "exactNativeSemantics": 135,
+        "unresolvedPlacedObjects": 19,
+        "omittedDynamicTags": [],
+        "verifiedInteractionModels": 45,
+        "tkoStateMachine": {
+          "storySelectorCount": 2,
+          "clockWindow": {
+            "callFileOffset": "0x690fc",
+            "start": {
+              "hour": 7,
+              "minute": 0
+            },
+            "end": {
+              "hour": 19,
+              "minute": 0
+            },
+            "boundary": "start-inclusive, end-exclusive",
+            "sourceClock": {
+              "hourOffset": "scene-context + 0xcc",
+              "minuteOffset": "scene-context + 0xcd"
+            }
+          }
+        },
+        "phoneBookInteraction": {
+          "status": "verified",
+          "attachments": [
+            "closed",
+            "opened"
+          ]
+        },
+        "gachaInteraction": {
+          "status": "verified",
+          "populatedMachineRecords": 2,
+          "interactionModels": [
+            "S1_D000_GAT0G00G.MT5",
+            "S1_D000_GAT0G03G.MT5"
+          ]
+        }
+      },
+      "gaps": [
+        "19 placed objects retain unresolved native semantics"
+      ]
+    },
+    "yamanose": {
+      "status": "verified",
+      "evidence": {
+        "nativeArea": "JU00",
+        "staticMapModels": [
+          "S1_JU00_MAP.MT5",
+          "S1_JU00_MAP01.MT5",
+          "S1_JU00_MAP02.MT5",
+          "S1_JU00_MAP03.MT5",
+          "S1_JU00_MAP04.MT5",
+          "S1_JU00_MAP05.MT5",
+          "S1_JU00_MAP06.MT5",
+          "S1_JU00_MAP07.MT5",
+          "S1_JU00_MAP08.MT5",
+          "S1_JU00_MAP09.MT5",
+          "S1_JU00_MAP10.MT5",
+          "S1_JU00_MAP11.MT5",
+          "S1_JU00_MAP12.MT5",
+          "S1_JU00_MAP13.MT5"
+        ],
+        "manifestSchema": "new-yokosuka-runtime-placement-manifest-v1",
+        "placementCount": 26,
+        "uniqueModelCount": 11,
+        "missingModels": [],
+        "invalidTransforms": [],
+        "duplicateIdentities": [],
+        "source": {
+          "runtimeCapture": "captures/pvr/20260724-100412-frame-18879",
+          "taggedRuntimeObjects": ".disc-work/ju00-tagged-objects.json",
+          "staticDoorTable": ".disc-work/ju00-static-doors.json",
+          "staticDoorPolicy": "all authored MAPINFO door records"
+        },
+        "scheduledActorCount": 9,
+        "authoredScheduledRouteCount": 81,
+        "scheduledActorsWithJu00Routes": [
+          "CATB",
+          "KENI",
+          "KNJI",
+          "NORK",
+          "RIKA",
+          "RKKI"
+        ]
+      },
+      "gaps": []
+    },
+    "sakuragaoka": {
+      "status": "verified",
+      "evidence": {
+        "nativeArea": "JD00",
+        "staticMapModels": [
+          "S1_JD00_MAP.MT5",
+          "S1_JD00_MAP01.MT5",
+          "S1_JD00_MAP02.MT5",
+          "S1_JD00_MAP03.MT5",
+          "S1_JD00_MAP04.MT5",
+          "S1_JD00_MAP05.MT5",
+          "S1_JD00_MAP06.MT5",
+          "S1_JD00_MAP07.MT5",
+          "S1_JD00_MAP08.MT5",
+          "S1_JD00_MAP09.MT5",
+          "S1_JD00_MAP10.MT5",
+          "S1_JD00_MAP11.MT5",
+          "S1_JD00_MAP12.MT5",
+          "S1_JD00_MAP13.MT5"
+        ],
+        "manifestSchema": "shenmue-jd00-runtime-placements-v2",
+        "placementCount": 62,
+        "uniqueModelCount": 21,
+        "missingModels": [],
+        "invalidTransforms": [],
+        "duplicateIdentities": [],
+        "source": ".disc-work/mapinfo/disc1/SCENE/01/JD00/MAPINFO.BIN",
+        "staticDoorRecordCount": 55,
+        "settledRuntimeCapture": ".disc-work/jd00-live/ram.bin",
+        "capturedRuntimeObjectTags": [
+          "TBOX",
+          "BTEL",
+          "VM_0",
+          "VMG0",
+          "GCH1",
+          "GCH2",
+          "DAMY"
+        ],
+        "scheduledActorRouteCount": 25
+      },
+      "gaps": []
+    },
+    "arcade": {
+      "status": "verified",
+      "evidence": {
+        "nativeArea": "DGCT",
+        "staticMapModels": [
+          "S3_DGCT_MAP.MT5",
+          "S3_DGCT_MAP01.MT5",
+          "S3_DGCT_MAP02.MT5",
+          "S3_DGCT_MAP03.MT5"
+        ],
+        "manifestSchema": "new-yokosuka-runtime-placement-manifest-v1",
+        "placementCount": 9,
+        "uniqueModelCount": 4,
+        "missingModels": [],
+        "invalidTransforms": [],
+        "duplicateIdentities": [],
+        "source": {
+          "capture": "captures/pvr/20260726-002424-frame-178913/ram.bin",
+          "saveState": "Flycast displayed slot 6 (Lua state index 5)",
+          "area": "DGCT",
+          "coordinateConversion": "browser = [-runtimeX, runtimeY, runtimeZ]"
+        },
+        "playableGameCount": 4
+      },
+      "gaps": []
+    },
+    "harbor": {
+      "status": "verified",
+      "evidence": {
+        "nativeArea": "MFSY",
+        "staticMapModels": [
+          "S2_MFSY_MAP.MT5",
+          "S2_MFSY_MAP01.MT5",
+          "S2_MFSY_MAP02.MT5",
+          "S2_MFSY_MAP03.MT5",
+          "S2_MFSY_MAP04.MT5",
+          "S2_MFSY_MAP05.MT5",
+          "S2_MFSY_MAP06.MT5",
+          "S2_MFSY_MAP07.MT5",
+          "S2_MFSY_MAP08.MT5",
+          "S2_MFSY_MAP09.MT5",
+          "S2_MFSY_MAP10.MT5",
+          "S2_MFSY_MAP11.MT5",
+          "S2_MFSY_MAP12.MT5",
+          "S2_MFSY_MAP13.MT5",
+          "S2_MFSY_MAP14.MT5",
+          "S2_MFSY_MAP15.MT5",
+          "S2_MFSY_MAP16.MT5",
+          "S2_MFSY_MAP17.MT5",
+          "S2_MFSY_MAP18.MT5"
+        ],
+        "manifestSchema": "new-yokosuka-runtime-placement-manifest-v1",
+        "placementCount": 49,
+        "uniqueModelCount": 20,
+        "missingModels": [],
+        "invalidTransforms": [],
+        "duplicateIdentities": [],
+        "source": {
+          "runtimeCapture": "captures/pvr/20260724-164834-frame-5057/ram.bin",
+          "staticDoors": ".disc-work/mapinfo/disc2/SCENE/02/MFSY/MAPINFO.BIN"
+        }
+      },
+      "gaps": []
+    },
+    "warehouseDistrict": {
+      "status": "verified",
+      "evidence": {
+        "nativeArea": "MKSG",
+        "staticMapModels": [
+          "S2_MKSG_MAP.MT5",
+          "S2_MKSG_MAP01.MT5",
+          "S2_MKSG_MAP02.MT5",
+          "S2_MKSG_MAP03.MT5",
+          "S2_MKSG_MAP04.MT5",
+          "S2_MKSG_MAP05.MT5",
+          "S2_MKSG_MAP06.MT5",
+          "S2_MKSG_MAP07.MT5",
+          "S2_MKSG_MAP08.MT5"
+        ],
+        "manifestSchema": "new-yokosuka-runtime-placement-manifest-v1",
+        "placementCount": 19,
+        "uniqueModelCount": 9,
+        "missingModels": [],
+        "invalidTransforms": [],
+        "duplicateIdentities": [],
+        "source": {
+          "runtimeCapture": "captures/pvr/20260724-164607-frame-972/ram.bin",
+          "scheduledActorCrossCheck": "captures/pvr/20260724-165229-frame-285/ram.bin"
+        },
+        "scheduledActorsExcluded": [
+          "KEBA",
+          "KEBB",
+          "KEBC",
+          "KEBD",
+          "KEBE"
+        ]
+      },
+      "gaps": []
+    },
+    "warehouseEight": {
+      "status": "verified",
+      "evidence": {
+        "nativeArea": "MS08",
+        "staticMapModels": [
+          "S2_MS08_MAP.MT5",
+          "S2_MS08_MAP01.MT5",
+          "S2_MS08_MAP02.MT5",
+          "S2_MS08_MAP03.MT5",
+          "S2_MS08_MAP04.MT5"
+        ],
+        "manifestSchema": "new-yokosuka-runtime-placement-manifest-v1",
+        "placementCount": 1,
+        "uniqueModelCount": 1,
+        "missingModels": [],
+        "invalidTransforms": [],
+        "duplicateIdentities": [],
+        "source": {
+          "mapInfo": ".disc-work/mapinfo/disc2/SCENE/02/MS08/MAPINFO.BIN",
+          "runtimeCapture": "captures/pvr/20260724-173621-frame-793/ram.bin"
+        }
+      },
+      "gaps": []
+    },
+    "forkliftRace": {
+      "status": "verified",
+      "evidence": {
+        "nativeArea": "MA00",
+        "staticMapModels": [],
+        "manifestSchema": "new-yokosuka-runtime-placement-manifest-v1",
+        "placementCount": 10,
+        "uniqueModelCount": 3,
+        "missingModels": [],
+        "invalidTransforms": [],
+        "duplicateIdentities": [],
+        "source": {
+          "capture": "captures/pvr/20260726-003543-frame-196802/ram.bin",
+          "taggedRuntimeObjects": ".disc-work/ma00-race-tagged-runtime-objects.json",
+          "saveState": "Flycast displayed slot 1 (Lua state index 0)",
+          "area": "MA00 forklift race",
+          "coordinateConversion": "browser = [-runtimeX, runtimeY, runtimeZ]",
+          "policy": "source-backed static world fixtures only; racers and people remain scheduled actors"
+        },
+        "capturedWorldObjectCount": 32,
+        "omittedActors": [
+          "FRK0",
+          "FRK1",
+          "FRK2",
+          "FRK3",
+          "FRK4",
+          "MARK",
+          "MGDM",
+          "NP06"
+        ],
+        "alternateStates": [
+          "DOR1",
+          "DOR8"
+        ]
+      },
+      "gaps": []
+    },
+    "forkliftPlayground": {
+      "status": "verified",
+      "evidence": {
+        "nativeArea": "MFSY",
+        "placementPolicy": "browser-authored physics playground reuses the verified MFSY stationary placement manifest",
+        "placementCount": 49
+      },
+      "gaps": []
+    }
+  },
+  "gaps": [
+    {
+      "world": "dobuita",
+      "gap": "19 placed objects retain unresolved native semantics"
+    }
+  ]
+}

@@ -1,0 +1,371 @@
+{
+  "schema": "new-yokosuka-scn3-runtime-interface-evidence-v1",
+  "status": "exact-native-constructor-entry-thunk-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "controlFlow": ".disc-work/dialogue/scripted-event-control-flow-index.json"
+  },
+  "nativeSlices": {
+    "runtimeInterfaceConstructor": {
+      "address": "0x0c0bb124",
+      "length": 130,
+      "sha256": "f43dd3d0f719b4f17ab8b6df5ee92cc8ace74a384bb0e97f0b0b0e0019d47871"
+    },
+    "eventRecordRunner": {
+      "address": "0x0c0bb550",
+      "length": 246,
+      "sha256": "3e2edb8412f0c1a9cbf286e393fb6a6c121525b44c77d17d94ee0c250029d41b"
+    },
+    "singleTargetSchedulerWrapper": {
+      "address": "0x0c0bb6da",
+      "length": 36,
+      "sha256": "ed05487ff625b9810d2415a6849c61433da29c37ec2fbd1e738b2a3f37c7b18d"
+    },
+    "resumableSchedulerWrapper": {
+      "address": "0x0c0bb6a8",
+      "length": 22,
+      "sha256": "786a7577f05c726b695feb424cc6d441762b39da74eb99a820abd2e5e17e7f75"
+    },
+    "secondaryOperationWrapper": {
+      "address": "0x0c0bb6be",
+      "length": 14,
+      "sha256": "72156bac00ed014a0ffb0106dbb03258675f7ec1d882bc44fc4e2571888cc11b"
+    },
+    "continuationWriter": {
+      "address": "0x0c0bb72a",
+      "length": 66,
+      "sha256": "05e3dc20892c4d8c8b645ab5bf4b7ad612085672a31179a1f990f36204fcac5a"
+    },
+    "schedulerSelectorZeroCountdownHandler": {
+      "address": "0x0c16b47c",
+      "length": 20,
+      "sha256": "771ee2c7bc9e28679218d1d82bc4edd6f05f3856e064e69a1eef651b02413eb6"
+    },
+    "schedulerSelectorNineteenHandler": {
+      "address": "0x0c16398e",
+      "length": 40,
+      "sha256": "db09781f572a4a3023cb5caee411e27622b218476ec8b1593d2f57ee4862e08b"
+    },
+    "schedulerGlobalReadinessQuery": {
+      "address": "0x0c0e7c7c",
+      "length": 60,
+      "sha256": "bfc7264eb960a106571dd44dfda8b53daaa17d751b56f7a05ce641ff477849e2"
+    },
+    "secondaryOperationDispatcher": {
+      "address": "0x0c160918",
+      "length": 48,
+      "sha256": "9e0be555668022780e0216cb9d2f42c3b3ecdf0eeb34c3a364467394c89a1a90"
+    },
+    "secondaryOperation5Handler": {
+      "address": "0x0c15f3e8",
+      "length": 68,
+      "sha256": "caceec750c9a113aa54b5e1e9c7d01c2ecc379742ffa27d2684547086cd5672f"
+    },
+    "secondaryOperation1Handler": {
+      "address": "0x0c15dd4c",
+      "length": 322,
+      "sha256": "a0c6b8c022a0350cbc4d3be3240519b62b356e28ec62b74abf435bfb73bc21f0"
+    }
+  },
+  "generatedEntryThunk": {
+    "mapCount": 119,
+    "allMapCount": 136,
+    "nonExecutableMapCount": 17,
+    "fileOffsetRelativeToScn3": "0x30",
+    "length": 38,
+    "sha256": "ddb0c40666ba92a203ed3a5e0fe3e4c65eefe8d2ec7113398639c575dc1a6fb5",
+    "provenRegisterSetup": {
+      "r8": "native runtime-interface object + 0x28",
+      "r8+0x34": "scheduler/event context supplied by native runner",
+      "r8+0x38": "active event-record invocation data",
+      "r8+0x3c": "generated local continuation writer",
+      "r9": "value loaded from r8+0x0c",
+      "r10": "value loaded from r8+0x10"
+    },
+    "nonExecutableMaps": [
+      {
+        "disc": 1,
+        "area": "0000",
+        "initialFunctionFileOffset": "0x38",
+        "entryThunkSha256": "934955f8ef800d6c071fea545d32e6e6b403ff68288b7dec9caa862156e8e325"
+      },
+      {
+        "disc": 1,
+        "area": "BETD",
+        "initialFunctionFileOffset": "0xccd",
+        "entryThunkSha256": "7c7e185cd558bffe769c34447c3f30088143e536f710cb50f5247f9d776dc1c5"
+      },
+      {
+        "disc": 1,
+        "area": "JD99",
+        "initialFunctionFileOffset": "0x3c6a",
+        "entryThunkSha256": "789c776e11a4c59a7f979149cbdda9adc5dcc0677bd5d7cef6d8e3214db69f94"
+      },
+      {
+        "disc": 1,
+        "area": "JU99",
+        "initialFunctionFileOffset": "0x3c6a",
+        "entryThunkSha256": "789c776e11a4c59a7f979149cbdda9adc5dcc0677bd5d7cef6d8e3214db69f94"
+      },
+      {
+        "disc": 1,
+        "area": "MF99",
+        "initialFunctionFileOffset": "0x8a",
+        "entryThunkSha256": "6e55222b4d449290118b121ddc4d980b51216172833021f98f29c82020d21786"
+      },
+      {
+        "disc": 1,
+        "area": "MK99",
+        "initialFunctionFileOffset": "0x38",
+        "entryThunkSha256": "934955f8ef800d6c071fea545d32e6e6b403ff68288b7dec9caa862156e8e325"
+      },
+      {
+        "disc": 1,
+        "area": "MO99",
+        "initialFunctionFileOffset": "0x38",
+        "entryThunkSha256": "934955f8ef800d6c071fea545d32e6e6b403ff68288b7dec9caa862156e8e325"
+      },
+      {
+        "disc": 1,
+        "area": "YD8S",
+        "initialFunctionFileOffset": "0x79c",
+        "entryThunkSha256": "0f0000b510e37e21b5c30cf861927ea52103e9945c589c088fc2f4f50f5ca5d7"
+      },
+      {
+        "disc": 1,
+        "area": "YQ14",
+        "initialFunctionFileOffset": "0x56613",
+        "entryThunkSha256": "82088e37c5ee62398990b2de1b1ba0959c3fed2b02a451eaeaf540c5b5f84ede"
+      },
+      {
+        "disc": 2,
+        "area": "ARAR",
+        "initialFunctionFileOffset": "0x3d11",
+        "entryThunkSha256": "1a54ace7b3761a9a375b44f30860fadce1d160b21dd0790a465a1c4d4e1031b8"
+      },
+      {
+        "disc": 2,
+        "area": "BETD",
+        "initialFunctionFileOffset": "0xccd",
+        "entryThunkSha256": "7c7e185cd558bffe769c34447c3f30088143e536f710cb50f5247f9d776dc1c5"
+      },
+      {
+        "disc": 2,
+        "area": "GMCT",
+        "initialFunctionFileOffset": "0x20cb",
+        "entryThunkSha256": "82088e37c5ee62398990b2de1b1ba0959c3fed2b02a451eaeaf540c5b5f84ede"
+      },
+      {
+        "disc": 3,
+        "area": "ARAR",
+        "initialFunctionFileOffset": "0x3e18",
+        "entryThunkSha256": "82088e37c5ee62398990b2de1b1ba0959c3fed2b02a451eaeaf540c5b5f84ede"
+      },
+      {
+        "disc": 3,
+        "area": "BETD",
+        "initialFunctionFileOffset": "0xccd",
+        "entryThunkSha256": "7c7e185cd558bffe769c34447c3f30088143e536f710cb50f5247f9d776dc1c5"
+      },
+      {
+        "disc": 3,
+        "area": "DOOR",
+        "initialFunctionFileOffset": "0x9eba",
+        "entryThunkSha256": "352c65ecd0b59e12a68b2179bdbddb72a794e2eee323b4b86962ad6d70737b28"
+      },
+      {
+        "disc": 3,
+        "area": "MC5Q",
+        "initialFunctionFileOffset": "0x2793",
+        "entryThunkSha256": "9d4b24adb72e737409dd7d3d8c3acae143ab65e5c0c802858ce264a030f1e299"
+      },
+      {
+        "disc": 3,
+        "area": "NBIK",
+        "initialFunctionFileOffset": "0x15ec",
+        "entryThunkSha256": "82088e37c5ee62398990b2de1b1ba0959c3fed2b02a451eaeaf540c5b5f84ede"
+      }
+    ]
+  },
+  "runtimeInterfaceSlots": [
+    {
+      "byteOffset": 20,
+      "byteOffsetHex": "0x14",
+      "kind": "signed-integer-division",
+      "nativeTarget": "0x0c1dc294",
+      "callCount": 460
+    },
+    {
+      "byteOffset": 24,
+      "byteOffsetHex": "0x18",
+      "kind": "signed-integer-remainder",
+      "nativeTarget": "0x0c1dc440",
+      "callCount": 113
+    },
+    {
+      "byteOffset": 28,
+      "byteOffsetHex": "0x1c",
+      "kind": "single-target-scheduler-dispatch",
+      "nativeTarget": "0x0c0bb6da",
+      "callCount": 200
+    },
+    {
+      "byteOffset": 44,
+      "byteOffsetHex": "0x2c",
+      "kind": "resumable-scheduler-dispatch",
+      "nativeTarget": "0x0c0bb6a8",
+      "callCount": 28924
+    },
+    {
+      "byteOffset": 48,
+      "byteOffsetHex": "0x30",
+      "kind": "secondary-operation-dispatch",
+      "nativeTarget": "0x0c0bb6be",
+      "callCount": 2977
+    },
+    {
+      "byteOffset": 60,
+      "byteOffsetHex": "0x3c",
+      "kind": "native-coroutine-save-continuation",
+      "nativeTarget": "generated-entry-thunk-local-continuation",
+      "callCount": 29124
+    }
+  ],
+  "schedulerSelectorZero": {
+    "handlerAddress": "0x0c16b47c",
+    "argumentWordCount": 1,
+    "behavior": [
+      "read the payload dword",
+      "decrement and store it with native wrapping",
+      "return 0x00010000 when the original payload was zero",
+      "return zero when the original payload was nonzero"
+    ],
+    "generatedResultTestMask": "0x00010000",
+    "browserSemanticId": "native-scheduler-countdown",
+    "allDiscArgumentKinds": {
+      "call-result": 11,
+      "constant": 27200,
+      "frame-field": 731,
+      "runtime": 53
+    },
+    "frameFieldOffsets": {
+      "0": 34,
+      "8": 11,
+      "12": 121,
+      "16": 140,
+      "20": 118,
+      "24": 93,
+      "28": 81,
+      "32": 30,
+      "36": 26,
+      "40": 26,
+      "44": 9,
+      "48": 6,
+      "52": 33,
+      "56": 2,
+      "60": 1
+    },
+    "directArgumentCallCount": 27931,
+    "deferredDependencyCallCount": 64
+  },
+  "schedulerSelectorNineteen": {
+    "handlerAddress": "0x0c16398e",
+    "readinessQueryAddress": "0x0c0e7c7c",
+    "argumentWordCount": 0,
+    "generatedResultTestMask": "0x00010000",
+    "browserSemanticId": "native-scheduler-global-readiness",
+    "allDiscCallCount": 16,
+    "areaCount": 8,
+    "dialogueRegionCallCount": 6,
+    "behavior": [
+      "query the exact global readiness helper",
+      "return zero while the helper is nonzero",
+      "write -1 to the native operation result and return 0x00010000 once the helper is zero"
+    ]
+  },
+  "allDiscInventory": {
+    "callCount": 61798,
+    "dialogueRegionCallCount": 24527,
+    "continuationPairCounts": {
+      "singleTargetSchedulerDispatchThenContinuation": 200,
+      "resumableSchedulerDispatchThenContinuation": 28924
+    },
+    "secondaryOperationIds": {
+      "0x0000": 96,
+      "0x0001": 2301,
+      "0x0002": 3,
+      "0x0003": 96,
+      "0x0004": 192,
+      "0x0005": 286,
+      "0x0006": 3
+    },
+    "secondaryOperation5": {
+      "callCount": 286,
+      "eightArgumentCallCount": 286,
+      "unresolvedArgumentCountCallCount": 0,
+      "recordSizeBytes": 52,
+      "recordIndexArgument": 0,
+      "copiedArgumentIndices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "destinationByteOffsets": [
+        24,
+        28,
+        32,
+        36,
+        40,
+        44,
+        48
+      ]
+    },
+    "secondaryOperation1ProvenSubcommands": {
+      "1": {
+        "callCount": 118,
+        "argumentCount": 1,
+        "destinationByteOffset": 56,
+        "writtenValue": 1
+      },
+      "12": {
+        "callCount": 22,
+        "argumentCount": 1,
+        "destinationByteOffset": 56,
+        "writtenValue": 0
+      }
+    }
+  },
+  "browserRuntimeCoverage": {
+    "provenCallCount": 28171,
+    "unresolvedCallCount": 1526,
+    "provenSemanticIds": {
+      "native-scheduler-countdown": 27942,
+      "native-scheduler-global-readiness": 16,
+      "native-signed-integer-division": 156,
+      "native-signed-integer-remainder": 57
+    },
+    "unresolvedCallKinds": {
+      "resumable-scheduler-dispatch": 966,
+      "signed-integer-division": 304,
+      "signed-integer-remainder": 56,
+      "single-target-scheduler-dispatch": 200
+    }
+  },
+  "provenBehavior": [
+    "The native runner passes runtime object +0x28 as generated r8; generated code does not receive the constructor object's base address directly.",
+    "Every r8+0x3c call is the generated entry thunk's local continuation writer. It saves the native return address and r13/r14 into the active event record, then exits the thunk.",
+    "All 119 MAPINFO programs with recovered executable native functions share the exact generated entry thunk. The 17 sentinel or alternate-format programs with no recovered function body are inventoried separately and receive no runtime-interface claim.",
+    "Every r8+0x1c and r8+0x2c call is paired with that exact continuation transfer. Their selected handler behavior remains numeric and must be resolved separately.",
+    "r8+0x14 is signed integer quotient and r8+0x18 is signed integer remainder; authored call sites use the pair for quotient/index and remainder/bit-position decomposition."
+  ],
+  "evidenceBoundary": [
+    "Runtime slot families and continuation mechanics are exact; handler-specific scheduler and secondary-operation meanings are not inferred from their ABI.",
+    "No captured runtime address is required by this artifact; all assertions are checked against the executable, authored MAPINFO files, and statically extracted call inventory."
+  ]
+}

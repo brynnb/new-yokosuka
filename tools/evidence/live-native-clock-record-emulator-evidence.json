@@ -1,0 +1,17 @@
+{
+  "schema": "new-yokosuka-live-native-clock-record-emulator-evidence-v1",
+  "capturedAt": "2026-07-31",
+  "method": "read-only Flycast GDB memory read during natural guest execution",
+  "flycastGdbPort": 3264,
+  "sourceRecordAddress": "0x0c225228",
+  "bytes": [86, 12, 4, 4, 23, 32, 2],
+  "decodedGameDateUtc": "1986-12-04T23:32:02Z",
+  "weekdayConvention": "Sunday=0; Thursday=4",
+  "writesPerformed": false,
+  "artificialHandlersInvoked": false,
+  "evidenceBoundary": [
+    "The sample validates the weekday numbering convention against the statically recovered record layout.",
+    "The provider is the game's authoritative WorldClock date, not the host clock.",
+    "This observation does not establish the automatic event's story-state eligibility."
+  ]
+}

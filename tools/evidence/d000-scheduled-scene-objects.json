@@ -1,0 +1,884 @@
+{
+  "schema": "new-yokosuka-d000-scheduled-scene-objects-v1",
+  "generatedFrom": {
+    "schedules": {
+      "path": "play/data/scheduled-actors.json",
+      "sha256": "fd09a511a47f3386002f0c639674449577e32005f2bb9840314ae059bb7b88f2"
+    },
+    "taggedObjects": {
+      "path": ".disc-work/d000-entry0-tagged-objects.json",
+      "sha256": "816cf541fc8090f719a5a96ad4b8b411a42b045158b621da326063124ac3e600"
+    },
+    "runtimeCapture": {
+      "path": "captures/pvr/20260724-015410-frame-19777/ram.bin",
+      "sha256": "63d66b87bc0f8a4f47e396522fe1cdc7daf591c37a86ac019e598d4ef61243d2",
+      "sceneObjectTablePhysicalOffset": "0x39bf60"
+    }
+  },
+  "evidenceBoundary": "Dobuita BS01 through BS16 are exact tagged scene objects backed by same-numbered DBS99xxG models. The captured native table supplies placement, facing, and lower/upper Y endpoints. Operation 0x2a controls zero and one select the upper/open and lower/closed endpoints for this reviewed set. No claim is made for other maps or object codes.",
+  "runtimePolicy": {
+    "owner": "browser presentation driven by the synchronized public clock",
+    "liveTransition": "move at the captured native rate of 0.01 units/frame",
+    "staleTransition": "snap to the latest reviewed endpoint",
+    "accessAuthorization": "independent server concern"
+  },
+  "summary": {
+    "sceneObjectCount": 16,
+    "sourceOperationCount": 41,
+    "defaultVariantOperationCount": 36,
+    "distinctActorCount": 19
+  },
+  "sceneObjects": [
+    {
+      "code": "BS01",
+      "model": "S1_D000_DBS9901G.MT5",
+      "sourceModel": "DBS9901G.MT5",
+      "pairedObjectCode": "BN01",
+      "browserPosition": [
+        63.26340103149414,
+        1.0779000520706177,
+        71.95890045166016
+      ],
+      "browserRotationDegrees": [
+        0,
+        90,
+        0
+      ],
+      "sourceFacingFixed": -16384,
+      "lowerY": 1.0779000520706177,
+      "upperY": 3.4779000282287598,
+      "nativeUnitsPerFrame": 0.01,
+      "nativeFramesPerSecond": 30,
+      "nativeUnitsPerSecond": 0.3,
+      "animationDurationSeconds": 7.999999920527141,
+      "events": [
+        {
+          "actorCode": "TOKI",
+          "scheduleVariantId": "8e576dd02a3e:source-table-0x786f8",
+          "defaultVariant": true,
+          "second": 30600,
+          "time": "08:30:00",
+          "sceneObjectCode": "BS01",
+          "controlValue": 0,
+          "transitionMode": 4,
+          "sourceOperationFileOffset": "0x78828"
+        },
+        {
+          "actorCode": "TOKI",
+          "scheduleVariantId": "8e576dd02a3e:source-table-0x786f8",
+          "defaultVariant": true,
+          "second": 81600,
+          "time": "22:40:00",
+          "sceneObjectCode": "BS01",
+          "controlValue": 1,
+          "transitionMode": 5,
+          "sourceOperationFileOffset": "0x78a78"
+        },
+        {
+          "actorCode": "HRSK",
+          "scheduleVariantId": "c15070554728:source-table-0x1db18",
+          "defaultVariant": true,
+          "second": 82500,
+          "time": "22:55:00",
+          "sceneObjectCode": "BS01",
+          "controlValue": 1,
+          "transitionMode": 5,
+          "sourceOperationFileOffset": "0x1dc48"
+        },
+        {
+          "actorCode": "HRSK",
+          "scheduleVariantId": "c15070554728:source-table-0x1dcd4",
+          "defaultVariant": false,
+          "second": 82500,
+          "time": "22:55:00",
+          "sceneObjectCode": "BS01",
+          "controlValue": 1,
+          "transitionMode": 5,
+          "sourceOperationFileOffset": "0x1ddec"
+        }
+      ]
+    },
+    {
+      "code": "BS02",
+      "model": "S1_D000_DBS9902G.MT5",
+      "sourceModel": "DBS9902G.MT5",
+      "pairedObjectCode": null,
+      "browserPosition": [
+        71.76750183105469,
+        0.07240000367164612,
+        79.57319641113281
+      ],
+      "browserRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "sourceFacingFixed": 0,
+      "lowerY": 0.07240000367164612,
+      "upperY": 2.472400188446045,
+      "nativeUnitsPerFrame": 0.01,
+      "nativeFramesPerSecond": 30,
+      "nativeUnitsPerSecond": 0.3,
+      "animationDurationSeconds": 8.000000615914663,
+      "events": [
+        {
+          "actorCode": "ETKO",
+          "scheduleVariantId": "972e68b16cd4:source-table-0x12d18",
+          "defaultVariant": false,
+          "second": 30600,
+          "time": "08:30:00",
+          "sceneObjectCode": "BS02",
+          "controlValue": 0,
+          "transitionMode": 4,
+          "sourceOperationFileOffset": "0x12d4c"
+        },
+        {
+          "actorCode": "ETKO",
+          "scheduleVariantId": "972e68b16cd4:source-table-0x12aa8",
+          "defaultVariant": true,
+          "second": 35700,
+          "time": "09:55:00",
+          "sceneObjectCode": "BS02",
+          "controlValue": 0,
+          "transitionMode": 4,
+          "sourceOperationFileOffset": "0x12b3c"
+        },
+        {
+          "actorCode": "ETKO",
+          "scheduleVariantId": "972e68b16cd4:source-table-0x12c30",
+          "defaultVariant": false,
+          "second": 35700,
+          "time": "09:55:00",
+          "sceneObjectCode": "BS02",
+          "controlValue": 0,
+          "transitionMode": 4,
+          "sourceOperationFileOffset": "0x12c64"
+        },
+        {
+          "actorCode": "ETKO",
+          "scheduleVariantId": "972e68b16cd4:source-table-0x12d18",
+          "defaultVariant": false,
+          "second": 64800,
+          "time": "18:00:00",
+          "sceneObjectCode": "BS02",
+          "controlValue": 1,
+          "transitionMode": 5,
+          "sourceOperationFileOffset": "0x12d88"
+        },
+        {
+          "actorCode": "ETKO",
+          "scheduleVariantId": "972e68b16cd4:source-table-0x12c30",
+          "defaultVariant": false,
+          "second": 72180,
+          "time": "20:03:00",
+          "sceneObjectCode": "BS02",
+          "controlValue": 1,
+          "transitionMode": 5,
+          "sourceOperationFileOffset": "0x12cb0"
+        },
+        {
+          "actorCode": "ETKO",
+          "scheduleVariantId": "972e68b16cd4:source-table-0x12aa8",
+          "defaultVariant": true,
+          "second": 72300,
+          "time": "20:05:00",
+          "sceneObjectCode": "BS02",
+          "controlValue": 1,
+          "transitionMode": 5,
+          "sourceOperationFileOffset": "0x12bcc"
+        }
+      ]
+    },
+    {
+      "code": "BS03",
+      "model": "S1_D000_DBS9903G.MT5",
+      "sourceModel": "DBS9903G.MT5",
+      "pairedObjectCode": "BN03",
+      "browserPosition": [
+        67.27189636230469,
+        1.6749000549316406,
+        92.19429779052734
+      ],
+      "browserRotationDegrees": [
+        0,
+        180,
+        0
+      ],
+      "sourceFacingFixed": -32768,
+      "lowerY": 1.6749000549316406,
+      "upperY": 2.8749001026153564,
+      "nativeUnitsPerFrame": 0.01,
+      "nativeFramesPerSecond": 30,
+      "nativeUnitsPerSecond": 0.3,
+      "animationDurationSeconds": 4.00000015894572,
+      "events": [
+        {
+          "actorCode": "AOKI",
+          "scheduleVariantId": "67575deb7400:source-table-0x3924",
+          "defaultVariant": true,
+          "second": 36000,
+          "time": "10:00:00",
+          "sceneObjectCode": "BS03",
+          "controlValue": 0,
+          "transitionMode": 4,
+          "sourceOperationFileOffset": "0x3f44"
+        },
+        {
+          "actorCode": "AOKI",
+          "scheduleVariantId": "67575deb7400:source-table-0x3924",
+          "defaultVariant": true,
+          "second": 72000,
+          "time": "20:00:00",
+          "sceneObjectCode": "BS03",
+          "controlValue": 1,
+          "transitionMode": 5,
+          "sourceOperationFileOffset": "0x3fb8"
+        }
+      ]
+    },
+    {
+      "code": "BS04",
+      "model": "S1_D000_DBS9904G.MT5",
+      "sourceModel": "DBS9904G.MT5",
+      "pairedObjectCode": null,
+      "browserPosition": [
+        -38.462501525878906,
+        1.4223999977111816,
+        9.991000175476074
+      ],
+      "browserRotationDegrees": [
+        0,
+        117.1966552734375,
+        0
+      ],
+      "sourceFacingFixed": -21335,
+      "lowerY": 1.4223999977111816,
+      "upperY": 2.4223999977111816,
+      "nativeUnitsPerFrame": 0.01,
+      "nativeFramesPerSecond": 30,
+      "nativeUnitsPerSecond": 0.3,
+      "animationDurationSeconds": 3.3333333333333335,
+      "events": [
+        {
+          "actorCode": "HIRA",
+          "scheduleVariantId": "47a78e05f812:source-table-0x179e4",
+          "defaultVariant": true,
+          "second": 25200,
+          "time": "07:00:00",
+          "sceneObjectCode": "BS04",
+          "controlValue": 0,
+          "transitionMode": 4,
+          "sourceOperationFileOffset": "0x17e94"
+        },
+        {
+          "actorCode": "HIRA",
+          "scheduleVariantId": "47a78e05f812:source-table-0x179e4",
+          "defaultVariant": true,
+          "second": 66600,
+          "time": "18:30:00",
+          "sceneObjectCode": "BS04",
+          "controlValue": 1,
+          "transitionMode": 5,
+          "sourceOperationFileOffset": "0x18148"
+        }
+      ]
+    },
+    {
+      "code": "BS05",
+      "model": "S1_D000_DBS9905G.MT5",
+      "sourceModel": "DBS9905G.MT5",
+      "pairedObjectCode": "BN05",
+      "browserPosition": [
+        51.18600082397461,
+        1.1224000453948975,
+        49.25019836425781
+      ],
+      "browserRotationDegrees": [
+        0,
+        144.4976806640625,
+        0
+      ],
+      "sourceFacingFixed": -26305,
+      "lowerY": 1.1224000453948975,
+      "upperY": 3.522400140762329,
+      "nativeUnitsPerFrame": 0.01,
+      "nativeFramesPerSecond": 30,
+      "nativeUnitsPerSecond": 0.3,
+      "animationDurationSeconds": 8.00000031789144,
+      "events": [
+        {
+          "actorCode": "FKSM",
+          "scheduleVariantId": "4d594ac0fb9b:source-table-0x12eb0",
+          "defaultVariant": true,
+          "second": 35940,
+          "time": "09:59:00",
+          "sceneObjectCode": "BS05",
+          "controlValue": 0,
+          "transitionMode": 4,
+          "sourceOperationFileOffset": "0x132c0"
+        },
+        {
+          "actorCode": "FKSM",
+          "scheduleVariantId": "4d594ac0fb9b:source-table-0x12eb0",
+          "defaultVariant": true,
+          "second": 72000,
+          "time": "20:00:00",
+          "sceneObjectCode": "BS05",
+          "controlValue": 1,
+          "transitionMode": 5,
+          "sourceOperationFileOffset": "0x1331c"
+        }
+      ]
+    },
+    {
+      "code": "BS06",
+      "model": "S1_D000_DBS9906G.MT5",
+      "sourceModel": "DBS9906G.MT5",
+      "pairedObjectCode": "BN06",
+      "browserPosition": [
+        91.8218002319336,
+        0.07240000367164612,
+        61.58110046386719
+      ],
+      "browserRotationDegrees": [
+        0,
+        -15.1995849609375,
+        0
+      ],
+      "sourceFacingFixed": 2767,
+      "lowerY": 0.07240000367164612,
+      "upperY": 2.472400188446045,
+      "nativeUnitsPerFrame": 0.01,
+      "nativeFramesPerSecond": 30,
+      "nativeUnitsPerSecond": 0.3,
+      "animationDurationSeconds": 8.000000615914663,
+      "events": [
+        {
+          "actorCode": "HOND",
+          "scheduleVariantId": "141aab959fb1:source-table-0x19018",
+          "defaultVariant": true,
+          "second": 36000,
+          "time": "10:00:00",
+          "sceneObjectCode": "BS06",
+          "controlValue": 0,
+          "transitionMode": 4,
+          "sourceOperationFileOffset": "0x19084"
+        },
+        {
+          "actorCode": "HOND",
+          "scheduleVariantId": "141aab959fb1:source-table-0x19018",
+          "defaultVariant": true,
+          "second": 72000,
+          "time": "20:00:00",
+          "sceneObjectCode": "BS06",
+          "controlValue": 1,
+          "transitionMode": 5,
+          "sourceOperationFileOffset": "0x190e0"
+        }
+      ]
+    },
+    {
+      "code": "BS07",
+      "model": "S1_D000_DBS9907G.MT5",
+      "sourceModel": "DBS9907G.MT5",
+      "pairedObjectCode": "BN07",
+      "browserPosition": [
+        97.21800231933594,
+        0.07240000367164612,
+        63.92279815673828
+      ],
+      "browserRotationDegrees": [
+        0,
+        -24.9993896484375,
+        0
+      ],
+      "sourceFacingFixed": 4551,
+      "lowerY": 0.07240000367164612,
+      "upperY": 2.272400140762329,
+      "nativeUnitsPerFrame": 0.01,
+      "nativeFramesPerSecond": 30,
+      "nativeUnitsPerSecond": 0.3,
+      "animationDurationSeconds": 7.333333790302277,
+      "events": [
+        {
+          "actorCode": "HATR",
+          "scheduleVariantId": "5441a06e2cdb:source-table-0x16020",
+          "defaultVariant": true,
+          "second": 25200,
+          "time": "07:00:00",
+          "sceneObjectCode": "BS07",
+          "controlValue": 0,
+          "transitionMode": 4,
+          "sourceOperationFileOffset": "0x160a4"
+        },
+        {
+          "actorCode": "HATR",
+          "scheduleVariantId": "5441a06e2cdb:source-table-0x16020",
+          "defaultVariant": true,
+          "second": 68400,
+          "time": "19:00:00",
+          "sceneObjectCode": "BS07",
+          "controlValue": 1,
+          "transitionMode": 5,
+          "sourceOperationFileOffset": "0x164b8"
+        }
+      ]
+    },
+    {
+      "code": "BS08",
+      "model": "S1_D000_DBS9908G.MT5",
+      "sourceModel": "DBS9908G.MT5",
+      "pairedObjectCode": "BN08",
+      "browserPosition": [
+        -2.132200002670288,
+        1.2613999843597412,
+        32.11259841918945
+      ],
+      "browserRotationDegrees": [
+        0,
+        180,
+        0
+      ],
+      "sourceFacingFixed": -32768,
+      "lowerY": 1.2613999843597412,
+      "upperY": 3.661400079727173,
+      "nativeUnitsPerFrame": 0.01,
+      "nativeFramesPerSecond": 30,
+      "nativeUnitsPerSecond": 0.3,
+      "animationDurationSeconds": 8.00000031789144,
+      "events": [
+        {
+          "actorCode": "TURU",
+          "scheduleVariantId": "d96adb27c08b:source-table-0x7d410",
+          "defaultVariant": true,
+          "second": 32100,
+          "time": "08:55:00",
+          "sceneObjectCode": "BS08",
+          "controlValue": 0,
+          "transitionMode": 4,
+          "sourceOperationFileOffset": "0x7dd30"
+        },
+        {
+          "actorCode": "TURU",
+          "scheduleVariantId": "d96adb27c08b:source-table-0x7d410",
+          "defaultVariant": true,
+          "second": 71700,
+          "time": "19:55:00",
+          "sceneObjectCode": "BS08",
+          "controlValue": 1,
+          "transitionMode": 5,
+          "sourceOperationFileOffset": "0x7dea4"
+        }
+      ]
+    },
+    {
+      "code": "BS09",
+      "model": "S1_D000_DBS9909G.MT5",
+      "sourceModel": "DBS9909G.MT5",
+      "pairedObjectCode": "BN09",
+      "browserPosition": [
+        15.170000076293945,
+        1.1224000453948975,
+        28.881500244140625
+      ],
+      "browserRotationDegrees": [
+        0,
+        -39.188232421875,
+        0
+      ],
+      "sourceFacingFixed": 7134,
+      "lowerY": 1.1224000453948975,
+      "upperY": 3.522400140762329,
+      "nativeUnitsPerFrame": 0.01,
+      "nativeFramesPerSecond": 30,
+      "nativeUnitsPerSecond": 0.3,
+      "animationDurationSeconds": 8.00000031789144,
+      "events": [
+        {
+          "actorCode": "KURI",
+          "scheduleVariantId": "87bdf4779202:source-table-0x343f0",
+          "defaultVariant": true,
+          "second": 32400,
+          "time": "09:00:00",
+          "sceneObjectCode": "BS09",
+          "controlValue": 0,
+          "transitionMode": 4,
+          "sourceOperationFileOffset": "0x3487c"
+        },
+        {
+          "actorCode": "KURI",
+          "scheduleVariantId": "87bdf4779202:source-table-0x343f0",
+          "defaultVariant": true,
+          "second": 75300,
+          "time": "20:55:00",
+          "sceneObjectCode": "BS09",
+          "controlValue": 1,
+          "transitionMode": 5,
+          "sourceOperationFileOffset": "0x3492c"
+        }
+      ]
+    },
+    {
+      "code": "BS10",
+      "model": "S1_D000_DBS9910G.MT5",
+      "sourceModel": "DBS9910G.MT5",
+      "pairedObjectCode": "BN10",
+      "browserPosition": [
+        8.861800193786621,
+        1.1224000453948975,
+        25.950000762939453
+      ],
+      "browserRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "sourceFacingFixed": 0,
+      "lowerY": 1.1224000453948975,
+      "upperY": 3.522400140762329,
+      "nativeUnitsPerFrame": 0.01,
+      "nativeFramesPerSecond": 30,
+      "nativeUnitsPerSecond": 0.3,
+      "animationDurationSeconds": 8.00000031789144,
+      "events": [
+        {
+          "actorCode": "ITOI",
+          "scheduleVariantId": "950706276446:source-table-0x202ac",
+          "defaultVariant": true,
+          "second": 36000,
+          "time": "10:00:00",
+          "sceneObjectCode": "BS10",
+          "controlValue": 0,
+          "transitionMode": 4,
+          "sourceOperationFileOffset": "0x20b28"
+        },
+        {
+          "actorCode": "ITOI",
+          "scheduleVariantId": "950706276446:source-table-0x202ac",
+          "defaultVariant": true,
+          "second": 72000,
+          "time": "20:00:00",
+          "sceneObjectCode": "BS10",
+          "controlValue": 1,
+          "transitionMode": 5,
+          "sourceOperationFileOffset": "0x20bc0"
+        }
+      ]
+    },
+    {
+      "code": "BS11",
+      "model": "S1_D000_DBS9911G.MT5",
+      "sourceModel": "DBS9911G.MT5",
+      "pairedObjectCode": null,
+      "browserPosition": [
+        31.1830997467041,
+        1.1224000453948975,
+        72.66680145263672
+      ],
+      "browserRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "sourceFacingFixed": 0,
+      "lowerY": 1.1224000453948975,
+      "upperY": 3.522400140762329,
+      "nativeUnitsPerFrame": 0.01,
+      "nativeFramesPerSecond": 30,
+      "nativeUnitsPerSecond": 0.3,
+      "animationDurationSeconds": 8.00000031789144,
+      "events": [
+        {
+          "actorCode": "AKSK",
+          "scheduleVariantId": "0c119848e28a:source-table-0x2bb8",
+          "defaultVariant": true,
+          "second": 32400,
+          "time": "09:00:00",
+          "sceneObjectCode": "BS11",
+          "controlValue": 0,
+          "transitionMode": 4,
+          "sourceOperationFileOffset": "0x323c"
+        },
+        {
+          "actorCode": "UDGW",
+          "scheduleVariantId": "f47be4e0a562:source-table-0x7e18c",
+          "defaultVariant": true,
+          "second": 33000,
+          "time": "09:10:00",
+          "sceneObjectCode": "BS11",
+          "controlValue": 0,
+          "transitionMode": 4,
+          "sourceOperationFileOffset": "0x7ebe0"
+        },
+        {
+          "actorCode": "AKSK",
+          "scheduleVariantId": "0c119848e28a:source-table-0x2bb8",
+          "defaultVariant": true,
+          "second": 73800,
+          "time": "20:30:00",
+          "sceneObjectCode": "BS11",
+          "controlValue": 1,
+          "transitionMode": 5,
+          "sourceOperationFileOffset": "0x3400"
+        }
+      ]
+    },
+    {
+      "code": "BS12",
+      "model": "S1_D000_DBS9912G.MT5",
+      "sourceModel": "DBS9912G.MT5",
+      "pairedObjectCode": "BN12",
+      "browserPosition": [
+        -28.526599884033203,
+        1.311400055885315,
+        12.85219955444336
+      ],
+      "browserRotationDegrees": [
+        0,
+        -62.7978515625,
+        0
+      ],
+      "sourceFacingFixed": 11432,
+      "lowerY": 1.311400055885315,
+      "upperY": 3.711400032043457,
+      "nativeUnitsPerFrame": 0.01,
+      "nativeFramesPerSecond": 30,
+      "nativeUnitsPerSecond": 0.3,
+      "animationDurationSeconds": 7.999999920527141,
+      "events": [
+        {
+          "actorCode": "YURI",
+          "scheduleVariantId": "509425b19fd8:source-table-0x9667c",
+          "defaultVariant": true,
+          "second": 25200,
+          "time": "07:00:00",
+          "sceneObjectCode": "BS12",
+          "controlValue": 0,
+          "transitionMode": 4,
+          "sourceOperationFileOffset": "0x96df4"
+        },
+        {
+          "actorCode": "YURI",
+          "scheduleVariantId": "509425b19fd8:source-table-0x9667c",
+          "defaultVariant": true,
+          "second": 66600,
+          "time": "18:30:00",
+          "sceneObjectCode": "BS12",
+          "controlValue": 1,
+          "transitionMode": 5,
+          "sourceOperationFileOffset": "0x97410"
+        }
+      ]
+    },
+    {
+      "code": "BS13",
+      "model": "S1_D000_DBS9913G.MT5",
+      "sourceModel": "DBS9913G.MT5",
+      "pairedObjectCode": "BN13",
+      "browserPosition": [
+        -12.345100402832031,
+        1.277899980545044,
+        32.83449935913086
+      ],
+      "browserRotationDegrees": [
+        0,
+        180,
+        0
+      ],
+      "sourceFacingFixed": -32768,
+      "lowerY": 1.277899980545044,
+      "upperY": 3.6779000759124756,
+      "nativeUnitsPerFrame": 0.01,
+      "nativeFramesPerSecond": 30,
+      "nativeUnitsPerSecond": 0.3,
+      "animationDurationSeconds": 8.00000031789144,
+      "events": [
+        {
+          "actorCode": "ASOU",
+          "scheduleVariantId": "d00bbd8d244e:source-table-0x4680",
+          "defaultVariant": true,
+          "second": 25200,
+          "time": "07:00:00",
+          "sceneObjectCode": "BS13",
+          "controlValue": 0,
+          "transitionMode": 4,
+          "sourceOperationFileOffset": "0x4b9c"
+        },
+        {
+          "actorCode": "ASOU",
+          "scheduleVariantId": "d00bbd8d244e:source-table-0x4680",
+          "defaultVariant": true,
+          "second": 66600,
+          "time": "18:30:00",
+          "sceneObjectCode": "BS13",
+          "controlValue": 1,
+          "transitionMode": 5,
+          "sourceOperationFileOffset": "0x4c44"
+        }
+      ]
+    },
+    {
+      "code": "BS14",
+      "model": "S1_D000_DBS9914G.MT5",
+      "sourceModel": "DBS9914G.MT5",
+      "pairedObjectCode": "BN14",
+      "browserPosition": [
+        34.770999908447266,
+        1.274899959564209,
+        38.88970184326172
+      ],
+      "browserRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "sourceFacingFixed": 0,
+      "lowerY": 1.274899959564209,
+      "upperY": 3.6749000549316406,
+      "nativeUnitsPerFrame": 0.01,
+      "nativeFramesPerSecond": 30,
+      "nativeUnitsPerSecond": 0.3,
+      "animationDurationSeconds": 8.00000031789144,
+      "events": [
+        {
+          "actorCode": "SNKC",
+          "scheduleVariantId": "61407a2d771e:source-table-0x6939c",
+          "defaultVariant": true,
+          "second": 30600,
+          "time": "08:30:00",
+          "sceneObjectCode": "BS14",
+          "controlValue": 0,
+          "transitionMode": 4,
+          "sourceOperationFileOffset": "0x6a26c"
+        },
+        {
+          "actorCode": "SNKC",
+          "scheduleVariantId": "61407a2d771e:source-table-0x6939c",
+          "defaultVariant": true,
+          "second": 65700,
+          "time": "18:15:00",
+          "sceneObjectCode": "BS14",
+          "controlValue": 1,
+          "transitionMode": 5,
+          "sourceOperationFileOffset": "0x6a334"
+        }
+      ]
+    },
+    {
+      "code": "BS15",
+      "model": "S1_D000_DBS9915G.MT5",
+      "sourceModel": "DBS9915G.MT5",
+      "pairedObjectCode": "BN15",
+      "browserPosition": [
+        51.750999450683594,
+        1.1224000453948975,
+        40.97520065307617
+      ],
+      "browserRotationDegrees": [
+        0,
+        -36.507568359375,
+        0
+      ],
+      "sourceFacingFixed": 6646,
+      "lowerY": 1.1224000453948975,
+      "upperY": 3.522400140762329,
+      "nativeUnitsPerFrame": 0.01,
+      "nativeFramesPerSecond": 30,
+      "nativeUnitsPerSecond": 0.3,
+      "animationDurationSeconds": 8.00000031789144,
+      "events": [
+        {
+          "actorCode": "IZWA",
+          "scheduleVariantId": "9f95bfd29059:source-table-0x20df4",
+          "defaultVariant": true,
+          "second": 31200,
+          "time": "08:40:00",
+          "sceneObjectCode": "BS15",
+          "controlValue": 0,
+          "transitionMode": 4,
+          "sourceOperationFileOffset": "0x21794"
+        },
+        {
+          "actorCode": "TATM",
+          "scheduleVariantId": "d2e78a5c2292:source-table-0x73f98",
+          "defaultVariant": true,
+          "second": 33000,
+          "time": "09:10:00",
+          "sceneObjectCode": "BS15",
+          "controlValue": 0,
+          "transitionMode": 4,
+          "sourceOperationFileOffset": "0x745b0"
+        },
+        {
+          "actorCode": "IZWA",
+          "scheduleVariantId": "9f95bfd29059:source-table-0x20df4",
+          "defaultVariant": true,
+          "second": 73200,
+          "time": "20:20:00",
+          "sceneObjectCode": "BS15",
+          "controlValue": 1,
+          "transitionMode": 5,
+          "sourceOperationFileOffset": "0x21b5c"
+        }
+      ]
+    },
+    {
+      "code": "BS16",
+      "model": "S1_D000_DBS9916G.MT5",
+      "sourceModel": "DBS9916G.MT5",
+      "pairedObjectCode": "BN16",
+      "browserPosition": [
+        73.20719909667969,
+        0.07240000367164612,
+        67.08170318603516
+      ],
+      "browserRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "sourceFacingFixed": 0,
+      "lowerY": 0.07240000367164612,
+      "upperY": 2.472400188446045,
+      "nativeUnitsPerFrame": 0.01,
+      "nativeFramesPerSecond": 30,
+      "nativeUnitsPerSecond": 0.3,
+      "animationDurationSeconds": 8.000000615914663,
+      "events": [
+        {
+          "actorCode": "MASR",
+          "scheduleVariantId": "bded4b43e63d:source-table-0x3b2c0",
+          "defaultVariant": true,
+          "second": 25200,
+          "time": "07:00:00",
+          "sceneObjectCode": "BS16",
+          "controlValue": 0,
+          "transitionMode": 4,
+          "sourceOperationFileOffset": "0x3b978"
+        },
+        {
+          "actorCode": "MASR",
+          "scheduleVariantId": "bded4b43e63d:source-table-0x3b2c0",
+          "defaultVariant": true,
+          "second": 30660,
+          "time": "08:31:00",
+          "sceneObjectCode": "BS16",
+          "controlValue": 0,
+          "transitionMode": 4,
+          "sourceOperationFileOffset": "0x3b9e0"
+        },
+        {
+          "actorCode": "MASR",
+          "scheduleVariantId": "bded4b43e63d:source-table-0x3b2c0",
+          "defaultVariant": true,
+          "second": 66000,
+          "time": "18:20:00",
+          "sceneObjectCode": "BS16",
+          "controlValue": 1,
+          "transitionMode": 5,
+          "sourceOperationFileOffset": "0x3bacc"
+        }
+      ]
+    }
+  ]
+}

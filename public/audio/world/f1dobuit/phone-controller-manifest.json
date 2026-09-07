@@ -1,0 +1,33 @@
+{
+  "schema": "new-yokosuka-d000-phone-controller-audio-pack-v1",
+  "generatedBy": "tools/build_d000_phone_controller_audio_pack.mjs",
+  "source": {
+    "bank": "extracted_files/data/SCENE/01/SOUND/F1DOBUIT.SND",
+    "byteLength": 416968,
+    "sha256": "e77a6ea473b62e6356fe9b0152ec285b6ee115ef75cd912c443852ff6ff118be",
+    "evidence": "tools/evidence/d000-phone-controller-sound-evidence.json",
+    "evidenceSha256": "40938ca9a0b7750f98b90b52cbd6f2ba89a84cbe07a6a5e5c6dbd215701249eb"
+  },
+  "encoding": {
+    "container": "webm",
+    "codec": "opus",
+    "bitRate": 48000,
+    "application": "lowdelay"
+  },
+  "purpose": "native D000 telephone-book controller sound command",
+  "tracks": [
+    {
+      "commandHex": "a9056800",
+      "track": 104,
+      "playbackId": 33,
+      "sampleId": 57,
+      "dtpkRate": "0xe800",
+      "sampleRate": 11025,
+      "rawVolume": 127,
+      "compositionHex": "c0df217f80ff",
+      "decodedSource": "F1DOBUIT_00_103_SPD_33_Sample_39_Rate_E800.wav",
+      "byteLength": 4551,
+      "sha256": "ed9ba52990bce30807ef378663b59136292a5f7179c49e70d5276b179ad1d524"
+    }
+  ]
+}

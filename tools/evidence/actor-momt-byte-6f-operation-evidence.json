@@ -1,0 +1,57 @@
+{
+  "schema": "new-yokosuka-actor-momt-byte-6f-operation-evidence-v1",
+  "status": "exact-native-control-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 120,
+    "operationHex": "0x0078",
+    "handlerAddress": "0x0c165f1a",
+    "recordTag": "MOMT",
+    "recordByteOffset": "0x6f",
+    "verifiedRanges": {
+      "handlerAndLiteralIsland": {
+        "address": "0x0c165f1a",
+        "length": 184,
+        "sha256": "d7f49b1bbf0c428b41f9cddb2a98b34960614e16866cca181100110d306cada5"
+      },
+      "writeHelper": {
+        "address": "0x0c114330",
+        "length": 34,
+        "sha256": "9108f20fbde2a3f9221b0008ce312b156c2e02bbdc8fde8b2d161f5a5fdf15c0"
+      },
+      "queryHelper": {
+        "address": "0x0c114352",
+        "length": 32,
+        "sha256": "7c9a3128fe3dbfc3a568548da0227eb414a7803604f0e582cefe217abb0ab778"
+      }
+    },
+    "provenBehavior": "Selector zero writes the low byte of argument one to the resolved actor's literal MOMT record at +0x6f. Selector one reads the same field with signed-byte extension. A missing actor follows the native zero/no-op route."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 238,
+    "provenCallCount": 236,
+    "unresolvedDynamicActorCallCount": 2,
+    "dialogueRegionCallCount": 13,
+    "areaCount": 61,
+    "actorArgumentKindCounts": {
+      "constant": 146,
+      "frame-field": 81,
+      "runtime": 2,
+      "scene-field": 9
+    },
+    "selectorCounts": {
+      "0": 234,
+      "1": 4
+    }
+  },
+  "evidenceBoundary": [
+    "MOMT remains the exact native associated-record tag.",
+    "The byte at +0x6f is retained as a numeric field without a guessed gameplay label.",
+    "The two dynamically sourced actor operands remain unresolved."
+  ]
+}

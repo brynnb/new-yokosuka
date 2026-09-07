@@ -1,0 +1,595 @@
+{
+  "schema": "new-yokosuka-native-free-conversation-v1",
+  "evidenceBoundary": [
+    "Operation identity, dispatch cases, code hashes, capacities, copied field offsets, and MAPINFO call arguments are exact.",
+    "The native subsystem is identified as free conversation by its executable debug strings and its complete person-selection and conversation state machine.",
+    "Numeric fields, property selectors, state values, and relative tables remain unnamed where their higher-level meaning is not yet proven.",
+    "This manager is distinct from the general spatial door/object interaction manager."
+  ],
+  "executableEvidence": {
+    "filename": "1ST_READ.BIN",
+    "runtimeBase": "0xc010000",
+    "sha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "verifiedCodeRanges": {
+      "operationDispatch": {
+        "runtimeAddress": "0xc1592e0",
+        "size": 434,
+        "sha256": "5da821441088ac545333c4ccc3649fe32504c1c866c780d762fba32d31a28228"
+      },
+      "personPropertyQuery": {
+        "runtimeAddress": "0xc159492",
+        "size": 236,
+        "sha256": "291598eb4becd73de183af34f630888d3b0fade19974198d7881e23cef245d2c"
+      },
+      "forcePerson": {
+        "runtimeAddress": "0xc1595c8",
+        "size": 196,
+        "sha256": "c05829efd91049339003b2b8dfdc34d38df1ed008846d9e109b79201f8e39e3f"
+      },
+      "configurePersonSelector": {
+        "runtimeAddress": "0xc15968c",
+        "size": 80,
+        "sha256": "953750e094806988401863d75df94367b68cf982fbf7d0ded1cef6ef5a8f75d1"
+      },
+      "resetCurrentPerson": {
+        "runtimeAddress": "0xc159700",
+        "size": 86,
+        "sha256": "69c3e8d05a0170e8e8c562c7d21f208803501e828a14ab7e5a27c69bb62e997b"
+      },
+      "allocateRuntimePerson": {
+        "runtimeAddress": "0xc159780",
+        "size": 66,
+        "sha256": "28d7b783954f3de45a2707fc15080626b8087256a98d6d47bde3b651e23bde11"
+      },
+      "findRuntimePerson": {
+        "runtimeAddress": "0xc1597c2",
+        "size": 102,
+        "sha256": "86762e1e6863d57cfc6a58d24ceddb64bceacb91825af39aad4ed5963857496e"
+      },
+      "initializePersonRecord": {
+        "runtimeAddress": "0xc159850",
+        "size": 136,
+        "sha256": "0a467950667e8739e1305285e21789997f8359e606c5f1dfacc6aef66953c664"
+      },
+      "loadRoomPersonRecords": {
+        "runtimeAddress": "0xc1598e0",
+        "size": 386,
+        "sha256": "8d9e079f15ad9a910f4ff13d09a6c048eb0f5b169d9a29d57d148a151bae300f"
+      },
+      "updateManager": {
+        "runtimeAddress": "0xc159b68",
+        "size": 382,
+        "sha256": "639823ad6f6b3d3f8d73398472ee5a54f3b4181de4a08f2772d43f4c1df5c0ca"
+      },
+      "selectEligiblePerson": {
+        "runtimeAddress": "0xc159ce6",
+        "size": 402,
+        "sha256": "eea3c18838e95a1f24b5b1316398ff5543eafb8f5d2ac747a3f83151ebceabb7"
+      },
+      "updatePersonState": {
+        "runtimeAddress": "0xc159e78",
+        "size": 360,
+        "sha256": "f3f62bbb3d0f92ff0c1157dd860cc5d99b8172d25b4cb00f9d4d9588e4022867"
+      },
+      "reloadDynamicRecords": {
+        "runtimeAddress": "0xc15a520",
+        "size": 728,
+        "sha256": "00040a54008f46ecf132cb3fcb46ad121eb88d3d08c9247ab08d6b57698e9c76"
+      },
+      "stateBankRead": {
+        "runtimeAddress": "0xc15aef8",
+        "size": 76,
+        "sha256": "54f703003755706a8e17903adaa9ce5145e1c248d8d7f1ecf7af8d550368b49b"
+      },
+      "stateBankWrite": {
+        "runtimeAddress": "0xc15af44",
+        "size": 60,
+        "sha256": "8f24e255c1e6f2447d06da1861b72d938c8561b99db2a9682e7479dcc68ce613"
+      },
+      "operationStateBankRead": {
+        "runtimeAddress": "0xc15af80",
+        "size": 54,
+        "sha256": "d62fd24bfeebb59832559223e1ae3d052498b7e1b07c2dfe595f77eadb7c4733"
+      },
+      "operationStateBankWrite": {
+        "runtimeAddress": "0xc15afb6",
+        "size": 58,
+        "sha256": "29d65d02e0dd00ec47472dd30e8c1370ba8442247f08d47b4e0c933154a14d5a"
+      },
+      "conversationStateMachine": {
+        "runtimeAddress": "0xc15c158",
+        "size": 2974,
+        "sha256": "e4e55cd84316c3744415b487aa6275ff7dd08bd154b45b7e623f8cc3a1f242c5"
+      }
+    }
+  },
+  "operation": {
+    "operationId": 81,
+    "operationHex": "0x0051",
+    "handlerAddress": "0xc1592e0",
+    "suboperations": [
+      {
+        "suboperation": 0,
+        "description": "shut down and clear the free-conversation manager",
+        "callCount": 342,
+        "roomCount": 101
+      },
+      {
+        "suboperation": 1,
+        "description": "load the current room's authored person records",
+        "callCount": 2,
+        "roomCount": 2
+      },
+      {
+        "suboperation": 2,
+        "description": "mark free conversation initialized or resumed",
+        "callCount": 339,
+        "roomCount": 100
+      },
+      {
+        "suboperation": 6,
+        "description": "set or clear manager flag byte +0x0f bit 0",
+        "callCount": 0,
+        "roomCount": 0
+      },
+      {
+        "suboperation": 7,
+        "description": "force the current person by exact actor identity and a 16-bit value",
+        "callCount": 0,
+        "roomCount": 0
+      },
+      {
+        "suboperation": 8,
+        "description": "release the current person and reset its native state",
+        "callCount": 0,
+        "roomCount": 0
+      },
+      {
+        "suboperation": 9,
+        "description": "configure a person's signed selector and optional 16-bit range",
+        "callCount": 0,
+        "roomCount": 0
+      },
+      {
+        "suboperation": 10,
+        "description": "write one indexed native float slot",
+        "callCount": 119,
+        "roomCount": 9
+      },
+      {
+        "suboperation": 11,
+        "description": "read state bank 2 at a 16-bit index",
+        "callCount": 4334,
+        "roomCount": 103
+      },
+      {
+        "suboperation": 12,
+        "description": "write state bank 2 at a 16-bit index",
+        "callCount": 1811,
+        "roomCount": 77
+      },
+      {
+        "suboperation": 13,
+        "description": "read state bank 3 at a 16-bit index",
+        "callCount": 0,
+        "roomCount": 0
+      },
+      {
+        "suboperation": 14,
+        "description": "write state bank 3 at a 16-bit index",
+        "callCount": 0,
+        "roomCount": 0
+      },
+      {
+        "suboperation": 15,
+        "description": "read state bank 4 at a 16-bit index",
+        "callCount": 302,
+        "roomCount": 101
+      },
+      {
+        "suboperation": 16,
+        "description": "write state bank 4 at a 16-bit index",
+        "callCount": 148,
+        "roomCount": 33
+      },
+      {
+        "suboperation": 17,
+        "description": "query property selector 0 on the current person",
+        "callCount": 2,
+        "roomCount": 2
+      },
+      {
+        "suboperation": 18,
+        "description": "query a property selector on an exact person identity",
+        "callCount": 0,
+        "roomCount": 0
+      },
+      {
+        "suboperation": 19,
+        "description": "query an indexed property selector on an exact person identity",
+        "callCount": 0,
+        "roomCount": 0
+      },
+      {
+        "suboperation": 20,
+        "description": "request the native state-8 transition for a person",
+        "callCount": 0,
+        "roomCount": 0
+      },
+      {
+        "suboperation": 21,
+        "description": "query manager flag byte +0x0e bit 7",
+        "callCount": 45,
+        "roomCount": 11
+      },
+      {
+        "suboperation": 22,
+        "description": "reset the manager and all native person records",
+        "callCount": 0,
+        "roomCount": 0
+      },
+      {
+        "suboperation": 23,
+        "description": "drain the manager command queue",
+        "callCount": 0,
+        "roomCount": 0
+      },
+      {
+        "suboperation": 24,
+        "description": "build the native person-related identity list",
+        "callCount": 0,
+        "roomCount": 0
+      },
+      {
+        "suboperation": 25,
+        "description": "return false",
+        "callCount": 0,
+        "roomCount": 0
+      },
+      {
+        "suboperation": 26,
+        "description": "query selected-person runtime flag +0x1d bit 1",
+        "callCount": 0,
+        "roomCount": 0
+      },
+      {
+        "suboperation": 27,
+        "description": "set or clear manager flag byte +0x0e bit 4",
+        "callCount": 0,
+        "roomCount": 0
+      },
+      {
+        "suboperation": 28,
+        "description": "query the native free-conversation availability guard",
+        "callCount": 11,
+        "roomCount": 10
+      },
+      {
+        "suboperation": 29,
+        "description": "clear the manager's auxiliary global word",
+        "callCount": 0,
+        "roomCount": 0
+      },
+      {
+        "suboperation": 30,
+        "description": "write the manager's auxiliary global word",
+        "callCount": 96,
+        "roomCount": 96
+      }
+    ],
+    "runtimeValuedSuboperationCallCount": 3
+  },
+  "managerSchema": {
+    "roomPersonCapacity": 12,
+    "dynamicPersonCapacity": 24,
+    "runtimePersonRecordSize": 120,
+    "runtimePersonArrayOffset": "0x4c",
+    "roomPersonCountOffset": "0x40",
+    "dynamicPersonCountOffset": "0x44",
+    "selectedPersonPointerOffset": "0x48",
+    "requestedPersonIdentityOffset": "0x20",
+    "previousPersonIdentityOffset": "0x24",
+    "staticToRuntimeFields": [
+      {
+        "source": "+0x00 dword",
+        "runtime": "+0x04",
+        "meaning": "person identity"
+      },
+      {
+        "source": "+0x08 byte",
+        "runtime": "+0x16",
+        "meaning": "numeric field"
+      },
+      {
+        "source": "+0x09 byte",
+        "runtime": "+0x14",
+        "meaning": "numeric field"
+      },
+      {
+        "source": "+0x0a byte",
+        "runtime": "+0x15",
+        "meaning": "numeric field"
+      },
+      {
+        "source": "+0x0b byte",
+        "runtime": "+0x17",
+        "meaning": "numeric field"
+      },
+      {
+        "source": "+0x10 relative dword",
+        "runtime": "+0x38",
+        "meaning": "relative table"
+      },
+      {
+        "source": "+0x14 relative dword",
+        "runtime": "+0x40",
+        "meaning": "relative table"
+      },
+      {
+        "source": "+0x18 relative dword",
+        "runtime": "+0x44",
+        "meaning": "relative table"
+      },
+      {
+        "source": "+0x20 relative dword",
+        "runtime": "+0x28",
+        "meaning": "relative table"
+      },
+      {
+        "source": "+0x24 relative dword",
+        "runtime": "+0x30",
+        "meaning": "relative table"
+      },
+      {
+        "source": "+0x28 relative dword",
+        "runtime": "+0x2c",
+        "meaning": "relative table"
+      },
+      {
+        "source": "+0x2c relative dword",
+        "runtime": "+0x3c",
+        "meaning": "relative table"
+      }
+    ]
+  },
+  "summary": {
+    "mapinfoCount": 136,
+    "operationCallCount": 7554,
+    "constantSuboperationCounts": {
+      "0": 342,
+      "1": 2,
+      "2": 339,
+      "10": 119,
+      "11": 4334,
+      "12": 1811,
+      "15": 302,
+      "16": 148,
+      "17": 2,
+      "21": 45,
+      "28": 11,
+      "30": 96,
+      "runtime": 3
+    },
+    "mapsWithCalls": 115
+  },
+  "representativeCalls": [
+    {
+      "disc": 1,
+      "area": "D000",
+      "callFileOffset": "0x151e",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x1514"
+        }
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "D000",
+      "callFileOffset": "0x2a2e",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 2,
+          "hex": "0x00000002",
+          "source": "0x2a24"
+        }
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "D000",
+      "callFileOffset": "0xafb2",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 11,
+          "hex": "0x0000000b",
+          "source": "0xafa6"
+        },
+        {
+          "kind": "constant",
+          "value": 641,
+          "hex": "0x00000281",
+          "source": "0xafa4"
+        }
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "D000",
+      "callFileOffset": "0xd1e4",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 28,
+          "hex": "0x0000001c",
+          "source": "0xd1da"
+        }
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "D000",
+      "callFileOffset": "0xd524",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 21,
+          "hex": "0x00000015",
+          "source": "0xd51a"
+        }
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "D000",
+      "callFileOffset": "0xe2c6",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 12,
+          "hex": "0x0000000c",
+          "source": "0xe2b8"
+        },
+        {
+          "kind": "constant",
+          "value": 800,
+          "hex": "0x00000320",
+          "source": "0xe2b6"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0xe2b4"
+        }
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "D000",
+      "callFileOffset": "0x13da2",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 15,
+          "hex": "0x0000000f",
+          "source": "0x13d94"
+        },
+        {
+          "kind": "runtime",
+          "source": "@(40,r14) at 0x13d92"
+        }
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "D000",
+      "callFileOffset": "0x2b610",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 30,
+          "hex": "0x0000001e",
+          "source": "0x2b604"
+        },
+        {
+          "kind": "runtime",
+          "source": "@(20,r14) at 0x2b602"
+        }
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "D000",
+      "callFileOffset": "0x4af1e",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 16,
+          "hex": "0x00000010",
+          "source": "0x4af10"
+        },
+        {
+          "kind": "constant",
+          "value": 9,
+          "hex": "0x00000009",
+          "source": "0x4af0e"
+        },
+        {
+          "kind": "runtime",
+          "source": "@(4,r14) at 0x4af0c"
+        }
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "D000",
+      "callFileOffset": "0x64a4c",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x64a42"
+        }
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "D000",
+      "callFileOffset": "0x83060",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 10,
+          "hex": "0x0000000a",
+          "source": "0x83052"
+        },
+        {
+          "kind": "constant",
+          "value": 1229474649,
+          "hex": "0x49484b59",
+          "ascii": "YKHI",
+          "source": "0x83050"
+        },
+        {
+          "kind": "constant",
+          "value": 1036831949,
+          "hex": "0x3dcccccd",
+          "source": "0x8304e"
+        }
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "JD00",
+      "callFileOffset": "0x5dea6",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 17,
+          "hex": "0x00000011",
+          "source": "0x5de9a"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x5de98"
+        }
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "MFSY",
+      "callFileOffset": "0x6141e",
+      "arguments": []
+    }
+  ],
+  "fullReport": ".disc-work/dialogue/native-free-conversation.json"
+}

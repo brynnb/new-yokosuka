@@ -1,0 +1,4781 @@
+{
+  "schema": "new-yokosuka-native-world-audio-call-summary-v2",
+  "generatedBy": "tools/audio/extract_native_world_audio_calls.py",
+  "detailedReport": ".disc-work/audio/native-world-audio-calls.json",
+  "semanticPolicy": [
+    "Scan exact SCN3 dispatcher calls for operation 0x006c.",
+    "Convert constant runtime words to little-endian DTPK commands.",
+    "Join commands to F1 location banks named by that MAPINFO.",
+    "Separately join commands to SYSTEM1 only after proving one source-identical bank is present on all three discs.",
+    "Retain runtime commands, ambiguous matches, and commands absent from both proven scopes as unresolved.",
+    "Treat object tags in the same generated function as candidates, not semantic mappings."
+  ],
+  "summary": {
+    "mapCount": 119,
+    "soundCallCount": 6032,
+    "statusCounts": {
+      "location-bank-ambiguous": 43,
+      "location-bank-resolved": 721,
+      "not-in-proven-map-or-shared-bank": 3066,
+      "runtime-command-unresolved": 1880,
+      "shared-system-bank-resolved": 322
+    },
+    "uniqueDirectCommandCount": 250
+  },
+  "sharedSystemBanks": [
+    {
+      "filename": "SYSTEM1.SND",
+      "sha256": "d25eb40cdfc129a09f380922752891bd47e6e1714a0ddb4556fea6875dad2f59",
+      "sourceDiscs": [
+        1,
+        2,
+        3
+      ]
+    }
+  ],
+  "areas": [
+    {
+      "disc": 1,
+      "area": "D000",
+      "source": "SCENE/01/D000/MAPINFO.BIN",
+      "sourceSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+      "soundCallCount": 150,
+      "statusCounts": {
+        "location-bank-resolved": 12,
+        "not-in-proven-map-or-shared-bank": 94,
+        "runtime-command-unresolved": 26,
+        "shared-system-bank-resolved": 18
+      },
+      "directCommands": [
+        "a0040000",
+        "a0090000",
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a8250000",
+        "a8280000",
+        "a82a0000",
+        "a83f0000",
+        "a8640000",
+        "a8640100",
+        "a8640200",
+        "a9040000",
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9040400",
+        "a9040500",
+        "a9041b00",
+        "a9041c00",
+        "a9041d00",
+        "a9041e00",
+        "a9050100",
+        "a9050200",
+        "a9050300",
+        "a9050400",
+        "a9050500",
+        "a9054200",
+        "a9056800",
+        "ab021800",
+        "ab021900",
+        "ab050400",
+        "ab050500",
+        "ab050600",
+        "ab050700",
+        "ab050800",
+        "ab050900",
+        "ab060100"
+      ],
+      "candidateObjectTags": [
+        "BUS_"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DAZA",
+      "source": "SCENE/01/DAZA/MAPINFO.BIN",
+      "sourceSha256": "0017e3ff3f2f899dab42b9629a596bcbadc9dd2e26f9b3468f084772cc79fe40",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 1,
+      "area": "DBHB",
+      "source": "SCENE/01/DBHB/MAPINFO.BIN",
+      "sourceSha256": "34c9c357ac832d80fd9bd9b8cadbf02a770388a394c65a234d35594bcedfe9a7",
+      "soundCallCount": 48,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 27,
+        "runtime-command-unresolved": 19,
+        "shared-system-bank-resolved": 2
+      },
+      "directCommands": [
+        "a0001200",
+        "a0040000",
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a83f0000",
+        "a9040000",
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9040400",
+        "a9040600",
+        "a9040700",
+        "a9040800",
+        "a9040900",
+        "ab000000",
+        "ab001100"
+      ],
+      "candidateObjectTags": [
+        "JBOX"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DBYO",
+      "source": "SCENE/01/DBYO/MAPINFO.BIN",
+      "sourceSha256": "85db5f811d8d856d4895c77bde6cb24e250757d8a243b532b23bba91e3737ce1",
+      "soundCallCount": 33,
+      "statusCounts": {
+        "location-bank-resolved": 5,
+        "not-in-proven-map-or-shared-bank": 9,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a9050000",
+        "a9050300",
+        "a9050700",
+        "a9050900",
+        "ab021900"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 1,
+      "area": "DCBN",
+      "source": "SCENE/01/DCBN/MAPINFO.BIN",
+      "sourceSha256": "2af6d72477e1bd9026fbf3e551dc7550857e0ae0e68191164c203b2297dce8ee",
+      "soundCallCount": 32,
+      "statusCounts": {
+        "location-bank-resolved": 5,
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a9051100",
+        "a9051200",
+        "a9051300",
+        "a9051400",
+        "a9051500"
+      ],
+      "candidateObjectTags": [
+        "dkop"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DCHA",
+      "source": "SCENE/01/DCHA/MAPINFO.BIN",
+      "sourceSha256": "239581fc139bbe56fe66e9eca60fbac97caa2a11c6deec248ce6feb98614c82d",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 1,
+      "area": "DGCT",
+      "source": "SCENE/01/DGCT/MAPINFO.BIN",
+      "sourceSha256": "176200fb608f940b36ed09c267bde8f7b6f7924f037f358519a9149e6195ccea",
+      "soundCallCount": 175,
+      "statusCounts": {
+        "location-bank-resolved": 48,
+        "not-in-proven-map-or-shared-bank": 73,
+        "runtime-command-unresolved": 19,
+        "shared-system-bank-resolved": 35
+      },
+      "directCommands": [
+        "a0000100",
+        "a0001100",
+        "a0001200",
+        "a0020000",
+        "a0030000",
+        "a0040000",
+        "a0050000",
+        "a00a0000",
+        "a0110000",
+        "a8010000",
+        "a8010100",
+        "a8010200",
+        "a8130000",
+        "a8130100",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a81f0000",
+        "a81f0100",
+        "a81f0200",
+        "a83f0000",
+        "a85e0000",
+        "a9040000",
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9040400",
+        "a9040600",
+        "a9040700",
+        "a9040800",
+        "a9040900",
+        "a9050000",
+        "a9050100",
+        "a9050200",
+        "a9050300",
+        "a9050400",
+        "a9050500",
+        "a9050600",
+        "a9050700",
+        "a9050800",
+        "a9050900",
+        "a9050a00",
+        "a9050b00",
+        "a9050c00",
+        "a9050d00",
+        "a9050f00",
+        "a9051100",
+        "a9051200",
+        "a9051300",
+        "a9051400",
+        "a9051500",
+        "a9051600",
+        "a9051800",
+        "a9051900",
+        "a9051a00",
+        "a9051b00",
+        "a9051c00",
+        "a9051d00",
+        "a9051e00",
+        "a9051f00",
+        "a9052000",
+        "a9052100",
+        "a9052200",
+        "a9052300",
+        "a9052400",
+        "a9052500",
+        "a9052600",
+        "ab000000",
+        "ab000900",
+        "ab000a00",
+        "ab001100",
+        "ab770300",
+        "ab770400",
+        "ab770600",
+        "ab770700",
+        "ab770900"
+      ],
+      "candidateObjectTags": [
+        "JBOX"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DHQB",
+      "source": "SCENE/01/DHQB/MAPINFO.BIN",
+      "sourceSha256": "79e56d21feda1d331d0734730e5a8b52766262cee6cb6ff3304a6fbdc502508d",
+      "soundCallCount": 14,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 12,
+        "runtime-command-unresolved": 2
+      },
+      "directCommands": [
+        "a0000200",
+        "a0040000",
+        "a00a0000",
+        "a83f0000",
+        "a8640200"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 1,
+      "area": "DJAZ",
+      "source": "SCENE/01/DJAZ/MAPINFO.BIN",
+      "sourceSha256": "9853c59a5e72b7321e7b8bd695bcc3464d8fc1d332b3c3352b2c7751f7c74472",
+      "soundCallCount": 60,
+      "statusCounts": {
+        "location-bank-resolved": 26,
+        "not-in-proven-map-or-shared-bank": 15,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a9050000",
+        "a9050100",
+        "a9050200",
+        "a9050300",
+        "a9050400",
+        "a9050500",
+        "a9050600",
+        "a9050700",
+        "a9050800",
+        "a9050900",
+        "a9050a00",
+        "a9050b00",
+        "a9050c00",
+        "a9050d00",
+        "a9050e00",
+        "a9051100"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 1,
+      "area": "DKPA",
+      "source": "SCENE/01/DKPA/MAPINFO.BIN",
+      "sourceSha256": "4a54bd41a5222f05b2103f5b0286a1d4c85d7bb64ab9ab108e51abe96f117db5",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 1,
+      "area": "DKTY",
+      "source": "SCENE/01/DKTY/MAPINFO.BIN",
+      "sourceSha256": "311a7af67b9438116d85555956b62bb04465e9afbdbe1a82ca0e4aee77e12fff",
+      "soundCallCount": 32,
+      "statusCounts": {
+        "location-bank-resolved": 2,
+        "not-in-proven-map-or-shared-bank": 11,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a83f0000",
+        "a85e0000",
+        "a9050000",
+        "a9050b00"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 1,
+      "area": "DMAJ",
+      "source": "SCENE/01/DMAJ/MAPINFO.BIN",
+      "sourceSha256": "8531e5deb57c2320bcafd1a89a5d5302349972d8e359e0cfe065cccfac2e360f",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 1,
+      "area": "DNOZ",
+      "source": "SCENE/01/DNOZ/MAPINFO.BIN",
+      "sourceSha256": "27aedab1046cd7e203e09b964cb87b17afd54b3a58ea6e8789bea20ec075b72e",
+      "soundCallCount": 7,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 7
+      },
+      "directCommands": [
+        "a0001200",
+        "a0040000",
+        "a00a0000",
+        "a84a0000"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 1,
+      "area": "DPIZ",
+      "source": "SCENE/01/DPIZ/MAPINFO.BIN",
+      "sourceSha256": "99d9e371e53efbda6570444a5a6fcdb89b82e82b6e2cd136e5bc1918d33243f1",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 1,
+      "area": "DRHT",
+      "source": "SCENE/01/DRHT/MAPINFO.BIN",
+      "sourceSha256": "d604b2b8f85bb76fe12a4bdf2882869afa2b8c192417c042006ee19fdc61e02a",
+      "soundCallCount": 25,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 6,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 1,
+      "area": "DRME",
+      "source": "SCENE/01/DRME/MAPINFO.BIN",
+      "sourceSha256": "2a6cace548f18944dd592fd533cd79dce24154b4b488e677f39222c5fd11a5d3",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 1,
+      "area": "DRSA",
+      "source": "SCENE/01/DRSA/MAPINFO.BIN",
+      "sourceSha256": "9429fd83a1ac20930f6e55241a41d5e03726bae8e4f941195b40031a82566f5d",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 1,
+      "area": "DSBA",
+      "source": "SCENE/01/DSBA/MAPINFO.BIN",
+      "sourceSha256": "9c9eb46d13a157affcae72da038bd0968fbd414a3e25cfdc3c9e214332d89ca7",
+      "soundCallCount": 25,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 6,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 1,
+      "area": "DSKI",
+      "source": "SCENE/01/DSKI/MAPINFO.BIN",
+      "sourceSha256": "fd91a31cb4411fb98f1391b0894273326f26cd21ce1679fd2d5be0883c1091d8",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 1,
+      "area": "DSLI",
+      "source": "SCENE/01/DSLI/MAPINFO.BIN",
+      "sourceSha256": "6ad5b041a22127bcf90e9d75f3dd7d5bf183beb29fec24ee17cf8047c812f2bc",
+      "soundCallCount": 48,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 27,
+        "runtime-command-unresolved": 19,
+        "shared-system-bank-resolved": 2
+      },
+      "directCommands": [
+        "a0001200",
+        "a0040000",
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a83f0000",
+        "a9040000",
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9040400",
+        "a9040600",
+        "a9040700",
+        "a9040800",
+        "a9040900",
+        "ab000000",
+        "ab001100"
+      ],
+      "candidateObjectTags": [
+        "JBOX"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DSLT",
+      "source": "SCENE/01/DSLT/MAPINFO.BIN",
+      "sourceSha256": "29fc119e1f8e414dc50a97f6caa28c53b7d5712ad44d283eca90e6f14a24cfc2",
+      "soundCallCount": 74,
+      "statusCounts": {
+        "location-bank-resolved": 33,
+        "not-in-proven-map-or-shared-bank": 22,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a0100000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a9050000",
+        "a9052700",
+        "a9052800",
+        "a9052900",
+        "a9052a00",
+        "a9052b00",
+        "a9052c00",
+        "a9052d00",
+        "a9052e00",
+        "a9052f00",
+        "a9053000",
+        "a9053100",
+        "a9053200",
+        "a9053300",
+        "a9053400",
+        "a9053500",
+        "a9053600",
+        "a9053700",
+        "a9053800"
+      ],
+      "candidateObjectTags": [
+        "DRAM"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "DSUS",
+      "source": "SCENE/01/DSUS/MAPINFO.BIN",
+      "sourceSha256": "52b007d45b789521bb94d0eed560e3d1a3d76e16b30a4cd5fdb4d65a76a0c3a1",
+      "soundCallCount": 25,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 6,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 1,
+      "area": "DTKY",
+      "source": "SCENE/01/DTKY/MAPINFO.BIN",
+      "sourceSha256": "9450a432f5f4fd74f5b9762c8c94f4b9fca47ecb6f39c0ee03d60cc41cd72ed2",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 1,
+      "area": "DURN",
+      "source": "SCENE/01/DURN/MAPINFO.BIN",
+      "sourceSha256": "d38ba150dca8fc6af4bb97656b1745e4bc3d90dbc8817cc5c78fcc306cd830d5",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 1,
+      "area": "DYKZ",
+      "source": "SCENE/01/DYKZ/MAPINFO.BIN",
+      "sourceSha256": "d29a738d3c4157db4724bc47be3d39636f132126772257472da13edae761a2dc",
+      "soundCallCount": 25,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 6,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 1,
+      "area": "JABE",
+      "source": "SCENE/01/JABE/MAPINFO.BIN",
+      "sourceSha256": "c11c10154da5aa1d7fa0c0df9a3c3417215936d0d738731a0dbfde04eeec5d5f",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "location-bank-resolved": 3,
+        "not-in-proven-map-or-shared-bank": 5,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a9051100",
+        "a9051400",
+        "a9051500"
+      ],
+      "candidateObjectTags": [
+        "dkop"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "JD00",
+      "source": "SCENE/01/JD00/MAPINFO.BIN",
+      "sourceSha256": "8582ed57e13593d7622d24216ef8f93e5393b13fffd2132f70500f9e6ce2a43b",
+      "soundCallCount": 128,
+      "statusCounts": {
+        "location-bank-resolved": 3,
+        "not-in-proven-map-or-shared-bank": 87,
+        "runtime-command-unresolved": 21,
+        "shared-system-bank-resolved": 17
+      },
+      "directCommands": [
+        "a0040000",
+        "a0090000",
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a8150000",
+        "a8250000",
+        "a83f0000",
+        "a84a0000",
+        "a9040000",
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9040400",
+        "a9040500",
+        "a9041600",
+        "ab050400",
+        "ab050500",
+        "ab050600",
+        "ab050700",
+        "ab050800",
+        "ab060100",
+        "ab060400",
+        "ab760100",
+        "ab760400",
+        "ab761a00",
+        "ab762700"
+      ],
+      "candidateObjectTags": [
+        "TBOX"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "JHD0",
+      "source": "SCENE/01/JHD0/MAPINFO.BIN",
+      "sourceSha256": "e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca",
+      "soundCallCount": 140,
+      "statusCounts": {
+        "location-bank-resolved": 45,
+        "not-in-proven-map-or-shared-bank": 75,
+        "runtime-command-unresolved": 20
+      },
+      "directCommands": [
+        "a0000200",
+        "a0040000",
+        "a00a0000",
+        "a80f0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a8240000",
+        "a83f0000",
+        "a8420000",
+        "a8460000",
+        "a9050700",
+        "a9050800",
+        "a9050900",
+        "a9050c00",
+        "a9050d00",
+        "a9051000",
+        "a9051100",
+        "a9051200",
+        "a9051700",
+        "a9051800",
+        "a9051900",
+        "a9051a00",
+        "a9051b00",
+        "a9051c00",
+        "a9051d00",
+        "a9051e00",
+        "a9051f00",
+        "a9052100",
+        "a9052300",
+        "a9053200",
+        "a9053700",
+        "a9053800"
+      ],
+      "candidateObjectTags": [
+        "KAK1",
+        "KAK2",
+        "TEGS"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "JOMO",
+      "source": "SCENE/01/JOMO/MAPINFO.BIN",
+      "sourceSha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
+      "soundCallCount": 185,
+      "statusCounts": {
+        "location-bank-resolved": 25,
+        "not-in-proven-map-or-shared-bank": 121,
+        "runtime-command-unresolved": 20,
+        "shared-system-bank-resolved": 19
+      },
+      "directCommands": [
+        "a0000100",
+        "a0001200",
+        "a0040000",
+        "a00a0000",
+        "a8060000",
+        "a80f0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a8280000",
+        "a83a0000",
+        "a83f0000",
+        "a83f0100",
+        "a8460000",
+        "a8470000",
+        "a84a0000",
+        "a84f0000",
+        "a8500000",
+        "a9040000",
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9050e00",
+        "a9050f00",
+        "a9051500",
+        "a9051600",
+        "a9051800",
+        "a9051900",
+        "a9052000",
+        "a9054d00",
+        "a9055c00",
+        "a9055d00",
+        "a9056000",
+        "a9056100",
+        "a9056200",
+        "a9056300",
+        "a9056500",
+        "a9056600",
+        "a9056800",
+        "a9056900",
+        "a9056a00",
+        "ab050400",
+        "ab050500",
+        "ab050600",
+        "ab050700",
+        "ab050800",
+        "ab050900",
+        "ab060000",
+        "ab060100"
+      ],
+      "candidateObjectTags": [
+        "STAN"
+      ]
+    },
+    {
+      "disc": 1,
+      "area": "JU00",
+      "source": "SCENE/01/JU00/MAPINFO.BIN",
+      "sourceSha256": "3887bbf6e00eb152f7cca34d23841cc743ee7345a2db6b7d27e8303f6274924d",
+      "soundCallCount": 88,
+      "statusCounts": {
+        "location-bank-resolved": 11,
+        "not-in-proven-map-or-shared-bank": 58,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a0001300",
+        "a0040000",
+        "a00a0000",
+        "a0100000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a82a0100",
+        "a83f0000",
+        "a8440000",
+        "a9040000",
+        "a9040200",
+        "a9040300",
+        "a9040400",
+        "a9040500",
+        "a9040600",
+        "a9040900",
+        "a9050100",
+        "a9050700",
+        "a9050800",
+        "a9055800",
+        "a9055900"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 1,
+      "area": "OP00",
+      "source": "SCENE/01/OP00/MAPINFO.BIN",
+      "sourceSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+      "soundCallCount": 20,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 20
+      },
+      "directCommands": [
+        "a0001200",
+        "a0040000",
+        "a00a0000",
+        "a6000000",
+        "a8120000",
+        "a83f0000",
+        "a8420000",
+        "a9042700",
+        "a9042800",
+        "a9043700",
+        "a9043800"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 1,
+      "area": "OP02",
+      "source": "SCENE/01/OP02/MAPINFO.BIN",
+      "sourceSha256": "5463ad11cf2ed99764160795be2e1576a874d8c928b8ccc9db437ad32b25d6d0",
+      "soundCallCount": 4,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 4
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a82b0000"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 1,
+      "area": "TATQ",
+      "source": "SCENE/01/TATQ/MAPINFO.BIN",
+      "sourceSha256": "33fc374132d53ed955a4a1704350582afd122b4e86635867808d4c312e6bc4a6",
+      "soundCallCount": 51,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 32,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a8180000",
+        "a8180100",
+        "aa0a0400",
+        "aa0a0500",
+        "aa0a0600",
+        "aa0a0a00",
+        "aa0a0b00"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 1,
+      "area": "TOKI",
+      "source": "SCENE/01/TOKI/MAPINFO.BIN",
+      "sourceSha256": "6167c444368db980b6e2534d13b237dfec77be89c3258bbac96bc6efc67e481f",
+      "soundCallCount": 10,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 10
+      },
+      "directCommands": [
+        "a0001200",
+        "a0040000",
+        "a00a0000",
+        "a83f0000"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 1,
+      "area": "YD01",
+      "source": "SCENE/01/YD01/MAPINFO.BIN",
+      "sourceSha256": "245459a1f9936e5582954375bff9b49ced48000d301b2bbf19e135b145494baa",
+      "soundCallCount": 3,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 3
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a80f0000"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "D000",
+      "source": "SCENE/02/D000/MAPINFO.BIN",
+      "sourceSha256": "58f1bc5d5bf8eedd2641544944e33bb25c20999945de52775ff679e87f98a884",
+      "soundCallCount": 167,
+      "statusCounts": {
+        "location-bank-resolved": 7,
+        "not-in-proven-map-or-shared-bank": 117,
+        "runtime-command-unresolved": 25,
+        "shared-system-bank-resolved": 18
+      },
+      "directCommands": [
+        "a0040000",
+        "a0090000",
+        "a00a0000",
+        "a80b0000",
+        "a80b0100",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a8280000",
+        "a83f0000",
+        "a9040000",
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9040400",
+        "a9040500",
+        "a9040600",
+        "a9040700",
+        "a9040900",
+        "a9040b00",
+        "a9040d00",
+        "a9041000",
+        "a9041100",
+        "a9041200",
+        "a9041300",
+        "a9041400",
+        "a9041500",
+        "a9041600",
+        "a9041700",
+        "a9041800",
+        "a9041b00",
+        "a9041c00",
+        "a9041d00",
+        "a9041e00",
+        "a9041f00",
+        "a9042000",
+        "a9042100",
+        "a9042200",
+        "a9042300",
+        "a9054200",
+        "ab021800",
+        "ab021900",
+        "ab050400",
+        "ab050500",
+        "ab050600",
+        "ab050700",
+        "ab050800",
+        "ab050900",
+        "ab060100"
+      ],
+      "candidateObjectTags": [
+        "BUS_",
+        "CAR_"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DAZA",
+      "source": "SCENE/02/DAZA/MAPINFO.BIN",
+      "sourceSha256": "fb012dc66332ff9e984f99be13092bc51dbe5b372bf2c879a441f3f890cef63d",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "DBHB",
+      "source": "SCENE/02/DBHB/MAPINFO.BIN",
+      "sourceSha256": "07f22535f2e0f11470ff5f97b431a8c0f0c7c61a5f4999d47d542f7c7c9615a6",
+      "soundCallCount": 48,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 27,
+        "runtime-command-unresolved": 19,
+        "shared-system-bank-resolved": 2
+      },
+      "directCommands": [
+        "a0001200",
+        "a0040000",
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a83f0000",
+        "a9040000",
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9040400",
+        "a9040600",
+        "a9040700",
+        "a9040800",
+        "a9040900",
+        "ab000000",
+        "ab001100"
+      ],
+      "candidateObjectTags": [
+        "JBOX"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DBYO",
+      "source": "SCENE/02/DBYO/MAPINFO.BIN",
+      "sourceSha256": "0175b8e5871759838f9304199824f1aa44f595116de73b85be352612229b5e15",
+      "soundCallCount": 33,
+      "statusCounts": {
+        "location-bank-resolved": 5,
+        "not-in-proven-map-or-shared-bank": 9,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a9050000",
+        "a9050300",
+        "a9050700",
+        "a9050900",
+        "ab021900"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "DCBN",
+      "source": "SCENE/02/DCBN/MAPINFO.BIN",
+      "sourceSha256": "8f61a191bf4ede04a37c3090730178c1e097fd24810f7b78b2f392c65cdc4692",
+      "soundCallCount": 32,
+      "statusCounts": {
+        "location-bank-resolved": 5,
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a9051100",
+        "a9051200",
+        "a9051300",
+        "a9051400",
+        "a9051500"
+      ],
+      "candidateObjectTags": [
+        "dkop"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DCHA",
+      "source": "SCENE/02/DCHA/MAPINFO.BIN",
+      "sourceSha256": "c1c49253675322d8799cb17a1293df77bf497edd816dd3cac90b0ef8f8190463",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "DGCT",
+      "source": "SCENE/02/DGCT/MAPINFO.BIN",
+      "sourceSha256": "7ca317c65f356de3fe64226754d62f470aa4796da88d95690f04940d9da1a03b",
+      "soundCallCount": 175,
+      "statusCounts": {
+        "location-bank-resolved": 48,
+        "not-in-proven-map-or-shared-bank": 73,
+        "runtime-command-unresolved": 19,
+        "shared-system-bank-resolved": 35
+      },
+      "directCommands": [
+        "a0000100",
+        "a0001100",
+        "a0001200",
+        "a0020000",
+        "a0030000",
+        "a0040000",
+        "a0050000",
+        "a00a0000",
+        "a0110000",
+        "a8010000",
+        "a8010100",
+        "a8010200",
+        "a8130000",
+        "a8130100",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a81f0000",
+        "a81f0100",
+        "a81f0200",
+        "a83f0000",
+        "a85e0000",
+        "a9040000",
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9040400",
+        "a9040600",
+        "a9040700",
+        "a9040800",
+        "a9040900",
+        "a9050000",
+        "a9050100",
+        "a9050200",
+        "a9050300",
+        "a9050400",
+        "a9050500",
+        "a9050600",
+        "a9050700",
+        "a9050800",
+        "a9050900",
+        "a9050a00",
+        "a9050b00",
+        "a9050c00",
+        "a9050d00",
+        "a9050f00",
+        "a9051100",
+        "a9051200",
+        "a9051300",
+        "a9051400",
+        "a9051500",
+        "a9051600",
+        "a9051800",
+        "a9051900",
+        "a9051a00",
+        "a9051b00",
+        "a9051c00",
+        "a9051d00",
+        "a9051e00",
+        "a9051f00",
+        "a9052000",
+        "a9052100",
+        "a9052200",
+        "a9052300",
+        "a9052400",
+        "a9052500",
+        "a9052600",
+        "ab000000",
+        "ab000900",
+        "ab000a00",
+        "ab001100",
+        "ab770300",
+        "ab770400",
+        "ab770600",
+        "ab770700",
+        "ab770900"
+      ],
+      "candidateObjectTags": [
+        "JBOX"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DJAZ",
+      "source": "SCENE/02/DJAZ/MAPINFO.BIN",
+      "sourceSha256": "f6c046d2cb57c199ed97fd3e67f675961fc3cb7832cb32cb7b481ce13fc8aed9",
+      "soundCallCount": 60,
+      "statusCounts": {
+        "location-bank-resolved": 26,
+        "not-in-proven-map-or-shared-bank": 15,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a9050000",
+        "a9050100",
+        "a9050200",
+        "a9050300",
+        "a9050400",
+        "a9050500",
+        "a9050600",
+        "a9050700",
+        "a9050800",
+        "a9050900",
+        "a9050a00",
+        "a9050b00",
+        "a9050c00",
+        "a9050d00",
+        "a9050e00",
+        "a9051100"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "DKPA",
+      "source": "SCENE/02/DKPA/MAPINFO.BIN",
+      "sourceSha256": "6a868544273d9977d847498dedd03593f3552d5ea630366039d9bffb1db6a3cd",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "DKTY",
+      "source": "SCENE/02/DKTY/MAPINFO.BIN",
+      "sourceSha256": "d76e675e636600ef864a17f6acbcab17c54c0ca74249aa2f8c430d874555abb5",
+      "soundCallCount": 41,
+      "statusCounts": {
+        "location-bank-resolved": 2,
+        "not-in-proven-map-or-shared-bank": 20,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a83f0000",
+        "a8450000",
+        "a85e0000",
+        "a9050000",
+        "a9050b00"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "DMAJ",
+      "source": "SCENE/02/DMAJ/MAPINFO.BIN",
+      "sourceSha256": "19e61f609ed055c388ba316dbce5b8d3a8aaf0f178c38390bbcb74610c0abced",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "DNOZ",
+      "source": "SCENE/02/DNOZ/MAPINFO.BIN",
+      "sourceSha256": "4c2eca5ed56a0062bc72d76c235b3bf3292c2f743af13e8b5afac723f4e55788",
+      "soundCallCount": 7,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 7
+      },
+      "directCommands": [
+        "a0001200",
+        "a0040000",
+        "a00a0000",
+        "a84a0000"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "DPIZ",
+      "source": "SCENE/02/DPIZ/MAPINFO.BIN",
+      "sourceSha256": "5669708008a067d019d51e66f60fa7064d9f01045db46ce851c8e994e3ecde39",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "DRHT",
+      "source": "SCENE/02/DRHT/MAPINFO.BIN",
+      "sourceSha256": "1c291d49db284c8675bf3d3503cea83931ed04ca6692a973704ca353537ffa10",
+      "soundCallCount": 25,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 6,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "DRME",
+      "source": "SCENE/02/DRME/MAPINFO.BIN",
+      "sourceSha256": "e3cf4f64687447e336d5d48090a0afdbaa9548bffb3be3be52069a5327eaae8f",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "DRSA",
+      "source": "SCENE/02/DRSA/MAPINFO.BIN",
+      "sourceSha256": "dd14fe41c2d73d0aa44784b85cd6145acc1e6151a9487fdec5b6863ee2fab3ee",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "DSBA",
+      "source": "SCENE/02/DSBA/MAPINFO.BIN",
+      "sourceSha256": "ac099dbe0496ed7b758fb616a7a8452a81e7bd8feb35a14d521b6817a2601a69",
+      "soundCallCount": 25,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 6,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "DSKI",
+      "source": "SCENE/02/DSKI/MAPINFO.BIN",
+      "sourceSha256": "17d1f11dda00b6040dab2d3cd914bf05b0caa605d90ed751cbd445f278e80f1e",
+      "soundCallCount": 33,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 14,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "DSLI",
+      "source": "SCENE/02/DSLI/MAPINFO.BIN",
+      "sourceSha256": "6f7d5369c4853a450f938158e5b8b03774a3aa74f367212c0b0a8c51f01694f8",
+      "soundCallCount": 48,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 27,
+        "runtime-command-unresolved": 19,
+        "shared-system-bank-resolved": 2
+      },
+      "directCommands": [
+        "a0001200",
+        "a0040000",
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a83f0000",
+        "a9040000",
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9040400",
+        "a9040600",
+        "a9040700",
+        "a9040800",
+        "a9040900",
+        "ab000000",
+        "ab001100"
+      ],
+      "candidateObjectTags": [
+        "JBOX"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DSLT",
+      "source": "SCENE/02/DSLT/MAPINFO.BIN",
+      "sourceSha256": "55d7f103ec61d79ef9d9a838f2a3ac68dc131ef7348f3347a5b935a5db22f8b3",
+      "soundCallCount": 74,
+      "statusCounts": {
+        "location-bank-resolved": 33,
+        "not-in-proven-map-or-shared-bank": 22,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a0100000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a9050000",
+        "a9052700",
+        "a9052800",
+        "a9052900",
+        "a9052a00",
+        "a9052b00",
+        "a9052c00",
+        "a9052d00",
+        "a9052e00",
+        "a9052f00",
+        "a9053000",
+        "a9053100",
+        "a9053200",
+        "a9053300",
+        "a9053400",
+        "a9053500",
+        "a9053600",
+        "a9053700",
+        "a9053800"
+      ],
+      "candidateObjectTags": [
+        "DRAM"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "DSUS",
+      "source": "SCENE/02/DSUS/MAPINFO.BIN",
+      "sourceSha256": "b3a55a43cb7351cf6244dd30b09ced29062b8ad2243ed71dac63beff66795134",
+      "soundCallCount": 25,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 6,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "DTKY",
+      "source": "SCENE/02/DTKY/MAPINFO.BIN",
+      "sourceSha256": "24c4c26475be9c4f54121a148bf815b3d57522d6eee597cffefc08c59c70d7c5",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "DURN",
+      "source": "SCENE/02/DURN/MAPINFO.BIN",
+      "sourceSha256": "b1da48a68dcd8ae0103b3798d18291bf28eda04b7861c291cf5a3d952d055e90",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "DYKZ",
+      "source": "SCENE/02/DYKZ/MAPINFO.BIN",
+      "sourceSha256": "d29a738d3c4157db4724bc47be3d39636f132126772257472da13edae761a2dc",
+      "soundCallCount": 25,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 6,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "JABE",
+      "source": "SCENE/02/JABE/MAPINFO.BIN",
+      "sourceSha256": "b80104908d2a001e83b535ff6c1cbeb9275624edc2ba5888744be8f831b64f7a",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "location-bank-resolved": 3,
+        "not-in-proven-map-or-shared-bank": 5,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a9051100",
+        "a9051400",
+        "a9051500"
+      ],
+      "candidateObjectTags": [
+        "dkop"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "JD00",
+      "source": "SCENE/02/JD00/MAPINFO.BIN",
+      "sourceSha256": "218dbd969148b157828e374d256cfd874e712069f7936b01c94b9eea906d178d",
+      "soundCallCount": 99,
+      "statusCounts": {
+        "location-bank-resolved": 3,
+        "not-in-proven-map-or-shared-bank": 57,
+        "runtime-command-unresolved": 22,
+        "shared-system-bank-resolved": 17
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a80d0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a8250000",
+        "a8300000",
+        "a83f0000",
+        "a8450000",
+        "a84a0000",
+        "a9040000",
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9040400",
+        "a9040500",
+        "ab050400",
+        "ab050500",
+        "ab050600",
+        "ab050700",
+        "ab050800",
+        "ab060100",
+        "ab060400"
+      ],
+      "candidateObjectTags": [
+        "TBOX"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "JHD0",
+      "source": "SCENE/02/JHD0/MAPINFO.BIN",
+      "sourceSha256": "09bc11af0ea9d9bb8496fc8da74e15f3dfc2e667a4b0572726f24873c4d9c466",
+      "soundCallCount": 122,
+      "statusCounts": {
+        "location-bank-resolved": 47,
+        "not-in-proven-map-or-shared-bank": 55,
+        "runtime-command-unresolved": 20
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a80f0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a8240000",
+        "a83f0000",
+        "a84f0000",
+        "a9050700",
+        "a9050800",
+        "a9050900",
+        "a9050c00",
+        "a9050d00",
+        "a9051000",
+        "a9051100",
+        "a9051200",
+        "a9051700",
+        "a9051800",
+        "a9051900",
+        "a9051a00",
+        "a9051b00",
+        "a9051c00",
+        "a9051d00",
+        "a9051e00",
+        "a9051f00",
+        "a9052100",
+        "a9052300",
+        "a9053200",
+        "a9053700",
+        "a9053800",
+        "ab140400"
+      ],
+      "candidateObjectTags": [
+        "KAK1",
+        "KAK2",
+        "TEGS"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "JOMO",
+      "source": "SCENE/02/JOMO/MAPINFO.BIN",
+      "sourceSha256": "6a4e6e8d8e71aa450fef6922ebe0036776a94cb498710a562e4418a9338037fe",
+      "soundCallCount": 185,
+      "statusCounts": {
+        "location-bank-resolved": 25,
+        "not-in-proven-map-or-shared-bank": 121,
+        "runtime-command-unresolved": 20,
+        "shared-system-bank-resolved": 19
+      },
+      "directCommands": [
+        "a0000100",
+        "a0001200",
+        "a0040000",
+        "a00a0000",
+        "a8060000",
+        "a80f0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a8280000",
+        "a83a0000",
+        "a83f0000",
+        "a83f0100",
+        "a8460000",
+        "a8470000",
+        "a84a0000",
+        "a84f0000",
+        "a8500000",
+        "a9040000",
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9050e00",
+        "a9050f00",
+        "a9051500",
+        "a9051600",
+        "a9051800",
+        "a9051900",
+        "a9052000",
+        "a9054d00",
+        "a9055c00",
+        "a9055d00",
+        "a9056000",
+        "a9056100",
+        "a9056200",
+        "a9056300",
+        "a9056500",
+        "a9056600",
+        "a9056800",
+        "a9056900",
+        "a9056a00",
+        "ab050400",
+        "ab050500",
+        "ab050600",
+        "ab050700",
+        "ab050800",
+        "ab050900",
+        "ab060000",
+        "ab060100"
+      ],
+      "candidateObjectTags": [
+        "STAN"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "JU00",
+      "source": "SCENE/02/JU00/MAPINFO.BIN",
+      "sourceSha256": "3a565890be5cf3a746119b63e8b5aac4cdc5396f8ea8ea3d0f35ba9fb79264c5",
+      "soundCallCount": 77,
+      "statusCounts": {
+        "location-bank-resolved": 11,
+        "not-in-proven-map-or-shared-bank": 47,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a82a0100",
+        "a83f0000",
+        "a8440000",
+        "a9050100",
+        "a9050700",
+        "a9050800",
+        "a9055800",
+        "a9055900"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "MFSY",
+      "source": "SCENE/02/MFSY/MAPINFO.BIN",
+      "sourceSha256": "53ccad493265183650bb00aae9189be66bd2564808dfc96483dcf1944f39d988",
+      "soundCallCount": 163,
+      "statusCounts": {
+        "location-bank-resolved": 6,
+        "not-in-proven-map-or-shared-bank": 115,
+        "runtime-command-unresolved": 23,
+        "shared-system-bank-resolved": 19
+      },
+      "directCommands": [
+        "a0001200",
+        "a0040000",
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a83f0000",
+        "a8640300",
+        "a9040000",
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9040400",
+        "a9040600",
+        "a9040700",
+        "a9040800",
+        "a9040900",
+        "a9040a00",
+        "a9040b00",
+        "a9040e00",
+        "a9041b00",
+        "a9041c00",
+        "a9051c00",
+        "a9055100",
+        "ab000000",
+        "ab001100",
+        "ab050400",
+        "ab050500",
+        "ab050600",
+        "ab050700",
+        "ab050800",
+        "ab060100",
+        "ab060400"
+      ],
+      "candidateObjectTags": [
+        "BUS_",
+        "JBOX",
+        "TBOX"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "MK80",
+      "source": "SCENE/02/MK80/MAPINFO.BIN",
+      "sourceSha256": "a7199bfad279dc3737acb90bfc9bd7579f674fc5257a747b4e0fc402e612ba59",
+      "soundCallCount": 7,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 6,
+        "runtime-command-unresolved": 1
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a8040000"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "MKSG",
+      "source": "SCENE/02/MKSG/MAPINFO.BIN",
+      "sourceSha256": "8c26c6de22132f8b42a450b31fb3ad4f0a954948e794419319528ac63ce790ae",
+      "soundCallCount": 58,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 39,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a0001300",
+        "a0040000",
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a83f0000",
+        "a83f0100",
+        "a9040000",
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9040400",
+        "a9040500",
+        "a9040600",
+        "a9042a00",
+        "a91e0000"
+      ],
+      "candidateObjectTags": [
+        "MAGZ"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "MKYU",
+      "source": "SCENE/02/MKYU/MAPINFO.BIN",
+      "sourceSha256": "bb38738056a70f868cb48d3bf599f763af8658c0f8b67c55b9baf8c1dfcc14a7",
+      "soundCallCount": 79,
+      "statusCounts": {
+        "location-bank-resolved": 1,
+        "not-in-proven-map-or-shared-bank": 56,
+        "runtime-command-unresolved": 20,
+        "shared-system-bank-resolved": 2
+      },
+      "directCommands": [
+        "a0001200",
+        "a0040000",
+        "a00a0000",
+        "a8010000",
+        "a8010100",
+        "a8010200",
+        "a8010300",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a83f0000",
+        "a9040000",
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9040400",
+        "a9040600",
+        "a9040700",
+        "a9040800",
+        "a9040900",
+        "a9040a00",
+        "a9040d00",
+        "a9040e00",
+        "a9041800",
+        "a9041900",
+        "a9041a00",
+        "a9041b00",
+        "a9041c00",
+        "a9043200",
+        "a9043300",
+        "a9043400",
+        "a9043500",
+        "a9043600",
+        "a9043700",
+        "a9043800",
+        "a9043900",
+        "a9043a00",
+        "a9050000",
+        "ab000000",
+        "ab001100"
+      ],
+      "candidateObjectTags": [
+        "JBOX",
+        "dkop"
+      ]
+    },
+    {
+      "disc": 2,
+      "area": "MS08",
+      "source": "SCENE/02/MS08/MAPINFO.BIN",
+      "sourceSha256": "693131be8e2106c08975b75959780006dec6a79a981c910819f614b324e73e90",
+      "soundCallCount": 43,
+      "statusCounts": {
+        "location-bank-resolved": 7,
+        "not-in-proven-map-or-shared-bank": 17,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a8110000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a9050000",
+        "a9050100",
+        "a9050a00",
+        "a9050b00"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "MS8A",
+      "source": "SCENE/02/MS8A/MAPINFO.BIN",
+      "sourceSha256": "30152614ccdccbe621354f36fcd64b51d85c8b5681ad059385dc71be930db135",
+      "soundCallCount": 10,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 10
+      },
+      "directCommands": [
+        "a0001200",
+        "a0040000",
+        "a00a0000",
+        "a80d0000",
+        "a8110000",
+        "a9042d00",
+        "a9042e00"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "MS8S",
+      "source": "SCENE/02/MS8S/MAPINFO.BIN",
+      "sourceSha256": "0f0914b81f40fb73e87b073d955a1b9f5c46e4b094efeabf1215e3ea16e947c2",
+      "soundCallCount": 37,
+      "statusCounts": {
+        "location-bank-resolved": 3,
+        "not-in-proven-map-or-shared-bank": 15,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a83f0000",
+        "a9050700",
+        "a9051600",
+        "a9051800"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "TATQ",
+      "source": "SCENE/02/TATQ/MAPINFO.BIN",
+      "sourceSha256": "45eab2fdcb273da4853f76c41e6ecae6e1b8c80a844919fd4775d707de16b2de",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "TOKI",
+      "source": "SCENE/02/TOKI/MAPINFO.BIN",
+      "sourceSha256": "3256a03d15d5a509e86715246251ce32c78a50504390fcf3237537533841c71b",
+      "soundCallCount": 9,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 9
+      },
+      "directCommands": [
+        "a0001200",
+        "a0040000",
+        "a00a0000",
+        "a83f0000",
+        "a83f0100"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 2,
+      "area": "YDB1",
+      "source": "SCENE/02/YDB1/MAPINFO.BIN",
+      "sourceSha256": "3c954c79cf22327bc736c0ef07f95126468880074c55247cf04085c51ebbf0f1",
+      "soundCallCount": 54,
+      "statusCounts": {
+        "location-bank-resolved": 44,
+        "not-in-proven-map-or-shared-bank": 9,
+        "runtime-command-unresolved": 1
+      },
+      "directCommands": [
+        "a00a0000",
+        "a9050200",
+        "a9050300",
+        "a9050400",
+        "a9050500",
+        "a9050900",
+        "a9050f00",
+        "a9051000",
+        "a9051100",
+        "a9051200",
+        "a9051300",
+        "a9051500",
+        "a9051900",
+        "a9051a00",
+        "a9051d00",
+        "a9052000",
+        "a9052100",
+        "a9052200",
+        "a9052400",
+        "a9052500",
+        "a9052600",
+        "a9052700",
+        "a9052800",
+        "a9053200",
+        "a9053300",
+        "a9053500",
+        "a9053600",
+        "a9053700",
+        "a9053800",
+        "a9053900"
+      ],
+      "candidateObjectTags": [
+        "YKUL"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "D000",
+      "source": "SCENE/03/D000/MAPINFO.BIN",
+      "sourceSha256": "7601567add571448c95044a1602f094f3d2aebb5e6532b7b754f8dfa6d24cb1b",
+      "soundCallCount": 84,
+      "statusCounts": {
+        "location-bank-resolved": 7,
+        "not-in-proven-map-or-shared-bank": 37,
+        "runtime-command-unresolved": 22,
+        "shared-system-bank-resolved": 18
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a8280000",
+        "a83f0000",
+        "a9040000",
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9040400",
+        "a9040500",
+        "a9041b00",
+        "a9041c00",
+        "a9041d00",
+        "a9041e00",
+        "a9054200",
+        "ab021800",
+        "ab021900",
+        "ab050400",
+        "ab050500",
+        "ab050600",
+        "ab050700",
+        "ab050800",
+        "ab050900",
+        "ab060100"
+      ],
+      "candidateObjectTags": [
+        "BUS_"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DBHB",
+      "source": "SCENE/03/DBHB/MAPINFO.BIN",
+      "sourceSha256": "44e9be1de0e51c5e100ef665b26b62fc48eb9a714e682f2d70c28bb2167a508f",
+      "soundCallCount": 48,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 27,
+        "runtime-command-unresolved": 19,
+        "shared-system-bank-resolved": 2
+      },
+      "directCommands": [
+        "a0001200",
+        "a0040000",
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a83f0000",
+        "a9040000",
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9040400",
+        "a9040600",
+        "a9040700",
+        "a9040800",
+        "a9040900",
+        "ab000000",
+        "ab001100"
+      ],
+      "candidateObjectTags": [
+        "JBOX"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DBYO",
+      "source": "SCENE/03/DBYO/MAPINFO.BIN",
+      "sourceSha256": "35ee6ce8de85c2adb5f98ec6c72c981d3fae31f1524469214c2e5c371230f7d6",
+      "soundCallCount": 33,
+      "statusCounts": {
+        "location-bank-resolved": 5,
+        "not-in-proven-map-or-shared-bank": 9,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a9050000",
+        "a9050300",
+        "a9050700",
+        "a9050900",
+        "ab021900"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "DCBN",
+      "source": "SCENE/03/DCBN/MAPINFO.BIN",
+      "sourceSha256": "e3f22721113076d159189e28d5110652edf0e96c2a78ebca4517c03805ddded6",
+      "soundCallCount": 32,
+      "statusCounts": {
+        "location-bank-resolved": 5,
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a9051100",
+        "a9051200",
+        "a9051300",
+        "a9051400",
+        "a9051500"
+      ],
+      "candidateObjectTags": [
+        "dkop"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DCHA",
+      "source": "SCENE/03/DCHA/MAPINFO.BIN",
+      "sourceSha256": "c901f1e25ddecdb72c4f7496239c49c729d26fce87aca662fe7602df4071adf8",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "DGCT",
+      "source": "SCENE/03/DGCT/MAPINFO.BIN",
+      "sourceSha256": "99773d4600b2822ecfdb35f05f8e300ffc0cf6542544eb11d91d6a95528d6ba3",
+      "soundCallCount": 175,
+      "statusCounts": {
+        "location-bank-resolved": 48,
+        "not-in-proven-map-or-shared-bank": 73,
+        "runtime-command-unresolved": 19,
+        "shared-system-bank-resolved": 35
+      },
+      "directCommands": [
+        "a0000100",
+        "a0001100",
+        "a0001200",
+        "a0020000",
+        "a0030000",
+        "a0040000",
+        "a0050000",
+        "a00a0000",
+        "a0110000",
+        "a8010000",
+        "a8010100",
+        "a8010200",
+        "a8130000",
+        "a8130100",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a81f0000",
+        "a81f0100",
+        "a81f0200",
+        "a83f0000",
+        "a85e0000",
+        "a9040000",
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9040400",
+        "a9040600",
+        "a9040700",
+        "a9040800",
+        "a9040900",
+        "a9050000",
+        "a9050100",
+        "a9050200",
+        "a9050300",
+        "a9050400",
+        "a9050500",
+        "a9050600",
+        "a9050700",
+        "a9050800",
+        "a9050900",
+        "a9050a00",
+        "a9050b00",
+        "a9050c00",
+        "a9050d00",
+        "a9050f00",
+        "a9051100",
+        "a9051200",
+        "a9051300",
+        "a9051400",
+        "a9051500",
+        "a9051600",
+        "a9051800",
+        "a9051900",
+        "a9051a00",
+        "a9051b00",
+        "a9051c00",
+        "a9051d00",
+        "a9051e00",
+        "a9051f00",
+        "a9052000",
+        "a9052100",
+        "a9052200",
+        "a9052300",
+        "a9052400",
+        "a9052500",
+        "a9052600",
+        "ab000000",
+        "ab000900",
+        "ab000a00",
+        "ab001100",
+        "ab770300",
+        "ab770400",
+        "ab770600",
+        "ab770700",
+        "ab770900"
+      ],
+      "candidateObjectTags": [
+        "JBOX"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DJAZ",
+      "source": "SCENE/03/DJAZ/MAPINFO.BIN",
+      "sourceSha256": "60922b5ceeee2bf3b8e078d5ddc0da3e61844cb8a6abc0ba96450206216e63ac",
+      "soundCallCount": 60,
+      "statusCounts": {
+        "location-bank-resolved": 26,
+        "not-in-proven-map-or-shared-bank": 15,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a9050000",
+        "a9050100",
+        "a9050200",
+        "a9050300",
+        "a9050400",
+        "a9050500",
+        "a9050600",
+        "a9050700",
+        "a9050800",
+        "a9050900",
+        "a9050a00",
+        "a9050b00",
+        "a9050c00",
+        "a9050d00",
+        "a9050e00",
+        "a9051100"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "DKPA",
+      "source": "SCENE/03/DKPA/MAPINFO.BIN",
+      "sourceSha256": "855fcaed116c03d6886b124393d36434b33929ed1060375856eea84545fee4f2",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "DKTY",
+      "source": "SCENE/03/DKTY/MAPINFO.BIN",
+      "sourceSha256": "05b5eb19f0163034ab548387a67340cfa802ff7fc5083c731d75286bccf5c22f",
+      "soundCallCount": 32,
+      "statusCounts": {
+        "location-bank-resolved": 2,
+        "not-in-proven-map-or-shared-bank": 11,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a83f0000",
+        "a85e0000",
+        "a9050000",
+        "a9050b00"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "DMAJ",
+      "source": "SCENE/03/DMAJ/MAPINFO.BIN",
+      "sourceSha256": "429a25b96ad847282f8acfb1280af9b7c86de99d8de3bd946226595669bd85bb",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "DPIZ",
+      "source": "SCENE/03/DPIZ/MAPINFO.BIN",
+      "sourceSha256": "13c4eada462161a44f7e2e9a6228320edbfb67ab92f7809d9f74d4634bd45082",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "DRHT",
+      "source": "SCENE/03/DRHT/MAPINFO.BIN",
+      "sourceSha256": "0695c045395bbabf6c418a9344acedcc107ef1a829990eb55e517ce41e416b45",
+      "soundCallCount": 25,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 6,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "DRME",
+      "source": "SCENE/03/DRME/MAPINFO.BIN",
+      "sourceSha256": "21789ca5cb0eaaa08acc868ce973745b1eeff30c242ff45f80c216c10f62c5dd",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "DRSA",
+      "source": "SCENE/03/DRSA/MAPINFO.BIN",
+      "sourceSha256": "c93abf629e965580e8a98d65073deac78084874db83cd4e8789b428a531e9dd9",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "DSBA",
+      "source": "SCENE/03/DSBA/MAPINFO.BIN",
+      "sourceSha256": "571c51c144750f7cf0265bec4bc00231fbd9e14403c702802673ae6bedc3a662",
+      "soundCallCount": 25,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 6,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "DSKI",
+      "source": "SCENE/03/DSKI/MAPINFO.BIN",
+      "sourceSha256": "6f9bf01db44d00e402381e315faab9142e0506fe8fe4f3536292910cb02b1f42",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "DSLI",
+      "source": "SCENE/03/DSLI/MAPINFO.BIN",
+      "sourceSha256": "af105a74a748cb5a10482f30436a9da20945d7b3e342ea6578db8d6c4037d83d",
+      "soundCallCount": 48,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 27,
+        "runtime-command-unresolved": 19,
+        "shared-system-bank-resolved": 2
+      },
+      "directCommands": [
+        "a0001200",
+        "a0040000",
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a83f0000",
+        "a9040000",
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9040400",
+        "a9040600",
+        "a9040700",
+        "a9040800",
+        "a9040900",
+        "ab000000",
+        "ab001100"
+      ],
+      "candidateObjectTags": [
+        "JBOX"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DSLT",
+      "source": "SCENE/03/DSLT/MAPINFO.BIN",
+      "sourceSha256": "a40e25a66454504e97838ef30c1837b64ba7009178f609e261370f8394c90503",
+      "soundCallCount": 74,
+      "statusCounts": {
+        "location-bank-resolved": 33,
+        "not-in-proven-map-or-shared-bank": 22,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a0100000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a9050000",
+        "a9052700",
+        "a9052800",
+        "a9052900",
+        "a9052a00",
+        "a9052b00",
+        "a9052c00",
+        "a9052d00",
+        "a9052e00",
+        "a9052f00",
+        "a9053000",
+        "a9053100",
+        "a9053200",
+        "a9053300",
+        "a9053400",
+        "a9053500",
+        "a9053600",
+        "a9053700",
+        "a9053800"
+      ],
+      "candidateObjectTags": [
+        "DRAM"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "DSUS",
+      "source": "SCENE/03/DSUS/MAPINFO.BIN",
+      "sourceSha256": "17d86612b15d5bb879e1f06f7f99fcb01b26c5c0954dfc2b09b3abdac6ad1c55",
+      "soundCallCount": 25,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 6,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "DTKY",
+      "source": "SCENE/03/DTKY/MAPINFO.BIN",
+      "sourceSha256": "718b56b0fb2b164982062db4338b06217357788038917781cf0c681ed271506a",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "DURN",
+      "source": "SCENE/03/DURN/MAPINFO.BIN",
+      "sourceSha256": "e526cfb5c1a62809190bb213e92bd3b8c04346a279366b0708633ec1bedd499d",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "DXMS",
+      "source": "SCENE/03/DXMS/MAPINFO.BIN",
+      "sourceSha256": "99889dbd72e1184f291d5d44bf56385f1780a0d05b1f109220391c58b9cebe24",
+      "soundCallCount": 9,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 9
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a81b0000"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "DYKZ",
+      "source": "SCENE/03/DYKZ/MAPINFO.BIN",
+      "sourceSha256": "d29a738d3c4157db4724bc47be3d39636f132126772257472da13edae761a2dc",
+      "soundCallCount": 25,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 6,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "FBGG",
+      "source": "SCENE/03/FBGG/MAPINFO.BIN",
+      "sourceSha256": "f52acf71cc8100149d9368215a4fa4f4961611e2e646f3ee6299e32a9b9eac6b",
+      "soundCallCount": 29,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 29
+      },
+      "directCommands": [
+        "a0000400",
+        "a0040000",
+        "a0090000",
+        "a00a0000",
+        "a5100000",
+        "a6000000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a84e0000",
+        "a9040300",
+        "a9040400",
+        "a9040500"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "JABE",
+      "source": "SCENE/03/JABE/MAPINFO.BIN",
+      "sourceSha256": "f30bbd5ab617d768f6a7ad2b11be737477cdf3f6b53358424cfea4a926d2f4f4",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "location-bank-resolved": 3,
+        "not-in-proven-map-or-shared-bank": 5,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a9051100",
+        "a9051400",
+        "a9051500"
+      ],
+      "candidateObjectTags": [
+        "dkop"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "JD00",
+      "source": "SCENE/03/JD00/MAPINFO.BIN",
+      "sourceSha256": "e4226a975c1ed35277eb3e6474928eeba0c10ecf4d8e293319c3f4aa76223e78",
+      "soundCallCount": 75,
+      "statusCounts": {
+        "location-bank-resolved": 3,
+        "not-in-proven-map-or-shared-bank": 34,
+        "runtime-command-unresolved": 21,
+        "shared-system-bank-resolved": 17
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a83f0000",
+        "a84a0000",
+        "a9040000",
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9040400",
+        "a9040500",
+        "ab050400",
+        "ab050500",
+        "ab050600",
+        "ab050700",
+        "ab050800",
+        "ab060100",
+        "ab060400"
+      ],
+      "candidateObjectTags": [
+        "TBOX"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "JHD0",
+      "source": "SCENE/03/JHD0/MAPINFO.BIN",
+      "sourceSha256": "edb13c21387f4ad3768bcc3fa4886ef42328c364066e40375a924abceb7b513f",
+      "soundCallCount": 92,
+      "statusCounts": {
+        "location-bank-ambiguous": 43,
+        "location-bank-resolved": 1,
+        "not-in-proven-map-or-shared-bank": 28,
+        "runtime-command-unresolved": 20
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a8240000",
+        "a83f0000",
+        "a9050700",
+        "a9050800",
+        "a9050900",
+        "a9050c00",
+        "a9050d00",
+        "a9051000",
+        "a9051100",
+        "a9051200",
+        "a9051700",
+        "a9051800",
+        "a9051900",
+        "a9051a00",
+        "a9051b00",
+        "a9051c00",
+        "a9051d00",
+        "a9051e00",
+        "a9051f00",
+        "a9052100",
+        "a9052300",
+        "a9053200",
+        "a9053700",
+        "a9053800"
+      ],
+      "candidateObjectTags": [
+        "KAK1",
+        "KAK2"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "JOMO",
+      "source": "SCENE/03/JOMO/MAPINFO.BIN",
+      "sourceSha256": "43c613a944cc021e26793193826cf6e7dde57cd5f55ce1bfa9c1e41ce33c9c89",
+      "soundCallCount": 185,
+      "statusCounts": {
+        "location-bank-resolved": 25,
+        "not-in-proven-map-or-shared-bank": 121,
+        "runtime-command-unresolved": 20,
+        "shared-system-bank-resolved": 19
+      },
+      "directCommands": [
+        "a0000100",
+        "a0001200",
+        "a0040000",
+        "a00a0000",
+        "a8060000",
+        "a80f0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a8280000",
+        "a83a0000",
+        "a83f0000",
+        "a83f0100",
+        "a8460000",
+        "a8470000",
+        "a84a0000",
+        "a84f0000",
+        "a8500000",
+        "a9040000",
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9050e00",
+        "a9050f00",
+        "a9051500",
+        "a9051600",
+        "a9051800",
+        "a9051900",
+        "a9052000",
+        "a9054d00",
+        "a9055c00",
+        "a9055d00",
+        "a9056000",
+        "a9056100",
+        "a9056200",
+        "a9056300",
+        "a9056500",
+        "a9056600",
+        "a9056800",
+        "a9056900",
+        "a9056a00",
+        "ab050400",
+        "ab050500",
+        "ab050600",
+        "ab050700",
+        "ab050800",
+        "ab050900",
+        "ab060000",
+        "ab060100"
+      ],
+      "candidateObjectTags": [
+        "STAN"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "JU00",
+      "source": "SCENE/03/JU00/MAPINFO.BIN",
+      "sourceSha256": "93f6d93ebc0561a1cada2ebd2e78dc4cf16f69dc10a8b9af2089bd9b51811f76",
+      "soundCallCount": 77,
+      "statusCounts": {
+        "location-bank-resolved": 10,
+        "not-in-proven-map-or-shared-bank": 48,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a82a0100",
+        "a83f0000",
+        "a8440000",
+        "a9050100",
+        "a9050700",
+        "a9050800",
+        "a9055800",
+        "a9055900"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "M3FB",
+      "source": "SCENE/03/M3FB/MAPINFO.BIN",
+      "sourceSha256": "fcc22ca599bb2505c32074ed42b90ee5a8b161d7d51e0d0e063d92159e71f0f9",
+      "soundCallCount": 10,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 10
+      },
+      "directCommands": [
+        "a00a0000",
+        "a9040200",
+        "a9040400",
+        "a9040500",
+        "a9041600",
+        "a9041b00",
+        "a9041c00"
+      ],
+      "candidateObjectTags": [
+        "FORK"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "MA00",
+      "source": "SCENE/03/MA00/MAPINFO.BIN",
+      "sourceSha256": "c59973c99b7b4e303c4e76242d1d756af39ed9aa9839a2464b51cdc95fc1f257",
+      "soundCallCount": 97,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 75,
+        "runtime-command-unresolved": 22
+      },
+      "directCommands": [
+        "a0001100",
+        "a0001300",
+        "a0040000",
+        "a00a0000",
+        "a6000000",
+        "a80b0000",
+        "a80b0100",
+        "a8250000",
+        "a83f0000",
+        "a83f0100",
+        "a83f0200",
+        "a8640000",
+        "a9040100",
+        "a9040200",
+        "a9040400",
+        "a9040600",
+        "a9040a00",
+        "a9040d00",
+        "a9040e00",
+        "a9041100",
+        "a9041200",
+        "a9041300",
+        "a9041400",
+        "a9041500",
+        "a9041b00",
+        "a9041c00"
+      ],
+      "candidateObjectTags": [
+        "BUS_",
+        "FORK"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "MB9Q",
+      "source": "SCENE/03/MB9Q/MAPINFO.BIN",
+      "sourceSha256": "15e7ff73d6b28752389a7eb9ca24882c78c64e1e3730857fedd875827eae3282",
+      "soundCallCount": 18,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 17,
+        "runtime-command-unresolved": 1
+      },
+      "directCommands": [
+        "a0000200",
+        "a0040000",
+        "a00a0000",
+        "a8330000",
+        "a8640100",
+        "a8640200",
+        "a8640300"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "MBQC",
+      "source": "SCENE/03/MBQC/MAPINFO.BIN",
+      "sourceSha256": "6edaaa04c151a0c5ebdc22dbbb4f050db8daf914a1b42e1f74194fabb84c6f0a",
+      "soundCallCount": 21,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 20,
+        "runtime-command-unresolved": 1
+      },
+      "directCommands": [
+        "a0001300",
+        "a0040000",
+        "a00a0000",
+        "a8250000",
+        "a83f0600",
+        "a83f0700",
+        "a83f0800",
+        "a8460000"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "MEND",
+      "source": "SCENE/03/MEND/MAPINFO.BIN",
+      "sourceSha256": "744ade8c33623818e98032dac5bc0a8284e4be1f773ac3e88c74c7d848cd7329",
+      "soundCallCount": 53,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 51,
+        "runtime-command-unresolved": 2
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a80d0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a82f0000",
+        "a83f0000",
+        "a8460000",
+        "a8470000",
+        "a8640000",
+        "a9041b00",
+        "a9041c00",
+        "ab761a00",
+        "ab770000"
+      ],
+      "candidateObjectTags": [
+        "BUS_"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "MFBT",
+      "source": "SCENE/03/MFBT/MAPINFO.BIN",
+      "sourceSha256": "c0c01fc2871a282504dcb07b41bebbed5f1d8cb6ffa7927fca8c6d2b635aef48",
+      "soundCallCount": 71,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 71
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a80c0000",
+        "a8180100",
+        "a8250000",
+        "a83f0000",
+        "a9040200",
+        "a9040300",
+        "a9040500",
+        "a9040b00",
+        "a9041700",
+        "a9060c00",
+        "a9061300",
+        "ab760000",
+        "ab760200",
+        "ab761400",
+        "ab761500",
+        "ab761600",
+        "ab761900",
+        "ab761a00",
+        "ab761c00",
+        "ab761f00",
+        "ab762000",
+        "ab762700",
+        "ab762b00",
+        "ab762d00",
+        "ab770a00",
+        "ab770c00"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "MFSY",
+      "source": "SCENE/03/MFSY/MAPINFO.BIN",
+      "sourceSha256": "adc993ac9fbca4b039a99d3d44f64840d428a7a5540651902c52d96076a98d88",
+      "soundCallCount": 305,
+      "statusCounts": {
+        "location-bank-resolved": 14,
+        "not-in-proven-map-or-shared-bank": 246,
+        "runtime-command-unresolved": 25,
+        "shared-system-bank-resolved": 20
+      },
+      "directCommands": [
+        "a0000200",
+        "a0001100",
+        "a0001200",
+        "a0001300",
+        "a0040000",
+        "a00a0000",
+        "a6000000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a8150000",
+        "a8250000",
+        "a82f0000",
+        "a8300000",
+        "a83f0000",
+        "a83f0300",
+        "a83f0400",
+        "a83f0600",
+        "a83f0700",
+        "a83f0800",
+        "a8460000",
+        "a8480000",
+        "a84a0000",
+        "a8520000",
+        "a9040000",
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9040400",
+        "a9040600",
+        "a9040700",
+        "a9040800",
+        "a9040900",
+        "a9041600",
+        "a9041700",
+        "a9041b00",
+        "a9041c00",
+        "a9050000",
+        "a9050100",
+        "a9051200",
+        "a9051300",
+        "a9051400",
+        "a9051500",
+        "a9051600",
+        "a9051800",
+        "a9051d00",
+        "a9055100",
+        "ab000000",
+        "ab001100",
+        "ab034200",
+        "ab050400",
+        "ab050500",
+        "ab050600",
+        "ab050700",
+        "ab050800",
+        "ab060100",
+        "ab060400",
+        "ab761b00"
+      ],
+      "candidateObjectTags": [
+        "BUS_",
+        "JBOX",
+        "KMEM",
+        "TBOX"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "MK80",
+      "source": "SCENE/03/MK80/MAPINFO.BIN",
+      "sourceSha256": "8321f7963e61c39c850dbfbdf4d54993fbcd0b4e45ef4bbd629127a69d31b4ac",
+      "soundCallCount": 7,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 6,
+        "runtime-command-unresolved": 1
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a8040000"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "MKSG",
+      "source": "SCENE/03/MKSG/MAPINFO.BIN",
+      "sourceSha256": "649c19dd45fde7863eb90b2e918a98e968b5e13bd5530b72c97f8c8363fa819d",
+      "soundCallCount": 34,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 15,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a0040000",
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a83f0000"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "MKYU",
+      "source": "SCENE/03/MKYU/MAPINFO.BIN",
+      "sourceSha256": "d3aae8aa3a8a03b30a9dc6cf799bc7821ed7b471c28c0a8596663a0c762767ea",
+      "soundCallCount": 82,
+      "statusCounts": {
+        "location-bank-resolved": 1,
+        "not-in-proven-map-or-shared-bank": 59,
+        "runtime-command-unresolved": 20,
+        "shared-system-bank-resolved": 2
+      },
+      "directCommands": [
+        "a0001200",
+        "a0040000",
+        "a00a0000",
+        "a8010000",
+        "a8010100",
+        "a8010200",
+        "a8010300",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400",
+        "a83f0000",
+        "a9040000",
+        "a9040100",
+        "a9040200",
+        "a9040300",
+        "a9040400",
+        "a9040600",
+        "a9040700",
+        "a9040800",
+        "a9040900",
+        "a9040a00",
+        "a9040d00",
+        "a9040e00",
+        "a9041800",
+        "a9041900",
+        "a9041a00",
+        "a9041b00",
+        "a9041c00",
+        "a9043200",
+        "a9043300",
+        "a9043400",
+        "a9043500",
+        "a9043600",
+        "a9043700",
+        "a9043800",
+        "a9043900",
+        "a9043a00",
+        "a9050000",
+        "ab000000",
+        "ab001100"
+      ],
+      "candidateObjectTags": [
+        "JBOX",
+        "dkop"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "MS08",
+      "source": "SCENE/03/MS08/MAPINFO.BIN",
+      "sourceSha256": "fdcdeae0525fe2b596d8e67be322bde40ccb9b7c6ea13d2d673e14ba7ef39b07",
+      "soundCallCount": 30,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 10,
+        "runtime-command-unresolved": 20
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "MSBS",
+      "source": "SCENE/03/MSBS/MAPINFO.BIN",
+      "sourceSha256": "7dd23ae0f8e48dcc8643c9927fe317888f144e9596304262514e6668129503ac",
+      "soundCallCount": 7,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 7
+      },
+      "directCommands": [
+        "a0001200",
+        "a0040000",
+        "a00a0000",
+        "a83f0000",
+        "a9041d00",
+        "a9041e00"
+      ],
+      "candidateObjectTags": [
+        "BUS_"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "TATQ",
+      "source": "SCENE/03/TATQ/MAPINFO.BIN",
+      "sourceSha256": "4284fd2c71c3329a773eca94cac0d63274c251eb065e200d97a8b7ef09d0c863",
+      "soundCallCount": 27,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 8,
+        "runtime-command-unresolved": 19
+      },
+      "directCommands": [
+        "a00a0000",
+        "a8140000",
+        "a8140100",
+        "a8140200",
+        "a8140300",
+        "a8140400"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "TERY",
+      "source": "SCENE/03/TERY/MAPINFO.BIN",
+      "sourceSha256": "6395d96f1542fd9d71be9bfa7b42132865031a45437dcfdd098b6b0220291bc6",
+      "soundCallCount": 16,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 15,
+        "runtime-command-unresolved": 1
+      },
+      "directCommands": [
+        "a0000300",
+        "a0040000",
+        "a00a0000",
+        "a8250000",
+        "a83f0000"
+      ],
+      "candidateObjectTags": []
+    },
+    {
+      "disc": 3,
+      "area": "YDB1",
+      "source": "SCENE/03/YDB1/MAPINFO.BIN",
+      "sourceSha256": "4b8dffa5317c648a2abb8c8389b4307d17daca5763851bf2a4523c7f93af19bb",
+      "soundCallCount": 54,
+      "statusCounts": {
+        "location-bank-resolved": 44,
+        "not-in-proven-map-or-shared-bank": 9,
+        "runtime-command-unresolved": 1
+      },
+      "directCommands": [
+        "a00a0000",
+        "a9050200",
+        "a9050300",
+        "a9050400",
+        "a9050500",
+        "a9050900",
+        "a9050f00",
+        "a9051000",
+        "a9051100",
+        "a9051200",
+        "a9051300",
+        "a9051500",
+        "a9051900",
+        "a9051a00",
+        "a9051d00",
+        "a9052000",
+        "a9052100",
+        "a9052200",
+        "a9052400",
+        "a9052500",
+        "a9052600",
+        "a9052700",
+        "a9052800",
+        "a9053200",
+        "a9053300",
+        "a9053500",
+        "a9053600",
+        "a9053700",
+        "a9053800",
+        "a9053900"
+      ],
+      "candidateObjectTags": [
+        "YKUL"
+      ]
+    },
+    {
+      "disc": 3,
+      "area": "YDMA",
+      "source": "SCENE/03/YDMA/MAPINFO.BIN",
+      "sourceSha256": "7dc07d2539f818589896f8a0642d8e9aa586c579e53e0088c6a8312d5d3aaf87",
+      "soundCallCount": 20,
+      "statusCounts": {
+        "not-in-proven-map-or-shared-bank": 20
+      },
+      "directCommands": [
+        "a0001200",
+        "a0040000",
+        "a00a0000",
+        "a83f0000",
+        "a84d0000"
+      ],
+      "candidateObjectTags": []
+    }
+  ],
+  "directCommandFrequency": [
+    {
+      "commandHex": "a0000100",
+      "callCount": 9
+    },
+    {
+      "commandHex": "a0000200",
+      "callCount": 5
+    },
+    {
+      "commandHex": "a0000300",
+      "callCount": 1
+    },
+    {
+      "commandHex": "a0000400",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a0001100",
+      "callCount": 9
+    },
+    {
+      "commandHex": "a0001200",
+      "callCount": 57
+    },
+    {
+      "commandHex": "a0001300",
+      "callCount": 8
+    },
+    {
+      "commandHex": "a0020000",
+      "callCount": 6
+    },
+    {
+      "commandHex": "a0030000",
+      "callCount": 6
+    },
+    {
+      "commandHex": "a0040000",
+      "callCount": 503
+    },
+    {
+      "commandHex": "a0050000",
+      "callCount": 6
+    },
+    {
+      "commandHex": "a0090000",
+      "callCount": 7
+    },
+    {
+      "commandHex": "a00a0000",
+      "callCount": 934
+    },
+    {
+      "commandHex": "a0100000",
+      "callCount": 11
+    },
+    {
+      "commandHex": "a0110000",
+      "callCount": 33
+    },
+    {
+      "commandHex": "a5100000",
+      "callCount": 1
+    },
+    {
+      "commandHex": "a6000000",
+      "callCount": 6
+    },
+    {
+      "commandHex": "a8010000",
+      "callCount": 5
+    },
+    {
+      "commandHex": "a8010100",
+      "callCount": 5
+    },
+    {
+      "commandHex": "a8010200",
+      "callCount": 10
+    },
+    {
+      "commandHex": "a8010300",
+      "callCount": 2
+    },
+    {
+      "commandHex": "a8040000",
+      "callCount": 4
+    },
+    {
+      "commandHex": "a8060000",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a80b0000",
+      "callCount": 2
+    },
+    {
+      "commandHex": "a80b0100",
+      "callCount": 2
+    },
+    {
+      "commandHex": "a80c0000",
+      "callCount": 1
+    },
+    {
+      "commandHex": "a80d0000",
+      "callCount": 4
+    },
+    {
+      "commandHex": "a80f0000",
+      "callCount": 6
+    },
+    {
+      "commandHex": "a8110000",
+      "callCount": 5
+    },
+    {
+      "commandHex": "a8120000",
+      "callCount": 1
+    },
+    {
+      "commandHex": "a8130000",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a8130100",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a8140000",
+      "callCount": 97
+    },
+    {
+      "commandHex": "a8140100",
+      "callCount": 97
+    },
+    {
+      "commandHex": "a8140200",
+      "callCount": 97
+    },
+    {
+      "commandHex": "a8140300",
+      "callCount": 97
+    },
+    {
+      "commandHex": "a8140400",
+      "callCount": 97
+    },
+    {
+      "commandHex": "a8150000",
+      "callCount": 4
+    },
+    {
+      "commandHex": "a8180000",
+      "callCount": 2
+    },
+    {
+      "commandHex": "a8180100",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a81b0000",
+      "callCount": 1
+    },
+    {
+      "commandHex": "a81f0000",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a81f0100",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a81f0200",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a8240000",
+      "callCount": 5
+    },
+    {
+      "commandHex": "a8250000",
+      "callCount": 19
+    },
+    {
+      "commandHex": "a8280000",
+      "callCount": 9
+    },
+    {
+      "commandHex": "a82a0000",
+      "callCount": 1
+    },
+    {
+      "commandHex": "a82a0100",
+      "callCount": 4
+    },
+    {
+      "commandHex": "a82b0000",
+      "callCount": 1
+    },
+    {
+      "commandHex": "a82f0000",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a8300000",
+      "callCount": 2
+    },
+    {
+      "commandHex": "a8330000",
+      "callCount": 1
+    },
+    {
+      "commandHex": "a83a0000",
+      "callCount": 6
+    },
+    {
+      "commandHex": "a83f0000",
+      "callCount": 217
+    },
+    {
+      "commandHex": "a83f0100",
+      "callCount": 6
+    },
+    {
+      "commandHex": "a83f0200",
+      "callCount": 1
+    },
+    {
+      "commandHex": "a83f0300",
+      "callCount": 1
+    },
+    {
+      "commandHex": "a83f0400",
+      "callCount": 1
+    },
+    {
+      "commandHex": "a83f0600",
+      "callCount": 2
+    },
+    {
+      "commandHex": "a83f0700",
+      "callCount": 2
+    },
+    {
+      "commandHex": "a83f0800",
+      "callCount": 2
+    },
+    {
+      "commandHex": "a8420000",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a8440000",
+      "callCount": 7
+    },
+    {
+      "commandHex": "a8450000",
+      "callCount": 4
+    },
+    {
+      "commandHex": "a8460000",
+      "callCount": 20
+    },
+    {
+      "commandHex": "a8470000",
+      "callCount": 5
+    },
+    {
+      "commandHex": "a8480000",
+      "callCount": 1
+    },
+    {
+      "commandHex": "a84a0000",
+      "callCount": 14
+    },
+    {
+      "commandHex": "a84d0000",
+      "callCount": 1
+    },
+    {
+      "commandHex": "a84e0000",
+      "callCount": 2
+    },
+    {
+      "commandHex": "a84f0000",
+      "callCount": 4
+    },
+    {
+      "commandHex": "a8500000",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a8520000",
+      "callCount": 1
+    },
+    {
+      "commandHex": "a85e0000",
+      "callCount": 6
+    },
+    {
+      "commandHex": "a8640000",
+      "callCount": 5
+    },
+    {
+      "commandHex": "a8640100",
+      "callCount": 5
+    },
+    {
+      "commandHex": "a8640200",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a8640300",
+      "callCount": 5
+    },
+    {
+      "commandHex": "a9040000",
+      "callCount": 29
+    },
+    {
+      "commandHex": "a9040100",
+      "callCount": 54
+    },
+    {
+      "commandHex": "a9040200",
+      "callCount": 32
+    },
+    {
+      "commandHex": "a9040300",
+      "callCount": 41
+    },
+    {
+      "commandHex": "a9040400",
+      "callCount": 26
+    },
+    {
+      "commandHex": "a9040500",
+      "callCount": 12
+    },
+    {
+      "commandHex": "a9040600",
+      "callCount": 30
+    },
+    {
+      "commandHex": "a9040700",
+      "callCount": 14
+    },
+    {
+      "commandHex": "a9040800",
+      "callCount": 13
+    },
+    {
+      "commandHex": "a9040900",
+      "callCount": 15
+    },
+    {
+      "commandHex": "a9040a00",
+      "callCount": 4
+    },
+    {
+      "commandHex": "a9040b00",
+      "callCount": 4
+    },
+    {
+      "commandHex": "a9040d00",
+      "callCount": 8
+    },
+    {
+      "commandHex": "a9040e00",
+      "callCount": 8
+    },
+    {
+      "commandHex": "a9041000",
+      "callCount": 1
+    },
+    {
+      "commandHex": "a9041100",
+      "callCount": 10
+    },
+    {
+      "commandHex": "a9041200",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a9041300",
+      "callCount": 2
+    },
+    {
+      "commandHex": "a9041400",
+      "callCount": 6
+    },
+    {
+      "commandHex": "a9041500",
+      "callCount": 6
+    },
+    {
+      "commandHex": "a9041600",
+      "callCount": 9
+    },
+    {
+      "commandHex": "a9041700",
+      "callCount": 9
+    },
+    {
+      "commandHex": "a9041800",
+      "callCount": 6
+    },
+    {
+      "commandHex": "a9041900",
+      "callCount": 2
+    },
+    {
+      "commandHex": "a9041a00",
+      "callCount": 2
+    },
+    {
+      "commandHex": "a9041b00",
+      "callCount": 18
+    },
+    {
+      "commandHex": "a9041c00",
+      "callCount": 17
+    },
+    {
+      "commandHex": "a9041d00",
+      "callCount": 4
+    },
+    {
+      "commandHex": "a9041e00",
+      "callCount": 4
+    },
+    {
+      "commandHex": "a9041f00",
+      "callCount": 2
+    },
+    {
+      "commandHex": "a9042000",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a9042100",
+      "callCount": 1
+    },
+    {
+      "commandHex": "a9042200",
+      "callCount": 1
+    },
+    {
+      "commandHex": "a9042300",
+      "callCount": 1
+    },
+    {
+      "commandHex": "a9042700",
+      "callCount": 1
+    },
+    {
+      "commandHex": "a9042800",
+      "callCount": 1
+    },
+    {
+      "commandHex": "a9042a00",
+      "callCount": 1
+    },
+    {
+      "commandHex": "a9042d00",
+      "callCount": 1
+    },
+    {
+      "commandHex": "a9042e00",
+      "callCount": 1
+    },
+    {
+      "commandHex": "a9043200",
+      "callCount": 2
+    },
+    {
+      "commandHex": "a9043300",
+      "callCount": 2
+    },
+    {
+      "commandHex": "a9043400",
+      "callCount": 2
+    },
+    {
+      "commandHex": "a9043500",
+      "callCount": 2
+    },
+    {
+      "commandHex": "a9043600",
+      "callCount": 2
+    },
+    {
+      "commandHex": "a9043700",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a9043800",
+      "callCount": 6
+    },
+    {
+      "commandHex": "a9043900",
+      "callCount": 2
+    },
+    {
+      "commandHex": "a9043a00",
+      "callCount": 2
+    },
+    {
+      "commandHex": "a9050000",
+      "callCount": 32
+    },
+    {
+      "commandHex": "a9050100",
+      "callCount": 32
+    },
+    {
+      "commandHex": "a9050200",
+      "callCount": 12
+    },
+    {
+      "commandHex": "a9050300",
+      "callCount": 19
+    },
+    {
+      "commandHex": "a9050400",
+      "callCount": 15
+    },
+    {
+      "commandHex": "a9050500",
+      "callCount": 17
+    },
+    {
+      "commandHex": "a9050600",
+      "callCount": 12
+    },
+    {
+      "commandHex": "a9050700",
+      "callCount": 20
+    },
+    {
+      "commandHex": "a9050800",
+      "callCount": 12
+    },
+    {
+      "commandHex": "a9050900",
+      "callCount": 17
+    },
+    {
+      "commandHex": "a9050a00",
+      "callCount": 13
+    },
+    {
+      "commandHex": "a9050b00",
+      "callCount": 11
+    },
+    {
+      "commandHex": "a9050c00",
+      "callCount": 24
+    },
+    {
+      "commandHex": "a9050d00",
+      "callCount": 15
+    },
+    {
+      "commandHex": "a9050e00",
+      "callCount": 9
+    },
+    {
+      "commandHex": "a9050f00",
+      "callCount": 8
+    },
+    {
+      "commandHex": "a9051000",
+      "callCount": 20
+    },
+    {
+      "commandHex": "a9051100",
+      "callCount": 36
+    },
+    {
+      "commandHex": "a9051200",
+      "callCount": 15
+    },
+    {
+      "commandHex": "a9051300",
+      "callCount": 9
+    },
+    {
+      "commandHex": "a9051400",
+      "callCount": 11
+    },
+    {
+      "commandHex": "a9051500",
+      "callCount": 15
+    },
+    {
+      "commandHex": "a9051600",
+      "callCount": 9
+    },
+    {
+      "commandHex": "a9051700",
+      "callCount": 12
+    },
+    {
+      "commandHex": "a9051800",
+      "callCount": 15
+    },
+    {
+      "commandHex": "a9051900",
+      "callCount": 20
+    },
+    {
+      "commandHex": "a9051a00",
+      "callCount": 16
+    },
+    {
+      "commandHex": "a9051b00",
+      "callCount": 9
+    },
+    {
+      "commandHex": "a9051c00",
+      "callCount": 14
+    },
+    {
+      "commandHex": "a9051d00",
+      "callCount": 9
+    },
+    {
+      "commandHex": "a9051e00",
+      "callCount": 6
+    },
+    {
+      "commandHex": "a9051f00",
+      "callCount": 6
+    },
+    {
+      "commandHex": "a9052000",
+      "callCount": 8
+    },
+    {
+      "commandHex": "a9052100",
+      "callCount": 8
+    },
+    {
+      "commandHex": "a9052200",
+      "callCount": 9
+    },
+    {
+      "commandHex": "a9052300",
+      "callCount": 6
+    },
+    {
+      "commandHex": "a9052400",
+      "callCount": 7
+    },
+    {
+      "commandHex": "a9052500",
+      "callCount": 7
+    },
+    {
+      "commandHex": "a9052600",
+      "callCount": 5
+    },
+    {
+      "commandHex": "a9052700",
+      "callCount": 5
+    },
+    {
+      "commandHex": "a9052800",
+      "callCount": 7
+    },
+    {
+      "commandHex": "a9052900",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a9052a00",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a9052b00",
+      "callCount": 9
+    },
+    {
+      "commandHex": "a9052c00",
+      "callCount": 9
+    },
+    {
+      "commandHex": "a9052d00",
+      "callCount": 9
+    },
+    {
+      "commandHex": "a9052e00",
+      "callCount": 21
+    },
+    {
+      "commandHex": "a9052f00",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a9053000",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a9053100",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a9053200",
+      "callCount": 8
+    },
+    {
+      "commandHex": "a9053300",
+      "callCount": 5
+    },
+    {
+      "commandHex": "a9053400",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a9053500",
+      "callCount": 5
+    },
+    {
+      "commandHex": "a9053600",
+      "callCount": 8
+    },
+    {
+      "commandHex": "a9053700",
+      "callCount": 10
+    },
+    {
+      "commandHex": "a9053800",
+      "callCount": 9
+    },
+    {
+      "commandHex": "a9053900",
+      "callCount": 2
+    },
+    {
+      "commandHex": "a9054200",
+      "callCount": 13
+    },
+    {
+      "commandHex": "a9054d00",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a9055100",
+      "callCount": 2
+    },
+    {
+      "commandHex": "a9055800",
+      "callCount": 7
+    },
+    {
+      "commandHex": "a9055900",
+      "callCount": 10
+    },
+    {
+      "commandHex": "a9055c00",
+      "callCount": 6
+    },
+    {
+      "commandHex": "a9055d00",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a9056000",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a9056100",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a9056200",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a9056300",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a9056500",
+      "callCount": 9
+    },
+    {
+      "commandHex": "a9056600",
+      "callCount": 6
+    },
+    {
+      "commandHex": "a9056800",
+      "callCount": 4
+    },
+    {
+      "commandHex": "a9056900",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a9056a00",
+      "callCount": 3
+    },
+    {
+      "commandHex": "a9060c00",
+      "callCount": 1
+    },
+    {
+      "commandHex": "a9061300",
+      "callCount": 1
+    },
+    {
+      "commandHex": "a91e0000",
+      "callCount": 1
+    },
+    {
+      "commandHex": "aa0a0400",
+      "callCount": 1
+    },
+    {
+      "commandHex": "aa0a0500",
+      "callCount": 3
+    },
+    {
+      "commandHex": "aa0a0600",
+      "callCount": 2
+    },
+    {
+      "commandHex": "aa0a0a00",
+      "callCount": 1
+    },
+    {
+      "commandHex": "aa0a0b00",
+      "callCount": 2
+    },
+    {
+      "commandHex": "ab000000",
+      "callCount": 25
+    },
+    {
+      "commandHex": "ab000900",
+      "callCount": 36
+    },
+    {
+      "commandHex": "ab000a00",
+      "callCount": 51
+    },
+    {
+      "commandHex": "ab001100",
+      "callCount": 13
+    },
+    {
+      "commandHex": "ab021800",
+      "callCount": 4
+    },
+    {
+      "commandHex": "ab021900",
+      "callCount": 7
+    },
+    {
+      "commandHex": "ab034200",
+      "callCount": 1
+    },
+    {
+      "commandHex": "ab050400",
+      "callCount": 11
+    },
+    {
+      "commandHex": "ab050500",
+      "callCount": 14
+    },
+    {
+      "commandHex": "ab050600",
+      "callCount": 55
+    },
+    {
+      "commandHex": "ab050700",
+      "callCount": 55
+    },
+    {
+      "commandHex": "ab050800",
+      "callCount": 55
+    },
+    {
+      "commandHex": "ab050900",
+      "callCount": 6
+    },
+    {
+      "commandHex": "ab060000",
+      "callCount": 3
+    },
+    {
+      "commandHex": "ab060100",
+      "callCount": 17
+    },
+    {
+      "commandHex": "ab060400",
+      "callCount": 10
+    },
+    {
+      "commandHex": "ab140400",
+      "callCount": 3
+    },
+    {
+      "commandHex": "ab760000",
+      "callCount": 1
+    },
+    {
+      "commandHex": "ab760100",
+      "callCount": 4
+    },
+    {
+      "commandHex": "ab760200",
+      "callCount": 8
+    },
+    {
+      "commandHex": "ab760400",
+      "callCount": 4
+    },
+    {
+      "commandHex": "ab761400",
+      "callCount": 1
+    },
+    {
+      "commandHex": "ab761500",
+      "callCount": 1
+    },
+    {
+      "commandHex": "ab761600",
+      "callCount": 1
+    },
+    {
+      "commandHex": "ab761900",
+      "callCount": 1
+    },
+    {
+      "commandHex": "ab761a00",
+      "callCount": 4
+    },
+    {
+      "commandHex": "ab761b00",
+      "callCount": 2
+    },
+    {
+      "commandHex": "ab761c00",
+      "callCount": 1
+    },
+    {
+      "commandHex": "ab761f00",
+      "callCount": 3
+    },
+    {
+      "commandHex": "ab762000",
+      "callCount": 5
+    },
+    {
+      "commandHex": "ab762700",
+      "callCount": 5
+    },
+    {
+      "commandHex": "ab762b00",
+      "callCount": 2
+    },
+    {
+      "commandHex": "ab762d00",
+      "callCount": 2
+    },
+    {
+      "commandHex": "ab770000",
+      "callCount": 1
+    },
+    {
+      "commandHex": "ab770300",
+      "callCount": 3
+    },
+    {
+      "commandHex": "ab770400",
+      "callCount": 3
+    },
+    {
+      "commandHex": "ab770600",
+      "callCount": 3
+    },
+    {
+      "commandHex": "ab770700",
+      "callCount": 3
+    },
+    {
+      "commandHex": "ab770900",
+      "callCount": 3
+    },
+    {
+      "commandHex": "ab770a00",
+      "callCount": 2
+    },
+    {
+      "commandHex": "ab770c00",
+      "callCount": 3
+    }
+  ],
+  "sharedSystemDirectCommands": [
+    {
+      "commandHex": "ab000000",
+      "callCount": 25
+    },
+    {
+      "commandHex": "ab000900",
+      "callCount": 36
+    },
+    {
+      "commandHex": "ab000a00",
+      "callCount": 51
+    },
+    {
+      "commandHex": "ab001100",
+      "callCount": 13
+    },
+    {
+      "commandHex": "ab034200",
+      "callCount": 1
+    },
+    {
+      "commandHex": "ab050400",
+      "callCount": 11
+    },
+    {
+      "commandHex": "ab050500",
+      "callCount": 14
+    },
+    {
+      "commandHex": "ab050600",
+      "callCount": 55
+    },
+    {
+      "commandHex": "ab050700",
+      "callCount": 55
+    },
+    {
+      "commandHex": "ab050800",
+      "callCount": 55
+    },
+    {
+      "commandHex": "ab050900",
+      "callCount": 6
+    }
+  ]
+}

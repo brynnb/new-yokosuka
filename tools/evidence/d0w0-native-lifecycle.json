@@ -1,0 +1,55 @@
+{
+  "schema": "new-yokosuka-native-cutscene-lifecycle-v1",
+  "resource": "D0W0",
+  "disc": 1,
+  "area": "D000",
+  "mapinfo": {
+    "path": "extracted_files/data/SCENE/01/D000/MAPINFO.BIN",
+    "sha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e"
+  },
+  "owner": {
+    "entryFunction": "0x5b904",
+    "activityOwnerFunction": "0x5a900",
+    "ownerCall": "0x5b922",
+    "containerOpen": "0x5ad3a",
+    "containerClose": "0x5af02",
+    "containerOperation": "0x013c",
+    "activityOperation": "0x013e",
+    "slots": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+  },
+  "dependencies": {
+    "archive": "extracted_files/data/SCENE/01/D000/D0W0.PKS",
+    "motionBank": "M_01YAMA.MOTN",
+    "voices": "extracted_files/data/SCENE/01/STREAM/E1020.AFS",
+    "soundBank": "extracted_files/data/SCENE/01/SOUND/A1_YAMAW.SND",
+    "actors": ["AKIR", "YAMA"],
+    "sceneObjects": ["COP_"],
+    "actorMapping": {
+      "YAMA": {
+        "label": "Shigeo Yamagishi",
+        "modelCode": "YMG_L",
+        "evidence": "the exact scheduled actor catalog and Disc 1 FACE pair"
+      }
+    },
+    "sceneObjectMapping": {
+      "COP_": {
+        "archiveMember": "CUPK300G.CHRM",
+        "sha256": "e51f0d36a61171dedcebddae62b52ef9429859808bd5fd302b11aae1b1869c04",
+        "evidence": "COP_ is the only non-character AUTH tag and CUPK300G is the sole archive-local CHRM member"
+      }
+    }
+  },
+  "runtimePolicy": {
+    "entry": "the cutscene director acquires player and scheduled-actor presentation before running one selected native activity slot",
+    "sceneObject": "instantiate the exact archive-local cup only for activities which author COP_, then dispose the package-owned root",
+    "exit": "release activity, face, audio, scene-object, camera, control, and music ownership exactly once"
+  },
+  "sources": [
+    ".disc-work/dialogue/native-event-ir.json",
+    "tools/evidence/d000-auth-audio-banks.json",
+    "tools/evidence/d000-auth-audio-inventory.json",
+    "tools/evidence/native-activity-actor-assets.json"
+  ],
+  "availability": "package-candidate",
+  "productionGate": "Exact activity, actor, facial, object, and audio assets must all be hash- and structure-verified before selector registration."
+}

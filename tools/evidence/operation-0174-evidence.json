@@ -1,0 +1,47 @@
+{
+  "schema": "new-yokosuka-operation-0174-evidence-v1",
+  "status": "exact-native-write-and-all-disc-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0x0c010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+  },
+  "operation": {
+    "operationId": 372,
+    "operationHex": "0x0174",
+    "handlerAddress": "0x0c1724bc",
+    "verifiedRanges": {
+      "handler": {
+        "address": "0x0c1724bc",
+        "length": 62,
+        "sha256": "8c8cf0c9500e3db1dee2de0fbd6d4e66353e9fd78c2e1a73dea807cbb718e194"
+      },
+      "writeHelper": {
+        "address": "0x0c1ba8ee",
+        "length": 6,
+        "sha256": "ba7666dec85872c2fa8918cd148e2e79b17da9845cbd0d1c281efac5fe0a1796"
+      }
+    },
+    "nativeContract": {
+      "operationTableHandler": "0x0c1724bc",
+      "writeHelper": "0x0c1ba8ee",
+      "globalDword": "0x0c2262a8"
+    },
+    "provenBehavior": "Mode one forwards argument one unchanged to helper 0x0c1ba8ee, which replaces the dword at 0x0c2262a8. Every authored call uses mode one and writes exactly zero or one."
+  },
+  "allDiscInventory": {
+    "authoredCallCount": 136,
+    "dialogueRegionCallCount": 0,
+    "areaCount": 112,
+    "valueCounts": {
+      "0": 12,
+      "1": 124
+    }
+  },
+  "evidenceBoundary": [
+    "The global dword retains its native address-derived name because its gameplay-domain meaning is not yet proved.",
+    "The runtime owns the complete proven state transition and requires no external adapter.",
+    "No behavior is inferred for unauthored modes or values outside zero and one."
+  ]
+}
