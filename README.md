@@ -1,9 +1,10 @@
 # New Yokosuka
 
-<p align="center">
-  <img src="newyokosuka.png" width="600" alt="New Yokosuka" />
-  <img src="screenshot.jpg" width="600" alt="New Yokosuka gameplay" />
-</p>
+<img width="2504" height="1824" alt="image" src="https://github.com/user-attachments/assets/e1b0be70-863a-41d8-b59a-0eeea7f11d25" />
+
+
+<img width="2504" height="1824" alt="image" src="https://github.com/user-attachments/assets/999df1a5-724a-4654-88fe-26641f8e41aa" />
+
 
 **Play the current build at [www.newyokosuka.com](https://www.newyokosuka.com/).**
 
