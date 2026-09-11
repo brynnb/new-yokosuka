@@ -37,8 +37,10 @@ jobs:
       - name: Test atomic frontend releases
         run: node --test tests/FrontendRelease.test.js tests/LuckyBreakPackage.test.js
 
-      - name: Test model converter and parsers
-        run: node --test tests/Mt5ToMt7.test.js tests/Mt7Parser.test.js tests/Mt5Loader.test.js
+      # The full MT7 retail-model suite requires locally extracted game files.
+      # Converter tests use synthetic fixtures and run in a clean checkout.
+      - name: Test model converter and MT5 loader
+        run: node --test tests/Mt5ToMt7.test.js tests/Mt5Loader.test.js
 
       - name: Build project
         env:
