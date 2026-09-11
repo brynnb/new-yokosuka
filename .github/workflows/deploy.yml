@@ -37,6 +37,9 @@ jobs:
       - name: Test atomic frontend releases
         run: node --test tests/FrontendRelease.test.js tests/LuckyBreakPackage.test.js
 
+      - name: Test model converter and parsers
+        run: node --test tests/Mt5ToMt7.test.js tests/Mt7Parser.test.js tests/Mt5Loader.test.js
+
       - name: Build project
         env:
           # The full S1/S2 asset catalog exceeds Node's default 2 GB heap while
