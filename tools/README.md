@@ -7,6 +7,7 @@ README beside their code.
 ## Command manuals
 
 - [Asset extraction and texture export](../docs/guides/tooling/asset-extraction.md)
+- [Experimental static MT5 to MT7 conversion](../docs/guides/tooling/mt5-to-mt7.md)
 - [Shenmue I/II audio archive rendering](../docs/implementation/audio-archive.md)
 - [Scheduled actor extraction](../docs/guides/tooling/scheduled-actors.md)
 - [Animation, character diagnostics, and placement](../docs/guides/tooling/animation-and-placement.md)

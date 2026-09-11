@@ -2148,7 +2148,9 @@ export class Mt5Loader {
         return model;
     }
 
-    readPolygons(reader, vertexBase, nbVertex, model = null, node = null, parentModel = null) {
+    // Export tools opt into strict validation; interactive loading retains its
+    // existing partial-geometry behavior for unsupported source records.
+    readPolygons(reader, vertexBase, nbVertex, model = null, node = null, parentModel = null, { strict = false } = {}) {
         const polygons = [];
         let currentTexIdx = 0;
         let isUVH = false;
@@ -2164,12 +2166,13 @@ export class Mt5Loader {
         const inverseLocalMatrix = node ? Mt5Loader.inverseSourceTransformMatrix(node) : null;
 
         let iterations = 0;
-        while (reader.offset < reader.size - 2 && iterations < 10000) {
+        let terminated = false;
+        while ((strict ? reader.offset <= reader.size - 2 : reader.offset < reader.size - 2) && iterations < 10000) {
             iterations++;
             const type = reader.readUShort();
 
             // 0x8000 marks the end of the mesh data block
-            if (type === 0x8000) break;
+            if (type === 0x8000) { terminated = true; break; }
 
             // Null markers
             if (type === 0x0000 || type === 0xFFFF) {
@@ -2383,13 +2386,18 @@ export class Mt5Loader {
                 poly.entryOverrunBytes = entryOverrunBytes;
                 poly.entryConsumedBytes = reader.offset - entryOffset;
                 poly.entryLengthMatchesPcSkip = expectedEntryEnd <= reader.size && entryOverrunBytes === 0 && reader.offset === expectedEntryEnd;
+                if (strict && !poly.entryLengthMatchesPcSkip) {
+                    throw new Error(`MT5 strip length mismatch at 0x${entryOffset.toString(16)}`);
+                }
                 polygons.push(poly);
             } else {
+                if (strict) throw new Error(`Unsupported MT5 chunk 0x${type.toString(16)} at 0x${(reader.offset - 2).toString(16)}`);
                 // Failsafe for unknown data types to prevent infinite loops
                 console.warn(`[MT5] Unknown chunk type 0x${type.toString(16)} at offset ${reader.offset - 2}. Breaking.`);
                 break;
             }
         }
+        if (strict && !terminated) throw new Error('MT5 polygon stream has no end marker');
         return polygons;
     }
 
