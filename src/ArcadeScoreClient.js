@@ -12,10 +12,12 @@ export class ArcadeScoreClient {
     fetchImpl = (...args) => globalThis.fetch(...args),
     now = () => Date.now(),
     cacheDurationMs = 60_000,
+    requestTimeoutMs = 10_000,
   } = {}) {
     this.fetchImpl = fetchImpl;
     this.now = now;
     this.cacheDurationMs = cacheDurationMs;
+    this.requestTimeoutMs = requestTimeoutMs;
     this.scores = new Map();
     this.loadedAt = null;
     this.loading = null;
@@ -85,6 +87,44 @@ export class ArcadeScoreClient {
     return this.loading;
   }
 
+  async requestJSON(url, options = {}) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(new DOMException(
+      "Arcade request timed out", "TimeoutError",
+    )), this.requestTimeoutMs);
+    try {
+      const signal = options.signal
+        ? AbortSignal.any([options.signal, controller.signal])
+        : controller.signal;
+      const response = await this.fetchImpl(url, {
+        credentials: "same-origin", ...options, signal,
+      });
+      if (!response.ok) throw new Error(`Arcade request failed (${response.status})`);
+      return await response.json();
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+
+  async leaderboard(machineId, { signal } = {}) {
+    if (!MACHINE_ID_SET.has(machineId)) throw new Error("Invalid arcade machine");
+    const body = await this.requestJSON(
+      `/api/arcade-scores?${new URLSearchParams({ machineId })}`,
+      { signal, cache: "no-store", headers: { Accept: "application/json" } },
+    );
+    const ids = new Set();
+    if (body?.machineId !== machineId || !Array.isArray(body.entries)
+      || body.entries.length > 30 || body.entries.some(entry => {
+        const invalid = !Number.isSafeInteger(entry?.characterId) || entry.characterId <= 0
+          || ids.has(entry.characterId) || typeof entry.playerName !== "string" || !entry.playerName
+          || !Number.isFinite(entry.score) || entry.score < 0
+          || typeof entry.achievedAt !== "string" || !Number.isFinite(Date.parse(entry.achievedAt));
+        ids.add(entry?.characterId);
+        return invalid;
+      })) throw new Error("Arcade leaderboard response is invalid");
+    return body.entries;
+  }
+
   async submit(machineId, score, characterId) {
     if (
       !MACHINE_ID_SET.has(machineId)
@@ -95,7 +135,7 @@ export class ArcadeScoreClient {
     ) {
       return null;
     }
-    const response = await this.fetchImpl("/api/arcade-scores", {
+    const result = await this.requestJSON("/api/arcade-scores", {
       method: "POST",
       credentials: "same-origin",
       keepalive: true,
@@ -105,8 +145,6 @@ export class ArcadeScoreClient {
       },
       body: JSON.stringify({ characterId, machineId, score }),
     });
-    if (!response.ok) throw new Error(`Arcade score failed (${response.status})`);
-    const result = await response.json();
     const highScore = Number(result?.score);
     if (
       result?.machineId !== machineId

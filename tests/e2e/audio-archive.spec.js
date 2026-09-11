@@ -105,3 +105,37 @@ test("existing Shenmue I audio still plays through the shared asset host", async
   await page.getByRole("button", { name: "Shenmue", exact: true }).click();
   await expect.poll(() => audio.evaluate(element => element.paused && !element.getAttribute("src"))).toBe(true);
 });
+
+test("S1 all-disc catalog exposes distinct FREE banks, aliases and playable alternates", async ({ page }) => {
+  test.setTimeout(120000);
+  await page.goto('/asset-viewer/?mode=audio');
+  const catalog = page.locator('#audio-catalog-root');
+  await catalog.getByLabel('Search audio').fill('FRE1100');
+  await catalog.getByRole('button', { name: /Free Roam/ }).click();
+  await expect(catalog.getByText('FREE 6', { exact: true })).toBeVisible();
+  await expect(catalog.getByText('Spotted', { exact: true })).toBeVisible();
+  await expect(catalog.getByText('Old Warehouse No. 8', { exact: true })).toBeVisible();
+  await catalog.getByLabel('Audio disc').selectOption('2');
+  // Changing disc resets collapsed groups, so reopen Free Roam.
+  await catalog.getByRole('button', { name: /Free Roam/ }).click();
+  await expect(catalog.getByText('Old Warehouse No. 8', { exact: true })).toHaveCount(0);
+  await catalog.getByLabel('Search audio').fill('FREE 10');
+  await catalog.getByText('FREE 10', { exact: true }).click();
+  const audio = page.locator('#audio-player-root audio');
+  await expect.poll(() => audio.evaluate(el => el.currentTime)).toBeGreaterThan(0);
+  expect(await audio.evaluate(el => el.currentSrc)).toContain('/shenmue/runtime/');
+  await audio.evaluate(el => { el.currentTime = 60; });
+  await expect.poll(() => audio.evaluate(el => el.currentTime)).toBeGreaterThanOrEqual(60);
+  for (const format of ['OGG', 'MP3']) {
+    const download = page.waitForEvent('download');
+    await page.getByRole('button', { name: `Download ${format}` }).click();
+    expect((await download).suggestedFilename()).toMatch(new RegExp(`\\.${format.toLowerCase()}$`));
+  }
+  await catalog.getByLabel('Audio disc').selectOption('1');
+  await catalog.getByLabel('Search audio').fill('FRE0800');
+  await catalog.getByRole('button', { name: /Free Roam/ }).click();
+  await expect(catalog.locator('.audio-track')).toHaveCount(5);
+  await catalog.getByText('FREE 1d', { exact: true }).click();
+  await expect.poll(() => audio.evaluate(el => el.currentTime)).toBeGreaterThan(0);
+  await page.screenshot({ path: 'tests/reports/audio-archive-shenmue1-expanded.png' });
+});

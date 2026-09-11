@@ -1,5 +1,5 @@
 import { ARCADE_ROM_URLS } from "../src/ArcadeRomUrls.js";
-import { dispatchArcadeEmulatorKey } from "../src/ArcadeEmulatorInput.js";
+import { dispatchArcadeEmulatorKey, migrateHangOnPedalSettings } from "../src/ArcadeEmulatorInput.js";
 import { readAudioPreferences } from "../play/audio/AudioPreferences.js";
 
 const ARCADE_CONFIGS = Object.freeze({
@@ -9,10 +9,12 @@ const ARCADE_CONFIGS = Object.freeze({
     romUrl: ARCADE_ROM_URLS.hangon,
     controls: Object.freeze({
       0: Object.freeze({
-        0: Object.freeze({ value: "w", value2: "BUTTON_2" }),
+        // FBNeo maps Hang-On's analog pedals to RetroPad R2/L2, not B/A.
+        // Keyboard presses supply full throttle/brake through these inputs.
+        13: Object.freeze({ value: "w", value2: "RIGHT_BOTTOM_SHOULDER" }),
         2: Object.freeze({ value: "v", value2: "SELECT" }),
         3: Object.freeze({ value: "enter", value2: "START" }),
-        8: Object.freeze({ value: "s", value2: "BUTTON_1" }),
+        12: Object.freeze({ value: "s", value2: "LEFT_BOTTOM_SHOULDER" }),
         16: Object.freeze({ value: "d", value2: "LEFT_STICK_X:+1" }),
         17: Object.freeze({ value: "a", value2: "LEFT_STICK_X:-1" }),
       }),
@@ -280,6 +282,13 @@ async function boot() {
   // EmulatorJS 4.2.3 treats `false` as the opt-out value here.
   window.EJS_disableAutoLang = false;
   window.EJS_defaultControls = config.controls;
+  if (gameId === "hangon") {
+    try {
+      migrateHangOnPedalSettings(window.localStorage);
+    } catch {
+      console.warn("[Arcade] Saved Hang-On controls could not be updated. Reset controls in the emulator if needed.");
+    }
+  }
   // Keep EmulatorJS's analog-style movement stick, but supply the arcade
   // controls ourselves so its generic Fast and Slow buttons are not created.
   window.EJS_VirtualGamepadSettings = [

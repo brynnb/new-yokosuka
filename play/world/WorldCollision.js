@@ -202,7 +202,9 @@ export function createArcadeInteractionAnchors({
     );
     anchor.position.set(...interaction.position);
     anchor.visibility = 0.001;
-    anchor.isPickable = true;
+    // Retained as a world-owned cabinet region, not a clickable proxy. Picking
+    // uses the visible surface inside it (see ArcadePicking).
+    anchor.isPickable = false;
     anchor.checkCollisions = false;
     anchor.metadata = {
       interactiveArcade: { ...interaction, root: anchor },

@@ -432,7 +432,10 @@ export class ArcadeAttractScreens {
     );
     applyScreenGeometry(mesh, definition);
     mesh.material = material;
-    mesh.isPickable = false;
+    // This is the visible screen surface (some baked screens are suppressed).
+    // It participates in arcade picking, but never collision/camera blocking.
+    mesh.isPickable = true;
+    mesh.metadata = { arcadeScreen: true };
     mesh.checkCollisions = false;
     mesh.alwaysSelectAsActiveMesh = true;
     mesh.setEnabled(false);

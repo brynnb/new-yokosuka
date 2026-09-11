@@ -12,7 +12,8 @@ import { ArcadeControlsHud } from "../ui/ArcadeControlsHud.js";
 import { AudioSettingsControls } from "../ui/AudioSettingsControls.js";
 import { ArcadeAttractScreens } from "./ArcadeAttractScreens.js";
 import { ArcadeCabinetView } from "./ArcadeCabinetView.js";
-import { ArcadeCoordinator } from "./ArcadeCoordinator.js";
+import { ArcadeCoordinator, arcadeMachineId } from "./ArcadeCoordinator.js";
+import { closeArcadeResults, openArcadeResults } from "../ui/react/arcadeResultsStore.js";
 import { ArcadeLighting } from "./ArcadeLighting.js";
 import { dartCabinetView } from "./DartsPhysicalRuntime.js";
 import { ArcadePerformanceController } from "../performance/ArcadePerformanceController.js";
@@ -50,6 +51,7 @@ export class PlayArcadeAssembly {
       isPickerActive,
     });
     this.games = null;
+    this.pendingResults = null;
     this.cabinetView = new ArcadeCabinetView({
       scene,
       engine,
@@ -137,8 +139,10 @@ export class PlayArcadeAssembly {
       submitScore: (gameId, score, context) => (
         this.coordinator.submitScore(gameId, score, context)
       ),
+      onFinished: round => { this.pendingResults = round; },
       onActiveChange: (active, game, context) => {
         if (active) {
+          this.clearResults();
           void this.coordinator.refreshActiveGame(game, context);
           this.getController()?.setMovementLocked(true);
           const definition = game?.physicalKind === "darts"
@@ -171,7 +175,29 @@ export class PlayArcadeAssembly {
     window.addEventListener("keydown", this.activateEmulatorAudio, true);
   }
 
+  updateResults() {
+    // Wait for cabinet camera restoration before the modal snapshots the
+    // movement lock; otherwise closing it could leave the avatar locked.
+    if (!this.pendingResults || this.cabinetView.transition) return;
+    const { game, score, sessionContext, submission } = this.pendingResults;
+    this.pendingResults = null;
+    const machineId = arcadeMachineId(game.id, sessionContext);
+    if (!machineId) return;
+    openArcadeResults({
+      title: game.id === "darts" ? `${game.title} · Board ${Number(machineId.slice(-1)) + 1}` : game.title,
+      score, decimalScores: game.decimalScores === true,
+      characterId: this.coordinator.accountSession.character?.id,
+      machineId, submission, scoreClient: this.coordinator.scoreClient,
+    });
+  }
+
+  clearResults() {
+    this.pendingResults = null;
+    closeArcadeResults();
+  }
+
   disposeActivation() {
+    this.clearResults();
     window.removeEventListener("pointerdown", this.activateEmulatorAudio, true);
     window.removeEventListener("keydown", this.activateEmulatorAudio, true);
   }

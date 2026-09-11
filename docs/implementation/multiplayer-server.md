@@ -89,6 +89,25 @@ With both repositories checked out, verify the shared snapshots explicitly:
 npm run server:check-contract
 ```
 
+## Arcade results
+
+Excite QTE, the paddle game, and each dartboard open a scrollable top-30
+leaderboard after a completed game and cabinet camera restoration. Each row is
+one character's best score on that machine, with the date it was achieved;
+ties retain the earlier achievement. Emulated cabinets do not report scores.
+
+`ArcadeScoreClient` submits the completed score, then reads
+`GET /api/arcade-scores?machineId=...`. The response is
+`{ machineId, entries: [{ characterId, playerName, score, achievedAt }] }`.
+The existing unfiltered GET still returns the four machine records. Closing
+the modal or changing worlds cancels the leaderboard read; network failures
+show a retry action without resubmitting the score.
+
+This requires the separate server's `003_arcade_leaderboards.sql` migration
+(applied by its normal startup migration runner). Deploy that backend before
+the client. Existing attributable machine records keep their original dates;
+previously discarded non-record scores cannot be recovered.
+
 ## Deployment boundary
 
 This repository's workflow builds and deploys only the frontend. It verifies

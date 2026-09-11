@@ -136,6 +136,8 @@ export class PlayWorldLifecycle {
     raycastIndex?.dispose?.();
     this.getController()?.setRaycastIndex(null);
     this.poolRuntime.close();
+    this.arcade.clearResults();
+    this.arcade.getGames()?.close();
     this.nativeStoryRuntime.clearWorld(this.worldRuntime.activeWorld);
     this.playerRuntime.combat?.setActive(false);
     this.worldSounds.reset();
@@ -154,7 +156,7 @@ export class PlayWorldLifecycle {
     disposeYouArcadePosters();
     disposeDobuitaCinemaPoster();
     disposeYouArcadeDigitalDisplays();
-    this.arcade.cabinetView.clearProjection();
+    this.arcade.cabinetView.clear();
     this.scheduledActors.clear();
     this.scheduledSceneObjects.clear();
     this.forkliftAssembly.cargo.clearWorld();

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render original Shenmue II music banks with the existing headless DSF renderer.
+"""Render original Shenmue I/II music banks with the shared headless DSF renderer.
 
 The driver RAM layout follows the project's Shenmue I renderer and
 kingshriek's dsfdtpk (2008): https://www.snesmusic.org/hoot/kingshriek/ssf/
@@ -49,6 +49,24 @@ def apply_titles(manifest):
             "kind": "community-description" if "[" in title or "?" in title or "unused" in title.lower()
             else "community-title"}
     manifest["titleCredits"] = {key: catalog[key] for key in ("source", "credit")}
+
+
+def apply_s1_titles(manifest):
+    """Hash/sequence identity prevents disc filename collisions and guessed titles."""
+    catalog = json.loads((Path(__file__).resolve().parents[1] / "data/shenmue1-audio-labels.json").read_text())
+    index = {(e["sha256"], e["group"], e["track"]): e["label"] for e in catalog["entries"]}
+    for track in manifest["tracks"].values():
+        source = track["source"]
+        if "bankSha256" not in source:
+            continue  # Supplemental recordings are not scene-bank sequences.
+        label = index.get((source["bankSha256"], source["group"], source["track"]))
+        if label:
+            track["label"] = label
+        # Let the viewer's existing S1 category rules retain location labels.
+        track.pop("category", None)
+    manifest["tracks"].update(catalog["supplementalTracks"])
+    manifest["coverage"]["supplementalTracks"] = len(catalog["supplementalTracks"])
+    manifest["titleCredits"] = catalog["provenance"]
 
 
 def write_json(path, value):
@@ -116,10 +134,10 @@ def make_dsf(driver, bank, group, track):
     return b"PSF\x12" + struct.pack("<III", 0, len(compressed), binascii.crc32(compressed)) + compressed
 
 
-def inventory(roots):
+def inventory(roots, game="shenmue2"):
     tracks, omitted = {}, []
     for disc, root in roots:
-        driver_path = root / "MISC/AICADRV.BIN"
+        driver_path = root / ("SOUND/AICADRV.BIN" if game == "shenmue1" else "MISC/AICADRV.BIN")
         driver_hash = digest(driver_path.read_bytes())
         sources = sorted(root.glob("SCENE/*/SOUND/*.SND"))
         if not sources:
@@ -164,19 +182,23 @@ def encode(wav, output, codec):
 
 def render(task, args):
     source = {key: value for key, value in task.items() if not key.startswith("_")}
-    directory = args.output / "shenmue2"
+    directory = args.output / args.game
     directory.mkdir(parents=True, exist_ok=True)
     stem = f"{task['file'][:-4].lower()}-{task['id'][:16]}-{args.seconds}s"
     args.cache_dir.mkdir(parents=True, exist_ok=True)
     receipt = args.cache_dir / f"{stem}.json"
     # Resume only hash-verified output from this exact renderer and settings.
-    signature = {"rendererSha256": args.renderer_hash, "seconds": args.seconds, "revision": 2}
+    signature = {"rendererSha256": args.renderer_hash, "seconds": args.seconds,
+                 "ffmpegVersion": args.ffmpeg_version, "revision": 3}
     if receipt.exists():
         cached = json.loads(receipt.read_text())
-        if cached.get("signature") == signature and all(
+        expected_outputs = 2 if cached.get("status") == "rendered" else 0
+        if (cached.get("status") in ("rendered", "silent")
+            and len(cached.get("outputs", {})) == expected_outputs
+            and cached.get("signature") == signature and all(
             (directory / name).exists() and digest((directory / name).read_bytes()) == sha
             for name, sha in cached.get("outputs", {}).items()
-        ):
+        )):
             return {**cached, "source": source}
     data = task["_path"].read_bytes()
     driver = task["_driver"].read_bytes()
@@ -210,20 +232,25 @@ def render(task, args):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--game", choices=("shenmue1", "shenmue2"), default="shenmue2")
     parser.add_argument("--disc", action="append", help="NUMBER=/path/to/extracted/data")
     parser.add_argument("--renderer", type=Path)
     parser.add_argument("--relabel-manifest", type=Path, help="Update titles only; no audio rendering")
     parser.add_argument("--output", type=Path, default=Path("public/music"))
     parser.add_argument("--work-dir", type=Path, default=Path("/var/tmp"))
-    parser.add_argument("--cache-dir", type=Path, default=Path(".audio-tools/archive-cache/shenmue2"))
+    parser.add_argument("--cache-dir", type=Path)
     parser.add_argument("--seconds", type=int, default=180)
     parser.add_argument("--workers", type=int, choices=range(1, 7), default=4)
     args = parser.parse_args()
+    args.cache_dir = args.cache_dir or Path(".audio-tools/archive-cache") / args.game
     if args.relabel_manifest:
         manifest = json.loads(args.relabel_manifest.read_text())
-        if manifest.get("game") != "shenmue2":
-            parser.error("Only Shenmue II catalogs can use this title mapping")
-        apply_titles(manifest)
+        if manifest.get("game") == "shenmue1":
+            apply_s1_titles(manifest)
+        elif manifest.get("game") == "shenmue2":
+            apply_titles(manifest)
+        else:
+            parser.error("Use an all-disc Shenmue I or II archive catalog")
         write_json(args.relabel_manifest, manifest)
         return
     if not args.disc or not args.renderer:
@@ -234,13 +261,15 @@ def main():
         roots = [(int(value.split("=", 1)[0]), Path(value.split("=", 1)[1])) for value in args.disc]
     except (ValueError, IndexError):
         parser.error("Each --disc must be NUMBER=/path/to/extracted/data")
-    if len({disc for disc, _ in roots}) != len(roots) or any(disc not in range(1, 5) for disc, _ in roots):
-        parser.error("Use unique disc numbers 1–4")
+    disc_count = 3 if args.game == "shenmue1" else 4
+    if len({disc for disc, _ in roots}) != len(roots) or any(disc not in range(1, disc_count + 1) for disc, _ in roots):
+        parser.error(f"Use unique disc numbers 1–{disc_count}")
     args.renderer = args.renderer.resolve()
     args.renderer_hash = digest(args.renderer.read_bytes())
     ffmpeg_version = subprocess.run(["ffmpeg", "-version"], check=True, capture_output=True,
         text=True, timeout=10).stdout.splitlines()[0]
-    tasks, omitted = inventory(sorted(roots))
+    args.ffmpeg_version = ffmpeg_version
+    tasks, omitted = inventory(sorted(roots), args.game)
     print(f"Rendering {len(tasks)} distinct sequences from {len(roots)} discs ({args.workers} workers)", flush=True)
     results = []
     with ThreadPoolExecutor(args.workers) as pool:
@@ -261,17 +290,22 @@ def main():
             "category": category, "durationSeconds": args.seconds, "loop": False,
             "discs": sorted({copy['disc'] for copy in source['copies']}),
             "source": source, "pcmSha256": result["pcmSha256"],
-            **{f"{Path(name).suffix[1:]}_url": f"/music/shenmue2/{name}" for name in result['outputs']}}
-    manifest = {"schema": "new-yokosuka-asset-viewer-music-v1", "game": "shenmue2",
+            **{f"{Path(name).suffix[1:]}_url": f"/music/{args.game}/{name}" for name in result['outputs']}}
+    manifest = {"schema": "new-yokosuka-asset-viewer-music-v1", "game": args.game,
         "render": {"durationSeconds": args.seconds, "sampleRate": 44100,
             "rendererSha256": args.renderer_hash, "ffmpegVersion": ffmpeg_version},
         "tracks": tracks,
         "coverage": {"discs": sorted(disc for disc, _ in roots), "musicSequences": len(tasks),
             "audibleSequences": len(tracks), "omitted": omitted}}
-    apply_titles(manifest)
+    if args.game == "shenmue1":
+        apply_s1_titles(manifest)
+    else:
+        apply_titles(manifest)
     args.output.mkdir(parents=True, exist_ok=True)
-    write_json(args.output / "shenmue2-asset-viewer-manifest.json", manifest)
-    print(f"Archive ready: {len(tracks)} audible tracks; {len(tasks) - len(tracks)} silent sequences", flush=True)
+    filename = "asset-viewer-manifest.json" if args.game == "shenmue1" else "shenmue2-asset-viewer-manifest.json"
+    write_json(args.output / filename, manifest)
+    audible = manifest["coverage"]["audibleSequences"]
+    print(f"Archive ready: {audible} audible sequences; {len(tasks) - audible} silent; {len(tracks)} total entries", flush=True)
 
 
 if __name__ == "__main__":

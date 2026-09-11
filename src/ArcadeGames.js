@@ -53,6 +53,7 @@ export class ArcadeGames {
     dartsRuntime = null,
     getHighScore = (gameId, _sessionContext, fallback) => fallback,
     submitScore = () => null,
+    onFinished = () => {},
     onActiveChange = () => {},
     onControlsChange = () => {},
     requestFrame = globalThis.requestAnimationFrame?.bind(globalThis),
@@ -72,6 +73,8 @@ export class ArcadeGames {
     this.dartsRuntime = dartsRuntime;
     this.getHighScore = getHighScore;
     this.submitScore = submitScore;
+    this.onFinished = onFinished;
+    this.completedRound = null;
     this.onActiveChange = onActiveChange;
     this.onControlsChange = onControlsChange;
     this.requestFrame = requestFrame;
@@ -94,7 +97,7 @@ export class ArcadeGames {
     this.boundKeyUp = (event) => this.keyUp(event);
     this.boundPointer = (event) => this.pointer(event);
     this.boundMessage = (event) => this.message(event);
-    closeButton.addEventListener("click", () => this.close());
+    closeButton.addEventListener("click", () => this.dismiss());
     canvas.addEventListener("pointerdown", this.boundPointer);
     window.addEventListener("message", this.boundMessage);
   }
@@ -242,6 +245,7 @@ export class ArcadeGames {
   }
 
   close() {
+    this.completedRound = null;
     if (!this.active) return;
     if (this.game?.mode === "physical") {
       if (this.game.physicalKind === "darts") this.dartsRuntime?.stop();
@@ -271,6 +275,13 @@ export class ArcadeGames {
     }
     this.focusReleased = false;
     this.sessionContext = null;
+  }
+
+  dismiss() {
+    if (this.active && this.state?.over) {
+      this.recordCompletedRound();
+      this.showCompletedRound();
+    } else this.close();
   }
 
   releaseFocus() {
@@ -386,7 +397,7 @@ export class ArcadeGames {
     if (event.key === "Escape") {
       event.preventDefault();
       event.stopImmediatePropagation();
-      this.close();
+      this.dismiss();
       return;
     }
     if (this.game?.mode === "emulator") {
@@ -455,10 +466,6 @@ export class ArcadeGames {
 
   press(code) {
     if (this.state.over) {
-      if (code === "Space" || code === "Enter") {
-        const context = this.sessionContext;
-        this.start(this.game.id, context);
-      }
       return;
     }
     if (this.game.mode === "physical") {
@@ -597,8 +604,9 @@ export class ArcadeGames {
     this.dartsRuntime?.noteThrow(this.state.lastThrow);
     if (this.state.throwsLeft > 0) this.state.timeBonus = 10;
     if (this.state.throwsLeft === 0) {
+      const finishedState = this.state;
       window.setTimeout(() => {
-        if (this.active && this.game.id === "darts") {
+        if (this.active && this.state === finishedState) {
           this.finish("Set complete");
         }
       }, 500);
@@ -614,7 +622,14 @@ export class ArcadeGames {
       );
       this.state.endFlashElapsed = 0;
     }
-    this.state.message = `${message} · Press Space to play again`;
+    this.state.message = message;
+    this.recordCompletedRound();
+    this.updateHud();
+    // Keep input owned until the physical score flash finishes and results open.
+  }
+
+  recordCompletedRound() {
+    if (this.completedRound || !this.state?.over) return;
     this.lastScores.set(
       this.game.id,
       this.game.decimalScores
@@ -625,33 +640,30 @@ export class ArcadeGames {
     const finishedState = this.state;
     const game = this.game;
     const sessionContext = this.sessionContext;
-    Promise.resolve(this.submitScore(
+    const submission = (async () => this.submitScore(
       game.id,
       finishedState.score,
       sessionContext,
-    )).then((result) => {
+    ))().then((result) => {
       const serverHighScore = Number(result?.score);
-      if (!Number.isFinite(serverHighScore)) return;
+      if (!Number.isFinite(serverHighScore)) return { saved: false };
       finishedState.highScore = serverHighScore;
       if (
         this.active
-        && this.game?.id === game.id
-        && this.sessionContext === sessionContext
+        && this.state === finishedState
       ) {
         this.state.highScore = serverHighScore;
         this.updateHud();
       }
-    }).catch(() => {
-      if (
-        this.active
-        && this.game?.id === game.id
-        && this.sessionContext === sessionContext
-      ) {
-        this.statusElement.textContent = "Score could not be saved";
-      }
-    });
-    this.updateHud();
-    if (this.game?.physicalKind === "darts") this.releaseFocus();
+      return { saved: true };
+    }).catch(() => ({ saved: false }));
+    this.completedRound = { game, score: finishedState.lastScore, sessionContext, submission };
+  }
+
+  showCompletedRound() {
+    const round = this.completedRound;
+    this.close();
+    if (round) this.onFinished(round);
   }
 
   frame(time) {
@@ -663,6 +675,13 @@ export class ArcadeGames {
     this.lastFrameAt = time;
     if (this.game.mode !== "physical") this.resize();
     if (!this.state.over || this.game.mode === "physical") this.update(delta);
+    // The paddle simulation owns its game-over flag; all games share recording
+    // and result presentation here, including games ended by a key press.
+    if (this.state.over) this.recordCompletedRound();
+    if (this.state.over && this.game.mode !== "physical") {
+      this.showCompletedRound();
+      return;
+    }
     if (this.game.mode !== "physical") this.render();
     this.updateHud();
     if (
@@ -671,7 +690,7 @@ export class ArcadeGames {
       && this.state.over
       && this.paddleRuntime.endFlashComplete
     ) {
-      this.close();
+      this.showCompletedRound();
       return;
     }
     if (
@@ -683,7 +702,7 @@ export class ArcadeGames {
       this.dartsRuntime?.resetLiveDisplays(this.state);
       this.state.score = 0;
       this.state.timeBonus = 10;
-      this.close();
+      this.showCompletedRound();
       return;
     }
     this.frameRequest = this.requestFrame(this.boundFrame);

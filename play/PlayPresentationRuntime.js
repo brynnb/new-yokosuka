@@ -149,6 +149,7 @@ export class PlayPresentationRuntime {
       () => player.getController()?.setMovementLocked(false),
     );
     arcade.cabinetView.updateScreen(arcade.getGames());
+    arcade.updateResults?.();
   }
 
   updatePlayerPresentation({

@@ -8,6 +8,52 @@
     "aicaDriverSha256": "3f88553a52a6d1af0b988ea3f41800178988350721bd7422a570dc3e4e369915"
   },
   "tracks": {
+    "free-1": {
+      "url": "/music/free-roam/disc1-fre0100.ogg",
+      "label": "FREE 1",
+      "durationSeconds": 180,
+      "loop": true,
+      "sha256": "962183903ae46690ff9f530bcdbddc202b412a558ba85d4047aa4c3fc6abaa79",
+      "source": {
+        "disc": 1,
+        "file": "FRE0100.SND",
+        "sha256": "6e65878858844067984ec22990dd965e232d0294045cc310f8b1bdbe4151709f",
+        "group": 0,
+        "track": 0,
+        "groupCommand": "A83F0000"
+      }
+    },
+    "free-5": {
+      "url": "/music/free-roam/disc2-fre1400.ogg",
+      "label": "FREE 5",
+      "durationSeconds": 180,
+      "loop": true,
+      "sha256": "64a2816c355dfae1915e3484dd2757b8d686f1c69c47101142d1548424cf1770",
+      "source": {
+        "disc": 2,
+        "file": "FRE1400.SND",
+        "sha256": "94fa44353df4584dac387a6ae55045494b6d9ed84ede3dee45fb355adc7b5e2d",
+        "renderedFromByteIdenticalBank": "Disc 1 FRE0200.SND",
+        "group": 0,
+        "track": 0,
+        "groupCommand": "A83F0000"
+      }
+    },
+    "free-10": {
+      "url": "/music/free-roam/disc2-fre1300.ogg",
+      "label": "FREE 10",
+      "durationSeconds": 180,
+      "loop": true,
+      "sha256": "db49f333b50b5d54493847e3847077be4bc4b5ac818198c0c3a439fe0d3d8df8",
+      "source": {
+        "disc": 2,
+        "file": "FRE1300.SND",
+        "sha256": "421a1eaad2793011c6dfb2733a39b667f2163dcc29b5857f62146322fdf136d2",
+        "group": 0,
+        "track": 0,
+        "groupCommand": "A83F0000"
+      }
+    },
     "shenmue-main-menu": {
       "url": "/music/shenmue-main-menu.ogg",
       "label": "Shenmue Main Menu",
@@ -394,46 +440,40 @@
       "evidence": "Hazuki Residence Grounds intentionally shares the Hazuki Residence Interior music."
     },
     "yamanose": {
-      "track": "yamanose",
+      "track": "free-1",
       "gain": 0.72,
-      "mappingKind": "representative-map-reference",
-      "evidence": "JU00 scripts reference BGM018; its SNDD program uses SELECT for story-state music."
+      "mappingKind": "user-selected-exploration-default",
+      "evidence": "JU00 uses SELECT. FREE 1 (Disc 1 FRE0100, STEP 1.x) is the shared early exploration default without simulated story progression."
     },
     "sakuragaoka": {
-      "track": "sakuragaoka",
+      "track": "free-1",
       "gain": 0.72,
-      "mappingKind": "representative-map-reference",
-      "evidence": "JD00 scripts reference BGM068; its SNDD program uses SELECT for story-state music."
+      "mappingKind": "user-selected-exploration-default",
+      "evidence": "JD00 uses SELECT and shares the early FREE 1 exploration default with Yamanose and Dobuita."
     },
     "dobuita": {
-      "track": "dobuita-free-quest",
+      "track": "free-1",
       "gain": 0.7,
-      "mappingKind": "user-selected-soundtrack",
-      "evidence": "The supplied What's Shenmue — Free Quest soundtrack file was selected specifically for the /play Dobuita zone."
-    },
-    "arcade": {
-      "track": "you-arcade",
-      "gain": 0.62,
-      "mappingKind": "native-area-sound-program",
-      "evidence": "DGCT MAPINFO loads F1GAMECE.SND; its long sequenced-music entry is group 0, track 2."
+      "mappingKind": "user-selected-exploration-default",
+      "evidence": "D000 uses SELECT and shares the early FREE 1 exploration default with Yamanose and Sakuragaoka."
     },
     "mfsy": {
-      "track": "new-yokosuka-harbor",
+      "track": "free-5",
       "gain": 0.7,
-      "mappingKind": "representative-map-reference",
-      "evidence": "MFSY scripts reference BGM117; its SNDD program uses SELECT for story-state music."
+      "mappingKind": "user-selected-exploration-default",
+      "evidence": "MFSY uses SELECT. FREE 5 (Disc 2 FRE1400, STEP 14.x) was selected for ongoing harbor exploration, rather than the earliest FREE 6."
     },
     "mksg": {
-      "track": "old-warehouse-district",
+      "track": "free-10",
       "gain": 0.68,
-      "mappingKind": "representative-map-reference",
-      "evidence": "MKSG scripts reference BGM109; its SNDD program uses SELECT for story-state music."
+      "mappingKind": "user-selected-exploration-default",
+      "evidence": "Disc 2 MKSG switches from YKM005 stealth music to SELECT when bank-2 flag 260 is set (at least STEP 13.1). FREE 10 (FRE1300) is the first ordinary exploration default; no story flags are set by this assignment."
     },
     "mfbt": {
-      "track": "new-yokosuka-harbor",
+      "track": "free-5",
       "gain": 0.7,
       "mappingKind": "representative-map-reference",
-      "evidence": "MFBT MAPINFO references BGM120.SND for the native 70-man battle scene; the harbor track is retained until that sequence is rendered."
+      "evidence": "MFBT MAPINFO references BGM120.SND for the native 70-man battle scene; this exploration variant shares the selected harbor default until that sequence is rendered."
     },
     "ma00": {
       "track": "forklift",

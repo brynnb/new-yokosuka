@@ -203,18 +203,6 @@ body.account-settings-open #account-ui-root .account-gate {
   outline-offset: 2px;
 }
 
-.account-control.primary:not(.rt-Button) {
-  color: #071114;
-  background: #67d9e8;
-  border-color: #8ce5f0;
-}
-
-.account-control.primary:not(.rt-Button):hover:not(:disabled),
-.account-control.primary:not(.rt-Button):focus-visible {
-  color: #03090b;
-  background: #8ce5f0;
-}
-
 .account-control.danger {
   color: #ffc1bc;
   border-color: rgb(239 114 103 / 0.35);
@@ -522,7 +510,7 @@ body.account-settings-open #account-ui-root .account-gate {
   margin-top: 18px;
 }
 
-.account-footer-actions .primary {
+.account-footer-actions .ny-button-primary {
   margin-left: auto;
 }
 
@@ -856,7 +844,7 @@ body.account-settings-open #account-ui-root .account-gate {
       minmax(0, 0.75fr);
   }
 
-  .account-footer-actions .primary {
+  .account-footer-actions .ny-button-primary {
     grid-column: 1 / -1;
     margin: 0;
   }

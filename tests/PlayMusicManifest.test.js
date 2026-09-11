@@ -13,7 +13,6 @@ const sidebarWorlds = [
   "yamanose",
   "sakuragaoka",
   "dobuita",
-  "arcade",
   "mfsy",
   "mksg",
   "mfbt",
@@ -21,7 +20,7 @@ const sidebarWorlds = [
   "ma00race",
 ];
 
-test("assigns a rendered track to every /play sidebar world", () => {
+test("assigns a rendered track to each music-enabled /play sidebar world", () => {
   for (const worldId of sidebarWorlds) {
     const assignment = manifest.worlds[worldId];
     assert.ok(assignment, `${worldId} has no music assignment`);
@@ -68,12 +67,27 @@ test("uses the supplied racing track only for Forklift Races", () => {
   );
 });
 
-test("uses the supplied Free Quest track for Dobuita", () => {
-  assert.equal(manifest.worlds.dobuita.track, "dobuita-free-quest");
-  assert.equal(
-    manifest.tracks["dobuita-free-quest"].url,
-    "/music/dobuita-free-quest.mp3",
-  );
+test("exploration defaults use verified FREE banks without story-specific cues", () => {
+  for (const world of ["yamanose", "sakuragaoka", "dobuita"]) {
+    assert.equal(manifest.worlds[world].track, "free-1");
+  }
+  assert.equal(manifest.worlds.mfsy.track, "free-5");
+  assert.equal(manifest.worlds.mfbt.track, "free-5");
+  assert.equal(manifest.worlds.mksg.track, "free-10");
+  for (const [id, disc, file] of [
+    ["free-1", 1, "FRE0100.SND"],
+    ["free-5", 2, "FRE1400.SND"],
+    ["free-10", 2, "FRE1300.SND"],
+  ]) {
+    assert.equal(manifest.tracks[id].source.disc, disc);
+    assert.equal(manifest.tracks[id].source.file, file);
+    assert.equal(manifest.tracks[id].source.track, 0);
+  }
+});
+
+test("You Arcade has no background music assignment; Nightfall stays available separately", () => {
+  assert.equal(manifest.worlds.arcade, undefined);
+  assert.equal(manifest.tracks["old-warehouse-district"].source.file, "BGM109.SND");
 });
 
 test("music assets match their provenance manifest", () => {

@@ -59,7 +59,8 @@ function groupTracks(manifest, disc, search) {
       }
     }
     if (disc && !track.discs?.includes(Number(disc))) continue;
-    const text = `${track.label} ${track.source?.file || ""}`.toLowerCase();
+    const aliases = track.source?.copies?.map(copy => copy.path).join(" ") || "";
+    const text = `${track.label} ${track.source?.file || ""} ${aliases}`.toLowerCase();
     if (!search.toLowerCase().split(/\s+/).every((word) => text.includes(word))) continue;
     groups.get(groupForTrack(track)).push(track);
   }
@@ -124,10 +125,10 @@ export function AudioCatalogApp() {
     <div className="audio-catalog-filters">
       <input type="search" aria-label="Search audio" placeholder="Search audio…"
         value={search} onChange={(event) => setSearch(event.target.value)} />
-      {game === "shenmue2" ? <select aria-label="Audio disc" value={disc}
+      {manifest?.coverage?.discs?.length || game === "shenmue2" ? <select aria-label="Audio disc" value={disc}
         onChange={(event) => setDisc(event.target.value)}>
         <option value="">All discs</option>
-        {[1, 2, 3, 4].map((number) => <option key={number} value={number}>Disc {number}</option>)}
+        {(manifest?.coverage?.discs || [1, 2, 3, 4]).map((number) => <option key={number} value={number}>Disc {number}</option>)}
       </select> : null}
     </div>
     {error ? <p className="audio-catalog-message" role="alert">Audio catalog unavailable: {error} {" "}

@@ -1,5 +1,6 @@
 import binascii
 import importlib.util
+import json
 import os
 from pathlib import Path
 import struct
@@ -25,6 +26,40 @@ def bank(command=0xa8000000, tracks=2):
 
 
 class ArchiveTests(unittest.TestCase):
+    def test_s1_titles_distinguish_disc_collisions_and_preserve_subsongs(self):
+        labels = json.loads((Path(__file__).parents[1] / 'tools/data/shenmue1-audio-labels.json').read_text())
+        def entry(label):
+            e = next(e for e in labels['entries'] if e['label'] == label)
+            return {'label': 'unidentified', 'source': {'bankSha256': e['sha256'], 'group': e['group'], 'track': e['track']}}
+        manifest = {'tracks': {label: entry(label) for label in ['FREE 6', 'Old Warehouse No. 8', 'Spotted', 'FREE 1d']}, 'coverage': {}}
+        archive.apply_s1_titles(manifest)
+        for label in ['FREE 6', 'Old Warehouse No. 8', 'Spotted', 'FREE 1d']:
+            self.assertEqual(manifest['tracks'][label]['label'], label)
+        self.assertEqual(manifest['coverage']['supplementalTracks'], 4)
+        self.assertIn('shenmue-main-menu', manifest['tracks'])
+        archive.apply_s1_titles(manifest)
+        self.assertEqual(manifest['tracks']['FREE 6']['label'], 'FREE 6')
+
+    def test_s1_inventory_uses_s1_driver_and_keeps_same_name_different_banks(self):
+        with tempfile.TemporaryDirectory(dir='/var/tmp') as temporary:
+            roots = []
+            for disc in (1, 2, 3):
+                root = Path(temporary) / str(disc)
+                (root / 'SOUND').mkdir(parents=True)
+                (root / 'SOUND/AICADRV.BIN').write_bytes(bytes(64))
+                sound = root / f'SCENE/0{disc}/SOUND'
+                sound.mkdir(parents=True)
+                data = bytearray(bank())
+                if disc == 2:
+                    data[-1] = 1
+                (sound / 'FRE1100.SND').write_bytes(data)
+                roots.append((disc, root))
+            tracks, omitted = archive.inventory(roots, 'shenmue1')
+            self.assertEqual(len(tracks), 4)
+            self.assertEqual(omitted, [])
+            self.assertEqual([c['disc'] for c in tracks[0]['copies']], [1, 3])
+            self.assertEqual(len({t['id'] for t in tracks}), 4)
+
     def test_community_titles_match_subsongs_without_guessing(self):
         def entry(file, track=0, group=0, offset=0):
             return {"source": {"file": file + ".SND", "track": track, "group": group, "offset": offset}}

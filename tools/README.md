@@ -7,6 +7,7 @@ README beside their code.
 ## Command manuals
 
 - [Asset extraction and texture export](../docs/guides/tooling/asset-extraction.md)
+- [Shenmue I/II audio archive rendering](../docs/implementation/audio-archive.md)
 - [Scheduled actor extraction](../docs/guides/tooling/scheduled-actors.md)
 - [Animation, character diagnostics, and placement](../docs/guides/tooling/animation-and-placement.md)
 - [Scene and event analysis](../docs/guides/tooling/scene-and-event-analysis.md)

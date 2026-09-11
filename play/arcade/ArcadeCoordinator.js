@@ -108,22 +108,6 @@ export class ArcadeCoordinator {
         99999,
         Math.max(0, Math.floor(score)),
       );
-      if (!paddleState.serverScoreSubmitted) {
-        paddleState.serverScoreSubmitted = true;
-        void this.scoreClient.submit(
-          "qte-1",
-          Math.floor(score),
-          this.accountSession.character?.id,
-        ).then(result => {
-          this.updatePaddleScores(
-            score,
-            Number(result.score),
-            this.paddleLastScore,
-          );
-        }).catch(() => {
-          this.dom.arcadeStatus.textContent = "Score could not be saved";
-        });
-      }
     }
     this.updatePaddleScores(
       score,
@@ -148,16 +132,19 @@ export class ArcadeCoordinator {
       submittedScore,
       this.accountSession.character?.id,
     );
+    if (!result) return null;
     if (gameId === "darts") {
       const boardIndex = dartBoardIndexForInteraction(
         sessionContext?.interaction,
       );
       this.dartsHighScores[boardIndex] = Number(result.score);
       this.updateDartScores(boardIndex, {
-        ...(this.getGames()?.state || {}),
+        ...(this.getGames()?.game?.id === "darts" ? this.getGames().state : {}),
         highScore: this.dartsHighScores[boardIndex],
         lastScore: this.dartsLastScores[boardIndex],
       });
+    } else if (gameId === "paddles") {
+      this.updatePaddleScores(this.paddleRuntime.game.state.score, Number(result.score), this.paddleLastScore);
     }
     return result;
   }

@@ -9,6 +9,14 @@ for (const viewport of [{ width: 1280, height: 900 }, { width: 390, height: 844 
     await expect(page.getByLabel("Open the New Yokosuka menu")).toBeVisible();
     await page.keyboard.press("Enter");
     await expect(page.locator(".account-entry-actions button").filter({ hasText: "Quick Play" })).toBeVisible();
+    const quickPlay = page.locator(".account-entry-actions button").filter({ hasText: "Quick Play" });
+    await expect(quickPlay).toHaveCSS("background-color", "rgb(103, 217, 232)");
+    await quickPlay.hover();
+    await expect(quickPlay).toHaveCSS("background-color", "rgb(140, 229, 240)");
+    await page.mouse.move(0, 0);
+    await quickPlay.focus();
+    await expect(quickPlay).toHaveCSS("background-color", "rgb(140, 229, 240)");
+    await page.screenshot({ path: testInfo.outputPath("account-primary-button.png") });
     await expect(page.locator(".account-entry-actions button").filter({ hasText: "Cutscenes" })).toHaveCount(0);
     await expect(page.locator("#cutscene-button")).toHaveCount(0);
 

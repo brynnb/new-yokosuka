@@ -279,7 +279,7 @@ function EntryScreen({ onClose, revealAnimation = false }) {
     >
       <div className="account-entry-actions">
         <AccountButton
-          className="primary account-button-big"
+          className="ny-button-primary account-button-big"
           disabled={!controller}
           onClick={() => controller.quickPlay()}
         >
@@ -378,7 +378,7 @@ function CutsceneSelectionScreen() {
           Back
         </AccountButton>
         <AccountButton
-          className="primary account-button-big"
+          className="ny-button-primary account-button-big"
           disabled={!selected}
           onClick={() => controller.playCutscene(selected.id)}
         >
@@ -400,7 +400,7 @@ function GuestWarningScreen() {
     >
       <div className="account-entry-actions">
         <AccountButton
-          className="primary account-button-big"
+          className="ny-button-primary account-button-big"
           onClick={() => controller.quickPlay({ confirmed: true })}
         >
           Continue as Guest
@@ -459,7 +459,7 @@ function CredentialsScreen() {
           onChange={(event) => setPassword(event.target.value)}
         />
         <AccountButton
-          className="primary account-button-big"
+          className="ny-button-primary account-button-big"
           type="submit"
         >
           {title}
@@ -581,7 +581,7 @@ function CharacterSelectScreen() {
             <ChevronIcon direction="left" />
           </AccountButton>
           <AccountButton
-            className="primary account-button-big character-carousel-enter"
+            className="ny-button-primary account-button-big character-carousel-enter"
             disabled={!selected && characters.length > 0}
             onClick={() => selected
               ? controller.enterWorld()
@@ -629,7 +629,7 @@ function CharacterSelectScreen() {
         </AccountButton>
         {!mobile && (
           <AccountButton
-            className="primary account-button-big"
+            className="ny-button-primary account-button-big"
             disabled={!selected}
             onClick={() => controller.enterWorld()}
           >
@@ -727,7 +727,7 @@ function CharacterCreateScreen() {
             />
           </label>
           <AccountButton
-            className="primary account-button-big"
+            className="ny-button-primary account-button-big"
             type="submit"
           >
             Create Character
@@ -786,7 +786,7 @@ function DeleteCharacterScreen() {
           Delete Character
         </AccountButton>
         <AccountButton
-          className="primary"
+          className="ny-button-primary"
           onClick={() => controller.backToCharacterSelect()}
         >
           Cancel
@@ -807,7 +807,7 @@ function SessionEndedScreen() {
     >
       <div className="account-entry-actions">
         <AccountButton
-          className="primary"
+          className="ny-button-primary"
           onClick={() => {
             location.href = "/";
           }}

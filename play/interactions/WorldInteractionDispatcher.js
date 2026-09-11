@@ -6,6 +6,7 @@ import {
 } from "../characters/ScheduledActorRuntime.js";
 import { FORKLIFT_INTERACTION_DISTANCE } from "../config/forklifts.js";
 import { paddleReactionIndexForMesh } from "../arcade/PaddleReactionRuntime.js";
+import { pickArcadeInteraction } from "../arcade/ArcadePicking.js";
 import { isDirectShenmue2DoorPick } from "../world/Shenmue2NativeDoors.js";
 import { isNativeLayerDoorBlocker } from "../world/TimedTransitionAccess.js";
 import { logicalDoorScriptObject } from "./DoorInteractions.js";
@@ -171,6 +172,11 @@ export class WorldInteractionDispatcher {
   }
 
   handleWorldObject(pointerInfo) {
+    const arcade = pickArcadeInteraction(this.scene, this.camera);
+    if (arcade) {
+      this.handleSpecialTarget({ arcade });
+      return;
+    }
     const interactionPick = this.scene.pick(
       this.scene.pointerX,
       this.scene.pointerY,
@@ -190,7 +196,6 @@ export class WorldInteractionDispatcher {
       authMovement: metadata.interactiveAuthMovement,
       mapTransition: metadata.interactiveMapTransition,
       parkedForklift: metadata.interactiveForklift,
-      arcade: metadata.interactiveArcade,
       pool: metadata.interactivePool,
       vendingMachine: metadata.interactiveVendingMachine,
       cinemaSeat: metadata.interactiveCinemaSeat,
@@ -209,7 +214,6 @@ export class WorldInteractionDispatcher {
       || metadata?.interactiveAuthMovement
       || metadata?.interactiveMapTransition
       || metadata?.interactiveForklift
-      || metadata?.interactiveArcade
       || metadata?.interactivePool
       || metadata?.interactiveVendingMachine
       || metadata?.interactiveCinemaSeat

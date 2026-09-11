@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { readFileSync } from "node:fs";
 
 import {
   PLAY_MUSIC_MUTED_STORAGE_KEY,
@@ -124,6 +125,29 @@ test("an unassigned gameplay world stops menu music", () => {
   assert.equal(director.getState().playing, false);
   assert.equal(director.getState().worldId, "silent-map");
   assert.equal(director.getState().trackId, null);
+});
+
+test("actual exploration manifest shares street music and silences music on arcade entry", () => {
+  const actual = JSON.parse(readFileSync("public/music/manifest.json", "utf8"));
+  const { director, audio, advance } = harness();
+  director.setManifest(actual);
+  director.setWorld("yamanose");
+  director.unlock();
+  advance(100);
+  director.setWorld("sakuragaoka");
+  director.setWorld("dobuita");
+  assert.equal(audio.length, 1, "shared street track must not restart");
+  assert.equal(director.getState().trackId, "free-1");
+  director.setWorld("arcade");
+  assert.equal(audio[0].pauseCalls, 1);
+  assert.equal(director.getState().playing, false);
+  assert.equal(director.getState().trackId, null);
+  director.setWorld("mfsy");
+  assert.equal(director.getState().trackId, "free-5");
+  advance(100);
+  director.setWorld("mksg");
+  assert.equal(director.getState().trackId, "free-10");
+  director.dispose();
 });
 
 test("persists volume and mute preferences", () => {

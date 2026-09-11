@@ -11,6 +11,7 @@ import { PlayUiCoordinator } from "./PlayUiCoordinator.js";
 import { TransientNotice } from "./TransientNotice.js";
 import { bindSidebarFocusReturn } from "./SidebarFocus.js";
 import { queryPlayDom } from "./dom.js";
+import { closeArcadeResults, configureArcadeResultsUi, useArcadeResultsStore } from "./react/arcadeResultsStore.js";
 import {
   closePlayerDirectory,
   configurePlayerDirectoryUi,
@@ -125,6 +126,9 @@ export class PlayInterfaceAssembly {
   }
 
   menuRoot() {
+    if (useArcadeResultsStore.getState().open) {
+      return document.getElementById("arcade-results-overlay");
+    }
     if (useChatUiStore.getState().playerDirectoryOpen) {
       return document.getElementById("online-players-overlay");
     }
@@ -169,6 +173,15 @@ export class PlayInterfaceAssembly {
   }
 
   configureMenus({ getMenuSounds, resetAudio }) {
+    configureArcadeResultsUi({
+      onOpen: () => this.playUi.openModal("arcade-results"),
+      onClose: () => {
+        this.playUi.closeModal("arcade-results");
+      },
+      onAfterClose: () => {
+        if (!this.playUi.menuIsActive()) this.focusGameSurface();
+      },
+    });
     configureSettingsUi({
       onOpen: () => this.playUi.openModal("settings"),
       onClose: () => {
@@ -259,7 +272,8 @@ export class PlayInterfaceAssembly {
   }
 
   closeTopMenu() {
-    if (useChatUiStore.getState().playerDirectoryOpen) closePlayerDirectory();
+    if (useArcadeResultsStore.getState().open) closeArcadeResults();
+    else if (useChatUiStore.getState().playerDirectoryOpen) closePlayerDirectory();
     else if (useSettingsStore.getState().open) closeSettings();
     else if (useJournalStore.getState().open) closeJournal();
     else if (useInventoryStore.getState().open) closeInventory();
@@ -286,6 +300,8 @@ export class PlayInterfaceAssembly {
   }
 
   dispose() {
+    closeArcadeResults();
+    configureArcadeResultsUi({});
     this.dom.logoutButton.removeEventListener("click", this.onLogoutClick);
     this.playInput.dispose();
     this.playUi.dispose();

@@ -2,6 +2,7 @@ import { createPortal } from "react-dom";
 
 import { AccountApp } from "../../account/react/AccountApp.jsx";
 import { ChatPanel } from "./ChatPanel.jsx";
+import { ArcadeResultsDialog } from "./ArcadeResultsDialog.jsx";
 import { JournalApp } from "./JournalApp.jsx";
 import { InventoryApp } from "./InventoryApp.jsx";
 import { PlayerStatus } from "./PlayerStatus.jsx";
@@ -13,6 +14,7 @@ import { NewYokosukaTheme } from "./NewYokosukaTheme.jsx";
 const PORTALS = Object.freeze([
   ["account-ui-root", AccountApp, true],
   ["settings-ui-root", SettingsApp, true],
+  ["arcade-results-ui-root", ArcadeResultsDialog, true],
   ["player-status-ui-root", PlayerStatus, true, true],
   ["chat-ui-root", ChatPanel, false],
   ["journal-ui-root", JournalApp, true],
