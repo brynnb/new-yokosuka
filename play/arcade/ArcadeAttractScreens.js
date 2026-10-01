@@ -483,10 +483,14 @@ export class ArcadeAttractScreens {
     focusedGameId = null,
     liveGameId = null,
     pickerActive = false,
+    suspended = false,
   }) {
     for (const [gameId, definition] of Object.entries(this.definitions)) {
       const definitionWorldId = definition.worldId || this.defaultWorldId;
-      const inDefinitionWorld = activeWorldId === definitionWorldId;
+      // Cinematic presentation does not own these added TV/arcade streams.
+      // Avoid even creating/loading them during a preview; pause existing ones
+      // during in-world cutscenes and resume through the normal update path.
+      const inDefinitionWorld = !suspended && activeWorldId === definitionWorldId;
       if (!inDefinitionWorld) {
         const inactiveEntry = this.entries.get(gameId);
         if (inactiveEntry) {

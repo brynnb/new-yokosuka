@@ -6,6 +6,7 @@ import {
   LoadAssetContainerAsync,
 } from "@babylonjs/core/Loading/sceneLoader.js";
 import { loadMt5Scene, loadMt7Scene } from "../../src/rendering/SceneAssets.js";
+import { batchStaticWorldRoots } from "../../src/rendering/StaticWorldBatching.js";
 import { createGlobalWater } from "../../src/GlobalWater.js";
 import { resolveSceneComposition } from "../../src/SceneCompositions.js";
 import {
@@ -260,6 +261,10 @@ export class WorldLoader {
         interior: world.interior === true,
         nativeHorizontalCollision: Boolean(nativeCollisionDefinition),
       });
+      // Surface edits, cutscene ownership and collision metadata must settle
+      // first. Merge only immutable resident geometry before indexing it.
+      await batchStaticWorldRoots(this.state.currentMeshes, {signal});
+      ensureActive(signal);
       if (nativeCollisionDefinition) {
         createNativeWorldCollision({
           scene: this.scene,

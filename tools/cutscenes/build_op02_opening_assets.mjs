@@ -19,6 +19,7 @@ import {
 import { MotnLoader } from "../../src/MotnLoader.js";
 import { parseNativeScrollSprite } from "../../src/NativeScrollSprite.js";
 import { parseTmnmMotion } from "../../src/TmnmMotion.js";
+import { extractNativeHandPoseOperation, extractNativeHandComponentOperation } from "../lib/NativeAseqCallbackPresentation.mjs";
 import {
   parseIpacActivityArchive,
   sha256,
@@ -115,6 +116,7 @@ if (motionNames.some((name, index) => motion.sequences[index]?.name !== name)) {
   throw new Error("OP02 Shenhua motion inventory changed");
 }
 const nativeResources = Object.freeze([
+  [members, "SIN_HM.BIN", 8632, "6245a820d3b4e69388cde3bea95f2d9b0bc3246a77e8ff2254d586e6398fc589"],
   [residentMembers, "M_TORI.MOTN", 132456, "faa2483e6bbdfb5cde0fec4a1a1aeb5530330b9e8cfec6538bbe524370b67558"],
   [members, "SCROLL53.SCR1", 262196, "ebb90b04a8b2ff865dc4bff68996ee9745cd2c64504bc934ccd2e8454f6a719c"],
   [residentMembers, "SCROLL67.SCR0", 327800, "2c734eef6227c75fc84859a0a6e88dbec5391dc17ac868b240b31c575e7880b0"],
@@ -171,6 +173,8 @@ function ownerProgramPresentationCues() {
   const before = new Map();
   const frames = new Map();
   const after = new Map();
+  const nativeHandPoseTables = {};
+  const handsBySlot = new Map();
   const starts = actions.filter((action) => {
     const values = (action.arguments || []).map(argument => argument.value);
     return action.semanticId === "native-operation-0050-aseq-activity-control"
@@ -212,6 +216,32 @@ function ownerProgramPresentationCues() {
   for (const block of owner.blocks) {
     for (const comparison of block.frameFieldComparisons || []) {
       if (comparison.fieldOffset !== 126) continue;
+      // The owner uses an AUTH frame counter, not the callback prologue
+      // convention. Follow its compiled equality branch to the next gate;
+      // reuse the shared HAND translators for the authored data itself.
+      let handBlock = blocks.get(comparison.resolvedBranch?.comparisonTrueSuccessor);
+      const visited = new Set();
+      while (handBlock && !visited.has(handBlock.id) && !handBlock.frameFieldComparisons?.length) {
+        visited.add(handBlock.id);
+        for (const operation of handBlock.actions) {
+          if (!["resolved-object-hndl-hndr-vector-install", "resolved-object-hndl-hndr-component-write"].includes(operation.semanticId)) continue;
+          const slot = activeSlotAt(parseInt(operation.callFileOffset, 16));
+          if (!Number.isInteger(slot)) throw new Error("OP02 HAND cue has no active AUTH slot");
+          if (!handsBySlot.has(slot)) handsBySlot.set(slot, { nativeHandPoseCues: [], nativeHandComponentCues: [] });
+          const hands = handsBySlot.get(slot);
+          const sourceOrder = hands.nativeHandPoseCues.length + hands.nativeHandComponentCues.length;
+          const inputs = { bytes: mapinfo, operation, nativeFunction: owner, activitySlot: slot, frame: comparison.constant, sourceOrder };
+          if (operation.semanticId === "resolved-object-hndl-hndr-vector-install") {
+            const { tableKey, table, cue } = extractNativeHandPoseOperation(inputs);
+            nativeHandPoseTables[tableKey] = table;
+            hands.nativeHandPoseCues.push({ ...cue, sourceOrder });
+          } else hands.nativeHandComponentCues.push(extractNativeHandComponentOperation(inputs));
+        }
+        if (handBlock.successors?.length !== 1) break;
+        const next = blocks.get(handBlock.successors[0]);
+        if (!next || parseInt(next.id, 16) <= parseInt(handBlock.id, 16)) break;
+        handBlock = next;
+      }
       const cue = resourceCueFrom(
         comparison.resolvedBranch?.comparisonTrueSuccessor,
       );
@@ -262,7 +292,12 @@ function ownerProgramPresentationCues() {
   if (JSON.stringify(actual) !== JSON.stringify(expected)) {
     throw new Error("OP02 compiled hawk presentation timeline changed");
   }
-  return Object.freeze({ before, frames, after });
+  const handCalls = [...handsBySlot.values()].flatMap(hands => [...hands.nativeHandPoseCues, ...hands.nativeHandComponentCues]);
+  const sourceHandCalls = actions.filter(action => ["resolved-object-hndl-hndr-vector-install", "resolved-object-hndl-hndr-component-write"].includes(action.semanticId));
+  if (handCalls.length !== sourceHandCalls.length || new Set(handCalls.map(cue => cue.callFileOffset)).size !== sourceHandCalls.length) {
+    throw new Error("OP02 owner HAND calls are not uniquely bound to AUTH frames");
+  }
+  return Object.freeze({ before, frames, after, nativeHandPoseTables, handsBySlot });
 }
 const programPresentationCues = ownerProgramPresentationCues();
 mkdirSync(outputDirectory, { recursive: true });
@@ -274,6 +309,8 @@ const exactModels = Object.freeze([
   [members, "MAP02.MAPM", 156672, "3aa3abecf4e57bf8650aada68d5f3d95bdfc65acb4b87457581b5a446a863a27"],
   [members, "MGR_M.CHRM", 238128, "a79af46067bc08d22ec55e7308d6ac9157185bcba5409de3b59fc07830435f55"],
   [members, "MGR_F.CHRM", 108220, "2b5c3c5f8408cd9819f430598fb2bcba649b0278165ce042a78366860b4bd4a6"],
+  [members, "SIN_TL.CHRM", 12676, "d0c2c59ead198eef047313c5852726df5b1ffd0d903baa4e95254e7f38468be0"],
+  [members, "SIN_TR.CHRM", 12764, "6427c37fbdba8b721a0ed0580c89bc9513260f5a1a4df9d5af25fc5226b3962e"],
   [residentMembers, "MAP.MAPM", 159980, "07a409ba6bfd8eab73e013c04ff3b6e2e483aa1a9cb6a99f79437cb385ebbc88"],
   [residentMembers, "MAP03.MAPM", 3564, "116a7963cc4d3dcd0c40daa3e97a33af0626082ac0d2124db9456997e4b266ee"],
   [residentMembers, "TAK02M7G.CHRM", 45816, "3bb785a9e35909dfddf4d0914faaf063668e848f0667fb931acbfa8a503f2e05"],
@@ -452,6 +489,7 @@ const tracks = trackDefinitions.map((definition) => {
       frames: Object.freeze(programPresentationCues.frames.get(definition.index) || []),
       after: Object.freeze(programPresentationCues.after.get(definition.index) || []),
     }),
+    ...(programPresentationCues.handsBySlot.get(definition.index) || {}),
     motions: motions.map(value => Object.freeze({
       actorTag: value.actorTag,
       frame: value.frame,
@@ -538,6 +576,17 @@ const facialAssets = Object.freeze({
     }),
   }),
 });
+const handAssets = {
+  SINF: {
+    actorTag: "SINF", bodyModelCode: "MGR_M", handCode: "SIN",
+    bodyHandRenderKeys: { left: -66, right: -65 },
+    left: { rootRenderKey: 11, model: outputs.find(asset => asset.path.endsWith("/SIN_TL.CHRM")) },
+    right: { rootRenderKey: 6, model: outputs.find(asset => asset.path.endsWith("/SIN_TR.CHRM")) },
+    texturePack: facialAssets.SINF.texturePack,
+    rig: { ...outputs.find(asset => asset.path.endsWith("/SIN_HM.BIN")),
+      transformNodeCount: 71, vertexCount: 299, pointerOffsets: [24, 168, 8328, 5848, 6344, 8632] },
+  },
+};
 const activityManifest = {
   schema: "new-yokosuka-aseq-activity-pack-v1",
   generatedBy: "tools/cutscenes/build_op02_opening_assets.mjs",
@@ -589,6 +638,8 @@ const activityManifest = {
   },
   ownerAudioCommands: sourceGraph.audio.ownerCommands,
   facialAssets,
+  handAssets,
+  nativeHandPoseTables: programPresentationCues.nativeHandPoseTables,
   motionBanks: [{
     bank: 16,
     path: motionAsset.path,

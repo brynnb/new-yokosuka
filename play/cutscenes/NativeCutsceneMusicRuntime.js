@@ -15,10 +15,17 @@ export class NativeCutsceneMusicRuntime {
     return this.#beginCue(cue);
   }
 
+  beginNamedCue(name) {
+    const cue = this.cues.find(value => value.nativeName === name);
+    return this.#beginCue(cue);
+  }
+
   endActivity({ programActive = false } = {}) {
-    // A package soundtrack belongs to the whole program, not each AUTH it
-    // launches. Slot-specific cues still end with their individual activity.
-    if (programActive && this.activeCue && this.activeCue === this.packageCue) return;
+    // An activity slot is a start trigger, not the soundtrack's lifetime.
+    // OP00's OPEN1/OPEN2 span several AUTHs; releasing on their triggering
+    // activity truncated 82/249-second tracks to 28/27 seconds. A new cue can
+    // replace the track; program completion/cancellation releases ownership.
+    if (programActive) return;
     this.reset();
   }
 

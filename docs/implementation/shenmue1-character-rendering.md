@@ -44,6 +44,56 @@ other secondary motion are separate systems, now documented in
 by each system's proven model/controller profiles; body animation alone does
 not establish garment fidelity.
 
+### Playable GPU body animation
+
+Body and cloth meshes share `mt5AuthoredSideOrientation` in
+`src/Mt5NormalPolicy.js`. It selects the front side by comparing triangle
+winding with authored normals in bind space; Babylon separately handles the
+mirrored character root at draw time. It does not rewrite normals, UVs or
+triangle order. This keeps two-sided body lighting from flipping the same
+attachment normals that one-sided cloth lighting leaves intact. Exterior and
+opposite-winding lining remain separate, one-sided surfaces.
+
+Explicit material conventions and signed detailed FACE resources retain their
+own orientation. GPU character batches group by both material and mesh side
+orientation, so shared atlases cannot erase that distinction. The focused
+normal-policy and GPU-rig tests cover mirroring, handedness and geometry parity;
+`tests/e2e/player-jacket-lighting.spec.js` checks actual GPU pixels for equal
+body/cloth lighting and culled lining, with rendered standing/walking Ryo
+comparisons. The fixture requires locally extracted assets and does not load
+an account or a world.
+
+`CharacterRuntime` uses the shared MT5 GPU rig for playable characters, remote
+avatars and account previews. Poses update bone matrices rather than replacing
+position/normal buffers every frame. Authored node identities stay intact for
+footwear, FACE and interaction attachments; playable meshes are not merged.
+Cross-node seam influences reproduce the CPU path's welded positions.
+
+Normal humanoid player animation preserves all 37 controllers through frame
+and clip blending, not just the render routes. `applyHumanoidAnimationPose`
+transfers the displayed/retargeted pose to the shared native cloth presenter.
+The body stays GPU-skinned; only acquired cloth output buffers are CPU-solved,
+using the authored collision profile. Coincident garment panels sharing an
+attachment owner use the shared position-welding primitive after solving,
+without averaging the lining's opposed normals. No player-specific solver or
+hem offset is introduced. Remote avatars (including emote blends), account
+previews, and combat actors retain complete controller poses and use the same
+post-pose secondary-motion/cloth stage. Previews and native animal locomotion
+reuse the canonical loaded model rather than maintaining a separate pose owner.
+Scheduled NPCs call that shared stage after placement and grounding; their
+existing visibility culling still controls whether simulation advances.
+
+Footwear visibility changes invalidate cached rig bounds. Grounding and preview
+framing explicitly measure skeleton/morph-deformed positions, since the stored
+vertex buffers contain the bind pose. The gameplay cloth update waits for its
+required controller inputs before detaching a garment from GPU skinning; an
+actor with render matrices alone keeps its garment on the ordinary body rig.
+
+`tests/PlayerGpuRig.test.js` checks posed grounding, footwear/disposal and
+CPU/GPU position parity without per-pose vertex-buffer creation. Its real Ryo
+model comparisons require locally extracted assets. Numerical tests complement,
+but do not replace, rendered checks of poses and attachments.
+
 ### Shenmue I FACE animation
 
 The separate `SCENE/01/MODEL/FACE/*_F.MT5` files are native attached face
@@ -250,7 +300,14 @@ The current detailed FACE presentation therefore follows these invariants:
 - allow the character content root to perform the one intended X reflection;
 - use clockwise side orientation for the mirrored detailed surface;
 - keep normal presentation one-sided;
-- orient generated winding consistently against the bound normals.
+- preserve the native signed-strip winding independently of material opacity;
+- mount the entire FACE resource, including ancestors of its animated node.
+
+Do not orient FACE triangles individually against their smoothed lighting
+normals. Ine-san's borrowed collar normals caused that heuristic to reverse
+neck triangles: the geometry existed but disappeared with ordinary culling.
+The native strip sign and alternating order define the front side. Signed
+parent binding changes vertex positions, not that authored topology.
 
 If a picker or debug overlay changes how a character is culled, verify that it
 preserves both `backFaceCulling` and `sideOrientation`. A debug mode must not
@@ -262,7 +319,8 @@ itself may be double-sided so it remains visible during inspection.
 The body and detailed attachment overlap by design. Keeping both complete
 shells causes z-fighting, duplicate eyes or hands, and internal geometry
 showing through. Removing the entire body head creates neck, hair, or collar
-holes. The reusable solution is geometric surface ownership.
+holes. The reusable solution is authored attachment ownership, with geometric
+coverage for surfaces that have no explicit replacement boundary.
 
 The implementation lives primarily in:
 
@@ -274,9 +332,11 @@ The current FACE integration uses:
 - attachment-local geometry rather than actor- or world-space thresholds;
 - a full affine inverse for attachment-space conversion, preserving authored
   scaled roots as well as ordinary rigid character hierarchies;
-- a `0.003 m` separation tolerance;
+- full matching-surface replacement on the body FACE node and attached native
+  `-68` mouth patch when signed parent references close the detailed seam;
+- a `0.003 m` separation tolerance for other surfaces;
 - compatible texture-family checks;
-- coverage of all three body-triangle corners before removing that triangle;
+- coverage of all three body-triangle corners for geometric replacement;
 - priority coverage for eye surfaces;
 - MT5 `parentAddr` ancestry to identify the authored replacement subtree;
 - reversible patches to original index buffers;
@@ -286,22 +346,110 @@ After the corrected binding, fixture observations were:
 
 | Character | Body triangles removed | Body triangles retained |
 | --- | ---: | ---: |
-| AKIR (Ryo) | 532 | 152 |
+| AKIR (Ryo) | 536 | 148 |
 | FUKU | 392 | 0 |
 | INE | 526 | 0 |
-| IWAO | 566 | 148 |
-| SORY (Lan Di) | 909 | 177 |
+| IWAO | 570 | 144 |
+| SORY (Lan Di) | 914 | 172 |
 
 OP02's Shenhua model proved why attachment conversion must be affine. The
 `MGR_M.CHRM` hierarchy places render key `-67` below an authored uniform scale
 of 10. A rigid transpose is not the inverse of that matrix and previously
 squared the scale, falsely reporting that exact `MGR_F.CHRM` surfaces did not
-overlap. With the affine inverse, the generated OP02 FACE binding transfers
-3,593 body triangles and retains 2,397 without a character-specific offset.
+overlap. Its detailed resource also has four geometry-bearing ancestors of
+render key `3`, all with key `-1` (44, 44, 46 and 52 source vertices). These
+are neck sections, not empty transform helpers. Routing only `3`, `77` and
+`78` left those sections at the model origin, while surface ownership removed
+the corresponding body skin. Zero external seam bindings did not mean that
+the resource lacked its own neck.
+
+FACE presentation now mounts unrouted roots with
+`inverse(primary attachment bind) * body head matrix`; explicit face and eye
+routes remain absolute. Ancestors and siblings therefore follow the same
+attachment-space conversion used by surface ownership. The previous two-ring
+body-neck retention workaround is removed. OP02 transfers 3,593 body triangles
+and retains 2,397, including 43 uncovered skin triangles on the actual `-67`
+node. The separate 66-triangle collar mesh was never that node's neck band.
 
 These counts are regression observations, not a statement that every zero-
 retained result is inherently correct. A count must be interpreted alongside
 screenshots, attachment hierarchy, material identity, and native evidence.
+
+### Coarse-body FACE replacement (September 2026)
+
+Yamagishi exposed a limitation in proximity-only replacement: `YMG_L.CHRM`
+has a 155-triangle `-67` face and a 59-triangle attached `-68` mouth. The
+detailed `YMG_F.MT5` has different tessellation, so the 3mm/normal classifier
+removed only 67 of those 214 triangles. The remaining skin drew through the
+detailed face. The defect appeared with both GPU and baked body rigs. Hiding
+the authored old-head subtree in a browser diagnostic removed the patches
+without changing normals.
+
+The shared rule now uses the bound signed-parent seam to replace matching
+materials on the authored face/mouth nodes completely. It leaves the parent
+neck unchanged, and does **not** blindly replace arbitrary descendants, even
+if their atlas matches: Ryo has skin-atlas hair overlays; Lan Di and Shenhua
+have articulated descendants. The generic `-68` mouth identity is also used
+by `GenericFaceMorph.js`. This is a source-structure-based presentation rule,
+not a claim that the original renderer used our triangle classifier.
+
+Yamagishi transfers all 214 old face/mouth triangles while preserving all 112
+hair triangles. Models without a bound signed seam (notably OP02 Shenhua) use
+geometric coverage of the fully mounted detailed resource. No normals,
+distance tolerance, or actor-specific rendering override is required.
+
+Retained local audit (prints source hashes and per-node/material counts):
+
+```sh
+node tools/animation/audit_face_surface_ownership.mjs
+node tools/animation/audit_face_surface_ownership.mjs YAMA
+```
+
+The audit covers 13 configured body/FACE pairs, including OP02 and young Ryo;
+it requires the local source assets and is not a visual test. The focused
+tests cover exact unrelated-geometry preservation, signed seam positions,
+restoration, both body rig modes, authored FACE winding, and OP02 neck-node
+matrices across head poses. `tests/e2e/cutscene-seams.spec.js` captures the
+actual OP02 close-ups and OP00's Ine-san/car shots on the GPU. Set
+`NY_SEAM_DIAGNOSTIC=true` to also capture reversible body-only, unmasked,
+double-sided and neutral-face comparisons; those modes are diagnostics only.
+Rendered Yamagishi evidence is in
+`tests/reports/cutscene-yama-face-fixed-sept22/`: full playback and same-page
+replay/cancel pass, and the reviewed early close-up has no face patches.
+
+## Blended triangle ordering
+
+`src/rendering/TransparentTriangleSort.js` orders triangles within each blended
+character mesh using the current camera and Babylon's current skinned/morphed
+positions. Its reusable workspace computes each referenced vertex's depth once
+per draw, keeps an already-correct order, and repairs small changes before
+falling back to a full sort. Equal depths retain the authored triangle-ID order.
+There is no cross-frame pose cache: bones, morphs, camera changes, and geometry
+edits remain live. Only GPU indices are reordered; CPU topology remains in
+authored order for picking and FACE surface ownership.
+
+The workspace adds approximately 12 bytes per vertex and 4 bytes per index
+over the previous sorter. CPU skinning still runs; reduced sorting work is not
+by itself evidence of improved whole-game FPS.
+
+Run the regression checks sequentially:
+
+```sh
+node --max-old-space-size=512 --test --test-concurrency=1 tests/TransparentTriangleSort*.test.js
+```
+
+The original asset-dependent tests include `YHI_L` and `DOR_L`; the additional
+tests cover camera/pose changes, morphs, mirrored transforms, topology edits,
+disposal, and randomized comparisons with the original sorting algorithm.
+
+For a controlled same-session comparison, append `?transparentSortDebug=1` to
+the client URL. `__newYokosukaTransparentSort.setMode("legacy")` selects the
+original sorting algorithm; `setMode("optimized")` restores the default.
+`stats()` reports counters since the last mode change or `reset()`. The `off`
+mode is diagnostic only: it leaves the last uploaded triangle order in place
+and can render transparency incorrectly. This is an algorithm comparison, not
+a substitute for comparing the unchanged application before and after a patch.
+Normal gameplay has diagnostics disabled and creates no debug global.
 
 ## Triangle picker requirements
 
@@ -319,56 +467,61 @@ The triangle picker was extended to make this work diagnosable. It should:
 Picker JSON is evidence, not by itself a deletion list. Save the exact paused
 cutscene time and camera alongside it so the pose can be reproduced.
 
-## Neck-gap investigation: unresolved
+## Animated neck seams
 
-Work stopped after the report that correcting the protrusions left gaps between
-some necks and torsos. No production neck-gap change was made after that report.
-The following facts were established before pausing:
+Matching source positions and UVs is necessary but does not guarantee that two
+surfaces stay joined during animation. The production body loader enables
+`characterRigSeamMode: "weld"`; the standalone detailed FACE has its own head
+skeleton. Before seam deformation was shared, Fuku-san's body boundary used
+`matricesWeights = [0.5, 0.5, 0, 0]` while its detailed counterpart used
+`[1, 0, 0, 0]`. At frame 185 of `JHW0/SEQDATA8.AUTH`, the ten matching vertices
+separated by 2.7–5.4 mm, exposing clothing behind the neck as a pale band.
+These weights describe this renderer's existing welding, not recovered native
+Dreamcast skinning weights.
 
-- For all five checked characters, the corrected detailed-face bounds agree
-  with the body `-67` low-detail bounds.
-- For Ryo, both detailed and low-detail FACE world Y bounds are approximately
-  `0.35907..0.64464`, while the parent torso reaches approximately `0.42547`.
-  There is spatial overlap rather than a simple vertical offset.
-- Ryo's detailed FACE and body low-detail FACE each have the same eight exact
-  spatial boundary edges shared with the parent torso.
-- None of the five checked characters has an `_mt5CharacterRigSeamGroups`
-  relationship between `-67` and parent node 1.
-- Matching body negative-reference vertices are weighted fully to `-67`; they
-  are not native 50/50 torso/head blend vertices.
+Earlier fixture checks omitted `characterRigSeamMode: "weld"` and therefore
+incorrectly ruled out a deformation mismatch. Removing textures also hid the
+contrast of the gap without closing it. Texture substitution, filtering, and
+culling changes did not resolve it; temporarily aligning the animated boundary
+did, with textures and normals unchanged.
 
-This disproves the proposed synthetic seam-bone solution. Do not add external
-bones or arbitrary 50/50 weights to close the gap.
+`NativeAttachmentSeam`, shared by FACE and detailed HAND presentation, binds
+signed references to the exact source vertex IDs on the preserved body
+attachment node. `applyBodyAttachmentSeam` evaluates those body
+vertices using their actual current skin matrices and weights, then converts
+them back through the detailed mesh's world and skin transforms. The regular
+FACE morph update writes those positions before its normal GPU upload. Only the
+small signed boundary is evaluated on the CPU, not either entire mesh. No new
+bones, guessed weights, geometry offsets, or texture/normal changes are needed.
+The binding is released with the surface lease and rebuilt for the next body.
+Skin matrices are prepared with the frame-ID guard bypassed: multiple native
+ticks can install new poses within one Babylon render frame, so an ordinary
+cached matrix read can otherwise leave the seam one pose behind.
 
-The remaining plausible categories are:
+Detailed hands use the same authored-parent binding at the wrist. Their signed
+indices must not be deformed as hand vertex zero. Once the seam is bound, the
+detailed shell owns the full low-detail hand surface, including its former
+wrist connector; preserving that coarse connector duplicates part of the palm.
+The body draw indices are restored when the detailed hand releases ownership.
 
-1. A localized one-sided winding/culling hole at the seam.
-2. Surface ownership removing a body triangle that the detailed shell does not
-   visibly replace in that pose.
-3. A shot- or pose-specific matrix, material, or activity-state discrepancy.
+OP02 uses archive-local `SIN_TL.CHRM`/`SIN_TR.CHRM` (299 vertices per hand)
+and `SIN_HM.BIN` on Shenhua's `MGR_M` body, with textures from the OP02 PKF
+pack. These are not another actor's generic hands. The owner selects the
+detailed right/left poses at AUTH slot 4, frame 300 (`0x005e` calls at
+`0x11ae`/`0x11ce`, tables `0x2624`/`0x2540`), followed by the left wrist
+rotation at `0x11ee`. Earlier shots retain the authored body hands; the final
+shot retains the detailed pose. `build_op02_opening_assets.mjs` follows the
+compiled owner's frame gates and uses the shared HAND cue translators, while
+`NativeAseqHandPresentation` supports both embedded MT5 textures and an
+explicit package texture pack. Merely listing HAND resources in the source
+graph does not load them: the generated package must include `handAssets`
+and its timed hand cues.
 
-A midpoint/centroid ownership-coverage experiment was attempted while
-investigating and then fully reverted. It was not supported by evidence.
-
-## How to resume the neck diagnosis
-
-Use one reproducible cutscene frame and change one variable at a time:
-
-1. Pause on a frame that clearly shows the gap and record the cutscene time,
-   actor, shot, screenshot, and picker JSON for both visible boundary sides.
-2. Toggle only the affected material's culling in a temporary diagnostic path.
-   If the opening disappears, inspect local winding and normals; do not retain
-   global double-sided rendering as the fix.
-3. Restore culling, then disable only FACE surface-ownership removal for that
-   actor in the diagnostic session. If the opening disappears, compare the
-   removed original body triangle IDs with detailed-shell coverage.
-4. If neither toggle explains it, capture the attachment matrices and the
-   corresponding boundary positions before and after animation for that frame.
-5. Compare the equivalent emulator/PVR frame when browser evidence still leaves
-   more than one interpretation.
-6. Implement the smallest data-driven rule that holds across the character
-   fixtures, then add a regression test for the geometry relationship—not an
-   actor name or shot timestamp.
+Regression coverage uses the production welded GPU path, mesh batching, actor
+transforms, multiple head poses, and repeated leases for Ryo, Fuku-san, Ine-san,
+Iwao, and Lan Di. It compares the final skinned world-space boundary positions
+and checks that ending the lease restores body topology. Source-space bounds
+or a textureless silhouette alone are not sufficient evidence of a closed seam.
 
 ## Fixes to avoid
 

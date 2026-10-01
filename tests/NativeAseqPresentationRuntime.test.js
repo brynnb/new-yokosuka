@@ -51,6 +51,19 @@ test("AUTH presentation reset clears retained cross-shot actor state", () => {
   assert.deepEqual(calls, ["actors-reset"]);
 });
 
+test("AUTH keeps an owner-hidden reference actor invisible without discarding its motion", () => {
+  const { runtime, calls } = harness();
+  const visibility = [];
+  runtime.actors.activeActor = () => ({ root: { setEnabled: value => visibility.push(value) } });
+  const owner = runtime.beginActivity({ activityId: "TEST/HIDDEN.AUTH", actors: ["AKIR"], hiddenActors: ["AKIR"], initialFrames: [] });
+  assert.deepEqual(visibility, [false]);
+  assert.deepEqual(calls[0], ["actors-begin", ["AKIR"]]);
+  assert.equal(runtime.endActivity({ owner, reason: "cancelled" }), true);
+  assert.ok(calls.some(([call]) => call === "actors-end"), "normal actor cleanup restores the borrowed root");
+  assert.throws(() => runtime.beginActivity({ activityId: "TEST/BAD.AUTH", actors: ["AKIR"], hiddenActors: ["SORY"], initialFrames: [] }), /outside this activity/);
+  assert.equal(runtime.active, null);
+});
+
 test("preparation settles sibling resource loaders before exposing failure", async () => {
   const gate = Promise.withResolvers();
   const failure = new Error("FACE inventory mismatch");
@@ -190,6 +203,24 @@ test("AUTH presentation applies authored frame time, command order, and motion p
   assert.deepEqual(calls.slice(-3).map(call => call[0]), [
     "audio-end", "camera-end", "actors-end",
   ]);
+});
+
+test("AUTH presentation samples a rebased clip without changing its cue lifetime", () => {
+  const { runtime, calls } = harness();
+  const owner = runtime.beginActivity({ activityId: "TEST/REBASED.AUTH", actors: ["AKIR"], initialFrames: [] });
+  runtime.advanceActivity({
+    owner, previousFrame: 0, currentFrame: 1,
+    frames: [{ frame: 1, commands: [{
+      name: "motion", actorTag: "AKIR", startFrame: 612, endFrame: 691,
+      motion: { sequence: { valid: true }, sampleFrameOffset: 611 },
+    }] }],
+  });
+  assert.equal(calls.filter(call => call[0] === "motion").at(-1)[2].frame, 0);
+  for (let currentFrame = 2; currentFrame <= 70; currentFrame += 1) {
+    assert.equal(runtime.advanceActivity({ owner, previousFrame: currentFrame - 1, currentFrame, frames: [] }), true);
+  }
+  assert.equal(calls.filter(call => call[0] === "motion").at(-1)[2].frame, 69);
+  runtime.endActivity({ owner, reason: "complete" });
 });
 
 test("AUTH presentation applies primed visual tracks before its first render", () => {
@@ -433,7 +464,8 @@ test("AUTH presentation owns detailed faces and hands around body motion", async
   assert.ok(calls.indexOf("secondary-begin") < calls.indexOf("cloth-begin"));
   assert.ok(calls.indexOf("hands-begin") < calls.indexOf("faces-begin"));
   assert.ok(calls.indexOf("actors-begin") < calls.indexOf("faces-begin"));
-  assert.ok(calls.indexOf("audio-voice") < calls.indexOf("faces-voice"));
+  assert.ok(calls.indexOf("audio-voice") < calls.indexOf("faces-apply"));
+  assert.equal(calls.includes("faces-voice"), false, "speech is sampled from the audio session, not started twice");
   assert.ok(calls.indexOf("hands-pose") < calls.indexOf("hands-apply"));
   assert.ok(calls.indexOf("body-motion") < calls.indexOf("faces-apply"));
   assert.ok(calls.indexOf("body-motion") < calls.indexOf("hands-apply"));
@@ -447,8 +479,9 @@ test("AUTH presentation owns detailed faces and hands around body motion", async
   assert.ok(calls.indexOf("secondary-end") < calls.indexOf("actors-end"));
 });
 
-test("AUTH presentation suppresses transient seek audio but rebuilds face state", () => {
+test("AUTH presentation delegates seek and voice identity to its audio session", () => {
   const calls = [];
+  const voiceCues = new Map([["AKIR", { positionSeconds: 1 }]]);
   const runtime = createNativeAseqPresentationRuntime({
     actors: {
       begin: () => true,
@@ -460,7 +493,7 @@ test("AUTH presentation suppresses transient seek audio but rebuilds face state"
       prepare: () => true,
       begin: () => true,
       play: (_owner, command) => (calls.push(["face", command.name]), true),
-      apply: () => true,
+      apply: (_owner, detail) => (calls.push(["face-cues", detail.voiceCues]), true),
       end: () => true,
     },
     camera: { begin: () => true, apply: () => true, end: () => true },
@@ -468,9 +501,10 @@ test("AUTH presentation suppresses transient seek audio but rebuilds face state"
       begin: () => true,
       play: (_owner, command) => (calls.push(["audio", command.name]), true),
       end: () => true,
+      setSeeking: (_owner, seeking) => (calls.push(["seek", seeking]), true),
+      voiceCues: () => voiceCues,
     },
   });
-  assert.equal(runtime.setTransientAudioSuppressed(true), true);
   const owner = runtime.beginActivity({
     activityId: "TEST/SEEK.AUTH",
     actors: ["AKIR"],
@@ -479,7 +513,9 @@ test("AUTH presentation suppresses transient seek audio but rebuilds face state"
       commands: [{ name: "voice", actorTag: "AKIR" }],
     }],
   });
-  assert.deepEqual(calls, [["face", "voice"]]);
-  assert.equal(runtime.setTransientAudioSuppressed(false), true);
+  assert.deepEqual(calls, [["audio", "voice"], ["face-cues", voiceCues]]);
+  assert.equal(runtime.setSeeking(true), true);
+  assert.equal(runtime.setSeeking(false), true);
+  assert.deepEqual(calls.slice(-2), [["seek", true], ["seek", false]]);
   assert.equal(runtime.endActivity({ owner, reason: "complete" }), true);
 });

@@ -13,10 +13,15 @@ export function validateSourcePath(file) {
     || file.includes("\\")) throw new Error(`Invalid runtime asset path: ${file}`);
 }
 
-export function buildRuntimePlan(repositoryRoot = root, { sourcePrefix } = {}) {
+export function buildRuntimePlan(repositoryRoot = root, { sourcePrefix, sourcePaths } = {}) {
   if (sourcePrefix) validateSourcePath(`${sourcePrefix}/asset`);
   const manifest = JSON.parse(fs.readFileSync(path.join(repositoryRoot, "src/runtime-assets.generated.json")));
-  return Object.entries(manifest.assets).filter(([file]) => !sourcePrefix || file.startsWith(`${sourcePrefix}/`)).map(([file, record]) => {
+  for (const file of sourcePaths || []) {
+    validateSourcePath(file);
+    if (!manifest.assets[file]) throw new Error(`Unregistered runtime asset: ${file}`);
+  }
+  return Object.entries(manifest.assets).filter(([file]) =>
+    (!sourcePrefix || file.startsWith(`${sourcePrefix}/`)) && (!sourcePaths?.length || sourcePaths.includes(file))).map(([file, record]) => {
     validateSourcePath(file);
     const filePath = path.join(repositoryRoot, file);
     const bytes = fs.readFileSync(filePath);

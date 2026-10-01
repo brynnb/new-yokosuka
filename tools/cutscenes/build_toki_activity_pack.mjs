@@ -8,7 +8,7 @@ import { parseAuthCamera } from "../../src/AuthCamera.js";
 import { parseAuthMovement } from "../../src/AuthMovement.js";
 import { parseAuthSequence, resolveAuthMotions } from "../../src/AuthSequence.js";
 import { MotnLoader } from "../../src/MotnLoader.js";
-import { sha256 } from "../lib/NativeAseqActivityPack.mjs";
+import { compileNativeAseqAttachedObjects, sha256 } from "../lib/NativeAseqActivityPack.mjs";
 import { extractNativeAseqCallbackPresentation } from "../lib/NativeAseqCallbackPresentation.mjs";
 import {
   extractNativeAseqCallbackObjectPresentation,
@@ -216,6 +216,7 @@ const manifest = {
     commandCounts: { camera: 1, move: 2, motion: 6, sound: 29, voice: 41 },
     actors: sequence.actors,
     nativeHandPoseCues: callbackPresentation.nativeHandPoseCues,
+    nativeHandComponentCues: callbackPresentation.nativeHandComponentCues,
     nativeFaceClipCues: callbackPresentation.nativeFaceClipCues,
     nativeFaceGazeCues: callbackPresentation.nativeFaceGazeCues,
     nativeActorLookPointCues: callbackObjects.nativeActorLookPointCues,
@@ -230,5 +231,6 @@ const manifest = {
     })),
   }],
 };
+manifest.attachedObjects = compileNativeAseqAttachedObjects(manifest.attachedObjects, manifest.activities);
 writeFileSync(path.join(outputDirectory, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`);
 console.log(`Wrote exact TOKI activity pack to ${outputDirectory}`);

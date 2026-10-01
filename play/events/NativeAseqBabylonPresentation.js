@@ -39,12 +39,13 @@ function restoreRoot(root, snapshot) {
   root.computeWorldMatrix?.(true);
 }
 
-function captureRenderVisibility(model) {
-  const root = model?.renderRoot;
+function captureRenderVisibility(model, fallbackRoot = null) {
+  const root = model?.renderRoot || fallbackRoot;
   if (!root || typeof root.isEnabled !== "function" || typeof root.setEnabled !== "function") {
     return null;
   }
-  return Object.freeze({ root, enabled: root.isEnabled() });
+  // Snapshot the node's own flag, not its parent's transient native flag.
+  return Object.freeze({ root, enabled: root.isEnabled(false) });
 }
 
 function restoreRenderVisibility(snapshot) {
@@ -147,6 +148,7 @@ export class NativeAseqBabylonActors {
     ignoredActorTags = [],
     sceneObjects = null,
     packageActors = null,
+    resolveObjectWorldPosition = null,
     playerActorAliases = [],
     requirePlayer = true,
     preservePlayerOnComplete = true,
@@ -180,6 +182,7 @@ export class NativeAseqBabylonActors {
     this.sceneObjects = sceneObjects;
     this.sceneObjectTags = new Set(sceneObjects?.actorTags || []);
     this.packageActors = packageActors;
+    this.resolveObjectWorldPosition = resolveObjectWorldPosition;
     this.packageActorTags = new Set(packageActors?.actorTags || []);
     if (this.sceneObjectTags.size > 0 && (
       typeof sceneObjects?.begin !== "function"
@@ -246,7 +249,10 @@ export class NativeAseqBabylonActors {
       normalized.length === 0
       || new Set(normalized).size !== normalized.length
       || normalized.filter(value => this.#isPlayerTag(value)).length > 1
-      || (this.requirePlayer
+      // The enclosing program owns the full cast. Individual shots may omit
+      // Ryo (including aliases such as AKID); hide his render hierarchy below
+      // instead of rejecting a valid NPC-only shot.
+      || (this.requirePlayer && !this.program
         && normalized.filter(value => this.#isPlayerTag(value)).length !== 1)
     ) {
       throw new Error("AUTH actor list has invalid player ownership");
@@ -261,7 +267,7 @@ export class NativeAseqBabylonActors {
       throw new Error(`AUTH player ${activePlayerTag} is outside program ownership`);
     }
     const player = ownsPlayer
-      ? (this.program?.player || this.getPlayerModel())
+      ? (this.program?.player?.model || this.getPlayerModel())
       : null;
     if (ownsPlayer && (!player?.root || !player?.loader || !player?.renderRoot)) {
       throw new Error("AUTH player model is unavailable");
@@ -272,7 +278,7 @@ export class NativeAseqBabylonActors {
     // otherwise the last player pose is left standing in shots owned only by
     // other actors. Keep the root/collider intact and hide only the render
     // hierarchy, restoring its exact prior state at the shot boundary.
-    const hiddenPlayer = ownsPlayer ? null : captureRenderVisibility(
+    const hiddenPlayer = ownsPlayer || this.program ? null : captureRenderVisibility(
       this.getPlayerModel(),
     );
     const scheduledCodes = this.scheduledActorCodes(normalized);
@@ -334,6 +340,7 @@ export class NativeAseqBabylonActors {
           "package actor",
         );
       }
+      if (this.program) this.#setProgramShotVisibility(normalized);
     } catch (error) {
       const cleanupErrors = [];
       for (const [begun, end, label] of [
@@ -380,7 +387,10 @@ export class NativeAseqBabylonActors {
       owner,
       actorTags: normalized,
       activePlayerTag,
-      player: player ? { ...player, snapshot: playerSnapshot } : null,
+      // A lease snapshots the transform, not the presentation model. Copying
+      // the model makes each shot allocate a different model-owned cloth state
+      // over the same meshes and capture another shot's detached GPU buffers.
+      player: player ? { model: player, root: player.root, snapshot: playerSnapshot } : null,
       hiddenPlayer,
       scheduled: new Map([...scheduledMap].map(([actorCode, actor]) => [
         actorCode,
@@ -413,6 +423,10 @@ export class NativeAseqBabylonActors {
 
     const activePlayerTag = normalized.find(value => this.#isPlayerTag(value)) || null;
     const player = activePlayerTag ? this.getPlayerModel() : null;
+    // Programs can use a separate cinematic body (for example sleepwear Ryo)
+    // and never declare the gameplay avatar. Own its render visibility anyway;
+    // otherwise it stays at its last world pose throughout those shots.
+    const hiddenPlayer = activePlayerTag ? null : captureRenderVisibility(this.getPlayerModel());
     if (activePlayerTag && (!player?.root || !player?.loader || !player?.renderRoot)) {
       throw new Error("AUTH program player model is unavailable");
     }
@@ -520,14 +534,17 @@ export class NativeAseqBabylonActors {
       owner,
       actorTags: normalized,
       activePlayerTag,
-      player: player ? { ...player, snapshot: captureRoot(player.root) } : null,
+      player: player ? { model: player, root: player.root, snapshot: captureRoot(player.root) } : null,
+      hiddenPlayer,
       scheduled: scheduledMap,
       sceneObjects: sceneObjectMap,
       packageActors: packageActorMap,
       scheduledBegun,
       sceneObjectsBegun,
       packageActorsBegun,
+      hiddenRenders: new Map(),
     };
+    hiddenPlayer?.root.setEnabled(false);
     return true;
   }
 
@@ -574,7 +591,7 @@ export class NativeAseqBabylonActors {
       return scope.player ? {
         actorCode: actorTag,
         root: scope.player.root,
-        model: scope.player,
+        model: scope.player.model,
       } : null;
     }
     const activeActor = scope
@@ -599,7 +616,7 @@ export class NativeAseqBabylonActors {
       records.set(program.activePlayerTag, {
         actorCode: program.activePlayerTag,
         root: program.player.root,
-        model: program.player,
+        model: program.player.model,
       });
     }
     for (const actors of [
@@ -638,7 +655,7 @@ export class NativeAseqBabylonActors {
   }
 
   get ownsPlayerProgram() {
-    return Boolean(this.program?.player);
+    return Boolean(this.program?.player || this.program?.hiddenPlayer);
   }
 
   componentWorldPosition(actorTagValue, selector) {
@@ -650,6 +667,11 @@ export class NativeAseqBabylonActors {
     }
     const retained = this.retainedActorComponents.get(actorTag)?.get(selector);
     return retained ? [...retained] : null;
+  }
+
+  objectWorldPosition(objectTag) {
+    return this.resolveObjectWorldPosition?.(objectTag)
+      || this.componentWorldPosition(objectTag, -1);
   }
 
   resetPresentationState() {
@@ -743,6 +765,16 @@ export class NativeAseqBabylonActors {
       throw new Error("AUTH actor program cannot end during activity ownership");
     }
     const errors = [];
+    try {
+      this.#restoreProgramRenderVisibility();
+    } catch (error) {
+      errors.push(error);
+    }
+    try {
+      restoreRenderVisibility(program.hiddenPlayer);
+    } catch (error) {
+      errors.push(error);
+    }
     if (program.packageActorsBegun) {
       try {
         if (this.packageActors.endProgram(owner) !== true) {
@@ -789,6 +821,43 @@ export class NativeAseqBabylonActors {
     return true;
   }
 
+  #restoreProgramRenderVisibility() {
+    for (const snapshot of this.program.hiddenRenders.values()) {
+      restoreRenderVisibility(snapshot);
+    }
+    this.program.hiddenRenders.clear();
+  }
+
+  #setProgramShotVisibility(actorTags) {
+    this.#restoreProgramRenderVisibility();
+    const declared = new Set(actorTags);
+    const characters = [
+      ...(this.program.player ? [{
+        actorCode: this.program.activePlayerTag,
+        model: this.program.player.model,
+        root: this.program.player.root,
+      }] : []),
+      ...this.program.scheduled.values(),
+      ...this.program.packageActors.values(),
+    ];
+    // A program lease retains the cast and their last authored poses, not
+    // permission to draw every character in every AUTH. Apply the same shot
+    // visibility rule to NPCs as to Ryo. Persistent scenery is deliberately
+    // excluded: its visibility is governed by native scene-object state.
+    // Retain this mask between shots so asynchronous preparation cannot flash
+    // the entire cast back into the outgoing camera. The next begin switches
+    // masks synchronously; program cleanup restores the original flags.
+    for (const actor of characters) {
+      if (declared.has(actor.actorCode)) continue;
+      const snapshot = captureRenderVisibility(actor.model, actor.root);
+      if (!snapshot) throw new Error(`AUTH actor ${actor.actorCode} render visibility is unavailable`);
+      if (!this.program.hiddenRenders.has(snapshot.root)) {
+        this.program.hiddenRenders.set(snapshot.root, snapshot);
+        snapshot.root.setEnabled(false);
+      }
+    }
+  }
+
   #actor(owner, actorTagValue) {
     if (this.active?.owner !== owner) return null;
     const actorTag = String(actorTagValue || "").toUpperCase();
@@ -796,7 +865,7 @@ export class NativeAseqBabylonActors {
       if (!this.active.player) return null;
       return {
         root: this.active.player.root,
-        model: this.active.player,
+        model: this.active.player.model,
       };
     }
     return this.active.sceneObjects.get(actorTag)
@@ -817,7 +886,7 @@ export class NativeAseqBabylonActors {
       return program.player ? {
         actorCode: actorTag,
         root: program.player.root,
-        model: program.player,
+        model: program.player.model,
       } : null;
     }
     return program.sceneObjects.get(actorTag)

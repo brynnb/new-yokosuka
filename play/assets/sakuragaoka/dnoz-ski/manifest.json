@@ -1,6 +1,6 @@
 {
   "schema": "new-yokosuka-aseq-activity-pack-v1",
-  "generatedBy": "tools/build_dnoz_activity_pack.mjs",
+  "generatedBy": "tools/cutscenes/build_dnoz_activity_pack.mjs",
   "source": {
     "disc": 1,
     "format": "loose-files",
@@ -436,6 +436,106 @@
     }
   },
   "nativeHandPoseTables": {
+    "0x3248": {
+      "sourceMapinfoOffset": "0x3248",
+      "vectors": [
+        [
+          0,
+          0,
+          -5461
+        ],
+        [
+          0,
+          -2366,
+          -1092
+        ],
+        [
+          0,
+          -182,
+          1092
+        ],
+        [
+          0,
+          -546,
+          -6735
+        ],
+        [
+          0,
+          0,
+          -4004
+        ],
+        [
+          0,
+          0,
+          -6553
+        ],
+        [
+          0,
+          -182,
+          1274
+        ],
+        [
+          0,
+          0,
+          -13289
+        ],
+        [
+          0,
+          0,
+          -5279
+        ],
+        [
+          0,
+          0,
+          -8009
+        ],
+        [
+          0,
+          0,
+          1456
+        ],
+        [
+          0,
+          182,
+          -8738
+        ],
+        [
+          0,
+          0,
+          -6007
+        ],
+        [
+          0,
+          0,
+          -8738
+        ],
+        [
+          0,
+          182,
+          1638
+        ],
+        [
+          0,
+          -728,
+          -5279
+        ],
+        [
+          0,
+          -1274,
+          -6735
+        ],
+        [
+          0,
+          -910,
+          -8738
+        ],
+        [
+          0,
+          0,
+          1638
+        ]
+      ]
+    },
     "0x37a0": {
       "sourceMapinfoOffset": "0x37a0",
       "vectors": [
@@ -604,7 +704,82 @@
         "AKIR",
         "HRSK"
       ],
-      "nativeHandPoseCues": [],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x3248",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x133e",
+          "sourceFunction": "0x12e4",
+          "ownerCallFileOffset": "0x1126",
+          "sourceOrder": 2
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x3248",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x135e",
+          "sourceFunction": "0x12e4",
+          "ownerCallFileOffset": "0x1126",
+          "sourceOrder": 3
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "side": "right",
+          "poseTableOffset": "0x3248",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x133e",
+          "sourceFunction": "0x12e4",
+          "ownerCallFileOffset": "0x1132",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "side": "left",
+          "poseTableOffset": "0x3248",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x135e",
+          "sourceFunction": "0x12e4",
+          "ownerCallFileOffset": "0x1132",
+          "sourceOrder": 5
+        }
+      ],
+      "nativeBodyHandPoseCues": [
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x2e2",
+          "sourceFunction": "0x1ac",
+          "ownerCallFileOffset": "0x1076",
+          "sourceOrder": 0
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x2e2",
+          "sourceFunction": "0x1ac",
+          "ownerCallFileOffset": "0x1082",
+          "sourceOrder": 1
+        }
+      ],
       "nativeFaceClipCues": [
         {
           "activitySlot": 0,
@@ -741,12 +916,52 @@
       "nativeHandPoseCues": [
         {
           "activitySlot": 1,
+          "frame": 1900,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x3248",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x133e",
+          "sourceFunction": "0x12e4",
+          "ownerCallFileOffset": "0xeee",
+          "sourceOrder": 1
+        },
+        {
+          "activitySlot": 1,
+          "frame": 1900,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x3248",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x135e",
+          "sourceFunction": "0x12e4",
+          "ownerCallFileOffset": "0xeee",
+          "sourceOrder": 2
+        },
+        {
+          "activitySlot": 1,
           "frame": 2780,
           "actorTag": "HRSK",
           "side": "right",
           "poseTableOffset": "0x37a0",
           "durationNativeTicks": 16,
-          "callFileOffset": "0xf8a"
+          "callFileOffset": "0xf8a",
+          "sourceOrder": 3
+        }
+      ],
+      "nativeBodyHandPoseCues": [
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x13ca",
+          "sourceFunction": "0x1374",
+          "ownerCallFileOffset": "0xd58",
+          "sourceOrder": 0,
+          "releaseDetailed": true
         }
       ],
       "nativeFaceClipCues": [

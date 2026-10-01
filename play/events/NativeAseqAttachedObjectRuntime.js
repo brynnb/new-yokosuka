@@ -1,4 +1,5 @@
 import * as BABYLON from "@babylonjs/core";
+import { markWorldMeshDynamic } from "../../src/rendering/SceneSpatialIndex.js";
 
 import { Mt5Loader } from "../../src/Mt5Loader.js";
 import {
@@ -48,12 +49,12 @@ function requireSignedFixedTurnVector(value, label) {
 }
 
 function scopeFor(value, label) {
-  if (!Number.isSafeInteger(value?.activitySlot) || value.activitySlot < 0) {
-    throw new TypeError(`${label} requires an activity slot`);
+  if (typeof value?.activityId !== "string" || !value.activityId.trim()) {
+    throw new TypeError(`${label} requires an exact activity ID`);
   }
   return Object.freeze({
-    scopeKey: `activity-slot:${value.activitySlot}`,
-    activitySlot: value.activitySlot,
+    scopeKey: value.activityId,
+    activityId: value.activityId,
   });
 }
 
@@ -115,9 +116,9 @@ function restoreRoot(root, snapshot) {
   root.computeWorldMatrix(true);
 }
 
-function restoreObject(record) {
+function restoreObjectNodes(record, nodeKeys = null) {
   for (const [node, snapshot] of record.nodeSnapshots || []) {
-    if (!node?.mesh) continue;
+    if (!node?.mesh || (nodeKeys && !nodeKeys.has(signedRenderKey(node)))) continue;
     node.mesh.position.set(-snapshot.position[0], snapshot.position[1], snapshot.position[2]);
     setSourceOrderRotation(node.mesh, [
       snapshot.rotation[0],
@@ -126,12 +127,16 @@ function restoreObject(record) {
     ]);
     node.mesh.computeWorldMatrix?.(true);
   }
+}
+
+function restoreObject(record) {
+  restoreObjectNodes(record);
   restoreRoot(record.root, record.snapshot);
 }
 
 function prepareRoot(root, actorTag) {
   for (const node of [root, ...root.getDescendants(false)]) {
-    node.unfreezeWorldMatrix?.();
+    markWorldMeshDynamic(node);
     node.checkCollisions = false;
     node.isPickable = false;
     node.metadata = {
@@ -159,15 +164,22 @@ function localAttachmentMatrix(binding) {
   });
 }
 
-function applyAttachedMatrix(root, parentRoot, sourceMatrix) {
+function applyAttachedMatrix(root, parentRoot, sourceMatrix, keepParent = false) {
   const browserMatrix = scheduledBrowserAttachedObjectMatrix(sourceMatrix);
   if (!browserMatrix) return false;
-  const matrix = BABYLON.Matrix.FromArray(browserMatrix);
+  let matrix = BABYLON.Matrix.FromArray(browserMatrix);
+  if (keepParent) {
+    // AUTH writes scene-object transforms in their world hierarchy each frame.
+    // Override their pose without reparenting them into the actor hierarchy;
+    // detach then hands control straight back to the next authored AUTH pose.
+    matrix = matrix.multiply(parentRoot.computeWorldMatrix(true));
+    if (root.parent) matrix = matrix.multiply(BABYLON.Matrix.Invert(root.parent.computeWorldMatrix(true)));
+  }
   const scaling = BABYLON.Vector3.One();
   const rotation = BABYLON.Quaternion.Identity();
   const translation = BABYLON.Vector3.Zero();
   if (!matrix.decompose(scaling, rotation, translation)) return false;
-  root.parent = parentRoot;
+  if (!keepParent) root.parent = parentRoot;
   root.position.copyFrom(translation);
   root.rotation.set(0, 0, 0);
   root.rotationQuaternion = rotation;
@@ -178,7 +190,7 @@ function applyAttachedMatrix(root, parentRoot, sourceMatrix) {
 }
 
 export class NativeAseqAttachedObjectRuntime {
-  constructor({ definitions, resolveActor, instantiateAsset = null } = {}) {
+  constructor({ definitions, resolveActor, resolveSceneObject = null, instantiateAsset = null } = {}) {
     if (!definitions || Array.isArray(definitions) || typeof definitions !== "object") {
       throw new TypeError("AUTH attached objects require generated definitions");
     }
@@ -186,6 +198,7 @@ export class NativeAseqAttachedObjectRuntime {
       throw new TypeError("AUTH attached objects require an actor resolver");
     }
     this.resolveActor = resolveActor;
+    this.resolveSceneObject = resolveSceneObject;
     if (instantiateAsset !== null && typeof instantiateAsset !== "function") {
       throw new TypeError("AUTH attached object instantiator must be callable");
     }
@@ -295,6 +308,7 @@ export class NativeAseqAttachedObjectRuntime {
       this.definitions.set(actorTag, Object.freeze({
         actorTag,
         browserFilename,
+        sceneObject: value.sceneObject === true,
         assetPath: String(value?.assetPath || "").trim() || null,
         attachments: Object.freeze(attachments),
         presentation: Object.freeze(presentation),
@@ -315,10 +329,12 @@ export class NativeAseqAttachedObjectRuntime {
     this.clear();
     for (const [actorTag, definition] of this.definitions) {
       let packageOwned = false;
-      let matches = roots.filter(root => (
+      let matches = definition.sceneObject
+        ? [this.resolveSceneObject?.(actorTag)?.root].filter(Boolean)
+        : roots.filter(root => (
         root?._filename?.toUpperCase() === definition.browserFilename.toUpperCase()
       ));
-      if (matches.length === 0 && definition.assetPath && this.instantiateAsset) {
+      if (!definition.sceneObject && matches.length === 0 && definition.assetPath && this.instantiateAsset) {
         matches = await this.instantiateAsset(definition);
         packageOwned = true;
       }
@@ -335,16 +351,16 @@ export class NativeAseqAttachedObjectRuntime {
         position: sourceVector(node, "pos"),
         rotation: sourceVector(node, "rot"),
       })]));
-      this.objects.set(actorTag, { root, snapshot, nodeSnapshots, packageOwned });
+      this.objects.set(actorTag, { root, snapshot, nodeSnapshots, packageOwned, sceneObject: definition.sceneObject });
     }
     return this.objects.size;
   }
 
-  beginActivity({ slot } = {}) {
-    if (!Number.isSafeInteger(slot) || slot < 0) {
-      throw new TypeError("AUTH attachment activity slot must be non-negative");
-    }
-    return this.#beginScope(`activity-slot:${slot}`);
+  beginActivity(activity = {}) {
+    const { scopeKey } = scopeFor(activity, "AUTH attachment activity");
+    const count = this.#beginScope(scopeKey);
+    this.active.authoredActors = new Set(activity.actors || []);
+    return count;
   }
 
   update(frame = this.active?.frame ?? 0) {
@@ -369,13 +385,15 @@ export class NativeAseqAttachedObjectRuntime {
     }
     for (const binding of this.active.bindings) {
       if (selectedByActor.has(binding.actorTag)) continue;
-      this.objects.get(binding.actorTag)?.root.setEnabled(false);
+      const record = this.objects.get(binding.actorTag);
+      if (!record?.sceneObject || !this.active.authoredActors.has(binding.actorTag)) record?.root.setEnabled(false);
     }
     let applied = 0;
     for (const binding of selectedByActor.values()) {
       const record = this.objects.get(binding.actorTag);
+      const authDriven = record?.sceneObject && this.active.authoredActors.has(binding.actorTag);
       if (binding.action === "detach") {
-        record?.root.setEnabled(false);
+        if (!authDriven) record?.root.setEnabled(false);
         if (record) applied += 1;
         continue;
       }
@@ -386,7 +404,8 @@ export class NativeAseqAttachedObjectRuntime {
       const parentMatrix = nodes.length === 1
         ? parent.model.latestControllerMatrices?.[nodes[0].index]
         : null;
-      if (!record || !Array.isArray(parentMatrix) || parentMatrix.length !== 16) {
+      const parentRenderRoot = parent?.model?.renderRoot;
+      if (!record || !parentRenderRoot || !Array.isArray(parentMatrix) || parentMatrix.length !== 16) {
         record?.root.setEnabled(false);
         continue;
       }
@@ -394,10 +413,14 @@ export class NativeAseqAttachedObjectRuntime {
         localAttachmentMatrix(binding),
         parentMatrix,
       );
-      if (applyAttachedMatrix(record.root, parent.root, sourceMatrix)) {
+      const wasVisible = record.root.isEnabled();
+      // Controllers are source-model-local, not actor-local. The shared X
+      // conversion puts them in the mirrored character's render-root space;
+      // using the outer actor root skips model orientation, scale and grounding.
+      if (applyAttachedMatrix(record.root, parentRenderRoot, sourceMatrix, record.sceneObject)) {
         const authoredPresentation = this.active.presentationActors.has(binding.actorTag);
         const visible = visibilityByActor.get(binding.actorTag)?.visible
-          ?? !authoredPresentation;
+          ?? (authDriven ? wasVisible : !authoredPresentation);
         record.root.setEnabled(visible);
         applied += 1;
       }
@@ -409,9 +432,20 @@ export class NativeAseqAttachedObjectRuntime {
 
   endTrack() {
     if (!this.active) return false;
-    for (const actorTag of new Set(this.active.bindings.map(binding => binding.actorTag))) {
+    const actorTags = new Set([
+      ...this.active.bindings, ...this.active.presentation, ...this.active.nodeOperations,
+    ].map(event => event.actorTag));
+    for (const actorTag of actorTags) {
       const record = this.objects.get(actorTag);
-      if (record) restoreObject(record);
+      if (!record) continue;
+      if (record.sceneObject && this.active.authoredActors.has(actorTag)) {
+        // AUTH owns this object's root, while we only borrow its moving parts.
+        // Restore those parts even for node-only presentation (no attachment),
+        // including cancellation before the native closing motion finishes.
+        restoreObjectNodes(record, new Set(this.active.nodeOperations
+          .filter(operation => operation.actorTag === actorTag)
+          .map(operation => operation.nodeKey)));
+      } else restoreObject(record);
     }
     this.active = null;
     return true;
@@ -425,7 +459,7 @@ export class NativeAseqAttachedObjectRuntime {
     this.endTrack();
     for (const record of this.objects.values()) {
       if (record.packageOwned) record.root.dispose(false, true);
-      else restoreObject(record);
+      else if (!record.sceneObject) restoreObject(record);
     }
     this.objects.clear();
   }

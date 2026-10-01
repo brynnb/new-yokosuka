@@ -11,6 +11,10 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
+from tools.cutscenes.native_cutscene_dependencies import (
+    activity_start_slot, ordered_control_flow_calls,
+)
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_ROUTES = PROJECT_ROOT / "tools/data/native-activity-preview-routes.json"
@@ -74,6 +78,116 @@ def constant(value: int, source: str) -> dict[str, Any]:
     }
 
 
+def owner_activity_sequence(
+    program: dict[str, Any], manifest: dict[str, Any],
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Use the retained owner's exact embedded-resource selection and CFG."""
+    if (program.get("disc") != manifest["source"]["disc"]
+            or program.get("mapinfoSha256") != manifest["source"]["sha256"]):
+        raise ValueError("activity sequence owner source changed")
+    selection = program["authResourceSelection"]
+    functions = {function["id"]: function for function in program["functions"]}
+    stages = {stage["ownerCallFileOffset"]: stage for stage in selection["stages"]}
+    stage_order = ordered_control_flow_calls(functions[program["entryFunction"]], set(stages))
+    ordered_calls = []
+    for stage_offset in stage_order:
+        function_id = stages[stage_offset]["functionId"]
+        calls = {call["callFileOffset"]: call for call in selection["ownerCalls"]
+                 if call["functionId"] == function_id}
+        # Compare against ALL original stage starts, not the compiler's own
+        # selected list. Silent camera/effect tracks have no dialogue path.
+        source_calls = {action["callFileOffset"]
+                        for block in functions[function_id]["blocks"]
+                        for action in block["actions"]
+                        if activity_start_slot(action) is not None}
+        if set(calls) != source_calls:
+            raise ValueError(f"original script stage {function_id} activity coverage is incomplete: "
+                             f"missing {sorted(source_calls - set(calls))}")
+        order = ordered_control_flow_calls(functions[function_id], source_calls)
+        ordered_calls.extend(calls[offset] for offset in order)
+    if (len(ordered_calls) != len(selection["ownerCalls"])
+            or {call["slot"] for call in ordered_calls} != set(selection["selectedSlots"])):
+        raise ValueError("owner activity sequence does not cover its selected resources")
+    requested = []
+    for call in ordered_calls:
+        action = next(action for block in functions[call["functionId"]]["blocks"]
+                      for action in block["actions"] if action.get("callFileOffset") == call["callFileOffset"])
+        if (action.get("operationHex") != "0x0050"
+                or not action.get("arguments")
+                or action["arguments"][0].get("kind") != "constant"
+                or action["arguments"][0].get("value") != call["slot"]):
+            raise ValueError("owner activity call does not match its source operation")
+        activity = exact_activity(manifest, {"slot": call["slot"]}, program["id"])
+        if (activity["sha256"] != call["resource"]["sha256"]
+                or activity["byteLength"] != call["resource"]["byteLength"]):
+            raise ValueError("owner activity resource changed")
+        requested.append({"slot": call["slot"]})
+    return requested, ordered_calls
+
+
+def owner_named_audio_actions(
+    program: dict[str, Any], owner_calls: list[dict[str, Any]],
+) -> tuple[list[list[dict[str, Any]]], list[dict[str, Any]]]:
+    """Retain named audio in the owner's presentation order, before its next AUTH.
+
+    Project the same control-flow graph used for shots, not a guessed slot or
+    sorted instruction address. Ambiguous paths and unrepresented trailing cues
+    fail compilation instead of silently changing when music begins.
+    """
+    functions = {function["id"]: function for function in program["functions"]}
+    strings = {item["pointer"]: item for item in program.get("staticStrings", [])}
+    retained_strings = {}
+    commands = {call["callFileOffset"]: [] for call in owner_calls}
+    for function_id in dict.fromkeys(call["functionId"] for call in owner_calls):
+        function = functions[function_id]
+        calls = {call["callFileOffset"] for call in owner_calls if call["functionId"] == function_id}
+        audio = {action["callFileOffset"]: action
+                 for block in function["blocks"] for action in block["actions"]
+                 if action.get("operationHex") == "0x015c"}
+        order = ordered_control_flow_calls(function, calls | audio.keys())
+        pending = []
+        for offset in order:
+            if offset in calls:
+                commands[offset] = pending
+                pending = []
+                continue
+            action = audio[offset]
+            args = action.get("arguments", [])
+            if (len(args) != 2 or args[0].get("kind") != "static-pointer"
+                    or args[1].get("kind") != "constant" or args[1].get("value") != 0):
+                raise ValueError(f"named audio arguments are not static at {offset}")
+            name = strings.get(args[0].get("value"))
+            if not name or not isinstance(name.get("value"), str) or not name["value"]:
+                raise ValueError(f"named audio string is unavailable at {offset}")
+            retained_strings[name["pointer"]] = copy.deepcopy(name)
+            pending.append(copy.deepcopy(action))
+        if pending:
+            raise ValueError("named audio after the final selected activity requires an explicit boundary")
+    return [commands[call["callFileOffset"]] for call in owner_calls], list(retained_strings.values())
+
+
+def original_stage_sequence(program: dict[str, Any], manifest: dict[str, Any],
+                            stage_functions: list[str]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Single-stage owners use the same full CFG projection as room stages."""
+    if (program["disc"] != manifest["source"]["disc"]
+            or program["mapinfoSha256"] != manifest["source"]["sha256"]):
+        raise ValueError("original stage source changed")
+    functions = {fn["id"]: fn for fn in program["functions"]}
+    calls = []
+    for function_id in stage_functions:
+        fn = functions[function_id]
+        starts = {action["callFileOffset"]: action for block in fn["blocks"]
+                  for action in block["actions"] if activity_start_slot(action) is not None}
+        for offset in ordered_control_flow_calls(fn, set(starts)):
+            slot = activity_start_slot(starts[offset])
+            activity = exact_activity(manifest, {"slot": slot}, program["id"])
+            calls.append({"slot": slot, "callFileOffset": offset, "functionId": function_id,
+                          "resource": {"sha256": activity["sha256"], "byteLength": activity["byteLength"]}})
+    if not calls:
+        raise ValueError("original stages contain no activity starts")
+    return [{"slot": call["slot"]} for call in calls], calls
+
+
 def startup_sound_actions(
     program: dict[str, Any],
     function_id: str,
@@ -133,6 +247,7 @@ def startup_sound_actions(
 def activity_preview_function(
     activities: list[tuple[int, int | None, int | None]],
     startup_commands: list[dict[str, Any]] | None = None,
+    activity_commands: list[list[dict[str, Any]]] | None = None,
 ) -> dict[str, Any]:
     sequence = len(activities) > 1
     entry = "$activity-sequence" if sequence else "$activity-preview"
@@ -165,6 +280,7 @@ def activity_preview_function(
                 "adapterStatus": "proven",
                 "semanticId": "native-operation-013e-resource-slot-control",
             })
+        bind_actions.extend(copy.deepcopy(activity_commands[index]) if activity_commands else [])
         bind_actions.append({
             "kind": "engineOperation",
             "callFileOffset": f"{prefix}:0050-start",
@@ -280,6 +396,31 @@ def activity_preview_function(
     }
 
 
+def activity_start_sound_actions(activity: dict[str, Any], routes: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    commands = []
+    for cue in activity.get("nativeSoundCommandCues", []):
+        # Only frame-zero callbacks can be lifted immediately before AUTH start.
+        # Fail instead of silently moving future timed sound to the wrong shot.
+        if cue.get("frame") != 0:
+            raise ValueError(f"{activity['activityId']}: timed callback sound requires frame execution")
+        action = cue["action"]
+        arguments = action.get("arguments", [])
+        if (action.get("semanticId") != "sound-command-dispatch" or len(arguments) != 3
+                or any(arg.get("kind") != "constant" for arg in arguments)):
+            raise ValueError("activity sound command must have three constant arguments")
+        word, *args = [require_word(arg["value"], "sound argument") for arg in arguments]
+        matches = [route for route in routes if (
+            route["commandHex"].lower() == word.to_bytes(4, "little").hex()
+            and route["exactArguments"] == args
+            and action["callFileOffset"] in route["callFileOffsets"]
+            and route["kind"] in {"music", "native-control-no-output"}
+        )]
+        if len(matches) != 1:
+            raise ValueError(f"unresolved activity sound command at {action['callFileOffset']}")
+        commands.append(copy.deepcopy(action))
+    return commands
+
+
 def build(routes: dict[str, Any]) -> dict[str, Any]:
     if routes.get("schema") != "new-yokosuka-native-activity-preview-routes-v1":
         raise ValueError("unsupported native activity preview route schema")
@@ -305,6 +446,52 @@ def build(routes: dict[str, Any]) -> dict[str, Any]:
             if route.get("activities") is not None
             else [route.get("activity")]
         )
+        sequence_evidence = []
+        owner_audio_commands = []
+        static_strings = []
+        if stages := route.get("originalStages"):
+            if "activities" in route or "activity" in route or "ownerSequence" in route:
+                raise ValueError(f"{cutscene_id}: original stages cannot have a second activity order")
+            owner_path = PROJECT_ROOT / stages["program"]
+            owner_program = json.loads(owner_path.read_text())
+            requested_activities, owner_calls = original_stage_sequence(owner_program, manifest, stages["functions"])
+            sequence_evidence.append({"kind": "owner-control-flow-activity-sequence", "path": stages["program"],
+                "sha256": sha256(owner_path), "mapinfoSha256": owner_program["mapinfoSha256"],
+                "stageFunctions": stages["functions"], "calls": owner_calls})
+        if owner_relative := route.get("ownerSequence"):
+            if "activities" in route or "activity" in route:
+                raise ValueError(f"{cutscene_id}: owner sequence cannot have a second activity order")
+            owner_path = PROJECT_ROOT / owner_relative
+            owner_program = json.loads(owner_path.read_text())
+            if owner_program["area"] != route["area"]:
+                raise ValueError(f"{cutscene_id}: activity sequence owner area changed")
+            requested_activities, owner_calls = owner_activity_sequence(owner_program, manifest)
+            owner_audio_commands, static_strings = owner_named_audio_actions(owner_program, owner_calls)
+            sequence_evidence.append({
+                "kind": "owner-control-flow-activity-sequence",
+                "path": owner_relative,
+                "sha256": sha256(owner_path),
+                "mapinfoSha256": owner_program["mapinfoSha256"],
+                "calls": owner_calls,
+            })
+        if original_relative := route.get("originalStageEvidence"):
+            original_path = PROJECT_ROOT / original_relative
+            original = json.loads(original_path.read_text())
+            if original["source"]["mapinfoSha256"] != manifest["source"]["sha256"]:
+                raise ValueError(f"{cutscene_id}: original stage evidence source changed")
+            functions = {fn["id"]: fn for fn in [original["function"], *original.get("supportingFunctions", [])]}
+            stage_ids = (route["originalStages"]["functions"] if "originalStages" in route
+                         else [stage["functionId"] for stage in owner_program["authResourceSelection"]["stages"]])
+            original_calls = [(function_id, action["callFileOffset"], activity_start_slot(action))
+                              for function_id in stage_ids for block in functions[function_id]["blocks"]
+                              for action in block["actions"] if activity_start_slot(action) is not None]
+            selected_calls = [(call["functionId"], call["callFileOffset"], call["slot"]) for call in owner_calls]
+            if sorted(original_calls) != sorted(selected_calls):
+                raise ValueError(f"{cutscene_id}: incomplete original script stage, including silent tracks")
+            sequence_evidence.append({"kind": "original-script-stage-coverage", "path": original_relative,
+                "sha256": sha256(original_path), "mapinfoSha256": original["source"]["mapinfoSha256"],
+                "stageFunctions": stage_ids, "completionBoundary": {"kind": "after-original-stage-return",
+                    "completedStageFunction": stage_ids[-1]}})
         if (
             not isinstance(requested_activities, list)
             or not requested_activities
@@ -349,7 +536,14 @@ def build(routes: dict[str, Any]) -> dict[str, Any]:
                 **startup,
                 "sha256": sha256(owner_path),
             })
-        function = activity_preview_function(bindings, startup_commands)
+        activity_commands = [activity_start_sound_actions(
+            activity, manifest.get("ownerAudioCommands", []),
+        ) for activity in activities]
+        if owner_audio_commands:
+            activity_commands = [owner + callback for owner, callback in zip(
+                owner_audio_commands, activity_commands, strict=True,
+            )]
+        function = activity_preview_function(bindings, startup_commands, activity_commands)
         action_kinds = Counter(
             action["kind"] for block in function["blocks"] for action in block["actions"]
         )
@@ -359,6 +553,7 @@ def build(routes: dict[str, Any]) -> dict[str, Any]:
             "area": require_text(route.get("area"), f"{cutscene_id} area").upper(),
             "entryFunction": entry_function,
             "functions": [function],
+            **({"staticStrings": static_strings} if static_strings else {}),
             "scriptedInteractions": [],
             "operation013eStaticBindings": [{
                 "slot": slot,
@@ -415,7 +610,7 @@ def build(routes: dict[str, Any]) -> dict[str, Any]:
                 "sha256": sha256(manifest_path),
                 "archiveMember": activity["archiveMember"],
                 "activitySha256": activity["sha256"],
-            } for activity in evidence_activities] + startup_evidence,
+            } for activity in evidence_activities] + sequence_evidence + startup_evidence,
             "summary": {
                 "functionCount": 1,
                 "blockCount": len(activities) * 4 + 1,

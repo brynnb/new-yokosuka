@@ -53,3 +53,20 @@ test("SAKR audio preserves exact reused voice and authored SFX identities", () =
     "JAKR",
   );
 });
+
+test("SAKR preserves word-clock hand timing and separate young-Ryo geometry", () => {
+  const shot = activity.activities[0];
+  assert.deepEqual(shot.nativeHandPoseCues.map(cue => cue.frame),
+    [0, 0, 240, 240, 379, 458, 760, 770, 870, 930, 940, 983, 1110, 1150, 1200, 1290]);
+  assert.equal(shot.nativeHandPoseCues.find(cue => cue.actorTag === "JAKR").frame, 870);
+  assert.deepEqual(shot.nativeBodyHandPoseCues.map(cue =>
+    [cue.frame, cue.actorTag, cue.channel, cue.targetIndex]), [
+    [0, "IWAO", 1, 8], [0, "IWAO", 0, 8],
+    [0, "JAKR", 1, 8], [0, "JAKR", 0, 8],
+    [458, "JAKR", 0, 0], [1110, "JAKR", 0, 8],
+  ]);
+  assert.equal(activity.handAssets.IWAO.rig.vertexCount, 306);
+  assert.equal(activity.handAssets.JAKR.rig.vertexCount, 301);
+  assert.equal(activity.handAssets.JAKR.bodyModelCode, "JKB_M");
+  assert.equal(Object.keys(activity.nativeHandPoseTables).length, 6);
+});

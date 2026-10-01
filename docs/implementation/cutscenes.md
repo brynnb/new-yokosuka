@@ -1,8 +1,8 @@
 # Native cutscenes
 
-Cutscene previews are not ready for public use. The `/play` welcome menu and
-game sidebar intentionally omit their launch controls; the runtime remains
-available for development. Run the cutscene Playwright suites against the Vite
+The general cutscene preview selector is not ready for public use. The `/play`
+welcome menu and game sidebar intentionally omit its launch controls. The
+runtime also serves the new-character opening described below. Run the cutscene Playwright suites against the Vite
 development server: their helper opens the internal selector through its source
 module, not a public menu button.
 
@@ -10,6 +10,87 @@ The current selector uses generated preview programs over original AUTH data.
 These share the native program runtime but are not complete original room-owner
 scripts. A working preview does not establish branching, realtime interstitial,
 attachment, or persistent-state fidelity for the full original scene.
+
+## New-character opening
+
+Creating a character currently starts these packaged scenes in order:
+
+1. `S1-OP02-00`: Shenhua and the hawk.
+2. `S1-000`: Iwao's murder.
+3. `S1-OP00-MAIL`: the postman and Ine-san collecting the letter.
+4. `S1-OP00-DREAM`: Ryo tossing in bed, the Lan Di/Iwao montage, and awakening.
+
+The continuation uses the original OP00 embedded AUTH selections, not BEBF's
+later Shenhua nightmare. Both packages use the shared activity compiler and
+runner, with their original motion banks, actors, props, voices and music.
+See source provenance, regeneration commands and remaining presentation limits in
+[OP00 introduction assets](../research/shenmue1/op00-introduction-assets.md#post-murder-opening-continuation).
+
+`NewCharacterOpening.js` sequences the shared runner; it does not implement
+another renderer or emulate the original game's full story-flag progression.
+The existing transport applies: Space advances five seconds; X ends the current
+scene and proceeds to the next. Runtime failures stop startup with an error.
+
+A character without `lastLoginAt` needs the opening. Multiplayer connects only
+after the opening and final world load, so the server's existing first-login
+timestamp is not written during a cinematic. Reloading an interrupted opening
+retries it. Returning characters with a timestamp keep their saved entry flow.
+Gameplay movement, its camera, and automatic story triggers remain held across
+scene-loading gaps. After awakening, the normal world initializer restores the
+selected avatar at the original JOMO entry 1 beside Ryo's bed, facing the bedroom
+door, before revealing the room or releasing control. Both completion and X-skip
+use this arrival; returning characters still resume their saved location. The
+source is OP00's final map request at `0x2054e` and JOMO's entry record at
+`0xcab14` (see `tools/evidence/map-entry-points.json`). Player/camera reset uses
+the normal world initializer. Facing is intentionally aimed at the center of
+the `dor7` opening (its authored hinge plus half the closed door's 0.9-unit
+width), rather than the native entry's straight-ahead wardrobe-facing heading.
+Server time is unchanged. Cinematic Ryo and
+cutscene positions are never published as presence.
+
+`tests/e2e/new-character-opening.spec.js` uses real creation UI and GPU-rendered
+playback with mock account/transport boundaries and the unrelated external TV
+stream excluded. It advances the vision and mail via Space to native completion,
+skips the murder with X and covers both X-skip and completion of the Lan Di dream,
+holds the murder package's preparation for over five seconds to verify the loading
+overlay, and checks the bedside position, facing, restored avatar and movement
+toward the door. It is an accelerated transition test,
+not a substitute for real-time cinematic visual review.
+
+World readiness does not reveal a preparing cutscene: it explicitly defers the
+shared loading-screen reveal until the director has established its first
+camera/pose. The loading overlay then fades out over 500 ms as playback advances.
+Natural completion and X-skip hold the last displayed frame and fade to black
+over one second **before presentation cleanup**, then the next package starts
+loading. The last completed AUTH shot retains its surfaces and pose until
+replacement or program teardown; otherwise a detailed face can disappear before
+the program requests its fade. `NativeCutsceneDirector.end` is the user-facing
+covered stop; immediate `stop` is reserved for cancellation during preparation,
+world teardown and disposal. Final world
+initialization also covers avatar restoration and uses the same 500 ms reveal.
+See [shared transition phases](world-loading-and-transitions.md#loading-responsiveness).
+Only these four intro scenes provide a `loadingPresentation` in the cutscene
+catalog. The shared loading screen retains its title and civil date/time through
+nested world preparation and server-clock refreshes, without changing the actual
+world clock or environment. The cards are:
+
+| Scene | Caption | Date/time |
+| --- | --- | --- |
+| Shenhua and the hawk | Guilin | November 28, 1986, 5:30 pm (estimate) |
+| Iwao's murder | Yokosuka | November 29, 1986, 4:00 pm |
+| Ine-san's mail | 4 Days Later... | December 3, 1986, 8:30 am |
+| Lan Di dream and awakening | Hazuki Residence | December 3, 1986, 8:50 am |
+
+The hawk vision's calendar date is not established by the available lore sources.
+[Shenhua's prologue description](https://shenmue.fandom.com/wiki/Shenhua_Ling)
+identifies the prophecy, not when the shot occurs. Sunset on the day before the
+murder is an intentional presentation estimate, not recovered native metadata
+or a claim that the vision is a canonical flashback. The murder's November 29,
+4:00 pm setting and the four-day jump are also described in the
+[scene walkthrough](https://www.neoseeker.com/shenmue/faqs/1593059-l.html).
+ISO timestamps use UTC fields for the existing game civil-time formatter;
+these captions do not perform timezone conversion. Other cutscenes and final
+gameplay initialization use the shared server world clock, without an 8:55 override.
 
 This document describes how Shenmue cutscenes should be recovered, packaged,
 and played in the browser. A cutscene is treated as compiled native scene data,
@@ -30,7 +111,7 @@ scene-specific inventory is documented in
 Shared environment assembly is documented in
 [`scene-compositions.md`](scene-compositions.md).
 Character attachment seams, protruding-triangle diagnosis, surface ownership,
-and the unresolved neck-gap investigation are documented in
+and the shared animated neck-seam correction are documented in
 [character rendering and surface diagnostics](shenmue1-character-rendering.md).
 Native OSAG hair and garment motion is documented in
 [`native-secondary-motion.md`](native-secondary-motion.md).
@@ -84,11 +165,19 @@ boundaries.
 
 A package's default `startActivity: true` music cue begins with its first AUTH
 and stays owned by the enclosing native program across subsequent activities.
-An explicit `activitySlot` cue still belongs to that individual activity and
-can replace the package soundtrack. Completion, failure, cancellation, and
+An explicit `activitySlot` identifies when a score starts, not when it ends;
+it can replace the current soundtrack and remains owned across later uncued
+activities. OP00's 82/249-second OPEN1/OPEN2 streams were previously truncated
+to 28/27 seconds by conflating those lifetimes. Completion, failure, cancellation, and
 world teardown release the music; replay starts a fresh stream.
 
-CATA1 demonstrates why these lifetimes differ: the hash-verified JU00 script
+OP00 no longer guesses its music triggers from activity slots. Its native
+`0x015c` calls resolve the static names `OPEN1` and `OPEN2`. The preview compiler
+retains those commands and their strings in owner control-flow order before
+the next selected AUTH (slots 0 and 4 respectively). Registering a score in the
+audio catalog alone is not an executable start cue.
+
+CATA1 also demonstrates why music outlives individual AUTHs: the hash-verified JU00 script
 starts `BGM051` with operation `0x006c`, arguments `[17576, 0, 0]`
 (`A8440000`), at `0x21fd2` in first-activity callback `0x21e8c`. Its next two
 callbacks contain no music-start command. Previously, shared activity cleanup
@@ -102,26 +191,167 @@ See `tools/evidence/cata1-native-lifecycle.json` for source hashes and offsets.
 ### Known scene-fidelity limits
 
 - Fuku-san's letter (TGMA) uses the exact `FUB_F` face and face table with the
-  `FUB_M` body. Native FUB TALK deformation remains unrecovered, so the declared
-  neutral face fallback does not borrow incompatible FUK talk poses. Voice timing
-  and the shared facial presentation still run.
-- Kitten care (CATA1) has an ordered AUTH preview, but its package does not yet
-  wire the recovered FIXO hand attachments into the shared attachment runtime.
-  Native realtime interstitial logic and final persistent CATM/BOX1
-  gameplay-state replay also remain incomplete. The shared attachment primitive
-  exists; scene-specific extraction and registration are still required.
+  `FUB_M` body. Its 80 upper-face and 80 mouth poses now come from the original
+  SH-4 TALK builder with the FUB table, not foreign FUK deltas or a neutral
+  fallback. The retained extractor independently validates Ryo's pose output
+  before evaluating FUB. GPU playback, replay/cancel, and changing rendered
+  face vertices passed on September 28. Additional diagnostic front views at
+  frames 300 and 620 show different mouth/eye expressions with intact face and
+  neck geometry. These are test-only cameras, not altered authored shots or
+  proof of exact phoneme synchronization with the Dreamcast version.
+- Kitten care (CATA1) now registers the recovered FIXO hand attachments in the
+  shared attachment runtime. Full browser playback and targeted hand-prop
+  screenshots verify the cinematic path. Native realtime interstitial logic and final persistent
+  CATM/BOX1 gameplay-state replay remain outside this cinematic preview.
 - Nozomi rescue presents the cinematic sequence, not the intervening interactive
-  fights. A playable preview does not establish complete native gameplay fidelity.
-- BEBF's nightmare preview still omits its original owner's music dispatch.
-  Its `BGM129` command mapping exists, but unlike OP02 its startup commands have
-  not yet been carried into the preview. A mapping alone is not playback proof.
+  fights. Its sequence is `[0|3, 1, 2]`: one chosen lead-in, the confrontation
+  once, then the aftermath. The second slot-1 call in native interstitial
+  `0x74960` is conditional and loops back into the fight; it is not a mandatory
+  repeat. The former `[0|3, 1, 1, 2]` preview mistakenly flattened that branch.
+  The exact aftermath callback attaches the existing AIRO toy airplane to KKEN
+  control 12 before playback and detaches on completion. A playable preview
+  does not establish complete native gameplay fidelity.
+- BEBF's nightmare preview now dispatches `BGM129` through the compiled program.
+  The source trigger is callback
+  `0x4bb38` at frame zero (`0x006c` call `0x4bbb0`), selected for slots 61/63
+  by helper `0x4b4f8`. It is not an unconditional startup command like OP02's.
+  The retained callback extractor and package builder preserve this activity
+  binding and both exact sound commands. September 22 full-browser evidence
+  (`tests/reports/cutscene-bebf-music-sept22-retry1/`) proves music advances from
+  the second into the third shot and releases after all three shots complete.
 
-For current capability priorities, run
-`python3 -m tools.cutscenes.audit_player_cutscene_capabilities` and inspect
-`tools/evidence/player-cutscene-capability-priorities.json`. The report records
-input hashes; regenerate after selector, package, owner-program or corpus changes.
+For player-facing verification, use the
+[browser validation workflow](#bounded-browser-validation). The
+older `audit_player_cutscene_capabilities` report ranks full native owner-script
+reconstruction from its supplied selector/readiness inputs (the saved report
+still describes 46 selectors). It is a research lens, not a completion gate or
+work queue for the current 58 good-enough previews. Its input hashes must be
+refreshed before reusing those historical counts.
 See [scene inventory](../research/shenmue1/player-facing-cutscene-scene-inventory.md) for
 the distinction between selector entries and independently owned scenes.
+
+### September 28 presentation verification
+
+The three-priority pass covers FUB talking deformation, attached-prop gaze,
+and fixed source wrist-controller corrections through shared presentation
+systems. Extraction tools and original-byte provenance remain in the repo.
+
+- 44 focused tests passed for the affected compiler, resources, lifecycle,
+  face deformation, gaze, hand attachment, and dynamic-correction omission.
+- Full GPU playback, immediate replay, and cancellation passed for TGMA,
+  DJHN-03 (Wang's letter target), D0W0-01 (Yamagishi), and DRAUTH-02.
+- Targeted rendered wrist checks passed for D0W0-01, TGMA, HOUO, JHW0-06,
+  DRAUTH-02, and TOKI. Reviewed diagnostic close-ups show the corrected hand
+  geometry and cuff connections. These checks do not claim exact contact in
+  every frame or complete playback coverage for all six scenes.
+- Browser preflight confirmed hardware rendering on AMD Radeon RX 9070 XT;
+  these were not software-rendered or headless state-only checks.
+
+Repeat the targeted tests with `tests/e2e/cutscene-faces.spec.js`,
+`cutscene-gaze.spec.js`, and `cutscene-wrists.spec.js` using the browser
+validation workflow below. Tests label diagnostic camera images separately
+from authored-shot images and wait for actual rendered frames before capture.
+Remaining approximations are the shared LKPT angular limits/smoothing and
+CATA1/SAKR dynamic wrist feedback described below. They do not require a new
+per-cutscene renderer or a complete native script interpreter.
+
+### Exact attachment identity
+
+Attachment, visibility, and articulated-prop cues now compile to `activityId`,
+not a mutable native activity slot. The existing OP00, TOKI, TGMA, and DJHN
+builders were regenerated with that contract; there is no slot-only browser
+fallback. A generator may resolve a native slot only when exactly one resource
+uses it. CATA1's three resources all use slot zero, so its callback/resource
+association is explicit.
+
+CATA1 extracts callbacks `0x24050` and `0x25958` from hash-verified JU00 MAPINFO.
+NBO1/2/3 attach at frame 1, change hands at 140, and detach at 270 in SEQDATA1;
+ABRG attaches at 1 and detaches at 120 in SEQDATA2. The shared extractor follows
+unique predecessor blocks when native code reuses parts of a vector; it rejects
+unresolved values instead of borrowing nearby writes from another branch.
+These props borrow the existing CHRT-tagged scene roots. AUTH-driven props keep
+their world hierarchy and return to authored poses on detach, while props with
+no AUTH track hide on detach. Package teardown releases borrowed presentation
+before disposing scene roots.
+
+Package actors also suppress a resident world placement with the same native
+`runtimeObject.objectTag` during their program lease, then restore its prior
+visibility. This removes duplicate cinematic/world actors without deleting the
+world model or hiding unrelated actors by filename/species.
+
+The actor program also borrows the gameplay avatar's render visibility when
+its cast uses separate bodies and contains no player tag. OP00's dream uses
+`AKI_` sleepwear Ryo rather than gameplay `AKIR`; the ordinary avatar stays
+hidden for that program while the cinematic body follows the shared shot
+mask. Gameplay's first-person visibility updater yields to this ownership,
+and covered program cleanup restores the exact prior visibility.
+
+Regenerate the retained callback evidence with:
+
+```sh
+python3 -m tools.cutscenes.extract_native_aseq_callback_ir --disc 1 --area JU00 --map-entry 0x4d284 --callback 0x24050 --output tools/evidence/cata1-seqdata1-native-callback-ir.json
+python3 -m tools.cutscenes.extract_native_aseq_callback_ir --disc 1 --area JU00 --map-entry 0x4d284 --callback 0x25958 --output tools/evidence/cata1-seqdata2-native-callback-ir.json
+node tools/cutscenes/build_cata1_activity_pack.mjs
+```
+
+DJHN also needs the shared room letter, not just the soda can. D000 `OMG.PKS`
+contains `MALS509G.CHRM` (1452 bytes, SHA-256
+`0d5182cde209ca1c188e4a7af48f65e79d0d5713469bd2c951a0af69a624dd39`).
+The retained callback extraction supplies MALS's controller-18 attachments and
+hinge-152/153 folding in SEQDATA3 (frames 580, 700, 1160) and SEQDATA5
+(239, 678). A same-frame detach/rebind compiles to its final source attachment.
+The shared extractor accepts an explicit object-tag selection for callbacks
+that also own unrelated actors and room cleanup; default extraction remains
+strict. DJHN selects MALS and YKHI in callback `0x891b8`. Its original base-vector
+query `0x89ae8` supplies MALS to the look-point control at `0x89b06`, on frames
+675–980, with release at 981. The shared target resolver now accepts declared
+object bases as well as actor components; it refreshes the attachment after
+the current frame's body motion, rather than aiming at the previous frame's transform.
+The original LKPT consumer is controller type 4. The browser follows that
+neck branch (including descendant render and attachment matrices), without
+accumulating corrections into MOTN. **Approximation:** native selector-specific
+angular limits remain unrecovered; all actors use a conservative ±45-degree
+limit and six-frame error smoothing. Detailed FACE eyes use the same target
+where available; Wang has no separate FACE asset. GPU-rendered DJHN playback,
+target release, immediate replay, and cancellation passed on September 28;
+frame 975 visibly shows Wang turned toward the letter. This is good-enough
+target tracking, not an exact reconstruction of the native angular controller.
+
+```sh
+python3 -m tools.cutscenes.extract_native_aseq_callback_ir --disc 1 --area D000 --map-entry 0x8e3fc --callback 0x891b8 --output tools/evidence/djhn-seqdata3-native-callback-ir.json
+python3 -m tools.cutscenes.extract_native_aseq_callback_ir --disc 1 --area D000 --map-entry 0x8e3fc --callback 0x8a44c --output tools/evidence/djhn-letter-native-callback-ir.json
+node tools/cutscenes/build_djhn_activity_pack.mjs
+```
+
+BUSS demonstrates the same distinction for vehicle parts: AUTH animates the bus
+and passengers, but the room callback opens and closes its folding doors.
+Boarding callback `0x6c30c` initializes nodes 153/154 from static MAPINFO vectors;
+arrival callback `0x6c60c` initializes nodes 157/158/155/156. They launch helper
+`0x6cb8c` at frames 100 and 132 respectively. Its inclusive 0–30 counter applies
+the original integer hinge increments. The retained extractor compiles those
+poses and bounded loops to the existing articulated-object cues, scoped to each
+exact AUTH variant. It does not emulate the unrelated traffic/room controller.
+The attachment runtime borrows the existing bus root, and restores its moving
+parts on completion or cancellation without taking ownership of AUTH movement.
+
+```sh
+python3 -m tools.cutscenes.extract_native_aseq_callback_ir --disc 1 --area D000 --map-entry 0x8e3fc --callback 0x6c30c --output tools/evidence/buss-boarding-native-callback-ir.json
+python3 -m tools.cutscenes.extract_native_aseq_callback_ir --disc 1 --area D000 --map-entry 0x8e3fc --callback 0x6c60c --output tools/evidence/buss-arrival-native-callback-ir.json
+python3 -m tools.cutscenes.extract_native_aseq_callback_ir --disc 1 --area D000 --map-entry 0x8e3fc --callback 0x6cb8c --output tools/evidence/buss-door-native-callback-ir.json
+node tools/cutscenes/build_buss_activity_pack.mjs
+```
+
+The same callback extractor handles FIXO initialization before the first ASEQ
+start and resets on its completed exit path. Both require a unique control-flow
+path; an unresolved conditional/timed call is not assigned frame zero. EVSN's
+aftermath uses this for the child's toy airplane:
+
+```sh
+python3 -m tools.cutscenes.extract_native_aseq_callback_ir --disc 1 --area JD00 --map-entry 0x76b90 --callback 0x729e0 --output tools/evidence/evsn-aftermath-native-callback-ir.json
+node tools/cutscenes/build_evsn_activity_pack.mjs
+python3 -m tools.cutscenes.build_native_activity_preview_programs
+npm run build:native-event-program-pack
+```
 
 No single file describes a complete cutscene. The browser package must join
 several native resources without discarding their identities.
@@ -361,11 +591,71 @@ entries are evicted so a corrected asset or transient request can be retried.
 
 ### Bounded browser validation
 
+Playwright uses hardware GPU rendering by default. The shared launch settings
+in `scripts/testing/playwright-renderer.mjs` select full Chromium and, on Linux,
+Vulkan/ANGLE. This follows [Chromium's headless GPU guidance](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/gpu/using-gpu-hardware-in-headless-chrome.md).
+The `renderer-preflight` project requires WebGL2, checks a rendered pixel, and
+rejects SwiftShader/llvmpipe before scene tests start. Full cutscene inventories
+also record and validate the actual Babylon renderer. Do not skip dependencies
+or launch ad-hoc diagnostics with bare `chromium.launch()`; pass
+`playwrightRendererOptions()` to reuse the same settings.
+
+The Docker wrapper passes `/dev/dri/renderD*` nodes and their groups, builds a
+version-matched Mesa/Vulkan image if needed, and limits the container to four
+CPU cores by default, 8 GiB RAM, and no swap. It uses private 512 MiB shared
+memory rather than host IPC. Host browser runs have the same RAM/swap ceilings
+through a transient systemd user service. Node tests are capped at 2 GiB, with
+a 1 GiB heap. The launchers share a per-user lock across worktrees and reject
+overlapping runs. See [test resource safety](../../tests/README.md#resource-safety);
+use the npm launchers, not bare Node/Playwright commands.
+`PLAYWRIGHT_DRI_DEVICE` can select one explicit render
+node. This accelerates drawing, not game JavaScript or asset decoding; keep
+rendered runs serial. For an intentionally software-only CI environment,
+`PLAYWRIGHT_SOFTWARE_RENDERING=true` is an explicit opt-out, never an automatic
+retry after a failed GPU check. Such runs can consume substantial CPU.
+
+Full-playback verification uses the current generated preview program and its
+activity manifests for both the expected shot order and scene-dependent timeout.
+Repeated activities count toward the timeout. Menu return alone is not a pass:
+the test requires the matching program's explicit `completed` settlement and
+every expected activity's final authored frame. Sample/cancel tests instead
+require a `cancelled` settlement. Saved inventories distinguish full browser
+playback from rendered visual review; screenshots are not automatically marked
+reviewed.
+
+Run the full list with stop-on-first-failure, then fix and rerun the failing
+scene before resuming the rest:
+
+```sh
+npm run test:e2e:cutscenes
+NY_E2E_CUTSCENE_ID=S1-HOUO-01 npm run test:e2e:cutscene
+NY_E2E_CUTSCENE_START_ID=S1-TOKI-01 npm run test:e2e:cutscenes
+```
+
+Use the actual failed/next scene IDs from the run. Supply a distinct Playwright
+`--output` directory when preserving results across retries; Playwright cleans
+its output directory at the start of a run. These tests use one browser worker
+so a failure can be fixed before proceeding to the next scene.
+
+For concurrent development, use a separate server without hot reload:
+
+```sh
+VITE_OFFLINE_ASSETS=true node scripts/testing/start-cutscene-test-server.mjs
+# In another terminal:
+E2E_APP_URL=http://127.0.0.1:5176 PLAYWRIGHT_SKIP_WEB_SERVER=true npm run test:e2e:cutscenes
+```
+
+Stop that server with Ctrl-C and restart it after fixes; it caches transformed
+modules without watching source files. This avoids reload-invalidated runs but
+is not an immutable checkout snapshot. It leaves the ordinary port-5175 server
+untouched. The offline-assets flag uses the documented local runtime assets;
+it does not publish new assets remotely.
+
 Run the representative loading inventory against local Vite with restored
 runtime assets and a WebGL-capable browser:
 
 ```sh
-npx playwright test tests/e2e/cutscene-loading.spec.js --project=chromium --headed --workers=1
+npm run test:e2e -- tests/e2e/cutscene-loading.spec.js --project=chromium --headed --workers=1
 ```
 
 It exercises D0W0's independent scene variants, OP02's multi-shot program, and
@@ -381,21 +671,76 @@ visual-fidelity certification. Use `tests/e2e/cutscene-preview.spec.js` with
 claiming actors, attachments, or effects are visibly correct; parser and
 simulated-presentation reports cannot establish that.
 
-#### Observed browser inventory — 2026-09-07
+Full runs now save start/early/late AUTH segment images and source-derived prop
+checkpoints, and require registered props from the current compiled manifests.
+Prop-checkpoint images temporarily hide only the HTML captions so hands can be
+inspected; the inventory marks these with `hiddenCaptions: true`. Other images
+retain the player UI. An AUTH segment may contain multiple camera cuts: these
+samples are targeted evidence, not an exhaustive visual review of every cut.
+Set `NY_E2E_CUTSCENE_REPLAY=1` on the single
+scene command to replay through the same live selector after completion, then
+cancel and assert that program, activity, attachment, and music ownership are
+released. This deliberately does not reload the browser between plays.
+Set `NY_E2E_CUTSCENE_VIDEO=1` on that single-scene command when motion review is
+needed (for example OP02's captured skirt). The resulting WebM is retained in
+the chosen report directory; recording a video does not automatically mark it
+visually reviewed.
 
-Checked on the public client baseline `5c76c81d` with the loading-reliability
-changes, local Vite, restored runtime assets, and headed Chromium using hardware
-WebGL2. These are short samples, not complete playback runs or loading-speed
-benchmarks. The initial strict suite reported one pass and two failures. The
-actor-loading and soundtrack-lifetime follow-ups now pass all three launch
-checks and both cross-activity music checks. Failures are not marked expected
-or skipped; verified browser media-range cancellations remain in the reports.
+#### Verification scope
 
-| Selection | Observed result | Remaining issue |
+Keep these three kinds of evidence distinct:
+
+| Evidence | What it establishes | What still needs checking |
 | --- | --- | --- |
-| `S1-D0W0-01` — Yamagishi's Advice | Follow-up passes: `YAMA:75e8096a55de` starts with zero loaded models; preparation loads its exact `YMG_L` body. Yamagishi is visible on the park bench, AUTH advances from frame 15 to 118, and cancellation returns to the selector without browser/asset errors. | Short sample only; later shots and full completion were not verified. No actor-specific model override or duplicate NPC was added. |
-| `S1-OP02-00` — Opening Vision | All seven selected AUTHs prepared; rendered frames reviewed; music advances across the first AUTH boundary and stops on cancellation without browser/asset errors. | Later activities and full completion were not verified in the browser. |
-| `S1-CATA1-01` — Megumi and the Kitten | Follow-up passes: three AUTHs prepared, rendered frames reviewed, `BGM051` advances from 0.71 to 105.06 seconds across the first AUTH boundary without restarting, and cancellation stops it at 108.54 seconds. | The original aborted requests are verified HTTP 206 Ogg range changes with healthy playback, not a missing asset. Full completion and the attachment/interstitial limitations above remain unverified/incomplete. |
+| Asset/parser and headless runtime audit | Required data loads and the simulated presentation reaches its terminal state. | Actual browser rendering, media playback, and visible scene composition. |
+| Full browser playback | The expected activities reach their final frames, explicit completion occurs, and no captured runtime/resource error remains. Compiled music cues are checked for playback and release. | A scene can still omit an unregistered prop or render an incorrect face while completing successfully. |
+| Reviewed screenshots or video | The named actors, props, shots, or motion are visible in those samples. | Unsampled cuts and frame-perfect agreement with the original game. |
+
+September 22 checks supersede the earlier launch-only results for OP02 and
+CATA1: both complete their full selected sequence and pass immediate replay
+and cancellation. OP02 additionally has temporal review of the later skirt
+shots and hawk poses. CATA1 has rendered hand-prop checks; its original realtime
+interstitials and persistent gameplay outcomes remain outside the preview.
+Yamagishi's initial variants completed but exposed overlapping low-detail
+face geometry. The shared face replacement fix was then verified in a full
+D0W0-03 run and a Ryo/Nozomi scene, including replay and cancellation.
+
+The September 27 serial GPU sweep refreshed successful full-playback evidence
+for all 58 selections: 46 completed before a HIHY attachment-seam failure;
+after fixing its shared parent-vertex binding, the remaining 12 completed.
+The retained hand audit matches delivered commands for all 58 across those
+two runs. HIHY and HOUO also passed focused immediate replay/cancellation
+checks. This is stop/fix/resume coverage, not one uninterrupted all-scenes
+regression on a single source snapshot. Rendered samples were reviewed for
+each selection, including hands where visible; off-camera hands are not a
+visual pass. The review also caught undersized KKYB mirrors despite successful
+playback, demonstrating why browser completion alone is insufficient.
+After restoring their source-authored entry scale, KKYB passed focused GPU
+playback/replay/cancellation and reviewed motion samples show both mirrors.
+Do not present either that coverage or the headless 58/58 result as exhaustive
+visual or original-game fidelity. Local inventories and
+review notes must identify which run and sampled frames support a claim;
+the existence of a screenshot alone does not mark it reviewed. Tests and
+reporting conventions are reproducible from the commands above, while raw
+reports and transient progress logs remain local artifacts.
+
+Media diagnostics retain failed requests. Chromium can cancel an Ogg header
+range before reading the seek table at the end of a file. For a still-playing
+ambient stream, the test classifies that abort as expected only after a
+different byte-range request completes successfully and the same media source
+advances without a media error after the abort. An aborted or unsuccessful
+replacement, stalled playback, and unverified requests remain failures.
+
+As a deliberate good-enough presentation choice, the Shenhua nightmare (BEBF)
+hides both blanket variants (`FUT1` and `FUT2`) for sleeping, dreaming, and waking.
+The generator resolves their model names from the existing JOMO placements and
+uses the shared root-visibility lease, not a blanket-specific runtime. Ending or
+cancelling restores the borrowed props; ordinary room rendering is unchanged.
+The opening Lan Di nightmare (OP00) does not load these separate blanket props
+and already shows Ryo without a blanket cover. Beds and pillows are retained.
+Native blanket deformation and BEBF's sleeping-Ryo resource binding remain
+unrecovered, tracked in [issue #3](https://github.com/brynnb/new-yokosuka/issues/3).
+Omitting the covers is not an implementation of their original animation.
 
 The debug panel currently formats absent aggregate program-time fields as
 `Track undefined` / `NaN`. The browser test observes accepted updates on the
@@ -526,6 +871,15 @@ before it, then apply the native-to-browser reflection. Hide the object until
 both the parent actor and exact control matrix exist, and restore/hide it when
 the owning track ends.
 
+The converted attachment matrix belongs under `model.renderRoot`, not the
+outer actor root. Source controller matrices are model-local; characters also
+have model orientation, scale, and grounding between those roots. Skipping
+that transform placed CATA1's fish over four world units from the rendered
+hand. The shared adapter now uses the rendered-model hierarchy for standalone
+props and borrowed scene props alike. The focused browser attachment test
+compares their world position with the source controller composed through the
+actual character content root; separate full-playback evidence is still needed.
+
 Do not hand-label a FIXO call with an AUTH track. Feed every selected track's
 native setup-function offset and the attachment operation's call offset through
 the shared `NativeAseqScriptOwnership` extractor. It recognizes generated SH-4
@@ -583,6 +937,16 @@ beneath `-67`. Walking only the flattened parent mesh leaves those shells
 rendering through the detailed FACE resource and can make the static face seem
 to appear on the back of the head. Surface matching still decides which
 triangles are replaced, so authored child hair and neck geometry survive.
+
+The detailed shell can reference a parent vertex that the coarse attachment
+does not use. HIHY's archive-local Iwao body, for example, has source vertex
+38 on torso node `60880`, but not on FACE node `63056`. Resolve that exact
+source index on the parent surface instead of requiring a duplicate on the
+coarse FACE. GPU material batching preserves per-vertex source indices and
+node addresses for this purpose. Where the coarse attachment does contain a
+welded seam copy, retain its existing binding; otherwise use the actual parent
+vertex and its live skin weights. This shared FACE/HAND rule does not use
+nearest-point guesses or actor-specific offsets.
 
 Do not merge replaceable attachment subtrees into an undifferentiated character mesh.
 The shared MT5 batcher accepts `preserveRenderKeySubtrees`; scheduled actors
@@ -738,26 +1102,35 @@ Shenmue I character bodies contain low-detail left and right hand nodes at
 signed render keys `-66` (`-0x42`) and `-65` (`-0x41`). Close presentation can
 instantiate separate `MODEL/HAND/<code>_TL.MT5` and `_TR.MT5` resources. These
 are not alternate complete bodies: each model has one 306-vertex hand rooted
-in wrist-local coordinates. Resolve the body hand node itself and copy its live
-world matrix to the detailed model every presentation frame. Do not attach by
-the detailed model's positive root key: that key varies by character family
-and is not the wrist attachment identity.
+in wrist-local coordinates. The original HAND consumer `0x0c0de682` resolves
+MOMT controller type `12` for the left hand and `18` for the right, then applies
+the detailed-hand component correction. Use those live controller matrices,
+not the low-detail body hand nodes: MHND can rotate those nodes independently,
+turning a detailed grip away from its carried prop. The body nodes are still
+the surface-replacement and seam-binding targets. An unanimated model uses its
+authored bind pose; a missing controller in an animated model is an error.
+Do not attach by the detailed model's positive root key: that key varies by
+character family and is not the wrist attachment identity.
 
-Do not disable the complete body hand subtree. Its signed `-66`/`-65` root
-contains the low-detail hand and the proximal wrist ring that meets the sleeve.
-Derive the detailed resource's proximal boundary from its own wrist-local
-geometry: its longest attachment-space axis is the limb axis, and the endpoint
-nearest the attachment origin is the seam. Keep body triangles that cross onto
-the sleeve side of that plane and transfer every fully distal triangle,
-including all low-detail finger descendants, to the detailed hand. Cleanup
-must restore the exact original body index buffers. Detailed hand materials
+Detailed hand root strips contain signed parent-vertex references just like
+detailed faces. Resolve them against the source parent of the body's signed
+`-66`/`-65` attachment, not the low-detail hand's own vertex array. The shared
+`NativeAttachmentSeam` implementation binds those exact source indices and
+updates only their seam positions from the body's current skin weights each
+frame. Exclude these borrowed vertices from finger deformation; their temporary
+loader index zero is not an actual hand-pose vertex.
+
+Once bound, the detailed shell replaces all low-detail hand triangles,
+including the old wrist connector and finger descendants. Keep the body nodes
+and vertex buffers for animation and seam evaluation; remove their draw indices
+only. The previous geometric cut-plane heuristic left coarse palm triangles
+protruding through detailed grips and is removed. Cleanup restores the exact
+original body index buffers and releases the seam bindings. Detailed hand materials
 follow the same mirrored-character contract as detailed faces: authored
 triangles are oriented to their normals, then rendered clockwise and
 one-sided. Hand overlays are not pickable, collidable, or camera blockers.
-The ownership boundary must always use the detailed resource's immutable
-authored source positions. Recomputing it from a pose-deformed hand makes the
-cut depend on the preceding AUTH track and can consume the wrist seam when the
-same hand is activated again in a later shot.
+Rebind the authored references when a later AUTH activity reacquires the same
+hand; the preceding finger pose must not change which body surface it owns.
 
 Selection must come from the event runtime or another exact binding, not from
 finding a similarly named hand inside a room package. OP00 contains resources
@@ -775,6 +1148,12 @@ truncating delta twice per 30 Hz AUTH frame after body MOTN matrices are
 evaluated. In OP00, the frame-zero row-`0` request supplies Ryo's relaxed curl
 before he reaches Ine-san; treating an all-zero hierarchy as the default rest
 pose leaves every finger incorrectly extended.
+
+Actors that only request body-hand poses use an explicit `mode: "body-only"`
+definition in the same hand presentation system. They load no detailed hand
+assets and never replace body triangles. CATA1's Megumi (`SIA_L`) uses this
+route; the source requests MHND changes, not a detailed hand model. A detailed
+pose request against a body-only definition remains an error.
 
 Each actor's `HM.BIN` begins with six section offsets. The opening inventory
 validates a 72-pair traversal table, 71 80-byte transform records, and influence
@@ -800,6 +1179,247 @@ body hand. Preserve both controllers across adjacent AUTH activities and reset
 them together when the program starts.
 Do not synthesize finger curls from audio, generic sine curves, guessed joint
 indices, wrist offsets, or actor-specific cuff cuts.
+
+The native `0x005e` installer clamps a zero transition duration to one tick;
+it still installs all nineteen vectors. Never translate it into a mesh-enable
+command or discard its table. Unconditional entry-block poses belong at frame
+zero (including multiple straight-line entry blocks); other calls require
+their actual frame gate. Owner setup must precede
+callback overrides. The shared callback extractor and synchronous initializer
+extractor preserve this distinction. HOUO retains the four owner poses from
+`0x26b4c`/`0x26c88`, then Ryo's immediate right-hand grip at callback `0x24184`.
+Both tables are read from the hash-pinned original JHD0 MAPINFO, not recreated
+as hand-authored finger angles.
+
+Run `node tools/cutscenes/audit_cutscene_hands.mjs` for the retained all-selector
+inventory in `tools/evidence/cutscene-hand-audit.json`. The September 27 check
+covers all 58 selections: thirty-five contain explicit detailed-hand pose commands,
+with no missing asset/table binding among those emitted commands. This is not
+hand-animation completeness: 54 native calls in the available source closures
+remain unattributed to selected activities (some can belong to other events or
+unused branches). JHW0's eight training variants now retain their distinct
+callbacks' 44 hand commands, plus four shared owner-initialization poses for
+each variant. The builder derives slot-to-callback ownership from dispatcher
+`0x43ba0`; slots 13–16 are not in callback-address order. Shared setup `0x4505c`
+calls `0x4520c` for both actors before their callbacks. Both original pose tables
+(`0x5c7c8`, `0x5cd20`) are extracted from the hash-pinned JHD0 MAPINFO. The
+existing shared hand renderer consumes them; there is no training-specific
+finger-animation runtime. Trace ownership before importing remaining calls;
+do not apply every call from an area's script to every scene in that area.
+
+The same inventory tool can compare an existing serial browser sweep with the
+current compiled preview order, without replaying it:
+
+```sh
+node tools/cutscenes/audit_cutscene_hands.mjs --browser-reports tests/reports/your-cutscene-sweep --output tests/reports/your-cutscene-sweep/hand-audit.json
+```
+
+Use a full-playback sweep directory without additional replay commands. The
+comparison checks delivered command count, order, actor, side, pose-table
+identity and acceptance. It follows compiled activity order, not manifest
+storage order. Missing terminal reports remain pending; incomplete playback,
+missing observations, dropped/reordered commands or rejected commands fail.
+This does not prove source completeness, exact cue timing, individual pose
+words or visual correctness. The focused hand suite and reviewed frames supply
+those additional checks where recorded.
+
+Both DNOZ Nozomi sequences retain their nested actor-initialization helpers,
+not just the direct `0x005e` call in the confession callback. Helpers `0x1068`
+and `0x19c0` initialize both actors' body hands (row 8), then install detailed
+poses through `0x12e4`. The confession's second activity returns Ryo to body
+hands at frame zero, restores detailed hands at frame 1900, and changes
+Nozomi's right hand at frame 2780. The tears' second activity initializes both
+actors again and hands control back to their body hands at frame 143.
+Nozomi shares the retained NZM hand assets across both packages; Ryo uses YKB.
+The shared extractor expands synchronous nested helpers and preserves command
+order. An entry guard is accepted only before ASEQ starts, with an empty
+early-return alternative and a synchronous path to the callback's ASEQ start.
+This handles both the delayed-stop latch and EVSN's scene flag without
+inventing room-state values. It does not choose between playing branches or
+turn yielding helpers into frame-zero setup. The source MAPINFO hash
+and helper closure are retained with the extraction tool.
+The retained DNOZ browser tests verify both complete activity sequences,
+cross-activity pose continuity, exact command order, body/detailed handoffs,
+and replay/cancellation on a hardware GPU. Screenshots include Nozomi's curled
+fingers and Ryo's hand in the tears scene; close-up face shots alone are not
+treated as visual evidence for off-camera hands.
+
+EVSN's two rescue routes share the hand callbacks selected by their original
+resource owners: slots 0/3 call `0x721f8`, slot 1 calls `0x72300`, and slot 2
+calls `0x729e0`. Each route retains 44 detailed and 24 body-hand commands in
+source order. Common setup `0x72ef4` calls actor initializer `0x9218` and
+detailed helper `0x73a48`; timed changes include Enoki's right-hand pose at
+frame 1193 and Ryo's two-hand pose at 1580 in the confrontation. The aftermath
+also switches control between body and detailed hands at authored frames.
+Enoki/Nagashima use their original YAA/YAB resources (byte-identical 306-vertex
+hands); Nozomi and Ryo reuse NZM and YKB. Kyosuke has body-only MHND commands,
+not an invented detailed-hand model. Lead-ins omit only frame-zero setup for
+room actors absent from that AUTH; all later callbacks initialize those actors
+again. Any timed cue for a missing actor is an extraction error.
+
+Regenerate the retained EVSN hand callback/helper closure with:
+
+```sh
+python3 -m tools.cutscenes.extract_native_aseq_callback_ir --disc 1 --area JD00 --map-entry 0x76b90 --callback 0x72300 --include-function 0x721f8 --include-function 0x729e0 --include-function 0x761ca --include-function 0x7691c --include-function 0x76424 --include-function 0x76644 --include-call-closure --output tools/evidence/evsn-hand-native-callback-ir.json
+node tools/cutscenes/build_evsn_activity_pack.mjs
+```
+
+Both EVSN routes pass full hardware-GPU playback, ordered command/pose checks,
+and immediate replay/cancellation. Reviewed confrontation and aftermath shots
+show the restored finger poses and the child's airplane. Reproduce the focused
+browser check with `npx playwright test tests/e2e/cutscene-hands.spec.js
+--project=chromium --grep 'S1-EVSN' --max-failures=1`, using the renderer and
+test-server setup described in the verification section. This does not validate
+the deliberately omitted interactive fight.
+
+DRAUTH's two sailor-confrontation activities retain 22 detailed and 19 body-hand
+commands in total, selected from callbacks `0x836d8` and `0x83d28` by owner
+`0x858c4`. Shared setup supplies Ryo, Tony, Smith and Harry's detailed poses;
+Sera and Jones have only the authored MHND body poses. Ryo changes both hands
+at frames 145 and 340 in the first activity. Tony's pointing pose begins at
+200 and returns at 300 in the second. Later source-proven handoffs return the
+actors to body hands. Original GIJ/GIB/GIE assets supply the three sailors'
+detailed hands, with their exact rig layouts; Ryo reuses YKB.
+Both previews pass full GPU playback, sampled pose/order checks and immediate
+replay/cancellation. Reviewed shots show Ryo's hand changes, Tony's pointing
+close-up, and the subsequent body-hand presentation. This uses the existing
+shared renderer, not a sailor-specific animation path.
+
+```sh
+python3 -m tools.cutscenes.extract_native_aseq_callback_ir --disc 1 --area D000 --map-entry 0x8e3fc --callback 0x836d8 --include-function 0x83d28 --include-function 0x858c4 --include-call-closure --output tools/evidence/drauth-hand-native-callback-ir.json
+node tools/cutscenes/build_drauth_activity_pack.mjs
+```
+
+D0W0's twelve Yamagishi variants use dispatcher `0x5870c`, not callback-address
+order. The shared extractor expands their straight-line hand helpers at the
+caller's exact activity frame, binds the actor argument, and preserves mixed
+body/detailed hand command order. `0x59f8c` supplies both detailed hand poses;
+callback overrides retain the cup grip and individual Ryo gestures. Yamagishi
+uses the original `YMG_TL`, `YMG_TR`, and `YMG_HM` resources (306 vertices and
+71 transform nodes), while Ryo shares the existing YKB assets.
+Owner `0x59de8` also calls common actor setup `0x9fb0` for both actors before
+playback. Its `0x0081` row-8 starting poses are retained even for hands which
+never become detailed. Setup extraction accepts reconverging visibility
+branches only when every path produces the identical ordered hand effects;
+conditional hand changes and unresolved/cyclic control flow still fail.
+
+For good-enough presentation, a helper that requests `0x00df` mode `0`, selector
+`0` for the relevant sides and then explicitly requests a `0x0081` body-hand
+pose relinquishes detailed mesh ownership. This is a narrow presentation rule
+for that paired sequence, not an assertion that every mode-zero controller
+request disables a mesh or complete native hand-controller emulation. Ordinary
+body-hand updates do not hide detailed hands. Original body triangles are
+restored, and later detailed poses can reacquire the same surface. D0W0 also
+borrows its existing AUTH cup for the source FIXO attachment: Yamagishi's
+controller 18 from frame 0 to the detach at frame 1606. It does not spawn a
+second cup. Compact callback evidence and the builder remain reproducible.
+The shared `0x00eb` translation now applies Yamagishi's left-hand correction
+`[-8920, 4004, -5643]` at frame 0 and its zero reset at 920. The original
+`0x0c0de682` consumer loads attachment control 12/18, then applies the primary
+controller's rotation words via `0x0c091868`. Those are low-word fixed-turn
+X/Y/Z rotations, separate from the nineteen finger vectors—not inferred grip
+offsets or a reason to rotate the underlying cup controller. The same shared
+rule handles fixed cues in TGMA, HOUO, TOKI, DRAUTH, and JHW0. Signed parent
+seam vertices still follow the arm after the detailed hand is rotated.
+The source ranges and pointer dependencies are reproducibly verified by:
+
+```sh
+python3 -m tools.scripting.operations.extract_hndl_hndr_component_operation_evidence --contract-only --out tools/evidence/hand-attachment-render-contract.json
+```
+
+The contract-only report does not reuse the old whole-disc IR inventory count,
+which no longer matches the current expanded IR. That historical corpus report
+is left intact rather than weakening its assertion.
+The unmatched-call count is global triage, not per-scene completeness: a shared
+helper emitted for one scene can still be missing from another scene's setup.
+MSKA, both KAKG dialogues, and TGMA now explicitly preserve their original
+owner initialization through `0x26aa4` or `0x26be0` and shared helper `0x26c88`.
+KAKG's Fuku-san conversation also retains its four immediate pose changes at
+frame 1321; those changes are not applied to the separate Ine-san conversation.
+TGMA keeps its existing FUB-specific hand resources and later letter poses.
+
+CATA1's three kitten-care activities retain 18 Ryo detailed-hand poses and
+10 body-hand cues, including each callback's common actor initialization.
+The hash-pinned JU00 callbacks `0x21e8c`, `0x24050`, and `0x25958` provide the
+timing and original pose vectors. Shared setup `0x26c10` calls `0x215a4` for
+both actors before playback. Ryo reuses YKB detailed resources; Megumi's body
+hands retain the native row-8 setup and subsequent row-1/row-8 left-hand
+changes. During SEQDATA1, all three fish remain attached to Ryo (`AKIR`):
+FIXO changes controller 18 to 12 at frame 140, then detaches at frame 270.
+This is not a transfer to Megumi. CATA1's dynamic `0x00eb` corrections at
+`0x23f2a`/`0x23fdc` depend on per-frame arithmetic and native `0x00ea` controller
+reads; SAKR also has ten conditional arithmetic writes. These are explicitly
+retained as `nativeHandComponentLimitations`, not guessed static vectors.
+When a side has an unresolved dynamic write, the compiler omits the whole
+component-correction lane so a partial fixed pose cannot become stuck. Their
+existing authored finger/body motion remains unchanged. Exact contact for
+those two dynamic cases is still a fidelity limit, outside the fixed-cue fix.
+
+SAKR's Sakura training memory uses a signed 16-bit local frame counter, not
+the 32-bit load used by the other recovered callbacks. The shared binary gate
+reader accepts both generated load forms while preserving the exact comparison
+and branch boundaries. Callback `0x70c` retains 16 detailed poses and two timed
+body poses; owner `0x1a4` supplies four initial body poses through its actor
+helper `0x384`. Resource preparation yields before those helper calls, so the
+builder binds their actual arguments directly rather than treating the entire
+resource owner as a non-yielding initializer. Young Ryo first requests his
+detailed right hand at frame 870, not at callback entry. Iwao uses IWA hand
+resources (306 vertices), young Ryo uses JKB (301); both rig layouts have 71
+transform nodes. The global textured model vertices/normals match their
+archive-local CHRM equivalents, and the HM rig files are byte-identical.
+Standalone `0x00df` controller requests are not treated as mesh visibility
+commands; only the documented paired body-hand handoff policy applies.
+
+The shared browser harness records hand commands and hand-pose state beside
+rendered shot samples. HOUO also has a focused full-playback browser check in
+`tests/e2e/cutscene-hands.spec.js`: it checks both actors' actual pose words and
+enabled detailed meshes. Reviewed early/late images show Ryo's mirror grip and
+Fuku-san's curled hands. This is not a visual pass for the other 57 selections,
+nor evidence that every scene should have continuously moving fingers.
+The same test file checks all eight JHW0 variants through uninterrupted playback:
+each verifies a native pose change, and the recorded commands account for all
+76 hand cues in actor/side/table order. The September 26 GPU run completed all
+eight without browser or resource errors. Reviewed samples include visible
+open hands and fists; wide shots do not establish individual finger contact.
+The Hazuki dialogue cases in that file also check MSKA, both KAKG scenes, and
+TGMA through full playback. All four passed the September 26 GPU run, including
+KAKG-02 immediate replay/cancellation. Exact pose words and delivered cue order
+are checked separately from the captured compositions; an occluded hand in a
+shot is not treated as visual proof of its finger surfaces.
+All twelve D0W0 variants completed the September 27 GPU run with no browser or
+resource errors; sequence 7 also passed immediate replay/cancellation. After
+recovering the common starting body poses, focused full-playback reruns of
+sequences 1, 7, and 10 passed, checking actual body-pose words and detailed-hand
+state as well as delivered cue order. Rendered samples show the opening cup,
+Ryo's differing finger poses, and Yamagishi's detailed hand in the final variant;
+wide and occluded shots do not establish exact finger-to-prop contact.
+CATA1 also passed full GPU playback and immediate replay/cancellation on
+September 27. Its focused check verifies all 28 delivered hand cues and four
+rendered samples across the three activities. Reviewed images show Ryo's
+changing fingers and food grip, and Megumi's body hands. The later activities
+exposed Megumi's leg/skirt clipping. The September 28 shared cloth-topology
+correction aligns closed-ring columns before building row constraints: her
+hem's independent greatest-X seed had shifted its links by one column,
+twisting and stretching the skirt. Reviewed GPU samples at activity 1 frame
+165 and activity 2 frame 180 now show the continuous skirt without the former
+leg protrusion. This does not establish pixel-perfect cloth behavior for
+every animation frame. See [native cloth](native-cloth-runtime.md) for the
+source-data basis and corpus scope. The corrected scene passed full GPU
+playback and immediate replay/cancellation without browser/resource errors;
+the retained report is `tests/reports/cutscene-megumi-ring-alignment-sept28/`.
+SAKR passed full GPU playback, all 22 hand commands, and immediate replay/
+cancellation on September 27. Seven rendered samples show Iwao's changing
+poses and young Ryo's detailed grip in the close-ups. Those close-ups exposed
+a protruding low-detail wrist connector. The shared authored-parent seam fix
+removed the duplicate connector and bound the detailed shell to the animated
+body wrist instead. A subsequent full GPU run and reviewed close-ups at frames
+895, 955 and 1310 show the connected wrist without the former protrusion.
+Phoenix Mirror and JHW0 sequence 1 also passed full GPU reruns after this
+shared change; reviewed samples retain the mirror grip and Fuku-san's moving
+hands. Focused tests check animated seam positions for both baked and welded
+GPU bodies, alongside the existing FACE/neck regressions and exact cleanup.
+Set `E2E_HAND_SURFACE_DIAGNOSTICS=true` for the SAKR hand test to capture the
+temporary body-surface isolation; the test restores visibility immediately.
 
 ## Coordinate and facing rules
 
@@ -831,13 +1451,37 @@ Resolve audio during the build:
 Each voice's aligned SRF record supplies its authored speaker ID, subtitle text,
 and mouth cues. Preserve both the source text and a display form that expands
 the native line-break and ellipsis controls. The runtime voice presenter uses
-the same dialogue overlay and caption preference as ordinary NPC dialogue;
-audio start, replacement, completion, and activity cleanup own the caption
-lifecycle. Empty SRF text remains an uncaptioned vocal/nonverbal cue rather
+the same dialogue overlay and caption preference as ordinary NPC dialogue.
+Caption ownership uses the individual playback cue, not just the authored
+command: completion of an older playback cannot clear a newer one. Empty SRF
+text remains an uncaptioned vocal/nonverbal cue rather
 than receiving invented dialogue.
 
-The runtime audio adapter owns playback for the duration of the AUTH activity
-and releases voice captions and temporary score tracks during cleanup.
+`NativeAseqAudioPresentation` is acquired once by `beginProgram` and released
+by `endProgram`. Nested AUTH cleanup only releases shot presentation; it does
+not stop voice/SFX or hide their captions. Clips finish on the media element's
+`ended` event, an explicit stop command, or final program cleanup/cancellation.
+A standalone AUTH acquires the same session contract for its single activity.
+
+Detailed faces read the live speaker cue's `positionSeconds`, rather than
+restarting lip sync at the next AUTH's frame zero. This preserves ongoing
+speech across cuts and catches up actors returning from offscreen. The shared
+dialogue volume channel and existing media backend remain authoritative.
+
+Forward skip brackets the existing bounded AUTH-clock updates with a session
+seek. It pauses ongoing clips, accumulates offsets for new cues without playing
+them, then seeks surviving media and discards expired clips. Music advances by
+the frames actually consumed, not the requested skip when a shot ends early.
+Metadata loading during seek has a ten-second timeout and reports failure;
+session and play-revision guards reject stale completion after cancel/replay.
+This does not turn the existing shot-bounded skip into a cross-program seek.
+
+`tests/e2e/cutscene-music.spec.js` records actual voice-element `playing`,
+`pause`, `ended`, and `error` events. OP02's ten voices must all end naturally,
+including B005/B007/B010 crossing shot boundaries. The same suite checks
+OP00's opening score in its initial gate shot, score seeking, and music
+continuity/cancellation for OP02 and CATA1. These are playback-lifecycle checks,
+not a listening comparison against the original mix.
 
 ## Validation
 
@@ -911,8 +1555,10 @@ tracks retain their concrete dependency blockers.
 archive-backed AUTH activity families. A package may reference a canonical
 motion bank outside its source archive only by exact path, byte length, and
 SHA-256. The compiler parses and verifies that asset but does not copy it into
-the package directory. This is the expected approach for shared banks such as
-`M_ZAKO.MOTN`.
+the package directory. A separate external-asset declaration can retain a copy
+when the source is only available in an extracted room directory. A parseable
+sequence at the requested ordinal is insufficient: its authored sample window
+must also resolve against that clip.
 
 The readiness report is deliberately narrower than the full 136-MAPINFO / 491
 logical-AUTH corpus: an archive located near a room is not a cutscene owner.
@@ -931,6 +1577,25 @@ assets through the normal standalone MT5 texture resolver and disposes them
 with package world ownership. This is the reusable rule for later cutscene
 props that do not already belong to a world placement catalog.
 
+YQ14's former `M_ZAKO` binding was incorrect: its first four clips are generic
+14-frame poses, despite AUTH requests reaching frames 638/642/1007. The room
+resource at MAPINFO `0x57e0e` names `M_01114.BIN`; the retained builder now copies
+that exact file (SHA-256
+`6f7980d63ad21d4a4a51019a1ef22bbe843c03150028beff73b5b3d00302f1f8`) into the package.
+MOTN header attributes must not be used as a request-bank identity: global
+`MOTION.BIN`, for example, does not share its AUTH request bank in those bits.
+
+One source inconsistency remains explicitly approximated: `YQ14/SEQDATA1.AUTH`
+requests Ryo's `AKI_AITU_MASAKA_0448` frames 612..691, while the supplied clip
+has exactly 80 frames. The shared resolver rebases only an entirely out-of-range
+window whose inclusive length equals the complete clip length. It retains the
+original operands and cue lifetime, records `sampleFrameOffset: 611` and
+`frameBasis: rebased-whole-clip-window`, and samples body/sound motion locally.
+Other out-of-range starts remain unresolved; the unrelated 14-frame bank now
+fails compilation. This is a good-enough export-window interpretation, not
+emulator-verified native semantics. The full packaged corpus scan found this
+one exact rebase case; the headless fidelity report lists it as an approximation.
+
 ## Compiled owner programs, not browser playlists
 
 The browser playlist stack was removed when OP00 moved to the canonical
@@ -943,15 +1608,96 @@ The machine-readable audit is generated by
 the following:
 
 - OP00's compiled MAPINFO owner is exact and has no unresolved operations;
-- its 24 selected AUTH resources retain their source offsets, lengths, and
+- its 25 selected AUTH resources retain their source offsets, lengths, and
   hashes;
 - each resource is an independently stored, hash-matched activity with a
   `map-embedded-slot` binding;
-- the owner completion boundary remains immediately before unrelated slot 24;
+- the owner completion boundary follows the return of the original murder
+  stage, including its silent slot-24 storm camera/effect track;
   and
 - production config, cutscene, event, and generated-event sources contain no
   playlist runtime, playlist schema, playlist package kind, handwritten OP00
   timeline, or combined OP00 authpack reference.
+
+Selection is by complete native stage functions, not contiguous ASTR audio
+path families. `--stage-function` selects original direct-call stages; their
+control-flow graphs supply every positive operation-`0x0050` start. Invocation
+specialization removes unreachable branches and their outgoing CFG edges.
+The preview compiler compares those selections against retained original IR,
+and the smoke audit independently checks that evidence for all four opening
+segments. Removing a silent shot from both the package and compiled timeline
+must fail original-stage coverage. See the OP00 research guide for provenance,
+regeneration commands, and the limits of the restored storm effects.
+
+## Dream-stage ownership
+
+Program ownership retains character models and their authored poses across
+shots, but only characters declared in the current AUTH actor table are drawn.
+The shared Babylon actor presenter masks undeclared scheduled and package
+characters as well as the gameplay avatar. That render-only mask remains in
+place during preparation of the next shot and is restored at program release.
+Persistent scenery remains governed by native scene-object visibility instead
+of the character mask. In particular, OP00's storm track must not inherit Lan
+Di or his men's visible bodies from the preceding dojo shots; its only character
+reference is the explicitly hidden `AKIR`.
+
+Dreams use the same package runtime as other scenes. Activity metadata can
+declare `browserIsolatedStage` and a `browserBackgroundColor`: the shared map
+presenter snapshots and hides resident world roots, but leaves package-owned
+actors and scenery visible. Completion/cancellation restores the exact prior
+visibility. The enclosing program retains its outgoing stage between AUTH
+activities to avoid briefly exposing the gameplay room during a cut.
+Isolation also borrows the world environment: the shared environment owner
+hides the sky and clears precipitation/fog, suspending periodic visual updates
+without stopping the server clock. Waking or cancellation releases that lease,
+restores prior sky visibility, and applies current server time/weather. This
+matters for dreams hosted in outdoor packages such as OP00; hiding map roots
+alone leaves the independently rendered sky and snowfall visible.
+
+The BEBF generator retains JOMO helper `0x4c50c`'s operation-`0x0098` writes
+`[0,0], [2,0], [4,0], [6,0], [8,0]` before the dream and helper `0x4c584`'s
+matching value-1 writes before waking. Those five roots alone are insufficient
+in the browser: additional resident room models and placed props remain. The
+dream therefore uses isolated staging as a documented browser approximation,
+not invented native layer commands. Ryo's bedroom shots restore the room.
+
+OP00's opening Lan Di nightmare uses that same isolated black staging for
+montage slots 30–46. Sleeping slot 28 and waking slot 29 retain the OMO bedroom,
+and waking releases the black background. The continuation builder previously
+enabled exterior/dojo roots on every non-bedroom shot, leaking the murder set
+into the dream. This is a browser composition fix, not a reconstruction of
+OP00's native fog, flashes, or per-shot lighting controllers.
+
+For KKYA–KKYF, original parent helper `0x5067c` releases `MPK00` using
+operation `0x013c` at `0x5070e` before a vision; `0x50748` reloads it afterward.
+The browser retains those assets and borrows their visibility instead of
+unloading/reloading the house. Vision-owned scenery remains visible. The black
+background is the browser projection of the owners' `0x006f` mode-2 value
+`0xff000000`, not a reconstruction of all native fades, fog, or SCRL behavior.
+
+KKYB's native playback callback `0x47108` sets both `RYMR` and `HOMR` scales
+to `[100, 100, 100]` through operation `0x0027` at `0x47122` and `0x4713a`.
+The source vector is at `0x95ec0`. Omitting these writes left both mirrors as
+tiny points even though their AUTH movement and the hawk ran successfully.
+The builder reads the unconditional entry path and hash-pinned vector into
+the existing scene-object `initialPresentation` data. Shared AUTH object
+ownership now applies that setup after taking a restoration snapshot; AUTH
+movement then controls position/rotation without erasing scale. Completion,
+cancellation and replay restore the prior instance state. Other appearances
+of the same model are not enlarged. This recovers the visible mirror setup,
+not the original callback's complete fades, fog and glow coroutines.
+
+Retain and regenerate its source evidence with:
+
+```sh
+python3 -m tools.cutscenes.extract_native_aseq_callback_ir --disc 1 --area JOMO --map-entry 0x88b70 --callback 0x47108 --include-function 0x462cc --include-function 0x49354 --include-function 0x45d10 --include-call-closure --output tools/evidence/jomo-mirrors-native-setup-ir.json
+```
+
+Regenerate with `tools/cutscenes/build_bebf_activity_pack.mjs` and
+`tools/cutscenes/build_jomo_vision_activity_packs.mjs`. Retained owner/release
+IR and pinned MAPINFO hashes preserve the provenance. `tests/BebfActivityPack.test.js`
+covers source joins, stage isolation, restoration, and repeated ownership;
+rendered completion and shot review remain separate requirements.
 
 ## Canonical ownership
 
@@ -962,16 +1708,40 @@ AUTH call acquires an activity sublease by its native binding; the package
 retains actors and prepared resources across activity boundaries where native
 ownership requires it.
 
-This preserves repeated calls without duplicating resource bytes. For example,
-BEBF's owner order remains:
+This preserves repeated preview calls without duplicating resource bytes.
+BEBF's current preview order is:
 
 ```text
-60, 61, 62, 60, 63, 62
+60, 61, 62
 ```
 
-OP00's generated preview retains the 24 selected AUTH calls recovered from
-MAPINFO. Preserving that sequence is not proof that every original owner
-operation executes during the preview.
+Source inspection on September 22 found these are two separate branches in
+owner `0x4bf5c`: `60,61,62` and `60,63,62`, selected by its input state. The
+preview now selects the first branch (input state zero), not a concatenation
+of both alternatives. Slot 63 remains packaged as the second native branch's
+alternative nightmare shot. The shared compiler and runner still support
+explicitly requested repeated calls; they must not be inferred merely because
+a resource appears in both a normal path and an interactive retry loop. EVSN's
+preview omits that retry and uses `0|3,1,2`. Use the
+[browser validation workflow](#bounded-browser-validation) to check playback.
+
+OP00's preview route now references its retained compiled owner with
+`ownerSequence`, rather than repeating an activity list. The preview compiler
+projects selected call sites through CFG successors in the owner's stages;
+branches reaching different next calls or repeated sites require an explicit
+choice and fail this projection. It does not execute unrelated room operations.
+The source's `selectedSlots` is a membership inventory, not chronology. The
+recovered order is:
+
+```text
+0,1,2,3,4,18,19,5,6,7,8,9,10,11,12,13,22,23,14,15,16,17,20,21
+```
+
+The September 22 visual sweep found that the former numerical `0..23` preview
+appended earlier fight material after the ending. Both the source MAPINFO hash
+and the retained owner's call sites were checked before correcting generation.
+Generated evidence retains those sites and resource hashes. Preserving this
+order is not proof that every original owner operation executes in the preview.
 
 ## Removed surface
 

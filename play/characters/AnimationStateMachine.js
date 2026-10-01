@@ -1,7 +1,6 @@
 import {
   interpolateAffineMatrix,
-  interpolateMatrixRouteMaps,
-  interpolateMatrixRoutes,
+  interpolatePoseMatrices,
 } from "../../src/AnimationMatrixInterpolation.js";
 import {
   analyzeRyoMotnRootMotion,
@@ -518,7 +517,7 @@ export class AnimationStateMachine {
     return state;
   }
 
-  clipRoutesAt(clipState, tick, {
+  clipPoseAt(clipState, tick, {
     loop = false,
     nextState = clipState,
   } = {}) {
@@ -533,15 +532,14 @@ export class AnimationStateMachine {
     const nextFrame = frameIndex + 1 < frameCount
       ? clip.frames[frameIndex + 1]
       : this.clips[nextState].frames[0];
-    return interpolateMatrixRoutes(
+    return interpolatePoseMatrices(
       frame.poseMatrices,
       nextFrame.poseMatrices,
-      this.renderMatrixByKey,
       amount,
     );
   }
 
-  remoteEmoteRoutes(emoteId, elapsedSeconds) {
+  remoteEmotePose(emoteId, elapsedSeconds) {
     this.ensureEmote(emoteId);
     const states = this.phaseStates.get(emoteId);
     if (!states) return null;
@@ -558,14 +556,14 @@ export class AnimationStateMachine {
         emote?.holdLoopUntilMovement
         && clipState === `${emoteId}:loop`
       ) {
-        return this.clipRoutesAt(
+        return this.clipPoseAt(
           clipState,
           remainingTicks % frameCount,
           { loop: true },
         );
       }
       if (remainingTicks < frameCount) {
-        return this.clipRoutesAt(clipState, remainingTicks, {
+        return this.clipPoseAt(clipState, remainingTicks, {
           nextState: states[index + 1] || "idle",
         });
       }
@@ -608,20 +606,25 @@ export class AnimationStateMachine {
       : this.activeOneShot?.loop
         ? clip.frames[0]
       : this.clips[this.locomotionClipState(this.nextState())].frames[0];
-    let routedMatrices = interpolateMatrixRoutes(
+    let controllerMatrices = interpolatePoseMatrices(
       frame.poseMatrices,
       nextFrame.poseMatrices,
-      this.renderMatrixByKey,
       frameAmount,
     );
     if (this.transition) {
-      routedMatrices = interpolateMatrixRouteMaps(
-        this.transition.fromRoutes,
-        routedMatrices,
+      controllerMatrices = interpolatePoseMatrices(
+        this.transition.fromPose,
+        controllerMatrices,
         this.transition.elapsedSeconds / this.transition.durationSeconds,
       );
     }
-    return { routedMatrices, frame, nextFrame };
+    // Render routes are only a subset of MOMT. Keep attachment/collision-only
+    // controls on the exact same sub-frame and transition clock as the body.
+    const routedMatrices = new Map([...this.renderMatrixByKey].map(([key, index]) => {
+      if (!controllerMatrices[index]) throw new Error(`Missing controller ${index} for render route ${key}`);
+      return [key, controllerMatrices[index]];
+    }));
+    return { routedMatrices, controllerMatrices, frame, nextFrame };
   }
 
   apply(amount = 0) {
@@ -714,15 +717,15 @@ export class AnimationStateMachine {
     // state request replace a one-shot on the same frame it starts.
     const requestedState = this.activeOneShot ? this.state : nextState;
     if (requestedState !== this.state) {
-      const fromRoutes = this.locomotionStates.has(requestedState)
-        ? this.currentRoutes(this.accumulator).routedMatrices
+      const fromPose = this.locomotionStates.has(requestedState)
+        ? this.currentRoutes(this.accumulator).controllerMatrices
         : null;
       this.state = requestedState;
       this.tick = 0;
       this.accumulator = 0;
-      this.transition = fromRoutes
+      this.transition = fromPose
         ? {
-          fromRoutes,
+          fromPose,
           elapsedSeconds: 0,
           durationSeconds: this.locomotionBlendSeconds,
         }
@@ -789,15 +792,15 @@ export class AnimationStateMachine {
     // walked/turned into an interaction. Preserve that displayed pose rather
     // than snapping to idle on the first emote frame. Native-direct scripted
     // motions deliberately retain their authored, unblended entry.
-    const fromRoutes = !emote.nativeDirect
-      ? this.currentRoutes(this.accumulator).routedMatrices : null;
+    const fromPose = !emote.nativeDirect
+      ? this.currentRoutes(this.accumulator).controllerMatrices : null;
     this.activeOneShot = null;
     if (this.activeEmote) this.clearEmote();
     this.activeEmote = { emote, states, phaseIndex: 0, context };
     this.setState(states[0]);
-    if (fromRoutes && this.emoteBlendTicks > 0) {
+    if (fromPose && this.emoteBlendTicks > 0) {
       this.transition = {
-        fromRoutes,
+        fromPose,
         elapsedSeconds: 0,
         durationSeconds: this.emoteBlendTicks / this.gameTicksPerSecond,
       };
@@ -816,7 +819,7 @@ export class AnimationStateMachine {
     blendSeconds = this.oneShotBlendSeconds,
   } = {}) {
     if (!this.clips?.[clipState]) return false;
-    const fromRoutes = this.currentRoutes(this.accumulator).routedMatrices;
+    const fromPose = this.currentRoutes(this.accumulator).controllerMatrices;
     if (this.activeEmote) this.clearEmote();
     this.activeOneShot = {
       clipState,
@@ -832,7 +835,7 @@ export class AnimationStateMachine {
     this.setState(clipState);
     if (blendSeconds > 0) {
       this.transition = {
-        fromRoutes,
+        fromPose,
         elapsedSeconds: 0,
         durationSeconds: blendSeconds,
       };
@@ -1021,14 +1024,14 @@ export class AnimationStateMachine {
     blendSeconds = this.oneShotBlendSeconds,
   } = {}) {
     if (!this.activeOneShot || !this.clips?.[nextState]) return false;
-    const fromRoutes = this.currentRoutes(this.accumulator).routedMatrices;
+    const fromPose = this.currentRoutes(this.accumulator).controllerMatrices;
     this.activeOneShot = null;
     this.state = nextState;
     this.tick = 0;
     this.accumulator = 0;
     this.transition = blendSeconds > 0
       ? {
-        fromRoutes,
+        fromPose,
         elapsedSeconds: 0,
         durationSeconds: blendSeconds,
       }

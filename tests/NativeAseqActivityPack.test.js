@@ -1,6 +1,5 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 
@@ -11,7 +10,7 @@ import {
 } from "../tools/lib/NativeAseqActivityPack.mjs";
 
 const archivePath = "extracted_files/data/SCENE/01/D000/YQ14.PKS";
-const sharedMotionPath = "play/assets/account/M_ZAKO.MOTN";
+const sharedMotionPath = "play/assets/dobuita/yq14/M_01114.MOTN";
 
 const expectedMembers = Object.freeze([
   ["BINS501G.CHRM", 2132, "77bc11a2d715a76838a2df1f98a16f498a95c2319867515d1a88428ee50e8e4d"],
@@ -41,10 +40,10 @@ test("generic activity compiler reads gzip-wrapped native archives", () => {
 });
 
 test("generic activity compiler reuses an exact canonical motion bank", (context) => {
-  const outputDirectory = fs.mkdtempSync(path.join(os.tmpdir(), "yq14-pack-"));
+  const outputDirectory = fs.mkdtempSync("/var/tmp/yq14-pack-");
   context.after(() => fs.rmSync(outputDirectory, { recursive: true, force: true }));
   const manifestPath = path.join(outputDirectory, "manifest.json");
-  const manifest = buildNativeAseqActivityPack({
+  const config = {
     generatedBy: "tests/NativeAseqActivityPack.test.js",
     resourceName: "YQ14",
     disc: 1,
@@ -68,15 +67,15 @@ test("generic activity compiler reuses an exact canonical motion bank", (context
     motionBanks: [{
       bank: 16,
       sourcePath: sharedMotionPath,
-      assetPath: "play/assets/account/M_ZAKO.MOTN",
-      byteLength: 168080,
-      sha256: "0562507487c808d2e1ad80f5e2fd2a3527172e01fd79501c64134db1ffccac3d",
+      assetPath: sharedMotionPath,
+      byteLength: 44656,
+      sha256: "6f7980d63ad21d4a4a51019a1ef22bbe843c03150028beff73b5b3d00302f1f8",
       parseOptions: { sequenceIndices: [0, 1, 2, 3] },
       expectedSequences: [
-        { index: 0, name: "AK_SY_PU_SYO_L2" },
-        { index: 1, name: "F1ERROR0" },
-        { index: 2, name: "F1ERROR1" },
-        { index: 3, name: "F1ERROR2" },
+        { index: 0, name: "AKI_WHATS_0114" },
+        { index: 1, name: "OTH_GIA_WHATS_0114" },
+        { index: 2, name: "OTH_GIB_YOPPARAI_0114" },
+        { index: 3, name: "AKI_AITU_MASAKA_0448" },
       ],
     }],
     activities: [{
@@ -98,28 +97,40 @@ test("generic activity compiler reuses an exact canonical motion bank", (context
       frameCount: 13,
       commandCounts: { camera: 1, move: 4, motion: 5, sound: 9, voice: 2 },
     }],
-  });
+  };
+  const manifest = buildNativeAseqActivityPack(config);
 
   assert.deepEqual(manifest.motionBanks, [{
     bank: 16,
-    path: "play/assets/account/M_ZAKO.MOTN",
-    byteLength: 168080,
-    sha256: "0562507487c808d2e1ad80f5e2fd2a3527172e01fd79501c64134db1ffccac3d",
+    path: sharedMotionPath,
+    byteLength: 44656,
+    sha256: "6f7980d63ad21d4a4a51019a1ef22bbe843c03150028beff73b5b3d00302f1f8",
   }]);
   assert.equal(manifest.sceneObjects.BIN_.model, "BERHI204");
-  assert.ok(!fs.existsSync(path.join(outputDirectory, "M_ZAKO.MOTN")));
+  assert.ok(!fs.existsSync(path.join(outputDirectory, "M_01114.MOTN")));
   assert.deepEqual(
     fs.readdirSync(outputDirectory).sort(),
     ["BINS501G.CHRM", "SEQDATA1.AUTH", "SEQDATA2.AUTH", "manifest.json"],
   );
   assert.deepEqual(
     manifest.activities.map(activity => activity.motions.map(motion => motion.motionName)),
-    [["F1ERROR1", "F1ERROR0", "F1ERROR2"], [
-      "F1ERROR1",
-      "F1ERROR0",
-      "AK_SY_PU_SYO_L2",
-      "F1ERROR1",
-      "F1ERROR0",
+    [["OTH_GIB_YOPPARAI_0114", "OTH_GIA_WHATS_0114", "AKI_AITU_MASAKA_0448"], [
+      "OTH_GIB_YOPPARAI_0114",
+      "OTH_GIA_WHATS_0114",
+      "AKI_WHATS_0114",
+      "OTH_GIB_YOPPARAI_0114",
+      "OTH_GIA_WHATS_0114",
     ]],
   );
+  assert.throws(() => buildNativeAseqActivityPack({
+    ...config,
+    motionBanks: [{
+      bank: 16,
+      sourcePath: "play/assets/account/M_ZAKO.MOTN",
+      assetPath: "play/assets/account/M_ZAKO.MOTN",
+      byteLength: 168080,
+      sha256: "0562507487c808d2e1ad80f5e2fd2a3527172e01fd79501c64134db1ffccac3d",
+      parseOptions: { sequenceIndices: [0, 1, 2, 3] },
+    }],
+  }), /motions are unresolved/);
 });

@@ -34,8 +34,9 @@ import {
 import scheduledActorLocalObjectModels
   from "../data/scheduledActorLocalObjectModels.js";
 import {
-  nativeClothStateForModel,
-} from "./NativeClothBabylonPresentation.js";
+  updateNativeCharacterSecondaryMotion,
+  releaseNativeCharacterSecondaryMotion,
+} from "./NativeCharacterSecondaryMotion.js";
 import {
   loadNativeCharacterModel,
   nativeCharacterGroundOffset,
@@ -1122,7 +1123,7 @@ export class ScheduledActorRuntime {
     this.activityActorOwners = new Map();
     this.localObjectOwners = new Map();
     this.localObjectTemplates = new Map();
-    this.nativeClothStates = new Set();
+    this.secondaryMotionModels = new Set();
     this.loadedWorldId = null;
     this.loadController = null;
     this.modelQueue = Promise.resolve();
@@ -1144,13 +1145,13 @@ export class ScheduledActorRuntime {
       this.releaseLocalObjects(entry);
       entry.secondaryObject?.root.setEnabled(false);
     }
-    for (const cloth of this.nativeClothStates) cloth.release();
+    for (const model of this.secondaryMotionModels) releaseNativeCharacterSecondaryMotion(model);
     this.entries = [];
     this.dialogueFacingTargets.clear();
     this.activityActorOwners.clear();
     this.localObjectOwners.clear();
     this.localObjectTemplates.clear();
-    this.nativeClothStates.clear();
+    this.secondaryMotionModels.clear();
     this.loadedWorldId = null;
   }
 
@@ -2451,11 +2452,8 @@ export class ScheduledActorRuntime {
       && model?.loader
       && model?.renderRoot
     ) {
-      const cloth = nativeClothStateForModel(model);
-      if (cloth.active) {
-        cloth.update(deltaSeconds);
-        this.nativeClothStates.add(cloth);
-      }
+      updateNativeCharacterSecondaryMotion(model, deltaSeconds);
+      this.secondaryMotionModels.add(model);
     }
   }
 }

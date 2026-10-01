@@ -50,7 +50,63 @@
         "turnUnitsPerDegree": {
           "address": "0x0c136194",
           "value": 8192.0
+        },
+        "kokChildScaleBase": {
+          "address": "0x0c135e3c",
+          "value": 0.19999998807907104
+        },
+        "kokChildScaleRetention": {
+          "address": "0x0c135e40",
+          "value": 0.7999999523162842
         }
+      },
+      "controlledSurface": {
+        "modelFamily": "KOK",
+        "modeByteOffset": "0x0e",
+        "channelSelection": "bind-world-x-positive-selects-channel-1",
+        "channelSelectionInstructions": [
+          "0x0c131670",
+          "0x0c13167a"
+        ],
+        "childMode": "same-type-parent-mode-plus-one",
+        "childModeInstructions": [
+          "0x0c1317e6",
+          "0x0c1317ea"
+        ],
+        "globalModes": {
+          "scaleY": [
+            0,
+            1
+          ],
+          "rotationX": [
+            10,
+            11
+          ],
+          "rotationZ": [
+            20,
+            21
+          ],
+          "rotationY": [
+            30,
+            31
+          ]
+        },
+        "rotationCalls": [
+          "0x0c1d25c0",
+          "0x0c1d2340",
+          "0x0c1d2500"
+        ],
+        "authoredRotationCall": {
+          "instruction": "0x0c136124",
+          "target": "0x0c091868",
+          "renderNodeOffsets": [
+            "0x08",
+            "0x0c",
+            "0x10"
+          ]
+        },
+        "rowTransformOrder": "control-scale * control-Y * control-X * control-Z * authored-rotation * translation * parent",
+        "scope": "constant scripted control branch; unforced KOK inertia remains unimplemented"
       },
       "runtimeObservation": {
         "sourcePath": ".disc-work/op02-mgr-osag-81-runtime-capture.json",
@@ -115,6 +171,11 @@
     }
   },
   "code": {
+    "recordInitializer": {
+      "start": "0x0c13161c",
+      "endExclusive": "0x0c131806",
+      "sha256": "3b6be97eea1a1d110b31fc83ce96722f8243bee50695544611effcee6cb40487"
+    },
     "type81Handler": {
       "start": "0x0c135bec",
       "endExclusive": "0x0c136172",

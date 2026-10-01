@@ -488,8 +488,12 @@ AUTH, working motion, and decoded audio do not bypass that presentation gate.
 ### build_yq14_activity_pack.mjs / build_yq14_audio_pack.mjs
 
 Build the exact two-activity YQ14 package and its native audio presentation.
-The activity builder verifies the gzip-wrapped archive, references canonical
-`M_ZAKO.MOTN` by hash, and emits the CHRT-proven package-owned `BIN_` beer prop.
+The activity builder verifies the gzip-wrapped archive, copies the exact
+room-bound `YQ14/M_01114.BIN` dialogue motion bank, and emits the CHRT-proven
+package-owned `BIN_` beer prop. It no longer substitutes generic `M_ZAKO`
+clips. The shared resolver records the whole-clip rebase used for Ryo's
+out-of-range 612..691 cue against its 80-frame source clip; see cutscene
+implementation notes for this explicit good-enough approximation.
 The audio builder verifies the YQ14 MAPINFO-backed `N1014_4.SND` and
 `A01114.AFS` sources, decodes four DTPK effects plus two voices, and preserves
 the aligned SRF captions and lip cues.

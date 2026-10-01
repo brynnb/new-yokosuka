@@ -50,6 +50,11 @@ export function createNativeOperation015cSemanticHandlers({
       if (typeof name !== "string" || name.length === 0) {
         return stopped(`native-operation-015c-name-unavailable:${pointer}`);
       }
+      // This native entry shares the named audio-start helper with dialogue.
+      // Presentation is supplied by the owning program, never a shot guess.
+      if (context.playNativeNamedAudio && context.playNativeNamedAudio(name) !== true) {
+        return stopped(`native-named-audio-unavailable:${name}`);
+      }
       const acquire = acquireNativeNamedController
         || context.acquireNativeNamedController
         || (value => state.acquire(value));

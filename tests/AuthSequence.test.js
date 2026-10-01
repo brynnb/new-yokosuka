@@ -16,9 +16,28 @@ function bytes(path) {
   );
 }
 
-function parseMotion(path) {
-  return MotnLoader.parse(bytes(path));
+function parseMotion(path, options) {
+  return MotnLoader.parse(bytes(path), options);
 }
+
+test("motion resolution exposes exact whole-clip rebasing and rejects unrelated short clips", () => {
+  const auth = { motions: [{ sequenceIndex: 0, motionBank: 16, startFrame: 612, endFrame: 691 }] };
+  const resolve = durationFrames => resolveAuthMotions(auth, {
+    sequences: [{ index: 0, valid: true, name: "clip", durationFrames }],
+  })[0];
+  assert.equal(resolve(80).sampleFrameOffset, 611);
+  assert.equal(resolve(80).motionValid, true);
+  assert.equal(resolve(80).startFrame, 612, "preserve source operands");
+  assert.equal(resolve(14).motionValid, false);
+  assert.equal(resolve(691).sampleFrameOffset, undefined);
+  assert.equal(resolve(691).motionValid, true);
+  const sound = resolveAuthSoundMotions({
+    motions: [{ ...auth.motions[0], actorTag: "AKIR", frame: 1 }],
+    sounds: [{ actorTag: "AKIR", frame: 2 }],
+  }, { sequences: [{ index: 0, valid: true, name: "clip", durationFrames: 80 }] })[0];
+  assert.equal(sound.motionLocalFrame, 2);
+  assert.equal(sound.motionFrameResolved, true);
+});
 
 function firstExisting(...paths) {
   return paths.find(fs.existsSync) || paths[0];
@@ -277,6 +296,7 @@ extractionTest("maps AUTH sounds through actor timeline changes to local MOTN fr
 });
 
 extractionTest("resolves mixed AUTH banks against their respective MOTN packages", () => {
+  const sequence = parseAuthSequence(bytes(`${fixtureRoot}/unpacked/BUSS/SEQDATA2.AUTH`));
   const busPackage = parseMotion(
     `${fixtureRoot}/unpacked/BUSS/M_01BUS.MOTN`,
   );
@@ -284,11 +304,12 @@ extractionTest("resolves mixed AUTH banks against their respective MOTN packages
     firstExisting(
       ".disc-work/runtime-motion/MOTION.BIN",
     ),
+    // Expand every runtime motion referenced by this AUTH, not all 1,559 clips.
+    { sequenceIndices: sequence.motions.filter(event => event.motionBank === 0x02)
+      .map(event => event.sequenceIndex) },
   );
   const resolved = resolveAuthMotions(
-    parseAuthSequence(
-      bytes(`${fixtureRoot}/unpacked/BUSS/SEQDATA2.AUTH`),
-    ),
+    sequence,
     new Map([
       [0x10, busPackage],
       [0x02, runtimePackage],

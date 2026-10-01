@@ -19,6 +19,7 @@ export class NativeStoryRuntime {
     getGameplayState,
     getActivityRunner,
     sendDiagnostic,
+    isStartupPresentationActive = () => false,
   }) {
     this.dialoguePersistence = dialoguePersistence;
     this.dialogueOverlay = dialogueOverlay;
@@ -39,15 +40,17 @@ export class NativeStoryRuntime {
     this.getGameplayState = getGameplayState;
     this.getActivityRunner = getActivityRunner;
     this.sendDiagnostic = sendDiagnostic;
+    this.isStartupPresentationActive = isStartupPresentationActive;
     this.diagnosticElapsed = 0;
   }
 
   get ownsPlayerPresentation() {
-    return this.cutscenes.ownsPlayerPresentation;
+    return this.isStartupPresentationActive() || this.cutscenes.ownsPlayerPresentation;
   }
 
   get presentationActive() {
-    return Boolean(this.cutscenes.active || this.getActivityRunner()?.active);
+    return Boolean(this.isStartupPresentationActive()
+      || this.cutscenes.active || this.getActivityRunner()?.active);
   }
 
   activateWorld(world, meshes, signal) {
@@ -98,7 +101,7 @@ export class NativeStoryRuntime {
     const gameplayState = this.getGameplayState();
     this.automaticEvents.update({
       area: world.nativeArea,
-      enabled: enabled && Boolean(gameplayState),
+      enabled: enabled && !this.isStartupPresentationActive() && Boolean(gameplayState),
       context: {
         nativeContext: {
           dialogueState: gameplayState?.dialogueState,

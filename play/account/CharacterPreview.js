@@ -52,7 +52,9 @@ function enabledMeshBounds(root) {
       continue;
     }
     node.computeWorldMatrix(true);
-    node.refreshBoundingInfo();
+    // Avatars are GPU-skinned; frame the current pose, not the bind vertices.
+    node.skeleton?.prepare(true);
+    node.refreshBoundingInfo({ applySkeleton: true, applyMorph: true });
     const bounds = node.getBoundingInfo().boundingBox;
     minimum = minimum
       ? BABYLON.Vector3.Minimize(minimum, bounds.minimumWorld)
@@ -153,8 +155,10 @@ export class CharacterPreview {
     this.resizeObserver.observe(host);
     this.engine.runRenderLoop(() => {
       if (this.previewModel) {
-        this.motionElapsedSeconds += this.engine.getDeltaTime() / 1000;
+        const deltaSeconds = this.engine.getDeltaTime() / 1000;
+        this.motionElapsedSeconds += deltaSeconds;
         this.#applyPreviewMotion();
+        this.runtime.updateSecondaryMotion(this.root, deltaSeconds);
       }
       this.scene.render();
     });
@@ -168,7 +172,7 @@ export class CharacterPreview {
     this.root?.dispose(false, true);
     this.root = null;
     try {
-      const [{ loader, root }] = await Promise.all([
+      const [{ loader, root, presentationModel }] = await Promise.all([
         this.runtime.createModel(character),
         this.motionPromise,
       ]);
@@ -178,12 +182,7 @@ export class CharacterPreview {
       }
       this.root = root;
       this.runtime.setReferenceBind(loader, root);
-      this.previewModel = {
-        loader,
-        renderRoot: root,
-        modelCode: character.modelCode,
-        humanoidControlRigs: new Map(),
-      };
+      this.previewModel = presentationModel;
       const walkName = WALK_MOTION_BY_CONTROLLER_FAMILY.get(
         character.controllerFamily,
       ) || WALK_MOTION_BY_CONTROLLER_FAMILY.get(10);
@@ -232,19 +231,10 @@ export class CharacterPreview {
   }
 
   #applyPreviewMotion() {
-    if (!this.motionRuntime.applyNamed(
+    this.motionRuntime.applyNamed(
       this.previewModel,
       this.previewSelection,
       this.motionElapsedSeconds,
-    )) {
-      return;
-    }
-    if (this.root?._mt5OutdoorFootwear) {
-      this.runtime.applyCharacterRigWorldMatrices(
-        this.previewModel.loader,
-        this.root,
-        this.previewModel.latestRetargetedRoutes,
-      );
-    }
+    );
   }
 }

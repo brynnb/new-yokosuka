@@ -9,6 +9,42 @@ export function isCharacterRig(nodes, readFourCC) {
   return firstModelRotX === 1 && firstModelRotZ === 1;
 }
 
+// One position per authored node, not per UV duplicate. Both baked body
+// posing and CPU-solved cloth use this rule without changing topology or UVs.
+// The caller owns buffer uploads and any normal policy (linings oppose skin).
+export function weldCharacterRigSeamPositions(groups) {
+  const positionsByChild = new Map();
+  for (const group of groups) {
+    const positionByNode = new Map();
+    for (const vertex of group) {
+      if (!positionsByChild.has(vertex.child)) {
+        positionsByChild.set(vertex.child, vertex.child.getVerticesData("position"));
+      }
+      const positions = positionsByChild.get(vertex.child);
+      const offset = vertex.vertexIndex * 3;
+      if (!positions || offset + 2 >= positions.length) continue;
+      if (!positionByNode.has(vertex.nodeIndex)) {
+        positionByNode.set(vertex.nodeIndex, { sum: [0, 0, 0], count: 0 });
+      }
+      const node = positionByNode.get(vertex.nodeIndex);
+      for (let axis = 0; axis < 3; axis++) node.sum[axis] += positions[offset + axis];
+      node.count++;
+    }
+    const nodePositions = [...positionByNode.values()].map(node =>
+      node.sum.map(value => value / node.count));
+    if (nodePositions.length < 2) continue;
+    const blended = [0, 1, 2].map(axis =>
+      nodePositions.reduce((sum, point) => sum + point[axis], 0) / nodePositions.length);
+    for (const vertex of group) {
+      const positions = positionsByChild.get(vertex.child);
+      const offset = vertex.vertexIndex * 3;
+      if (!positions || offset + 2 >= positions.length) continue;
+      for (let axis = 0; axis < 3; axis++) positions[offset + axis] = blended[axis];
+    }
+  }
+  return positionsByChild;
+}
+
 export function findCharacterRigSeamGroups(
   vertices,
   epsilon = 1e-5,

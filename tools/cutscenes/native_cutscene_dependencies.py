@@ -10,6 +10,66 @@ import struct
 from typing import Any
 
 
+def activity_start_slot(action: dict[str, Any]) -> int | None:
+    """Positive embedded AUTH starts, excluding signed poll/reset commands."""
+    arguments = action.get("arguments", [])
+    if action.get("operationHex") != "0x0050" or not arguments:
+        return None
+    argument = arguments[0]
+    value = argument.get("value")
+    return value if (argument.get("kind") == "constant"
+                     and isinstance(value, int) and 0 <= value < 0x80000000) else None
+
+
+def ordered_control_flow_calls(
+    function: dict[str, Any], call_offsets: set[str], boundary: str | None = None,
+) -> list[str]:
+    """Project one presentation path through the original CFG, not file order.
+
+    Wait loops and early exits contain no further selected calls. Different
+    next calls on alternative branches require an explicit content choice.
+    """
+    blocks = {block["id"]: block for block in function["blocks"]}
+    sites = {action["callFileOffset"]: (block["id"], index + 1)
+             for block in function["blocks"]
+             for index, action in enumerate(block["actions"])
+             if action.get("callFileOffset") in call_offsets}
+    if set(sites) != call_offsets:
+        raise ValueError("selected owner call is missing from its function")
+
+    def next_calls(start: tuple[str, int]) -> set[str]:
+        pending, visited, found = [start], set(), set()
+        while pending:
+            cursor = pending.pop()
+            if cursor in visited:
+                continue
+            visited.add(cursor)
+            block_id, first_action = cursor
+            block = blocks[block_id]
+            for action in block["actions"][first_action:]:
+                offset = action.get("callFileOffset")
+                if boundary is not None and offset == boundary:
+                    break
+                if offset in call_offsets:
+                    found.add(offset)
+                    break
+            else:
+                pending.extend((successor, 0) for successor in block["successors"])
+        return found
+
+    ordered = []
+    candidates = next_calls((function["entryBlock"], 0))
+    while candidates:
+        if len(candidates) != 1 or candidates.intersection(ordered):
+            raise ValueError("owner presentation order is branching or repeated")
+        offset = next(iter(candidates))
+        ordered.append(offset)
+        candidates = next_calls(sites[offset])
+    if set(ordered) != call_offsets:
+        raise ValueError("selected owner calls are not on one presentation path")
+    return ordered
+
+
 def action_target_file_offsets(action: dict[str, Any]) -> list[str]:
     """Return every exact static control-flow target carried by an action."""
     target = action.get("targetFileOffset")

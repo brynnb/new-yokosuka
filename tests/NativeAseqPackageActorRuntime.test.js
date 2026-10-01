@@ -129,11 +129,18 @@ test("package actors support a program lease around AUTH subleases", async () =>
         return { actorCode: definition.actorTag, root, model: { root } };
       },
     });
-    await runtime.load();
+    const resident = new BABYLON.TransformNode("resident-cat", scene);
+    resident.metadata = { runtimeObject: { objectTag: "CATM" } };
+    const unrelated = new BABYLON.TransformNode("other-cat", scene);
+    unrelated.metadata = { runtimeObject: { objectTag: "CAT2" } };
+    await runtime.load([resident, unrelated]);
+    assert.equal(resident.isEnabled(), true);
     const actor = runtime.records.get("CATM");
     const programOwner = {};
     const activityOwner = {};
     assert.deepEqual(runtime.beginProgram(programOwner), [actor]);
+    assert.equal(resident.isEnabled(), false);
+    assert.equal(unrelated.isEnabled(), true);
 
     actor.root.setEnabled(true);
     actor.root.position.set(4, 5, 6);
@@ -144,10 +151,16 @@ test("package actors support a program lease around AUTH subleases", async () =>
       /cannot end during activity ownership/,
     );
     assert.equal(runtime.end(activityOwner, "replaced"), true);
+    assert.equal(resident.isEnabled(), false);
     assert.equal(actor.root.isEnabled(), true);
     assert.deepEqual(actor.root.position.asArray(), [7, 8, 9]);
 
     assert.equal(runtime.endProgram(programOwner), true);
+    assert.equal(resident.isEnabled(), true);
+    runtime.beginProgram(programOwner);
+    runtime.clear();
+    assert.equal(resident.isEnabled(), true);
+    assert.equal(resident.isDisposed(), false);
     assert.equal(actor.root.isEnabled(), false);
     assert.deepEqual(actor.root.position.asArray(), [1, 2, 3]);
   } finally {

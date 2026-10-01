@@ -1,9 +1,17 @@
 import * as BABYLON from "@babylonjs/core";
 import "@babylonjs/core/Culling/Octrees/octreeSceneComponent.js";
+import { pickStaticBatchSources } from "./StaticWorldBatching.js";
 
-export const MT7_STATIC_BATCH_CELL_SIZE = 32;
 export const WORLD_RAYCAST_CELL_SIZE = 16;
 const MAX_MESH_CELLS = 256;
+const indexesByScene = new WeakMap();
+
+/** Transfer resident geometry to a moving owner, before or after world indexing. */
+export function markWorldMeshDynamic(mesh) {
+  mesh.unfreezeWorldMatrix?.();
+  mesh.metadata = { ...mesh.metadata, dynamicWorldGeometry: true };
+  indexesByScene.get(mesh.getScene?.())?.makeDynamic(mesh);
+}
 
 function cellCoordinate(value, cellSize) {
   return Math.floor(value / cellSize);
@@ -11,105 +19,6 @@ function cellCoordinate(value, cellSize) {
 
 function cellKey(x, z) {
   return `${x}:${z}`;
-}
-
-function meshVertexSignature(mesh) {
-  return mesh.getVerticesDataKinds().slice().sort().join(",");
-}
-
-function copyStaticMetadata(source, sourceMeshCount) {
-  return {
-    ...(source.metadata || {}),
-    staticWorldGeometry: true,
-    staticBatchSourceMeshCount: sourceMeshCount,
-  };
-}
-
-/**
- * MT7 MAP files contain thousands of tiny triangle-strip batches. They are
- * static in playable worlds, so combine compatible batches within spatial
- * cells while retaining material boundaries and useful local culling.
- */
-export function spatiallyBatchMt7MapRoot(root, {
-  cellSize = MT7_STATIC_BATCH_CELL_SIZE,
-} = {}) {
-  const sourceMeshes = root.getChildMeshes(false).filter((mesh) => (
-    mesh.getTotalVertices?.() > 0
-  ));
-  root.computeWorldMatrix(true);
-  const groups = new Map();
-  for (const mesh of sourceMeshes) {
-    mesh.computeWorldMatrix(true);
-    const center = mesh.getBoundingInfo().boundingBox.centerWorld;
-    const key = [
-      mesh.material?.uniqueId ?? "none",
-      cellCoordinate(center.x, cellSize),
-      cellCoordinate(center.z, cellSize),
-      mesh.sideOrientation,
-      mesh.alphaIndex,
-      mesh.useVertexColors ? 1 : 0,
-      mesh.hasVertexAlpha ? 1 : 0,
-      mesh.metadata?.authoredWater ? 1 : 0,
-      meshVertexSignature(mesh),
-    ].join(":");
-    if (!groups.has(key)) groups.set(key, []);
-    groups.get(key).push(mesh);
-  }
-
-  let mergedSourceMeshCount = 0;
-  let outputMeshCount = 0;
-  let batchIndex = 0;
-  for (const meshes of groups.values()) {
-    if (meshes.length === 1) {
-      meshes[0].metadata = copyStaticMetadata(meshes[0], 1);
-      meshes[0].freezeWorldMatrix();
-      outputMeshCount += 1;
-      continue;
-    }
-    const source = meshes[0];
-    const sourceState = {
-      alphaIndex: source.alphaIndex,
-      useVertexColors: source.useVertexColors,
-      hasVertexAlpha: source.hasVertexAlpha,
-      isPickable: source.isPickable,
-      metadata: { ...(source.metadata || {}) },
-    };
-    const merged = BABYLON.Mesh.MergeMeshes(meshes, true, true);
-    if (!merged) {
-      for (const mesh of meshes) {
-        mesh.metadata = copyStaticMetadata(mesh, 1);
-      }
-      outputMeshCount += meshes.length;
-      continue;
-    }
-    merged.name = `mt7_static_${batchIndex}`;
-    batchIndex += 1;
-    merged.parent = root;
-    merged.alphaIndex = sourceState.alphaIndex;
-    merged.useVertexColors = sourceState.useVertexColors;
-    merged.hasVertexAlpha = sourceState.hasVertexAlpha;
-    merged.isPickable = sourceState.isPickable;
-    merged.metadata = {
-      ...sourceState.metadata,
-      staticWorldGeometry: true,
-      staticBatchSourceMeshCount: meshes.length,
-    };
-    merged.freezeWorldMatrix();
-    mergedSourceMeshCount += meshes.length;
-    outputMeshCount += 1;
-  }
-  root.metadata = {
-    ...(root.metadata || {}),
-    staticBatchCellSize: cellSize,
-    staticBatchInputMeshCount: sourceMeshes.length,
-    staticBatchOutputMeshCount: outputMeshCount,
-    staticBatchMergedSourceMeshCount: mergedSourceMeshCount,
-  };
-  return {
-    inputMeshCount: sourceMeshes.length,
-    outputMeshCount,
-    mergedSourceMeshCount,
-  };
 }
 
 /** Pick from an already spatially-filtered mesh collection. */
@@ -132,20 +41,21 @@ export function pickMeshesWithRay(
     const world = mesh.computeWorldMatrix();
     world.invertToRef(inverse);
     BABYLON.Ray.TransformToRef(ray, inverse, localRay);
-    const hit = mesh.intersects(
-      localRay,
-      fastCheck,
-      trianglePredicate,
-      false,
-      world,
-    );
-    if (!hit?.hit) continue;
-    hit.ray = ray;
-    if (multi) {
-      hits.push(hit);
-    } else if (!nearest || hit.distance < nearest.distance) {
-      nearest = hit;
-      if (fastCheck) return nearest;
+    const batchHits = pickStaticBatchSources(mesh, ray, localRay, {
+      fastCheck, trianglePredicate, world,
+    });
+    const meshHits = batchHits ?? [mesh.intersects(
+      localRay, fastCheck, trianglePredicate, false, world,
+    )];
+    for (const hit of meshHits) {
+      if (!hit?.hit) continue;
+      hit.ray = ray;
+      if (multi) {
+        hits.push(hit);
+      } else if (!nearest || hit.distance < nearest.distance) {
+        nearest = hit;
+        if (fastCheck) return nearest;
+      }
     }
   }
   if (multi) return hits;
@@ -183,6 +93,22 @@ export class WorldRaycastIndex {
     if (accelerateRendering) {
       this.#installRenderSelection(renderOctreeCapacity, renderOctreeDepth);
     }
+    indexesByScene.set(scene, this);
+  }
+
+  makeDynamic(mesh) {
+    if (this.staticMeshes.delete(mesh)) {
+      // Resident props can become AUTH-owned after the world was indexed.
+      // Unfreezing their matrices alone leaves their old cells in the octree.
+      this.selectionOctree?.removeMesh(mesh);
+      this.globalMeshes = this.globalMeshes.filter(candidate => candidate !== mesh);
+      for (const [key, meshes] of this.cells) {
+        const retained = meshes.filter(candidate => candidate !== mesh);
+        if (retained.length) this.cells.set(key, retained);
+        else this.cells.delete(key);
+      }
+    }
+    this.#addDynamicMesh(mesh);
   }
 
   #addDynamicMesh(mesh) {
@@ -312,6 +238,7 @@ export class WorldRaycastIndex {
   }
 
   dispose() {
+    if (indexesByScene.get(this.scene) === this) indexesByScene.delete(this.scene);
     if (this.newMeshObserver) {
       this.scene.onNewMeshAddedObservable.remove(this.newMeshObserver);
       this.newMeshObserver = null;
@@ -337,6 +264,7 @@ export function collectStaticWorldMeshes(currentMeshes) {
     [root, ...root.getDescendants(false)]
   )).filter((mesh) => (
     mesh.isWorldMatrixFrozen === true
+    && mesh.metadata?.dynamicWorldGeometry !== true
     && mesh.getTotalVertices?.() > 0
   ));
 }

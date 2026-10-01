@@ -67,6 +67,18 @@ test("OP02 retains its numbered native map-layer resources", () => {
   );
 });
 
+test("OP02 retains the native SIN hand selection and frame-300 pose plus wrist rotation", () => {
+  assert.equal(manifest.handAssets.SINF.handCode, "SIN");
+  assert.equal(manifest.handAssets.SINF.bodyModelCode, "MGR_M");
+  const poses = manifest.activities.flatMap(activity => activity.nativeHandPoseCues || []);
+  assert.deepEqual(poses.map(cue => [cue.activitySlot, cue.frame, cue.side, cue.poseTableOffset, cue.callFileOffset]), [
+    [4, 300, "right", "0x2624", "0x11ae"], [4, 300, "left", "0x2540", "0x11ce"],
+  ]);
+  const rotation = manifest.activities.flatMap(activity => activity.nativeHandComponentCues || []);
+  assert.equal(rotation.length, 1);
+  assert.deepEqual([rotation[0].activitySlot, rotation[0].frame, rotation[0].side, rotation[0].componentMask], [4, 300, "left", 0x15]);
+});
+
 test("OP02 retains Shenhua's captured native cloth runtime state", () => {
   assert.equal(manifest.packageActors.SINF.nativeClothRuntimeMode, 4);
   assert.equal(

@@ -6,10 +6,19 @@ import {
   auditCanonicalOwnerProgram,
   auditCompiledOwnerProgram,
   auditLegacyPlaylistSurface,
+  originalStageCallsAreComplete,
 } from "../tools/lib/NativePlaylistRemovalAudit.mjs";
 
 const readJson = filename => JSON.parse(readFileSync(filename, "utf8"));
 const programPack = readJson("play/data/events/nativeEventPrograms.generated.json");
+
+test("original-stage coverage rejects a silent shot removed from both package and selected owner", () => {
+  const source = readJson("tools/evidence/op00-opening-owner-ir.json").supportingFunctions;
+  const selection = readJson("play/assets/introduction/op00/cutscene-program.generated.json").authResourceSelection;
+  assert.equal(originalStageCallsAreComplete(source, ["0x1512a", "0x1785c"], selection.ownerCalls), true);
+  assert.equal(originalStageCallsAreComplete(source, ["0x1512a", "0x1785c"],
+    selection.ownerCalls.filter(call => call.slot !== 24)), false);
+});
 
 test("BEBF canonical owner graph retains all exact repeated AUTH calls", () => {
   const result = auditCanonicalOwnerProgram({
@@ -38,27 +47,28 @@ test("OP00 cutover audits its compiled owner and independent activities", () => 
     id: "S1-OP00-A0114",
     area: "OP00",
     entryFunction: "0x20350",
-    authoredPathToken: "/AUTH01/0114/",
-    slots: Array.from({ length: 24 }, (_, index) => index),
-    completionBoundarySlot: 24,
+    stageFunctions: ["0x1512a", "0x1785c"],
+    slots: Array.from({ length: 25 }, (_, index) => index),
   };
   const result = auditCompiledOwnerProgram({
     compiledProgram,
     expected,
+    sourceStageFunctions: readJson("tools/evidence/op00-opening-owner-ir.json").supportingFunctions,
     activityManifest: readJson("play/assets/introduction/op00/manifest.json"),
   });
   assert.equal(result.identityMatches, true);
   assert.deepEqual(result.authoredResourceSelection.selectedSlots, [
-    ...Array.from({ length: 24 }, (_, index) => index),
+    ...Array.from({ length: 25 }, (_, index) => index),
   ]);
-  assert.equal(result.authoredResourceSelection.ownerCallCount, 24);
-  assert.equal(result.authoredResourceSelection.exactResourceCount, 24);
+  assert.equal(result.authoredResourceSelection.ownerCallCount, 25);
+  assert.equal(result.authoredResourceSelection.exactResourceCount, 25);
   assert.equal(result.authoredResourceSelection.resourcesAreExact, true);
-  assert.equal(result.authoredResourceSelection.completionBoundarySlot, 24);
+  assert.equal(result.authoredResourceSelection.completionBoundary, "after-original-stage-return");
+  assert.equal(result.authoredResourceSelection.stageCoverageComplete, true);
   assert.equal(result.compiler.status, "compiled");
   assert.equal(result.compiler.unresolvedOperationTypeCount, 0);
   assert.equal(result.compiler.unresolvedOperationCallCount, 0);
-  assert.equal(result.activityTransport.activityCount, 24);
+  assert.equal(result.activityTransport.activityCount, 25);
   assert.equal(result.activityTransport.schema, "new-yokosuka-aseq-activity-pack-v1");
   assert.equal(result.activityTransport.independentlyPackaged, true);
   assert.deepEqual(result.blockers, []);
@@ -69,6 +79,7 @@ test("OP00 cutover audits its compiled owner and independent activities", () => 
   const malformed = auditCompiledOwnerProgram({
     compiledProgram: missingResourceProvenance,
     expected,
+    sourceStageFunctions: readJson("tools/evidence/op00-opening-owner-ir.json").supportingFunctions,
     activityManifest: readJson("play/assets/introduction/op00/manifest.json"),
   });
   assert.ok(malformed.blockers.includes("owner-auth-resource-provenance-incomplete"));

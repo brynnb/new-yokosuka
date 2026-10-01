@@ -11,9 +11,29 @@ import {
 } from "../src/AuthSequence.js";
 import { parseAuthStrings } from "../src/AuthStrings.js";
 import { MotnLoader } from "../src/MotnLoader.js";
+import { extractNativeAseqCallbackHandPresentation } from "../tools/lib/NativeAseqCallbackPresentation.mjs";
 
 const root = "play/assets/dobuita/drauth";
 const manifest = JSON.parse(fs.readFileSync(`${root}/manifest.json`, "utf8"));
+
+test("DRAUTH retains both owners' hand setup, gestures and body handoffs", () => {
+  const evidence = JSON.parse(fs.readFileSync("tools/evidence/drauth-hand-native-callback-ir.json"));
+  const functions = [evidence.function, ...evidence.supportingFunctions];
+  const bytes = fs.readFileSync("extracted_files/data/SCENE/01/D000/MAPINFO.BIN");
+  for (const [slot, id] of ["0x836d8", "0x83d28"].entries()) {
+    const result = extractNativeAseqCallbackHandPresentation({ bytes, activitySlot: slot, functions,
+      nativeFunction: functions.find(fn => fn.id === id), callbackFunction: parseInt(id, 16) });
+    assert.deepEqual(result.nativeHandPoseCues, manifest.activities[slot].nativeHandPoseCues);
+    assert.deepEqual(result.nativeBodyHandPoseCues, manifest.activities[slot].nativeBodyHandPoseCues);
+  }
+  assert.deepEqual(manifest.activities.map(a => [a.nativeHandPoseCues.length, a.nativeBodyHandPoseCues.length]), [[12, 7], [10, 12]]);
+  assert.deepEqual(manifest.activities[0].nativeHandPoseCues.filter(c => c.frame > 0)
+    .map(c => [c.frame, c.actorTag, c.side]), [[145, "AKIR", "left"], [145, "AKIR", "right"], [340, "AKIR", "left"], [340, "AKIR", "right"]]);
+  assert.deepEqual(manifest.activities[1].nativeHandPoseCues.filter(c => c.frame > 0)
+    .map(c => [c.frame, c.actorTag, c.side]), [[200, "TONY", "right"], [300, "TONY", "right"]]);
+  assert.equal(manifest.handAssets.SERA.mode, "body-only");
+  assert.equal(manifest.handAssets.JONZ.mode, "body-only");
+});
 
 function sha256(bytes) {
   return createHash("sha256").update(bytes).digest("hex");

@@ -3,6 +3,7 @@ import test from "node:test";
 
 import * as BABYLON from "@babylonjs/core";
 import { BinaryReader } from "../src/BinaryReader.js";
+import { weldCharacterRigSeamPositions } from "../src/Mt5CharacterRig.js";
 import {
     Mt5AlphaToCoverageMaterial,
     Mt5Loader,
@@ -121,6 +122,28 @@ test("does not weld coincident vertices on sibling character limbs", () => {
     );
 
     assert.deepEqual(groups, []);
+});
+
+test("shared seam position welding gives each node one vote and preserves lining normals", () => {
+    const leftPositions = [0, 0, 0, 0, 0, 0];
+    const rightPositions = [2, 0, 0];
+    const leftNormals = [0, 0, 1, 0, 0, 1];
+    const rightNormals = [0, 0, -1];
+    const child = (positions, normals) => ({
+        getVerticesData: kind => kind === "position" ? positions : normals,
+    });
+    const left = child(leftPositions, leftNormals);
+    const right = child(rightPositions, rightNormals);
+    const updates = weldCharacterRigSeamPositions([[
+        { nodeIndex: 0, child: left, vertexIndex: 0 },
+        { nodeIndex: 0, child: left, vertexIndex: 1 },
+        { nodeIndex: 1, child: right, vertexIndex: 0 },
+    ]]);
+    assert.equal(updates.size, 2);
+    assert.deepEqual(leftPositions, [1, 0, 0, 1, 0, 0]);
+    assert.deepEqual(rightPositions, [1, 0, 0]);
+    assert.deepEqual(leftNormals, [0, 0, 1, 0, 0, 1]);
+    assert.deepEqual(rightNormals, [0, 0, -1]);
 });
 
 test("welds duplicated cross-node seam positions to one blended boundary", () => {
@@ -312,6 +335,8 @@ test("GPU character rigs give both sides of a seam identical influences", () => 
         mesh.setIndices([0, 1, 2]);
         mesh._mt5SourcePositions = sourcePositions;
         mesh._mt5SourceNormals = [0, 0, 1, 0, 0, 1, 0, 0, 1];
+        mesh._mt5SourceVertexIndices = [index * 3, index * 3 + 1, index * 3 + 2];
+        mesh._mt5NodeAddress = index + 1;
         return {
             addr: index + 1,
             parentAddr: index === 0 ? 0 : 1,
@@ -352,6 +377,8 @@ test("GPU character rigs give both sides of a seam identical influences", () => 
     const merged = loader.mergeCharacterGpuRigMeshes(modelRoot);
     assert.equal(merged.length, 1);
     assert.equal(merged[0].getTotalVertices(), 6);
+    assert.deepEqual(merged[0]._mt5SourceVertexIndices, [0, 1, 2, 3, 4, 5]);
+    assert.deepEqual(merged[0]._mt5SourceNodeAddresses, [1, 1, 1, 2, 2, 2]);
     assert.equal(
         merged[0].skeleton,
         modelRoot._mt5CharacterGpuRig.skeleton,
@@ -367,6 +394,40 @@ test("GPU character rigs give both sides of a seam identical influences", () => 
 
     scene.dispose();
     engine.dispose();
+});
+
+test("GPU batches preserve distinct front sides even with one shared material", () => {
+    const engine = new BABYLON.NullEngine();
+    const scene = new BABYLON.Scene(engine);
+    try {
+        const root = new BABYLON.TransformNode("character", scene);
+        const material = new BABYLON.StandardMaterial("shared", scene);
+        const meshes = Array.from({ length: 4 }, (_, index) => {
+            const mesh = BABYLON.MeshBuilder.CreatePlane(`part_${index}`, {}, scene);
+            mesh.parent = root;
+            mesh.material = material;
+            mesh.sideOrientation = index % 2;
+            mesh._mt5NodeAddress = index;
+            mesh._mt5SourceVertexIndices = [index * 4, index * 4 + 1, index * 4 + 2, index * 4 + 3];
+            return mesh;
+        });
+        root._mt5CharacterGpuRig = { skinnedMeshes: meshes };
+        const merged = new Mt5Loader(scene).mergeCharacterGpuRigMeshes(root);
+        assert.equal(merged.length, 2, "both compatible groups must actually merge");
+        for (const [orientation, mesh] of merged.entries()) {
+            assert.equal(mesh.sideOrientation, orientation);
+            assert.equal(mesh.getTotalVertices(), 8);
+            assert.equal(mesh.getTotalIndices(), 12);
+            assert.ok(mesh.material === material);
+            assert.ok(mesh.parent === root);
+            assert.deepEqual(mesh._mt5SourceNodeAddresses, [orientation, orientation, orientation, orientation,
+                orientation + 2, orientation + 2, orientation + 2, orientation + 2]);
+        }
+        assert.equal(scene.meshes.length, 2, "source meshes are replaced without losing surfaces");
+    } finally {
+        scene.dispose();
+        engine.dispose();
+    }
 });
 
 test("keeps native UV order for HUMANS TWIDDLED_RECT textures", () => {

@@ -29,6 +29,29 @@ audible playback. World teardown sets the ambient world to `null`; successful
 world activation selects the next loop. Overall volume and master mute remain
 multipliers over every channel.
 
+## Cutscene Audio Sessions
+
+`NativeAseqAudioPresentation` owns a single voice/effects session for an entire
+native cutscene program, using the existing media-element backend and shared
+dialogue/effects preferences. Individual AUTH shots borrow that session; a
+camera cut does not stop or restart a playing clip. A standalone AUTH is a
+session of one. Natural media completion, explicit audio-stop commands, and
+program completion/cancellation release playback.
+
+Each voice playback has its own cue identity. The dialogue overlay uses it to
+avoid a late completion clearing a newer caption, and detailed faces sample
+its media position for lip sync even when an actor returns in another shot.
+Forward skipping pauses playback while advancing authored frames, discards
+clips that have already ended at the destination, and seeks surviving clips
+before resuming. Pending metadata and play promises are scoped to their exact
+session so cancellation/replay cannot revive old audio. Metadata waits during
+seek are bounded and resource failures are reported.
+
+Music still uses `MusicControls`/`PlayMusicDirector`, not a second mixer.
+Source-backed named music commands are retained by the preview compiler, and
+the temporary score advances with the cutscene transport. See
+[cutscene audio](cutscenes.md#audio) for source selection and verification.
+
 ## Background Music Assignments
 
 `public/music/manifest.json` owns /play's background music. Until story

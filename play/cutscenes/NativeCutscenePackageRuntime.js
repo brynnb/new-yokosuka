@@ -94,10 +94,12 @@ function createAssetUrlResolver(definition) {
   };
 }
 
-function createSpeakerNameResolver(actorDefinitions) {
-  const labels = new Map(actorDefinitions.map(definition => (
-    [definition.actorCode.toUpperCase(), definition.label]
-  )));
+function createSpeakerNameResolver(actorDefinitions, packageActors = {}) {
+  const labels = new Map([
+    ...actorDefinitions.map(definition => [definition.actorCode.toUpperCase(), definition.label]),
+    ...Object.entries(packageActors).filter(([, definition]) => definition.label)
+      .map(([tag, definition]) => [tag.toUpperCase(), definition.label]),
+  ]);
   return actorCode => labels.get(String(actorCode || "").toUpperCase()) || null;
 }
 
@@ -116,9 +118,12 @@ export class NativeCutscenePackageRuntime {
     musicControls,
     fetchArrayBuffer,
     getSkybox = null,
+    acquireEnvironmentIsolation = null,
+    acquireActivityLighting = null,
     controlActorLookPoint = null,
     onComplete,
     onStopped,
+    beforeComplete = null,
     createCompositeProgramPresentation =
       createNativeCompositeProgramPresentation,
     createScrollSpritePresentation = createNativeScrollSpritePresentation,
@@ -142,6 +147,7 @@ export class NativeCutscenePackageRuntime {
     this.onStopped = onStopped;
     this.activeCutsceneId = null;
     this.programLease = null;
+    this.completedActivity = null;
     this.programSceneState = null;
     this.programPresentationBegun = false;
     this.compositeProgramPresentation = null;
@@ -160,10 +166,13 @@ export class NativeCutscenePackageRuntime {
           }),
         })
       : null;
-    this.mapLayers = hasDefinitions(environment.mapLayers)
+    this.mapLayers = hasDefinitions(environment.mapLayers) || environment.isolatedStage
       ? createNativeAseqMapLayerRuntime({
           definitions: environment.mapLayers,
           geometryMasks: environment.mapGeometryMasks,
+          scene,
+          acquireEnvironmentIsolation,
+          acquireActivityLighting,
         })
       : null;
     this.scrollSprites = hasDefinitions(environment.scrollSprites)
@@ -192,6 +201,16 @@ export class NativeCutscenePackageRuntime {
       motionRuntime,
       sceneObjects: this.sceneObjects,
       packageActors: this.packageActors,
+      resolveObjectWorldPosition: objectTag => {
+        // Gaze is evaluated after AUTH body motion, before the outer package
+        // update. Refresh attachments here to avoid targeting the previous frame.
+        this.attachedObjects?.update(this.presentation?.active?.currentFrame ?? 0);
+        const root = this.attachedObjects?.objects.get(objectTag)?.root
+          || this.sceneObjects?.objects.get(objectTag)?.root;
+        if (!root?.isEnabled()) return null;
+        root.computeWorldMatrix(true);
+        return root.getAbsolutePosition().asArray();
+      },
       playerYawOffsetRadians: Math.PI,
       ...definition.actors,
     });
@@ -199,6 +218,7 @@ export class NativeCutscenePackageRuntime {
       ? createNativeAseqAttachedObjectRuntime({
           definitions: environment.attachedObjects,
           resolveActor: actorTag => this.actors.activeActor(actorTag),
+          resolveSceneObject: actorTag => this.sceneObjects?.objects.get(actorTag),
           instantiateAsset: createNativeCutsceneSceneObjectLoader({
             scene,
             loadAsset: this.loadAsset,
@@ -234,7 +254,7 @@ export class NativeCutscenePackageRuntime {
       dialogueAudio,
       voicePresentation: createNativeAseqDialoguePresentation({
         ...dialogueDom,
-        speakerNameForId: createSpeakerNameResolver(definition.actorDefinitions),
+        speakerNameForId: createSpeakerNameResolver(definition.actorDefinitions, environment.packageActors),
       }),
     });
     this.presentation = createNativeAseqPresentationRuntime({
@@ -251,6 +271,7 @@ export class NativeCutscenePackageRuntime {
         : null,
       secondaryMotion: createNativeSecondaryMotionPresentation({
         actors: this.actors,
+        readControls: () => this.programSceneState?.nativeSecondaryMotionControlState,
       }),
       cloth: createNativeClothPresentation({
         actors: this.actors,
@@ -283,11 +304,16 @@ export class NativeCutscenePackageRuntime {
         if ((this.sceneObjects?.prepareActivity(activity) ?? true) !== true) {
           return false;
         }
+        if (this.attachedObjects?.beginActivity(activity) === false) return false;
         return this.#applyActivityProgramCues(activity, "before");
       },
-      onActivityStarted: activity => (
-        this.mapLayers?.applyActivity(activity) ?? true
-      ),
+      onActivityStarted: activity => {
+        this.mapLayers?.applyActivity(activity);
+        for (const actorTag of activity.nativeInitialHiddenObjects || []) {
+          this.sceneObjects?.applyStateCue({ actorTag, presented: false });
+        }
+        return this.#applyActivityProgramCues(activity, "frames", 0);
+      },
       onActivityAdvanced: (activity, frame) => (
         this.#applyActivityProgramCues(activity, "frames", frame)
       ),
@@ -299,9 +325,7 @@ export class NativeCutscenePackageRuntime {
     });
     this.playback = createNativeAseqStandaloneActivityRuntime({
       activityRuntime: this.activityRuntime,
-      onStarted: activity => (
-        this.attachedObjects?.beginActivity(activity) ?? true
-      ),
+      beforeComplete,
       onComplete: cutsceneId => this.#finish(true, "complete", cutsceneId),
       onStopped: (reason, cutsceneId) => (
         this.#finish(false, reason, cutsceneId)
@@ -398,7 +422,7 @@ export class NativeCutscenePackageRuntime {
       // repopulate its state after rollback had already run.
       const results = await Promise.allSettled([
         Promise.resolve().then(() => this.sceneObjects?.load(meshes)),
-        Promise.resolve().then(() => this.packageActors?.load()),
+        Promise.resolve().then(() => this.packageActors?.load(meshes)),
         Promise.resolve().then(() => this.scrollSprites?.load()),
       ]);
       const failed = results.find(result => result.status === "rejected");
@@ -703,6 +727,9 @@ export class NativeCutscenePackageRuntime {
 
   programContext() {
     return Object.freeze({
+      ...(this.definition.music?.cues?.some(cue => cue.nativeName) ? {
+        playNativeNamedAudio: name => Boolean(this.programLease && this.music.beginNamedCue(name)),
+      } : {}),
       applyNativeTmnmResource: detail => Boolean(
         this.programLease
         && this.presentation.applyNodeMotionResource(this.programLease, detail),
@@ -744,6 +771,22 @@ export class NativeCutscenePackageRuntime {
     return true;
   }
 
+  setProgramSeeking(owner, seeking) {
+    if (this.programLease !== owner) return false;
+    if (seeking) {
+      this.seekStartFrame = this.audio.active.frame;
+      this.music.setPaused(true);
+    }
+    const result = this.presentation.setSeeking(seeking);
+    if (!seeking) {
+      const seconds = (this.audio.active.frame - this.seekStartFrame) / 30;
+      // Both script-dispatched and package music use these shared controls.
+      this.music.controls.seekTemporaryBySeconds?.(seconds);
+      this.music.setPaused(false);
+    }
+    return result;
+  }
+
   ownsProgramActor(actorTag) {
     return Boolean(this.programLease && this.actors.programActor(actorTag));
   }
@@ -765,11 +808,12 @@ export class NativeCutscenePackageRuntime {
         // rollback boundary for a damaged presentation lease.
       }
     }
+    // Release borrowed prop presentation before the scene owner disposes roots.
+    this.attachedObjects?.clear();
     this.sceneObjects?.clear();
     this.packageActors?.clear();
     this.scrollSprites?.clear();
     this.mapLayers?.clear();
-    this.attachedObjects?.clear();
   }
 
   dispose() {
@@ -784,6 +828,7 @@ export class NativeCutscenePackageRuntime {
       acceptsActivity: detail => this.activityRuntime.acceptsActivity(detail),
       startActivity: async (detail, { signal } = {}) => {
         signal?.throwIfAborted();
+        this.#releaseCompletedActivity();
         // A native operation can mutate an actor and launch AUTH in the same
         // interpreter turn. Flush the program state before AUTH captures and
         // writes frame zero so the activity never starts from stale roots.
@@ -791,11 +836,6 @@ export class NativeCutscenePackageRuntime {
         const activity = await this.activityRuntime.startActivity(detail, { signal });
         try {
           signal?.throwIfAborted();
-          if (this.attachedObjects?.beginActivity(activity) === false) {
-            throw new Error(
-              `cutscene package ${this.id} rejected attached objects`,
-            );
-          }
           this.music.beginActivity({ ...detail, ...activity });
           return activity;
         } catch (error) {
@@ -813,11 +853,19 @@ export class NativeCutscenePackageRuntime {
         return accepted;
       },
       stopActivity: (detail) => {
+        if (this.programLease && detail.reason === "complete") {
+          // Script completion releases the logical activity slot, not the
+          // last visible shot. Keep ALL of its surfaces/pose until the next
+          // shot takes over or the covered program is torn down.
+          this.completedActivity = detail;
+          return true;
+        }
         const stopped = this.activityRuntime.stopActivity(detail);
         if (stopped === true) this.#cleanupPresentation({ completedActivity: true });
         return stopped;
       },
       rollbackActivity: (reason) => {
+        this.completedActivity = null;
         const stopped = this.activityRuntime.rollbackActivity(reason);
         if (stopped === true) this.#cleanupPresentation();
         return stopped;
@@ -842,6 +890,18 @@ export class NativeCutscenePackageRuntime {
       );
     }
     for (const cue of cues) {
+      if (cue?.kind === "secondary-motion-global-float") {
+        this.programSceneState.nativeSecondaryMotionControlState.writeGlobalFloat(cue.mode, cue.word);
+        continue;
+      }
+      if (cue?.kind === "scene-object-state") {
+        if (this.sceneObjects?.applyStateCue(cue) !== true) throw new Error("AUTH scene-object state cue was rejected");
+        continue;
+      }
+      if (cue?.kind === "scene-lighting") {
+        if (this.mapLayers?.applyLightingCue(cue) !== true) throw new Error("AUTH scene-lighting cue was rejected");
+        continue;
+      }
       if (cue?.kind === "node-motion-resource") {
         if (this.presentation.applyNodeMotionResource(this.programLease, cue) !== true) {
           throw new Error(
@@ -882,7 +942,9 @@ export class NativeCutscenePackageRuntime {
   #cleanupPresentation({ completedActivity = false } = {}) {
     const errors = [];
     for (const cleanup of [
-      () => this.mapLayers?.end(),
+      // Hold the outgoing stage until the incoming AUTH has its first pose.
+      // Restoring the room between subleases produces a one-frame cut flash.
+      () => completedActivity && this.programLease ? true : this.mapLayers?.end(),
       () => this.attachedObjects?.endTrack(),
       () => completedActivity
         ? this.music.endActivity({ programActive: Boolean(this.programLease) })
@@ -904,6 +966,7 @@ export class NativeCutscenePackageRuntime {
 
   #endProgram(owner, reason) {
     if (this.programLease !== owner) return false;
+    this.#releaseCompletedActivity();
     if (this.activityRuntime?.active || this.presentation.active) {
       throw new Error(
         `cutscene package ${this.id} cannot end a native program during AUTH presentation`,
@@ -989,6 +1052,16 @@ export class NativeCutscenePackageRuntime {
       );
     }
     return true;
+  }
+
+  #releaseCompletedActivity() {
+    const detail = this.completedActivity;
+    if (!detail) return;
+    this.completedActivity = null;
+    if (this.activityRuntime.stopActivity(detail) !== true) {
+      throw new Error(`cutscene package ${this.id} completed activity cleanup failed`);
+    }
+    this.#cleanupPresentation({ completedActivity: true });
   }
 }
 

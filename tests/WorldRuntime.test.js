@@ -31,7 +31,6 @@ function createRuntime(overrides = {}) {
     hasPendingTransition: () => false,
     collapseSidebar: () => log.push("collapse"),
     beginLoading: value => log.push(["begin", value.id]),
-    waitUntilLoadingPainted: () => log.push("painted"),
     clearWorld: snapshot => log.push(["clear", snapshot.world.id]),
     loadWorldAssets: async value => {
       log.push(["assets", value.id]);
@@ -81,7 +80,6 @@ test("world selection owns clear-load-initialize-reveal ordering and state", asy
     "clear-remotes",
     "clear-debug",
     ["begin", "next"],
-    "painted",
     ["clear", "initial"],
     ["assets", "next"],
     ["initialize", "next", "next"],
@@ -112,4 +110,36 @@ test("selecting the active world resets without rebuilding its scene", async () 
     "persist",
     "dirty",
   ]);
+});
+
+for (const savedPosition of [null, { id: "saved-position" }]) {
+  test(`initialization places an existing controller before reveal (${savedPosition ? "saved" : "world spawn"})`, async () => {
+    const { runtime, log } = createRuntime();
+    await runtime.initialize(world("next"), { savedPosition, savedYaw: 3 });
+    const reset = log.findIndex(call => Array.isArray(call) && call[0] === "reset");
+    assert.deepEqual(log[reset], ["reset", savedPosition?.id || "next-spawn", savedPosition ? 3 : 2]);
+    assert.ok(reset > log.indexOf("player"));
+    assert.ok(reset < log.indexOf("finish"));
+  });
+}
+
+test("world teardown waits for the cover, and a cinematic can retain it after readiness", async () => {
+  let black;
+  const { runtime, log } = createRuntime({ beginLoading: () => new Promise(resolve => { black = resolve; }) });
+  const selected = runtime.select(world("next"), { reveal: false });
+  assert.equal(log.some(call => Array.isArray(call) && call[0] === "clear"), false);
+  black();
+  assert.equal(await selected, true);
+  assert.equal(runtime.ready, true);
+  assert.equal(log.includes("finish"), false, "cutscene owner reveals only after its director has started");
+});
+
+test("world initialization and selection forward cinematic captions without inheriting them for gameplay", async () => {
+  const seen = [];
+  const { runtime } = createRuntime({ beginLoading: (_world, _signal, presentation) => seen.push(presentation) });
+  const presentation = { label: "Yokosuka", dateTime: "1986-11-29T16:00:00Z" };
+  await runtime.initialize(world("intro"), { loadingPresentation: presentation });
+  await runtime.select(world("next"), { loadingPresentation: presentation });
+  await runtime.select(world("gameplay"));
+  assert.deepEqual(seen, [presentation, presentation, null]);
 });

@@ -1,6 +1,6 @@
 {
   "schema": "new-yokosuka-aseq-activity-pack-v1",
-  "generatedBy": "tools/build_tgma_activity_pack.mjs",
+  "generatedBy": "tools/cutscenes/build_tgma_activity_pack.mjs",
   "source": {
     "disc": 1,
     "path": "extracted_files/data/SCENE/01/JHD0/TGMA.PKS",
@@ -60,19 +60,22 @@
             54413,
             53684,
             22373
-          ]
+          ],
+          "activityId": "TGMA/SEQDATA4.AUTH"
         }
       ],
       "presentation": [
         {
           "activitySlot": 0,
           "frame": 350,
-          "visible": true
+          "visible": true,
+          "activityId": "TGMA/SEQDATA4.AUTH"
         },
         {
           "activitySlot": 0,
           "frame": 800,
-          "visible": false
+          "visible": false,
+          "activityId": "TGMA/SEQDATA4.AUTH"
         }
       ],
       "nodeTransforms": [
@@ -85,7 +88,8 @@
             0,
             0,
             1274
-          ]
+          ],
+          "activityId": "TGMA/SEQDATA4.AUTH"
         },
         {
           "activitySlot": 0,
@@ -96,7 +100,8 @@
             0,
             0,
             1274
-          ]
+          ],
+          "activityId": "TGMA/SEQDATA4.AUTH"
         },
         {
           "activitySlot": 0,
@@ -108,7 +113,8 @@
             0,
             0,
             1274
-          ]
+          ],
+          "activityId": "TGMA/SEQDATA4.AUTH"
         },
         {
           "activitySlot": 0,
@@ -120,7 +126,8 @@
             0,
             0,
             1274
-          ]
+          ],
+          "activityId": "TGMA/SEQDATA4.AUTH"
         },
         {
           "activitySlot": 0,
@@ -132,7 +139,8 @@
             0,
             0,
             -1274
-          ]
+          ],
+          "activityId": "TGMA/SEQDATA4.AUTH"
         },
         {
           "activitySlot": 0,
@@ -144,7 +152,8 @@
             0,
             0,
             -1274
-          ]
+          ],
+          "activityId": "TGMA/SEQDATA4.AUTH"
         }
       ]
     }
@@ -224,13 +233,115 @@
         "sha256": "c2be5f63cb0918f4a26b982f68be29c5aadcae95fdb7a24a7ecbe4d6bc2c4f32"
       },
       "poses": {
-        "kind": "neutral-fallback",
         "actorTag": "FUKU",
-        "evidence": "tools/evidence/tgma-native-blocker.json"
+        "path": "play/assets/cutscenes/native-faces/fub-talk-poses.generated.json",
+        "byteLength": 295967,
+        "sha256": "354e60b8675a9dcc1a1a9ddc3204ef10b021ef7ddad3b0eb761582afeab6012a",
+        "generatedBy": "tools/animation/extract_native_face_poses.py"
       }
     }
   },
   "nativeHandPoseTables": {
+    "0x5ca74": {
+      "sourceMapinfoOffset": "0x5ca74",
+      "vectors": [
+        [
+          0,
+          0,
+          -5461
+        ],
+        [
+          0,
+          -2366,
+          -1092
+        ],
+        [
+          0,
+          -182,
+          1092
+        ],
+        [
+          0,
+          -546,
+          -6735
+        ],
+        [
+          0,
+          0,
+          -4004
+        ],
+        [
+          0,
+          0,
+          -2912
+        ],
+        [
+          0,
+          -182,
+          1274
+        ],
+        [
+          0,
+          0,
+          -13289
+        ],
+        [
+          0,
+          0,
+          -5279
+        ],
+        [
+          0,
+          0,
+          -8009
+        ],
+        [
+          0,
+          0,
+          1456
+        ],
+        [
+          0,
+          182,
+          -8738
+        ],
+        [
+          0,
+          0,
+          -6007
+        ],
+        [
+          0,
+          0,
+          -8738
+        ],
+        [
+          0,
+          182,
+          1638
+        ],
+        [
+          0,
+          -728,
+          -5279
+        ],
+        [
+          0,
+          -1274,
+          -6735
+        ],
+        [
+          0,
+          -910,
+          -8738
+        ],
+        [
+          0,
+          0,
+          1638
+        ]
+      ]
+    },
     "0x5cee8": {
       "sourceMapinfoOffset": "0x5cee8",
       "vectors": [
@@ -612,12 +723,57 @@
       "nativeHandPoseCues": [
         {
           "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x5ca74",
+          "durationNativeTicks": 10,
+          "callFileOffset": "0x26d6e",
+          "sourceFunction": "0x26c88",
+          "ownerCallFileOffset": "0x26ab2"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x5ca74",
+          "durationNativeTicks": 10,
+          "callFileOffset": "0x26d8e",
+          "sourceFunction": "0x26c88",
+          "ownerCallFileOffset": "0x26ab2"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "FUKU",
+          "side": "left",
+          "poseTableOffset": "0x5ca74",
+          "durationNativeTicks": 10,
+          "callFileOffset": "0x26d6e",
+          "sourceFunction": "0x26c88",
+          "ownerCallFileOffset": "0x26abe"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "FUKU",
+          "side": "right",
+          "poseTableOffset": "0x5ca74",
+          "durationNativeTicks": 10,
+          "callFileOffset": "0x26d8e",
+          "sourceFunction": "0x26c88",
+          "ownerCallFileOffset": "0x26abe"
+        },
+        {
+          "activitySlot": 0,
           "frame": 1,
           "actorTag": "AKIR",
           "side": "right",
           "poseTableOffset": "0x5cee8",
           "durationNativeTicks": 1,
-          "callFileOffset": "0x2347a"
+          "callFileOffset": "0x2347a",
+          "sourceOrder": 0
         },
         {
           "activitySlot": 0,
@@ -626,7 +782,8 @@
           "side": "left",
           "poseTableOffset": "0x5cd20",
           "durationNativeTicks": 1,
-          "callFileOffset": "0x2349a"
+          "callFileOffset": "0x2349a",
+          "sourceOrder": 1
         },
         {
           "activitySlot": 0,
@@ -635,7 +792,8 @@
           "side": "right",
           "poseTableOffset": "0x5cd20",
           "durationNativeTicks": 1,
-          "callFileOffset": "0x234f2"
+          "callFileOffset": "0x234f2",
+          "sourceOrder": 2
         },
         {
           "activitySlot": 0,
@@ -644,7 +802,8 @@
           "side": "left",
           "poseTableOffset": "0x5cd20",
           "durationNativeTicks": 1,
-          "callFileOffset": "0x23512"
+          "callFileOffset": "0x23512",
+          "sourceOrder": 3
         },
         {
           "activitySlot": 0,
@@ -653,7 +812,52 @@
           "side": "right",
           "poseTableOffset": "0x5cb58",
           "durationNativeTicks": 15,
-          "callFileOffset": "0x23b06"
+          "callFileOffset": "0x23b06",
+          "sourceOrder": 7
+        }
+      ],
+      "nativeHandComponentCues": [
+        {
+          "activitySlot": 0,
+          "frame": 1,
+          "actorTag": "FUKU",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -3094,
+            -364,
+            2730
+          ],
+          "callFileOffset": "0x23556",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1,
+          "actorTag": "FUKU",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            0,
+            0,
+            2002
+          ],
+          "callFileOffset": "0x2359a",
+          "sourceOrder": 5
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -4662,
+            -691,
+            1742
+          ],
+          "callFileOffset": "0x2364e",
+          "sourceOrder": 6
         }
       ],
       "nativeFaceClipCues": [

@@ -3,6 +3,10 @@ import nativeActivityActorManifest from "../data/events/nativeActivityActors.jso
 import op00ActivityActorManifest from "../data/events/op00ActivityActors.json";
 import op00AssetInventory from "../assets/introduction/op00/asset-inventory.generated.json";
 import op00ActivityManifest from "../assets/introduction/op00/manifest.json";
+import op00MailManifest from "../assets/introduction/op00-mail/manifest.json";
+import op00DreamManifest from "../assets/introduction/op00-dream/manifest.json";
+import op00MailAudio from "../../public/audio/world/op00-mail/manifest.json";
+import op00DreamAudio from "../../public/audio/world/op00-dream/manifest.json";
 import drauthActivityManifest from "../assets/dobuita/drauth/manifest.json";
 import nativeFaceManifest from "../assets/cutscenes/native-faces/manifest.generated.json";
 import drauthAudioManifest from "../../public/audio/world/drauth/manifest.json";
@@ -55,7 +59,6 @@ const fubTextureUrl = runtimeAssetUrl("play/assets/characters/FUB_textures.bin")
 const kokModelUrl = runtimeAssetUrl("play/assets/characters/KOK_M.CHRM");
 const jomoHawkModelUrl = runtimeAssetUrl("play/assets/introduction/op02/models/TAK02M7G.CHRM");
 const jomoHawkMotionUrl = runtimeAssetUrl("play/assets/introduction/op02/M_TORI.MOTN");
-const mZakoMotionUrl = runtimeAssetUrl("play/assets/account/M_ZAKO.MOTN");
 import op00AudioManifest from "../../public/audio/world/op00/manifest.json";
 import op02ActivityManifest from "../assets/introduction/op02/manifest.json";
 import op02AudioManifest from "../../public/audio/world/op02/manifest.json";
@@ -63,12 +66,12 @@ import {
   createNativeActivityActorCatalog,
 } from "../events/NativeActivityActorCatalog.js";
 
-const bundledDrauthActivityAssets = runtimeAssetGroup("play/assets/dobuita/drauth/*.{AUTH,MOTN}");
+const bundledDrauthActivityAssets = runtimeAssetGroup("play/assets/dobuita/drauth/*.{AUTH,MOTN,MT5,BIN}");
 const bundledNativeFacialAssets = runtimeAssetGroup("play/assets/cutscenes/native-faces/*.{MT5,BIN,json}");
-const bundledYq14Assets = runtimeAssetGroup("play/assets/dobuita/yq14/*.{AUTH,CHRM}");
+const bundledYq14Assets = runtimeAssetGroup("play/assets/dobuita/yq14/*.{AUTH,CHRM,MOTN}");
 const bundledYbhnAssets = runtimeAssetGroup("play/assets/dobuita/ybhn/*.{AUTH,MOTN}");
 const bundledDjhnAssets = runtimeAssetGroup("play/assets/dobuita/djhn/*.{AUTH,MOTN,CHRM}");
-const bundledD0w0Assets = runtimeAssetGroup("play/assets/dobuita/d0w0/*.{AUTH,MOTN,CHRM}");
+const bundledD0w0Assets = runtimeAssetGroup("play/assets/dobuita/d0w0/*.{AUTH,MOTN,CHRM,MT5,BIN}");
 const bundledDnozAssets = runtimeAssetGroup("play/assets/sakuragaoka/dnoz/*.{AUTH,MOTN}");
 const bundledDnozSkiAssets = runtimeAssetGroup("play/assets/sakuragaoka/dnoz-ski/*.{AUTH,MOTN,MT5,BIN}");
 const bundledDnozEnvironmentAssets = runtimeAssetGroup("play/assets/sakuragaoka/dnoz-environment/*.MAPM");
@@ -79,7 +82,7 @@ const bundledKakgAssets = runtimeAssetGroup("play/assets/hazuki/kakg/*.{AUTH,MOT
 const bundledHihyAssets = runtimeAssetGroup("play/assets/hazuki/hihy/*.{AUTH,MOTN,CHRM,MAPM,SPR}");
 const bundledBussAssets = runtimeAssetGroup("play/assets/dobuita/buss/*.{AUTH,MOTN,CHRM}");
 const bundledBebfAssets = runtimeAssetGroup("play/assets/hazuki/bebf/*.{AUTH,MOTN}");
-const bundledSakrAssets = runtimeAssetGroup("play/assets/yd01/sakr/*.{AUTH,MOTN}");
+const bundledSakrAssets = runtimeAssetGroup("play/assets/yd01/sakr/*.{AUTH,MOTN,MT5,BIN}");
 const bundledHouoAssets = runtimeAssetGroup("play/assets/hazuki/houo/*.{AUTH,MOTN,CHRM,bin}");
 const bundledTokiAssets = runtimeAssetGroup("play/assets/dobuita/toki/*.{AUTH,MOTN,MT5,BIN}");
 const bundledKkyaAssets = runtimeAssetGroup("play/assets/hazuki/kkya/*.{AUTH,MOTN,CHRM,MAPM}");
@@ -89,10 +92,11 @@ const bundledKkydAssets = runtimeAssetGroup("play/assets/hazuki/kkyd/*.{AUTH,MOT
 const bundledKkyeAssets = runtimeAssetGroup("play/assets/hazuki/kkye/*.{AUTH,MOTN,CHRM,MAPM}");
 const bundledKkyfAssets = runtimeAssetGroup("play/assets/hazuki/kkyf/*.{AUTH,MOTN,CHRM,MAPM}");
 const bundledCata1Assets = runtimeAssetGroup("play/assets/yamanose/cata1/*.{AUTH,MOTN,CHRM}");
-const bundledEvsnAssets = runtimeAssetGroup("play/assets/sakuragaoka/evsn/*.{AUTH,MOTN,CHRM}");
+const bundledEvsnAssets = runtimeAssetGroup("play/assets/sakuragaoka/evsn/*.{AUTH,MOTN,CHRM,MT5,BIN}");
 const bundledOp00FacialAssets = runtimeAssetGroup("play/assets/introduction/op00/faces/*.{MT5,BIN,json}");
 const bundledOp00HandAssets = runtimeAssetGroup("play/assets/introduction/op00/hands/*.{MT5,BIN}");
 const bundledOp00ActivityAssets = runtimeAssetGroup("play/assets/introduction/op00/*.{AUTH,BIN}");
+const bundledOp00SceneObjects = runtimeAssetGroup("play/assets/introduction/op00/models/*.{CHRM,MAPM}");
 const bundledOp02Assets = runtimeAssetGroup("play/assets/introduction/op02/**/*.{AUTH,MOTN,MAPM,CHRM,BIN,bin,json,PNG,png,SCR0,SCR1,SCR2}");
 
 function sourceAssetMap(...sources) {
@@ -163,6 +167,7 @@ const jomoVisionPackage = ({
     environment: Object.freeze({
       ...(manifest.sceneObjects ? { sceneObjects: manifest.sceneObjects } : {}),
       ...(packageActors ? { packageActors: Object.freeze(packageActors) } : {}),
+      isolatedStage: true,
     }),
     playback: Object.freeze({ manifest }),
     music: Object.freeze({
@@ -222,6 +227,26 @@ const nativeSilentActivityMusic = resource => Object.freeze({
 
 export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
   ...jomoVisionPackages,
+  ...[["op00-mail", op00MailManifest, op00MailAudio], ["op00-dream", op00DreamManifest, op00DreamAudio]].map(([id, manifest, audioManifest]) => Object.freeze({
+    id, worldId: "op00", actorDefinitions: [], actorTags: manifest.actorTags,
+    assets: Object.freeze({
+      ...Object.fromEntries(manifest.outputs.map(asset => [asset.path, runtimeAssetUrl(asset.path)])),
+      ...sourceAssetMap(bundledOp00ActivityAssets, bundledNativeFacialAssets),
+      ...op00FaceAssets, ...op00HandAssets,
+      // Continuations also borrow scene models from OP00's existing inventory.
+      // They are absent from outputs, but must remain loadable by this package.
+      ...Object.fromEntries([
+        ...Object.values(manifest.packageActors),
+        ...Object.values(manifest.sceneObjects || {}),
+      ].flatMap(object => [object.assetPath, object.textureAssetPath]
+        .filter(Boolean).map(assetPath => [assetPath, runtimeAssetUrl(assetPath)]))),
+    }),
+    actors: Object.freeze({ requirePlayer: false, preservePlayerOnComplete: false }),
+    presentation: Object.freeze({ facialAssets: manifest.facialAssets, handAssets: manifest.handAssets }),
+    environment: Object.freeze({ packageActors: manifest.packageActors, sceneObjects: manifest.sceneObjects, mapLayers: manifest.mapLayers }),
+    playback: Object.freeze({ manifest, audioManifest }),
+    music: Object.freeze({ cues: manifest.music, gain: 0.82 }),
+  })),
   Object.freeze({
     id: "houo",
     worldId: "exterior",
@@ -302,10 +327,15 @@ export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
     ]),
     assets: Object.freeze({
       ...sourceAssetMap(bundledCata1Assets),
+      ...op00HandAssets,
       ...sourceAssetMap(bundledNativeFacialAssets),
       ...op00FaceAssets,
     }),
     presentation: Object.freeze({
+      handAssets: Object.freeze({
+        AKIR: op00AssetInventory.handAssets.AKIR,
+        ...cata1ActivityManifest.handAssets,
+      }),
       facialAssets: Object.freeze({
         AKIR: nativeFaceManifest.facialAssets.AKIR,
       }),
@@ -313,6 +343,7 @@ export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
     environment: Object.freeze({
       sceneObjects: cata1ActivityManifest.sceneObjects,
       packageActors: cata1ActivityManifest.packageActors,
+      attachedObjects: cata1ActivityManifest.attachedObjects,
     }),
     playback: Object.freeze({
       manifest: cata1ActivityManifest,
@@ -338,18 +369,22 @@ export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
     ]),
     assets: Object.freeze({
       ...sourceAssetMap(bundledEvsnAssets),
+      ...sourceAssetMap(bundledDnozSkiAssets),
       ...sourceAssetMap(bundledNativeFacialAssets),
       ...op00FaceAssets,
+      ...op00HandAssets,
     }),
     presentation: Object.freeze({
       facialAssets: Object.freeze({
         AKIR: nativeFaceManifest.facialAssets.AKIR,
         HRSK: nativeFaceManifest.facialAssets.HRSK,
       }),
+      handAssets: Object.freeze({ ...evsnActivityManifest.handAssets, AKIR: op00AssetInventory.handAssets.AKIR }),
     }),
     environment: Object.freeze({
       sceneObjects: evsnActivityManifest.sceneObjects,
       packageActors: evsnActivityManifest.packageActors,
+      attachedObjects: evsnActivityManifest.attachedObjects,
     }),
     playback: Object.freeze({
       manifest: evsnActivityManifest,
@@ -373,7 +408,7 @@ export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
       ...op00FaceAssets,
       ...op00HandAssets,
       ...sourceAssetMap(bundledNativeFacialAssets),
-      ...sourceAssetMap(bundledOp00ActivityAssets),
+      ...sourceAssetMap(bundledOp00ActivityAssets, bundledOp00SceneObjects),
     }),
     actors: Object.freeze({
       requirePlayer: false,
@@ -416,6 +451,7 @@ export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
     }),
     presentation: Object.freeze({
       facialAssets: op02ActivityManifest.facialAssets,
+      handAssets: op02ActivityManifest.handAssets,
       clothTracks: op02ActivityManifest.clothTracks,
       nodeMotion: op02ActivityManifest.nodeMotion,
     }),
@@ -445,11 +481,13 @@ export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
       ...sourceAssetMap(bundledDrauthActivityAssets),
       ...sourceAssetMap(bundledNativeFacialAssets),
       ...op00FaceAssets,
+      ...op00HandAssets,
     }),
     presentation: Object.freeze({
       // Presentation resources are selected by actor tag. Ryo's exact native
       // FACE data remains shared rather than duplicated in this package.
       facialAssets: nativeFaceManifest.facialAssets,
+      handAssets: Object.freeze({ ...drauthActivityManifest.handAssets, AKIR: op00AssetInventory.handAssets.AKIR }),
     }),
     playback: Object.freeze({
       manifest: drauthActivityManifest,
@@ -482,7 +520,6 @@ export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
       ...sourceAssetMap(bundledYq14Assets),
       ...sourceAssetMap(bundledNativeFacialAssets),
       ...op00FaceAssets,
-      "play/assets/account/M_ZAKO.MOTN": mZakoMotionUrl,
     }),
     presentation: Object.freeze({
       facialAssets: nativeFaceManifest.facialAssets,
@@ -574,6 +611,7 @@ export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
     ]),
     assets: Object.freeze({
       ...sourceAssetMap(bundledD0w0Assets),
+      ...op00HandAssets,
       ...sourceAssetMap(bundledNativeFacialAssets),
       ...op00FaceAssets,
     }),
@@ -582,9 +620,14 @@ export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
         AKIR: nativeFaceManifest.facialAssets.AKIR,
         YAMA: nativeFaceManifest.facialAssets.YAMA,
       }),
+      handAssets: Object.freeze({
+        AKIR: op00AssetInventory.handAssets.AKIR,
+        ...d0w0ActivityManifest.handAssets,
+      }),
     }),
     environment: Object.freeze({
       sceneObjects: d0w0ActivityManifest.sceneObjects,
+      attachedObjects: d0w0ActivityManifest.attachedObjects,
     }),
     playback: Object.freeze({
       manifest: d0w0ActivityManifest,
@@ -603,15 +646,18 @@ export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
     ]),
     assets: Object.freeze({
       ...sourceAssetMap(bundledDnozAssets),
+      ...sourceAssetMap(bundledDnozSkiAssets),
       ...sourceAssetMap(bundledDnozEnvironmentAssets),
       ...sourceAssetMap(bundledNativeFacialAssets),
       ...op00FaceAssets,
+      ...op00HandAssets,
     }),
     presentation: Object.freeze({
       facialAssets: Object.freeze({
         AKIR: nativeFaceManifest.facialAssets.AKIR,
         HRSK: nativeFaceManifest.facialAssets.HRSK,
       }),
+      handAssets: Object.freeze({ ...dnozActivityManifest.handAssets, AKIR: op00AssetInventory.handAssets.AKIR }),
     }),
     environment: Object.freeze({
       sceneObjects: dnozActivityManifest.sceneObjects,
@@ -641,13 +687,14 @@ export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
       ...sourceAssetMap(bundledDnozEnvironmentAssets),
       ...sourceAssetMap(bundledNativeFacialAssets),
       ...op00FaceAssets,
+      ...op00HandAssets,
     }),
     presentation: Object.freeze({
       facialAssets: Object.freeze({
         AKIR: nativeFaceManifest.facialAssets.AKIR,
         HRSK: nativeFaceManifest.facialAssets.HRSK,
       }),
-      handAssets: dnozSkiActivityManifest.handAssets,
+      handAssets: Object.freeze({ ...dnozSkiActivityManifest.handAssets, AKIR: op00AssetInventory.handAssets.AKIR }),
     }),
     environment: Object.freeze({
       sceneObjects: dnozSkiActivityManifest.sceneObjects,
@@ -720,8 +767,13 @@ export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
       ...sourceAssetMap(bundledJhw0Assets),
       ...sourceAssetMap(bundledNativeFacialAssets),
       ...op00FaceAssets,
+      ...op00HandAssets,
     }),
     presentation: Object.freeze({
+      handAssets: Object.freeze({
+        AKIR: op00AssetInventory.handAssets.AKIR,
+        FUKU: op00AssetInventory.handAssets.FUKU,
+      }),
       facialAssets: Object.freeze({
         AKIR: nativeFaceManifest.facialAssets.AKIR,
         FUKU: nativeFaceManifest.facialAssets.FUKU,
@@ -754,8 +806,13 @@ export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
       ...sourceAssetMap(bundledMskaAssets),
       ...sourceAssetMap(bundledNativeFacialAssets),
       ...op00FaceAssets,
+      ...op00HandAssets,
     }),
     presentation: Object.freeze({
+      handAssets: Object.freeze({
+        AKIR: op00AssetInventory.handAssets.AKIR,
+        FUKU: op00AssetInventory.handAssets.FUKU,
+      }),
       facialAssets: Object.freeze({
         AKIR: nativeFaceManifest.facialAssets.AKIR,
         FUKU: nativeFaceManifest.facialAssets.FUKU,
@@ -788,8 +845,14 @@ export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
       ...sourceAssetMap(bundledKakgAssets),
       ...sourceAssetMap(bundledNativeFacialAssets),
       ...op00FaceAssets,
+      ...op00HandAssets,
     }),
     presentation: Object.freeze({
+      handAssets: Object.freeze({
+        AKIR: op00AssetInventory.handAssets.AKIR,
+        FUKU: op00AssetInventory.handAssets.FUKU,
+        INE_: op00AssetInventory.handAssets.INE_,
+      }),
       facialAssets: Object.freeze({
         AKIR: nativeFaceManifest.facialAssets.AKIR,
         FUKU: nativeFaceManifest.facialAssets.FUKU,
@@ -825,6 +888,7 @@ export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
     environment: Object.freeze({
       packageActors: bussActivityManifest.packageActors,
       sceneObjects: bussActivityManifest.sceneObjects,
+      attachedObjects: bussActivityManifest.attachedObjects,
     }),
     playback: Object.freeze({
       manifest: bussActivityManifest,
@@ -892,6 +956,7 @@ export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
     }),
     environment: Object.freeze({
       packageActors: bebfActivityManifest.packageActors,
+      mapLayers: bebfActivityManifest.mapLayers,
     }),
     playback: Object.freeze({
       manifest: bebfActivityManifest,
@@ -921,6 +986,7 @@ export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
         IWAO: nativeFaceManifest.facialAssets.IWAO,
         JAKR: nativeFaceManifest.facialVariants.JKB,
       }),
+      handAssets: sakrActivityManifest.handAssets,
     }),
     environment: Object.freeze({
       packageActors: sakrActivityManifest.packageActors,

@@ -11,19 +11,16 @@ import { fileURLToPath } from "node:url";
 import { createServer } from "vite";
 
 import { NativeAseqActivityRuntime } from "../../play/events/NativeAseqActivityRuntime.js";
+import { NativeAseqAudioCatalog } from "../../play/events/NativeAseqAudioCatalog.js";
 import { NativeAseqPresentationRuntime } from "../../play/events/NativeAseqPresentationRuntime.js";
-import { createNativeEventInterpreter } from "../../play/events/NativeEventInterpreter.js";
-import {
-  createNativeEventOperationExecutor,
-  createNativeOperation0050SemanticHandlers,
-  createNativeOperation013eSemanticHandlers,
-} from "../../play/events/NativeEventOperationRuntime.js";
-import { createNativeRuntimeInterfaceExecutor } from "../../play/events/NativeRuntimeInterface.js";
-import {
-  createNativeSceneFieldRuntimeContext,
-  createNativeSceneGameplayState,
-} from "../../play/events/NativeSceneGameplayState.js";
+import { createNativeActorByteState } from "../../play/events/NativeActorByteState.js";
+import { createNativeRoomScriptRuntime } from "../../play/events/NativeRoomScriptRuntime.js";
+import { createNativeScriptedEventRuntime } from "../../play/events/NativeScriptedEventRuntime.js";
+import { createNativeRoomMusicRuntime } from "../../play/events/NativeRoomMusicRuntime.js";
+import { dispatchNativeRoomSoundCommand } from "../../play/events/NativeRoomSoundCommands.js";
+import { createNativeCutsceneMusicRuntime } from "../../play/cutscenes/NativeCutsceneMusicRuntime.js";
 import { NativeCutscenePackageRegistry } from "../../play/cutscenes/NativeCutscenePackageRegistry.js";
+import { originalStageCallsAreComplete } from "../lib/NativePlaylistRemovalAudit.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const DEFAULT_OUTPUT = "tools/evidence/selectable-cutscene-smoke.json";
@@ -98,8 +95,9 @@ function simpleAdapter(methods, overrides = {}) {
 function createAuditPresentation(definition, metrics) {
   const available = availableActorTags(definition);
   const actorOwners = new WeakMap();
+  let activeActors = null;
   const actors = simpleAdapter(
-    ["begin", "applyTransform", "applyMotion", "end"],
+    ["begin", "activeActor", "applyTransform", "applyMotion", "end"],
     {
       begin(owner, actorTags) {
         const missing = actorTags.filter(tag => !available.has(tag));
@@ -107,8 +105,18 @@ function createAuditPresentation(definition, metrics) {
           throw new Error(`actors ${missing.join(", ")} have no model owner`);
         }
         actorOwners.set(owner, new Set(actorTags));
+        activeActors = new Map(actorTags.map(actorTag => [actorTag, {
+          root: {
+            setEnabled(enabled) {
+              if (!enabled) metrics.hiddenActorTags.push(actorTag);
+            },
+          },
+        }]));
         metrics.actorTags.push(...actorTags);
         return true;
+      },
+      activeActor(actorTag) {
+        return activeActors?.get(actorTag) || null;
       },
       applyTransform(owner, actorTag) {
         if (!actorOwners.get(owner)?.has(actorTag)) {
@@ -126,6 +134,7 @@ function createAuditPresentation(definition, metrics) {
       },
       end(owner) {
         actorOwners.delete(owner);
+        activeActors = null;
         return true;
       },
     },
@@ -227,6 +236,15 @@ function audioManifestsForDefinition(definition) {
 
 function fidelityFindings(definition, records, metrics, musicTrackCount) {
   const findings = [];
+  const rebasedMotions = records.flatMap(record => (record.motions || [])
+    .filter(motion => motion.sampleFrameOffset)
+    .map(motion => ({ activityId: record.activityId, ...motion })));
+  if (rebasedMotions.length) findings.push({
+    kind: "whole-clip-source-window-rebased",
+    severity: "approximation",
+    reason: "The authored out-of-range window has exactly the available clip length; play it from frame zero while preserving cue timing. Native handling is not emulator-verified.",
+    motions: rebasedMotions,
+  });
   const faceActors = new Set(Object.keys(definition.presentation?.facialAssets || {}));
   const faceAliases = definition.presentation?.facialActorAliases || {};
   const handActors = new Set(Object.keys(definition.presentation?.handAssets || {}));
@@ -370,7 +388,7 @@ function playbackActivityOccurrences(program, manifest, uniqueRecords) {
   });
 }
 
-function validatePackageAssets(definition) {
+export function validatePackageAssets(definition) {
   const bundled = new Set(Object.keys(definition.assets));
   if (bundled.size === 0) throw new Error("package has no bundled assets");
   for (const [sourcePath, url] of Object.entries(definition.assets)) {
@@ -407,12 +425,13 @@ function validatePackageAssets(definition) {
     requireFile(sourcePath, "map-layer source asset");
   }
   for (const manifest of audioManifestsForDefinition(definition)) {
-    for (const voice of manifest.voices || []) {
-      if (!voice.unavailable) requireFile(voice.asset, "voice asset");
-    }
-    for (const sound of manifest.sounds || []) {
-      const assets = sound.assets?.map(value => value.asset) || [sound.asset];
-      for (const asset of assets) requireFile(asset, "sound asset");
+    // Use playback's validation, including evidence-backed unavailable sounds.
+    // Raw manifest traversal mistook those intentional silent cues for lost files.
+    const catalog = new NativeAseqAudioCatalog(manifest);
+    for (const cue of [...catalog.voices.values(), ...catalog.sounds.values()]) {
+      for (const url of cue.assetUrls) {
+        requireFile(sourcePathForUrl(url), `${cue.kind} asset`);
+      }
     }
   }
   return bundled.size;
@@ -457,47 +476,117 @@ async function playActivity(runtime, record) {
   return started;
 }
 
-async function playPreviewProgram(program, runtime) {
-  const sceneState = createNativeSceneGameplayState();
-  for (const binding of runtime.embeddedBindings?.() || []) {
-    sceneState.installNativeEmbeddedAuthBinding(binding);
-  }
-  sceneState.prepareNativeOperation013eBindings(program);
-  const context = createNativeSceneFieldRuntimeContext(sceneState);
-  const executeOperation = createNativeEventOperationExecutor({
-    handlers: {
-      ...createNativeOperation013eSemanticHandlers(),
-      ...createNativeOperation0050SemanticHandlers({
-        startActivity: detail => runtime.startActivity(detail),
-        stopActivity: detail => runtime.stopActivity(detail),
+async function playPreviewProgram(program, runtime, definition, metrics) {
+  // Compose the same room/event runtime as the client. Maintaining an audit-only
+  // operation handler list missed source startup sound commands and their leases.
+  // Presentation stays instrumented here: this is not rendered/audio proof.
+  const activeTracks = new Set();
+  const controls = {
+    playTemporaryTrack(trackId) {
+      activeTracks.add(trackId);
+      metrics.musicStarts.push(trackId);
+      return true;
+    },
+    stopTemporaryTrack(trackId) {
+      metrics.musicStops.push(trackId);
+      return activeTracks.delete(trackId);
+    },
+    setPlaybackPaused: () => true,
+  };
+  const roomMusic = createNativeRoomMusicRuntime(controls);
+  const packageMusic = createNativeCutsceneMusicRuntime(definition.music, controls);
+  const bindings = runtime.embeddedBindings();
+  const endProgram = ({ sceneState }) => {
+    for (const binding of [...bindings].reverse()) {
+      sceneState.uninstallNativeEmbeddedAuthBinding(binding);
+    }
+    packageMusic.reset();
+    return true;
+  };
+  const room = createNativeRoomScriptRuntime({
+    operation0050: {
+      beginProgram({ sceneState }) {
+        for (const binding of bindings) sceneState.installNativeEmbeddedAuthBinding(binding);
+        return {};
+      },
+      updateProgram: () => true,
+      completeProgram: endProgram,
+      rollbackProgram: endProgram,
+      acceptsActivity: detail => runtime.acceptsActivity(detail),
+      async startActivity(detail, options) {
+        const activity = await runtime.startActivity(detail, options);
+        packageMusic.beginActivity(activity);
+        metrics.activityOrder.push(activity.activityId);
+        return activity;
+      },
+      updateActivity(detail) {
+        const accepted = runtime.updateActivity(detail);
+        if (!accepted && runtime.lastUpdateError) throw runtime.lastUpdateError;
+        return accepted;
+      },
+      stopActivity(detail) {
+        const stopped = runtime.stopActivity(detail);
+        if (stopped) packageMusic.endActivity({ programActive: true });
+        return stopped;
+      },
+      rollbackActivity(reason) {
+        const stopped = runtime.rollbackActivity(reason);
+        packageMusic.reset();
+        return stopped;
+      },
+    },
+    scriptedScene: {
+      dispatchSoundCommand: detail => dispatchNativeRoomSoundCommand({
+        ...detail,
+        area: program.area,
+        routes: definition.playback.ownerAudioCommands,
+        playMusicTrack: trackId => roomMusic.playSequence(trackId),
       }),
     },
+    transaction: {
+      begin: () => roomMusic.beginTransaction(),
+      commit: ({ external }) => roomMusic.endTransaction(external),
+      rollback: ({ external }) => roomMusic.endTransaction(external),
+    },
   });
-  const interpreter = createNativeEventInterpreter({
-    program,
-    executeOperation,
-    executeRuntimeInterface: createNativeRuntimeInterfaceExecutor(),
+  room.activateArea(program.area);
+  let settlement;
+  const events = createNativeScriptedEventRuntime({
+    programPack: { schema: "new-yokosuka-native-event-program-pack-v1", programs: [program] },
+    actorByteState: createNativeActorByteState(),
+    createExecution: detail => room.beginTransaction(detail),
+    onComplete: result => { settlement = result; },
+    onStopped: result => { settlement = result; },
+    onCancelled: result => { settlement = result; },
   });
-  let result = await interpreter.run(null, context);
   let ticks = 0;
-  while (result.status === "yielded") {
-    const update = sceneState.advanceNativeOperation0050Activity();
-    if (update && runtime.updateActivity(update) !== true) {
-      throw new Error(`preview rejected activity frame ${update.currentFrame}`);
+  try {
+    const started = await events.startProgram({ programId: program.id, area: program.area });
+    if (started.status === "stopped") settlement = started;
+    while (!settlement) {
+      events.update(1 / 30);
+      // Let the actual asynchronous interpreter finish each frame, including
+      // asset preparation and the next activity's startup, before advancing.
+      await new Promise(resolve => setImmediate(resolve));
+      ticks += 1;
+      if (ticks > 200000) throw new Error("preview program exceeded smoke tick budget");
     }
-    result = await interpreter.run(result.state, context);
-    ticks += 1;
-    if (ticks > 200000) throw new Error("preview program exceeded smoke tick budget");
+    metrics.settlement = settlement.status;
+    if (settlement.status !== "completed") {
+      throw new Error(
+        `preview program exited with ${settlement.status}: ${JSON.stringify(settlement.reason || null)}`,
+      );
+    }
+    if (runtime.active || room.sceneState.readNativeOperation0050Activity()
+      || room.activeTransaction || roomMusic.active || activeTracks.size > 0) {
+      throw new Error("preview program leaked activity or music ownership");
+    }
+    return ticks;
+  } finally {
+    events.cancel("audit-finished");
+    runtime.rollbackActivity("audit-finished");
+    packageMusic.reset();
   }
-  if (result.status !== "completed") {
-    throw new Error(
-      `preview program exited with ${result.status}: ${JSON.stringify(result.reason || null)}`,
-    );
-  }
-  if (runtime.active || sceneState.readNativeOperation0050Activity()) {
-    throw new Error("preview program leaked activity ownership");
-  }
-  return ticks;
 }
 
 function validateMusic(definition, musicManifest) {
@@ -523,12 +612,13 @@ async function auditScene({ cutscene, definition, program, musicManifest }) {
   const stages = [];
   let currentStage = "package-assets";
   const metrics = {
-    actorTags: [], transforms: 0, motions: 0, cameraFrames: 0,
+    actorTags: [], hiddenActorTags: [], transforms: 0, motions: 0, cameraFrames: 0,
     voices: 0, sounds: 0,
     faceClipCues: 0, faceGazeCues: 0, voiceFaceCues: 0,
     handPoseCues: 0, bodyHandPoseCues: 0, nodeMotionFrames: 0,
     actorLookPointCues: 0,
     voiceIds: [], voiceSpeakerIds: [], silentVoiceIds: [],
+    activityOrder: [], musicStarts: [], musicStops: [], settlement: null,
   };
   try {
     const bundledAssetCount = validatePackageAssets(definition);
@@ -536,6 +626,19 @@ async function auditScene({ cutscene, definition, program, musicManifest }) {
     currentStage = "program-structure";
     const programActionCount = validateProgram(program, cutscene);
     stages.push("program-structure");
+    const originalStages = program.evidence?.find(item => item.kind === "original-script-stage-coverage");
+    if (originalStages) {
+      currentStage = "original-script-stage-coverage";
+      const original = json(originalStages.path);
+      const selected = program.evidence.find(item => item.kind === "owner-control-flow-activity-sequence");
+      if (sha256(originalStages.path) !== originalStages.sha256
+        || original.source.mapinfoSha256 !== originalStages.mapinfoSha256
+        || !originalStageCallsAreComplete([original.function, ...original.supportingFunctions || []],
+          originalStages.stageFunctions, selected?.calls || [])) {
+        throw new Error("original script stage coverage is incomplete, including silent camera/effect tracks");
+      }
+      stages.push(currentStage);
+    }
     currentStage = "music-bindings";
     const musicTrackCount = validateMusic(definition, musicManifest);
     stages.push("music-bindings");
@@ -561,7 +664,11 @@ async function auditScene({ cutscene, definition, program, musicManifest }) {
     let playbackTicks = 0;
     if (program.preview) {
       currentStage = "preview-program-playback";
-      playbackTicks = await playPreviewProgram(program, runtime);
+      playbackTicks = await playPreviewProgram(program, runtime, definition, metrics);
+      const expectedOrder = playbackRecords.map(record => record.activityId);
+      if (JSON.stringify(metrics.activityOrder) !== JSON.stringify(expectedOrder)) {
+        throw new Error(`activity order ${JSON.stringify(metrics.activityOrder)} differs from ${JSON.stringify(expectedOrder)}`);
+      }
       stages.push("preview-program-playback");
     } else {
       currentStage = "owner-activity-playback";
@@ -572,7 +679,8 @@ async function auditScene({ cutscene, definition, program, musicManifest }) {
       stages.push("owner-activity-playback");
     }
     const expectedVoiceCues = sumRecordCount(playbackRecords, "voice");
-    const expectedSoundCues = sumRecordCount(playbackRecords, "sound");
+    const expectedSoundCues = sumRecordCount(playbackRecords, "sound")
+      + sumRecordCues(playbackRecords, "nativeScriptSoundCues");
     const expectedFaceClipCues = sumRecordCues(playbackRecords, "nativeFaceClipCues");
     const expectedFaceGazeCues = sumRecordCues(playbackRecords, "nativeFaceGazeCues");
     const expectedHandPoseCues = sumRecordCues(playbackRecords, "nativeHandPoseCues");
@@ -605,12 +713,16 @@ async function auditScene({ cutscene, definition, program, musicManifest }) {
       fidelityFindings: fidelityFindings(definition, records, metrics, musicTrackCount),
       coverage: {
         bundledAssetCount,
+        originalScriptStages: originalStages?.stageFunctions || null,
         programActionCount,
         activityCount: records.length,
         playbackActivityCount: playbackRecords.length,
-        durationFrames: records.reduce((sum, record) => sum + record.durationFrames, 0),
+        durationFrames: playbackRecords.reduce((sum, record) => sum + record.durationFrames, 0),
         playbackTicks,
+        settlement: metrics.settlement,
+        activityOrder: metrics.activityOrder,
         actorCount: new Set(metrics.actorTags).size,
+        hiddenActorTags: [...new Set(metrics.hiddenActorTags)],
         motionApplications: metrics.motions,
         transformApplications: metrics.transforms,
         cameraFrames: metrics.cameraFrames,
@@ -620,6 +732,8 @@ async function auditScene({ cutscene, definition, program, musicManifest }) {
         authoredSoundCues: expectedSoundCues,
         silentVoiceCueCount: metrics.silentVoiceIds.length,
         musicTrackCount,
+        dispatchedMusicTracks: metrics.musicStarts,
+        stoppedMusicTracks: metrics.musicStops,
         faceClipCues: metrics.faceClipCues,
         faceGazeCues: metrics.faceGazeCues,
         voiceFaceCues: metrics.voiceFaceCues,
@@ -702,7 +816,9 @@ export async function buildSelectableCutsceneSmokeReport() {
       evidenceBoundary: [
         "Every selectable package is loaded through Vite's real module graph, so bundled URL maps and manifest objects match the game client.",
         "Every selected AUTH is hash-verified, parsed, motion-resolved, audio-resolved, advanced through its final frame, and cleanup-checked through the shared activity/presentation runtimes.",
-        "Activity-preview programs execute through the canonical event interpreter. Larger native owners are structurally checked and all activities they select are playback-smoked; their complete world-dependent owner paths remain browser integration coverage.",
+        "Intro segments with retained original-stage IR independently cover every positive AUTH start in those native stages, including silent camera/effect tracks. Other scenes are packaged-timeline coverage, not a claim of original-shot completeness.",
+        "Activity-preview programs execute through the production room and scripted-event runtimes, including sound dispatch, frame timing, explicit completion, activity order, and transaction cleanup. Presentation adapters are instrumented, not rendered. Larger native owners are structurally checked and all activities they select are playback-smoked; their complete world-dependent owner paths remain browser integration coverage.",
+        "Music catalog presence and actual music dispatch are reported separately. Dispatch proves runtime ownership and cleanup, not audible browser playback.",
         "Zero voice, sound, or music coverage is reported as a fidelity review item only when the native package contains no authored binding; it is not guessed into a failure.",
         "Retail-native voice references proven absent from their pinned AFS/IDX source are reported as source absences rather than fabricated assets.",
         "World geometry visibility and final rendered appearance require a browser scene and are outside this headless audit.",
@@ -711,6 +827,7 @@ export async function buildSelectableCutsceneSmokeReport() {
         selectableCutsceneCount: scenes.length,
         passedCount: scenes.length - failed.length,
         failedCount: failed.length,
+        originalStageCheckedSceneCount: scenes.filter(scene => scene.coverage?.originalScriptStages?.length > 0).length,
         previewProgramCount: scenes.filter(scene => scene.programKind === "activity-preview").length,
         ownerProgramCount: scenes.filter(scene => scene.programKind === "native-owner").length,
         fidelityFindingCount: fidelityFindings.length,

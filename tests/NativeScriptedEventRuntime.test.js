@@ -41,6 +41,40 @@ function gateContext(overrides = {}) {
   };
 }
 
+for (const cancel of [false, true]) {
+  test(`program commit waits for presentation cover${cancel ? " and cancels without late commit" : ""}`, async () => {
+    const calls = [];
+    let black;
+    const directPack = structuredClone(presentationPack);
+    directPack.programs.find(program => program.id === "disc1-d000-entry-0x7abf4")
+      .directEntries = [hatoPresentationRoute.entryFunction];
+    const runtime = createNativeScriptedEventRuntime({
+      programPack: directPack,
+      actorByteState: createNativeActorByteState(),
+      createExecution: () => ({
+        context: {}, handlers: {},
+        commit: () => calls.push("commit"),
+        rollback: () => calls.push("rollback"),
+      }),
+    });
+    const result = await runtime.startProgram({
+      programId: "disc1-d000-entry-0x7abf4",
+      entryFunction: hatoPresentationRoute.entryFunction,
+      context: gateContext(),
+      beforeComplete: () => new Promise(resolve => { black = resolve; }),
+    });
+    assert.equal(result.status, "yielded");
+    const complete = runtime.resumeDialogue();
+    await new Promise(resolve => setImmediate(resolve));
+    assert.equal(typeof black, "function");
+    assert.deepEqual(calls, []);
+    if (cancel) runtime.cancel("disposed");
+    black();
+    await complete;
+    assert.deepEqual(calls, cancel ? ["rollback"] : ["commit"]);
+  });
+}
+
 test("scripted event runtime starts an exact reviewed program entry directly", async () => {
   const runtime = createNativeScriptedEventRuntime({
     programPack: presentationPack,
@@ -754,6 +788,7 @@ test("scripted runtime seeks an active continuation through bounded clock update
     }],
   };
   const deltas = [];
+  const seeking = [];
   const runtime = createNativeScriptedEventRuntime({
     programPack: schedulerPack,
     actorByteState: createNativeActorByteState(),
@@ -761,6 +796,7 @@ test("scripted runtime seeks an active continuation through bounded clock update
       context: {},
       handlers: {},
       update: ({ deltaSeconds }) => deltas.push(deltaSeconds),
+      setSeeking: active => seeking.push(active),
     }),
   });
   const first = await runtime.startActorInteraction({
@@ -771,6 +807,7 @@ test("scripted runtime seeks an active continuation through bounded clock update
   assert.equal(first.status, "yielded");
   assert.equal(runtime.seekBySeconds(5), true);
   assert.equal(deltas.length, 20);
+  assert.deepEqual(seeking, [true, false]);
   assert.ok(deltas.every(delta => delta > 0 && delta <= 0.25));
   assert.ok(Math.abs(deltas.reduce((sum, delta) => sum + delta, 0) - 5) < 1e-9);
   await new Promise(resolve => setImmediate(resolve));

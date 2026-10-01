@@ -874,6 +874,12 @@ export class NativeRoomScriptRuntime {
         ...transactionDetail,
         ...updateDetail,
       }),
+      setSeeking: seeking => {
+        const active = this.requireTransaction(token);
+        return !active.programOwnershipOpen || (this.operation0050Adapters.setProgramSeeking?.({
+          ownership: active.programOwnership, seeking,
+        }) ?? true);
+      },
     };
   }
 

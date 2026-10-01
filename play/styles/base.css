@@ -65,15 +65,19 @@ body {
   height: 100%;
 }
 
-body.cutscene-active .app {
+body:is(.cutscene-active, .cutscene-starting) .app {
   grid-template-columns: minmax(0, 1fr);
 }
 
-body.cutscene-active .sidebar,
-body.cutscene-active .player-status-hud,
-body.cutscene-active .chat-panel,
-body.cutscene-active .bottom-right-tools > :not(#dialogue-controls-hud) {
+body:is(.cutscene-active, .cutscene-starting) .sidebar,
+body:is(.cutscene-active, .cutscene-starting) .player-status-hud,
+body:is(.cutscene-active, .cutscene-starting) .chat-panel,
+body:is(.cutscene-active, .cutscene-starting) .bottom-right-tools > :not(#dialogue-controls-hud) {
   display: none;
+}
+
+body.cutscene-starting .bottom-right-tools {
+  visibility: hidden;
 }
 
 .sidebar {
@@ -204,18 +208,6 @@ h1 {
   background: #7294b8;
 }
 
-/* Keep an authored cutscene's world hidden until its package has acquired the
-   camera and applied the first visual frame. This prevents the gameplay spawn
-   camera/player from becoming a one-frame loading shot. */
-body.cutscene-starting .viewport::after {
-  position: absolute;
-  z-index: 6;
-  inset: 0;
-  content: "";
-  background: #000;
-  pointer-events: none;
-}
-
 #renderCanvas {
   display: block;
   min-width: 0;
@@ -226,6 +218,15 @@ body.cutscene-starting .viewport::after {
   touch-action: none;
 }
 
+.transition-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  pointer-events: none;
+}
+
 .map-loading {
   position: absolute;
   inset: 0;
@@ -234,9 +235,18 @@ body.cutscene-starting .viewport::after {
   place-items: stretch;
   color: #f2f4f5;
   background: #000;
-  transition:
-    opacity 220ms ease,
-    visibility 220ms ease;
+  opacity: 1;
+  visibility: visible;
+}
+
+.map-loading.covering {
+  transition: opacity var(--loading-cover-ms) linear;
+}
+
+.map-loading.revealing {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--loading-reveal-ms) linear;
 }
 
 .map-loading.hidden {
@@ -245,11 +255,10 @@ body.cutscene-starting .viewport::after {
   pointer-events: none;
 }
 
-.map-loading .loading-card {
-  transition: opacity 180ms ease;
-}
-
-.map-loading.day-rollover-fade .loading-card {
+.map-loading:is(.covering, .covered) .loading-card {
+  visibility: hidden;
+  /* The animated dots set their own visibility. Hide the whole card as a
+     composited group so they cannot reappear during the plain-black fade. */
   opacity: 0;
 }
 

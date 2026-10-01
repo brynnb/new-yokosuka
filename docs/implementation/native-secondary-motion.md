@@ -22,8 +22,11 @@ character-presentation subsystem, not an OP00 timeline correction:
   projection.
 - `play/data/native-secondary-motion-collision.web.js` is generated metadata;
   it is never a duplicate model asset.
-- `play/events/NativeAseqPresentationRuntime.js` establishes update order and
-  lifecycle ownership.
+- `play/data/native-articulated-surface.web.js` retains executable-backed
+  constants for scripted type-`0x81` scale/rotation controls.
+- `play/events/NativeAseqPresentationRuntime.js` establishes cinematic update
+  order and lifecycle ownership; `NativeCharacterSecondaryMotion` supplies
+  the shared post-pose stage for ordinary character presentation.
 - `src/Mt5Loader.js` applies already-resolved node matrices to either the GPU
   or CPU character renderer. It contains no cutscene or character policy.
 
@@ -128,7 +131,73 @@ deterministically.
 Releasing presentation restores the ordinary body matrices, preventing the
 last cinematic hair pose from leaking into gameplay.
 
+Gameplay, walking NPCs, remote players, previews, and combat actors use the
+same model-owned secondary-motion state. AUTH claims that state while a
+cinematic activity is active; normal render updates cannot advance it again.
+AUTH camera cuts preserve the native chain history. Switching back to gameplay
+or beginning a new program resets it, and a render-only pose releases it.
+
+The ordinary render loop uses a 30 Hz accumulator with at most five catch-up
+steps, matching CLTH's browser scheduling limit. On intervening render frames,
+the last solved special-node matrices are carried by their freshly animated
+body attachment. The body, eyes, and other nodes stay under their existing
+owners. Inactive script-controlled sleeves receive no matrix override.
+
+The ordinary-NPC audit identifies thirteen models with supported type-`0x78`
+chains. Their hookup is now exercised with real native walking poses. This
+does not upgrade the default chain profile to an exact Dreamcast reconstruction:
+non-KOK chains retain the existing shared approximation, while KOK keeps its
+executable-backed parameters. Unknown special-node handlers remain disabled.
+
 ## Current fidelity boundary
+
+### Script-controlled sleeves
+
+The type-`0x81` handler (`FUN_0c135bec`) has a separate `KOK` model-family
+branch. Its operation-`0x0164` controls select two channels: modes `0/1`
+are root Y scale, `10/11` rotate X, `20/21` rotate Z, and `30/31` rotate Y.
+`FUN_0c13161c` selects channel 1 for positive bind-world X; same-type
+children inherit that channel and increment the segment index. This is
+derived from the native initializer, not a left/right actor-name convention.
+
+The browser resolves full local matrices for this branch because endpoint
+bending loses axial rotation and shortening. The root applies the script's
+scale and fixed-turn angles in its authored local orientation; each child computes cumulative scale as
+`0.2f + 0.8f * parentScale`, then divides by the parent scale for its local
+transform. These values come from the pinned executable's float literals.
+Only sleeve nodes change; the animated arm, tattoo and hand stay on their
+ordinary body attachment routes.
+
+The handler first translates in `FUN_0c1368a4`, then calls `FUN_0c091868`
+at `0x0c136124` with the render node's authored XYZ angles before the script's
+Z/X/Y rotations and scale. With row vectors, the control transform therefore
+pre-multiplies the complete authored local matrix. The earlier translation
+mistook that authored rotation call for translation and discarded KOK's
+approximately `315/90/45` degree sleeve-root orientation. This also broke the
+native reset to scale `1`, which deliberately keeps the forced branch active.
+
+`extractNativeAseqCallbackSecondaryMotionControls` projects exact constant
+callback writes onto the existing activity cues, with entry writes before
+presentation and later writes before their frame is rendered. These cues
+update `NativeSecondaryMotionControlState`, the same authoritative state
+used by interpreted native operations. There is no separate tattoo animation.
+OP00 callback `0xc700` sets scale `0.23`, rotations `16.7/-4.7/29` at frame
+330; callback `0xb3f8` restores that sleeve and briefly controls the other.
+
+This implements the **script-controlled KOK branch**, not the entire native
+inertial solver. Outside the native forced branch (positive scale or nonzero
+X/Z bending), KOK retains its authored pose; its unforced owner-motion
+modulation is still unimplemented.
+MGR's captured wind-driven sleeves continue through their existing solver.
+The extractor below retains the native initializer, handler provenance and
+constants, and generates the browser profile so corrections remain reproducible.
+
+GPU-rendered validation traverses the original stage boundaries to the
+tattoo shot, compares the controlled/uncontrolled sleeve, checks unchanged
+hand attachments, and verifies the following callback's reset. This is a
+targeted visual check, not a new full-playback completeness claim.
+
+### Wind and inertia
 
 Node type `0x78` has the complete executable-backed collision path. Type
 `0x81` now has a separate cyclic articulated-surface solver: it approaches the

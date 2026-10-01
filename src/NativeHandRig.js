@@ -1,4 +1,13 @@
 import * as BABYLON from "@babylonjs/core";
+import { rowMultiply, rowRotationX, rowRotationY, rowRotationZ } from "./Mt5Transform.js";
+
+export function nativeHandAttachmentMatrix(attachment, rotationRaw) {
+  // Original consumer 0x0c0de682 loads control 12/18, then calls 0x0c091868
+  // with HNDL/HNDR pointer+0x08/+0x0c/+0x10. The latter consumes unsigned
+  // low-word fixed turns in X/Y/Z order. These are not HM finger pose slots.
+  const [x, y, z] = rotationRaw.map(word => (word & 0xffff) * Math.PI * 2 / 65536);
+  return rowMultiply(rowMultiply(rowMultiply(rowRotationX(x), rowRotationY(y)), rowRotationZ(z)), attachment);
+}
 
 export const NATIVE_HAND_BONE_COUNT = 71;
 export const NATIVE_HAND_VERTEX_COUNT = 306;

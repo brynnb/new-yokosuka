@@ -1,0 +1,51 @@
+{
+  "schema": "new-yokosuka-hand-attachment-contract-v1",
+  "sourceSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+  "dependencies": {
+    "handlerTableEntry": "0x0c1652fe",
+    "objectResolver": "0x0c153956",
+    "rightRecordResolver": "0x0c0de67a",
+    "leftRecordResolver": "0x0c0de672",
+    "pointer10VectorRead": "0x0c0dec26",
+    "pointer10VectorWrite": "0x0c0dec4e",
+    "leftRecordTag": "0x4c444e48",
+    "associatedRecordLookup": "0x0c0aad5a",
+    "rightRecordTag": "0x52444e48",
+    "attachmentMatrixResolver": "0x0c1140e6",
+    "loadAttachmentMatrix": "0x0c1d1a00",
+    "fixedTurnRotation": "0x0c091868"
+  },
+  "verifiedRanges": {
+    "attachmentConsumer": {
+      "address": "0xc0de682",
+      "length": 302,
+      "sha256": "a4d6431218f906d144a95035a4df5dd1c9cc1a8406f155ae71bdb365078779d3"
+    },
+    "fixedTurnRotation": {
+      "address": "0xc091868",
+      "length": 166,
+      "sha256": "d20e963698e47ad60cf74217c64c9bbd327d563b8564973bd48fded9be30fd96"
+    },
+    "handler": {
+      "address": "0xc1652fe",
+      "length": 148,
+      "sha256": "40616b2c86c07f618ab80a0f21280b8cbb34e68868cc24da458a98b68869f3e1"
+    },
+    "recordResolver": {
+      "address": "0xc165158",
+      "length": 56,
+      "sha256": "c18f3f4c8bd977202c2dee2bc6d33d75d738d7578106870dd74da3b5138e40dd"
+    },
+    "pointer10VectorRead": {
+      "address": "0xc0dec26",
+      "length": 40,
+      "sha256": "38af5b2579955b5e6d54dfe21a8731c07e7cdeb81c082e0b402b45112800b823"
+    },
+    "pointer10VectorWrite": {
+      "address": "0xc0dec4e",
+      "length": 14,
+      "sha256": "fc74afe873da2f97396acf6940aaca53688d3c9c9068a35009ea0d75ada2d671"
+    }
+  },
+  "behavior": "Consumer 0x0c0de682 loads controller 12/18 for side flags 1/2, then applies primary-controller translation and rotations at +8/+12/+16. Rotation helper 0x0c091868 uses unsigned low-word fixed turns in X/Y/Z order, independently of the nineteen finger pose vectors."
+}

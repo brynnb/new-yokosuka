@@ -1,6 +1,6 @@
 {
   "schema": "new-yokosuka-aseq-activity-pack-v1",
-  "generatedBy": "tools/build_yq14_activity_pack.mjs",
+  "generatedBy": "tools/cutscenes/build_yq14_activity_pack.mjs",
   "source": {
     "disc": 1,
     "path": "extracted_files/data/SCENE/01/D000/YQ14.PKS",
@@ -90,19 +90,32 @@
       }
     }
   },
+  "actorTags": [
+    "SMTH",
+    "TONY",
+    "AKIR",
+    "BIN_"
+  ],
   "motionBanks": [
     {
       "bank": 16,
-      "path": "play/assets/account/M_ZAKO.MOTN",
-      "byteLength": 168080,
-      "sha256": "0562507487c808d2e1ad80f5e2fd2a3527172e01fd79501c64134db1ffccac3d"
+      "path": "play/assets/dobuita/yq14/M_01114.MOTN",
+      "byteLength": 44656,
+      "sha256": "6f7980d63ad21d4a4a51019a1ef22bbe843c03150028beff73b5b3d00302f1f8",
+      "source": {
+        "path": "extracted_files/data/SCENE/01/YQ14/M_01114.BIN",
+        "mapinfoPath": "extracted_files/data/SCENE/01/YQ14/MAPINFO.BIN",
+        "mapinfoSha256": "84ba191106cbc8f882790468bd8a7054f207bf7375e32355519fb6f49bc904bf",
+        "resourceNameOffset": "0x57e0e",
+        "headerAttributes": "0x1005"
+      }
     }
   ],
   "outputs": [
     {
-      "path": "play/assets/account/M_ZAKO.MOTN",
-      "byteLength": 168080,
-      "sha256": "0562507487c808d2e1ad80f5e2fd2a3527172e01fd79501c64134db1ffccac3d"
+      "path": "play/assets/dobuita/yq14/M_01114.MOTN",
+      "byteLength": 44656,
+      "sha256": "6f7980d63ad21d4a4a51019a1ef22bbe843c03150028beff73b5b3d00302f1f8"
     },
     {
       "path": "play/assets/dobuita/yq14/SEQDATA1.AUTH",
@@ -149,7 +162,7 @@
           "frame": 1,
           "motionBank": 16,
           "sequenceIndex": 2,
-          "motionName": "F1ERROR1",
+          "motionName": "OTH_GIB_YOPPARAI_0114",
           "startFrame": 301,
           "endFrame": 670
         },
@@ -158,7 +171,7 @@
           "frame": 1,
           "motionBank": 16,
           "sequenceIndex": 1,
-          "motionName": "F1ERROR0",
+          "motionName": "OTH_GIA_WHATS_0114",
           "startFrame": 41,
           "endFrame": 380
         },
@@ -167,9 +180,12 @@
           "frame": 1,
           "motionBank": 16,
           "sequenceIndex": 3,
-          "motionName": "F1ERROR2",
+          "motionName": "AKI_AITU_MASAKA_0448",
           "startFrame": 612,
-          "endFrame": 691
+          "endFrame": 691,
+          "sampleFrameOffset": 611,
+          "frameBasis": "rebased-whole-clip-window",
+          "sourceDurationFrames": 80
         }
       ]
     },
@@ -203,7 +219,7 @@
           "frame": 1,
           "motionBank": 16,
           "sequenceIndex": 2,
-          "motionName": "F1ERROR1",
+          "motionName": "OTH_GIB_YOPPARAI_0114",
           "startFrame": 371,
           "endFrame": 670
         },
@@ -212,7 +228,7 @@
           "frame": 1,
           "motionBank": 16,
           "sequenceIndex": 1,
-          "motionName": "F1ERROR0",
+          "motionName": "OTH_GIA_WHATS_0114",
           "startFrame": 81,
           "endFrame": 380
         },
@@ -221,7 +237,7 @@
           "frame": 1,
           "motionBank": 16,
           "sequenceIndex": 0,
-          "motionName": "AK_SY_PU_SYO_L2",
+          "motionName": "AKI_WHATS_0114",
           "startFrame": 41,
           "endFrame": 638
         },
@@ -230,7 +246,7 @@
           "frame": 301,
           "motionBank": 16,
           "sequenceIndex": 2,
-          "motionName": "F1ERROR1",
+          "motionName": "OTH_GIB_YOPPARAI_0114",
           "startFrame": 741,
           "endFrame": 1007
         },
@@ -239,7 +255,7 @@
           "frame": 301,
           "motionBank": 16,
           "sequenceIndex": 1,
-          "motionName": "F1ERROR0",
+          "motionName": "OTH_GIA_WHATS_0114",
           "startFrame": 351,
           "endFrame": 642
         }

@@ -6,6 +6,7 @@ import * as BABYLON from "@babylonjs/core";
 import manifest from "../play/assets/introduction/op02/manifest.json" with {
   type: "json",
 };
+import audioManifest from "../public/audio/world/op02/manifest.json" with { type: "json" };
 import {
   createNativeAseqFacialPresentation,
 } from "../play/events/NativeAseqFacialPresentation.js";
@@ -37,6 +38,7 @@ test("OP02 Shenhua FACE follows the scaled native head attachment", async () => 
       backFaceCulling: false,
       mirrorCharacterX: true,
       characterRigMode: "gpu",
+      characterRigSeamMode: "weld",
     });
     const [bodyRoot] = await bodyLoader.load(
       arrayBuffer(manifest.packageActors.SINF.assetPath),
@@ -90,21 +92,38 @@ test("OP02 Shenhua FACE follows the scaled native head attachment", async () => 
     const integration = presentation.active.faces.get("SINF")
       .surfaceIntegration;
     assert.equal(integration.boundExternalParentVertexCount, 0);
-    assert.equal(integration.removedTriangleCount, 3502);
-    assert.equal(integration.retainedTriangleCount, 2488);
+    assert.equal(integration.removedTriangleCount, 3593);
+    assert.equal(integration.retainedTriangleCount, 2397);
     const bodySkin = bodyRoot.getChildMeshes(false).find(
-      mesh => mesh.metadata?.mt5TextureId === "a049485f6b616f5f",
+      mesh => mesh._mt5NodeAddress === bodyFaceNode.addr
+        && mesh.metadata?.mt5TextureId === "a049485f6b616f5f",
     );
     assert.ok(bodySkin);
     assert.equal(
       bodySkin.getTotalIndices() / 3,
-      66,
-      "the seam-less detailed face must retain a continuous body neck band",
+      43,
+      "retain only uncovered body geometry, not the old two-ring neck workaround",
     );
     const detailedRoot = presentation.active.faces.get("SINF").entry.root;
     assert.equal(detailedRoot.parent, bodyRoot);
     assert.equal(detailedRoot.isEnabled(), true);
     assert.equal(presentation.apply(owner, { frame: 0 }), true);
+    // MGR's four parent nodes contain real neck surfaces; the FACE key is not
+    // the resource root. Prove these ancestors move with the attachment, too.
+    const parents = [];
+    let parent = detailedEntry.primaryNode;
+    while ((parent = detailedRoot._mt5Nodes.find(node => node.addr === parent.parentAddr))) parents.push(parent);
+    assert.equal(parents.filter(node => node.model).length, 4);
+    for (const angle of [0, 0.4, -0.6]) {
+      const posed = Mt5Loader.rowMultiply(bodyFaceMatrix, Mt5Loader.rowRotationY(angle));
+      posed[12] += 3;
+      bodyLoader.applyCharacterRigWorldMatrices(bodyRoot, new Map([[-67, posed]]));
+      presentation.apply(owner, { frame: 0 });
+      for (const node of parents) {
+        assert.deepEqual(detailedRoot._mt5CharacterWorldMatrices.get(node.addr), posed,
+          `neck node ${node.addr} follows the mounted FACE resource`);
+      }
+    }
     assert.equal(presentation.end(owner), true);
     assert.equal(presentation.active, null);
     assert.equal(detailedRoot.parent, null);
@@ -118,7 +137,7 @@ test("OP02 Shenhua FACE follows the scaled native head attachment", async () => 
     assert.equal(
       presentation.active.faces.get("SINF").surfaceIntegration
         .removedTriangleCount,
-      3502,
+      3593,
     );
     assert.equal(presentation.end(nextOwner), true);
     assert.equal(detailedRoot.parent, null);
@@ -136,16 +155,24 @@ test("OP02 Shenhua FACE follows the scaled native head attachment", async () => 
       presentation.active.faces.get("SINF").surfaceIntegration,
       programIntegration,
     );
-    presentation.active.faces.get("SINF").cueIndex = 4;
-    presentation.active.faces.get("SINF").prefetched = true;
+    const voiceCue = { positionSeconds: 4 / 30, command: {
+      name: "voice", audio: audioManifest.voices.find(voice => voice.speakerId === "SINF"),
+    } };
+    const voiceCues = new Map([["SINF", voiceCue]]);
+    assert.ok(voiceCue.command.audio.lipSync);
+    presentation.apply(firstShotOwner, { frame: 4, voiceCues });
+    const firstVoiceState = presentation.active.faces.get("SINF").lipSync.snapshot();
     assert.equal(presentation.end(firstShotOwner), true);
     assert.equal(detailedRoot.parent, bodyRoot);
     assert.equal(detailedRoot.isEnabled(), false);
     const secondShotOwner = {};
     assert.equal(presentation.begin(secondShotOwner, ["SINF"]), true);
-    assert.equal(presentation.active.faces.get("SINF").cueIndex, -1);
-    assert.equal(presentation.active.faces.get("SINF").prefetched, false);
-    assert.equal(presentation.apply(secondShotOwner, { frame: 1 }), true);
+    assert.equal(presentation.apply(secondShotOwner, { frame: 0, voiceCues }), true);
+    assert.deepEqual(presentation.active.faces.get("SINF").lipSync.snapshot(), firstVoiceState,
+      "camera cuts must preserve the ongoing narration's lip-sync state");
+    voiceCue.positionSeconds = 9 / 30;
+    assert.equal(presentation.apply(secondShotOwner, { frame: 1, voiceCues }), true);
+    assert.equal(presentation.active.faces.get("SINF").voiceFrame, 9);
     assert.equal(
       presentation.active.faces.get("SINF").surfaceIntegration,
       programIntegration,

@@ -8,7 +8,10 @@ import {
   buildNativeAseqActivityPack,
   sha256,
 } from "../lib/NativeAseqActivityPack.mjs";
-import { extractNativeAseqCallbackPresentation } from "../lib/NativeAseqCallbackPresentation.mjs";
+import {
+  extractNativeAseqCallbackPresentation,
+  extractNativeAseqHandInitialization,
+} from "../lib/NativeAseqCallbackPresentation.mjs";
 import { extractNativeTexnPack } from "../lib/NativeTexnPack.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
@@ -43,8 +46,17 @@ const callbackPresentation = extractNativeAseqCallbackPresentation({
 if (
   callbackPresentation.nativeFaceClipCues.length !== 37
   || callbackPresentation.nativeFaceControllerCues.length !== 16
-  || callbackPresentation.nativeDetailedHandDefaults.length !== 1
+  || callbackPresentation.nativeHandPoseCues.length !== 1
 ) throw new Error("HOUO callback presentation changed");
+const handInitialization = extractNativeAseqHandInitialization({
+  bytes: mapinfo,
+  nativeFunction: callbackEvidence.supportingFunctions.find(fn => fn.id === "0x26b4c"),
+  functions: callbackEvidence.supportingFunctions,
+  activitySlot: 9,
+});
+if (handInitialization.nativeHandPoseCues.length !== 4) {
+  throw new Error("HOUO owner hand initialization changed");
+}
 
 const textureArchive = readFileSync(path.join(sourceRoot, "data/SCENE/02/JHD0/HOUO.PKF"));
 if (
@@ -74,6 +86,10 @@ buildNativeAseqActivityPack({
   bindingEvidence: "tools/evidence/player-cutscene-owner-discovery.json",
   selectionRule: "exact SEQDATAD member installed by JHD0 owner state 97",
   audioManifest: "public/audio/world/houo/manifest.json",
+  nativeHandPoseTables: {
+    ...handInitialization.nativeHandPoseTables,
+    ...callbackPresentation.nativeHandPoseTables,
+  },
   outputDirectory,
   outputAssetPrefix: "play/assets/hazuki/houo",
   manifestPath: path.join(outputDirectory, "manifest.json"),
@@ -118,22 +134,12 @@ buildNativeAseqActivityPack({
     frameCount: 43,
     commandCounts: { camera: 1, move: 3, motion: 4, sound: 25, voice: 16 },
     nativeFaceClipCues: callbackPresentation.nativeFaceClipCues,
+    nativeHandComponentCues: callbackPresentation.nativeHandComponentCues,
     nativeFaceControllerCues: callbackPresentation.nativeFaceControllerCues,
-    nativeDetailedHandDefaults: [
-      {
-        activitySlot: 9,
-        actorTag: "AKIR",
-        sides: ["left", "right"],
-        sourceFunction: "0x26c88",
-        ownerCallFileOffset: "0x26b5a",
-      },
-      {
-        activitySlot: 9,
-        actorTag: "FUKU",
-        sides: ["left", "right"],
-        sourceFunction: "0x26c88",
-        ownerCallFileOffset: "0x26b66",
-      },
+    // Owner setup runs before the callback's immediate right-hand mirror grip.
+    nativeHandPoseCues: [
+      ...handInitialization.nativeHandPoseCues,
+      ...callbackPresentation.nativeHandPoseCues,
     ],
   }],
 });

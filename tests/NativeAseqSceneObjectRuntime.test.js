@@ -6,6 +6,93 @@ import {
   NativeAseqSceneObjectRuntime,
 } from "../play/events/NativeAseqSceneObjectRuntime.js";
 
+test("callback effect visibility survives movement and resets with its activity lease", async () => {
+  const engine = new BABYLON.NullEngine();
+  const scene = new BABYLON.Scene(engine);
+  try {
+    const root = new BABYLON.TransformNode("effect", scene);
+    root._filename = "EFFECT.MT5";
+    const runtime = new NativeAseqSceneObjectRuntime({ definitions: {
+      TEST: { model: "EFFECT", browserFilename: root._filename },
+    } });
+    await runtime.load([root]);
+    for (const reason of ["complete", "cancelled"]) {
+      const owner = {};
+      runtime.begin(owner, ["TEST"]);
+      runtime.activate(owner, "TEST");
+      assert.equal(root.isEnabled(), true);
+      runtime.applyStateCue({ actorTag: "TEST", presented: false, scale: [2, 3, 4] });
+      runtime.activate(owner, "TEST");
+      assert.equal(root.isEnabled(), false);
+      assert.deepEqual(root.scaling.asArray(), [2, 3, 4]);
+      runtime.applyStateCue({ actorTag: "TEST", presented: true });
+      runtime.activate(owner, "TEST");
+      assert.equal(root.isEnabled(), true);
+      assert.throws(() => runtime.applyStateCue({ actorTag: "NONE", presented: false }), /no activity ownership/);
+      runtime.end(owner, reason);
+      assert.equal(root.isEnabled(), false);
+      assert.deepEqual(root.scaling.asArray(), [1, 1, 1]);
+    }
+  } finally { scene.dispose(); engine.dispose(); }
+});
+
+test("AUTH entry transforms are leased and restored for completion, cancellation and replay", async () => {
+  const engine = new BABYLON.NullEngine();
+  const scene = new BABYLON.Scene(engine);
+  try {
+    const root = new BABYLON.TransformNode("prop", scene);
+    root._filename = "PROP.MT5";
+    root.position.set(7, 8, 9);
+    root.scaling.set(2, 3, 4);
+    const runtime = new NativeAseqSceneObjectRuntime({ definitions: {
+      PROP: { model: "PROP", browserFilename: root._filename,
+        initialPresentation: { position: [1, 2, 3], rotationDegrees: [0, 0, 0], scale: [100, 100, 100] } },
+    } });
+    await runtime.load([root]);
+    for (const reason of ["complete", "cancelled", "complete"]) {
+      const owner = {};
+      runtime.begin(owner, ["PROP"]);
+      assert.equal(root.isEnabled(), false);
+      assert.deepEqual(root.position.asArray(), [-1, 2, 3]);
+      assert.deepEqual(root.scaling.asArray(), [100, 100, 100]);
+      runtime.activate(owner, "PROP");
+      root.position.set(12, 13, 14); // AUTH movement does not erase entry scale.
+      assert.deepEqual(root.scaling.asArray(), [100, 100, 100]);
+      runtime.end(owner, reason);
+      assert.deepEqual(root.position.asArray(), [7, 8, 9]);
+      assert.deepEqual(root.scaling.asArray(), [2, 3, 4]);
+      assert.equal(root.isEnabled(), false);
+    }
+  } finally { scene.dispose(); engine.dispose(); }
+});
+
+test("cutscene release restores borrowed exploration travel targets on completion and cancellation", async () => {
+  const engine = new BABYLON.NullEngine();
+  const scene = new BABYLON.Scene(engine);
+  try {
+    const bus = new BABYLON.TransformNode("bus", scene);
+    bus._filename = "S1_D000_BUSS530G.MT5";
+    bus.metadata = { interactiveMapTransition: { transition: { destination: { worldId: "mfsy" } } } };
+    bus.position.set(-50.346893, 0, 5.975222);
+    const initial = bus.position.asArray();
+    const runtime = new NativeAseqSceneObjectRuntime({ definitions: {
+      BUS_: { model: "BUSS530G", browserFilename: bus._filename },
+    } });
+    for (const complete of [true, false]) {
+      await runtime.load([bus]);
+      assert.equal(bus.isEnabled(), false);
+      const owner = {};
+      runtime.begin(owner, ["BUS_"]);
+      runtime.activate(owner, "BUS_");
+      bus.position.set(1, 2, 3);
+      if (complete) runtime.end(owner);
+      runtime.clear();
+      assert.equal(bus.isEnabled(), true);
+      assert.deepEqual(bus.position.asArray(), initial);
+    }
+  } finally { scene.dispose(); engine.dispose(); }
+});
+
 test("AUTH scene objects bind exact world roots and restore track visibility", async () => {
   const engine = new BABYLON.NullEngine();
   const scene = new BABYLON.Scene(engine);

@@ -1,10 +1,14 @@
 #!/usr/bin/env node
 
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { buildNativeAseqActivityPack } from "../lib/NativeAseqActivityPack.mjs";
+import { buildNativeAseqActivityPack, sha256 } from "../lib/NativeAseqActivityPack.mjs";
+import {
+  extractNativeAseqCallbackHandPresentation,
+  extractNativeAseqHandInitialization,
+} from "../lib/NativeAseqCallbackPresentation.mjs";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const sourceRoot = [
@@ -12,6 +16,40 @@ const sourceRoot = [
   path.join(repoRoot, "extracted_files"),
 ].filter(Boolean).find(existsSync);
 if (!sourceRoot) throw new Error("an exact Shenmue Disc 1 extraction was not found");
+const mapinfo = readFileSync(path.join(sourceRoot, "data/SCENE/01/JHD0/MAPINFO.BIN"));
+const handEvidence = JSON.parse(readFileSync(path.join(repoRoot, "tools/evidence/jhw0-native-callback-ir.json")));
+if (sha256(mapinfo) !== handEvidence.source.mapinfoSha256
+  || handEvidence.function.id !== "0x43ba0") throw new Error("JHW0 hand source changed");
+const dispatcher = handEvidence.function;
+const functions = handEvidence.supportingFunctions;
+const callbackBySlot = new Map();
+// The native dispatcher compares its copied activity-slot argument, then
+// calls that variant's callback. Its order is NOT the numeric slot order.
+for (const block of dispatcher.blocks) for (const comparison of block.frameFieldComparisons) {
+  if (comparison.fieldOffset !== 0 || comparison.comparison !== "cmp/eq") continue;
+  const branch = dispatcher.blocks.find(block => block.id === comparison.resolvedBranch.comparisonTrueSuccessor);
+  const calls = branch?.actions.filter(action => action.kind === "directCall") || [];
+  if (calls.length !== 1 || callbackBySlot.has(comparison.constant)) {
+    throw new Error("JHW0 hand callback dispatch is ambiguous");
+  }
+  callbackBySlot.set(comparison.constant, calls[0].targetFileOffset);
+}
+const nativeHandPoseTables = {};
+const handsBySlot = new Map();
+const componentsBySlot = new Map();
+for (const [activitySlot, callback] of callbackBySlot) {
+  const initial = extractNativeAseqHandInitialization({
+    bytes: mapinfo, nativeFunction: functions.find(fn => fn.id === "0x4505c"),
+    functions, activitySlot,
+  });
+  const timed = extractNativeAseqCallbackHandPresentation({
+    bytes: mapinfo, callbackFunction: Number.parseInt(callback, 16),
+    nativeFunction: functions.find(fn => fn.id === callback), activitySlot,
+  });
+  Object.assign(nativeHandPoseTables, initial.nativeHandPoseTables, timed.nativeHandPoseTables);
+  handsBySlot.set(activitySlot, [...initial.nativeHandPoseCues, ...timed.nativeHandPoseCues]);
+  componentsBySlot.set(activitySlot, timed.nativeHandComponentCues);
+}
 
 const motionNames = Object.freeze([
   "AKI_AT1_RENSYU_TYUUKEN_WAZADENFUK_0100",
@@ -59,6 +97,11 @@ const activityFacts = Object.freeze([
   [15, 0x5f669, 0x5f676, 7, 830, 21, { camera: 1, move: 2, motion: 2, voice: 6, sound: 15 }],
   [16, 0x5f67b, 0x5f688, 8, 910, 29, { camera: 1, move: 2, motion: 8, sound: 20, voice: 5 }],
 ]);
+if (callbackBySlot.size !== activityFacts.length
+  || activityFacts.some(([slot, , , , duration]) => !handsBySlot.has(slot)
+    || handsBySlot.get(slot).some(cue => cue.frame >= duration))) {
+  throw new Error("JHW0 HAND callback activity ownership changed");
+}
 
 const outputDirectory = path.join(repoRoot, "play/assets/hazuki/jhw0");
 buildNativeAseqActivityPack({
@@ -72,6 +115,7 @@ buildNativeAseqActivityPack({
   bindingEvidence: "tools/evidence/jhw0-native-lifecycle.json",
   selectionRule: "operation-0x013e slots 9 through 16 select SEQDATA1.AUTH through SEQDATA8.AUTH",
   audioManifest: "public/audio/world/jhw0/manifest.json",
+  nativeHandPoseTables,
   outputDirectory,
   outputAssetPrefix: "play/assets/hazuki/jhw0",
   manifestPath: path.join(outputDirectory, "manifest.json"),
@@ -92,6 +136,8 @@ buildNativeAseqActivityPack({
     durationFrames,
     frameCount,
     commandCounts,
+    nativeHandPoseCues: handsBySlot.get(slot),
+    nativeHandComponentCues: componentsBySlot.get(slot),
   })),
 });
 

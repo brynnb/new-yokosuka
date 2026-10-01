@@ -3,6 +3,21 @@ function requireArray(value, label) {
   return value;
 }
 
+// Compare against retained original IR, never just the packaged timeline being
+// tested. Silent camera/effect AUTH calls have no dialogue paths to classify.
+export function originalStageCallsAreComplete(sourceFunctions, stageFunctions, selectedCalls) {
+  return Array.isArray(sourceFunctions) && Array.isArray(stageFunctions) && stageFunctions.length > 0
+    && stageFunctions.every(functionId => {
+      const source = sourceFunctions.find(fn => fn.id === functionId);
+      const calls = source?.blocks.flatMap(block => block.actions).filter(action =>
+        action.operationHex === "0x0050" && action.arguments[0]?.kind === "constant"
+        && action.arguments[0].value >= 0 && action.arguments[0].value < 0x80000000) || [];
+      const selected = selectedCalls.filter(call => call.functionId === functionId);
+      return source && calls.length === selected.length && calls.every(action =>
+        selected.some(call => call.callFileOffset === action.callFileOffset && call.slot === action.arguments[0].value));
+    }) && selectedCalls.every(call => stageFunctions.includes(call.functionId));
+}
+
 function operationActions(program) {
   return requireArray(program?.functions, "native program functions")
     .flatMap(fn => requireArray(fn.blocks, `native function ${fn.id} blocks`)
@@ -167,6 +182,7 @@ export function auditCompiledOwnerProgram({
   compiledProgram,
   expected,
   activityManifest,
+  sourceStageFunctions,
 } = {}) {
   if (compiledProgram?.schema !== "new-yokosuka-native-cutscene-program-v1") {
     throw new Error("canonical compiled cutscene program is unavailable");
@@ -182,7 +198,11 @@ export function auditCompiledOwnerProgram({
   const identityMatches = compiledProgram.id === expected.id
     && compiledProgram.area === expected.area
     && compiledProgram.entryFunction === expected.entryFunction;
-  const authoredFamilyMatches = selection.authoredPathToken === expected.authoredPathToken;
+  const originalStagesMatch = selection.selectionKind === "original-script-stages"
+    && JSON.stringify(selection.stages?.map(stage => stage.functionId)) === JSON.stringify(expected.stageFunctions);
+  const stageCoverageComplete = originalStagesMatch && originalStageCallsAreComplete(
+    sourceStageFunctions, expected.stageFunctions, ownerCalls,
+  );
   const slotsMatch = integerSetMatches(selectedSlots, expectedSlots)
     && integerSetMatches(ownerCalls.map(call => call.slot), expectedSlots)
     && ownerCalls.length === expectedSlots.length;
@@ -192,8 +212,8 @@ export function auditCompiledOwnerProgram({
       && call.resource.byteLength > 0
       && /^0x[0-9a-f]+$/i.test(call.resource.sourceFileOffset || "")
     ));
-  const completionBoundaryMatches = selection.completionBoundary?.slot
-    === expected.completionBoundarySlot;
+  const completionBoundaryMatches = selection.completionBoundary?.kind === "after-original-stage-return"
+    && selection.completionBoundary.completedStageFunction === expected.stageFunctions?.at(-1);
   const compiler = compiledProgramBlockers(compiledProgram);
   const activities = Array.isArray(activityManifest?.activities)
     ? activityManifest.activities
@@ -214,7 +234,8 @@ export function auditCompiledOwnerProgram({
     });
   const blockers = [
     ...(!identityMatches ? ["canonical-owner-identity-mismatch"] : []),
-    ...(!authoredFamilyMatches ? ["authored-resource-family-mismatch"] : []),
+    ...(!originalStagesMatch ? ["original-script-stages-mismatch"] : []),
+    ...(!stageCoverageComplete ? ["original-script-stage-coverage-incomplete"] : []),
     ...(!slotsMatch ? ["owner-auth-call-closure-incomplete"] : []),
     ...(!resourcesAreExact ? ["owner-auth-resource-provenance-incomplete"] : []),
     ...(!completionBoundaryMatches ? ["owner-completion-boundary-mismatch"] : []),
@@ -233,12 +254,13 @@ export function auditCompiledOwnerProgram({
     identityMatches,
     authoredResourceSelection: Object.freeze({
       kind: selection.selectionKind,
-      pathToken: selection.authoredPathToken,
+      stageFunctions: Object.freeze(selection.stages.map(stage => stage.functionId)),
+      stageCoverageComplete,
       selectedSlots: Object.freeze([...selectedSlots]),
       ownerCallCount: ownerCalls.length,
       exactResourceCount: resourceHashes.length,
       resourcesAreExact,
-      completionBoundarySlot: selection.completionBoundary?.slot ?? null,
+      completionBoundary: selection.completionBoundary?.kind ?? null,
     }),
     compiler,
     activityTransport: Object.freeze({

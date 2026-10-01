@@ -95,6 +95,16 @@ The normal Disc 1 command is:
 tools/emulator/run_flycast_pvr_capture.sh 1
 ```
 
+Set `FLYCAST_PROFILE_ROOT` to an absolute path to use a copied interactive
+profile instead of `.flycast-pvr`. Copy the configuration/mappings and required
+VMU/save-state files into its `config/flycast` and `data/flycast` directories;
+the wrapper installs its capture bridge and uses that profile's `control`
+directory. Disable autosave in the copied configuration. When using
+`SHENMUE_CUE` to select a `.gdi`, save-state filenames must match that image's
+basename (for example `disc1.gdi` uses `disc1.state`, `disc1_1.state`, etc.).
+Original profile files remain untouched. Frame/RAM captures still go into the
+repository's `captures` directories.
+
 Use the disc number implied by the request or current investigation; default
 to Disc 1 only when no other disc is indicated. The wrapper preserves the
 selected save-state slot from `.flycast-pvr/config/flycast/emu.cfg`, and with

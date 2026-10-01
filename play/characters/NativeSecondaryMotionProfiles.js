@@ -1,6 +1,7 @@
 import {
   NATIVE_SECONDARY_MOTION_MODEL_PROFILES,
 } from "../data/native-secondary-motion-collision.web.js";
+import { NATIVE_CONTROLLED_SURFACE_PROFILE } from "../data/native-articulated-surface.web.js";
 
 const DEFAULT_CHAIN_PROFILE = Object.freeze({
   behavior: "chain",
@@ -16,14 +17,14 @@ const DEFAULT_CHAIN_PROFILE = Object.freeze({
 
 // FUN_0c132a58 dispatches MT5 render-node types 0x78..0x8d to native OSAG
 // handlers. Type 0x78 is the articulated-chain handler used by KOK_M's
-// fourteen-piece ponytail. Other types deliberately remain disabled until
-// their distinct native handlers have been characterized; treating every
+// fourteen-piece ponytail. Strand/surface profiles below enable only their
+// characterized model branches; all other types remain disabled. Treating every
 // special node as hair would animate eyes, garment anchors, and attachments.
 export const NATIVE_OSAG_CHAIN_NODE_TYPE = 0x78;
 export const NATIVE_OSAG_STRAND_NODE_TYPE = 0x79;
-// MGR_M has two type-0x81 chains rooted beneath its left/right arm hierarchy.
+// MGR_M and KOK_M have type-0x81 chains beneath their arm hierarchies.
 // The executable routes them to the bounded-angular surface handler at
-// 0x0c135bec.  They are Shenhua's sleeves, not a second ponytail solver.
+// 0x0c135bec. These are sleeves, not a second ponytail solver.
 export const NATIVE_OSAG_ARTICULATED_SURFACE_NODE_TYPE = 0x81;
 export const NATIVE_OSAG_SIMULATED_NODE_TYPES = Object.freeze([
   NATIVE_OSAG_CHAIN_NODE_TYPE,
@@ -87,6 +88,12 @@ export function nativeSecondaryMotionProfile({
 } = {}) {
   if (!NATIVE_OSAG_SIMULATED_NODE_TYPES.includes(nodeType)) return null;
   const identity = nativeSecondaryMotionModelIdentity(modelCode);
+  // The same 0x81 handler has a KOK branch driven by operation 0x0164.
+  // These are native model-family parameters, not a tattoo-shot override.
+  if (identity === "KOK" && nodeType === NATIVE_OSAG_ARTICULATED_SURFACE_NODE_TYPE) {
+    return Object.freeze({ behavior: "articulated-surface", controlled: true,
+      ...NATIVE_CONTROLLED_SURFACE_PROFILE });
+  }
   const nodeTypeProfile = NODE_TYPE_PROFILES[nodeType] || null;
   if (
     nodeType !== NATIVE_OSAG_CHAIN_NODE_TYPE

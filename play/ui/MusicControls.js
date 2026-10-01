@@ -85,6 +85,10 @@ export class MusicControls {
     return this.director.setPlaybackPaused(paused);
   }
 
+  seekTemporaryBySeconds(seconds) {
+    return !this.disposed && this.director.seekTemporaryBySeconds(seconds);
+  }
+
   setMasterMuted(muted) {
     this.director.setMasterMuted(muted);
   }

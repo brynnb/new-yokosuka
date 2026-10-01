@@ -1,4 +1,6 @@
 import * as BABYLON from "@babylonjs/core";
+import { inverseAffineRow, rowMultiply, rowRotationX, rowRotationY,
+  rowRotationZ, rowScale } from "../../src/Mt5Transform.js";
 
 const EPSILON = 1e-8;
 
@@ -89,6 +91,58 @@ export class NativeArticulatedSurfaceMotion {
       primaryPhase: phaseFromNode(node, 0x9e3779b1) % 360,
       secondaryPhase: phaseFromNode(node, 0x85ebca6b) % 360,
     }));
+  }
+
+  /** FUN_0c135bec's KOK scripted branch preserves scale and axial rotation.
+   * Endpoint-only bending cannot express either; resolve the local matrices
+   * under the animated arm, without changing that arm or its hand attachment.
+   */
+  resolveControlledMatrices(baseMatrices, resolvedMatrices, controls, channel) {
+    const view = new DataView(new ArrayBuffer(4));
+    const read = mode => {
+      // Unwritten engine globals are initialized to zero in 1ST_READ.BIN.
+      view.setUint32(0, controls?.readGlobalFloat(mode) ?? 0, true);
+      const value = view.getFloat32(0, true);
+      if (!Number.isFinite(value)) throw new Error(`native sleeve control ${mode} is not finite`);
+      return value;
+    };
+    const values = [channel, 10 + channel, 20 + channel, 30 + channel].map(read);
+    // Native activation checks positive scale and the two bending angles;
+    // axial rotation (mode 30/31) does not itself select the forced branch.
+    if (!(values[0] > this.profile.activationThreshold
+      || Math.abs(values[1]) > this.profile.activationThreshold
+      || Math.abs(values[2]) > this.profile.activationThreshold)) {
+      // The unforced branch depends on the native angular/inertial state. Keep
+      // authored pose until that is recovered; do not reuse MGR's wind solver.
+      return false;
+    }
+    let cumulativeScale = values[0] > this.profile.activationThreshold ? values[0] : 1;
+    const radians = degrees => BABYLON.Tools.ToRadians(
+      quantizeNativeArticulatedSurfaceDegrees(degrees, this.profile.fixedTurnUnitsPer45Degrees),
+    );
+    for (const [index, node] of this.nodes.entries()) {
+      const parentBase = baseMatrices.get(node.parentAddr);
+      const localBase = rowMultiply(baseMatrices.get(node.addr), inverseAffineRow(parentBase));
+      const localScale = index === 0 ? cumulativeScale : (() => {
+        const parentScale = cumulativeScale;
+        cumulativeScale = this.profile.childScaleBase + this.profile.childScaleRetention * parentScale;
+        return cumulativeScale / parentScale;
+      })();
+      // FUN_0c1368a4 translates to the node, then 0x0c136124 calls
+      // FUN_0c091868 with its authored XYZ rotation before the control Z/X/Y
+      // rotations and scale. Keep that bind orientation: replacing it makes
+      // even the callback's neutral scale=1 reset turn the cuff sideways.
+      let local = rowScale(1, localScale, 1);
+      if (index === 0) {
+        local = rowMultiply(rowMultiply(rowMultiply(local,
+          rowRotationY(radians(values[3]))), rowRotationX(radians(values[1]))),
+        rowRotationZ(radians(values[2])));
+      }
+      local = rowMultiply(local, localBase);
+      resolvedMatrices.set(node.addr, rowMultiply(local,
+        resolvedMatrices.get(node.parentAddr) || parentBase));
+    }
+    return true;
   }
 
   update(baseWorldPoints) {

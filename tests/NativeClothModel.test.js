@@ -102,19 +102,19 @@ test("generated native cloth inventory preserves whole-cast coverage", () => {
     "new-yokosuka-shenmue1-native-cloth-model-inventory-v2",
   );
   assert.deepEqual(inventory.summary, {
-    characterModelCount: 240,
-    clothModelCount: 111,
-    clothGroupCount: 144,
-    renderedGroupCount: 142,
+    characterModelCount: 241,
+    clothModelCount: 112,
+    clothGroupCount: 147,
+    renderedGroupCount: 145,
     controlOnlyGroupCount: 2,
-    matchingRestPositionGroupCount: 119,
+    matchingRestPositionGroupCount: 122,
     distinctRestPositionGroupCount: 23,
     groupCountByControlType: {
-      "-74": 30,
-      "-73": 30,
+      "-74": 31,
+      "-73": 31,
       "-72": 2,
       "-71": 17,
-      "-70": 65,
+      "-70": 66,
     },
   });
   assert.deepEqual(
@@ -141,10 +141,18 @@ test("generated native cloth inventory preserves whole-cast coverage", () => {
     23,
   );
   const generatedGroups = Object.values(NATIVE_CLOTH_MODEL_METADATA).flat();
-  assert.equal(Object.keys(NATIVE_CLOTH_MODEL_METADATA).length, 111);
-  assert.equal(generatedGroups.length, 144);
-  assert.equal(generatedGroups.filter(group => group.closedColumns).length, 96);
+  // The refreshed bundle also contains NAT_L: two sleeves and one skirt.
+  assert.deepEqual(NATIVE_CLOTH_MODEL_METADATA.NAT_L.map(group => group.controlType),
+    [-73, -74, -70]);
+  assert.equal(Object.keys(NATIVE_CLOTH_MODEL_METADATA).length, 112);
+  assert.equal(generatedGroups.length, 147);
+  // Native -71..-74 panels are open. The old greatest-X traversal jumped
+  // across curved right panels and falsely classified all 31 as closed.
+  assert.equal(generatedGroups.filter(group => group.closedColumns).length, 66);
   for (const group of generatedGroups) {
+    if ([-71, -72, -73, -74].includes(group.controlType)) {
+      assert.equal(group.closedColumns, false, `open native panel ${group.controlType}`);
+    }
     assert.equal(
       group.rowCount * group.columnCount,
       group.vertexCount,

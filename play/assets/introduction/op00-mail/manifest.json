@@ -1,0 +1,1369 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_op00_continuation_assets.mjs",
+  "source": {
+    "disc": 1,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "SEQDATA26.AUTH",
+        "path": "extracted_files/data/SCENE/01/OP00/MAPINFO.BIN",
+        "sourceOffset": 308620,
+        "sourceSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+        "byteLength": 1116,
+        "sha256": "d2457d9ba8bb81262b1fc3f71b2c336c80d721077e8dc52fb850ce2fcc50c383"
+      },
+      {
+        "name": "SEQDATA27.AUTH",
+        "path": "extracted_files/data/SCENE/01/OP00/MAPINFO.BIN",
+        "sourceOffset": 309736,
+        "sourceSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+        "byteLength": 3256,
+        "sha256": "4827f2cdedbb875e374849e9ae0ca54153865df9735996452fef99e2dd7cba1d"
+      },
+      {
+        "name": "SEQDATA25.AUTH",
+        "path": "extracted_files/data/SCENE/01/OP00/MAPINFO.BIN",
+        "sourceOffset": 298872,
+        "sourceSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+        "byteLength": 9748,
+        "sha256": "451bf4f7a0387e21ac540e561e344e1d0f7dd7c060935819d35585dbc116d8df"
+      }
+    ],
+    "sha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4"
+  },
+  "nativeBinding": {
+    "evidence": "tools/evidence/op00-opening-owner-ir.json",
+    "resourceName": "OP00",
+    "variant": "",
+    "selectionRule": "OP00 owner 0x1bfa4, validated by the shared control-flow compiler"
+  },
+  "sceneObjects": {
+    "KNBS": {
+      "actorTag": "KNBS",
+      "image": "KANBANS",
+      "model": "YUKS502G",
+      "characterRecordOffset": 112,
+      "imagePropertyOffset": 120,
+      "defImageRecordOffset": 8,
+      "archiveEntryIndex": 2,
+      "childIndex": 0,
+      "browserFilename": "S1_OP00_YUKS502G.MT5",
+      "initialPresentation": {
+        "position": [
+          -0.16536599397659302,
+          -0.5729990005493164,
+          15.171102523803711
+        ],
+        "rotationDegrees": [
+          -38.440521240234375,
+          -31.692934036254883,
+          -14.471044540405273
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "kind": "chrt-associated-object",
+          "archive": "OP99.AFS",
+          "archiveEntryIndex": 2,
+          "childIndex": 0,
+          "objectPropertyOffset": 164,
+          "positionPropertyOffset": 204,
+          "anglePropertyOffset": 224
+        }
+      },
+      "lifecycle": {
+        "kind": "auth-scoped"
+      }
+    },
+    "KNBU": {
+      "actorTag": "KNBU",
+      "image": "KANBANU",
+      "model": "YUKS503G",
+      "characterRecordOffset": 252,
+      "imagePropertyOffset": 260,
+      "defImageRecordOffset": 40,
+      "archiveEntryIndex": 2,
+      "childIndex": 0,
+      "browserFilename": "S1_OP00_YUKS503G.MT5",
+      "initialPresentation": {
+        "position": [
+          -0.4664509892463684,
+          -0.5859460234642029,
+          15.646838188171387
+        ],
+        "rotationDegrees": [
+          98.5979995727539,
+          212.57464599609375,
+          -187.45803833007812
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "kind": "chrt-associated-object",
+          "archive": "OP99.AFS",
+          "archiveEntryIndex": 2,
+          "childIndex": 0,
+          "objectPropertyOffset": 304,
+          "positionPropertyOffset": 344,
+          "anglePropertyOffset": 364
+        }
+      },
+      "lifecycle": {
+        "kind": "auth-scoped"
+      }
+    },
+    "MNLF": {
+      "model": "B023H01G",
+      "browserFilename": "S1_OP00_B023H01G.MT5",
+      "assetPath": "play/assets/introduction/op00/models/B023H01G.CHRM",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          -0.11379999667406082,
+          0,
+          10.899999618530273
+        ],
+        "rotationDegrees": [
+          0,
+          313,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "objectPropertyOffset": 132,
+          "positionPropertyOffset": 172,
+          "anglePropertyOffset": 192
+        }
+      }
+    },
+    "ODR1": {
+      "actorTag": "ODR1",
+      "image": "DOOR_L",
+      "model": "DDRR1002",
+      "characterRecordOffset": 200,
+      "imagePropertyOffset": 208,
+      "defImageRecordOffset": 40,
+      "archiveEntryIndex": 6,
+      "childIndex": 0,
+      "browserFilename": "S1_OP00_DDRR1002.MT5",
+      "initialPresentation": {
+        "position": [
+          -2.3610000610351562,
+          1.059999942779541,
+          -21.434900283813477
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "kind": "chrt-associated-object",
+          "archive": "OP99.AFS",
+          "archiveEntryIndex": 6,
+          "childIndex": 0,
+          "objectPropertyOffset": 252,
+          "positionPropertyOffset": 292,
+          "anglePropertyOffset": null
+        }
+      },
+      "lifecycle": {
+        "kind": "room-script-persistent",
+        "stateOperations": [
+          "0x001f",
+          "0x00a8"
+        ]
+      }
+    },
+    "ODR2": {
+      "actorTag": "ODR2",
+      "image": "DOOR_R",
+      "model": "DDRR1001",
+      "characterRecordOffset": 80,
+      "imagePropertyOffset": 88,
+      "defImageRecordOffset": 8,
+      "archiveEntryIndex": 6,
+      "childIndex": 0,
+      "browserFilename": "S1_OP00_DDRR1001.MT5",
+      "initialPresentation": {
+        "position": [
+          -2.3610000610351562,
+          1.0550999641418457,
+          -23.454700469970703
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "kind": "chrt-associated-object",
+          "archive": "OP99.AFS",
+          "archiveEntryIndex": 6,
+          "childIndex": 0,
+          "objectPropertyOffset": 132,
+          "positionPropertyOffset": 172,
+          "anglePropertyOffset": null
+        }
+      },
+      "lifecycle": {
+        "kind": "room-script-persistent",
+        "stateOperations": [
+          "0x001f",
+          "0x00a8"
+        ]
+      }
+    },
+    "RMJN": {
+      "actorTag": "RMJN",
+      "image": "RMJN",
+      "model": "BMWS703G",
+      "characterRecordOffset": 392,
+      "imagePropertyOffset": 400,
+      "defImageRecordOffset": 72,
+      "archiveEntryIndex": 2,
+      "childIndex": 0,
+      "browserFilename": "S1_OP00_BMWS703G.MT5",
+      "initialPresentation": {
+        "position": [
+          -2.13211989402771,
+          -0.6499999761581421,
+          16.923839569091797
+        ],
+        "rotationDegrees": [
+          0,
+          26.81439971923828,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "kind": "first-auth-pose",
+          "trackIndex": 0,
+          "sourceMapinfoOffset": 142052,
+          "movementIndex": 3,
+          "timeSeconds": 0
+        }
+      },
+      "lifecycle": {
+        "kind": "room-script-persistent",
+        "stateOperations": [
+          "0x001f",
+          "0x00a8"
+        ]
+      }
+    },
+    "THN1": {
+      "actorTag": "THN1",
+      "image": "THDR",
+      "model": "KAMS203G",
+      "characterRecordOffset": 48,
+      "imagePropertyOffset": 56,
+      "defImageRecordOffset": 8,
+      "archiveEntryIndex": 14,
+      "childIndex": 0,
+      "browserFilename": "S1_OP00_KAMS203G_THN1.MT5",
+      "initialPresentation": {
+        "position": [
+          -9.264001846313477,
+          14.396951675415039,
+          -26.11700439453125
+        ],
+        "rotationDegrees": [
+          -16.501176834106445,
+          118.60220336914062,
+          -28.877073287963867
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "kind": "first-auth-pose",
+          "trackIndex": 24,
+          "sourceMapinfoOffset": 295412,
+          "movementIndex": 0,
+          "timeSeconds": 0
+        }
+      },
+      "lifecycle": {
+        "kind": "auth-scoped"
+      },
+      "assetPath": "play/assets/introduction/op00/models/KAMS203G.CHRM"
+    },
+    "THN2": {
+      "actorTag": "THN2",
+      "image": "THDR",
+      "model": "KAMS203G",
+      "characterRecordOffset": 160,
+      "imagePropertyOffset": 168,
+      "defImageRecordOffset": 8,
+      "archiveEntryIndex": 14,
+      "childIndex": 0,
+      "browserFilename": "S1_OP00_KAMS203G_THN2.MT5",
+      "initialPresentation": {
+        "position": [
+          -0.5439990162849426,
+          9.623652458190918,
+          -20.14499855041504
+        ],
+        "rotationDegrees": [
+          227.23504638671875,
+          32.658592224121094,
+          191.711669921875
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "kind": "first-auth-pose",
+          "trackIndex": 24,
+          "sourceMapinfoOffset": 295412,
+          "movementIndex": 1,
+          "timeSeconds": 0
+        }
+      },
+      "lifecycle": {
+        "kind": "auth-scoped"
+      },
+      "assetPath": "play/assets/introduction/op00/models/KAMS203G.CHRM"
+    },
+    "THN3": {
+      "actorTag": "THN3",
+      "image": "THDR",
+      "model": "KAMS203G",
+      "characterRecordOffset": 272,
+      "imagePropertyOffset": 280,
+      "defImageRecordOffset": 8,
+      "archiveEntryIndex": 14,
+      "childIndex": 0,
+      "browserFilename": "S1_OP00_KAMS203G_THN3.MT5",
+      "initialPresentation": {
+        "position": [
+          -5.789999961853027,
+          17.17741584777832,
+          -8.837995529174805
+        ],
+        "rotationDegrees": [
+          40.56541061401367,
+          171.54359436035156,
+          17.876285552978516
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "kind": "first-auth-pose",
+          "trackIndex": 24,
+          "sourceMapinfoOffset": 295412,
+          "movementIndex": 2,
+          "timeSeconds": 0
+        }
+      },
+      "lifecycle": {
+        "kind": "auth-scoped"
+      },
+      "assetPath": "play/assets/introduction/op00/models/KAMS203G.CHRM"
+    },
+    "THN4": {
+      "actorTag": "THN4",
+      "image": "THDR",
+      "model": "KAMS203G",
+      "characterRecordOffset": 384,
+      "imagePropertyOffset": 392,
+      "defImageRecordOffset": 8,
+      "archiveEntryIndex": 14,
+      "childIndex": 0,
+      "browserFilename": "S1_OP00_KAMS203G_THN4.MT5",
+      "initialPresentation": {
+        "position": [
+          -20.925012588500977,
+          20.785747528076172,
+          -30.754993438720703
+        ],
+        "rotationDegrees": [
+          106.34091186523438,
+          -315.8143005371094,
+          83.42262268066406
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "kind": "first-auth-pose",
+          "trackIndex": 24,
+          "sourceMapinfoOffset": 295412,
+          "movementIndex": 3,
+          "timeSeconds": 0
+        }
+      },
+      "lifecycle": {
+        "kind": "auth-scoped"
+      },
+      "assetPath": "play/assets/introduction/op00/models/KAMS203G.CHRM"
+    },
+    "MNRG": {
+      "model": "B023H02G",
+      "browserFilename": "S1_OP00_B023H02G.MT5",
+      "assetPath": "play/assets/introduction/op00-mail/B023H02G.CHRM",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          -1.9134999513626099,
+          0,
+          10.899999618530273
+        ],
+        "rotationDegrees": [
+          0,
+          75,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "objectPropertyOffset": 272,
+          "positionPropertyOffset": 312,
+          "anglePropertyOffset": 332
+        }
+      }
+    },
+    "BIKE": {
+      "model": "BIKK3P0G",
+      "browserFilename": "S1_OP00_BIKK3P0G.MT5",
+      "assetPath": "play/assets/introduction/op00-mail/BIKK3P0G.CHRM",
+      "lifecycle": {
+        "kind": "auth-scoped"
+      }
+    },
+    "PSTH": {
+      "model": "HPSR101G",
+      "browserFilename": "S1_OP00_HPSR101G.MT5",
+      "assetPath": "play/assets/introduction/op00-mail/HPSR101G.CHRM",
+      "lifecycle": {
+        "kind": "auth-scoped"
+      }
+    },
+    "FUTO": {
+      "model": "MALS501G",
+      "browserFilename": "S1_OP00_MALS501G.MT5",
+      "assetPath": "play/assets/introduction/op00-mail/MALS501G.CHRM",
+      "lifecycle": {
+        "kind": "auth-scoped"
+      }
+    }
+  },
+  "mapLayers": [
+    {
+      "nativeName": "OMO",
+      "browserFilename": "S1_OP00_OMO.MT5"
+    },
+    {
+      "nativeName": "JIMENHAL",
+      "browserFilename": "S1_OP00_JIMENHAL.MT5"
+    },
+    {
+      "nativeName": "NAIB",
+      "browserFilename": "S1_OP00_NAIB.MT5"
+    },
+    {
+      "nativeName": "OMADO",
+      "browserFilename": "S1_OP00_OMADO.MT5"
+    },
+    {
+      "nativeName": "OOSAKI",
+      "browserFilename": "S1_OP00_OOSAKI.MT5"
+    },
+    {
+      "nativeName": "JYUU",
+      "browserFilename": "S1_OP00_JYUU.MT5"
+    }
+  ],
+  "packageActors": {
+    "INE_": {
+      "label": "INE_",
+      "modelCode": "INE_M",
+      "browserFilename": "S1_OP00_INE_M.MT5",
+      "assetPath": "play/assets/INE_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1
+    },
+    "KWMT": {
+      "label": "KWMT",
+      "modelCode": "UBA_L",
+      "browserFilename": "S1_OP00_UBA_L.MT5",
+      "assetPath": "play/assets/introduction/op00-mail/UBA_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1
+    }
+  },
+  "handAssets": {
+    "INE_": {
+      "actorTag": "INE_",
+      "bodyModelCode": "INE_M",
+      "handCode": "INE",
+      "bodyHandRenderKeys": {
+        "left": -66,
+        "right": -65
+      },
+      "left": {
+        "rootRenderKey": 11,
+        "model": {
+          "path": "play/assets/introduction/op00/hands/INE_TL.MT5",
+          "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/INE_TL.MT5",
+          "byteLength": 47812,
+          "sha256": "25e9cd4b53d933f76887fb0a9e1cfe168a54e4032d5856e8b96e7d54dabe117e"
+        }
+      },
+      "right": {
+        "rootRenderKey": 6,
+        "model": {
+          "path": "play/assets/introduction/op00/hands/INE_TR.MT5",
+          "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/INE_TR.MT5",
+          "byteLength": 47868,
+          "sha256": "4ce6cec8fd94d7ce04bc8fe3cedffc7eb28475bcd27bf25ef7a05e9ff8ede101"
+        }
+      },
+      "rig": {
+        "path": "play/assets/introduction/op00/hands/INE_HM.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/INE_HM.BIN",
+        "byteLength": 9264,
+        "sha256": "c386a4f223da87a797bfafb9990507fb02cc72e122d47ccaa6fc43d417a72ff5",
+        "transformNodeCount": 71,
+        "vertexCount": 306,
+        "pointerOffsets": [
+          24,
+          168,
+          8952,
+          5848,
+          6472,
+          9264
+        ]
+      },
+      "presentation": {
+        "attachment": "body-hand-node-world-matrix",
+        "initialPose": "hm-bind-pose",
+        "deformationAssetRetained": true,
+        "nativePoseOperation": "0x005e"
+      }
+    }
+  },
+  "facialAssets": {
+    "INE_": {
+      "actorTag": "INE_",
+      "bodyModelCode": "INE_M",
+      "faceCode": "INE",
+      "attachmentRenderKey": -67,
+      "faceRootRenderKey": 3,
+      "eyeRenderKeys": [
+        77,
+        78
+      ],
+      "model": {
+        "path": "play/assets/introduction/op00/faces/INE_F.MT5",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/INE_F.MT5",
+        "byteLength": 111908,
+        "sha256": "0e4b50d8926ba3d2c53ba82955c825c6a806ae12725482d659592fe6e1d418a1"
+      },
+      "table": {
+        "path": "play/assets/introduction/op00/faces/INE_FTBL.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/INE_FTBL.BIN",
+        "byteLength": 4980,
+        "sha256": "5116ef74d03b22381cb4e440de3493b54629fe3afce619dc87fa7689a6aedd7e"
+      },
+      "poses": {
+        "path": "play/assets/cutscenes/native-faces/native-talk-poses.generated.json",
+        "byteLength": 2656134,
+        "sha256": "60091887074feb56e1b22d9a482a62936270018c2899b16fe2661e7a25a840bb",
+        "generatedBy": "tools/extract_native_face_poses.py",
+        "actorTag": "INE_"
+      }
+    }
+  },
+  "nativeHandPoseTables": {
+    "0x20c08": {
+      "sourceMapinfoOffset": "0x20c08",
+      "vectors": [
+        [
+          0,
+          0,
+          -5461
+        ],
+        [
+          0,
+          -2366,
+          -1092
+        ],
+        [
+          0,
+          -182,
+          1092
+        ],
+        [
+          0,
+          -546,
+          -6735
+        ],
+        [
+          0,
+          0,
+          -4004
+        ],
+        [
+          0,
+          0,
+          -6553
+        ],
+        [
+          0,
+          -182,
+          1274
+        ],
+        [
+          0,
+          0,
+          -13289
+        ],
+        [
+          0,
+          0,
+          -5279
+        ],
+        [
+          0,
+          0,
+          -8009
+        ],
+        [
+          0,
+          0,
+          1456
+        ],
+        [
+          0,
+          182,
+          -8738
+        ],
+        [
+          0,
+          0,
+          -6007
+        ],
+        [
+          0,
+          0,
+          -8738
+        ],
+        [
+          0,
+          182,
+          1638
+        ],
+        [
+          0,
+          -728,
+          -5279
+        ],
+        [
+          0,
+          -1274,
+          -6735
+        ],
+        [
+          0,
+          -910,
+          -8738
+        ],
+        [
+          0,
+          0,
+          1638
+        ]
+      ]
+    },
+    "0x21ef4": {
+      "sourceMapinfoOffset": "0x21ef4",
+      "vectors": [
+        [
+          0,
+          0,
+          -5461
+        ],
+        [
+          0,
+          -2366,
+          -1092
+        ],
+        [
+          0,
+          -182,
+          1092
+        ],
+        [
+          0,
+          -546,
+          -3276
+        ],
+        [
+          0,
+          364,
+          -2366
+        ],
+        [
+          0,
+          728,
+          -4915
+        ],
+        [
+          0,
+          -182,
+          1274
+        ],
+        [
+          0,
+          0,
+          -3276
+        ],
+        [
+          0,
+          0,
+          -2548
+        ],
+        [
+          0,
+          0,
+          -5825
+        ],
+        [
+          0,
+          0,
+          1456
+        ],
+        [
+          0,
+          182,
+          -8738
+        ],
+        [
+          0,
+          0,
+          -2548
+        ],
+        [
+          0,
+          0,
+          -5825
+        ],
+        [
+          0,
+          182,
+          1638
+        ],
+        [
+          0,
+          -728,
+          -5279
+        ],
+        [
+          0,
+          -1274,
+          -3822
+        ],
+        [
+          0,
+          -910,
+          -6735
+        ],
+        [
+          0,
+          0,
+          1638
+        ]
+      ]
+    },
+    "0x206b0": {
+      "sourceMapinfoOffset": "0x206b0",
+      "vectors": [
+        [
+          0,
+          0,
+          -10922
+        ],
+        [
+          0,
+          0,
+          -10558
+        ],
+        [
+          0,
+          1456,
+          0
+        ],
+        [
+          0,
+          0,
+          -18022
+        ],
+        [
+          0,
+          0,
+          -17112
+        ],
+        [
+          0,
+          0,
+          -18386
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -12196
+        ],
+        [
+          0,
+          0,
+          -18204
+        ],
+        [
+          0,
+          0,
+          -16748
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -11832
+        ],
+        [
+          0,
+          0,
+          -18386
+        ],
+        [
+          0,
+          0,
+          -15109
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          910,
+          -12014
+        ],
+        [
+          0,
+          -2184,
+          -16748
+        ],
+        [
+          0,
+          -2184,
+          -10012
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    }
+  },
+  "actorTags": [
+    "AKIR",
+    "KWMT",
+    "MNLF",
+    "BIKE",
+    "PSTH",
+    "INE_",
+    "FUTO"
+  ],
+  "motionBanks": [
+    {
+      "bank": 23,
+      "path": "play/assets/introduction/op00-mail/M_01103.BIN",
+      "byteLength": 11940,
+      "sha256": "7a71d2308e02dc6ec1693cb32b60f2d74fdd48d58d69574aa858b338e48e9735"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/introduction/op00-mail/M_01103.BIN",
+      "byteLength": 11940,
+      "sha256": "7a71d2308e02dc6ec1693cb32b60f2d74fdd48d58d69574aa858b338e48e9735"
+    },
+    {
+      "path": "play/assets/introduction/op00-mail/SEQDATA26.AUTH",
+      "byteLength": 1116,
+      "sha256": "d2457d9ba8bb81262b1fc3f71b2c336c80d721077e8dc52fb850ce2fcc50c383"
+    },
+    {
+      "path": "play/assets/introduction/op00-mail/SEQDATA27.AUTH",
+      "byteLength": 3256,
+      "sha256": "4827f2cdedbb875e374849e9ae0ca54153865df9735996452fef99e2dd7cba1d"
+    },
+    {
+      "path": "play/assets/introduction/op00-mail/SEQDATA25.AUTH",
+      "byteLength": 9748,
+      "sha256": "451bf4f7a0387e21ac540e561e344e1d0f7dd7c060935819d35585dbc116d8df"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 26,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "hiddenActors": [
+        "AKIR"
+      ],
+      "activityId": "OP00/SEQDATA26.AUTH",
+      "archiveMember": "SEQDATA26.AUTH",
+      "byteLength": 1116,
+      "sha256": "d2457d9ba8bb81262b1fc3f71b2c336c80d721077e8dc52fb850ce2fcc50c383",
+      "durationFrames": 180,
+      "durationSeconds": 6.016666889190674,
+      "frameCount": 1,
+      "commandCounts": {
+        "camera": 1,
+        "move": 1,
+        "motion": 1
+      },
+      "actors": [
+        "AKIR"
+      ],
+      "browserMapVisibility": [
+        {
+          "nativeName": "OMO",
+          "visible": false
+        },
+        {
+          "nativeName": "JIMENHAL",
+          "visible": true
+        },
+        {
+          "nativeName": "NAIB",
+          "visible": true
+        },
+        {
+          "nativeName": "OMADO",
+          "visible": false
+        },
+        {
+          "nativeName": "OOSAKI",
+          "visible": true
+        },
+        {
+          "nativeName": "JYUU",
+          "visible": true
+        }
+      ],
+      "nativeHandPoseCues": [],
+      "nativeBodyHandPoseCues": [],
+      "nativeHandComponentCues": [],
+      "nativeSceneObjectStates": [
+        {
+          "actorTag": "MNLF",
+          "presented": true
+        },
+        {
+          "actorTag": "ODR1",
+          "presented": false
+        },
+        {
+          "actorTag": "ODR2",
+          "presented": false
+        },
+        {
+          "actorTag": "RMJN",
+          "presented": false
+        },
+        {
+          "actorTag": "MNRG",
+          "presented": true
+        }
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 23,
+          "sequenceIndex": 1,
+          "motionName": "AKI_OHI_SUPER_CUB_01103",
+          "startFrame": 1,
+          "endFrame": 2
+        }
+      ]
+    },
+    {
+      "slot": 27,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "hiddenActors": [],
+      "activityId": "OP00/SEQDATA27.AUTH",
+      "archiveMember": "SEQDATA27.AUTH",
+      "byteLength": 3256,
+      "sha256": "4827f2cdedbb875e374849e9ae0ca54153865df9735996452fef99e2dd7cba1d",
+      "durationFrames": 116,
+      "durationSeconds": 26.33333396911621,
+      "frameCount": 1,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "motion": 1,
+        "sound": 1
+      },
+      "actors": [
+        "KWMT",
+        "MNLF",
+        "BIKE"
+      ],
+      "browserMapVisibility": [
+        {
+          "nativeName": "OMO",
+          "visible": false
+        },
+        {
+          "nativeName": "JIMENHAL",
+          "visible": true
+        },
+        {
+          "nativeName": "NAIB",
+          "visible": true
+        },
+        {
+          "nativeName": "OMADO",
+          "visible": false
+        },
+        {
+          "nativeName": "OOSAKI",
+          "visible": true
+        },
+        {
+          "nativeName": "JYUU",
+          "visible": true
+        }
+      ],
+      "nativeHandPoseCues": [],
+      "nativeBodyHandPoseCues": [],
+      "nativeHandComponentCues": [],
+      "nativeSceneObjectStates": [
+        {
+          "actorTag": "MNLF",
+          "presented": true
+        },
+        {
+          "actorTag": "ODR1",
+          "presented": false
+        },
+        {
+          "actorTag": "ODR2",
+          "presented": false
+        },
+        {
+          "actorTag": "RMJN",
+          "presented": false
+        },
+        {
+          "actorTag": "MNRG",
+          "presented": true
+        }
+      ],
+      "motions": [
+        {
+          "actorTag": "KWMT",
+          "frame": 1,
+          "motionBank": 23,
+          "sequenceIndex": 1,
+          "motionName": "AKI_OHI_SUPER_CUB_01103",
+          "startFrame": 1,
+          "endFrame": 2
+        }
+      ]
+    },
+    {
+      "slot": 25,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "hiddenActors": [],
+      "activityId": "OP00/SEQDATA25.AUTH",
+      "archiveMember": "SEQDATA25.AUTH",
+      "byteLength": 9748,
+      "sha256": "451bf4f7a0387e21ac540e561e344e1d0f7dd7c060935819d35585dbc116d8df",
+      "durationFrames": 710,
+      "durationSeconds": 23.683332443237305,
+      "frameCount": 19,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "motion": 1,
+        "sound": 17,
+        "voice": 1
+      },
+      "actors": [
+        "PSTH",
+        "INE_",
+        "FUTO"
+      ],
+      "browserMapVisibility": [
+        {
+          "nativeName": "OMO",
+          "visible": false
+        },
+        {
+          "nativeName": "JIMENHAL",
+          "visible": true
+        },
+        {
+          "nativeName": "NAIB",
+          "visible": true
+        },
+        {
+          "nativeName": "OMADO",
+          "visible": false
+        },
+        {
+          "nativeName": "OOSAKI",
+          "visible": true
+        },
+        {
+          "nativeName": "JYUU",
+          "visible": true
+        }
+      ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 25,
+          "frame": 0,
+          "actorTag": "INE_",
+          "side": "right",
+          "poseTableOffset": "0x20c08",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x10582",
+          "sourceOrder": 1
+        },
+        {
+          "activitySlot": 25,
+          "frame": 0,
+          "actorTag": "INE_",
+          "side": "left",
+          "poseTableOffset": "0x20c08",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x105a2",
+          "sourceOrder": 2
+        },
+        {
+          "activitySlot": 25,
+          "frame": 566,
+          "actorTag": "INE_",
+          "side": "left",
+          "poseTableOffset": "0x21ef4",
+          "durationNativeTicks": 35,
+          "callFileOffset": "0x1076a",
+          "sourceOrder": 3
+        },
+        {
+          "activitySlot": 25,
+          "frame": 625,
+          "actorTag": "INE_",
+          "side": "right",
+          "poseTableOffset": "0x206b0",
+          "durationNativeTicks": 500,
+          "callFileOffset": "0x10826",
+          "sourceOrder": 5
+        }
+      ],
+      "nativeBodyHandPoseCues": [
+        {
+          "activitySlot": 25,
+          "frame": 0,
+          "actorTag": "INE_",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x1ffba",
+          "sourceFunction": "0x1fe28",
+          "ownerCallFileOffset": "0x1c862",
+          "sourceOrder": 0
+        }
+      ],
+      "nativeHandComponentCues": [
+        {
+          "activitySlot": 25,
+          "frame": 566,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            0,
+            0,
+            5097
+          ],
+          "callFileOffset": "0x107ae",
+          "sourceOrder": 4
+        }
+      ],
+      "nativeFaceClipCues": [
+        {
+          "activitySlot": 25,
+          "frame": 0,
+          "actorTag": "INE_",
+          "clipGroup": 1,
+          "selector": 2,
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x105be"
+        },
+        {
+          "activitySlot": 25,
+          "frame": 398,
+          "actorTag": "INE_",
+          "clipGroup": 0,
+          "selector": 0,
+          "durationNativeTicks": 10,
+          "callFileOffset": "0x10612"
+        },
+        {
+          "activitySlot": 25,
+          "frame": 447,
+          "actorTag": "INE_",
+          "clipGroup": 7,
+          "selector": 1,
+          "durationNativeTicks": 7,
+          "callFileOffset": "0x1065e"
+        },
+        {
+          "activitySlot": 25,
+          "frame": 449,
+          "actorTag": "INE_",
+          "clipGroup": 2,
+          "selector": 0,
+          "durationNativeTicks": 12,
+          "callFileOffset": "0x106aa"
+        }
+      ],
+      "nativeFaceControllerCues": [],
+      "nativeFaceGazeCues": [],
+      "nativeSceneObjectStates": [
+        {
+          "actorTag": "MNLF",
+          "presented": true
+        },
+        {
+          "actorTag": "ODR1",
+          "presented": false
+        },
+        {
+          "actorTag": "ODR2",
+          "presented": false
+        },
+        {
+          "actorTag": "RMJN",
+          "presented": false
+        },
+        {
+          "actorTag": "MNRG",
+          "presented": true
+        }
+      ],
+      "motions": [
+        {
+          "actorTag": "INE_",
+          "frame": 1,
+          "motionBank": 23,
+          "sequenceIndex": 2,
+          "motionName": "JIJ_INE_TORINIIKU_TEGAMI_0103",
+          "startFrame": 46,
+          "endFrame": 834
+        }
+      ]
+    }
+  ],
+  "music": [
+    {
+      "trackId": "bgm049",
+      "activitySlot": 26,
+      "loop": false
+    }
+  ],
+  "nativeFaceCallbackSource": {
+    "path": "tools/evidence/op00-continuation-native-callback-ir.json",
+    "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+    "selections": [
+      {
+        "slot": 25,
+        "callbackFunction": "0x10488",
+        "ownerCallFileOffset": "0x1c880",
+        "excludedAfterActivity": []
+      }
+    ]
+  },
+  "nativeHandCallbackSource": {
+    "path": "tools/evidence/op00-continuation-native-callback-ir.json",
+    "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+    "selections": [
+      {
+        "slot": 25,
+        "callbackFunction": "0x10488",
+        "ownerCallFileOffset": "0x1c880"
+      }
+    ],
+    "ownerFunction": "0x1bfa4",
+    "unpresentedOwnerCues": []
+  },
+  "limitations": [
+    "Native post-process dream flashes and per-shot lighting are not reproduced.",
+    "Sleeping blanket deformation remains the separate tracked blanket issue."
+  ]
+}

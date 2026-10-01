@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { buildNativeAseqActivityPack } from "../lib/NativeAseqActivityPack.mjs";
+import { buildNativeAseqActivityPack, sha256 } from "../lib/NativeAseqActivityPack.mjs";
+import { extractNativeAseqCallbackObjectPresentation } from "../lib/NativeAseqCallbackObjectPresentation.mjs";
+import { extractNativeAseqCallbackPresentation } from "../lib/NativeAseqCallbackPresentation.mjs";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const sourceRoot = [
@@ -12,6 +14,47 @@ const sourceRoot = [
   path.join(repoRoot, "extracted_files"),
 ].filter(Boolean).find(existsSync);
 if (!sourceRoot) throw new Error("an exact Shenmue Disc 1 extraction was not found");
+
+const mapinfo = readFileSync(path.join(sourceRoot, "data/SCENE/01/D000/MAPINFO.BIN"));
+const mapinfoSha256 = "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e";
+const letterEvidence = "tools/evidence/djhn-letter-native-callback-ir.json";
+const letterIr = JSON.parse(readFileSync(path.join(repoRoot, letterEvidence), "utf8"));
+if (sha256(mapinfo) !== mapinfoSha256
+  || letterIr.source.mapinfoSha256 !== mapinfoSha256
+  || letterIr.source.callbackFunction !== "0x8a44c") {
+  throw new Error("DJHN letter callback evidence changed");
+}
+const letterCallback = {
+  bytes: mapinfo, callbackFunction: 0x8a44c, nativeFunction: letterIr.function,
+  durationFrames: 1215, activitySlot: 24,
+};
+const letterObjects = extractNativeAseqCallbackObjectPresentation(letterCallback);
+const letterPresentation = extractNativeAseqCallbackPresentation(letterCallback);
+if (letterObjects.attachedObjectCues.length !== 2
+  || letterObjects.nodeTransformCues.length !== 6
+  || letterObjects.attachedObjectCues.some(cue => cue.objectTag !== "MALS")) {
+  throw new Error("DJHN letter presentation coverage changed");
+}
+const letterCue = ({ objectTag, ...cue }) => ({
+  ...cue, source: { evidence: letterEvidence, callbackFunction: "0x8a44c" },
+});
+const firstLetterEvidence = "tools/evidence/djhn-seqdata3-native-callback-ir.json";
+const firstLetterIr = JSON.parse(readFileSync(path.join(repoRoot, firstLetterEvidence), "utf8"));
+if (firstLetterIr.source.mapinfoSha256 !== mapinfoSha256
+  || firstLetterIr.source.callbackFunction !== "0x891b8") {
+  throw new Error("DJHN first letter callback evidence changed");
+}
+const firstLetterObjects = extractNativeAseqCallbackObjectPresentation({
+  bytes: mapinfo, callbackFunction: 0x891b8, nativeFunction: firstLetterIr.function,
+  durationFrames: 2260, activitySlot: 22, objectTags: ["MALS", "YKHI"],
+});
+if (firstLetterObjects.attachedObjectCues.length !== 4
+  || firstLetterObjects.nodeTransformCues.length !== 6) {
+  throw new Error("DJHN first letter presentation coverage changed");
+}
+const firstLetterCue = ({ objectTag, ...cue }) => ({
+  ...cue, source: { evidence: firstLetterEvidence, callbackFunction: "0x891b8" },
+});
 
 const expectedMembers = Object.freeze([
   ["M_01JUCE.MOTN", 308232, "d8c104d9a23e0d112c3e6e6d64f77223005b95991b1bc80f88d09599ff02182f"],
@@ -41,6 +84,8 @@ const activities = Object.freeze([
   durationFrames,
   frameCount,
   commandCounts,
+  ...(slot === 22 ? { nativeActorLookPointCues: firstLetterObjects.nativeActorLookPointCues } : {}),
+  ...(slot === 24 ? { nativeFaceClipCues: letterPresentation.nativeFaceClipCues } : {}),
 })));
 
 const outputDirectory = path.join(repoRoot, "play/assets/dobuita/djhn");
@@ -65,8 +110,33 @@ buildNativeAseqActivityPack({
     assetPath: "play/assets/dobuita/djhn/COKS520G.CHRM",
     byteLength: 8884,
     sha256: "964fa92a9e7345a68e3208d51adc9b1aa11bc162410057aab8e9bf009af21fbc",
+  }, {
+    // DJHN keeps this folded letter in the room's shared OMG resource,
+    // not its own AUTH archive. Preserve the native hinge model, not a quad.
+    sourcePath: path.join(sourceRoot, "data/SCENE/01/D000/OMG.PKS"),
+    sourceSha256: "57527b1004b9900358100c12ae7cc5fe948a2ace59a7c751ef1624403c6c748b",
+    archiveMember: "MALS509G.CHRM",
+    assetPath: "play/assets/dobuita/djhn/MALS509G.CHRM",
+    byteLength: 1452,
+    sha256: "0d5182cde209ca1c188e4a7af48f65e79d0d5713469bd2c951a0af69a624dd39",
   }],
   attachedObjects: {
+    MALS: {
+      browserFilename: "S1_D000_MALS509G.MT5",
+      assetPath: "play/assets/dobuita/djhn/MALS509G.CHRM",
+      attachments: [
+        // Detach/rebind at one authored frame has one final visible pose.
+        // Keep the last source operation, as for TOKI's same-frame handoff.
+        ...firstLetterObjects.attachedObjectCues.filter((cue, index, values) => (
+          values.findLastIndex(value => value.frame === cue.frame) === index
+        )).map(firstLetterCue),
+        ...letterObjects.attachedObjectCues.map(letterCue),
+      ],
+      nodeTransforms: [
+        ...firstLetterObjects.nodeTransformCues.map(firstLetterCue),
+        ...letterObjects.nodeTransformCues.map(letterCue),
+      ],
+    },
     CAN1: {
       browserFilename: "S1_D000_COKS520G.MT5",
       assetPath: "play/assets/dobuita/djhn/COKS520G.CHRM",

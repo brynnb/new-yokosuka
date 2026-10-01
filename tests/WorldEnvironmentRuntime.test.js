@@ -105,3 +105,51 @@ test("disposing the environment stops its synchronization timer", () => {
   assert.equal(typeof scheduled.callback, "function");
   assert.equal(cleared, 42);
 });
+
+test("cinematic precipitation stays overridden on timer updates without changing settled snow variants", () => {
+  const { runtime, calls, sceneState } = createRuntime({ environment: {
+    seasonIndex: 1, weather: "snow", weatherIndex: 3, precipitation: "snow",
+  } });
+  let precipitation = "clear";
+  runtime.getCutscenePrecipitation = () => precipitation;
+  runtime.synchronize();
+  runtime.synchronize();
+  assert.equal(sceneState.currentWeather, "snow");
+  assert.equal(sceneState.currentWeatherIndex, 3);
+  assert.deepEqual(calls.filter(call => Array.isArray(call) && call[0] === "weather"),
+    [["weather", "clear"], ["weather", "clear"]]);
+  precipitation = null;
+  runtime.synchronize();
+  assert.deepEqual(calls.filter(call => Array.isArray(call) && call[0] === "weather").at(-1), ["weather", "snow"]);
+});
+
+test("isolated stages suppress sky and weather until the last release, then catch up to server state", () => {
+  const environment = { weather: "rain", precipitation: "rain" };
+  const { runtime, calls, sceneState } = createRuntime({ environment });
+  const sky = { enabled: true, isEnabled() { return this.enabled; },
+    setEnabled(value) { this.enabled = value; }, isDisposed: () => false };
+  sceneState.currentSkybox = sky;
+  runtime.synchronize();
+  calls.length = 0;
+  const release = runtime.acquireIsolatedStage();
+  const releaseOther = runtime.acquireIsolatedStage();
+  assert.equal(sky.enabled, false);
+  assert.deepEqual(calls, [["weather", "clear"]]);
+  calls.length = 0;
+  environment.weather = environment.precipitation = "snow";
+  runtime.synchronize();
+  assert.deepEqual(calls, ["music", "date", "debug"]);
+  assert.equal(sceneState.currentWeather, "rain", "applied cache is not advanced while presentation is borrowed");
+  release();
+  assert.equal(sky.enabled, false);
+  releaseOther();
+  assert.equal(sky.enabled, true);
+  assert.equal(sceneState.currentWeather, "snow");
+  assert.ok(calls.some(call => Array.isArray(call) && call[0] === "weather" && call[1] === "snow"));
+  const count = calls.length;
+  releaseOther();
+  assert.equal(calls.length, count, "release is idempotent");
+  sky.enabled = false;
+  runtime.acquireIsolatedStage()();
+  assert.equal(sky.enabled, false, "an already hidden sky stays hidden");
+});

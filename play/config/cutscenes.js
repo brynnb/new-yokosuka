@@ -46,6 +46,13 @@ const CUTSCENE_DEFINITIONS = [
     },
     "areaLabel": "Guilin Mountains",
     "description": "Shenhua stands on a mountain cliff as a hawk circles above her.",
+    // The vision has no established calendar date. This sunset on the day
+    // before Iwao's murder is a presentation estimate, not recovered canon.
+    "loadingPresentation": {
+      "label": "Guilin",
+      "japaneseLabel": "桂林",
+      "dateTime": "1986-11-28T17:30:00Z"
+    },
     "lightingPresetIndex": 1,
     "depthHaze": {
       "startDistance": 5,
@@ -72,9 +79,44 @@ const CUTSCENE_DEFINITIONS = [
     },
     "areaLabel": "Hazuki Residence",
     "description": "Ryo returns home and confronts Lan Di during the attack on the Hazuki family dojo.",
+    "loadingPresentation": {
+      "label": "Yokosuka",
+      "japaneseLabel": "横須賀",
+      "dateTime": "1986-11-29T16:00:00Z"
+    },
     "completion": {
       "notice": "Introduction complete.",
       "worldId": "interior"
+    }
+  },
+  {
+    "id": "S1-OP00-MAIL",
+    "label": "Introduction — Ine-san Collects the Mail",
+    "worldId": "op00",
+    "packageId": "op00-mail",
+    "program": { "programId": "preview-s1-op00-mail", "entryFunction": "$activity-sequence", "area": "OP00", "worldId": "op00" },
+    "areaLabel": "Hazuki Residence",
+    "description": "The postman arrives and Ine-san collects the letter before Ryo awakens.",
+    // Retain the thawing snow surfaces, but this later morning has no snowfall.
+    "precipitation": "clear",
+    "loadingPresentation": {
+      "label": "4 Days Later...",
+      "japaneseLabel": "",
+      "dateTime": "1986-12-03T08:30:00Z"
+    }
+  },
+  {
+    "id": "S1-OP00-DREAM",
+    "label": "Introduction — Lan Di Dream and Awakening",
+    "worldId": "op00",
+    "packageId": "op00-dream",
+    "program": { "programId": "preview-s1-op00-dream", "entryFunction": "$activity-sequence", "area": "OP00", "worldId": "op00" },
+    "areaLabel": "Hazuki Residence",
+    "description": "Ryo tosses in his sleep, relives Lan Di's attack, and sits up in bed.",
+    "loadingPresentation": {
+      "label": "Hazuki Residence",
+      "japaneseLabel": "芭月家",
+      "dateTime": "1986-12-03T08:50:00Z"
     }
   },
   {

@@ -146,6 +146,13 @@ to the recovered native interaction or ordinary inspection. Once a server run
 may have started, an ambiguous connection failure must not also launch a local
 fallback.
 
+The controller's presentation waits are cancellable independently of their
+voice/activity promises. Early close still waits for the server's terminal
+reply before allowing another interaction, but a pending media load must not
+block that reply in the ordered processing queue. Reset, cancellation and
+failure abort the old wait; late resolution/rejection cannot advance or fail
+a newer conversation. Hiding the dialogue DOM alone is not script completion.
+
 ## Specialized native activities
 
 Some recovered native sequences are already cohesive presentation programs.

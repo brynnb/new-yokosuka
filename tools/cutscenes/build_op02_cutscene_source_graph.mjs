@@ -282,7 +282,9 @@ const motionCompatibility = motions.flatMap(motion => motion.sequences
 
 const musicCatalog = JSON.parse(readFileSync(path.join(
   root,
-  "public/music/asset-viewer-manifest.json",
+  // The source graph feeds gameplay commands, whose IDs belong to the runtime
+  // catalog. The asset viewer indexes the same tracks by source hash instead.
+  "public/music/manifest.json",
 ), "utf8"));
 const audioManifest = JSON.parse(readFileSync(path.join(
   root,

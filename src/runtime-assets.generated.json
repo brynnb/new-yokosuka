@@ -1965,6 +1965,10 @@
       "sha256": "048fb893bd727d2442d4d27e998f2b3e3857cddb4ef3dd15399174997b95e56e",
       "size": 263
     },
+    "play/assets/cutscenes/native-faces/fub-talk-poses.generated.json": {
+      "sha256": "354e60b8675a9dcc1a1a9ddc3204ef10b021ef7ddad3b0eb761582afeab6012a",
+      "size": 295967
+    },
     "play/assets/cutscenes/native-faces/FUK_F.MT5": {
       "sha256": "91d7ea39451d3f45c6c7b4a8536d3f0a349be274df9581df64f5177c17dcf1ed",
       "size": 142760
@@ -2070,8 +2074,8 @@
       "size": 79568
     },
     "play/assets/dobuita/buss/manifest.json": {
-      "sha256": "d781ebb6e8708a228d484c9276a5502905aecb3910bff8da4512ef1432400702",
-      "size": 9763
+      "sha256": "7decbd43fc50611ce513c3a75a88576527669f0dd5e8c08a774514818e53ace1",
+      "size": 29952
     },
     "play/assets/dobuita/buss/SEQDATA1.AUTH": {
       "sha256": "3d769872346e486df965296861c502402e95e064e2da4c1f051a568c87774ba0",
@@ -2118,8 +2122,8 @@
       "size": 12320
     },
     "play/assets/dobuita/d0w0/manifest.json": {
-      "sha256": "c7d22d03a8c0c468233a0ae9583ba7872944b8b54c0f12506e6040a98b699970",
-      "size": 41942
+      "sha256": "6156a2d994cb65cae9b9276ed6ce51c967a0bf9c45d1f889e3273926432514d0",
+      "size": 80622
     },
     "play/assets/dobuita/d0w0/SEQDATA1.AUTH": {
       "sha256": "8a53eccca3fc3c40fab9935e6ea10c6d29aa3d5536129c69a4862ffbe4a2b6c6",
@@ -2169,6 +2173,18 @@
       "sha256": "cacb30bf13ad287d67396b30d14cf2f769653f71505ad50ee9bce893d1dd0ad9",
       "size": 11084
     },
+    "play/assets/dobuita/d0w0/YMG_HM.BIN": {
+      "sha256": "756f07c80fa715636fb1a92e480e2ef8d045c5ede1040faa388ed2fd43682f74",
+      "size": 9264
+    },
+    "play/assets/dobuita/d0w0/YMG_TL.MT5": {
+      "sha256": "003f9047079444adece2ba0653dd50f0f506c5eec85d673bf3731938741de419",
+      "size": 176836
+    },
+    "play/assets/dobuita/d0w0/YMG_TR.MT5": {
+      "sha256": "a1c01d3cc6df5bebf495fed8b38a64c66e57842e15213ac16d55b9da42c6682b",
+      "size": 176892
+    },
     "play/assets/dobuita/DENS501G.CHRM": {
       "sha256": "3c06acbdcc6888f5a79e4f4aa8ae6d55e0c82d1bfe9746e01c376b5da8b22c3d",
       "size": 596
@@ -2185,9 +2201,13 @@
       "sha256": "d8c104d9a23e0d112c3e6e6d64f77223005b95991b1bc80f88d09599ff02182f",
       "size": 308232
     },
+    "play/assets/dobuita/djhn/MALS509G.CHRM": {
+      "sha256": "0d5182cde209ca1c188e4a7af48f65e79d0d5713469bd2c951a0af69a624dd39",
+      "size": 1452
+    },
     "play/assets/dobuita/djhn/manifest.json": {
-      "sha256": "635d24c866b412e4472257694c0a121919b2a3d1705ff25e0f0bf1be79070d77",
-      "size": 15548
+      "sha256": "da2e7f55160ae4b9d91d9dcd59573ca0aa3b94dcc5532b5ec2030447f29070f9",
+      "size": 144210
     },
     "play/assets/dobuita/djhn/SEQDATA1.AUTH": {
       "sha256": "68c2603a2909e3d278f86715ab357c839ce0171e1d5f2f2fa298588d6a02fd86",
@@ -2217,13 +2237,49 @@
       "sha256": "857d8ced7965011235410efe8c20919b9753320665c2d639170bb47ce1f8e62c",
       "size": 5424
     },
+    "play/assets/dobuita/drauth/GIB_HM.BIN": {
+      "sha256": "bd81f3033c0be237e5f52aa1976166e1376dd1c8c2b3ec66948f25d08fbc9729",
+      "size": 9264
+    },
+    "play/assets/dobuita/drauth/GIB_TL.MT5": {
+      "sha256": "c6e3b9aa938f356d05ea1e2f8999ffbbba95b57a63731c2218de8dec33120cd9",
+      "size": 160452
+    },
+    "play/assets/dobuita/drauth/GIB_TR.MT5": {
+      "sha256": "6cfc1c3f903462033b4e1f22e6a7de7532293e5471c2cb116b220b8fd22531f1",
+      "size": 160508
+    },
+    "play/assets/dobuita/drauth/GIE_HM.BIN": {
+      "sha256": "63ddfc53a7397ff87b5909d60ff9be3804099ff842828d465bb4a4ffc04859bd",
+      "size": 9272
+    },
+    "play/assets/dobuita/drauth/GIE_TL.MT5": {
+      "sha256": "47a4dd548cfbc2d44b013fc2104a4ee4583bbd670157fc6862f5a85608696c7c",
+      "size": 160452
+    },
+    "play/assets/dobuita/drauth/GIE_TR.MT5": {
+      "sha256": "17f32c6c729657290a54b5cfc3036cfc1945ab86681986d2d8c8efb8364c1c86",
+      "size": 160508
+    },
+    "play/assets/dobuita/drauth/GIJ_HM.BIN": {
+      "sha256": "bd81f3033c0be237e5f52aa1976166e1376dd1c8c2b3ec66948f25d08fbc9729",
+      "size": 9264
+    },
+    "play/assets/dobuita/drauth/GIJ_TL.MT5": {
+      "sha256": "bf14ace42223e4524a58551c74e9be9dcc8911dbad566b8c68ef0ab75a1d50c8",
+      "size": 160452
+    },
+    "play/assets/dobuita/drauth/GIJ_TR.MT5": {
+      "sha256": "622c0f9a9c7f33b65af9eff47006d9246ab5e0c2f8526834ea7b14918bdd56b6",
+      "size": 160508
+    },
     "play/assets/dobuita/drauth/M_01REV.MOTN": {
       "sha256": "6b34ada14a17959da702129589e120ea070e37cef81ad0e97b8c797cada37211",
       "size": 166960
     },
     "play/assets/dobuita/drauth/manifest.json": {
-      "sha256": "e91f44345584db4ed0eb18ed95ff739e26d720c99f214b35dd34c566d962e19f",
-      "size": 7912
+      "sha256": "58fcf4c86ecb56a731fe80495679860c8f44f874f109e3f21699bd940317ddca",
+      "size": 33342
     },
     "play/assets/dobuita/drauth/SEQDATA1.AUTH": {
       "sha256": "1e4a1c1ce0151c59fec79d9bfc706e14990ee75edf78698713fc28d6065e3357",
@@ -2302,8 +2358,8 @@
       "size": 19912
     },
     "play/assets/dobuita/toki/manifest.json": {
-      "sha256": "61423470e97ae056448d50e82bf5fceb0507fdd3a3d04b2c59b92a56aad3f04f",
-      "size": 108178
+      "sha256": "d3a5bf0c6e2b9b01a0c9ea4c6800e7a621693106ef0e7c099c2af9c780810aea",
+      "size": 109536
     },
     "play/assets/dobuita/toki/SEQDATA2.AUTH": {
       "sha256": "507a20816d8a73a2a41700e90b4bc8e62e9a2b4dc4ad865cdfd9e555f459a38e",
@@ -2329,9 +2385,13 @@
       "sha256": "77bc11a2d715a76838a2df1f98a16f498a95c2319867515d1a88428ee50e8e4d",
       "size": 2132
     },
+    "play/assets/dobuita/yq14/M_01114.MOTN": {
+      "sha256": "6f7980d63ad21d4a4a51019a1ef22bbe843c03150028beff73b5b3d00302f1f8",
+      "size": 44656
+    },
     "play/assets/dobuita/yq14/manifest.json": {
-      "sha256": "c62c8fd113a2752a043d49ba6e91f7dffc90c61fa87e8645ea40997bd971984a",
-      "size": 7087
+      "sha256": "54d175cf2ddb144384c57dc72a22c4d7bdea21e9806b75cc248b05b13604646a",
+      "size": 7720
     },
     "play/assets/dobuita/yq14/SEQDATA1.AUTH": {
       "sha256": "529bc62c6721402fa265c4952d5d9aae3d9ba42ce0807ee39436935a9f448422",
@@ -2346,8 +2406,8 @@
       "size": 53740
     },
     "play/assets/hazuki/bebf/manifest.json": {
-      "sha256": "e84bfb27f2d15f09ecd6f57403de2c6fcd21dd81e7b9c912b6522688147c4445",
-      "size": 7353
+      "sha256": "4f5bc0bdedb53040129925812410945f4b77fc578ae96697364e98ff9e85e33d",
+      "size": 18622
     },
     "play/assets/hazuki/bebf/SEQDATA0.AUTH": {
       "sha256": "dca3e9c06e0a166c8c1b6378611edcf17784293aa2ccd2c091e65b41527dd569",
@@ -2398,8 +2458,8 @@
       "size": 51532
     },
     "play/assets/hazuki/houo/manifest.json": {
-      "sha256": "80890aaac8c92a529d65200fbcd27005d742984af29d09d3058c0afe4206ac06",
-      "size": 17159
+      "sha256": "6b7ee88203c944d82416180137dceae93d0b45373ce6e38e6aa0db46569467d4",
+      "size": 21277
     },
     "play/assets/hazuki/houo/PNX02M6G.CHRM": {
       "sha256": "56e82a2f5ed61e49e9f7904f6ee3b4bd7e6a2fc5c68053ad96fbd5d14a35ec91",
@@ -2418,8 +2478,8 @@
       "size": 12320
     },
     "play/assets/hazuki/jhw0/manifest.json": {
-      "sha256": "8bd9a091a4487da5ac1163820f8fbfb7a9046fcf85a9ab4c24910519b7fe9adf",
-      "size": 16422
+      "sha256": "13b1422e3361e1aa5af7c26c107a8f50503e5f1eb049e2a5202c8b0f80cb8a0d",
+      "size": 41814
     },
     "play/assets/hazuki/jhw0/SEQDATA1.AUTH": {
       "sha256": "71c1317c290e83bb059305c25ef218565c921ca19d0be90006851c5a7318cd55",
@@ -2462,8 +2522,8 @@
       "size": 50412
     },
     "play/assets/hazuki/kakg/manifest.json": {
-      "sha256": "df81b10218d9ab47883045c5384ac602d1a75e5cced5bcb7c4745deab57f44a4",
-      "size": 5426
+      "sha256": "7fd92f2ee1d79cd30d4788150b180cf8322fe81cd7dcdb241356b05281ca105a",
+      "size": 11795
     },
     "play/assets/hazuki/kakg/SEQDATK2.AUTH": {
       "sha256": "5b42a5329495c02803ac6e0cec1054921048088c47ed45f9efb1e0b046066267",
@@ -2474,8 +2534,8 @@
       "size": 6120
     },
     "play/assets/hazuki/kkya/manifest.json": {
-      "sha256": "1146ee6847ac2bb02249ed71d2b5478b93caa0c2eec2e0bcebc763f8efa1b6ed",
-      "size": 3938
+      "sha256": "067a0450161c4a93df5a9bbded15a17ccbf2667e3d67d55ce45edfdce39e95d9",
+      "size": 4104
     },
     "play/assets/hazuki/kkya/MAP01.MAPM": {
       "sha256": "4cef3a7ca80924e809d5d4fb68082f5f75245df36fd91b281743f31da77dc7ec",
@@ -2502,8 +2562,8 @@
       "size": 8556
     },
     "play/assets/hazuki/kkyb/manifest.json": {
-      "sha256": "7b5cd18fb33640d10ab927a71bf8fa76041c1db515d6f191438201b292a6e6e7",
-      "size": 4983
+      "sha256": "73cd4f8d728304c284bdba2b4a79796134f7a1cb4d966f61769298863776155b",
+      "size": 6137
     },
     "play/assets/hazuki/kkyb/PNR02A1G.CHRM": {
       "sha256": "63fd47a50fc2b8c28bbfad77c367dfb6708e920b4e4f42e5faea98bd1c19db80",
@@ -2518,8 +2578,8 @@
       "size": 132588
     },
     "play/assets/hazuki/kkyc/manifest.json": {
-      "sha256": "96321d96b2b55e448ba00db353b9e4351e2b1c0856eefe7fc2b4292b9fb35671",
-      "size": 3820
+      "sha256": "94982b3b6905c7c58cb0c2e3a3874d42765efcda18961217ceeb69de46f86178",
+      "size": 3986
     },
     "play/assets/hazuki/kkyc/SEQDATA2.AUTH": {
       "sha256": "10ab2974a98fe8404ef47b2626508859cb18fcfd37cb401770907fc2a439ce8c",
@@ -2534,8 +2594,8 @@
       "size": 372
     },
     "play/assets/hazuki/kkyd/manifest.json": {
-      "sha256": "04e4eb9182dbf583c6b3f20e6f3cdaa34f206cd4ae74d4be3c56ac25c442a996",
-      "size": 5173
+      "sha256": "800fdd82c4bb28284e095ceeb4883373c2404e75b03b90892da1f0dea1668f02",
+      "size": 5339
     },
     "play/assets/hazuki/kkyd/MAP03.MAPM": {
       "sha256": "3aa3abecf4e57bf8650aada68d5f3d95bdfc65acb4b87457581b5a446a863a27",
@@ -2546,8 +2606,8 @@
       "size": 4552
     },
     "play/assets/hazuki/kkye/manifest.json": {
-      "sha256": "05e76c417bc69377f720874f2d8767827ea0484a68e038bdb31fc6d0afff1560",
-      "size": 5097
+      "sha256": "2a2964d0464a31c82da8bcde33cbc506962b6dfe59d1ed1f8d76b5a67d49ddd2",
+      "size": 5263
     },
     "play/assets/hazuki/kkye/MONR001G.CHRM": {
       "sha256": "bdcaa1dd478f5b12845705b69336a3c1262d4ad24ea15a52dcae4790eb0a3189",
@@ -2558,8 +2618,8 @@
       "size": 3244
     },
     "play/assets/hazuki/kkyf/manifest.json": {
-      "sha256": "0ffb0842fc76138d1eac8509831ff23e715b93b03352d1d7ed7db3dfc0ecbecf",
-      "size": 4296
+      "sha256": "4588038c99b43c48863e7e17ba6a86f14f395cb76be21b106320cf5283e3a161",
+      "size": 4462
     },
     "play/assets/hazuki/kkyf/SEQDATA5.AUTH": {
       "sha256": "6c32c6d6567b0792f5a32c46e3628e25f530174f47e9e888b0cba55b973d852b",
@@ -2578,8 +2638,8 @@
       "size": 48976
     },
     "play/assets/hazuki/mska/manifest.json": {
-      "sha256": "1b3b27099e9841ce74cdf957e9728160101dc8d9c2b1bb017e33d40a8de6f53b",
-      "size": 3119
+      "sha256": "516122a9e714e7667e12abd314a1eadd2e82a6d819ff0e5026087271f9d7d91f",
+      "size": 5860
     },
     "play/assets/hazuki/mska/SEQDATA2.AUTH": {
       "sha256": "04d1801ad62088df3f361d306b9bbc9da755bb54fda54679e3de14d133d6ebe4",
@@ -2614,8 +2674,8 @@
       "size": 1452
     },
     "play/assets/hazuki/tgma/manifest.json": {
-      "sha256": "de86899a704187add451ea007c668ef969ee2999af5de4529739420ced722661",
-      "size": 32720
+      "sha256": "d00855e5b6f08db7a76b922223a4cd97e371ff6271640d6402295d924961a455",
+      "size": 37067
     },
     "play/assets/hazuki/tgma/SEQDATA4.AUTH": {
       "sha256": "e409876e1c569cc4ad93447a6bf588dc0325b8a907c404bc4883140e1e2ab968",
@@ -2629,13 +2689,173 @@
       "sha256": "da5dc36c38e676e69db9c67549708be49ffde85a16c1963d43ed5d05c8158dd0",
       "size": 153824
     },
+    "play/assets/introduction/op00-dream/M_0119.BIN": {
+      "sha256": "5526e7ce5da4868b858198a562e6922b3df942dc423597f63ddd5fc1b1892efd",
+      "size": 58504
+    },
+    "play/assets/introduction/op00-dream/manifest.json": {
+      "sha256": "28376955eb194a30da149596c72538dfdcc6586cd207989700cbfd9075682e83",
+      "size": 85466
+    },
+    "play/assets/introduction/op00-dream/owner-program.generated.json": {
+      "sha256": "2e1ff848960649db0518de56abbacf5328043e78897304bbf0d3d565c78c9533",
+      "size": 318509
+    },
+    "play/assets/introduction/op00-dream/SEQDATA28.AUTH": {
+      "sha256": "4df33395ab923bf471cd4627ba0532f9d25c98cbac62c534258ca30b01a6ef6b",
+      "size": 1840
+    },
+    "play/assets/introduction/op00-dream/SEQDATA29.AUTH": {
+      "sha256": "16974bab9c4ee2c7f8d5999b47676c5e6aed120a8584759c371858ce937f80c8",
+      "size": 2472
+    },
+    "play/assets/introduction/op00-dream/SEQDATA30.AUTH": {
+      "sha256": "d96d9aaf68d8b08852b5bde5fdce71831851abd42ac02a10de999d62f3a77720",
+      "size": 2772
+    },
+    "play/assets/introduction/op00-dream/SEQDATA31.AUTH": {
+      "sha256": "9ebfa52607daced4f742bd8a406254b313e325906d6a09c4dde2b09c8b1dbc73",
+      "size": 1164
+    },
+    "play/assets/introduction/op00-dream/SEQDATA32.AUTH": {
+      "sha256": "f44499d737c3e2e94ddb5065744d32c9c19bbb1d5fa32d99fe9abbacbb4c5323",
+      "size": 1116
+    },
+    "play/assets/introduction/op00-dream/SEQDATA33.AUTH": {
+      "sha256": "ee7950a4f1880a1486c263689d844dfff94942abe264e2adb44a6bc771849547",
+      "size": 1116
+    },
+    "play/assets/introduction/op00-dream/SEQDATA34.AUTH": {
+      "sha256": "16657efce3878979d163d858667805dd10103508ec4f60434321185b953e7e09",
+      "size": 1164
+    },
+    "play/assets/introduction/op00-dream/SEQDATA35.AUTH": {
+      "sha256": "920661e37d48efdaf0858b03e4c3147afdae3389f880e31fc081e8bdfb23eae6",
+      "size": 1236
+    },
+    "play/assets/introduction/op00-dream/SEQDATA36.AUTH": {
+      "sha256": "89a6765ae3f65ba9d0e17ee2bafdc77064468082ad9e2571a951e5c04b181416",
+      "size": 1980
+    },
+    "play/assets/introduction/op00-dream/SEQDATA37.AUTH": {
+      "sha256": "f897e9d1304ffbff5b6bbb6635ddb59e840aec58d480c73715e0ef2e94b6ed47",
+      "size": 2808
+    },
+    "play/assets/introduction/op00-dream/SEQDATA38.AUTH": {
+      "sha256": "c691aeab3068d627458b6189ee709c0f1c3a38c958eb2403f329bb181fb5f029",
+      "size": 876
+    },
+    "play/assets/introduction/op00-dream/SEQDATA39.AUTH": {
+      "sha256": "aba0c238604460547d3a74fb220d75d47231dd799d48bf77d506ec8c138470f7",
+      "size": 924
+    },
+    "play/assets/introduction/op00-dream/SEQDATA40.AUTH": {
+      "sha256": "593376d37565b94ae3930416751ca5b8923c82a11c9694b5389f4814458bd5cb",
+      "size": 924
+    },
+    "play/assets/introduction/op00-dream/SEQDATA41.AUTH": {
+      "sha256": "267aacda5b8bc3533c2ee364652551faa4e5245ed02b72eb82be495d3d500a0e",
+      "size": 924
+    },
+    "play/assets/introduction/op00-dream/SEQDATA42.AUTH": {
+      "sha256": "c65c178985608b9424a21be0d5b8d8a5098f5a926e49bcf259dcc9db67a0dbc4",
+      "size": 924
+    },
+    "play/assets/introduction/op00-dream/SEQDATA43.AUTH": {
+      "sha256": "d81f018f67da798229563a5d58d5ec9035e87e2a85e3a48bedefc7e8ff28e442",
+      "size": 1212
+    },
+    "play/assets/introduction/op00-dream/SEQDATA44.AUTH": {
+      "sha256": "a5221652dd436684e85f26c6278a145d6e92511c34d94d6f2e5838b282f0dbc4",
+      "size": 2416
+    },
+    "play/assets/introduction/op00-dream/SEQDATA45.AUTH": {
+      "sha256": "66a2f3781af7a399f1e4fa8d28e2f36b66ea43bd01af84ae2ad198687ade10be",
+      "size": 1500
+    },
+    "play/assets/introduction/op00-dream/SEQDATA46.AUTH": {
+      "sha256": "c760e901c06d8bca9d8a8ca23dbe665f41a27ee6d197cfb52362599901c20cc3",
+      "size": 1360
+    },
+    "play/assets/introduction/op00-dream/YKD_F.MT5": {
+      "sha256": "9d90eee53400ab16c63f45584559ae7288cea2ef1b7a3b7a5f9b471106fc9aea",
+      "size": 156808
+    },
+    "play/assets/introduction/op00-dream/YKD_FTBL.BIN": {
+      "sha256": "ef16c91d14e864d2d0ef6830ff1a370f66bdfeaee6711a22f0912ce4ad2b42d6",
+      "size": 5912
+    },
+    "play/assets/introduction/op00-dream/YKD_HM.BIN": {
+      "sha256": "bee95bb9557c1e8d6be25a7e92a0a5dd03ae3d15f1ac8a46d41a9c6a4d2f6fc6",
+      "size": 9272
+    },
+    "play/assets/introduction/op00-dream/YKD_M.CHRM": {
+      "sha256": "5172655184e462fdfb7382294138848c73829bce4fc691ed4cb077004db0e5a7",
+      "size": 55796
+    },
+    "play/assets/introduction/op00-dream/YKD_TL.MT5": {
+      "sha256": "4e2b42891e99adf3272d28dddd139bdf3de5ab62a4c2cd111425434d67904d14",
+      "size": 47804
+    },
+    "play/assets/introduction/op00-dream/YKD_TR.MT5": {
+      "sha256": "baa29587c3d53740ddac70330a926cf32cd6c5ddc4e87415b14c1b9371eb1d05",
+      "size": 47868
+    },
+    "play/assets/introduction/op00-dream/ykd-talk-poses.generated.json": {
+      "sha256": "a525fe93bf61ca785c51adfd0eb6b3b9c117ae5e64e69e929a12c9d58ec03648",
+      "size": 296098
+    },
+    "play/assets/introduction/op00-mail/B023H02G.CHRM": {
+      "sha256": "a4c26ed8d3e7c60f92cf037583165d06371b3f9ea24d5900acc759cc874247e4",
+      "size": 4824
+    },
+    "play/assets/introduction/op00-mail/BIKK3P0G.CHRM": {
+      "sha256": "55355b92101b288cdd931a122041ca7fafd0883150883a3cd6d6c8aa37cecb0a",
+      "size": 23616
+    },
+    "play/assets/introduction/op00-mail/HPSR101G.CHRM": {
+      "sha256": "7b688ec8c93b30fc169a31f56b25fb666d506311ba02c38da91b9603c64917ad",
+      "size": 1164
+    },
+    "play/assets/introduction/op00-mail/M_01103.BIN": {
+      "sha256": "7a71d2308e02dc6ec1693cb32b60f2d74fdd48d58d69574aa858b338e48e9735",
+      "size": 11940
+    },
+    "play/assets/introduction/op00-mail/MALS501G.CHRM": {
+      "sha256": "9a7a6f3245714624bf4818f3db2a135fc49077bdc373c12eb19203a8731dcff0",
+      "size": 1052
+    },
+    "play/assets/introduction/op00-mail/manifest.json": {
+      "sha256": "0b7ec7878ee0c2719934b87c7ddacf0c9af8cb1ac5d355081400dc2f540c19d8",
+      "size": 31157
+    },
+    "play/assets/introduction/op00-mail/owner-program.generated.json": {
+      "sha256": "aaf24275cfc1afca339a836dc4b713c91562355f9cc96c8b7c755ce467941c30",
+      "size": 167906
+    },
+    "play/assets/introduction/op00-mail/SEQDATA25.AUTH": {
+      "sha256": "451bf4f7a0387e21ac540e561e344e1d0f7dd7c060935819d35585dbc116d8df",
+      "size": 9748
+    },
+    "play/assets/introduction/op00-mail/SEQDATA26.AUTH": {
+      "sha256": "d2457d9ba8bb81262b1fc3f71b2c336c80d721077e8dc52fb850ce2fcc50c383",
+      "size": 1116
+    },
+    "play/assets/introduction/op00-mail/SEQDATA27.AUTH": {
+      "sha256": "4827f2cdedbb875e374849e9ae0ca54153865df9735996452fef99e2dd7cba1d",
+      "size": 3256
+    },
+    "play/assets/introduction/op00-mail/UBA_L.CHRM": {
+      "sha256": "967bc74cdb77b37ad60448cd9f92814ceb5433edd05f66b60047b4ef133b4e09",
+      "size": 33956
+    },
     "play/assets/introduction/op00/asset-inventory.generated.json": {
-      "sha256": "a60c541af3e2a05277a577509ab1b8be1d2f5abaa1d6e91eeba31f569af130f8",
-      "size": 50815
+      "sha256": "2420a16155d27d2b6a0506fc9e2b748239680cd2991d3550ca43f3268c367d9b",
+      "size": 55632
     },
     "play/assets/introduction/op00/cutscene-program.generated.json": {
-      "sha256": "6c0e9e7414223ac9ca425b4f24b87a869051466b4cadc119b1a3aca7e54a13fd",
-      "size": 4106851
+      "sha256": "85f99a07194168d9d8ed858fdf9f67f891692afea99476ebab945ef5cb3bb894",
+      "size": 4127675
     },
     "play/assets/introduction/op00/faces/FUK_F.MT5": {
       "sha256": "91d7ea39451d3f45c6c7b4a8536d3f0a349be274df9581df64f5177c17dcf1ed",
@@ -2742,8 +2962,8 @@
       "size": 1088092
     },
     "play/assets/introduction/op00/manifest.json": {
-      "sha256": "648bc4ea1d60257d5a369385d4623de491817ef4ff5d309858c5616329b57c0f",
-      "size": 245031
+      "sha256": "3fa65734177b29ab0d83b7b87905860cff778da01da5370b321b3225a8c5df55",
+      "size": 282108
     },
     "play/assets/introduction/op00/models/B023H01G.CHRM": {
       "sha256": "9b5c78f2eb0e03afbe6ec64d8f8b6bc437b42b6f916a401b320eea876c6e6975",
@@ -2772,6 +2992,10 @@
     "play/assets/introduction/op00/models/JYUU.MAPM": {
       "sha256": "b88734720dc2c1cab89b98cf27e30bb630d381eb6b09af3a1017accd0337cd4c",
       "size": 356464
+    },
+    "play/assets/introduction/op00/models/KAMS203G.CHRM": {
+      "sha256": "c58157d9d9b2e73e62414d4dbc3c277edad9a9d1edd12b2c7228090998186f46",
+      "size": 372
     },
     "play/assets/introduction/op00/models/NAIB.MAPM": {
       "sha256": "b76c5eae5122d938b6285bcc152c63b07d7355e51be78088e97a93ca2e624bd7",
@@ -2869,6 +3093,10 @@
       "sha256": "a6368e3f979d6d57bf963aebfbcd5197e99bc03198a33e9673325215f2f439e6",
       "size": 21768
     },
+    "play/assets/introduction/op00/SEQDATA24.AUTH": {
+      "sha256": "9230dfa8a9cbdafc5de16becab4b56a4d8f07930082e28cd983be003633ac0a0",
+      "size": 3460
+    },
     "play/assets/introduction/op00/SEQDATA3.AUTH": {
       "sha256": "2fdd274b3f4944dffa35d71b496ecb464d212eaeb176323db11a1438b99ec3e3",
       "size": 10836
@@ -2898,8 +3126,8 @@
       "size": 2704
     },
     "play/assets/introduction/op02/cutscene-program.generated.json": {
-      "sha256": "4b3392e1e15066a402ba38134a123ec89c8d4e02d8d05b4839e9e3b231c01daf",
-      "size": 422633
+      "sha256": "4a523bca141c5dfe4f14bb4d2ac90cde9526c8300e8b4fa4827d45bbc2f2f90f",
+      "size": 422612
     },
     "play/assets/introduction/op02/cutscene-source-graph.generated.json": {
       "sha256": "0738a30cb4b111ff216e92443784b6c4e8c2da6c64a156b70dbe919321fa99d7",
@@ -2914,8 +3142,8 @@
       "size": 132456
     },
     "play/assets/introduction/op02/manifest.json": {
-      "sha256": "bbde4a9203977136b61468f4d6938cb6bcdf942d4697b7a1d481a76f92981f14",
-      "size": 23724
+      "sha256": "4fc8dda0d9f218dba3c485335fcdf56782f4b9d18c34228ad36b78deb5ef5eab",
+      "size": 29192
     },
     "play/assets/introduction/op02/MGR_CLOTH_TRACK.bin": {
       "sha256": "b7764ddea665263dada837cc2c447504396d32943a3632845cb2775173c2db1d",
@@ -2952,6 +3180,14 @@
     "play/assets/introduction/op02/models/MGR_M.CHRM": {
       "sha256": "a79af46067bc08d22ec55e7308d6ac9157185bcba5409de3b59fc07830435f55",
       "size": 238128
+    },
+    "play/assets/introduction/op02/models/SIN_TL.CHRM": {
+      "sha256": "d0c2c59ead198eef047313c5852726df5b1ffd0d903baa4e95254e7f38468be0",
+      "size": 12676
+    },
+    "play/assets/introduction/op02/models/SIN_TR.CHRM": {
+      "sha256": "6427c37fbdba8b721a0ed0580c89bc9513260f5a1a4df9d5af25fc5226b3962e",
+      "size": 12764
     },
     "play/assets/introduction/op02/models/TAK02M7G.CHRM": {
       "sha256": "3bb785a9e35909dfddf4d0914faaf063668e848f0667fb931acbfa8a503f2e05",
@@ -3009,9 +3245,13 @@
       "sha256": "98ea8a7a95481e833bbfee9f6d2eb1c86241f953aa8f6c2db8ce245dee694653",
       "size": 2528
     },
+    "play/assets/introduction/op02/SIN_HM.BIN": {
+      "sha256": "6245a820d3b4e69388cde3bea95f2d9b0bc3246a77e8ff2254d586e6398fc589",
+      "size": 8632
+    },
     "play/assets/sakuragaoka/dnoz-environment/manifest.json": {
-      "sha256": "27b89cd27c2df2eb862ed5700036f4cdfbc1cebf775c8c149c8dbc5eeafe8a08",
-      "size": 3166
+      "sha256": "0d3b72acf905099057c98e9a255c48bda47494401ea5f2946a048cc7f090ac15",
+      "size": 3176
     },
     "play/assets/sakuragaoka/dnoz-environment/MAP.MAPM": {
       "sha256": "3f0f15bde2bcbd920cace8729840bd48f0518b61e431f43ea9c41d88abe47ec7",
@@ -3074,8 +3314,8 @@
       "size": 161028
     },
     "play/assets/sakuragaoka/dnoz-ski/manifest.json": {
-      "sha256": "98d065114d0eb0242d13bf84865bc1c44315f9aa468c00b137f3feaa2959cdfd",
-      "size": 19643
+      "sha256": "c60772902b2491559a61577ea0af7a46bb465a1522d9369d9349201158b633a8",
+      "size": 24221
     },
     "play/assets/sakuragaoka/dnoz-ski/NZM_HM.BIN": {
       "sha256": "d2df197f87e38cf83ee3a44015f376503cb4702819824d5f057405e34fcf64e6",
@@ -3102,8 +3342,8 @@
       "size": 90220
     },
     "play/assets/sakuragaoka/dnoz/manifest.json": {
-      "sha256": "e0edf2798c00f21ba49e1531e8a78e18d68e457d73ca1fb8a241b2dd0db2aa7b",
-      "size": 16840
+      "sha256": "6f63403162011c2e660e269eac78b6794699abc2a28168d620b65cc0f298caa2",
+      "size": 25298
     },
     "play/assets/sakuragaoka/dnoz/SEQDATA2.AUTH": {
       "sha256": "210cf85c321ba1e7265ae05af47ff402abb259b698fabc29d19bec0b71ee1d5e",
@@ -3118,8 +3358,8 @@
       "size": 312076
     },
     "play/assets/sakuragaoka/evsn/manifest.json": {
-      "sha256": "67c8d7124a3762ac02a544085663d055462806e93e1b6ea8f7d20294e4e65b2b",
-      "size": 10931
+      "sha256": "0dee00890b037b0e83b9354f9213baad904e93cbb5f0a948b3848f13532e3e7f",
+      "size": 48612
     },
     "play/assets/sakuragaoka/evsn/NZG_L.CHRM": {
       "sha256": "a12c2320e9d2ab69386e7dcfa38367de6299f8e921071a562f65ddae2dc9e881",
@@ -3144,6 +3384,30 @@
     "play/assets/sakuragaoka/evsn/SEQDATA4.AUTH": {
       "sha256": "8f17a245f4f1f09df580d07b88cd7c8bb20636dd515e6f647d1339b96bf73411",
       "size": 3732
+    },
+    "play/assets/sakuragaoka/evsn/YAA_HM.BIN": {
+      "sha256": "4a6c85858467733b459eb40588ff3116fa31c1c4a364b442f0c1169e2cf2bf34",
+      "size": 9264
+    },
+    "play/assets/sakuragaoka/evsn/YAA_TL.MT5": {
+      "sha256": "038b520036e05a7cda16dba20fe4e55455286d1aa243d550b7d00af36b4c48fa",
+      "size": 176812
+    },
+    "play/assets/sakuragaoka/evsn/YAA_TR.MT5": {
+      "sha256": "4b6384908846d8c5ff7b615ef268f932add9a7832f4040f9160ad58c75a493ee",
+      "size": 176892
+    },
+    "play/assets/sakuragaoka/evsn/YAB_HM.BIN": {
+      "sha256": "4a6c85858467733b459eb40588ff3116fa31c1c4a364b442f0c1169e2cf2bf34",
+      "size": 9264
+    },
+    "play/assets/sakuragaoka/evsn/YAB_TL.MT5": {
+      "sha256": "038b520036e05a7cda16dba20fe4e55455286d1aa243d550b7d00af36b4c48fa",
+      "size": 176812
+    },
+    "play/assets/sakuragaoka/evsn/YAB_TR.MT5": {
+      "sha256": "4b6384908846d8c5ff7b615ef268f932add9a7832f4040f9160ad58c75a493ee",
+      "size": 176892
     },
     "play/assets/scheduled-actors/M_FREE.BIN": {
       "sha256": "7fc3005ac1c307a23f38e59acc397f74b4869c57f3a899b4af9ee196de0d4a92",
@@ -4250,8 +4514,8 @@
       "size": 366692
     },
     "play/assets/yamanose/cata1/manifest.json": {
-      "sha256": "30dcf27a9c78e76b3be3985a63d7af08353e75721d8a421d948fa76235f5fe72",
-      "size": 24490
+      "sha256": "cbf7869e9a317236a0f039430675bb13647395c6a852d29d75779f5ee5b26aaa",
+      "size": 46513
     },
     "play/assets/yamanose/cata1/NIBM400G.CHRM": {
       "sha256": "0e1b1183dac9fd49175e994aaaf1141a154a3e95d4bf59913ae0c904eb9da40b",
@@ -4273,13 +4537,37 @@
       "sha256": "db3cf574a2567e2a3dd5d52f70d2f3678efeb81cf4029a324ddf59154868b1b7",
       "size": 9012
     },
+    "play/assets/yd01/sakr/IWA_HM.BIN": {
+      "sha256": "e9ac04b80a5b7f693d6af299683073906c5a2bd0d47d88676a6707501bfb0e06",
+      "size": 9264
+    },
+    "play/assets/yd01/sakr/IWA_TL.MT5": {
+      "sha256": "f19af6e7483e12e39a7db653661e2cc15b63a27bda5005929d4581251603b80b",
+      "size": 185148
+    },
+    "play/assets/yd01/sakr/IWA_TR.MT5": {
+      "sha256": "bd606f4acca38d5a1ab9ccd538f95b93c0211d1fce2302f4e8a128c2da94590d",
+      "size": 185204
+    },
+    "play/assets/yd01/sakr/JKB_HM.BIN": {
+      "sha256": "e7529472af95b35041d5cf7647ece11e764f404d6f433aeb581241b4732dac02",
+      "size": 9168
+    },
+    "play/assets/yd01/sakr/JKB_TL.MT5": {
+      "sha256": "aed6a05ffb8bb0eeed4fb6826b70397bae21e149d4cb4a2148862309523726df",
+      "size": 193240
+    },
+    "play/assets/yd01/sakr/JKB_TR.MT5": {
+      "sha256": "986057c4ca7927c10594c1a3047b15b21a1995dfd54878ba896a88a4aa81678e",
+      "size": 193144
+    },
     "play/assets/yd01/sakr/M_0128.MOTN": {
       "sha256": "984f330945ea22747915019c0c0afc5e50941551263db9bcef7090c9a8bfd2fa",
       "size": 109628
     },
     "play/assets/yd01/sakr/manifest.json": {
-      "sha256": "75f165f3fb0db956e5eeaa0a180bcd2efd400dc4d89160fa0d4b4866cc1bdaa5",
-      "size": 8548
+      "sha256": "e25de3e63f3d905ef3ba741506f358eb31dae975a9da107c68ebc2cbf9e5a7e5",
+      "size": 28940
     },
     "play/assets/yd01/sakr/SEQDATA0.AUTH": {
       "sha256": "e2160469503e7faf9b850ad1513f7dc67aea33288fbbee3d626003599b338aee",
@@ -7593,9 +7881,89 @@
       "sha256": "34d1e45b4e9393a931d65be2361dab4f064c918979bef2562692813c8b7a86fe",
       "size": 122668
     },
+    "public/audio/world/op00-dream/manifest.json": {
+      "sha256": "9edc5fc4ce8c441f098f925ec203fa59c8975a4268b7dd9aa7f355fee4936d9d",
+      "size": 12079
+    },
+    "public/audio/world/op00-dream/sfx/a9040100.wav": {
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54",
+      "size": 21196
+    },
+    "public/audio/world/op00-dream/sfx/a9040200.wav": {
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14",
+      "size": 17972
+    },
+    "public/audio/world/op00-dream/sfx/a9040300.wav": {
+      "sha256": "6a07a7eecfa617e86e04b9cf8be4bd8a33f437c6960b687ac60d05575fcc904f",
+      "size": 25804
+    },
+    "public/audio/world/op00-dream/sfx/a9040400.wav": {
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c",
+      "size": 17972
+    },
+    "public/audio/world/op00-dream/voice/A0119A001.wav": {
+      "sha256": "7e956c1c422595249a4d3ba3bf5ca49b60c2c34fbbf4819bbab90a59851d756e",
+      "size": 204588
+    },
+    "public/audio/world/op00-dream/voice/A0119A002.wav": {
+      "sha256": "b64d7f9471d958c1aa65804d5e3f4dd396b63e0a06f7bf4f75d710c7e582af77",
+      "size": 270124
+    },
+    "public/audio/world/op00-mail/manifest.json": {
+      "sha256": "052398ab8a2f19f03a101d40e4d4210c922a862d12364a1ef85488f2751ac9fe",
+      "size": 7486
+    },
+    "public/audio/world/op00-mail/sfx/a9040000.wav": {
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14",
+      "size": 17972
+    },
+    "public/audio/world/op00-mail/sfx/a9040100.wav": {
+      "sha256": "3ee57119477ec4753e1433911f99fc001d66635c3a5e6e5ad61d3b3e4d24068c",
+      "size": 48100
+    },
+    "public/audio/world/op00-mail/sfx/a9040200.wav": {
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c",
+      "size": 17972
+    },
+    "public/audio/world/op00-mail/sfx/a9040300.wav": {
+      "sha256": "3958943d61ddbe6bce63529b1fe609707b44c016c810e741f369f8727a8715a4",
+      "size": 8148
+    },
+    "public/audio/world/op00-mail/sfx/a9040400.wav": {
+      "sha256": "f4f87640f80bf403acbbb762778c1430e5218722f5ce058692127681a37d2df5",
+      "size": 14420
+    },
+    "public/audio/world/op00-mail/sfx/a9040500.wav": {
+      "sha256": "45d64fb61936a1a99a1b5dbf387a951babf750b1d72d32a4543f5ba75e591297",
+      "size": 16356
+    },
+    "public/audio/world/op00-mail/sfx/a9040600.wav": {
+      "sha256": "565ee6addd2a88dfa716c1c51c9e81d13fd0245434e9e467e3598443fb9ff75e",
+      "size": 14884
+    },
+    "public/audio/world/op00-mail/sfx/a9040700.wav": {
+      "sha256": "d0ed30ae033cbeb6d2eab49fd2056392678da0e16db5a8f948a520535a1fadfb",
+      "size": 10844
+    },
+    "public/audio/world/op00-mail/sfx/a9040800.wav": {
+      "sha256": "3eec1a54de29fe4a3f5ea2c11b721a90acafeebcd0722636809ece3279035ed6",
+      "size": 10332
+    },
+    "public/audio/world/op00-mail/sfx/a9040900.wav": {
+      "sha256": "2180caa4409808f7319682dd24712e4b79e10545191a91bc8be3fb8d9e913499",
+      "size": 7068
+    },
+    "public/audio/world/op00-mail/sfx/a9040a00.wav": {
+      "sha256": "fdb5cc1ef1bd162ccb456b277431dbce56af2d317db50d8467a20fe67cfb7d65",
+      "size": 154812
+    },
+    "public/audio/world/op00-mail/voice/A01103B001.wav": {
+      "sha256": "027640c3ef9d1d87ab472b6d28114fe35b16e58d1f960a299b3fe5a9fa9a0634",
+      "size": 73516
+    },
     "public/audio/world/op00/manifest.json": {
-      "sha256": "d98572897bbd1f91a38b3a9f144c43faf69329f3bd75f66861a60e40a0ed5eed",
-      "size": 148197
+      "sha256": "85f53b19a280dae52465f46941bd1cde787c94eec60d31b369e8ab792f540939",
+      "size": 152497
     },
     "public/audio/world/op00/sfx/a9040000.wav": {
       "sha256": "3540fa466169743fc7c88a606e3e246291c47132e5f6497bba18f01eabeebbb0",
@@ -7761,6 +8129,14 @@
       "sha256": "262f7651c02061c391364b886ee40b5beed11b04db7cc2c2071c251b9c99d286",
       "size": 122812
     },
+    "public/audio/world/op00/sfx/a9042800-0.wav": {
+      "sha256": "ad18c38ab414bcba4e5bad1f9b51a8df27490811450b48efaf0af86e768a21d5",
+      "size": 66436
+    },
+    "public/audio/world/op00/sfx/a9042800-1.wav": {
+      "sha256": "02babef3eeb57e54117fe17f737f47077404e833af967f20e627b75056815be3",
+      "size": 130236
+    },
     "public/audio/world/op00/sfx/a9042900.wav": {
       "sha256": "3a513b3186e25987d2438855f7810f97b4fa3e0eadf116e1de11f1c87a8bc98e",
       "size": 32108
@@ -7812,6 +8188,22 @@
     "public/audio/world/op00/sfx/a9043600.wav": {
       "sha256": "238ee3bbb87627b51fa36dc0d315e89c7eeb5dbe43ff8c3895ad7890745bd6e6",
       "size": 3820
+    },
+    "public/audio/world/op00/sfx/a9043700-0.wav": {
+      "sha256": "7f4f33795ff8326f896e2dc200d4d943afe2892f97c044b55d3f524f51114d20",
+      "size": 62208
+    },
+    "public/audio/world/op00/sfx/a9043700-1.wav": {
+      "sha256": "120b197717f877592287115d5fac9ecaf39552bd9b9dc018885f874b719268fb",
+      "size": 30976
+    },
+    "public/audio/world/op00/sfx/a9043800-0.wav": {
+      "sha256": "20ab20be125f44b59954329a77e7dc4eee262b22b3d838db5c2b38959208a1f5",
+      "size": 22446
+    },
+    "public/audio/world/op00/sfx/a9043800-1.wav": {
+      "sha256": "20ab20be125f44b59954329a77e7dc4eee262b22b3d838db5c2b38959208a1f5",
+      "size": 22446
     },
     "public/audio/world/op00/sfx/a9043900.wav": {
       "sha256": "332bc30fd875673c1627e5136fe7d8194b11b1deb7cf0ddebbe4574abb2844ce",
@@ -8758,8 +9150,8 @@
       "size": 24364
     },
     "public/music/asset-viewer-manifest.json": {
-      "sha256": "848c987a9e9d4883d17613b45e0f4dc50ab9f48473577914bfce86fd880819ca",
-      "size": 102343
+      "sha256": "6cd89a50c5bd7c932cf4f201b7db68790293b1b084df32cf01e62db5d558275d",
+      "size": 379826
     },
     "public/music/bgm049.ogg": {
       "sha256": "9655156d6eb7a934c1879075a84b4f01f041fe31207330b734bf19d588af8993",
@@ -8838,8 +9230,8 @@
       "size": 2550480
     },
     "public/music/manifest.json": {
-      "sha256": "69404dd8e2481dc26ec45da3710bc6a65563fa8149d31f31df717a6980116890",
-      "size": 15252
+      "sha256": "016cb7072f0d6d4b7a2b6489b3615b3933578a5904e55d9a0f478610ab793224",
+      "size": 18710
     },
     "public/music/mjq-jazz-bar.ogg": {
       "sha256": "d84cbdde63e5c32b5b8ee5403b3dee3ba702a02960f02f4dc2a9452f44a94d03",

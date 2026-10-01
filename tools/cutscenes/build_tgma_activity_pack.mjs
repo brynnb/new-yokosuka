@@ -4,8 +4,9 @@ import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { buildNativeAseqActivityPack } from "../lib/NativeAseqActivityPack.mjs";
-import { extractNativeAseqCallbackPresentation } from "../lib/NativeAseqCallbackPresentation.mjs";
+import { buildNativeAseqActivityPack, sha256 } from "../lib/NativeAseqActivityPack.mjs";
+import { extractNativeAseqCallbackPresentation, extractNativeAseqHandInitialization } from "../lib/NativeAseqCallbackPresentation.mjs";
+import handEvidence from "../evidence/hazuki-dialogue-native-callback-ir.json" with { type: "json" };
 import { nativeAseqGoverningActivityFrame } from "../lib/NativeAseqScriptOwnership.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
@@ -17,6 +18,11 @@ if (!sourceRoot) throw new Error("an exact Shenmue Disc 1 extraction was not fou
 
 const mapinfoPath = path.join(sourceRoot, "data/SCENE/01/JHD0/MAPINFO.BIN");
 const mapinfo = readFileSync(mapinfoPath);
+if (sha256(mapinfo) !== handEvidence.source.mapinfoSha256) throw new Error("TGMA hand source changed");
+const handInitialization = extractNativeAseqHandInitialization({
+  bytes: mapinfo, activitySlot: 0, functions: handEvidence.supportingFunctions,
+  nativeFunction: handEvidence.supportingFunctions.find(fn => fn.id === "0x26aa4"),
+});
 const callback = 0x232fc;
 const nativeCallbackIr = JSON.parse(readFileSync(
   path.join(root, "tools/evidence/tgma-native-callback-ir.json"),
@@ -46,6 +52,13 @@ const exactFrame = (call, expected) => {
 const outputDirectory = path.join(root, "play/assets/hazuki/tgma");
 const handSourceDirectory = path.join(sourceRoot, "data/SCENE/01/MODEL/HAND");
 const faceSourceDirectory = path.join(sourceRoot, "data/SCENE/01/MODEL/FACE");
+const fubPosePath = "play/assets/cutscenes/native-faces/fub-talk-poses.generated.json";
+const fubPoseBytes = readFileSync(path.join(root, fubPosePath));
+const fubPoses = JSON.parse(fubPoseBytes);
+if (fubPoses.actors?.FUKU?.faceCode !== "FUB"
+  || fubPoses.actors.FUKU.tableSha256 !== "c2be5f63cb0918f4a26b982f68be29c5aadcae95fdb7a24a7ecbe4d6bc2c4f32") {
+  throw new Error("TGMA TALK poses do not belong to the authored FUB table");
+}
 const handAsset = (filename, byteLength, sha256) => ({
   path: `play/assets/hazuki/tgma/${filename}`,
   sourcePath: `extracted_files/data/SCENE/01/MODEL/HAND/${filename}`,
@@ -170,7 +183,7 @@ buildNativeAseqActivityPack({
       ],
     },
   },
-  nativeHandPoseTables: callbackPresentation.nativeHandPoseTables,
+  nativeHandPoseTables: { ...handInitialization.nativeHandPoseTables, ...callbackPresentation.nativeHandPoseTables },
   handAssets: fubHandAssets,
   facialAssets: {
     FUKU: {
@@ -193,9 +206,11 @@ buildNativeAseqActivityPack({
         sha256: "c2be5f63cb0918f4a26b982f68be29c5aadcae95fdb7a24a7ecbe4d6bc2c4f32",
       },
       poses: {
-        kind: "neutral-fallback",
         actorTag: "FUKU",
-        evidence: "tools/evidence/tgma-native-blocker.json",
+        path: fubPosePath,
+        byteLength: fubPoseBytes.byteLength,
+        sha256: sha256(fubPoseBytes),
+        generatedBy: "tools/animation/extract_native_face_poses.py",
       },
     },
   },
@@ -222,7 +237,8 @@ buildNativeAseqActivityPack({
     durationFrames: 954,
     frameCount: 36,
     commandCounts: { camera: 1, move: 2, motion: 2, sound: 26, voice: 8 },
-    nativeHandPoseCues: callbackPresentation.nativeHandPoseCues,
+    nativeHandPoseCues: [...handInitialization.nativeHandPoseCues, ...callbackPresentation.nativeHandPoseCues],
+    nativeHandComponentCues: callbackPresentation.nativeHandComponentCues,
     nativeFaceClipCues: callbackPresentation.nativeFaceClipCues,
     nativeFaceGazeCues: callbackPresentation.nativeFaceGazeCues,
   }],

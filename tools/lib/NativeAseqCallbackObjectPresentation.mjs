@@ -28,12 +28,56 @@ function float32(word) {
   return new DataView(bytes).getFloat32(0, true);
 }
 
-function operationFrame(bytes, callbackFunction, operation) {
-  return nativeAseqGoverningActivityFrame(
-    bytes,
-    callbackFunction,
-    Number.parseInt(operation.callFileOffset, 16),
-  );
+function operationFrame(bytes, callbackFunction, operation, nativeFunction = null, durationFrames = null) {
+  try {
+    return nativeAseqGoverningActivityFrame(
+      bytes, callbackFunction, Number.parseInt(operation.callFileOffset, 16),
+    );
+  } catch (error) {
+    // FIXO can be installed before playback starts (not just at a frame
+    // guard). Prove that placement on the callback's unique entry path;
+    // an unrecognized late or conditional command is still an error.
+    const blocks = new Map((nativeFunction?.blocks || []).map(block => [block.id, block]));
+    const visited = new Set();
+    let block = blocks.get(nativeFunction?.entryBlock);
+    let encountered = false;
+    while (block && !visited.has(block.id)) {
+      visited.add(block.id);
+      for (const action of block.actions) {
+        if (action.callFileOffset === operation.callFileOffset) encountered = true;
+        if (action.semanticId === "native-operation-0050-aseq-activity-control") {
+          const value = action.arguments[0];
+          // Callbacks can begin after their owner starts ASEQ. Setup before
+          // the first completion poll (-1) is still entry setup, not a late
+          // detach merely because this function never starts ASEQ itself.
+          if (encountered && (value.kind === "frame-field"
+            || (value.kind === "constant" && (value.value < 0x80000000
+              || value.value === 0xffffffff)))) return 0;
+          block = null;
+          break;
+        }
+      }
+      block = block?.successors.length === 1 ? blocks.get(block.successors[0]) : null;
+    }
+    // Likewise, a reset on the unique "activity finished" exit path belongs
+    // to the terminal boundary, not an invented early detach frame.
+    if (Number.isSafeInteger(durationFrames)) {
+      for (const action of [...blocks.values()].flatMap(value => value.actions)) {
+        if (action.semanticId !== "native-operation-0050-aseq-activity-control"
+          || action.arguments[0]?.value !== 0xffffffff
+          || action.resultComparison?.comparison !== "equal"
+          || action.resultComparison.constant !== 0) continue;
+        block = blocks.get(action.resultComparison.resolvedBranch?.comparisonTrueSuccessor);
+        const exitVisited = new Set();
+        while (block && !exitVisited.has(block.id)) {
+          exitVisited.add(block.id);
+          if (block.actions.some(value => value.callFileOffset === operation.callFileOffset)) return durationFrames;
+          block = block.successors.length === 1 ? blocks.get(block.successors[0]) : null;
+        }
+      }
+    }
+    throw error;
+  }
 }
 
 function blockActions(nativeFunction) {
@@ -42,13 +86,34 @@ function blockActions(nativeFunction) {
   ));
 }
 
-function frameWords(block, pointer, label) {
+export function frameWords(nativeFunction, block, pointer, operation) {
+  const label = operation.callFileOffset;
   if (pointer?.kind !== "frame-address" || !Number.isInteger(pointer.offset)) {
     throw new Error(`${label} is not an exact native frame vector`);
   }
-  const writes = new Map((block.actions || [])
-    .filter(action => action.kind === "frameFieldWrite" && action.width === 4)
-    .map(action => [action.offset, action.value >>> 0]));
+  const writes = new Map();
+  const seen = new Set();
+  let current = block;
+  // Compiled callbacks reuse a vector for successive props, overwriting only
+  // changed components. Follow the unique predecessor chain, not file order:
+  // a nearby write on another branch is not evidence for this attachment.
+  while (current && !seen.has(current.id)) {
+    seen.add(current.id);
+    for (const action of [...(current.actions || [])].reverse()) {
+      if (action.kind === "frameFieldExpressionWrite" && action.width === 4
+        && [0, 4, 8].some(delta => pointer.offset + delta === action.offset)
+        && Number.parseInt(action.callFileOffset, 16) < Number.parseInt(label, 16)
+        && !writes.has(action.offset)) {
+        throw new Error(`${label} has dynamic native frame-vector writes`);
+      }
+      if (action.kind === "frameFieldWrite" && action.width === 4
+        && Number.parseInt(action.callFileOffset, 16) < Number.parseInt(label, 16)
+        && !writes.has(action.offset)) writes.set(action.offset, action.value >>> 0);
+    }
+    if ([0, 4, 8].every(delta => writes.has(pointer.offset + delta))) break;
+    const predecessors = nativeFunction.blocks.filter(candidate => candidate.successors?.includes(current.id));
+    current = predecessors.length === 1 ? predecessors[0] : null;
+  }
   const words = [0, 4, 8].map(delta => writes.get(pointer.offset + delta));
   if (words.some(value => !Number.isInteger(value))) {
     throw new Error(`${label} has no exact native frame-vector writes`);
@@ -168,8 +233,11 @@ function hmdlTransform(
       callFileOffset: operation.callFileOffset,
     });
   }
-  const rotationRaw = frameWordsBefore(nativeFunction, rotationPointer, operation)
-    .map(signed32);
+  // Some callbacks keep their initial hinge poses in MAPINFO constants,
+  // rather than constructing the same three words on the coroutine stack.
+  const rotationRaw = rotationPointer?.kind === "static-pointer"
+    ? [0, 4, 8].map(delta => bytes.readInt32LE(rotationPointer.value + delta))
+    : frameWordsBefore(nativeFunction, rotationPointer, operation).map(signed32);
   let frame;
   try {
     frame = operationFrame(bytes, callbackFunction, operation);
@@ -189,31 +257,134 @@ function hmdlTransform(
   });
 }
 
+// Compile the bounded, constant-step HMDL loops used by multipart props.
+// This recovers data; it does not add another native interpreter to playback.
+// Only the proven pattern (one selector, one inclusive counter, one tick per
+// iteration, integer vector writes) is accepted. Other callbacks stay explicit
+// extraction failures instead of receiving guessed motion.
+export function extractNativeAseqCountedNodeTransformLoop({
+  nativeFunction, selector, firstFrame, activitySlot = 0,
+} = {}) {
+  const entries = blockActions(nativeFunction);
+  const actions = entries.map(entry => entry.action);
+  const loopBounds = nativeFunction.blocks.flatMap(block => (
+    block.frameFieldComparisons || []
+  )).filter(comparison => {
+    const range = comparison.expression?.left?.operand;
+    return comparison.comparison === "frame-expression"
+      && comparison.expression.kind === "equal"
+      && comparison.expression.right?.value === 0
+      && range?.kind === "signed-greater-or-equal"
+      && range.left?.kind === "constant"
+      && range.right?.kind === "frame-field";
+  });
+  if (loopBounds.length !== 1 || !Number.isInteger(selector)
+    || !Number.isSafeInteger(firstFrame) || firstFrame < 0) {
+    throw new Error("HMDL loop has no unique bounded counter or selector");
+  }
+  const range = loopBounds[0].expression.left.operand;
+  const counter = range.right.offset;
+  const counterWrites = actions.filter(action => action.offset === counter);
+  const delays = actions.filter(action => action.semanticId === "native-scheduler-countdown");
+  if (counterWrites.length !== 2
+    || counterWrites[0].kind !== "frameFieldWrite" || counterWrites[0].value !== 0
+    || counterWrites[1].expression?.kind !== "add"
+    || counterWrites[1].expression.left?.offset !== counter
+    || counterWrites[1].expression.right?.value !== 1
+    || delays.length !== 1 || delays[0].runtimeDispatch?.arguments?.[0]?.value !== 1) {
+    throw new Error("HMDL loop is not an inclusive single-tick counter");
+  }
+  const selectedBlocks = nativeFunction.blocks.flatMap(block => (
+    (block.frameFieldComparisons || [])
+      .filter(comparison => comparison.comparison === "cmp/eq"
+        && comparison.constant === selector && comparison.fieldOffset === 0)
+      .map(comparison => nativeFunction.blocks.find(candidate => (
+        candidate.id === comparison.resolvedBranch?.comparisonTrueSuccessor
+      )))
+  ));
+  const selectorWrites = actions.filter(action => action.offset === 0);
+  if (selectedBlocks.length !== 2 || selectedBlocks.some(block => !block)
+    || !selectorWrites.length || selectorWrites.some(action => (
+      action.kind !== "frameFieldExpressionWrite"
+      || action.expression?.kind !== "frame-field"
+      || action.expression.offset !== nativeFunction.frameArgumentBase
+    ))) throw new Error("HMDL loop selector cases are unresolved");
+
+  const initial = new Map();
+  const increments = new Map();
+  for (const action of nativeFunction.blocks[0].actions) {
+    if (action.kind === "frameFieldWrite" && action.width === 4) {
+      initial.set(action.offset, signed32(action.value));
+    }
+  }
+  for (const action of selectedBlocks.flatMap(block => block.actions)) {
+    if (action.kind === "frameFieldWrite" && action.width === 4) {
+      initial.set(action.offset, signed32(action.value));
+    } else if (action.kind === "frameFieldExpressionWrite" && action.width === 4
+      && ["add", "subtract"].includes(action.expression?.kind)
+      && action.expression.left?.kind === "frame-field"
+      && action.expression.left.offset === action.offset
+      && action.expression.right?.kind === "constant") {
+      increments.set(action.offset, action.expression.right.value
+        * (action.expression.kind === "subtract" ? -1 : 1));
+    } else throw new Error("HMDL loop contains a nonconstant vector update");
+  }
+  const cues = [];
+  for (const operation of actions.filter(action => action.semanticId === "hmdl-transform")) {
+    const [object, key, position, rotation, mode] = operation.arguments;
+    if (position?.value !== 0 || mode?.value !== 0 || rotation?.kind !== "frame-address") {
+      throw new Error(`${operation.callFileOffset} HMDL loop descriptor is unsupported`);
+    }
+    const rotationRaw = [0, 4, 8].map(delta => initial.get(rotation.offset + delta));
+    if (rotationRaw.some(value => !Number.isInteger(value))) {
+      throw new Error(`${operation.callFileOffset} HMDL loop initial vector is incomplete`);
+    }
+    const common = {
+      objectTag: tag(object, "HMDL loop object"), activitySlot,
+      nodeKey: constant(key, "HMDL loop node"), callFileOffset: operation.callFileOffset,
+    };
+    cues.push({ ...common, frame: firstFrame, mode: "set", rotationRaw });
+    const step = [0, 4, 8].map(delta => increments.get(rotation.offset + delta) || 0);
+    if (step.some(value => value !== 0)) cues.push({
+      ...common, firstFrame, lastFrame: firstFrame + range.left.value,
+      mode: "add", rotationRaw: step,
+    });
+  }
+  if (!cues.length) throw new Error("HMDL loop has no node transforms");
+  return Object.freeze(cues);
+}
+
 export function extractNativeAseqCallbackObjectPresentation({
   bytes,
   callbackFunction,
   nativeFunction,
   durationFrames,
   activitySlot = 0,
+  objectTags = null,
 } = {}) {
   if (!Buffer.isBuffer(bytes) || !Number.isInteger(callbackFunction)) {
     throw new TypeError("native callback object presentation inputs are invalid");
   }
   const entries = blockActions(nativeFunction);
-  const operations = entries.filter(({ action }) => action.kind === "engineOperation");
+  // A room callback can mix several independent presentation owners. Allow
+  // extraction of named props without interpreting unrelated actor controls
+  // or room cleanup. Their original operations remain in the retained IR.
+  const selectedTags = objectTags === null ? null : new Set(objectTags);
+  const operations = entries.filter(({ action }) => action.kind === "engineOperation"
+    && (!selectedTags || selectedTags.has(action.arguments?.[0]?.ascii)));
   const attachedObjectCues = [];
   const nodeTransformCues = [];
   const nativeActorLookPointCues = [];
   for (const { block, action } of operations) {
     if (action.semanticId === "resolved-object-fixo-attachment-install") {
-      const translation = frameWords(block, action.arguments[3], action.callFileOffset)
+      const translation = frameWords(nativeFunction, block, action.arguments[3], action)
         .map(float32);
-      const rotationRaw = frameWords(block, action.arguments[4], action.callFileOffset)
+      const rotationRaw = frameWords(nativeFunction, block, action.arguments[4], action)
         .map(value => value & 0xffff);
       attachedObjectCues.push(Object.freeze({
         objectTag: tag(action.arguments[0], `${action.callFileOffset} FIXO object`),
         activitySlot,
-        frame: operationFrame(bytes, callbackFunction, action),
+        frame: operationFrame(bytes, callbackFunction, action, nativeFunction, durationFrames),
         action: "attach",
         parentActorTag: tag(action.arguments[1], `${action.callFileOffset} FIXO parent`),
         controlId: constant(action.arguments[2], `${action.callFileOffset} FIXO control`),
@@ -227,7 +398,7 @@ export function extractNativeAseqCallbackObjectPresentation({
       attachedObjectCues.push(Object.freeze({
         objectTag: tag(action.arguments[0], `${action.callFileOffset} FIXO object`),
         activitySlot,
-        frame: operationFrame(bytes, callbackFunction, action),
+        frame: operationFrame(bytes, callbackFunction, action, nativeFunction, durationFrames),
         action: "detach",
         callFileOffset: action.callFileOffset,
       }));
@@ -254,7 +425,7 @@ export function extractNativeAseqCallbackObjectPresentation({
       if (action.arguments[2]?.kind === "constant" && action.arguments[2].value === 0) {
         nativeActorLookPointCues.push(Object.freeze({
           activitySlot,
-          frame: operationFrame(bytes, callbackFunction, action),
+          frame: operationFrame(bytes, callbackFunction, action, nativeFunction, durationFrames),
           actorTag,
           selector,
           mode,
@@ -263,8 +434,10 @@ export function extractNativeAseqCallbackObjectPresentation({
         }));
         continue;
       }
-      const prior = operations.filter(({ action: candidate }) => (
-        candidate.semanticId === "resolved-object-indexed-vector-query"
+      const prior = entries.filter(({ action: candidate }) => (
+        ["resolved-object-indexed-vector-query", "resolved-object-base-vector-query"].includes(candidate.semanticId)
+        && candidate.arguments?.[2]?.kind === "frame-address"
+        && candidate.arguments[2].offset === action.arguments[2]?.offset
         && Number.parseInt(candidate.callFileOffset, 16)
           < Number.parseInt(action.callFileOffset, 16)
       )).at(-1)?.action;
@@ -275,7 +448,16 @@ export function extractNativeAseqCallbackObjectPresentation({
         || action.arguments[2]?.kind !== "frame-address"
         || prior.arguments[2].offset !== action.arguments[2].offset
       ) throw new Error(`${action.callFileOffset} LKPT target provenance is unresolved`);
-      const target = Object.freeze({
+      const baseQuery = prior.semanticId === "resolved-object-base-vector-query";
+      if (baseQuery && (signed32(constant(prior.arguments[1], "LKPT base selector")) !== -1
+        || constant(prior.arguments[3], "LKPT base flags") !== 0)) {
+        throw new Error(`${prior.callFileOffset} LKPT base query is unsupported`);
+      }
+      const target = Object.freeze(baseQuery ? {
+        kind: "object-base",
+        objectTag: tag(prior.arguments[0], `${prior.callFileOffset} LKPT target`),
+        offset: Object.freeze([0, 0, 0]),
+      } : {
         kind: "actor-component",
         actorTag: tag(prior.arguments[0], `${prior.callFileOffset} LKPT target`),
         selector: constant(prior.arguments[1], `${prior.callFileOffset} LKPT component`),

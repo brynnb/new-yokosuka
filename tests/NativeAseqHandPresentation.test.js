@@ -9,10 +9,12 @@ import inventory from "../play/assets/introduction/op00/asset-inventory.generate
 import op00Manifest from "../play/assets/introduction/op00/manifest.json" with {
   type: "json",
 };
+import op02Manifest from "../play/assets/introduction/op02/manifest.json" with { type: "json" };
 import {
   createNativeAseqHandPresentation,
 } from "../play/events/NativeAseqHandPresentation.js";
 import { Mt5Loader } from "../src/Mt5Loader.js";
+import { nativeHandAttachmentMatrix } from "../src/NativeHandRig.js";
 
 const BODY_FIXTURES = Object.freeze({
   AKIR: "public/models/S2_YDB1_YKC_M.MT5",
@@ -70,6 +72,62 @@ function assertMatrixNear(actual, expected, label) {
   }
 }
 
+function assertHandSeamsConnected(activeSide, label) {
+  let checked = 0;
+  for (const [mesh, { groups }] of activeSide.bodySurface.seamBindings) {
+    mesh.skeleton?.prepare(true);
+    const detailed = mesh.getPositionData(true, true);
+    for (const [bodyMesh, pairs] of groups) {
+      bodyMesh.skeleton?.prepare(true);
+      const body = bodyMesh.getPositionData(true, true);
+      for (const { detailedIndex, bodyIndex } of pairs) {
+        const actual = BABYLON.Vector3.TransformCoordinates(
+          BABYLON.Vector3.FromArray(detailed, detailedIndex * 3), mesh.computeWorldMatrix(true));
+        const expected = BABYLON.Vector3.TransformCoordinates(
+          BABYLON.Vector3.FromArray(body, bodyIndex * 3), bodyMesh.computeWorldMatrix(true));
+        assert.ok(BABYLON.Vector3.Distance(actual, expected) < 1e-5, `${label} authored seam ${detailedIndex}`);
+        checked++;
+      }
+    }
+  }
+  assert.equal(checked, activeSide.bodySurface.boundExternalParentVertexCount);
+}
+
+test("body-only actors animate MHND without loading or replacing detailed meshes", async () => {
+  const engine = new BABYLON.NullEngine();
+  const scene = new BABYLON.Scene(engine);
+  try {
+    const loader = new Mt5Loader(scene, { characterRigMode: "gpu", mirrorCharacterX: true });
+    const [root] = await loader.load(arrayBuffer(BODY_FIXTURES.FUKU), null);
+    loader.applyCharacterRigWorldMatrices(root, null);
+    const definition = { mode: "body-only", bodyModelCode: "FUK_M", bodyHandRenderKeys: { left: -66, right: -65 } };
+    const hands = createNativeAseqHandPresentation({ scene,
+      actors: { activeActor: () => ({ model: { renderRoot: root, loader, modelCode: "FUK_M" } }) },
+      definitions: { FUKU: definition }, loadAsset: () => { throw new Error("body hands must not load assets"); },
+    });
+    const meshes = root.getChildMeshes();
+    const indices = meshes.map(mesh => Array.from(mesh.getIndices()));
+    await hands.prepare({ actors: ["FUKU"] });
+    for (let replay = 0; replay < 2; replay++) {
+      const owner = {};
+      assert.equal(hands.begin(owner, ["FUKU"]), true);
+      assert.equal(hands.play(owner, { name: "body-hand-pose", actorTag: "FUKU",
+        channel: 2, targetIndex: 8, durationNativeTicks: 16 }), true);
+      for (let frame = 0; frame < 10; frame++) assert.equal(hands.apply(owner), true);
+      const active = hands.active.hands.get("FUKU");
+      assert.ok(active.sides.left.bodyPose.current.some(word => word !== 0));
+      assert.ok(active.sides.right.bodyPose.current.some(word => word !== 0));
+      assert.equal(active.sides.left.detailedActive, false);
+      assert.equal(active.sides.right.side.root, null);
+      assert.throws(() => hands.play(owner, { name: "hand-pose", actorTag: "FUKU", side: "left",
+        durationNativeTicks: 1, vectors: op00Manifest.nativeHandPoseTables["0x217f4"].vectors }), /detailed HAND assets/);
+      assert.equal(hands.end(owner), true);
+      assert.equal(hands.reset(), true);
+      assert.deepEqual(meshes.map(mesh => Array.from(mesh.getIndices())), indices);
+    }
+  } finally { scene.dispose(); engine.dispose(); }
+});
+
 test("OP00 detailed hands replace only the authored low-detail hand nodes", async () => {
   const engine = new BABYLON.NullEngine({
     renderWidth: 64,
@@ -85,6 +143,7 @@ test("OP00 detailed hands replace only the authored low-detail hand nodes", asyn
         backFaceCulling: false,
         mirrorCharacterX: true,
         characterRigMode: bodyRigMode,
+        characterRigSeamMode: "weld",
       });
       const [bodyRoot] = await bodyLoader.load(arrayBuffer(bodyPath), null);
       if (bodyRigMode === "gpu") {
@@ -94,6 +153,8 @@ test("OP00 detailed hands replace only the authored low-detail hand nodes", asyn
       }
       bodyLoader.applyCharacterRigWorldMatrices(bodyRoot, null);
       const actorRoot = new BABYLON.TransformNode(`actor_${actorTag}`, scene);
+      actorRoot.position.set(3, 0.5, -7);
+      actorRoot.rotation.y = 0.7;
       bodyRoot.parent = actorRoot;
       const actorModel = {
         loader: bodyLoader,
@@ -207,20 +268,15 @@ test("OP00 detailed hands replace only the authored low-detail hand nodes", asyn
       }
       assert.equal(hands.apply(owner, { frame: 294 }), true, actorTag);
       for (const side of ["left", "right"]) {
-        // Keep the proximal wrist ring from the body hand. Every triangle on
-        // the detailed hand's distal side of its authored boundary transfers
-        // to the high-detail resource, including all low-detail fingers.
+        // The detailed shell's signed references now own the wrist seam.
+        // Keeping the former twelve coarse triangles creates a second palm.
         assert.equal(bodyNodes[side].mesh.isEnabled(), true, `${actorTag} ${side}`);
         const activeSide = hands.active.hands.get(actorTag).sides[side];
-        assert.equal(activeSide.bodySurface.limbAxis, 0, `${actorTag} ${side}`);
-        assert.ok(
-          activeSide.bodySurface.boundary > 0
-            && activeSide.bodySurface.boundary < 0.01,
-          `${actorTag} ${side}`,
-        );
+        assert.ok(activeSide.bodySurface.boundExternalParentVertexCount > 0, `${actorTag} ${side}`);
+        assert.ok(activeSide.bodySurface.seamBindings.size > 0, `${actorTag} ${side}`);
         assert.equal(
           activeSide.bodySurface.retainedTriangleCount,
-          12,
+          0,
           `${actorTag} ${side}`,
         );
         const remainingBodyMeshes = subtreeRenderMeshes(
@@ -238,7 +294,7 @@ test("OP00 detailed hands replace only the authored low-detail hand nodes", asyn
             (total, mesh) => total + mesh.getTotalIndices() / 3,
             0,
           ),
-          12,
+          0,
           `${actorTag} ${side}`,
         );
         assert.equal(entry[side].root.isEnabled(), true, `${actorTag} ${side}`);
@@ -262,17 +318,62 @@ test("OP00 detailed hands replace only the authored low-detail hand nodes", asyn
         }
       }
 
-      if (actorTag === "AKIR") {
-        const mesh = entry.left.deformationMeshes[0].mesh;
+      for (const side of ["left", "right"]) {
+        const mesh = entry[side].deformationMeshes[0].mesh;
         const after = mesh.getVerticesData(BABYLON.VertexBuffer.PositionKind);
-        const before = detailedBefore.get("left");
-        assert.ok(after.some((value, index) => Math.abs(value - before[index]) > 1e-4));
+        const before = detailedBefore.get(side);
+        assert.ok(after.some((value, index) => Math.abs(value - before[index]) > 1e-4),
+          `${actorTag} ${side} pose deforms the rendered vertex buffer`);
+      }
+
+      // Finger poses are settled; the authored seam must still follow moving
+      // forearms, including GPU-welded copies and the baked-body path.
+      for (const angle of [0.3, -0.5]) {
+        const routes = new Map(["left", "right"].map(side => {
+          const parent = bodyRoot._mt5Nodes.find(node => node.addr === bodyNodes[side].parentAddr);
+          return [signedRenderKey(parent), Mt5Loader.rowMultiply(
+            Mt5Loader.rowRotationX(angle), bodyLoader.sourceWorldMatrixForNode(parent))];
+        }));
+        actorModel.latestRetargetedRoutes = routes;
+        bodyLoader.applyCharacterRigWorldMatrices(bodyRoot, routes);
+        assert.equal(hands.apply(owner), true);
+        for (const side of ["left", "right"]) {
+          assertHandSeamsConnected(hands.active.hands.get(actorTag).sides[side], `${actorTag} ${side} ${angle}`);
+        }
+      }
+
+      if (actorTag === "AKIR") {
+        const left = hands.active.hands.get(actorTag).sides.left;
+        assert.equal(hands.play(owner, { name: "hand-component", actorTag, side: "left",
+          componentMask: 0x15, rotationRaw: [-8920, 4004, -5643] }), true);
+        assert.equal(hands.apply(owner), true);
+        assertHandSeamsConnected(left, "wrist rotation retains authored parent seam");
+        const corrected = Array.from(left.side.root._mt5CharacterWorldMatrices.get(left.side.primaryNode.addr));
+        assert.equal(hands.play(owner, { name: "hand-component", actorTag, side: "left",
+          componentMask: 0x2a, rotationRaw: [8920, -4004, 5643] }), true);
+        assert.equal(hands.apply(owner), true);
+        assert.deepEqual(left.side.componentRotationRaw, [0, 0, 0]);
+        assert.notDeepEqual(Array.from(left.side.root._mt5CharacterWorldMatrices.get(left.side.primaryNode.addr)), corrected);
+        assertHandSeamsConnected(left, "wrist reset retains authored parent seam");
+        assert.equal(hands.play(owner, { name: "body-hand-pose", actorTag,
+          channel: 2, targetIndex: 8, durationNativeTicks: 16, releaseDetailed: true }), true);
+        for (const side of ["left", "right"]) {
+          assert.equal(entry[side].detailedRequested, false);
+          assert.equal(entry[side].root.isEnabled(), false);
+          for (const [mesh, indices] of originalBodyIndices[side]) {
+            assert.deepEqual(Array.from(mesh.getIndices()), indices, "body handoff restores original triangles");
+          }
+          assert.equal(hands.play(owner, { name: "hand-pose", actorTag, side,
+            vectors: op00Manifest.nativeHandPoseTables["0x217f4"].vectors,
+            durationNativeTicks: 1 }), true);
+          assert.equal(entry[side].root.isEnabled(), true, "detailed hand can be reactivated");
+        }
       }
 
       if (actorTag === "SORY") {
         // Track 5 leaves SORY's right detailed hand in this exact native pose.
-        // The next AUTH track must derive surface ownership from immutable
-        // authored geometry, not from those already-deformed vertices.
+        // The next AUTH track must rebind the authored wrist seam without
+        // treating the preceding deformed grip as body-owned geometry.
         assert.equal(hands.play(owner, {
           name: "hand-pose",
           actorTag,
@@ -282,6 +383,33 @@ test("OP00 detailed hands replace only the authored low-detail hand nodes", asyn
         }), true);
         assert.equal(hands.apply(owner, { frame: 350 }), true);
       }
+
+      // Detailed HAND rendering consumes MOMT controls 12/18, not the
+      // low-detail MHND hand nodes. Those have the same wrist position but
+      // can have a different animated rotation (the Dragon Mirror close-up).
+      actorModel.latestControllerFamily = { nodes: [{ index: 1, type: 12 }, { index: 3, type: 18 }] };
+      actorModel.latestControllerMatrices = [null,
+        Mt5Loader.rowMultiply(Mt5Loader.rowRotationZ(0.6), bodyRoot._mt5CharacterWorldMatrices.get(bodyNodes.left.addr)),
+        null,
+        Mt5Loader.rowMultiply(Mt5Loader.rowRotationX(-0.4), bodyRoot._mt5CharacterWorldMatrices.get(bodyNodes.right.addr))];
+      assert.equal(hands.apply(owner), true);
+      for (const [side, index] of [["left", 1], ["right", 3]]) {
+        assertMatrixNear(entry[side].root._mt5CharacterWorldMatrices.get(entry[side].primaryNode.addr),
+          actorModel.latestControllerMatrices[index], `${actorTag} ${side} uses its native wrist controller`);
+        assertHandSeamsConnected(hands.active.hands.get(actorTag).sides[side], `${actorTag} ${side} controller wrist seam`);
+      }
+      const correction = [-8920, 4004, -5643];
+      const wristBefore = [...actorModel.latestControllerMatrices[1]];
+      hands.play(owner, { name: "hand-component", actorTag, side: "left", componentMask: 0x15, rotationRaw: correction });
+      assert.equal(hands.apply(owner), true);
+      assertMatrixNear(entry.left.root._mt5CharacterWorldMatrices.get(entry.left.primaryNode.addr),
+        nativeHandAttachmentMatrix(wristBefore, correction), `${actorTag} component correction follows native wrist`);
+      assert.deepEqual(actorModel.latestControllerMatrices[1], wristBefore, "hand correction must not rotate carried props");
+      assertHandSeamsConnected(hands.active.hands.get(actorTag).sides.left, `${actorTag} corrected controller wrist seam`);
+      actorModel.latestControllerMatrices[1] = null;
+      assert.throws(() => hands.apply(owner), /wrist controller 12 is unavailable/,
+        "a missing animated controller must not silently use the low-detail node");
+      actorModel.latestControllerMatrices[1] = wristBefore;
 
       assert.equal(hands.end(owner), true, actorTag);
       for (const side of ["left", "right"]) {
@@ -309,7 +437,7 @@ test("OP00 detailed hands replace only the authored low-detail hand nodes", asyn
         assert.equal(
           hands.active.hands.get(actorTag).sides.right
             .bodySurface.retainedTriangleCount,
-          12,
+          0,
         );
         assert.equal(hands.end(nextOwner), true);
       }
@@ -328,6 +456,55 @@ test("OP00 Ryo hand selection follows native YKB slot-5 evidence", () => {
   assert.equal(hand.left.model.sourcePath.endsWith("/YKB_TL.MT5"), true);
   assert.equal(hand.right.model.sourcePath.endsWith("/YKB_TR.MT5"), true);
   assert.equal(hand.rig.sourcePath.endsWith("/YKB_HM.BIN"), true);
+});
+
+test("OP02 uses its archive-local Shenhua hands and keeps the wrists connected across cuts", async () => {
+  const engine = new BABYLON.NullEngine();
+  const scene = new BABYLON.Scene(engine);
+  try {
+    const loader = new Mt5Loader(scene, { characterRigMode: "gpu", characterRigSeamMode: "weld", mirrorCharacterX: true });
+    const [renderRoot] = await loader.load(arrayBuffer(op02Manifest.packageActors.SINF.assetPath));
+    loader.mergeCharacterGpuRigMeshes(renderRoot, { preserveRenderKeySubtrees: [-66, -65] });
+    loader.applyCharacterRigWorldMatrices(renderRoot, null);
+    const actor = { model: { renderRoot, loader, modelCode: "MGR_M" } };
+    const hands = createNativeAseqHandPresentation({ scene, actors: { activeActor: () => actor },
+      definitions: op02Manifest.handAssets, loadAsset: arrayBuffer });
+    await hands.prepare({ actors: ["SINF"] });
+    const owner = {};
+    hands.begin(owner, ["SINF"]);
+    const entry = hands.entries.get("SINF");
+    for (const side of ["left", "right"]) {
+      assert.equal(entry[side].primaryNode.model.nbVertex, 299);
+      assert.equal(entry[side].root.isEnabled(), false, "body hands remain until the native switch");
+      const surfaces = entry[side].root.getChildMeshes().filter(mesh => mesh.getTotalVertices() > 0);
+      assert.ok(surfaces.length > 0);
+      assert.ok(surfaces.every(mesh => mesh.material?.diffuseTexture), "CHRM textures come from the archive texture pack");
+    }
+    const activity = op02Manifest.activities.find(activity => activity.slot === 4);
+    for (const cue of activity.nativeHandPoseCues) {
+      assert.equal(hands.play(owner, { name: "hand-pose", ...cue,
+        vectors: op02Manifest.nativeHandPoseTables[cue.poseTableOffset].vectors }), true);
+    }
+    for (const cue of activity.nativeHandComponentCues) {
+      assert.equal(hands.play(owner, { name: "hand-component", ...cue }), true);
+    }
+    assert.equal(hands.apply(owner), true);
+    for (const side of Object.values(hands.active.hands.get("SINF").sides)) {
+      assert.equal(side.detailedActive, true);
+      assertHandSeamsConnected(side, "Shenhua wrist");
+    }
+    hands.end(owner);
+    const next = {};
+    hands.begin(next, ["SINF"]);
+    for (const side of Object.values(hands.active.hands.get("SINF").sides)) {
+      assert.equal(side.side.root.isEnabled(), true, "last shot retains the authored detailed hand pose");
+      assertHandSeamsConnected(side, "Shenhua wrist after cut");
+    }
+    hands.end(next);
+  } finally {
+    scene.dispose();
+    engine.dispose();
+  }
 });
 
 test("a failed hand pair rolls back both sides and can be retried without orphan meshes", async () => {

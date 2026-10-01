@@ -124,3 +124,20 @@ test("automatic story updates receive one explicit native context", () => {
     playerYaw: 1.5,
   });
 });
+
+test("startup ownership spans scene loading gaps without stopping authored playback", () => {
+  const { runtime, calls } = createRuntime();
+  let opening = true;
+  runtime.isStartupPresentationActive = () => opening;
+  assert.equal(runtime.ownsPlayerPresentation, true);
+  assert.equal(runtime.presentationActive, true);
+  runtime.updateAutomatic({ world: { nativeArea: "JOMO" }, enabled: true });
+  assert.equal(calls.at(-1)[1].enabled, false);
+  runtime.updateCutscenes(0.1);
+  assert.deepEqual(calls.at(-1), ["cutscene", 0.1]);
+  opening = false;
+  assert.equal(runtime.ownsPlayerPresentation, false);
+  assert.equal(runtime.presentationActive, false);
+  runtime.updateAutomatic({ world: { nativeArea: "JOMO" }, enabled: true });
+  assert.equal(calls.at(-1)[1].enabled, true);
+});

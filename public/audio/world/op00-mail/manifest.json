@@ -1,0 +1,244 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_op00_continuation_audio.mjs",
+  "sources": {
+    "stream": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/STREAM/A01103.AFS",
+      "sha256": "7e0be1bdf65a820afbf5e705fa29048e8c4e5af08cfdd3a423c5edca6c4bd6ed"
+    },
+    "soundBank": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/SOUND/A1_TKINE.SND",
+      "sha256": "e72195163c278d908981a457011ef7c2d70d2a4d83274bae6c17935c462260ba"
+    },
+    "authManifest": "play/assets/introduction/op00-mail/manifest.json",
+    "resourceBindingEvidence": "tools/evidence/op00-opening-owner-ir.json"
+  },
+  "voices": [
+    {
+      "voiceId": "A01103B001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01103/SOUND/A01103B001.aiff",
+      "nativeMember": "A01103B001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 18432,
+      "nativeSha256": "0c738b5d8f9ea8e94aa2568fb7835a33899984e215350567744087bad3059ee9",
+      "speakerId": "",
+      "sourceText": "A letter, for Hazuki-sensei=@",
+      "displayText": "A letter, for Hazuki-sensei...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 26
+          },
+          {
+            "shape": 5,
+            "durationTicks": 20
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 18
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/op00-mail/voice/A01103B001.wav",
+      "byteLength": 73516,
+      "sha256": "027640c3ef9d1d87ab472b6d28114fe35b16e58d1f960a299b3fe5a9fa9a0634"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01103/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/op00-mail/sfx/a9040000.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01103/SE/smallobject/paper2.aiff",
+      "playbackId": 1,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/op00-mail/sfx/a9040100.wav",
+      "byteLength": 48100,
+      "sha256": "3ee57119477ec4753e1433911f99fc001d66635c3a5e6e5ad61d3b3e4d24068c"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01103/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 2,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/op00-mail/sfx/a9040200.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01103/SE/smallobject/latter_ryo.aiff",
+      "playbackId": 3,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/op00-mail/sfx/a9040300.wav",
+      "byteLength": 8148,
+      "sha256": "3958943d61ddbe6bce63529b1fe609707b44c016c810e741f369f8727a8715a4"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01103/SE/smallobject/POST_CLOSE.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/op00-mail/sfx/a9040400.wav",
+      "byteLength": 14420,
+      "sha256": "f4f87640f80bf403acbbb762778c1430e5218722f5ce058692127681a37d2df5"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01103/SE/smallobject/POST_OPEN.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/op00-mail/sfx/a9040500.wav",
+      "byteLength": 16356,
+      "sha256": "45d64fb61936a1a99a1b5dbf387a951babf750b1d72d32a4543f5ba75e591297"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01103/SE/footsoil/ryoashi05.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/op00-mail/sfx/a9040600.wav",
+      "byteLength": 14884,
+      "sha256": "565ee6addd2a88dfa716c1c51c9e81d13fd0245434e9e467e3598443fb9ff75e"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01103/SE/footsoil/ryoashi06.aiff",
+      "playbackId": 7,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/op00-mail/sfx/a9040700.wav",
+      "byteLength": 10844,
+      "sha256": "d0ed30ae033cbeb6d2eab49fd2056392678da0e16db5a8f948a520535a1fadfb"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01103/SE/footsoil/ryoashi07.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/op00-mail/sfx/a9040800.wav",
+      "byteLength": 10332,
+      "sha256": "3eec1a54de29fe4a3f5ea2c11b721a90acafeebcd0722636809ece3279035ed6"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01103/SE/footsoil/ryoashi08.aiff",
+      "playbackId": 9,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/op00-mail/sfx/a9040900.wav",
+      "byteLength": 7068,
+      "sha256": "2180caa4409808f7319682dd24712e4b79e10545191a91bc8be3fb8d9e913499"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01103/SE/vehicle/Yubin_cub.aiff",
+      "playbackId": 10,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/op00-mail/sfx/a9040a00.wav",
+      "byteLength": 154812,
+      "sha256": "fdb5cc1ef1bd162ccb456b277431dbce56af2d317db50d8467a20fe67cfb7d65",
+      "nativeSegments": [
+        {
+          "playbackId": 10,
+          "sampleId": 10,
+          "sampleRate": 16000,
+          "byteLength": 96204,
+          "sha256": "aa800e0637bbb185b54018cdaadfd53aee8506eca3e8301a07b240b505e7b496"
+        },
+        {
+          "playbackId": 11,
+          "sampleId": 11,
+          "sampleRate": 16000,
+          "byteLength": 58652,
+          "sha256": "4dfd1a3de4fa2950973beebd63652c785d8a03a6d2bdb1118a5fb0cd979b23dd"
+        }
+      ]
+    }
+  ]
+}

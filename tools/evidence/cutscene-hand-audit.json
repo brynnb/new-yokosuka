@@ -1,0 +1,3025 @@
+{
+  "generatedBy": "tools/cutscenes/audit_cutscene_hands.mjs",
+  "boundary": "Checks every menu selection's emitted hand data and asset bindings. Unmapped native calls can belong to setup, unused branches, or other events: they are review candidates, not proof every scene in that area is broken. No emitted cue is not proof of no authored hand animation. This report is not rendered verification.",
+  "summary": {
+    "selections": 60,
+    "withPoseCommands": 36,
+    "bindingFailures": 0,
+    "unmappedSourceCalls": 52
+  },
+  "scenes": [
+    {
+      "cutsceneId": "S1-HOUO-01",
+      "label": "Phoenix Mirror — Ryo and Fuku-san",
+      "area": "JHD0",
+      "activities": [
+        "HOUO/SEQDATAD.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 5,
+      "bodyHandCommandCount": 0,
+      "posedActors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-TOKI-01",
+      "label": "Chinese Letter — Xia Xiu Yu",
+      "area": "TOKI",
+      "activities": [
+        "TOKI/SEQDATA2.AUTH"
+      ],
+      "detailedHandActors": [
+        "ASDA"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 4,
+      "bodyHandCommandCount": 0,
+      "posedActors": [
+        "ASDA"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-OP02-00",
+      "label": "Opening Vision — Shenhua and the Hawk",
+      "area": "OP02",
+      "activities": [
+        "OP02/SEQDATA0.AUTH",
+        "OP02/SEQDATA1.AUTH",
+        "OP02/SEQDATA2.AUTH",
+        "OP02/SEQDATA3.AUTH",
+        "OP02/SEQDATA6.AUTH",
+        "OP02/SEQDATA4.AUTH",
+        "OP02/SEQDATA5.AUTH"
+      ],
+      "detailedHandActors": [
+        "SINF"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 2,
+      "bodyHandCommandCount": 0,
+      "posedActors": [
+        "SINF"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-000",
+      "label": "Introduction — Iwao's Murder",
+      "area": "OP00",
+      "activities": [
+        "OP00/SEQDATA0.AUTH",
+        "OP00/SEQDATA1.AUTH",
+        "OP00/SEQDATA2.AUTH",
+        "OP00/SEQDATA3.AUTH",
+        "OP00/SEQDATA4.AUTH",
+        "OP00/SEQDATA18.AUTH",
+        "OP00/SEQDATA19.AUTH",
+        "OP00/SEQDATA5.AUTH",
+        "OP00/SEQDATA6.AUTH",
+        "OP00/SEQDATA7.AUTH",
+        "OP00/SEQDATA8.AUTH",
+        "OP00/SEQDATA9.AUTH",
+        "OP00/SEQDATA10.AUTH",
+        "OP00/SEQDATA11.AUTH",
+        "OP00/SEQDATA12.AUTH",
+        "OP00/SEQDATA13.AUTH",
+        "OP00/SEQDATA22.AUTH",
+        "OP00/SEQDATA23.AUTH",
+        "OP00/SEQDATA14.AUTH",
+        "OP00/SEQDATA15.AUTH",
+        "OP00/SEQDATA16.AUTH",
+        "OP00/SEQDATA17.AUTH",
+        "OP00/SEQDATA20.AUTH",
+        "OP00/SEQDATA21.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "FUKU",
+        "INE_",
+        "IWAO",
+        "SORY"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 122,
+      "bodyHandCommandCount": 15,
+      "posedActors": [
+        "AKIR",
+        "IWAO",
+        "SORY"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-OP00-MAIL",
+      "label": "Introduction — Ine-san Collects the Mail",
+      "area": "OP00",
+      "activities": [
+        "OP00/SEQDATA26.AUTH",
+        "OP00/SEQDATA27.AUTH",
+        "OP00/SEQDATA25.AUTH"
+      ],
+      "detailedHandActors": [
+        "INE_"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 0,
+      "bodyHandCommandCount": 0,
+      "posedActors": [],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-OP00-DREAM",
+      "label": "Introduction — Lan Di Dream and Awakening",
+      "area": "OP00",
+      "activities": [
+        "OP00/SEQDATA28.AUTH",
+        "OP00/SEQDATA30.AUTH",
+        "OP00/SEQDATA31.AUTH",
+        "OP00/SEQDATA32.AUTH",
+        "OP00/SEQDATA33.AUTH",
+        "OP00/SEQDATA34.AUTH",
+        "OP00/SEQDATA35.AUTH",
+        "OP00/SEQDATA36.AUTH",
+        "OP00/SEQDATA37.AUTH",
+        "OP00/SEQDATA38.AUTH",
+        "OP00/SEQDATA39.AUTH",
+        "OP00/SEQDATA40.AUTH",
+        "OP00/SEQDATA41.AUTH",
+        "OP00/SEQDATA42.AUTH",
+        "OP00/SEQDATA43.AUTH",
+        "OP00/SEQDATA44.AUTH",
+        "OP00/SEQDATA45.AUTH",
+        "OP00/SEQDATA46.AUTH",
+        "OP00/SEQDATA29.AUTH"
+      ],
+      "detailedHandActors": [
+        "IWAO",
+        "SORY"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 0,
+      "bodyHandCommandCount": 0,
+      "posedActors": [],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-DRAUTH-01",
+      "label": "DRAUTH — Sequence 1",
+      "area": "D000",
+      "activities": [
+        "DRAUTH/SEQDATA1.AUTH"
+      ],
+      "detailedHandActors": [
+        "TONY",
+        "SMTH",
+        "HARY",
+        "AKIR"
+      ],
+      "bodyOnlyHandActors": [
+        "SERA",
+        "JONZ"
+      ],
+      "poseCommandCount": 12,
+      "bodyHandCommandCount": 7,
+      "posedActors": [
+        "AKIR",
+        "TONY",
+        "SMTH",
+        "HARY"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-DRAUTH-02",
+      "label": "DRAUTH — Sequence 2",
+      "area": "D000",
+      "activities": [
+        "DRAUTH/SEQDATA2.AUTH"
+      ],
+      "detailedHandActors": [
+        "TONY",
+        "SMTH",
+        "HARY",
+        "AKIR"
+      ],
+      "bodyOnlyHandActors": [
+        "SERA",
+        "JONZ"
+      ],
+      "poseCommandCount": 10,
+      "bodyHandCommandCount": 12,
+      "posedActors": [
+        "AKIR",
+        "TONY",
+        "SMTH",
+        "HARY"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-YQ14-01",
+      "label": "Heartbeats Alley — Confrontation",
+      "area": "YQ14",
+      "activities": [
+        "YQ14/SEQDATA1.AUTH"
+      ],
+      "detailedHandActors": [],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 0,
+      "bodyHandCommandCount": 0,
+      "posedActors": [],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-YQ14-02",
+      "label": "Heartbeats Alley — Beer QTE",
+      "area": "YQ14",
+      "activities": [
+        "YQ14/SEQDATA2.AUTH"
+      ],
+      "detailedHandActors": [],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 0,
+      "bodyHandCommandCount": 0,
+      "posedActors": [],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-YBHN-01",
+      "label": "Nozomi Waits for Ryo",
+      "area": "D000",
+      "activities": [
+        "YBHN/SEQDATA0.AUTH"
+      ],
+      "detailedHandActors": [],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 0,
+      "bodyHandCommandCount": 0,
+      "posedActors": [],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-DJHN-01",
+      "label": "Vending Machine — Sequence 1",
+      "area": "D000",
+      "activities": [
+        "DJHN/SEQDATA1.AUTH"
+      ],
+      "detailedHandActors": [],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 0,
+      "bodyHandCommandCount": 0,
+      "posedActors": [],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-DJHN-02",
+      "label": "Vending Machine — Sequence 2",
+      "area": "D000",
+      "activities": [
+        "DJHN/SEQDATA2.AUTH"
+      ],
+      "detailedHandActors": [],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 0,
+      "bodyHandCommandCount": 0,
+      "posedActors": [],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-DJHN-03",
+      "label": "Vending Machine — Sequence 3",
+      "area": "D000",
+      "activities": [
+        "DJHN/SEQDATA3.AUTH"
+      ],
+      "detailedHandActors": [],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 0,
+      "bodyHandCommandCount": 0,
+      "posedActors": [],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-DJHN-04",
+      "label": "Vending Machine — Sequence 4",
+      "area": "D000",
+      "activities": [
+        "DJHN/SEQDATA4.AUTH"
+      ],
+      "detailedHandActors": [],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 0,
+      "bodyHandCommandCount": 0,
+      "posedActors": [],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-DJHN-05",
+      "label": "Vending Machine — Sequence 5",
+      "area": "D000",
+      "activities": [
+        "DJHN/SEQDATA5.AUTH"
+      ],
+      "detailedHandActors": [],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 0,
+      "bodyHandCommandCount": 0,
+      "posedActors": [],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-DJHN-06",
+      "label": "Vending Machine — Sequence 6",
+      "area": "D000",
+      "activities": [
+        "DJHN/SEQDATA6.AUTH"
+      ],
+      "detailedHandActors": [],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 0,
+      "bodyHandCommandCount": 0,
+      "posedActors": [],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-DJHN-07",
+      "label": "Vending Machine — Sequence 7",
+      "area": "D000",
+      "activities": [
+        "DJHN/SEQDATA7.AUTH"
+      ],
+      "detailedHandActors": [],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 0,
+      "bodyHandCommandCount": 0,
+      "posedActors": [],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-D0W0-01",
+      "label": "Yamagishi's Advice — Sequence 1",
+      "area": "D000",
+      "activities": [
+        "D0W0/SEQDATA1.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "YAMA"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 9,
+      "bodyHandCommandCount": 3,
+      "posedActors": [
+        "YAMA"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-D0W0-02",
+      "label": "Yamagishi's Advice — Sequence 2",
+      "area": "D000",
+      "activities": [
+        "D0W0/SEQDATA2.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "YAMA"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 4,
+      "bodyHandCommandCount": 3,
+      "posedActors": [
+        "AKIR"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-D0W0-03",
+      "label": "Yamagishi's Advice — Sequence 3",
+      "area": "D000",
+      "activities": [
+        "D0W0/SEQDATA3.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "YAMA"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 7,
+      "bodyHandCommandCount": 2,
+      "posedActors": [
+        "AKIR"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-D0W0-04",
+      "label": "Yamagishi's Advice — Sequence 4",
+      "area": "D000",
+      "activities": [
+        "D0W0/SEQDATA4.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "YAMA"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 4,
+      "bodyHandCommandCount": 2,
+      "posedActors": [
+        "YAMA",
+        "AKIR"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-D0W0-05",
+      "label": "Yamagishi's Advice — Sequence 5",
+      "area": "D000",
+      "activities": [
+        "D0W0/SEQDATA5.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "YAMA"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 4,
+      "bodyHandCommandCount": 3,
+      "posedActors": [
+        "AKIR"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-D0W0-06",
+      "label": "Yamagishi's Advice — Sequence 6",
+      "area": "D000",
+      "activities": [
+        "D0W0/SEQDATA6.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "YAMA"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 4,
+      "bodyHandCommandCount": 3,
+      "posedActors": [
+        "AKIR"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-D0W0-07",
+      "label": "Yamagishi's Advice — Sequence 7",
+      "area": "D000",
+      "activities": [
+        "D0W0/SEQDATA7.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "YAMA"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 4,
+      "bodyHandCommandCount": 3,
+      "posedActors": [
+        "AKIR"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-D0W0-08",
+      "label": "Yamagishi's Advice — Sequence 8",
+      "area": "D000",
+      "activities": [
+        "D0W0/SEQDATA8.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "YAMA"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 4,
+      "bodyHandCommandCount": 2,
+      "posedActors": [
+        "YAMA",
+        "AKIR"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-D0W0-09",
+      "label": "Yamagishi's Advice — Sequence 9",
+      "area": "D000",
+      "activities": [
+        "D0W0/SEQDATA9.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "YAMA"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 2,
+      "bodyHandCommandCount": 2,
+      "posedActors": [
+        "AKIR"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-D0W0-10",
+      "label": "Yamagishi's Advice — Sequence 10",
+      "area": "D000",
+      "activities": [
+        "D0W0/SEQDATAA.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "YAMA"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 4,
+      "bodyHandCommandCount": 2,
+      "posedActors": [
+        "YAMA",
+        "AKIR"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-D0W0-11",
+      "label": "Yamagishi's Advice — Sequence 11",
+      "area": "D000",
+      "activities": [
+        "D0W0/SEQDATAB.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "YAMA"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 2,
+      "bodyHandCommandCount": 2,
+      "posedActors": [
+        "AKIR"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-D0W0-12",
+      "label": "Yamagishi's Advice — Sequence 12",
+      "area": "D000",
+      "activities": [
+        "D0W0/SEQDATAC.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "YAMA"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 6,
+      "bodyHandCommandCount": 2,
+      "posedActors": [
+        "AKIR",
+        "YAMA"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-DNOZ-01",
+      "label": "Nozomi's Confession",
+      "area": "DNOZ",
+      "activities": [
+        "DNOZ/SEQDATA4.AUTH",
+        "DNOZ/SEQDATA5.AUTH"
+      ],
+      "detailedHandActors": [
+        "HRSK",
+        "AKIR"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 7,
+      "bodyHandCommandCount": 3,
+      "posedActors": [
+        "AKIR",
+        "HRSK"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-DNOZ-02",
+      "label": "Nozomi's Tears",
+      "area": "DNOZ",
+      "activities": [
+        "DNOZ/SEQDATA2.AUTH",
+        "DNOZ/SEQDATA3.AUTH"
+      ],
+      "detailedHandActors": [
+        "HRSK",
+        "AKIR"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 8,
+      "bodyHandCommandCount": 6,
+      "posedActors": [
+        "AKIR",
+        "HRSK"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-TGMA-01",
+      "label": "Fuku-san's Letter",
+      "area": "JHD0",
+      "activities": [
+        "TGMA/SEQDATA4.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "FUKU",
+        "INE_",
+        "IWAO",
+        "SORY"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 9,
+      "bodyHandCommandCount": 0,
+      "posedActors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-JHW0-01",
+      "label": "Fuku-san's Move Training — Sequence 1",
+      "area": "JHD0",
+      "activities": [
+        "JHW0/SEQDATA1.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 12,
+      "bodyHandCommandCount": 0,
+      "posedActors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-JHW0-02",
+      "label": "Fuku-san's Move Training — Sequence 2",
+      "area": "JHD0",
+      "activities": [
+        "JHW0/SEQDATA2.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 10,
+      "bodyHandCommandCount": 0,
+      "posedActors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-JHW0-03",
+      "label": "Fuku-san's Move Training — Sequence 3",
+      "area": "JHD0",
+      "activities": [
+        "JHW0/SEQDATA3.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 6,
+      "bodyHandCommandCount": 0,
+      "posedActors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-JHW0-04",
+      "label": "Fuku-san's Move Training — Sequence 4",
+      "area": "JHD0",
+      "activities": [
+        "JHW0/SEQDATA4.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 8,
+      "bodyHandCommandCount": 0,
+      "posedActors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-JHW0-05",
+      "label": "Fuku-san's Move Training — Sequence 5",
+      "area": "JHD0",
+      "activities": [
+        "JHW0/SEQDATA5.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 8,
+      "bodyHandCommandCount": 0,
+      "posedActors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-JHW0-06",
+      "label": "Fuku-san's Move Training — Sequence 6",
+      "area": "JHD0",
+      "activities": [
+        "JHW0/SEQDATA6.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 12,
+      "bodyHandCommandCount": 0,
+      "posedActors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-JHW0-07",
+      "label": "Fuku-san's Move Training — Sequence 7",
+      "area": "JHD0",
+      "activities": [
+        "JHW0/SEQDATA7.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 8,
+      "bodyHandCommandCount": 0,
+      "posedActors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-JHW0-08",
+      "label": "Fuku-san's Move Training — Sequence 8",
+      "area": "JHD0",
+      "activities": [
+        "JHW0/SEQDATA8.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 12,
+      "bodyHandCommandCount": 0,
+      "posedActors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-MSKA-01",
+      "label": "Fuku-san — Iwao's Death",
+      "area": "JHD0",
+      "activities": [
+        "MSKA/SEQDATA2.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 4,
+      "bodyHandCommandCount": 0,
+      "posedActors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-KAKG-01",
+      "label": "Fuku-san — Ryo's Resolve",
+      "area": "JHD0",
+      "activities": [
+        "KAKG/SEQDATK2.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "FUKU",
+        "INE_"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 8,
+      "bodyHandCommandCount": 0,
+      "posedActors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-KAKG-02",
+      "label": "Ine-san — Promise to Iwao",
+      "area": "JHD0",
+      "activities": [
+        "KAKG/SEQDATK3.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR",
+        "FUKU",
+        "INE_"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 4,
+      "bodyHandCommandCount": 0,
+      "posedActors": [
+        "AKIR",
+        "INE_"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-BUSS-01",
+      "label": "Bus to New Yokosuka Harbor — Boarding A",
+      "area": "D000",
+      "activities": [
+        "BUSS/SEQDATA1.AUTH"
+      ],
+      "detailedHandActors": [],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 0,
+      "bodyHandCommandCount": 0,
+      "posedActors": [],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-BUSS-02",
+      "label": "Bus to New Yokosuka Harbor — Boarding B",
+      "area": "D000",
+      "activities": [
+        "BUSS/SEQDATA4.AUTH"
+      ],
+      "detailedHandActors": [],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 0,
+      "bodyHandCommandCount": 0,
+      "posedActors": [],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-BUSS-03",
+      "label": "Bus to New Yokosuka Harbor — Arrival A",
+      "area": "D000",
+      "activities": [
+        "BUSS/SEQDATA2.AUTH"
+      ],
+      "detailedHandActors": [],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 0,
+      "bodyHandCommandCount": 0,
+      "posedActors": [],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-BUSS-04",
+      "label": "Bus to New Yokosuka Harbor — Arrival B",
+      "area": "D000",
+      "activities": [
+        "BUSS/SEQDATA5.AUTH"
+      ],
+      "detailedHandActors": [],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 0,
+      "bodyHandCommandCount": 0,
+      "posedActors": [],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-HIHY-01",
+      "label": "Iwao and Young Ryo — The Path",
+      "area": "JHD0",
+      "activities": [
+        "HIHY/SEQDATA5.AUTH"
+      ],
+      "detailedHandActors": [],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 0,
+      "bodyHandCommandCount": 0,
+      "posedActors": [],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-CATA1-01",
+      "label": "Megumi and the Kitten",
+      "area": "JU00",
+      "activities": [
+        "CATA1/SEQDATA0.AUTH",
+        "CATA1/SEQDATA1.AUTH",
+        "CATA1/SEQDATA2.AUTH"
+      ],
+      "detailedHandActors": [
+        "AKIR"
+      ],
+      "bodyOnlyHandActors": [
+        "MEGM"
+      ],
+      "poseCommandCount": 18,
+      "bodyHandCommandCount": 10,
+      "posedActors": [
+        "AKIR"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-EVSN-01",
+      "label": "Nozomi Rescue — Main Route",
+      "area": "JD00",
+      "activities": [
+        "EVSN/SEQDATA1.AUTH",
+        "EVSN/SEQDATA2.AUTH",
+        "EVSN/SEQDATA3.AUTH"
+      ],
+      "detailedHandActors": [
+        "HRSK",
+        "ENKI",
+        "NGSM",
+        "AKIR"
+      ],
+      "bodyOnlyHandActors": [
+        "KKEN"
+      ],
+      "poseCommandCount": 44,
+      "bodyHandCommandCount": 24,
+      "posedActors": [
+        "AKIR",
+        "HRSK",
+        "ENKI",
+        "NGSM"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-EVSN-02",
+      "label": "Nozomi Rescue — Alternate Lead-in",
+      "area": "JD00",
+      "activities": [
+        "EVSN/SEQDATA4.AUTH",
+        "EVSN/SEQDATA2.AUTH",
+        "EVSN/SEQDATA3.AUTH"
+      ],
+      "detailedHandActors": [
+        "HRSK",
+        "ENKI",
+        "NGSM",
+        "AKIR"
+      ],
+      "bodyOnlyHandActors": [
+        "KKEN"
+      ],
+      "poseCommandCount": 44,
+      "bodyHandCommandCount": 24,
+      "posedActors": [
+        "AKIR",
+        "HRSK",
+        "ENKI",
+        "NGSM"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-BEBF-01",
+      "label": "Ryo's Nightmare — Shenhua's Warning",
+      "area": "JOMO",
+      "activities": [
+        "BEBF/SEQDATA0.AUTH",
+        "BEBF/SEQDATA1.AUTH",
+        "BEBF/SEQDATA2.AUTH"
+      ],
+      "detailedHandActors": [],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 0,
+      "bodyHandCommandCount": 0,
+      "posedActors": [],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-KKYA-01",
+      "label": "Dream Vision — Phoenix Mirror",
+      "area": "JOMO",
+      "activities": [
+        "KKYA/SEQDATA0.AUTH"
+      ],
+      "detailedHandActors": [],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 0,
+      "bodyHandCommandCount": 0,
+      "posedActors": [],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-KKYB-01",
+      "label": "Dream Vision — The Two Mirrors",
+      "area": "JOMO",
+      "activities": [
+        "KKYB/SEQDATA1.AUTH"
+      ],
+      "detailedHandActors": [],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 0,
+      "bodyHandCommandCount": 0,
+      "posedActors": [],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-KKYC-01",
+      "label": "Dream Vision — Shenhua",
+      "area": "JOMO",
+      "activities": [
+        "KKYC/SEQDATA2.AUTH"
+      ],
+      "detailedHandActors": [],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 0,
+      "bodyHandCommandCount": 0,
+      "posedActors": [],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-KKYD-01",
+      "label": "Dream Vision — Shenhua and the Stone",
+      "area": "JOMO",
+      "activities": [
+        "KKYD/SEQDATA3.AUTH"
+      ],
+      "detailedHandActors": [],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 0,
+      "bodyHandCommandCount": 0,
+      "posedActors": [],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-KKYE-01",
+      "label": "Dream Vision — Shenhua and the Hawk",
+      "area": "JOMO",
+      "activities": [
+        "KKYE/SEQDATA4.AUTH"
+      ],
+      "detailedHandActors": [],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 0,
+      "bodyHandCommandCount": 0,
+      "posedActors": [],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-KKYF-01",
+      "label": "Dream Vision — Lan Di",
+      "area": "JOMO",
+      "activities": [
+        "KKYF/SEQDATA5.AUTH"
+      ],
+      "detailedHandActors": [],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 0,
+      "bodyHandCommandCount": 0,
+      "posedActors": [],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    },
+    {
+      "cutsceneId": "S1-SAKR-01",
+      "label": "Iwao and Young Ryo — Training Memory",
+      "area": "YD01",
+      "activities": [
+        "SAKR/SEQDATA0.AUTH"
+      ],
+      "detailedHandActors": [
+        "IWAO",
+        "JAKR"
+      ],
+      "bodyOnlyHandActors": [],
+      "poseCommandCount": 16,
+      "bodyHandCommandCount": 6,
+      "posedActors": [
+        "IWAO",
+        "JAKR"
+      ],
+      "findings": [],
+      "sourceCompleteness": "requires-owner-and-callback-comparison",
+      "visuallyReviewed": false
+    }
+  ],
+  "unmappedSourceCalls": [
+    {
+      "area": "D000",
+      "function": "0xab08",
+      "callFileOffset": "0xabc6",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0xabb6"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0xabb4"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 668100,
+          "hex": "0x000a31c4",
+          "source": "0xabb2"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0xabac"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0xab08",
+      "callFileOffset": "0xabe6",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0xabd6"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0xabd4"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 668100,
+          "hex": "0x000a31c4",
+          "source": "0xabd2"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0xabcc"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0xab08",
+      "callFileOffset": "0xac06",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1263751752,
+          "hex": "0x4b535248",
+          "ascii": "HRSK",
+          "source": "0xabf6"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0xabf4"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 668100,
+          "hex": "0x000a31c4",
+          "source": "0xabf2"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0xabec"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0xab08",
+      "callFileOffset": "0xac26",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1263751752,
+          "hex": "0x4b535248",
+          "ascii": "HRSK",
+          "source": "0xac16"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0xac14"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 668100,
+          "hex": "0x000a31c4",
+          "source": "0xac12"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0xac0c"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x127b8",
+      "callFileOffset": "0x128de",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x128ce"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x128cc"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 677908,
+          "hex": "0x000a5814",
+          "source": "0x128ca"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x128c4"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x127b8",
+      "callFileOffset": "0x128fe",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x128ee"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x128ec"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 677908,
+          "hex": "0x000a5814",
+          "source": "0x128ea"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x128e4"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x127b8",
+      "callFileOffset": "0x12a86",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x12a76"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x12a74"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 677680,
+          "hex": "0x000a5730",
+          "source": "0x12a72"
+        },
+        {
+          "kind": "constant",
+          "value": 10,
+          "hex": "0x0000000a",
+          "source": "0x12a6c"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x4d888",
+      "callFileOffset": "0x4d96e",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x4d95e"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x4d95c"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 695324,
+          "hex": "0x000a9c1c",
+          "source": "0x4d95a"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x4d954"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x4d888",
+      "callFileOffset": "0x4d9ca",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x4d9ba"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x4d9b8"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 695324,
+          "hex": "0x000a9c1c",
+          "source": "0x4d9b6"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x4d9b0"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x4dc38",
+      "callFileOffset": "0x4dd42",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x4dd32"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x4dd30"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 695552,
+          "hex": "0x000a9d00",
+          "source": "0x4dd2e"
+        },
+        {
+          "kind": "constant",
+          "value": 5,
+          "hex": "0x00000005",
+          "source": "0x4dd28"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x531dc",
+      "callFileOffset": "0x535c8",
+      "arguments": [
+        {
+          "kind": "frame-field",
+          "source": "@(r0,r14) at 0x535b8",
+          "offset": 248,
+          "width": 4
+        },
+        {
+          "kind": "frame-field",
+          "source": "@(r0,r14) at 0x535b4",
+          "offset": 252,
+          "width": 4
+        },
+        {
+          "kind": "frame-field",
+          "source": "@(8,r14) at 0x535b0",
+          "offset": 8
+        },
+        {
+          "kind": "frame-field",
+          "source": "@(r0,r14) at 0x535ae",
+          "offset": 260,
+          "width": 4
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x6b06c",
+      "callFileOffset": "0x6b202",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x6b1f2"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x6b1f0"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 715964,
+          "hex": "0x000aecbc",
+          "source": "0x6b1ee"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x6b1e8"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x6b06c",
+      "callFileOffset": "0x6b222",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x6b212"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x6b210"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 715736,
+          "hex": "0x000aebd8",
+          "source": "0x6b20e"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x6b208"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x6b06c",
+      "callFileOffset": "0x6b52c",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x6b51c"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x6b51a"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 715508,
+          "hex": "0x000aeaf4",
+          "source": "0x6b518"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x6b512"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x6b06c",
+      "callFileOffset": "0x6b54c",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x6b53c"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x6b53a"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 716192,
+          "hex": "0x000aeda0",
+          "source": "0x6b538"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x6b532"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x6b06c",
+      "callFileOffset": "0x6b9fc",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x6b9ec"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x6b9ea"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 715964,
+          "hex": "0x000aecbc",
+          "source": "0x6b9e8"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x6b9e2"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x6b06c",
+      "callFileOffset": "0x6ba1c",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x6ba0c"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x6ba0a"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 715736,
+          "hex": "0x000aebd8",
+          "source": "0x6ba08"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x6ba02"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x88c7c",
+      "callFileOffset": "0x88cf4",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1498304340,
+          "hex": "0x594e4f54",
+          "ascii": "TONY",
+          "source": "0x88ce4"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x88ce2"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 725476,
+          "hex": "0x000b11e4",
+          "source": "0x88ce0"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x88cda"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x891b8",
+      "callFileOffset": "0x89322",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x89312"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x89310"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 726456,
+          "hex": "0x000b15b8",
+          "source": "0x8930e"
+        },
+        {
+          "kind": "constant",
+          "value": 8,
+          "hex": "0x00000008",
+          "source": "0x89308"
+        }
+      ],
+      "evidence": "tools/evidence/djhn-seqdata3-native-callback-ir.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x891b8",
+      "callFileOffset": "0x8941e",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1229474649,
+          "hex": "0x49484b59",
+          "ascii": "YKHI",
+          "source": "0x8940e"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x8940c"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 726684,
+          "hex": "0x000b169c",
+          "source": "0x8940a"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x89404"
+        }
+      ],
+      "evidence": "tools/evidence/djhn-seqdata3-native-callback-ir.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x891b8",
+      "callFileOffset": "0x8963a",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x8962a"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x89628"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 726912,
+          "hex": "0x000b1780",
+          "source": "0x89626"
+        },
+        {
+          "kind": "constant",
+          "value": 16,
+          "hex": "0x00000010",
+          "source": "0x89620"
+        }
+      ],
+      "evidence": "tools/evidence/djhn-seqdata3-native-callback-ir.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x891b8",
+      "callFileOffset": "0x8980e",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x897fe"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x897fc"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 726912,
+          "hex": "0x000b1780",
+          "source": "0x897fa"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x897f4"
+        }
+      ],
+      "evidence": "tools/evidence/djhn-seqdata3-native-callback-ir.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x89dfc",
+      "callFileOffset": "0x89ef6",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x89ee6"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x89ee4"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 726456,
+          "hex": "0x000b15b8",
+          "source": "0x89ee2"
+        },
+        {
+          "kind": "constant",
+          "value": 8,
+          "hex": "0x00000008",
+          "source": "0x89edc"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x89dfc",
+      "callFileOffset": "0x8a022",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1229474649,
+          "hex": "0x49484b59",
+          "ascii": "YKHI",
+          "source": "0x8a012"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x8a010"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 726684,
+          "hex": "0x000b169c",
+          "source": "0x8a00e"
+        },
+        {
+          "kind": "constant",
+          "value": 5,
+          "hex": "0x00000005",
+          "source": "0x8a008"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x89dfc",
+      "callFileOffset": "0x8a072",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x8a062"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x8a060"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 666732,
+          "hex": "0x000a2c6c",
+          "source": "0x8a05e"
+        },
+        {
+          "kind": "constant",
+          "value": 16,
+          "hex": "0x00000010",
+          "source": "0x8a058"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x89dfc",
+      "callFileOffset": "0x8a1fe",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1229474649,
+          "hex": "0x49484b59",
+          "ascii": "YKHI",
+          "source": "0x8a1ee"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x8a1ec"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 666732,
+          "hex": "0x000a2c6c",
+          "source": "0x8a1ea"
+        },
+        {
+          "kind": "constant",
+          "value": 16,
+          "hex": "0x00000010",
+          "source": "0x8a1e4"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x8b150",
+      "callFileOffset": "0x8b1aa",
+      "arguments": [
+        {
+          "kind": "frame-field",
+          "source": "@(8,r14) at 0x8b19a",
+          "offset": 8
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x8b198"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 666732,
+          "hex": "0x000a2c6c",
+          "source": "0x8b196"
+        },
+        {
+          "kind": "constant",
+          "value": 8,
+          "hex": "0x00000008",
+          "source": "0x8b190"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x8b150",
+      "callFileOffset": "0x8b1ca",
+      "arguments": [
+        {
+          "kind": "frame-field",
+          "source": "@(8,r14) at 0x8b1ba",
+          "offset": 8
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x8b1b8"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 666732,
+          "hex": "0x000a2c6c",
+          "source": "0x8b1b6"
+        },
+        {
+          "kind": "constant",
+          "value": 8,
+          "hex": "0x00000008",
+          "source": "0x8b1b0"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x5b9b4",
+      "callFileOffset": "0x5bac6",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x5bab6"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x5bab4"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 710780,
+          "hex": "0x000ad87c",
+          "source": "0x5bab2"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x5baac"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x5b9b4",
+      "callFileOffset": "0x5bae6",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x5bad6"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x5bad4"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 710780,
+          "hex": "0x000ad87c",
+          "source": "0x5bad2"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x5bacc"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x5b9b4",
+      "callFileOffset": "0x5bbf2",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x5bbe2"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x5bbe0"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 710780,
+          "hex": "0x000ad87c",
+          "source": "0x5bbde"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x5bbd8"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x5b9b4",
+      "callFileOffset": "0x5bc12",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x5bc02"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x5bc00"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 710780,
+          "hex": "0x000ad87c",
+          "source": "0x5bbfe"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x5bbf8"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x5b9b4",
+      "callFileOffset": "0x5bd06",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x5bcf6"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x5bcf4"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 710780,
+          "hex": "0x000ad87c",
+          "source": "0x5bcf2"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x5bcec"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "D000",
+      "function": "0x5b9b4",
+      "callFileOffset": "0x5bd26",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x5bd16"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x5bd14"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 710780,
+          "hex": "0x000ad87c",
+          "source": "0x5bd12"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x5bd0c"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "JD00",
+      "function": "0x5be3c",
+      "callFileOffset": "0x5be96",
+      "arguments": [
+        {
+          "kind": "frame-field",
+          "source": "@(8,r14) at 0x5be86",
+          "offset": 8
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x5be84"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 497172,
+          "hex": "0x00079614",
+          "source": "0x5be82"
+        },
+        {
+          "kind": "constant",
+          "value": 8,
+          "hex": "0x00000008",
+          "source": "0x5be7c"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "JD00",
+      "function": "0x5be3c",
+      "callFileOffset": "0x5beb6",
+      "arguments": [
+        {
+          "kind": "frame-field",
+          "source": "@(8,r14) at 0x5bea6",
+          "offset": 8
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x5bea4"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 497172,
+          "hex": "0x00079614",
+          "source": "0x5bea2"
+        },
+        {
+          "kind": "constant",
+          "value": 8,
+          "hex": "0x00000008",
+          "source": "0x5be9c"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "JD00",
+      "function": "0x2c2d4",
+      "callFileOffset": "0x2c6c0",
+      "arguments": [
+        {
+          "kind": "frame-field",
+          "source": "@(r0,r14) at 0x2c6b0",
+          "offset": 248,
+          "width": 4
+        },
+        {
+          "kind": "frame-field",
+          "source": "@(r0,r14) at 0x2c6ac",
+          "offset": 252,
+          "width": 4
+        },
+        {
+          "kind": "frame-field",
+          "source": "@(8,r14) at 0x2c6a8",
+          "offset": 8
+        },
+        {
+          "kind": "frame-field",
+          "source": "@(r0,r14) at 0x2c6a6",
+          "offset": 260,
+          "width": 4
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "JHD0",
+      "function": "0x46a04",
+      "callFileOffset": "0x46a66",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x46a56"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x46a54"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 378824,
+          "hex": "0x0005c7c8",
+          "source": "0x46a52"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x46a4c"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "JHD0",
+      "function": "0x46a04",
+      "callFileOffset": "0x46a86",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x46a76"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x46a74"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 378824,
+          "hex": "0x0005c7c8",
+          "source": "0x46a72"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x46a6c"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "JHD0",
+      "function": "0x4b280",
+      "callFileOffset": "0x4b2fc",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x4b2ec"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x4b2ea"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 378824,
+          "hex": "0x0005c7c8",
+          "source": "0x4b2e8"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x4b2e2"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "JHD0",
+      "function": "0x4b280",
+      "callFileOffset": "0x4b31c",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x4b30c"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x4b30a"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 378824,
+          "hex": "0x0005c7c8",
+          "source": "0x4b308"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x4b302"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "JHD0",
+      "function": "0x3e3c8",
+      "callFileOffset": "0x3e52e",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x3e51e"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x3e51c"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 389616,
+          "hex": "0x0005f1f0",
+          "source": "0x3e51a"
+        },
+        {
+          "kind": "constant",
+          "value": 10,
+          "hex": "0x0000000a",
+          "source": "0x3e514"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "JHD0",
+      "function": "0x3e648",
+      "callFileOffset": "0x3e72e",
+      "arguments": [
+        {
+          "kind": "frame-field",
+          "source": "@(8,r14) at 0x3e71e",
+          "offset": 8
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x3e71c"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 379508,
+          "hex": "0x0005ca74",
+          "source": "0x3e71a"
+        },
+        {
+          "kind": "constant",
+          "value": 10,
+          "hex": "0x0000000a",
+          "source": "0x3e714"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "JHD0",
+      "function": "0x3e648",
+      "callFileOffset": "0x3e74e",
+      "arguments": [
+        {
+          "kind": "frame-field",
+          "source": "@(8,r14) at 0x3e73e",
+          "offset": 8
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x3e73c"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 379508,
+          "hex": "0x0005ca74",
+          "source": "0x3e73a"
+        },
+        {
+          "kind": "constant",
+          "value": 10,
+          "hex": "0x0000000a",
+          "source": "0x3e734"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "JHD0",
+      "function": "0x22ba8",
+      "callFileOffset": "0x22c92",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x22c82"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x22c80"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 381560,
+          "hex": "0x0005d278",
+          "source": "0x22c7e"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x22c78"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "JHD0",
+      "function": "0x22ba8",
+      "callFileOffset": "0x22cb2",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1380535105,
+          "hex": "0x52494b41",
+          "ascii": "AKIR",
+          "source": "0x22ca2"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x22ca0"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 381560,
+          "hex": "0x0005d278",
+          "source": "0x22c9e"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x22c98"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "JHD0",
+      "function": "0x22ba8",
+      "callFileOffset": "0x22cd2",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1431000390,
+          "hex": "0x554b5546",
+          "ascii": "FUKU",
+          "source": "0x22cc2"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x22cc0"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 381560,
+          "hex": "0x0005d278",
+          "source": "0x22cbe"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x22cb8"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "JHD0",
+      "function": "0x22ba8",
+      "callFileOffset": "0x22cf2",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1431000390,
+          "hex": "0x554b5546",
+          "ascii": "FUKU",
+          "source": "0x22ce2"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x22ce0"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 381560,
+          "hex": "0x0005d278",
+          "source": "0x22cde"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x22cd8"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "JHD0",
+      "function": "0x22ba8",
+      "callFileOffset": "0x22e1e",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1431000390,
+          "hex": "0x554b5546",
+          "ascii": "FUKU",
+          "source": "0x22e0e"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x22e0c"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 381560,
+          "hex": "0x0005d278",
+          "source": "0x22e0a"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x22e04"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "JHD0",
+      "function": "0x22ba8",
+      "callFileOffset": "0x22e3e",
+      "arguments": [
+        {
+          "kind": "constant",
+          "value": 1431000390,
+          "hex": "0x554b5546",
+          "ascii": "FUKU",
+          "source": "0x22e2e"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x22e2c"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 381560,
+          "hex": "0x0005d278",
+          "source": "0x22e2a"
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x22e24"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "JOMO",
+      "function": "0x4b6e0",
+      "callFileOffset": "0x4b8b6",
+      "arguments": [
+        {
+          "kind": "frame-field",
+          "source": "@(8,r14) at 0x4b8a6",
+          "offset": 8
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x4b8a4"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 614840,
+          "hex": "0x000961b8",
+          "source": "0x4b8a2"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x4b89c"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    },
+    {
+      "area": "JOMO",
+      "function": "0x4b6e0",
+      "callFileOffset": "0x4b8d6",
+      "arguments": [
+        {
+          "kind": "frame-field",
+          "source": "@(8,r14) at 0x4b8c6",
+          "offset": 8
+        },
+        {
+          "kind": "constant",
+          "value": 0,
+          "hex": "0x00000000",
+          "source": "0x4b8c4"
+        },
+        {
+          "kind": "static-pointer",
+          "value": 614840,
+          "hex": "0x000961b8",
+          "source": "0x4b8c2"
+        },
+        {
+          "kind": "constant",
+          "value": 1,
+          "hex": "0x00000001",
+          "source": "0x4b8bc"
+        }
+      ],
+      "evidence": "play/data/events/nativeEventPrograms.generated.json",
+      "classification": "unmapped-source-call-not-yet-attributed-to-a-selected-activity"
+    }
+  ]
+}

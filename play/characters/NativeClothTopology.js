@@ -120,17 +120,16 @@ function candidateFactorRows(positions) {
   ));
 }
 
-function orderRow(positions, row, previousRow = null) {
+function orderRow(positions, row, seedAxis, previousRow = null) {
   const remaining = new Set(row);
   let current = row.reduce((best, index) => {
     if (best === null) return index;
-    const deltaX = positions[index][0] - positions[best][0];
-    if (deltaX > 0) return index;
-    if (deltaX < 0) return best;
-    const deltaZ = positions[best][2] - positions[index][2];
-    if (deltaZ > 0) return index;
-    if (deltaZ < 0) return best;
-    return Math.min(best, index);
+    const delta = positions[index][seedAxis] - positions[best][seedAxis];
+    if (delta > 0) return index;
+    if (delta < 0) return best;
+    // Native scans the height-sorted row and only replaces a strict maximum.
+    // Equal-axis corners retain that order, not switch to the other side.
+    return best;
   }, null);
   const ordered = [];
   while (current !== null) {
@@ -325,13 +324,47 @@ export function buildNativeClothTopology({
     throw new TypeError("native cloth profile must contain eight control bytes");
   }
 
+  const inferredRows = inferRows(control);
+  const firstRow = inferredRows[0];
+  const span = axis => Math.max(...firstRow.map(index => control[index][axis]))
+    - Math.min(...firstRow.map(index => control[index][axis]));
+  // FUN_0c0b06f0 chooses the dominant horizontal extent once for the first
+  // row. Native initialization first reflects X/Z (FUN_0c0aed70); in these
+  // unreflected source coordinates its seed is greatest X if X spans farther,
+  // otherwise greatest Z. All remaining rows use that same axis, as captured
+  // HPD's two coat panels demonstrate. Always choosing greatest X starts a
+  // curved open coat panel in its middle and jumps across its back seam.
+  const seedAxis = span(0) > span(2) ? 0 : 2;
   const rows = [];
-  for (const row of inferRows(control)) {
-    rows.push(orderRow(control, row, rows.at(-1) || null));
+  for (const row of inferredRows) {
+    rows.push(orderRow(control, row, seedAxis, rows.at(-1) || null));
   }
   const rowCount = rows.length;
   const columnCount = rows[0].length;
-  const closedColumns = hasClosedColumns(control, rows);
+  const closedColumns = [-0x46, -0x4b, -0x4c, -0x4d, -0x4e].includes(controlType)
+    && hasClosedColumns(control, rows);
+  if (closedColumns && [-0x46, -0x4b, -0x4c, -0x4d, -0x4e].includes(controlType)) {
+    // Each ring's dominant-axis seed is only a traversal seed, not a shared
+    // column. Near-symmetric hems (SIA_L, for example) pick the opposite end
+    // of the right edge on adjacent rows. Align cyclic phases before making
+    // row constraints, or those constraints twist the authored skirt panels.
+    for (let row = 1; row < rowCount; row += 1) {
+      const previous = rows[row - 1];
+      let best = rows[row];
+      let bestDistance = Infinity;
+      for (let phase = 0; phase < columnCount; phase += 1) {
+        const candidate = rows[row].slice(phase).concat(rows[row].slice(0, phase));
+        const distance = candidate.reduce((sum, index, column) => (
+          sum + distanceSquared(control[index], control[previous[column]])
+        ), 0);
+        if (distance < bestDistance) {
+          best = candidate;
+          bestDistance = distance;
+        }
+      }
+      rows[row] = best;
+    }
+  }
   const sourceVertexOrder = Object.freeze(rows.flat());
   const constraints = sourceVertexOrder.map((sourceVertexIndex, index) => {
     const row = Math.floor(index / columnCount);

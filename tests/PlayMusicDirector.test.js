@@ -72,6 +72,29 @@ function harness() {
   };
 }
 
+test("cutscene seek advances only temporary music and honors looping and track ends", () => {
+  const { director } = harness();
+  director.setManifest(manifest);
+  director.setWorld("interior");
+  director.unlock();
+  assert.equal(director.seekTemporaryBySeconds(5), false);
+  director.playTemporaryTrack("town", { loop: false });
+  const score = director.current.audio;
+  score.currentTime = 2;
+  score.duration = 10;
+  assert.equal(director.seekTemporaryBySeconds(5), true);
+  assert.equal(score.currentTime, 7);
+  assert.equal(director.seekTemporaryBySeconds(5), true);
+  assert.equal(score.currentTime, 10);
+  score.loop = true;
+  director.seekTemporaryBySeconds(5);
+  assert.equal(score.currentTime, 5);
+  score.duration = NaN;
+  assert.equal(director.seekTemporaryBySeconds(5), false);
+  assert.equal(director.seekTemporaryBySeconds(-5), false);
+  director.dispose();
+});
+
 test("waits for a user gesture before starting the selected world", () => {
   const { director, audio, advance } = harness();
   director.setManifest(manifest);

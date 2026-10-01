@@ -104,8 +104,9 @@ shared MT5/MT7 scene loader in `src/rendering/SceneAssets.js`.
 
 The normal cross-world sequence is:
 
-1. Leave the current multiplayer room, clear remote players, lock the world
-   transaction, and show the destination loading screen.
+1. Leave the current multiplayer room, clear remote players, and lock the world
+   transaction. Fade the last displayed frame to black over one second, then
+   show the destination loading screen before starting world teardown/loading.
 2. Stop or clear world-scoped runtime state: dialogue, interactions, scheduled
    actors, vehicles and cargo, pool/combat state, debug views, arcade fixtures,
    sounds, and water.
@@ -121,8 +122,9 @@ The normal cross-world sequence is:
 7. Run any area-specific post-placement hook and load scheduled-actor render
    assets for residents currently present, static residents, and script-owned
    actors. Other residents hydrate when authoritative presence arrives.
-8. Load the active native collision shard. Prepare visual terrain metadata and
-   build native horizontal collision when a definition exists.
+8. Load the active native collision shard. Prepare visual terrain metadata,
+   batch immutable MT5 map geometry, build native horizontal collision when a
+   definition exists, and index the resulting world meshes.
 9. Commit the active world, apply map-layer state, create water and interaction
    anchors, load vehicle/cargo assets when requested, and switch world-scoped
    UI, lighting, music, and audio.
@@ -134,6 +136,24 @@ The scene loader disposes the previous geometry and clears its texture and
 material object caches before attaching the next scene. Immutable CPU-side
 asset data can survive that disposal. The higher-level runtime
 clears systems whose state is not owned by those Babylon roots.
+
+Gameplay batches compatible, nearby opaque MT5 map parts after placement and
+script ownership have settled. Materials, time layers, collision roles and
+render settings remain separate. Animated, transparent, interactive and
+custom-rendered parts keep their own meshes; so do non-uniformly scaled parts
+whose normals Babylon's merge would change. The batch retains original face
+identity and per-part raycast bounds so ground, camera and debug picking use
+the same authored surfaces. The asset viewer keeps the separate model parts for
+inspection. `StaticWorldBatching.js` shares the merge primitive with MT7 maps,
+while `SceneSpatialIndex.js` indexes the finished gameplay scene.
+
+When a cutscene takes ownership of a resident prop, both scene-object and
+attached-object runtimes call `markWorldMeshDynamic`. This unfreezes its
+transform and moves it out of static raycast cells and the render octree into
+the movable-object set. It works before or after index construction. Merely
+unfreezing is insufficient: OP00's `RMJN` black car was enabled at its AUTH
+position but still culled using its old parked location. Props remain dynamic
+until world disposal, including after cancellation and replay.
 
 ### Download reuse and optional preparation
 
@@ -184,9 +204,37 @@ The HTML loading screen owns presentation during assembly; rendering partial
 geometry behind it repeatedly traverses meshes and compiles intermediate
 material configurations. The loop keeps its clock current and discards pending
 interpolation steps so loading time does not become a simulation catch-up burst.
-After readiness, `LoadingScreen.finish` waits through a paint before revealing
-the canvas. This is a presentation boundary, not a guarantee that every shader
-for an off-camera object has compiled.
+`LoadingScreen` owns the shared presentation phases: cover, load, and reveal.
+The one-second cover hides its loading text and holds a single canvas snapshot
+so cutscene settlement cannot flash a restored camera or incomplete actors.
+Native cutscene completion and user skips await this cover **before** releasing
+their presentation leases or restoring the gameplay camera/environment. A
+completed AUTH shot keeps its face, hands, pose and attachments until the next
+shot takes over or that covered program ends. Taking a snapshot after settlement
+is too late: it can capture a missing face or the restored dream-stage camera.
+The snapshot is released at black; heavy teardown/loading only starts after
+the loading card has painted. A newer operation or disposal cancels pending
+timers/paint callbacks, so an old reveal cannot hide or focus a new load.
+
+After readiness, `LoadingScreen.finish` enables rendering through a paint and
+fades the entire loading overlay out over 500 ms **while the destination is
+running**. There is no minimum loading-screen dwell. Worlds, day rollovers,
+menu/in-game cutscenes and the opening-to-gameplay handoff use this same reveal.
+Cutscene preparation passes `reveal: false` to world loading; its owner calls
+`finish` only after the director has established its first camera/pose. The
+play loop skips rendering while covered, but runs during reveal. This boundary
+does not guarantee every off-camera material shader has compiled.
+
+The shared screen accepts an optional loading presentation (label, Japanese
+label, and ISO civil date/time). Intro cutscenes pass their catalog metadata
+through every nested initialization/selection; the screen keeps that date on
+clock refresh and clears it for the next ordinary load. This only changes the
+card, never the server clock, world environment, or gameplay HUD.
+
+Initialization also resets an already-loaded player/controller to the saved
+location or destination spawn before revealing. Merely ensuring the character
+is loaded leaves a cinematic's old-world coordinates intact, exposing an empty
+clear-color view until void recovery moves the player back into the map.
 
 Shared `NativeSceneLighting.create` is asynchronous. Both `/play` and the asset
 viewer await its bounded material batches; cancellation or clearing prevents

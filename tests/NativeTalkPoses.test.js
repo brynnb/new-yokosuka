@@ -5,7 +5,6 @@ import test from "node:test";
 import {
   evaluateNativeTalkVertices,
   nativeTalkActorPoses,
-  neutralNativeTalkActorPoses,
   NativeTalkDeltaTransition,
   parseNativeTalkPoseAsset,
 } from "../src/NativeTalkPoses.js";
@@ -40,24 +39,21 @@ test("generated TALK poses retain the independent native Ryo oracle", () => {
   );
 });
 
-test("neutral TALK fallback preserves an exact unmatched face without foreign deltas", () => {
-  const poses = neutralNativeTalkActorPoses({
-    actorTag: "FUKU",
-    faceCode: "FUB",
-    tableSha256: "c2be5f63cb0918f4a26b982f68be29c5aadcae95fdb7a24a7ecbe4d6bc2c4f32",
-  });
-  assert.equal(poses.neutralFallback, true);
+test("FUB TALK output uses its exact table and retains mouth and upper-face motion", () => {
+  const asset = parseNativeTalkPoseAsset(readFileSync(
+    "play/assets/cutscenes/native-faces/fub-talk-poses.generated.json",
+  ));
+  const poses = nativeTalkActorPoses(asset, "FUKU",
+    "c2be5f63cb0918f4a26b982f68be29c5aadcae95fdb7a24a7ecbe4d6bc2c4f32");
+  assert.equal(poses.faceCode, "FUB");
   assert.equal(poses.upperPoses.length, 80);
   assert.equal(poses.mouthPoses.length, 80);
-  assert.ok(poses.upperPoses.every(pose => pose.every(value => value === 0)));
-  assert.ok(poses.mouthPoses.every(pose => pose.every(value => value === 0)));
+  assert.notDeepEqual(poses.upperPoses[0], poses.upperPoses[1]);
+  assert.notDeepEqual(poses.mouthPoses[0], poses.mouthPoses[1]);
   assert.throws(
-    () => neutralNativeTalkActorPoses({
-      actorTag: "FUKU",
-      faceCode: "FUB",
-      tableSha256: "wrong",
-    }),
-    /neutral native TALK pose declaration is invalid/,
+    () => nativeTalkActorPoses(asset, "FUKU",
+      "0da346204075039870a014ed304b2c77af9a410f3a07e2a1f8f4196743725047"),
+    /do not match FUKU FTBL/,
   );
 });
 

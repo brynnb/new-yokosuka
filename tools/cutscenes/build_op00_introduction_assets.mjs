@@ -20,6 +20,9 @@ import {
 import { parseAuthStrings } from "../../src/AuthStrings.js";
 import { parseAuthTrack } from "../../src/AuthTrack.js";
 import { MotnLoader } from "../../src/MotnLoader.js";
+import { compileNativeAseqAttachedObjects } from "../lib/NativeAseqActivityPack.mjs";
+import { extractNativeAseqCallbackStageEffects,
+  extractNativeAseqCallbackSecondaryMotionControls } from "../lib/NativeAseqCallbackPresentation.mjs";
 import {
   parseChrtSceneObjectBindings,
 } from "../lib/chrt_scene_object_bindings.js";
@@ -501,14 +504,14 @@ const OPENING_BODY_HAND_POSE_CALLS = Object.freeze([
 // being assigned a fabricated AUTH frame.
 const OPENING_BODY_HAND_SUPERSEDED_CALL = 0x9dea;
 
-// These are the contiguous AUTH tracks whose exact ASTR references identify
-// the A0114 opening. Later OP00 tracks belong to other events and inserts.
+// The complete gate/murder script stages include the silent storm ending.
+// Dialogue paths cannot define this boundary (slot 24 contains no ASTR).
 const OPENING_FIRST_TRACK_OFFSET = 0x22ae4;
-const OPENING_TRACK_COUNT = 24;
-const EXPECTED_OPENING_END_OFFSET = 0x481f4;
+const OPENING_TRACK_COUNT = 25;
+const EXPECTED_OPENING_END_OFFSET = 0x48f78;
 const EXPECTED_ACTOR_TAGS = Object.freeze([
   "AKIR", "FUKU", "INE_", "IWAO", "KNBS", "KNBU", "KURA",
-  "KURB", "MNLF", "ODR1", "ODR2", "RMJN", "SORY",
+  "KURB", "MNLF", "ODR1", "ODR2", "RMJN", "SORY", "THN1", "THN2", "THN3", "THN4",
 ]);
 const REQUIRED_ENVIRONMENT_MODELS = Object.freeze([
   "OMO", "JIMENHAL", "NAIB", "NIWAKAL", "OMADO", "OOSAKI", "JYUU",
@@ -572,6 +575,8 @@ const OPENING_TRACK_MAP_LAYER_SETUPS = Object.freeze([
     writes: [[0, 0, 0xb6de], [1, 1, 0xb6f2], [2, 1, 0xb706], [3, 0, 0xb71a]] },
   { trackIndex: 23, activityCall: 0x19890, launchCall: 0x19878, functionOffset: 0xb898,
     writes: [[0, 0, 0xb8ae], [1, 1, 0xb8c2], [2, 1, 0xb8d6], [3, 0, 0xb8ea]] },
+  { trackIndex: 24, activityCall: 0x1a95c, launchCall: 0x1a944, functionOffset: 0xe2f0,
+    writes: [[0, 1, 0xe394], [1, 0, 0xe3a8], [2, 0, 0xe3bc], [3, 1, 0xe3d0]] },
 ]);
 // TRCK resources stay indexed by their native map-embedded slots. Scene
 // chronology belongs exclusively to the compiled room-script owner; package
@@ -608,6 +613,10 @@ const REQUIRED_SCENE_OBJECTS = Object.freeze({
   ODR1: Object.freeze({ image: "DOOR_L", model: "DDRR1002" }),
   ODR2: Object.freeze({ image: "DOOR_R", model: "DDRR1001" }),
   RMJN: Object.freeze({ image: "RMJN", model: "BMWS703G" }),
+  THN1: Object.freeze({ image: "THDR", model: "KAMS203G" }),
+  THN2: Object.freeze({ image: "THDR", model: "KAMS203G" }),
+  THN3: Object.freeze({ image: "THDR", model: "KAMS203G" }),
+  THN4: Object.freeze({ image: "THDR", model: "KAMS203G" }),
 });
 const REQUIRED_SCENE_OBJECT_MODELS = Object.freeze([
   ...new Set(Object.values(REQUIRED_SCENE_OBJECTS).map(value => value.model)),
@@ -1826,6 +1835,13 @@ function samePose(left, right) {
 }
 
 const mapinfo = readPinnedSource("MAPINFO.BIN");
+const secondaryControlEvidencePath = "tools/evidence/op00-opening-native-callback-ir.json";
+const secondaryControlEvidence = JSON.parse(readFileSync(path.join(repoRoot, secondaryControlEvidencePath)));
+if (secondaryControlEvidence.source.mapinfoSha256 !== sha256(mapinfo)) {
+  throw new Error("OP00 secondary-motion callback source changed");
+}
+const secondaryControlFunctions = new Map([secondaryControlEvidence.function,
+  ...secondaryControlEvidence.supportingFunctions].map(fn => [fn.id, fn]));
 const op99 = readPinnedSource("OP99.AFS");
 const motionBank = readPinnedSource("M_0101A.BIN");
 const nativeTalkPoseBytes = readFileSync(nativeTalkPosePath);
@@ -1842,7 +1858,7 @@ const nativeTalkPoseRecord = Object.freeze({
   path: relative(nativeTalkPosePath),
   byteLength: nativeTalkPoseBytes.length,
   sha256: sha256(nativeTalkPoseBytes),
-  generatedBy: "tools/animation/extract_native_face_poses.py",
+  generatedBy: nativeTalkPoses.generatedBy,
 });
 const sourceFiles = Object.fromEntries(Object.entries(SOURCE_EXPECTATIONS).map(
   ([filename, record]) => [filename, {
@@ -2011,6 +2027,15 @@ const timelineTracks = openingTracks.map(track => {
     throw new Error(`OP00 opening track ${track.index} failed structural validation`);
   }
   const asset = activityAssets[track.index];
+  const setup = openingNativeActivitySetups().find(value => value.trackIndex === track.index);
+  const nativeCallback = secondaryControlFunctions.get(offsetHex(setup?.functionOffset || 0));
+  const secondaryControls = nativeCallback && extractNativeAseqCallbackSecondaryMotionControls({
+    bytes: mapinfo, nativeFunction: nativeCallback,
+    supportingFunctions: secondaryControlEvidence.supportingFunctions,
+    durationFrames: sequence.durationFrames,
+    source: { area: "OP00", evidence: secondaryControlEvidencePath,
+      mapinfoSha256: secondaryControlEvidence.source.mapinfoSha256 },
+  });
   const record = {
     index: track.index,
     sourceOffset: track.sourceOffset,
@@ -2032,6 +2057,21 @@ const timelineTracks = openingTracks.map(track => {
     nativeMapLayerStates: mapLayerState.effectiveStates,
     nativeMapLayerStateSource: mapLayerState.source,
     browserMapVisibility: OPENING_BROWSER_MAP_VISIBILITY,
+    ...(track.index === 24 ? (() => {
+      const evidencePath = "tools/evidence/op00-storm-native-callback-ir.json";
+      const evidence = JSON.parse(readFileSync(path.join(repoRoot, evidencePath)));
+      if (evidence.source.mapinfoSha256 !== SOURCE_EXPECTATIONS["MAPINFO.BIN"].sha256
+        || evidence.function.id !== "0xe2f0") throw new Error("OP00 storm callback source changed");
+      return { hiddenActors: ["AKIR"], browserLightingPresetIndex: 3,
+        browserIsolatedEnvironment: true, browserBackgroundColor: [0, 0, 0, 1],
+        nativeInitialHiddenObjects: ["THN1", "THN2", "THN3", "THN4"],
+        ...extractNativeAseqCallbackStageEffects({ bytes: mapinfo, nativeFunction: evidence.function,
+          supportingFunctions: evidence.supportingFunctions, durationFrames: sequence.durationFrames,
+          source: { area: "OP00", evidence: evidencePath, mapinfoSha256: evidence.source.mapinfoSha256 } }),
+      };
+    })() : {}),
+    ...(secondaryControls?.before.length || secondaryControls?.frames.length
+      ? { programPresentationCues: secondaryControls } : {}),
     nativeSceneObjectWrites: sceneObjectState.writes,
     nativeSceneObjectStates: sceneObjectState.effectiveStates,
     nativeSceneObjectStateSource: sceneObjectState.source,
@@ -2121,7 +2161,7 @@ const sceneObjectBindings = Object.fromEntries(Object.entries(
   const { presentation: _presentation, ...bindingWithoutPresentation } = binding;
   return [actorTag, {
     ...bindingWithoutPresentation,
-    browserFilename: `S1_OP00_${expected.model}.MT5`,
+    browserFilename: `S1_OP00_${expected.model}${Object.values(REQUIRED_SCENE_OBJECTS).filter(value => value.model === expected.model).length > 1 ? `_${actorTag}` : ""}.MT5`,
     initialPresentation,
     lifecycle: persistent ? {
       kind: "room-script-persistent",
@@ -2220,6 +2260,11 @@ for (const nativeName of [
     throw new Error(`OP00 required asset ${nativeName} did not resolve exactly once`);
   }
 }
+for (const binding of Object.values(sceneObjectBindings)) {
+  if (binding.browserFilename !== `S1_OP00_${binding.model}.MT5`) {
+    binding.assetPath = modelAssets.find(asset => asset.nativeName === binding.model).assetPath;
+  }
+}
 
 const mapLayerPackage = archivePackages.find(value => value.index === 27);
 const mapLayerChildren = mapLayerPackage?.children.filter(
@@ -2304,7 +2349,7 @@ const inventory = {
     resolution: "existing-production-asset",
   },
   sceneObjects: sceneObjectBindings,
-  attachedObjects: attachedObjectBindings,
+  attachedObjects: compileNativeAseqAttachedObjects(attachedObjectBindings, timelineTracks),
   facialAssets,
   handAssets,
   mapVisibilityModels,
@@ -2358,7 +2403,7 @@ const activityManifest = {
     resourceName: "A0114",
     variant: "OP00 introduction",
     selectionRule: (
-      "24 exact map-embedded TRCK resources in MAPINFO 0x22ae4..0x481f4; "
+      "25 exact map-embedded TRCK resources in MAPINFO 0x22ae4..0x48f78; "
       + "compiled owner S1-OP00-A0114 is the sole sequencing authority"
     ),
   },

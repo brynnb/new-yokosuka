@@ -17,6 +17,29 @@ function machine(options = {}) {
   });
 }
 
+test("attachment controllers interpolate and transition on the displayed body clock", () => {
+  const frame = (x) => ({ poseMatrices: [0, 10, 20].map(offset =>
+    [1,0,0,0, 0,1,0,0, 0,0,1,0, x + offset,0,0,1]) });
+  let displayed;
+  const animation = machine({ renderMatrixByKey: new Map([[1, 0], [5, 2]]),
+    applyPose: pose => { displayed = pose; } });
+  animation.clips = {
+    idle: { frames: [frame(0), frame(4)] },
+    walk: { frames: [frame(12), frame(12), frame(12)] },
+  };
+  animation.update(1 / 60, "idle");
+  assert.deepEqual(displayed.controllerMatrices.map(m => m[12]), [2, 12, 22]);
+  assert.ok(displayed.routedMatrices.get(1) === displayed.controllerMatrices[0]);
+  assert.ok(displayed.routedMatrices.get(5) === displayed.controllerMatrices[2]);
+  animation.update(0, "walk");
+  assert.deepEqual(displayed.controllerMatrices.map(m => m[12]), [2, 12, 22]);
+  animation.update(0.05, "walk");
+  assert.deepEqual(displayed.controllerMatrices.map(m => m[12]), [7, 17, 27]);
+  animation.update(0.05, "walk");
+  assert.deepEqual(displayed.controllerMatrices.map(m => m[12]), [12, 22, 32]);
+  assert.equal(animation.clips.idle.frames[0].poseMatrices[1][12], 10);
+});
+
 test("position-preserving emotes settle at their destination and transfer displacement only on completion", () => {
   const frame = (x, z) => ({poseMatrices: [[1,0,0,0, 0,1,0,0, 0,0,1,0, x,0,z,1]]});
   for (const preserveEndPosition of [false, true]) {
@@ -236,7 +259,7 @@ test("a network-only interaction emote holds its remote loop", () => {
     },
   };
 
-  assert.notEqual(animation.remoteEmoteRoutes("cinemaSit", 60), null);
+  assert.notEqual(animation.remoteEmotePose("cinemaSit", 60), null);
 });
 
 test("one-shot states hold against movement and return to idle", () => {

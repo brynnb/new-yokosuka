@@ -24,6 +24,14 @@ EXECUTABLE_SHA256 = (
     "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c"
 )
 RANGES = {
+    "attachmentConsumer": (
+        0x0C0DE682, 302,
+        "a4d6431218f906d144a95035a4df5dd1c9cc1a8406f155ae71bdb365078779d3",
+    ),
+    "fixedTurnRotation": (
+        0x0C091868, 166,
+        "d20e963698e47ad60cf74217c64c9bbd327d563b8564973bd48fded9be30fd96",
+    ),
     "handler": (
         0x0C1652FE,
         148,
@@ -113,6 +121,9 @@ def verify_native_contract(executable: bytes) -> dict[str, Any]:
         "leftRecordTag": u32(executable, 0x0C0DE6C4),
         "associatedRecordLookup": u32(executable, 0x0C0DE6C8),
         "rightRecordTag": u32(executable, 0x0C0DE6CC),
+        "attachmentMatrixResolver": u32(executable, 0x0C0DE79C),
+        "loadAttachmentMatrix": u32(executable, 0x0C0DE7A0),
+        "fixedTurnRotation": u32(executable, 0x0C0DE6D0),
     }
     expected = {
         "handlerTableEntry": 0x0C1652FE,
@@ -124,6 +135,9 @@ def verify_native_contract(executable: bytes) -> dict[str, Any]:
         "leftRecordTag": 0x4C444E48,
         "associatedRecordLookup": 0x0C0AAD5A,
         "rightRecordTag": 0x52444E48,
+        "attachmentMatrixResolver": 0x0C1140E6,
+        "loadAttachmentMatrix": 0x0C1D1A00,
+        "fixedTurnRotation": 0x0C091868,
     }
     if dependencies != expected:
         raise ValueError("operation-0x00eb dependencies changed")
@@ -220,6 +234,12 @@ def build_report(
                 "0x0000002a": "raw-add all three components",
             },
             "dependencies": dependencies,
+            "renderConsumer": {
+                "address": "0x0c0de682",
+                "sha256": RANGES["attachmentConsumer"][2],
+                "rotationSha256": RANGES["fixedTurnRotation"][2],
+                "behavior": "For side flags one/two, load native controller 12/18, then apply the primary controller translation and its three rotation words through 0x0c091868. That routine consumes each unsigned low word as fixed turns in X/Y/Z order. Component writes adjust the hand attachment independently of the nineteen finger vectors; they do not rotate the prop's underlying body controller.",
+            },
             "provenBehavior": (
                 "Resolves argument zero and selects its literal HNDL record "
                 "when argument one is zero or HNDR otherwise. A present "
@@ -253,7 +273,7 @@ def build_report(
             "HNDL and HNDR remain the executable's literal record tags.",
             "The three target fields retain exact pointer-relative offsets.",
             "The add routes use raw 32-bit integer addition, not float32.",
-            "No coordinate-space name or gameplay owner is inferred.",
+            "The hand attachment consumer is verified against original executable bytes, not inferred from the decompiler variable names.",
         ],
     }
 
@@ -263,16 +283,31 @@ def main() -> None:
     parser.add_argument("--executable", type=Path, default=DEFAULT_EXECUTABLE)
     parser.add_argument("--event-ir", type=Path, default=DEFAULT_EVENT_IR)
     parser.add_argument("--out", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--contract-only", action="store_true",
+                        help="Verify original executable ranges without requiring the historical whole-disc IR inventory")
     args = parser.parse_args()
-    report = build_report(
-        args.executable.read_bytes(),
-        json.loads(args.event_ir.read_text(encoding="utf-8")),
-    )
+    if args.contract_only:
+        if args.out == DEFAULT_OUTPUT:
+            parser.error("--contract-only requires a separate --out, preserving the corpus report")
+        report = {
+            "schema": "new-yokosuka-hand-attachment-contract-v1",
+            "sourceSha256": EXECUTABLE_SHA256,
+            "dependencies": verify_native_contract(args.executable.read_bytes()),
+            "verifiedRanges": {name: {"address": hex(address), "length": size, "sha256": digest}
+                               for name, (address, size, digest) in RANGES.items()},
+            "behavior": "Consumer 0x0c0de682 loads controller 12/18 for side flags 1/2, then applies primary-controller translation and rotations at +8/+12/+16. Rotation helper 0x0c091868 uses unsigned low-word fixed turns in X/Y/Z order, independently of the nineteen finger pose vectors.",
+        }
+    else:
+        report = build_report(
+            args.executable.read_bytes(),
+            json.loads(args.event_ir.read_text(encoding="utf-8")),
+        )
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print(
         f"Wrote {args.out}: "
-        f"{report['allDiscInventory']['provenCallCount']} proven calls"
+        + ("verified executable contract" if args.contract_only else
+           f"{report['allDiscInventory']['provenCallCount']} proven calls")
     )
 
 

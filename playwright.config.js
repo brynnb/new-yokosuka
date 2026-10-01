@@ -1,4 +1,5 @@
 import { defineConfig, devices } from "@playwright/test";
+import { playwrightRendererOptions } from "./scripts/testing/playwright-renderer.mjs";
 
 const baseURL = process.env.E2E_APP_URL
   || process.env.PLAYWRIGHT_BASE_URL
@@ -30,6 +31,7 @@ export default defineConfig({
   ],
   use: {
     baseURL,
+    launchOptions: playwrightRendererOptions(),
     actionTimeout: 30_000,
     navigationTimeout: 120_000,
     trace: "on-first-retry",
@@ -37,7 +39,14 @@ export default defineConfig({
   },
   projects: [
     {
+      name: "renderer-preflight",
+      testMatch: "gpu-renderer.setup.js",
+      use: { ...devices["Desktop Chrome"] },
+    },
+    {
       name: "chromium",
+      testIgnore: "gpu-renderer.setup.js",
+      dependencies: ["renderer-preflight"],
       use: { ...devices["Desktop Chrome"] },
     },
   ],

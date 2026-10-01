@@ -30,6 +30,39 @@ test("AUTH preparation requests only scheduled actors, excluding other ownership
   assert.equal(calls.length, 1, "shot subleases reuse program-owned actors");
 });
 
+test("a program using separate cinematic bodies hides the non-cast gameplay avatar until cleanup", () => {
+  const engine = new BABYLON.NullEngine();
+  const scene = new BABYLON.Scene(engine);
+  try {
+    const playerRoot = new BABYLON.TransformNode("gameplay-player", scene);
+    const renderRoot = new BABYLON.TransformNode("gameplay-render", scene);
+    renderRoot.parent = playerRoot;
+    const cinematicRoot = new BABYLON.TransformNode("sleepwear-ryo", scene);
+    const actor = { actorCode: "AKI_", root: cinematicRoot, model: { renderRoot: cinematicRoot } };
+    const runtime = createNativeAseqBabylonActors({
+      getPlayerModel: () => ({ root: playerRoot, renderRoot, loader: {} }),
+      syncPlayerTransform() {}, requirePlayer: false,
+      scheduledActors: { beginActivityActors: () => [actor], activityActor() {}, endActivityActors: () => true },
+      motionRuntime: { applyActivitySequence: () => true },
+    });
+    for (const priorVisibility of [true, false]) {
+      renderRoot.setEnabled(priorVisibility);
+      const owner = {}, shot = {};
+      runtime.beginProgram(owner, ["AKI_"]);
+      assert.equal(renderRoot.isEnabled(false), false);
+      assert.equal(playerRoot.isEnabled(false), true, "do not disable the collider or actor transform");
+      assert.equal(runtime.ownsPlayerProgram, true, "borrowed render visibility is presentation ownership");
+      runtime.begin(shot, ["AKI_"]);
+      assert.equal(cinematicRoot.isEnabled(), true);
+      assert.equal(renderRoot.isEnabled(false), false);
+      runtime.end(shot, "complete");
+      assert.equal(renderRoot.isEnabled(false), false, "retain the mask between shots");
+      runtime.endProgram(owner, "user-cancelled");
+      assert.equal(renderRoot.isEnabled(false), priorVisibility);
+    }
+  } finally { scene.dispose(); engine.dispose(); }
+});
+
 test("AUTH Babylon actors own exact roots and restore the player on rollback", () => {
   const engine = new BABYLON.NullEngine();
   const scene = new BABYLON.Scene(engine);
@@ -159,7 +192,8 @@ test("AUTH Babylon actors lend the player model to a declared authored alias", (
     const owner = {};
     assert.equal(runtime.begin(owner, ["AKID"]), true);
     assert.equal(runtime.activeActor("AKID").root, root);
-    assert.equal(runtime.activeActor("AKID").model.loader, player.loader);
+    assert.ok(runtime.activeActor("AKID").model === player,
+      "borrowing the player must not create a second presentation model for the same meshes");
     assert.equal(runtime.activeActor("AKIR"), null);
     assert.equal(runtime.applyMotion(owner, "AKID", { sequence: {} }), true);
     assert.equal(scheduled, false);
@@ -514,8 +548,12 @@ test("AUTH program ownership preserves successful shot poses and restores the ex
     const playerRenderRoot = new BABYLON.TransformNode("player-render", scene);
     playerRenderRoot.parent = playerRoot;
     const megumiRoot = new BABYLON.TransformNode("megumi", scene);
+    const megumiRenderRoot = new BABYLON.TransformNode("megumi-render", scene);
+    megumiRenderRoot.parent = megumiRoot;
     const boxRoot = new BABYLON.TransformNode("box", scene);
     const catRoot = new BABYLON.TransformNode("cat", scene);
+    const catRenderRoot = new BABYLON.TransformNode("cat-render", scene);
+    catRenderRoot.parent = catRoot;
     playerRoot.position.set(1, 2, 3);
     playerRoot.rotation.set(0.1, 0.2, 0.3);
     megumiRoot.position.set(4, 5, 6);
@@ -547,7 +585,7 @@ test("AUTH program ownership preserves successful shot poses and restores the ex
         return [{
           actorCode: "MEGM",
           root: megumiRoot,
-          model: { root: megumiRoot },
+          model: { root: megumiRoot, renderRoot: megumiRenderRoot },
         }];
       },
       activityActor() {},
@@ -567,7 +605,7 @@ test("AUTH program ownership preserves successful shot poses and restores the ex
         beginProgram(owner) {
           calls.push([`${label}:program-begin`, owner]);
           program = { owner, snapshot: rootSnapshot(root) };
-          return [{ actorCode, root, model: sceneObject ? null : { root }, sceneObject }];
+          return [{ actorCode, root, model: sceneObject ? null : { root, renderRoot: catRenderRoot }, sceneObject }];
         },
         endProgram(owner) {
           calls.push([`${label}:program-end`, owner]);
@@ -580,7 +618,7 @@ test("AUTH program ownership preserves successful shot poses and restores the ex
           calls.push([`${label}:begin`, owner, actorTags]);
           assert.deepEqual(actorTags, [actorCode]);
           active = { owner, snapshot: rootSnapshot(root) };
-          return [{ actorCode, root, model: sceneObject ? null : { root }, sceneObject }];
+          return [{ actorCode, root, model: sceneObject ? null : { root, renderRoot: catRenderRoot }, sceneObject }];
         },
         activate(owner, value) {
           if (!sceneObject || active?.owner !== owner || value !== actorCode) {
@@ -608,12 +646,9 @@ test("AUTH program ownership preserves successful shot poses and restores the ex
     );
     const packageActors = nestedRuntime("package", "CATM", catRoot);
     const syncs = [];
+    const playerModel = { root: playerRoot, renderRoot: playerRenderRoot, loader: {} };
     const runtime = createNativeAseqBabylonActors({
-      getPlayerModel: () => ({
-        root: playerRoot,
-        renderRoot: playerRenderRoot,
-        loader: {},
-      }),
+      getPlayerModel: () => playerModel,
       syncPlayerTransform: () => syncs.push(playerRoot.position.asArray()),
       scheduledActors,
       motionRuntime: { applyActivitySequence: () => true },
@@ -630,6 +665,7 @@ test("AUTH program ownership preserves successful shot poses and restores the ex
     ), true);
     assert.equal(runtime.ownsPlayerProgram, true);
     assert.equal(runtime.programActor("AKIR").root, playerRoot);
+    assert.ok(runtime.programActor("AKIR").model === playerModel);
     assert.equal(runtime.programActor("MEGM").root, megumiRoot);
     assert.equal(runtime.programActor("NBOX").root, boxRoot);
     assert.equal(runtime.programActor("CATM").root, catRoot);
@@ -642,6 +678,7 @@ test("AUTH program ownership preserves successful shot poses and restores the ex
       firstShotOwner,
       ["AKIR", "MEGM", "NBOX", "CATM"],
     ), true);
+    assert.ok(runtime.activeActor("AKIR").model === playerModel);
     for (const [actorTag, offset] of [
       ["AKIR", 40],
       ["MEGM", 50],
@@ -664,10 +701,33 @@ test("AUTH program ownership preserves successful shot poses and restores the ex
     assert.deepEqual(catRoot.position.asArray(), [-70, 71, 72]);
     assert.equal(boxRoot.isEnabled(), true);
 
+    const sceneryShotOwner = { kind: "scenery-only-shot" };
+    assert.equal(runtime.begin(sceneryShotOwner, ["NBOX"]), true);
+    assert.equal(megumiRenderRoot.isEnabled(), false, "undeclared scheduled characters are not drawn");
+    assert.equal(catRenderRoot.isEnabled(false), false, "undeclared packaged characters are not drawn");
+    assert.equal(megumiRoot.isEnabled(), true, "actor placement and native state remain available");
+    assert.equal(boxRoot.isEnabled(), true, "persistent scenery is not hidden with the cast");
+    assert.equal(runtime.activeActor("MEGM").root, megumiRoot, "hidden actors retain program lookup and pose");
+    assert.equal(runtime.end(sceneryShotOwner, "complete"), true);
+    assert.equal(megumiRenderRoot.isEnabled(), false, "the outgoing visibility survives asynchronous shot preparation");
+
+    const npcShotOwner = { kind: "npc-only-shot" };
+    assert.equal(runtime.begin(npcShotOwner, ["MEGM"]), true);
+    assert.equal(runtime.ownsPlayerProgram, true, "the program still owns Ryo between shots");
+    assert.equal(playerRenderRoot.isEnabled(), false, "Ryo is not drawn in an NPC-only shot");
+    assert.equal(runtime.active.player, null, "the shot does not acquire Ryo");
+    assert.equal(runtime.activeActor("AKIR").root, playerRoot, "program lookups retain the borrowed actor");
+    assert.equal(megumiRenderRoot.isEnabled(), true, "the next shot restores its declared actor");
+    assert.equal(catRenderRoot.isEnabled(false), false, "other characters remain hidden");
+    assert.equal(runtime.end(npcShotOwner, "complete"), true);
+    assert.equal(playerRenderRoot.isEnabled(), false);
+
     assert.equal(runtime.begin(
       failedShotOwner,
       ["AKIR", "MEGM", "NBOX", "CATM"],
     ), true);
+    assert.equal(playerRenderRoot.isEnabled(), true);
+    assert.equal(catRenderRoot.isEnabled(false), true, "restore local visibility even when a native parent is disabled");
     for (const [actorTag, offset] of [
       ["AKIR", 140],
       ["MEGM", 150],
@@ -689,6 +749,11 @@ test("AUTH program ownership preserves successful shot poses and restores the ex
     assert.deepEqual(boxRoot.position.asArray(), [-60, 61, 62]);
     assert.deepEqual(catRoot.position.asArray(), [-70, 71, 72]);
 
+    const lastShotOwner = { kind: "last-npc-shot" };
+    assert.equal(runtime.begin(lastShotOwner, ["MEGM"]), true);
+    assert.equal(runtime.end(lastShotOwner, "complete"), true);
+    assert.equal(playerRenderRoot.isEnabled(false), false);
+    assert.equal(catRenderRoot.isEnabled(false), false);
     assert.equal(runtime.endProgram(programOwner, "complete"), true);
     assert.equal(runtime.programActor("AKIR"), null);
     assert.equal(runtime.ownsPlayerProgram, false);
@@ -699,6 +764,9 @@ test("AUTH program ownership preserves successful shot poses and restores the ex
     assert.deepEqual(catRoot.position.asArray(), [10, 11, 12]);
     assert.equal(boxRoot.isEnabled(), false);
     assert.equal(catRoot.isEnabled(), false);
+    assert.equal(megumiRenderRoot.isEnabled(false), true);
+    assert.equal(catRenderRoot.isEnabled(false), true);
+    assert.equal(playerRenderRoot.isEnabled(false), true, "program cleanup restores its last visibility mask");
     assert.ok(syncs.length >= 3);
     assert.deepEqual(calls.filter(([kind]) => kind.endsWith("program-begin"))
       .map(([kind]) => kind), [

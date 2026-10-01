@@ -6,8 +6,12 @@ import * as BABYLON from "@babylonjs/core";
 
 import { Mt5Loader } from "../src/Mt5Loader.js";
 import {
+  createNativeClothPresentation,
+  nativeClothStateForModel,
   NativeClothModelState,
 } from "../play/characters/NativeClothBabylonPresentation.js";
+import { createNativeAseqBabylonActors } from "../play/events/NativeAseqBabylonPresentation.js";
+import { CharacterRuntime } from "../play/characters/CharacterRuntime.js";
 import { parseNativeClothTrack } from "../play/characters/NativeClothTrack.js";
 import {
   prepareNativeClothModelSurfaces,
@@ -79,9 +83,9 @@ async function loadOp02Shenhua(scene) {
   };
 }
 
-async function loadPlayableRyo(scene) {
+async function loadPlayableRyo(scene, characterRigMode = "baked") {
   const loader = new Mt5Loader(scene, {
-    characterRigMode: "baked",
+    characterRigMode,
     characterRigSeamMode: "weld",
     mirrorCharacterX: true,
     backFaceCulling: false,
@@ -93,6 +97,11 @@ async function loadPlayableRyo(scene) {
     bytes.byteOffset + bytes.byteLength,
   ), null, { sourceFilename: filename });
   const surfaces = prepareNativeClothModelSurfaces(renderRoot);
+  if (characterRigMode === "gpu") {
+    loader.mergeCharacterGpuRigMeshes(renderRoot, {
+      preserveRenderKeySubtrees: surfaces.preservedRenderKeys,
+    });
+  }
   return {
     model: {
       modelCode: "YKC_M",
@@ -383,7 +392,7 @@ test("gameplay cloth follows its actor between native solver ticks", async () =>
 
     actorRoot.position.x = 0.2;
     actorRoot.computeWorldMatrix(true);
-    assert.equal(state.update(1 / 60), false);
+    state.update(1 / 60);
     assert.deepEqual(
       Array.from(mesh.getVerticesData(BABYLON.VertexBuffer.PositionKind)),
       initialLocalPositions,
@@ -393,6 +402,156 @@ test("gameplay cloth follows its actor between native solver ticks", async () =>
     actorRoot.computeWorldMatrix(true);
     assert.equal(state.update(1 / 60), true);
     state.release();
+  } finally {
+    scene.dispose();
+    engine.dispose();
+  }
+});
+
+test("body-owned cloth boundaries follow sub-frame poses without reprojecting simulated vertices", async () => {
+  const engine = new BABYLON.NullEngine({ renderWidth: 1, renderHeight: 1 });
+  try {
+    for (const code of ["SIA_L", "HPD_L", "HPX_L", "HOS_L", "INE_M"]) {
+      const scene = new BABYLON.Scene(engine);
+      try {
+        const { model } = await loadGpuCharacter(scene, `${code}.CHRM`);
+        installCompleteControllerPose(model);
+        const state = nativeClothStateForModel(model);
+        assert.equal(state.update(0), true);
+        const snapshots = new Map(state.groups.flatMap(group => group.outputs.flatMap(output => (
+          output.meshes.map(({ mesh }) => [mesh, Array.from(mesh.getVerticesData("position"))])
+        ))));
+        const before = model.loader.characterRigWorldMatrices(model.renderRoot);
+        const delta = BABYLON.Matrix.RotationZ(0.01).multiply(BABYLON.Matrix.Translation(0.003, 0.002, 0));
+        const after = new Map([...before].map(([address, matrix]) => [address,
+          BABYLON.Matrix.FromArray(matrix).multiply(delta).asArray()]));
+        model.loader.applyCharacterRigResolvedWorldMatrices(model.renderRoot, after);
+        // Also move the owner, exercising the old counter-translation failure.
+        model.root.position.x += 0.1;
+        state.update(1 / 60);
+        let boundaryCopies = 0;
+        for (const group of state.groups) for (const output of group.outputs) {
+          for (const { mesh } of output.meshes) {
+            const positions = mesh.getVerticesData("position");
+            const normals = mesh.getVerticesData("normal");
+            mesh._mt5SourceVertexIndices.forEach((sourceIndex, index) => {
+              const actual = Array.from(positions.slice(index * 3, index * 3 + 3));
+              if (!output.externalSourceVertexIndices.includes(sourceIndex)) {
+                assert.deepEqual(actual, snapshots.get(mesh).slice(index * 3, index * 3 + 3), `${code}: hold simulated local point`);
+                return;
+              }
+              const owner = model.renderRoot._mt5Nodes.find(node => node.model
+                && sourceIndex >= node.model.vertexBase && sourceIndex < node.model.vertexBase + node.model.nbVertex);
+              const vertex = model.loader.globalVertices[sourceIndex];
+              const matrix = BABYLON.Matrix.FromArray(after.get(owner.addr));
+              const point = BABYLON.Vector3.TransformCoordinates(BABYLON.Vector3.FromArray(vertex.sourcePos), matrix);
+              const normal = BABYLON.Vector3.TransformNormal(BABYLON.Vector3.FromArray(vertex.sourceNorm), matrix).normalize();
+              assertNormalApproximatelyEqual(actual, point.asArray());
+              assertNormalApproximatelyEqual(Array.from(normals.slice(index * 3, index * 3 + 3)), normal.asArray());
+              boundaryCopies++;
+            });
+          }
+        }
+        assert.ok(boundaryCopies > 0, `${code}: actual borrowed body vertices checked`);
+        state.release();
+      } finally { scene.dispose(); }
+    }
+  } finally { engine.dispose(); }
+});
+
+test("borrowed player jacket returns to authored GPU skinning after multiple AUTH shots", async () => {
+  const engine = new BABYLON.NullEngine({ renderWidth: 1, renderHeight: 1 });
+  const scene = new BABYLON.Scene(engine);
+  try {
+    const { model } = await loadPlayableRyo(scene, "gpu");
+    const meshes = model.renderRoot.getChildMeshes().filter(mesh => mesh._mt5NativeClothOutput);
+    assert.ok(meshes.length > 0);
+    // Babylon uploads Float32 buffers; loader-side arrays can still hold JS
+    // doubles. Compare the restored buffers exactly at their GPU precision.
+    const authored = meshes.map(mesh => ({ mesh, skeleton: mesh.skeleton,
+      positions: Array.from(Float32Array.from(mesh.getVerticesData("position"))),
+      normals: Array.from(Float32Array.from(mesh.getVerticesData("normal"))) }));
+    const actors = createNativeAseqBabylonActors({
+      getPlayerModel: () => model,
+      syncPlayerTransform() {},
+      scheduledActors: { beginActivityActors: () => [], activityActor() {}, endActivityActors: () => true },
+      motionRuntime: { applyActivitySequence(actorModel) {
+        installCompleteControllerPose(actorModel);
+        return true;
+      } },
+    });
+    const cloth = createNativeClothPresentation({ actors });
+    const program = {};
+    actors.beginProgram(program, ["AKIR"]);
+    for (let shot = 0; shot < 3; shot++) {
+      const owner = { shot };
+      actors.begin(owner, ["AKIR"]);
+      actors.applyMotion(owner, "AKIR", {});
+      cloth.begin(owner, ["AKIR"]);
+      cloth.apply(owner);
+      assert.ok(meshes.every(mesh => mesh.skeleton === null));
+      cloth.end(owner);
+      actors.end(owner, "complete");
+    }
+    actors.endProgram(program, "complete");
+    cloth.reset();
+    for (const { mesh, skeleton, positions, normals } of authored) {
+      assert.ok(mesh.skeleton === skeleton, "cleanup must restore the original skeleton, not another shot's detached state");
+      assert.equal(mesh.computeBonesUsingShaders, true);
+      assert.deepEqual(Array.from(mesh.getVerticesData("position")), positions);
+      assert.deepEqual(Array.from(mesh.getVerticesData("normal")), normals);
+    }
+  } finally {
+    scene.dispose();
+    engine.dispose();
+  }
+});
+
+test("render-only gameplay releases borrowed native cloth and cannot reacquire stale controls", async () => {
+  const engine = new BABYLON.NullEngine({ renderWidth: 1, renderHeight: 1 });
+  const scene = new BABYLON.Scene(engine);
+  try {
+    const { model } = await loadPlayableRyo(scene, "gpu");
+    const runtime = new CharacterRuntime({
+      scene,
+      renderMatrixByKey: new Map(),
+      fetchArrayBuffer() {},
+    });
+    runtime.presentationModels.set(model.renderRoot, model);
+    const clothState = nativeClothStateForModel(model);
+    const routes = model.loader.characterRigWorldMatrices(model.renderRoot);
+    const meshes = model.renderRoot.getChildMeshes().filter(mesh => mesh._mt5NativeClothOutput);
+    const skeletons = meshes.map(mesh => mesh.skeleton);
+    assert.ok(meshes.length > 0);
+    for (let cycle = 0; cycle < 2; cycle++) {
+      installCompleteControllerPose(model);
+      const nativePose = {
+        model,
+        controllerFamily: model.latestControllerFamily,
+        controllerMatrices: model.latestControllerMatrices,
+        renderMatrixByKey: new Map(),
+      };
+      runtime.applyCharacterRigWorldMatrices(model.loader, model.renderRoot, routes, nativePose);
+      assert.ok(model.latestControllerFamily === nativePose.controllerFamily);
+      assert.ok(model.latestControllerMatrices === nativePose.controllerMatrices);
+      assert.equal(runtime.updateSecondaryMotion(model.renderRoot, 1 / 30), true);
+      assert.ok(meshes.every(mesh => mesh.skeleton === null));
+
+      // Exercise the animation boundary independently of program cleanup.
+      runtime.applyCharacterRigWorldMatrices(model.loader, model.renderRoot, routes);
+      assert.equal(model.latestControllerFamily, null);
+      assert.equal(model.latestControllerRenderMatrixByKey, null);
+      assert.equal(model.latestControllerMatrices, null);
+      assert.ok(model.latestRetargetedRoutes === routes);
+      for (let frame = 0; frame < 3; frame++) {
+        // No fresh native pose is available. The shared post-pose stage must
+        // remain inactive instead of reacquiring cinematic controller data.
+        assert.equal(runtime.updateSecondaryMotion(model.renderRoot, 1 / 60), false);
+        assert.equal(clothState.acquired, false);
+        assert.ok(meshes.every((mesh, i) => mesh.skeleton === skeletons[i]));
+        assert.ok(meshes.every(mesh => mesh.computeBonesUsingShaders));
+      }
+    }
   } finally {
     scene.dispose();
     engine.dispose();
@@ -563,6 +722,13 @@ test("every bundled Shenmue I cloth output has a complete dynamic boundary", asy
         const expectedUpdate = state.groups.length > 0;
         assert.equal(state.update(0), expectedUpdate, entry.modelFile);
         assert.equal(state.update(1 / 30), expectedUpdate, entry.modelFile);
+        for (const seam of state.seamGroups) {
+          const owners = new Set(seam.map(vertex => state.groups[vertex.nodeIndex].group.controlNode.parentAddr));
+          assert.equal(owners.size, 1, `${entry.modelFile}: weld only a shared attachment owner`);
+          const points = seam.map(vertex => Array.from(vertex.child.getVerticesData("position")
+            .slice(vertex.vertexIndex * 3, vertex.vertexIndex * 3 + 3)));
+          for (const point of points) assert.deepEqual(point, points[0], `${entry.modelFile}: connected garment seam`);
+        }
         renderedGroups += state.groups.length;
         state.release();
       } finally {

@@ -33,6 +33,7 @@
     },
     {
       "cutsceneId": "S1-OP02-00",
+      "originalStageEvidence": "tools/evidence/op02-opening-owner-ir.json",
       "programId": "preview-s1-op02-00",
       "packageId": "op02-opening",
       "worldId": "op02",
@@ -44,49 +45,40 @@
         "mapinfoSha256": "5463ad11cf2ed99764160795be2e1576a874d8c928b8ccc9db437ad32b25d6d0",
         "callFileOffsets": ["0x192", "0x1aa"]
       },
-      "activities": [
-        { "slot": 0 },
-        { "slot": 1 },
-        { "slot": 2 },
-        { "slot": 3 },
-        { "slot": 6 },
-        { "slot": 4 },
-        { "slot": 5 }
-      ]
+      "originalStages": {
+        "program": "play/assets/introduction/op02/cutscene-program.generated.json",
+        "functions": ["0x7c"]
+      }
     },
     {
       "cutsceneId": "S1-000",
+      "originalStageEvidence": "tools/evidence/op00-opening-owner-ir.json",
       "programId": "preview-s1-000",
       "packageId": "op00-opening",
       "worldId": "op00",
       "area": "OP00",
       "manifest": "play/assets/introduction/op00/manifest.json",
-      "activities": [
-        { "slot": 0 },
-        { "slot": 1 },
-        { "slot": 2 },
-        { "slot": 3 },
-        { "slot": 4 },
-        { "slot": 5 },
-        { "slot": 6 },
-        { "slot": 7 },
-        { "slot": 8 },
-        { "slot": 9 },
-        { "slot": 10 },
-        { "slot": 11 },
-        { "slot": 12 },
-        { "slot": 13 },
-        { "slot": 14 },
-        { "slot": 15 },
-        { "slot": 16 },
-        { "slot": 17 },
-        { "slot": 18 },
-        { "slot": 19 },
-        { "slot": 20 },
-        { "slot": 21 },
-        { "slot": 22 },
-        { "slot": 23 }
-      ]
+      "ownerSequence": "play/assets/introduction/op00/cutscene-program.generated.json"
+    },
+    {
+      "cutsceneId": "S1-OP00-MAIL",
+      "originalStageEvidence": "tools/evidence/op00-opening-owner-ir.json",
+      "programId": "preview-s1-op00-mail",
+      "packageId": "op00-mail",
+      "worldId": "op00",
+      "area": "OP00",
+      "manifest": "play/assets/introduction/op00-mail/manifest.json",
+      "ownerSequence": "play/assets/introduction/op00-mail/owner-program.generated.json"
+    },
+    {
+      "cutsceneId": "S1-OP00-DREAM",
+      "originalStageEvidence": "tools/evidence/op00-opening-owner-ir.json",
+      "programId": "preview-s1-op00-dream",
+      "packageId": "op00-dream",
+      "worldId": "op00",
+      "area": "OP00",
+      "manifest": "play/assets/introduction/op00-dream/manifest.json",
+      "ownerSequence": "play/assets/introduction/op00-dream/owner-program.generated.json"
     },
     {
       "cutsceneId": "S1-DRAUTH-01",
@@ -495,7 +487,6 @@
       "activities": [
         { "slot": 0, "binding": { "primaryPointer": 529554, "secondaryPointer": 529559 } },
         { "slot": 1, "binding": { "primaryPointer": 529570, "secondaryPointer": 529575 } },
-        { "slot": 1, "binding": { "primaryPointer": 529570, "secondaryPointer": 529575 } },
         { "slot": 2, "binding": { "primaryPointer": 529602, "secondaryPointer": 529607 } }
       ]
     },
@@ -508,7 +499,6 @@
       "manifest": "play/assets/sakuragaoka/evsn/manifest.json",
       "activities": [
         { "slot": 3, "binding": { "primaryPointer": 529618, "secondaryPointer": 529623 } },
-        { "slot": 1, "binding": { "primaryPointer": 529570, "secondaryPointer": 529575 } },
         { "slot": 1, "binding": { "primaryPointer": 529570, "secondaryPointer": 529575 } },
         { "slot": 2, "binding": { "primaryPointer": 529602, "secondaryPointer": 529607 } }
       ]
@@ -730,12 +720,10 @@
       "worldId": "interior",
       "area": "JOMO",
       "manifest": "play/assets/hazuki/bebf/manifest.json",
+      "selectionNote": "First native owner branch (input state 0): 60,61,62. State 1 selects 60,63,62 instead; these are alternatives, not consecutive scenes.",
       "activities": [
         { "slot": 60, "binding": { "primaryPointer": 615895, "secondaryPointer": 615908 } },
         { "slot": 61, "binding": { "primaryPointer": 615913, "secondaryPointer": 615926 } },
-        { "slot": 62, "binding": { "primaryPointer": 615931, "secondaryPointer": 615944 } },
-        { "slot": 60, "binding": { "primaryPointer": 615895, "secondaryPointer": 615908 } },
-        { "slot": 63, "binding": { "primaryPointer": 615949, "secondaryPointer": 615962 } },
         { "slot": 62, "binding": { "primaryPointer": 615931, "secondaryPointer": 615944 } }
       ]
     },

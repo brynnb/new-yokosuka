@@ -1,6 +1,6 @@
 {
   "schema": "new-yokosuka-aseq-activity-pack-v1",
-  "generatedBy": "tools/build_jomo_vision_activity_packs.mjs",
+  "generatedBy": "tools/cutscenes/build_jomo_vision_activity_packs.mjs",
   "source": {
     "disc": 2,
     "path": "extracted_disc2_v2/data/SCENE/02/JOMO/KKYC.PKS",
@@ -115,6 +115,14 @@
       "actors": [
         "SINF"
       ],
+      "browserMapVisibility": [],
+      "browserBackgroundColor": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "browserIsolatedStage": true,
       "motions": [
         {
           "actorTag": "SINF",

@@ -378,10 +378,18 @@ independent live trace. This retains every clip family selected by native
 operation `0x0113`, rather than only neutral/blink and the first six speech
 shapes. It uses no screen automation.
 
-- **Prerequisite**: start Flycast with the pinned slot-3 state auto-loaded,
-  interpreter mode, and GDB port 3264, then leave that fresh process paused.
+- **Prerequisite**: start an isolated Flycast profile with the pinned Ryo fixture
+  (SHA-256 `4018b8b48e2b99bd2e20d3a3660b41682c3ff0e51f8b29bd498a892263fa83a6`),
+  interpreter mode, threaded rendering, and GDB port 3264; leave the process paused.
+  The fixture is currently local slot index 7; slot numbers alone are not provenance.
 - **Usage**: `python3 -m tools.animation.extract_native_face_poses`
 - **Output**: `play/assets/cutscenes/native-faces/native-talk-poses.generated.json`
+
+Alternate body/face variants use the same extractor, for example:
+`python3 -m tools.animation.extract_native_face_poses --binding FUKU=FUB:extracted_files/data/SCENE/01/MODEL/FACE/FUB_FTBL.BIN --output play/assets/cutscenes/native-faces/fub-talk-poses.generated.json`.
+Use `tools/emulator/run_dialogue_emulator_validation.sh` with a fresh
+`FLYCAST_VALIDATION_ROOT`, `FLYCAST_VALIDATION_STATE_INDEX=7`, and
+`FLYCAST_VALIDATION_THREADED_RENDERING=yes`; do not overwrite the user's emulator profile.
 
 `generate_native_dialogue_selector_data.py` joins ordinary NPC messages to
 their extracted SRF records. Its v3 browser modules store exact cues in the

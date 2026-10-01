@@ -11,7 +11,6 @@ import {
   rmSync,
   writeFileSync,
 } from "node:fs";
-import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
@@ -23,6 +22,7 @@ import { parseNativeSrfRecords } from "../../src/NativeLipSync.js";
 import { parseDTPK, translateDTPKRate } from "../lib/dtpk.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
+const catalogOnly = process.argv.includes("--catalog-only");
 const sourceRoot = [
   process.env.SHENMUE_DISC1_EXTRACTED_ROOT,
   path.join(root, "extracted_files"),
@@ -40,7 +40,7 @@ const vgmstream = [
   path.join(root, ".disc-work/tooling/vgmstream/vgmstream-cli"),
 ].filter(Boolean).find(existsSync);
 const python = process.env.DTPK_PYTHON || "python3";
-if (!dtpkDump || !vgmstream) {
+if (!catalogOnly && (!dtpkDump || !vgmstream)) {
   throw new Error("DTPKDump.py and vgmstream-cli are required");
 }
 
@@ -190,6 +190,15 @@ for (const activity of activityManifest.activities) {
 if (voicesByName.size !== 48 || soundUsages.size !== 91) {
   throw new Error("OP00 AUTH audio inventory changed");
 }
+// Silent AUTHs can still own sounds in a native effect callback. Paths below
+// are provenance identities, not invented ASTR filenames or bank substitutions.
+for (const activity of activityManifest.activities) {
+  for (const cue of activity.nativeScriptSoundCues || []) {
+    const hex = commandHex(cue.commandWord);
+    soundUsages.set(`${hex}:${cue.sourcePath}`, { commandHex: hex, sourcePath: cue.sourcePath,
+      source: cue.source });
+  }
+}
 
 const stream = readFileSync(streamPath);
 const bank = readFileSync(bankPath);
@@ -219,7 +228,18 @@ const parsedBank = parseDTPK(bank);
 const bankTracks = new Map(parsedBank.groups.flatMap(group => group.tracks)
   .map(track => [track.commandHex, track]));
 
-const temporary = mkdtempSync(path.join(os.tmpdir(), "new-yokosuka-op00-audio-"));
+// /tmp may be RAM-backed; decoded audio belongs on disk.
+const temporary = mkdtempSync("/var/tmp/new-yokosuka-op00-audio-");
+const previousManifest = catalogOnly
+  ? JSON.parse(readFileSync(path.join(outputDirectory, "manifest.json"), "utf8")) : null;
+if (previousManifest) {
+  for (const record of [...previousManifest.voices, ...previousManifest.sounds.flatMap(cue => cue.assets), ...previousManifest.music]) {
+    if (record.unavailable) continue;
+    if (sha256(readFileSync(path.join(root, record.asset))) !== record.sha256) {
+      throw new Error(`Catalog-only audio asset changed: ${record.asset}`);
+    }
+  }
+}
 try {
   const voiceDirectory = path.join(outputDirectory, "voice");
   const sfxDirectory = path.join(outputDirectory, "sfx");
@@ -245,8 +265,10 @@ try {
     }
     const nativePath = path.join(temporary, usage.nativeMember);
     const outputPath = path.join(voiceDirectory, `${path.basename(usage.nativeMember, ".str")}.wav`);
-    writeFileSync(nativePath, member.bytes);
-    run(vgmstream, ["-o", outputPath, nativePath]);
+    if (!catalogOnly) {
+      writeFileSync(nativePath, member.bytes);
+      run(vgmstream, ["-o", outputPath, nativePath]);
+    }
     voices.push({
       voiceId: path.basename(usage.nativeMember, ".str"),
       sourcePath: usage.sourcePath,
@@ -263,11 +285,19 @@ try {
   }
 
   const temporaryBank = path.join(temporary, "A1_PROLG.SND");
-  copyFileSync(bankPath, temporaryBank);
-  run(python, [dtpkDump, "-wavconv", temporaryBank], { cwd: temporary });
+  if (!catalogOnly) {
+    copyFileSync(bankPath, temporaryBank);
+    run(python, [dtpkDump, "-wavconv", temporaryBank], { cwd: temporary });
+  }
   const decodedFiles = readdirSync(temporary).filter(filename => filename.endsWith(".wav"));
   const assetsByCommand = new Map();
   for (const hex of [...new Set([...soundUsages.values()].map(value => value.commandHex))].sort()) {
+    if (catalogOnly) {
+      const assets = previousManifest.sounds.find(cue => cue.commandHex === hex)?.assets;
+      if (!assets) throw new Error(`Catalog-only sound ${hex} is not built`);
+      assetsByCommand.set(hex, assets);
+      continue;
+    }
     const track = bankTracks.get(hex);
     if (!track?.playable || track.entries.length === 0) {
       throw new Error(`OP00 sound command ${hex} is not playable`);
@@ -297,8 +327,8 @@ try {
     .map(usage => ({ ...usage, assets: assetsByCommand.get(usage.commandHex) }));
 
   const musicDefinitions = [
-    { id: "op00-open1", member: "open1.str", activitySlot: 1 },
-    { id: "op00-open2", member: "open2.str", activitySlot: 4 },
+    { id: "op00-open1", member: "open1.str", serial: 0x4f503031 },
+    { id: "op00-open2", member: "open2.str", serial: 0x4f503032 },
   ];
   const music = [];
   for (const definition of musicDefinitions) {
@@ -307,21 +337,21 @@ try {
     const nativePath = path.join(temporary, definition.member);
     const wavPath = path.join(temporary, `${definition.id}.wav`);
     const outputPath = path.join(musicOutputDirectory, `${definition.id}.ogg`);
-    writeFileSync(nativePath, member.bytes);
-    run(vgmstream, ["-o", wavPath, nativePath]);
-    run("ffmpeg", [
+    if (!catalogOnly) {
+      writeFileSync(nativePath, member.bytes);
+      run(vgmstream, ["-o", wavPath, nativePath]);
+      run("ffmpeg", [
       "-hide_banner", "-loglevel", "error", "-y",
       "-fflags", "+bitexact", "-i", wavPath,
       "-c:a", "libvorbis", "-q:a", "5",
       "-flags:a", "+bitexact", "-map_metadata", "-1", outputPath,
     ]);
-    normalizeOggSerial(
-      outputPath,
-      definition.activitySlot === 1 ? 0x4f503031 : 0x4f503032,
-    );
+      normalizeOggSerial(outputPath, definition.serial);
+    }
     music.push({
       trackId: definition.id,
-      activitySlot: definition.activitySlot,
+      // Timing comes from the program's original named-audio operation.
+      nativeName: path.basename(definition.member, ".str").toUpperCase(),
       nativeMember: definition.member,
       nativeIndex: member.index,
       nativeByteLength: member.byteLength,

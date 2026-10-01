@@ -1,0 +1,7 @@
+ARG PLAYWRIGHT_VERSION
+FROM mcr.microsoft.com/playwright:v${PLAYWRIGHT_VERSION}-noble
+
+# The stock browser image does not provide a complete hardware Vulkan stack.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends libgl1-mesa-dri mesa-vulkan-drivers \
+    && rm -rf /var/lib/apt/lists/*

@@ -70,6 +70,18 @@ versioned objects before deploying the client. See [runtime assets](docs/guides/
 The upload command validates local hashes and verifies remote writes; a Git
 diff alone is not evidence that assets have been published.
 
+Versioned JSON remains in Git even when binary payloads are hosted remotely.
+`tests/RuntimeAssets.test.js` checks those local JSON sizes and checksums against
+the runtime registry, and deployment CI runs it before building. After running
+an extractor, update its changed metadata records as well as its new binaries;
+an older published JSON version is not evidence that the current output is ready.
+
+Run browser checks with `npm run test:e2e:docker`, which enforces one worker and
+an 8 GiB RAM ceiling with no swap. Use hosted assets for release verification,
+including the complete new-character opening, gameplay handoff and early NPC
+conversation cancellation. Test the release script's old-client asset retention
+before pushing, and verify an already-open browser after the actual release.
+
 Server checks belong in its checkout:
 
 ```sh

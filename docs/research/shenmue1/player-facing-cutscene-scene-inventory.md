@@ -14,22 +14,21 @@ The reviewed grouping input is `tools/data/player-cutscene-scene-groups.json`. I
 
 The discs contain 491 logical AUTH resources and 404 unique payloads across 136 MAPINFO programs. Those include cinematic fragments, alternate gameplay conversations, transition variants, ambient map presentation, resident-object staging, duplicated payload references, and resources whose owner selection has not been recovered. Archive presence alone is therefore not evidence of a distinct cinematic.
 
-The current 58 selector entries reduce to 21 owner/trigger groups:
-
-- six entries run complete native owner packages;
-- 52 entries run canonical AUTH previews or multi-AUTH sequences from fifteen reviewed owner/trigger families;
-- many of those entries are ordered fragments or gameplay variants, not independent story cinematics.
-
-The report preserves both numbers. The selector-entry count describes the UI; the owner/trigger-group count describes native ownership.
+The reviewed grouping reduces 58 selector entries to 21 owner/trigger groups.
+Many entries are ordered fragments or gameplay variants, not independent story
+cinematics. All current selectors use generated preview programs; the older
+report's six-owner/52-preview execution split is historical, not the current
+runtime classification. The selector-entry count describes the development UI;
+the owner/trigger-group count describes the recovered native ownership model.
 
 ## Reviewed scene coverage
 
 Every coherent scene in the reviewed player-facing set is now selectable. Nozomi rescue and kitten care use the canonical multi-AUTH sequence runtime, retaining a single package lease across their authored segments.
 
-- **Nozomi rescue** exposes both authored lead-in branches and preserves the exact `[slot 0|3, 1, 1, 2]` sequence, 37 voiced lines, cameras, animation, effects, sound, AIRO ownership, and aftermath music. The interactive fight mechanics between cinematic segments are intentionally outside the good-enough cutscene boundary.
+- **Nozomi rescue** exposes both authored lead-ins as cinematic routes `[slot 0|3, 1, 2]`, with cameras, animation, dialogue, sound, the child's AIRO hand attachment, and aftermath music. The native interstitial's second slot-1 call at `0x7587e` is conditional: the `0x0088` result-3 branch at `0x7562a` bypasses it, while the repeat path loops back through `0x75c48` to `0x74c44`. The old preview incorrectly made that replay unconditional. Interactive fight mechanics and retries are intentionally omitted, not represented as another mandatory cinematic.
 - **Yamanose kitten care** preserves its three ordered activities, 6,911 authored frames, 59 voiced lines, exact cameras, actor animation, props, attachment cues, and BGM051 under one package lease. Its realtime interstitial logic and final persistent CATM/BOX1 gameplay-state replay remain fidelity limitations rather than missing cinematic content.
 
-**Fuku-san's letter** has a selector preview for its complete 954-frame TGMA AUTH activity. It remains explicitly marked owner-incomplete because the wrapper does not yet reproduce the native FUB talk-pose evaluation. This distinction keeps “selectable and good enough” separate from “fully reproduced at its native owner boundary.”
+**Fuku-san's letter** has a selector preview for its complete 954-frame TGMA AUTH activity, including the recovered original FUB TALK poses. It remains an activity preview rather than a claim that all persistent gameplay effects of the native owner are reproduced.
 
 The phone-book AUTH is a specialized gameplay-control timeline, not a standalone cinematic. KAKG slots 0 and 1 stage the resident KAWA object for two conversations already in the selector; they are not additional scenes.
 

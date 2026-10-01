@@ -205,6 +205,7 @@ export class PlayerCombatRuntime {
     }
     const enemyLoader = enemyModel.loader;
     const enemyRoot = enemyModel.root;
+    this.enemyModelRoot = enemyRoot;
     enemyRoot.parent = this.enemyModelOffset;
     const enemyRetarget = this.characterRuntime.buildRetargetMatrices(
       enemyLoader,
@@ -216,12 +217,13 @@ export class PlayerCombatRuntime {
       emotes: [],
       runtimeEmotes: [],
       pickerEmoteIds: new Set(),
-      applyPose: ({ routedMatrices, oneShotRootMotion }) => {
+      applyPose: ({ routedMatrices, controllerMatrices, oneShotRootMotion }) => {
         applyRootMotion(oneShotRootMotion);
-        this.characterRuntime.applyCharacterRigWorldMatrices(
+        this.characterRuntime.applyHumanoidAnimationPose(
           enemyLoader,
           enemyRoot,
           this.characterRuntime.retargetWithMap(routedMatrices, enemyRetarget),
+          controllerMatrices,
         );
       },
     });
@@ -309,5 +311,6 @@ export class PlayerCombatRuntime {
         ? "combatGuard"
         : "combatStance";
     this.enemyAnimation.update(deltaSeconds, state);
+    this.characterRuntime.updateSecondaryMotion(this.enemyModelRoot, deltaSeconds);
   }
 }

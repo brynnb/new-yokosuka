@@ -40,6 +40,7 @@ function harness({
   program = false,
   programUsesContext = false,
   programStartResult = true,
+  beforeComplete = null,
 } = {}) {
   const registry = new NativeCutscenePackageRegistry([
     packageDefinition({
@@ -67,6 +68,7 @@ function harness({
 
   const director = new NativeCutsceneDirector({
     registry,
+    beforeComplete,
     packageRuntimeOptions: {},
     acquireGameplay: (cutscene) => {
       acquireCount += 1;
@@ -250,6 +252,35 @@ function preparingHarness(stage = "world") {
       activity: { slot: 0, binding: { primaryPointer: 5, secondaryPointer: 6 } },
     },
   };
+}
+
+for (const interrupt of [false, true]) {
+  test(`ending waits for black before teardown${interrupt ? " and ignores a replaced owner" : ""}`, async () => {
+    const gate = deferred();
+    let covers = 0;
+    const context = harness({ beforeComplete: () => { covers++; return gate.promise; } });
+    const scene = {
+      id: "opening-scene", packageId: "opening", worldId: "intro",
+      activity: { slot: 0, binding: { primaryPointer: 5, secondaryPointer: 6 } },
+    };
+    await context.director.loadWorld("intro", []);
+    await context.director.start(scene);
+    const first = context.director.end();
+    const repeated = context.director.end();
+    assert.equal(covers, 1);
+    assert.equal(context.ownership().releaseCount, 0);
+    assert.equal(context.director.ownsPlayerPresentation, true);
+    assert.equal(context.director.seekBySeconds(5), false);
+    if (interrupt) {
+      context.director.stop("world-change");
+      await context.director.start(scene);
+    }
+    gate.resolve();
+    await Promise.all([first, repeated]);
+    assert.equal(context.ownership().releaseCount, 1);
+    assert.equal(context.director.active, interrupt);
+    if (interrupt) context.director.stop("test-complete");
+  });
 }
 
 for (const stage of ["world", "selected-activity"]) {

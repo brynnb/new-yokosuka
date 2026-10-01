@@ -100,4 +100,8 @@ test("runtime publication can select new audio without requiring unrelated resto
   assert.throws(() => parseArguments(["--game", "s2", "--source-prefix", "public/music"]), /requires/);
   assert.throws(() => parseArguments(["--game", "runtime", "--source-prefix", "public/../music"]), /Invalid/);
   assert.throws(() => parseArguments(["--game", "runtime", "--request-timeout-ms", "0"]), /timeout/);
+  const exact = parseArguments(["--game", "runtime", "--source-path", source, "--source-path", source]);
+  assert.deepEqual(buildRuntimePlan(root, exact), plan);
+  assert.throws(() => buildRuntimePlan(root, { sourcePaths: ["public/music/missing.ogg"] }), /Unregistered/);
+  assert.throws(() => parseArguments(["--game", "s1", "--source-path", source]), /requires/);
 });

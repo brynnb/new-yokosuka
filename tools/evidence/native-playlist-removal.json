@@ -93,8 +93,12 @@
     },
     "identityMatches": true,
     "authoredResourceSelection": {
-      "kind": "embedded-authored-path-family",
-      "pathToken": "/AUTH01/0114/",
+      "kind": "original-script-stages",
+      "stageFunctions": [
+        "0x1512a",
+        "0x1785c"
+      ],
+      "stageCoverageComplete": true,
       "selectedSlots": [
         0,
         1,
@@ -119,12 +123,13 @@
         20,
         21,
         22,
-        23
+        23,
+        24
       ],
-      "ownerCallCount": 24,
-      "exactResourceCount": 24,
+      "ownerCallCount": 25,
+      "exactResourceCount": 25,
       "resourcesAreExact": true,
-      "completionBoundarySlot": 24
+      "completionBoundary": "after-original-stage-return"
     },
     "compiler": {
       "status": "compiled",
@@ -134,7 +139,7 @@
     },
     "activityTransport": {
       "schema": "new-yokosuka-aseq-activity-pack-v1",
-      "activityCount": 24,
+      "activityCount": 25,
       "independentlyPackaged": true
     },
     "blockers": [],

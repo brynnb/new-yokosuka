@@ -254,6 +254,14 @@ export function buildNativeAseqAudioPack(config) {
     )) {
       const track = parsedBank.groups.flatMap(group => group.tracks)
         .find(candidate => candidate.commandHex === usage.commandHex);
+      const unavailable = config.unavailableSounds?.[`${usage.commandHex}:${usage.sourcePath}`];
+      if (unavailable) {
+        if (track || !unavailable.reason || !unavailable.evidence) {
+          throw new Error(`AUTH unavailable sound ${usage.commandHex} must be absent from its bank and documented`);
+        }
+        sounds.push({ ...usage, unavailable: true, unavailableReason: unavailable.reason, evidence: unavailable.evidence });
+        continue;
+      }
       if (!track?.playable || track.entries.length === 0) {
         throw new Error(`AUTH sound command ${usage.commandHex} is not a playable track`);
       }

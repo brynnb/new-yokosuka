@@ -3,10 +3,11 @@ import fs from "node:fs";
 import test from "node:test";
 import { MotnLoader } from "../src/MotnLoader.js";
 
-function parseMotion(path) {
+function parseMotion(path, options) {
   const bytes = fs.readFileSync(path);
   return MotnLoader.parse(
     bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength),
+    options,
   );
 }
 
@@ -118,18 +119,17 @@ test("recovers the full runtime MOTION table and telephone phases", {
     && "requires the locally extracted runtime motion bank"
   ),
 }, () => {
-  const motion = parseMotion(".disc-work/runtime-motion/MOTION.BIN");
+  const names = ["AKI_AKI_DENWA_TORU", "AKI_AKI_DENWA_LP", "AKI_AKI_DENWA_OKU"];
+  // The table count is still parsed in full; only these three curves are needed
+  // to verify telephone phases within the bounded test heap.
+  const motion = parseMotion(".disc-work/runtime-motion/MOTION.BIN", { sequenceNames: names });
   assert.equal(motion.header.attributeSequenceCount, 23);
   assert.equal(motion.header.sequenceCount, 1559);
   assert.equal(
     motion.header.sequenceCountMode,
     "absolute-name-table-span",
   );
-  for (const name of [
-    "AKI_AKI_DENWA_TORU",
-    "AKI_AKI_DENWA_LP",
-    "AKI_AKI_DENWA_OKU",
-  ]) {
+  for (const name of names) {
     const sequence = motion.getSequence(name);
     assert.equal(sequence?.valid, true, `${name} is invalid`);
     assert.equal(sequence?.valueData?.complete, true, `${name} is incomplete`);

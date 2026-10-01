@@ -1,6 +1,6 @@
 {
   "schema": "new-yokosuka-aseq-activity-pack-v1",
-  "generatedBy": "tools/build_evsn_activity_pack.mjs",
+  "generatedBy": "tools/cutscenes/build_evsn_activity_pack.mjs",
   "source": {
     "disc": 1,
     "path": "extracted_files/data/SCENE/01/JD00/EVSN.PKS",
@@ -79,6 +79,406 @@
       "characterScale": 1
     }
   },
+  "attachedObjects": {
+    "AIRO": {
+      "browserFilename": "S1_JD00_OMHT201G.MT5",
+      "sceneObject": true,
+      "attachments": [
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "action": "attach",
+          "parentActorTag": "KKEN",
+          "controlId": 12,
+          "translation": [
+            0.08699999749660492,
+            0.1080000028014183,
+            -0.003000000026077032
+          ],
+          "rotationRaw": [
+            35503,
+            29309,
+            48241
+          ],
+          "callFileOffset": "0x72af4",
+          "source": {
+            "evidence": "tools/evidence/evsn-aftermath-native-callback-ir.json"
+          },
+          "activityId": "EVSN/SEQDATA3.AUTH"
+        },
+        {
+          "activitySlot": 2,
+          "frame": 1080,
+          "action": "detach",
+          "callFileOffset": "0x72ee2",
+          "source": {
+            "evidence": "tools/evidence/evsn-aftermath-native-callback-ir.json"
+          },
+          "activityId": "EVSN/SEQDATA3.AUTH"
+        }
+      ]
+    }
+  },
+  "handAssets": {
+    "HRSK": {
+      "actorTag": "HRSK",
+      "bodyModelCode": "NZM_L",
+      "handCode": "NZM",
+      "bodyHandRenderKeys": {
+        "left": -66,
+        "right": -65
+      },
+      "left": {
+        "rootRenderKey": 11,
+        "model": {
+          "path": "play/assets/sakuragaoka/dnoz-ski/NZM_TL.MT5",
+          "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/NZM_TL.MT5",
+          "byteLength": 176556,
+          "sha256": "df4e0acbdf46ac948526877ce5310d4446abfa5baab990ffe7920a48c26f1fbe"
+        }
+      },
+      "right": {
+        "rootRenderKey": 6,
+        "model": {
+          "path": "play/assets/sakuragaoka/dnoz-ski/NZM_TR.MT5",
+          "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/NZM_TR.MT5",
+          "byteLength": 176644,
+          "sha256": "d63432086a043706bf40975919ef48644d8f69324e9da4f4766733b29d76f7f5"
+        }
+      },
+      "rig": {
+        "path": "play/assets/sakuragaoka/dnoz-ski/NZM_HM.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/NZM_HM.BIN",
+        "byteLength": 8608,
+        "sha256": "d2df197f87e38cf83ee3a44015f376503cb4702819824d5f057405e34fcf64e6",
+        "transformNodeCount": 71,
+        "vertexCount": 299,
+        "pointerOffsets": [
+          24,
+          168,
+          8304,
+          5848,
+          6344,
+          8608
+        ]
+      },
+      "presentation": {
+        "attachment": "body-hand-node-world-matrix",
+        "initialPose": "hm-bind-pose",
+        "deformationAssetRetained": true,
+        "nativePoseOperation": "0x005e"
+      }
+    },
+    "KKEN": {
+      "actorTag": "KKEN",
+      "mode": "body-only",
+      "bodyModelCode": "NZG_L",
+      "bodyHandRenderKeys": {
+        "left": -66,
+        "right": -65
+      }
+    },
+    "ENKI": {
+      "actorTag": "ENKI",
+      "handCode": "YAA",
+      "bodyModelCode": "YAA_L",
+      "bodyHandRenderKeys": {
+        "left": -66,
+        "right": -65
+      },
+      "left": {
+        "rootRenderKey": 11,
+        "model": {
+          "path": "play/assets/sakuragaoka/evsn/YAA_TL.MT5",
+          "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/YAA_TL.MT5",
+          "byteLength": 176812,
+          "sha256": "038b520036e05a7cda16dba20fe4e55455286d1aa243d550b7d00af36b4c48fa"
+        }
+      },
+      "right": {
+        "rootRenderKey": 6,
+        "model": {
+          "path": "play/assets/sakuragaoka/evsn/YAA_TR.MT5",
+          "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/YAA_TR.MT5",
+          "byteLength": 176892,
+          "sha256": "4b6384908846d8c5ff7b615ef268f932add9a7832f4040f9160ad58c75a493ee"
+        }
+      },
+      "rig": {
+        "path": "play/assets/sakuragaoka/evsn/YAA_HM.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/YAA_HM.BIN",
+        "byteLength": 9264,
+        "sha256": "4a6c85858467733b459eb40588ff3116fa31c1c4a364b442f0c1169e2cf2bf34",
+        "transformNodeCount": 71,
+        "vertexCount": 306,
+        "pointerOffsets": [
+          24,
+          168,
+          8952,
+          5848,
+          6472,
+          9264
+        ]
+      },
+      "presentation": {
+        "attachment": "body-hand-node-world-matrix",
+        "initialPose": "hm-bind-pose",
+        "deformationAssetRetained": true,
+        "nativePoseOperation": "0x005e"
+      }
+    },
+    "NGSM": {
+      "actorTag": "NGSM",
+      "handCode": "YAB",
+      "bodyModelCode": "YAB_L",
+      "bodyHandRenderKeys": {
+        "left": -66,
+        "right": -65
+      },
+      "left": {
+        "rootRenderKey": 11,
+        "model": {
+          "path": "play/assets/sakuragaoka/evsn/YAB_TL.MT5",
+          "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/YAB_TL.MT5",
+          "byteLength": 176812,
+          "sha256": "038b520036e05a7cda16dba20fe4e55455286d1aa243d550b7d00af36b4c48fa"
+        }
+      },
+      "right": {
+        "rootRenderKey": 6,
+        "model": {
+          "path": "play/assets/sakuragaoka/evsn/YAB_TR.MT5",
+          "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/YAB_TR.MT5",
+          "byteLength": 176892,
+          "sha256": "4b6384908846d8c5ff7b615ef268f932add9a7832f4040f9160ad58c75a493ee"
+        }
+      },
+      "rig": {
+        "path": "play/assets/sakuragaoka/evsn/YAB_HM.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/YAB_HM.BIN",
+        "byteLength": 9264,
+        "sha256": "4a6c85858467733b459eb40588ff3116fa31c1c4a364b442f0c1169e2cf2bf34",
+        "transformNodeCount": 71,
+        "vertexCount": 306,
+        "pointerOffsets": [
+          24,
+          168,
+          8952,
+          5848,
+          6472,
+          9264
+        ]
+      },
+      "presentation": {
+        "attachment": "body-hand-node-world-matrix",
+        "initialPose": "hm-bind-pose",
+        "deformationAssetRetained": true,
+        "nativePoseOperation": "0x005e"
+      }
+    }
+  },
+  "nativeHandPoseTables": {
+    "0x79614": {
+      "sourceMapinfoOffset": "0x79614",
+      "vectors": [
+        [
+          0,
+          0,
+          -5461
+        ],
+        [
+          0,
+          -2366,
+          -1092
+        ],
+        [
+          0,
+          -182,
+          1092
+        ],
+        [
+          0,
+          -546,
+          -6735
+        ],
+        [
+          0,
+          0,
+          -4004
+        ],
+        [
+          0,
+          0,
+          -6553
+        ],
+        [
+          0,
+          -182,
+          1274
+        ],
+        [
+          0,
+          0,
+          -13289
+        ],
+        [
+          0,
+          0,
+          -5279
+        ],
+        [
+          0,
+          0,
+          -8009
+        ],
+        [
+          0,
+          0,
+          1456
+        ],
+        [
+          0,
+          182,
+          -8738
+        ],
+        [
+          0,
+          0,
+          -6007
+        ],
+        [
+          0,
+          0,
+          -8738
+        ],
+        [
+          0,
+          182,
+          1638
+        ],
+        [
+          0,
+          -728,
+          -5279
+        ],
+        [
+          0,
+          -1274,
+          -6735
+        ],
+        [
+          0,
+          -910,
+          -8738
+        ],
+        [
+          0,
+          0,
+          1638
+        ]
+      ]
+    },
+    "0x790bc": {
+      "sourceMapinfoOffset": "0x790bc",
+      "vectors": [
+        [
+          0,
+          0,
+          -10922
+        ],
+        [
+          0,
+          0,
+          -10558
+        ],
+        [
+          0,
+          1456,
+          0
+        ],
+        [
+          0,
+          0,
+          -18022
+        ],
+        [
+          0,
+          0,
+          -17112
+        ],
+        [
+          0,
+          0,
+          -18386
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -12196
+        ],
+        [
+          0,
+          0,
+          -18204
+        ],
+        [
+          0,
+          0,
+          -16748
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -11832
+        ],
+        [
+          0,
+          0,
+          -18386
+        ],
+        [
+          0,
+          0,
+          -15109
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          910,
+          -12014
+        ],
+        [
+          0,
+          -2184,
+          -16748
+        ],
+        [
+          0,
+          -2184,
+          -10012
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    }
+  },
   "actorTags": [
     "AKIR",
     "ENKI",
@@ -130,6 +530,36 @@
       "path": "play/assets/sakuragaoka/evsn/OMHT201G.CHRM",
       "byteLength": 6136,
       "sha256": "8c9cbbe4b0e3ed4e7b2e4ada1d9165c388d4b24eeecb402b1c892775a9c4f5c4"
+    },
+    {
+      "path": "play/assets/sakuragaoka/evsn/YAA_TL.MT5",
+      "byteLength": 176812,
+      "sha256": "038b520036e05a7cda16dba20fe4e55455286d1aa243d550b7d00af36b4c48fa"
+    },
+    {
+      "path": "play/assets/sakuragaoka/evsn/YAA_TR.MT5",
+      "byteLength": 176892,
+      "sha256": "4b6384908846d8c5ff7b615ef268f932add9a7832f4040f9160ad58c75a493ee"
+    },
+    {
+      "path": "play/assets/sakuragaoka/evsn/YAA_HM.BIN",
+      "byteLength": 9264,
+      "sha256": "4a6c85858467733b459eb40588ff3116fa31c1c4a364b442f0c1169e2cf2bf34"
+    },
+    {
+      "path": "play/assets/sakuragaoka/evsn/YAB_TL.MT5",
+      "byteLength": 176812,
+      "sha256": "038b520036e05a7cda16dba20fe4e55455286d1aa243d550b7d00af36b4c48fa"
+    },
+    {
+      "path": "play/assets/sakuragaoka/evsn/YAB_TR.MT5",
+      "byteLength": 176892,
+      "sha256": "4b6384908846d8c5ff7b615ef268f932add9a7832f4040f9160ad58c75a493ee"
+    },
+    {
+      "path": "play/assets/sakuragaoka/evsn/YAB_HM.BIN",
+      "byteLength": 9264,
+      "sha256": "4a6c85858467733b459eb40588ff3116fa31c1c4a364b442f0c1169e2cf2bf34"
     }
   ],
   "activities": [
@@ -155,6 +585,144 @@
         "AKIR",
         "ENKI",
         "HRSK"
+      ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73aa2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x73366",
+          "sourceOrder": 5
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73ac2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x73366",
+          "sourceOrder": 6
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "side": "right",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73aa2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x73372",
+          "sourceOrder": 7
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "side": "left",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73ac2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x73372",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "ENKI",
+          "side": "right",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73aa2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x7338a",
+          "sourceOrder": 11
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "ENKI",
+          "side": "left",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73ac2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x7338a",
+          "sourceOrder": 12
+        }
+      ],
+      "nativeBodyHandPoseCues": [
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x934e",
+          "sourceFunction": "0x9218",
+          "ownerCallFileOffset": "0x72f02",
+          "sourceOrder": 0
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x934e",
+          "sourceFunction": "0x9218",
+          "ownerCallFileOffset": "0x72f0e",
+          "sourceOrder": 1
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "ENKI",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x934e",
+          "sourceFunction": "0x9218",
+          "ownerCallFileOffset": "0x72f1a",
+          "sourceOrder": 2
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x73b2e",
+          "sourceFunction": "0x73ad8",
+          "ownerCallFileOffset": "0x7223a",
+          "sourceOrder": 13,
+          "releaseDetailed": true
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "ENKI",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x73b2e",
+          "sourceFunction": "0x73ad8",
+          "ownerCallFileOffset": "0x72252",
+          "sourceOrder": 15,
+          "releaseDetailed": true
+        }
       ],
       "motions": [
         {
@@ -194,6 +762,330 @@
         "ENKI",
         "AIRO",
         "KKEN"
+      ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73aa2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x73366",
+          "sourceOrder": 5
+        },
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73ac2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x73366",
+          "sourceOrder": 6
+        },
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "side": "right",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73aa2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x73372",
+          "sourceOrder": 7
+        },
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "side": "left",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73ac2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x73372",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "NGSM",
+          "side": "right",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73aa2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x7337e",
+          "sourceOrder": 9
+        },
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "NGSM",
+          "side": "left",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73ac2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x7337e",
+          "sourceOrder": 10
+        },
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "ENKI",
+          "side": "right",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73aa2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x7338a",
+          "sourceOrder": 11
+        },
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "ENKI",
+          "side": "left",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73ac2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x7338a",
+          "sourceOrder": 12
+        },
+        {
+          "activitySlot": 1,
+          "frame": 944,
+          "actorTag": "ENKI",
+          "side": "right",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73aa2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x7251e",
+          "sourceOrder": 15
+        },
+        {
+          "activitySlot": 1,
+          "frame": 944,
+          "actorTag": "ENKI",
+          "side": "left",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73ac2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x7251e",
+          "sourceOrder": 16
+        },
+        {
+          "activitySlot": 1,
+          "frame": 1193,
+          "actorTag": "ENKI",
+          "side": "right",
+          "poseTableOffset": "0x790bc",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x72582",
+          "sourceOrder": 18
+        },
+        {
+          "activitySlot": 1,
+          "frame": 1228,
+          "actorTag": "ENKI",
+          "side": "right",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x725d2",
+          "sourceOrder": 19
+        },
+        {
+          "activitySlot": 1,
+          "frame": 1440,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73aa2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x7283e",
+          "sourceOrder": 21
+        },
+        {
+          "activitySlot": 1,
+          "frame": 1440,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73ac2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x7283e",
+          "sourceOrder": 22
+        },
+        {
+          "activitySlot": 1,
+          "frame": 1440,
+          "actorTag": "ENKI",
+          "side": "right",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73aa2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x7284a",
+          "sourceOrder": 23
+        },
+        {
+          "activitySlot": 1,
+          "frame": 1440,
+          "actorTag": "ENKI",
+          "side": "left",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73ac2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x7284a",
+          "sourceOrder": 24
+        },
+        {
+          "activitySlot": 1,
+          "frame": 1580,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x790bc",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x7293a",
+          "sourceOrder": 25
+        },
+        {
+          "activitySlot": 1,
+          "frame": 1580,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x790bc",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x7295a",
+          "sourceOrder": 26
+        }
+      ],
+      "nativeBodyHandPoseCues": [
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x934e",
+          "sourceFunction": "0x9218",
+          "ownerCallFileOffset": "0x72f02",
+          "sourceOrder": 0
+        },
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x934e",
+          "sourceFunction": "0x9218",
+          "ownerCallFileOffset": "0x72f0e",
+          "sourceOrder": 1
+        },
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "ENKI",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x934e",
+          "sourceFunction": "0x9218",
+          "ownerCallFileOffset": "0x72f1a",
+          "sourceOrder": 2
+        },
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "NGSM",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x934e",
+          "sourceFunction": "0x9218",
+          "ownerCallFileOffset": "0x72f26",
+          "sourceOrder": 3
+        },
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "KKEN",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x934e",
+          "sourceFunction": "0x9218",
+          "ownerCallFileOffset": "0x72f32",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x73b2e",
+          "sourceFunction": "0x73ad8",
+          "ownerCallFileOffset": "0x723f8",
+          "sourceOrder": 13,
+          "releaseDetailed": true
+        },
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "ENKI",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x73b2e",
+          "sourceFunction": "0x73ad8",
+          "ownerCallFileOffset": "0x72404",
+          "sourceOrder": 14,
+          "releaseDetailed": true
+        },
+        {
+          "activitySlot": 1,
+          "frame": 944,
+          "actorTag": "NGSM",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x73b2e",
+          "sourceFunction": "0x73ad8",
+          "ownerCallFileOffset": "0x7252a",
+          "sourceOrder": 17,
+          "releaseDetailed": true
+        },
+        {
+          "activitySlot": 1,
+          "frame": 1316,
+          "actorTag": "ENKI",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x73b2e",
+          "sourceFunction": "0x73ad8",
+          "ownerCallFileOffset": "0x726c2",
+          "sourceOrder": 20,
+          "releaseDetailed": true
+        }
       ],
       "motions": [
         {
@@ -296,6 +1188,375 @@
         "ENKI",
         "KKEN"
       ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73aa2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x73366",
+          "sourceOrder": 5
+        },
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73ac2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x73366",
+          "sourceOrder": 6
+        },
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "side": "right",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73aa2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x73372",
+          "sourceOrder": 7
+        },
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "side": "left",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73ac2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x73372",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "actorTag": "NGSM",
+          "side": "right",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73aa2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x7337e",
+          "sourceOrder": 9
+        },
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "actorTag": "NGSM",
+          "side": "left",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73ac2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x7337e",
+          "sourceOrder": 10
+        },
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "actorTag": "ENKI",
+          "side": "right",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73aa2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x7338a",
+          "sourceOrder": 11
+        },
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "actorTag": "ENKI",
+          "side": "left",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73ac2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x7338a",
+          "sourceOrder": 12
+        },
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "actorTag": "NGSM",
+          "side": "right",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73aa2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x72b24",
+          "sourceOrder": 16
+        },
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "actorTag": "NGSM",
+          "side": "left",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73ac2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x72b24",
+          "sourceOrder": 17
+        },
+        {
+          "activitySlot": 2,
+          "frame": 248,
+          "actorTag": "ENKI",
+          "side": "right",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73aa2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x72c5e",
+          "sourceOrder": 18
+        },
+        {
+          "activitySlot": 2,
+          "frame": 248,
+          "actorTag": "ENKI",
+          "side": "left",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73ac2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x72c5e",
+          "sourceOrder": 19
+        },
+        {
+          "activitySlot": 2,
+          "frame": 309,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73aa2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x72cde",
+          "sourceOrder": 20
+        },
+        {
+          "activitySlot": 2,
+          "frame": 309,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73ac2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x72cde",
+          "sourceOrder": 21
+        },
+        {
+          "activitySlot": 2,
+          "frame": 309,
+          "actorTag": "HRSK",
+          "side": "right",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73aa2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x72cea",
+          "sourceOrder": 22
+        },
+        {
+          "activitySlot": 2,
+          "frame": 309,
+          "actorTag": "HRSK",
+          "side": "left",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73ac2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x72cea",
+          "sourceOrder": 23
+        },
+        {
+          "activitySlot": 2,
+          "frame": 528,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73aa2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x72e3a",
+          "sourceOrder": 26
+        },
+        {
+          "activitySlot": 2,
+          "frame": 528,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73ac2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x72e3a",
+          "sourceOrder": 27
+        },
+        {
+          "activitySlot": 2,
+          "frame": 528,
+          "actorTag": "HRSK",
+          "side": "right",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73aa2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x72e46",
+          "sourceOrder": 28
+        },
+        {
+          "activitySlot": 2,
+          "frame": 528,
+          "actorTag": "HRSK",
+          "side": "left",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73ac2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x72e46",
+          "sourceOrder": 29
+        }
+      ],
+      "nativeBodyHandPoseCues": [
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x934e",
+          "sourceFunction": "0x9218",
+          "ownerCallFileOffset": "0x72f02",
+          "sourceOrder": 0
+        },
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x934e",
+          "sourceFunction": "0x9218",
+          "ownerCallFileOffset": "0x72f0e",
+          "sourceOrder": 1
+        },
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "actorTag": "ENKI",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x934e",
+          "sourceFunction": "0x9218",
+          "ownerCallFileOffset": "0x72f1a",
+          "sourceOrder": 2
+        },
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "actorTag": "NGSM",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x934e",
+          "sourceFunction": "0x9218",
+          "ownerCallFileOffset": "0x72f26",
+          "sourceOrder": 3
+        },
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "actorTag": "KKEN",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x934e",
+          "sourceFunction": "0x9218",
+          "ownerCallFileOffset": "0x72f32",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x73b2e",
+          "sourceFunction": "0x73ad8",
+          "ownerCallFileOffset": "0x72b00",
+          "sourceOrder": 13,
+          "releaseDetailed": true
+        },
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x73b2e",
+          "sourceFunction": "0x73ad8",
+          "ownerCallFileOffset": "0x72b0c",
+          "sourceOrder": 14,
+          "releaseDetailed": true
+        },
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "actorTag": "ENKI",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x73b2e",
+          "sourceFunction": "0x73ad8",
+          "ownerCallFileOffset": "0x72b18",
+          "sourceOrder": 15,
+          "releaseDetailed": true
+        },
+        {
+          "activitySlot": 2,
+          "frame": 411,
+          "actorTag": "AKIR",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x73b2e",
+          "sourceFunction": "0x73ad8",
+          "ownerCallFileOffset": "0x72dea",
+          "sourceOrder": 24,
+          "releaseDetailed": true
+        },
+        {
+          "activitySlot": 2,
+          "frame": 411,
+          "actorTag": "HRSK",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x73b2e",
+          "sourceFunction": "0x73ad8",
+          "ownerCallFileOffset": "0x72df6",
+          "sourceOrder": 25,
+          "releaseDetailed": true
+        }
+      ],
       "motions": [
         {
           "actorTag": "NGSM",
@@ -375,6 +1636,144 @@
         "AKIR",
         "ENKI",
         "HRSK"
+      ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 3,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73aa2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x73366",
+          "sourceOrder": 5
+        },
+        {
+          "activitySlot": 3,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73ac2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x73366",
+          "sourceOrder": 6
+        },
+        {
+          "activitySlot": 3,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "side": "right",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73aa2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x73372",
+          "sourceOrder": 7
+        },
+        {
+          "activitySlot": 3,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "side": "left",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73ac2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x73372",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 3,
+          "frame": 0,
+          "actorTag": "ENKI",
+          "side": "right",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73aa2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x7338a",
+          "sourceOrder": 11
+        },
+        {
+          "activitySlot": 3,
+          "frame": 0,
+          "actorTag": "ENKI",
+          "side": "left",
+          "poseTableOffset": "0x79614",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x73ac2",
+          "sourceFunction": "0x73a48",
+          "ownerCallFileOffset": "0x7338a",
+          "sourceOrder": 12
+        }
+      ],
+      "nativeBodyHandPoseCues": [
+        {
+          "activitySlot": 3,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x934e",
+          "sourceFunction": "0x9218",
+          "ownerCallFileOffset": "0x72f02",
+          "sourceOrder": 0
+        },
+        {
+          "activitySlot": 3,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x934e",
+          "sourceFunction": "0x9218",
+          "ownerCallFileOffset": "0x72f0e",
+          "sourceOrder": 1
+        },
+        {
+          "activitySlot": 3,
+          "frame": 0,
+          "actorTag": "ENKI",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x934e",
+          "sourceFunction": "0x9218",
+          "ownerCallFileOffset": "0x72f1a",
+          "sourceOrder": 2
+        },
+        {
+          "activitySlot": 3,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x73b2e",
+          "sourceFunction": "0x73ad8",
+          "ownerCallFileOffset": "0x7223a",
+          "sourceOrder": 13,
+          "releaseDetailed": true
+        },
+        {
+          "activitySlot": 3,
+          "frame": 0,
+          "actorTag": "ENKI",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x73b2e",
+          "sourceFunction": "0x73ad8",
+          "ownerCallFileOffset": "0x72252",
+          "sourceOrder": 15,
+          "releaseDetailed": true
+        }
       ],
       "motions": [
         {

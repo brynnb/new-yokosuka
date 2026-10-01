@@ -28,6 +28,15 @@ const expectedMembers = Object.freeze([
 ].map(([name, byteLength, sha256]) => ({ name, byteLength, sha256 })));
 
 const outputDirectory = path.join(repoRoot, "play/assets/dobuita/yq14");
+// The room resource cluster at YQ14 MAPINFO 0x57e0e names M_01114.BIN.
+// Its dialogue clip names and frame ranges match this AUTH family. M_ZAKO's
+// first four 14-frame generic clips cannot cover the requested source windows.
+const dialogueMotion = {
+  sourcePath: path.join(sourceRoot, "data/SCENE/01/YQ14/M_01114.BIN"),
+  assetPath: "play/assets/dobuita/yq14/M_01114.MOTN",
+  byteLength: 44656,
+  sha256: "6f7980d63ad21d4a4a51019a1ef22bbe843c03150028beff73b5b3d00302f1f8",
+};
 buildNativeAseqActivityPack({
   generatedBy: "tools/cutscenes/build_yq14_activity_pack.mjs",
   resourceName: "YQ14",
@@ -46,6 +55,7 @@ buildNativeAseqActivityPack({
   // its archive member in this package so the runtime can instantiate the
   // exact CHRT-bound model without adding it to Dobuita's global placements.
   outputMembers: ["BINS501G.CHRM"],
+  externalAssets: [dialogueMotion],
   sceneObjects: {
     BIN_: {
       model: "BERHI204",
@@ -65,16 +75,20 @@ buildNativeAseqActivityPack({
   },
   motionBanks: [{
     bank: 16,
-    sourcePath: path.join(repoRoot, "play/assets/account/M_ZAKO.MOTN"),
-    assetPath: "play/assets/account/M_ZAKO.MOTN",
-    byteLength: 168080,
-    sha256: "0562507487c808d2e1ad80f5e2fd2a3527172e01fd79501c64134db1ffccac3d",
+    ...dialogueMotion,
+    source: {
+      path: "extracted_files/data/SCENE/01/YQ14/M_01114.BIN",
+      mapinfoPath: "extracted_files/data/SCENE/01/YQ14/MAPINFO.BIN",
+      mapinfoSha256: "84ba191106cbc8f882790468bd8a7054f207bf7375e32355519fb6f49bc904bf",
+      resourceNameOffset: "0x57e0e",
+      headerAttributes: "0x1005",
+    },
     parseOptions: { sequenceIndices: [0, 1, 2, 3] },
     expectedSequences: [
-      { index: 0, name: "AK_SY_PU_SYO_L2" },
-      { index: 1, name: "F1ERROR0" },
-      { index: 2, name: "F1ERROR1" },
-      { index: 3, name: "F1ERROR2" },
+      { index: 0, name: "AKI_WHATS_0114" },
+      { index: 1, name: "OTH_GIA_WHATS_0114" },
+      { index: 2, name: "OTH_GIB_YOPPARAI_0114" },
+      { index: 3, name: "AKI_AITU_MASAKA_0448" },
     ],
   }],
   activities: [{

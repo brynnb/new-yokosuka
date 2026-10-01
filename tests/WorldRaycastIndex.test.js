@@ -5,9 +5,10 @@ import {
   WorldRaycastIndex,
   collectStaticWorldMeshes,
   createWorldSpatialIndex,
+  markWorldMeshDynamic,
   pickMeshesWithRay,
-  spatiallyBatchMt7MapRoot,
 } from "../src/rendering/SceneSpatialIndex.js";
+import { spatiallyBatchMt7MapRoot } from "../src/rendering/StaticWorldBatching.js";
 
 function ground(name, scene, material, x, y, metadata = {}) {
   const mesh = BABYLON.MeshBuilder.CreateGround(name, {
@@ -21,6 +22,29 @@ function ground(name, scene, material, x, y, metadata = {}) {
   mesh.computeWorldMatrix(true);
   return mesh;
 }
+
+test("resident props promoted after indexing render and pick at their new position", () => {
+  const engine = new BABYLON.NullEngine();
+  const scene = new BABYLON.Scene(engine);
+  try {
+    const parked = ground("parked", scene, null, 100, 2);
+    parked.freezeWorldMatrix();
+    const index = createWorldSpatialIndex(scene, [parked]);
+    const ray = new BABYLON.Ray(new BABYLON.Vector3(0, 10, 0), BABYLON.Vector3.Down(), 20);
+    assert.ok(!index.candidatesForRay(ray).includes(parked));
+    markWorldMeshDynamic(parked);
+    parked.position.x = 0;
+    markWorldMeshDynamic(parked);
+    assert.equal(index.pickWithRay(ray).pickedMesh, parked);
+    assert.equal(index.staticMeshes.has(parked), false);
+    assert.deepEqual(index.selectionOctree.dynamicContent, [parked]);
+    assert.ok([...index.cells.values()].every(meshes => !meshes.includes(parked)));
+    index.dispose();
+    // A later index must not freeze the same actor back into static selection.
+    parked.freezeWorldMatrix();
+    assert.deepEqual(collectStaticWorldMeshes([parked]), []);
+  } finally { scene.dispose(); engine.dispose(); }
+});
 
 test("spatially batches compatible static MT7 meshes without changing picks", () => {
   const engine = new BABYLON.NullEngine();

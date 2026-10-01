@@ -72,7 +72,8 @@ export class NativeAseqPresentationRuntime {
       ? requireAdapter(nodeMotion, ["prepare", "begin", "apply", "end"], "node motion")
       : null;
     this.active = null;
-    this.transientAudioSuppressed = false;
+    this.audioOwner = null;
+    this.programOwner = null;
     this.faceProgramOwner = null;
   }
 
@@ -143,19 +144,22 @@ export class NativeAseqPresentationRuntime {
     const active = this.active;
     if (!active || active.owner !== owner) return false;
     if (typeof this.audio.setPaused !== "function") return true;
-    return this.audio.setPaused(owner, paused) === true;
+    return this.audio.setPaused(this.audioOwner, paused) === true;
   }
 
-  setTransientAudioSuppressed(suppressed) {
-    this.transientAudioSuppressed = Boolean(suppressed);
-    return true;
+  setSeeking(seeking) {
+    return this.audioOwner ? this.audio.setSeeking(this.audioOwner, seeking) : true;
   }
 
   beginProgram(owner, options = {}) {
+    if (this.programOwner || this.audioOwner) throw new Error("AUTH audio program is already owned");
     let cameraBegun = false;
     let nodeMotionBegun = false;
     let facesBegun = false;
     try {
+      accepted(this.audio.begin(owner), "program audio ownership");
+      this.audioOwner = owner;
+      this.programOwner = owner;
       if (typeof this.camera.beginProgram === "function") {
         accepted(this.camera.beginProgram(owner, options), "camera program ownership");
         cameraBegun = true;
@@ -180,6 +184,9 @@ export class NativeAseqPresentationRuntime {
       }
       if (nodeMotionBegun) this.nodeMotion.endProgram(owner);
       if (cameraBegun) this.camera.endProgram(owner);
+      if (this.audioOwner === owner) this.audio.end(owner);
+      this.audioOwner = null;
+      this.programOwner = null;
       throw error;
     }
   }
@@ -196,7 +203,13 @@ export class NativeAseqPresentationRuntime {
   }
 
   endProgram(owner) {
+    if (this.programOwner !== owner || this.active) return false;
     const errors = [];
+    try {
+      accepted(this.audio.end(owner), "program audio cleanup");
+    } catch (error) { errors.push(error); }
+    this.audioOwner = null;
+    this.programOwner = null;
     if (this.faceProgramOwner === owner && this.faces?.endProgram) {
       try {
         accepted(this.faces.endProgram(owner), "face program cleanup");
@@ -246,6 +259,7 @@ export class NativeAseqPresentationRuntime {
       nodeMotionBegun: false,
       handsBegun: false,
       actorLookPointsBegun: false,
+      pendingLookPoints: [],
       facesBegun: false,
       cameraBegun: false,
       audioBegun: false,
@@ -253,6 +267,14 @@ export class NativeAseqPresentationRuntime {
     try {
       accepted(this.actors.begin(owner, detail.actors), "actor ownership");
       active.actorsBegun = true;
+      // A native AUTH may animate an invisible reference actor. Actor presence
+      // in the resource is not itself a request to show that actor.
+      for (const actorTag of detail.hiddenActors || []) {
+        if (!detail.actors.includes(actorTag)) throw new Error(`Hidden AUTH actor ${actorTag} is outside this activity`);
+        const actor = this.actors.activeActor(actorTag);
+        if (!actor?.root) throw new Error(`Hidden AUTH actor ${actorTag} is unavailable`);
+        actor.root.setEnabled(false);
+      }
       if (this.secondaryMotion) {
         accepted(
           this.secondaryMotion.begin(owner, detail.actors),
@@ -285,8 +307,13 @@ export class NativeAseqPresentationRuntime {
       }
       accepted(this.camera.begin(owner), "camera ownership");
       active.cameraBegun = true;
-      accepted(this.audio.begin(owner), "audio ownership");
-      active.audioBegun = true;
+      // A standalone activity is a session of one. Nested shots reuse the
+      // enclosing program's session; their teardown never owns its sounds.
+      if (!this.audioOwner) {
+        accepted(this.audio.begin(owner), "audio ownership");
+        this.audioOwner = owner;
+        active.audioBegun = true;
+      }
       this.active = active;
       this.#consume(active, orderedFrames(detail.initialFrames || [], 0));
       this.#consume(active, orderedFrames(detail.primedFrames || [], 1));
@@ -307,6 +334,7 @@ export class NativeAseqPresentationRuntime {
       || detail?.previousFrame !== active.currentFrame
       || detail?.currentFrame !== active.currentFrame + 1
     ) return false;
+    this.audio.advanceFrame?.(this.audioOwner);
     this.#consume(
       active,
       orderedFrames(detail.frames || [], detail.currentFrame),
@@ -344,19 +372,12 @@ export class NativeAseqPresentationRuntime {
             commandFrame: command.presentationPrime ? 0 : frame.frame,
             startFrame: command.startFrame,
             endFrame: command.endFrame,
+            sampleFrameOffset: command.motion.sampleFrameOffset || 0,
           });
           continue;
         }
         if (command.name === "voice" || command.name === "sound") {
-          if (!this.transientAudioSuppressed) {
-            accepted(this.audio.play(active.owner, command), `${command.name} cue`);
-          }
-          if (command.name === "voice" && this.faces) {
-            accepted(
-              this.faces.play(active.owner, command, { frame: frame.frame }),
-              "voice face cue",
-            );
-          }
+          accepted(this.audio.play(this.audioOwner, command), `${command.name} cue`);
           continue;
         }
         if (
@@ -395,6 +416,7 @@ export class NativeAseqPresentationRuntime {
           (
             command.name === "hand-pose"
             || command.name === "body-hand-pose"
+            || command.name === "hand-component"
             || command.name === "detailed-hand-default"
           )
           && this.hands
@@ -406,10 +428,7 @@ export class NativeAseqPresentationRuntime {
           continue;
         }
         if (command.name === "actor-look-point" && this.actorLookPoints) {
-          accepted(
-            this.actorLookPoints.play(active.owner, command),
-            "actor look-point cue",
-          );
+          active.pendingLookPoints.push(command);
           continue;
         }
         throw new Error(`AUTH command ${command.name || "<unknown>"} is unsupported`);
@@ -439,7 +458,7 @@ export class NativeAseqPresentationRuntime {
       accepted(
         this.actors.applyMotion(active.owner, actorTag, {
           sequence: motion.sequence,
-          frame: motion.startFrame - 1 + elapsedFrames,
+          frame: motion.startFrame - 1 + elapsedFrames - motion.sampleFrameOffset,
         }),
         `${actorTag} motion`,
       );
@@ -450,11 +469,24 @@ export class NativeAseqPresentationRuntime {
         "node-motion frame",
       );
     }
+    for (const command of active.pendingLookPoints.splice(0)) {
+      accepted(this.actorLookPoints.play(active.owner, command), "actor look-point cue");
+      // Detailed eyes use the same target as the shared type-4 neck controller.
+      if (this.faces) accepted(this.faces.play(active.owner, {
+        name: "face-gaze", actorTag: command.actorTag,
+        mode: command.target === null ? 0 : 2, durationNativeTicks: 1,
+        target: command.target,
+      }), "look-point eye gaze");
+    }
+    if (this.actorLookPoints?.apply) {
+      accepted(this.actorLookPoints.apply(active.owner), "actor look-point frame");
+    }
     if (this.faces) {
       accepted(
         this.faces.apply(active.owner, {
           frame: active.currentFrame,
           timeSeconds: time,
+          voiceCues: this.audio.voiceCues?.() || new Map(),
         }),
         "face frame",
       );
@@ -508,6 +540,7 @@ export class NativeAseqPresentationRuntime {
     if (active.audioBegun) {
       try {
         accepted(this.audio.end(active.owner, reason), "audio cleanup");
+        this.audioOwner = null;
       } catch (error) {
         errors.push(error);
       }

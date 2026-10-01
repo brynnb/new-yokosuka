@@ -239,6 +239,9 @@ export class ReactAccountFlow {
         error: "",
       });
       this.sounds?.success();
+      // Creation immediately enters the first-login opening. Existing slots
+      // still use the normal explicit Enter World action.
+      this.enterWorld();
     } catch (error) {
       useAccountStore.setState({
         error: error.validationErrors?.length

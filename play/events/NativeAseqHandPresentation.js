@@ -3,14 +3,16 @@ import { Mt5Loader } from "../../src/Mt5Loader.js";
 import {
   deformNativeHandVertices,
   nativeHandPoseTarget,
+  nativeHandAttachmentMatrix,
   NATIVE_HAND_BONE_COUNT,
   parseNativeHandRig,
   stepNativeHandPoseTransition,
 } from "../../src/NativeHandRig.js";
 import {
-  integrateDetailedAttachmentBoundary,
+  replaceBoundAttachmentSurface,
   restoreDetailedSurface,
 } from "../../src/NativeSurfaceOwnership.js";
+import { bindBodyAttachmentParentVertices, applyBodyAttachmentSeam } from "../../src/NativeAttachmentSeam.js";
 import {
   createNativeMhndPoseState,
   initializeNativeMhndPoseState,
@@ -80,15 +82,23 @@ function integrateBodyHandSurface({
   actorTag,
   sideName,
 }) {
-  return integrateDetailedAttachmentBoundary({
+  const seamBindings = new Map();
+  const boundExternalParentVertexCount = bindBodyAttachmentParentVertices({
     bodyModelRoot: actorModel.renderRoot,
     bodyAttachmentNode: bodyNode,
     bodyLoader: actorModel.loader,
-    detailedRoot: detailedSide.root,
     detailedAttachmentNode: detailedSide.primaryNode,
     detailedLoader: detailedSide.loader,
-    label: `AUTH HAND ${sideName} surface for ${actorTag}`,
+    seamBindings,
   });
+  if (!boundExternalParentVertexCount) {
+    throw new Error(`AUTH HAND ${sideName} for ${actorTag} has no authored wrist seam`);
+  }
+  // Signed source indices close the wrist on the existing animated body
+  // vertices. The detailed shell owns the whole old hand, not a guessed cut
+  // plane leaving coarse palm triangles protruding through the new grip.
+  return { ...replaceBoundAttachmentSurface(actorModel.renderRoot, bodyNode),
+    boundExternalParentVertexCount, seamBindings };
 }
 
 function configureDetailedHandMaterials(root) {
@@ -105,7 +115,18 @@ function configureDetailedHandMaterials(root) {
   }
 }
 
-function handMatrix(actorModel, bodyNode, bodyRenderKey) {
+function handMatrix(actorModel, bodyNode, bodyRenderKey, sideFlag) {
+  if (actorModel?.latestControllerFamily) {
+    // Native HAND consumer 0x0c0de682 asks MOMT for type 12/18. The body
+    // hand node also includes MHND's low-detail wrist rotation; reusing it
+    // rotates the detailed grip away from a FIXO prop on the same wrist.
+    const controlId = sideFlag === 1 ? 12 : 18;
+    const controls = actorModel.latestControllerFamily.nodes.filter(node => node.type === controlId);
+    const matrix = controls.length === 1 ? actorModel.latestControllerMatrices?.[controls[0].index] : null;
+    if (!matrix || matrix.length !== 16) throw new Error(`Detailed HAND wrist controller ${controlId} is unavailable`);
+    return matrix;
+  }
+  // An unanimated model has no MOMT pose yet; use its authored bind pose.
   const renderRoot = actorModel?.renderRoot;
   const matrices = renderRoot?._mt5CharacterWorldMatrices
     || renderRoot?._mt5CharacterGpuRig?.worldMatrices;
@@ -281,6 +302,12 @@ function deformSide(side, rig) {
   );
   for (const record of side.deformationMeshes) {
     record.sourceVertexIndices.forEach((sourceIndex, vertexIndex) => {
+      if (record.mesh._mt5ExternalParentVertexOffsets?.[vertexIndex] < 0) {
+        const offset = vertexIndex * 3;
+        record.positions.set(record.mesh._mt5SourcePositions.slice(offset, offset + 3), offset);
+        record.normals.set(record.mesh._mt5SourceNormals.slice(offset, offset + 3), offset);
+        return;
+      }
       const sourceOffset = sourceIndex * 6;
       const outputOffset = vertexIndex * 3;
       record.positions[outputOffset] = deformed[sourceOffset];
@@ -371,7 +398,8 @@ export class NativeAseqHandPresentation {
             requireModel: true,
           });
           const side = entry[sideName];
-          if (!bodyNode?.mesh || !side?.root || !side.primaryNode) {
+          if (!bodyNode?.mesh || (entry.definition.mode !== "body-only"
+            && (!side?.root || !side.primaryNode))) {
             throw new Error(
               `AUTH HAND ${sideName} attachment for ${actorTag} is unavailable`,
             );
@@ -396,6 +424,7 @@ export class NativeAseqHandPresentation {
             actorTag,
             sideName,
           };
+          if (!side.root) continue;
           side.root.parent = actorModel.renderRoot;
           side.root.position.set(0, 0, 0);
           side.root.rotationQuaternion = null;
@@ -434,16 +463,25 @@ export class NativeAseqHandPresentation {
         if (activeSide.side.pose.dirty) {
           deformSide(activeSide.side, hand.entry.rig);
         }
-        const matrix = handMatrix(
+        const attachment = handMatrix(
           hand.actor.model,
           activeSide.bodyNode,
           activeSide.bodyRenderKey,
+          activeSide.side.sideFlag,
         );
-        if (!matrix) return false;
+        if (!attachment) return false;
+        const matrix = nativeHandAttachmentMatrix(attachment, activeSide.side.componentRotationRaw || [0, 0, 0]);
         activeSide.side.loader.applyCharacterRigWorldMatrices(
           activeSide.side.root,
           new Map([[activeSide.side.rootRenderKey, matrix]]),
         );
+        // As with FACE, borrowed wrist vertices follow the body's actual skin
+        // weights after both rigs have their current matrices, even while the
+        // finger pose itself is unchanged.
+        for (const record of activeSide.side.deformationMeshes) {
+          applyBodyAttachmentSeam(activeSide.bodySurface, record.mesh, record.positions);
+          record.mesh.updateVerticesData(BABYLON.VertexBuffer.PositionKind, record.positions);
+        }
       }
     }
     return true;
@@ -453,6 +491,17 @@ export class NativeAseqHandPresentation {
     if (this.active?.owner !== owner) return false;
     const hand = this.active.hands.get(String(command.actorTag || "").toUpperCase());
     if (!hand) return false;
+    if (command.name === "hand-component") {
+      const side = hand.sides?.[command.side]?.side;
+      if (!side?.root || ![0x15, 0x2a].includes(command.componentMask)
+        || command.rotationRaw?.length !== 3 || !command.rotationRaw.every(Number.isInteger)) return false;
+      const previous = side.componentRotationRaw || [0, 0, 0];
+      // 00eb writes separate controller words. A later 005e finger pose must
+      // not clear them, and this write alone does not acquire the hand surface.
+      side.componentRotationRaw = command.rotationRaw.map((word, index) =>
+        command.componentMask === 0x15 ? word | 0 : (previous[index] + word) | 0);
+      return true;
+    }
     if (command.name === "detailed-hand-default") {
       if (!Array.isArray(command.sides) || command.sides.length < 1) return false;
       for (const sideName of command.sides) {
@@ -485,6 +534,13 @@ export class NativeAseqHandPresentation {
           target,
           command.durationNativeTicks,
         )) return false;
+        // Only a source-proven reset + MHND handoff relinquishes the detailed
+        // surface. An ordinary MHND update can coexist with detailed hands.
+        if (command.releaseDetailed === true) {
+          activeSide.side.componentRotationRaw = [0, 0, 0];
+          activeSide.side.detailedRequested = false;
+          this.#deactivateDetailed(activeSide);
+        }
       }
       return true;
     }
@@ -512,6 +568,7 @@ export class NativeAseqHandPresentation {
         side.pose.active = false;
         side.pose.dirty = true;
         side.detailedRequested = false;
+        side.componentRotationRaw = [0, 0, 0];
       }
       for (const bodyPose of Object.values(entry.bodyPoses)) {
         resetNativeMhndPoseState(bodyPose);
@@ -543,10 +600,23 @@ export class NativeAseqHandPresentation {
 
   async #loadActor(actorTag) {
     const definition = this.definitions.get(actorTag);
-    const [leftBuffer, rightBuffer, rigBuffer] = await Promise.all([
+    // MHND animates the actor's own fingers. Requiring a separate detailed
+    // resource for these commands wrongly excludes body-only actors.
+    if (definition.mode === "body-only") return {
+      actorTag, definition,
+      left: { root: null, pose: poseState(), detailedRequested: false },
+      right: { root: null, pose: poseState(), detailedRequested: false },
+      bodyPoses: { left: createNativeMhndPoseState(), right: createNativeMhndPoseState() },
+    };
+    const [leftBuffer, rightBuffer, rigBuffer, textureBuffer] = await Promise.all([
       verifiedAsset(this.loadAsset, definition.left.model, `${actorTag} left HAND model`),
       verifiedAsset(this.loadAsset, definition.right.model, `${actorTag} right HAND model`),
       verifiedAsset(this.loadAsset, definition.rig, `${actorTag} HM rig`),
+      // Archive-local CHRM hands keep their textures in the package PKF;
+      // global MT5 hands embed them. Both use the same attachment renderer.
+      definition.texturePack
+        ? verifiedAsset(this.loadAsset, definition.texturePack, `${actorTag} HAND textures`)
+        : null,
     ]);
     let rig;
     try {
@@ -568,7 +638,7 @@ export class NativeAseqHandPresentation {
         materialSideOrientation: null,
       });
       const suffix = sideName === "left" ? "TL" : "TR";
-      const [root] = await loader.load(buffer, null, {
+      const [root] = await loader.load(buffer, textureBuffer, {
         sourceFilename: `${definition.handCode}_${suffix}.MT5`,
       });
       if (!root) throw new Error(`${actorTag} ${sideName} HAND model did not render`);
@@ -641,6 +711,7 @@ export class NativeAseqHandPresentation {
   #activateDetailed(hand, activeSide) {
     if (activeSide.detailedActive) return;
     const side = activeSide.side;
+    if (!side.root) throw new Error(`AUTH detailed HAND assets for ${activeSide.actorTag} are unavailable`);
     side.root.setEnabled(true);
     try {
       activeSide.bodySurface = integrateBodyHandSurface({
@@ -651,6 +722,7 @@ export class NativeAseqHandPresentation {
         sideName: activeSide.sideName,
       });
       activeSide.detailedActive = true;
+      side.pose.dirty = true;
     } catch (error) {
       side.root.setEnabled(false);
       restoreDetailedSurface(activeSide.bodySurface);
@@ -661,12 +733,17 @@ export class NativeAseqHandPresentation {
 
   #releaseHand(hand) {
     for (const activeSide of Object.values(hand.sides)) {
-      activeSide.side.root.setEnabled(false);
-      activeSide.side.root.parent = null;
-      restoreDetailedSurface(activeSide.bodySurface);
-      activeSide.bodySurface = null;
-      activeSide.detailedActive = false;
+      this.#deactivateDetailed(activeSide);
+      if (activeSide.side.root) activeSide.side.root.parent = null;
     }
+  }
+
+  #deactivateDetailed(activeSide) {
+    activeSide.side.root?.setEnabled(false);
+    restoreDetailedSurface(activeSide.bodySurface);
+    activeSide.bodySurface?.seamBindings.clear();
+    activeSide.bodySurface = null;
+    activeSide.detailedActive = false;
   }
 }
 

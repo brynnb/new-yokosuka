@@ -13,7 +13,6 @@ export class WorldRuntime {
     hasPendingTransition,
     collapseSidebar,
     beginLoading,
-    waitUntilLoadingPainted,
     loadWorldAssets,
     clearWorld,
     initializeWorld,
@@ -44,7 +43,6 @@ export class WorldRuntime {
     this.hasPendingTransition = hasPendingTransition;
     this.collapseSidebar = collapseSidebar;
     this.beginLoading = beginLoading;
-    this.waitUntilLoadingPainted = waitUntilLoadingPainted;
     this.loadWorldAssets = loadWorldAssets;
     this.clearWorld = clearWorld;
     this.initializeWorld = initializeWorld;
@@ -118,6 +116,8 @@ export class WorldRuntime {
       serverDepartureCommitted = false,
       debugSpawn = null,
       persistLocation = true,
+      reveal = true,
+      loadingPresentation = null,
     } = options;
     if (!this.switching && this.hasPendingTransition() && !transition) {
       return false;
@@ -143,7 +143,6 @@ export class WorldRuntime {
     return this.session.run({
       onQueue: () => {
         this.collapseSidebar();
-        this.beginLoading(world);
       },
       onStart: () => {
         this.collapseSidebar();
@@ -151,10 +150,9 @@ export class WorldRuntime {
         this.clearRemotePlayers();
         this.ready = false;
         this.clearCollisionDebug();
-        this.beginLoading(world);
       },
       load: async (signal) => {
-        await this.waitUntilLoadingPainted(signal);
+        await this.beginLoading(world, signal, loadingPresentation);
         this.ensureLoadActive(signal);
         await this.load(world, signal);
         this.ensureLoadActive(signal);
@@ -173,7 +171,7 @@ export class WorldRuntime {
         this.syncAnimationMenu();
         this.markPresenceDirty();
         this.advanceLoading();
-        await this.finishLoading(signal);
+        if (reveal) await this.finishLoading(signal);
         this.ensureLoadActive(signal);
         this.syncCombat();
         return true;
@@ -194,24 +192,32 @@ export class WorldRuntime {
     savedPosition = null,
     savedYaw = 0,
     persistLocation = true,
+    reveal = true,
+    loadingPresentation = null,
   } = {}) {
     return this.session.run({
       onStart: () => { this.ready = false; },
       load: async (signal) => {
+        await this.beginLoading(world, signal, loadingPresentation);
+        this.ensureLoadActive(signal);
         await beforeLoad?.();
         this.ensureLoadActive(signal);
-        this.beginLoading(world);
         await this.load(world, signal);
         this.ensureLoadActive(signal);
         await this.ensurePlayerLoaded(world, signal);
         this.ensureLoadActive(signal);
-        if (savedPosition) {
-          this.getController()?.reset(savedPosition, savedYaw);
-        }
+        // Opening scenes/menu previews can leave an existing controller in a
+        // different world's coordinates. ensurePlayerLoaded is then a no-op;
+        // place the player AND camera before revealing, just as select does.
+        this.resetPlayer(
+          savedPosition || this.spawn,
+          savedPosition ? savedYaw : this.spawnYaw,
+          { persist: false },
+        );
         this.ready = true;
         this.syncAnimationMenu();
         this.advanceLoading();
-        await this.finishLoading(signal);
+        if (reveal) await this.finishLoading(signal);
         this.ensureLoadActive(signal);
         this.syncCombat();
         if (persistLocation) this.persistLocation();

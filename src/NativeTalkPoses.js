@@ -79,43 +79,6 @@ export function nativeTalkActorPoses(asset, actorTag, tableSha256) {
   return record;
 }
 
-/**
- * Keeps an exact FACE/FTBL pair present when its native TALK evaluation has
- * not yet been recovered. Zero controls preserve the source mesh verbatim;
- * callers can still consume voice timing, gaze, and face-clip commands
- * without borrowing incompatible deltas from another model.
- */
-export function neutralNativeTalkActorPoses({
-  actorTag,
-  faceCode,
-  tableSha256,
-  poseDuration = 79,
-} = {}) {
-  const tag = String(actorTag || "").toUpperCase();
-  if (
-    !/^[A-Z0-9_]{4}$/.test(tag)
-    || typeof faceCode !== "string"
-    || !faceCode
-    || !/^[a-f0-9]{64}$/.test(tableSha256 || "")
-    || !Number.isInteger(poseDuration)
-    || poseDuration < 1
-  ) {
-    throw new TypeError("neutral native TALK pose declaration is invalid");
-  }
-  const poses = Object.freeze(Array.from(
-    { length: poseDuration + 1 },
-    () => new Float32Array(DELTA_COUNT),
-  ));
-  return Object.freeze({
-    actorTag: tag,
-    faceCode,
-    tableSha256,
-    upperPoses: poses,
-    mouthPoses: poses,
-    neutralFallback: true,
-  });
-}
-
 export class NativeTalkDeltaTransition {
   constructor(initial) {
     this.current = Float32Array.from(initial);

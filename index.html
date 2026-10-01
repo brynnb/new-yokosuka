@@ -17,6 +17,8 @@
         --muted: #5f7476;
         --paper: #f4f0e6;
         --paper-bright: #fcfaf4;
+        --paper-card: #f7f5f0;
+        --card-shadow: 0 35px 80px rgba(30, 58, 60, 0.15);
         --teal: #168da0;
         --teal-dark: #086273;
         --red: #bd4136;
@@ -157,16 +159,12 @@
       }
 
       .actions {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: fit-content;
+        max-width: 100%;
         gap: 12px;
-        margin-top: 34px;
-      }
-
-      .browser-note {
-        margin: 10px 0 0;
-        color: #91a0a1;
-        font-size: 0.72rem;
+        margin: 34px auto 0;
       }
 
       .button {
@@ -212,7 +210,7 @@
         stroke-width: 1.8;
       }
 
-      .button svg.discord-icon {
+      .button svg.brand-icon {
         fill: currentColor;
         stroke: none;
       }
@@ -237,13 +235,43 @@
         transform: none;
       }
 
+      .screenshot-gallery {
+        display: grid;
+        grid-column: 1 / -1;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(8px, 1.5vw, 18px);
+      }
+
+      .screenshot-link {
+        display: block;
+        overflow: hidden;
+        padding: clamp(6px, 1vw, 12px);
+        background: var(--paper-card);
+        box-shadow: var(--card-shadow);
+      }
+
+      .screenshot-link img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      :is(.button, .screenshot-link, .dialog-close, .credits-trigger):focus-visible {
+        outline: 3px solid var(--teal);
+        outline-offset: 4px;
+      }
+
+      .screenshot-link[data-pointer-return]:focus {
+        outline: none;
+      }
+
       .project-card {
         position: relative;
         isolation: isolate;
         width: min(100%, 480px);
         padding: clamp(18px, 3vw, 30px);
-        background: #f7f5f0;
-        box-shadow: 0 35px 80px rgba(30, 58, 60, 0.15);
+        background: var(--paper-card);
+        box-shadow: var(--card-shadow);
         transform: rotate(1.5deg);
       }
 
@@ -335,30 +363,39 @@
         cursor: pointer;
       }
 
-      .credits-modal {
-        position: fixed;
-        inset: 0;
-        z-index: 100;
-        display: grid;
-        padding: 24px;
-        place-items: center;
+      .site-dialog {
+        color: var(--ink);
+        border: 1px solid var(--line);
+        box-shadow: 0 30px 80px rgba(7, 27, 30, 0.3);
+      }
+
+      .site-dialog::backdrop {
         background: rgba(19, 45, 50, 0.66);
         backdrop-filter: blur(6px);
       }
 
-      .credits-modal[hidden] {
-        display: none;
+      .image-dialog {
+        max-width: calc(100vw - 48px);
+        max-height: calc(100dvh - 48px);
+        padding: 0;
+        overflow: visible;
+        background: var(--ink);
+      }
+
+      .image-dialog img {
+        display: block;
+        max-width: calc(100vw - 50px);
+        max-height: calc(100dvh - 50px);
+        width: auto;
+        height: auto;
       }
 
       .credits-dialog {
-        position: relative;
-        width: min(100%, 580px);
-        max-height: min(720px, calc(100vh - 48px));
+        width: min(580px, calc(100% - 48px));
+        max-height: min(720px, calc(100dvh - 48px));
         padding: clamp(28px, 5vw, 46px);
         overflow: auto;
         background: var(--paper-bright);
-        border: 1px solid var(--line);
-        box-shadow: 0 30px 80px rgba(7, 27, 30, 0.3);
       }
 
       .credits-dialog h2 {
@@ -393,7 +430,7 @@
         text-underline-offset: 4px;
       }
 
-      .credits-close {
+      .dialog-close {
         position: absolute;
         top: 14px;
         right: 14px;
@@ -401,19 +438,19 @@
         height: 36px;
         padding: 0;
         color: var(--ink);
-        background: transparent;
+        background: var(--paper-bright);
         border: 1px solid var(--line);
         font: inherit;
         font-size: 1.2rem;
         cursor: pointer;
       }
 
-      .credits-close:hover {
+      .dialog-close:hover {
         color: var(--paper-bright);
         background: var(--ink);
       }
 
-      body.credits-open {
+      body:has(.site-dialog[open]) {
         overflow: hidden;
       }
 
@@ -437,9 +474,14 @@
       }
 
       @media (max-width: 560px) {
-        .actions,
-        .button {
+        .actions {
           width: 100%;
+        }
+
+        .actions .button {
+          padding: 0 8px;
+          gap: 6px;
+          font-size: 0.72rem;
         }
 
         footer {
@@ -484,7 +526,7 @@
         <p class="intro">
           <strong>New Yokosuka is an unofficial Shenmue MMO experience.</strong>
           Based on the 1999 Sega Dreamcast classic <cite>Shenmue</cite>, it is
-          playable entirely in your browser—no installation required. Explore
+          playable entirely in your browser with no installation required. Explore
           the original world of New Yokosuka with other players, race
           forklifts, work at the harbor, engage in combat, play arcade games,
           talk to NPCs, and collect vending-machine toys.
@@ -493,8 +535,9 @@
           <p>
             The project has two main components: multiplayer world exploration
             and a general asset viewer and downloader. All assets were reverse
-            engineered from the original Dreamcast game discs, building on
-            existing projects alongside substantial new original work.
+            engineered from the original Dreamcast game discs using my extractor
+            tooling that was also helped in large part by community tooling listed
+            in the credits.
           </p>
           <p>
             This is a fan-made project created by me,
@@ -504,11 +547,29 @@
           </p>
         </div>
         <div class="actions">
+          <a class="button secondary" href="/asset-viewer/">
+            Explore Assets
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M4 10h12"></path>
+              <path d="m11 5 5 5-5 5"></path>
+            </svg>
+          </a>
           <a class="button" href="/play/">
             Play Online
             <svg viewBox="0 0 20 20" aria-hidden="true">
               <path d="M7 4h9v9"></path>
               <path d="M16 4 5 15"></path>
+            </svg>
+          </a>
+          <a
+            class="button secondary"
+            href="https://github.com/brynnb/new-yokosuka"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Github
+            <svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.8.1-.8.1-.8 1.2.1 1.8 1.2 1.8 1.2 1.1 1.9 2.8 1.4 3.5 1.1.1-.8.4-1.4.8-1.7-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.4c0 .3.2.7.8.6A12 12 0 0 0 12 .3Z"></path>
             </svg>
           </a>
           <a
@@ -519,22 +580,44 @@
           >
             Join Discord
             <svg
-              class="discord-icon"
+              class="brand-icon"
               viewBox="0 0 127.14 96.36"
               aria-hidden="true"
             >
               <path d="M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.11 0A72.37 72.37 0 0 0 45.64 0 105.89 105.89 0 0 0 19.39 8.09C2.79 32.65-1.71 56.6.54 80.21A105.73 105.73 0 0 0 32.71 96.36a77.7 77.7 0 0 0 6.89-11.11 68.42 68.42 0 0 1-10.85-5.18c.91-.66 1.8-1.34 2.66-2a75.57 75.57 0 0 0 64.32 0c.87.71 1.76 1.39 2.66 2a68.68 68.68 0 0 1-10.87 5.19 77 77 0 0 0 6.89 11.1A105.25 105.25 0 0 0 126.6 80.22C129.24 52.84 122.09 29.11 107.7 8.07ZM42.45 65.69C36.18 65.69 31 60 31 53s5-12.74 11.43-12.74S54 46 53.89 53s-5.05 12.69-11.44 12.69Zm42.24 0C78.41 65.69 73.25 60 73.25 53s5-12.74 11.44-12.74S96.23 46 96.12 53s-5.04 12.69-11.43 12.69Z"></path>
             </svg>
           </a>
-          <a class="button secondary" href="/asset-viewer/">
-            Explore Assets
-            <svg viewBox="0 0 20 20" aria-hidden="true">
-              <path d="M4 10h12"></path>
-              <path d="m11 5 5 5-5 5"></path>
-            </svg>
-          </a>
         </div>
-        <p class="browser-note">Desktop browsers are recommended</p>
+      </section>
+
+      <section class="screenshot-gallery" aria-label="New Yokosuka screenshots">
+        <a class="screenshot-link" href="/screenshots/1.webp" aria-label="Expand screenshot 1">
+          <img src="/screenshots/1-thumb.webp" alt="New Yokosuka title screen" width="768" height="451" loading="lazy" decoding="async" />
+        </a>
+        <a class="screenshot-link" href="/screenshots/2.webp" aria-label="Expand screenshot 2">
+          <img src="/screenshots/2-thumb.webp" alt="Exploring the shrine grounds" width="768" height="451" loading="lazy" decoding="async" />
+        </a>
+        <a class="screenshot-link" href="/screenshots/3.webp" aria-label="Expand screenshot 3">
+          <img src="/screenshots/3-thumb.webp" alt="Walking through Yokosuka's shopping streets" width="768" height="451" loading="lazy" decoding="async" />
+        </a>
+        <a class="screenshot-link" href="/screenshots/4.webp" aria-label="Expand screenshot 4">
+          <img src="/screenshots/4-thumb.webp" alt="Watching a film in the cinema" width="768" height="451" loading="lazy" decoding="async" />
+        </a>
+        <a class="screenshot-link" href="/screenshots/5.webp" aria-label="Expand screenshot 5">
+          <img src="/screenshots/5-thumb.webp" alt="Visiting the arcade" width="768" height="451" loading="lazy" decoding="async" />
+        </a>
+        <a class="screenshot-link" href="/screenshots/6.webp" aria-label="Expand screenshot 6">
+          <img src="/screenshots/6-thumb.webp" alt="Hand-to-hand combat in Yokosuka" width="768" height="451" loading="lazy" decoding="async" />
+        </a>
+        <a class="screenshot-link" href="/screenshots/7.webp" aria-label="Expand screenshot 7">
+          <img src="/screenshots/7-thumb.webp" alt="Lining up a shot at the pool table" width="768" height="451" loading="lazy" decoding="async" />
+        </a>
+        <a class="screenshot-link" href="/screenshots/8.webp" aria-label="Expand screenshot 8">
+          <img src="/screenshots/8-thumb.webp" alt="Driving a forklift at the harbor" width="768" height="451" loading="lazy" decoding="async" />
+        </a>
+        <a class="screenshot-link" href="/screenshots/9.webp" aria-label="Expand screenshot 9">
+          <img src="/screenshots/9-thumb.webp" alt="Exploring the Hazuki residence grounds" width="768" height="451" loading="lazy" decoding="async" />
+        </a>
       </section>
     </main>
 
@@ -542,23 +625,21 @@
       <p class="footer-credit">
         Made by
         <a href="https://www.brynnbateman.com/" target="_blank" rel="noreferrer">Brynn</a>
-        — <a href="https://www.brynnbateman.com/" target="_blank" rel="noreferrer">Hire me!</a>
+        — Hire me!
         <br />
         <button class="credits-trigger" id="credits-trigger" type="button">Credits</button>
       </p>
       <p> Shenmue is a registered trademark of SEGA. This project is a non-commercial, fan-made tool intended for educational and research purposes only. It is not affiliated with, endorsed by, or sponsored by SEGA. All original game assets, models, and related content are the property of their respective trademark and copyright holders. </p>
     </footer>
 
-    <div class="credits-modal" id="credits-modal" hidden>
-      <section
-        class="credits-dialog"
-        role="dialog"
-        aria-modal="true"
+    <dialog
+        class="site-dialog credits-dialog"
+        id="credits-modal"
         aria-labelledby="credits-title"
       >
         <button
-          class="credits-close"
-          id="credits-close"
+          class="dialog-close"
+          data-dialog-close
           type="button"
           aria-label="Close credits"
         >×</button>
@@ -612,34 +693,12 @@
           </li>
         </ul>
         <p>And, of course, thanks to Shenmue’s original developers.</p>
-      </section>
-    </div>
+    </dialog>
 
-    <script>
-      const creditsTrigger = document.getElementById("credits-trigger");
-      const creditsModal = document.getElementById("credits-modal");
-      const creditsClose = document.getElementById("credits-close");
-
-      function setCreditsOpen(open) {
-        creditsModal.hidden = !open;
-        document.body.classList.toggle("credits-open", open);
-        if (open) {
-          creditsClose.focus();
-        } else {
-          creditsTrigger.focus();
-        }
-      }
-
-      creditsTrigger.addEventListener("click", () => setCreditsOpen(true));
-      creditsClose.addEventListener("click", () => setCreditsOpen(false));
-      creditsModal.addEventListener("click", (event) => {
-        if (event.target === creditsModal) setCreditsOpen(false);
-      });
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && !creditsModal.hidden) {
-          setCreditsOpen(false);
-        }
-      });
-    </script>
+    <dialog class="site-dialog image-dialog" id="screenshot-dialog" aria-label="Expanded screenshot">
+      <button class="dialog-close" data-dialog-close type="button" aria-label="Close screenshot">×</button>
+      <img alt="" />
+    </dialog>
+    <script type="module" src="/src/landing.js"></script>
   </body>
 </html>

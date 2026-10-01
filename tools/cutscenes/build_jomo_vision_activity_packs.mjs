@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { buildNativeAseqActivityPack } from "../lib/NativeAseqActivityPack.mjs";
+import { buildNativeAseqActivityPack, sha256 } from "../lib/NativeAseqActivityPack.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const disc2Root = [
@@ -21,6 +21,27 @@ if (!disc2Root || !disc3Root) {
 
 const evidence = "tools/evidence/player-cutscene-owner-discovery.json";
 const selectionRule = "exact cross-disc AUTH member selected by JOMO owner 0x4f758";
+const nativeMap = readFileSync(path.join(root, "extracted_files/data/SCENE/01/JOMO/MAPINFO.BIN"));
+const visionOwner = JSON.parse(readFileSync(path.join(root, "tools/evidence/jomo-visions-native-owner-ir.json")));
+const residentRelease = JSON.parse(readFileSync(path.join(root, "tools/evidence/jomo-visions-resident-release-ir.json")));
+const mirrorSetupEvidence = "tools/evidence/jomo-mirrors-native-setup-ir.json";
+const mirrorSetup = JSON.parse(readFileSync(path.join(root, mirrorSetupEvidence)));
+for (const source of [visionOwner, residentRelease, mirrorSetup]) {
+  if (source.source.mapinfoSha256 !== sha256(nativeMap)) throw new Error("JOMO vision staging source changed");
+}
+const background = visionOwner.function.blocks.flatMap(b => b.actions).find(a => a.callFileOffset === "0x4aa6a");
+const release = residentRelease.function.blocks.flatMap(b => b.actions).find(a => a.callFileOffset === "0x5070e");
+const releaseName = release?.arguments[2]?.value;
+if (background?.operationHex !== "0x006f"
+  || JSON.stringify(background.arguments.map(a => a.value)) !== "[2,4278190080]"
+  || release?.operationHex !== "0x013c"
+  || JSON.stringify(release.arguments.slice(0, 2).map(a => a.value)) !== "[0,6]"
+  || nativeMap.subarray(releaseName, nativeMap.indexOf(0, releaseName)).toString() !== "MPK00") {
+  throw new Error("JOMO vision resident release/background changed");
+}
+// The original parent releases the bedroom MPK00 before every vision. Keep
+// loaded browser assets resident, but lease their visibility off for the stage.
+const browserBackgroundColor = [16, 8, 0, 24].map(shift => ((background.arguments[1].value >>> shift) & 255) / 255);
 const expected = values => values.map(([name, byteLength, sha256]) => ({
   name,
   byteLength,
@@ -45,6 +66,38 @@ const scoped = (model, assetPath, browserFilename = path.basename(assetPath)) =>
   assetPath,
   lifecycle: { kind: "auth-scoped" },
 });
+
+// Read the unconditional entry writes, not a guessed enlargement from the
+// camera distance. The original callback owns scale; AUTH only moves objects.
+const mirrorBlocks = new Map(mirrorSetup.function.blocks.map(block => [block.id, block]));
+const mirrorEntryActions = [];
+const visitedMirrorBlocks = new Set();
+let mirrorBlock = mirrorBlocks.get(mirrorSetup.function.entryBlock);
+while (mirrorBlock && !visitedMirrorBlocks.has(mirrorBlock.id)) {
+  visitedMirrorBlocks.add(mirrorBlock.id);
+  mirrorEntryActions.push(...mirrorBlock.actions);
+  mirrorBlock = mirrorBlock.successors.length === 1 ? mirrorBlocks.get(mirrorBlock.successors[0]) : null;
+}
+const mirrorScales = new Map(mirrorEntryActions.filter(action => (
+  action.semanticId === "resolved-object-scale-vector-write"
+)).map(action => {
+  const [actor, pointer] = action.arguments;
+  if (actor.kind !== "constant" || !actor.ascii || pointer.kind !== "static-pointer"
+    || pointer.staticWords?.length !== 3) throw new Error("JOMO mirror entry scale is not static");
+  const words = [0, 4, 8].map(offset => nativeMap.readUInt32LE(pointer.value + offset));
+  if (JSON.stringify(words) !== JSON.stringify(pointer.staticWords)) throw new Error("JOMO mirror scale source changed");
+  const scale = [0, 4, 8].map(offset => nativeMap.readFloatLE(pointer.value + offset));
+  if (!scale.every(value => Number.isFinite(value) && value > 0)) throw new Error("JOMO mirror scale is invalid");
+  return [actor.ascii, {
+    initialPresentation: { position: [0, 0, 0], rotationDegrees: [0, 0, 0], scale },
+    initialPresentationSource: { evidence: mirrorSetupEvidence,
+      callbackFunction: mirrorSetup.function.id, callFileOffset: action.callFileOffset,
+      vectorPointer: pointer.hex },
+  }];
+}));
+if (JSON.stringify([...mirrorScales.keys()]) !== '["RYMR","HOMR"]') {
+  throw new Error("JOMO mirror entry scale owners changed");
+}
 
 const sharedKkyMotion = path.join(root, "play/assets/hazuki/kkyc/M_01KKY.MOTN");
 const sharedKkyMotionDefinition = {
@@ -107,8 +160,8 @@ const packs = [{
     },
   },
   sceneObjects: {
-    RYMR: scoped("DRGS502G", "play/assets/hazuki/kkyb/DRGS502G.CHRM", "S2_JOMO_DRGS502G.MT5"),
-    HOMR: scoped("PNX02H6G", "play/assets/hazuki/kkya/PNX02H6G.CHRM", "S2_JOMO_PNX02H6G.MT5"),
+    RYMR: { ...scoped("DRGS502G", "play/assets/hazuki/kkyb/DRGS502G.CHRM", "S2_JOMO_DRGS502G.MT5"), ...mirrorScales.get("RYMR") },
+    HOMR: { ...scoped("PNX02H6G", "play/assets/hazuki/kkya/PNX02H6G.CHRM", "S2_JOMO_PNX02H6G.MT5"), ...mirrorScales.get("HOMR") },
     DRE1: persistent("DRE02A1G", "play/assets/hazuki/kkyb/DRE02A1G.CHRM", "S2_JOMO_DRE02A1G.MT5"),
     PNR1: persistent("PNR02A1G", "play/assets/hazuki/kkyb/PNR02A1G.CHRM", "S2_JOMO_PNR02A1G.MT5"),
   },
@@ -270,6 +323,9 @@ for (const pack of packs) {
       durationFrames,
       frameCount,
       commandCounts,
+      browserMapVisibility: [],
+      browserIsolatedStage: true,
+      browserBackgroundColor,
       ...(pack.sceneObjects ? { nativeSceneObjectStates } : {}),
     }],
   });

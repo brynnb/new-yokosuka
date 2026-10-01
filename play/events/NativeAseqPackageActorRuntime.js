@@ -140,12 +140,19 @@ export class NativeAseqPackageActorRuntime {
     this.instantiate = instantiate;
     this.records = new Map();
     this.variantRecords = new Map();
+    this.worldRoots = [];
     this.active = null;
     this.program = null;
   }
 
-  async load() {
+  async load(worldRoots = []) {
     this.clear();
+    // A cinematic body may replace the same logical object already resident
+    // as a world placement (for example the shrine kitten). Keep the resident
+    // intact, but give its visibility to the same program lease as its body.
+    this.worldRoots = worldRoots.filter(root => this.actorTags.has(
+      root.metadata?.runtimeObject?.objectTag,
+    ));
     const definitions = [...this.definitions.values()].flatMap(definition => (
       definition.variants.map(variant => Object.freeze({
         ...variant,
@@ -223,6 +230,7 @@ export class NativeAseqPackageActorRuntime {
     });
     this.active = {
       owner,
+      worldVisibility: this.program ? [] : this.#hideWorldRoots(new Set(tags)),
       selectedRecords: new Map(records.map(record => [record.actorCode, record])),
       snapshots: new Map(tags.flatMap(actorTag => (
         [...this.variantRecords.get(actorTag).values()]
@@ -249,6 +257,7 @@ export class NativeAseqPackageActorRuntime {
     }
     this.program = {
       owner,
+      worldVisibility: this.#hideWorldRoots(this.actorTags),
       selectedRecords: new Map(this.records),
       snapshots: new Map(
         [...this.variantRecords.values()]
@@ -292,6 +301,7 @@ export class NativeAseqPackageActorRuntime {
         this.records.set(actorTag, record);
       }
     }
+    for (const [root, enabled] of this.active.worldVisibility) root.setEnabled(enabled);
     this.active = null;
     return true;
   }
@@ -305,6 +315,7 @@ export class NativeAseqPackageActorRuntime {
       restoreRoot(record.root, snapshot);
     }
     this.records = new Map(this.program.selectedRecords);
+    for (const [root, enabled] of this.program.worldVisibility) root.setEnabled(enabled);
     this.program = null;
     return true;
   }
@@ -317,6 +328,15 @@ export class NativeAseqPackageActorRuntime {
     }
     this.records.clear();
     this.variantRecords.clear();
+    this.worldRoots = [];
+  }
+
+  #hideWorldRoots(tags) {
+    return this.worldRoots.filter(root => tags.has(root.metadata.runtimeObject.objectTag)).map(root => {
+      const enabled = root.isEnabled();
+      root.setEnabled(false);
+      return [root, enabled];
+    });
   }
 }
 

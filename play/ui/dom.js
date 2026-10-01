@@ -22,6 +22,7 @@ export function queryPlayDom(root = document) {
   dialogueOptions: root.getElementById("dialogue-options"),
   loading: root.getElementById("loading"),
   loadingPlaceJapanese: root.getElementById("loading-place-japanese"),
+  transitionFrame: root.getElementById("transition-frame"),
   loadingPlaceEnglish: root.getElementById("loading-place-english"),
   loadingTime: root.getElementById("loading-time"),
   loadingDate: root.getElementById("loading-date"),

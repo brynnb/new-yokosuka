@@ -35,8 +35,8 @@ records and binds control nodes to visible output nodes:
 | `-77` | `0x94` |
 | `-78` | `0x95` |
 
-The bundled inventory covers 240 models, 111 cloth-bearing models, and 144
-groups. It retains the two native control-only groups and presents all 142
+The bundled inventory covers 241 models, 112 cloth-bearing models, and 147
+groups. It retains the two native control-only groups and presents all 145
 groups with visible output surfaces. Control and output rest positions differ
 for 23 groups. The presenter therefore applies solved control displacement to
 the corresponding output rest point; replacing output points with control
@@ -44,9 +44,34 @@ points would destroy the authored garment silhouette.
 
 Visible cloth polygons may reference body-owned vertices at an attachment
 seam. Those vertices remain owned by their actual body node and use its current
-rig matrix. Control lattices are hidden before GPU batching, while output
-subtrees retain original materials, UVs, indices, and textures. Generated
+rig matrix. The exterior control mesh and opposite-winding lining are both
+preserved outside GPU batching, retaining their UVs, indices, and textures.
+Their materials are isolated for the authored side orientation. Generated
 metadata contains only topology and profile facts, never duplicate art.
+
+`FUN_0c0b06f0` selects the first row's larger horizontal span once, then seeds
+each row on that axis. After undoing the native initializer's X/Z reflection
+(`FUN_0c0aed70`), this is greatest X when X spans farther, otherwise greatest
+Z. Strict comparisons retain the first height-sorted corner on ties. Always
+seeding at greatest X incorrectly started some curved coat panels in their
+middle. The reconstructed traversal then jumped across the panel, distorting
+its constraints. Open control types `-71` through `-74` also must not link
+their column ends. The corrected shared rule matches all four committed native
+topology captures, including both HPD coat panels; generated metadata is rebuilt
+for the whole inventory.
+
+Closed skirt rows must share a cyclic column alignment before row-parent
+constraints are built. Selecting each row's dominant-axis seed independently
+is insufficient: SIA_L's nearly symmetric hem selects the other right-hand
+corner, shifting that row by one column. The old reconstruction consequently
+created diagonal, overlong row links and twisted the rendered skirt through
+Megumi's legs. The shared topology builder now selects the cyclic alignment
+with the shortest total link distance to the preceding ring. This additional
+cyclic alignment applies only to closed rings. It corrects HND_L, SIA_L, and
+X61_L; native topology comparisons and Shenhua's captured-track tests still pass.
+This correction derives from the original CHRM positions, not a newly
+captured Megumi Dreamcast solver trace. Collision profiles and the solver's
+forces/constraints algorithm are unchanged.
 
 ## Executable profiles
 
@@ -124,10 +149,15 @@ gravity cloth.
 7. propagate the solved displacement through the render pair.
 
 The browser runs the same state transition at 30 Hz with bounded catch-up.
-Render frames that do not advance that fixed solver retain the existing local
-garment buffers, allowing the actor hierarchy to carry the surface coherently.
+Render frames that do not advance that fixed solver retain the simulated local
+garment vertices, allowing the actor hierarchy to carry the surface coherently.
 Reprojecting an old world-space solution through a newer actor transform would
 counter-translate the cloth and create a render-rate-dependent vibration.
+Body-owned vertices borrowed by cloth polygons are different: their positions
+and normals are refreshed from the current body pose on every render frame.
+Holding those copies at 30 Hz while the body interpolates at 60 Hz opened small
+seams on walking skirts/coats. The real-model regression compares the copies
+with the GPU-deformed body, including frames with no physics step.
 For an ordinary dynamic point, the candidate target is:
 
 ```text
@@ -223,13 +253,69 @@ formula matches the captured direction with a minimum dot product above
 - creates the complete authored collision body before advancing;
 - preserves distinct output rest offsets and body-owned seam vertices;
 - updates every UV-duplicate vertex, then recomputes normals and bounds;
+- position-welds coincident garment boundaries sharing an attachment owner;
 - detaches only acquired cloth output surfaces from rigid skinning;
 - restores the exact original buffers and skeleton state on release.
 
-CPU-baked playable models and GPU scheduled/cutscene actors use this same
-adapter. AUTH presentation runs body, FACE, HAND, OSAG, then CLTH, followed by
-camera presentation. Camera cuts do not reset cloth; activity seeks,
-teleports, replacement, and disposal have deterministic state boundaries.
+Garment boundary welding reuses `Mt5CharacterRig.weldCharacterRigSeamPositions`,
+the existing baked-body averaging rule. It discovers coincident bind-space
+vertices only among cloth-owned outputs with the same control-node parent.
+Each panel gets one vote irrespective of UV duplicates. It updates positions
+only: exterior and lining normals, UVs, indices, and one-sided culling remain
+distinct. This is browser presentation continuity, not a recovered native
+cross-group constraint; forces, collisions, and simulation state are unchanged.
+
+GPU-skinned playable, scheduled, and cutscene models use this same adapter.
+AUTH presentation runs body, FACE, HAND, OSAG, then CLTH, followed by camera
+presentation. Camera cuts do not reset cloth; activity seeks, teleports,
+replacement, and disposal have deterministic state boundaries.
+
+AUTH borrows the original player presentation-model object across every shot.
+Only transforms belong to the per-shot snapshot. Cloth state is keyed by model
+identity: copying that object would create multiple solvers over the same
+meshes, with later solvers incorrectly snapshotting already-detached skeletons
+and deformed garment buffers for restoration.
+
+`CharacterRuntime.applyCharacterRigWorldMatrices` owns the pose-input handoff.
+Native MOTN poses supply their full controller family, route map, and controller
+matrices. `AnimationStateMachine` preserves all 37 humanoid controllers through
+frame interpolation and clip transitions, deriving the rendered routes from
+that same blended pose. `PlayerRuntime` supplies it through
+`CharacterRuntime.applyHumanoidAnimationPose`. Routed controllers use the exact
+displayed matrix; attachment-only controllers follow the retargeting correction
+of their nearest rendered ancestor. The existing cloth update therefore uses
+the displayed pose and executable-owned collision volumes, rather than a stale
+cutscene pose or a separate clock. Ryo's YKC profile supplies seven collision
+spheres, all attached to routed controllers.
+
+Render-only callers still release any native cloth ownership and
+clear those controller inputs before updating the body. Without a complete
+native controller pose, the garment remains on its original GPU skeleton; the
+solver must not reacquire it using the last cutscene's stale controls.
+
+### Shared gameplay presentation
+
+`NativeCharacterSecondaryMotion` is the post-body-pose entry point for the
+local player, remote avatars, account previews, combat enemies, and scheduled
+NPCs. It updates supported OSAG attachments before CLTH, using model-owned
+states also borrowed by AUTH. A claimed cinematic state cannot be advanced by
+the gameplay pass. Render-only handoffs release both systems; fresh full poses
+can reacquire them. Disposal releases existing states without constructing a
+solver over already-disposed geometry.
+
+Remote locomotion blends and emotes now retain the full interpolated pose,
+rather than discarding attachment/collision controllers after deriving render
+routes. Previews and playable animal locomotion use the canonical loaded model
+object instead of a second object containing a separate pose history. Preview
+footwear is updated by the shared body pose call; a second render-only call
+would erase the native controller inputs immediately before simulation.
+
+`tests/CharacterSecondaryMotion.test.js` covers native walking poses, body/cloth
+joins, remote locomotion/emote paths, fixed-rate OSAG behavior, and AUTH handoff.
+Rendered fixtures cover account previews and combat cloth; the new-character
+opening test requires fresh gameplay controllers and active CPU-solved cloth
+after AUTH releases the GPU-skinned body. These are bounded integration checks,
+not visual approval of every outfit in every motion.
 
 ## Reproduction and validation
 
@@ -262,8 +348,14 @@ The `NativeCloth*.test.js` suites cover generated-data freshness, exact live
 topology, every bundled force/profile selection, fixed-step behavior,
 source/previous advection, anchors, teleport handling, native ray collision,
 surface ownership/restoration, Lan Di and Ine-san, and a real two-update audit
-of all 142 rendered bundled garment groups. AUTH tests pin shared ordering and
+of all 145 rendered bundled garment groups. AUTH tests pin shared ordering and
 cleanup so later cutscenes cannot bypass the system with local cloth code.
+`PlayerGpuRig.test.js` covers full gameplay poses, moving collisions, garment
+seam continuity, and safe reacquisition after AUTH. The isolated hardware-GPU
+fixture `tests/e2e/player-jacket-lighting.spec.js` exercises `PlayerRuntime`
+standing and walking, saves rendered jacket views, and checks seam positions,
+body GPU ownership, matched lighting, and one-sided lining. It does not load an
+account or play the full introduction chain.
 
 ## Evidence boundary
 

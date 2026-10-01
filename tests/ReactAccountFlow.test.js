@@ -26,6 +26,33 @@ function controller(overrides = {}) {
   });
 }
 
+test("successful creation enters immediately with the new character", async () => {
+  const character = { id: 42, name: "Tester", avatarId: "ryo" };
+  const flow = controller({ request: async (path, options) => {
+    assert.equal(path, "/api/characters");
+    assert.equal(options.method, "POST");
+    assert.deepEqual(JSON.parse(options.body), { name: "Tester", avatarId: "ryo" });
+    return character;
+  } });
+  const selection = flow.chooseCharacter({ characters: [] });
+  flow.showCharacterCreator();
+  flow.setCreatorName("Tester");
+  await flow.createCharacter();
+  assert.equal(await selection, character);
+  assert.equal(useAccountStore.getState().screen, "closed");
+});
+
+test("failed creation stays in the creator and does not begin playback", async () => {
+  const flow = controller({ request: async () => { throw new Error("Name unavailable"); } });
+  let entered = false;
+  void flow.chooseCharacter({ characters: [] }).then(() => { entered = true; });
+  flow.showCharacterCreator();
+  await flow.createCharacter();
+  assert.equal(entered, false);
+  assert.equal(useAccountStore.getState().screen, "characterCreate");
+  assert.deepEqual(useAccountStore.getState().error, ["Name unavailable"]);
+});
+
 test("selecting a character updates selection without remounting the screen", async () => {
   const flow = controller();
   const characters = [

@@ -1,6 +1,6 @@
 {
   "schema": "new-yokosuka-aseq-activity-pack-v1",
-  "generatedBy": "tools/build_op02_opening_assets.mjs",
+  "generatedBy": "tools/cutscenes/build_op02_opening_assets.mjs",
   "source": {
     "disc": 1,
     "path": "extracted_files/data/SCENE/01/OP02/MAPINFO.BIN",
@@ -225,9 +225,258 @@
         "path": "play/assets/introduction/op02/mgr-talk-poses.generated.json",
         "byteLength": 296183,
         "sha256": "1b023d938e42244c469679191c6be2dfc2ef5a60988d4b92c3ee07d3d487ce12",
-        "generatedBy": "tools/extract_native_face_poses.py",
+        "generatedBy": "tools/animation/extract_native_face_poses.py",
         "actorTag": "SINF"
       }
+    }
+  },
+  "handAssets": {
+    "SINF": {
+      "actorTag": "SINF",
+      "bodyModelCode": "MGR_M",
+      "handCode": "SIN",
+      "bodyHandRenderKeys": {
+        "left": -66,
+        "right": -65
+      },
+      "left": {
+        "rootRenderKey": 11,
+        "model": {
+          "path": "play/assets/introduction/op02/models/SIN_TL.CHRM",
+          "byteLength": 12676,
+          "sha256": "d0c2c59ead198eef047313c5852726df5b1ffd0d903baa4e95254e7f38468be0"
+        }
+      },
+      "right": {
+        "rootRenderKey": 6,
+        "model": {
+          "path": "play/assets/introduction/op02/models/SIN_TR.CHRM",
+          "byteLength": 12764,
+          "sha256": "6427c37fbdba8b721a0ed0580c89bc9513260f5a1a4df9d5af25fc5226b3962e"
+        }
+      },
+      "texturePack": {
+        "path": "play/assets/introduction/op02/OP02_textures.bin",
+        "byteLength": 2605504,
+        "sha256": "39df4836e2e6006db66925516cc7877898aacb0775270f016345f404fab9189d"
+      },
+      "rig": {
+        "path": "play/assets/introduction/op02/SIN_HM.BIN",
+        "byteLength": 8632,
+        "sha256": "6245a820d3b4e69388cde3bea95f2d9b0bc3246a77e8ff2254d586e6398fc589",
+        "transformNodeCount": 71,
+        "vertexCount": 299,
+        "pointerOffsets": [
+          24,
+          168,
+          8328,
+          5848,
+          6344,
+          8632
+        ]
+      }
+    }
+  },
+  "nativeHandPoseTables": {
+    "0x2624": {
+      "sourceMapinfoOffset": "0x2624",
+      "vectors": [
+        [
+          0,
+          0,
+          1638
+        ],
+        [
+          0,
+          0,
+          -1456
+        ],
+        [
+          0,
+          0,
+          -728
+        ],
+        [
+          0,
+          0,
+          -2366
+        ],
+        [
+          0,
+          0,
+          -2366
+        ],
+        [
+          0,
+          0,
+          -1456
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -8009
+        ],
+        [
+          0,
+          1274,
+          -9102
+        ],
+        [
+          0,
+          728,
+          -364
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -9102
+        ],
+        [
+          0,
+          2002,
+          -12743
+        ],
+        [
+          0,
+          2366,
+          728
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -9648
+        ],
+        [
+          0,
+          -1820,
+          -10012
+        ],
+        [
+          0,
+          2184,
+          -4369
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "0x2540": {
+      "sourceMapinfoOffset": "0x2540",
+      "vectors": [
+        [
+          0,
+          0,
+          1638
+        ],
+        [
+          0,
+          0,
+          -1456
+        ],
+        [
+          0,
+          0,
+          -728
+        ],
+        [
+          0,
+          0,
+          -2366
+        ],
+        [
+          0,
+          0,
+          -2366
+        ],
+        [
+          0,
+          0,
+          -1456
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -7463
+        ],
+        [
+          0,
+          1274,
+          -10012
+        ],
+        [
+          0,
+          728,
+          1092
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -9102
+        ],
+        [
+          0,
+          2002,
+          -12743
+        ],
+        [
+          0,
+          2366,
+          728
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -9648
+        ],
+        [
+          0,
+          -1820,
+          -10012
+        ],
+        [
+          0,
+          2184,
+          -4369
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
     }
   },
   "motionBanks": [
@@ -260,6 +509,16 @@
       "sha256": "2b5c3c5f8408cd9819f430598fb2bcba649b0278165ce042a78366860b4bd4a6"
     },
     {
+      "path": "play/assets/introduction/op02/models/SIN_TL.CHRM",
+      "byteLength": 12676,
+      "sha256": "d0c2c59ead198eef047313c5852726df5b1ffd0d903baa4e95254e7f38468be0"
+    },
+    {
+      "path": "play/assets/introduction/op02/models/SIN_TR.CHRM",
+      "byteLength": 12764,
+      "sha256": "6427c37fbdba8b721a0ed0580c89bc9513260f5a1a4df9d5af25fc5226b3962e"
+    },
+    {
       "path": "play/assets/introduction/op02/models/MAP.MAPM",
       "byteLength": 159980,
       "sha256": "07a409ba6bfd8eab73e013c04ff3b6e2e483aa1a9cb6a99f79437cb385ebbc88"
@@ -278,6 +537,11 @@
       "path": "play/assets/introduction/op02/models/TAK02M8G.CHRM",
       "byteLength": 39976,
       "sha256": "80dd28d41fbac62c2bb52e88a5f0fd16b9a1dba101d6bd87308b5e0d3398035b"
+    },
+    {
+      "path": "play/assets/introduction/op02/SIN_HM.BIN",
+      "byteLength": 8632,
+      "sha256": "6245a820d3b4e69388cde3bea95f2d9b0bc3246a77e8ff2254d586e6398fc589"
     },
     {
       "path": "play/assets/introduction/op02/M_TORI.MOTN",
@@ -703,6 +967,44 @@
           }
         ]
       },
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 4,
+          "frame": 300,
+          "actorTag": "SINF",
+          "side": "right",
+          "poseTableOffset": "0x2624",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x11ae",
+          "sourceOrder": 0
+        },
+        {
+          "activitySlot": 4,
+          "frame": 300,
+          "actorTag": "SINF",
+          "side": "left",
+          "poseTableOffset": "0x2540",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x11ce",
+          "sourceOrder": 1
+        }
+      ],
+      "nativeHandComponentCues": [
+        {
+          "activitySlot": 4,
+          "frame": 300,
+          "actorTag": "SINF",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            10194,
+            0,
+            0
+          ],
+          "callFileOffset": "0x11ee",
+          "sourceOrder": 2
+        }
+      ],
       "motions": [
         {
           "actorTag": "SINF",

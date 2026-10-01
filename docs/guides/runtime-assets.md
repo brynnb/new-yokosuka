@@ -79,6 +79,10 @@ For a large new collection, `--source-prefix public/music/shenmue2` limits runti
 validation/publication to that repository-relative directory; unrelated local
 payloads need not be restored. Bridge request timeouts can be configured with
 `--request-timeout-ms` (default 120000); retries retain the same key and checksum.
+For a small approved change spanning directories, repeat `--source-path <file>`
+to validate and publish only those exact registered files. Unknown paths fail;
+unrelated local changes are not included. Include changed versioned JSON
+metadata as well as its binary dependencies.
 
 ## Existing clients and Git history
 

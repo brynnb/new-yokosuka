@@ -1,6 +1,6 @@
 {
   "schema": "new-yokosuka-aseq-activity-pack-v1",
-  "generatedBy": "tools/build_toki_activity_pack.mjs",
+  "generatedBy": "tools/cutscenes/build_toki_activity_pack.mjs",
   "source": {
     "disc": 1,
     "path": "extracted_files/data/SCENE/01/TOKI/SEQDATA2.BIN",
@@ -298,7 +298,8 @@
             48423,
             55887
           ],
-          "callFileOffset": "0xd9a"
+          "callFileOffset": "0xd9a",
+          "activityId": "TOKI/SEQDATA2.AUTH"
         },
         {
           "activitySlot": 0,
@@ -315,7 +316,8 @@
             36228,
             45513
           ],
-          "callFileOffset": "0xeb2"
+          "callFileOffset": "0xeb2",
+          "activityId": "TOKI/SEQDATA2.AUTH"
         },
         {
           "activitySlot": 0,
@@ -332,7 +334,8 @@
             32406,
             13473
           ],
-          "callFileOffset": "0x102a"
+          "callFileOffset": "0x102a",
+          "activityId": "TOKI/SEQDATA2.AUTH"
         },
         {
           "activitySlot": 0,
@@ -349,7 +352,8 @@
             36227,
             43511
           ],
-          "callFileOffset": "0x11a6"
+          "callFileOffset": "0x11a6",
+          "activityId": "TOKI/SEQDATA2.AUTH"
         },
         {
           "activitySlot": 0,
@@ -366,13 +370,15 @@
             48423,
             55887
           ],
-          "callFileOffset": "0x1376"
+          "callFileOffset": "0x1376",
+          "activityId": "TOKI/SEQDATA2.AUTH"
         },
         {
           "activitySlot": 0,
           "frame": 5174,
           "action": "detach",
-          "callFileOffset": "0x1446"
+          "callFileOffset": "0x1446",
+          "activityId": "TOKI/SEQDATA2.AUTH"
         }
       ],
       "nodeTransforms": [
@@ -386,7 +392,8 @@
             0,
             0
           ],
-          "callFileOffset": "0xafe"
+          "callFileOffset": "0xafe",
+          "activityId": "TOKI/SEQDATA2.AUTH"
         },
         {
           "activitySlot": 0,
@@ -398,7 +405,8 @@
             0,
             0
           ],
-          "callFileOffset": "0xb20"
+          "callFileOffset": "0xb20",
+          "activityId": "TOKI/SEQDATA2.AUTH"
         },
         {
           "activitySlot": 0,
@@ -411,7 +419,8 @@
             0,
             1456
           ],
-          "callFileOffset": "0x157a"
+          "callFileOffset": "0x157a",
+          "activityId": "TOKI/SEQDATA2.AUTH"
         },
         {
           "activitySlot": 0,
@@ -424,7 +433,8 @@
             0,
             -1456
           ],
-          "callFileOffset": "0x161a"
+          "callFileOffset": "0x161a",
+          "activityId": "TOKI/SEQDATA2.AUTH"
         },
         {
           "activitySlot": 0,
@@ -436,7 +446,8 @@
             0,
             0
           ],
-          "callFileOffset": "0x13be"
+          "callFileOffset": "0x13be",
+          "activityId": "TOKI/SEQDATA2.AUTH"
         },
         {
           "activitySlot": 0,
@@ -448,7 +459,8 @@
             0,
             0
           ],
-          "callFileOffset": "0x13e0"
+          "callFileOffset": "0x13e0",
+          "activityId": "TOKI/SEQDATA2.AUTH"
         }
       ]
     }
@@ -524,7 +536,8 @@
           "side": "right",
           "poseTableOffset": "0x3310",
           "durationNativeTicks": 8,
-          "callFileOffset": "0xe12"
+          "callFileOffset": "0xe12",
+          "sourceOrder": 0
         },
         {
           "activitySlot": 0,
@@ -533,7 +546,8 @@
           "side": "left",
           "poseTableOffset": "0x33f4",
           "durationNativeTicks": 8,
-          "callFileOffset": "0xe32"
+          "callFileOffset": "0xe32",
+          "sourceOrder": 1
         },
         {
           "activitySlot": 0,
@@ -542,7 +556,8 @@
           "side": "right",
           "poseTableOffset": "0x3310",
           "durationNativeTicks": 1,
-          "callFileOffset": "0x128e"
+          "callFileOffset": "0x128e",
+          "sourceOrder": 4
         },
         {
           "activitySlot": 0,
@@ -551,7 +566,38 @@
           "side": "left",
           "poseTableOffset": "0x33f4",
           "durationNativeTicks": 1,
-          "callFileOffset": "0x12ae"
+          "callFileOffset": "0x12ae",
+          "sourceOrder": 5
+        }
+      ],
+      "nativeHandComponentCues": [
+        {
+          "activitySlot": 0,
+          "frame": 2046,
+          "actorTag": "ASDA",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -3640,
+            728,
+            4733
+          ],
+          "callFileOffset": "0xef6",
+          "sourceOrder": 2
+        },
+        {
+          "activitySlot": 0,
+          "frame": 4620,
+          "actorTag": "ASDA",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -3640,
+            -2184,
+            4551
+          ],
+          "callFileOffset": "0x126e",
+          "sourceOrder": 3
         }
       ],
       "nativeFaceClipCues": [

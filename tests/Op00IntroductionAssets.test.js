@@ -14,6 +14,8 @@ import { WORLDS } from "../play/config/worlds.js";
 import { NativeAseqAudioCatalog } from "../play/events/NativeAseqAudioCatalog.js";
 import { NativeAseqActivityRuntime } from "../play/events/NativeAseqActivityRuntime.js";
 import { resolveSceneComposition } from "../src/SceneCompositions.js";
+import { extractNativeAseqCallbackStageEffects,
+  extractNativeAseqCallbackSecondaryMotionControls } from "../tools/lib/NativeAseqCallbackPresentation.mjs";
 
 const inventory = JSON.parse(readFileSync(
   "play/assets/introduction/op00/asset-inventory.generated.json",
@@ -46,6 +48,46 @@ function arrayBuffer(filename) {
   return bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength);
 }
 
+test("silent storm retains original callback frames, delayed thunder and complete camera duration", () => {
+  const storm = activityManifest.activities.find(activity => activity.slot === 24);
+  assert.equal(storm.durationFrames, 500);
+  assert.deepEqual(storm.audioStrings, []);
+  assert.equal(storm.browserLightingPresetIndex, 3);
+  const ir = JSON.parse(readFileSync("tools/evidence/op00-storm-native-callback-ir.json"));
+  const bytes = readFileSync("extracted_files/data/SCENE/01/OP00/MAPINFO.BIN");
+  assert.equal(sha256(bytes), ir.source.mapinfoSha256);
+  const generated = extractNativeAseqCallbackStageEffects({ bytes, nativeFunction: ir.function,
+    supportingFunctions: ir.supportingFunctions, durationFrames: 500,
+    source: { area: "OP00", evidence: "tools/evidence/op00-storm-native-callback-ir.json", mapinfoSha256: ir.source.mapinfoSha256 } });
+  assert.deepEqual(generated.programPresentationCues, storm.programPresentationCues);
+  assert.deepEqual(generated.nativeScriptSoundCues, storm.nativeScriptSoundCues);
+  assert.deepEqual(storm.nativeScriptSoundCues.map(cue => cue.frame), [5, 80, 144, 148, 152, 228, 298, 306, 314, 323, 400, 450]);
+  assert.equal(storm.nativeScriptSoundCues[0].source.delayNativeTicks, 5);
+  assert.equal(storm.nativeScriptSoundCues[2].source.delayNativeTicks, 6);
+  assert.throws(() => extractNativeAseqCallbackStageEffects({ bytes, nativeFunction: ir.function,
+    supportingFunctions: ir.supportingFunctions, durationFrames: 100, source: { area: "OP00" } }), /exceeds/);
+});
+
+test("OP00 sleeve controls preserve the original entry, tattoo and departure writes", () => {
+  const evidencePath = "tools/evidence/op00-opening-native-callback-ir.json";
+  const ir = JSON.parse(readFileSync(evidencePath));
+  const bytes = readFileSync("extracted_files/data/SCENE/01/OP00/MAPINFO.BIN");
+  for (const slot of [17, 20]) {
+    const activity = activityManifest.activities.find(value => value.slot === slot);
+    const nativeFunction = [ir.function, ...ir.supportingFunctions].find(fn =>
+      fn.id === (slot === 17 ? "0xc700" : "0xb3f8"));
+    assert.deepEqual(activity.programPresentationCues,
+      extractNativeAseqCallbackSecondaryMotionControls({ bytes, nativeFunction,
+        supportingFunctions: ir.supportingFunctions, durationFrames: activity.durationFrames,
+        source: { area: "OP00", evidence: evidencePath, mapinfoSha256: ir.source.mapinfoSha256 } }));
+  }
+  const tattoo = activityManifest.activities.find(value => value.slot === 17).programPresentationCues;
+  assert.deepEqual(tattoo.before.map(cue => cue.mode), [0, 10, 20, 30]);
+  assert.deepEqual(tattoo.frames.map(value => value.frame), [330]);
+  assert.deepEqual(tattoo.frames[0].cues.map(cue => [cue.mode, cue.word]),
+    [[0, 0x3e6b851f], [10, 0x4185999a], [20, 0xc0966666], [30, 0x41e80000]]);
+});
+
 test("OP00 introduction reuses canonical characters and emits unique scenery", () => {
   const required = inventory.assets.filter(asset => asset.requiredByOpening);
   const environment = required.filter(asset => asset.role === "environment");
@@ -56,7 +98,7 @@ test("OP00 introduction reuses canonical characters and emits unique scenery", (
   assert.equal(inventory.schema, "new-yokosuka-op00-asset-inventory-v10");
   assert.equal(environment.length, 7);
   assert.equal(characters.length, 6);
-  assert.equal(sceneObjects.length, 6);
+  assert.equal(sceneObjects.length, 7);
   assert.equal(attachedObjects.length, 1);
   assert.equal(inventory.summary.persistentSceneObjectCount, 4);
   assert.equal(new Set(required.map(asset => asset.sha256)).size, required.length);
@@ -91,7 +133,7 @@ test("OP00 introduction reuses canonical characters and emits unique scenery", (
     [...scene.nativeSceneObjects].sort(),
   );
   assert.deepEqual(
-    Object.values(inventory.sceneObjects).map(binding => binding.model).sort(),
+    [...new Set(Object.values(inventory.sceneObjects).map(binding => binding.model))].sort(),
     sceneObjects.map(asset => asset.nativeName).sort(),
   );
   assert.deepEqual(
@@ -113,6 +155,7 @@ test("OP00 introduction reuses canonical characters and emits unique scenery", (
       ODR1: "DOOR_L",
       ODR2: "DOOR_R",
       RMJN: "RMJN",
+      THN1: "THDR", THN2: "THDR", THN3: "THDR", THN4: "THDR",
     },
   );
   assert.deepEqual(inventory.attachedObjects.RYUK, {
@@ -128,6 +171,7 @@ test("OP00 introduction reuses canonical characters and emits unique scenery", (
     attachments: [
       {
         activitySlot: 20,
+        activityId: "OP00/SEQDATA20.AUTH",
         frame: 0,
         parentActorTag: "SORY",
         controlId: 12,
@@ -157,6 +201,7 @@ test("OP00 introduction reuses canonical characters and emits unique scenery", (
       },
       {
         activitySlot: 15,
+        activityId: "OP00/SEQDATA15.AUTH",
         frame: 0,
         parentActorTag: "KURA",
         controlId: 18,
@@ -190,6 +235,7 @@ test("OP00 introduction reuses canonical characters and emits unique scenery", (
       },
       {
         activitySlot: 17,
+        activityId: "OP00/SEQDATA17.AUTH",
         frame: 0,
         parentActorTag: "SORY",
         controlId: 12,
@@ -275,15 +321,15 @@ test("OP00 activity pack contains every exact map-embedded AUTH", () => {
   assert.equal(activityManifest.schema, "new-yokosuka-aseq-activity-pack-v1");
   assert.equal(activityManifest.nativeBinding.resourceName, "A0114");
   assert.equal(activityManifest.frameRate, 30);
-  assert.equal(activityManifest.activities.length, 24);
-  assert.equal(activityManifest.outputs.length, 25);
+  assert.equal(activityManifest.activities.length, 25);
+  assert.equal(activityManifest.outputs.length, 26);
   assert.equal(activityManifest.summary.motionCount, 148);
   assert.equal(activityManifest.summary.resolvedMotionCount, 148);
   assert.equal(activityManifest.summary.handPoseTableCount, 11);
   assert.equal(activityManifest.summary.handPoseCueCount, 122);
   assert.equal(activityManifest.summary.bodyHandPoseCueCount, 15);
   assert.equal(activityManifest.summary.faceClipCueCount, 216);
-  assert.equal(activityManifest.summary.durationSeconds, 354.7);
+  assert.equal(activityManifest.summary.durationSeconds, 371.3666666666667);
   assert.deepEqual(activityManifest.nativeHandPoseSlotOrder, [
     31, 30, 29, 35, 34, 33, 32, 39, 38, 37, 36,
     43, 42, 41, 40, 47, 46, 45, 44,
@@ -411,7 +457,7 @@ test("OP00 activity pack contains every exact map-embedded AUTH", () => {
   }
 });
 
-test("OP00 canonical runtime prepares all 24 native activities", async () => {
+test("OP00 canonical runtime prepares all 25 native activities", async () => {
   const runtime = new NativeAseqActivityRuntime({
     manifest: activityManifest,
     audioManifest: audio,
@@ -425,7 +471,7 @@ test("OP00 canonical runtime prepares all 24 native activities", async () => {
   const prepared = await Promise.all(
     [...runtime.catalog.activities.values()].map(record => runtime.prepare(record)),
   );
-  assert.equal(prepared.length, 24);
+  assert.equal(prepared.length, 25);
   assert.equal(prepared.every(value => value.frames.length > 0), true);
 });
 
@@ -643,7 +689,7 @@ test("OP00 audio catalog resolves every authored cue to exact assets", () => {
   }
   assert.equal(voiceCount, 48);
   assert.equal(soundCount, 266);
-  assert.equal(audio.summary.uniqueSoundCommandCount, 77);
+  assert.equal(audio.summary.uniqueSoundCommandCount, 80);
   assert.deepEqual(
     audio.voices.filter(record => record.unavailable).map(record => record.voiceId),
     ["A0114A015", "A0114A027", "A0114D014"],
@@ -674,6 +720,7 @@ test("OP00 audio catalog resolves every authored cue to exact assets", () => {
   }
   for (const cue of audio.music) {
     assert.equal(music.tracks[cue.trackId].sha256, cue.sha256);
-    assert.equal(music.tracks[cue.trackId].source.activitySlot, cue.activitySlot);
+    assert.equal(music.tracks[cue.trackId].source.nativeName, cue.nativeName);
+    assert.equal(cue.activitySlot, undefined, "named native start must not be replaced by a guessed shot");
   }
 });

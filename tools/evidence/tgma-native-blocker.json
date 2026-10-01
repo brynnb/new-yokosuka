@@ -41,15 +41,22 @@
     "audioAssets": "A0139.AFS and A1_INET2.SND resolve all eight voice commands and all eleven distinct playable sound commands into a hash-pinned generated audio pack.",
     "callbackHands": "The reusable callback-presentation compiler recovers five exact operation-0x005e cues and three 19-vector tables. FUB_HM/FUB_TL/FUB_TR are now hash-pinned package assets with their actual render keys 11/6.",
     "callbackExpressions": "The compiler recovers all twelve exact operation-0x0113 expression cues.",
-    "callbackGaze": "The compiler recovers Ryo's per-frame FUKU component-5 gaze requests over frames 466..486 and 791..803 plus native resets at 487 and 804."
+    "callbackGaze": "The compiler recovers Ryo's per-frame FUKU component-5 gaze requests over frames 466..486 and 791..803 plus native resets at 487 and 804.",
+    "fubTalkPoses": {
+      "path": "play/assets/cutscenes/native-faces/fub-talk-poses.generated.json",
+      "sha256": "354e60b8675a9dcc1a1a9ddc3204ef10b021ef7ddad3b0eb761582afeab6012a",
+      "tableSha256": "c2be5f63cb0918f4a26b982f68be29c5aadcae95fdb7a24a7ecbe4d6bc2c4f32",
+      "generatedBy": "tools/animation/extract_native_face_poses.py",
+      "binding": "FUKU=FUB:extracted_files/data/SCENE/01/MODEL/FACE/FUB_FTBL.BIN",
+      "evidence": "Original SH-4 TALK builder evaluated both lanes at times 0..79. The executable, TALK_N00, and independent live Ryo pose validation passed before FUB extraction. GPU playback and replay/cancel passed with changing FUB mouth, upper-face, and rendered vertex output."
+    }
   },
   "blockers": [],
   "availability": "good-enough-production",
   "productionGate": null,
   "remainingLimits": [
-    "The exact FUB_F.MT5 and FUB_FTBL.BIN are bundled and verified against the authored FUB_M body seam.",
-    "FUB's native TALK pose output is still unrecovered. The presentation therefore retains the exact neutral FUB source face while accepting voice, gaze, and face-clip timing without applying foreign FUK deltas.",
-    "Recovering FUB's native TALK pose output will upgrade mouth, blink, and expression deformation without changing package or runtime ownership."
+    "Playback verification covers the selected AUTH activity, not every persistent gameplay effect of the original owner.",
+    "Authored camera samples are not a frame-by-frame close-up comparison against Dreamcast lip sync."
   ],
   "evidence": [
     ".disc-work/dialogue/native-event-ir.json",

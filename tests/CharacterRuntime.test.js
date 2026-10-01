@@ -10,6 +10,7 @@ import {
 } from "../src/RyoMotnRuntime.js";
 import {
   evaluateHumanoidRuntimeControls,
+  RYO_RUNTIME_RIG,
   rowEulerRaw,
 } from "../src/ShenmueRuntimeRig.js";
 import {
@@ -129,6 +130,36 @@ function matrix({
     translation,
   ).asArray()];
 }
+
+test("gameplay supplies full controllers aligned to the retargeted visible pose", () => {
+  const runtime = new CharacterRuntime({ scene: {},
+    renderMatrixByKey: new Map(RYO_YK_RENDER_MATRIX_ROUTES), fetchArrayBuffer() {} });
+  const source = RYO_RUNTIME_RIG.map(node => matrix({
+    translation: new BABYLON.Vector3(node.index, 0, 0),
+  }));
+  const before = structuredClone(source);
+  const routes = new Map(RYO_YK_RENDER_MATRIX_ROUTES.map(([key, index]) =>
+    [key, matrix({ translation: new BABYLON.Vector3(index, key, 0) })]));
+  let applied;
+  runtime.applyCharacterRigWorldMatrices = (_loader, _root, rendered, pose) => {
+    applied = { rendered, pose };
+  };
+  runtime.applyHumanoidAnimationPose({}, {}, routes, source);
+  assert.ok(applied.rendered === routes);
+  assert.ok(applied.pose.controllerFamily.nodes === RYO_RUNTIME_RIG);
+  assert.equal(applied.pose.controllerMatrices.length, 37);
+  for (const [key, index] of RYO_YK_RENDER_MATRIX_ROUTES) {
+    assert.ok(applied.pose.controllerMatrices[index] === routes.get(key));
+  }
+  // Controller 3 is an attachment-only child of routed hip controller 2.
+  assert.deepEqual(applied.pose.controllerMatrices[3].slice(12, 15), [3, 14, 0]);
+  // Native root controller 0 has no routed ancestor; it follows body route 1.
+  assert.deepEqual(applied.pose.controllerMatrices[0].slice(12, 15), [0, 1, 0]);
+  assert.deepEqual(source, before);
+  applied = null;
+  assert.throws(() => runtime.applyHumanoidAnimationPose({}, {}, routes, source.slice(0, 13)), /complete controller pose/);
+  assert.equal(applied, null, "invalid inputs do not partially update the body");
+});
 
 test("local NPC retargeting preserves the target CHRM bone length", () => {
   const runtime = new CharacterRuntime({

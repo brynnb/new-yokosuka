@@ -233,8 +233,9 @@ export function detailedSurfaceCoverage({
 
 /**
  * Transfer complete body triangles to a detailed native presentation surface.
- * Triangles crossing an attachment seam stay with the body; this preserves
- * neck and wrist transition geometry without actor-specific cuts or offsets.
+ * Unless the caller supplies explicit complete-node ownership, triangles
+ * crossing an attachment seam stay with the body. This preserves transition
+ * geometry without actor-specific cuts or offsets.
  */
 export function integrateDetailedSurface({
   bodyModelRoot,
@@ -246,23 +247,15 @@ export function integrateDetailedSurface({
   detailedPositions,
   bodyPositions = mesh => mesh._mt5SourcePositions,
   surfacesMatch = () => true,
+  completeReplacementMeshFilter = null,
   priorityDetailedMeshFilter = null,
   maximumSeparation,
   minimumAbsoluteNormalDot = 0.8,
-  replacementBoundaryRings = 0,
   allowCompleteReplacement = false,
   label = "native detailed surface",
 }) {
   if (!(maximumSeparation > 0)) {
     throw new TypeError(`${label} maximum separation must be positive`);
-  }
-  if (
-    !Number.isInteger(replacementBoundaryRings)
-    || replacementBoundaryRings < 0
-  ) {
-    throw new TypeError(
-      `${label} replacement boundary rings must be a non-negative integer`,
-    );
   }
   const coverage = detailedSurfaceCoverage({
     detailedRoot,
@@ -302,6 +295,16 @@ export function integrateDetailedSurface({
       mesh.metadata?.mt5TextureId || null,
       candidate.textureId,
     ));
+    // Some native attachments explicitly replace a source node and close its
+    // parent seam. Their coarse tessellation need not coincide with the new
+    // shell. Still require a matching detailed material: a sibling hair/cloth
+    // surface is not owned merely because it lies under that attachment.
+    if (candidates.length > 0 && completeReplacementMeshFilter?.(mesh)) {
+      patches.push(Object.freeze({ mesh, indices: Array.from(indices) }));
+      removedTriangleCount += indices.length / 3;
+      mesh.setIndices([]);
+      continue;
+    }
     const triangles = [];
     for (let offset = 0; offset + 2 < indices.length; offset += 3) {
       const triangle = [indices[offset], indices[offset + 1], indices[offset + 2]];
@@ -333,33 +336,7 @@ export function integrateDetailedSurface({
       triangles.push({
         indices: triangle,
         replaced: coveredByDetailedSurface || coveredByPrioritySurface,
-        priority: coveredByPrioritySurface,
       });
-    }
-
-    // A separate detailed surface with no authored seam references cannot
-    // prove that it closes the body's attachment boundary. Erode its ordinary
-    // replacement mask by a small number of topology rings so the body keeps
-    // a continuous transition band. Priority inserts (for example detailed
-    // eyes) still replace their exact low-detail surfaces completely.
-    let boundaryVertices = new Set(
-      triangles
-        .filter(triangle => !triangle.replaced)
-        .flatMap(triangle => triangle.indices),
-    );
-    for (let ring = 0; ring < replacementBoundaryRings; ring += 1) {
-      if (boundaryVertices.size === 0) break;
-      const nextBoundaryVertices = new Set();
-      for (const triangle of triangles) {
-        if (
-          !triangle.replaced
-          || triangle.priority
-          || !triangle.indices.some(index => boundaryVertices.has(index))
-        ) continue;
-        triangle.replaced = false;
-        for (const index of triangle.indices) nextBoundaryVertices.add(index);
-      }
-      boundaryVertices = nextBoundaryVertices;
     }
 
     const retained = triangles
@@ -388,101 +365,15 @@ export function integrateDetailedSurface({
   });
 }
 
-/**
- * Transfer an articulated attachment (such as a hand) at the detailed
- * resource's authored proximal boundary. The longest attachment-space axis is
- * its limb axis; the endpoint nearest the attachment origin is the seam.
- */
-export function integrateDetailedAttachmentBoundary({
-  bodyModelRoot,
-  bodyAttachmentNode,
-  bodyLoader,
-  detailedRoot,
-  detailedAttachmentNode,
-  detailedLoader,
-  detailedPositions,
-  bodyPositions = mesh => mesh._mt5SourcePositions,
-  label = "native detailed attachment",
-}) {
-  const coverage = detailedSurfaceCoverage({
-    detailedRoot,
-    detailedLoader,
-    detailedAttachmentNode,
-    detailedPositions,
-  });
-  if (coverage.length === 0) {
-    throw new Error(`${label} has no authored surface`);
-  }
-  const points = coverage.flatMap(triangle => triangle.points);
-  const bounds = [0, 1, 2].map(axis => [
-    Math.min(...points.map(point => point[axis])),
-    Math.max(...points.map(point => point[axis])),
-  ]);
-  const limbAxis = bounds.reduce((selected, range, axis) => (
-    range[1] - range[0] > bounds[selected][1] - bounds[selected][0]
-      ? axis
-      : selected
-  ), 0);
-  const [minimum, maximum] = bounds[limbAxis];
-  const growsPositive = Math.abs(minimum) <= Math.abs(maximum);
-  const boundary = growsPositive ? minimum : maximum;
-  const ownsPoint = growsPositive
-    ? point => point[limbAxis] >= boundary
-    : point => point[limbAxis] <= boundary;
-
-  const patches = [];
-  let removedTriangleCount = 0;
-  let retainedTriangleCount = 0;
-  for (const mesh of authoredSubtreeMeshes(bodyModelRoot, bodyAttachmentNode)) {
-    const indices = mesh.getIndices();
-    const matrix = attachmentSpaceMatrix(
-      bodyLoader,
-      bodyModelRoot,
-      mesh,
-      bodyAttachmentNode,
-    );
-    if (!indices || !matrix) continue;
-    const positions = bodyPositions(mesh);
-    const retained = [];
-    let removedFromMesh = 0;
-    for (let offset = 0; offset + 2 < indices.length; offset += 3) {
-      const triangle = [indices[offset], indices[offset + 1], indices[offset + 2]];
-      const geometry = triangleGeometry(
-        mesh,
-        indices,
-        offset,
-        matrix,
-        bodyLoader.constructor.transformRowPoint,
-        positions,
-      );
-      if (geometry && geometry.points.every(ownsPoint)) {
-        removedFromMesh += 1;
-      } else {
-        retained.push(...triangle);
-      }
-    }
-    retainedTriangleCount += retained.length / 3;
-    if (removedFromMesh > 0) {
-      patches.push(Object.freeze({ mesh, indices: Array.from(indices) }));
-      mesh.setIndices(retained);
-      removedTriangleCount += removedFromMesh;
-    }
-  }
-  if (removedTriangleCount === 0) {
-    throw new Error(`${label} does not replace its body attachment`);
-  }
-  if (retainedTriangleCount === 0) {
-    restoreDetailedSurface(patches);
-    throw new Error(`${label} would remove its body-side seam`);
-  }
-  return Object.freeze({
-    patches: Object.freeze(patches),
-    removedTriangleCount,
-    retainedTriangleCount,
-    limbAxis,
-    boundary,
-    growsPositive,
-  });
+/** Replace an explicitly bound attachment subtree, including its old seam. */
+export function replaceBoundAttachmentSurface(bodyModelRoot, bodyAttachmentNode) {
+  const patches = authoredSubtreeMeshes(bodyModelRoot, bodyAttachmentNode).map(mesh => ({
+    mesh, indices: Array.from(mesh.getIndices()),
+  }));
+  const removedTriangleCount = patches.reduce((sum, patch) => sum + patch.indices.length / 3, 0);
+  if (!removedTriangleCount) throw new Error("native attachment body surface is unavailable");
+  for (const { mesh } of patches) mesh.setIndices([]);
+  return Object.freeze({ patches: Object.freeze(patches), removedTriangleCount, retainedTriangleCount: 0 });
 }
 
 export function restoreDetailedSurface(integration) {

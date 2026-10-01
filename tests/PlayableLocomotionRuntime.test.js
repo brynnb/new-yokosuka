@@ -65,8 +65,10 @@ test("cat run keeps its native gait and scales cadence to movement speed", () =>
 
 test("runtime applies the same family profile to local and remote models", () => {
   const calls = [];
+  const canonicalModel = {};
   const runtime = new PlayableLocomotionRuntime({
     motionRuntime: {
+      characterRuntime: { presentationModel: () => canonicalModel },
       applyNamed(model, selection, elapsedSeconds) {
         calls.push({ model, selection, elapsedSeconds });
         return true;
@@ -81,6 +83,7 @@ test("runtime applies the same family profile to local and remote models", () =>
   );
 
   assert.equal(runtime.apply(model, "run", 1.5), true);
+  assert.ok(model === canonicalModel);
   assert.equal(calls[0].selection.name, "CAT_CAT_WALK_LP");
   assert.equal(calls[0].selection.elapsedSeconds, 3);
   assert.equal(runtime.createModel(

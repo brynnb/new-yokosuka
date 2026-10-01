@@ -34,6 +34,9 @@ jobs:
       - name: Test multiplayer client
         run: node --test tests/MultiplayerClient.test.js tests/RemotePlayerManager.test.js
 
+      - name: Verify versioned runtime metadata
+        run: node --test tests/RuntimeAssets.test.js
+
       - name: Test atomic frontend releases
         run: node --test tests/FrontendRelease.test.js tests/LuckyBreakPackage.test.js
 

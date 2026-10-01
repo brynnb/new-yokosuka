@@ -27,11 +27,14 @@ function createRuntime() {
     ensureCharacter: () => calls.push("character"),
     startDirector: () => (calls.push("director"), true),
     stopDirector: reason => calls.push(["stop", reason]),
+    endDirector: async reason => { calls.push(["end", reason]); runtime.complete(); },
     dialoguePersistence,
     physicsReady: Promise.resolve(),
     startPlayRuntime: () => calls.push("start-loop"),
     disposeMenuBackground: () => calls.push("dispose-menu"),
     setStarting: value => calls.push(["starting", value]),
+    beginLoading: async () => calls.push("loading"),
+    finishLoading: async () => calls.push("reveal"),
     showNotice: value => calls.push(["notice", value]),
   });
   return { calls, cutscene, runtime };
@@ -42,10 +45,12 @@ test("menu previews own isolated dialogue state through completion", async () =>
   const completion = runtime.playFromMenu("intro");
   await new Promise(resolve => setImmediate(resolve));
   assert.ok(runtime.active);
+  runtime.beginEnding("intro");
   assert.equal(runtime.complete(), true);
   await completion;
   assert.deepEqual(calls, [
     ["starting", true],
+    "loading",
     "dispose-menu",
     "start-loop",
     "initialize",
@@ -53,8 +58,11 @@ test("menu previews own isolated dialogue state through completion", async () =>
     "hydrate",
     "begin-sandbox",
     "director",
+    "reveal",
     ["starting", false],
+    ["starting", true],
     "end-sandbox",
+    ["starting", false],
   ]);
 });
 
@@ -162,3 +170,52 @@ test("a cancelling world adapter's rejected promise remains observed", async () 
   await new Promise(resolve => setImmediate(resolve));
   assert.equal(runtime.active, null);
 });
+
+test("cutscene preparation retains the world cover, then reveals a running director", async () => {
+  const { runtime, calls } = createRuntime();
+  runtime.initializeWorld = options => {
+    assert.equal(options.reveal, false);
+    calls.push("initialize");
+  };
+  const completed = runtime.playFromMenu("intro");
+  await new Promise(resolve => setImmediate(resolve));
+  assert.ok(calls.indexOf("director") < calls.indexOf("reveal"));
+  let black;
+  runtime.endDirector = async () => {
+    await new Promise(resolve => { black = resolve; });
+    calls.push("cleanup");
+    runtime.complete();
+  };
+  let settled = false;
+  completed.then(() => { settled = true; });
+  runtime.cancel();
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(settled, false, "X must not start the next package before black");
+  assert.equal(calls.includes("end-sandbox"), false);
+  assert.equal(calls.includes("cleanup"), false);
+  assert.equal(runtime.active.controller.signal.aborted, false);
+  runtime.cancel(); // Repeated X must not begin another ending request.
+  black();
+  await completed;
+  assert.equal(settled, true);
+  assert.equal(calls.filter(call => call === "cleanup").length, 1);
+});
+
+for (const entry of ["initial-menu", "loaded-menu", "in-game"]) {
+  test(`${entry} forwards the same loading presentation through world preparation`, async () => {
+    const { runtime, cutscene } = createRuntime();
+    const presentation = { label: "Yokosuka", dateTime: "1986-11-29T16:00:00Z" };
+    cutscene.loadingPresentation = presentation;
+    const seen = [];
+    runtime.beginLoading = async (_world, _signal, value) => { seen.push(value); };
+    runtime.initializeWorld = async options => { seen.push(options.loadingPresentation); };
+    runtime.selectWorld = async (_world, options) => { seen.push(options.loadingPresentation); return true; };
+    if (entry !== "initial-menu") runtime.getController = () => ({});
+    const pending = entry === "in-game" ? runtime.requestInGame("intro") : runtime.playFromMenu("intro");
+    await new Promise(resolve => setImmediate(resolve));
+    if (entry !== "in-game") runtime.complete();
+    await pending;
+    assert.equal(seen.length, 2);
+    assert.ok(seen.every(value => value === presentation));
+  });
+}

@@ -1,6 +1,6 @@
 {
   "schema": "new-yokosuka-aseq-activity-pack-v1",
-  "generatedBy": "tools/build_jhw0_activity_pack.mjs",
+  "generatedBy": "tools/cutscenes/build_jhw0_activity_pack.mjs",
   "source": {
     "disc": 1,
     "path": "extracted_files/data/SCENE/01/JHD0/JHW0.PKS",
@@ -66,6 +66,212 @@
     "selectionRule": "operation-0x013e slots 9 through 16 select SEQDATA1.AUTH through SEQDATA8.AUTH"
   },
   "audioManifest": "public/audio/world/jhw0/manifest.json",
+  "nativeHandPoseTables": {
+    "0x5cd20": {
+      "sourceMapinfoOffset": "0x5cd20",
+      "vectors": [
+        [
+          0,
+          0,
+          -5461
+        ],
+        [
+          0,
+          -2366,
+          -1092
+        ],
+        [
+          0,
+          -182,
+          1092
+        ],
+        [
+          0,
+          -546,
+          -6735
+        ],
+        [
+          0,
+          0,
+          -4004
+        ],
+        [
+          0,
+          0,
+          -6553
+        ],
+        [
+          0,
+          -182,
+          1274
+        ],
+        [
+          0,
+          0,
+          -13289
+        ],
+        [
+          0,
+          0,
+          -5279
+        ],
+        [
+          0,
+          0,
+          -8009
+        ],
+        [
+          0,
+          0,
+          1456
+        ],
+        [
+          0,
+          182,
+          -8738
+        ],
+        [
+          0,
+          0,
+          -6007
+        ],
+        [
+          0,
+          0,
+          -8738
+        ],
+        [
+          0,
+          182,
+          1638
+        ],
+        [
+          0,
+          -728,
+          -5279
+        ],
+        [
+          0,
+          -1274,
+          -6735
+        ],
+        [
+          0,
+          -910,
+          -8738
+        ],
+        [
+          0,
+          0,
+          1638
+        ]
+      ]
+    },
+    "0x5c7c8": {
+      "sourceMapinfoOffset": "0x5c7c8",
+      "vectors": [
+        [
+          0,
+          0,
+          -10922
+        ],
+        [
+          0,
+          0,
+          -10558
+        ],
+        [
+          0,
+          1456,
+          0
+        ],
+        [
+          0,
+          0,
+          -18022
+        ],
+        [
+          0,
+          0,
+          -17112
+        ],
+        [
+          0,
+          0,
+          -18386
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -12196
+        ],
+        [
+          0,
+          0,
+          -18204
+        ],
+        [
+          0,
+          0,
+          -16748
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -11832
+        ],
+        [
+          0,
+          0,
+          -18386
+        ],
+        [
+          0,
+          0,
+          -15109
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          910,
+          -12014
+        ],
+        [
+          0,
+          -2184,
+          -16748
+        ],
+        [
+          0,
+          -2184,
+          -10012
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    }
+  },
+  "actorTags": [
+    "AKIR",
+    "FUKU"
+  ],
   "motionBanks": [
     {
       "bank": 16,
@@ -149,6 +355,125 @@
         "AKIR",
         "FUKU"
       ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 9,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45266",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450b2"
+        },
+        {
+          "activitySlot": 9,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45286",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450b2"
+        },
+        {
+          "activitySlot": 9,
+          "frame": 0,
+          "actorTag": "FUKU",
+          "side": "right",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45266",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450be"
+        },
+        {
+          "activitySlot": 9,
+          "frame": 0,
+          "actorTag": "FUKU",
+          "side": "left",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45286",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450be"
+        },
+        {
+          "activitySlot": 9,
+          "frame": 0,
+          "actorTag": "FUKU",
+          "side": "left",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x43d6c"
+        },
+        {
+          "activitySlot": 9,
+          "frame": 0,
+          "actorTag": "FUKU",
+          "side": "right",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x43d8c"
+        },
+        {
+          "activitySlot": 9,
+          "frame": 170,
+          "actorTag": "FUKU",
+          "side": "left",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x43dfa"
+        },
+        {
+          "activitySlot": 9,
+          "frame": 170,
+          "actorTag": "FUKU",
+          "side": "right",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x43e1a"
+        },
+        {
+          "activitySlot": 9,
+          "frame": 220,
+          "actorTag": "FUKU",
+          "side": "left",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x43e6a"
+        },
+        {
+          "activitySlot": 9,
+          "frame": 300,
+          "actorTag": "FUKU",
+          "side": "right",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x43eba"
+        },
+        {
+          "activitySlot": 9,
+          "frame": 450,
+          "actorTag": "FUKU",
+          "side": "left",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x43f0a"
+        },
+        {
+          "activitySlot": 9,
+          "frame": 450,
+          "actorTag": "FUKU",
+          "side": "right",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x43f2a"
+        }
+      ],
+      "nativeHandComponentCues": [],
       "motions": [
         {
           "actorTag": "FUKU",
@@ -210,6 +535,107 @@
         "AKIR",
         "FUKU"
       ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 10,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45266",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450b2"
+        },
+        {
+          "activitySlot": 10,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45286",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450b2"
+        },
+        {
+          "activitySlot": 10,
+          "frame": 0,
+          "actorTag": "FUKU",
+          "side": "right",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45266",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450be"
+        },
+        {
+          "activitySlot": 10,
+          "frame": 0,
+          "actorTag": "FUKU",
+          "side": "left",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45286",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450be"
+        },
+        {
+          "activitySlot": 10,
+          "frame": 410,
+          "actorTag": "FUKU",
+          "side": "left",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x44106"
+        },
+        {
+          "activitySlot": 10,
+          "frame": 476,
+          "actorTag": "FUKU",
+          "side": "right",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x44156"
+        },
+        {
+          "activitySlot": 10,
+          "frame": 607,
+          "actorTag": "FUKU",
+          "side": "left",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x441a6"
+        },
+        {
+          "activitySlot": 10,
+          "frame": 607,
+          "actorTag": "FUKU",
+          "side": "right",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x441c6"
+        },
+        {
+          "activitySlot": 10,
+          "frame": 1020,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x44366"
+        },
+        {
+          "activitySlot": 10,
+          "frame": 1020,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x44386"
+        }
+      ],
+      "nativeHandComponentCues": [],
       "motions": [
         {
           "actorTag": "AKIR",
@@ -253,6 +679,71 @@
         "AKIR",
         "FUKU"
       ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 11,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45266",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450b2"
+        },
+        {
+          "activitySlot": 11,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45286",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450b2"
+        },
+        {
+          "activitySlot": 11,
+          "frame": 0,
+          "actorTag": "FUKU",
+          "side": "right",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45266",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450be"
+        },
+        {
+          "activitySlot": 11,
+          "frame": 0,
+          "actorTag": "FUKU",
+          "side": "left",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45286",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450be"
+        },
+        {
+          "activitySlot": 11,
+          "frame": 530,
+          "actorTag": "FUKU",
+          "side": "left",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x44456"
+        },
+        {
+          "activitySlot": 11,
+          "frame": 590,
+          "actorTag": "FUKU",
+          "side": "right",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x444a6"
+        }
+      ],
+      "nativeHandComponentCues": [],
       "motions": [
         {
           "actorTag": "AKIR",
@@ -296,6 +787,89 @@
         "AKIR",
         "FUKU"
       ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 12,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45266",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450b2"
+        },
+        {
+          "activitySlot": 12,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45286",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450b2"
+        },
+        {
+          "activitySlot": 12,
+          "frame": 0,
+          "actorTag": "FUKU",
+          "side": "right",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45266",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450be"
+        },
+        {
+          "activitySlot": 12,
+          "frame": 0,
+          "actorTag": "FUKU",
+          "side": "left",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45286",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450be"
+        },
+        {
+          "activitySlot": 12,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x44530"
+        },
+        {
+          "activitySlot": 12,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x44550"
+        },
+        {
+          "activitySlot": 12,
+          "frame": 90,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 32,
+          "callFileOffset": "0x445ba"
+        },
+        {
+          "activitySlot": 12,
+          "frame": 90,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 32,
+          "callFileOffset": "0x445da"
+        }
+      ],
+      "nativeHandComponentCues": [],
       "motions": [
         {
           "actorTag": "AKIR",
@@ -339,6 +913,89 @@
         "AKIR",
         "FUKU"
       ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 13,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45266",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450b2"
+        },
+        {
+          "activitySlot": 13,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45286",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450b2"
+        },
+        {
+          "activitySlot": 13,
+          "frame": 0,
+          "actorTag": "FUKU",
+          "side": "right",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45266",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450be"
+        },
+        {
+          "activitySlot": 13,
+          "frame": 0,
+          "actorTag": "FUKU",
+          "side": "left",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45286",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450be"
+        },
+        {
+          "activitySlot": 13,
+          "frame": 260,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x44932"
+        },
+        {
+          "activitySlot": 13,
+          "frame": 380,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 32,
+          "callFileOffset": "0x44982"
+        },
+        {
+          "activitySlot": 13,
+          "frame": 700,
+          "actorTag": "FUKU",
+          "side": "left",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x449d2"
+        },
+        {
+          "activitySlot": 13,
+          "frame": 700,
+          "actorTag": "FUKU",
+          "side": "right",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x449f2"
+        }
+      ],
+      "nativeHandComponentCues": [],
       "motions": [
         {
           "actorTag": "AKIR",
@@ -427,6 +1084,162 @@
         "AKIR",
         "FUKU"
       ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 14,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45266",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450b2"
+        },
+        {
+          "activitySlot": 14,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45286",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450b2"
+        },
+        {
+          "activitySlot": 14,
+          "frame": 0,
+          "actorTag": "FUKU",
+          "side": "right",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45266",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450be"
+        },
+        {
+          "activitySlot": 14,
+          "frame": 0,
+          "actorTag": "FUKU",
+          "side": "left",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45286",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450be"
+        },
+        {
+          "activitySlot": 14,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x44d54",
+          "sourceOrder": 0
+        },
+        {
+          "activitySlot": 14,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x44d74",
+          "sourceOrder": 1
+        },
+        {
+          "activitySlot": 14,
+          "frame": 60,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x44dde",
+          "sourceOrder": 2
+        },
+        {
+          "activitySlot": 14,
+          "frame": 60,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x44dfe",
+          "sourceOrder": 3
+        },
+        {
+          "activitySlot": 14,
+          "frame": 280,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x44eca",
+          "sourceOrder": 5
+        },
+        {
+          "activitySlot": 14,
+          "frame": 314,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x44f1a",
+          "sourceOrder": 6
+        },
+        {
+          "activitySlot": 14,
+          "frame": 470,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x44fde",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 14,
+          "frame": 470,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x44ffe",
+          "sourceOrder": 9
+        }
+      ],
+      "nativeHandComponentCues": [
+        {
+          "activitySlot": 14,
+          "frame": 148,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -3822,
+            5643,
+            0
+          ],
+          "callFileOffset": "0x44e72",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 14,
+          "frame": 329,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "callFileOffset": "0x44f8e",
+          "sourceOrder": 7
+        }
+      ],
       "motions": [
         {
           "actorTag": "AKIR",
@@ -470,6 +1283,89 @@
         "AKIR",
         "FUKU"
       ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 15,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45266",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450b2"
+        },
+        {
+          "activitySlot": 15,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45286",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450b2"
+        },
+        {
+          "activitySlot": 15,
+          "frame": 0,
+          "actorTag": "FUKU",
+          "side": "right",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45266",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450be"
+        },
+        {
+          "activitySlot": 15,
+          "frame": 0,
+          "actorTag": "FUKU",
+          "side": "left",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45286",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450be"
+        },
+        {
+          "activitySlot": 15,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x44700"
+        },
+        {
+          "activitySlot": 15,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x44720"
+        },
+        {
+          "activitySlot": 15,
+          "frame": 90,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 32,
+          "callFileOffset": "0x4478a"
+        },
+        {
+          "activitySlot": 15,
+          "frame": 90,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 32,
+          "callFileOffset": "0x447aa"
+        }
+      ],
+      "nativeHandComponentCues": [],
       "motions": [
         {
           "actorTag": "AKIR",
@@ -513,6 +1409,125 @@
         "AKIR",
         "FUKU"
       ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 16,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45266",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450b2"
+        },
+        {
+          "activitySlot": 16,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45286",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450b2"
+        },
+        {
+          "activitySlot": 16,
+          "frame": 0,
+          "actorTag": "FUKU",
+          "side": "right",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45266",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450be"
+        },
+        {
+          "activitySlot": 16,
+          "frame": 0,
+          "actorTag": "FUKU",
+          "side": "left",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x45286",
+          "sourceFunction": "0x4520c",
+          "ownerCallFileOffset": "0x450be"
+        },
+        {
+          "activitySlot": 16,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x44a7c"
+        },
+        {
+          "activitySlot": 16,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x44a9c"
+        },
+        {
+          "activitySlot": 16,
+          "frame": 60,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x44b06"
+        },
+        {
+          "activitySlot": 16,
+          "frame": 60,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x44b26"
+        },
+        {
+          "activitySlot": 16,
+          "frame": 260,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x44c0a"
+        },
+        {
+          "activitySlot": 16,
+          "frame": 380,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x5cd20",
+          "durationNativeTicks": 32,
+          "callFileOffset": "0x44c5a"
+        },
+        {
+          "activitySlot": 16,
+          "frame": 720,
+          "actorTag": "FUKU",
+          "side": "left",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x44caa"
+        },
+        {
+          "activitySlot": 16,
+          "frame": 720,
+          "actorTag": "FUKU",
+          "side": "right",
+          "poseTableOffset": "0x5c7c8",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x44cca"
+        }
+      ],
+      "nativeHandComponentCues": [],
       "motions": [
         {
           "actorTag": "AKIR",

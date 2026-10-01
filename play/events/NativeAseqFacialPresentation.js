@@ -1,9 +1,11 @@
 import * as BABYLON from "@babylonjs/core";
+import { resolveNativeAseqGazeTarget } from "./NativeAseqGazeTarget.js";
 import { parseFaceTable } from "../../src/FaceTable.js";
 import {
   integrateBodyFaceSurface,
   restoreBodyFaceSurface,
 } from "../../src/FaceSurfaceIntegration.js";
+import { applyBodyAttachmentSeam } from "../../src/NativeAttachmentSeam.js";
 import { Mt5Loader } from "../../src/Mt5Loader.js";
 import { configureMt5TexturePack } from "../assets/configureMt5TexturePack.js";
 import {
@@ -14,7 +16,6 @@ import { NativeLipSyncCuePlayer } from "../../src/NativeLipSync.js";
 import {
   evaluateNativeTalkVertices,
   nativeTalkActorPoses,
-  neutralNativeTalkActorPoses,
   NativeTalkDeltaTransition,
   parseNativeTalkPoseAsset,
 } from "../../src/NativeTalkPoses.js";
@@ -270,7 +271,7 @@ export class NativeAseqFacialPresentation {
   play(owner, command) {
     if (
       this.active?.owner !== owner
-      || !["voice", "face-clip", "face-gaze", "face-controller"].includes(command?.name)
+      || !["face-clip", "face-gaze", "face-controller"].includes(command?.name)
     ) return false;
     if (command.name === "face-controller") {
       const actorTag = String(command.actorTag || "").toUpperCase();
@@ -383,32 +384,19 @@ export class NativeAseqFacialPresentation {
       if (!face) this.poseStates.set(actorTag, state);
       return true;
     }
-    const speakerId = String(
-      command.audio?.speakerId || command.speakerId || command.actorTag || "",
-    ).toUpperCase();
-    const face = this.active.faces.get(speakerId);
-    // Some opening voices belong to actors without a proven detailed FACE
-    // resource. Audio remains valid and is deliberately not redirected to a
-    // different character.
-    if (!face || !command.audio?.lipSync) return true;
-    if (!face.lipSync.start(command.audio.lipSync)) return true;
-    const state = face.lipSync.snapshot();
-    face.cueIndex = state.cueIndex;
-    face.prefetched = state.prefetched;
-    face.mouth.transition(
-      face.entry.poses.mouthPoses[face.poseBase + state.pose],
-      state.transitionTicksRemaining,
-    );
     return true;
   }
 
-  apply(owner, { frame } = {}) {
+  apply(owner, { frame, voiceCues = new Map() } = {}) {
     if (this.active?.owner !== owner) return false;
     const targetFrame = frame ?? this.active.lastFrame;
     if (
       !Number.isInteger(targetFrame)
       || targetFrame < this.active.lastFrame
     ) return false;
+    for (const face of this.active.faces.values()) {
+      this.#syncVoice(face, voiceCues.get(face.actorTag));
+    }
     while (this.active.lastFrame < targetFrame) {
       this.active.lastFrame += 1;
       for (const face of this.active.faces.values()) this.#advanceFace(face);
@@ -427,8 +415,12 @@ export class NativeAseqFacialPresentation {
       face.entry.loader.applyCharacterRigWorldMatrices(
         face.entry.root,
         routedMatrices,
+        // Some FACE resources have geometry ABOVE render key 3 (MGR's four
+        // neck rings). Mount the whole resource in attachment space, not just
+        // its animated face/eye subtree, or its neck stays at the model origin.
+        { rootTransform: Mt5Loader.rowMultiply(face.entry.inverseAttachmentBind, matrix) },
       );
-      this.#applyVertices(face);
+      this.#applyVertices(face, true);
     }
     return true;
   }
@@ -437,9 +429,8 @@ export class NativeAseqFacialPresentation {
     if (this.active?.owner !== owner) return false;
     if (this.program) {
       for (const face of this.active.faces.values()) {
-        face.lipSync.stop();
-        face.cueIndex = -1;
-        face.prefetched = false;
+        // Visibility belongs to the shot; the voice cue belongs to the audio
+        // session and is rebound at its current time in the next visible shot.
         face.entry.root.setEnabled(false);
       }
     } else {
@@ -516,11 +507,10 @@ export class NativeAseqFacialPresentation {
 
   async #loadActor(actorTag) {
     const definition = this.definitions.get(actorTag);
-    const neutralFallback = definition.poses?.kind === "neutral-fallback";
     const [modelBuffer, tableBuffer, poseAsset, texturePack] = await Promise.all([
       verifiedAsset(this.loadAsset, definition.model, `${actorTag} FACE model`),
       verifiedAsset(this.loadAsset, definition.table, `${actorTag} FTBL`),
-      neutralFallback ? null : this.#loadPoseAsset(definition.poses),
+      this.#loadPoseAsset(definition.poses),
       definition.texturePack
         ? verifiedAsset(
             this.loadAsset,
@@ -535,7 +525,7 @@ export class NativeAseqFacialPresentation {
       nativeTwiddledRectUV: true,
       textureAddressMode: "clamp",
       characterRigMode: "gpu",
-      orientTriangleWindingToNormals: true,
+      respectStripWindingSign: true,
       materialSideOrientation: null,
     });
     if (texturePack) configureMt5TexturePack(loader, texturePack);
@@ -560,17 +550,11 @@ export class NativeAseqFacialPresentation {
         || eyeNodes.some(node => !node)
       ) throw new Error(`${actorTag} FACE eye nodes are unavailable`);
       const table = parseFaceTable(tableBuffer, { vertexCount });
-      const poses = neutralFallback
-        ? neutralNativeTalkActorPoses({
-            actorTag: definition.poses.actorTag,
-            faceCode: definition.faceCode,
-            tableSha256: definition.table.sha256,
-          })
-        : nativeTalkActorPoses(
-            poseAsset,
-            definition.poses.actorTag,
-            definition.table.sha256,
-          );
+      const poses = nativeTalkActorPoses(
+        poseAsset,
+        definition.poses.actorTag,
+        definition.table.sha256,
+      );
       const sourcePositions = new Float32Array(vertexCount * 3);
       for (let vertexIndex = 0; vertexIndex < vertexCount; vertexIndex += 1) {
         const source = loader.globalVertices[
@@ -594,6 +578,7 @@ export class NativeAseqFacialPresentation {
         loader,
         root,
         primaryNode,
+        inverseAttachmentBind: Mt5Loader.inverseAffineRow(loader.sourceWorldMatrixForNode(primaryNode)),
         primaryVertexBase: primaryNode.model.vertexBase,
         primaryMeshes: meshes,
         eyeNodes,
@@ -650,8 +635,34 @@ export class NativeAseqFacialPresentation {
     face.entry.root.parent = null;
   }
 
-  #advanceFace(face) {
-    face.mouth.advanceTick();
+  #syncVoice(face, cue) {
+    const next = cue?.command.audio?.lipSync ? cue : null;
+    const target = Math.max(0, Math.floor((next?.positionSeconds || 0) * 30));
+    if (face.voiceCue !== next || target < face.voiceFrame) {
+      const previous = face.voiceCue;
+      face.voiceCue = next;
+      face.voiceFrame = 0;
+      face.lipSync.stop();
+      if (next) face.lipSync.start(next.command.audio.lipSync);
+      else if (!previous) return;
+      face.cueIndex = -1;
+      face.prefetched = false;
+      const state = face.lipSync.snapshot();
+      face.mouth.transition(face.entry.poses.mouthPoses[face.poseBase + state.pose],
+        next ? state.transitionTicksRemaining : 8);
+    }
+    if (!next) return;
+    // Use the playing clip's time, not the new shot's frame zero. This also
+    // catches up an actor returning from an offscreen shot without retaining
+    // its old meshes, and holds the mouth while audio is buffering/paused.
+    while (face.voiceFrame < target) {
+      face.voiceFrame += 1;
+      face.mouth.advanceTick();
+      this.#advanceVoice(face);
+    }
+  }
+
+  #advanceVoice(face) {
     const state = face.lipSync.advance(1);
     if (
       state.cueIndex !== face.cueIndex
@@ -665,6 +676,10 @@ export class NativeAseqFacialPresentation {
       );
     }
 
+  }
+
+  #advanceFace(face) {
+    if (!face.voiceCue) face.mouth.advanceTick();
     face.upper.advanceTick();
     if (face.upper.ticksRemaining === 0 && !face.controllerDrivenClose) {
       if (face.blinkPhase === "closing") {
@@ -722,43 +737,7 @@ export class NativeAseqFacialPresentation {
   }
 
   #resolveGazeTargetWorld(target) {
-    if (
-      target?.kind === "world-point"
-      && Array.isArray(target.position)
-      && target.position.length === 3
-      && target.position.every(Number.isFinite)
-    ) {
-      // AUTH/world script coordinates use the native scene X convention;
-      // NativeAseqBabylonActors reflects that component when placing actors.
-      return [-target.position[0], target.position[1], target.position[2]];
-    }
-    if (
-      target?.kind !== "actor-component"
-      || typeof target.actorTag !== "string"
-      || !Number.isInteger(target.selector)
-      || target.selector < -1
-      || target.selector > 127
-      || !Array.isArray(target.offset)
-      || target.offset.length !== 3
-      || !target.offset.every(Number.isFinite)
-    ) throw new Error("AUTH FACE gaze target is invalid");
-    const position = this.actors.componentWorldPosition(
-      target.actorTag,
-      target.selector,
-    );
-    if (!Array.isArray(position) || position.length !== 3) {
-      const component = target.selector === -1 ? "" : `:${target.selector}`;
-      throw new Error(
-        `AUTH FACE gaze target ${target.actorTag}${component} is unavailable`,
-      );
-    }
-    const world = BABYLON.Vector3.FromArray(position);
-    world.addInPlace(new BABYLON.Vector3(
-      -target.offset[0],
-      target.offset[1],
-      target.offset[2],
-    ));
-    return world.asArray();
+    return resolveNativeAseqGazeTarget(this.actors, target);
   }
 
   #applyEyeGaze(face, faceMatrix, routedMatrices) {
@@ -826,7 +805,7 @@ export class NativeAseqFacialPresentation {
     face.gazeTicksRemaining = nextTicksRemaining;
   }
 
-  #applyVertices(face) {
+  #applyVertices(face, updateSeam = false) {
     const positions = evaluateNativeTalkVertices({
       sourcePositions: face.entry.sourcePositions,
       vertexContributions: face.entry.table.vertexContributions,
@@ -841,7 +820,7 @@ export class NativeAseqFacialPresentation {
       for (let index = 0; index < mesh._mt5SourceVertexIndices.length; index += 1) {
         // Signed root-strip indices belong to the body attachment seam, not
         // the FACE table. They were rebound when the two surfaces met and
-        // must continue following the shared head bone instead of being
+        // receive the body's current seam deformation below instead of being
         // mistaken for morphable FACE vertex zero.
         if (mesh._mt5ExternalParentVertexOffsets?.[index] < 0) continue;
         const localIndex = mesh._mt5SourceVertexIndices[index] - vertexBase;
@@ -858,6 +837,9 @@ export class NativeAseqFacialPresentation {
         output[outputOffset + 1] = positions[sourceOffset + 1];
         output[outputOffset + 2] = positions[sourceOffset + 2];
       }
+      // begin() also restores morphs before the head matrix is routed. Only
+      // transfer animated seam positions after both rigs have the current pose.
+      if (updateSeam) applyBodyAttachmentSeam(face.surfaceIntegration, mesh, output);
       mesh.updateVerticesData(
         BABYLON.VertexBuffer.PositionKind,
         output,

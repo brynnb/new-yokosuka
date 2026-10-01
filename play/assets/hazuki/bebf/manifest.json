@@ -1,6 +1,6 @@
 {
   "schema": "new-yokosuka-aseq-activity-pack-v1",
-  "generatedBy": "tools/build_bebf_activity_pack.mjs",
+  "generatedBy": "tools/cutscenes/build_bebf_activity_pack.mjs",
   "source": {
     "disc": 1,
     "path": "extracted_files/data/SCENE/01/JOMO/BEBF.PKS",
@@ -74,6 +74,36 @@
   "playerActorAliases": [
     "AKID"
   ],
+  "mapLayers": [
+    {
+      "nativeName": "MAP",
+      "browserFilename": "S1_JOMO_MAP.MT5"
+    },
+    {
+      "nativeName": "MAP02",
+      "browserFilename": "S1_JOMO_MAP02.MT5"
+    },
+    {
+      "nativeName": "MAP04",
+      "browserFilename": "S1_JOMO_MAP04.MT5"
+    },
+    {
+      "nativeName": "MAP06",
+      "browserFilename": "S1_JOMO_MAP06.MT5"
+    },
+    {
+      "nativeName": "MAP08",
+      "browserFilename": "S1_JOMO_MAP08.MT5"
+    },
+    {
+      "nativeName": "FUT1",
+      "browserFilename": "S1_JOMO_FUTS301G.MT5"
+    },
+    {
+      "nativeName": "FUT2",
+      "browserFilename": "S1_JOMO_FUTS302G.MT5"
+    }
+  ],
   "packageActors": {
     "SINF": {
       "label": "Shenhua Ling",
@@ -95,7 +125,24 @@
       "callFileOffsets": [
         "0x4bbb0"
       ]
+    },
+    {
+      "commandHex": "a0040000",
+      "exactArguments": [
+        2,
+        115
+      ],
+      "kind": "native-control-no-output",
+      "constructedQueueWord": "0x00000002",
+      "byteReversedDriverWord": "0x02000000",
+      "callFileOffsets": [
+        "0x4bbc8"
+      ]
     }
+  ],
+  "actorTags": [
+    "AKID",
+    "SINF"
   ],
   "motionBanks": [
     {
@@ -153,6 +200,67 @@
       "actors": [
         "AKID"
       ],
+      "browserMapVisibility": [
+        {
+          "nativeName": "MAP",
+          "visible": true,
+          "source": {
+            "functionId": "0x4c584",
+            "callFileOffset": "0x4c59a",
+            "operation": "0x0098"
+          }
+        },
+        {
+          "nativeName": "MAP02",
+          "visible": true,
+          "source": {
+            "functionId": "0x4c584",
+            "callFileOffset": "0x4c5ae",
+            "operation": "0x0098"
+          }
+        },
+        {
+          "nativeName": "MAP04",
+          "visible": true,
+          "source": {
+            "functionId": "0x4c584",
+            "callFileOffset": "0x4c5c2",
+            "operation": "0x0098"
+          }
+        },
+        {
+          "nativeName": "MAP06",
+          "visible": true,
+          "source": {
+            "functionId": "0x4c584",
+            "callFileOffset": "0x4c5d6",
+            "operation": "0x0098"
+          }
+        },
+        {
+          "nativeName": "MAP08",
+          "visible": true,
+          "source": {
+            "functionId": "0x4c584",
+            "callFileOffset": "0x4c5ea",
+            "operation": "0x0098"
+          }
+        },
+        {
+          "nativeName": "FUT1",
+          "visible": false
+        },
+        {
+          "nativeName": "FUT2",
+          "visible": false
+        }
+      ],
+      "browserBackgroundColor": [
+        0,
+        0,
+        0,
+        1
+      ],
       "motions": [
         {
           "actorTag": "AKID",
@@ -184,6 +292,142 @@
       },
       "actors": [
         "SINF"
+      ],
+      "browserMapVisibility": [
+        {
+          "nativeName": "MAP",
+          "visible": false,
+          "source": {
+            "functionId": "0x4c50c",
+            "callFileOffset": "0x4c522",
+            "operation": "0x0098"
+          }
+        },
+        {
+          "nativeName": "MAP02",
+          "visible": false,
+          "source": {
+            "functionId": "0x4c50c",
+            "callFileOffset": "0x4c536",
+            "operation": "0x0098"
+          }
+        },
+        {
+          "nativeName": "MAP04",
+          "visible": false,
+          "source": {
+            "functionId": "0x4c50c",
+            "callFileOffset": "0x4c54a",
+            "operation": "0x0098"
+          }
+        },
+        {
+          "nativeName": "MAP06",
+          "visible": false,
+          "source": {
+            "functionId": "0x4c50c",
+            "callFileOffset": "0x4c55e",
+            "operation": "0x0098"
+          }
+        },
+        {
+          "nativeName": "MAP08",
+          "visible": false,
+          "source": {
+            "functionId": "0x4c50c",
+            "callFileOffset": "0x4c572",
+            "operation": "0x0098"
+          }
+        },
+        {
+          "nativeName": "FUT1",
+          "visible": false
+        },
+        {
+          "nativeName": "FUT2",
+          "visible": false
+        }
+      ],
+      "browserBackgroundColor": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "browserIsolatedStage": true,
+      "nativeSoundCommandCues": [
+        {
+          "frame": 0,
+          "action": {
+            "kind": "engineOperation",
+            "callFileOffset": "0x4bbb0",
+            "operationId": 108,
+            "operationHex": "0x006c",
+            "arguments": [
+              {
+                "kind": "constant",
+                "value": 16296,
+                "hex": "0x00003fa8",
+                "source": "0x4bba2"
+              },
+              {
+                "kind": "constant",
+                "value": 0,
+                "hex": "0x00000000",
+                "source": "0x4bba0"
+              },
+              {
+                "kind": "constant",
+                "value": 0,
+                "hex": "0x00000000",
+                "source": "0x4bb9e"
+              }
+            ],
+            "adapterStatus": "proven",
+            "semanticId": "sound-command-dispatch"
+          },
+          "source": {
+            "path": "tools/evidence/bebf-native-callback-ir.json",
+            "mapinfoSha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
+            "callbackFunction": "0x4bb38"
+          }
+        },
+        {
+          "frame": 0,
+          "action": {
+            "kind": "engineOperation",
+            "callFileOffset": "0x4bbc8",
+            "operationId": 108,
+            "operationHex": "0x006c",
+            "arguments": [
+              {
+                "kind": "constant",
+                "value": 1184,
+                "hex": "0x000004a0",
+                "source": "0x4bbba"
+              },
+              {
+                "kind": "constant",
+                "value": 2,
+                "hex": "0x00000002",
+                "source": "0x4bbb8"
+              },
+              {
+                "kind": "constant",
+                "value": 115,
+                "hex": "0x00000073",
+                "source": "0x4bbb6"
+              }
+            ],
+            "adapterStatus": "proven",
+            "semanticId": "sound-command-dispatch"
+          },
+          "source": {
+            "path": "tools/evidence/bebf-native-callback-ir.json",
+            "mapinfoSha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
+            "callbackFunction": "0x4bb38"
+          }
+        }
       ],
       "motions": [
         {
@@ -218,6 +462,67 @@
       "actors": [
         "AKID"
       ],
+      "browserMapVisibility": [
+        {
+          "nativeName": "MAP",
+          "visible": true,
+          "source": {
+            "functionId": "0x4c584",
+            "callFileOffset": "0x4c59a",
+            "operation": "0x0098"
+          }
+        },
+        {
+          "nativeName": "MAP02",
+          "visible": true,
+          "source": {
+            "functionId": "0x4c584",
+            "callFileOffset": "0x4c5ae",
+            "operation": "0x0098"
+          }
+        },
+        {
+          "nativeName": "MAP04",
+          "visible": true,
+          "source": {
+            "functionId": "0x4c584",
+            "callFileOffset": "0x4c5c2",
+            "operation": "0x0098"
+          }
+        },
+        {
+          "nativeName": "MAP06",
+          "visible": true,
+          "source": {
+            "functionId": "0x4c584",
+            "callFileOffset": "0x4c5d6",
+            "operation": "0x0098"
+          }
+        },
+        {
+          "nativeName": "MAP08",
+          "visible": true,
+          "source": {
+            "functionId": "0x4c584",
+            "callFileOffset": "0x4c5ea",
+            "operation": "0x0098"
+          }
+        },
+        {
+          "nativeName": "FUT1",
+          "visible": false
+        },
+        {
+          "nativeName": "FUT2",
+          "visible": false
+        }
+      ],
+      "browserBackgroundColor": [
+        0,
+        0,
+        0,
+        1
+      ],
       "motions": [
         {
           "actorTag": "AKID",
@@ -249,6 +554,142 @@
       },
       "actors": [
         "SINF"
+      ],
+      "browserMapVisibility": [
+        {
+          "nativeName": "MAP",
+          "visible": false,
+          "source": {
+            "functionId": "0x4c50c",
+            "callFileOffset": "0x4c522",
+            "operation": "0x0098"
+          }
+        },
+        {
+          "nativeName": "MAP02",
+          "visible": false,
+          "source": {
+            "functionId": "0x4c50c",
+            "callFileOffset": "0x4c536",
+            "operation": "0x0098"
+          }
+        },
+        {
+          "nativeName": "MAP04",
+          "visible": false,
+          "source": {
+            "functionId": "0x4c50c",
+            "callFileOffset": "0x4c54a",
+            "operation": "0x0098"
+          }
+        },
+        {
+          "nativeName": "MAP06",
+          "visible": false,
+          "source": {
+            "functionId": "0x4c50c",
+            "callFileOffset": "0x4c55e",
+            "operation": "0x0098"
+          }
+        },
+        {
+          "nativeName": "MAP08",
+          "visible": false,
+          "source": {
+            "functionId": "0x4c50c",
+            "callFileOffset": "0x4c572",
+            "operation": "0x0098"
+          }
+        },
+        {
+          "nativeName": "FUT1",
+          "visible": false
+        },
+        {
+          "nativeName": "FUT2",
+          "visible": false
+        }
+      ],
+      "browserBackgroundColor": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "browserIsolatedStage": true,
+      "nativeSoundCommandCues": [
+        {
+          "frame": 0,
+          "action": {
+            "kind": "engineOperation",
+            "callFileOffset": "0x4bbb0",
+            "operationId": 108,
+            "operationHex": "0x006c",
+            "arguments": [
+              {
+                "kind": "constant",
+                "value": 16296,
+                "hex": "0x00003fa8",
+                "source": "0x4bba2"
+              },
+              {
+                "kind": "constant",
+                "value": 0,
+                "hex": "0x00000000",
+                "source": "0x4bba0"
+              },
+              {
+                "kind": "constant",
+                "value": 0,
+                "hex": "0x00000000",
+                "source": "0x4bb9e"
+              }
+            ],
+            "adapterStatus": "proven",
+            "semanticId": "sound-command-dispatch"
+          },
+          "source": {
+            "path": "tools/evidence/bebf-native-callback-ir.json",
+            "mapinfoSha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
+            "callbackFunction": "0x4bb38"
+          }
+        },
+        {
+          "frame": 0,
+          "action": {
+            "kind": "engineOperation",
+            "callFileOffset": "0x4bbc8",
+            "operationId": 108,
+            "operationHex": "0x006c",
+            "arguments": [
+              {
+                "kind": "constant",
+                "value": 1184,
+                "hex": "0x000004a0",
+                "source": "0x4bbba"
+              },
+              {
+                "kind": "constant",
+                "value": 2,
+                "hex": "0x00000002",
+                "source": "0x4bbb8"
+              },
+              {
+                "kind": "constant",
+                "value": 115,
+                "hex": "0x00000073",
+                "source": "0x4bbb6"
+              }
+            ],
+            "adapterStatus": "proven",
+            "semanticId": "sound-command-dispatch"
+          },
+          "source": {
+            "path": "tools/evidence/bebf-native-callback-ir.json",
+            "mapinfoSha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
+            "callbackFunction": "0x4bb38"
+          }
+        }
       ],
       "motions": [
         {

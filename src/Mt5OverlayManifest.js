@@ -115,8 +115,9 @@ function copyLocalTransform(source, target) {
   }
 }
 
-function copyTextureAddressModes(sourceTexture, targetTexture) {
+function copyTextureRenderState(sourceTexture, targetTexture) {
   if (!sourceTexture || !targetTexture) return;
+  targetTexture.hasAlpha = sourceTexture.hasAlpha;
   targetTexture.wrapU = sourceTexture.wrapU;
   targetTexture.wrapV = sourceTexture.wrapV;
   targetTexture.wrapR = sourceTexture.wrapR;
@@ -128,13 +129,14 @@ function overlayMaterial(source, rank, options) {
   );
   if (!material) return source.material || null;
 
-  // Babylon clones the texture wrapper along with the material, but the
-  // wrapper's address modes fall back to clamp. Preserve the MT5 loader's
-  // per-strip repeat/mirror state so UV spans beyond 1.0 do not smear.
-  copyTextureAddressModes(
+  // Babylon's RawTexture.clone shares the pixels but resets hasAlpha and
+  // address modes. Depth bias must not turn transparent decals (such as snow)
+  // into solid triangles or smear UV spans beyond 1.0.
+  copyTextureRenderState(
     source.material?.diffuseTexture,
     material.diffuseTexture,
   );
+  material._mt5AlphaMode = source.material._mt5AlphaMode;
 
   const factor = Number.isFinite(options.depthBiasFactor)
     ? options.depthBiasFactor
@@ -244,6 +246,9 @@ function splitOverlayFaces(source, groups, options) {
     overlay.checkCollisions = false;
     overlay.layerMask = source.layerMask;
     overlay.renderingGroupId = source.renderingGroupId;
+    // Splitting faces must also retain vertex opacity and transparent order.
+    overlay.hasVertexAlpha = source.hasVertexAlpha;
+    overlay.alphaIndex = source.alphaIndex;
     overlay.alwaysSelectAsActiveMesh = source.alwaysSelectAsActiveMesh;
     overlay.metadata = {
       ...(source.metadata || {}),

@@ -27,6 +27,7 @@ import {
 import {
   controllerFamilyByIndex,
 } from "../play/characters/NpcControllerFamilies.js";
+import { NativeSecondaryMotionControlState } from "../play/events/NativeSecondaryMotionControlRuntime.js";
 
 function arrayBufferForFile(filename) {
   const buffer = fs.readFileSync(filename);
@@ -396,16 +397,50 @@ test("native secondary motion discovers and animates Lan Di's authored OSAG chai
     assert.equal(chains.length, 1);
     assert.equal(chains[0].length, 14);
     assert.ok(chains[0].every(node => (node.flag & 0xffff) === 0x78));
+    const sleeves = discoverNativeSecondaryMotionChains(renderRoot, { nodeTypes: [0x81] });
+    assert.equal(sleeves.length, 2);
+    const controls = new NativeSecondaryMotionControlState();
+    const baseMatrices = loader.characterRigWorldMatrices(renderRoot);
+    const controlled = sleeves.find(nodes => baseMatrices.get(nodes[0].addr)[12] < 0);
+    const other = sleeves.find(nodes => nodes !== controlled);
 
     const actors = {
       activeActor: actorTag => actorTag === "VILN"
         ? { actorCode: actorTag, root: actorRoot, model }
         : null,
     };
-    const runtime = createNativeSecondaryMotionPresentation({ actors });
+    const runtime = createNativeSecondaryMotionPresentation({ actors, readControls: () => controls });
     const owner = {};
     assert.equal(runtime.begin(owner, ["VILN"]), true);
     assert.equal(runtime.apply(owner, { frame: 0 }), true);
+    controls.writeGlobalFloat(0, 0x3e6b851f);
+    controls.writeGlobalFloat(10, 0x4185999a);
+    controls.writeGlobalFloat(20, 0xc0966666);
+    controls.writeGlobalFloat(30, 0x41e80000);
+    assert.equal(runtime.apply(owner), true);
+    const matrices = renderRoot._mt5CharacterWorldMatrices;
+    assert.notDeepEqual(matrices.get(controlled[0].addr), baseMatrices.get(controlled[0].addr));
+    for (const node of other) assert.deepEqual(matrices.get(node.addr), baseMatrices.get(node.addr));
+    for (const node of renderRoot._mt5Nodes.filter(node => [6, 7, 11, 12].includes(node.flag & 0xffff))) {
+      assert.deepEqual(matrices.get(node.addr), baseMatrices.get(node.addr), "sleeve does not change the arm or hand");
+    }
+    controls.clear();
+    assert.equal(runtime.apply(owner), true);
+    for (const node of controlled) assert.deepEqual(
+      renderRoot._mt5CharacterWorldMatrices.get(node.addr), baseMatrices.get(node.addr));
+
+    // The native callback restores scale to 1, so the forced branch stays
+    // active. It must retain the real model's nonzero sleeve bind rotation.
+    controls.writeGlobalFloat(0, 0x3f800000);
+    controls.writeGlobalFloat(1, 0x3f800000);
+    assert.equal(runtime.apply(owner), true);
+    for (const node of sleeves.flat()) {
+      const actual = renderRoot._mt5CharacterWorldMatrices.get(node.addr);
+      const expected = baseMatrices.get(node.addr);
+      assert.ok(actual.every((value, index) => Math.abs(value - expected[index]) < 2e-7),
+        `neutral sleeve control preserves authored orientation at 0x${node.addr.toString(16)}`);
+    }
+    controls.clear();
 
     const rootNode = chains[0][0];
     const followingNode = chains[0][1];
@@ -448,7 +483,12 @@ test("native secondary motion discovers and animates Lan Di's authored OSAG chai
       Math.abs(resetFollower.x - initialFollower.x - 2) < 1e-6,
     );
 
+    controls.writeGlobalFloat(0, 0x3e6b851f);
+    assert.equal(runtime.apply(owner), true);
     assert.equal(runtime.end(owner, "complete"), true);
+    for (const node of controlled) assert.deepEqual(
+      renderRoot._mt5CharacterWorldMatrices.get(node.addr), baseMatrices.get(node.addr),
+      "cleanup removes the shortened sleeve pose");
     const restoredFollower = worldPoint(model, followingNode.addr);
     assert.ok(
       Math.abs(restoredFollower.x - initialFollower.x - 2) < 1e-6,

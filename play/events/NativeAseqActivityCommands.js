@@ -1,4 +1,5 @@
 import { NATIVE_HAND_POSE_SLOT_ORDER } from "../../src/NativeHandRig.js";
+import { validNativeAseqGazeTarget } from "./NativeAseqGazeTarget.js";
 
 function pushCommand(frameCommands, frame, command) {
   if (!frameCommands.has(frame)) frameCommands.set(frame, []);
@@ -36,6 +37,8 @@ export function validateNativeAseqActivityMetadata(manifest) {
   return Object.freeze({
     actorTags,
     actorTagSet: new Set(actorTags),
+    objectTagSet: new Set([...actorTags, ...Object.keys(manifest.attachedObjects || {}),
+      ...Object.keys(manifest.sceneObjects || {})]),
     handPoseTables: Object.freeze({ ...(manifest.nativeHandPoseTables || {}) }),
   });
 }
@@ -45,12 +48,22 @@ export function enrichNativeAseqActivityFrames({
   sequence,
   frames,
   metadata,
+  audioCatalog = null,
 } = {}) {
   const activityLabel = record?.activityId || `<slot ${record?.slot ?? "?"}>`;
   const frameCommands = new Map(frames.map(frame => [
     frame.frame,
     [...frame.commands],
   ]));
+
+  for (const cue of record.nativeScriptSoundCues || []) {
+    if (!validFrame(cue, record.durationFrames) || !Number.isInteger(cue.commandWord)
+      || typeof cue.sourcePath !== "string" || !cue.source?.callFileOffset || !audioCatalog) {
+      throw new Error(`AUTH activity ${activityLabel} has an invalid script sound cue`);
+    }
+    const command = { name: "sound", commandWord: cue.commandWord, source: cue.source };
+    pushCommand(frameCommands, cue.frame, { ...command, audio: audioCatalog.resolve(command, cue.sourcePath) });
+  }
 
   for (const cue of record.nativeHandPoseCues || []) {
     const table = metadata.handPoseTables[cue.poseTableOffset];
@@ -71,6 +84,7 @@ export function enrichNativeAseqActivityFrames({
       poseTableOffset: cue.poseTableOffset,
       callFileOffset: cue.callFileOffset,
       vectors: table.vectors,
+      ...(Number.isInteger(cue.sourceOrder) ? { sourceOrder: cue.sourceOrder } : {}),
     });
   }
 
@@ -92,8 +106,10 @@ export function enrichNativeAseqActivityFrames({
       actorTag: cue.actorTag,
       channel: cue.channel,
       targetIndex: cue.targetIndex,
+      ...(cue.releaseDetailed === true ? { releaseDetailed: true } : {}),
       durationNativeTicks: cue.durationNativeTicks,
       callFileOffset: cue.callFileOffset,
+      ...(Number.isInteger(cue.sourceOrder) ? { sourceOrder: cue.sourceOrder } : {}),
     });
   }
 
@@ -112,6 +128,17 @@ export function enrichNativeAseqActivityFrames({
       sourceFunction: cue.sourceFunction,
       ownerCallFileOffset: cue.ownerCallFileOffset,
     });
+  }
+
+  for (const cue of record.nativeHandComponentCues || []) {
+    if (!validFrame(cue, record.durationFrames, { terminal: true })
+      || !sequence.actors.includes(cue.actorTag)
+      || !["left", "right"].includes(cue.side)
+      || ![0x15, 0x2a].includes(cue.componentMask)
+      || !validVector(cue.rotationRaw) || !cue.rotationRaw.every(Number.isInteger)) {
+      throw new Error(`AUTH activity ${activityLabel} has an invalid HAND component cue`);
+    }
+    pushCommand(frameCommands, cue.frame, { ...cue, name: "hand-component" });
   }
 
   for (const cue of record.nativeFaceClipCues || []) {
@@ -160,15 +187,8 @@ export function enrichNativeAseqActivityFrames({
   }
 
   for (const cue of record.nativeFaceGazeCues || []) {
-    const worldTargetValid = cue.target?.kind === "world-point"
-      && validVector(cue.target.position);
-    const actorTargetValid = cue.target?.kind === "actor-component"
-      && metadata.actorTagSet.has(cue.target.actorTag)
-      && Number.isInteger(cue.target.selector)
-      && cue.target.selector >= -1
-      && cue.target.selector <= 127
-      && typeof cue.target.associated === "boolean"
-      && validVector(cue.target.offset);
+    const targetValid = validNativeAseqGazeTarget(cue.target, metadata)
+      && (cue.target.kind !== "actor-component" || typeof cue.target.associated === "boolean");
     if (
       !validFrame(cue, record.durationFrames, { terminal: true })
       || !metadata.actorTagSet.has(cue.actorTag)
@@ -176,7 +196,7 @@ export function enrichNativeAseqActivityFrames({
       || !Number.isInteger(cue.durationNativeTicks)
       || cue.durationNativeTicks < 1
       || (cue.mode === 0 && cue.target !== undefined)
-      || (cue.mode === 2 && !worldTargetValid && !actorTargetValid)
+      || (cue.mode === 2 && !targetValid)
     ) throw new Error(`AUTH activity ${activityLabel} has an invalid FACE gaze cue`);
     pushCommand(frameCommands, cue.frame, {
       name: "face-gaze",
@@ -189,20 +209,13 @@ export function enrichNativeAseqActivityFrames({
   }
 
   for (const cue of record.nativeActorLookPointCues || []) {
-    const worldTargetValid = cue.target?.kind === "world-point"
-      && validVector(cue.target.position);
-    const actorTargetValid = cue.target?.kind === "actor-component"
-      && metadata.actorTagSet.has(cue.target.actorTag)
-      && Number.isInteger(cue.target.selector)
-      && cue.target.selector >= -1
-      && cue.target.selector <= 127
-      && validVector(cue.target.offset);
+    const targetValid = validNativeAseqGazeTarget(cue.target, metadata);
     if (
       !validFrame(cue, record.durationFrames, { terminal: true })
       || !metadata.actorTagSet.has(cue.actorTag)
       || !Number.isInteger(cue.selector)
       || !Number.isInteger(cue.mode)
-      || (cue.target !== null && !worldTargetValid && !actorTargetValid)
+      || (cue.target !== null && !targetValid)
       || (cue.selector < 0 && cue.target !== null)
       || (cue.selector >= 0 && cue.target === null)
     ) throw new Error(`AUTH activity ${activityLabel} has an invalid actor look-point cue`);
@@ -220,6 +233,13 @@ export function enrichNativeAseqActivityFrames({
     .sort(([left], [right]) => left - right)
     .map(([frame, commands]) => Object.freeze({
       frame,
-      commands: Object.freeze(commands),
+      // Reassemble mixed detailed/body hand requests in original call order.
+      // Their separate manifest arrays must not reorder same-frame overrides.
+      commands: Object.freeze((() => {
+        const ordered = commands.filter(command => Number.isInteger(command.sourceOrder))
+          .sort((a, b) => a.sourceOrder - b.sourceOrder);
+        let index = 0;
+        return commands.map(command => Number.isInteger(command.sourceOrder) ? ordered[index++] : command);
+      })()),
     })));
 }

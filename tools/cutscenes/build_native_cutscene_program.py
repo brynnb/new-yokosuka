@@ -19,6 +19,8 @@ from pathlib import Path
 from typing import Any
 
 from tools.cutscenes.native_cutscene_dependencies import (
+    activity_start_slot,
+    ordered_control_flow_calls,
     action_target_file_offsets,
     operation_013c_archive_pairs,
     operation_013c_static_record_pairs,
@@ -159,16 +161,6 @@ def embedded_auth_resources(mapinfo: bytes) -> list[dict[str, Any]]:
     return resources
 
 
-def _activity_start(action: dict[str, Any]) -> int | None:
-    if action.get("operationHex") != "0x0050":
-        return None
-    arguments = action.get("arguments", [])
-    if not arguments or arguments[0].get("kind") != "constant":
-        return None
-    value = arguments[0].get("value")
-    return value if isinstance(value, int) and 0 <= value < 0x80000000 else None
-
-
 def _actions_with_owner(function: dict[str, Any]) -> list[dict[str, Any]]:
     return [
         {"functionId": function["id"], "blockId": block["id"], **action}
@@ -177,139 +169,64 @@ def _actions_with_owner(function: dict[str, Any]) -> list[dict[str, Any]]:
     ]
 
 
-def auth_resource_family_selection(
-    functions: list[dict[str, Any]],
-    entry_function: str,
-    mapinfo: bytes,
-    path_token: str,
+def script_stage_resource_selection(
+    functions: list[dict[str, Any]], entry_function: str,
+    mapinfo: bytes, stage_functions: list[str],
 ) -> dict[str, Any]:
-    """Recover one embedded AUTH family from its native owner call graph.
+    """Select complete native stages, including silent camera/effect tracks.
 
-    MAPINFO assigns embedded TRCK slots in registration order. The family is
-    selected from authored ASTR paths, while playback order comes from the
-    owner's direct stage calls and each stage's native operation-0x0050 sites.
-    No playlist order is accepted as input.
+    ASTR describes audio resource paths, not a scene boundary. Selection ends
+    only when the final original stage returns to its owner.
     """
     resources = embedded_auth_resources(mapinfo)
-    matching = [
-        resource for resource in resources
-        if any(path_token in path for path in resource["authoredPaths"])
-    ]
-    if not matching:
-        raise ValueError(f"AUTH resource family {path_token!r} is unavailable")
-    runs: list[list[dict[str, Any]]] = []
-    for resource in matching:
-        if not runs or resource["slot"] != runs[-1][-1]["slot"] + 1:
-            runs.append([])
-        runs[-1].append(resource)
-    longest = max(len(run) for run in runs)
-    selected_runs = [run for run in runs if len(run) == longest]
-    if len(selected_runs) != 1:
-        raise ValueError(
-            f"AUTH resource family {path_token!r} has ambiguous contiguous runs"
-        )
-    selected = selected_runs[0]
-    selected_slots = {resource["slot"] for resource in selected}
     by_slot = {resource["slot"]: resource for resource in resources}
-    selected_calls: dict[str, list[dict[str, Any]]] = defaultdict(list)
-    for function in functions:
-        for action in _actions_with_owner(function):
-            slot = _activity_start(action)
-            if slot in selected_slots:
-                selected_calls[function["id"]].append({
-                    "slot": slot,
-                    "callFileOffset": action["callFileOffset"],
-                    "functionId": function["id"],
-                    "blockId": action["blockId"],
-                    "resource": {
-                        key: by_slot[slot][key]
-                        for key in ("sourceFileOffset", "byteLength", "sha256")
-                    },
-                })
-    missing = sorted(selected_slots - {
-        call["slot"] for calls in selected_calls.values() for call in calls
-    })
-    if missing:
-        raise ValueError(f"AUTH family slots have no exact owner call: {missing}")
-    duplicates = sorted(
-        slot for slot in selected_slots
-        if sum(call["slot"] == slot for calls in selected_calls.values() for call in calls) != 1
-    )
-    if duplicates:
-        raise ValueError(f"AUTH family slots do not have one owner call: {duplicates}")
-
-    owner = next(function for function in functions if function["id"] == entry_function)
-    stage_calls = []
-    for action in _actions_with_owner(owner):
-        if action.get("kind") != "directCall":
-            continue
-        target = action.get("targetFileOffset")
-        if target in selected_calls:
-            stage_calls.append({
-                "functionId": target,
-                "ownerCallFileOffset": action["callFileOffset"],
-                "ownerBlockId": action["blockId"],
+    by_id = {function["id"]: function for function in functions}
+    if not stage_functions or len(set(stage_functions)) != len(stage_functions):
+        raise ValueError("script stages must be non-empty and unique")
+    owner = by_id[entry_function]
+    calls = {action["callFileOffset"]: action for action in _actions_with_owner(owner)
+             if action.get("kind") == "directCall"
+             and action.get("targetFileOffset") in stage_functions}
+    if sorted(action["targetFileOffset"] for action in calls.values()) != sorted(stage_functions):
+        raise ValueError("script stages are not unique direct children of their owner")
+    order = ordered_control_flow_calls(owner, set(calls))
+    stages, owner_calls = [], []
+    for offset in order:
+        action = calls[offset]
+        function_id = action["targetFileOffset"]
+        function = by_id[function_id]
+        starts = {item["callFileOffset"]: item for item in _actions_with_owner(function)
+                  if activity_start_slot(item) is not None}
+        for call_offset in ordered_control_flow_calls(function, set(starts)):
+            item = starts[call_offset]
+            slot = activity_start_slot(item)
+            if slot not in by_slot:
+                raise ValueError(f"script stage {function_id} has unavailable AUTH slot {slot}")
+            owner_calls.append({
+                "slot": slot, "callFileOffset": call_offset,
+                "functionId": function_id, "blockId": item["blockId"],
+                "resource": {key: by_slot[slot][key]
+                             for key in ("sourceFileOffset", "byteLength", "sha256")},
             })
-    if {stage["functionId"] for stage in stage_calls} != set(selected_calls):
-        raise ValueError("AUTH family stages are not exact direct children of its owner")
-    if len(stage_calls) != len(selected_calls):
-        raise ValueError("AUTH family owner calls a stage more than once")
-    stage_calls.sort(key=lambda stage: int(stage["ownerCallFileOffset"], 16))
-    owner_calls = []
-    for stage in stage_calls:
-        calls = sorted(
-            selected_calls[stage["functionId"]],
-            key=lambda call: int(call["callFileOffset"], 16),
-        )
-        stage["activityCallCount"] = len(calls)
-        owner_calls.extend(calls)
-
-    completion_stage = stage_calls[-1]
-    last_selected_offset = max(
-        int(call["callFileOffset"], 16)
-        for call in selected_calls[completion_stage["functionId"]]
-    )
-    completion_function = next(
-        function for function in functions
-        if function["id"] == completion_stage["functionId"]
-    )
-    following = sorted((
-        {
-            "slot": slot,
-            "callFileOffset": action["callFileOffset"],
-            "functionId": completion_function["id"],
-            "blockId": action["blockId"],
-            "resource": {
-                key: by_slot[slot][key]
-                for key in ("sourceFileOffset", "byteLength", "sha256")
-            } if slot in by_slot else None,
-        }
-        for action in _actions_with_owner(completion_function)
-        if (slot := _activity_start(action)) is not None
-        and int(action["callFileOffset"], 16) > last_selected_offset
-        and slot not in selected_slots
-    ), key=lambda call: int(call["callFileOffset"], 16))
-    if not following:
-        raise ValueError("AUTH family has no exact following resource boundary")
-    boundary = following[0]
+        stages.append({
+            "functionId": function_id, "ownerCallFileOffset": offset,
+            "ownerBlockId": action["blockId"], "activityCallCount": len(starts),
+        })
+    selected_slots = sorted({call["slot"] for call in owner_calls})
+    final = stages[-1]
     return {
-        "selectionKind": "embedded-authored-path-family",
-        "authoredPathToken": path_token,
+        "selectionKind": "original-script-stages",
         "embeddedResourceCount": len(resources),
-        "matchingResourceCount": len(matching),
-        "selectedResourceCount": len(selected),
-        "selectedSlots": sorted(selected_slots),
-        "stages": stage_calls,
+        "selectedResourceCount": len(selected_slots),
+        "selectedSlots": selected_slots,
+        "stages": stages,
         "ownerCalls": owner_calls,
         "completionBoundary": {
-            "kind": "before-first-following-non-family-activity",
-            **boundary,
-            "ownerReturnBoundary": {
-                "functionId": entry_function,
-                "blockId": completion_stage["ownerBlockId"],
-                "callFileOffset": completion_stage["ownerCallFileOffset"],
-                "completedStageFunction": completion_stage["functionId"],
-            },
+            "kind": "after-original-stage-return",
+            "functionId": entry_function,
+            "blockId": final["ownerBlockId"],
+            "callFileOffset": final["ownerCallFileOffset"],
+            "completedStageFunction": final["functionId"],
         },
     }
 
@@ -334,25 +251,23 @@ def _reachable_blocks(
     return reached
 
 
-def slice_auth_resource_family_program(
+def slice_script_stage_program(
     functions: list[dict[str, Any]],
     entry_function: str,
     selection: dict[str, Any],
 ) -> tuple[list[dict[str, Any]], Counter[str]]:
-    """Terminate a room owner at the exact next-resource boundary."""
+    """Retain whole stages and terminate the owner after the final stage call."""
     by_id = {function["id"]: copy.deepcopy(function) for function in functions}
     boundary = selection["completionBoundary"]
-    stage = by_id[boundary["functionId"]]
-    stage_reached = _reachable_blocks(stage, excluded_block=boundary["blockId"])
-    stage["blocks"] = [block for block in stage["blocks"] if block["id"] in stage_reached]
-    for block in stage["blocks"]:
-        block["successors"] = [value for value in block.get("successors", []) if value in stage_reached]
-
-    owner_boundary = boundary["ownerReturnBoundary"]
+    owner_boundary = boundary
     owner = by_id[entry_function]
     owner_reached = _reachable_blocks(owner, stop_block=owner_boundary["blockId"])
     owner["blocks"] = [block for block in owner["blocks"] if block["id"] in owner_reached]
     for block in owner["blocks"]:
+        if block["id"] == owner_boundary["blockId"]:
+            final_index = next(i for i, action in enumerate(block["actions"])
+                               if action.get("callFileOffset") == owner_boundary["callFileOffset"])
+            block["actions"] = block["actions"][:final_index + 1]
         block["successors"] = (
             [] if block["id"] == owner_boundary["blockId"]
             else [value for value in block.get("successors", []) if value in owner_reached]
@@ -643,6 +558,12 @@ def invocation_specialized_closure(
             block for block in compiled.get("blocks", [])
             if block["id"] in selected
         ]
+        # Constant invocation arguments remove unreachable branches. Keep the
+        # compiled CFG closed as well: downstream stage projections must not
+        # traverse the discarded alternative (OP02's argument-7 route).
+        for block in compiled["blocks"]:
+            block["successors"] = [successor for successor in block.get("successors", [])
+                                   if successor in selected]
         compiled["specializedReachableBlockCount"] = len(compiled["blocks"])
         functions.append(compiled)
     return functions, Counter(edge[0] for edge in static_edges)
@@ -657,7 +578,7 @@ def build_program(
     area: str,
     entry_function: str,
     mapinfo: bytes | None = None,
-    auth_path_token: str | None = None,
+    stage_functions: list[str] | None = None,
 ) -> dict[str, Any]:
     native_map = source_map(event_ir, disc, area)
     entry_invocation = exact_entry_invocation(native_map, entry_function)
@@ -667,16 +588,16 @@ def build_program(
         entry_invocation["initialFrameFields"] if entry_invocation else {},
     )
     auth_selection = None
-    if auth_path_token is not None:
+    if stage_functions is not None:
         if mapinfo is None:
-            raise ValueError("AUTH path-family selection requires MAPINFO bytes")
-        auth_selection = auth_resource_family_selection(
+            raise ValueError("script-stage selection requires MAPINFO bytes")
+        auth_selection = script_stage_resource_selection(
             functions,
             entry_function,
             mapinfo,
-            auth_path_token,
+            stage_functions,
         )
-        functions, edge_kinds = slice_auth_resource_family_program(
+        functions, edge_kinds = slice_script_stage_program(
             functions,
             entry_function,
             auth_selection,
@@ -750,11 +671,8 @@ def main() -> None:
     parser.add_argument("--entry", required=True)
     parser.add_argument("--mapinfo", type=Path)
     parser.add_argument(
-        "--auth-path-token",
-        help=(
-            "select an embedded AUTH family by exact authored ASTR path and "
-            "terminate before the next non-family activity"
-        ),
+        "--stage-function", action="append",
+        help="select a complete original stage function (repeat for multiple stages)",
     )
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
@@ -772,7 +690,7 @@ def main() -> None:
         area=args.area,
         entry_function=args.entry,
         mapinfo=mapinfo_path.read_bytes(),
-        auth_path_token=args.auth_path_token,
+        stage_functions=args.stage_function,
     )
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(program, indent=2) + "\n")

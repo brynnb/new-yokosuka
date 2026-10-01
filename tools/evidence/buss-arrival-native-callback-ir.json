@@ -1,0 +1,1304 @@
+{
+  "schema": "new-yokosuka-native-aseq-callback-ir-v1",
+  "generatedBy": "tools/cutscenes/extract_native_aseq_callback_ir.py",
+  "source": {
+    "path": ".disc-work/dialogue/native-event-ir.json",
+    "sha256": "9a5db90da0403def6269c9968061216a06c831cb43f71a08554065c320481dc0",
+    "disc": 1,
+    "area": "D000",
+    "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+    "mapEntryFunction": "0x8e3fc",
+    "callbackFunction": "0x6c60c"
+  },
+  "function": {
+    "id": "0x6c60c",
+    "endFileOffsetExclusive": "0x6c92c",
+    "entryBlock": "0x6c60c",
+    "dialogueRegion": null,
+    "frameArgumentBase": 20,
+    "returnValue": null,
+    "blocks": [
+      {
+        "id": "0x6c60c",
+        "endFileOffsetExclusive": "0x6c61a",
+        "actions": [
+          {
+            "kind": "directCall",
+            "callFileOffset": "0x6c616",
+            "targetFileOffset": "0x9f60",
+            "arguments": [],
+            "argumentRecovery": "exact-stack-cleanup"
+          }
+        ],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": null,
+        "successors": [
+          "0x6c61a"
+        ]
+      },
+      {
+        "id": "0x6c61a",
+        "endFileOffsetExclusive": "0x6c620",
+        "actions": [
+          {
+            "kind": "directCall",
+            "callFileOffset": "0x6c61c",
+            "targetFileOffset": "0x6c92c",
+            "arguments": [],
+            "argumentRecovery": "exact-stack-cleanup"
+          }
+        ],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": null,
+        "successors": [
+          "0x6c620"
+        ]
+      },
+      {
+        "id": "0x6c620",
+        "endFileOffsetExclusive": "0x6c642",
+        "actions": [
+          {
+            "kind": "engineOperation",
+            "callFileOffset": "0x6c63e",
+            "operationId": 201,
+            "operationHex": "0x00c9",
+            "arguments": [
+              {
+                "kind": "constant",
+                "value": 1599296834,
+                "hex": "0x5f535542",
+                "ascii": "BUS_",
+                "source": "0x6c62e"
+              },
+              {
+                "kind": "constant",
+                "value": 157,
+                "hex": "0x0000009d",
+                "source": "0x6c62a"
+              },
+              {
+                "kind": "constant",
+                "value": 0,
+                "hex": "0x00000000",
+                "source": "0x6c628"
+              },
+              {
+                "kind": "static-pointer",
+                "value": 716540,
+                "hex": "0x000aeefc",
+                "source": "0x6c626"
+              },
+              {
+                "kind": "constant",
+                "value": 0,
+                "hex": "0x00000000",
+                "source": "0x6c620"
+              }
+            ],
+            "adapterStatus": "proven",
+            "semanticId": "hmdl-transform"
+          }
+        ],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": null,
+        "successors": [
+          "0x6c642"
+        ]
+      },
+      {
+        "id": "0x6c642",
+        "endFileOffsetExclusive": "0x6c666",
+        "actions": [
+          {
+            "kind": "engineOperation",
+            "callFileOffset": "0x6c662",
+            "operationId": 201,
+            "operationHex": "0x00c9",
+            "arguments": [
+              {
+                "kind": "constant",
+                "value": 1599296834,
+                "hex": "0x5f535542",
+                "ascii": "BUS_",
+                "source": "0x6c652"
+              },
+              {
+                "kind": "constant",
+                "value": 158,
+                "hex": "0x0000009e",
+                "source": "0x6c64e"
+              },
+              {
+                "kind": "constant",
+                "value": 0,
+                "hex": "0x00000000",
+                "source": "0x6c64c"
+              },
+              {
+                "kind": "static-pointer",
+                "value": 716552,
+                "hex": "0x000aef08",
+                "source": "0x6c64a"
+              },
+              {
+                "kind": "constant",
+                "value": 0,
+                "hex": "0x00000000",
+                "source": "0x6c644"
+              }
+            ],
+            "adapterStatus": "proven",
+            "semanticId": "hmdl-transform"
+          }
+        ],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": null,
+        "successors": [
+          "0x6c666"
+        ]
+      },
+      {
+        "id": "0x6c666",
+        "endFileOffsetExclusive": "0x6c68a",
+        "actions": [
+          {
+            "kind": "engineOperation",
+            "callFileOffset": "0x6c686",
+            "operationId": 201,
+            "operationHex": "0x00c9",
+            "arguments": [
+              {
+                "kind": "constant",
+                "value": 1599296834,
+                "hex": "0x5f535542",
+                "ascii": "BUS_",
+                "source": "0x6c676"
+              },
+              {
+                "kind": "constant",
+                "value": 155,
+                "hex": "0x0000009b",
+                "source": "0x6c672"
+              },
+              {
+                "kind": "constant",
+                "value": 0,
+                "hex": "0x00000000",
+                "source": "0x6c670"
+              },
+              {
+                "kind": "static-pointer",
+                "value": 716564,
+                "hex": "0x000aef14",
+                "source": "0x6c66e"
+              },
+              {
+                "kind": "constant",
+                "value": 0,
+                "hex": "0x00000000",
+                "source": "0x6c668"
+              }
+            ],
+            "adapterStatus": "proven",
+            "semanticId": "hmdl-transform"
+          }
+        ],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": null,
+        "successors": [
+          "0x6c68a"
+        ]
+      },
+      {
+        "id": "0x6c68a",
+        "endFileOffsetExclusive": "0x6c6ae",
+        "actions": [
+          {
+            "kind": "engineOperation",
+            "callFileOffset": "0x6c6aa",
+            "operationId": 201,
+            "operationHex": "0x00c9",
+            "arguments": [
+              {
+                "kind": "constant",
+                "value": 1599296834,
+                "hex": "0x5f535542",
+                "ascii": "BUS_",
+                "source": "0x6c69a"
+              },
+              {
+                "kind": "constant",
+                "value": 156,
+                "hex": "0x0000009c",
+                "source": "0x6c696"
+              },
+              {
+                "kind": "constant",
+                "value": 0,
+                "hex": "0x00000000",
+                "source": "0x6c694"
+              },
+              {
+                "kind": "static-pointer",
+                "value": 716576,
+                "hex": "0x000aef20",
+                "source": "0x6c692"
+              },
+              {
+                "kind": "constant",
+                "value": 0,
+                "hex": "0x00000000",
+                "source": "0x6c68c"
+              }
+            ],
+            "adapterStatus": "proven",
+            "semanticId": "hmdl-transform"
+          }
+        ],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": null,
+        "successors": [
+          "0x6c6ae"
+        ]
+      },
+      {
+        "id": "0x6c6ae",
+        "endFileOffsetExclusive": "0x6c6c2",
+        "actions": [
+          {
+            "kind": "frameFieldWrite",
+            "callFileOffset": "0x6c6b6",
+            "offset": 8,
+            "width": 4,
+            "value": 0,
+            "valueHex": "0x00000000",
+            "addressDefinitionFileOffset": "0x6c6b0",
+            "valueSource": "0x6c6b4"
+          }
+        ],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [
+          {
+            "fieldOffset": 24,
+            "loadWidth": 4,
+            "signedLoad": false,
+            "comparison": "cmp/eq",
+            "leftOperand": "#0",
+            "rightOperand": "r0",
+            "fieldOperand": "r0",
+            "constantOperand": "#0",
+            "constant": 0,
+            "fieldLoadFileOffset": "0x6c6ba",
+            "compareFileOffset": "0x6c6be",
+            "resolvedBranch": {
+              "branchFileOffset": "0x6c6c0",
+              "branchMnemonic": "bf",
+              "branchTargetFileOffset": "0x6c6fc",
+              "branchFallthroughFileOffset": "0x6c6c2",
+              "comparisonTrueSuccessor": "0x6c6c2",
+              "comparisonFalseSuccessor": "0x6c6fc"
+            }
+          }
+        ],
+        "terminator": {
+          "fileOffset": "0x6c6c0",
+          "mnemonic": "bf",
+          "operands": "0x6c6fc"
+        },
+        "successors": [
+          "0x6c6fc",
+          "0x6c6c2"
+        ]
+      },
+      {
+        "id": "0x6c6c2",
+        "endFileOffsetExclusive": "0x6c6c6",
+        "actions": [],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": {
+          "fileOffset": "0x6c6c4",
+          "mnemonic": "braf",
+          "operands": "r1"
+        },
+        "successors": [
+          "0x6c714"
+        ]
+      },
+      {
+        "id": "0x6c6fc",
+        "endFileOffsetExclusive": "0x6c712",
+        "actions": [
+          {
+            "kind": "engineOperation",
+            "callFileOffset": "0x6c70e",
+            "operationId": 108,
+            "operationHex": "0x006c",
+            "arguments": [
+              {
+                "kind": "constant",
+                "value": 1770665,
+                "hex": "0x001b04a9",
+                "source": "0x6c700"
+              },
+              {
+                "kind": "constant",
+                "value": 0,
+                "hex": "0x00000000",
+                "source": "0x6c6fe"
+              },
+              {
+                "kind": "constant",
+                "value": 0,
+                "hex": "0x00000000",
+                "source": "0x6c6fc"
+              }
+            ],
+            "adapterStatus": "proven",
+            "semanticId": "sound-command-dispatch"
+          }
+        ],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": null,
+        "successors": [
+          "0x6c712"
+        ]
+      },
+      {
+        "id": "0x6c712",
+        "endFileOffsetExclusive": "0x6c714",
+        "actions": [],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": null,
+        "successors": [
+          "0x6c714"
+        ]
+      },
+      {
+        "id": "0x6c714",
+        "endFileOffsetExclusive": "0x6c722",
+        "actions": [
+          {
+            "kind": "engineOperation",
+            "callFileOffset": "0x6c71e",
+            "operationId": 80,
+            "operationHex": "0x0050",
+            "arguments": [
+              {
+                "kind": "frame-field",
+                "source": "@(20,r14) at 0x6c714",
+                "offset": 20
+              }
+            ],
+            "adapterStatus": "proven",
+            "semanticId": "native-operation-0050-aseq-activity-control"
+          }
+        ],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": null,
+        "successors": [
+          "0x6c722"
+        ]
+      },
+      {
+        "id": "0x6c722",
+        "endFileOffsetExclusive": "0x6c724",
+        "actions": [],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": null,
+        "successors": [
+          "0x6c724"
+        ]
+      },
+      {
+        "id": "0x6c724",
+        "endFileOffsetExclusive": "0x6c732",
+        "actions": [
+          {
+            "kind": "engineOperation",
+            "callFileOffset": "0x6c72e",
+            "operationId": 80,
+            "operationHex": "0x0050",
+            "arguments": [
+              {
+                "kind": "constant",
+                "value": 4294967295,
+                "hex": "0xffffffff",
+                "source": "0x6c724"
+              }
+            ],
+            "resultComparison": {
+              "kind": "operationResult",
+              "comparison": "equal",
+              "constant": 0,
+              "compareFileOffset": "0x6c734",
+              "resolvedBranch": {
+                "branchFileOffset": "0x6c736",
+                "branchMnemonic": "bf",
+                "branchTargetFileOffset": "0x6c748",
+                "branchFallthroughFileOffset": "0x6c738",
+                "comparisonTrueSuccessor": "0x6c738",
+                "comparisonFalseSuccessor": "0x6c748"
+              }
+            },
+            "adapterStatus": "proven",
+            "semanticId": "native-operation-0050-aseq-activity-control"
+          }
+        ],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": null,
+        "successors": [
+          "0x6c732"
+        ]
+      },
+      {
+        "id": "0x6c732",
+        "endFileOffsetExclusive": "0x6c738",
+        "actions": [],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": {
+          "fileOffset": "0x6c736",
+          "mnemonic": "bf",
+          "operands": "0x6c748"
+        },
+        "successors": [
+          "0x6c748",
+          "0x6c738"
+        ]
+      },
+      {
+        "id": "0x6c738",
+        "endFileOffsetExclusive": "0x6c73c",
+        "actions": [],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": {
+          "fileOffset": "0x6c73a",
+          "mnemonic": "braf",
+          "operands": "r1"
+        },
+        "successors": [
+          "0x6c888"
+        ]
+      },
+      {
+        "id": "0x6c748",
+        "endFileOffsetExclusive": "0x6c760",
+        "actions": [
+          {
+            "kind": "frameFieldExpressionWrite",
+            "callFileOffset": "0x6c74e",
+            "offset": 0,
+            "width": 4,
+            "expression": {
+              "kind": "frame-field",
+              "offset": 8,
+              "width": 4,
+              "signedLoad": false
+            }
+          }
+        ],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [
+          {
+            "fieldOffset": 0,
+            "loadWidth": 4,
+            "signedLoad": false,
+            "comparison": "cmp/eq",
+            "leftOperand": "r5",
+            "rightOperand": "r4",
+            "fieldOperand": "r4",
+            "constantOperand": "r5",
+            "constant": 132,
+            "fieldLoadFileOffset": "0x6c752",
+            "compareFileOffset": "0x6c756",
+            "resolvedBranch": {
+              "branchFileOffset": "0x6c75e",
+              "branchMnemonic": "bf",
+              "branchTargetFileOffset": "0x6c770",
+              "branchFallthroughFileOffset": "0x6c760",
+              "comparisonTrueSuccessor": "0x6c770",
+              "comparisonFalseSuccessor": "0x6c760"
+            }
+          }
+        ],
+        "terminator": {
+          "fileOffset": "0x6c75e",
+          "mnemonic": "bf",
+          "operands": "0x6c770"
+        },
+        "successors": [
+          "0x6c770",
+          "0x6c760"
+        ]
+      },
+      {
+        "id": "0x6c760",
+        "endFileOffsetExclusive": "0x6c764",
+        "actions": [],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": {
+          "fileOffset": "0x6c762",
+          "mnemonic": "braf",
+          "operands": "r1"
+        },
+        "successors": [
+          "0x6c79c"
+        ]
+      },
+      {
+        "id": "0x6c770",
+        "endFileOffsetExclusive": "0x6c78a",
+        "actions": [
+          {
+            "kind": "childCoroutineLaunch",
+            "callFileOffset": "0x6c786",
+            "argumentCount": 1,
+            "arguments": [
+              {
+                "kind": "constant",
+                "value": 2,
+                "hex": "0x00000002",
+                "source": "0x6c770"
+              }
+            ],
+            "argumentCountRecovery": "local-stack-cleanup",
+            "targetFileOffset": "0x6cb8c"
+          }
+        ],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": null,
+        "successors": [
+          "0x6c78a"
+        ]
+      },
+      {
+        "id": "0x6c78a",
+        "endFileOffsetExclusive": "0x6c790",
+        "actions": [],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": {
+          "fileOffset": "0x6c78e",
+          "mnemonic": "braf",
+          "operands": "r1"
+        },
+        "successors": [
+          "0x6c844"
+        ]
+      },
+      {
+        "id": "0x6c79c",
+        "endFileOffsetExclusive": "0x6c7aa",
+        "actions": [],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [
+          {
+            "fieldOffset": 0,
+            "loadWidth": 4,
+            "signedLoad": false,
+            "comparison": "cmp/eq",
+            "leftOperand": "r5",
+            "rightOperand": "r4",
+            "fieldOperand": "r4",
+            "constantOperand": "r5",
+            "constant": 165,
+            "fieldLoadFileOffset": "0x6c79c",
+            "compareFileOffset": "0x6c7a0",
+            "resolvedBranch": {
+              "branchFileOffset": "0x6c7a8",
+              "branchMnemonic": "bf",
+              "branchTargetFileOffset": "0x6c7b8",
+              "branchFallthroughFileOffset": "0x6c7aa",
+              "comparisonTrueSuccessor": "0x6c7b8",
+              "comparisonFalseSuccessor": "0x6c7aa"
+            }
+          }
+        ],
+        "terminator": {
+          "fileOffset": "0x6c7a8",
+          "mnemonic": "bf",
+          "operands": "0x6c7b8"
+        },
+        "successors": [
+          "0x6c7b8",
+          "0x6c7aa"
+        ]
+      },
+      {
+        "id": "0x6c7aa",
+        "endFileOffsetExclusive": "0x6c7ae",
+        "actions": [],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": {
+          "fileOffset": "0x6c7ac",
+          "mnemonic": "braf",
+          "operands": "r1"
+        },
+        "successors": [
+          "0x6c810"
+        ]
+      },
+      {
+        "id": "0x6c7b8",
+        "endFileOffsetExclusive": "0x6c7ce",
+        "actions": [
+          {
+            "kind": "engineOperation",
+            "callFileOffset": "0x6c7ca",
+            "operationId": 108,
+            "operationHex": "0x006c",
+            "arguments": [
+              {
+                "kind": "constant",
+                "value": 1836201,
+                "hex": "0x001c04a9",
+                "source": "0x6c7bc"
+              },
+              {
+                "kind": "constant",
+                "value": 0,
+                "hex": "0x00000000",
+                "source": "0x6c7ba"
+              },
+              {
+                "kind": "constant",
+                "value": 0,
+                "hex": "0x00000000",
+                "source": "0x6c7b8"
+              }
+            ],
+            "adapterStatus": "proven",
+            "semanticId": "sound-command-dispatch"
+          }
+        ],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": null,
+        "successors": [
+          "0x6c7ce"
+        ]
+      },
+      {
+        "id": "0x6c7ce",
+        "endFileOffsetExclusive": "0x6c7f0",
+        "actions": [
+          {
+            "kind": "childCoroutineLaunch",
+            "callFileOffset": "0x6c7ec",
+            "argumentCount": 1,
+            "arguments": [
+              {
+                "kind": "constant",
+                "value": 1599296834,
+                "hex": "0x5f535542",
+                "ascii": "BUS_",
+                "source": "0x6c7d4"
+              }
+            ],
+            "argumentCountRecovery": "local-stack-cleanup",
+            "targetFileOffset": "0x6d0a0",
+            "resultTarget": {
+              "kind": "frameField",
+              "offset": 4,
+              "width": 4,
+              "storeFileOffset": "0x6c7f6"
+            }
+          }
+        ],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": null,
+        "successors": [
+          "0x6c7f0"
+        ]
+      },
+      {
+        "id": "0x6c7f0",
+        "endFileOffsetExclusive": "0x6c7fe",
+        "actions": [],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": {
+          "fileOffset": "0x6c7fc",
+          "mnemonic": "braf",
+          "operands": "r1"
+        },
+        "successors": [
+          "0x6c844"
+        ]
+      },
+      {
+        "id": "0x6c810",
+        "endFileOffsetExclusive": "0x6c81e",
+        "actions": [],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [
+          {
+            "fieldOffset": 0,
+            "loadWidth": 4,
+            "signedLoad": false,
+            "comparison": "cmp/eq",
+            "leftOperand": "r5",
+            "rightOperand": "r4",
+            "fieldOperand": "r4",
+            "constantOperand": "r5",
+            "constant": 216,
+            "fieldLoadFileOffset": "0x6c810",
+            "compareFileOffset": "0x6c814",
+            "resolvedBranch": {
+              "branchFileOffset": "0x6c81c",
+              "branchMnemonic": "bf",
+              "branchTargetFileOffset": "0x6c82c",
+              "branchFallthroughFileOffset": "0x6c81e",
+              "comparisonTrueSuccessor": "0x6c82c",
+              "comparisonFalseSuccessor": "0x6c81e"
+            }
+          }
+        ],
+        "terminator": {
+          "fileOffset": "0x6c81c",
+          "mnemonic": "bf",
+          "operands": "0x6c82c"
+        },
+        "successors": [
+          "0x6c82c",
+          "0x6c81e"
+        ]
+      },
+      {
+        "id": "0x6c81e",
+        "endFileOffsetExclusive": "0x6c822",
+        "actions": [],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": {
+          "fileOffset": "0x6c820",
+          "mnemonic": "braf",
+          "operands": "r1"
+        },
+        "successors": [
+          "0x6c844"
+        ]
+      },
+      {
+        "id": "0x6c82c",
+        "endFileOffsetExclusive": "0x6c830",
+        "actions": [],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": {
+          "fileOffset": "0x6c82e",
+          "mnemonic": "braf",
+          "operands": "r1"
+        },
+        "successors": [
+          "0x6c888"
+        ]
+      },
+      {
+        "id": "0x6c844",
+        "endFileOffsetExclusive": "0x6c858",
+        "actions": [
+          {
+            "kind": "frameFieldExpressionWrite",
+            "callFileOffset": "0x6c84e",
+            "offset": 8,
+            "width": 4,
+            "expression": {
+              "kind": "add",
+              "left": {
+                "kind": "frame-field",
+                "offset": 8,
+                "width": 4,
+                "signedLoad": false
+              },
+              "right": {
+                "kind": "constant",
+                "value": 1
+              }
+            }
+          },
+          {
+            "kind": "directCall",
+            "callFileOffset": "0x6c854",
+            "targetFileOffset": "0x6d1f0",
+            "arguments": [],
+            "argumentRecovery": "exact-stack-cleanup"
+          }
+        ],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": null,
+        "successors": [
+          "0x6c858"
+        ]
+      },
+      {
+        "id": "0x6c858",
+        "endFileOffsetExclusive": "0x6c868",
+        "actions": [
+          {
+            "kind": "runtimeInterfaceCall",
+            "callFileOffset": "0x6c864",
+            "operands": "@r0",
+            "targetSource": {
+              "kind": "base-register-slot",
+              "baseRegister": "r8",
+              "byteOffset": 44,
+              "loadFileOffset": "0x6c85e"
+            },
+            "runtimeDispatch": {
+              "selector": 0,
+              "selectorHex": "0x0000",
+              "argumentCount": 1,
+              "arguments": [
+                {
+                  "kind": "constant",
+                  "value": 1,
+                  "hex": "0x00000001",
+                  "source": "0x6c858"
+                }
+              ],
+              "argumentPointer": {
+                "kind": "native-argument-stack",
+                "register": "r13",
+                "delaySlotFileOffset": "0x6c866"
+              }
+            },
+            "resultBitTest": {
+              "kind": "runtimeResultBit",
+              "mask": 65536,
+              "maskHex": "0x00010000",
+              "swapFileOffset": "0x6c868",
+              "testFileOffset": "0x6c86a",
+              "resolvedBranch": {
+                "branchFileOffset": "0x6c86c",
+                "branchMnemonic": "bf",
+                "branchTargetFileOffset": "0x6c874",
+                "branchFallthroughFileOffset": "0x6c86e",
+                "comparisonTrueSuccessor": "0x6c874",
+                "comparisonFalseSuccessor": "0x6c86e"
+              }
+            },
+            "runtimeCallKind": "resumable-scheduler-dispatch",
+            "behaviorStatus": "proven",
+            "abiStatus": "proven",
+            "semanticId": "native-scheduler-countdown"
+          }
+        ],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": null,
+        "successors": [
+          "0x6c868"
+        ]
+      },
+      {
+        "id": "0x6c868",
+        "endFileOffsetExclusive": "0x6c86e",
+        "actions": [],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": {
+          "fileOffset": "0x6c86c",
+          "mnemonic": "bf",
+          "operands": "0x6c874"
+        },
+        "successors": [
+          "0x6c874",
+          "0x6c86e"
+        ]
+      },
+      {
+        "id": "0x6c86e",
+        "endFileOffsetExclusive": "0x6c874",
+        "actions": [
+          {
+            "kind": "coroutineContinuationTransfer",
+            "callFileOffset": "0x6c870",
+            "operands": "@r1",
+            "targetSource": {
+              "kind": "base-register-slot",
+              "baseRegister": "r8",
+              "byteOffset": 60,
+              "loadFileOffset": "0x6c86e"
+            },
+            "semanticId": "native-coroutine-save-continuation",
+            "behaviorStatus": "proven"
+          }
+        ],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": null,
+        "successors": [
+          "0x6c874"
+        ]
+      },
+      {
+        "id": "0x6c874",
+        "endFileOffsetExclusive": "0x6c87e",
+        "actions": [],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": {
+          "fileOffset": "0x6c87c",
+          "mnemonic": "braf",
+          "operands": "r1"
+        },
+        "successors": [
+          "0x6c724"
+        ]
+      },
+      {
+        "id": "0x6c888",
+        "endFileOffsetExclusive": "0x6c8b6",
+        "actions": [
+          {
+            "kind": "engineOperation",
+            "callFileOffset": "0x6c8b2",
+            "operationId": 46,
+            "operationHex": "0x002e",
+            "arguments": [
+              {
+                "kind": "constant",
+                "value": 30,
+                "hex": "0x0000001e",
+                "source": "0x6c8a2"
+              },
+              {
+                "kind": "constant",
+                "value": 0,
+                "hex": "0x00000000",
+                "source": "0x6c89e"
+              },
+              {
+                "kind": "constant",
+                "value": 0,
+                "hex": "0x00000000",
+                "source": "0x6c89a"
+              },
+              {
+                "kind": "constant",
+                "value": 0,
+                "hex": "0x00000000",
+                "source": "0x6c896"
+              },
+              {
+                "kind": "constant",
+                "value": 0,
+                "hex": "0x00000000",
+                "source": "0x6c892"
+              },
+              {
+                "kind": "constant",
+                "value": 255,
+                "hex": "0x000000ff",
+                "source": "0x6c88e"
+              },
+              {
+                "kind": "constant",
+                "value": 0,
+                "hex": "0x00000000",
+                "source": "0x6c88c"
+              },
+              {
+                "kind": "constant",
+                "value": 0,
+                "hex": "0x00000000",
+                "source": "0x6c88a"
+              },
+              {
+                "kind": "constant",
+                "value": 0,
+                "hex": "0x00000000",
+                "source": "0x6c888"
+              }
+            ],
+            "adapterStatus": "proven",
+            "semanticId": "scene-eight-channel-transition-write"
+          }
+        ],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": null,
+        "successors": [
+          "0x6c8b6"
+        ]
+      },
+      {
+        "id": "0x6c8b6",
+        "endFileOffsetExclusive": "0x6c8b8",
+        "actions": [],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": null,
+        "successors": [
+          "0x6c8b8"
+        ]
+      },
+      {
+        "id": "0x6c8b8",
+        "endFileOffsetExclusive": "0x6c8c6",
+        "actions": [
+          {
+            "kind": "engineOperation",
+            "callFileOffset": "0x6c8c2",
+            "operationId": 46,
+            "operationHex": "0x002e",
+            "arguments": [
+              {
+                "kind": "constant",
+                "value": 4294967295,
+                "hex": "0xffffffff",
+                "source": "0x6c8b8"
+              }
+            ],
+            "resultComparison": {
+              "kind": "operationResult",
+              "comparison": "equal",
+              "constant": 0,
+              "compareFileOffset": "0x6c8c8",
+              "resolvedBranch": {
+                "branchFileOffset": "0x6c8ca",
+                "branchMnemonic": "bf",
+                "branchTargetFileOffset": "0x6c8dc",
+                "branchFallthroughFileOffset": "0x6c8cc",
+                "comparisonTrueSuccessor": "0x6c8cc",
+                "comparisonFalseSuccessor": "0x6c8dc"
+              }
+            },
+            "adapterStatus": "proven",
+            "semanticId": "scene-eight-channel-transition-active-query"
+          }
+        ],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": null,
+        "successors": [
+          "0x6c8c6"
+        ]
+      },
+      {
+        "id": "0x6c8c6",
+        "endFileOffsetExclusive": "0x6c8cc",
+        "actions": [],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": {
+          "fileOffset": "0x6c8ca",
+          "mnemonic": "bf",
+          "operands": "0x6c8dc"
+        },
+        "successors": [
+          "0x6c8dc",
+          "0x6c8cc"
+        ]
+      },
+      {
+        "id": "0x6c8cc",
+        "endFileOffsetExclusive": "0x6c8d0",
+        "actions": [],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": {
+          "fileOffset": "0x6c8ce",
+          "mnemonic": "braf",
+          "operands": "r1"
+        },
+        "successors": [
+          "0x6c908"
+        ]
+      },
+      {
+        "id": "0x6c8dc",
+        "endFileOffsetExclusive": "0x6c8ec",
+        "actions": [
+          {
+            "kind": "runtimeInterfaceCall",
+            "callFileOffset": "0x6c8e8",
+            "operands": "@r0",
+            "targetSource": {
+              "kind": "base-register-slot",
+              "baseRegister": "r8",
+              "byteOffset": 44,
+              "loadFileOffset": "0x6c8e2"
+            },
+            "runtimeDispatch": {
+              "selector": 0,
+              "selectorHex": "0x0000",
+              "argumentCount": 1,
+              "arguments": [
+                {
+                  "kind": "constant",
+                  "value": 1,
+                  "hex": "0x00000001",
+                  "source": "0x6c8dc"
+                }
+              ],
+              "argumentPointer": {
+                "kind": "native-argument-stack",
+                "register": "r13",
+                "delaySlotFileOffset": "0x6c8ea"
+              }
+            },
+            "resultBitTest": {
+              "kind": "runtimeResultBit",
+              "mask": 65536,
+              "maskHex": "0x00010000",
+              "swapFileOffset": "0x6c8ec",
+              "testFileOffset": "0x6c8ee",
+              "resolvedBranch": {
+                "branchFileOffset": "0x6c8f0",
+                "branchMnemonic": "bf",
+                "branchTargetFileOffset": "0x6c8f8",
+                "branchFallthroughFileOffset": "0x6c8f2",
+                "comparisonTrueSuccessor": "0x6c8f8",
+                "comparisonFalseSuccessor": "0x6c8f2"
+              }
+            },
+            "runtimeCallKind": "resumable-scheduler-dispatch",
+            "behaviorStatus": "proven",
+            "abiStatus": "proven",
+            "semanticId": "native-scheduler-countdown"
+          }
+        ],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": null,
+        "successors": [
+          "0x6c8ec"
+        ]
+      },
+      {
+        "id": "0x6c8ec",
+        "endFileOffsetExclusive": "0x6c8f2",
+        "actions": [],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": {
+          "fileOffset": "0x6c8f0",
+          "mnemonic": "bf",
+          "operands": "0x6c8f8"
+        },
+        "successors": [
+          "0x6c8f8",
+          "0x6c8f2"
+        ]
+      },
+      {
+        "id": "0x6c8f2",
+        "endFileOffsetExclusive": "0x6c8f8",
+        "actions": [
+          {
+            "kind": "coroutineContinuationTransfer",
+            "callFileOffset": "0x6c8f4",
+            "operands": "@r1",
+            "targetSource": {
+              "kind": "base-register-slot",
+              "baseRegister": "r8",
+              "byteOffset": 60,
+              "loadFileOffset": "0x6c8f2"
+            },
+            "semanticId": "native-coroutine-save-continuation",
+            "behaviorStatus": "proven"
+          }
+        ],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": null,
+        "successors": [
+          "0x6c8f8"
+        ]
+      },
+      {
+        "id": "0x6c8f8",
+        "endFileOffsetExclusive": "0x6c902",
+        "actions": [],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": {
+          "fileOffset": "0x6c900",
+          "mnemonic": "braf",
+          "operands": "r1"
+        },
+        "successors": [
+          "0x6c8b8"
+        ]
+      },
+      {
+        "id": "0x6c908",
+        "endFileOffsetExclusive": "0x6c916",
+        "actions": [
+          {
+            "kind": "engineOperation",
+            "callFileOffset": "0x6c912",
+            "operationId": 80,
+            "operationHex": "0x0050",
+            "arguments": [
+              {
+                "kind": "constant",
+                "value": 4294967290,
+                "hex": "0xfffffffa",
+                "source": "0x6c908"
+              }
+            ],
+            "adapterStatus": "proven",
+            "semanticId": "native-operation-0050-aseq-activity-control"
+          }
+        ],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": null,
+        "successors": [
+          "0x6c916"
+        ]
+      },
+      {
+        "id": "0x6c916",
+        "endFileOffsetExclusive": "0x6c91e",
+        "actions": [
+          {
+            "kind": "directCall",
+            "callFileOffset": "0x6c91a",
+            "targetFileOffset": "0x6caac",
+            "arguments": [],
+            "argumentRecovery": "unresolved"
+          }
+        ],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": null,
+        "successors": [
+          "0x6c91e"
+        ]
+      },
+      {
+        "id": "0x6c91e",
+        "endFileOffsetExclusive": "0x6c924",
+        "actions": [],
+        "sceneFieldComparisons": [],
+        "frameFieldComparisons": [],
+        "terminator": null,
+        "successors": []
+      }
+    ],
+    "unresolvedControlTransfers": []
+  }
+}

@@ -15,6 +15,7 @@ export function createNativeCutsceneAssembly({
   musicControls,
   fetchArrayBuffer,
   getSkybox,
+  acquireEnvironmentIsolation,
   controlActorLookPoint,
   getPlayerModel,
   syncPlayerTransform,
@@ -28,9 +29,16 @@ export function createNativeCutsceneAssembly({
   transientNotice,
   getWorld,
   selectWorld,
+  coverLoading,
+  finishLoading,
 }) {
   let activeLightingPresetIndex = null;
+  let activePrecipitation = null;
   const director = createPlayNativeCutsceneDirector({
+    beforeComplete: cutscene => {
+      getPreviewRuntime().beginEnding(cutscene.id);
+      return coverLoading();
+    },
     packageRuntimeOptions: {
       scene,
       camera,
@@ -42,6 +50,19 @@ export function createNativeCutsceneAssembly({
       musicControls,
       fetchArrayBuffer,
       getSkybox,
+      acquireEnvironmentIsolation,
+      acquireActivityLighting: index => {
+        const previous = activeLightingPresetIndex;
+        activeLightingPresetIndex = index;
+        synchronizeWorldTime();
+        let released = false;
+        return () => {
+          if (released) return;
+          released = true;
+          activeLightingPresetIndex = previous;
+          synchronizeWorldTime();
+        };
+      },
       controlActorLookPoint,
       getPlayerModel,
       syncPlayerTransform,
@@ -50,6 +71,7 @@ export function createNativeCutsceneAssembly({
       const controller = getController();
       if (!controller) throw new Error("gameplay controller is unavailable");
       const requestedLightingPresetIndex = cutscene?.lightingPresetIndex;
+      const requestedPrecipitation = cutscene?.precipitation;
       const requestedDepthHaze = normalizeCutsceneDepthHaze(
         cutscene?.depthHaze,
       );
@@ -65,10 +87,15 @@ export function createNativeCutsceneAssembly({
           `Cutscene ${cutscene?.id || "unknown"} lighting preset is invalid`,
         );
       }
+      if (requestedPrecipitation !== undefined
+        && !["clear", "rain", "snow"].includes(requestedPrecipitation)) {
+        throw new Error(`Cutscene ${cutscene?.id || "unknown"} precipitation is invalid`);
+      }
       const snapshot = {
         noClip: controller.noClip,
         movementLocked: controller.movementLocked,
         lightingPresetIndex: activeLightingPresetIndex,
+        precipitation: activePrecipitation,
       };
       controller.setMovementLocked(true);
       controller.setNoClip(true);
@@ -77,6 +104,7 @@ export function createNativeCutsceneAssembly({
       if (requestedLightingPresetIndex !== undefined) {
         activeLightingPresetIndex = requestedLightingPresetIndex;
       }
+      if (requestedPrecipitation !== undefined) activePrecipitation = requestedPrecipitation;
       synchronizeWorldTime();
       const depthHaze = requestedDepthHaze
         ? createCutsceneDepthHaze({
@@ -95,6 +123,7 @@ export function createNativeCutsceneAssembly({
         if (requestedLightingPresetIndex !== undefined) {
           activeLightingPresetIndex = snapshot.lightingPresetIndex;
         }
+        activePrecipitation = snapshot.precipitation;
         depthHaze?.dispose();
         synchronizeWorldTime();
       };
@@ -118,11 +147,14 @@ export function createNativeCutsceneAssembly({
           controllerState: null,
           persistLocation: false,
         });
+      } else {
+        void finishLoading();
       }
     },
     onStopped: (cutscene, reason) => {
       if (["user-cancelled", "world-change", "superseded", "disposed"].includes(reason)) {
-        getPreviewRuntime().complete();
+        const previewCompleted = getPreviewRuntime().complete();
+        if (!previewCompleted && reason === "user-cancelled") void finishLoading();
         return;
       }
       getPreviewRuntime().fail(cutscene, reason);
@@ -132,6 +164,10 @@ export function createNativeCutsceneAssembly({
     configurable: false,
     enumerable: true,
     get: () => activeLightingPresetIndex,
+  });
+  Object.defineProperty(director, "activePrecipitation", {
+    enumerable: true,
+    get: () => activePrecipitation,
   });
   return director;
 }

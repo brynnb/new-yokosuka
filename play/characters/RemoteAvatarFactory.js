@@ -3,6 +3,7 @@ import { fetchAsset, getTexturePack } from "../../src/assetLoader.js";
 import { ForkliftRig, createForkliftState } from "../../src/ForkliftRig.js";
 import { Mt5Loader } from "../../src/Mt5Loader.js";
 import { interpolationAlpha } from "../../src/multiplayer/interpolation.js";
+import { interpolatePoseMatrices } from "../../src/AnimationMatrixInterpolation.js";
 import {
   GAME_TICKS_PER_SECOND,
   LOCOMOTION_BLEND_SECONDS,
@@ -24,16 +25,16 @@ export async function createRemoteAvatar({
   characterId,
   initialPosition,
   createCharacterModel,
+  characterRuntime,
   buildRetargetMatrices,
   modelForwardYawOffset,
   playableModelYawOffset,
   buildForkliftArmRetargetProfile,
   retargetMatrices,
   retargetForkliftArmMatrices,
-  clipRoutesAt,
-  remoteEmoteRoutes,
+  clipPoseAt,
+  remoteEmotePose,
   isKnownEmote,
-  interpolateRoutes,
   characterMinimumWorldY,
   nativeLocomotionRuntime,
   forkliftModelForId,
@@ -85,10 +86,12 @@ export async function createRemoteAvatar({
   const forkliftArmRetargetProfile = character.mirrorForkliftArmChannels
     ? buildForkliftArmRetargetProfile(loader, root)
     : null;
-  let renderedRoutes = null;
-  const applyRoutes = (routes, { forklift = false } = {}) => {
-    renderedRoutes = routes;
-    loader.applyCharacterRigWorldMatrices(
+  let renderedPose = null;
+  const applyPose = (pose, { forklift = false } = {}) => {
+    renderedPose = pose;
+    const routes = new Map([...characterRuntime.renderMatrixByKey].map(([key, index]) => [key, pose[index]]));
+    characterRuntime.applyHumanoidAnimationPose(
+      loader,
       root,
       forklift && forkliftArmRetargetProfile
         ? retargetForkliftArmMatrices(
@@ -97,6 +100,7 @@ export async function createRemoteAvatar({
           forkliftArmRetargetProfile,
         )
         : retargetMatrices(routes, retargetByRenderKey),
+      pose,
     );
   };
   offset.position.y = character.groundOffset ?? 0;
@@ -106,20 +110,18 @@ export async function createRemoteAvatar({
       state,
       tick / GAME_TICKS_PER_SECOND,
     ) || false;
-    if (applied) {
-      renderedRoutes = nativeLocomotionModel.latestRetargetedRoutes;
-    }
+    if (applied) renderedPose = null;
     return applied;
   };
   if (!applyNativeLocomotion("idle", 0)) {
-    applyRoutes(clipRoutesAt("idle", 0, { loop: true }));
+    applyPose(clipPoseAt("idle", 0, { loop: true }));
   }
   if (character.groundOffset === null) {
     const minimumY = characterMinimumWorldY(root);
     if (Number.isFinite(minimumY)) {
       offset.position.y += actor.position.y - minimumY + 0.003;
       if (!applyNativeLocomotion("idle", 0)) {
-        applyRoutes(clipRoutesAt("idle", 0, { loop: true }));
+        applyPose(clipPoseAt("idle", 0, { loop: true }));
       }
     }
   }
@@ -299,9 +301,10 @@ export async function createRemoteAvatar({
       }
       if (emoteId) {
         emoteElapsed += Math.max(0, deltaSeconds);
-        const routes = remoteEmoteRoutes(emoteId, emoteElapsed);
-        if (routes) {
-          applyRoutes(routes);
+        const pose = remoteEmotePose(emoteId, emoteElapsed);
+        if (pose) {
+          applyPose(pose);
+          characterRuntime.updateSecondaryMotion(root, deltaSeconds);
           return;
         }
         emoteId = null;
@@ -311,8 +314,8 @@ export async function createRemoteAvatar({
       if (locomotionChanged) {
         locomotionState = targetLocomotion;
         locomotionTick = 0;
-        locomotionTransition = renderedRoutes
-          ? { fromRoutes: renderedRoutes, elapsedSeconds: 0 }
+        locomotionTransition = renderedPose
+          ? { fromPose: renderedPose, elapsedSeconds: 0 }
           : null;
       } else {
         locomotionTick += (
@@ -327,16 +330,17 @@ export async function createRemoteAvatar({
         : locomotionTick;
       if (applyNativeLocomotion(locomotionState, locomotionTick)) {
         locomotionTransition = null;
+        characterRuntime.updateSecondaryMotion(root, deltaSeconds);
         return;
       }
-      let routes = clipRoutesAt(playbackState, playbackTick, { loop: true });
+      let pose = clipPoseAt(playbackState, playbackTick, { loop: true });
       if (locomotionTransition) {
         if (!locomotionChanged) {
           locomotionTransition.elapsedSeconds += Math.max(0, deltaSeconds);
         }
-        routes = interpolateRoutes(
-          locomotionTransition.fromRoutes,
-          routes,
+        pose = interpolatePoseMatrices(
+          locomotionTransition.fromPose,
+          pose,
           Math.min(
             1,
             locomotionTransition.elapsedSeconds / LOCOMOTION_BLEND_SECONDS,
@@ -348,7 +352,8 @@ export async function createRemoteAvatar({
           locomotionTransition = null;
         }
       }
-      applyRoutes(routes, { forklift: playbackState === "forkliftSit" });
+      applyPose(pose, { forklift: playbackState === "forkliftSit" });
+      characterRuntime.updateSecondaryMotion(root, deltaSeconds);
     },
     dispose() {
       if (disposed) return;

@@ -168,15 +168,17 @@ export class PlayPresentationRuntime {
     } else {
       forklifts.effects.endTireMarks();
     }
-    if (player.runtime.modelRoot?.isEnabled() === movement.firstPerson) {
-      player.runtime.setModelVisible(!movement.firstPerson);
-    }
     if (!story.runtime.ownsPlayerPresentation) {
+      // Actor presentation owns visibility as well as motion. First-person
+      // upkeep must not re-enable an avatar hidden by the current cinematic.
+      if (player.runtime.modelRoot?.isEnabled() === movement.firstPerson) {
+        player.runtime.setModelVisible(!movement.firstPerson);
+      }
       player.updateAnimation(
         animationDeltaSeconds,
         player.simulation.lastAnimationState,
       );
-      player.runtime.updateCloth(animationDeltaSeconds);
+      player.runtime.updateSecondaryMotion(animationDeltaSeconds);
     }
     world.interactions.update(wallDeltaSeconds);
     world.travelTransitions.finishDoor();

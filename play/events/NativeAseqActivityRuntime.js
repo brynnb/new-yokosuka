@@ -358,6 +358,7 @@ function presentationDetail(prepared) {
     slot: record.slot,
     durationFrames: record.durationFrames,
     actors: prepared.sequence.actors,
+    hiddenActors: record.hiddenActors || [],
     initialFrames: prepared.frames.filter(frame => frame.frame === 0),
     primedFrames,
     prepared,
@@ -485,6 +486,7 @@ export class NativeAseqActivityRuntime {
       sequence,
       frames: parsedFrames,
       metadata: this.catalog.presentationMetadata,
+      audioCatalog,
     });
     return Object.freeze({ ...base, frames: Object.freeze(frames) });
   }
@@ -594,6 +596,7 @@ export class NativeAseqActivityRuntime {
     return {
       activityId: record.activityId,
       slot: record.slot,
+      actors: record.actors,
       binding: record.binding?.kind === "map-embedded-slot"
         ? Object.freeze({
             kind: "map-embedded-slot",
@@ -639,15 +642,8 @@ export class NativeAseqActivityRuntime {
       frame => frame.frame === update.currentFrame,
     );
     try {
-      const accepted = this.presentation.advanceActivity({
-        ...update,
-        owner: active.owner,
-        frames,
-        prepared: active.prepared,
-      });
-      if (accepted !== true || accepted?.then) {
-        throw new Error("AUTH activity presentation rejected a frame");
-      }
+      // Scripted parameter writes belong to this frame's presentation. In
+      // particular OSAG must read them before resolving sleeve matrices.
       const activityAdvanced = this.onActivityAdvanced?.(
         active.record,
         update.currentFrame,
@@ -657,6 +653,15 @@ export class NativeAseqActivityRuntime {
         && (activityAdvanced !== true || activityAdvanced?.then)
       ) {
         throw new Error("AUTH activity advanced hook rejected a frame");
+      }
+      const accepted = this.presentation.advanceActivity({
+        ...update,
+        owner: active.owner,
+        frames,
+        prepared: active.prepared,
+      });
+      if (accepted !== true || accepted?.then) {
+        throw new Error("AUTH activity presentation rejected a frame");
       }
       active.currentFrame = update.currentFrame;
       this.lastUpdateError = null;

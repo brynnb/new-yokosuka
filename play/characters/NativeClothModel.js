@@ -1,7 +1,4 @@
-import {
-  Material,
-  VertexBuffer,
-} from "@babylonjs/core";
+import { mt5AuthoredSideOrientation } from "../../src/Mt5NormalPolicy.js";
 
 const CONTROL_TO_RENDER_NODE_TYPE = new Map([
   [-0x47, 0x56],
@@ -21,51 +18,6 @@ function surfaceMeshes(group, node) {
   ));
 }
 
-function authoredSideOrientation(mesh) {
-  const positions = mesh.getVerticesData(VertexBuffer.PositionKind);
-  const normals = mesh.getVerticesData(VertexBuffer.NormalKind);
-  const indices = mesh.getIndices();
-  if (!positions || !normals || !indices) {
-    throw new Error("native cloth surface orientation data is unavailable");
-  }
-  let alignment = 0;
-  for (let triangle = 0; triangle < indices.length; triangle += 3) {
-    const first = indices[triangle] * 3;
-    const second = indices[triangle + 1] * 3;
-    const third = indices[triangle + 2] * 3;
-    const firstSecond = [
-      positions[first] - positions[second],
-      positions[first + 1] - positions[second + 1],
-      positions[first + 2] - positions[second + 2],
-    ];
-    const thirdSecond = [
-      positions[third] - positions[second],
-      positions[third + 1] - positions[second + 1],
-      positions[third + 2] - positions[second + 2],
-    ];
-    const windingNormal = [
-      firstSecond[1] * thirdSecond[2] - firstSecond[2] * thirdSecond[1],
-      firstSecond[2] * thirdSecond[0] - firstSecond[0] * thirdSecond[2],
-      firstSecond[0] * thirdSecond[1] - firstSecond[1] * thirdSecond[0],
-    ];
-    const authoredNormal = [
-      normals[first] + normals[second] + normals[third],
-      normals[first + 1] + normals[second + 1] + normals[third + 1],
-      normals[first + 2] + normals[second + 2] + normals[third + 2],
-    ];
-    alignment += (
-      windingNormal[0] * authoredNormal[0]
-      + windingNormal[1] * authoredNormal[1]
-      + windingNormal[2] * authoredNormal[2]
-    );
-  }
-  const meshOrientation = mesh.sideOrientation;
-  if (alignment >= 0) return meshOrientation;
-  return meshOrientation === Material.ClockWiseSideOrientation
-    ? Material.CounterClockWiseSideOrientation
-    : Material.ClockWiseSideOrientation;
-}
-
 function prepareNativeClothSurface(group, node, side) {
   for (const mesh of surfaceMeshes(group, node)) {
     mesh._mt5NativeClothOutput = true;
@@ -82,7 +34,7 @@ function prepareNativeClothSurface(group, node, side) {
     const clothMaterial = material.clone(
       `${material.name}_native_cloth_${side}_${mesh.uniqueId}`,
     );
-    const sideOrientation = authoredSideOrientation(mesh);
+    const sideOrientation = mt5AuthoredSideOrientation(mesh);
     clothMaterial.backFaceCulling = true;
     clothMaterial.twoSidedLighting = false;
     mesh.material = clothMaterial;

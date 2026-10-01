@@ -10,6 +10,8 @@ import { parseAuthSequence, resolveAuthMotions } from "../src/AuthSequence.js";
 import { MotnLoader } from "../src/MotnLoader.js";
 import { Mt5Loader } from "../src/Mt5Loader.js";
 import { parseNativeHandRig } from "../src/NativeHandRig.js";
+import { extractNativeAseqCallbackHandPresentation } from "../tools/lib/NativeAseqCallbackPresentation.mjs";
+import evidence from "../tools/evidence/dnoz-dedicated-native-callback-ir.json" with { type: "json" };
 
 const sha256 = bytes => createHash("sha256").update(bytes).digest("hex");
 const variants = [{
@@ -77,7 +79,7 @@ test("DNOZ shares one exact authored environment and retains Nozomi's native HAN
   assert.equal(ski.handAssets.HRSK.right.rootRenderKey, 6);
   assert.equal(ski.handAssets.HRSK.rig.vertexCount, 299);
   assert.deepEqual(ski.handAssets.HRSK.rig.pointerOffsets, [24, 168, 8304, 5848, 6344, 8608]);
-  assert.deepEqual(ski.activities[1].nativeHandPoseCues, [{
+  assert.deepEqual(ski.activities[1].nativeHandPoseCues.filter(cue => cue.actorTag === "HRSK"), [{
     activitySlot: 1,
     frame: 2780,
     actorTag: "HRSK",
@@ -85,6 +87,7 @@ test("DNOZ shares one exact authored environment and retains Nozomi's native HAN
     poseTableOffset: "0x37a0",
     durationNativeTicks: 16,
     callFileOffset: "0xf8a",
+    sourceOrder: 3,
   }]);
   assert.ok(ski.nativeHandPoseTables["0x37a0"]);
 
@@ -113,6 +116,35 @@ test("DNOZ shares one exact authored environment and retains Nozomi's native HAN
     },
     callFileOffset: "0x1946",
   }]);
+});
+
+test("DNOZ retains nested actor setup, timed hand changes, and body handoffs", () => {
+  const bytes = fs.readFileSync("extracted_files/data/SCENE/01/DNOZ/MAPINFO.BIN");
+  for (const [root, callbacks] of [[variants[0].root, ["0xb34", "0xd18"]], [variants[1].root, ["0x13e0", "0x1628"]]]) {
+    const manifest = JSON.parse(fs.readFileSync(`${root}/manifest.json`));
+    for (const [slot, id] of callbacks.entries()) {
+      const result = extractNativeAseqCallbackHandPresentation({ bytes, callbackFunction: parseInt(id, 16),
+        nativeFunction: evidence.functions.find(fn => fn.id === id), functions: evidence.supportingFunctions, activitySlot: slot });
+      assert.deepEqual(result.nativeHandPoseCues, manifest.activities[slot].nativeHandPoseCues);
+      assert.deepEqual(result.nativeBodyHandPoseCues, manifest.activities[slot].nativeBodyHandPoseCues);
+    }
+    assert.deepEqual(manifest.activities[0].nativeHandPoseCues.map(cue => [cue.actorTag, cue.side, cue.frame]),
+      [["AKIR", "right", 0], ["AKIR", "left", 0], ["HRSK", "right", 0], ["HRSK", "left", 0]]);
+    assert.deepEqual(manifest.activities[0].nativeBodyHandPoseCues.map(cue => cue.sourceOrder), [0, 1]);
+    assert.deepEqual(manifest.activities[0].nativeHandPoseCues.map(cue => cue.sourceOrder), [2, 3, 4, 5]);
+  }
+  const ski = JSON.parse(fs.readFileSync(`${variants[0].root}/manifest.json`));
+  const tears = JSON.parse(fs.readFileSync(`${variants[1].root}/manifest.json`));
+  assert.deepEqual(ski.activities[1].nativeHandPoseCues.map(cue => cue.frame), [1900, 1900, 2780]);
+  assert.equal(ski.activities[1].nativeBodyHandPoseCues[0].releaseDetailed, true);
+  assert.deepEqual(tears.activities[1].nativeBodyHandPoseCues.filter(cue => cue.releaseDetailed)
+    .map(cue => [cue.actorTag, cue.frame]), [["AKIR", 143], ["HRSK", 143]]);
+
+  // Other predicates must not be mistaken for unconditional initialization.
+  const nativeFunction = structuredClone(evidence.functions.find(fn => fn.id === "0xd18"));
+  nativeFunction.blocks[0].actions[0].arguments[0].value = 123;
+  assert.throws(() => extractNativeAseqCallbackHandPresentation({ bytes, callbackFunction: 0xd18,
+    nativeFunction, functions: evidence.supportingFunctions }), /no governing ASEQ frame/);
 });
 
 test("DNOZ hand rig topology matches both exact detailed-hand surfaces", async () => {

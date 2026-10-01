@@ -30,6 +30,7 @@ export class NativeCutsceneDirector {
     registry,
     packageRuntimeOptions,
     acquireGameplay,
+    beforeComplete = null,
     onComplete,
     onStopped = () => {},
     createPackageRuntime = createNativeCutscenePackageRuntime,
@@ -44,6 +45,7 @@ export class NativeCutsceneDirector {
       throw new TypeError("native cutscene package registry is required");
     }
     this.registry = registry;
+    this.beforeComplete = beforeComplete;
     this.acquireGameplay = requireFunction(
       acquireGameplay,
       "native cutscene gameplay ownership adapter",
@@ -231,6 +233,16 @@ export class NativeCutsceneDirector {
     this.activeCutscene?.runtime.update(deltaSeconds);
   }
 
+  async end(reason = "user-cancelled") {
+    const active = this.activeCutscene;
+    if (!active) return this.stop(reason);
+    await this.#beforeComplete(active.cutscene.id);
+    // World changes/disposal may have already released this scene. Never let
+    // an old fade completion stop the new owner.
+    if (this.activeCutscene !== active) return false;
+    return this.stop(reason);
+  }
+
   stop(reason = "stopped") {
     const active = this.activeCutscene;
     const errors = [];
@@ -285,6 +297,7 @@ export class NativeCutsceneDirector {
   }
 
   togglePaused() {
+    if (this.activeCutscene?.ending) return false;
     const state = this.transportState();
     return state.active
       ? this.activeCutscene.runtime.setPaused(!state.paused)
@@ -292,6 +305,7 @@ export class NativeCutsceneDirector {
   }
 
   seekBySeconds(seconds) {
+    if (this.activeCutscene?.ending) return false;
     return this.activeCutscene?.runtime.seekBySeconds(seconds) || false;
   }
 
@@ -440,6 +454,10 @@ export class NativeCutsceneDirector {
         }
         return runtime.updateProgramPresentation(ownership.lease);
       },
+      setProgramSeeking: ({ ownership, seeking }) => {
+        const runtime = this.runtimes.get(ownership.packageId);
+        return runtime?.setProgramSeeking(ownership.lease, seeking) === true;
+      },
       completeProgram: ({ ownership } = {}) => (
         this.#endProgramOwnership(ownership, "complete")
       ),
@@ -471,6 +489,7 @@ export class NativeCutsceneDirector {
     const runtime = this.createPackageRuntime({
       ...this.packageRuntimeOptions,
       definition,
+      beforeComplete: cutsceneId => this.#beforeComplete(cutsceneId),
       onComplete: cutsceneId => this.#complete(cutsceneId),
       onStopped: (reason, cutsceneId) => this.#stopped(reason, cutsceneId),
     });
@@ -505,6 +524,7 @@ export class NativeCutsceneDirector {
           ...packageRuntime.programContext(detail),
         };
       },
+      beforeComplete: cutsceneId => this.#beforeComplete(cutsceneId),
       onComplete: cutsceneId => this.#complete(cutsceneId),
       onStopped: (reason, cutsceneId) => this.#stopped(reason, cutsceneId),
     });
@@ -617,6 +637,15 @@ export class NativeCutsceneDirector {
     if (!active || active.cutscene.id !== cutsceneId) return;
     this.#releaseActive();
     this.onComplete(active.cutscene);
+  }
+
+  #beforeComplete(cutsceneId) {
+    const active = this.activeCutscene;
+    if (!active || active.cutscene.id !== cutsceneId) return Promise.resolve();
+    // X and natural completion share one cover barrier; repeated X cannot
+    // restart the fade or release presentation ahead of the first request.
+    active.ending ??= Promise.resolve(this.beforeComplete?.(active.cutscene));
+    return active.ending;
   }
 
   #stopped(reason, cutsceneId) {

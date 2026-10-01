@@ -2,7 +2,7 @@ import { fetchAsset, fetchShenmue2Asset, getTexturePack, getStandaloneTexturePac
 import { Mt5Loader } from "../Mt5Loader.js";
 import { buildHiddenSuffixes, updateModelVisibility } from "../variants.js";
 import { clearWorldSceneAssets, freezeSceneRoots } from "./SceneResources.js";
-import { spatiallyBatchMt7MapRoot } from "./SceneSpatialIndex.js";
+import { spatiallyBatchMt7MapRoot } from "./StaticWorldBatching.js";
 import { installWorldMt7MapEffect } from "./MapEffects.js";
 
 // Bound each resource read so a stalled request cannot hold the scene queue

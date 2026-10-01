@@ -16,7 +16,8 @@ test("TGMA packages the exact letter activity and Fukuhara model variant", () =>
   assert.equal(manifest.attachedObjects.TEGS.assetPath, "play/assets/hazuki/tgma/MALS509G.CHRM");
   assert.equal(manifest.facialAssets.FUKU.bodyModelCode, "FUB_M");
   assert.equal(manifest.facialAssets.FUKU.faceCode, "FUB");
-  assert.equal(manifest.facialAssets.FUKU.poses.kind, "neutral-fallback");
+  assert.equal(manifest.facialAssets.FUKU.poses.path,
+    "play/assets/cutscenes/native-faces/fub-talk-poses.generated.json");
   assert.equal(
     manifest.facialAssets.FUKU.model.sha256,
     "d2723415939ce6b6387715a354921f64513a815216f0174892517cbdb5022054",
@@ -31,6 +32,7 @@ test("TGMA preserves independent attachment, visibility, and hinge timelines", (
   const letter = manifest.attachedObjects.TEGS;
   assert.deepEqual(letter.attachments, [{
     activitySlot: 0,
+    activityId: "TGMA/SEQDATA4.AUTH",
     frame: 1,
     parentActorTag: "AKIR",
     controlId: 18,
@@ -43,6 +45,7 @@ test("TGMA preserves independent attachment, visibility, and hinge timelines", (
   ]);
   assert.deepEqual(letter.nodeTransforms, lifecycle.letter.hinges.map(value => ({
     activitySlot: 0,
+    activityId: "TGMA/SEQDATA4.AUTH",
     ...(value.frame === undefined
       ? { firstFrame: value.firstFrame, lastFrame: value.lastFrame }
       : { frame: value.frame }),
@@ -63,6 +66,10 @@ test("TGMA compiles native callback hand and expression operations", () => {
       cue.durationNativeTicks,
     ]),
     [
+      [0, "AKIR", "left", "0x5ca74", 10],
+      [0, "AKIR", "right", "0x5ca74", 10],
+      [0, "FUKU", "left", "0x5ca74", 10],
+      [0, "FUKU", "right", "0x5ca74", 10],
       [1, "AKIR", "right", "0x5cee8", 1],
       [1, "AKIR", "left", "0x5cd20", 1],
       [1, "FUKU", "right", "0x5cd20", 1],
@@ -71,6 +78,7 @@ test("TGMA compiles native callback hand and expression operations", () => {
     ],
   );
   assert.deepEqual(Object.keys(manifest.nativeHandPoseTables).sort(), [
+    "0x5ca74",
     "0x5cb58",
     "0x5cd20",
     "0x5cee8",

@@ -236,3 +236,46 @@ test("cancel during an async activity suppresses stale failure and duplicate can
   }));
   assert.equal(h.controller.status, "idle");
 });
+
+test("early close processes the cancellation reply without waiting for a pending voice and permits the next conversation", async () => {
+  const h = harness();
+  let resolveVoice;
+  h.controller.dialogue.show = () => new Promise(resolve => { resolveVoice = resolve; });
+  const started = h.controller.start({ kind: "talk", actor: "HATO" });
+  const line = h.controller.handleYield(yieldMessage("request-1", {
+    type: "line", sequence: 1,
+  }, { line: { text: "Hato: Hello" } }));
+  await started;
+  h.controller.cancel();
+  const cancelled = h.controller.handleYield(yieldMessage("request-2", { type: "cancelled" }));
+  await new Promise(resolve => setImmediate(resolve));
+  const statusAfterReply = h.controller.status;
+  // Always release the fixture, including on the pre-fix failing path.
+  resolveVoice();
+  await Promise.all([line, cancelled]);
+  assert.equal(statusAfterReply, "idle", "a closed voice load must not block the server terminal reply");
+  const next = h.controller.start({ kind: "talk", actor: "SMTH" });
+  await h.controller.handleYield(yieldMessage("request-3", { type: "complete" }));
+  assert.equal((await next).outcome, "complete");
+  assert.equal(h.controller.status, "idle");
+});
+
+test("world interruption unblocks the next session and ignores the old presentation's late failure", async () => {
+  const h = harness();
+  let rejectVoice;
+  h.controller.dialogue.show = () => new Promise((_, reject) => { rejectVoice = reject; });
+  const started = h.controller.start({ kind: "talk", actor: "HATO" });
+  const line = h.controller.handleYield(yieldMessage("request-1", { type: "line" }, { line: { text: "Hato: Hello" } }));
+  await started;
+  h.controller.reset("world-change");
+  const next = h.controller.start({ kind: "talk", actor: "SMTH" });
+  h.controller.dialogue.show = () => true;
+  await h.controller.handleYield(yieldMessage("request-2", { type: "line" }, { line: { text: "Smith: Hello" } }));
+  await next;
+  rejectVoice(new Error("old voice failed after teardown"));
+  await line;
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(h.controller.status, "line");
+  assert.equal(h.controller.active.requestId, "request-2");
+  assert.deepEqual(h.errors, []);
+});

@@ -357,6 +357,7 @@ test("generated selector-18 advances through its exact AUTH activity", async () 
 
 test("generated selector-18 runs the complete exact DRAUTH presentation runtime", async () => {
   const counts = { transforms: 0, motions: 0, cameras: 0, audio: 0 };
+  const handCommands = [];
   const presentation = createNativeAseqPresentationRuntime({
     actors: {
       begin: () => true,
@@ -372,6 +373,13 @@ test("generated selector-18 runs the complete exact DRAUTH presentation runtime"
     audio: {
       begin: () => true,
       play: () => (counts.audio += 1, true),
+      end: () => true,
+    },
+    hands: {
+      prepare: () => true,
+      begin: () => true,
+      play: (_owner, command, { frame }) => (handCommands.push({ frame, ...command }), true),
+      apply: () => true,
       end: () => true,
     },
   });
@@ -420,6 +428,15 @@ test("generated selector-18 runs the complete exact DRAUTH presentation runtime"
   assert.equal(counts.cameras, 1330 + 1);
   assert.ok(counts.motions > 1330);
   assert.equal(counts.audio, 44);
+  // The generated package now carries native hand cues as well as body motion.
+  // This boundary test must consume those cues rather than fail before frame 0.
+  assert.deepEqual(handCommands.filter(command => command.name === "body-hand-pose")
+    .map(command => [command.frame, command.actorTag]), [
+    [0, "AKIR"], [0, "TONY"], [0, "SMTH"], [0, "HARY"], [0, "SERA"], [0, "JONZ"],
+    [1156, "AKIR"],
+  ]);
+  assert.deepEqual(handCommands.filter(command => command.name === "hand-pose" && command.actorTag === "AKIR")
+    .map(command => command.frame), [0, 0, 145, 145, 340, 340]);
   assert.equal(
     stopped[0].reason.result.reason.semanticId,
     "sound-command-dispatch",

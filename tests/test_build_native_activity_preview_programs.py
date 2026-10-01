@@ -13,6 +13,90 @@ SPEC.loader.exec_module(MODULE)
 
 
 class BuildNativeActivityPreviewProgramsTest(unittest.TestCase):
+    def test_named_music_follows_owner_commands_before_its_auth_not_slot_guesses(self):
+        program = json.loads((ROOT / "play/assets/introduction/op00/cutscene-program.generated.json").read_text())
+        manifest = json.loads((ROOT / "play/assets/introduction/op00/manifest.json").read_text())
+        sequence, calls = MODULE.owner_activity_sequence(program, manifest)
+        for function in program["functions"]:
+            function["blocks"].reverse()
+        commands, strings = MODULE.owner_named_audio_actions(program, calls)
+        function = MODULE.activity_preview_function(
+            [(a["slot"], None, None) for a in sequence], activity_commands=commands,
+        )
+        named = [(block["id"], action["callFileOffset"], action["arguments"][0]["value"])
+                 for block in function["blocks"] for action in block["actions"]
+                 if action.get("operationHex") == "0x015c"]
+        self.assertEqual(named, [("$activity-sequence:0:bind", "0x15516", 0x22402),
+                                 ("$activity-sequence:4:bind", "0x17cea", 0x225dc)])
+        self.assertEqual([(s["pointer"], s["value"]) for s in strings],
+                         [(0x22402, "OPEN1"), (0x225dc, "OPEN2")])
+        for block in function["blocks"]:
+            if block["id"] in {named[0][0], named[1][0]}:
+                self.assertEqual([a["operationHex"] for a in block["actions"]], ["0x015c", "0x0050"])
+        program["staticStrings"] = []
+        with self.assertRaisesRegex(ValueError, "named audio string is unavailable"):
+            MODULE.owner_named_audio_actions(program, calls)
+
+    def test_owner_sequence_uses_control_flow_not_resource_or_file_order(self):
+        program = json.loads((ROOT / "play/assets/introduction/op00/cutscene-program.generated.json").read_text())
+        manifest = json.loads((ROOT / "play/assets/introduction/op00/manifest.json").read_text())
+        # Storage slots 18/19 and 22/23 belong inside the dojo section, not
+        # after its ending. Shuffling inventory storage must not change playback.
+        program["authResourceSelection"]["ownerCalls"].reverse()
+        for function in program["functions"]:
+            function["blocks"].reverse()
+        sequence, calls = MODULE.owner_activity_sequence(program, manifest)
+        self.assertEqual([a["slot"] for a in sequence], [
+            0, 1, 2, 3, 4, 18, 19, 5, 6, 7, 8, 9, 10, 11, 12, 13,
+            22, 23, 14, 15, 16, 17, 20, 21, 24,
+        ])
+        self.assertEqual(calls[-1]["callFileOffset"], "0x1a95c")
+        manifest["source"]["sha256"] = "changed"
+        with self.assertRaisesRegex(ValueError, "owner source changed"):
+            MODULE.owner_activity_sequence(program, manifest)
+
+    def test_omitted_silent_storm_fails_independently_of_selected_list(self):
+        program = json.loads((ROOT / "play/assets/introduction/op00/cutscene-program.generated.json").read_text())
+        manifest = json.loads((ROOT / "play/assets/introduction/op00/manifest.json").read_text())
+        selection = program["authResourceSelection"]
+        selection["ownerCalls"] = [call for call in selection["ownerCalls"] if call["slot"] != 24]
+        selection["selectedSlots"].remove(24)
+        with self.assertRaisesRegex(ValueError, "original script stage 0x1785c activity coverage is incomplete"):
+            MODULE.owner_activity_sequence(program, manifest)
+
+    def test_owner_sequence_rejects_ambiguous_branches_and_repeated_calls(self):
+        function = {"entryBlock": "entry", "blocks": [
+            {"id": "entry", "actions": [], "successors": ["left", "right"]},
+            {"id": "left", "actions": [{"callFileOffset": "a"}], "successors": []},
+            {"id": "right", "actions": [{"callFileOffset": "b"}], "successors": []},
+        ]}
+        with self.assertRaisesRegex(ValueError, "branching or repeated"):
+            MODULE.ordered_control_flow_calls(function, {"a", "b"})
+        function["blocks"][0]["successors"] = ["left"]
+        function["blocks"][1]["successors"] = ["left"]
+        with self.assertRaisesRegex(ValueError, "branching or repeated"):
+            MODULE.ordered_control_flow_calls(function, {"a"})
+
+    def test_callback_music_begins_at_its_own_shot_not_program_start(self):
+        manifest = json.loads((ROOT / "play/assets/hazuki/bebf/manifest.json").read_text())
+        activities = manifest["activities"][:3]
+        commands = [MODULE.activity_start_sound_actions(a, manifest["ownerAudioCommands"]) for a in activities]
+        self.assertEqual([len(c) for c in commands], [0, 2, 0])
+        function = MODULE.activity_preview_function(
+            [(a["slot"], a["primaryPointer"], a["secondaryPointer"]) for a in activities],
+            activity_commands=commands,
+        )
+        sound_blocks = [(b["id"], a["callFileOffset"]) for b in function["blocks"] for a in b["actions"]
+                        if a.get("semanticId") == "sound-command-dispatch"]
+        self.assertEqual(sound_blocks, [("$activity-sequence:1:bind", "0x4bbb0"),
+                                       ("$activity-sequence:1:bind", "0x4bbc8")])
+        changed = copy.deepcopy(activities[1])
+        changed["nativeSoundCommandCues"][0]["frame"] = 10
+        with self.assertRaisesRegex(ValueError, "requires frame execution"):
+            MODULE.activity_start_sound_actions(changed, manifest["ownerAudioCommands"])
+        with self.assertRaisesRegex(ValueError, "unresolved activity sound"):
+            MODULE.activity_start_sound_actions(activities[1], [])
+
     def op02_source(self):
         program = json.loads((ROOT / "play/assets/introduction/op02/cutscene-program.generated.json").read_text())
         manifest = json.loads((ROOT / "play/assets/introduction/op02/manifest.json").read_text())

@@ -95,6 +95,8 @@ test("music assets match their provenance manifest", () => {
     "dobuita-selector-18",
     "op00-open1",
     "op00-open2",
+    "bgm120",
+    "op00-dream-tsm006",
   ]);
   for (const [trackId, track] of Object.entries(manifest.tracks)) {
     if (track.url.startsWith("/")) {

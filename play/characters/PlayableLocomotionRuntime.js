@@ -75,14 +75,10 @@ export class PlayableLocomotionRuntime {
     if (!NATIVE_LOCOMOTION_PROFILES.has(character?.controllerFamily)) {
       return null;
     }
-    return {
-      character,
-      loader,
-      renderRoot,
-      modelCode: character.modelCode,
-      humanoidControlRigs: new Map(),
-      motionPoseWorkspace: null,
-    };
+    const model = this.motionRuntime.characterRuntime.presentationModel(loader, renderRoot);
+    if (!model) throw new Error("native locomotion requires the loaded character presentation model");
+    model.character = character;
+    return model;
   }
 
   setRunCadenceScale(scale) {

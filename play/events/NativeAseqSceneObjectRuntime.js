@@ -1,5 +1,6 @@
 import * as BABYLON from "@babylonjs/core";
 import { setSourceOrderRotation } from "../../src/Mt5InteractionRotation.js";
+import { markWorldMeshDynamic } from "../../src/rendering/SceneSpatialIndex.js";
 
 const ACTOR_TAG = /^[A-Z0-9_]{4}$/;
 
@@ -74,7 +75,7 @@ function restoreRoot(root, snapshot) {
 
 function prepareRoot(root, actorTag) {
   for (const node of [root, ...root.getDescendants(false)]) {
-    node.unfreezeWorldMatrix?.();
+    markWorldMeshDynamic(node);
     node.checkCollisions = false;
     node.isPickable = false;
     node.metadata = {
@@ -193,10 +194,15 @@ export class NativeAseqSceneObjectRuntime {
         );
       }
       const root = matches[0];
+      // Borrowed travel targets belong to exploration outside this package.
+      // Capture before prepareRoot hides them for authored presentation.
+      const explorationSnapshot = root.metadata?.interactiveMapTransition
+        && !this.ownedRoots.has(root) ? captureRoot(root) : null;
       prepareRoot(root, actorTag);
       this.objects.set(actorTag, Object.freeze({
         actorCode: actorTag,
         root,
+        explorationSnapshot,
         model: null,
         sceneObject: true,
       }));
@@ -262,11 +268,21 @@ export class NativeAseqSceneObjectRuntime {
     });
     this.active = {
       owner,
+      presentationStates: new Map(),
       snapshots: new Map(records.map(record => [
         record.actorCode,
         captureRoot(record.root),
       ])),
     };
+    // Native entry setup belongs to the activity lease, not the shared asset.
+    // AUTH movement supplies position/rotation afterward but carries no scale
+    // channel (for example, JOMO's enlarged dream mirrors).
+    for (const record of records) {
+      const definition = this.definitions.get(record.actorCode);
+      if (definition.lifecycle === "auth-scoped" && definition.initialPresentation) {
+        applyGeneratedPresentation(record.root, definition.initialPresentation);
+      }
+    }
     return records;
   }
 
@@ -311,7 +327,24 @@ export class NativeAseqSceneObjectRuntime {
     const actorTag = String(actorTagValue || "").toUpperCase();
     if (!this.active.snapshots.has(actorTag)) return false;
     const record = this.objects.get(actorTag);
-    record.root.setEnabled(true);
+    // AUTH movement updates continue while a callback hides an effect. Moving
+    // an object must not undo its explicit stage visibility every frame.
+    record.root.setEnabled(this.active.presentationStates.get(actorTag) ?? true);
+    record.root.computeWorldMatrix?.(true);
+    return true;
+  }
+
+  applyStateCue(cue) {
+    const record = this.objects.get(cue?.actorTag);
+    if (!record || !this.active?.snapshots.has(cue.actorTag)) {
+      throw new Error(`AUTH scene-object cue ${cue?.actorTag} has no activity ownership`);
+    }
+    if (cue.presented !== undefined) {
+      if (typeof cue.presented !== "boolean") throw new Error("AUTH scene-object visibility is invalid");
+      this.active.presentationStates.set(cue.actorTag, cue.presented);
+      record.root.setEnabled(cue.presented);
+    }
+    if (cue.scale !== undefined) record.root.scaling.set(...generatedVector(cue.scale, "cue scale"));
     record.root.computeWorldMatrix?.(true);
     return true;
   }
@@ -344,7 +377,10 @@ export class NativeAseqSceneObjectRuntime {
   clear() {
     if (this.active) this.end(this.active.owner);
     if (this.program) this.endProgram(this.program.owner);
-    for (const record of this.objects.values()) record.root.setEnabled(false);
+    for (const record of this.objects.values()) {
+      if (record.explorationSnapshot) restoreRoot(record.root, record.explorationSnapshot);
+      else record.root.setEnabled(false);
+    }
     this.objects.clear();
     for (const root of this.ownedRoots) root.dispose?.();
     this.ownedRoots.clear();

@@ -25,6 +25,7 @@ Options:
   --worker-url <url>   Use an authenticated local R2 upload bridge instead of
                        S3 credentials
   --source-prefix <path> Limit runtime uploads to one repository-relative directory
+  --source-path <path>  Publish one exact runtime source file (repeat for several)
   --request-timeout-ms <n> Bridge request timeout (default: 120000)
   --dry-run            Validate sources and print the complete local plan
                        without requiring credentials or contacting R2
@@ -65,6 +66,12 @@ export function parseArguments(argv) {
 
   for (let index = 0; index < argv.length; index += 1) {
     const argument = argv[index];
+    if (argument === "--source-path") {
+      const value = argv[++index];
+      if (!value || value.startsWith("--")) throw new Error("--source-path requires a value");
+      (options.sourcePaths ||= []).push(value);
+      continue;
+    }
     if (argument === "--dry-run" || argument === "--force") {
       options[argument === "--dry-run" ? "dryRun" : "force"] = true;
       continue;
@@ -97,6 +104,10 @@ export function parseArguments(argv) {
     if (options.game !== "runtime") throw new Error("--source-prefix requires --game runtime");
     options.sourcePrefix = options.sourcePrefix.replace(/\/$/, "");
     validateSourcePath(`${options.sourcePrefix}/asset`);
+  }
+  if (options.sourcePaths) {
+    if (options.game !== "runtime") throw new Error("--source-path requires --game runtime");
+    options.sourcePaths.forEach(validateSourcePath);
   }
   options.concurrency = Number(options.concurrency);
   if (!Number.isInteger(options.concurrency) || options.concurrency < 1 || options.concurrency > 32) {
@@ -190,7 +201,7 @@ export function buildShenmue2Plan(root, prefix = DEFAULT_PREFIX) {
 
 export function buildUploadPlan(options) {
   if (options.game === "runtime") {
-    const plan = buildRuntimePlan(repositoryRoot, { sourcePrefix: options.sourcePrefix });
+    const plan = buildRuntimePlan(repositoryRoot, options);
     if (!plan.length) throw new Error("No runtime assets match the requested source prefix");
     return plan;
   }

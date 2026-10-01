@@ -1,6 +1,6 @@
 {
   "schema": "new-yokosuka-aseq-activity-pack-v1",
-  "generatedBy": "tools/build_buss_activity_pack.mjs",
+  "generatedBy": "tools/cutscenes/build_buss_activity_pack.mjs",
   "source": {
     "disc": 1,
     "path": "extracted_files/data/SCENE/01/D000/BUSS.PKS",
@@ -69,6 +69,800 @@
       "characterScale": 1
     }
   },
+  "attachedObjects": {
+    "BUS_": {
+      "browserFilename": "S1_D000_BUSS530G.MT5",
+      "sceneObject": true,
+      "attachments": [],
+      "nodeTransforms": [
+        {
+          "activitySlot": 16,
+          "frame": 0,
+          "nodeKey": 153,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            14108,
+            0
+          ],
+          "callFileOffset": "0x6c348",
+          "activityId": "BUSS/SEQDATA1.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-boarding-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 16,
+          "frame": 0,
+          "nodeKey": 154,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            30474,
+            0
+          ],
+          "callFileOffset": "0x6c36c",
+          "activityId": "BUSS/SEQDATA1.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-boarding-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 16,
+          "nodeKey": 153,
+          "callFileOffset": "0x6cf8c",
+          "frame": 100,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            14654,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA1.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 16,
+          "nodeKey": 153,
+          "callFileOffset": "0x6cf8c",
+          "firstFrame": 100,
+          "lastFrame": 130,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            -455,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA1.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 16,
+          "nodeKey": 154,
+          "callFileOffset": "0x6cfae",
+          "frame": 100,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            -30474,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA1.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 16,
+          "nodeKey": 154,
+          "callFileOffset": "0x6cfae",
+          "firstFrame": 100,
+          "lastFrame": 130,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            983,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA1.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 16,
+          "nodeKey": 157,
+          "callFileOffset": "0x6cfd0",
+          "frame": 100,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA1.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 16,
+          "nodeKey": 158,
+          "callFileOffset": "0x6cff2",
+          "frame": 100,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA1.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 16,
+          "nodeKey": 155,
+          "callFileOffset": "0x6d014",
+          "frame": 100,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA1.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 16,
+          "nodeKey": 156,
+          "callFileOffset": "0x6d036",
+          "frame": 100,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA1.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 16,
+          "frame": 0,
+          "nodeKey": 153,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            14108,
+            0
+          ],
+          "callFileOffset": "0x6c348",
+          "activityId": "BUSS/SEQDATA4.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-boarding-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 16,
+          "frame": 0,
+          "nodeKey": 154,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            30474,
+            0
+          ],
+          "callFileOffset": "0x6c36c",
+          "activityId": "BUSS/SEQDATA4.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-boarding-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 16,
+          "nodeKey": 153,
+          "callFileOffset": "0x6cf8c",
+          "frame": 100,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            14654,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA4.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 16,
+          "nodeKey": 153,
+          "callFileOffset": "0x6cf8c",
+          "firstFrame": 100,
+          "lastFrame": 130,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            -455,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA4.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 16,
+          "nodeKey": 154,
+          "callFileOffset": "0x6cfae",
+          "frame": 100,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            -30474,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA4.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 16,
+          "nodeKey": 154,
+          "callFileOffset": "0x6cfae",
+          "firstFrame": 100,
+          "lastFrame": 130,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            983,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA4.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 16,
+          "nodeKey": 157,
+          "callFileOffset": "0x6cfd0",
+          "frame": 100,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA4.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 16,
+          "nodeKey": 158,
+          "callFileOffset": "0x6cff2",
+          "frame": 100,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA4.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 16,
+          "nodeKey": 155,
+          "callFileOffset": "0x6d014",
+          "frame": 100,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA4.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 16,
+          "nodeKey": 156,
+          "callFileOffset": "0x6d036",
+          "frame": 100,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA4.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "frame": 0,
+          "nodeKey": 157,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            14108,
+            0
+          ],
+          "callFileOffset": "0x6c63e",
+          "activityId": "BUSS/SEQDATA2.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-arrival-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "frame": 0,
+          "nodeKey": 158,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            -30474,
+            0
+          ],
+          "callFileOffset": "0x6c662",
+          "activityId": "BUSS/SEQDATA2.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-arrival-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "frame": 0,
+          "nodeKey": 155,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            -14108,
+            0
+          ],
+          "callFileOffset": "0x6c686",
+          "activityId": "BUSS/SEQDATA2.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-arrival-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "frame": 0,
+          "nodeKey": 156,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            30474,
+            0
+          ],
+          "callFileOffset": "0x6c6aa",
+          "activityId": "BUSS/SEQDATA2.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-arrival-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "nodeKey": 153,
+          "callFileOffset": "0x6cf8c",
+          "frame": 132,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA2.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "nodeKey": 154,
+          "callFileOffset": "0x6cfae",
+          "frame": 132,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA2.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "nodeKey": 157,
+          "callFileOffset": "0x6cfd0",
+          "frame": 132,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            14654,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA2.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "nodeKey": 157,
+          "callFileOffset": "0x6cfd0",
+          "firstFrame": 132,
+          "lastFrame": 162,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            -455,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA2.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "nodeKey": 158,
+          "callFileOffset": "0x6cff2",
+          "frame": 132,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            -30474,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA2.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "nodeKey": 158,
+          "callFileOffset": "0x6cff2",
+          "firstFrame": 132,
+          "lastFrame": 162,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            983,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA2.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "nodeKey": 155,
+          "callFileOffset": "0x6d014",
+          "frame": 132,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            -14654,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA2.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "nodeKey": 155,
+          "callFileOffset": "0x6d014",
+          "firstFrame": 132,
+          "lastFrame": 162,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            455,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA2.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "nodeKey": 156,
+          "callFileOffset": "0x6d036",
+          "frame": 132,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            30474,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA2.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "nodeKey": 156,
+          "callFileOffset": "0x6d036",
+          "firstFrame": 132,
+          "lastFrame": 162,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            -983,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA2.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "frame": 0,
+          "nodeKey": 157,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            14108,
+            0
+          ],
+          "callFileOffset": "0x6c63e",
+          "activityId": "BUSS/SEQDATA5.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-arrival-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "frame": 0,
+          "nodeKey": 158,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            -30474,
+            0
+          ],
+          "callFileOffset": "0x6c662",
+          "activityId": "BUSS/SEQDATA5.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-arrival-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "frame": 0,
+          "nodeKey": 155,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            -14108,
+            0
+          ],
+          "callFileOffset": "0x6c686",
+          "activityId": "BUSS/SEQDATA5.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-arrival-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "frame": 0,
+          "nodeKey": 156,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            30474,
+            0
+          ],
+          "callFileOffset": "0x6c6aa",
+          "activityId": "BUSS/SEQDATA5.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-arrival-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "nodeKey": 153,
+          "callFileOffset": "0x6cf8c",
+          "frame": 132,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA5.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "nodeKey": 154,
+          "callFileOffset": "0x6cfae",
+          "frame": 132,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA5.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "nodeKey": 157,
+          "callFileOffset": "0x6cfd0",
+          "frame": 132,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            14654,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA5.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "nodeKey": 157,
+          "callFileOffset": "0x6cfd0",
+          "firstFrame": 132,
+          "lastFrame": 162,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            -455,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA5.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "nodeKey": 158,
+          "callFileOffset": "0x6cff2",
+          "frame": 132,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            -30474,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA5.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "nodeKey": 158,
+          "callFileOffset": "0x6cff2",
+          "firstFrame": 132,
+          "lastFrame": 162,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            983,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA5.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "nodeKey": 155,
+          "callFileOffset": "0x6d014",
+          "frame": 132,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            -14654,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA5.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "nodeKey": 155,
+          "callFileOffset": "0x6d014",
+          "firstFrame": 132,
+          "lastFrame": 162,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            455,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA5.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "nodeKey": 156,
+          "callFileOffset": "0x6d036",
+          "frame": 132,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            30474,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA5.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 17,
+          "nodeKey": 156,
+          "callFileOffset": "0x6d036",
+          "firstFrame": 132,
+          "lastFrame": 162,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            -983,
+            0
+          ],
+          "activityId": "BUSS/SEQDATA5.AUTH",
+          "source": {
+            "evidence": "tools/evidence/buss-door-native-callback-ir.json"
+          }
+        }
+      ]
+    }
+  },
+  "actorTags": [
+    "BUS_",
+    "AKIR",
+    "BUSS"
+  ],
   "motionBanks": [
     {
       "bank": 16,

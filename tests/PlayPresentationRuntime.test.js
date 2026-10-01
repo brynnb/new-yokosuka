@@ -107,7 +107,7 @@ test("render presentation preserves subsystem order and updates player HUD", () 
         combat: { updateAnimation: call("combat-animation") },
         modelRoot: { isEnabled: () => false },
         setModelVisible: call("model-visible"),
-        updateCloth: call("cloth"),
+        updateSecondaryMotion: call("cloth"),
       },
       simulation,
       updateAnimation: call("player-animation"),
@@ -213,6 +213,12 @@ test("render presentation preserves subsystem order and updates player HUD", () 
   assert.equal(dom.runState.textContent, "Run on");
   assert.equal(dom.worldCoordinates.textContent, "1.00, 2.00, 3.00");
   assert.equal(dom.worldFacing.textContent, "90.00°");
+  calls.length = 0;
+  storyRuntime.ownsPlayerPresentation = true;
+  runtime.update({ deltaSeconds: 0.02, wallDeltaSeconds: 0.03,
+    animationDeltaSeconds: 0.04, fixedStepAlpha: 0.5 });
+  assert.equal(calls.some(([name]) => name === "model-visible"), false,
+    "first-person gameplay visibility must not undo a cinematic's actor mask");
 });
 
 test("render presentation skips world-owned work until the world is ready", () => {

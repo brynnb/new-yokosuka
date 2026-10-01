@@ -52,11 +52,14 @@ const op00 = auditCompiledOwnerProgram({
     id: "S1-OP00-A0114",
     area: "OP00",
     entryFunction: "0x20350",
-    authoredPathToken: "/AUTH01/0114/",
-    slots: Array.from({ length: 24 }, (_, index) => index),
-    completionBoundarySlot: 24,
+    stageFunctions: ["0x1512a", "0x1785c"],
+    slots: Array.from({ length: 25 }, (_, index) => index),
   },
   activityManifest: readJson("play/assets/introduction/op00/manifest.json"),
+  sourceStageFunctions: (() => {
+    const ir = readJson("tools/evidence/op00-opening-owner-ir.json");
+    return [ir.function, ...ir.supportingFunctions];
+  })(),
 });
 const legacySurface = auditLegacyPlaylistSurface(productionSourceFiles);
 const report = {

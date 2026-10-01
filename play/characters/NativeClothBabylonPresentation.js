@@ -1,4 +1,5 @@
 import * as BABYLON from "@babylonjs/core";
+import { findCharacterRigSeamGroups, weldCharacterRigSeamPositions } from "../../src/Mt5CharacterRig.js";
 
 import { NATIVE_CLOTH_MODEL_METADATA } from "../data/native-cloth-models.web.js";
 import {
@@ -288,16 +289,17 @@ class NativeClothOutputSurface {
     externalRigNormals,
   ) {
     if (!this.acquired) throw new Error("native cloth output is not acquired");
-    if (worldAuxiliaryEndpoints?.length !== worldPositions.length) {
+    if (worldPositions && worldAuxiliaryEndpoints?.length !== worldPositions.length) {
       throw new Error("native cloth auxiliary output does not match positions");
     }
-    const rigPositions = worldPositions.map(point => (
+    if (!worldPositions && this.externalSourceVertexIndices.length === 0) return false;
+    const rigPositions = worldPositions?.map(point => (
       BABYLON.Vector3.TransformCoordinates(
         BABYLON.Vector3.FromArray(point),
         characterSpaceInverse,
       )
     ));
-    const rigAuxiliaryEndpoints = worldAuxiliaryEndpoints.map(point => (
+    const rigAuxiliaryEndpoints = worldAuxiliaryEndpoints?.map(point => (
       BABYLON.Vector3.TransformCoordinates(
         BABYLON.Vector3.FromArray(point),
         characterSpaceInverse,
@@ -307,7 +309,9 @@ class NativeClothOutputSurface {
       const positions = Float32Array.from(state.mesh.getVerticesData(
         BABYLON.VertexBuffer.PositionKind,
       ));
-      const normals = new Float32Array(positions.length);
+      const normals = Float32Array.from(state.mesh.getVerticesData(
+        BABYLON.VertexBuffer.NormalKind,
+      ) || new Float32Array(positions.length));
       for (
         let meshVertex = 0;
         meshVertex < state.mesh._mt5SourceVertexIndices.length;
@@ -318,6 +322,10 @@ class NativeClothOutputSurface {
           - this.renderVertexBase
         );
         const latticeIndex = this.renderVertexToLattice[renderVertex];
+        // A render-only frame still refreshes body-owned boundary vertices.
+        // Keep simulated vertices in their previous actor-local pose: an old
+        // world-space solution must not be reprojected through a newer owner.
+        if (!rigPositions && Number.isInteger(latticeIndex) && latticeIndex >= 0) continue;
         const point = Number.isInteger(latticeIndex) && latticeIndex >= 0
           ? rigPositions[latticeIndex]
           : externalRigPositions.get(
@@ -360,6 +368,7 @@ class NativeClothOutputSurface {
       }
       state.mesh.refreshBoundingInfo(true);
     }
+    return true;
   }
 
   release() {
@@ -495,8 +504,8 @@ class NativeClothGroupState {
           spaceMatrix,
         )
       : null;
-    let solved;
-    let solvedAuxiliary;
+    let solved = null;
+    let solvedAuxiliary = null;
     if (capturedFrame) {
       if (capturedFrame.length !== this.group.vertexCount * 6) {
         throw new Error("native captured cloth frame has the wrong vertex count");
@@ -552,13 +561,15 @@ class NativeClothGroupState {
       // on an accumulator-only render frame counter-translates the garment in
       // model space: it appears to remain in the world for one frame, then snap
       // back to its owner on the next native tick. Keep the existing local
-      // output buffers between ticks so the actor hierarchy carries the whole
-      // garment coherently. A reset still needs its initial surface write.
-      if (simulationResult.steps === 0 && !simulationResult.reset) return false;
-      solved = simulationResult.positions;
-      solvedAuxiliary = simulationResult.auxiliaryEndpoints;
+      // simulated output vertices between ticks. Body-owned boundary copies
+      // must still follow the current interpolated body pose below, otherwise
+      // their joins separate every other frame at 60 Hz.
+      if (simulationResult.steps > 0 || simulationResult.reset) {
+        solved = simulationResult.positions;
+        solvedAuxiliary = simulationResult.auxiliaryEndpoints;
+      }
     }
-    const liningPositions = renderBase?.map((point, index) => [
+    const liningPositions = solved && renderBase?.map((point, index) => [
       point[0] + solved[index][0] - controlBase[index][0],
       point[1] + solved[index][1] - controlBase[index][1],
       point[2] + solved[index][2] - controlBase[index][2],
@@ -607,23 +618,21 @@ class NativeClothGroupState {
         ),
       );
     }
-    this.exteriorOutput.write(
+    const exteriorUpdated = this.exteriorOutput.write(
       solved,
       solvedAuxiliary,
       inverseSpaceMatrix,
       externalRigPositions,
       externalRigNormals,
     );
-    if (this.liningOutput) {
-      this.liningOutput.write(
-        liningPositions,
-        liningAuxiliary,
-        inverseSpaceMatrix,
-        externalRigPositions,
-        externalRigNormals,
-      );
-    }
-    return true;
+    const liningUpdated = this.liningOutput?.write(
+      liningPositions,
+      liningAuxiliary,
+      inverseSpaceMatrix,
+      externalRigPositions,
+      externalRigNormals,
+    ) ?? false;
+    return exteriorUpdated || liningUpdated;
   }
 
   release() {
@@ -656,6 +665,31 @@ export class NativeClothModelState {
       profile,
       this.runtimeMode,
     ));
+    const seamVertices = [];
+    this.groups.forEach((group, nodeIndex) => {
+      for (const output of group.outputs) {
+        const end = output.renderVertexBase + output.renderVertexToLattice.length;
+        for (const { mesh: child, positions } of output.meshes) {
+          child._mt5SourceVertexIndices.forEach((sourceIndex, vertexIndex) => {
+            if (sourceIndex < output.renderVertexBase || sourceIndex >= end) return;
+            seamVertices.push({
+              child, vertexIndex, nodeIndex, sourceIndex,
+              sourcePosition: Array.from(positions.subarray(vertexIndex * 3, vertexIndex * 3 + 3)),
+            });
+          });
+        }
+      }
+    });
+    // Only join authored garment copies with the same attachment owner.
+    // Separate limb/skirt owners can coincide in the bind pose without being
+    // a seam. Reuse body welding's tolerance and per-node averaging; do not
+    // merge geometry or average the lining's opposite normals.
+    this.seamGroups = findCharacterRigSeamGroups(
+      seamVertices,
+      undefined,
+      (left, right) => this.groups[left].group.controlNode.parentAddr
+        === this.groups[right].group.controlNode.parentAddr,
+    );
     this.acquired = false;
     this.presentationOwner = null;
     this.runtimeSeconds = 0;
@@ -736,7 +770,6 @@ export class NativeClothModelState {
       this.presentationOwner !== null
       && this.presentationOwner !== owner
     ) return false;
-    if (!this.acquired) this.acquire();
     const rigMatrices = currentRigMatrices(this.model);
     const space = characterSpace(this.model);
     const spaceMatrix = space.computeWorldMatrix(true).clone();
@@ -769,6 +802,11 @@ export class NativeClothModelState {
         || colliders.length !== collisionProfile.records.length
       )
     ) return false;
+    // Acquiring detaches the preserved garment meshes from GPU skinning.
+    // A render-matrix-only caller has no native controller inputs for this
+    // solver; leave its authored animation in
+    // charge rather than freezing those meshes in their bind pose.
+    if (!this.acquired) this.acquire();
     const minimumBodyCollisionRadius = colliders.length > 0
       ? Math.min(...colliders.map(collider => collider.radius))
       : 0;
@@ -799,6 +837,12 @@ export class NativeClothModelState {
         capturedFrame,
       ) || updated;
     }
+    if (updated) {
+      for (const [mesh, positions] of weldCharacterRigSeamPositions(this.seamGroups)) {
+        mesh.updateVerticesData(BABYLON.VertexBuffer.PositionKind, positions, false, false);
+        mesh.refreshBoundingInfo(true);
+      }
+    }
     return updated;
   }
 
@@ -814,12 +858,12 @@ export class NativeClothModelState {
   }
 }
 
-export function nativeClothStateForModel(model) {
+export function nativeClothStateForModel(model, { create = true } = {}) {
   if (!model || (typeof model !== "object" && typeof model !== "function")) {
     throw new TypeError("native cloth state requires a model object");
   }
   let state = MODEL_STATES.get(model);
-  if (!state) {
+  if (!state && create) {
     state = new NativeClothModelState(model);
     MODEL_STATES.set(model, state);
   }

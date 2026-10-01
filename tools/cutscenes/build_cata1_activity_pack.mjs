@@ -10,6 +10,8 @@ import {
   sha256,
 } from "../lib/NativeAseqActivityPack.mjs";
 import { parseChrtSceneObjectBindings } from "../lib/chrt_scene_object_bindings.js";
+import { extractNativeAseqCallbackObjectPresentation } from "../lib/NativeAseqCallbackObjectPresentation.mjs";
+import { extractNativeAseqCallbackHandPresentation, extractNativeAseqHandInitialization } from "../lib/NativeAseqCallbackPresentation.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const sourceRoot = [
@@ -84,6 +86,60 @@ const sceneObjects = Object.fromEntries(bindings.map(binding => [binding.actorTa
   },
 } ]));
 
+const mapinfo = readFileSync(path.join(sourceRoot, "data/SCENE/01/JU00/MAPINFO.BIN"));
+const mapinfoSha256 = "3887bbf6e00eb152f7cca34d23841cc743ee7345a2db6b7d27e8303f6274924d";
+if (sha256(mapinfo) !== mapinfoSha256) throw new Error("CATA1 MAPINFO changed");
+const attachedObjects = {};
+const handsByMember = new Map();
+const nativeHandPoseTables = {};
+const setupEvidence = JSON.parse(readFileSync(path.join(root, "tools/evidence/cata1-seqdata0-native-callback-ir.json")));
+for (const [member, callbackFunction, durationFrames, expectedCount] of [
+  [0, 0x21e8c, 3150, 0], [1, 0x24050, 2391, 9], [2, 0x25958, 1370, 2],
+]) {
+  const evidencePath = `tools/evidence/cata1-seqdata${member}-native-callback-ir.json`;
+  const ir = JSON.parse(readFileSync(path.join(root, evidencePath), "utf8"));
+  if (ir.source.mapinfoSha256 !== mapinfoSha256
+    || Number.parseInt(ir.source.callbackFunction, 16) !== callbackFunction) {
+    throw new Error(`CATA1 callback evidence changed: ${evidencePath}`);
+  }
+  const { attachedObjectCues } = extractNativeAseqCallbackObjectPresentation({
+    bytes: mapinfo, callbackFunction, nativeFunction: ir.function, durationFrames,
+  });
+  const initial = extractNativeAseqHandInitialization({
+    bytes: mapinfo, nativeFunction: setupEvidence.supportingFunctions.find(fn => fn.id === "0x26c10"),
+    functions: setupEvidence.supportingFunctions, activitySlot: 0,
+  });
+  const hands = extractNativeAseqCallbackHandPresentation({
+    bytes: mapinfo, callbackFunction, nativeFunction: ir.function, activitySlot: 0,
+  });
+  const initialBody = initial.nativeBodyHandPoseCues.map((cue, sourceOrder) => ({ ...cue, sourceOrder }));
+  const timed = [...hands.nativeHandPoseCues, ...hands.nativeBodyHandPoseCues, ...hands.nativeHandComponentCues]
+    .sort((a, b) => Number.parseInt(a.callFileOffset, 16) - Number.parseInt(b.callFileOffset, 16))
+    .map((cue, index) => ({ ...cue, sourceOrder: initialBody.length + index }));
+  if (timed.some(cue => cue.frame > durationFrames || (cue.frame === durationFrames && !cue.componentMask))) throw new Error("CATA1 hand cue exceeds its activity");
+  handsByMember.set(member, {
+    nativeHandPoseCues: timed.filter(cue => cue.poseTableOffset),
+    nativeBodyHandPoseCues: [...initialBody, ...timed.filter(cue => Number.isInteger(cue.channel))],
+    nativeHandComponentCues: timed.filter(cue => Number.isInteger(cue.componentMask)),
+    nativeHandComponentLimitations: hands.nativeHandComponentLimitations,
+  });
+  Object.assign(nativeHandPoseTables, hands.nativeHandPoseTables);
+  if (attachedObjectCues.length !== expectedCount) throw new Error("CATA1 FIXO cue coverage changed");
+  for (const { objectTag, ...cue } of attachedObjectCues) {
+    const object = sceneObjects[objectTag];
+    if (!object) throw new Error(`CATA1 attachment has no CHRT object: ${objectTag}`);
+    attachedObjects[objectTag] ||= {
+      browserFilename: object.browserFilename,
+      sceneObject: true,
+      attachments: [],
+    };
+    attachedObjects[objectTag].attachments.push({
+      ...cue, activityId: `CATA1/SEQDATA${member}.AUTH`,
+      source: { evidence: evidencePath, callbackFunction: ir.source.callbackFunction },
+    });
+  }
+}
+
 buildNativeAseqActivityPack({
   generatedBy: "tools/cutscenes/build_cata1_activity_pack.mjs",
   resourceName: "CATA1",
@@ -95,6 +151,11 @@ buildNativeAseqActivityPack({
   bindingEvidence: "tools/evidence/cata1-native-lifecycle.json",
   selectionRule: "exact AUTH member name selected by repeated operation-0x013e slot-0 installs",
   audioManifest: "public/audio/world/cata1/manifest.json",
+  nativeHandPoseTables,
+  handAssets: {
+    MEGM: { actorTag: "MEGM", mode: "body-only", bodyModelCode: "SIA_L",
+      bodyHandRenderKeys: { left: -66, right: -65 } },
+  },
   outputDirectory,
   outputAssetPrefix: "play/assets/yamanose/cata1",
   manifestPath: path.join(outputDirectory, "manifest.json"),
@@ -109,6 +170,7 @@ buildNativeAseqActivityPack({
     },
   },
   sceneObjects,
+  attachedObjects,
   motionBanks: [{
     bank: 16,
     member: "M_01CAT.MOTN",
@@ -131,6 +193,7 @@ buildNativeAseqActivityPack({
     primaryPointer: 0x51bc1,
     secondaryPointer: 0x51bce,
     file: "SEQDATA0.AUTH",
+    ...handsByMember.get(0),
     actors: ["NBOX", "CATM", "AKIR", "MEGM"],
     durationFrames: 3150,
     frameCount: 70,
@@ -140,6 +203,7 @@ buildNativeAseqActivityPack({
     primaryPointer: 0x51bd4,
     secondaryPointer: 0x51be1,
     file: "SEQDATA1.AUTH",
+    ...handsByMember.get(1),
     actors: ["NBOX", "CATM", "NBO1", "NBO2", "NBO3", "BNB1", "BNB2", "BNB3", "MEGM", "AKIR"],
     durationFrames: 2391,
     frameCount: 72,
@@ -149,6 +213,7 @@ buildNativeAseqActivityPack({
     primaryPointer: 0x51be7,
     secondaryPointer: 0x51bf4,
     file: "SEQDATA2.AUTH",
+    ...handsByMember.get(2),
     actors: ["NBOX", "MEGM", "CATM", "AKIR"],
     durationFrames: 1370,
     frameCount: 45,

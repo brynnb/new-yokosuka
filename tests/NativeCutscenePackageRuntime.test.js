@@ -241,7 +241,7 @@ test("package world load waits for concurrent work before rolling back", async (
 
   assert.deepEqual(calls.slice(0, 2), [
     ["scene:load", ["world-root"]],
-    ["actors:load"],
+    ["actors:load", ["world-root"]],
   ]);
   assert.equal(packageActors.loaded, false);
   assert.equal(calls.some(([kind]) => kind.endsWith(":clear")), false);
@@ -254,7 +254,7 @@ test("package world load waits for concurrent work before rolling back", async (
   assert.equal(attachedObjects.loaded, false);
   assert.deepEqual(
     calls.filter(([kind]) => kind.endsWith(":clear")).map(([kind]) => kind),
-    ["scene:clear", "actors:clear", "maps:clear", "attached:clear"],
+    ["attached:clear", "scene:clear", "actors:clear", "maps:clear"],
   );
 });
 
@@ -304,7 +304,7 @@ for (const failure of ["actors", "maps", "attached"]) {
     );
     assert.deepEqual(
       calls.filter(([kind]) => kind.endsWith(":clear")).map(([kind]) => kind),
-      ["scene:clear", "actors:clear", "maps:clear", "attached:clear"],
+      ["attached:clear", "scene:clear", "actors:clear", "maps:clear"],
     );
   });
 }
@@ -580,6 +580,46 @@ test("program presentation flushes before a nested AUTH activity starts", async 
   runtime.rollbackProgram(owner, "test-complete");
 });
 
+test("completed program shots keep their surfaces until replacement or covered program release", async () => {
+  const calls = [];
+  const runtime = programRuntimeWith({ calls });
+  const owner = runtime.beginProgram({
+    program: { id: "owner-program" },
+    sceneState: createNativeSceneGameplayState(),
+  });
+  runtime.activityRuntime = {
+    active: null,
+    acceptsActivity: () => true,
+    async startActivity(detail) {
+      this.active = detail;
+      calls.push(["activity:start", detail.activityId]);
+      return detail;
+    },
+    stopActivity(detail) {
+      calls.push(["activity:stop", detail.activity.activityId]);
+      this.active = null;
+      return true;
+    },
+  };
+  runtime.music.beginActivity = () => true;
+  runtime.music.endActivity = () => true;
+  const adapter = runtime.nativeActivityAdapter();
+  const first = { activityId: "first" };
+  const last = { activityId: "last" };
+  await adapter.startActivity(first);
+  adapter.stopActivity({ reason: "complete", activity: first });
+  assert.equal(runtime.activityRuntime.active, first);
+  assert.equal(calls.some(([kind]) => kind === "activity:stop"), false);
+  await adapter.startActivity(last);
+  adapter.stopActivity({ reason: "complete", activity: last });
+  assert.equal(runtime.activityRuntime.active, last);
+  runtime.completeProgram(owner);
+  assert.deepEqual(calls.filter(([kind]) => kind.startsWith("activity:")), [
+    ["activity:start", "first"], ["activity:stop", "first"],
+    ["activity:start", "last"], ["activity:stop", "last"],
+  ]);
+});
+
 test("a cancelled nested AUTH begin releases its late owner without starting music", async () => {
   const calls = [];
   const runtime = programRuntimeWith({ calls });
@@ -644,6 +684,7 @@ for (const exit of ["complete", "cancel", "start-failure"]) {
     await adapter.startActivity({ slot: 0 });
     adapter.stopActivity({});
     assert.equal(calls.filter(([kind]) => kind === "stop").length, 0);
+    assert.equal(calls.filter(([kind]) => kind === "maps:end").length, 0);
     await adapter.startActivity({ slot: 0 });
     assert.equal(calls.filter(([kind]) => kind === "play").length, 1);
     if (exit === "complete") {
@@ -654,11 +695,17 @@ for (const exit of ["complete", "cancel", "start-failure"]) {
       runtime.rollbackProgram(owner, "cancelled");
     } else {
       adapter.stopActivity({});
-      runtime.attachedObjects = { beginActivity: () => false, endTrack() {} };
-      await assert.rejects(adapter.startActivity({ slot: 0 }), /rejected attached objects/);
+      // Preparation now runs inside the activity runtime before presentation.
+      // Fail that boundary; this fixture replaces it and cannot invoke the
+      // real attached-object preparation hook itself.
+      const startActivity = runtime.activityRuntime.startActivity;
+      runtime.activityRuntime.startActivity = async () => { throw new Error("activity preparation failed"); };
+      await assert.rejects(adapter.startActivity({ slot: 0 }), /activity preparation failed/);
+      runtime.activityRuntime.startActivity = startActivity;
       runtime.rollbackProgram(owner, "start-failed");
     }
     assert.equal(calls.filter(([kind]) => kind === "stop").length, 1);
+    assert.ok(calls.some(([kind]) => kind === "maps:end"));
     runtime.attachedObjects = null;
     const replayOwner = runtime.beginProgram(detail);
     await adapter.startActivity({ slot: 0 });
@@ -709,6 +756,7 @@ test("program ownership acquires and releases native scroll sprites transactiona
 test("program context exposes FACE-table state only for owned facial actors", () => {
   const actor = { actorCode: "AKID" };
   const runtime = runtimeWith({
+    definition: { music: { cues: [] } },
     programLease: { programId: "owner" },
     programFaceTable: new Map([["AKID", Object.freeze({
       actorTag: "AKID",

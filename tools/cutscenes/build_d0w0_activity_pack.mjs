@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { buildNativeAseqActivityPack } from "../lib/NativeAseqActivityPack.mjs";
+import { buildNativeAseqActivityPack, sha256 } from "../lib/NativeAseqActivityPack.mjs";
+import { extractNativeAseqCallbackHandPresentation, extractNativeAseqHandInitialization } from "../lib/NativeAseqCallbackPresentation.mjs";
+import { extractNativeAseqCallbackObjectPresentation } from "../lib/NativeAseqCallbackObjectPresentation.mjs";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const sourceRoot = [
@@ -12,6 +14,53 @@ const sourceRoot = [
   path.join(repoRoot, "extracted_files"),
 ].filter(Boolean).find(existsSync);
 if (!sourceRoot) throw new Error("an exact Shenmue Disc 1 extraction was not found");
+const evidence = JSON.parse(readFileSync(path.join(repoRoot, "tools/evidence/d0w0-native-callback-ir.json")));
+const mapinfo = readFileSync(path.join(sourceRoot, "data/SCENE/01/D000/MAPINFO.BIN"));
+if (sha256(mapinfo) !== evidence.source.mapinfoSha256 || evidence.function.id !== "0x5870c") {
+  throw new Error("D0W0 hand callback source changed");
+}
+const callbackBySlot = new Map();
+for (const block of evidence.function.blocks) for (const comparison of block.frameFieldComparisons) {
+  if (comparison.fieldOffset !== 0 || comparison.comparison !== "cmp/eq") continue;
+  const branch = evidence.function.blocks.find(block => block.id === comparison.resolvedBranch.comparisonTrueSuccessor);
+  const calls = branch?.actions.filter(action => action.kind === "directCall") || [];
+  if (calls.length !== 1 || (callbackBySlot.has(comparison.constant)
+    && callbackBySlot.get(comparison.constant) !== calls[0].targetFileOffset)) {
+    throw new Error("D0W0 callback dispatch is ambiguous");
+  }
+  callbackBySlot.set(comparison.constant, calls[0].targetFileOffset);
+}
+const nativeHandPoseTables = {};
+const handsBySlot = new Map();
+for (const [activitySlot, callback] of callbackBySlot) {
+  const initial = extractNativeAseqHandInitialization({
+    bytes: mapinfo, nativeFunction: evidence.supportingFunctions.find(fn => fn.id === "0x59de8"),
+    functions: evidence.supportingFunctions, activitySlot,
+  });
+  const result = extractNativeAseqCallbackHandPresentation({
+    bytes: mapinfo, callbackFunction: Number.parseInt(callback, 16), activitySlot,
+    nativeFunction: evidence.supportingFunctions.find(fn => fn.id === callback),
+    functions: evidence.supportingFunctions,
+  });
+  Object.assign(nativeHandPoseTables, result.nativeHandPoseTables);
+  // Owner setup precedes frame-zero callback overrides in every selection.
+  const initialCues = initial.nativeBodyHandPoseCues.map((cue, sourceOrder) => ({ ...cue, sourceOrder }));
+  result.nativeHandPoseCues = result.nativeHandPoseCues.map(cue => ({ ...cue, sourceOrder: cue.sourceOrder + initialCues.length }));
+  result.nativeHandComponentCues = result.nativeHandComponentCues.map(cue => ({ ...cue, sourceOrder: cue.sourceOrder + initialCues.length }));
+  result.nativeBodyHandPoseCues = [...initialCues, ...result.nativeBodyHandPoseCues.map(cue =>
+    ({ ...cue, sourceOrder: cue.sourceOrder + initialCues.length }))];
+  handsBySlot.set(activitySlot, result);
+}
+const handFiles = [
+  ["YMG_TL.MT5", 176836, "003f9047079444adece2ba0653dd50f0f506c5eec85d673bf3731938741de419"],
+  ["YMG_TR.MT5", 176892, "a1c01d3cc6df5bebf495fed8b38a64c66e57842e15213ac16d55b9da42c6682b"],
+  ["YMG_HM.BIN", 9264, "756f07c80fa715636fb1a92e480e2ef8d045c5ede1040faa388ed2fd43682f74"],
+];
+const handAsset = index => ({
+  path: `play/assets/dobuita/d0w0/${handFiles[index][0]}`,
+  sourcePath: `extracted_files/data/SCENE/01/MODEL/HAND/${handFiles[index][0]}`,
+  byteLength: handFiles[index][1], sha256: handFiles[index][2],
+});
 
 const expectedMembers = Object.freeze([
   ["CUPK300G.CHRM", 3108, "e51f0d36a61171dedcebddae62b52ef9429859808bd5fd302b11aae1b1869c04"],
@@ -58,7 +107,18 @@ const activities = activityFacts.map(([
   frameCount,
   actors,
   commandCounts,
+  nativeHandPoseCues: handsBySlot.get(slot)?.nativeHandPoseCues,
+  nativeHandComponentCues: handsBySlot.get(slot)?.nativeHandComponentCues,
+  nativeBodyHandPoseCues: handsBySlot.get(slot)?.nativeBodyHandPoseCues,
 }));
+const cupAttachments = activities.flatMap(activity => extractNativeAseqCallbackObjectPresentation({
+  bytes: mapinfo, callbackFunction: Number.parseInt(callbackBySlot.get(activity.slot), 16),
+  nativeFunction: evidence.supportingFunctions.find(fn => fn.id === callbackBySlot.get(activity.slot)),
+  activitySlot: activity.slot, durationFrames: activity.durationFrames, objectTags: ["COP_"],
+}).attachedObjectCues);
+if (callbackBySlot.size !== activities.length || activities.some(activity =>
+  !handsBySlot.has(activity.slot) || [...activity.nativeHandPoseCues, ...activity.nativeBodyHandPoseCues]
+    .some(cue => cue.frame >= activity.durationFrames))) throw new Error("D0W0 hand activity ownership changed");
 
 const outputDirectory = path.join(repoRoot, "play/assets/dobuita/d0w0");
 buildNativeAseqActivityPack({
@@ -72,6 +132,30 @@ buildNativeAseqActivityPack({
   bindingEvidence: "tools/evidence/d0w0-native-lifecycle.json",
   selectionRule: "operation-0x013e slots 4 through 15 select SEQDATA1.AUTH through SEQDATAC.AUTH",
   audioManifest: "public/audio/world/d0w0/manifest.json",
+  nativeHandPoseTables,
+  externalAssets: handFiles.map(([filename, byteLength, digest]) => ({
+    sourcePath: path.join(sourceRoot, `data/SCENE/01/MODEL/HAND/${filename}`),
+    assetPath: `play/assets/dobuita/d0w0/${filename}`, byteLength, sha256: digest,
+  })),
+  handAssets: {
+    YAMA: {
+      actorTag: "YAMA", bodyModelCode: "YMG_L", handCode: "YMG",
+      bodyHandRenderKeys: { left: -66, right: -65 },
+      left: { rootRenderKey: 11, model: handAsset(0) },
+      right: { rootRenderKey: 6, model: handAsset(1) },
+      rig: { ...handAsset(2), transformNodeCount: 71, vertexCount: 306,
+        pointerOffsets: [24, 168, 8952, 5848, 6472, 9264] },
+      presentation: { attachment: "body-hand-node-world-matrix", initialPose: "hm-bind-pose",
+        deformationAssetRetained: true, nativePoseOperation: "0x005e" },
+    },
+  },
+  attachedObjects: {
+    COP_: {
+      sceneObject: true,
+      browserFilename: "S1_D000_CUPK300G.MT5",
+      attachments: cupAttachments,
+    },
+  },
   outputDirectory,
   outputAssetPrefix: "play/assets/dobuita/d0w0",
   manifestPath: path.join(outputDirectory, "manifest.json"),

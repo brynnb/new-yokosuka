@@ -35,12 +35,11 @@ test("HOUO packages the exact Phoenix Mirror activity and prop", () => {
     houo.activities[0].nativeFaceControllerCues.map(cue => cue.frame),
     [880, 882, 885, 887, 910, 912, 915, 917, 1200, 1202, 1205, 1207, 1220, 1222, 1225, 1227],
   );
-  assert.deepEqual(houo.activities[0].nativeDetailedHandDefaults.map(cue => ({
-    actorTag: cue.actorTag,
-    sides: cue.sides,
-  })), [
-    { actorTag: "AKIR", sides: ["left", "right"] },
-    { actorTag: "FUKU", sides: ["left", "right"] },
+  // The owner supplies actual starting poses, superseding visibility-only defaults.
+  assert.deepEqual(houo.activities[0].nativeHandPoseCues.slice(0, 4).map(cue =>
+    [cue.actorTag, cue.side, cue.frame]), [
+    ["AKIR", "left", 0], ["AKIR", "right", 0],
+    ["FUKU", "left", 0], ["FUKU", "right", 0],
   ]);
   const textureOutput = houo.outputs.find(output => (
     output.path === "play/assets/hazuki/houo/HOUO_textures.bin"

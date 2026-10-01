@@ -9,6 +9,7 @@ export class WorldEnvironmentRuntime {
     getWater,
     getMeshes,
     getCutsceneLightingPreset,
+    getCutscenePrecipitation = () => null,
     dailyMusicCue,
     setWorldDate,
     updateDebugClock,
@@ -31,6 +32,7 @@ export class WorldEnvironmentRuntime {
     this.getWater = getWater;
     this.getMeshes = getMeshes;
     this.getCutsceneLightingPreset = getCutsceneLightingPreset;
+    this.getCutscenePrecipitation = getCutscenePrecipitation;
     this.dailyMusicCue = dailyMusicCue;
     this.setWorldDate = setWorldDate;
     this.updateDebugClock = updateDebugClock;
@@ -46,6 +48,8 @@ export class WorldEnvironmentRuntime {
     this.lastCalendarDay = null;
     this.rolloverController = null;
     this.timer = null;
+    this.isolatedStageOwners = new Set();
+    this.isolatedSky = null;
   }
 
   start(schedule = window.setInterval.bind(window)) {
@@ -110,6 +114,26 @@ export class WorldEnvironmentRuntime {
     }
   }
 
+  acquireIsolatedStage() {
+    const owner = {};
+    this.isolatedStageOwners.add(owner);
+    if (this.isolatedStageOwners.size === 1) {
+      const sky = this.sceneState.currentSkybox;
+      this.isolatedSky = sky ? { sky, enabled: sky.isEnabled() } : null;
+      sky?.setEnabled(false);
+      this.weather.apply("clear");
+    }
+    return () => {
+      if (!this.isolatedStageOwners.delete(owner) || this.isolatedStageOwners.size) return;
+      const snapshot = this.isolatedSky;
+      this.isolatedSky = null;
+      if (snapshot && !snapshot.sky.isDisposed()) snapshot.sky.setEnabled(snapshot.enabled);
+      // Resume from the current server environment, not a stale weather/time
+      // snapshot. The game clock itself keeps running throughout the dream.
+      this.synchronize();
+    };
+  }
+
   synchronize({ applyScene = true } = {}) {
     const world = this.getWorld();
     const { serverDate, date, blend: clockBlend } =
@@ -128,6 +152,11 @@ export class WorldEnvironmentRuntime {
     this.setWorldDate(date);
     this.updateDebugClock({ serverDate, date, clock: this.clock });
 
+    // An isolated stage owns its backdrop and resident-root visibility. Do not
+    // let the periodic world updater recreate precipitation/sky or reveal map
+    // variants. Leave the applied-state cache untouched so release catches up.
+    if (this.isolatedStageOwners.size) return false;
+
     const nextTimeOfDay = lightingBlend.presetIndex;
     const presetChanged = this.sceneState.currentTimeOfDay !== nextTimeOfDay;
     this.sceneState.currentTimeOfDay = nextTimeOfDay;
@@ -142,7 +171,9 @@ export class WorldEnvironmentRuntime {
       // Layer scripts run after general variants so environment changes cannot
       // reveal a model intentionally hidden by the room program.
       this.updateMapLayer(date, presetChanged || seasonChanged);
-      this.weather.apply(environment.precipitation);
+      // Precipitation is separate from surface variants: a later shot can
+      // retain settled snow on the ground without inheriting falling flakes.
+      this.weather.apply(this.getCutscenePrecipitation() ?? environment.precipitation);
       this.applyTimeOfDayLighting(lightingBlend);
       this.applyWaterTimeOfDay(this.getWater(), lightingBlend);
     }

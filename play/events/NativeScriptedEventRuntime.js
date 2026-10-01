@@ -234,6 +234,7 @@ export class NativeScriptedEventRuntime {
     entryFunction = null,
     area = null,
     context = {},
+    beforeComplete = null,
   } = {}) {
     const program = this.program(programId);
     if (!program) {
@@ -269,6 +270,7 @@ export class NativeScriptedEventRuntime {
         },
       },
       context,
+      beforeComplete,
       activationResult: {
         resolved: true,
         matched: true,
@@ -502,6 +504,7 @@ export class NativeScriptedEventRuntime {
     sceneObject = null,
     context = {},
     activationResult = null,
+    beforeComplete = null,
   }) {
     if (this.current || this.pendingStart) {
       return this.stopResult("scripted-event-already-running");
@@ -802,6 +805,7 @@ export class NativeScriptedEventRuntime {
     this.pendingStart = null;
     this.current = {
       ...selected,
+      beforeComplete,
       actorCode: selected.interaction.actorCode,
       sceneActor,
       sceneObject,
@@ -927,16 +931,23 @@ export class NativeScriptedEventRuntime {
 
   async complete(current, result, { controllerCheckpoint = null } = {}) {
     try {
+      // Presentation must be covered before commit releases its actors,
+      // detailed surfaces, camera and environment. A cancellation may replace
+      // this execution while the asynchronous cover is in flight.
+      if (current.beforeComplete) await current.beforeComplete();
+      if (this.current !== current) return { status: "cancelled" };
       await current.execution?.commit?.({
         result,
         context: current.context,
       });
       if (current.execution) current.execution.finished = true;
     } catch (error) {
+      if (this.current !== current) return { status: "cancelled" };
       return this.stop("native-event-execution-commit-failed", {
         message: error instanceof Error ? error.message : String(error),
       });
     }
+    if (this.current !== current) return { status: "cancelled" };
     if (controllerCheckpoint) {
       this.roomControllerLifecycle.commit(
         current.controllerExecution,
@@ -1046,6 +1057,7 @@ export class NativeScriptedEventRuntime {
     const current = this.current;
     let remaining = duration;
     try {
+      current.execution.setSeeking?.(true);
       // Native activity clocks intentionally clamp large render deltas. Feed
       // the requested seek through that same clock in bounded chunks so all
       // intervening camera, motion, sound, and presentation frames execute.
@@ -1062,6 +1074,8 @@ export class NativeScriptedEventRuntime {
         message: error instanceof Error ? error.message : String(error),
       });
       return false;
+    } finally {
+      if (this.current === current) current.execution.setSeeking?.(false);
     }
 
     if (this.current !== current || this.status !== "continuation") return true;

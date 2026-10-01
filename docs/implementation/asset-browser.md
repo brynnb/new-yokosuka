@@ -13,8 +13,9 @@ Both the viewer and /play construct MT5/MT7 scenes through
 static freezing and resource disposal; the same graphics preferences and
 postprocessing runtime serve both entry points. Map effects, native lighting,
 timed layers and spatial batching live alongside them in `src/rendering/`.
-The viewer retains individual nodes by disabling static batching; /play enables
-it for MAPM geometry only. PROP hierarchies remain intact in both.
+The viewer retains individual nodes by disabling static batching; /play batches
+compatible static MT5 map parts and MT7 MAPM geometry. PROP hierarchies remain
+intact in both.
 
 `AssetViewerEnvironment.js` connects the viewer's time controls and camera
 position to the shared native lighting, map-layer and water implementations.

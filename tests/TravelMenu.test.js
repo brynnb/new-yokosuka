@@ -50,6 +50,8 @@ test("cutscene dropdown preserves the curated scene order", () => {
     ["S1-TOKI-01", "Chinese Letter — Xia Xiu Yu"],
     ["S1-OP02-00", "Opening Vision — Shenhua and the Hawk"],
     ["S1-000", "Introduction — Iwao's Murder"],
+    ["S1-OP00-MAIL", "Introduction — Ine-san Collects the Mail"],
+    ["S1-OP00-DREAM", "Introduction — Lan Di Dream and Awakening"],
     ["S1-DRAUTH-01", "DRAUTH — Sequence 1"],
     ["S1-DRAUTH-02", "DRAUTH — Sequence 2"],
     ["S1-YQ14-01", "Heartbeats Alley — Confrontation"],

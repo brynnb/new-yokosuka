@@ -19,9 +19,15 @@ def main() -> int:
     parser.add_argument("--area", required=True)
     parser.add_argument("--map-entry", required=True)
     parser.add_argument("--callback", required=True)
+    parser.add_argument("--include-function", action="append", default=[])
+    parser.add_argument("--include-call-closure", action="store_true",
+                        help="Include synchronous direct-call helpers of the selected functions")
+    parser.add_argument("--include-coroutine-closure", action="store_true",
+                        help="Also retain the selected callback's child effect/sound coroutines")
     parser.add_argument("--input", type=Path, default=DEFAULT_IR)
     parser.add_argument("--output", required=True, type=Path)
     args = parser.parse_args()
+    args.input = args.input.resolve()
 
     input_bytes = args.input.read_bytes()
     native_ir = json.loads(input_bytes)
@@ -52,6 +58,26 @@ def main() -> int:
         },
         "function": callback,
     }
+    if args.include_function or args.include_call_closure or args.include_coroutine_closure:
+        functions = {entry["id"]: entry for entry in native_map["functions"]}
+        included = {identifier.lower() for identifier in args.include_function}
+        if args.include_call_closure or args.include_coroutine_closure:
+            pending = [callback["id"], *included]
+            visited = set()
+            while pending:
+                identifier = pending.pop()
+                if identifier in visited:
+                    continue
+                visited.add(identifier)
+                for block in functions[identifier]["blocks"]:
+                    pending.extend(action["targetFileOffset"] for action in block["actions"]
+                                   if action["kind"] == "directCall" or (
+                                       args.include_coroutine_closure
+                                       and action["kind"] == "childCoroutineLaunch"
+                                       and action.get("targetFileOffset") in functions))
+            included.update(visited - {callback["id"]})
+        result["supportingFunctions"] = [functions[identifier] for identifier in
+                                         sorted(included, key=lambda value: int(value, 16))]
     output = args.output.resolve()
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")

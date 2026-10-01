@@ -3,34 +3,11 @@ import state from "./state.js";
 import { R2_URL, R2_PREFIX, OFFLINE_MODE, timeToMapIndex } from "./constants.js";
 import { Mt5Loader } from "./Mt5Loader.js";
 import { fetchAssetResponse } from "./AssetCache.js";
+import { PACKAGED_VIEWER_ASSETS } from "./PackagedViewerAssets.js";
 
 let texturePackManifestPromise = null;
 let texturePackManifest = undefined;
 const texturePackIndexCache = new WeakMap();
-
-const PACKAGED_VIEWER_ASSETS = Object.freeze({
-  "G_VENDING_JIHS5KNG.MT5": "play/assets/vending/JIHS5KNG.CHRM",
-  "G_VENDING_textures.bin": "play/assets/vending/VEND_textures.bin",
-  "S1_OP00_OMO.MT5": "play/assets/introduction/op00/models/OMO.MAPM",
-  "S1_OP00_JIMENHAL.MT5": "play/assets/introduction/op00/models/JIMENHAL.MAPM",
-  "S1_OP00_NAIB.MT5": "play/assets/introduction/op00/models/NAIB.MAPM",
-  "S1_OP00_NIWAKAL.MT5": "play/assets/introduction/op00/models/NIWAKAL.MAPM",
-  "S1_OP00_OMADO.MT5": "play/assets/introduction/op00/models/OMADO.MAPM",
-  "S1_OP00_OOSAKI.MT5": "play/assets/introduction/op00/models/OOSAKI.MAPM",
-  "S1_OP00_JYUU.MT5": "play/assets/introduction/op00/models/JYUU.MAPM",
-  "S1_OP00_B023H01G.MT5": "play/assets/introduction/op00/models/B023H01G.CHRM",
-  "S1_OP00_BMWS703G.MT5": "play/assets/introduction/op00/models/BMWS703G.CHRM",
-  "S1_OP00_DDRR1001.MT5": "play/assets/introduction/op00/models/DDRR1001.CHRM",
-  "S1_OP00_DDRR1002.MT5": "play/assets/introduction/op00/models/DDRR1002.CHRM",
-  "S1_OP00_DRGS502G.MT5": "play/assets/introduction/op00/models/DRGS502G.CHRM",
-  "S1_OP00_YUKS502G.MT5": "play/assets/introduction/op00/models/YUKS502G.CHRM",
-  "S1_OP00_YUKS503G.MT5": "play/assets/introduction/op00/models/YUKS503G.CHRM",
-  "S1_OP02_MAP.MT5": "play/assets/introduction/op02/models/MAP.MAPM",
-  "S1_OP02_MAP01.MT5": "play/assets/introduction/op02/models/MAP01.MAPM",
-  "S1_OP02_MAP02.MT5": "play/assets/introduction/op02/models/MAP02.MAPM",
-  "S1_OP02_MAP03.MT5": "play/assets/introduction/op02/models/MAP03.MAPM",
-  "S1_OP02_textures.bin": "play/assets/introduction/op02/OP02_textures.bin",
-});
 
 function getAssetPaths(filename) {
   const isModelIndex = filename === "models.json";

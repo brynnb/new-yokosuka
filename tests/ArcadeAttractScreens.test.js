@@ -17,6 +17,34 @@ function runtimeWithWindow(fakeWindow) {
   });
 }
 
+test("cinematic suspension does not load optional TV streams and pauses existing screens", () => {
+  const originalWindow = globalThis.window;
+  try {
+    const runtime = runtimeWithWindow({});
+    runtime.definitions = { television: { worldId: "interior" } };
+    let created = 0;
+    runtime.create = () => { created += 1; return null; };
+    const detail = { activeWorldId: "interior", actorPosition: { x: 0, z: 0 } };
+    runtime.update({ ...detail, suspended: true });
+    assert.equal(created, 0);
+    const calls = [];
+    const entry = {
+      mesh: { setEnabled: value => calls.push(["visible", value]) },
+      video: { pause: () => calls.push(["pause"]) },
+      requestedPlay: true, shouldPlay: true,
+    };
+    runtime.entries.set("television", entry);
+    runtime.update({ ...detail, suspended: true });
+    assert.deepEqual(calls, [["visible", false], ["pause"]]);
+    assert.equal(entry.requestedPlay, false);
+    assert.equal(entry.shouldPlay, false);
+    runtime.update(detail);
+    assert.equal(created, 1, "normal world playback resumes after the cutscene");
+  } finally {
+    globalThis.window = originalWindow;
+  }
+});
+
 test("attract screens retain Babylon's live video texture integration", () => {
   const originalDocument = globalThis.document;
   const originalHtmlVideoElement = globalThis.HTMLVideoElement;

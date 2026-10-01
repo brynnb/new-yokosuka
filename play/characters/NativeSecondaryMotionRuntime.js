@@ -16,7 +16,11 @@ import {
 } from "./NativeSecondaryMotionCollision.js";
 
 const NATIVE_FRAME_SECONDS = 1 / 30;
+// Match CLTH's bounded catch-up policy; a stalled tab must not queue seconds
+// of secondary simulation before it can render again.
+const MAXIMUM_CATCH_UP_STEPS = 5;
 const EPSILON = 1e-8;
+const MODEL_STATES = new WeakMap();
 
 function nodeType(node) {
   return (node?.flag ?? -1) & 0xffff;
@@ -324,7 +328,7 @@ export class NativeSecondaryMotionChain {
   }
 }
 
-class NativeSecondaryMotionModelState {
+export class NativeSecondaryMotionModelState {
   constructor(model) {
     this.model = model;
     this.collisionProfile = nativeSecondaryMotionCollisionProfile(
@@ -337,6 +341,7 @@ class NativeSecondaryMotionModelState {
       modelCode: model.modelCode,
       runtimeMode: this.runtimeMode,
     });
+    const bindMatrices = model.loader.characterRigWorldMatrices(model.renderRoot);
     this.chains = discoverNativeSecondaryMotionChains(model.renderRoot, {
       nodeTypes: supportedNodeTypes,
     }).map(
@@ -353,9 +358,16 @@ class NativeSecondaryMotionModelState {
               profile,
               Math.imul(chainIndex + 1, 0xc2b2ae35),
             );
-        return Object.freeze({ nodes, profile, solver });
+        // FUN_0c13161c sets mode bit 0x20 from the bind-world X sign. Children
+        // inherit that bit and increment the low-five-bit segment index.
+        const channel = bindMatrices.get(nodes[0].addr)[12] > 0 ? 1 : 0;
+        return { nodes, profile, solver, channel };
       },
     );
+    this.presentationOwner = null;
+    this.clockSeconds = 0;
+    this.localMatrices = null;
+    this.presentationKind = null;
   }
 
   get active() {
@@ -376,8 +388,66 @@ class NativeSecondaryMotionModelState {
     );
   }
 
-  update() {
-    const { loader, renderRoot } = this.model;
+  reset() {
+    for (const chain of this.chains) {
+      chain.solver = chain.profile.behavior === "articulated-surface"
+        ? new NativeArticulatedSurfaceMotion(chain.nodes, chain.profile)
+        : new NativeSecondaryMotionChain(chain.nodes, chain.profile, chain.solver.turbulenceSeed);
+    }
+    this.clockSeconds = 0;
+    this.localMatrices = null;
+  }
+
+  beginPresentation(owner) {
+    if (owner == null) throw new TypeError("native secondary-motion owner is required");
+    if (this.presentationOwner !== null) return this.presentationOwner === owner;
+    if (this.presentationKind !== "auth") this.reset();
+    this.presentationKind = "auth";
+    this.presentationOwner = owner;
+    return true;
+  }
+
+  endPresentation(owner) {
+    if (this.presentationOwner !== owner) return false;
+    this.presentationOwner = null;
+    this.restoreBasePose();
+    return true;
+  }
+
+  release() {
+    if (this.presentationOwner !== null) return false;
+    this.reset();
+    this.presentationKind = null;
+    if (!this.model.renderRoot.isDisposed()) this.restoreBasePose();
+    return true;
+  }
+
+  update(deltaSeconds = NATIVE_FRAME_SECONDS, owner = null, controls = null) {
+    if (!this.active || (this.presentationOwner !== null && this.presentationOwner !== owner)) return false;
+    if (!Number.isFinite(deltaSeconds) || deltaSeconds < 0) throw new TypeError("secondary-motion delta must be nonnegative");
+    if (owner === null && this.presentationKind !== "gameplay") {
+      this.reset();
+      this.presentationKind = "gameplay";
+    }
+    this.clockSeconds = Math.min(this.clockSeconds + deltaSeconds, NATIVE_FRAME_SECONDS * MAXIMUM_CATCH_UP_STEPS);
+    const steps = Math.floor((this.clockSeconds + 1e-10) / NATIVE_FRAME_SECONDS);
+    this.clockSeconds = Math.max(0, this.clockSeconds - steps * NATIVE_FRAME_SECONDS);
+    if (steps > 0 || this.localMatrices === null) {
+      let matrices;
+      for (let index = 0; index < Math.max(1, steps); index++) matrices = this.solve(controls);
+      return this.model.loader.applyCharacterRigResolvedWorldMatrices(this.model.renderRoot, matrices);
+    }
+    // Body animation re-applies the rig every render frame. Carry the latest
+    // solved special nodes with their current body attachment between ticks,
+    // without advancing a 30 Hz solver at the monitor's refresh rate.
+    const matrices = this.baseMatrices();
+    for (const [address, { local, anchor }] of this.localMatrices) {
+      matrices.set(address, multiplyMatrices(local, matrices.get(anchor)));
+    }
+    return this.model.loader.applyCharacterRigResolvedWorldMatrices(this.model.renderRoot, matrices);
+  }
+
+  solve(controls) {
     const baseMatrices = this.baseMatrices();
     const resolvedMatrices = new Map(baseMatrices);
     const space = renderSpace(this.model);
@@ -391,6 +461,10 @@ class NativeSecondaryMotionModelState {
     });
 
     for (const chain of this.chains) {
+      if (chain.profile.controlled) {
+        chain.solver.resolveControlledMatrices(baseMatrices, resolvedMatrices, controls, chain.channel);
+        continue;
+      }
       const baseSourcePoints = chain.nodes.map((node) => {
         const matrix = baseMatrices.get(node.addr);
         if (!finiteMatrix(matrix)) {
@@ -466,27 +540,51 @@ class NativeSecondaryMotionModelState {
       }
     }
 
-    return loader.applyCharacterRigResolvedWorldMatrices(
-      renderRoot,
-      resolvedMatrices,
-    );
+    this.localMatrices = new Map();
+    for (const { nodes } of this.chains) {
+      const anchor = nodes[0].parentAddr;
+      const inverse = BABYLON.Matrix.Invert(BABYLON.Matrix.FromArray(baseMatrices.get(anchor))).asArray();
+      for (const node of nodes) {
+        // An inactive scripted sleeve has no override at all. Preserve its
+        // exact authored body matrix instead of round-tripping it through an
+        // unnecessary inverse (and do not retain an earlier forced sleeve).
+        if (resolvedMatrices.get(node.addr) === baseMatrices.get(node.addr)) continue;
+        this.localMatrices.set(node.addr, {
+          anchor, local: multiplyMatrices(resolvedMatrices.get(node.addr), inverse),
+        });
+      }
+    }
+    return resolvedMatrices;
   }
 }
 
+export function nativeSecondaryMotionStateForModel(model, { create = true } = {}) {
+  let state = MODEL_STATES.get(model);
+  if (!state && create) {
+    state = new NativeSecondaryMotionModelState(model);
+    MODEL_STATES.set(model, state);
+  }
+  return state;
+}
+
 export class NativeSecondaryMotionPresentation {
-  constructor({ actors } = {}) {
+  constructor({ actors, readControls = () => null } = {}) {
     if (typeof actors?.activeActor !== "function") {
       throw new TypeError(
         "native secondary-motion presentation requires actor resolution",
       );
     }
     this.actors = actors;
+    this.readControls = readControls;
     this.modelStates = new WeakMap();
+    this.states = new Set();
     this.active = null;
   }
 
   reset() {
     if (this.active) return false;
+    for (const state of this.states) state.release();
+    this.states.clear();
     this.modelStates = new WeakMap();
     return true;
   }
@@ -505,10 +603,15 @@ export class NativeSecondaryMotionPresentation {
       ) continue;
       let state = this.modelStates.get(model);
       if (!state) {
-        state = new NativeSecondaryMotionModelState(model);
+        state = nativeSecondaryMotionStateForModel(model);
+        state.release();
         this.modelStates.set(model, state);
+        this.states.add(state);
       }
-      if (state.active && !states.includes(state)) states.push(state);
+      if (state.active && !states.includes(state)) {
+        if (!state.beginPresentation(owner)) throw new Error("native secondary-motion model is already owned");
+        states.push(state);
+      }
     }
     this.active = { owner, states };
     return true;
@@ -517,7 +620,7 @@ export class NativeSecondaryMotionPresentation {
   apply(owner) {
     if (this.active?.owner !== owner) return false;
     for (const state of this.active.states) {
-      if (state.update() !== true) return false;
+      if (state.update(NATIVE_FRAME_SECONDS, owner, this.readControls()) !== true) return false;
     }
     return true;
   }
@@ -526,7 +629,7 @@ export class NativeSecondaryMotionPresentation {
     if (this.active?.owner !== owner) return false;
     const states = this.active.states;
     this.active = null;
-    for (const state of states) state.restoreBasePose();
+    for (const state of states) state.endPresentation(owner);
     return true;
   }
 }

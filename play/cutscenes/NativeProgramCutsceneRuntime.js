@@ -90,6 +90,7 @@ export class NativeProgramCutsceneRuntime {
     activateArea = null,
     restoreArea = null,
     createContext = () => ({}),
+    beforeComplete = null,
     onComplete,
     onStopped,
   } = {}) {
@@ -124,6 +125,7 @@ export class NativeProgramCutsceneRuntime {
       "native program cutscene stop adapter",
     );
     this.owner = null;
+    this.beforeComplete = beforeComplete;
   }
 
   get active() {
@@ -302,6 +304,9 @@ export class NativeProgramCutsceneRuntime {
         programId,
         entryFunction,
         area: programArea,
+        ...(this.beforeComplete ? {
+          beforeComplete: () => this.beforeComplete(cutsceneId),
+        } : {}),
         context: initialFrameFields
           ? { ...context, initialFrameFields }
           : context,

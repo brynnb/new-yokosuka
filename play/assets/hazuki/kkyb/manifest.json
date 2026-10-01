@@ -1,6 +1,6 @@
 {
   "schema": "new-yokosuka-aseq-activity-pack-v1",
-  "generatedBy": "tools/build_jomo_vision_activity_packs.mjs",
+  "generatedBy": "tools/cutscenes/build_jomo_vision_activity_packs.mjs",
   "source": {
     "disc": 2,
     "path": "extracted_disc2_v2/data/SCENE/02/JOMO/KKYB.PKS",
@@ -57,6 +57,29 @@
       "assetPath": "play/assets/hazuki/kkyb/DRGS502G.CHRM",
       "lifecycle": {
         "kind": "auth-scoped"
+      },
+      "initialPresentation": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          100,
+          100,
+          100
+        ]
+      },
+      "initialPresentationSource": {
+        "evidence": "tools/evidence/jomo-mirrors-native-setup-ir.json",
+        "callbackFunction": "0x47108",
+        "callFileOffset": "0x47122",
+        "vectorPointer": "0x00095ec0"
       }
     },
     "HOMR": {
@@ -65,6 +88,29 @@
       "assetPath": "play/assets/hazuki/kkya/PNX02H6G.CHRM",
       "lifecycle": {
         "kind": "auth-scoped"
+      },
+      "initialPresentation": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          100,
+          100,
+          100
+        ]
+      },
+      "initialPresentationSource": {
+        "evidence": "tools/evidence/jomo-mirrors-native-setup-ir.json",
+        "callbackFunction": "0x47108",
+        "callFileOffset": "0x4713a",
+        "vectorPointer": "0x00095ec0"
       }
     },
     "DRE1": {
@@ -177,6 +223,14 @@
         "HAWK",
         "HOMR"
       ],
+      "browserMapVisibility": [],
+      "browserBackgroundColor": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "browserIsolatedStage": true,
       "nativeSceneObjectStates": [
         {
           "actorTag": "DRE1",

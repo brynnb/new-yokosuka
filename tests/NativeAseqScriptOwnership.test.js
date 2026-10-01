@@ -92,6 +92,16 @@ test("native ASEQ ownership derives strict callback frame ranges", () => {
   });
 });
 
+test("native ASEQ ownership reads signed word clocks without shifting their gates", () => {
+  const bytes = fixture();
+  bytes.writeUInt16LE(0x85e1, 0x2e); // mov.w @(2,r14),r0
+  bytes.writeUInt16LE(0x6403, 0x30); // mov r0,r4; comparison follows
+  assert.equal(nativeAseqGoverningActivityFrame(bytes, 0x20, 0x50), 5);
+  assert.throws(() => nativeAseqGoverningActivityFrame(bytes, 0x20, 0x62), /no governing ASEQ frame/);
+  bytes.writeUInt16LE(0x640c, 0x30); // not the generated signed word load
+  assert.throws(() => nativeAseqGoverningActivityFrame(bytes, 0x20, 0x50), /no governing ASEQ frame/);
+});
+
 test("native ASEQ ownership does not cross an unrelated function boundary", () => {
   assert.throws(
     () => deriveNativeAseqCallOwnership({

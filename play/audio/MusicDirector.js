@@ -195,6 +195,16 @@ export class PlayMusicDirector {
     return true;
   }
 
+  seekTemporaryBySeconds(seconds) {
+    const entry = this.current;
+    if (!entry?.temporary || !Number.isFinite(seconds) || seconds < 0) return false;
+    const duration = entry.audio.duration;
+    if (!Number.isFinite(duration) || duration <= 0) return false;
+    const next = entry.audio.currentTime + seconds;
+    entry.audio.currentTime = entry.audio.loop ? next % duration : Math.min(next, duration);
+    return true;
+  }
+
   stopTemporaryTrack(trackId = null) {
     if (
       !this.current?.temporary

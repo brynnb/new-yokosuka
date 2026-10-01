@@ -3,6 +3,60 @@ import test from "node:test";
 
 import { PlayWorldLifecycle } from "../play/world/PlayWorldLifecycle.js";
 
+test("failed avatar restoration cannot enter the world as cinematic Ryo", async () => {
+  const lifecycle = Object.assign(Object.create(PlayWorldLifecycle.prototype), {
+    accountSession: { character: { avatarId: "shenhua" } },
+    worlds: {}, persistentPlayerWorld: () => false,
+    characterById: new Map([["shenhua", { id: "shenhua" }]]),
+    getController: () => ({}),
+    playerRuntime: { activeCharacterId: "ryo", switchCharacter: async () => {} },
+    loadingScreen: { begin: async () => {} },
+  });
+  await assert.rejects(lifecycle.initialize(), /Could not restore selected character shenhua/);
+});
+
+for (const { alreadyLoaded, arrival } of [false, true].flatMap(alreadyLoaded =>
+  ["default", "story", "returning"].map(arrival => ({ alreadyLoaded, arrival }))
+)) {
+  test(`initialization restores selected avatar with existing controller=${alreadyLoaded}, arrival=${arrival}`, async () => {
+    const calls = [];
+    const controller = {};
+    const avatar = { id: "shenhua" };
+    const worlds = { interior: { id: "interior" }, exterior: { id: "exterior" } };
+    const initialPlacement = arrival === "story" ? { position: [-17.6, 0, 4.1], yaw: Math.PI } : null;
+    const expectedWorld = arrival === "returning" ? worlds.exterior : worlds.interior;
+    let loaded = alreadyLoaded;
+    const lifecycle = Object.assign(Object.create(PlayWorldLifecycle.prototype), {
+      accountSession: { character: { avatarId: avatar.id, worldId: "exterior", x: 1, y: 0, z: 2, yaw: 0.25 } },
+      worlds, characterById: new Map([[avatar.id, avatar]]),
+      persistentPlayerWorld: world => Boolean(world), vectorFromArray: value => value,
+      getController: () => loaded ? controller : null,
+      playerRuntime: {
+        activeCharacterId: avatar.id,
+        setInitialCharacter: id => calls.push(["initial", id]),
+        switchCharacter: async (value, options) => calls.push(["switch", value, options]),
+      },
+      loadingScreen: {
+        begin: world => { assert.equal(world, expectedWorld); calls.push(["loading"]); },
+      },
+      worldRuntime: { initialize: async (world, options) => {
+        assert.equal(world, expectedWorld);
+        assert.deepEqual(options.savedPosition, initialPlacement?.position || (arrival === "returning" ? [1, 0, 2] : null));
+        assert.equal(options.savedYaw, initialPlacement?.yaw ?? 0.25);
+        assert.equal(options.persistLocation, false);
+        loaded = true;
+        calls.push(["world"]);
+        return true;
+      } },
+      multiplayerRuntime: {}, readSavedRunToggle: () => false,
+      persistRunToggle() {}, persistPlayerLocation() { calls.push(["persist"]); },
+      selectionMenus: { setCharacterDisabled: disabled => assert.equal(disabled, false) },
+    });
+    await lifecycle.initialize({ initialWorldOverride: arrival === "returning" ? null : worlds.interior, initialPlacement });
+    assert.deepEqual(calls, [["loading"], alreadyLoaded ? ["switch", avatar, { persist: false }] : ["initial", avatar.id], ["world"], ["persist"]]);
+  });
+}
+
 test("world geometry and player downloads overlap, but player readiness gates completion", async () => {
   let releasePlayer;
   let prefetchSignal;

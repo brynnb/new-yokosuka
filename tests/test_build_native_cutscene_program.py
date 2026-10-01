@@ -134,31 +134,29 @@ class NativeCutsceneProgramCompilerTest(unittest.TestCase):
             "blockers": [],
         })
 
-    def test_op00_a0114_owner_is_derived_from_authored_resource_family(self):
+    def test_op00_owner_includes_silent_storm_until_original_stage_return(self):
         import json
 
         program = json.loads((
             ROOT / "play/assets/introduction/op00/cutscene-program.generated.json"
         ).read_text())
         selection = program["authResourceSelection"]
-        self.assertEqual(selection["selectionKind"], "embedded-authored-path-family")
-        self.assertEqual(selection["authoredPathToken"], "/AUTH01/0114/")
-        self.assertEqual(selection["matchingResourceCount"], 26)
-        self.assertEqual(selection["selectedResourceCount"], 24)
-        self.assertEqual(selection["selectedSlots"], list(range(24)))
+        self.assertEqual(selection["selectionKind"], "original-script-stages")
+        self.assertEqual(selection["selectedResourceCount"], 25)
+        self.assertEqual(selection["selectedSlots"], list(range(25)))
         self.assertEqual(
             [stage["functionId"] for stage in selection["stages"]],
             ["0x1512a", "0x1785c"],
         )
         self.assertEqual(
             [stage["activityCallCount"] for stage in selection["stages"]],
-            [4, 20],
+            [4, 21],
         )
         order = [call["slot"] for call in selection["ownerCalls"]]
-        self.assertEqual(len(order), 24)
-        self.assertEqual(sorted(order), list(range(24)))
+        self.assertEqual(len(order), 25)
+        self.assertEqual(sorted(order), list(range(25)))
         self.assertEqual(order[:7], [0, 1, 2, 3, 4, 18, 19])
-        self.assertEqual(order[-4:], [16, 17, 20, 21])
+        self.assertEqual(order[-5:], [16, 17, 20, 21, 24])
         stage = next(
             function for function in program["functions"]
             if function["id"] == "0x1512a"
@@ -188,23 +186,12 @@ class NativeCutsceneProgramCompilerTest(unittest.TestCase):
             "offset": 0,
         })
         self.assertEqual(selection["completionBoundary"], {
-            "kind": "before-first-following-non-family-activity",
-            "slot": 24,
-            "callFileOffset": "0x1a95c",
-            "functionId": "0x1785c",
-            "blockId": "0x1a948",
-            "resource": {
-                "sourceFileOffset": "0x481f4",
-                "byteLength": 3460,
-                "sha256": "9230dfa8a9cbdafc5de16becab4b56a4d8f07930082e28cd983be003633ac0a0",
-            },
-            "ownerReturnBoundary": {
-                "functionId": "0x20350",
-                "blockId": "0x2044e",
-                "callFileOffset": "0x20450",
-                "completedStageFunction": "0x1785c",
-            },
+            "kind": "after-original-stage-return",
+            "functionId": "0x20350", "blockId": "0x2044e",
+            "callFileOffset": "0x20450", "completedStageFunction": "0x1785c",
         })
+        self.assertEqual(selection["ownerCalls"][-1]["resource"]["sha256"],
+                         "9230dfa8a9cbdafc5de16becab4b56a4d8f07930082e28cd983be003633ac0a0")
         starts = [
             action["arguments"][0]["value"]
             for function in program["functions"]
@@ -214,7 +201,7 @@ class NativeCutsceneProgramCompilerTest(unittest.TestCase):
             and action.get("arguments", [{}])[0].get("kind") == "constant"
             and action["arguments"][0]["value"] < 0x80000000
         ]
-        self.assertEqual(sorted(starts), list(range(24)))
+        self.assertEqual(sorted(starts), list(range(25)))
         self.assertNotIn("0x1dda8", [function["id"] for function in program["functions"]])
         self.assertNotEqual(program["compile"].get("firstBlocker", {}).get("identity"), "0x0058")
 
@@ -272,6 +259,7 @@ class NativeCutsceneProgramCompilerTest(unittest.TestCase):
             [block["id"] for block in functions[0]["blocks"]],
             ["0x100", "0x120"],
         )
+        self.assertEqual(functions[0]["blocks"][0]["successors"], ["0x120"])
 
     def test_propagates_exact_direct_call_arguments(self):
         native_map = {

@@ -1,21 +1,5 @@
-function nativeWorldPoint(actors, target) {
-  if (target === null) return null;
-  if (target?.kind === "world-point") return [...target.position];
-  if (target?.kind !== "actor-component") {
-    throw new Error("AUTH actor look-point target is invalid");
-  }
-  const position = actors.componentWorldPosition(target.actorTag, target.selector);
-  if (!Array.isArray(position) || position.length !== 3) {
-    throw new Error(
-      `AUTH actor look-point target ${target.actorTag}:${target.selector} is unavailable`,
-    );
-  }
-  return [
-    -position[0] + target.offset[0],
-    position[1] + target.offset[1],
-    position[2] + target.offset[2],
-  ];
-}
+import { resolveNativeAseqGazeTarget } from "./NativeAseqGazeTarget.js";
+import { applyNativeActorLookPresentation, restoreNativeActorLookPresentation } from "../characters/NativeActorLookPresentation.js";
 
 export class NativeAseqActorLookPointPresentation {
   constructor({ actors, controlActorLookPoint } = {}) {
@@ -28,6 +12,7 @@ export class NativeAseqActorLookPointPresentation {
     this.actors = actors;
     this.controlActorLookPoint = controlActorLookPoint;
     this.owner = null;
+    this.targets = new Map();
   }
 
   begin(owner) {
@@ -38,10 +23,13 @@ export class NativeAseqActorLookPointPresentation {
 
   play(owner, command) {
     if (owner !== this.owner || command?.name !== "actor-look-point") return false;
+    const world = resolveNativeAseqGazeTarget(this.actors, command.target);
+    const previous = this.targets.get(command.actorTag);
+    this.targets.set(command.actorTag, { state: previous?.state || {}, target: command.target });
     return this.controlActorLookPoint({
       actorCode: command.actorTag,
       selector: command.selector,
-      target: nativeWorldPoint(this.actors, command.target),
+      target: world === null ? null : [-world[0], world[1], world[2]],
       mode: command.mode,
       source: Object.freeze({
         kind: "native-aseq-callback",
@@ -52,12 +40,27 @@ export class NativeAseqActorLookPointPresentation {
 
   end(owner) {
     if (owner !== this.owner) return false;
+    for (const [actorTag, record] of this.targets) {
+      const model = this.actors.activeActor?.(actorTag)?.model;
+      if (model) restoreNativeActorLookPresentation(model, record.state);
+    }
+    this.targets.clear();
     this.owner = null;
     return true;
   }
 
   reset() {
-    return this.owner === null;
+    return this.owner === null && this.targets.size === 0;
+  }
+
+  apply(owner) {
+    if (owner !== this.owner) return false;
+    for (const [actorTag, record] of this.targets) {
+      const model = this.actors.activeActor(actorTag)?.model;
+      const world = resolveNativeAseqGazeTarget(this.actors, record.target);
+      applyNativeActorLookPresentation(model, world, record.state);
+    }
+    return true;
   }
 }
 

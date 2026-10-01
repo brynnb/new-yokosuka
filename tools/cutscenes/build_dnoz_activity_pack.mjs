@@ -6,7 +6,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { buildNativeAseqActivityPack } from "../lib/NativeAseqActivityPack.mjs";
-import { extractNativeAseqCallbackPresentation } from "../lib/NativeAseqCallbackPresentation.mjs";
+import { extractNativeAseqCallbackPresentation, extractNativeAseqCallbackHandPresentation } from "../lib/NativeAseqCallbackPresentation.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const sourceRoot = [process.env.SHENMUE_DISC1_EXTRACTED_ROOT, path.join(root, "extracted_files")]
@@ -17,6 +17,9 @@ const evidence = JSON.parse(readFileSync(
   path.join(root, "tools/evidence/dnoz-dedicated-native-callback-ir.json"), "utf8",
 ));
 const mapinfo = readFileSync(path.join(sourceRoot, "data/SCENE/01/DNOZ/MAPINFO.BIN"));
+if (createHash("sha256").update(mapinfo).digest("hex") !== evidence.source.mapinfoSha256) {
+  throw new Error("DNOZ hand callback source changed");
+}
 const callbackById = new Map(evidence.functions.map(value => [value.id, value]));
 const presentationCues = (id, durationFrames, activitySlot) => {
   const nativeFunction = callbackById.get(id);
@@ -32,13 +35,16 @@ const presentationCues = (id, durationFrames, activitySlot) => {
       ),
     })),
   };
-  const value = extractNativeAseqCallbackPresentation({
+  const value = { ...extractNativeAseqCallbackPresentation({
     bytes: mapinfo,
     callbackFunction: Number.parseInt(id, 16),
     nativeFunction: presentationFunction,
     durationFrames,
     activitySlot,
-  });
+  }), ...extractNativeAseqCallbackHandPresentation({
+    bytes: mapinfo, callbackFunction: Number.parseInt(id, 16), nativeFunction,
+    activitySlot, functions: evidence.supportingFunctions,
+  }) };
   if (id !== "0x1628") return value;
   // DNOZ's second tears callback resets Ryo's gaze during the activity, then
   // installs an exact HRSK controller-component target after ASEQ completion.
@@ -164,7 +170,7 @@ const hrsHandAssets = Object.freeze({
   }),
 });
 
-const build = ({ variant, outputName, audioManifest, members, motionFile, motionNames, activities, handPresentation = null }) => {
+const build = ({ variant, outputName, audioManifest, members, motionFile, motionNames, activities }) => {
   const outputDirectory = path.join(root, `play/assets/sakuragaoka/${outputName}`);
   buildNativeAseqActivityPack({
     ...common,
@@ -176,20 +182,18 @@ const build = ({ variant, outputName, audioManifest, members, motionFile, motion
     outputAssetPrefix: `play/assets/sakuragaoka/${outputName}`,
     manifestPath: path.join(outputDirectory, "manifest.json"),
     sceneObjects,
-    ...(handPresentation ? {
-      externalAssets: [
-        ["NZM_HM.BIN", 8608, "d2df197f87e38cf83ee3a44015f376503cb4702819824d5f057405e34fcf64e6"],
-        ["NZM_TL.MT5", 176556, "df4e0acbdf46ac948526877ce5310d4446abfa5baab990ffe7920a48c26f1fbe"],
-        ["NZM_TR.MT5", 176644, "d63432086a043706bf40975919ef48644d8f69324e9da4f4766733b29d76f7f5"],
-      ].map(([filename, byteLength, digest]) => ({
-        sourcePath: path.join(sourceRoot, `data/SCENE/01/MODEL/HAND/${filename}`),
-        assetPath: `play/assets/sakuragaoka/dnoz-ski/${filename}`,
-        byteLength,
-        sha256: digest,
-      })),
-      handAssets: hrsHandAssets,
-      nativeHandPoseTables: handPresentation.nativeHandPoseTables,
-    } : {}),
+    externalAssets: [
+      ["NZM_HM.BIN", 8608, "d2df197f87e38cf83ee3a44015f376503cb4702819824d5f057405e34fcf64e6"],
+      ["NZM_TL.MT5", 176556, "df4e0acbdf46ac948526877ce5310d4446abfa5baab990ffe7920a48c26f1fbe"],
+      ["NZM_TR.MT5", 176644, "d63432086a043706bf40975919ef48644d8f69324e9da4f4766733b29d76f7f5"],
+    ].map(([filename, byteLength, digest]) => ({
+      sourcePath: path.join(sourceRoot, `data/SCENE/01/MODEL/HAND/${filename}`),
+      assetPath: `play/assets/sakuragaoka/dnoz-ski/${filename}`,
+      byteLength,
+      sha256: digest,
+    })),
+    handAssets: hrsHandAssets,
+    nativeHandPoseTables: Object.assign({}, ...activities.map(activity => activity.nativeHandPoseTables)),
     motionBanks: [{
       bank: 16,
       member: motionFile,
@@ -262,7 +266,6 @@ build({
     ...skiHandPresentation,
     nativeSceneObjectStates,
   }],
-  handPresentation: skiHandPresentation,
 });
 
 console.log("Wrote both exact DNOZ ordered-fragment activity packs");

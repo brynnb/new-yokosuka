@@ -53,15 +53,21 @@ export class NativeAseqAudioCatalog {
       const sourcePath = requireText(record?.sourcePath, "AUTH sound source path");
       const key = `${commandHex}:${sourcePath}`;
       if (this.sounds.has(key)) throw new Error(`duplicate AUTH sound ${key}`);
-      const assets = Array.isArray(record.assets) && record.assets.length > 0
+      const silent = record.unavailable === true;
+      if (silent && (!record.unavailableReason || !record.evidence)) {
+        throw new Error(`unavailable AUTH sound ${key} requires source evidence`);
+      }
+      const assets = silent ? [] : Array.isArray(record.assets) && record.assets.length > 0
         ? record.assets.map(value => requireText(value?.asset, "AUTH sound asset"))
         : [requireText(record?.asset, "AUTH sound asset")];
       this.sounds.set(key, Object.freeze({
         kind: "sound",
         commandHex,
         sourcePath,
-        asset: assets[0],
-        assetUrl: browserAssetPath(assets[0]),
+        silent,
+        unavailableReason: record.unavailableReason || null,
+        asset: assets[0] || null,
+        assetUrl: assets[0] ? browserAssetPath(assets[0]) : null,
         assetUrls: Object.freeze(assets.map(browserAssetPath)),
         sampleRate: record.sampleRate,
       }));

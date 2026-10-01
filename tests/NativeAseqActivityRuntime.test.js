@@ -116,6 +116,23 @@ test("canonical AUTH activities enrich every native presentation cue", () => {
   assert.equal(frames.at(-1).commands[0].mode, 0);
 });
 
+test("same-frame detailed and body hand cues retain their native call order", () => {
+  const vectors = Array.from({ length: 19 }, () => [0, 0, 0]);
+  const frames = enrichNativeAseqActivityFrames({
+    record: { activityId: "mixed-hands", durationFrames: 10,
+      nativeHandPoseCues: [{ frame: 0, actorTag: "AKIR", side: "right",
+        durationNativeTicks: 1, poseTableOffset: "0x100", sourceOrder: 1 }],
+      nativeBodyHandPoseCues: [{ frame: 0, actorTag: "AKIR", channel: 2,
+        targetIndex: 8, durationNativeTicks: 16, releaseDetailed: true, sourceOrder: 0 }],
+    },
+    sequence: { actors: ["AKIR"] }, frames: [{ frame: 0, commands: [{ name: "camera" }] }],
+    metadata: validateNativeAseqActivityMetadata({ actorTags: ["AKIR"],
+      nativeHandPoseTables: { "0x100": { vectors } } }),
+  });
+  assert.deepEqual(frames[0].commands.map(command => command.name), ["camera", "body-hand-pose", "hand-pose"]);
+  assert.equal(frames[0].commands[1].releaseDetailed, true);
+});
+
 test("AUTH activity lifecycle hooks bracket presentation ownership", async () => {
   const order = [];
   const runtime = createNativeAseqActivityRuntime({
@@ -141,7 +158,10 @@ test("AUTH activity lifecycle hooks bracket presentation ownership", async () =>
     presentation: {
       prepare() { order.push(["presentation-prepare"]); return true; },
       beginActivity() { order.push(["presentation-begin"]); return {}; },
-      advanceActivity() { return true; },
+      advanceActivity() {
+        assert.equal(order.at(-1)[0], "activity-advanced", "parameter writes precede presentation");
+        return true;
+      },
       endActivity() { return true; },
     },
   });
@@ -356,7 +376,7 @@ test("AUTH cancellation prevents further parsing and presentation and allows a c
 test("selected programs preserve complete OP00 and OP02 shot dependencies", () => {
   const pack = JSON.parse(fs.readFileSync("play/data/events/nativeEventPrograms.generated.json", "utf8"));
   for (const [previewId, ownerId, file, count] of [
-    ["preview-s1-000", "S1-OP00-A0114", "play/assets/introduction/op00/manifest.json", 24],
+    ["preview-s1-000", "S1-OP00-A0114", "play/assets/introduction/op00/manifest.json", 25],
     ["preview-s1-op02-00", "S1-OP02-00", "play/assets/introduction/op02/manifest.json", 7],
   ]) {
     const catalog = new NativeAseqActivityCatalog(JSON.parse(fs.readFileSync(file, "utf8")));
@@ -499,6 +519,7 @@ test("AUTH activity runtime loads exact resources and advances authored frames",
   });
   assert.deepEqual(started, {
     activityId: "DRAUTH/SEQDATA1.AUTH",
+    actors: ["AKIR", "SMTH", "HARY", "TONY", "SERA", "JONZ"],
     slot: 0,
     binding: {
       primaryPointer: 0xb138a,
@@ -624,8 +645,10 @@ test("AUTH activity runtime rollback ends the exact owned presentation", async (
 });
 
 test("the complete first DRAUTH sequence crosses the reusable presentation boundary", async () => {
-  const counts = { transforms: 0, motions: 0, cameras: 0, audio: 0 };
+  const counts = { transforms: 0, motions: 0, cameras: 0, audio: 0, hands: 0 };
   const presentation = createNativeAseqPresentationRuntime({
+    hands: { prepare: () => true, begin: () => true, apply: () => true, end: () => true,
+      play: () => (counts.hands += 1, true) },
     actors: {
       begin: () => true,
       applyTransform: () => (counts.transforms += 1, true),
@@ -666,6 +689,9 @@ test("the complete first DRAUTH sequence crosses the reusable presentation bound
   assert.equal(counts.cameras, activity.durationFrames + 1);
   assert.ok(counts.motions > activity.durationFrames);
   assert.equal(counts.audio, 44);
+  const record = manifest.activities.find(activity => activity.slot === 0);
+  assert.equal(counts.hands, (record.nativeHandPoseCues?.length || 0)
+    + (record.nativeBodyHandPoseCues?.length || 0) + (record.nativeHandComponentCues?.length || 0));
 });
 
 test("all BUSS branches resolve shared motion, sound-only audio, and cleanup", async () => {

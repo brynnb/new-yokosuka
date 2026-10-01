@@ -51,6 +51,13 @@ export function interpolateMatrixRoutes(
     }));
 }
 
+export function interpolatePoseMatrices(start, end, amount) {
+    if (!Array.isArray(start) || !Array.isArray(end) || start.length !== end.length) {
+        throw new Error("Controller poses must have matching matrix arrays.");
+    }
+    return start.map((matrix, index) => interpolateAffineMatrix(matrix, end[index], amount));
+}
+
 export function interpolateMatrixRouteMaps(startRoutes, endRoutes, amount) {
     if (!(startRoutes instanceof Map) || !(endRoutes instanceof Map)) {
         throw new Error("Matrix routes must be maps.");

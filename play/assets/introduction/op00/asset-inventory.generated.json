@@ -1,6 +1,6 @@
 {
   "schema": "new-yokosuka-op00-asset-inventory-v10",
-  "generatedBy": "tools/build_op00_introduction_assets.mjs",
+  "generatedBy": "tools/cutscenes/build_op00_introduction_assets.mjs",
   "sources": {
     "MAPINFO.BIN": {
       "path": "extracted_files/data/SCENE/01/OP00/MAPINFO.BIN",
@@ -280,6 +280,162 @@
           "0x00a8"
         ]
       }
+    },
+    "THN1": {
+      "actorTag": "THN1",
+      "image": "THDR",
+      "model": "KAMS203G",
+      "characterRecordOffset": 48,
+      "imagePropertyOffset": 56,
+      "defImageRecordOffset": 8,
+      "archiveEntryIndex": 14,
+      "childIndex": 0,
+      "browserFilename": "S1_OP00_KAMS203G_THN1.MT5",
+      "initialPresentation": {
+        "position": [
+          -9.264001846313477,
+          14.396951675415039,
+          -26.11700439453125
+        ],
+        "rotationDegrees": [
+          -16.501176834106445,
+          118.60220336914062,
+          -28.877073287963867
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "kind": "first-auth-pose",
+          "trackIndex": 24,
+          "sourceMapinfoOffset": 295412,
+          "movementIndex": 0,
+          "timeSeconds": 0
+        }
+      },
+      "lifecycle": {
+        "kind": "auth-scoped"
+      },
+      "assetPath": "play/assets/introduction/op00/models/KAMS203G.CHRM"
+    },
+    "THN2": {
+      "actorTag": "THN2",
+      "image": "THDR",
+      "model": "KAMS203G",
+      "characterRecordOffset": 160,
+      "imagePropertyOffset": 168,
+      "defImageRecordOffset": 8,
+      "archiveEntryIndex": 14,
+      "childIndex": 0,
+      "browserFilename": "S1_OP00_KAMS203G_THN2.MT5",
+      "initialPresentation": {
+        "position": [
+          -0.5439990162849426,
+          9.623652458190918,
+          -20.14499855041504
+        ],
+        "rotationDegrees": [
+          227.23504638671875,
+          32.658592224121094,
+          191.711669921875
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "kind": "first-auth-pose",
+          "trackIndex": 24,
+          "sourceMapinfoOffset": 295412,
+          "movementIndex": 1,
+          "timeSeconds": 0
+        }
+      },
+      "lifecycle": {
+        "kind": "auth-scoped"
+      },
+      "assetPath": "play/assets/introduction/op00/models/KAMS203G.CHRM"
+    },
+    "THN3": {
+      "actorTag": "THN3",
+      "image": "THDR",
+      "model": "KAMS203G",
+      "characterRecordOffset": 272,
+      "imagePropertyOffset": 280,
+      "defImageRecordOffset": 8,
+      "archiveEntryIndex": 14,
+      "childIndex": 0,
+      "browserFilename": "S1_OP00_KAMS203G_THN3.MT5",
+      "initialPresentation": {
+        "position": [
+          -5.789999961853027,
+          17.17741584777832,
+          -8.837995529174805
+        ],
+        "rotationDegrees": [
+          40.56541061401367,
+          171.54359436035156,
+          17.876285552978516
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "kind": "first-auth-pose",
+          "trackIndex": 24,
+          "sourceMapinfoOffset": 295412,
+          "movementIndex": 2,
+          "timeSeconds": 0
+        }
+      },
+      "lifecycle": {
+        "kind": "auth-scoped"
+      },
+      "assetPath": "play/assets/introduction/op00/models/KAMS203G.CHRM"
+    },
+    "THN4": {
+      "actorTag": "THN4",
+      "image": "THDR",
+      "model": "KAMS203G",
+      "characterRecordOffset": 384,
+      "imagePropertyOffset": 392,
+      "defImageRecordOffset": 8,
+      "archiveEntryIndex": 14,
+      "childIndex": 0,
+      "browserFilename": "S1_OP00_KAMS203G_THN4.MT5",
+      "initialPresentation": {
+        "position": [
+          -20.925012588500977,
+          20.785747528076172,
+          -30.754993438720703
+        ],
+        "rotationDegrees": [
+          106.34091186523438,
+          -315.8143005371094,
+          83.42262268066406
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "kind": "first-auth-pose",
+          "trackIndex": 24,
+          "sourceMapinfoOffset": 295412,
+          "movementIndex": 3,
+          "timeSeconds": 0
+        }
+      },
+      "lifecycle": {
+        "kind": "auth-scoped"
+      },
+      "assetPath": "play/assets/introduction/op00/models/KAMS203G.CHRM"
     }
   },
   "attachedObjects": {
@@ -343,7 +499,8 @@
                 "literalOffset": "0xb614"
               }
             ]
-          }
+          },
+          "activityId": "OP00/SEQDATA20.AUTH"
         },
         {
           "activitySlot": 15,
@@ -392,7 +549,8 @@
                 "literalOffset": "0xc56c"
               }
             ]
-          }
+          },
+          "activityId": "OP00/SEQDATA15.AUTH"
         },
         {
           "activitySlot": 17,
@@ -441,7 +599,8 @@
                 "literalOffset": "0xc8d8"
               }
             ]
-          }
+          },
+          "activityId": "OP00/SEQDATA17.AUTH"
         }
       ]
     }
@@ -883,9 +1042,11 @@
       "sha256": "a4c26ed8d3e7c60f92cf037583165d06371b3f9ea24d5900acc759cc874247e4",
       "requiredByOpening": false,
       "role": null,
-      "resolution": "unselected-source-asset",
-      "assetPath": null,
-      "canonicalCandidates": []
+      "resolution": "canonical-byte-match",
+      "assetPath": "play/assets/introduction/op00-mail/B023H02G.CHRM",
+      "canonicalCandidates": [
+        "play/assets/introduction/op00-mail/B023H02G.CHRM"
+      ]
     },
     {
       "nativeName": "BMWS703G",
@@ -1241,10 +1402,10 @@
       "childIndex": 0,
       "byteLength": 372,
       "sha256": "c58157d9d9b2e73e62414d4dbc3c277edad9a9d1edd12b2c7228090998186f46",
-      "requiredByOpening": false,
-      "role": null,
-      "resolution": "unselected-source-asset",
-      "assetPath": null,
+      "requiredByOpening": true,
+      "role": "scene-object",
+      "resolution": "new-required-extraction",
+      "assetPath": "play/assets/introduction/op00/models/KAMS203G.CHRM",
       "canonicalCandidates": []
     },
     {
@@ -1390,9 +1551,11 @@
       "sha256": "55355b92101b288cdd931a122041ca7fafd0883150883a3cd6d6c8aa37cecb0a",
       "requiredByOpening": false,
       "role": null,
-      "resolution": "unselected-source-asset",
-      "assetPath": null,
-      "canonicalCandidates": []
+      "resolution": "canonical-byte-match",
+      "assetPath": "play/assets/introduction/op00-mail/BIKK3P0G.CHRM",
+      "canonicalCandidates": [
+        "play/assets/introduction/op00-mail/BIKK3P0G.CHRM"
+      ]
     },
     {
       "nativeName": "UBA_L",
@@ -1403,9 +1566,11 @@
       "sha256": "967bc74cdb77b37ad60448cd9f92814ceb5433edd05f66b60047b4ef133b4e09",
       "requiredByOpening": false,
       "role": null,
-      "resolution": "unselected-source-asset",
-      "assetPath": null,
-      "canonicalCandidates": []
+      "resolution": "canonical-byte-match",
+      "assetPath": "play/assets/introduction/op00-mail/UBA_L.CHRM",
+      "canonicalCandidates": [
+        "play/assets/introduction/op00-mail/UBA_L.CHRM"
+      ]
     },
     {
       "nativeName": "HPSR101G",
@@ -1416,9 +1581,11 @@
       "sha256": "7b688ec8c93b30fc169a31f56b25fb666d506311ba02c38da91b9603c64917ad",
       "requiredByOpening": false,
       "role": null,
-      "resolution": "unselected-source-asset",
-      "assetPath": null,
-      "canonicalCandidates": []
+      "resolution": "canonical-byte-match",
+      "assetPath": "play/assets/introduction/op00-mail/HPSR101G.CHRM",
+      "canonicalCandidates": [
+        "play/assets/introduction/op00-mail/HPSR101G.CHRM"
+      ]
     },
     {
       "nativeName": "MALS501G",
@@ -1429,9 +1596,11 @@
       "sha256": "9a7a6f3245714624bf4818f3db2a135fc49077bdc373c12eb19203a8731dcff0",
       "requiredByOpening": false,
       "role": null,
-      "resolution": "unselected-source-asset",
-      "assetPath": null,
-      "canonicalCandidates": []
+      "resolution": "canonical-byte-match",
+      "assetPath": "play/assets/introduction/op00-mail/MALS501G.CHRM",
+      "canonicalCandidates": [
+        "play/assets/introduction/op00-mail/MALS501G.CHRM"
+      ]
     },
     {
       "nativeName": "OMO",
@@ -1468,9 +1637,11 @@
       "sha256": "5172655184e462fdfb7382294138848c73829bce4fc691ed4cb077004db0e5a7",
       "requiredByOpening": false,
       "role": null,
-      "resolution": "unselected-source-asset",
-      "assetPath": null,
-      "canonicalCandidates": []
+      "resolution": "canonical-byte-match",
+      "assetPath": "play/assets/introduction/op00-dream/YKD_M.CHRM",
+      "canonicalCandidates": [
+        "play/assets/introduction/op00-dream/YKD_M.CHRM"
+      ]
     },
     {
       "nativeName": "YKD_TL",
@@ -1581,15 +1752,15 @@
     "archiveModelCount": 54,
     "requiredEnvironmentCount": 7,
     "mapVisibilityModelCount": 1,
-    "requiredSceneObjectCount": 6,
+    "requiredSceneObjectCount": 7,
     "persistentSceneObjectCount": 4,
     "requiredAttachedObjectCount": 1,
     "requiredFacialAssetCount": 5,
     "requiredHandAssetCount": 5,
     "reusedCharacterCount": 6,
     "newlyExtractedEnvironmentCount": 7,
-    "newlyExtractedSceneObjectCount": 6,
+    "newlyExtractedSceneObjectCount": 7,
     "newlyExtractedAttachedObjectCount": 1,
-    "emittedBinaryCount": 64
+    "emittedBinaryCount": 66
   }
 }

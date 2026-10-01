@@ -102,30 +102,38 @@ export function nativeAseqGoverningActivityFrame(
     offset < callFileOffset && offset + 18 <= functionEndOffset;
     offset += 2
   ) {
+    // Generated callbacks use either mov.l @(disp,r14),r4 or a signed
+    // mov.w @(disp,r14),r0 followed by mov r0,r4 for their local frame clock.
+    // The latter has an extra instruction; keep all compare/branch offsets
+    // relative to the normalized load, not a cutscene-specific frame offset.
+    const wordLoad = (bytes.readUInt16LE(offset) & 0xfff0) === 0x85e0
+      && bytes.readUInt16LE(offset + 2) === 0x6403;
+    const compareOffset = offset + (wordLoad ? 2 : 0);
     if (
-      (bytes.readUInt16LE(offset) & 0xfff0) !== 0x54e0
-      || bytes.readUInt16LE(offset + 4) !== 0x3450
-      || bytes.readUInt16LE(offset + 6) !== 0x344a
-      || bytes.readUInt16LE(offset + 8) !== 0x6043
-      || bytes.readUInt16LE(offset + 10) !== 0x8800
+      (!wordLoad && (bytes.readUInt16LE(offset) & 0xfff0) !== 0x54e0)
+      || compareOffset + 18 > functionEndOffset
+      || bytes.readUInt16LE(compareOffset + 4) !== 0x3450
+      || bytes.readUInt16LE(compareOffset + 6) !== 0x344a
+      || bytes.readUInt16LE(compareOffset + 8) !== 0x6043
+      || bytes.readUInt16LE(compareOffset + 10) !== 0x8800
     ) continue;
-    const frameInstruction = bytes.readUInt16LE(offset + 2);
+    const frameInstruction = bytes.readUInt16LE(compareOffset + 2);
     let frame = null;
     if ((frameInstruction & 0xff00) === 0xe500) {
       frame = signedByte(frameInstruction & 0xff);
     } else if ((frameInstruction & 0xff00) === 0xd500) {
-      frame = pcRelativeLong(bytes, offset + 2, 5).value;
+      frame = pcRelativeLong(bytes, compareOffset + 2, 5).value;
     }
-    const branch = bytes.readUInt16LE(offset + 12);
+    const branch = bytes.readUInt16LE(compareOffset + 12);
     const blockStart = (
       (branch & 0xff00) === 0x8b00
       || (branch & 0xff00) === 0x8900
-    ) ? offset + 16 + signedByte(branch & 0xff) * 2 : null;
-    const skipLoad = bytes.readUInt16LE(offset + 14);
+    ) ? compareOffset + 16 + signedByte(branch & 0xff) * 2 : null;
+    const skipLoad = bytes.readUInt16LE(compareOffset + 14);
     const blockEnd = (
       (skipLoad & 0xff00) === 0xd100
-      && bytes.readUInt16LE(offset + 16) === 0x0123
-    ) ? offset + 20 + (pcRelativeLong(bytes, offset + 14, 1).value | 0) : null;
+      && bytes.readUInt16LE(compareOffset + 16) === 0x0123
+    ) ? compareOffset + 20 + (pcRelativeLong(bytes, compareOffset + 14, 1).value | 0) : null;
     if (
       Number.isInteger(frame)
       && Number.isInteger(blockStart)

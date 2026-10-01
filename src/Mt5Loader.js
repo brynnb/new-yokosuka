@@ -7,7 +7,7 @@ import {
 import * as Mt5CoplanarOverlays from './Mt5CoplanarOverlays.js';
 import * as Mt5Transform from './Mt5Transform.js';
 import * as Mt5TexturePolicy from './Mt5TexturePolicy.js';
-import { applyMt5NormalPolicy } from './Mt5NormalPolicy.js';
+import { alignMt5CharacterSurfaceOrientations, applyMt5NormalPolicy } from './Mt5NormalPolicy.js';
 import {
     applyMt5OverlayDefinition,
     overlayDefinitionForFile,
@@ -1038,52 +1038,7 @@ export class Mt5Loader {
     weldCharacterRigSeams(modelRoot, nodes) {
         const groups = modelRoot._mt5CharacterRigSeamGroups
             || this.buildCharacterRigSeamGroups(modelRoot, nodes);
-        const positionsByChild = new Map();
-        const positionsFor = (child) => {
-            if (!positionsByChild.has(child)) {
-                positionsByChild.set(
-                    child,
-                    child.getVerticesData(BABYLON.VertexBuffer.PositionKind),
-                );
-            }
-            return positionsByChild.get(child);
-        };
-
-        for (const group of groups) {
-            const positionByNode = new Map();
-            for (const vertex of group) {
-                const positions = positionsFor(vertex.child);
-                const offset = vertex.vertexIndex * 3;
-                if (!positions || offset + 2 >= positions.length) continue;
-                if (!positionByNode.has(vertex.nodeIndex)) {
-                    positionByNode.set(vertex.nodeIndex, {
-                        sum: [0, 0, 0],
-                        count: 0,
-                    });
-                }
-                const node = positionByNode.get(vertex.nodeIndex);
-                node.sum[0] += positions[offset];
-                node.sum[1] += positions[offset + 1];
-                node.sum[2] += positions[offset + 2];
-                node.count++;
-            }
-            const nodePositions = [...positionByNode.values()].map((node) => (
-                node.sum.map((value) => value / node.count)
-            ));
-            if (nodePositions.length < 2) continue;
-            const blended = [0, 1, 2].map((axis) => (
-                nodePositions.reduce((sum, position) => sum + position[axis], 0)
-                / nodePositions.length
-            ));
-            for (const vertex of group) {
-                const positions = positionsFor(vertex.child);
-                const offset = vertex.vertexIndex * 3;
-                if (!positions || offset + 2 >= positions.length) continue;
-                positions[offset] = blended[0];
-                positions[offset + 1] = blended[1];
-                positions[offset + 2] = blended[2];
-            }
-        }
+        const positionsByChild = Mt5CharacterRig.weldCharacterRigSeamPositions(groups);
 
         const normalsByChild = new Map();
         for (const [child, positions] of positionsByChild) {
@@ -1188,6 +1143,7 @@ export class Mt5Loader {
         const worldCache = result || new Map();
         worldCache.clear();
         const postTransform = options.postTransform || null;
+        const rootTransform = options.rootTransform || null;
         const worldMatrixFor = (node) => {
             if (worldCache.has(node.addr)) return worldCache.get(node.addr);
 
@@ -1204,7 +1160,7 @@ export class Mt5Loader {
                 const parent = byAddr.get(node.parentAddr);
                 world = parent
                     ? Mt5Loader.rowMultiply(local, worldMatrixFor(parent))
-                    : local;
+                    : rootTransform ? Mt5Loader.rowMultiply(local, rootTransform) : local;
             }
 
             worldCache.set(node.addr, world);
@@ -1385,15 +1341,28 @@ export class Mt5Loader {
             (mesh) => !preservedMeshes.includes(mesh),
         );
         const meshesByMaterial = new Map();
+        const groups = [];
         for (const mesh of mergeableMeshes) {
-            const group = meshesByMaterial.get(mesh.material) || [];
+            let orientations = meshesByMaterial.get(mesh.material);
+            if (!orientations) {
+                orientations = new Map();
+                meshesByMaterial.set(mesh.material, orientations);
+            }
+            // A shared texture/material does not imply a shared front side.
+            // Preserve the authored orientation rather than allowing batching
+            // to change two-sided lighting or one-sided attachment culling.
+            let group = orientations.get(mesh.sideOrientation);
+            if (!group) {
+                group = [];
+                orientations.set(mesh.sideOrientation, group);
+                groups.push(group);
+            }
             group.push(mesh);
-            meshesByMaterial.set(mesh.material, group);
         }
 
         const renderMeshes = [...preservedMeshes];
         let groupIndex = 0;
-        for (const meshes of meshesByMaterial.values()) {
+        for (const meshes of groups) {
             if (meshes.length === 1) {
                 renderMeshes.push(meshes[0]);
                 continue;
@@ -1407,6 +1376,17 @@ export class Mt5Loader {
             const parents = new Map(
                 meshes.map((mesh) => [mesh, mesh.parent]),
             );
+            // Keep exact vertex provenance through batching. A detailed FACE
+            // or HAND may borrow a parent vertex absent from its coarse body
+            // attachment; its animated source then lives in this merged mesh.
+            const sourceVertexIndices = meshes.flatMap(
+                mesh => Array.from(mesh._mt5SourceVertexIndices),
+            );
+            const sourceNodeAddresses = meshes.flatMap(mesh => (
+                mesh._mt5SourceNodeAddresses
+                    ? Array.from(mesh._mt5SourceNodeAddresses)
+                    : Array(mesh.getTotalVertices()).fill(mesh._mt5NodeAddress)
+            ));
             // GPU character source meshes have identity local transforms
             // beneath the mirrored character-content node after pose baking.
             // Detach them before MergeMeshes so that mirror is not baked into
@@ -1428,6 +1408,8 @@ export class Mt5Loader {
                 continue;
             }
             merged.name = `${modelRoot.name}_material_${groupIndex}`;
+            merged._mt5SourceVertexIndices = sourceVertexIndices;
+            merged._mt5SourceNodeAddresses = sourceNodeAddresses;
             groupIndex += 1;
             merged.parent = contentRoot;
             merged.skeleton = rig.skeleton;
@@ -2007,6 +1989,13 @@ export class Mt5Loader {
             };
         }
         applyMt5NormalPolicy(modelRoot, sourceFilename);
+        if (isCharacterRig && !this.respectStripWindingSign) {
+            // Body and cloth must agree which side their authored normals face.
+            // Otherwise two-sided body lighting flips the same waist normals
+            // that one-sided cloth lighting leaves intact. Native signed FACE
+            // resources keep their explicitly authored strip convention.
+            alignMt5CharacterSurfaceOrientations(modelRoot);
+        }
         const overlayDefinition = overlayDefinitionForFile(
             this.overlayManifest,
             sourceFilename,
@@ -2507,7 +2496,10 @@ export class Mt5Loader {
                         let first;
                         let second;
                         let third;
-                        if (isAlpha) {
+                        if (this.respectStripWindingSign || isAlpha) {
+                            // Native signed strips already describe surface orientation.
+                            // Do not invert opaque strips or infer individual triangles
+                            // from smoothed normals at a bent attachment seam.
                             // Alpha surfaces: original winding (normals already face correct way)
                             [first, second, third] = parity % 2 === 0
                                 ? [a, b, c]

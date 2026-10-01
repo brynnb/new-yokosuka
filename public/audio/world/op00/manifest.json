@@ -1,6 +1,6 @@
 {
   "schema": "new-yokosuka-aseq-audio-pack-v2",
-  "generatedBy": "tools/build_op00_audio_pack.mjs",
+  "generatedBy": "tools/cutscenes/build_op00_audio_pack.mjs",
   "sources": {
     "stream": {
       "path": "extracted_files/data/SCENE/01/STREAM/A0114.AFS",
@@ -5395,6 +5395,70 @@
       ]
     },
     {
+      "commandHex": "a9042700",
+      "sourcePath": "native-script:OP00:002704a9",
+      "source": {
+        "area": "OP00",
+        "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+        "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+        "callbackFunction": "0xe2f0",
+        "callFileOffset": "0xed76",
+        "helperFunction": "0xf9e0",
+        "soundCallFileOffset": "0xfa3e",
+        "delayNativeTicks": 6
+      },
+      "assets": [
+        {
+          "playbackId": 39,
+          "sampleId": 75,
+          "sampleRate": 12000,
+          "asset": "public/audio/world/op00/sfx/a9042700-0.wav",
+          "byteLength": 84972,
+          "sha256": "db9554cae8f87ecb835564cdbd7abf008e86c0823fade630364dfd3c9310e4b9"
+        },
+        {
+          "playbackId": 40,
+          "sampleId": 78,
+          "sampleRate": 12000,
+          "asset": "public/audio/world/op00/sfx/a9042700-1.wav",
+          "byteLength": 122812,
+          "sha256": "262f7651c02061c391364b886ee40b5beed11b04db7cc2c2071c251b9c99d286"
+        }
+      ]
+    },
+    {
+      "commandHex": "a9042800",
+      "sourcePath": "native-script:OP00:002804a9",
+      "source": {
+        "area": "OP00",
+        "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+        "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+        "callbackFunction": "0xe2f0",
+        "callFileOffset": "0xee82",
+        "helperFunction": "0xf9e0",
+        "soundCallFileOffset": "0xfa7e",
+        "delayNativeTicks": 6
+      },
+      "assets": [
+        {
+          "playbackId": 41,
+          "sampleId": 81,
+          "sampleRate": 16000,
+          "asset": "public/audio/world/op00/sfx/a9042800-0.wav",
+          "byteLength": 66436,
+          "sha256": "ad18c38ab414bcba4e5bad1f9b51a8df27490811450b48efaf0af86e768a21d5"
+        },
+        {
+          "playbackId": 42,
+          "sampleId": 82,
+          "sampleRate": 16000,
+          "asset": "public/audio/world/op00/sfx/a9042800-1.wav",
+          "byteLength": 130236,
+          "sha256": "02babef3eeb57e54117fe17f737f47077404e833af967f20e627b75056815be3"
+        }
+      ]
+    },
+    {
       "commandHex": "a9042900",
       "sourcePath": "/p16/prj16m5/AUTH01/0114/SE/crash/woodcrash02.aiff",
       "assets": [
@@ -5587,6 +5651,67 @@
           "asset": "public/audio/world/op00/sfx/a9043600.wav",
           "byteLength": 3820,
           "sha256": "238ee3bbb87627b51fa36dc0d315e89c7eeb5dbe43ff8c3895ad7890745bd6e6"
+        }
+      ]
+    },
+    {
+      "commandHex": "a9043700",
+      "sourcePath": "native-script:OP00:003704a9",
+      "source": {
+        "area": "OP00",
+        "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+        "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+        "callbackFunction": "0xe2f0",
+        "callFileOffset": "0xec2e",
+        "helperFunction": "0xf9e0",
+        "soundCallFileOffset": "0xfabe",
+        "delayNativeTicks": 6
+      },
+      "assets": [
+        {
+          "playbackId": 57,
+          "sampleId": 79,
+          "sampleRate": 16000,
+          "asset": "public/audio/world/op00/sfx/a9043700-0.wav",
+          "byteLength": 62208,
+          "sha256": "7f4f33795ff8326f896e2dc200d4d943afe2892f97c044b55d3f524f51114d20"
+        },
+        {
+          "playbackId": 58,
+          "sampleId": 80,
+          "sampleRate": 16000,
+          "asset": "public/audio/world/op00/sfx/a9043700-1.wav",
+          "byteLength": 30976,
+          "sha256": "120b197717f877592287115d5fac9ecaf39552bd9b9dc018885f874b719268fb"
+        }
+      ]
+    },
+    {
+      "commandHex": "a9043800",
+      "sourcePath": "native-script:OP00:003804a9",
+      "source": {
+        "area": "OP00",
+        "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+        "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+        "callbackFunction": "0xe2f0",
+        "callFileOffset": "0xefa6"
+      },
+      "assets": [
+        {
+          "playbackId": 59,
+          "sampleId": 83,
+          "sampleRate": 10500,
+          "asset": "public/audio/world/op00/sfx/a9043800-0.wav",
+          "byteLength": 22446,
+          "sha256": "20ab20be125f44b59954329a77e7dc4eee262b22b3d838db5c2b38959208a1f5"
+        },
+        {
+          "playbackId": 59,
+          "sampleId": 83,
+          "sampleRate": 10500,
+          "asset": "public/audio/world/op00/sfx/a9043800-1.wav",
+          "byteLength": 22446,
+          "sha256": "20ab20be125f44b59954329a77e7dc4eee262b22b3d838db5c2b38959208a1f5"
         }
       ]
     },
@@ -5938,7 +6063,7 @@
   "music": [
     {
       "trackId": "op00-open1",
-      "activitySlot": 1,
+      "nativeName": "OPEN1",
       "nativeMember": "open1.str",
       "nativeIndex": 0,
       "nativeByteLength": 909312,
@@ -5949,7 +6074,7 @@
     },
     {
       "trackId": "op00-open2",
-      "activitySlot": 4,
+      "nativeName": "OPEN2",
       "nativeMember": "open2.str",
       "nativeIndex": 1,
       "nativeByteLength": 2746368,
@@ -5962,8 +6087,8 @@
   "summary": {
     "voiceCount": 48,
     "soundCueCount": 266,
-    "soundBindingCount": 91,
-    "uniqueSoundCommandCount": 77,
+    "soundBindingCount": 95,
+    "uniqueSoundCommandCount": 80,
     "musicTrackCount": 2
   }
 }

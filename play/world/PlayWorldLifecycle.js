@@ -347,8 +347,12 @@ export class PlayWorldLifecycle {
 
   async initialize({
     initialWorldOverride = null,
+    initialPlacement = null,
     fetchServerState = true,
     persistInitialLocation = true,
+    reveal = true,
+    loadingPresentation = null,
+    signal = null,
     fetchInitialServerWorldState,
   } = {}) {
     const savedCharacter = this.accountSession.character;
@@ -375,15 +379,34 @@ export class PlayWorldLifecycle {
         ? this.worlds.interior
         : this.worlds.exterior);
     const initialCharacter = savedAvatar || this.characterById.get("ryo");
-    this.playerRuntime.setInitialCharacter(initialCharacter.id);
-    this.loadingScreen.setWorld(initialWorld);
+    // Cover avatar restoration as well as the subsequent world download when
+    // returning from an opening/preview. The old scene may already be gone.
+    await this.loadingScreen.begin(initialWorld, signal, loadingPresentation);
+    signal?.throwIfAborted();
+    // Menu previews/opening cinematics may already have loaded Ryo. Restore
+    // the selected avatar through the normal replacement path in that case.
+    if (this.getController()) {
+      await this.playerRuntime.switchCharacter(initialCharacter, { persist: false });
+      // Interactive switching reports failures without rejecting. Startup must
+      // not publish a cinematic stand-in as the selected player's avatar.
+      if (this.playerRuntime.activeCharacterId !== initialCharacter.id) {
+        throw new Error(`Could not restore selected character ${initialCharacter.id}`);
+      }
+    } else {
+      this.playerRuntime.setInitialCharacter(initialCharacter.id);
+    }
+    signal?.throwIfAborted();
     const loaded = await this.worldRuntime.initialize(initialWorld, {
       beforeLoad: fetchServerState ? fetchInitialServerWorldState : null,
-      savedPosition: savedLocation?.world === initialWorld
-        ? savedLocation.position
-        : null,
-      savedYaw: savedLocation?.yaw,
+      // Story arrivals override a newly created character's default location.
+      // Reset both player and camera inside world loading, before its reveal.
+      savedPosition: initialPlacement
+        ? this.vectorFromArray(initialPlacement.position)
+        : savedLocation?.world === initialWorld ? savedLocation.position : null,
+      savedYaw: initialPlacement ? initialPlacement.yaw : savedLocation?.yaw,
       persistLocation: false,
+      reveal,
+      loadingPresentation,
     });
     if (this.multiplayerRuntime.sessionReplaced) return;
     if (!loaded && !this.getController()) {

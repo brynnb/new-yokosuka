@@ -77,11 +77,22 @@ At runtime `Mt5Loader` only splits the listed faces and gives the resulting
 material a Babylon `zOffset`/`zOffsetUnits` bias. It does not rewrite the MT5
 binary, move vertices, or make the browser analyze every mesh.
 
+Packaged viewer maps use the same source mapping as the browser
+(`src/PackagedViewerAssets.js`). This includes native `.MAPM` files and catalog
+names such as `S1_OP00_OMO.MT5`, not just flat exports named `*_MAP*.MT5`.
+The packaged source takes precedence over any older flat copy. These maps go
+through the same analyzer and per-face bias as ordinary world maps; whole
+terrain layers must not be hidden to work around coplanar triangles.
+
 - **Usage**: `npm run build:mt5-overlays`
 - **Limit to one family while developing**:
-  `node tools/assets/generate_mt5_overlay_manifest.js --match 'S2_MFSY_MAP11'`
+  `node tools/assets/generate_mt5_overlay_manifest.js --match 'S2_MFSY_MAP11' --output /var/tmp/mt5-overlays-sample.json`
 - **Add another extracted-model search root**:
   `node tools/assets/generate_mt5_overlay_manifest.js --root /path/to/models`
+- **Control analysis concurrency**: `--workers 4` (default; accepts 1–6).
+
+`--match` produces a partial manifest; use a separate output for diagnostics.
+Rebuild without that filter to update the checked-in full manifest.
 
 Regenerate the manifest after replacing map MT5 binaries. Definitions carry
 the source byte length and are ignored at runtime when it does not match, so a

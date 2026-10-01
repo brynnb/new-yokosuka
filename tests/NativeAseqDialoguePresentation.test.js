@@ -16,7 +16,7 @@ function element() {
   };
 }
 
-test("AUTH voices use the regular dialogue overlay and clear by command identity", () => {
+test("AUTH voices use the regular dialogue overlay and clear by playback identity", () => {
   const root = element();
   const speaker = element();
   const sourceText = element();
@@ -30,20 +30,20 @@ test("AUTH voices use the regular dialogue overlay and clear by command identity
     options,
   });
   const owner = {};
-  const first = {
+  const first = { command: {
     audio: {
       kind: "voice",
       speakerId: "IWAO",
       displayText: "Stay back, Ryo.",
     },
-  };
-  const second = {
+  } };
+  const second = { command: {
     audio: {
       kind: "voice",
       speakerId: "AKIR",
       sourceText: "Father＆wait=@",
     },
-  };
+  } };
 
   assert.equal(runtime.begin(owner), true);
   assert.equal(runtime.play(owner, first), true);
@@ -61,7 +61,11 @@ test("AUTH voices use the regular dialogue overlay and clear by command identity
   assert.equal(sourceText.textContent, "Father\nwait...");
   assert.equal(runtime.endVoice(owner, first), true);
   assert.equal(root.hidden, false);
+  const replay = { command: second.command };
+  assert.equal(runtime.play(owner, replay), true);
   assert.equal(runtime.endVoice(owner, second), true);
+  assert.equal(root.hidden, false);
+  assert.equal(runtime.endVoice(owner, replay), true);
   assert.equal(root.hidden, true);
   assert.equal(runtime.end(owner), true);
 });
@@ -82,13 +86,13 @@ test("AUTH voices resolve activity-only speaker names from their cutscene packag
   const owner = {};
 
   runtime.begin(owner);
-  runtime.play(owner, {
+  runtime.play(owner, { command: {
     audio: {
       kind: "voice",
       speakerId: "SMTH",
       displayText: "Hey, you!",
     },
-  });
+  } });
 
   assert.equal(speaker.textContent, "Smith Bradley");
   assert.equal(speaker.attributes["data-dialogue-speaker"], "other");

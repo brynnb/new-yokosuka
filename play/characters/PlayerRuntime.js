@@ -133,6 +133,7 @@ export class PlayerRuntime {
       locomotionStates: LOCOMOTION_STATES,
       applyPose: ({
         routedMatrices,
+        controllerMatrices,
         frame,
         nextFrame,
         amount,
@@ -150,12 +151,13 @@ export class PlayerRuntime {
           (this.animation.tick + amount) / GAME_TICKS_PER_SECOND,
         );
         if (!nativeLocomotionApplied) {
-          this.characterRuntime.applyCharacterRigWorldMatrices(
+          this.characterRuntime.applyHumanoidAnimationPose(
             this.characterLoader,
             this.modelRoot,
             this.animation.state === "forkliftSit"
               ? this.characterRuntime.retargetMirroredForkliftArms(routedMatrices)
               : this.characterRuntime.retarget(routedMatrices),
+            controllerMatrices,
           );
         }
         this.applySupplementalPose({
@@ -480,12 +482,6 @@ export class PlayerRuntime {
   playEmote(emote, option, context = null) {
     return this.emotes.play(emote, option, context);
   }
-  clipRoutesAt(clipState, tick, options = {}) {
-    return this.animation.clipRoutesAt(clipState, tick, options);
-  }
-  remoteEmoteRoutes(emoteId, elapsedSeconds) {
-    return this.animation.remoteEmoteRoutes(emoteId, elapsedSeconds);
-  }
   setRaycastIndex(index) { this.controller?.setRaycastIndex(index); }
   setCameraSensitivity(scale) {
     if (this.controller) {
@@ -508,8 +504,8 @@ export class PlayerRuntime {
       CHARACTER_BY_ID.get(this.activeCharacterId) || CHARACTER_BY_ID.get("ryo"),
     );
   }
-  updateCloth(deltaSeconds) {
-    this.characterRuntime.updateNativeCloth(this.modelRoot, deltaSeconds);
+  updateSecondaryMotion(deltaSeconds) {
+    this.characterRuntime.updateSecondaryMotion(this.modelRoot, deltaSeconds);
   }
   dispose() {
     this.disposed = true;

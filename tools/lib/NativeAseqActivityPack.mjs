@@ -17,6 +17,25 @@ import { MotnLoader } from "../../src/MotnLoader.js";
 
 const MANIFEST_SCHEMA = "new-yokosuka-aseq-activity-pack-v1";
 
+// Native slots are mutable resource handles, not shot identities. Resolve
+// them during generation; the browser only consumes exact activity IDs.
+export function compileNativeAseqAttachedObjects(definitions, activities) {
+  return Object.fromEntries(Object.entries(definitions).map(([tag, definition]) => [tag, {
+    ...definition,
+    ...Object.fromEntries(["attachments", "presentation", "nodeTransforms"]
+      .filter(key => definition[key])
+      .map(key => [key, definition[key].map(cue => {
+        const matches = activities.filter(activity => cue.activityId
+          ? activity.activityId === cue.activityId
+          : activity.slot === cue.activitySlot);
+        if (matches.length !== 1) {
+          throw new Error(`${tag} ${key} requires one exact activity; found ${matches.length}`);
+        }
+        return { ...cue, activityId: matches[0].activityId };
+      })])),
+  }]));
+}
+
 export function sha256(bytes) {
   return createHash("sha256").update(bytes).digest("hex");
 }
@@ -189,6 +208,8 @@ function compileActivity(config, expectation, memberByName, packages) {
   }
   return Object.freeze({
     slot: expectation.slot,
+    ...(expectation.binding ? { binding: expectation.binding } : {}),
+    ...(expectation.hiddenActors ? { hiddenActors: expectation.hiddenActors } : {}),
     primaryPointer: expectation.primaryPointer,
     secondaryPointer: expectation.secondaryPointer,
     activityId: `${config.resourceName}/${expectation.file}`,
@@ -200,11 +221,27 @@ function compileActivity(config, expectation, memberByName, packages) {
     frameCount: sequence.frames.length,
     commandCounts: counts,
     actors: sequence.actors,
+    ...(expectation.browserMapVisibility ? {
+      browserMapVisibility: expectation.browserMapVisibility,
+    } : {}),
+    ...(expectation.browserBackgroundColor ? {
+      browserBackgroundColor: expectation.browserBackgroundColor,
+    } : {}),
+    ...(expectation.browserIsolatedStage ? { browserIsolatedStage: true } : {}),
+    ...(expectation.nativeSoundCommandCues
+      ? { nativeSoundCommandCues: expectation.nativeSoundCommandCues }
+      : {}),
     ...(expectation.nativeHandPoseCues
       ? { nativeHandPoseCues: expectation.nativeHandPoseCues }
       : {}),
     ...(expectation.nativeBodyHandPoseCues
       ? { nativeBodyHandPoseCues: expectation.nativeBodyHandPoseCues }
+      : {}),
+    ...(expectation.nativeHandComponentCues
+      ? { nativeHandComponentCues: expectation.nativeHandComponentCues }
+      : {}),
+    ...(expectation.nativeHandComponentLimitations?.length
+      ? { nativeHandComponentLimitations: expectation.nativeHandComponentLimitations }
       : {}),
     ...(expectation.nativeFaceClipCues
       ? { nativeFaceClipCues: expectation.nativeFaceClipCues }
@@ -214,6 +251,9 @@ function compileActivity(config, expectation, memberByName, packages) {
       : {}),
     ...(expectation.nativeFaceGazeCues
       ? { nativeFaceGazeCues: expectation.nativeFaceGazeCues }
+      : {}),
+    ...(expectation.nativeActorLookPointCues
+      ? { nativeActorLookPointCues: expectation.nativeActorLookPointCues }
       : {}),
     ...(expectation.nativeSceneObjectStates
       ? { nativeSceneObjectStates: expectation.nativeSceneObjectStates }
@@ -229,6 +269,11 @@ function compileActivity(config, expectation, memberByName, packages) {
       motionName: event.motionName,
       startFrame: event.startFrame,
       endFrame: event.endFrame,
+      ...(event.sampleFrameOffset ? {
+        sampleFrameOffset: event.sampleFrameOffset,
+        frameBasis: "rebased-whole-clip-window",
+        sourceDurationFrames: event.motionDurationFrames,
+      } : {}),
     })),
   });
 }
@@ -239,7 +284,13 @@ export function buildNativeAseqActivityPack(config) {
   let memberByName;
   if (looseSources) {
     const members = looseSources.map((definition, index) => {
-      const bytes = readFileSync(definition.sourcePath);
+      const source = readFileSync(definition.sourcePath);
+      if (definition.sourceSha256 && sha256(source) !== definition.sourceSha256) {
+        throw new Error(`${config.resourceName} source ${definition.sourcePath} changed`);
+      }
+      const bytes = definition.sourceOffset === undefined ? source : source.subarray(
+        definition.sourceOffset, definition.sourceOffset + definition.byteLength,
+      );
       if (
         bytes.length !== definition.byteLength
         || sha256(bytes) !== definition.sha256
@@ -343,9 +394,10 @@ export function buildNativeAseqActivityPack(config) {
     source: looseSources ? {
       disc: config.disc,
       format: "loose-files",
-      members: looseSources.map(({ name, sourceManifestPath: sourcePath, byteLength, sha256: digest }) => ({
+      members: looseSources.map(({ name, sourceManifestPath: sourcePath, sourceOffset, sourceSha256, byteLength, sha256: digest }) => ({
         name,
         path: sourcePath,
+        ...(sourceOffset === undefined ? {} : { sourceOffset, sourceSha256 }),
         byteLength,
         sha256: digest,
       })),
@@ -367,8 +419,11 @@ export function buildNativeAseqActivityPack(config) {
       ? { playerActorAliases: config.playerActorAliases }
       : {}),
     ...(config.sceneObjects ? { sceneObjects: config.sceneObjects } : {}),
+    ...(config.mapLayers ? { mapLayers: config.mapLayers } : {}),
     ...(config.packageActors ? { packageActors: config.packageActors } : {}),
-    ...(config.attachedObjects ? { attachedObjects: config.attachedObjects } : {}),
+    ...(config.attachedObjects ? {
+      attachedObjects: compileNativeAseqAttachedObjects(config.attachedObjects, activities),
+    } : {}),
     ...(config.handAssets ? { handAssets: config.handAssets } : {}),
     ...(config.facialAssets ? { facialAssets: config.facialAssets } : {}),
     ...(config.nativeHandPoseTables
@@ -386,6 +441,7 @@ export function buildNativeAseqActivityPack(config) {
         path: source.path,
         byteLength: source.bytes.length,
         sha256: sha256(source.bytes),
+        ...(definition.source ? { source: definition.source } : {}),
       };
     }),
     outputs: [...new Map(

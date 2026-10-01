@@ -1,4 +1,5 @@
 import * as BABYLON from "@babylonjs/core";
+import { staticBatchSourceForFace } from "../../src/rendering/StaticWorldBatching.js";
 
 export class TrianglePicker {
   constructor({
@@ -401,6 +402,7 @@ export class TrianglePicker {
         (texture) => texture.name || texture.url || null,
       ).filter(Boolean) || [],
       faceId: originalFaceId,
+      batchSource: staticBatchSourceForFace(sourceMesh, faceId),
       vertexIndices,
       localPositions: localPositions.map((position) => position.asArray()),
       worldPositions: worldPositions.map((position) => position.asArray()),

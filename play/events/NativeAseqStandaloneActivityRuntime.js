@@ -5,6 +5,7 @@ export class NativeAseqStandaloneActivityRuntime {
     activityRuntime,
     frameRate = 30,
     onStarted = null,
+    beforeComplete = null,
     onComplete = null,
     onStopped = null,
   } = {}) {
@@ -15,6 +16,7 @@ export class NativeAseqStandaloneActivityRuntime {
     this.activityRuntime = activityRuntime;
     this.clock = createNativeAseqFrameClock({ frameRate });
     this.onStarted = onStarted;
+    this.beforeComplete = beforeComplete;
     this.onComplete = onComplete;
     this.onStopped = onStopped;
     this.active = null;
@@ -55,7 +57,7 @@ export class NativeAseqStandaloneActivityRuntime {
 
   update(deltaSeconds) {
     const active = this.active;
-    if (!active || !Number.isFinite(deltaSeconds) || deltaSeconds <= 0) {
+    if (!active || active.completing || !Number.isFinite(deltaSeconds) || deltaSeconds <= 0) {
       return false;
     }
     const nativeFrames = this.clock.consume(deltaSeconds);
@@ -66,6 +68,11 @@ export class NativeAseqStandaloneActivityRuntime {
     ) {
       const nextFrame = active.frame + 1;
       if (nextFrame > active.activity.durationFrames) {
+        if (this.beforeComplete) {
+          active.completing = true;
+          void this.#completeCovered(active);
+          return false;
+        }
         this.#finish("complete");
         this.onComplete?.(active.id);
         return false;
@@ -92,6 +99,17 @@ export class NativeAseqStandaloneActivityRuntime {
     if (!this.#finish(reason)) return false;
     this.onStopped?.(reason, active.id);
     return true;
+  }
+
+  async #completeCovered(active) {
+    try {
+      await this.beforeComplete(active.id);
+      if (this.active !== active) return;
+      if (!this.#finish("complete")) throw new Error("AUTH completion cleanup was rejected");
+      this.onComplete?.(active.id);
+    } catch (error) {
+      if (this.active === active) this.stop(error);
+    }
   }
 
   #finish(reason) {

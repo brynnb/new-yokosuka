@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { buildNativeAseqActivityPack } from "../lib/NativeAseqActivityPack.mjs";
+import { buildNativeAseqActivityPack, sha256 } from "../lib/NativeAseqActivityPack.mjs";
+import { extractNativeAseqHandInitialization, extractNativeAseqCallbackHandPresentation } from "../lib/NativeAseqCallbackPresentation.mjs";
+import handEvidence from "../evidence/hazuki-dialogue-native-callback-ir.json" with { type: "json" };
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const sourceRoot = [
@@ -12,6 +14,24 @@ const sourceRoot = [
   path.join(repoRoot, "extracted_files"),
 ].filter(Boolean).find(existsSync);
 if (!sourceRoot) throw new Error("an exact Shenmue Disc 1 extraction was not found");
+const mapinfo = readFileSync(path.join(sourceRoot, "data/SCENE/01/JHD0/MAPINFO.BIN"));
+if (sha256(mapinfo) !== handEvidence.source.mapinfoSha256) throw new Error("KAKG hand source changed");
+const functions = [handEvidence.function, ...handEvidence.supportingFunctions];
+const hands = new Map();
+// Original owners 0x25b80 / 0x26440 select these setup and callback pairs.
+for (const [activitySlot, setup, callback] of [[2, "0x26aa4", "0x25c3c"], [3, "0x26be0", "0x2682c"]]) {
+  const initial = extractNativeAseqHandInitialization({
+    bytes: mapinfo, activitySlot, functions, nativeFunction: functions.find(fn => fn.id === setup),
+  });
+  const timed = extractNativeAseqCallbackHandPresentation({
+    bytes: mapinfo, activitySlot, callbackFunction: Number.parseInt(callback, 16),
+    nativeFunction: functions.find(fn => fn.id === callback),
+  });
+  hands.set(activitySlot, {
+    nativeHandPoseTables: { ...initial.nativeHandPoseTables, ...timed.nativeHandPoseTables },
+    nativeHandPoseCues: [...initial.nativeHandPoseCues, ...timed.nativeHandPoseCues],
+  });
+}
 
 const expectedMembers = Object.freeze([
   ["M_01CRY.MOTN", 43608, "3077421e17ccc70225034c4f0fd26bad128566c81aa5e5b3fe722b466a1c3f1f"],
@@ -35,6 +55,7 @@ buildNativeAseqActivityPack({
   bindingEvidence: "tools/evidence/kakg-native-lifecycle.json",
   selectionRule: "zero-based AUTH-extension ordinal selected by operation-0x013e slot",
   audioManifest: "package-level audioBySlot maps conversational activities to exact independent streams and banks",
+  nativeHandPoseTables: Object.assign({}, ...[...hands.values()].map(hand => hand.nativeHandPoseTables)),
   outputDirectory,
   outputAssetPrefix: "play/assets/hazuki/kakg",
   manifestPath: path.join(outputDirectory, "manifest.json"),
@@ -65,6 +86,7 @@ buildNativeAseqActivityPack({
     durationFrames: 2000,
     frameCount: 43,
     commandCounts: { camera: 1, move: 2, motion: 3, voice: 22, sound: 20 },
+    nativeHandPoseCues: hands.get(2).nativeHandPoseCues,
   }, {
     slot: 3,
     primaryPointer: 0x5f16d,
@@ -74,6 +96,7 @@ buildNativeAseqActivityPack({
     durationFrames: 1031,
     frameCount: 22,
     commandCounts: { camera: 1, move: 2, motion: 2, sound: 12, voice: 9 },
+    nativeHandPoseCues: hands.get(3).nativeHandPoseCues,
   }],
 });
 

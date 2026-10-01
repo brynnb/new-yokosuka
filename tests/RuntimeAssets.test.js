@@ -1,11 +1,26 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { runtimeAssets, runtimeAssetUrl, runtimeAssetGroup, runtimeAssetKey,
   resolveRuntimeAssetUrl } from "../src/RuntimeAssets.js";
 import { createGameAudio } from "../play/audio/MediaElementAudio.js";
 import music from "../public/music/manifest.json" with { type: "json" };
 
 const source = "play/assets/characters/FUK_M.CHRM";
+
+test("versioned JSON metadata matches the checked-in runtime asset hashes", () => {
+  // Binaries can be absent in a clean checkout, but authored/generated JSON
+  // stays in Git. Catch an extractor update without assets:update before a
+  // release can silently load its older published manifest or owner program.
+  for (const [file, record] of Object.entries(runtimeAssets)) {
+    if (!file.endsWith(".json")) continue;
+    const bytes = readFileSync(new URL(`../${file}`, import.meta.url));
+    assert.equal(bytes.length, record.size, `${file}: stale runtime asset size`);
+    assert.equal(createHash("sha256").update(bytes).digest("hex"), record.sha256,
+      `${file}: regenerate its record with npm run assets:update`);
+  }
+});
 
 test("runtime URLs pin content and preserve offline source paths", () => {
   assert.equal(runtimeAssetUrl(source, { baseUrl: "https://assets.example/", offline: false }),

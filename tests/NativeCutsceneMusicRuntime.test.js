@@ -4,6 +4,26 @@ import test from "node:test";
 import {
   createNativeCutsceneMusicRuntime,
 } from "../play/cutscenes/NativeCutsceneMusicRuntime.js";
+import { createNativeOperation015cSemanticHandlers } from "../play/events/NativeOperation015cRuntime.js";
+import op00Audio from "../public/audio/world/op00/manifest.json" with { type: "json" };
+
+test("native named audio commands, not guessed shot slots, start opening scores", async () => {
+  const calls = [];
+  const runtime = musicRuntime(op00Audio.music, calls);
+  const handler = createNativeOperation015cSemanticHandlers()["native-operation-015c-named-controller-acquire"];
+  const start = name => handler({ action: { arguments: [{ kind: "static-pointer" }, { kind: "constant" }] },
+    readArgument: index => index === 0 ? 123 : 0,
+    context: { resolveNativeStaticString: () => name, playNativeNamedAudio: name => runtime.beginNamedCue(name) } });
+  assert.equal((await start("OPEN1")).result, 1);
+  for (const slot of [0, 1, 2, 3]) {
+    runtime.beginActivity({ slot });
+    runtime.endActivity({ programActive: true });
+  }
+  assert.deepEqual(calls, [["play", "op00-open1", { gain: 1, loop: false }]]);
+  assert.equal((await start("OPEN2")).result, 2);
+  assert.equal((await start("MISSING")).status, "stopped");
+  runtime.reset();
+});
 
 test("cutscene music selects exact activity-slot cues before a package fallback", () => {
   const calls = [];
@@ -55,7 +75,7 @@ test("package soundtrack survives nested activity boundaries, then resets for re
   assert.equal(calls.filter(([kind]) => kind === "play").length, 2);
 });
 
-test("slot cues remain activity-owned and replace a package soundtrack", () => {
+test("slot cues replace a package soundtrack and retrigger only on a new cue", () => {
   const calls = [];
   const runtime = musicRuntime([
     { startActivity: true, trackId: "soundtrack", loop: true },
@@ -65,6 +85,8 @@ test("slot cues remain activity-owned and replace a package soundtrack", () => {
   runtime.endActivity({ programActive: true });
   runtime.beginActivity({ slot: 1 });
   runtime.endActivity({ programActive: true });
+  assert.equal(runtime.trackId, "shot");
+  assert.equal(calls.filter(([kind]) => kind === "stop").length, 1);
   runtime.beginActivity({ slot: 1 });
   assert.deepEqual(calls.filter(([kind]) => kind !== "pause"), [
     ["play", "soundtrack", { gain: 1, loop: true }],
@@ -72,6 +94,31 @@ test("slot cues remain activity-owned and replace a package soundtrack", () => {
     ["play", "shot", { gain: 1, loop: false }],
     ["stop", "shot"],
     ["play", "shot", { gain: 1, loop: false }],
+  ]);
+});
+
+test("slot-triggered scores survive uncued activities until replacement or program release", () => {
+  const calls = [];
+  const runtime = musicRuntime([
+    { activitySlot: 1, trackId: "arrival" },
+    { activitySlot: 4, trackId: "dojo" },
+  ], calls);
+  for (const slot of [1, 2, 3]) {
+    runtime.beginActivity({ slot });
+    runtime.endActivity({ programActive: true });
+    assert.equal(runtime.trackId, "arrival");
+  }
+  assert.deepEqual(calls, [["play", "arrival", { gain: 1, loop: false }]]);
+  runtime.beginActivity({ slot: 4 });
+  runtime.endActivity({ programActive: true });
+  runtime.beginActivity({ slot: 18 });
+  assert.equal(runtime.trackId, "dojo");
+  runtime.reset();
+  assert.deepEqual(calls.filter(([kind]) => kind !== "pause"), [
+    ["play", "arrival", { gain: 1, loop: false }],
+    ["stop", "arrival"],
+    ["play", "dojo", { gain: 1, loop: false }],
+    ["stop", "dojo"],
   ]);
 });
 

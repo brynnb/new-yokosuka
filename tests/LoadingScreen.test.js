@@ -1,140 +1,162 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { LoadingScreen } from "../play/ui/LoadingScreen.js";
+import { LoadingScreen, FADE_TO_BLACK_MS, REVEAL_MS } from "../play/ui/LoadingScreen.js";
 
-test("a superseded loading screen never hides the replacement", async () => {
-  const addedClasses = [];
-  const timers = {
-    setTimeout() {
-      return 1;
-    },
-    clearTimeout() {},
-    requestAnimationFrame() {
-      throw new Error("cancelled load must not request a finished frame");
-    },
+const world = { japaneseLabel: "ドブ板", label: "Dobuita" };
+const flush = async () => { for (let i = 0; i < 8; i++) await Promise.resolve(); };
+
+function fixture() {
+  const tasks = new Map();
+  let nextId = 0;
+  const classes = new Set();
+  const events = [];
+  const enqueue = (callback, ms) => { tasks.set(++nextId, { callback, ms }); return nextId; };
+  const dom = {
+    loading: { getAnimations: () => [], classList: {
+      toggle: (name, on) => on ? classes.add(name) : classes.delete(name),
+      remove: name => classes.delete(name),
+    }, style: { setProperty() {} } },
+    canvas: { width: 1280, height: 720 },
+    transitionFrame: { hidden: true, getContext: () => ({ drawImage: () => events.push("snapshot") }) },
+    loadingWord: {}, loadingProgress: {}, loadingError: {}, loadingCount: {},
+    loadingPlaceJapanese: {}, loadingPlaceEnglish: {},
   };
-  const loadingScreen = new LoadingScreen({
-    dom: {
-      loading: {
-        classList: {
-          add: (value) => addedClasses.push(value),
-        },
-      },
-    },
-    getDate: () => new Date(),
-    worldHud: {},
-    onFinished() {},
-    clock: { now: () => 0 },
-    timers,
-  });
-  const controller = new AbortController();
-  const finishing = loadingScreen.finish(controller.signal);
-  controller.abort();
-
-  assert.equal(await finishing, false);
-  assert.deepEqual(addedClasses, []);
-});
-
-test("day rollover fades to black before revealing the new date", async () => {
-  const classes = new Set(["hidden"]);
-  const loadingDates = [];
-  let releaseFade = null;
-  const loadingScreen = new LoadingScreen({
-    dom: {
-      loading: {
-        classList: {
-          add: (value) => classes.add(value),
-          remove: (value) => classes.delete(value),
-        },
-      },
-      loadingWord: { textContent: "" },
-      loadingProgress: { hidden: false },
-      loadingError: { hidden: true, textContent: "" },
-      loadingCount: { textContent: "" },
-      loadingPlaceJapanese: { textContent: "" },
-      loadingPlaceEnglish: { textContent: "" },
-    },
-    getDate: () => new Date("1986-06-09T23:29:00Z"),
-    worldHud: {
-      setLoadingDate: (date) => loadingDates.push(date.toISOString()),
-    },
-    onFinished() {},
-    clock: { now: () => 0 },
-    timers: {
-      setTimeout(callback) {
-        releaseFade = callback;
-        return 1;
-      },
-      clearTimeout() {},
-      requestAnimationFrame() {},
+  const screen = new LoadingScreen({
+    dom, getDate: () => new Date(0), worldHud: { setLoadingDate: date => events.push(date) },
+    onFinished: () => events.push("finished"), timers: {
+      setTimeout: enqueue, clearTimeout: id => tasks.delete(id),
+      requestAnimationFrame: callback => enqueue(callback, "frame"),
+      cancelAnimationFrame: id => tasks.delete(id),
     },
   });
-  const newDate = new Date("1986-06-10T08:30:00Z");
+  const tick = async ms => {
+    const task = [...tasks.values()].find(task => task.ms === ms);
+    assert.ok(task, `expected pending ${ms} callback`);
+    task.callback();
+    await flush();
+  };
+  return { screen, dom, classes, events, tasks, tick };
+}
 
-  const beginning = loadingScreen.beginDayRollover(
-    { japaneseLabel: "ドブ板", label: "Dobuita" },
-    newDate,
-  );
-  assert.equal(classes.has("hidden"), false);
-  assert.equal(classes.has("day-rollover-fade"), true);
-  assert.equal(loadingDates.at(-1), newDate.toISOString());
-
-  releaseFade();
+test("outgoing frame fades for one second before destination/loading content appears", async () => {
+  const f = fixture();
+  f.screen.setPhase("hidden");
+  const beginning = f.screen.begin(world);
+  assert.equal(f.screen.phase, "covering");
+  assert.equal(f.screen.canRender, false);
+  assert.equal(f.dom.transitionFrame.hidden, false);
+  assert.equal(f.dom.loadingPlaceEnglish.textContent, undefined);
+  await f.tick(FADE_TO_BLACK_MS);
+  assert.equal(f.dom.loadingPlaceEnglish.textContent, "Dobuita");
+  assert.equal(f.dom.transitionFrame.hidden, true);
+  await f.tick("frame"); await f.tick("frame");
   assert.equal(await beginning, true);
-  assert.equal(classes.has("day-rollover-fade"), false);
+  assert.equal(f.screen.phase, "loading");
 });
 
-test("world loading waits through a paint before synchronous teardown", async () => {
-  const frames = [];
-  const loadingScreen = new LoadingScreen({
-    dom: {},
-    getDate: () => new Date(),
-    worldHud: {},
-    onFinished() {},
-    timers: {
-      requestAnimationFrame(callback) {
-        frames.push(callback);
-      },
-    },
-  });
-
-  let settled = false;
-  const painted = loadingScreen.waitUntilPainted().then((value) => {
-    settled = true;
-    return value;
-  });
-  assert.equal(frames.length, 1);
-  frames.shift()();
-  await Promise.resolve();
-  assert.equal(settled, false);
-  assert.equal(frames.length, 1);
-  frames.shift()();
-  assert.equal(await painted, true);
+test("ready content runs behind the half-second reveal without an artificial minimum load time", async () => {
+  const f = fixture();
+  const finishing = f.screen.finish();
+  assert.equal(f.screen.canRender, true);
+  await f.tick("frame");
+  assert.equal(f.screen.phase, "preparing-reveal");
+  await f.tick("frame");
+  assert.equal(f.screen.phase, "revealing");
+  assert.equal(f.screen.canRender, true);
+  assert.equal(f.classes.has("hidden"), false);
+  assert.equal(f.events.includes("finished"), false);
+  await f.tick(REVEAL_MS);
+  assert.equal(await finishing, true);
+  assert.equal(f.screen.phase, "hidden");
+  assert.equal(f.events.at(-1), "finished");
 });
 
-test("loading covers the first ready frame and does not reveal a superseded world", async () => {
-  for (const cancel of [false, true]) {
-    const frames = [];
-    const classes = [];
-    let now = 0;
-    const screen = new LoadingScreen({
-      dom: { loading: { classList: { add: value => classes.push(value) } } },
-      getDate: () => new Date(),
-      worldHud: {},
-      onFinished() {},
-      clock: { now: () => now },
-      timers: { requestAnimationFrame: callback => frames.push(callback) },
-    });
-    now = 3000;
+test("a replacement cancels the old reveal and cannot be hidden or focused by it", async () => {
+  const f = fixture();
+  const finishing = f.screen.finish();
+  await f.tick("frame"); await f.tick("frame");
+  const beginning = f.screen.begin(world);
+  assert.equal(await finishing, false);
+  assert.equal([...f.tasks.values()].some(task => task.ms === REVEAL_MS), false);
+  await f.tick(FADE_TO_BLACK_MS);
+  await f.tick("frame"); await f.tick("frame");
+  assert.equal(await beginning, true);
+  assert.equal(f.screen.phase, "loading");
+  assert.equal(f.events.includes("finished"), false);
+});
+
+for (const phase of ["cover", "paint", "reveal"]) {
+  test(`abort during ${phase} settles promptly without hiding a newer screen`, async () => {
+    const f = fixture();
     const controller = new AbortController();
-    const finishing = screen.finish(controller.signal);
-    frames.shift()();
-    await Promise.resolve();
-    assert.deepEqual(classes, [], "keep the cover during the first ready frame");
-    if (cancel) controller.abort();
-    frames.shift()();
-    assert.equal(await finishing, !cancel);
-    assert.deepEqual(classes, cancel ? [] : ["hidden"]);
-    assert.equal(frames.length, cancel ? 0 : 1);
-  }
+    if (phase === "cover") f.screen.setPhase("hidden");
+    const pending = phase === "cover" ? f.screen.begin(world, controller.signal) : f.screen.finish(controller.signal);
+    if (phase === "reveal") { await f.tick("frame"); await f.tick("frame"); }
+    controller.abort();
+    assert.equal(await pending, false);
+    assert.equal(f.tasks.size, 0);
+    assert.equal(f.events.includes("finished"), false);
+  });
+}
+
+test("day rollover uses the shared cover and reveals its date only after black", async () => {
+  const f = fixture();
+  f.screen.setPhase("hidden");
+  const date = new Date("1986-06-10T08:30:00Z");
+  const beginning = f.screen.beginDayRollover(world, date);
+  assert.equal(f.events.includes(date), false);
+  await f.tick(FADE_TO_BLACK_MS);
+  await f.tick("frame"); await f.tick("frame");
+  assert.equal(await beginning, true);
+  assert.equal(f.events.at(-1), date);
+});
+
+test("cinematic captions survive clock refreshes and reset for the next ordinary world load", async () => {
+  const f = fixture();
+  const presentation = { label: "4 Days Later...", japaneseLabel: "", dateTime: "1986-12-03T08:30:00Z" };
+  const beginning = f.screen.begin(world, null, presentation);
+  await flush();
+  await f.tick("frame"); await f.tick("frame");
+  assert.equal(await beginning, true);
+  assert.equal(f.dom.loadingPlaceEnglish.textContent, presentation.label);
+  assert.equal(f.dom.loadingPlaceJapanese.textContent, "");
+  f.screen.refreshDate();
+  assert.equal(f.events.at(-1).toISOString(), presentation.dateTime.replace("Z", ".000Z"));
+  assert.equal(f.screen.getDate().getTime(), 0, "cinematic display never changes the world clock");
+  const gameplay = f.screen.begin(world);
+  await flush();
+  await f.tick("frame"); await f.tick("frame");
+  assert.equal(await gameplay, true);
+  assert.equal(f.dom.loadingPlaceEnglish.textContent, world.label);
+  assert.equal(f.dom.loadingPlaceJapanese.textContent, world.japaneseLabel);
+  assert.equal(f.events.at(-1).getTime(), 0);
+});
+
+test("a superseded cinematic load cannot overwrite the new caption or date", async () => {
+  const f = fixture();
+  f.screen.setPhase("hidden");
+  const stale = f.screen.begin(world, null, { label: "Old", dateTime: "1986-11-29T16:00:00Z" });
+  const latest = f.screen.begin(world, null, { label: "New", dateTime: "1986-12-03T08:50:00Z" });
+  assert.equal(await stale, false);
+  await f.tick(FADE_TO_BLACK_MS);
+  await f.tick("frame"); await f.tick("frame");
+  assert.equal(await latest, true);
+  assert.equal(f.dom.loadingPlaceEnglish.textContent, "New");
+  assert.equal(f.events.at(-1).toISOString(), "1986-12-03T08:50:00.000Z");
+});
+
+test("errors remain covered; disposal cancels callbacks and releases the captured frame", async () => {
+  const f = fixture();
+  const finishing = f.screen.finish();
+  f.screen.setError("asset failed");
+  assert.equal(await finishing, false);
+  assert.equal(f.screen.phase, "loading");
+  assert.equal(f.dom.loadingError.textContent, "asset failed");
+  const retry = f.screen.begin(world);
+  await flush();
+  f.screen.dispose();
+  assert.equal(await retry, false);
+  assert.equal(f.tasks.size, 0);
+  assert.equal(f.dom.transitionFrame.hidden, true);
+  assert.equal(f.events.includes("finished"), false);
 });

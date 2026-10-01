@@ -8,6 +8,7 @@ import {
   createNativeAseqFacialPresentation,
 } from "../play/events/NativeAseqFacialPresentation.js";
 import { Mt5Loader } from "../src/Mt5Loader.js";
+import { integrateBodyFaceSurface, restoreBodyFaceSurface } from "../src/FaceSurfaceIntegration.js";
 import {
   nativeTalkActorPoses,
   parseNativeTalkPoseAsset,
@@ -156,21 +157,75 @@ test("packaged Dobuita detailed faces apply each actor's authored speech poses",
         record.speakerId === actorTag
       ));
       assert.ok(voice?.lipSync, actorTag);
-      assert.equal(faces.play(owner, { name: "voice", audio: voice }), true);
-      assert.equal(faces.apply(owner, { frame: 4 }), true);
+      const voiceCues = new Map([[actorTag, {
+        command: { name: "voice", audio: voice }, positionSeconds: 4 / 30,
+      }]]);
+      assert.equal(faces.apply(owner, { frame: 4, voiceCues }), true);
       const speaking = Array.from(primaryMesh.getVerticesData(
         BABYLON.VertexBuffer.PositionKind,
       ));
       assert.notDeepEqual(speaking, neutral, actorTag);
       const integration = faces.active.faces.get(actorTag).surfaceIntegration;
       assert.ok(integration.removedTriangleCount > 0, actorTag);
-      assert.ok(integration.retainedTriangleCount > 0, actorTag);
+      assert.equal(integration.removedTriangleCount, 294, actorTag);
+      assert.equal(integration.retainedTriangleCount, 0, actorTag);
+      assert.equal(integration.boundExternalParentVertexCount, 10, actorTag);
       assert.equal(faces.end(owner), true);
     }
   } finally {
     scene.dispose();
     engine.dispose();
   }
+});
+
+test("signed FACE replacement removes coarse Yamagishi skin and mouth, not hair or parent neck", async () => {
+  const engine = new BABYLON.NullEngine();
+  try {
+    for (const characterRigMode of ["gpu", "baked"]) {
+      const scene = new BABYLON.Scene(engine);
+      try {
+        const definition = manifest.facialAssets.YAMA;
+        const bodyLoader = new Mt5Loader(scene, { characterRigMode, mirrorCharacterX: true });
+        const faceLoader = new Mt5Loader(scene, {
+          characterRigMode: "gpu", mirrorCharacterX: true, respectStripWindingSign: true,
+        });
+        const [bodyRoot] = await bodyLoader.load(arrayBuffer("play/assets/characters/YMG_L.CHRM"), null);
+        const [faceRoot] = await faceLoader.load(arrayBuffer(definition.model.path), null);
+        const key = node => (node.flag << 16) >> 16;
+        const bodyFaceNode = bodyRoot._mt5Nodes.find(n => key(n) === -67 && n.model);
+        const nodes = new Map(bodyRoot._mt5Nodes.map(n => [n.addr, n]));
+        const originals = new Map(bodyRoot.getChildMeshes(false)
+          .filter(m => m.getTotalIndices()).map(m => [m, Array.from(m.getIndices())]));
+        const integration = integrateBodyFaceSurface({
+          bodyModelRoot: bodyRoot, bodyFaceNode, bodyLoader, faceRoot, faceLoader,
+          faceAttachmentNode: faceRoot._mt5Nodes.find(n => key(n) === 3 && n.model),
+          faceEyeNodes: faceRoot._mt5Nodes.filter(n => [77, 78].includes(key(n))),
+        });
+        assert.equal(integration.boundExternalParentVertexCount, 8);
+        assert.equal(integration.removedTriangleCount, 214);
+        assert.equal(integration.retainedTriangleCount, 112);
+        let replaced = 0;
+        let parentMeshes = 0;
+        for (const [mesh, original] of originals) {
+          const node = nodes.get(mesh._mt5NodeAddress);
+          if (node === bodyFaceNode || (key(node) === -68 && node.parentAddr === bodyFaceNode.addr)) {
+            assert.equal(mesh.getTotalIndices(), 0, `${characterRigMode}: old face/mouth`);
+            replaced++;
+          } else {
+            // Includes hair, the parent/neck, and detached native mouth poses.
+            assert.deepEqual(Array.from(mesh.getIndices()), original, `${characterRigMode}: unrelated surface`);
+            if (node.addr === bodyFaceNode.parentAddr) parentMeshes++;
+          }
+        }
+        assert.equal(replaced, 3);
+        assert.ok(parentMeshes > 0, "the actual parent seam geometry was checked");
+        restoreBodyFaceSurface(integration);
+        for (const [mesh, original] of originals) {
+          assert.deepEqual(Array.from(mesh.getIndices()), original, "cancel/end restores exact topology");
+        }
+      } finally { scene.dispose(); }
+    }
+  } finally { engine.dispose(); }
 });
 
 test("BEBF Shenhua FACE integrates with the exact canonical JOMO body", async () => {
@@ -224,8 +279,10 @@ test("BEBF Shenhua FACE integrates with the exact canonical JOMO body", async ()
     assert.equal(faces.begin(owner, ["SINF"]), true);
     const voice = bebfAudio.voices.find(value => value.speakerId === "SINF");
     assert.ok(voice?.lipSync);
-    assert.equal(faces.play(owner, { name: "voice", audio: voice }), true);
-    assert.equal(faces.apply(owner, { frame: 4 }), true);
+    const voiceCues = new Map([["SINF", {
+      command: { name: "voice", audio: voice }, positionSeconds: 4 / 30,
+    }]]);
+    assert.equal(faces.apply(owner, { frame: 4, voiceCues }), true);
     const integration = faces.active.faces.get("SINF").surfaceIntegration;
     assert.ok(integration.removedTriangleCount > 0);
     assert.ok(integration.retainedTriangleCount > 0);
@@ -284,8 +341,10 @@ test("SAKR young-Ryo FACE integrates with the exact JKB body variant", async () 
       "public/audio/world/sakr/manifest.json",
     )).voices.find(value => value.speakerId === "JAKR");
     assert.ok(voice?.lipSync);
-    assert.equal(faces.play(owner, { name: "voice", audio: voice }), true);
-    assert.equal(faces.apply(owner, { frame: 4 }), true);
+    const voiceCues = new Map([["JAKR", {
+      command: { name: "voice", audio: voice }, positionSeconds: 4 / 30,
+    }]]);
+    assert.equal(faces.apply(owner, { frame: 4, voiceCues }), true);
     const integration = faces.active.faces.get("JAKR").surfaceIntegration;
     // JKB's body attachment is only the replaceable low-detail face surface,
     // so unlike the adult bodies no body-side triangles remain at this node.

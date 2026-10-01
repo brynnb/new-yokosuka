@@ -39,11 +39,14 @@ export class CutscenePreviewRuntime {
     ensureCharacter,
     startDirector,
     stopDirector,
+    endDirector,
     dialoguePersistence,
     physicsReady,
     startPlayRuntime,
     disposeMenuBackground,
     setStarting,
+    beginLoading,
+    finishLoading,
     showNotice,
   }) {
     this.getCutscene = getCutscene;
@@ -56,17 +59,21 @@ export class CutscenePreviewRuntime {
     this.ensureCharacter = ensureCharacter;
     this.startDirector = startDirector;
     this.stopDirector = stopDirector;
+    this.endDirector = endDirector;
     this.dialoguePersistence = dialoguePersistence;
     this.physicsReady = physicsReady;
     this.startPlayRuntime = startPlayRuntime;
     this.disposeMenuBackground = disposeMenuBackground;
     this.setStarting = setStarting;
+    this.beginLoading = beginLoading;
+    this.finishLoading = finishLoading;
     this.showNotice = showNotice;
     this.active = null;
     this.startingPreview = null;
+    this.endingPreview = null;
   }
 
-  get starting() { return this.startingPreview !== null; }
+  get starting() { return this.startingPreview !== null || this.endingPreview !== null; }
 
   async startLoaded(cutsceneId, { signal = null } = {}) {
     const cutscene = this.getCutscene(cutsceneId);
@@ -82,6 +89,15 @@ export class CutscenePreviewRuntime {
   cancel(reason = "user-cancelled") {
     const preview = this.active || this.startingPreview;
     if (!preview) return false;
+    if (reason === "user-cancelled" && preview.started) {
+      if (!this.endingPreview) {
+        this.beginEnding(preview.cutsceneId);
+        void this.endDirector(reason).catch(error => {
+          if (this.active === preview) this.fail({ id: preview.cutsceneId }, error);
+        });
+      }
+      return true;
+    }
     preview.controller.abort(new DOMException(String(reason), "AbortError"));
     if (preview.loadingWorld) this.cancelWorld();
     this.stopDirector(reason);
@@ -94,7 +110,19 @@ export class CutscenePreviewRuntime {
     if (!preview) return false;
     this.active = null;
     if (preview.dialogueSandbox) this.dialoguePersistence.endSandbox();
+    if (this.endingPreview === preview) {
+      this.endingPreview = null;
+      this.setStarting(this.startingPreview !== null);
+    }
+    // The director has already covered the scene before releasing it.
     preview.resolve();
+    return true;
+  }
+
+  beginEnding(cutsceneId) {
+    if (!this.active || this.active.cutsceneId !== cutsceneId) return false;
+    this.endingPreview = this.active;
+    this.setStarting(true);
     return true;
   }
 
@@ -103,6 +131,10 @@ export class CutscenePreviewRuntime {
     if (!preview || preview.cutsceneId !== cutscene.id) return false;
     this.active = null;
     if (preview.dialogueSandbox) this.dialoguePersistence.endSandbox();
+    if (this.endingPreview === preview) {
+      this.endingPreview = null;
+      this.setStarting(this.startingPreview !== null);
+    }
     preview.reject(new Error(
       `Cutscene ${cutscene.id} stopped before completion: ${cutsceneStopReason(reason)}`,
     ));
@@ -120,11 +152,14 @@ export class CutscenePreviewRuntime {
     const { signal } = request.controller;
     this.startingPreview = request;
     this.showNotice(`Loading ${cutscene.label}...`);
-    this.setStarting(true);
+    this.setStarting(true, this.getWorld(cutscene.worldId));
     try {
+      await waitForPreview(this.beginLoading(this.getWorld(cutscene.worldId), signal, cutscene.loadingPresentation), signal);
       const loaded = await waitForPreview(this.selectWorld(this.getWorld(cutscene.worldId), {
         controllerState: null,
         persistLocation: false,
+        reveal: false,
+        loadingPresentation: cutscene.loadingPresentation,
       }), signal);
       request.loadingWorld = false;
       if (!loaded) {
@@ -133,6 +168,7 @@ export class CutscenePreviewRuntime {
       }
       await waitForPreview(this.ensureCharacter(), signal);
       if (await this.startLoaded(cutsceneId, { signal }) !== true) return false;
+      await this.finishLoading(signal);
       this.showNotice(`Playing ${cutscene.label}.`);
       return true;
     } catch (error) {
@@ -144,7 +180,7 @@ export class CutscenePreviewRuntime {
     } finally {
       if (this.startingPreview === request) {
         this.startingPreview = null;
-        this.setStarting(false);
+        this.setStarting(this.endingPreview !== null);
       }
     }
   }
@@ -172,22 +208,30 @@ export class CutscenePreviewRuntime {
     this.startingPreview = preview;
     void completion.catch(() => {});
     const { signal } = preview.controller;
-    this.setStarting(true);
+    this.setStarting(true, world);
     try {
+      await waitForPreview(this.beginLoading(world, signal, cutscene.loadingPresentation), signal);
       await waitForPreview(this.physicsReady, signal);
       this.disposeMenuBackground();
       this.startPlayRuntime();
       preview.loadingWorld = true;
+      // World preparation also begins loading internally. Forward the same
+      // presentation so it cannot replace this scene's caption with world time.
       if (!this.getController()) {
         await waitForPreview(this.initializeWorld({
           initialWorldOverride: world,
           fetchServerState: false,
           persistInitialLocation: false,
+          reveal: false,
+          loadingPresentation: cutscene.loadingPresentation,
+          signal,
         }), signal);
       } else {
         const loaded = await waitForPreview(this.selectWorld(world, {
           controllerState: null,
           persistLocation: false,
+          reveal: false,
+          loadingPresentation: cutscene.loadingPresentation,
         }), signal);
         if (!loaded) throw new Error(`${cutscene.label} could not be loaded.`);
       }
@@ -200,6 +244,9 @@ export class CutscenePreviewRuntime {
       preview.dialogueSandbox = true;
       if (await this.startLoaded(cutsceneId, { signal }) !== true) {
         if (this.active === preview) this.complete();
+      } else if (this.active === preview) {
+        preview.started = true;
+        await this.finishLoading(signal);
       }
     } catch (error) {
       if (signal.aborted) return completion;
@@ -212,7 +259,7 @@ export class CutscenePreviewRuntime {
     } finally {
       if (this.startingPreview === preview) {
         this.startingPreview = null;
-        this.setStarting(false);
+        this.setStarting(this.endingPreview !== null);
       }
     }
     return completion;

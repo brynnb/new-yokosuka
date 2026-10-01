@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { buildNativeAseqActivityPack } from "../lib/NativeAseqActivityPack.mjs";
+import { buildNativeAseqActivityPack, sha256 } from "../lib/NativeAseqActivityPack.mjs";
+import { extractNativeAseqCallbackHandPresentation, extractNativeAseqHandInitialization } from "../lib/NativeAseqCallbackPresentation.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const sourceRoot = [
@@ -11,6 +12,69 @@ const sourceRoot = [
   path.join(root, "extracted_files"),
 ].filter(Boolean).find(existsSync);
 if (!sourceRoot) throw new Error("an exact Shenmue Disc 1 extraction was not found");
+
+const evidence = JSON.parse(readFileSync(path.join(root, "tools/evidence/sakr-native-callback-ir.json")));
+const mapinfo = readFileSync(path.join(sourceRoot, "data/SCENE/01/YD01/MAPINFO.BIN"));
+if (sha256(mapinfo) !== evidence.source.mapinfoSha256 || evidence.function.id !== "0x70c") {
+  throw new Error("SAKR hand callback source changed");
+}
+// The callback's signed word at frame+2 starts at zero and increments once
+// before countdown(1), only while ASEQ is running. It is the AUTH frame clock,
+// not a hand animation index. Keep the original word-load gates and timings.
+const actions = evidence.function.blocks.flatMap(block => block.actions);
+if (!actions.some(action => action.kind === "frameFieldWrite" && action.offset === 2
+  && action.width === 2 && action.value === 0)
+  || !actions.some(action => action.kind === "frameFieldExpressionWrite" && action.offset === 2
+    && action.expression?.kind === "add" && action.expression.right?.value === 1)) {
+  throw new Error("SAKR callback frame clock changed");
+}
+const hands = extractNativeAseqCallbackHandPresentation({
+  bytes: mapinfo, callbackFunction: 0x70c, nativeFunction: evidence.function, activitySlot: 0,
+});
+const setup = evidence.supportingFunctions.find(fn => fn.id === "0x1a4");
+const helper = evidence.supportingFunctions.find(fn => fn.id === "0x384");
+// Resource preparation yields before these two calls. Bind only the proven
+// actor-initializer calls, not the yielding resource owner's entire function.
+const initial = setup.blocks.flatMap(block => block.actions)
+  .filter(action => action.kind === "directCall" && action.targetFileOffset === helper.id)
+  .flatMap(call => extractNativeAseqHandInitialization({
+    bytes: mapinfo, nativeFunction: helper, functions: evidence.supportingFunctions,
+    activitySlot: 0, entryArguments: call.arguments, ownerCallFileOffset: call.callFileOffset,
+  }).nativeBodyHandPoseCues);
+if (initial.length !== 4 || hands.nativeHandPoseCues.length !== 16
+  || hands.nativeBodyHandPoseCues.length !== 2) throw new Error("SAKR hand command coverage changed");
+hands.nativeHandPoseCues = hands.nativeHandPoseCues.map(cue => ({ ...cue, sourceOrder: cue.sourceOrder + initial.length }));
+hands.nativeHandComponentCues = hands.nativeHandComponentCues.map(cue => ({ ...cue, sourceOrder: cue.sourceOrder + initial.length }));
+hands.nativeBodyHandPoseCues = [
+  ...initial.map((cue, sourceOrder) => ({ ...cue, sourceOrder })),
+  ...hands.nativeBodyHandPoseCues.map(cue => ({ ...cue, sourceOrder: cue.sourceOrder + initial.length })),
+];
+const handFiles = [
+  ["IWA_TL.MT5", 185148, "f19af6e7483e12e39a7db653661e2cc15b63a27bda5005929d4581251603b80b"],
+  ["IWA_TR.MT5", 185204, "bd606f4acca38d5a1ab9ccd538f95b93c0211d1fce2302f4e8a128c2da94590d"],
+  ["IWA_HM.BIN", 9264, "e9ac04b80a5b7f693d6af299683073906c5a2bd0d47d88676a6707501bfb0e06"],
+  ["JKB_TL.MT5", 193240, "aed6a05ffb8bb0eeed4fb6826b70397bae21e149d4cb4a2148862309523726df"],
+  ["JKB_TR.MT5", 193144, "986057c4ca7927c10594c1a3047b15b21a1995dfd54878ba896a88a4aa81678e"],
+  ["JKB_HM.BIN", 9168, "e7529472af95b35041d5cf7647ece11e764f404d6f433aeb581241b4732dac02"],
+];
+const handAsset = index => ({
+  path: `play/assets/yd01/sakr/${handFiles[index][0]}`,
+  sourcePath: `extracted_files/data/SCENE/01/MODEL/HAND/${handFiles[index][0]}`,
+  byteLength: handFiles[index][1], sha256: handFiles[index][2],
+});
+// Original global MT5 vertices/normals match the archive-local CHRM hands;
+// the global resources also contain their textures. HM bytes match exactly.
+const handAssets = Object.fromEntries([
+  ["IWAO", "IWA", 0, 306, [24, 168, 8952, 5848, 6472, 9264]],
+  ["JAKR", "JKB", 3, 301, [24, 168, 8864, 5848, 6456, 9168]],
+].map(([actorTag, handCode, index, vertexCount, pointerOffsets]) => [actorTag, {
+  actorTag, handCode, bodyModelCode: `${handCode}_M`, bodyHandRenderKeys: { left: -66, right: -65 },
+  left: { rootRenderKey: 11, model: handAsset(index) },
+  right: { rootRenderKey: 6, model: handAsset(index + 1) },
+  rig: { ...handAsset(index + 2), transformNodeCount: 71, vertexCount, pointerOffsets },
+  presentation: { attachment: "body-hand-node-world-matrix", initialPose: "hm-bind-pose",
+    deformationAssetRetained: true, nativePoseOperation: "0x005e" },
+}]));
 
 const expectedMembers = Object.freeze([
   ["IWA_B.CHRM", 13332, "5669a7b91deb767bcaf92fa7af591e7e623cb5c4cdd59a2569c5b3a3d1e00108"],
@@ -49,6 +113,12 @@ buildNativeAseqActivityPack({
   outputDirectory,
   outputAssetPrefix: "play/assets/yd01/sakr",
   manifestPath: path.join(outputDirectory, "manifest.json"),
+  nativeHandPoseTables: hands.nativeHandPoseTables,
+  handAssets,
+  externalAssets: handFiles.map(([filename, byteLength, digest]) => ({
+    sourcePath: path.join(sourceRoot, `data/SCENE/01/MODEL/HAND/${filename}`),
+    assetPath: `play/assets/yd01/sakr/${filename}`, byteLength, sha256: digest,
+  })),
   // The world loader and package actor loader reuse the canonical YD01 map,
   // body, FACE, and HAND models. The archive inventory remains fully pinned,
   // but only exact activity-local playback data is emitted here.
@@ -89,6 +159,10 @@ buildNativeAseqActivityPack({
     durationFrames: 1559,
     frameCount: 27,
     commandCounts: { camera: 1, move: 2, motion: 13, voice: 12, sound: 6 },
+    nativeHandPoseCues: hands.nativeHandPoseCues,
+    nativeHandComponentCues: hands.nativeHandComponentCues,
+    nativeHandComponentLimitations: hands.nativeHandComponentLimitations,
+    nativeBodyHandPoseCues: hands.nativeBodyHandPoseCues,
   }],
 });
 

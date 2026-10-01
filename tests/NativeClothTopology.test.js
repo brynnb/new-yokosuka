@@ -109,11 +109,73 @@ async function validateCapturedModel(engine, filename, modelCode) {
   }
 }
 
-test("generated topology reproduces native Lan Di and Ine CLTH state", async () => {
+test("closed skirt rows align their cyclic columns despite a different greatest-X seed", () => {
+  // The two right-hand corners are almost tied. Selecting a row's first
+  // vertex independently changes the hem's phase, not its authored shape.
+  const ring = [[0.15, 0, 0.1], [0.15, 0, -0.1], [0, 0, -0.15],
+    [-0.15, 0, -0.1], [-0.15, 0, 0.1], [0, 0, 0.15]];
+  const controlPositions = [...ring, ...ring.map(([x, , z], index) => [
+    x + (index === 1 ? 0.000001 : 0), -0.2, z,
+  ])];
+  const topology = buildNativeClothTopology({
+    controlPositions, renderPositions: controlPositions,
+    rawControlBytes: [0, 0xfe, 1, 0, 0, 0, 0, 0], controlType: -0x46,
+  });
+  for (let index = 6; index < 12; index += 1) {
+    const constraint = topology.constraints[index];
+    assert.equal(constraint.neighbors.rowPrevious.sourceVertexIndex,
+      constraint.sourceVertexIndex - 6);
+    assert.ok(Math.abs(constraint.neighbors.rowPrevious.restLength - 0.2) < 1e-10);
+  }
+});
+
+test("curved open panels seed their dominant Z extent rather than an interior X point", () => {
+  const row = [[0.073, 0, 0.147], [0.166, 0, 0.106], [0.225, 0, 0],
+    [0.194, 0, -0.08], [0.099, 0, -0.135], [0, 0, -0.145]];
+  const topology = buildNativeClothTopology({
+    controlPositions: [...row, ...row.map(([x, , z]) => [x, -0.15, z])],
+    rawControlBytes: [2, 3, 2, 0, 0, 1, 0, 0], controlType: -74,
+  });
+  assert.deepEqual(topology.sourceVertexOrder, Array.from({ length: 12 }, (_, i) => i));
+  assert.equal(topology.closedColumns, false, "native open panels do not wrap their end columns");
+  assert.equal(topology.constraints[0].neighbors.columnPrevious.sourceVertexIndex, -1);
+  assert.equal(topology.constraints[5].neighbors.columnNext.sourceVertexIndex, -1);
+});
+
+test("Megumi's authored hem stays in the same columns as her upper skirt", async () => {
+  const engine = new BABYLON.NullEngine({ renderWidth: 1, renderHeight: 1 });
+  const scene = new BABYLON.Scene(engine);
+  try {
+    const bytes = modelBytes("SIA_L.CHRM");
+    const [root] = await new Mt5Loader(scene, { characterRigMode: "gpu" })
+      .load(arrayBuffer(bytes), null, { sourceFilename: "SIA_L.CHRM" });
+    const group = discoverNativeClothGroups(root)[0];
+    const positions = nodePositions(bytes, group.controlNode);
+    const topology = buildNativeClothTopology({
+      controlPositions: positions,
+      rawControlBytes: nativeClothCharacterProfile("SIA_L").rawControlBytes,
+      controlType: group.controlType,
+    });
+    for (const constraint of topology.constraints.slice(18)) {
+      const point = positions[constraint.sourceVertexIndex];
+      const parent = positions[constraint.neighbors.rowPrevious.sourceVertexIndex];
+      // CHRM's last two rings differ almost exclusively in height. None of
+      // their row links should traverse a horizontal panel edge.
+      assert.ok(Math.hypot(point[0] - parent[0], point[2] - parent[2]) < 0.01);
+    }
+  } finally {
+    scene.dispose();
+    engine.dispose();
+  }
+});
+
+test("generated topology reproduces all four captured native CLTH models", async () => {
   const engine = new BABYLON.NullEngine({ renderWidth: 1, renderHeight: 1 });
   try {
     await validateCapturedModel(engine, "KOK_M.CHRM", "KOK");
     await validateCapturedModel(engine, "INE_M.CHRM", "INE");
+    await validateCapturedModel(engine, "HPD_L.CHRM", "HPD");
+    await validateCapturedModel(engine, "HPX_L.CHRM", "HPX");
   } finally {
     engine.dispose();
   }

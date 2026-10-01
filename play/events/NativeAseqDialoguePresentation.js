@@ -27,17 +27,18 @@ export class NativeAseqDialoguePresentation {
 
   begin(owner) {
     if (this.active) throw new Error("AUTH dialogue is already owned");
-    this.active = { owner, command: null };
+    this.active = { owner, cue: null };
     this.hide();
     return true;
   }
 
-  play(owner, command) {
+  play(owner, cue) {
+    const command = cue?.command;
     if (this.active?.owner !== owner || command?.audio?.kind !== "voice") {
       return false;
     }
     const message = command.audio;
-    this.active.command = command;
+    this.active.cue = cue;
     this.clearOptions();
     const text = nativeDialogueDisplayText(message);
     if (!text) {
@@ -61,10 +62,10 @@ export class NativeAseqDialoguePresentation {
     return true;
   }
 
-  endVoice(owner, command) {
+  endVoice(owner, cue) {
     if (this.active?.owner !== owner) return false;
-    if (this.active.command !== command) return true;
-    this.active.command = null;
+    if (this.active.cue !== cue) return true;
+    this.active.cue = null;
     this.hide();
     return true;
   }

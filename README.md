@@ -116,8 +116,11 @@ npm run server:test
 npm run build
 ```
 
-`npm test` runs the JavaScript suite. Python and Playwright browser suites have
-separate commands in the [test guide](tests/README.md). Server tests require
+`npm test` runs the JavaScript suite with a 2 GiB process-tree memory ceiling.
+Browser launchers use an 8 GiB ceiling; both reject overlapping test runs. Use
+these launchers rather than bare Node/Playwright commands. Linux resource-limit
+prerequisites, Python and browser commands are in the [test guide](tests/README.md).
+Server tests require
 the sibling server checkout; some client tests require extracted data as
 described below.
 

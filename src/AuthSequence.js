@@ -244,13 +244,23 @@ export function resolveAuthMotions(sequence, motionPackages) {
         candidate => candidate.index === event.sequenceIndex,
       ) || motionPackage?.sequences?.[event.sequenceIndex]
       : null;
+    // YQ14 asks for 612..691 while its matching MOTN contains exactly 80 frames,
+    // consistent with an absolute export window for a trimmed clip.
+    // Good-enough presentation rebases only that exact whole-clip shape. Keep
+    // the source operands and expose the adjustment; other out-of-range starts
+    // remain unresolved instead of silently holding an unrelated final pose.
+    const outsideClip = motion?.durationFrames > 0
+      && event.startFrame > motion.durationFrames;
+    const wholeClipWindow = outsideClip
+      && event.endFrame - event.startFrame + 1 === motion.durationFrames;
     return {
       ...event,
       sequence: motion || null,
       motionName: motion?.name || null,
       motionDurationFrames: motion?.durationFrames ?? null,
-      motionValid: motion?.valid === true,
+      motionValid: motion?.valid === true && (!outsideClip || wholeClipWindow),
       motionPackageResolved: Boolean(motionPackage),
+      ...(wholeClipWindow ? { sampleFrameOffset: event.startFrame - 1 } : {}),
     };
   });
 }
@@ -274,8 +284,11 @@ export function resolveAuthSoundMotions(sequence, motionPackages) {
     const motionTimelineFrame = motion
       ? (motion.timelineFrame ?? motion.frame)
       : null;
-    const motionLocalFrame = motion
+    const sourceMotionFrame = motion
       ? motion.startFrame + soundFrame - motionTimelineFrame
+      : null;
+    const motionLocalFrame = motion
+      ? sourceMotionFrame - (motion.sampleFrameOffset || 0)
       : null;
     return {
       ...sound,
@@ -285,8 +298,8 @@ export function resolveAuthSoundMotions(sequence, motionPackages) {
       motionLocalFrame,
       motionFrameResolved: Boolean(
         motion?.motionValid
-        && motionLocalFrame >= motion.startFrame
-        && motionLocalFrame <= motion.endFrame
+        && sourceMotionFrame >= motion.startFrame
+        && sourceMotionFrame <= motion.endFrame
       ),
     };
   });

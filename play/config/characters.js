@@ -2,7 +2,7 @@ import { runtimeAssetGroup, runtimeAssetUrl } from "../../src/RuntimeAssets.js";
 const fukuModelUrl = runtimeAssetUrl("play/assets/characters/FUK_M.CHRM");
 const ineModelUrl = runtimeAssetUrl("play/assets/INE_M.CHRM");
 const ineTexturePackUrl = runtimeAssetUrl("play/assets/INE_textures.bin");
-import shenmue1PlayableAvatars from "../data/shenmue1-playable-avatars.generated.json";
+import shenmue1PlayableAvatars from "../data/shenmue1-playable-avatars.generated.json" with { type: "json" };
 import {
   characterModelBindScaleCorrection,
 } from "../characters/CharacterModelCorrections.js";

@@ -8,6 +8,10 @@ const indexPath = new URL(
   import.meta.url,
 );
 const index = JSON.parse(readFileSync(indexPath));
+const corpus = JSON.parse(readFileSync(new URL(
+  "../play/data/events/nativeEventPrograms.generated.json",
+  import.meta.url,
+)));
 
 function assetFile(path) {
   assert.match(path, /^\/data\/native-event-programs\/[0-9a-f]{64}\.json$/);
@@ -16,7 +20,11 @@ function assetFile(path) {
 
 test("production event index is compact and contains no executable closures", () => {
   assert.equal(index.schema, "new-yokosuka-native-event-program-index-v1");
-  assert.equal(index.programs.length, 77);
+  assert.deepEqual(index.programs.map(program => program.id), corpus.programs.map(program => program.id));
+  assert.equal(new Set(index.programs.map(program => program.id)).size, index.programs.length);
+  for (const id of ["preview-s1-op00-mail", "preview-s1-op00-dream"]) {
+    assert.ok(index.programs.some(program => program.id === id), `${id} is missing`);
+  }
   assert.ok(statSync(indexPath).size < 100_000);
   assert.ok(index.programs.every(program => !Object.hasOwn(program, "functions")));
 

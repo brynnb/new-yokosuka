@@ -696,16 +696,12 @@ export class ScheduledActorMotionRuntime {
     // render node. Preserve both representations: routed matrices are the
     // exact controller outputs consumed by HRCM, while the full controller
     // array covers authored attachment-only controls.
-    model.latestControllerFamily = controllerFamily;
-    model.latestControllerRenderMatrixByKey = renderMatrixByKey;
-    model.latestControllerMatrices = pose.controllerMatrices;
-    // Keep the established property name because local-object and grounding
-    // consumers already read it; its value is now the native route map.
-    model.latestRetargetedRoutes = nativeRenderRoutes;
     this.characterRuntime.applyCharacterRigWorldMatrices(
       model.loader,
       model.renderRoot,
       nativeRenderRoutes,
+      { model, controllerFamily, renderMatrixByKey,
+        controllerMatrices: pose.controllerMatrices },
     );
     return true;
   }

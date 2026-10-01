@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Extract the exact four DNOZ activity callbacks from the canonical native IR."""
+"""Extract DNOZ callbacks and their owner/helper closure from canonical native IR."""
 
 import json
 from pathlib import Path
@@ -15,6 +15,18 @@ def main():
     area = next(item for item in corpus["maps"] if item["disc"] == 1 and item["area"] == "DNOZ")
     by_id = {item["id"]: item for item in area["functions"]}
     functions = [by_id[item] for item in CALLBACKS]
+    pending = [*CALLBACKS, "0x1d74"]
+    reached = set()
+    while pending:
+        identifier = pending.pop()
+        if identifier in reached:
+            continue
+        reached.add(identifier)
+        function = by_id[identifier]
+        for block in function["blocks"]:
+            for action in block["actions"]:
+                if action["kind"] in ("directCall", "childCoroutineLaunch"):
+                    pending.append(action["targetFileOffset"])
     document = {
         "schema": "new-yokosuka-dnoz-dedicated-callback-ir-v1",
         "generatedBy": "tools/cutscenes/extract_dnoz_dedicated_callback_ir.py",
@@ -25,6 +37,7 @@ def main():
             "ownerFunction": "0x1d74",
         },
         "functions": functions,
+        "supportingFunctions": [by_id[identifier] for identifier in sorted(reached - set(CALLBACKS), key=lambda value: int(value, 16))],
     }
     OUTPUT.write_text(json.dumps(document, indent=2) + "\n")
 

@@ -21,8 +21,8 @@ import { Mt5Loader } from "../src/Mt5Loader.js";
 const BODY_FACE_FIXTURES = Object.freeze({
   AKIR: Object.freeze({
     path: "public/models/S2_YDB1_YKC_M.MT5",
-    removed: 532,
-    retained: 152,
+    removed: 536,
+    retained: 148,
     replacesAuthoredDescendant: true,
   }),
   FUKU: Object.freeze({
@@ -39,14 +39,14 @@ const BODY_FACE_FIXTURES = Object.freeze({
   }),
   IWAO: Object.freeze({
     path: "play/assets/characters/IWA_M.CHRM",
-    removed: 566,
-    retained: 148,
+    removed: 570,
+    retained: 144,
     replacesAuthoredDescendant: false,
   }),
   SORY: Object.freeze({
     path: "play/assets/characters/KOK_M.CHRM",
-    removed: 909,
-    retained: 177,
+    removed: 914,
+    retained: 172,
     replacesAuthoredDescendant: false,
   }),
 });
@@ -78,41 +78,38 @@ function subtreeIndexCount(root) {
   );
 }
 
-function triangleWindingAgreement(root) {
-  let aligned = 0;
-  let evaluated = 0;
+function assertNativeTriangleWinding(root) {
+  // Smoothed lighting normals need not point to a triangle's front side,
+  // especially at borrowed collar vertices. Test the authored signed strips.
+  const orientedKey = corners => [0, 1, 2].map(i => [
+    corners[i], corners[(i + 1) % 3], corners[(i + 2) % 3],
+  ].join(":")).sort()[0];
+  let checked = 0;
   for (const mesh of root.getChildMeshes(false)) {
-    const positions = mesh.getVerticesData(BABYLON.VertexBuffer.PositionKind);
-    const normals = mesh.getVerticesData(BABYLON.VertexBuffer.NormalKind);
+    const node = root._mt5Nodes.find(node => node.addr === mesh._mt5NodeAddress);
     const indices = mesh.getIndices();
-    if (!positions || !normals || !indices) continue;
+    if (!node?.model || !indices?.length) continue;
+    const expected = new Set();
+    for (const poly of node.model.polygons) for (const strip of poly.strips) {
+      const vertices = strip.map(v => v.externalParentVertexOffset < 0
+        ? `parent${v.externalParentVertexOffset}` : v.idx);
+      for (let i = 0; i < vertices.length - 2; i++) {
+        const [a, b, c] = vertices.slice(i, i + 3);
+        expected.add(orientedKey((i + (strip._mt5StripLenRaw < 0 ? 1 : 0)) % 2
+          ? [a, c, b] : [a, b, c]));
+      }
+    }
     for (let offset = 0; offset + 2 < indices.length; offset += 3) {
-      const corners = [0, 1, 2].map(index => indices[offset + index] * 3);
-      const firstSecond = [0, 1, 2].map(axis => (
-        positions[corners[1] + axis] - positions[corners[0] + axis]
+      const actual = indices.slice(offset, offset + 3).map(index => (
+        mesh._mt5ExternalParentVertexOffsets?.[index] < 0
+          ? `parent${mesh._mt5ExternalParentVertexOffsets[index]}`
+          : mesh._mt5SourceVertexIndices[index]
       ));
-      const firstThird = [0, 1, 2].map(axis => (
-        positions[corners[2] + axis] - positions[corners[0] + axis]
-      ));
-      const geometricNormal = [
-        firstSecond[1] * firstThird[2] - firstSecond[2] * firstThird[1],
-        firstSecond[2] * firstThird[0] - firstSecond[0] * firstThird[2],
-        firstSecond[0] * firstThird[1] - firstSecond[1] * firstThird[0],
-      ];
-      const authoredNormal = [0, 1, 2].map(axis => corners.reduce(
-        (sum, corner) => sum + normals[corner + axis],
-        0,
-      ));
-      const agreement = geometricNormal.reduce(
-        (sum, value, axis) => sum + value * authoredNormal[axis],
-        0,
-      );
-      if (Math.abs(agreement) <= 1e-12) continue;
-      evaluated += 1;
-      if (agreement > 0) aligned += 1;
+      assert.ok(expected.has(orientedKey(actual)), `${mesh.name} triangle ${offset / 3} retains signed strip winding`);
+      checked++;
     }
   }
-  return { aligned, evaluated };
+  assert.ok(checked > 0);
 }
 
 test("cutscene faces preserve the native neck while replacing overlapping face surfaces", async () => {
@@ -169,9 +166,7 @@ test("cutscene faces preserve the native neck while replacing overlapping face s
     });
     await faces.prepare({ actors: ["AKIR"] });
     const faceEntry = faces.entries.get("AKIR");
-    const winding = triangleWindingAgreement(faceEntry.root);
-    assert.ok(winding.evaluated > 0);
-    assert.equal(winding.aligned, winding.evaluated);
+    assertNativeTriangleWinding(faceEntry.root);
     const faceMaterials = new Set(faceEntry.root.getChildMeshes(false).map(
       mesh => mesh.material,
     ).filter(Boolean));
@@ -207,7 +202,9 @@ test("cutscene faces preserve the native neck while replacing overlapping face s
     assert.equal(faces.begin(owner, ["AKIR"]), true);
     assert.equal(bodyFaceNode.mesh.isEnabled(), true);
     const integratedBodyIndexCount = subtreeIndexCount(bodyFaceNode.mesh);
-    assert.ok(integratedBodyIndexCount > 0);
+    // GPU mesh flattening leaves only the replaced FACE node here. Authored
+    // hair descendants are checked through surfaceIntegration below instead.
+    assert.equal(integratedBodyIndexCount, 0);
     assert.ok(integratedBodyIndexCount < originalBodyIndexCount);
     const integration = faces.active.faces.get("AKIR").surfaceIntegration;
     assert.ok(integration.removedTriangleCount > 0);
@@ -220,9 +217,7 @@ test("cutscene faces preserve the native neck while replacing overlapping face s
     );
     assert.equal(faceEntry.root.isEnabled(), true);
     assert.equal(faceEntry.root.parent, bodyRoot);
-    const boundWinding = triangleWindingAgreement(faceEntry.root);
-    assert.ok(boundWinding.evaluated > 0);
-    assert.equal(boundWinding.aligned, boundWinding.evaluated);
+    assertNativeTriangleWinding(faceEntry.root);
     const ryoScalpTriangle = [27 * 3, 27 * 3 + 1, 27 * 3 + 2].map(
       offset => primaryMesh.getIndices()[offset],
     ).map(vertexIndex => {
@@ -299,7 +294,7 @@ test("cutscene faces preserve the native neck while replacing overlapping face s
       boundSeam,
       "upper-face animation must not deform the body-owned seam",
     );
-    assert.equal(faces.play(owner, {
+    const voiceCue = { positionSeconds: 0, command: {
       name: "voice",
       actorTag: "AKIR",
       audio: {
@@ -313,9 +308,10 @@ test("cutscene faces preserve the native neck while replacing overlapping face s
           ],
         },
       },
-    }), true);
+    } };
     for (let frame = 2; frame <= 3; frame += 1) {
-      assert.equal(faces.apply(owner, { frame }), true);
+      voiceCue.positionSeconds = (frame - 1) / 30;
+      assert.equal(faces.apply(owner, { frame, voiceCues: new Map([["AKIR", voiceCue]]) }), true);
     }
     const speaking = Array.from(primaryMesh.getVerticesData(
       BABYLON.VertexBuffer.PositionKind,
@@ -377,10 +373,140 @@ test("cutscene faces preserve the native neck while replacing overlapping face s
       "off-camera FACE cues must be visible when an actor returns",
     );
     assert.equal(faces.end(returnOwner), true);
+
+    const programOwner = {};
+    faces.reset();
+    assert.equal(faces.beginProgram(programOwner, ["AKIR"]), true);
+    faces.begin(owner, ["AKIR"]);
+    voiceCue.positionSeconds = 2 / 30;
+    const cues = new Map([["AKIR", voiceCue]]);
+    faces.apply(owner, { frame: 1, voiceCues: cues });
+    const activeFace = faces.active.faces.get("AKIR");
+    assert.equal(activeFace.voiceFrame, 2);
+    faces.apply(owner, { frame: 2, voiceCues: cues });
+    assert.equal(activeFace.voiceFrame, 2, "buffering audio must hold mouth time while shot time advances");
+    faces.end(owner);
+    faces.begin(offCameraOwner, []);
+    faces.end(offCameraOwner);
+    faces.begin(nextOwner, ["AKIR"]);
+    voiceCue.positionSeconds = 9 / 30;
+    faces.apply(nextOwner, { frame: 0, voiceCues: cues });
+    assert.equal(faces.active.faces.get("AKIR"), activeFace);
+    assert.equal(activeFace.voiceFrame, 9, "returning from offscreen must catch up to audio, not restart at shot zero");
+    faces.apply(nextOwner, { frame: 1, voiceCues: new Map() });
+    assert.equal(activeFace.voiceCue, null);
+    faces.end(nextOwner);
+    assert.equal(faces.endProgram(programOwner), true);
   } finally {
     scene.dispose();
     engine.dispose();
   }
+});
+
+test("detailed FACE seams follow the production body's welded GPU deformation across poses and leases", async () => {
+  const engine = new BABYLON.NullEngine();
+  try {
+    for (const [actorTag, fixture] of [
+      ...Object.entries(BODY_FACE_FIXTURES),
+      ["IWAO", { path: "play/assets/hazuki/hihy/IWA_M.CHRM", parentOnlySeam: 38 }],
+    ]) {
+      const scene = new BABYLON.Scene(engine);
+      try {
+        const definition = inventory.facialAssets[actorTag];
+        const loader = new Mt5Loader(scene, {
+          mirrorCharacterX: true, characterRigMode: "gpu", characterRigSeamMode: "weld",
+        });
+        const [renderRoot] = await loader.load(arrayBuffer(fixture.path), null);
+        loader.mergeCharacterGpuRigMeshes(renderRoot, { preserveRenderKeySubtrees: [-67] });
+        const bodyNode = renderRoot._mt5Nodes.find(node => signedRenderKey(node) === -67 && node.model);
+        const parent = renderRoot._mt5Nodes.find(node => node.addr === bodyNode.parentAddr);
+        if (fixture.parentOnlySeam !== undefined) {
+          assert.ok(!bodyNode.mesh.getChildMeshes(false).some(mesh => (
+            mesh._mt5NodeAddress === bodyNode.addr
+            && mesh._mt5SourceVertexIndices?.includes(fixture.parentOnlySeam)
+          )), "archive body does not duplicate this parent seam on its coarse FACE");
+        }
+        const root = new BABYLON.TransformNode("actor", scene);
+        root.position.set(3, 0.5, -7);
+        root.rotation.y = 0.7;
+        renderRoot.parent = root;
+        const faces = createNativeAseqFacialPresentation({
+          scene,
+          actors: {
+            activeActor: () => ({ model: { loader, renderRoot, root, modelCode: definition.bodyModelCode } }),
+            componentWorldPosition: () => null,
+          },
+          definitions: { [actorTag]: definition },
+          loadAsset: filename => arrayBuffer(filename),
+        });
+        await faces.prepare({ actors: [actorTag] });
+        const entry = faces.entries.get(actorTag);
+        const originalIndices = new Map(renderRoot.getChildMeshes(false).map(mesh => [mesh, Array.from(mesh.getIndices())]));
+        for (let lease = 0; lease < 2; lease += 1) {
+          const owner = {};
+          assert.equal(faces.begin(owner, [actorTag]), true);
+          const integration = faces.active.faces.get(actorTag).surfaceIntegration;
+          for (const [frame, angle] of [0.3, -0.5, 0].entries()) {
+            const headMatrix = Mt5Loader.rowMultiply(
+              Mt5Loader.rowRotationX(angle), loader.sourceWorldMatrixForNode(bodyNode),
+            );
+            const parentMatrix = Mt5Loader.rowMultiply(
+              Mt5Loader.rowRotationZ(angle / 2), loader.sourceWorldMatrixForNode(parent),
+            );
+            loader.applyCharacterRigWorldMatrices(renderRoot, new Map([
+              [-67, headMatrix], [signedRenderKey(parent), parentMatrix],
+            ]));
+            assert.equal(faces.apply(owner, { frame }), true);
+            // Rendering prepares the latest pose even if several native ticks
+            // ran under one scene render ID. Do not let both sides compare the
+            // same stale Babylon skin-matrix cache in this headless check.
+            renderRoot._mt5CharacterGpuRig.skeleton.prepare(true);
+            entry.root._mt5CharacterGpuRig.skeleton.prepare(true);
+            let checked = 0;
+            for (const mesh of entry.primaryMeshes) {
+              const posed = mesh.getPositionData(true, true);
+              const world = mesh.computeWorldMatrix(true);
+              for (const [index, relative] of mesh._mt5ExternalParentVertexOffsets?.entries() || []) {
+                if (relative >= 0) continue;
+                const sourceIndex = parent.model.vertexBase + parent.model.nbVertex + relative;
+                let bodyMesh = bodyNode.mesh.getChildMeshes(false).find(candidate => (
+                  candidate._mt5NodeAddress === bodyNode.addr
+                  && candidate._mt5SourceVertexIndices.includes(sourceIndex)
+                ));
+                let bodyIndex = bodyMesh?._mt5SourceVertexIndices.indexOf(sourceIndex);
+                if (!bodyMesh) {
+                  bodyMesh = renderRoot.getChildMeshes(false).find(candidate => {
+                    const index = candidate._mt5SourceVertexIndices?.findIndex((value, i) => (
+                      value === sourceIndex
+                      && (candidate._mt5SourceNodeAddresses?.[i] ?? candidate._mt5NodeAddress) === parent.addr
+                    ));
+                    if (index === undefined || index < 0) return false;
+                    bodyIndex = index;
+                    return true;
+                  });
+                  assert.ok(bodyMesh?._mt5SourceNodeAddresses, "parent-only seam retains provenance through GPU batching");
+                }
+                assert.ok(bodyMesh, `${actorTag} seam source ${sourceIndex}`);
+                const expected = BABYLON.Vector3.TransformCoordinates(
+                  BABYLON.Vector3.FromArray(bodyMesh.getPositionData(true, true), bodyIndex * 3),
+                  bodyMesh.computeWorldMatrix(true),
+                );
+                const actual = BABYLON.Vector3.TransformCoordinates(BABYLON.Vector3.FromArray(posed, index * 3), world);
+                assertVectorClose(actual.asArray(), expected.asArray(), `${actorTag} lease ${lease} frame ${frame} seam ${relative}`, 1e-5);
+                checked += 1;
+              }
+              assert.equal(mesh.computeBonesUsingShaders, true, "FACE remains GPU skinned");
+            }
+            assert.equal(checked, integration.boundExternalParentVertexCount);
+            assert.ok(checked > 0);
+          }
+          assert.equal(faces.end(owner), true);
+          assert.equal(integration.seamBindings.size, 0, "released lease holds no body seam bindings");
+          for (const [mesh, indices] of originalIndices) assert.deepEqual(Array.from(mesh.getIndices()), indices);
+        }
+      } finally { scene.dispose(); }
+    }
+  } finally { engine.dispose(); }
 });
 
 test("every OP00 FACE binding transfers body surfaces at its authored seam", async () => {
@@ -409,7 +535,7 @@ test("every OP00 FACE binding transfers body surfaces at its authored seam", asy
         mirrorCharacterX: true,
         characterRigMode: "gpu",
         textureAddressMode: "clamp",
-        orientTriangleWindingToNormals: true,
+        respectStripWindingSign: true,
       });
       const [faceRoot] = await faceLoader.load(
         arrayBuffer(definition.model.path),
@@ -419,9 +545,7 @@ test("every OP00 FACE binding transfers body surfaces at its authored seam", asy
         node => signedRenderKey(node) === definition.faceRootRenderKey && node.model,
       );
       assert.ok(faceAttachmentNode, actorTag);
-      const winding = triangleWindingAgreement(faceRoot);
-      assert.ok(winding.evaluated > 0, actorTag);
-      assert.equal(winding.aligned, winding.evaluated, actorTag);
+      assertNativeTriangleWinding(faceRoot);
 
       const ryoHairCard = actorTag === "AKIR"
         ? bodyRoot.getChildMeshes(false).find(
@@ -448,6 +572,7 @@ test("every OP00 FACE binding transfers body surfaces at its authored seam", asy
       });
       assert.equal(integration.removedTriangleCount, fixture.removed, actorTag);
       assert.equal(integration.retainedTriangleCount, fixture.retained, actorTag);
+      assertNativeTriangleWinding(faceRoot);
       assert.ok(
         integration.boundExternalParentVertexCount > 0,
         `${actorTag} must resolve its signed body-parent references`,
@@ -548,7 +673,7 @@ test("FUB exact FACE resource overlaps its authored FUB body attachment", async 
       mirrorCharacterX: true,
       characterRigMode: "gpu",
       textureAddressMode: "clamp",
-      orientTriangleWindingToNormals: true,
+      respectStripWindingSign: true,
     });
     const [faceRoot] = await faceLoader.load(arrayBuffer(definition.model.path), null);
     const faceAttachmentNode = faceRoot._mt5Nodes.find(

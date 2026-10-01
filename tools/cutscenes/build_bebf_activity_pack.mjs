@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { buildNativeAseqActivityPack } from "../lib/NativeAseqActivityPack.mjs";
+import { buildNativeAseqActivityPack, sha256 } from "../lib/NativeAseqActivityPack.mjs";
+import { extractNativeAseqCallbackSoundCommands } from "../lib/NativeAseqCallbackPresentation.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const sourceRoot = [
@@ -11,6 +12,79 @@ const sourceRoot = [
   path.join(root, "extracted_files"),
 ].filter(Boolean).find(existsSync);
 if (!sourceRoot) throw new Error("an exact Shenmue Disc 1 extraction was not found");
+
+const callbackPath = "tools/evidence/bebf-native-callback-ir.json";
+const callback = JSON.parse(readFileSync(path.join(root, callbackPath)));
+const mapinfo = readFileSync(path.join(sourceRoot, "data/SCENE/01/JOMO/MAPINFO.BIN"));
+if (sha256(mapinfo) !== "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9"
+  || callback.source.mapinfoSha256 !== sha256(mapinfo)
+  || callback.source.callbackFunction !== "0x4bb38") {
+  throw new Error("BEBF callback source changed");
+}
+const nativeSoundCommandCues = extractNativeAseqCallbackSoundCommands({
+  bytes: mapinfo,
+  callbackFunction: 0x4bb38,
+  nativeFunction: callback.function,
+  durationFrames: 700,
+  source: { path: callbackPath, mapinfoSha256: callback.source.mapinfoSha256 },
+});
+// Project the owner's two straight-line room-layer helpers, not the entire
+// bedroom/story script. Keep the source calls beside the generated visibility.
+const program = JSON.parse(readFileSync(path.join(root,
+  "play/data/events/nativeEventPrograms.generated.json"))).programs.find(
+  value => value.id === "disc1-jomo-bebf-nightmare-owner-0x4bf5c",
+);
+if (program?.mapinfoSha256 !== sha256(mapinfo)) throw new Error("BEBF owner source changed");
+const visibilityFor = (functionId, expectedValue) => {
+  const fn = program.functions.find(value => value.id === functionId);
+  const writes = fn.blocks.flatMap(block => block.actions).filter(
+    action => action.semanticId === "numbered-map-layer-state",
+  );
+  if (JSON.stringify(writes.map(action => action.arguments.map(arg => arg.value)))
+    !== JSON.stringify([0, 2, 4, 6, 8].map(layer => [layer, expectedValue]))) {
+    throw new Error(`BEBF room-layer helper ${functionId} changed`);
+  }
+  return writes.map(action => ({
+    nativeName: action.arguments[0].value === 0 ? "MAP"
+      : `MAP${String(action.arguments[0].value).padStart(2, "0")}`,
+    visible: action.arguments[1].value !== 0,
+    source: { functionId, callFileOffset: action.callFileOffset, operation: "0x0098" },
+  }));
+};
+const bedroomVisibility = visibilityFor("0x4c584", 1);
+const dreamVisibility = visibilityFor("0x4c50c", 0);
+// Deliberate browser presentation choice: omit the two blanket variants until
+// their native deformation is recovered. Borrow the existing root-visibility
+// lease so they stay hidden on waking and return unchanged to exploration.
+// The opening OP00 bedroom already has no FUT1/FUT2 instances.
+const roomPlacements = JSON.parse(readFileSync(path.join(root,
+  "play/data/jomo-runtime-placements.json"))).placements;
+const blankets = ["FUT1", "FUT2"].map(nativeName => {
+  const matches = roomPlacements.filter(value => value.runtime?.objectTag === nativeName);
+  if (matches.length !== 1) throw new Error(`BEBF blanket ${nativeName} placement changed`);
+  return { nativeName, browserFilename: matches[0].model };
+});
+const blanketVisibility = blankets.map(({ nativeName }) => ({ nativeName, visible: false }));
+const mapLayers = [
+  ...bedroomVisibility.map(({ nativeName }) => ({
+    nativeName, browserFilename: `S1_JOMO_${nativeName}.MT5`,
+  })),
+  ...blankets,
+];
+const owner = program.functions.find(value => value.id === "0x4bf5c");
+const background = owner.blocks.flatMap(block => block.actions).find(
+  action => action.callFileOffset === "0x4bfba",
+);
+if (background?.semanticId !== "scroll-sprite-mode-two-control"
+  || JSON.stringify(background.arguments.map(arg => arg.value)) !== "[2,4278190080]") {
+  throw new Error("BEBF native solid background changed");
+}
+const backgroundWord = background.arguments[1].value;
+const browserBackgroundColor = [16, 8, 0, 24].map(shift => ((backgroundWord >>> shift) & 255) / 255);
+if (JSON.stringify(nativeSoundCommandCues.map(cue => [cue.frame, cue.action.callFileOffset]))
+  !== JSON.stringify([[0, "0x4bbb0"], [0, "0x4bbc8"]])) {
+  throw new Error("BEBF callback sound timeline changed");
+}
 
 const expectedMembers = Object.freeze([
   ["M_01BEDB.MOTN", 53740, "18101bae8cc89914b150af6049d3fbb2b9954c9f3041c5a2189b00c449191c8c"],
@@ -40,6 +114,18 @@ const activities = [
   frameCount, commandCounts]) => ({
   slot, primaryPointer, secondaryPointer, file, actors, durationFrames,
   frameCount, commandCounts,
+  browserMapVisibility: [
+    ...([61, 63].includes(slot) ? dreamVisibility : bedroomVisibility),
+    ...blanketVisibility,
+  ],
+  browserBackgroundColor,
+  // The browser loads additional JOMO layers and placed props that the retail
+  // dream does not activate. Isolate the dream stage; do not guess equivalent
+  // numbered native commands for those extra resident models.
+  browserIsolatedStage: [61, 63].includes(slot),
+  // Helper 0x4b4f8 launches callback 0x4bb38 for slots 61 and 63 at
+  // 0x4b5a4/0x4b644. Slot 60 is the preceding sleeping-Ryo shot, not music start.
+  ...([61, 63].includes(slot) ? { nativeSoundCommandCues } : {}),
 }));
 
 buildNativeAseqActivityPack({
@@ -57,6 +143,7 @@ buildNativeAseqActivityPack({
   outputAssetPrefix: "play/assets/hazuki/bebf",
   manifestPath: path.join(outputDirectory, "manifest.json"),
   playerActorAliases: ["AKID"],
+  mapLayers,
   packageActors: {
     SINF: {
       label: "Shenhua Ling",
@@ -72,6 +159,13 @@ buildNativeAseqActivityPack({
     kind: "music",
     trackId: "bgm129",
     callFileOffsets: ["0x4bbb0"],
+  }, {
+    commandHex: "a0040000",
+    exactArguments: [2, 115],
+    kind: "native-control-no-output",
+    constructedQueueWord: "0x00000002",
+    byteReversedDriverWord: "0x02000000",
+    callFileOffsets: ["0x4bbc8"],
   }],
   motionBanks: [{
     bank: 29,

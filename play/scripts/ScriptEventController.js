@@ -4,6 +4,19 @@ function defaultRequestId() {
 
 const TERMINAL_EVENTS = new Set(["complete", "cancelled", "declined"]);
 
+function waitForPresentation(promise, signal) {
+  let abort;
+  const cancelled = new Promise((_, reject) => {
+    abort = () => reject(signal.reason);
+    if (signal.aborted) abort();
+    else signal.addEventListener("abort", abort, { once: true });
+  });
+  // Closing a line must unblock the ordered reply queue even if its voice or
+  // activity promise has not settled. Observe the late promise, but never let
+  // it delay cancellation or mutate a subsequent conversation's controller.
+  return Promise.race([promise, cancelled]).finally(() => signal.removeEventListener("abort", abort));
+}
+
 export class ScriptEventController {
   constructor({
     client,
@@ -128,6 +141,7 @@ export class ScriptEventController {
     if (!this.active) return false;
     if (this.active.cancelling) return false;
     this.active.cancelling = true;
+    this.active.controller.abort(new DOMException(reason, "AbortError"));
     this.dialogue.hide();
     this.presentation.rollback(reason);
     this.active.presentationStarted = false;
@@ -154,6 +168,7 @@ export class ScriptEventController {
       this.pendingStart.reject(error);
     }
     this.pendingStart = null;
+    this.active?.controller.abort(new DOMException(reason, "AbortError"));
     this.dialogue.hide();
     if (this.active?.presentationStarted) this.presentation.rollback(reason);
     this.active = null;
@@ -178,6 +193,7 @@ export class ScriptEventController {
           context: pending.context,
         },
         context: pending.context,
+        controller: new AbortController(),
         presentationStarted: false,
         cancelling: false,
         awaitingLine: false,
@@ -201,6 +217,7 @@ export class ScriptEventController {
     const event = message?.event;
     if (!event?.type) throw new Error("server yielded an invalid script event");
     if (TERMINAL_EVENTS.has(event.type)) {
+      active.controller.abort(new DOMException(event.type, "AbortError"));
       this.dialogue.hide();
       if (active.presentationStarted) {
         if (event.type === "complete") this.presentation.commit();
@@ -215,19 +232,13 @@ export class ScriptEventController {
       active.presentationStarted = true;
     }
     if (event.type === "command") {
-      try {
-        await this.presentation.execute(event);
-      } catch (error) {
-        if (this.active !== active || active.cancelling) return false;
-        throw error;
-      }
-      if (this.active !== active || active.cancelling) return false;
+      if (!await this.present(active, () => this.presentation.execute(event))) return false;
       return this.sendAdvance("continue");
     }
     if (event.type === "line") {
       if (!message.line) throw new Error("script line content is unavailable");
       active.awaitingLine = true;
-      await this.dialogue.show(message.line, event);
+      if (!await this.present(active, () => this.dialogue.show(message.line, event))) return false;
       this.emitState();
       return true;
     }
@@ -242,11 +253,21 @@ export class ScriptEventController {
       if (active.optionIds.size === 0) {
         throw new Error("script event has no available options");
       }
-      await this.dialogue.showOptions(options, event);
+      if (!await this.present(active, () => this.dialogue.showOptions(options, event))) return false;
       this.emitState();
       return true;
     }
     throw new Error(`unsupported script event ${event.type}`);
+  }
+
+  async present(active, action) {
+    try {
+      await waitForPresentation(action(), active.controller.signal);
+    } catch (error) {
+      if (this.active !== active || active.controller.signal.aborted) return false;
+      throw error;
+    }
+    return this.active === active && !active.cancelling;
   }
 
   sendAdvance(action, options = {}) {
@@ -270,6 +291,7 @@ export class ScriptEventController {
 
   async fail(error) {
     const active = this.active;
+    active?.controller.abort(error);
     this.dialogue.hide();
     if (active?.presentationStarted) {
       try {

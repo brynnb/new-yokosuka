@@ -1,8 +1,13 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./release-preview-fixture.js";
 
 for (const viewport of [{ width: 1280, height: 900 }, { width: 390, height: 844 }]) {
   test(`public menu and sidebar layout at ${viewport.width}px`, async ({ page }, testInfo) => {
     test.setTimeout(90_000);
+    const errors = [];
+    page.on("pageerror", error => errors.push(error.message));
+    page.on("response", response => {
+      if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`);
+    });
     await page.setViewportSize(viewport);
     await page.route("**/api/status", route => route.fulfill({ json: {} }));
     await page.goto("/play/", { waitUntil: "domcontentloaded" });
@@ -47,5 +52,6 @@ for (const viewport of [{ width: 1280, height: 900 }, { width: 390, height: 844 
     }
     await expect(page.locator("#travel-button")).toBeVisible();
     await page.screenshot({ path: testInfo.outputPath("sidebar.png") });
+    expect(errors).toEqual([]);
   });
 }

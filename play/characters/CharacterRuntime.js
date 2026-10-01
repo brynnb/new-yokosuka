@@ -15,9 +15,14 @@ import {
 import {
   nativeClothStateForModel,
 } from "./NativeClothBabylonPresentation.js";
+import {
+  updateNativeCharacterSecondaryMotion,
+  releaseNativeCharacterSecondaryMotion,
+} from "./NativeCharacterSecondaryMotion.js";
 
 const FORKLIFT_ARM_RENDER_KEYS = Object.freeze([5, 6, 10, 11]);
 const HUMANOID_ROOT_RENDER_KEY = 1;
+const HUMANOID_CONTROLLER_FAMILY = Object.freeze({ nodes: RYO_RUNTIME_RIG });
 const OPPOSITE_ARM_RENDER_KEY = new Map([
   [5, 10],
   [6, 11],
@@ -611,6 +616,7 @@ export class CharacterRuntime {
     for (const node of root?._mt5Nodes || []) {
       node.mesh?.setEnabled(visibleKeys.has(this.signedRenderKey(node)));
     }
+    this.presentationModels.get(root)?.loader.invalidateCharacterRigSourceBounds(root);
   }
 
   setOutdoorFootwear(root, enabled) {
@@ -623,10 +629,72 @@ export class CharacterRuntime {
       }
     }
     footwear.root.setEnabled(enabled);
+    // GPU bounds cache only the enabled body parts. Shoes and sock feet must
+    // change that cache as well as visibility before the next pose is applied.
+    this.presentationModels.get(root)?.loader.invalidateCharacterRigSourceBounds(root);
     return true;
   }
 
-  applyCharacterRigWorldMatrices(loader, root, routedMatrices) {
+  applyHumanoidAnimationPose(loader, root, routedMatrices, sourceControllerMatrices) {
+    if (sourceControllerMatrices?.length !== RYO_RUNTIME_RIG.length) {
+      throw new Error("humanoid animation requires its complete controller pose");
+    }
+    const keyByController = new Map([...this.renderMatrixByKey].map(([key, index]) => [index, key]));
+    const rootIndex = this.renderMatrixByKey.get(HUMANOID_ROOT_RENDER_KEY);
+    const corrections = new Map();
+    const controllerMatrices = sourceControllerMatrices.map((matrix, index) => {
+      const renderKey = keyByController.get(index);
+      if (renderKey !== undefined && routedMatrices.has(renderKey)) return routedMatrices.get(renderKey);
+      // The visible pose may be retargeted or use mirrored seated arms. Apply
+      // that same transform to its attachment-only controls, using their
+      // authored nearest rendered ancestor (or the established body root).
+      // Do not run collisions against an unretargeted Ryo-shaped shadow pose.
+      let anchor = RYO_RUNTIME_RIG[index].parent;
+      while (anchor !== null && !routedMatrices.has(keyByController.get(anchor))) {
+        anchor = RYO_RUNTIME_RIG[anchor].parent;
+      }
+      anchor ??= rootIndex;
+      if (!Number.isInteger(anchor) || !routedMatrices.has(keyByController.get(anchor))) {
+        throw new Error(`humanoid controller ${index} has no displayed pose anchor`);
+      }
+      if (!corrections.has(anchor)) {
+        corrections.set(anchor, Mt5Loader.rowMultiply(
+          Mt5Loader.inverseAffineRow(sourceControllerMatrices[anchor]),
+          routedMatrices.get(keyByController.get(anchor)),
+        ));
+      }
+      return Mt5Loader.rowMultiply(matrix, corrections.get(anchor));
+    });
+    this.applyCharacterRigWorldMatrices(loader, root, routedMatrices, {
+      controllerFamily: HUMANOID_CONTROLLER_FAMILY,
+      renderMatrixByKey: this.renderMatrixByKey,
+      controllerMatrices,
+    });
+  }
+
+  applyCharacterRigWorldMatrices(loader, root, routedMatrices, nativePose = null) {
+    const model = nativePose?.model || this.presentationModels.get(root);
+    if (model) {
+      if (model.loader !== loader || model.renderRoot !== root) {
+        throw new Error("character pose does not match its presentation model");
+      }
+      if (nativePose) {
+        model.latestControllerFamily = nativePose.controllerFamily;
+        model.latestControllerRenderMatrixByKey = nativePose.renderMatrixByKey;
+        model.latestControllerMatrices = nativePose.controllerMatrices;
+      } else {
+        // Render-only gameplay poses cannot drive CLTH's complete native
+        // controller lattice. Release the cutscene solver before applying the
+        // new body pose, and do not let it reacquire using stale MOTN controls.
+        if (model.latestControllerMatrices != null) {
+          releaseNativeCharacterSecondaryMotion(model);
+        }
+        model.latestControllerFamily = null;
+        model.latestControllerRenderMatrixByKey = null;
+        model.latestControllerMatrices = null;
+      }
+      model.latestRetargetedRoutes = routedMatrices;
+    }
     loader.applyCharacterRigWorldMatrices(root, routedMatrices);
     const footwear = root?._mt5OutdoorFootwear;
     if (footwear) {
@@ -644,7 +712,7 @@ export class CharacterRuntime {
     return model;
   }
 
-  updateNativeCloth(renderRoot, deltaSeconds) {
+  updateSecondaryMotion(renderRoot, deltaSeconds) {
     const model = this.presentationModels.get(renderRoot);
     if (!model || renderRoot?.isEnabled?.() === false) return false;
     let state = this.nativeClothStates.get(renderRoot);
@@ -652,9 +720,7 @@ export class CharacterRuntime {
       state = nativeClothStateForModel(model);
       this.nativeClothStates.set(renderRoot, state);
     }
-    if (!state.active) return false;
-    state.update(deltaSeconds);
-    return true;
+    return updateNativeCharacterSecondaryMotion(model, deltaSeconds);
   }
 
   async prefetch(character, signal) {
@@ -695,7 +761,9 @@ export class CharacterRuntime {
       // Ryo's shirt reach exact 0/1 UV borders, where repeat filtering samples
       // the unrelated opposite edge and draws a vertical center seam.
       textureAddressMode: "clamp",
-      characterRigMode: "baked",
+      // Keep authored node identities (footwear, faces and attachments), but
+      // upload bone matrices instead of rebuilding every vertex buffer per pose.
+      characterRigMode: "gpu",
       characterRigSeamMode: "weld",
       materialSideOrientation: character.clockwiseCulling
         ? BABYLON.Material.ClockWiseSideOrientation
@@ -734,6 +802,7 @@ export class CharacterRuntime {
       root.dispose(false, true);
       throw error;
     }
+    loader.invalidateCharacterRigSourceBounds(root);
     const presentationModel = {
       root,
       loader,
@@ -743,7 +812,7 @@ export class CharacterRuntime {
     };
     this.presentationModels.set(root, presentationModel);
     root.onDisposeObservable?.addOnce(() => {
-      this.nativeClothStates.get(root)?.release();
+      releaseNativeCharacterSecondaryMotion(presentationModel);
       this.nativeClothStates.delete(root);
       this.presentationModels.delete(root);
     });
@@ -762,7 +831,10 @@ export class CharacterRuntime {
       ) {
         continue;
       }
-      node.refreshBoundingInfo();
+      // GPU buffers contain the bind pose. Grounding is an occasional exact
+      // query; include current bones/morphs without rewriting render geometry.
+      node.skeleton?.prepare(true);
+      node.refreshBoundingInfo({ applySkeleton: true, applyMorph: true });
       node.computeWorldMatrix(true);
       minimumY = Math.min(
         minimumY,

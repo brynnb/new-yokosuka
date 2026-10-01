@@ -2,6 +2,26 @@ import { expect, test } from "@playwright/test";
 import { availableCutscene } from "../../play/config/cutscenes.js";
 import { runCutscenePreview } from "./cutscene-preview-flow.js";
 
+test("Ine-san's mail retains snow surfaces without falling snow", async ({ page }, testInfo) => {
+  test.setTimeout(180_000);
+  await runCutscenePreview({ page, cutscene: availableCutscene("S1-OP00-MAIL"),
+    sampleOnly: true, completionTimeout: 15_000, testInfo,
+    inspectPlayback: async ({ runtimeModuleUrls, report }) => {
+      await page.waitForTimeout(1_000); // Include several live environment timer updates.
+      report.mailEnvironment = await page.evaluate(async url => {
+        const { default: state } = await import(url);
+        const director = window.__getCutsceneDirector();
+        return { surfaceWeather: state.currentWeather,
+          precipitation: director.activePrecipitation,
+          particles: state.scene.particleSystems.filter(system => system.name.startsWith("world_weather_")).map(system => system.name) };
+      }, runtimeModuleUrls["/src/state.js"]);
+      expect(report.mailEnvironment).toEqual({ surfaceWeather: "snow", precipitation: "clear", particles: [] });
+      await page.screenshot({ path: testInfo.outputPath("mail-no-snowfall.png") });
+    },
+  });
+  expect(await page.evaluate(() => window.__getCutsceneDirector().activePrecipitation)).toBeNull();
+});
+
 async function readPresentation(page, stateUrl) {
   return page.evaluate(async url => {
     const { default: state } = await import(url);

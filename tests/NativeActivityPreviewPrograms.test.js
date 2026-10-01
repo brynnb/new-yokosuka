@@ -37,10 +37,13 @@ const runtimePack = JSON.parse(fs.readFileSync(
   "utf8",
 ));
 
-for (const outcome of ["complete", "cancel", "activity-failure"]) {
-  test(`opening preview keeps source music across shots and releases it on ${outcome}`, async () => {
-    const program = previewPack.programs.find(value => value.id === "preview-s1-op02-00");
-    const manifest = JSON.parse(fs.readFileSync("play/assets/introduction/op02/manifest.json"));
+for (const scenario of [
+  { id: "preview-s1-op02-00", manifest: "play/assets/introduction/op02/manifest.json", track: "bgm019", slots: [0, 1, 2, 3, 6, 4, 5], musicIndex: 0 },
+  { id: "preview-s1-bebf-01", manifest: "play/assets/hazuki/bebf/manifest.json", track: "bgm129", slots: [60, 61, 62], musicIndex: 1 },
+]) for (const outcome of ["complete", "cancel", "activity-failure"]) {
+  test(`${scenario.id} retains source music timing and releases it on ${outcome}`, async () => {
+    const program = previewPack.programs.find(value => value.id === scenario.id);
+    const manifest = JSON.parse(fs.readFileSync(scenario.manifest));
     const calls = [];
     const music = createNativeRoomMusicRuntime({
       playTemporaryTrack: track => (calls.push(["music-start", track]), true),
@@ -50,6 +53,7 @@ for (const outcome of ["complete", "cancel", "activity-failure"]) {
       operation0050: {
         beginProgram({ sceneState }) {
           for (const activity of manifest.activities) {
+            if (activity.binding?.kind !== "map-embedded-slot") continue;
             sceneState.installNativeEmbeddedAuthBinding({ slot: activity.slot, activityId: activity.activityId });
           }
           return {};
@@ -59,9 +63,10 @@ for (const outcome of ["complete", "cancel", "activity-failure"]) {
         rollbackProgram: () => true,
         async startActivity({ slot, binding }) {
           calls.push(["activity", slot]);
-          assert.equal(music.active?.trackId, "bgm019");
-          if (outcome === "activity-failure" && slot === 1) throw new Error("test asset failed");
-          return { slot, activityId: binding.activityId, durationFrames: 2 };
+          assert.equal(music.active?.trackId, scenario.slots.indexOf(slot) >= scenario.musicIndex ? scenario.track : null);
+          if (outcome === "activity-failure" && slot === scenario.slots[1]) throw new Error("test asset failed");
+          const record = manifest.activities.find(activity => activity.slot === slot);
+          return { slot, activityId: record.activityId, durationFrames: 2 };
         },
         updateActivity: () => true,
         stopActivity: () => true,
@@ -70,7 +75,7 @@ for (const outcome of ["complete", "cancel", "activity-failure"]) {
       scriptedScene: {
         dispatchSoundCommand: detail => dispatchNativeRoomSoundCommand({
           ...detail,
-          area: "OP02",
+          area: program.area,
           routes: manifest.ownerAudioCommands,
           playMusicTrack: track => music.playSequence(track),
         }),
@@ -81,7 +86,7 @@ for (const outcome of ["complete", "cancel", "activity-failure"]) {
         rollback: ({ external }) => music.endTransaction(external),
       },
     });
-    room.activateArea("OP02");
+    room.activateArea(program.area);
     let settlement;
     const runtime = createNativeScriptedEventRuntime({
       programPack: { schema: "new-yokosuka-native-event-program-pack-v1", programs: [program] },
@@ -91,7 +96,7 @@ for (const outcome of ["complete", "cancel", "activity-failure"]) {
       onStopped: result => { settlement = result; },
       onCancelled: result => { settlement = result; },
     });
-    await runtime.startProgram({ programId: program.id, entryFunction: program.entryFunction, area: "OP02" });
+    await runtime.startProgram({ programId: program.id, entryFunction: program.entryFunction, area: program.area });
     for (let tick = 0; tick < 100 && !settlement; tick += 1) {
       runtime.update(1 / 30);
       await new Promise(resolve => setImmediate(resolve));
@@ -100,14 +105,14 @@ for (const outcome of ["complete", "cancel", "activity-failure"]) {
       }
     }
     assert.ok(settlement, "preview settles");
-    assert.equal(settlement.status, { complete: "completed", cancel: "cancelled", "activity-failure": "stopped" }[outcome]);
-    assert.deepEqual(calls[0], ["music-start", "bgm019"]);
-    assert.deepEqual(calls.at(-1), ["music-stop", "bgm019"]);
+    assert.equal(settlement.status, { complete: "completed", cancel: "cancelled", "activity-failure": "stopped" }[outcome], JSON.stringify(settlement));
+    assert.deepEqual(calls[scenario.musicIndex], ["music-start", scenario.track]);
+    assert.deepEqual(calls.at(-1), ["music-stop", scenario.track]);
     assert.equal(calls.filter(([kind]) => kind === "music-start").length, 1);
     assert.equal(calls.filter(([kind]) => kind === "music-stop").length, 1);
     assert.equal(music.active, null);
     if (outcome === "complete") {
-      assert.deepEqual(calls.filter(([kind]) => kind === "activity").map(([, slot]) => slot), [0, 1, 2, 3, 6, 4, 5]);
+      assert.deepEqual(calls.filter(([kind]) => kind === "activity").map(([, slot]) => slot), scenario.slots);
     }
   });
 }
@@ -213,7 +218,7 @@ test("generated activity previews are ordinary canonical interpreter programs", 
   assert.equal(stopped[0].reason, "complete");
 });
 
-test("exact activity sequences retain one canonical lease and authored repeats", async () => {
+test("the rescue cinematic keeps one canonical sequence without replaying the fight-retry introduction", async () => {
   const program = previewPack.programs.find(
     item => item.selector.cutsceneId === "S1-EVSN-01",
   );
@@ -221,10 +226,10 @@ test("exact activity sequences retain one canonical lease and authored repeats",
   assert.equal(program.preview.kind, "exact-auth-activity-sequence-v1");
   assert.deepEqual(
     program.preview.activities.map(activity => activity.slot),
-    [0, 1, 1, 2],
+    [0, 1, 2],
   );
   assert.equal(program.functions.length, 1);
-  assert.equal(program.functions[0].blocks.length, 17);
+  assert.equal(program.functions[0].blocks.length, 13);
 
   const sceneState = createNativeSceneGameplayState();
   sceneState.prepareNativeOperation013eBindings(program);
@@ -261,8 +266,8 @@ test("exact activity sequences retain one canonical lease and authored repeats",
     sceneState.advanceNativeOperation0050Activity();
   }
   assert.equal(result.status, "completed");
-  assert.deepEqual(started, [0, 1, 1, 2]);
-  assert.equal(stopped.length, 4);
+  assert.deepEqual(started, [0, 1, 2]);
+  assert.equal(stopped.length, 3);
 });
 
 test("activity preview wrappers complete through NativeScriptedEventRuntime", async () => {

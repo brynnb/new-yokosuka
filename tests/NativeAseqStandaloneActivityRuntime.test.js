@@ -24,6 +24,29 @@ function harness() {
   return { calls, activityRuntime };
 }
 
+test("standalone completion holds presentation until covered and can be disposed while waiting", async () => {
+  for (const dispose of [false, true]) {
+    const { calls, activityRuntime } = harness();
+    let black;
+    const completed = [];
+    const runtime = new NativeAseqStandaloneActivityRuntime({
+      activityRuntime,
+      beforeComplete: () => new Promise(resolve => { black = resolve; }),
+      onComplete: id => completed.push(id),
+    });
+    await runtime.start({ id: "scene", activity: { slot: 0 } });
+    runtime.update(0.1);
+    assert.ok(runtime.active);
+    assert.equal(calls.some(([kind]) => kind === "stop"), false);
+    runtime.update(1);
+    if (dispose) runtime.stop("disposed");
+    black();
+    await new Promise(resolve => setImmediate(resolve));
+    assert.equal(calls.filter(([kind]) => kind === "stop").length, 1);
+    assert.deepEqual(completed, dispose ? [] : ["scene"]);
+  }
+});
+
 test("standalone AUTH activity advances at the native frame rate and completes", async () => {
   const { calls, activityRuntime } = harness();
   const completed = [];

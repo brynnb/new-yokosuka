@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { buildNativeAseqActivityPack } from "../lib/NativeAseqActivityPack.mjs";
+import { buildNativeAseqActivityPack, sha256 } from "../lib/NativeAseqActivityPack.mjs";
+import { extractNativeAseqHandInitialization } from "../lib/NativeAseqCallbackPresentation.mjs";
+import handEvidence from "../evidence/hazuki-dialogue-native-callback-ir.json" with { type: "json" };
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const sourceRoot = [
@@ -12,6 +14,13 @@ const sourceRoot = [
   path.join(repoRoot, "extracted_files"),
 ].filter(Boolean).find(existsSync);
 if (!sourceRoot) throw new Error("an exact Shenmue Disc 1 extraction was not found");
+const mapinfo = readFileSync(path.join(sourceRoot, "data/SCENE/01/JHD0/MAPINFO.BIN"));
+if (sha256(mapinfo) !== handEvidence.source.mapinfoSha256) throw new Error("MSKA hand source changed");
+// Owner 0x2309c calls this setup before starting slot zero; it has no hand callback.
+const hands = extractNativeAseqHandInitialization({
+  bytes: mapinfo, activitySlot: 0, functions: handEvidence.supportingFunctions,
+  nativeFunction: handEvidence.supportingFunctions.find(fn => fn.id === "0x26aa4"),
+});
 
 const outputDirectory = path.join(repoRoot, "play/assets/hazuki/mska");
 buildNativeAseqActivityPack({
@@ -36,6 +45,7 @@ buildNativeAseqActivityPack({
   bindingEvidence: "tools/evidence/mska-native-lifecycle.json",
   selectionRule: "zero-based AUTH-extension ordinal selected by operation-0x013e slot 0",
   audioManifest: "public/audio/world/mska/manifest.json",
+  nativeHandPoseTables: hands.nativeHandPoseTables,
   outputDirectory,
   outputAssetPrefix: "play/assets/hazuki/mska",
   manifestPath: path.join(outputDirectory, "manifest.json"),
@@ -59,6 +69,7 @@ buildNativeAseqActivityPack({
     durationFrames: 775,
     frameCount: 17,
     commandCounts: { camera: 1, move: 2, motion: 4, sound: 10, voice: 5 },
+    nativeHandPoseCues: hands.nativeHandPoseCues,
   }],
 });
 

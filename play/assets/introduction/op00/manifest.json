@@ -1,6 +1,6 @@
 {
   "schema": "new-yokosuka-aseq-activity-pack-v1",
-  "generatedBy": "tools/build_op00_introduction_assets.mjs",
+  "generatedBy": "tools/cutscenes/build_op00_introduction_assets.mjs",
   "source": {
     "disc": 1,
     "path": "extracted_files/data/SCENE/01/OP00/MAPINFO.BIN",
@@ -12,7 +12,7 @@
     "evidence": "play/assets/introduction/op00/cutscene-program.generated.json",
     "resourceName": "A0114",
     "variant": "OP00 introduction",
-    "selectionRule": "24 exact map-embedded TRCK resources in MAPINFO 0x22ae4..0x481f4; compiled owner S1-OP00-A0114 is the sole sequencing authority"
+    "selectionRule": "25 exact map-embedded TRCK resources in MAPINFO 0x22ae4..0x48f78; compiled owner S1-OP00-A0114 is the sole sequencing authority"
   },
   "audioManifest": "public/audio/world/op00/manifest.json",
   "frameRate": 30,
@@ -154,6 +154,11 @@
       "path": "play/assets/introduction/op00/SEQDATA23.AUTH",
       "byteLength": 21768,
       "sha256": "a6368e3f979d6d57bf963aebfbcd5197e99bc03198a33e9673325215f2f439e6"
+    },
+    {
+      "path": "play/assets/introduction/op00/SEQDATA24.AUTH",
+      "byteLength": 3460,
+      "sha256": "9230dfa8a9cbdafc5de16becab4b56a4d8f07930082e28cd983be003633ac0a0"
     }
   ],
   "actorTags": [
@@ -169,7 +174,11 @@
     "ODR1",
     "ODR2",
     "RMJN",
-    "SORY"
+    "SORY",
+    "THN1",
+    "THN2",
+    "THN3",
+    "THN4"
   ],
   "nativeHandPoseTables": {
     "0x206b0": {
@@ -7164,6 +7173,113 @@
           "visible": false
         }
       ],
+      "programPresentationCues": {
+        "before": [
+          {
+            "kind": "secondary-motion-global-float",
+            "mode": 0,
+            "word": 1065353216,
+            "source": {
+              "area": "OP00",
+              "evidence": "tools/evidence/op00-opening-native-callback-ir.json",
+              "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+              "callbackFunction": "0xc700",
+              "callFileOffset": "0xc7b6"
+            }
+          },
+          {
+            "kind": "secondary-motion-global-float",
+            "mode": 10,
+            "word": 1008981770,
+            "source": {
+              "area": "OP00",
+              "evidence": "tools/evidence/op00-opening-native-callback-ir.json",
+              "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+              "callbackFunction": "0xc700",
+              "callFileOffset": "0xc7ca"
+            }
+          },
+          {
+            "kind": "secondary-motion-global-float",
+            "mode": 20,
+            "word": 1008981770,
+            "source": {
+              "area": "OP00",
+              "evidence": "tools/evidence/op00-opening-native-callback-ir.json",
+              "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+              "callbackFunction": "0xc700",
+              "callFileOffset": "0xc7de"
+            }
+          },
+          {
+            "kind": "secondary-motion-global-float",
+            "mode": 30,
+            "word": 1008981770,
+            "source": {
+              "area": "OP00",
+              "evidence": "tools/evidence/op00-opening-native-callback-ir.json",
+              "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+              "callbackFunction": "0xc700",
+              "callFileOffset": "0xc7f2"
+            }
+          }
+        ],
+        "frames": [
+          {
+            "frame": 330,
+            "cues": [
+              {
+                "kind": "secondary-motion-global-float",
+                "mode": 0,
+                "word": 1047233823,
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-opening-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xc700",
+                  "callFileOffset": "0xc9d2"
+                }
+              },
+              {
+                "kind": "secondary-motion-global-float",
+                "mode": 10,
+                "word": 1099274650,
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-opening-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xc700",
+                  "callFileOffset": "0xc9e6"
+                }
+              },
+              {
+                "kind": "secondary-motion-global-float",
+                "mode": 20,
+                "word": 3231082086,
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-opening-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xc700",
+                  "callFileOffset": "0xc9fa"
+                }
+              },
+              {
+                "kind": "secondary-motion-global-float",
+                "mode": 30,
+                "word": 1105723392,
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-opening-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xc700",
+                  "callFileOffset": "0xca0e"
+                }
+              }
+            ]
+          }
+        ]
+      },
       "nativeSceneObjectWrites": [],
       "nativeSceneObjectStates": [
         {
@@ -8290,6 +8406,89 @@
           "visible": false
         }
       ],
+      "programPresentationCues": {
+        "before": [
+          {
+            "kind": "secondary-motion-global-float",
+            "mode": 1,
+            "word": 1063675494,
+            "source": {
+              "area": "OP00",
+              "evidence": "tools/evidence/op00-opening-native-callback-ir.json",
+              "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+              "callbackFunction": "0xb3f8",
+              "callFileOffset": "0xb45e"
+            }
+          },
+          {
+            "kind": "secondary-motion-global-float",
+            "mode": 0,
+            "word": 1065353216,
+            "source": {
+              "area": "OP00",
+              "evidence": "tools/evidence/op00-opening-native-callback-ir.json",
+              "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+              "callbackFunction": "0xb3f8",
+              "callFileOffset": "0xb5b2"
+            }
+          },
+          {
+            "kind": "secondary-motion-global-float",
+            "mode": 10,
+            "word": 0,
+            "source": {
+              "area": "OP00",
+              "evidence": "tools/evidence/op00-opening-native-callback-ir.json",
+              "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+              "callbackFunction": "0xb3f8",
+              "callFileOffset": "0xb5c6"
+            }
+          },
+          {
+            "kind": "secondary-motion-global-float",
+            "mode": 20,
+            "word": 0,
+            "source": {
+              "area": "OP00",
+              "evidence": "tools/evidence/op00-opening-native-callback-ir.json",
+              "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+              "callbackFunction": "0xb3f8",
+              "callFileOffset": "0xb5da"
+            }
+          },
+          {
+            "kind": "secondary-motion-global-float",
+            "mode": 30,
+            "word": 0,
+            "source": {
+              "area": "OP00",
+              "evidence": "tools/evidence/op00-opening-native-callback-ir.json",
+              "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+              "callbackFunction": "0xb3f8",
+              "callFileOffset": "0xb5ee"
+            }
+          }
+        ],
+        "frames": [
+          {
+            "frame": 420,
+            "cues": [
+              {
+                "kind": "secondary-motion-global-float",
+                "mode": 1,
+                "word": 1065353216,
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-opening-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xb3f8",
+                  "callFileOffset": "0xb666"
+                }
+              }
+            ]
+          }
+        ]
+      },
       "nativeSceneObjectWrites": [],
       "nativeSceneObjectStates": [
         {
@@ -9591,11 +9790,852 @@
         "byteLength": 21768,
         "sha256": "a6368e3f979d6d57bf963aebfbcd5197e99bc03198a33e9673325215f2f439e6"
       }
+    },
+    {
+      "index": 24,
+      "sourceOffset": 295412,
+      "byteLength": 3460,
+      "sha256": "9230dfa8a9cbdafc5de16becab4b56a4d8f07930082e28cd983be003633ac0a0",
+      "slot": 24,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "OP00/SEQDATA24.AUTH",
+      "archiveMember": "SEQDATA24.AUTH",
+      "durationFrames": 500,
+      "durationSeconds": 16.666666666666668,
+      "authoredChannelDurationSeconds": 16.683332443237305,
+      "frameCount": 1,
+      "actors": [
+        "THN1",
+        "THN2",
+        "THN3",
+        "THN4",
+        "AKIR"
+      ],
+      "cameraCount": 1,
+      "movementCount": 5,
+      "commandCounts": {
+        "camera": 1,
+        "move": 5
+      },
+      "nativeMapLayerWrites": [
+        {
+          "layer": 0,
+          "value": 1,
+          "callFileOffset": "0xe394",
+          "operationLiteralOffset": "0xe564"
+        },
+        {
+          "layer": 1,
+          "value": 0,
+          "callFileOffset": "0xe3a8",
+          "operationLiteralOffset": "0xe564"
+        },
+        {
+          "layer": 2,
+          "value": 0,
+          "callFileOffset": "0xe3bc",
+          "operationLiteralOffset": "0xe564"
+        },
+        {
+          "layer": 3,
+          "value": 1,
+          "callFileOffset": "0xe3d0",
+          "operationLiteralOffset": "0xe564"
+        }
+      ],
+      "nativeMapLayerStates": [
+        {
+          "layer": 0,
+          "value": 1
+        },
+        {
+          "layer": 1,
+          "value": 0
+        },
+        {
+          "layer": 2,
+          "value": 0
+        },
+        {
+          "layer": 3,
+          "value": 1
+        },
+        {
+          "layer": 4,
+          "value": 1
+        }
+      ],
+      "nativeMapLayerStateSource": {
+        "operation": "0x0098",
+        "activityCallFileOffset": "0x1a95c",
+        "setupLaunchCallFileOffset": "0x1a944",
+        "setupFunctionFileOffset": "0xe2f0"
+      },
+      "browserMapVisibility": [
+        {
+          "nativeName": "OMADO",
+          "visible": false
+        }
+      ],
+      "hiddenActors": [
+        "AKIR"
+      ],
+      "browserLightingPresetIndex": 3,
+      "browserIsolatedEnvironment": true,
+      "browserBackgroundColor": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "nativeInitialHiddenObjects": [
+        "THN1",
+        "THN2",
+        "THN3",
+        "THN4"
+      ],
+      "programPresentationCues": {
+        "frames": [
+          {
+            "frame": 0,
+            "cues": [
+              {
+                "kind": "scene-lighting",
+                "ambientColor": [
+                  0.2199999988079071,
+                  0.2199999988079071,
+                  0.2199999988079071
+                ],
+                "directionalIntensity": 1,
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xe350",
+                  "helperFunction": "0xf8f8",
+                  "ambientCall": "0xf954",
+                  "intensityCall": "0xf9a4"
+                }
+              }
+            ]
+          },
+          {
+            "frame": 138,
+            "cues": [
+              {
+                "kind": "scene-lighting",
+                "ambientColor": [
+                  0.30000001192092896,
+                  0.30000001192092896,
+                  0.30000001192092896
+                ],
+                "directionalIntensity": 8.699999809265137,
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xe67e",
+                  "helperFunction": "0xf82c",
+                  "ambientCall": "0xf870",
+                  "intensityCall": "0xf8c0"
+                }
+              },
+              {
+                "kind": "scene-object-state",
+                "actorTag": "THN3",
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xe692"
+                },
+                "presented": true
+              },
+              {
+                "kind": "scene-object-state",
+                "actorTag": "THN3",
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xe6ce"
+                },
+                "scale": [
+                  2.5999999046325684,
+                  5.199999809265137,
+                  2.5999999046325684
+                ]
+              }
+            ]
+          },
+          {
+            "frame": 140,
+            "cues": [
+              {
+                "kind": "scene-object-state",
+                "actorTag": "THN3",
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xe78e"
+                },
+                "presented": false
+              }
+            ]
+          },
+          {
+            "frame": 142,
+            "cues": [
+              {
+                "kind": "scene-object-state",
+                "actorTag": "THN1",
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xe7ce"
+                },
+                "presented": true
+              },
+              {
+                "kind": "scene-object-state",
+                "actorTag": "THN1",
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xe80a"
+                },
+                "scale": [
+                  2.5999999046325684,
+                  4.699999809265137,
+                  2.5999999046325684
+                ]
+              }
+            ]
+          },
+          {
+            "frame": 144,
+            "cues": [
+              {
+                "kind": "scene-lighting",
+                "ambientColor": [
+                  0.2199999988079071,
+                  0.2199999988079071,
+                  0.2199999988079071
+                ],
+                "directionalIntensity": 1,
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xe876",
+                  "helperFunction": "0xf8f8",
+                  "ambientCall": "0xf954",
+                  "intensityCall": "0xf9a4"
+                }
+              },
+              {
+                "kind": "scene-object-state",
+                "actorTag": "THN1",
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xe88a"
+                },
+                "presented": false
+              }
+            ]
+          },
+          {
+            "frame": 146,
+            "cues": [
+              {
+                "kind": "scene-lighting",
+                "ambientColor": [
+                  0.30000001192092896,
+                  0.30000001192092896,
+                  0.30000001192092896
+                ],
+                "directionalIntensity": 8.699999809265137,
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xe8d2",
+                  "helperFunction": "0xf82c",
+                  "ambientCall": "0xf870",
+                  "intensityCall": "0xf8c0"
+                }
+              },
+              {
+                "kind": "scene-object-state",
+                "actorTag": "THN4",
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xe8e6"
+                },
+                "presented": true
+              },
+              {
+                "kind": "scene-object-state",
+                "actorTag": "THN4",
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xe922"
+                },
+                "scale": [
+                  2.5999999046325684,
+                  3.9000000953674316,
+                  2.5999999046325684
+                ]
+              }
+            ]
+          },
+          {
+            "frame": 148,
+            "cues": [
+              {
+                "kind": "scene-lighting",
+                "ambientColor": [
+                  0.2199999988079071,
+                  0.2199999988079071,
+                  0.2199999988079071
+                ],
+                "directionalIntensity": 1,
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xe9e2",
+                  "helperFunction": "0xf8f8",
+                  "ambientCall": "0xf954",
+                  "intensityCall": "0xf9a4"
+                }
+              },
+              {
+                "kind": "scene-object-state",
+                "actorTag": "THN4",
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xe9f6"
+                },
+                "presented": false
+              }
+            ]
+          },
+          {
+            "frame": 292,
+            "cues": [
+              {
+                "kind": "scene-lighting",
+                "ambientColor": [
+                  0.30000001192092896,
+                  0.30000001192092896,
+                  0.30000001192092896
+                ],
+                "directionalIntensity": 8.699999809265137,
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xea82",
+                  "helperFunction": "0xf82c",
+                  "ambientCall": "0xf870",
+                  "intensityCall": "0xf8c0"
+                }
+              },
+              {
+                "kind": "scene-object-state",
+                "actorTag": "THN3",
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xea96"
+                },
+                "presented": true
+              },
+              {
+                "kind": "scene-object-state",
+                "actorTag": "THN3",
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xead2"
+                },
+                "scale": [
+                  2.5999999046325684,
+                  4.300000190734863,
+                  2.5999999046325684
+                ]
+              }
+            ]
+          },
+          {
+            "frame": 294,
+            "cues": [
+              {
+                "kind": "scene-object-state",
+                "actorTag": "THN3",
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xeb92"
+                },
+                "presented": false
+              }
+            ]
+          },
+          {
+            "frame": 300,
+            "cues": [
+              {
+                "kind": "scene-object-state",
+                "actorTag": "THN4",
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xebd2"
+                },
+                "presented": true
+              },
+              {
+                "kind": "scene-object-state",
+                "actorTag": "THN4",
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xec0e"
+                },
+                "scale": [
+                  2.5999999046325684,
+                  4.5,
+                  2.5999999046325684
+                ]
+              }
+            ]
+          },
+          {
+            "frame": 302,
+            "cues": [
+              {
+                "kind": "scene-lighting",
+                "ambientColor": [
+                  0.2199999988079071,
+                  0.2199999988079071,
+                  0.2199999988079071
+                ],
+                "directionalIntensity": 1,
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xecaa",
+                  "helperFunction": "0xf8f8",
+                  "ambientCall": "0xf954",
+                  "intensityCall": "0xf9a4"
+                }
+              },
+              {
+                "kind": "scene-object-state",
+                "actorTag": "THN4",
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xecbe"
+                },
+                "presented": false
+              }
+            ]
+          },
+          {
+            "frame": 308,
+            "cues": [
+              {
+                "kind": "scene-lighting",
+                "ambientColor": [
+                  0.30000001192092896,
+                  0.30000001192092896,
+                  0.30000001192092896
+                ],
+                "directionalIntensity": 8.699999809265137,
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xed06",
+                  "helperFunction": "0xf82c",
+                  "ambientCall": "0xf870",
+                  "intensityCall": "0xf8c0"
+                }
+              },
+              {
+                "kind": "scene-object-state",
+                "actorTag": "THN1",
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xed1a"
+                },
+                "presented": true
+              },
+              {
+                "kind": "scene-object-state",
+                "actorTag": "THN1",
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xed56"
+                },
+                "scale": [
+                  3.5999999046325684,
+                  5.599999904632568,
+                  3.5999999046325684
+                ]
+              }
+            ]
+          },
+          {
+            "frame": 312,
+            "cues": [
+              {
+                "kind": "scene-object-state",
+                "actorTag": "THN1",
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xede6"
+                },
+                "presented": false
+              }
+            ]
+          },
+          {
+            "frame": 317,
+            "cues": [
+              {
+                "kind": "scene-object-state",
+                "actorTag": "THN1",
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xee26"
+                },
+                "presented": true
+              },
+              {
+                "kind": "scene-object-state",
+                "actorTag": "THN1",
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xee62"
+                },
+                "scale": [
+                  1.399999976158142,
+                  4.099999904632568,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "frame": 320,
+            "cues": [
+              {
+                "kind": "scene-lighting",
+                "ambientColor": [
+                  0.2199999988079071,
+                  0.2199999988079071,
+                  0.2199999988079071
+                ],
+                "directionalIntensity": 1,
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xef02",
+                  "helperFunction": "0xf8f8",
+                  "ambientCall": "0xf954",
+                  "intensityCall": "0xf9a4"
+                }
+              },
+              {
+                "kind": "scene-object-state",
+                "actorTag": "THN1",
+                "source": {
+                  "area": "OP00",
+                  "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+                  "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+                  "callbackFunction": "0xe2f0",
+                  "callFileOffset": "0xef16"
+                },
+                "presented": false
+              }
+            ]
+          }
+        ]
+      },
+      "nativeScriptSoundCues": [
+        {
+          "frame": 5,
+          "commandWord": 2557097,
+          "source": {
+            "area": "OP00",
+            "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+            "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+            "callbackFunction": "0xe2f0",
+            "callFileOffset": "0xe5fe",
+            "helperFunction": "0xf9e0",
+            "soundCallFileOffset": "0xfa3e",
+            "delayNativeTicks": 5
+          },
+          "sourcePath": "native-script:OP00:002704a9"
+        },
+        {
+          "frame": 80,
+          "commandWord": 3671209,
+          "source": {
+            "area": "OP00",
+            "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+            "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+            "callbackFunction": "0xe2f0",
+            "callFileOffset": "0xe63e"
+          },
+          "sourcePath": "native-script:OP00:003804a9"
+        },
+        {
+          "frame": 144,
+          "commandWord": 2622633,
+          "source": {
+            "area": "OP00",
+            "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+            "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+            "callbackFunction": "0xe2f0",
+            "callFileOffset": "0xe6ee",
+            "helperFunction": "0xf9e0",
+            "soundCallFileOffset": "0xfa7e",
+            "delayNativeTicks": 6
+          },
+          "sourcePath": "native-script:OP00:002804a9"
+        },
+        {
+          "frame": 148,
+          "commandWord": 3605673,
+          "source": {
+            "area": "OP00",
+            "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+            "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+            "callbackFunction": "0xe2f0",
+            "callFileOffset": "0xe82a",
+            "helperFunction": "0xf9e0",
+            "soundCallFileOffset": "0xfabe",
+            "delayNativeTicks": 6
+          },
+          "sourcePath": "native-script:OP00:003704a9"
+        },
+        {
+          "frame": 152,
+          "commandWord": 2557097,
+          "source": {
+            "area": "OP00",
+            "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+            "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+            "callbackFunction": "0xe2f0",
+            "callFileOffset": "0xe942",
+            "helperFunction": "0xf9e0",
+            "soundCallFileOffset": "0xfa3e",
+            "delayNativeTicks": 6
+          },
+          "sourcePath": "native-script:OP00:002704a9"
+        },
+        {
+          "frame": 228,
+          "commandWord": 3671209,
+          "source": {
+            "area": "OP00",
+            "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+            "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+            "callbackFunction": "0xe2f0",
+            "callFileOffset": "0xea42"
+          },
+          "sourcePath": "native-script:OP00:003804a9"
+        },
+        {
+          "frame": 298,
+          "commandWord": 2622633,
+          "source": {
+            "area": "OP00",
+            "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+            "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+            "callbackFunction": "0xe2f0",
+            "callFileOffset": "0xeaf2",
+            "helperFunction": "0xf9e0",
+            "soundCallFileOffset": "0xfa7e",
+            "delayNativeTicks": 6
+          },
+          "sourcePath": "native-script:OP00:002804a9"
+        },
+        {
+          "frame": 306,
+          "commandWord": 3605673,
+          "source": {
+            "area": "OP00",
+            "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+            "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+            "callbackFunction": "0xe2f0",
+            "callFileOffset": "0xec2e",
+            "helperFunction": "0xf9e0",
+            "soundCallFileOffset": "0xfabe",
+            "delayNativeTicks": 6
+          },
+          "sourcePath": "native-script:OP00:003704a9"
+        },
+        {
+          "frame": 314,
+          "commandWord": 2557097,
+          "source": {
+            "area": "OP00",
+            "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+            "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+            "callbackFunction": "0xe2f0",
+            "callFileOffset": "0xed76",
+            "helperFunction": "0xf9e0",
+            "soundCallFileOffset": "0xfa3e",
+            "delayNativeTicks": 6
+          },
+          "sourcePath": "native-script:OP00:002704a9"
+        },
+        {
+          "frame": 323,
+          "commandWord": 2622633,
+          "source": {
+            "area": "OP00",
+            "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+            "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+            "callbackFunction": "0xe2f0",
+            "callFileOffset": "0xee82",
+            "helperFunction": "0xf9e0",
+            "soundCallFileOffset": "0xfa7e",
+            "delayNativeTicks": 6
+          },
+          "sourcePath": "native-script:OP00:002804a9"
+        },
+        {
+          "frame": 400,
+          "commandWord": 3671209,
+          "source": {
+            "area": "OP00",
+            "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+            "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+            "callbackFunction": "0xe2f0",
+            "callFileOffset": "0xef62"
+          },
+          "sourcePath": "native-script:OP00:003804a9"
+        },
+        {
+          "frame": 450,
+          "commandWord": 3671209,
+          "source": {
+            "area": "OP00",
+            "evidence": "tools/evidence/op00-storm-native-callback-ir.json",
+            "mapinfoSha256": "8c2e8957ba3c96eb0a1315249db1abe1cb5931ea1bd63ee9601f30d1c8f257e4",
+            "callbackFunction": "0xe2f0",
+            "callFileOffset": "0xefa6"
+          },
+          "sourcePath": "native-script:OP00:003804a9"
+        }
+      ],
+      "nativeSceneObjectWrites": [],
+      "nativeSceneObjectStates": [
+        {
+          "actorTag": "MNLF",
+          "presented": true
+        },
+        {
+          "actorTag": "ODR1",
+          "presented": true
+        },
+        {
+          "actorTag": "ODR2",
+          "presented": true
+        },
+        {
+          "actorTag": "RMJN",
+          "presented": true
+        }
+      ],
+      "nativeSceneObjectStateSource": {
+        "runtimeOperation": "0x001f",
+        "presentationOperation": "0x00a8",
+        "beforeActivityCallFileOffset": "0x1a95c"
+      },
+      "nativeHandPoseCues": [],
+      "nativeBodyHandPoseCues": [],
+      "nativeFaceClipCues": [],
+      "nativeFaceGazeCues": [],
+      "motions": [],
+      "audioStrings": [],
+      "asset": {
+        "path": "play/assets/introduction/op00/SEQDATA24.AUTH",
+        "byteLength": 3460,
+        "sha256": "9230dfa8a9cbdafc5de16becab4b56a4d8f07930082e28cd983be003633ac0a0"
+      }
     }
   ],
   "summary": {
-    "trackCount": 24,
-    "durationSeconds": 354.7,
+    "trackCount": 25,
+    "durationSeconds": 371.3666666666667,
     "motionCount": 148,
     "resolvedMotionCount": 148,
     "handPoseTableCount": 11,

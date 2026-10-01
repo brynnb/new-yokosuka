@@ -26,7 +26,13 @@
         "kind": "realtime-interstitial",
         "function": "0x74960",
         "call": "0x73e32",
-        "containsActivity": { "slot": 1, "call": "0x7587e" }
+        "containsActivity": {
+          "slot": 1,
+          "call": "0x7587e",
+          "conditional": true,
+          "bypass": "operation 0x0088 at 0x7562a equal to 3 branches via 0x75640 to 0x75b94, bypassing this call",
+          "loopBack": "the replay branch rejoins the interstitial at 0x74c44 through 0x75c48"
+        }
       },
       { "kind": "activity", "slot": 2, "call": "0x73e38" },
       { "kind": "cleanup", "function": "0x743d8", "call": "0x73e3e" }
@@ -88,6 +94,7 @@
     }
   },
   "runtimePolicy": {
+    "previewSequence": "select lead-in slot 0 or 3, then slot 1 once, then aftermath slot 2; omit the interactive fight and its conditional retry replay rather than concatenating it unconditionally",
     "world": "use the existing JD00 Sakuragaoka composition and coordinate root",
     "entry": "acquire Ryo and the exact activity-only world/package actors before native activity ownership",
     "objectOwnership": "AIRO remains one package-owned scene object; its native movement channel and later KKEN control-point attachment must not instantiate duplicate geometry",

@@ -1,5 +1,4 @@
 import { runtimeAssetGroup, runtimeAssetUrl } from "../../src/RuntimeAssets.js";
-import { interpolateMatrixRouteMaps } from "../../src/AnimationMatrixInterpolation.js";
 import { scheduledActorsForWorld } from "../../src/PlayScheduledActors.js";
 import {
   composeScheduledActorDefinitions,
@@ -153,6 +152,7 @@ export class PlayCharacterAssembly {
       scene: this.scene,
       characterId,
       initialPosition,
+      characterRuntime: this.characterRuntime,
       createCharacterModel: character => (
         this.characterRuntime.createModel(character)
       ),
@@ -179,12 +179,11 @@ export class PlayCharacterAssembly {
           profile,
         )
       ),
-      clipRoutesAt: (...args) => playerRuntime.animation.clipRoutesAt(...args),
-      remoteEmoteRoutes: (...args) => (
-        playerRuntime.animation.remoteEmoteRoutes(...args)
+      clipPoseAt: (...args) => playerRuntime.animation.clipPoseAt(...args),
+      remoteEmotePose: (...args) => (
+        playerRuntime.animation.remoteEmotePose(...args)
       ),
       isKnownEmote: this.remoteAvatar.isKnownEmote,
-      interpolateRoutes: interpolateMatrixRouteMaps,
       characterMinimumWorldY: root => this.characterRuntime.minimumWorldY(root),
       nativeLocomotionRuntime: this.locomotionRuntime,
       forkliftModelForId: this.remoteAvatar.forkliftModelForId,

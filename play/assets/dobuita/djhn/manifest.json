@@ -1,6 +1,6 @@
 {
   "schema": "new-yokosuka-aseq-activity-pack-v1",
-  "generatedBy": "tools/build_djhn_activity_pack.mjs",
+  "generatedBy": "tools/cutscenes/build_djhn_activity_pack.mjs",
   "source": {
     "disc": 1,
     "path": "extracted_files/data/SCENE/01/D000/DJHN.PKS",
@@ -57,6 +57,317 @@
   },
   "audioManifest": "public/audio/world/djhn/manifest.json",
   "attachedObjects": {
+    "MALS": {
+      "browserFilename": "S1_D000_MALS509G.MT5",
+      "assetPath": "play/assets/dobuita/djhn/MALS509G.CHRM",
+      "attachments": [
+        {
+          "activitySlot": 22,
+          "frame": 580,
+          "action": "attach",
+          "parentActorTag": "AKIR",
+          "controlId": 18,
+          "translation": [
+            0.08709999918937683,
+            0.03020000085234642,
+            -0.09239999949932098
+          ],
+          "rotationRaw": [
+            29527,
+            43165,
+            51901
+          ],
+          "callFileOffset": "0x895ae",
+          "source": {
+            "evidence": "tools/evidence/djhn-seqdata3-native-callback-ir.json",
+            "callbackFunction": "0x891b8"
+          },
+          "activityId": "DJHN/SEQDATA3.AUTH"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 700,
+          "action": "attach",
+          "parentActorTag": "AKIR",
+          "controlId": 18,
+          "translation": [
+            0.14910000562667847,
+            0.0812000036239624,
+            -0.023399999365210533
+          ],
+          "rotationRaw": [
+            10434,
+            36796,
+            925
+          ],
+          "callFileOffset": "0x896ba",
+          "source": {
+            "evidence": "tools/evidence/djhn-seqdata3-native-callback-ir.json",
+            "callbackFunction": "0x891b8"
+          },
+          "activityId": "DJHN/SEQDATA3.AUTH"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 1160,
+          "action": "detach",
+          "callFileOffset": "0x89876",
+          "source": {
+            "evidence": "tools/evidence/djhn-seqdata3-native-callback-ir.json",
+            "callbackFunction": "0x891b8"
+          },
+          "activityId": "DJHN/SEQDATA3.AUTH"
+        },
+        {
+          "activitySlot": 24,
+          "frame": 239,
+          "action": "attach",
+          "parentActorTag": "AKIR",
+          "controlId": 18,
+          "translation": [
+            0.11900000274181366,
+            0.03700000047683716,
+            -0.09600000083446503
+          ],
+          "rotationRaw": [
+            3276,
+            36408,
+            1092
+          ],
+          "callFileOffset": "0x8a6b2",
+          "source": {
+            "evidence": "tools/evidence/djhn-letter-native-callback-ir.json",
+            "callbackFunction": "0x8a44c"
+          },
+          "activityId": "DJHN/SEQDATA5.AUTH"
+        },
+        {
+          "activitySlot": 24,
+          "frame": 678,
+          "action": "detach",
+          "callFileOffset": "0x8a7a6",
+          "source": {
+            "evidence": "tools/evidence/djhn-letter-native-callback-ir.json",
+            "callbackFunction": "0x8a44c"
+          },
+          "activityId": "DJHN/SEQDATA5.AUTH"
+        }
+      ],
+      "nodeTransforms": [
+        {
+          "activitySlot": 22,
+          "frame": 0,
+          "nodeKey": 152,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "callFileOffset": "0x89232",
+          "source": {
+            "evidence": "tools/evidence/djhn-seqdata3-native-callback-ir.json",
+            "callbackFunction": "0x891b8"
+          },
+          "activityId": "DJHN/SEQDATA3.AUTH"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 0,
+          "nodeKey": 153,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "callFileOffset": "0x89254",
+          "source": {
+            "evidence": "tools/evidence/djhn-seqdata3-native-callback-ir.json",
+            "callbackFunction": "0x891b8"
+          },
+          "activityId": "DJHN/SEQDATA3.AUTH"
+        },
+        {
+          "activitySlot": 22,
+          "firstFrame": 625,
+          "lastFrame": 645,
+          "nodeKey": 152,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            0,
+            1456
+          ],
+          "callFileOffset": "0x89a16",
+          "source": {
+            "evidence": "tools/evidence/djhn-seqdata3-native-callback-ir.json",
+            "callbackFunction": "0x891b8"
+          },
+          "activityId": "DJHN/SEQDATA3.AUTH"
+        },
+        {
+          "activitySlot": 22,
+          "firstFrame": 646,
+          "lastFrame": 666,
+          "nodeKey": 153,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            0,
+            -1456
+          ],
+          "callFileOffset": "0x89a8e",
+          "source": {
+            "evidence": "tools/evidence/djhn-seqdata3-native-callback-ir.json",
+            "callbackFunction": "0x891b8"
+          },
+          "activityId": "DJHN/SEQDATA3.AUTH"
+        },
+        {
+          "activitySlot": 22,
+          "firstFrame": 1031,
+          "lastFrame": 1051,
+          "nodeKey": 153,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            0,
+            -1456
+          ],
+          "callFileOffset": "0x89bf2",
+          "source": {
+            "evidence": "tools/evidence/djhn-seqdata3-native-callback-ir.json",
+            "callbackFunction": "0x891b8"
+          },
+          "activityId": "DJHN/SEQDATA3.AUTH"
+        },
+        {
+          "activitySlot": 22,
+          "firstFrame": 1100,
+          "lastFrame": 1120,
+          "nodeKey": 152,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            0,
+            -1456
+          ],
+          "callFileOffset": "0x89b7a",
+          "source": {
+            "evidence": "tools/evidence/djhn-seqdata3-native-callback-ir.json",
+            "callbackFunction": "0x891b8"
+          },
+          "activityId": "DJHN/SEQDATA3.AUTH"
+        },
+        {
+          "activitySlot": 24,
+          "frame": 0,
+          "nodeKey": 152,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "callFileOffset": "0x8a4dc",
+          "source": {
+            "evidence": "tools/evidence/djhn-letter-native-callback-ir.json",
+            "callbackFunction": "0x8a44c"
+          },
+          "activityId": "DJHN/SEQDATA5.AUTH"
+        },
+        {
+          "activitySlot": 24,
+          "frame": 0,
+          "nodeKey": 153,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "callFileOffset": "0x8a4fe",
+          "source": {
+            "evidence": "tools/evidence/djhn-letter-native-callback-ir.json",
+            "callbackFunction": "0x8a44c"
+          },
+          "activityId": "DJHN/SEQDATA5.AUTH"
+        },
+        {
+          "activitySlot": 24,
+          "firstFrame": 280,
+          "lastFrame": 300,
+          "nodeKey": 152,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            0,
+            1456
+          ],
+          "callFileOffset": "0x8a962",
+          "source": {
+            "evidence": "tools/evidence/djhn-letter-native-callback-ir.json",
+            "callbackFunction": "0x8a44c"
+          },
+          "activityId": "DJHN/SEQDATA5.AUTH"
+        },
+        {
+          "activitySlot": 24,
+          "firstFrame": 301,
+          "lastFrame": 321,
+          "nodeKey": 153,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            0,
+            -1456
+          ],
+          "callFileOffset": "0x8a9da",
+          "source": {
+            "evidence": "tools/evidence/djhn-letter-native-callback-ir.json",
+            "callbackFunction": "0x8a44c"
+          },
+          "activityId": "DJHN/SEQDATA5.AUTH"
+        },
+        {
+          "activitySlot": 24,
+          "firstFrame": 610,
+          "lastFrame": 630,
+          "nodeKey": 153,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            0,
+            1456
+          ],
+          "callFileOffset": "0x8aa52",
+          "source": {
+            "evidence": "tools/evidence/djhn-letter-native-callback-ir.json",
+            "callbackFunction": "0x8a44c"
+          },
+          "activityId": "DJHN/SEQDATA5.AUTH"
+        },
+        {
+          "activitySlot": 24,
+          "firstFrame": 631,
+          "lastFrame": 651,
+          "nodeKey": 152,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            0,
+            -1456
+          ],
+          "callFileOffset": "0x8aaca",
+          "source": {
+            "evidence": "tools/evidence/djhn-letter-native-callback-ir.json",
+            "callbackFunction": "0x8a44c"
+          },
+          "activityId": "DJHN/SEQDATA5.AUTH"
+        }
+      ]
+    },
     "CAN1": {
       "browserFilename": "S1_D000_COKS520G.MT5",
       "assetPath": "play/assets/dobuita/djhn/COKS520G.CHRM",
@@ -79,7 +390,8 @@
             61411,
             20600,
             56088
-          ]
+          ],
+          "activityId": "DJHN/SEQDATA3.AUTH"
         },
         {
           "activitySlot": 22,
@@ -95,12 +407,14 @@
             1032,
             20600,
             62457
-          ]
+          ],
+          "activityId": "DJHN/SEQDATA3.AUTH"
         },
         {
           "activitySlot": 22,
           "frame": 1810,
-          "action": "detach"
+          "action": "detach",
+          "activityId": "DJHN/SEQDATA3.AUTH"
         },
         {
           "activitySlot": 23,
@@ -116,7 +430,8 @@
             61411,
             20600,
             56088
-          ]
+          ],
+          "activityId": "DJHN/SEQDATA4.AUTH"
         },
         {
           "activitySlot": 23,
@@ -132,16 +447,22 @@
             1032,
             20600,
             62457
-          ]
+          ],
+          "activityId": "DJHN/SEQDATA4.AUTH"
         },
         {
           "activitySlot": 23,
           "frame": 1107,
-          "action": "detach"
+          "action": "detach",
+          "activityId": "DJHN/SEQDATA4.AUTH"
         }
       ]
     }
   },
+  "actorTags": [
+    "AKIR",
+    "YKHI"
+  ],
   "motionBanks": [
     {
       "bank": 16,
@@ -195,6 +516,11 @@
       "path": "play/assets/dobuita/djhn/COKS520G.CHRM",
       "byteLength": 8884,
       "sha256": "964fa92a9e7345a68e3208d51adc9b1aa11bc162410057aab8e9bf009af21fbc"
+    },
+    {
+      "path": "play/assets/dobuita/djhn/MALS509G.CHRM",
+      "byteLength": 1452,
+      "sha256": "0d5182cde209ca1c188e4a7af48f65e79d0d5713469bd2c951a0af69a624dd39"
     }
   ],
   "activities": [
@@ -305,6 +631,5219 @@
       "actors": [
         "AKIR",
         "YKHI"
+      ],
+      "nativeActorLookPointCues": [
+        {
+          "activitySlot": 22,
+          "frame": 675,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 676,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 677,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 678,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 679,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 680,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 681,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 682,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 683,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 684,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 685,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 686,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 687,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 688,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 689,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 690,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 691,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 692,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 693,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 694,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 695,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 696,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 697,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 698,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 699,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 700,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 701,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 702,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 703,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 704,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 705,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 706,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 707,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 708,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 709,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 710,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 711,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 712,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 713,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 714,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 715,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 716,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 717,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 718,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 719,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 720,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 721,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 722,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 723,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 724,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 725,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 726,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 727,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 728,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 729,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 730,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 731,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 732,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 733,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 734,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 735,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 736,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 737,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 738,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 739,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 740,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 741,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 742,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 743,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 744,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 745,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 746,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 747,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 748,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 749,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 750,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 751,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 752,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 753,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 754,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 755,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 756,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 757,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 758,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 759,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 760,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 761,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 762,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 763,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 764,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 765,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 766,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 767,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 768,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 769,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 770,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 771,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 772,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 773,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 774,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 775,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 776,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 777,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 778,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 779,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 780,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 781,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 782,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 783,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 784,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 785,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 786,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 787,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 788,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 789,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 790,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 791,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 792,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 793,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 794,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 795,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 796,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 797,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 798,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 799,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 800,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 801,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 802,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 803,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 804,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 805,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 806,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 807,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 808,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 809,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 810,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 811,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 812,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 813,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 814,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 815,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 816,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 817,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 818,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 819,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 820,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 821,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 822,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 823,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 824,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 825,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 826,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 827,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 828,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 829,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 830,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 831,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 832,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 833,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 834,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 835,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 836,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 837,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 838,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 839,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 840,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 841,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 842,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 843,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 844,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 845,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 846,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 847,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 848,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 849,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 850,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 851,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 852,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 853,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 854,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 855,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 856,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 857,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 858,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 859,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 860,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 861,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 862,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 863,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 864,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 865,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 866,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 867,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 868,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 869,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 870,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 871,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 872,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 873,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 874,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 875,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 876,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 877,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 878,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 879,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 880,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 881,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 882,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 883,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 884,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 885,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 886,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 887,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 888,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 889,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 890,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 891,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 892,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 893,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 894,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 895,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 896,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 897,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 898,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 899,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 900,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 901,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 902,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 903,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 904,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 905,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 906,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 907,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 908,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 909,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 910,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 911,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 912,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 913,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 914,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 915,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 916,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 917,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 918,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 919,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 920,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 921,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 922,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 923,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 924,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 925,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 926,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 927,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 928,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 929,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 930,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 931,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 932,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 933,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 934,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 935,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 936,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 937,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 938,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 939,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 940,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 941,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 942,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 943,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 944,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 945,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 946,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 947,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 948,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 949,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 950,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 951,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 952,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 953,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 954,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 955,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 956,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 957,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 958,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 959,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 960,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 961,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 962,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 963,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 964,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 965,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 966,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 967,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 968,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 969,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 970,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 971,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 972,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 973,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 974,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 975,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 976,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 977,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 978,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 979,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 980,
+          "actorTag": "YKHI",
+          "selector": 98312,
+          "mode": 0,
+          "target": {
+            "kind": "object-base",
+            "objectTag": "MALS",
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x89b06"
+        },
+        {
+          "activitySlot": 22,
+          "frame": 981,
+          "actorTag": "YKHI",
+          "selector": -98312,
+          "mode": 0,
+          "target": null,
+          "callFileOffset": "0x89776"
+        }
       ],
       "motions": [
         {
@@ -427,6 +5966,80 @@
       "actors": [
         "AKIR",
         "YKHI"
+      ],
+      "nativeFaceClipCues": [
+        {
+          "activitySlot": 24,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "clipGroup": 2,
+          "selector": 0,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x8a5c6"
+        },
+        {
+          "activitySlot": 24,
+          "frame": 200,
+          "actorTag": "AKIR",
+          "clipGroup": 1,
+          "selector": 0,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x8a612"
+        },
+        {
+          "activitySlot": 24,
+          "frame": 450,
+          "actorTag": "AKIR",
+          "clipGroup": 2,
+          "selector": 0,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x8a71a"
+        },
+        {
+          "activitySlot": 24,
+          "frame": 550,
+          "actorTag": "AKIR",
+          "clipGroup": 3,
+          "selector": 0,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x8a766"
+        },
+        {
+          "activitySlot": 24,
+          "frame": 731,
+          "actorTag": "AKIR",
+          "clipGroup": 0,
+          "selector": 0,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x8a802"
+        },
+        {
+          "activitySlot": 24,
+          "frame": 750,
+          "actorTag": "AKIR",
+          "clipGroup": 1,
+          "selector": 0,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x8a84e"
+        },
+        {
+          "activitySlot": 24,
+          "frame": 851,
+          "actorTag": "AKIR",
+          "clipGroup": 0,
+          "selector": 0,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x8a89a"
+        },
+        {
+          "activitySlot": 24,
+          "frame": 960,
+          "actorTag": "AKIR",
+          "clipGroup": 1,
+          "selector": 0,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x8a8e6"
+        }
       ],
       "motions": [
         {

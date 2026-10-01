@@ -230,14 +230,17 @@ export class PlacementRuntime {
           );
         }
         this.inspectableInteractions.registerAmbient(root, behavior);
-        configuredRoots.push({ root, behavior });
+        configuredRoots.push({ root, behavior, objectTransition });
       }
 
       placementAuditRecords.push(
         ...auditRuntimePlacementRoots(placement, roots),
       );
-      for (const { root, behavior } of configuredRoots) {
-        if (behavior.initiallyEnabled === false) root.setEnabled(false);
+      for (const { root, behavior, objectTransition } of configuredRoots) {
+        // A world travel target remains available during exploration even if
+        // its model also participates in an authored cutscene (the harbor bus).
+        // Cutscene-only props still follow their native initial visibility.
+        if (behavior.initiallyEnabled === false && !objectTransition) root.setEnabled(false);
         freezePlacedRoot(
           root,
           (

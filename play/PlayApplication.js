@@ -162,6 +162,7 @@ import {
 } from "./cutscenes/CutscenePreviewRuntime.js";
 import { CombatHud } from "./combat/CombatHud.js";
 import { accountSession } from "./account/AccountSession.js";
+import { NEW_CHARACTER_OPENING_ARRIVAL, needsNewCharacterOpening, playNewCharacterOpening } from "./cutscenes/NewCharacterOpening.js";
 import { PlayLoopRuntime } from "./PlayLoopRuntime.js";
 import { PlaySceneRuntime } from "./PlaySceneRuntime.js";
 import { PlaySimulationRuntime } from "./PlaySimulationRuntime.js";
@@ -305,6 +306,11 @@ function createPlayRuntime() {
     getSkybox: () => state.currentSkybox,
     getServerWallTimeMs: currentServerWallTimeMs,
     isPickerActive: () => trianglePicker.active || collisionPicker?.active,
+    isPresentationActive: () => Boolean(
+      !accountSession.character
+      || cutscenePreviewRuntime?.starting || cutscenePreviewRuntime?.active
+      || nativeCutsceneDirector?.active,
+    ),
     getController: () => controller,
     accountSession,
     mobileControls,
@@ -374,9 +380,11 @@ function createPlayRuntime() {
     signedRenderKey,
     getActorRoot: () => actorRoot,
     getCharacterRoot: () => playerRuntime.modelRoot,
-    getCharacterPoseAt: (clipState, tick) => characterRuntime.retarget(
-      playerRuntime.clipRoutesAt(clipState, tick),
-    ),
+    getCharacterPoseAt: (clipState, tick) => {
+      const pose = playerRuntime.animation.clipPoseAt(clipState, tick);
+      return characterRuntime.retarget(new Map([...characterRuntime.renderMatrixByKey]
+        .map(([key, index]) => [key, pose[index]])));
+    },
     getController: () => controller,
     worldSounds,
     getMultiplayerClient: () => multiplayerRuntime.client,
@@ -433,6 +441,7 @@ function createPlayRuntime() {
   let nativeCutsceneDirector = null;
   let nativeScriptedEventRuntime = null;
   let cutscenePreviewRuntime = null;
+  let openingSequenceActive = false;
 
   async function ensureCutscenePreviewCharacter() {
     if (playerRuntime.activeCharacterId === "ryo") return true;
@@ -459,7 +468,6 @@ function createPlayRuntime() {
     hasPendingTransition: () => travelTransitions.pending,
     collapseSidebar: () => mobileControls.collapseSidebar(),
     beginLoading,
-    waitUntilLoadingPainted: signal => loadingScreen.waitUntilPainted(signal),
     loadWorldAssets,
     clearWorld: clearActiveWorldRuntime,
     initializeWorld: initializeLoadedWorld,
@@ -563,6 +571,7 @@ function createPlayRuntime() {
     getCutsceneLightingPreset: () => (
       nativeCutsceneDirector?.activeLightingPresetIndex ?? null
     ),
+    getCutscenePrecipitation: () => nativeCutsceneDirector?.activePrecipitation ?? null,
     dailyMusicCue: ninePmMusicCue,
     setWorldDate: date => worldHud.setWorldDate(date),
     updateDebugClock: ({ serverDate, date, clock }) => {
@@ -754,6 +763,7 @@ function createPlayRuntime() {
     getSceneState: () => nativeRoomScriptRuntime.sceneState,
   });
   nativeCutsceneDirector = createNativeCutsceneAssembly({
+    acquireEnvironmentIsolation: () => worldEnvironment.acquireIsolatedStage(),
     scene,
     camera,
     scheduledActors,
@@ -794,6 +804,8 @@ function createPlayRuntime() {
     getRoomScripts: () => nativeRoomScriptRuntime,
     getWorldId: () => worldRuntime.activeWorld.id,
     getPreviewRuntime: () => cutscenePreviewRuntime,
+    coverLoading: () => loadingScreen.cover(lifetime.signal),
+    finishLoading,
     transientNotice,
     getWorld: worldId => WORLDS[worldId],
     selectWorld,
@@ -881,6 +893,7 @@ function createPlayRuntime() {
   } = scriptEvents;
   nativeScriptActivityRunner = assembledActivityRunner;
   const nativeStoryRuntime = new NativeStoryRuntime({
+    isStartupPresentationActive: () => openingSequenceActive,
     dialoguePersistence: nativeDialoguePersistence,
     dialogueOverlay: nativeDialogueOverlay,
     dialogueFaces: nativeDialogueFaces,
@@ -953,7 +966,9 @@ function createPlayRuntime() {
     if (stops) {
       if (cutscenePreviewRuntime?.cancel()) return;
       if (nativeCutsceneDirector?.active) {
-        nativeCutsceneDirector.stop("user-cancelled");
+        void nativeCutsceneDirector.end("user-cancelled").catch(error => {
+          console.error("Cutscene ending failed:", error);
+        });
         return;
       }
       if (scriptEventDialoguePresenter.active) {
@@ -1174,9 +1189,9 @@ function createPlayRuntime() {
     loadingScreen.setError(message);
   }
 
-  function beginLoading(world) {
+  function beginLoading(world, signal = null, presentation = null) {
     worldEnvironment.abortRollover();
-    loadingScreen.begin(world);
+    return loadingScreen.begin(world, signal, presentation);
   }
 
   async function finishLoading(signal = null) {
@@ -1802,7 +1817,7 @@ function createPlayRuntime() {
     fixedPostUpdate: () => forkliftModeRuntime.capturePhysicsPose(),
     frameUpdate: updateRenderFrame,
     render: () => scene.render(),
-    shouldRender: () => worldRuntime.ready,
+    shouldRender: () => worldRuntime.ready && loadingScreen.canRender,
     dispose: disposeRuntime,
     shouldAdaptResolution: () => worldRuntime.ready,
     adaptiveResolutionEnabled:
@@ -1845,11 +1860,14 @@ function createPlayRuntime() {
     ensureCharacter: ensureCutscenePreviewCharacter,
     startDirector: (cutscene, options) => nativeCutsceneDirector.start(cutscene, options),
     stopDirector: reason => nativeCutsceneDirector.stop(reason),
+    endDirector: reason => nativeCutsceneDirector.end(reason),
     dialoguePersistence: nativeDialoguePersistence,
     physicsReady: forkliftPhysicsReady,
     startPlayRuntime,
     disposeMenuBackground,
     setStarting: setCutsceneStarting,
+    beginLoading,
+    finishLoading,
     showNotice: text => transientNotice.show(text),
   });
 
@@ -1870,9 +1888,28 @@ function createPlayRuntime() {
       }
       disposeMenuBackground();
       if (disposed) return;
-      initializeMultiplayer();
       startPlayRuntime();
-      await initialize();
+      openingSequenceActive = needsNewCharacterOpening(accountSession.character);
+      if (openingSequenceActive) {
+        await playNewCharacterOpening({
+          character: accountSession.character,
+          playCutscene: id => cutscenePreviewRuntime.playFromMenu(id),
+          signal: lifetime.signal,
+        });
+        lifetime.signal.throwIfAborted();
+        await initialize({
+          initialWorldOverride: WORLDS[NEW_CHARACTER_OPENING_ARRIVAL.worldId],
+          initialPlacement: NEW_CHARACTER_OPENING_ARRIVAL,
+        });
+        lifetime.signal.throwIfAborted();
+        // Connect only after reaching the playable world. Cinematic positions
+        // and Ryo's temporary avatar must never become multiplayer presence.
+        initializeMultiplayer();
+        openingSequenceActive = false;
+      } else {
+        initializeMultiplayer();
+        await initialize();
+      }
     },
 
     showStartupError(error) {

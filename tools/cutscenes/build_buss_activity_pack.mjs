@@ -1,9 +1,14 @@
 #!/usr/bin/env node
 
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { buildNativeAseqActivityPack } from "../lib/NativeAseqActivityPack.mjs";
+import { buildNativeAseqActivityPack, sha256 } from "../lib/NativeAseqActivityPack.mjs";
+import {
+  extractNativeAseqCallbackObjectPresentation,
+  extractNativeAseqCountedNodeTransformLoop,
+} from "../lib/NativeAseqCallbackObjectPresentation.mjs";
+import { nativeAseqGoverningActivityFrame } from "../lib/NativeAseqScriptOwnership.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const sourceRoot = [
@@ -11,6 +16,48 @@ const sourceRoot = [
   path.join(root, "extracted_files"),
 ].filter(Boolean).find(existsSync);
 if (!sourceRoot) throw new Error("an exact Shenmue Disc 1 extraction was not found");
+
+const mapinfo = readFileSync(path.join(sourceRoot, "data/SCENE/01/D000/MAPINFO.BIN"));
+const mapinfoSha256 = "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e";
+if (sha256(mapinfo) !== mapinfoSha256) throw new Error("BUSS MAPINFO changed");
+const readCallback = (name, callback) => {
+  const evidence = `tools/evidence/buss-${name}-native-callback-ir.json`;
+  const ir = JSON.parse(readFileSync(path.join(root, evidence)));
+  if (ir.source.mapinfoSha256 !== mapinfoSha256 || ir.function.id !== callback) {
+    throw new Error(`BUSS ${name} callback provenance changed`);
+  }
+  return { nativeFunction: ir.function, evidence, callbackFunction: Number(callback) };
+};
+const door = readCallback("door", "0x6cb8c");
+const nodeTransforms = [];
+for (const [name, callback, slot, durationFrames, members] of [
+  ["boarding", "0x6c30c", 16, 325, [1, 4]],
+  ["arrival", "0x6c60c", 17, 246, [2, 5]],
+]) {
+  const source = readCallback(name, callback);
+  const initial = extractNativeAseqCallbackObjectPresentation({
+    ...source, bytes: mapinfo, activitySlot: slot, durationFrames, objectTags: ["BUS_"],
+  }).nodeTransformCues;
+  const launches = source.nativeFunction.blocks.flatMap(block => block.actions)
+    .filter(action => action.kind === "childCoroutineLaunch"
+      && action.targetFileOffset === door.nativeFunction.id);
+  if (launches.length !== 1) throw new Error(`BUSS ${name} door ownership changed`);
+  const launch = launches[0];
+  const closing = extractNativeAseqCountedNodeTransformLoop({
+    nativeFunction: door.nativeFunction, selector: launch.arguments[0].value,
+    firstFrame: nativeAseqGoverningActivityFrame(
+      mapinfo, source.callbackFunction, Number(launch.callFileOffset),
+    ),
+    activitySlot: slot,
+  });
+  for (const member of members) {
+    for (const [cues, evidence] of [[initial, source.evidence], [closing, door.evidence]]) {
+      nodeTransforms.push(...cues.map(({ objectTag, ...cue }) => ({
+        ...cue, activityId: `BUSS/SEQDATA${member}.AUTH`, source: { evidence },
+      })));
+    }
+  }
+}
 
 const expectedMembers = Object.freeze([
   ["C85M201G.CHRM", 12264, "c1558450e913792901ff47b337a2ac8e318039cdec6f4b7b77344d3ef9dac513"],
@@ -51,6 +98,14 @@ buildNativeAseqActivityPack({
       model: "BUSS530G",
       browserFilename: "S1_D000_BUSS530G.MT5",
       lifecycle: { kind: "auth-scoped" },
+    },
+  },
+  attachedObjects: {
+    BUS_: {
+      browserFilename: "S1_D000_BUSS530G.MT5",
+      sceneObject: true,
+      attachments: [],
+      nodeTransforms,
     },
   },
   motionBanks: [{

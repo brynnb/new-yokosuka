@@ -31,6 +31,7 @@ export class PlayArcadeAssembly {
     getSkybox,
     getServerWallTimeMs,
     isPickerActive,
+    isPresentationActive = () => false,
     getController,
     accountSession,
     mobileControls,
@@ -49,6 +50,7 @@ export class PlayArcadeAssembly {
       getController,
       mobileControls,
       isPickerActive,
+      isPresentationActive,
     });
     this.games = null;
     this.pendingResults = null;
@@ -116,6 +118,7 @@ export class PlayArcadeAssembly {
       focusedGameId: this.games?.active ? this.games.game?.id : null,
       liveGameId,
       pickerActive: this.isPickerActive(),
+      suspended: this.isPresentationActive(),
     });
   }
 
