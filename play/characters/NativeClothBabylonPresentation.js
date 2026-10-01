@@ -1,5 +1,6 @@
 import * as BABYLON from "@babylonjs/core";
 import { findCharacterRigSeamGroups, weldCharacterRigSeamPositions } from "../../src/Mt5CharacterRig.js";
+import { vertexSkinMatrix } from "../../src/NativeAttachmentSeam.js";
 
 import { NATIVE_CLOTH_MODEL_METADATA } from "../data/native-cloth-models.web.js";
 import {
@@ -584,7 +585,42 @@ class NativeClothGroupState {
     const externalSourceVertexIndices = new Set(this.outputs.flatMap(
       surface => surface.externalSourceVertexIndices,
     ));
+    const bodyMeshes = this.model.renderRoot._mt5CharacterGpuRig?.skinnedMeshes;
+    if (this.boundaryBodyMeshes !== bodyMeshes) {
+      this.boundaryBodyMeshes = bodyMeshes;
+      this.boundaryBodyVertices = new Map();
+      for (const mesh of bodyMeshes || []) {
+        if (mesh._mt5NativeClothSide) continue;
+        mesh._mt5SourceVertexIndices?.forEach((sourceIndex, vertexIndex) => {
+          if (externalSourceVertexIndices.has(sourceIndex)) {
+            this.boundaryBodyVertices.set(sourceIndex, { mesh, vertexIndex });
+          }
+        });
+      }
+    }
+    const skin = BABYLON.Matrix.Identity();
     for (const sourceIndex of externalSourceVertexIndices) {
+      const bodyVertex = this.boundaryBodyVertices?.get(sourceIndex);
+      if (bodyVertex) {
+        // A signed cloth boundary may meet a body joint with multiple bone
+        // influences. Its raw source-owner transform is not the displayed
+        // position. Use the same skin evaluation as FACE/HAND joins, including
+        // on interpolated frames between native cloth simulation ticks.
+        const { mesh, vertexIndex } = bodyVertex;
+        mesh.skeleton?.prepare(true);
+        vertexSkinMatrix(mesh, vertexIndex, mesh.skeleton?.getTransformMatrices(mesh), skin);
+        skin.multiplyToRef(mesh.computeWorldMatrix(true), skin);
+        skin.multiplyToRef(inverseSpaceMatrix, skin);
+        externalRigPositions.set(sourceIndex, BABYLON.Vector3.TransformCoordinates(
+          BABYLON.Vector3.FromArray(mesh.getVerticesData(BABYLON.VertexBuffer.PositionKind), vertexIndex * 3), skin,
+        ));
+        externalRigNormals.set(sourceIndex, normalizeDirection(BABYLON.Vector3.TransformNormal(
+          BABYLON.Vector3.FromArray(mesh.getVerticesData(BABYLON.VertexBuffer.NormalKind), vertexIndex * 3), skin,
+        ), "native cloth displayed boundary normal"));
+        continue;
+      }
+      // Some source anchors are not used by any body triangle. Those retain
+      // their native owner transform; there is no displayed skin copy to join.
       const owner = this.model.renderRoot._mt5Nodes.find(node => (
         Number.isSafeInteger(node.model?.vertexBase)
         && sourceIndex >= node.model.vertexBase

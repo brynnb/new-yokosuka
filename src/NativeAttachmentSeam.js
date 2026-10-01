@@ -163,7 +163,7 @@ export function bindBodyAttachmentParentVertices({
   return boundVertexCount;
 }
 
-function vertexSkinMatrix(mesh, index, matrices, result) {
+export function vertexSkinMatrix(mesh, index, matrices, result) {
   if (!matrices) {
     BABYLON.Matrix.IdentityToRef(result);
     return;

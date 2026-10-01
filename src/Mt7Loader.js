@@ -1,4 +1,5 @@
 import * as BABYLON from "@babylonjs/core";
+import { SceneStandardMaterial } from "./rendering/SceneStandardMaterial.js";
 import { parseMt7, mt7BatchTriangleIndices } from "./Mt7Parser.js";
 import {
   mt7MapEffectDefinition,
@@ -515,7 +516,7 @@ export class Mt7Loader {
       if (this.materialCache.has(stateKey)) {
         return this.materialCache.get(stateKey);
       }
-      const material = new BABYLON.StandardMaterial(
+      const material = new SceneStandardMaterial(
         `mt7_material_${stateKey}`,
         this.scene,
       );

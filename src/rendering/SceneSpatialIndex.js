@@ -75,14 +75,14 @@ export class WorldRaycastIndex {
     this.globalMeshes = [];
     this.cellCandidateCache = new Map();
     this.staticMeshes = new Set(staticMeshes || []);
-    // Runtime props, doors, actors, and vehicles remain a small linear set.
-    // Keeping them outside the spatial grid means their bounds may move at
-    // any time without making the static index stale.
+    // Runtime props, doors, actors, and vehicles stay outside the static grid.
+    // Their bounds may move at any time without making the static index stale.
     this.dynamicMeshes = new Set(scene.meshes.filter((mesh) => (
       !this.staticMeshes.has(mesh)
       && mesh.getTotalVertices?.() > 0
     )));
     this.selectionOctree = null;
+    this.renderSelectionObserver = null;
     this.newMeshObserver = scene.onNewMeshAddedObservable.add((mesh) => {
       this.#addDynamicMesh(mesh);
     });
@@ -168,6 +168,17 @@ export class WorldRaycastIndex {
     octree.update(minimum, maximum, [...this.staticMeshes]);
     octree.dynamicContent = [...this.dynamicMeshes];
     this.selectionOctree = octree;
+    this.renderSelectionObserver = this.scene.onBeforeActiveMeshesEvaluationObservable.add(() => {
+      // NPC occlusion/schedule ownership disables whole body hierarchies.
+      // Filter before octree concatenation and Babylon's material readiness
+      // checks, not after it has visited every hidden body part. Read the
+      // inherited enabled flag each frame: reparenting, dialogue ownership,
+      // and a previously occluded actor reappearing need no parallel cache.
+      octree.dynamicContent.length = 0;
+      for (const mesh of this.dynamicMeshes) {
+        if (mesh.isEnabled()) octree.dynamicContent.push(mesh);
+      }
+    });
   }
 
   #insert(mesh) {
@@ -194,10 +205,14 @@ export class WorldRaycastIndex {
   candidatesForRay(ray) {
     const finiteLength = Number.isFinite(ray.length) ? ray.length : 1000;
     const end = ray.origin.add(ray.direction.scale(finiteLength));
-    const minX = cellCoordinate(Math.min(ray.origin.x, end.x), this.cellSize);
-    const maxX = cellCoordinate(Math.max(ray.origin.x, end.x), this.cellSize);
-    const minZ = cellCoordinate(Math.min(ray.origin.z, end.z), this.cellSize);
-    const maxZ = cellCoordinate(Math.max(ray.origin.z, end.z), this.cellSize);
+    return this.candidatesForBounds(ray.origin, end);
+  }
+
+  candidatesForBounds(start, end, padding = 0) {
+    const minX = cellCoordinate(Math.min(start.x, end.x) - padding, this.cellSize);
+    const maxX = cellCoordinate(Math.max(start.x, end.x) + padding, this.cellSize);
+    const minZ = cellCoordinate(Math.min(start.z, end.z) - padding, this.cellSize);
+    const maxZ = cellCoordinate(Math.max(start.z, end.z) + padding, this.cellSize);
     if (minX === maxX && minZ === maxZ) {
       const key = cellKey(minX, minZ);
       if (!this.cellCandidateCache.has(key)) {
@@ -223,6 +238,26 @@ export class WorldRaycastIndex {
     return [...candidates];
   }
 
+  collisionCandidates(start, end = start, padding = 0) {
+    const minX = Math.min(start.x, end.x) - padding;
+    const maxX = Math.max(start.x, end.x) + padding;
+    const minZ = Math.min(start.z, end.z) - padding;
+    const maxZ = Math.max(start.z, end.z) + padding;
+    return this.candidatesForBounds(start, end, padding).filter(mesh => {
+      // Read collision flags and moving bounds at query time. Native door
+      // panels can move or stop blocking without being recreated.
+      if (!mesh.checkCollisions || !mesh.isEnabled()) return false;
+      // Babylon may return the current-render-id matrix even after an
+      // in-frame movement. Collision queries must see the new door pose now.
+      mesh.computeWorldMatrix(!mesh.isWorldMatrixFrozen);
+      const box = mesh.getBoundingInfo().boundingBox;
+      // Keep Y out of the broad phase: native boundary semantics, stairs,
+      // and Babylon's swept ellipsoid own their respective height tests.
+      return box.minimumWorld.x <= maxX && box.maximumWorld.x >= minX
+        && box.minimumWorld.z <= maxZ && box.maximumWorld.z >= minZ;
+    });
+  }
+
   pickWithRay(ray, predicate, fastCheck = false, trianglePredicate = null) {
     return pickMeshesWithRay(this.candidatesForRay(ray), ray, predicate, {
       fastCheck,
@@ -246,6 +281,10 @@ export class WorldRaycastIndex {
     if (this.removedMeshObserver) {
       this.scene.onMeshRemovedObservable.remove(this.removedMeshObserver);
       this.removedMeshObserver = null;
+    }
+    if (this.renderSelectionObserver) {
+      this.scene.onBeforeActiveMeshesEvaluationObservable.remove(this.renderSelectionObserver);
+      this.renderSelectionObserver = null;
     }
     if (this.scene._selectionOctree === this.selectionOctree) {
       this.scene._selectionOctree = null;

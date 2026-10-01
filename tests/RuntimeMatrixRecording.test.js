@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import fs from "node:fs";
 
 import {
     parseRuntimeControlRecording,
@@ -30,8 +31,14 @@ test("parses captured SH-4 matrix words without changing their float bits", () =
     assert.deepEqual(recording.frames[0].matrices[0].slice(12, 15), [1.5, -2, 3.5]);
 });
 
-test("exposes the conflict-free 13-entry Ryo render routing", () => {
-    assert.equal(RYO_YK_RENDER_MATRIX_ROUTES.length, 13);
+test("routes all native body connections including shoulders and feet", () => {
+    const evidence = JSON.parse(fs.readFileSync("tools/evidence/native-body-render-routes.json", "utf8"));
+    assert.equal(evidence.routes.length, 17);
+    assert.equal(RYO_YK_RENDER_MATRIX_ROUTES.length, 17);
+    assert.deepEqual(RYO_YK_RENDER_MATRIX_ROUTES, evidence.routes);
+    for (const capture of evidence.captures) {
+        assert.deepEqual(capture.routes.map(n => [n.renderKey, n.controllerIndex]), evidence.routes);
+    }
     assert.equal(new Map(RYO_YK_RENDER_MATRIX_ROUTES).get(-0x43), 22);
     assert.equal(
         new Set(RYO_YK_RENDER_MATRIX_ROUTES.map(([renderKey]) => renderKey)).size,

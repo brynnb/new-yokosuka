@@ -6,6 +6,7 @@ import {
   signedMt5NodeType,
 } from "./NativeClothModel.js";
 import { characterModelBindScaleCorrection } from "./CharacterModelCorrections.js";
+import { prepareNativeSecondaryMotionSurfaces } from "./NativeSecondaryMotionSurface.js";
 
 function suppressRootRenderKeys(root, renderKeys) {
   const hidden = new Set(renderKeys);
@@ -94,6 +95,7 @@ export async function loadNativeCharacterModel({
     loader.mergeCharacterGpuRigMeshes(renderRoot);
   } else {
     clothSurfaces = prepareNativeClothModelSurfaces(renderRoot);
+    const secondarySurfaces = prepareNativeSecondaryMotionSurfaces(renderRoot);
     // The signed node type lives in flag's low 16 bits, not mesh metadata.
     // Detached -68 nodes are the closed/open morph sources. Hide them before
     // batching so their spare jaw geometry is not permanently merged into
@@ -110,6 +112,7 @@ export async function loadNativeCharacterModel({
         -0x42,
         -0x41,
         ...clothSurfaces.preservedRenderKeys,
+        ...secondarySurfaces.preservedRenderKeys,
       ],
     });
   }

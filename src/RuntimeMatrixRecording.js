@@ -5,22 +5,31 @@ function hexFloat(word) {
     return view.getFloat32(0, false);
 }
 
-// Recovered from Shenmue's 0x0C12D736 -> 0x0C1D1A42 render-matrix copy.
+// Recovered from live HRCM node +0x38 pointers into the controller matrices.
+// The earlier 0x0C12D736 copy-site trace exposed only 13 routes: it omitted
+// shoulders 4/9 and feet 18/23, whose direct pointers are present in RAM.
+// See tools/evidence/native-body-render-routes.json and its retained extractor.
+// All 17 routes use the native evaluator, including the ankle endpoint's
+// child-orientation reset. Feet must not inherit the aimed shin matrix.
 // Each pair is [signed low-16 MT5 render key, final control-matrix index].
 export const RYO_YK_RENDER_MATRIX_ROUTES = Object.freeze([
     Object.freeze([-0x43, 22]),
     Object.freeze([-0x42, 30]),
     Object.freeze([-0x41, 36]),
     Object.freeze([0x01, 19]),
+    Object.freeze([0x04, 31]),
     Object.freeze([0x05, 33]),
     Object.freeze([0x06, 34]),
+    Object.freeze([0x09, 25]),
     Object.freeze([0x0a, 27]),
     Object.freeze([0x0b, 28]),
     Object.freeze([0x0e, 2]),
     Object.freeze([0x10, 6]),
     Object.freeze([0x11, 7]),
+    Object.freeze([0x12, 9]),
     Object.freeze([0x15, 13]),
     Object.freeze([0x16, 14]),
+    Object.freeze([0x17, 16]),
 ]);
 
 export function parseRuntimeMatrixRecording(text) {

@@ -23,6 +23,7 @@ EXPECTED_EXECUTABLE_SHA256 = (
 CONTROLLER_TYPE_TABLE = 0x0C297D30
 CONTROLLER_TYPE_COUNT = 28
 KOK_PROFILE = 0x0C297F98
+YAB_PROFILE = 0x0C2989A8
 POINT_SCALE_LITERAL = 0x0C132890
 POINT_SCALE = 0.01
 
@@ -42,6 +43,7 @@ SPANS = (
 )
 
 CODE_RANGES = (
+    ("modelProfileSelector", 0x0C131CBC, 0x0C132054),
     ("actorCollisionBuilder", 0x0C132708, 0x0C132880),
     ("secondaryMotionHandler", 0x0C132E14, 0x0C133B4C),
     ("collisionSpanDispatcher", 0x0C094934, 0x0C094A92),
@@ -86,6 +88,55 @@ def assert_literal(executable: bytes, address: int, expected: int) -> None:
         )
 
 
+def resolve_native_profile(executable: bytes, tag: bytes) -> int:
+    """Execute the original integer-only model-profile selector, FUN_0c131cbc.
+
+    Retain its default case too. This translates the whole decision table from
+    source instructions instead of hand-maintaining bindings for every model.
+    No general SH-4 emulation or game-code execution is involved.
+    """
+    registers = [0] * 16
+    registers[4] = int.from_bytes(tag.ljust(4, b"\0"), "little")
+    equal = False
+
+    def move(address: int, instruction: int) -> None:
+        destination = (instruction >> 8) & 15
+        if instruction >> 12 == 0xD:
+            registers[destination] = read_u32(executable, ((address + 4) & ~3) + (instruction & 255) * 4)
+        elif instruction & 0xF00F == 0x6003:
+            registers[destination] = registers[(instruction >> 4) & 15]
+        elif instruction == 9:
+            pass
+        else:
+            raise ValueError(f"uncharacterized profile-selector instruction {instruction:04x} at {hx(address)}")
+
+    pc = 0x0C131CBC
+    for _ in range(512):
+        if not 0x0C131CBC <= pc < 0x0C132054:
+            raise ValueError("native profile selector left its characterized function")
+        instruction = struct.unpack("<H", read_bytes(executable, pc, 2))[0]
+        if instruction & 0xF00F == 0x3000:
+            equal = registers[(instruction >> 8) & 15] == registers[(instruction >> 4) & 15]
+            pc += 2
+        elif instruction >> 8 in (0x89, 0x8B):
+            taken = equal if instruction >> 8 == 0x89 else not equal
+            displacement = struct.unpack("<b", bytes([instruction & 255]))[0]
+            pc = pc + 4 + displacement * 2 if taken else pc + 2
+        elif instruction >> 12 == 0xA or instruction == 0x000B:
+            delay = struct.unpack("<H", read_bytes(executable, pc + 2, 2))[0]
+            move(pc + 2, delay)
+            if instruction == 0x000B:
+                return registers[0]
+            displacement = instruction & 0xFFF
+            if displacement & 0x800:
+                displacement -= 0x1000
+            pc += 4 + displacement * 2
+        else:
+            move(pc, instruction)
+            pc += 2
+    raise ValueError("native model-profile selector did not return")
+
+
 def extract(executable_path: Path) -> dict[str, object]:
     executable = executable_path.read_bytes()
     executable_hash = sha256_bytes(executable)
@@ -106,6 +157,10 @@ def extract(executable_path: Path) -> dict[str, object]:
     assert_literal(executable, 0x0C133B60, 0x0C094934)
     assert_literal(executable, 0x0C094B70, 0x0C094B74)
     assert_literal(executable, 0x0C094BFC, 0x0C094C60)
+    # FUN_0c131cbc selects this profile from the YAB model tag. Type 0x83
+    # consumes only its first sphere, at OSAG owner +0x28..+0x34.
+    assert_literal(executable, 0x0C131E98, int.from_bytes(b"YAB\0", "little"))
+    assert_literal(executable, 0x0C132190, YAB_PROFILE)
 
     controller_types = list(struct.unpack(
         f"<{CONTROLLER_TYPE_COUNT}h",
@@ -128,6 +183,27 @@ def extract(executable_path: Path) -> dict[str, object]:
         }
         for index in range(CONTROLLER_TYPE_COUNT)
     ]
+    tags = {read_bytes(executable, address, 4) for start, end in
+            ((0x0C131E7C, 0x0C131F2C), (0x0C1320E0, 0x0C132124))
+            for address in range(start, end, 4)}
+    tags.add(b"???\0")  # Original selector's explicit default return.
+    radial_profiles = {}
+    for tag in sorted(tags):
+        address = resolve_native_profile(executable, tag)
+        raw = read_bytes(executable, address, 4)
+        x, y, z, radius = struct.unpack("<4b", raw)
+        if radius < 0:
+            raise ValueError(f"negative native first-sphere radius for {tag!r}")
+        radial_profiles[tag.rstrip(b"\0").decode("ascii")] = {
+            "sourceAddress": hx(address), "sourceSha256": sha256_bytes(raw),
+            "points": [{"controllerType": controller_types[0],
+                        "localPosition": [round(value * POINT_SCALE, 8) for value in (x, y, z)],
+                        "radius": round(radius * POINT_SCALE, 8)}],
+            "spans": [], "projection": {"segmentLengthSquaredFloor": read_f32(executable, 0x0C094C6C),
+                                          "normalLengthFloor": read_f32(executable, 0x0C094B74)},
+        }
+    if radial_profiles["YAB"]["sourceAddress"] != hx(YAB_PROFILE) or radial_profiles["KOK"]["sourceAddress"] != hx(KOK_PROFILE):
+        raise ValueError("native selector disagrees with retained YAB/KOK binding evidence")
 
     return {
         "schema": "new-yokosuka-shenmue1-secondary-motion-collision-v1",
@@ -216,6 +292,7 @@ def extract(executable_path: Path) -> dict[str, object]:
                 "points": points,
             },
         },
+        "radialSurfaceProfiles": radial_profiles,
         "code": {
             name: {
                 "start": hx(start),
@@ -333,7 +410,34 @@ def render_web_module(evidence: dict[str, object]) -> str:
         "});",
         "",
     ])
-    return "\n".join(lines)
+    # All type-0x83 profiles use the same native first-point controller and
+    # projection constants. Keep the generated model table to sphere data;
+    # duplicating a whole collision pipeline per model obscures the contract.
+    profiles = evidence["radialSurfaceProfiles"]
+    first = next(iter(profiles.values()))
+    if any(profile["points"][0]["controllerType"] != first["points"][0]["controllerType"]
+           or profile["projection"] != first["projection"] or profile["spans"]
+           for profile in profiles.values()):
+        raise ValueError("radial surface profiles no longer share the first-sphere contract")
+    lines.append("const RADIAL_SPHERES_BY_MODEL = {")
+    for tag, profile in profiles.items():
+        point = profile["points"][0]
+        lines.append(f"  {json.dumps(tag)}: {{ sourceAddress: {json.dumps(profile['sourceAddress'])}, "
+                     f"sourceSha256: {json.dumps(profile['sourceSha256'])}, "
+                     f"localPosition: {json.dumps(point['localPosition'])}, radius: {js_number(point['radius'])} }},")
+    lines.extend([
+        "};",
+        "const RADIAL_PROJECTION = Object.freeze(" + json.dumps(first["projection"]) + ");",
+        "export const NATIVE_RADIAL_SURFACE_COLLISION_PROFILES = Object.freeze(Object.fromEntries(",
+        "  Object.entries(RADIAL_SPHERES_BY_MODEL).map(([tag, sphere]) => [tag, Object.freeze({",
+        "    sourceAddress: sphere.sourceAddress, sourceSha256: sphere.sourceSha256,",
+        f"    points: Object.freeze([Object.freeze({{ controllerType: {first['points'][0]['controllerType']},",
+        "      localPosition: Object.freeze(sphere.localPosition), radius: sphere.radius })]),",
+        "    spans: Object.freeze([]), projection: RADIAL_PROJECTION,",
+        "  })]),",
+        "));",
+    ])
+    return "\n".join(lines) + "\n"
 
 
 def main() -> int:

@@ -608,7 +608,7 @@ export class ScheduledActorMotionRuntime {
     // Shenmue's FUN_0c12d70c walks the target HRCM hierarchy and
     // FUN_0c0924a0 looks up each node's exact signed render key in the live
     // controller tree. Intersect against this target family's complete
-    // render tree, not Ryo's 13-route subset: nonhuman families contain
+    // render tree, not Ryo's humanoid subset: nonhuman families contain
     // authored limb, head, tail, and ear branches absent from Ryo.
     if (!humanoidControlRig.authoredRenderMatrixByKey) {
       const authoredRenderRoutes = this.characterRuntime

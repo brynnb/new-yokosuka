@@ -41,7 +41,40 @@ CODE_RANGES = (
     ("angularStateIntegrator", 0x0C1368CE, 0x0C136A00),
     ("boundedPairApproach", 0x0C136A00, 0x0C136A54),
     ("boundedAngularApproach", 0x0C136A54, 0x0C136B08),
+    ("type79Handler", 0x0C133B84, 0x0C134380),
+    ("type7aHandler", 0x0C134380, 0x0C134874),
+    ("type7bHandler", 0x0C134874, 0x0C135158),
+    ("type7cHandler", 0x0C135158, 0x0C135352),
+    ("type7dHandler", 0x0C135352, 0x0C135714),
+    ("type7eHandler", 0x0C135714, 0x0C135900),
+    ("type83Handler", 0x0C13672C, 0x0C13687C),
 )
+
+# The default angular branches, not model-specific HGC/REN overrides. The
+# browser uses their phase/scale constants with a bounded motion-driven
+# approximation; it does not claim to reproduce the native inertial/collision
+# history or the global wind integrator. Keep that distinction in the evidence.
+ANGULAR_HANDLERS = {
+    "0x7a": (0x0C134380, 0x0C132D28, {
+        "primaryMotionScale": 0x0C13455C, "secondaryMotionScale": 0x0C134560,
+        "maximumAmplitudeDegrees": 0x0C134558, "amplitudeDecay": 0x0C134564,
+        "primaryPhaseStepDegrees": 0x0C134570, "secondaryPhaseStepDegrees": 0x0C13456C}),
+    "0x7b": (0x0C134874, 0x0C132D2C, {
+        "primaryMotionScale": 0x0C1349A8, "secondaryMotionScale": 0x0C1349AC,
+        "maximumAmplitudeDegrees": 0x0C1349A4, "amplitudeDecay": 0x0C1349B0,
+        "primaryPhaseStepDegrees": 0x0C134AD4, "secondaryPhaseStepDegrees": 0x0C134AD0}),
+    "0x7c": (0x0C135158, 0x0C132D30, {
+        "angularApproachDegrees": 0x0C1352B8,
+        "primaryPhaseStepDegrees": 0x0C1352C4, "secondaryPhaseStepDegrees": 0x0C1352C0}),
+    "0x7d": (0x0C135352, 0x0C132D34, {
+        "primaryMotionScale": 0x0C135434, "secondaryMotionScale": 0x0C135438,
+        "angularApproachDegrees": 0x0C135424,
+        "primaryPhaseStepDegrees": 0x0C135444, "secondaryPhaseStepDegrees": 0x0C135440}),
+    "0x7e": (0x0C135714, 0x0C132D38, {
+        "primaryMotionScale": 0x0C135818, "secondaryMotionScale": 0x0C135818,
+        "angularApproachDegrees": 0x0C13581C,
+        "primaryPhaseStepDegrees": 0x0C1358F4, "secondaryPhaseStepDegrees": 0x0C1358F0}),
+}
 
 CONSTANTS = {
     "ownerMagnitudeActivationThreshold": (0x0C135D14, 1.0e-6),
@@ -137,6 +170,15 @@ def extract(executable_path: Path, runtime_capture: Path) -> dict[str, object]:
             f"unsupported 1ST_READ.BIN SHA-256 {executable_hash}"
         )
 
+    for node_type, (target, dispatch, _) in ANGULAR_HANDLERS.items():
+        if read_u32(executable, dispatch) != target:
+            raise ValueError(f"OSAG dispatch target changed for {node_type}")
+    if (read_u32(executable, 0x0C1340CC) != 0x0C136A00
+            or read_u32(executable, 0x0C1341E4) != 0x0C136A54):
+        raise ValueError("type-0x79 angular-helper links changed")
+    if read_u32(executable, 0x0C132DF8) != 0x0C13672C:
+        raise ValueError("OSAG vertex projection dispatch changed")
+
     model_tags = []
     for address in MODEL_TAG_LITERALS:
         raw = read_u32(executable, address)
@@ -168,7 +210,9 @@ def extract(executable_path: Path, runtime_capture: Path) -> dict[str, object]:
 
     closure = b"".join(
         read_bytes(executable, start, end - start)
-        for _, start, end in CODE_RANGES
+        for name, start, end in CODE_RANGES
+        if name not in {"type79Handler", "type7aHandler", "type7bHandler",
+                        "type7cHandler", "type7dHandler", "type7eHandler", "type83Handler"}
     )
     collision_pointer = struct.pack("<I", TYPE_78_COLLISION_DISPATCHER)
     if collision_pointer in closure:
@@ -183,6 +227,29 @@ def extract(executable_path: Path, runtime_capture: Path) -> dict[str, object]:
             "executableSha256": executable_hash,
         },
         "handlers": {
+            "0x79": {
+                "address": "0x0c133b84", "dispatcher": "0x0c132a58",
+                "role": "angular-surface-with-model-owned-inputs",
+                "angularHelpers": ["0x0c136a00", "0x0c136a54"],
+                "browserFidelity": "ordinary owner motion uses a shared bounded approximation with 0x7c default phases; MGR opening wind retains captured parameters",
+            },
+            **{node_type: {
+                "address": f"0x{target:08x}",
+                "dispatchLiteral": f"0x{dispatch:08x}",
+                "role": "motion-driven-angular-surface",
+                "constants": {name: {"address": f"0x{address:08x}",
+                                     "value": read_f32(executable, address)}
+                              for name, address in fields.items()},
+                "browserFidelity": "native phase/scale constants; bounded shared owner-motion approximation, not native collision/wind history",
+            } for node_type, (target, dispatch, fields) in ANGULAR_HANDLERS.items()
+              if read_u32(executable, dispatch) == target},
+            "0x83": {
+                "address": "0x0c13672c", "role": "vertex-radial-projection",
+                "ownerSphereOffset": "0x28", "ownerRadiusOffset": "0x34",
+                "sourceVertexCopyOffset": "0xf8",
+                "lengthFloor": read_f32(executable, 0x0C136878),
+                "normalPolicy": "retain original normals",
+            },
             "0x81": {
                 "address": f"0x{TYPE_81_HANDLER:08x}",
                 "role": "cyclic-angular-articulated-surface",
@@ -259,7 +326,12 @@ def main() -> int:
         "// Generated by tools/animation/extract_secondary_motion_handler_evidence.py.\n"
         "// Pinned 1ST_READ.BIN; see tools/evidence/shenmue1-secondary-motion-handlers.json.\n"
         "export const NATIVE_CONTROLLED_SURFACE_PROFILE = Object.freeze("
-        + json.dumps(profile, indent=2) + ");\n")
+        + json.dumps(profile, indent=2) + ");\n"
+        + "export const NATIVE_ANGULAR_MOTION_PARAMETERS = Object.freeze("
+        + json.dumps({key: {name: field["value"] for name, field in handler["constants"].items()}
+                      for key, handler in evidence["handlers"].items() if key in ANGULAR_HANDLERS}, indent=2)
+        + ");\nexport const NATIVE_RADIAL_SURFACE_LENGTH_FLOOR = "
+        + json.dumps(evidence["handlers"]["0x83"]["lengthFloor"]) + ";\n")
     return 0
 
 

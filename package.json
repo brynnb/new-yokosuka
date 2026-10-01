@@ -249,6 +249,7 @@
     "upload:assets": "node tools/upload_to_r2.js",
     "assets:update": "node tools/runtime-assets.mjs update",
     "assets:verify-local": "node tools/runtime-assets.mjs verify-local",
+    "assets:r2:audit-retention": "node tools/assets/audit_r2_retention.mjs",
     "assets:restore": "node tools/runtime-assets.mjs restore",
     "dev": "vite",
     "dev:all": "node scripts/dev-all.mjs",

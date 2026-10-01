@@ -98,6 +98,32 @@ function staticMetadata(source, count) {
   return {...source.metadata, staticWorldGeometry: true, staticBatchSourceMeshCount: count};
 }
 
+function mergedNormalsInRootSpace(meshes, root) {
+  // Batches already share vertex layouts; unlit geometry may have no normals.
+  if (!meshes[0].isVerticesDataPresent(BABYLON.VertexBuffer.NormalKind)
+    || !meshes.some(mesh => mesh.nonUniformScaling)) return null;
+  // MergeMeshes and bakeTransformIntoVertices use the position transform for
+  // normals. Non-uniform authored scales need inverse-transpose instead, just
+  // like Babylon's vertex shader. Preserve each vertex's world-space normal,
+  // then undo the retained root's normal transform (transpose of its world).
+  const normals = new Float32Array(meshes.reduce((sum, mesh) => sum + mesh.getTotalVertices() * 3, 0));
+  const rootTranspose = BABYLON.Matrix.Transpose(root.getWorldMatrix());
+  const normal = BABYLON.Vector3.Zero();
+  let offset = 0;
+  for (const mesh of meshes) {
+    const worldNormal = BABYLON.Matrix.Transpose(BABYLON.Matrix.Invert(mesh.getWorldMatrix()));
+    const source = mesh.getVerticesData(BABYLON.VertexBuffer.NormalKind);
+    for (let index = 0; index < source.length; index += 3) {
+      BABYLON.Vector3.TransformNormalFromFloatsToRef(source[index], source[index + 1], source[index + 2], worldNormal, normal);
+      normal.normalize();
+      BABYLON.Vector3.TransformNormalToRef(normal, rootTranspose, normal);
+      normal.toArray(normals, offset);
+      offset += 3;
+    }
+  }
+  return normals;
+}
+
 /**
  * Shared MT5/MT7 primitive. Never crosses a model/layer root. MergeMeshes bakes
  * world transforms; convert back into the retained root's space before parenting
@@ -142,10 +168,12 @@ function* batchMapRoot(root, {
       const source = meshes[0];
       const properties = Object.fromEntries(RENDER_PROPERTIES.map(key => [key, source[key]]));
       const metadata = {...staticMetadata(source, meshes.length), staticBatchSources: sourceRanges(meshes)};
+      const normals = mergedNormalsInRootSpace(meshes, root);
       const merged = BABYLON.Mesh.MergeMeshes(meshes, true, true);
       if (!merged) throw new Error("Compatible static world meshes could not be merged");
       merged.name = `${label}_static_${batchIndex++}`;
       if (!inverseRoot.isIdentity()) merged.bakeTransformIntoVertices(inverseRoot);
+      if (normals) merged.setVerticesData(BABYLON.VertexBuffer.NormalKind, normals, false);
       merged.parent = root;
       Object.assign(merged, properties);
       merged.metadata = metadata;
@@ -180,10 +208,14 @@ function immutableMt5Mesh(mesh, root) {
     !mesh.material || mesh.material.getClassName() === "MultiMaterial"
     || mesh.material.needAlphaBlendingForMesh(mesh)
     || mesh.skeleton || mesh.morphTargetManager || mesh.isAnInstance
-    // Babylon's geometry merge transforms normals directly, whereas a
-    // non-uniformly scaled mesh uses the inverse-transpose for shading/picks.
-    // Keep these authored transforms intact rather than changing their normals.
-    || mesh.nonUniformScaling
+    // Correct scaled normals below, but leave tangent-frame/custom geometry
+    // intact until its handedness and shader inputs have equivalent coverage.
+    || (mesh.nonUniformScaling && (
+      !mesh.isVerticesDataPresent(BABYLON.VertexBuffer.NormalKind)
+      || mesh.isVerticesDataPresent(BABYLON.VertexBuffer.TangentKind)
+    ))
+    || !Number.isFinite(mesh.getWorldMatrix().determinant())
+    || mesh.getWorldMatrix().determinant() === 0
     || mesh.instances?.length || mesh.hasThinInstances
     || mesh.subMeshes?.length !== 1 || mesh.visibility !== 1
     || !mesh.isVisible || mesh.billboardMode || mesh.infiniteDistance

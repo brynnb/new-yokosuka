@@ -499,6 +499,35 @@ export class ThirdPersonController {
         this.raycastIndex = raycastIndex || null;
     }
 
+    collisionCandidates(start, end = start, padding = this.options.playerRadius) {
+        return this.raycastIndex
+            ? this.raycastIndex.collisionCandidates(start, end, padding)
+            : this.scene?.meshes || [];
+    }
+
+    moveColliderWithCollisions(displacement) {
+        const collider = this.collider;
+        const previousCandidates = collider.surroundingMeshes;
+        if (this.raycastIndex) {
+            // A wall can redirect the sliding ellipsoid away from the
+            // straight-line sweep. Bound its whole possible travel in scaled
+            // collision space, including Babylon's contact epsilon.
+            const radius = collider.ellipsoid;
+            const reach = (displacement.divide(radius).length()
+                + BABYLON.AbstractEngine.CollisionsEpsilon * 10)
+                * Math.max(radius.x, radius.y, radius.z)
+                + Math.max(radius.x, radius.z);
+            const center = collider.getAbsolutePosition().add(collider.ellipsoidOffset);
+            collider.surroundingMeshes = this.collisionCandidates(center, center, reach);
+        }
+        try {
+            collider.moveWithCollisions(displacement);
+        } finally {
+            // Never retain candidates across a warp, step-up, or world load.
+            collider.surroundingMeshes = previousCandidates;
+        }
+    }
+
     pickWithRay(ray, predicate, fastCheck = false, trianglePredicate = null) {
         if (this.raycastIndex) {
             return this.raycastIndex.pickWithRay(
@@ -634,7 +663,7 @@ export class ThirdPersonController {
 
     nativeCollisionPositionClear(position, margin = 0.035) {
         return nativeCollisionPositionClear(
-            this.scene?.meshes || [],
+            this.collisionCandidates(position, position, this.options.playerRadius + margin),
             position,
             this.options.playerRadius,
             margin,
@@ -766,7 +795,7 @@ export class ThirdPersonController {
                     if (
                         !candidate
                         || !nativeCollisionRecoveryPathClear(
-                            this.scene.meshes,
+                            this.collisionCandidates(origin, candidate, this.options.playerRadius + 0.035),
                             origin,
                             candidate,
                             this.options.playerRadius,
@@ -871,13 +900,13 @@ export class ThirdPersonController {
         // evaluation. Keep collision queries anchored to the current authored
         // position after spawns, warps, and terrain snaps.
         this.collider.computeWorldMatrix(true);
-        this.collider.moveWithCollisions(displacement);
+        this.moveColliderWithCollisions(displacement);
         let collisionDisplacement = constrainCollisionDisplacement(
             this.collider.position.subtract(previous),
             displacement,
         );
         if (!nativeCollisionDisplacementAllowed(
-            this.scene.meshes,
+            this.collisionCandidates(previous, previous.add(collisionDisplacement)),
             previous,
             collisionDisplacement,
             this.options.playerRadius,
@@ -901,7 +930,7 @@ export class ThirdPersonController {
             > this.options.stepProgressEpsilon
         ) {
             escapedPenetration = nativeCollisionEscapeAllowed(
-                this.scene.meshes,
+                this.collisionCandidates(previous, previous.add(displacement)),
                 previous,
                 displacement,
                 this.options.playerRadius,
@@ -972,7 +1001,7 @@ export class ThirdPersonController {
         this.collider.position.copyFrom(previous);
         this.collider.position.y = stepSurface.height
             + this.options.stepClearance;
-        this.collider.moveWithCollisions(displacement);
+        this.moveColliderWithCollisions(displacement);
         const steppedDisplacement = constrainCollisionDisplacement(
             this.collider.position.subtract(
                 new BABYLON.Vector3(

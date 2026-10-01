@@ -1,7 +1,9 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import * as BABYLON from "@babylonjs/core";
+import { clearWorldSceneAssets } from "../src/rendering/SceneResources.js";
 import {
+  createScheduledActorOcclusionProxy,
   applyScheduledActorAnimatedScale,
   pickScheduledActorDebugIdentity,
   pickScheduledActorSelection,
@@ -16,6 +18,7 @@ import {
   scheduledActorModelIsOccluded,
   scheduledActorModelIsInFrustum,
   scheduledActorModelShouldAnimate,
+  scheduledActorPresentationStep,
   scheduledActorModelBlocksCamera,
   scheduledActorModelScaleCorrection,
   scheduledActorSecondaryObjectCode,
@@ -600,6 +603,92 @@ test("scheduled actor animation skips offscreen and occluded models", () => {
   assert.equal(scheduledActorModelShouldAnimate(model, [{}]), false);
 });
 
+test("NPC pose cadence keeps visible elapsed time and immediately recovers from ownership and visibility changes", () => {
+  const model = {}, entry = {};
+  const frame = {model, motionKey: "walk", visible: true, distanceSquared: 40 ** 2, deltaSeconds: 1 / 60};
+  const step = options => scheduledActorPresentationStep(entry, {...frame, ...options});
+  assert.equal(step(), 1 / 60, "first far pose is immediate");
+  assert.equal(step(), null);
+  assert.equal(step(), null);
+  assert.equal(step(), null);
+  assert.ok(Math.abs(step() - 4 / 60) < 1e-9, "secondary motion receives accumulated time");
+  assert.equal(step({visible: false, deltaSeconds: 10}), null);
+  assert.equal(step(), 1 / 60, "no hidden-time catch-up");
+  assert.equal(step({motionKey: "idle"}), 1 / 60);
+  assert.equal(step({model: {}}), 1 / 60, "a new body is immediately posed");
+  assert.equal(step(), 1 / 60);
+  assert.equal(step(), null);
+  assert.equal(step({fullRate: true}), 2 / 60, "dialogue consumes the short pending interval immediately");
+  assert.equal(step({fullRate: true}), 1 / 60);
+  assert.equal(step({distanceSquared: 3 ** 2}), 1 / 60, "approaching actors regain full cadence");
+});
+
+test("NPC distance cadence does not drift at uneven frame rates or discard visible secondary time", () => {
+  for (const distanceSquared of [4 ** 2, 20 ** 2, 40 ** 2]) {
+    const entry = {}, model = {};
+    let elapsed = 0, sampled = 0, count = 0;
+    for (let i = 0; i < 120; i++) {
+      const deltaSeconds = i % 2 ? 1 / 100 : 1 / 50;
+      elapsed += deltaSeconds;
+      const seconds = scheduledActorPresentationStep(entry, {
+        model, motionKey: "walk", visible: true, deltaSeconds, distanceSquared,
+      });
+      if (seconds !== null) { sampled += seconds; count++; }
+    }
+    assert.ok(Math.abs(sampled + entry.presentationClock.sincePose - elapsed) < 1e-9);
+    const expected = distanceSquared < 12 ** 2 ? 120 : distanceSquared < 28 ** 2 ? 54 : 27;
+    assert.ok(Math.abs(count - expected) <= 1, `unexpected sample count ${count} at ${distanceSquared}`);
+  }
+});
+
+test("distant NPCs keep current network movement and animation time between pose samples", t => {
+  const engine = new BABYLON.NullEngine();
+  const scene = new BABYLON.Scene(engine);
+  t.after(() => { scene.dispose(); engine.dispose(); });
+  const root = new BABYLON.TransformNode("actor", scene);
+  root.metadata = {scheduledActorGroundOffset: 0};
+  const renderRoot = new BABYLON.TransformNode("body", scene);
+  renderRoot.parent = root;
+  const model = {root, renderRoot, standingRenderPosition: renderRoot.position.clone()};
+  let snapshot = {worldId: "dobuita", x: 40, y: 0, z: 0, yaw: 0, mode: "idle"};
+  const samples = [];
+  const runtime = new ScheduledActorRuntime({
+    scene, state: {currentMeshes: [root]}, getActiveWorldId: () => "dobuita",
+    networkState: {stateFor: () => snapshot},
+    motionRuntime: {apply: (_model, route, elapsed) => { samples.push({x: route.position[0], elapsed}); return false; }},
+  });
+  const entry = {
+    definition: {actorCode: "ONE", authoritative: true}, root, defaultModel: model,
+    models: new Map([[null, model]]), modelRoots: new Map([[null, root]]),
+  };
+  runtime.entries = [entry];
+  const frame = () => runtime.updateEntry(entry, 1 / 60, null, BABYLON.Vector3.Zero());
+  for (let i = 0; i < 5; i++) {
+    snapshot.x = 40 + i;
+    frame();
+    assert.equal(root.position.x, snapshot.x, "placement updates even without a pose sample");
+  }
+  assert.equal(samples.length, 2);
+  assert.deepEqual(samples.map(s => s.x), [40, 44]);
+  assert.ok(Math.abs(samples[1].elapsed - 4 / 60) < 1e-9);
+  runtime.setDialogueFacingTarget("ONE", [44, 0, 10], {activate: true});
+  frame(); frame();
+  assert.equal(samples.length, 4, "dialogue actors remain full rate at any distance");
+  runtime.clearDialogueFacingTarget("ONE");
+  snapshot.worldId = "elsewhere";
+  frame();
+  assert.equal(root.isEnabled(), false);
+  snapshot.worldId = "dobuita";
+  frame();
+  assert.equal(samples.length, 5, "returning resident is immediately posed");
+  entry.activityPresentation = {};
+  frame();
+  assert.equal(samples.length, 5, "cutscene owner is not updated by gameplay");
+  entry.activityPresentation = null;
+  frame();
+  assert.equal(samples.length, 6, "return from a cutscene immediately refreshes the gameplay pose");
+});
+
 test("scheduled actor visibility shares the actor-level frustum proxy", () => {
   const model = {
     renderMeshes: [{
@@ -684,6 +773,43 @@ test("inactive occlusion proxies cannot hide scheduled actor models", () => {
     },
   };
   assert.equal(scheduledActorModelIsOccluded(model), false);
+});
+
+test("NPC visibility materials survive partial cancellation and renew after repeated travel", t => {
+  const engine = new BABYLON.NullEngine();
+  const scene = new BABYLON.Scene(engine);
+  t.after(() => { scene.dispose(); engine.dispose(); });
+  const actor = name => {
+    const root = new BABYLON.TransformNode(name, scene);
+    const body = BABYLON.MeshBuilder.CreateBox(`${name}_body`, {}, scene);
+    body.parent = root;
+    const proxy = createScheduledActorOcclusionProxy(scene, root, body, 1);
+    return { root, proxy };
+  };
+  let previousMaterial;
+  for (let visit = 0; visit < 3; visit++) {
+    const resident = actor(`resident_${visit}`);
+    const cancelled = actor(`cancelled_${visit}`);
+    const material = resident.proxy.material;
+    assert.equal(cancelled.proxy.material, material, "live actors share query state");
+    assert.notEqual(material, previousMaterial, "travel must not reuse a disposed query material");
+    assert.ok(scene.materials.includes(material));
+    assert.equal(material.disableColorWrite, true);
+    assert.equal(material.disableDepthWrite, true);
+    assert.equal(material.backFaceCulling, false);
+
+    resident.root.setEnabled(false);
+    clearWorldSceneAssets({ currentMeshes: [cancelled.root] });
+    assert.ok(scene.materials.includes(material), "partial cancellation preserves even hidden residents");
+    assert.equal(resident.proxy.material, material);
+    const newcomer = actor(`newcomer_${visit}`);
+    assert.equal(newcomer.proxy.material, material);
+
+    clearWorldSceneAssets({ currentMeshes: [resident.root, newcomer.root] });
+    assert.equal(scene.materials.includes(material), false);
+    assert.equal(scene.meshes.length, 0);
+    previousMaterial = material;
+  }
 });
 
 test("scheduled actors fade while between the player and camera", () => {

@@ -19,13 +19,16 @@ import {
   updateNativeCharacterSecondaryMotion,
   releaseNativeCharacterSecondaryMotion,
 } from "./NativeCharacterSecondaryMotion.js";
+import { prepareNativeSecondaryMotionSurfaces } from "./NativeSecondaryMotionSurface.js";
 
-const FORKLIFT_ARM_RENDER_KEYS = Object.freeze([5, 6, 10, 11]);
+const FORKLIFT_ARM_RENDER_KEYS = Object.freeze([4, 5, 6, 9, 10, 11]);
 const HUMANOID_ROOT_RENDER_KEY = 1;
 const HUMANOID_CONTROLLER_FAMILY = Object.freeze({ nodes: RYO_RUNTIME_RIG });
 const OPPOSITE_ARM_RENDER_KEY = new Map([
+  [4, 9],
   [5, 10],
   [6, 11],
+  [9, 4],
   [10, 5],
   [11, 6],
 ]);
@@ -777,6 +780,7 @@ export class CharacterRuntime {
       );
     }
     prepareNativeClothModelSurfaces(root);
+    prepareNativeSecondaryMotionSurfaces(root);
     try {
       this.validateRenderRoutes(root, character);
       this.suppressDetachedVariants(root, character);

@@ -78,7 +78,7 @@ four two-bone solvers, and stateful shoulder-roll correction against a
 synchronized emulator control/matrix recording. It rejects VBlank rows where
 the live controls and final matrices came from different 30 Hz game ticks,
 then reports position, rotation, and raw matrix-element error for every
-control and for the 13 matrices actually routed into Ryo's MT5 model.
+control and for the currently supported MT5 render routes.
 
 - **Usage**: `node tools/animation/compare_ryo_runtime_evaluator.js captures/skeleton/ryo-controls-TIMESTAMP.csv captures/skeleton/ryo-matrices-TIMESTAMP.csv`
 
@@ -89,11 +89,34 @@ nodes from an interpreter FPU-read trace. At `0x0C1D1A42`, Shenmue copies a
 selected 4x4 control matrix into its render rig; the caller at `0x0C12D736`
 supplies the signed low-16 MT5 render key in `r1`. In the yard trace, 13 stable
 key-to-matrix routes each repeat 428 times with no conflicts or unresolved
-keys. This is the deterministic bridge between the 37-record control rig and
-Ryo's differently ordered MT5 hierarchy; MT5 depth-first indices and flag low
+keys. This is a partial observation, not a complete model binding inventory:
+direct native node pointers additionally expose shoulders and feet. MT5
+depth-first indices and flag low
 bytes must not be treated as MOTN/control indices.
 
 - **Usage**: `node tools/animation/analyze_ryo_render_routing.js captures/analysis/sh4-motion-matrix-fpu-read-trace.csv .disc-work/scene01-models/YKB_M.MT5`
+
+### extract_native_body_render_routes.mjs
+
+Reads live body node `+0x38` pointers and validates each against the controller's
+final-matrix array and each control's own `+0x44` pointer. Three retained RAM
+captures agree on 17 bindings, including shoulder keys `4/9` and foot keys
+`18/23`. The runtime enables all 17 after implementing the native class-4
+ankle child-frame reset. Across 93 retained frames, the foot matrix elements
+match within `1.2e-7`; no guessed weights or flat-foot correction is used.
+
+```sh
+node scripts/testing/run-tests.mjs script tools/animation/extract_native_body_render_routes.mjs \
+  captures/pvr/20260723-211516-frame-120/ram.bin \
+  captures/pvr/20260723-205340-frame-156/ram.bin \
+  captures/pvr/20260724-012858-frame-2401/ram.bin \
+  --out tools/evidence/native-body-render-routes.json
+```
+
+Other recordings can specify `--matrix-base`, `--controls-base` and `--count`;
+the defaults describe the retained Ryo captures. Ambiguous active-body roots,
+invalid controller pointers and conflicting mappings fail instead of being
+silently substituted.
 
 ### extract_runtime_placements.js
 
@@ -271,7 +294,7 @@ Parses Shenmue MOTN animation tables such as `MISC/MOTION.BIN` or `MOTION/MOTION
 Legacy direct-MT5 coverage diagnostic. It remains useful for parser and value
 stream audits, but the emulator trace has since proven that correct playback
 must pass descriptor/control IDs through the separate 37-control runtime rig
-and its 13 MT5 render routes. Use `validate_ryo_motn_runtime.js` for current
+and its supported MT5 render routes. Use `validate_ryo_motn_runtime.js` for current
 playback validation.
 - **Usage**: `node tools/animation/validate_ryo_motions.js --filter 'AKI_AKI_(RUN|WALK)_LP' --samples 5`
 - **Usage**: `node tools/animation/validate_ryo_motions.js --filter '^AKI_' --samples 5 --json > .disc-work/analysis/ryo-motion-coverage-aki.json`
@@ -294,7 +317,7 @@ Compares file-extracted MOTN curves with the synchronized emulator oracle
 without using screenshots. It detects the exact repeated walk pose in the
 runtime control CSV, derives the 28-game-tick period, phase-fits candidate
 37-sample MOTN sequences after allowing only a static per-axis bind offset,
-and reports root-normalized matrix-element RMS for all 13 MT5 render routes.
+and reports root-normalized matrix-element RMS for the supported MT5 render routes.
 The SH-4 sampler proves that a duration is a sample count: its duplicated
 terminal key is at `duration - 1`, so `A_WALK_L_02` spans 36 interpolation
 frames over 28 game ticks. The recovered runtime also cross-routes paired
@@ -320,17 +343,20 @@ through both the captured emulator matrices and the extracted MOTN runtime.
 The comparison is root-local, so actor position and heading do not hide pose
 errors.
 
-For the captured `A_WALK_L_02` cycle, extracted and captured sole points agree
-at about `0.0000082` RMS with a worst point below `0.000021`. The captured
-game is not applying a separate flat-foot pass: its planted sole planes range
-from about `0.5` to `5.7` degrees and their lowest points range from roughly
-`0.001` above to `0.015` below the nominal Y=0 ground plane. This agrees with
-the independent render-routing trace. Lower-leg MT5 nodes `27` and `31`
-receive runtime matrices `7` and `14`, while their shoe descendants receive
-no independent matrix among the 13 observed routes. The feet therefore
-inherit lower-leg orientation after the position-only two-bone IK target is
-clamped to Y `0.117`; forcing the soles flat in the browser would diverge from
-the original game.
+The earlier `A_WALK_L_02` result (about `0.0000082` point RMS) used the same
+incomplete render-route list on both sides. It did **not** prove that native
+shoes inherit the lower legs: live node pointers independently bind foot keys
+`18/23` to controls `9/16`. With those bindings, captured planted soles tilt
+about `0.35..2.17` degrees. The former evaluator incorrectly inherited the
+shin orientation, producing roughly `70.70..88.23` degrees and `0.3 m` point
+RMS. Native class-4 descriptor byte `+3` resets the child orientation to the
+actor frame at the solved ankle position. That shared rule now matches the
+retained native foot matrices and both routes are enabled.
+With all 17 routes, the extracted walk's planted sole angles now match both
+native feet; root-local point RMS is about `9.6e-6 m` (maximum `3.3e-5 m`).
+Do not add arbitrary flat-foot corrections or call a matrix-only comparison
+proof of rendered native geometry. The audit parses only the requested motion
+sequence to stay within the bounded test runner's memory limit.
 
 - **Usage**: `node tools/animation/audit_ryo_foot_contact.js`
 - **Sensitivity check**: `node tools/animation/audit_ryo_foot_contact.js --sole-band 0.001`

@@ -176,6 +176,32 @@ test("scene disposal releases earlier MT5 materials after their loader cache was
   engine.dispose();
 });
 
+test("partial scene cleanup retains shared textures and multi-material owners until final disposal", t => {
+  const engine = new B.NullEngine();
+  const scene = new B.Scene(engine);
+  t.after(() => { scene.dispose(); engine.dispose(); });
+  const texture = new B.RawTexture(new Uint8Array([255,255,255,255]), 1, 1, B.Engine.TEXTUREFORMAT_RGBA, scene);
+  const cancelled = B.MeshBuilder.CreateBox("cancelled", {}, scene);
+  cancelled.material = new B.StandardMaterial("cancelled", scene);
+  cancelled.material.diffuseTexture = texture;
+  const disposedMaterial = cancelled.material;
+  const resident = B.MeshBuilder.CreateBox("resident", {}, scene);
+  const surface = new B.StandardMaterial("resident_surface", scene);
+  surface.diffuseTexture = texture;
+  resident.material = new B.MultiMaterial("resident_multi", scene);
+  resident.material.subMaterials.push(surface);
+  resident.metadata = { customWorldGeometry: true };
+  resident.setEnabled(false);
+  clearWorldSceneAssets({ currentMeshes: [cancelled] });
+  assert.equal(scene.materials.includes(disposedMaterial), false);
+  assert.ok(scene.textures.includes(texture));
+  assert.ok(scene.materials.includes(surface));
+  clearWorldSceneAssets({ currentMeshes: [resident] });
+  assert.equal(scene.textures.includes(texture), false);
+  assert.equal(scene.materials.includes(surface), false);
+  assert.equal(scene.multiMaterials.length, 0);
+});
+
 test("both scene profiles share materials and map effects while inspection preserves parts", async t => {
   t.mock.method(globalThis, "fetch", async () => new Response(new Uint8Array([1]), {headers: {"Content-Type": "application/octet-stream"}}));
   for (const batchStatic of [false, true]) {

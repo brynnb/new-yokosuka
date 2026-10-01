@@ -5,6 +5,165 @@
     "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c"
   },
   "handlers": {
+    "0x79": {
+      "address": "0x0c133b84",
+      "dispatcher": "0x0c132a58",
+      "role": "angular-surface-with-model-owned-inputs",
+      "angularHelpers": [
+        "0x0c136a00",
+        "0x0c136a54"
+      ],
+      "browserFidelity": "ordinary owner motion uses a shared bounded approximation with 0x7c default phases; MGR opening wind retains captured parameters"
+    },
+    "0x7a": {
+      "address": "0x0c134380",
+      "dispatchLiteral": "0x0c132d28",
+      "role": "motion-driven-angular-surface",
+      "constants": {
+        "primaryMotionScale": {
+          "address": "0x0c13455c",
+          "value": 4.0
+        },
+        "secondaryMotionScale": {
+          "address": "0x0c134560",
+          "value": 3.0
+        },
+        "maximumAmplitudeDegrees": {
+          "address": "0x0c134558",
+          "value": 20.0
+        },
+        "amplitudeDecay": {
+          "address": "0x0c134564",
+          "value": 0.29999998211860657
+        },
+        "primaryPhaseStepDegrees": {
+          "address": "0x0c134570",
+          "value": 15.0
+        },
+        "secondaryPhaseStepDegrees": {
+          "address": "0x0c13456c",
+          "value": -20.0
+        }
+      },
+      "browserFidelity": "native phase/scale constants; bounded shared owner-motion approximation, not native collision/wind history"
+    },
+    "0x7b": {
+      "address": "0x0c134874",
+      "dispatchLiteral": "0x0c132d2c",
+      "role": "motion-driven-angular-surface",
+      "constants": {
+        "primaryMotionScale": {
+          "address": "0x0c1349a8",
+          "value": 4.0
+        },
+        "secondaryMotionScale": {
+          "address": "0x0c1349ac",
+          "value": 3.0
+        },
+        "maximumAmplitudeDegrees": {
+          "address": "0x0c1349a4",
+          "value": 20.0
+        },
+        "amplitudeDecay": {
+          "address": "0x0c1349b0",
+          "value": 0.29999998211860657
+        },
+        "primaryPhaseStepDegrees": {
+          "address": "0x0c134ad4",
+          "value": 15.0
+        },
+        "secondaryPhaseStepDegrees": {
+          "address": "0x0c134ad0",
+          "value": -20.0
+        }
+      },
+      "browserFidelity": "native phase/scale constants; bounded shared owner-motion approximation, not native collision/wind history"
+    },
+    "0x7c": {
+      "address": "0x0c135158",
+      "dispatchLiteral": "0x0c132d30",
+      "role": "motion-driven-angular-surface",
+      "constants": {
+        "angularApproachDegrees": {
+          "address": "0x0c1352b8",
+          "value": 0.19999998807907104
+        },
+        "primaryPhaseStepDegrees": {
+          "address": "0x0c1352c4",
+          "value": 10.0
+        },
+        "secondaryPhaseStepDegrees": {
+          "address": "0x0c1352c0",
+          "value": -15.0
+        }
+      },
+      "browserFidelity": "native phase/scale constants; bounded shared owner-motion approximation, not native collision/wind history"
+    },
+    "0x7d": {
+      "address": "0x0c135352",
+      "dispatchLiteral": "0x0c132d34",
+      "role": "motion-driven-angular-surface",
+      "constants": {
+        "primaryMotionScale": {
+          "address": "0x0c135434",
+          "value": 6.0
+        },
+        "secondaryMotionScale": {
+          "address": "0x0c135438",
+          "value": 4.0
+        },
+        "angularApproachDegrees": {
+          "address": "0x0c135424",
+          "value": 0.19999998807907104
+        },
+        "primaryPhaseStepDegrees": {
+          "address": "0x0c135444",
+          "value": 20.0
+        },
+        "secondaryPhaseStepDegrees": {
+          "address": "0x0c135440",
+          "value": -30.0
+        }
+      },
+      "browserFidelity": "native phase/scale constants; bounded shared owner-motion approximation, not native collision/wind history"
+    },
+    "0x7e": {
+      "address": "0x0c135714",
+      "dispatchLiteral": "0x0c132d38",
+      "role": "motion-driven-angular-surface",
+      "constants": {
+        "primaryMotionScale": {
+          "address": "0x0c135818",
+          "value": 2.0
+        },
+        "secondaryMotionScale": {
+          "address": "0x0c135818",
+          "value": 2.0
+        },
+        "angularApproachDegrees": {
+          "address": "0x0c13581c",
+          "value": 0.19999998807907104
+        },
+        "primaryPhaseStepDegrees": {
+          "address": "0x0c1358f4",
+          "value": 20.0
+        },
+        "secondaryPhaseStepDegrees": {
+          "address": "0x0c1358f0",
+          "value": -30.0
+        }
+      },
+      "browserFidelity": "native phase/scale constants; bounded shared owner-motion approximation, not native collision/wind history"
+    },
+    "0x83": {
+      "address": "0x0c13672c",
+      "role": "vertex-radial-projection",
+      "ownerSphereOffset": "0x28",
+      "ownerRadiusOffset": "0x34",
+      "sourceVertexCopyOffset": "0xf8",
+      "lengthFloor": 9.999999747378752e-05,
+      "normalPolicy": "retain original normals"
+    },
     "0x81": {
       "address": "0x0c135bec",
       "role": "cyclic-angular-articulated-surface",
@@ -205,6 +364,41 @@
       "start": "0x0c136a54",
       "endExclusive": "0x0c136b08",
       "sha256": "a0962cb8c648a675117aabd9d4a947c2aee5fe7281d7a78d0787edbd471396b9"
+    },
+    "type79Handler": {
+      "start": "0x0c133b84",
+      "endExclusive": "0x0c134380",
+      "sha256": "adf597b19ce8dab18517e039c7255ab173ec694f29727143e4d5290f8d5fee24"
+    },
+    "type7aHandler": {
+      "start": "0x0c134380",
+      "endExclusive": "0x0c134874",
+      "sha256": "cdbc1e26cc070b62933e8bc1a060c290a7fa9826a352b4d5d7e5a1330169f608"
+    },
+    "type7bHandler": {
+      "start": "0x0c134874",
+      "endExclusive": "0x0c135158",
+      "sha256": "c86726a9b069d6a3269f2d7ae094a425faa3cad840a399482bf9b519dee8ed35"
+    },
+    "type7cHandler": {
+      "start": "0x0c135158",
+      "endExclusive": "0x0c135352",
+      "sha256": "7e188160bc27813936d81af590c66f507c9f07d706d3fb7fa1f187db4ace0733"
+    },
+    "type7dHandler": {
+      "start": "0x0c135352",
+      "endExclusive": "0x0c135714",
+      "sha256": "b88036838b71fa3552b4ccf80a9c1496bf272a55701521210c7fc51423febef9"
+    },
+    "type7eHandler": {
+      "start": "0x0c135714",
+      "endExclusive": "0x0c135900",
+      "sha256": "d522032abe4537c821d8b77b7272339e75e95423c7d31f9e45445bcd832bb0b7"
+    },
+    "type83Handler": {
+      "start": "0x0c13672c",
+      "endExclusive": "0x0c13687c",
+      "sha256": "d96a94589a1d33445bf5a578a6d12b461ab4da04e677bbbd7ccca3455fd67156"
     }
   }
 }

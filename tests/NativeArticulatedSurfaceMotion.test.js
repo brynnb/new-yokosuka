@@ -10,6 +10,7 @@ import {
 import { NATIVE_CONTROLLED_SURFACE_PROFILE } from "../play/data/native-articulated-surface.web.js";
 import { NativeSecondaryMotionControlState } from "../play/events/NativeSecondaryMotionControlRuntime.js";
 import { rowIdentity, rowTranslation } from "../src/Mt5Transform.js";
+import { nativeSecondaryMotionProfile } from "../play/characters/NativeSecondaryMotionProfiles.js";
 
 const PROFILE = Object.freeze({
   angularAmplitudeDegrees: 1.5,
@@ -104,4 +105,32 @@ test("scripted surfaces taper native shortening without scaling the arm or oppos
   assert.ok(Math.abs(resolved.get(3)[13] + rootScale + nextScale) < 1e-10);
   controls.writeGlobalFloat(0, 0x7f800000);
   assert.throws(() => solver.resolveControlledMatrices(base, resolved, controls, 0), /not finite/);
+});
+
+test("angular inertia retains local attachments, including singleton and coincident origins", () => {
+  for (const type of [0x79, 0x7a, 0x7b, 0x7c, 0x7d, 0x7e]) {
+    const nodes = [{ addr: 1, parentAddr: 0, pos: { x: 0, y: 0, z: 0 }, model: { radius: .1 } },
+      { addr: 2, parentAddr: 1, pos: { x: 0, y: 0, z: 0 } }];
+    const profile = nativeSecondaryMotionProfile({ modelCode: "test", nodeType: type });
+    const solver = new NativeArticulatedSurfaceMotion(nodes, profile);
+    const replay = new NativeArticulatedSurfaceMotion(nodes, profile);
+    const base = new Map([[0, rowTranslation(0, 1, 0)], [1, rowTranslation(0, 1, 0)], [2, rowTranslation(0, 1, 0)]]);
+    let last;
+    for (let frame = 0; frame < 60; frame++) {
+      const space = BABYLON.Matrix.Translation(frame / 300, 0, 0);
+      const output = new Map(base), duplicate = new Map(base);
+      solver.resolveInertialMatrices(base, output, space);
+      replay.resolveInertialMatrices(base, duplicate, space);
+      assert.deepEqual([...output], [...duplicate]);
+      assert.deepEqual(output.get(0), base.get(0));
+      assert.deepEqual(output.get(1).slice(12, 15), base.get(1).slice(12, 15));
+      assert.deepEqual(output.get(2).slice(12, 15), output.get(1).slice(12, 15));
+      last = output;
+    }
+    assert.notDeepEqual(last.get(1), base.get(1), `type ${type} moves after owner travel`);
+    solver.resolveInertialMatrices(base, new Map(base), BABYLON.Matrix.Translation(30, 0, 0));
+    assert.equal(solver.states[0].primaryAmplitude, 0, "teleports clear inertia");
+    const singleton = new NativeArticulatedSurfaceMotion(nodes.slice(0, 1), profile);
+    singleton.resolveInertialMatrices(base, new Map(base), BABYLON.Matrix.Identity());
+  }
 });

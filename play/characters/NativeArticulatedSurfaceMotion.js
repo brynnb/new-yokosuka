@@ -81,16 +81,19 @@ export function advanceNativeArticulatedSurfaceOscillator(state, profile) {
  */
 export class NativeArticulatedSurfaceMotion {
   constructor(nodes, profile) {
-    if (!Array.isArray(nodes) || nodes.length < 2) {
+    if (!Array.isArray(nodes) || nodes.length < 1) {
       throw new TypeError("native articulated surface requires OSAG nodes");
     }
     this.nodes = nodes;
     this.profile = profile;
     this.states = nodes.map(node => ({
       amplitude: 0,
+      primaryAmplitude: 0,
+      secondaryAmplitude: 0,
       primaryPhase: phaseFromNode(node, 0x9e3779b1) % 360,
       secondaryPhase: phaseFromNode(node, 0x85ebca6b) % 360,
     }));
+    this.previousAnchor = null;
   }
 
   /** FUN_0c135bec's KOK scripted branch preserves scale and axial rotation.
@@ -143,6 +146,56 @@ export class NativeArticulatedSurfaceMotion {
         resolvedMatrices.get(node.parentAddr) || parentBase));
     }
     return true;
+  }
+
+  /** Shared good-enough response for the native 0x7a..0x7e angular families.
+   * Preserve the complete local bind frame (including axial orientation and
+   * zero-length/single-node surfaces). Endpoint rotation alone cannot do this.
+   * Phase/scale/decay values are extracted; velocity input approximates the
+   * native owner history, without guessing its wind or contact branches.
+   */
+  resolveInertialMatrices(baseMatrices, resolvedMatrices, spaceMatrix) {
+    const anchor = this.nodes[0].parentAddr;
+    const parentBase = baseMatrices.get(anchor);
+    const anchorWorld = BABYLON.Matrix.FromArray(parentBase).multiply(spaceMatrix);
+    const origin = anchorWorld.getTranslation();
+    const leverage = Math.max(...this.nodes.map(node => Math.max(
+      Math.hypot(node.pos.x, node.pos.y, node.pos.z), node.model?.radius || 0,
+    )));
+    const probes = [origin, ...[BABYLON.Axis.X, BABYLON.Axis.Y, BABYLON.Axis.Z].map(axis => (
+      BABYLON.Vector3.TransformCoordinates(axis.scale(leverage), anchorWorld)
+    ))];
+    let displacement = this.previousAnchor ? Math.max(...probes.map((point, index) => (
+      BABYLON.Vector3.Distance(point, this.previousAnchor[index])
+    ))) : 0;
+    if (displacement > this.profile.resetDistance) {
+      displacement = 0;
+      for (const state of this.states) state.primaryAmplitude = state.secondaryAmplitude = 0;
+    }
+    this.previousAnchor = probes;
+    const velocity = displacement * 30;
+    for (const [index, node] of this.nodes.entries()) {
+      const state = this.states[index];
+      const amplitude = (previous, scale) => {
+        const target = Math.min(this.profile.maximumAmplitudeDegrees, velocity * scale);
+        if (this.profile.amplitudeDecay != null) {
+          return target >= previous ? target : Math.max(target, previous * (1 - this.profile.amplitudeDecay));
+        }
+        return approach(previous, target, this.profile.angularApproachDegrees);
+      };
+      state.primaryAmplitude = amplitude(state.primaryAmplitude, this.profile.primaryMotionScale);
+      state.secondaryAmplitude = amplitude(state.secondaryAmplitude, this.profile.secondaryMotionScale);
+      state.primaryPhase = wrapDegrees(state.primaryPhase + this.profile.primaryPhaseStepDegrees);
+      state.secondaryPhase = wrapDegrees(state.secondaryPhase + this.profile.secondaryPhaseStepDegrees);
+      const angle = (phase, value) => BABYLON.Tools.ToRadians(quantizeNativeArticulatedSurfaceDegrees(
+        Math.sin(BABYLON.Tools.ToRadians(phase)) * value, this.profile.fixedTurnUnitsPer45Degrees,
+      ));
+      const local = rowMultiply(baseMatrices.get(node.addr), inverseAffineRow(baseMatrices.get(node.parentAddr)));
+      const bend = rowMultiply(rowRotationZ(angle(state.secondaryPhase, state.secondaryAmplitude)),
+        rowRotationX(angle(state.primaryPhase, state.primaryAmplitude)));
+      resolvedMatrices.set(node.addr, rowMultiply(rowMultiply(bend, local),
+        resolvedMatrices.get(node.parentAddr)));
+    }
   }
 
   update(baseWorldPoints) {

@@ -14,6 +14,7 @@ import {
 } from './Mt5OverlayManifest.js';
 import { PvrDecoder } from './PvrDecoder.js';
 import { enableTransparentTriangleSorting } from './rendering/TransparentTriangleSort.js';
+import { SceneStandardMaterial } from './rendering/SceneStandardMaterial.js';
 
 // Alpha-to-coverage needs the fragment's filtered texture alpha. Babylon's
 // normal alpha-test path discards the edge first and then forces every
@@ -21,7 +22,7 @@ import { enableTransparentTriangleSorting } from './rendering/TransparentTriangl
 // smooth. This material compiles the alpha-preserving shader path while still
 // rendering in the opaque/depth-writing queue; multisample coverage, not
 // source-alpha blending, controls which samples are written.
-export class Mt5AlphaToCoverageMaterial extends BABYLON.StandardMaterial {
+export class Mt5AlphaToCoverageMaterial extends SceneStandardMaterial {
     needAlphaBlending() {
         return false;
     }
@@ -2582,7 +2583,7 @@ export class Mt5Loader {
                             `mt5_mat_${texId}`,
                             this.scene,
                         )
-                        : new BABYLON.StandardMaterial(
+                        : new SceneStandardMaterial(
                             `mt5_mat_${texId}`,
                             this.scene,
                         );

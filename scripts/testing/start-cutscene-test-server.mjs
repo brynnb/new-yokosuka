@@ -18,7 +18,10 @@ const server = await createServer({
   configFile: path.join(root, "vite.config.js"),
   cacheDir: path.join(root, "node_modules/.vite-cutscene-e2e"),
   logLevel: "error",
-  server: { host: "127.0.0.1", port, strictPort: true, hmr: false, watch: null },
+  // Vite console forwarding also uses the HMR socket. Without that transport
+  // even a normal Babylon log becomes a spurious forwarding error. Playwright
+  // captures the real browser console directly; no log suppression is needed.
+  server: { host: "127.0.0.1", port, strictPort: true, hmr: false, watch: null, forwardConsole: false },
 });
 await server.listen();
 console.info(`Cutscene test server: http://127.0.0.1:${port}/play/ (PID ${process.pid})`);

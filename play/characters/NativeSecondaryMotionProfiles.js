@@ -1,7 +1,8 @@
 import {
   NATIVE_SECONDARY_MOTION_MODEL_PROFILES,
 } from "../data/native-secondary-motion-collision.web.js";
-import { NATIVE_CONTROLLED_SURFACE_PROFILE } from "../data/native-articulated-surface.web.js";
+import { NATIVE_CONTROLLED_SURFACE_PROFILE,
+  NATIVE_ANGULAR_MOTION_PARAMETERS } from "../data/native-articulated-surface.web.js";
 
 const DEFAULT_CHAIN_PROFILE = Object.freeze({
   behavior: "chain",
@@ -17,8 +18,8 @@ const DEFAULT_CHAIN_PROFILE = Object.freeze({
 
 // FUN_0c132a58 dispatches MT5 render-node types 0x78..0x8d to native OSAG
 // handlers. Type 0x78 is the articulated-chain handler used by KOK_M's
-// fourteen-piece ponytail. Strand/surface profiles below enable only their
-// characterized model branches; all other types remain disabled. Treating every
+// fourteen-piece ponytail. Strands and angular surfaces have separate
+// behaviors; uncharacterized types remain disabled. Treating every
 // special node as hair would animate eyes, garment anchors, and attachments.
 export const NATIVE_OSAG_CHAIN_NODE_TYPE = 0x78;
 export const NATIVE_OSAG_STRAND_NODE_TYPE = 0x79;
@@ -26,10 +27,13 @@ export const NATIVE_OSAG_STRAND_NODE_TYPE = 0x79;
 // The executable routes them to the bounded-angular surface handler at
 // 0x0c135bec. These are sleeves, not a second ponytail solver.
 export const NATIVE_OSAG_ARTICULATED_SURFACE_NODE_TYPE = 0x81;
+export const NATIVE_OSAG_RADIAL_SURFACE_NODE_TYPE = 0x83;
 export const NATIVE_OSAG_SIMULATED_NODE_TYPES = Object.freeze([
   NATIVE_OSAG_CHAIN_NODE_TYPE,
   NATIVE_OSAG_STRAND_NODE_TYPE,
+  ...Object.keys(NATIVE_ANGULAR_MOTION_PARAMETERS).map(Number),
   NATIVE_OSAG_ARTICULATED_SURFACE_NODE_TYPE,
+  NATIVE_OSAG_RADIAL_SURFACE_NODE_TYPE,
 ]);
 
 const MGR_OPENING_RUNTIME_MODE = 1;
@@ -88,6 +92,30 @@ export function nativeSecondaryMotionProfile({
 } = {}) {
   if (!NATIVE_OSAG_SIMULATED_NODE_TYPES.includes(nodeType)) return null;
   const identity = nativeSecondaryMotionModelIdentity(modelCode);
+  // 0x79 also reaches FUN_0c136a00/FUN_0c136a54. Ordinary models can
+  // have coincident node origins, so a free-endpoint chain is not valid.
+  // Their still-unrecovered per-model phase globals use the existing shared
+  // angular approximation (0x7c's default phases), not MGR's captured wind.
+  const angularParameters = nodeType === NATIVE_OSAG_STRAND_NODE_TYPE
+    && !(identity === "MGR" && runtimeMode === MGR_OPENING_RUNTIME_MODE)
+    ? NATIVE_ANGULAR_MOTION_PARAMETERS["0x7c"]
+    : NATIVE_ANGULAR_MOTION_PARAMETERS[`0x${nodeType.toString(16)}`];
+  if (angularParameters) {
+    // Native handlers agree on bounded X/Z angular output, not free cloth
+    // endpoints. The input below is a shared velocity-based approximation of
+    // their owner history; native per-model wind/contact branches are not
+    // reconstructed. No invented character-specific amplitude or collider.
+    return Object.freeze({ ...DEFAULT_CHAIN_PROFILE,
+      behavior: "angular-inertia", primaryMotionScale: 1, secondaryMotionScale: 1,
+      maximumAmplitudeDegrees: DEFAULT_CHAIN_PROFILE.maximumDeflectionRadians * 180 / Math.PI,
+      angularApproachDegrees: NODE_TYPE_PROFILES[0x81].angularApproachDegrees,
+      primaryBiasDegrees: 0, secondaryBiasDegrees: 0,
+      fixedTurnUnitsPer45Degrees: NODE_TYPE_PROFILES[0x81].fixedTurnUnitsPer45Degrees,
+      ...angularParameters });
+  }
+  if (nodeType === NATIVE_OSAG_RADIAL_SURFACE_NODE_TYPE) {
+    return Object.freeze({ behavior: "vertex-radial-projection" });
+  }
   // The same 0x81 handler has a KOK branch driven by operation 0x0164.
   // These are native model-family parameters, not a tattoo-shot override.
   if (identity === "KOK" && nodeType === NATIVE_OSAG_ARTICULATED_SURFACE_NODE_TYPE) {
@@ -96,7 +124,7 @@ export function nativeSecondaryMotionProfile({
   }
   const nodeTypeProfile = NODE_TYPE_PROFILES[nodeType] || null;
   if (
-    nodeType !== NATIVE_OSAG_CHAIN_NODE_TYPE
+    nodeType === NATIVE_OSAG_ARTICULATED_SURFACE_NODE_TYPE
     && (identity !== "MGR" || runtimeMode !== MGR_OPENING_RUNTIME_MODE)
   ) return null;
   return Object.freeze({

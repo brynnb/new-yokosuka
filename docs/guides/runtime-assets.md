@@ -86,6 +86,37 @@ metadata as well as its binary dependencies.
 
 ## Existing clients and Git history
 
+### R2 reference audit
+
+`npm run assets:r2:audit-retention` inventories only the content-addressed
+`shenmue/runtime/` prefix. It protects the local working manifest (including
+pending changes) and any explicitly supplied deployed/rollback Git manifests.
+Provide the existing `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, and optionally
+`R2_ENDPOINT` through the environment. It never writes to R2 and has no deletion
+mode. Reports list missing objects, wrong sizes, unknown keys, and objects absent
+from the supplied manifests; absence alone is not deletion authorization.
+
+Verify the successful deployments and actual live/rollback builds first, then
+supply their full commit IDs. For the 2026-10-01 audit:
+
+```sh
+npm run assets:r2:audit-retention -- \
+  --retained-commit=ec948a8843d54cc551348c78041d2e431cd6dcc4 \
+  --retained-commit=baf0ef5f2f9b6497817c0515fe7d362a6e59ae06 \
+  --report=/var/tmp/new-yokosuka-r2-retention.json
+```
+
+The older June 19 rollback predates versioned runtime assets and uses same-origin
+files, so it has no runtime R2 manifest. Failed/missing requested manifests stop
+the audit. Keep every object used by any retained build or pending manifest.
+Any future cleanup must also retain unreferenced objects for at least 30 days
+and recheck publication/deployment state before deleting. Do not apply an
+age-only R2 lifecycle rule: an old content hash can still serve a new client.
+
+World-model libraries, dialogue voices, movies/HLS, and arcade assets use
+separate catalogs and stay outside this audit. They require their own reference
+inventory before any cleanup. There is no scheduled or automatic deletion.
+
 The release script retains the previous two builds' `assets`, `audio`, and
 `music` files using build-native inventories. This keeps pre-migration clients'
 same-origin URLs available for the existing bounded retention period. New

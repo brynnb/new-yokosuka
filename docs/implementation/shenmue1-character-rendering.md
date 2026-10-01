@@ -69,6 +69,37 @@ position/normal buffers every frame. Authored node identities stay intact for
 footwear, FACE and interaction attachments; playable meshes are not merged.
 Cross-node seam influences reproduce the CPU path's welded positions.
 
+The humanoid route table now includes shoulder keys `4` and `9`, targeting
+controller types `13` and `7` (indices `31` and `25` in Ryo's family). The
+earlier 13-route copy-site trace was incomplete: three retained native RAM
+captures contain direct matrix pointers on these shoulder nodes. Inheriting
+their static local transforms from the torso discarded the authored shoulder
+pose. The shared 17-route table fixes that omission in gameplay, scheduled
+actors, previews and cutscenes; other controller families remap by type.
+Forklift arm mirroring includes these shoulder branches too.
+
+`tools/animation/extract_native_body_render_routes.mjs` retains the extraction
+method, capture hashes, node addresses and controller-pointer checks in
+`tools/evidence/native-body-render-routes.json`. It also proves two independent
+foot routes, `18 -> 9` and `23 -> 16`, now enabled after correcting the shared
+evaluator. Native descriptor byte `+3` on class-4 ankle endpoints instructs
+`FUN_0c103a88` at `0x0c103b60` to reset the child orientation to the actor frame,
+while retaining the solved ankle position. Inheriting the shin orientation
+instead produced errors up to 163 degrees. All 21 descriptors use this flag
+only on the ankle controller types `33/26`; the rule is not Ryo-specific.
+The corrected feet match 93 retained native frames with maximum matrix-element
+errors below `1.2e-7`. The former claim that shoes have no independent native
+matrix was incorrect.
+
+The shoulder investigation compared unchanged poses with existing seam
+averaging, rigid source ownership, and restored shoulder routes. Rigid source
+ownership alone did not remove the jutting contours, so it was not adopted.
+Some angular contours remain in the rendered Iwao pose; restoring missing
+animation routes is not proof of complete native deformation fidelity.
+`tests/e2e/character-joint-routes.spec.js` captures that pose without mesh or
+weight overrides. The original five-model ownership audit remains available
+as `tools/animation/audit_body_vertex_ownership.mjs`.
+
 Normal humanoid player animation preserves all 37 controllers through frame
 and clip blending, not just the render routes. `applyHumanoidAnimationPose`
 transfers the displayed/retargeted pose to the shared native cloth presenter.
@@ -82,6 +113,10 @@ post-pose secondary-motion/cloth stage. Previews and native animal locomotion
 reuse the canonical loaded model rather than maintaining a separate pose owner.
 Scheduled NPCs call that shared stage after placement and grounding; their
 existing visibility culling still controls whether simulation advances.
+Cloth vertices borrowed from a visible body surface follow its actual blended
+skin transform, using the same evaluator as FACE/HAND joins. Raw source-owner
+transforms apply only to anchors with no displayed body copy. This prevents
+HPD's shoulder-adjacent garment join opening when the restored shoulder moves.
 
 Footwear visibility changes invalidate cached rig bounds. Grounding and preview
 framing explicitly measure skeleton/morph-deformed positions, since the stored
@@ -143,7 +178,7 @@ The reconstructed pipeline:
 1. parses MOTN tracks into a 37-control runtime rig;
 2. samples curves at the game's 30 Hz tick rate with the cubic Hermite equation
    observed at SH-4 routine `0x0C093390`;
-3. solves the character hierarchy and routes the 13 observed output matrices
+3. solves the character hierarchy and routes the 17 supported output matrices
    into the MT5 skin;
 4. separates locomotion travel from local root sway while retaining intentional
    root orientation/offsets for poses such as sleeping; and
@@ -153,8 +188,10 @@ The reconstructed pipeline:
 For the default `A_WALK_L_02` validation, 37 stored samples produce 36
 interpolation intervals across exactly 28 game ticks. With equivalent shoulder
 state, the browser/emulator matrix RMS error was `0.000017`. A separate foot
-contact audit found no evidence for a hidden "make every foot flat" pass; tested
-sole points matched the emulator within `0.000021`, including natural tilt.
+contact audit matched reconstructed sole points within `0.000021`, but both
+sides used the incomplete 13-route table. That is evaluator agreement under
+the old routing assumption, not proof of the native rendered sole orientation;
+see the direct-pointer evidence and corrected ankle frame reset above.
 
 Mesh tearing at joints was addressed independently by welding 197 cross-node
 seam groups. The tested walk, run, sleep, phone, and door clips then measured

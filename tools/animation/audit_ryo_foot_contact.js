@@ -670,6 +670,7 @@ async function main() {
 
     const motion = MotnLoader.parse(
         fs.readFileSync(path.resolve(args.motion)),
+        { sequenceNames: [args.sequence] },
     );
     const sequence = motion.getSequence(args.sequence);
     if (!sequence) throw new Error(`MOTN sequence not found: ${args.sequence}`);

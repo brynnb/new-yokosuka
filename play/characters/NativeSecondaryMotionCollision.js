@@ -2,6 +2,7 @@ import * as BABYLON from "@babylonjs/core";
 
 import {
   NATIVE_SECONDARY_MOTION_COLLISION_PROFILES,
+  NATIVE_RADIAL_SURFACE_COLLISION_PROFILES,
 } from "../data/native-secondary-motion-collision.web.js";
 import {
   nativeSecondaryMotionModelIdentity,
@@ -52,6 +53,14 @@ export function nativeSecondaryMotionCollisionProfile(modelCode) {
     : null;
 }
 
+export function nativeSecondaryMotionRadialProfile(modelCode) {
+  const identity = nativeSecondaryMotionModelIdentity(modelCode);
+  // FUN_0c131cbc has an explicit native default, retained by the extractor.
+  // This is not an inferred body shape or a substitute for missing model data.
+  return NATIVE_RADIAL_SURFACE_COLLISION_PROFILES[identity]
+    || NATIVE_RADIAL_SURFACE_COLLISION_PROFILES["???"];
+}
+
 export function buildNativeActorCollisionProxy({
   profile,
   controllerFamily,
@@ -93,6 +102,8 @@ export function buildNativeActorCollisionProxy({
     )),
   );
   return Object.freeze({
+    points: Object.freeze(points),
+    worldScale,
     spans,
     projection: Object.freeze({
       ...profile.projection,

@@ -3,14 +3,17 @@ import * as BABYLON from "@babylonjs/core";
 import {
   NativeArticulatedSurfaceMotion,
 } from "./NativeArticulatedSurfaceMotion.js";
+import { NativeSecondaryMotionSurface } from "./NativeSecondaryMotionSurface.js";
 import {
   NATIVE_OSAG_CHAIN_NODE_TYPE,
+  NATIVE_OSAG_RADIAL_SURFACE_NODE_TYPE,
   nativeSecondaryMotionNodeTypes,
   nativeSecondaryMotionProfile,
 } from "./NativeSecondaryMotionProfiles.js";
 import {
   buildNativeActorCollisionProxy,
   nativeSecondaryMotionCollisionProfile,
+  nativeSecondaryMotionRadialProfile,
   nativeSecondaryMotionNodeCollisionParameters,
   resolveNativeActorCollision,
 } from "./NativeSecondaryMotionCollision.js";
@@ -110,10 +113,11 @@ function constrainDirection(directionValue, restValue, maximumRadians) {
 export function buildNativeSecondaryMotionRestPoints(
   nodeWorldOrigins,
   nodeParameters,
+  singleNodeDirection = null,
 ) {
   if (
     !Array.isArray(nodeWorldOrigins)
-    || nodeWorldOrigins.length < 2
+    || nodeWorldOrigins.length < 1
     || nodeWorldOrigins.length !== nodeParameters?.length
   ) {
     throw new TypeError(
@@ -122,10 +126,11 @@ export function buildNativeSecondaryMotionRestPoints(
   }
   const points = [nodeWorldOrigins[0].clone()];
   for (let index = 0; index < nodeWorldOrigins.length; index += 1) {
-    const authoredDirection = index < nodeWorldOrigins.length - 1
+    const authoredDirection = nodeWorldOrigins.length === 1 ? singleNodeDirection
+      : index < nodeWorldOrigins.length - 1
       ? nodeWorldOrigins[index + 1].subtract(nodeWorldOrigins[index])
       : nodeWorldOrigins[index].subtract(nodeWorldOrigins[index - 1]);
-    if (authoredDirection.lengthSquared() <= EPSILON) {
+    if (!authoredDirection || authoredDirection.lengthSquared() <= EPSILON) {
       throw new Error("native secondary-motion segment direction is unavailable");
     }
     points.push(
@@ -139,14 +144,15 @@ export function buildNativeSecondaryMotionRestPoints(
 
 export function discoverNativeSecondaryMotionChains(
   modelRoot,
-  { nodeTypes = [NATIVE_OSAG_CHAIN_NODE_TYPE] } = {},
+  { nodeTypes = [NATIVE_OSAG_CHAIN_NODE_TYPE], includeSingleNodes = false } = {},
 ) {
   const supportedTypes = new Set(nodeTypes);
   const nodes = modelRoot?._mt5Nodes || [];
   const byAddress = new Map(nodes.map(node => [node.addr, node]));
   const roots = nodes.filter(node => (
     supportedTypes.has(nodeType(node))
-    && nodeType(byAddress.get(node.parentAddr)) !== nodeType(node)
+    && (nodeType(byAddress.get(node.parentAddr)) !== nodeType(node)
+      || byAddress.get(node.parentAddr)?.child !== node.addr)
   ));
   const chains = [];
   for (const root of roots) {
@@ -162,7 +168,7 @@ export function discoverNativeSecondaryMotionChains(
       visited.add(current.addr);
       current = byAddress.get(current.child);
     }
-    if (chain.length >= 2) chains.push(Object.freeze([...chain]));
+    if (chain.length >= (includeSingleNodes ? 1 : 2)) chains.push(Object.freeze([...chain]));
   }
   return Object.freeze(chains);
 }
@@ -342,8 +348,13 @@ export class NativeSecondaryMotionModelState {
       runtimeMode: this.runtimeMode,
     });
     const bindMatrices = model.loader.characterRigWorldMatrices(model.renderRoot);
+    this.surfaces = (model.renderRoot._mt5Nodes || []).filter(node => (
+      nodeType(node) === NATIVE_OSAG_RADIAL_SURFACE_NODE_TYPE && node.model?.nbVertex > 0
+    )).map(node => new NativeSecondaryMotionSurface(model, node));
+    this.radialProfile = this.surfaces.length ? nativeSecondaryMotionRadialProfile(model.modelCode) : null;
     this.chains = discoverNativeSecondaryMotionChains(model.renderRoot, {
-      nodeTypes: supportedNodeTypes,
+      nodeTypes: supportedNodeTypes.filter(type => type !== NATIVE_OSAG_RADIAL_SURFACE_NODE_TYPE),
+      includeSingleNodes: true,
     }).map(
       (nodes, chainIndex) => {
         const profile = nativeSecondaryMotionProfile({
@@ -351,7 +362,7 @@ export class NativeSecondaryMotionModelState {
           nodeType: nodeType(nodes[0]),
           runtimeMode: this.runtimeMode,
         });
-        const solver = profile.behavior === "articulated-surface"
+        const solver = ["articulated-surface", "angular-inertia"].includes(profile.behavior)
           ? new NativeArticulatedSurfaceMotion(nodes, profile)
           : new NativeSecondaryMotionChain(
               nodes,
@@ -371,7 +382,7 @@ export class NativeSecondaryMotionModelState {
   }
 
   get active() {
-    return this.chains.length > 0;
+    return this.chains.length > 0 || this.surfaces.length > 0;
   }
 
   baseMatrices() {
@@ -382,6 +393,7 @@ export class NativeSecondaryMotionModelState {
   }
 
   restoreBasePose() {
+    for (const surface of this.surfaces) surface.release();
     return this.model.loader.applyCharacterRigResolvedWorldMatrices(
       this.model.renderRoot,
       this.baseMatrices(),
@@ -389,8 +401,9 @@ export class NativeSecondaryMotionModelState {
   }
 
   reset() {
+    for (const surface of this.surfaces) surface.release();
     for (const chain of this.chains) {
-      chain.solver = chain.profile.behavior === "articulated-surface"
+      chain.solver = ["articulated-surface", "angular-inertia"].includes(chain.profile.behavior)
         ? new NativeArticulatedSurfaceMotion(chain.nodes, chain.profile)
         : new NativeSecondaryMotionChain(chain.nodes, chain.profile, chain.solver.turbulenceSeed);
     }
@@ -435,7 +448,7 @@ export class NativeSecondaryMotionModelState {
     if (steps > 0 || this.localMatrices === null) {
       let matrices;
       for (let index = 0; index < Math.max(1, steps); index++) matrices = this.solve(controls);
-      return this.model.loader.applyCharacterRigResolvedWorldMatrices(this.model.renderRoot, matrices);
+      return this.applyPose(matrices);
     }
     // Body animation re-applies the rig every render frame. Carry the latest
     // solved special nodes with their current body attachment between ticks,
@@ -444,7 +457,18 @@ export class NativeSecondaryMotionModelState {
     for (const [address, { local, anchor }] of this.localMatrices) {
       matrices.set(address, multiplyMatrices(local, matrices.get(anchor)));
     }
-    return this.model.loader.applyCharacterRigResolvedWorldMatrices(this.model.renderRoot, matrices);
+    return this.applyPose(matrices);
+  }
+
+  applyPose(matrices) {
+    const applied = this.model.loader.applyCharacterRigResolvedWorldMatrices(this.model.renderRoot, matrices);
+    if (this.surfaces.length) {
+      const proxy = buildNativeActorCollisionProxy({ profile: this.radialProfile,
+        controllerFamily: this.model.latestControllerFamily, controllerMatrices: this.model.latestControllerMatrices,
+        spaceMatrix: renderSpace(this.model).computeWorldMatrix(true) });
+      for (const surface of this.surfaces) surface.update(proxy?.points[0], proxy?.worldScale);
+    }
+    return applied;
   }
 
   solve(controls) {
@@ -461,6 +485,10 @@ export class NativeSecondaryMotionModelState {
     });
 
     for (const chain of this.chains) {
+      if (chain.profile.behavior === "angular-inertia") {
+        chain.solver.resolveInertialMatrices(baseMatrices, resolvedMatrices, spaceMatrix);
+        continue;
+      }
       if (chain.profile.controlled) {
         chain.solver.resolveControlledMatrices(baseMatrices, resolvedMatrices, controls, chain.channel);
         continue;
@@ -492,10 +520,19 @@ export class NativeSecondaryMotionModelState {
           });
         },
       );
-      const baseWorldPoints = buildNativeSecondaryMotionRestPoints(
-        baseSourcePoints.map(point => transformPoint(point, spaceMatrix)),
-        solverParameters,
-      );
+      let baseWorldPoints;
+      try {
+        baseWorldPoints = buildNativeSecondaryMotionRestPoints(
+          baseSourcePoints.map(point => transformPoint(point, spaceMatrix)),
+          solverParameters,
+          chain.nodes.length === 1 ? BABYLON.Vector3.TransformNormal(
+            new BABYLON.Vector3(chain.nodes[0].pos.x, chain.nodes[0].pos.y, chain.nodes[0].pos.z),
+            BABYLON.Matrix.FromArray(baseMatrices.get(chain.nodes[0].parentAddr)).multiply(spaceMatrix),
+          ) : null,
+        );
+      } catch (error) {
+        throw new Error(`${this.model.modelCode} OSAG 0x${nodeType(chain.nodes[0]).toString(16)} at 0x${chain.nodes[0].addr.toString(16)}: ${error.message}`, { cause: error });
+      }
       const collision = collisionProxy && nodeParameters
         ? {
             spans: collisionProxy.spans,

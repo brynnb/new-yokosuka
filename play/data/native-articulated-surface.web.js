@@ -6,3 +6,41 @@ export const NATIVE_CONTROLLED_SURFACE_PROFILE = Object.freeze({
   "childScaleRetention": 0.7999999523162842,
   "fixedTurnUnitsPer45Degrees": 8192.0
 });
+export const NATIVE_ANGULAR_MOTION_PARAMETERS = Object.freeze({
+  "0x7a": {
+    "primaryMotionScale": 4.0,
+    "secondaryMotionScale": 3.0,
+    "maximumAmplitudeDegrees": 20.0,
+    "amplitudeDecay": 0.29999998211860657,
+    "primaryPhaseStepDegrees": 15.0,
+    "secondaryPhaseStepDegrees": -20.0
+  },
+  "0x7b": {
+    "primaryMotionScale": 4.0,
+    "secondaryMotionScale": 3.0,
+    "maximumAmplitudeDegrees": 20.0,
+    "amplitudeDecay": 0.29999998211860657,
+    "primaryPhaseStepDegrees": 15.0,
+    "secondaryPhaseStepDegrees": -20.0
+  },
+  "0x7c": {
+    "angularApproachDegrees": 0.19999998807907104,
+    "primaryPhaseStepDegrees": 10.0,
+    "secondaryPhaseStepDegrees": -15.0
+  },
+  "0x7d": {
+    "primaryMotionScale": 6.0,
+    "secondaryMotionScale": 4.0,
+    "angularApproachDegrees": 0.19999998807907104,
+    "primaryPhaseStepDegrees": 20.0,
+    "secondaryPhaseStepDegrees": -30.0
+  },
+  "0x7e": {
+    "primaryMotionScale": 2.0,
+    "secondaryMotionScale": 2.0,
+    "angularApproachDegrees": 0.19999998807907104,
+    "primaryPhaseStepDegrees": 20.0,
+    "secondaryPhaseStepDegrees": -30.0
+  }
+});
+export const NATIVE_RADIAL_SURFACE_LENGTH_FLOOR = 9.999999747378752e-05;

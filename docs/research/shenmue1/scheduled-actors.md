@@ -188,8 +188,9 @@ the 21 native controller families permute those types: for example type 12
 is matrix 30 in family 0 but matrix 36 in family 4. The browser therefore
 routes every ordinary placement mode `0..9` through the actor CHRM's exact
 controller family. It retains the complete evaluated controller matrix array
-as well as MT5 render routes, so attachment-only controller types 7 and 13
-do not require an invented Ryo render-key mapping.
+as well as MT5 render routes, so attachments resolve by native controller type
+without inventing a Ryo render-key mapping. Types 7 and 13 also drive the
+shoulder render nodes; the original 13-route trace had omitted these bindings.
 
 Mode 11's special branch is also reproduced. The native routine constructs
 the actor world matrix from actor position at `+0x1ac` and facing at `+0x50`.
@@ -634,12 +635,17 @@ nodes.
 
 This recovers the two exceptional scheduled models without a substitute
 mapping. `HOB_L.CHRM` and `TKI_L.CHRM` intentionally omit hip-wrapper keys
-`0x10` and `0x15`, but retain the other 11 humanoid render routes, including
+`0x10` and `0x15`, but retain the other 15 supported humanoid render routes, including
 thigh keys `0x11` and `0x16`. The browser now derives the same intersection
 from each loaded CHRM and animates only those authored routes. An automated
 roster audit constructs finite rigs and retarget profiles for all 220 of 220
-unique scheduled-character assets: 218 expose the ordinary 13 routes and
-these two expose 11.
+unique scheduled-character assets under the original 13-route table. That table
+was incomplete: direct native model pointers additionally bind shoulder keys
+`4` and `9`, plus independent feet `18` and `23`. The shared table now supports
+17 routes; the two exceptional models retain 15. The evaluator resets ankle
+children to the actor orientation using native descriptor byte `+3`, instead
+of inheriting the aimed shin. See the retained native-pointer evidence in the
+[character rendering guide](../../implementation/shenmue1-character-rendering.md).
 
 Horizontal root translation is removed from route clips because the scheduler
 owns the authoritative world path; animation provides the body motion. Entry,

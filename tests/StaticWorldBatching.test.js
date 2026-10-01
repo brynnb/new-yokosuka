@@ -135,6 +135,8 @@ test("transparent, dynamic, interactive and callback-owned geometry stays separa
   const moving = part("moving", 8, movingNode);
   const stretched = part("non-uniform transform", 9);
   stretched.scaling.y = 2;
+  // Tangent frames remain excluded; ordinary scaled normals are supported.
+  stretched.setVerticesData("tangent", new Float32Array(16).fill(1));
   const prop = new B.TransformNode("prop", scene);
   prop._filename = "S1_D000_DOOR.MT5";
   const door = part("door", 9, prop);
@@ -167,6 +169,50 @@ test("spatial/material/collision boundaries prevent incompatible merges", async 
   assert.equal(root.metadata.staticBatchOutputMeshCount, 5);
   for (const mesh of [far, overlay, otherMaterial, otherGroup]) assert.equal(mesh.isDisposed(), false);
   assert.equal(overlay.metadata.terrain, false);
+});
+
+test("scaled and mirrored map parts batch without changing normals, surfaces or picking", async t => {
+  const {scene, root, material, prepare} = fixture(t);
+  root.scaling.set(-1, 2, 1);
+  root.rotation.y = 0.2;
+  const parts = [0, 4].map(x => {
+    const mesh = new B.Mesh(`scaled-${x}`, scene);
+    const data = new B.VertexData();
+    data.positions = [0, 0, 0, 1, 1, 0, 0, 1, 1];
+    data.normals = [1, -1, 1, 1, -1, 1, 1, -1, 1];
+    data.indices = [0, 1, 2];
+    data.uvs = [0, 0, 1, 0, 0, 1];
+    data.applyToMesh(mesh);
+    mesh.parent = root;
+    mesh.position.x = x;
+    mesh.scaling.set(2, 1, 3);
+    mesh.rotation.y = 0.4;
+    mesh.material = material;
+    return mesh;
+  });
+  prepare();
+  const worldNormal = mesh => B.Vector3.TransformNormal(
+    B.Vector3.FromArray(mesh.getVerticesData("normal")),
+    B.Matrix.Transpose(B.Matrix.Invert(mesh.getWorldMatrix())),
+  ).normalize();
+  const expected = worldNormal(parts[0]);
+  const center = B.Vector3.TransformCoordinates(new B.Vector3(1 / 3, 2 / 3, 1 / 3), parts[0].getWorldMatrix());
+  const ray = new B.Ray(center.add(expected.scale(5)), expected.negate(), 10);
+  const before = scene.pickWithRay(ray);
+  assert.equal(before.hit, true);
+  const beforeNormal = before.getNormal(true);
+  const [result] = await batchStaticWorldRoots([root]);
+  assert.equal(result.outputMeshCount, 1);
+  assert.equal(result.mergedSourceMeshCount, 2);
+  const batch = root.getChildMeshes()[0];
+  assert.ok(B.Vector3.Distance(worldNormal(batch), expected) < 0.00001);
+  const index = createWorldSpatialIndex(scene, [root]);
+  t.after(() => index.dispose());
+  const after = index.pickWithRay(ray);
+  assert.equal(after.hit, true);
+  assert.ok(B.Vector3.Distance(before.pickedPoint, after.pickedPoint) < 0.00001);
+  assert.ok(B.Vector3.Distance(beforeNormal, after.getNormal(true)) < 0.00001);
+  assert.equal(staticBatchSourceForFace(batch, after.faceId).meshName, "scaled-0");
 });
 
 test("batched picking retains each source's bounding box at terrain seams", async t => {

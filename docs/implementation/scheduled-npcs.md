@@ -43,6 +43,57 @@ The browser never chooses an actor's daily timetable or publishes an NPC as
 authoritative. Conversely, the server does not own meshes, animations, camera
 presentation, or picking.
 
+## Presentation cost and lifetime
+
+The runtime retains GPU skinning and cached motion clips. Actor-level frustum
+and optimistic GPU occlusion queries skip hidden bodies; the query proxy stays
+enabled independently so a previously hidden actor can become visible again.
+Its shared material is cached only while live. World disposal invalidates that
+cache, and partial/cancelled model cleanup preserves materials and textures
+still referenced by another mesh, including disabled cached variants.
+
+Visible pose updates use camera-distance tiers, measured in browser world units:
+
+| Distance | Pose sampling |
+| --- | --- |
+| Up to 12 | Every rendered frame |
+| 12–28 | Up to 30 Hz |
+| Beyond 28 | Up to 15 Hz |
+
+These are client quality settings, not reconstructed Dreamcast timetable rules.
+Network placement, facing, schedule selection and the animation clock continue
+every frame. A sampled pose uses the current clip time, so distant actors do not
+walk in slow motion. Secondary-motion and cloth solvers receive the accumulated
+visible time between samples. Becoming visible, changing models/motions, returning
+from an activity, and approaching the camera force an immediate update; hidden
+time is not replayed as a large catch-up. Active dialogue and forklift riders use
+full cadence. Script/cutscene presentation keeps its existing exclusive ownership.
+
+### Repeatable performance comparisons
+
+Use one local browser workload at a time, with the same canvas size, graphics
+preferences, date, server snapshot and camera. Fix snapshot positions for the
+comparison without stopping the animation clock. Measure warmed frames rather
+than downloads/shader compilation, and repeat after Dobuita → Hazuki Grounds →
+Dobuita. Check camera turns and visible actors as well as timings. Babylon's
+draw-call counter is cumulative: record its per-frame difference.
+
+The October 2026 check used a 1160 × 900 canvas, dynamic resolution disabled,
+December 3, 1986 noon schedule states (38 present actors in Dobuita, one at Hazuki
+Grounds), and the Dobuita street view at `(-16, 0.07, 27)`, camera yaw `3π/2`,
+pitch `0.12`, distance `4`. Four NPCs were visible. With unrelated animation work
+held constant, fixing the query-material lifetime kept four visible actors after
+returning, instead of nineteen erroneously uncullable bodies. Subsequent scaled
+world batching reduced that view from 1,528 to 1,446 draw calls (Hazuki: 380 to
+366). Reversible pose-cadence checks reduced distant sampling from approximately
+170–186 calls/second to 105–106 without changing draw calls or visible counts.
+
+CPU frame times varied with machine load; these are not production FPS promises.
+At a 4× CPU slowdown the frame rate fell below the farthest pose tier, so cadence
+could not skip work reliably. Draw submission remains substantial, and real
+lower-end hardware still needs testing. Reducing resolution alone does not remove
+the CPU work needed to submit many meshes.
+
 ## Interior NPCs
 
 Daily-routine actors and room-owned actors use the same browser loading entry
@@ -93,7 +144,7 @@ the repository that owns each output.
 Focused browser checks are:
 
 ```sh
-node --test \
+node --test --test-concurrency=1 \
   tests/PlayScheduledActors.test.js \
   tests/ScheduledActorNetworkState.test.js \
   tests/ScheduledActorRuntime.test.js \

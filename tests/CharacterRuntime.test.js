@@ -244,11 +244,11 @@ test("forklift retargeting swaps only generated NPC arm animation channels", () 
     fetchArrayBuffer() {},
   });
   const reference = new Map([
-    [1, [1]], [5, [5]], [6, [6]], [10, [10]], [11, [11]],
+    [1, [1]], [4, [4]], [5, [5]], [6, [6]], [9, [9]], [10, [10]], [11, [11]],
   ]);
   runtime.referenceBindByRenderKey = reference;
   runtime.referenceParentByRenderKey = new Map([
-    [1, null], [5, 1], [6, 5], [10, 1], [11, 10],
+    [1, null], [4, 1], [5, 4], [6, 5], [9, 1], [10, 9], [11, 10],
   ]);
   const targetProfile = {
     targetBindByRenderKey: new Map(reference),
@@ -257,25 +257,29 @@ test("forklift retargeting swaps only generated NPC arm animation channels", () 
   runtime.buildLocalRetargetProfile = () => targetProfile;
 
   const profile = runtime.buildMirroredForkliftArmRetargetProfile({}, {});
+  assert.equal(profile.sourceBindByRenderKey.get(4), reference.get(9));
+  assert.equal(profile.sourceParentByRenderKey.get(5), 4);
   assert.equal(profile.sourceBindByRenderKey.get(5), reference.get(10));
   assert.equal(profile.sourceBindByRenderKey.get(6), reference.get(11));
   assert.equal(profile.sourceParentByRenderKey.get(6), 5);
   assert.equal(profile.sourceParentByRenderKey.get(11), 10);
 
   const routes = new Map([
-    [1, [101]], [5, [105]], [6, [106]], [10, [110]], [11, [111]],
+    [1, [101]], [4, [104]], [5, [105]], [6, [106]], [9, [109]], [10, [110]], [11, [111]],
   ]);
   runtime.retargetWithMap = () => new Map([
     [1, [201]], [5, [205]], [6, [206]], [10, [210]], [11, [211]],
   ]);
   runtime.retargetLocally = (mirroredRoutes, receivedProfile) => {
     assert.equal(receivedProfile, profile);
+    assert.equal(mirroredRoutes.get(4), routes.get(9));
+    assert.equal(mirroredRoutes.get(9), routes.get(4));
     assert.equal(mirroredRoutes.get(5), routes.get(10));
     assert.equal(mirroredRoutes.get(6), routes.get(11));
     assert.equal(mirroredRoutes.get(10), routes.get(5));
     assert.equal(mirroredRoutes.get(11), routes.get(6));
     return new Map([
-      [5, [305]], [6, [306]], [10, [310]], [11, [311]],
+      [4, [304]], [5, [305]], [6, [306]], [9, [309]], [10, [310]], [11, [311]],
     ]);
   };
 
@@ -285,6 +289,8 @@ test("forklift retargeting swaps only generated NPC arm animation channels", () 
     profile,
   );
   assert.deepEqual(result.get(1), [201]);
+  assert.deepEqual(result.get(4), [304]);
+  assert.deepEqual(result.get(9), [309]);
   assert.deepEqual(result.get(5), [305]);
   assert.deepEqual(result.get(11), [311]);
 });
@@ -786,16 +792,18 @@ test("alternate NPC hierarchies route only their authored render keys", async ()
         const authoredRoutes = runtime.renderMatrixRoutesForRoot(
           character.root,
         );
-        assert.equal(authoredRoutes.size, 11);
+        assert.equal(authoredRoutes.size, 15);
         assert.equal(authoredRoutes.has(0x10), false);
         assert.equal(authoredRoutes.has(0x15), false);
         assert.equal(authoredRoutes.has(0x11), true);
         assert.equal(authoredRoutes.has(0x16), true);
+        assert.equal(authoredRoutes.has(0x12), true, "authored right foot is routed");
+        assert.equal(authoredRoutes.has(0x17), true, "authored left foot is routed");
         const playableRetarget = runtime.buildRetargetMatrices(
           character.loader,
           character.root,
         );
-        assert.equal(playableRetarget.size, 11);
+        assert.equal(playableRetarget.size, 15);
         assert.equal(playableRetarget.has(0x10), false);
         assert.equal(playableRetarget.has(0x15), false);
 
@@ -829,7 +837,7 @@ test("alternate NPC hierarchies route only their authored render keys", async ()
         );
         const pose = runtime.retargetLocally(routes, retargetProfile);
 
-        assert.equal(pose.size, 11);
+        assert.equal(pose.size, 15);
         for (const matrixValue of pose.values()) {
           assert.equal(matrixValue.length, 16);
           assert.equal(matrixValue.every(Number.isFinite), true);

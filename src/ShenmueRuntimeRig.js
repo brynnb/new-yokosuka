@@ -85,6 +85,9 @@ export const RYO_RUNTIME_RIG = Object.freeze(PARENTS.map((parent, index) => Obje
     type: TYPES[index],
     solverClass: SOLVER_CLASSES[index],
     solverSubtype: SOLVER_SUBTYPES[index],
+    // Native descriptor byte +3, copied to MOMT +3: the two ankle
+    // endpoints reset their children's frame after the IK matrix is saved.
+    resetChildOrientation: index === 8 || index === 15,
     parent,
     children: Object.freeze(childrenFor(index)),
     defaultPosition: Object.freeze(DEFAULT_POSITIONS[index]),
@@ -387,6 +390,10 @@ export function evaluateHumanoidRuntimeControls(controls, options = {}) {
         localControlMatrix(controls[0], runtimeRig[0]),
         options.rootBasis || rowIdentity(),
     );
+    const actorBasis = options.rootBasis || rowMultiply(
+        inverseRigidRow(localControlMatrix(controls[0], runtimeRig[0])),
+        matrices[0],
+    );
 
     function evaluate(index, parentMatrix) {
         const rig = runtimeRig[index];
@@ -435,7 +442,16 @@ export function evaluateHumanoidRuntimeControls(controls, options = {}) {
             matrices[target] = solved.target;
         }
 
-        for (const child of rig.children) evaluate(child, world);
+        let childFrame = world;
+        if (rig.solverClass === 4 && (rig.descriptorHeader?.[3] ?? rig.resetChildOrientation)) {
+            // FUN_0c103a88 at 0x0c103b60 saves the endpoint matrix, then
+            // resets the working orientation before walking its children.
+            // Feet keep the IK ankle position, not the shin's rotation. The
+            // actor basis still carries placement/yaw outside the body pose.
+            childFrame = [...actorBasis];
+            childFrame.splice(12, 3, ...positionOf(world));
+        }
+        for (const child of rig.children) evaluate(child, childFrame);
     }
 
     for (const child of runtimeRig[0].children) evaluate(child, matrices[0]);

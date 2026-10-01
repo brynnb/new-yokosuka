@@ -63,12 +63,14 @@ test("native secondary-motion profiles use model identity, not cutscene actor ta
   }).gravityStepByMode[2] - 0.034999996423721313) < 1e-8);
   assert.equal(nativeSecondaryMotionProfile({
     modelCode: "KOK_M",
-    nodeType: 0x79,
+    nodeType: 0x82,
   }), null);
   assert.deepEqual(nativeSecondaryMotionNodeTypes({
     modelCode: "MGR_M",
     runtimeMode: 1,
-  }), [0x78, 0x79, 0x81]);
+  }), [0x78, 0x79, 0x7a, 0x7b, 0x7c, 0x7d, 0x7e, 0x81, 0x83]);
+  assert.equal(nativeSecondaryMotionProfile({ modelCode: "NZM_L", nodeType: 0x79 }).behavior, "angular-inertia",
+    "ordinary strands respond to the actor, not OP02 wind");
   assert.ok(Math.abs(nativeSecondaryMotionProfile({
     modelCode: "MGR_M",
     nodeType: NATIVE_OSAG_STRAND_NODE_TYPE,

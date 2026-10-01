@@ -1,5 +1,78 @@
 import fs from "node:fs";
 import { expect, test } from "@playwright/test";
+import { authoredControllerFamilyIndexFromMt5 } from "../../src/Mt5ControllerFamily.js";
+
+test("new angular and vertex motion families render through the shared walking preview", async ({ page }, testInfo) => {
+  test.setTimeout(120_000);
+  const errors = [];
+  page.on("pageerror", error => errors.push(error.message));
+  page.on("console", message => {
+    if (message.type() === "error" && !message.text().startsWith("[vite]")
+      && !/^WebSocket connection to .*\?token=/.test(message.text())) errors.push(message.text());
+  });
+  await page.setViewportSize({ width: 800, height: 800 });
+  await page.route("**/secondary-family-probe", route => route.fulfill({ contentType: "text/html", body:
+    '<!doctype html><style>body{margin:0;background:#444}#preview,canvas{display:block;width:800px;height:800px}</style><div id="preview"></div>' }));
+  await page.route("**/r2-assets/**/play/assets/scheduled-actors/M_MOBJ.BIN", route => route.fulfill({
+    contentType: "application/octet-stream", body: fs.readFileSync("play/assets/scheduled-actors/M_MOBJ.BIN") }));
+  await page.goto("/secondary-family-probe");
+  try {
+    await page.evaluate(async () => {
+      const { CharacterPreview } = await import("/play/account/CharacterPreview.js");
+      window.secondaryFamilyProbe = { preview: new CharacterPreview(document.querySelector("#preview"), { motion: "walk" }) };
+    });
+    // One context and one model at a time: disposal precedes the next load.
+    for (const modelCode of ["NZM_L", "BWW_L", "TOS_L", "MCZ_L", "FUK_M", "TAT_M", "YAB_L", "SYU_M"]) {
+      const family = authoredControllerFamilyIndexFromMt5(fs.readFileSync(`play/assets/characters/${modelCode}.CHRM`));
+      await page.evaluate(async ({ modelCode, family }) => {
+        const { preview } = window.secondaryFamilyProbe;
+        await preview.show({ id: modelCode, label: modelCode, modelCode, controllerFamily: family,
+          modelUrl: `/play/assets/characters/${modelCode}.CHRM`,
+          texturePackUrl: `/play/assets/characters/${modelCode.split("_")[0]}_textures.bin`,
+          ryoHeadAtlasFix: false, nativeTwiddledRectUV: true, backFaceCulling: true, clockwiseCulling: true,
+          hiddenRootRenderKeys: [-0x44] });
+        if (!preview.status.hidden) throw new Error(`Preview ${modelCode}: ${preview.status.textContent}`);
+      }, { modelCode, family });
+      await page.waitForFunction(() => window.secondaryFamilyProbe.preview.motionElapsedSeconds > 1.5);
+      const result = await page.evaluate(async () => {
+        const { nativeSecondaryMotionStateForModel } = await import("/play/characters/NativeSecondaryMotionRuntime.js");
+        const { preview } = window.secondaryFamilyProbe;
+        const model = preview.previewModel;
+        const state = nativeSecondaryMotionStateForModel(model);
+        const base = model.loader.characterRigWorldMatrices(preview.root, model.latestRetargetedRoutes);
+        return {
+          controllers: model.latestControllerMatrices.length,
+          maximumAngularAmplitude: Math.max(0, ...state.chains.flatMap(chain => chain.solver.states || [])
+            .map(value => Math.max(value.primaryAmplitude || 0, value.secondaryAmplitude || 0))),
+          maximumAngularDifference: Math.max(0, ...state.chains.filter(chain => chain.profile.behavior === "angular-inertia")
+            .flatMap(chain => chain.nodes.map(node => Math.max(...preview.root._mt5CharacterWorldMatrices.get(node.addr)
+              .map((value, i) => Math.abs(value - base.get(node.addr)[i])))))),
+          surfaces: state.surfaces.map(surface => ({ acquired: surface.acquired,
+            visible: surface.meshes.some(({ mesh }) => mesh.isEnabled() && mesh.getTotalVertices() > 0),
+            nodeType: surface.node.flag & 65535,
+            cpu: surface.meshes.every(({ mesh }) => mesh.skeleton === null) })),
+          bodyGpu: preview.root._mt5CharacterGpuRig.skinnedMeshes.some(mesh => !!mesh.skeleton),
+          feet: [18, 23].map(key => ({ key, present: model.latestControllerRenderMatrixByKey.has(key) })),
+        };
+      });
+      expect(result.controllers).toBeGreaterThan(30);
+      expect(result.bodyGpu).toBe(true);
+      expect(result.feet.every(foot => foot.present)).toBe(true);
+      if (modelCode === "YAB_L" || modelCode === "SYU_M") {
+        expect(result.surfaces).toHaveLength(1);
+        expect(result.surfaces[0]).toEqual({ acquired: true, visible: true, nodeType: 0x83, cpu: true });
+      } else {
+        expect(result.maximumAngularAmplitude).toBeGreaterThan(0);
+        expect(result.maximumAngularDifference).toBeGreaterThan(1e-7);
+      }
+      await testInfo.attach(`${modelCode}-motion-state`, { body: JSON.stringify(result), contentType: "application/json" });
+      await page.screenshot({ path: testInfo.outputPath(`${modelCode}-new-motion.png`) });
+    }
+    expect(errors).toEqual([]);
+  } finally {
+    await page.evaluate(() => window.secondaryFamilyProbe?.preview.dispose());
+  }
+});
 
 test("walking previews and the combat actor run shared secondary motion on the GPU renderer", async ({ page }, testInfo) => {
   const motionPath = ".disc-work/runtime-motion/MOTION.BIN";

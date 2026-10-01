@@ -45,7 +45,7 @@ export const HRSK_35_CONTROLLER_FAMILY = controllerFamilyByIndex(15);
 export const MBAS_37_CONTROLLER_FAMILY = controllerFamilyByIndex(7);
 export const MBAS_35_CONTROLLER_FAMILY = controllerFamilyByIndex(19);
 
-// The ordinary 13 HRCM render routes were recorded from Ryo's live controller.
+// Humanoid HRCM render routes come from Ryo's live model-to-controller pointers.
 // Cats and dogs use the same native render-tree contract, but their authored
 // HRCM hierarchies expose these additional nonhuman branches. The controller
 // types below come from aligning those Disc-authored hierarchies with the

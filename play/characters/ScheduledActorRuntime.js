@@ -788,10 +788,18 @@ function scheduledActorOcclusionMaterial(scene) {
   material.disableDepthWrite = true;
   material.backFaceCulling = false;
   SCHEDULED_ACTOR_OCCLUSION_MATERIALS.set(scene, material);
+  // The scene survives travel, but world cleanup releases this material with
+  // its last proxy. A WeakMap alone keeps returning the disposed material on
+  // the next visit, silently disabling the GPU visibility queries.
+  material.onDisposeObservable.addOnce(() => {
+    if (SCHEDULED_ACTOR_OCCLUSION_MATERIALS.get(scene) === material) {
+      SCHEDULED_ACTOR_OCCLUSION_MATERIALS.delete(scene);
+    }
+  });
   return material;
 }
 
-function createScheduledActorOcclusionProxy(
+export function createScheduledActorOcclusionProxy(
   scene,
   actorRoot,
   renderRoot,
@@ -870,6 +878,40 @@ export function scheduledActorModelShouldAnimate(
   // unsupported, delayed, or uncertain, so a failed query cannot leave an
   // NPC permanently frozen.
   return !scheduledActorModelIsOccluded(model);
+}
+
+/** Presentation cadence only: movement and the clip clock still run every frame. */
+export function scheduledActorPresentationStep(entry, {
+  model, motionKey, visible, distanceSquared, deltaSeconds, fullRate = false,
+}) {
+  if (!visible) {
+    entry.presentationClock = null;
+    return null;
+  }
+  // These are visual-quality tiers in browser world units, not source-game
+  // scheduling rules. Nearby/dialogue/vehicle actors keep full render cadence;
+  // distant poses sample the current clip at 30 or 15 Hz, never slowed playback.
+  const interval = fullRate || distanceSquared <= 12 * 12
+    ? 0 : distanceSquared <= 28 * 28 ? 1 / 30 : 1 / 15;
+  const clock = entry.presentationClock;
+  const seconds = Math.max(0, deltaSeconds);
+  if (!clock || clock.model !== model || clock.motionKey !== motionKey) {
+    entry.presentationClock = {model, motionKey, elapsed: 0, sincePose: 0};
+    // First appearance, model/motion changes and visibility recovery must not
+    // wait for a cadence tick or catch up time spent hidden/off-map.
+    return seconds;
+  }
+  clock.elapsed += seconds;
+  clock.sincePose += seconds;
+  if (interval > 0 && clock.elapsed + 1e-9 < interval) return null;
+  const poseSeconds = clock.sincePose;
+  clock.elapsed = interval > 0
+    ? Math.max(0, clock.elapsed - Math.floor((clock.elapsed + 1e-9) / interval) * interval)
+    : 0;
+  clock.sincePose = 0;
+  // Cloth and secondary-motion solvers need all visible elapsed time since
+  // the last pose, not just this frame's delta (which would slow their clocks).
+  return poseSeconds;
 }
 
 export function scheduledActorModelIsOccluded(model) {
@@ -2153,6 +2195,7 @@ export class ScheduledActorRuntime {
         entry,
         deltaSeconds,
         frustumPlanes,
+        cameraPosition,
       );
       for (const model of new Set([
         entry.defaultModel,
@@ -2174,8 +2217,12 @@ export class ScheduledActorRuntime {
     entry,
     deltaSeconds,
     frustumPlanes = null,
+    cameraPosition = null,
   ) {
-    if (entry.activityPresentation) return;
+    if (entry.activityPresentation) {
+      entry.presentationClock = null;
+      return;
+    }
     const { definition } = entry;
     const authoritativeState = this.networkState?.stateFor(
       definition.instanceId || definition.actorCode,
@@ -2255,6 +2302,7 @@ export class ScheduledActorRuntime {
     );
     const selectedCode = scheduledActorModelCode(definition, routeState);
     if ((actorActive || secondaryAttachmentActive) && entry.pendingModels && !entry.models.has(selectedCode)) {
+      entry.presentationClock = null;
       this.requestEntryModel(entry, selectedCode);
       for (const candidate of entry.modelRoots.values()) candidate.setEnabled(false);
       return;
@@ -2285,6 +2333,7 @@ export class ScheduledActorRuntime {
       candidate.setEnabled(actorActive && candidate === root);
     }
     if (!actorActive && !secondaryAttachmentActive) {
+      entry.presentationClock = null;
       this.releaseLocalObjects(entry);
       entry.secondaryObject?.root.setEnabled(false);
       if (entry.secondaryObject) {
@@ -2308,6 +2357,7 @@ export class ScheduledActorRuntime {
       routeState,
     );
     if (!actorActive) {
+      entry.presentationClock = null;
       this.releaseLocalObjects(entry);
       entry.visualYaw = null;
       entry.visualYawRoot = null;
@@ -2394,7 +2444,13 @@ export class ScheduledActorRuntime {
       model,
       !inFrustum || occluded,
     );
-    const applied = inFrustum && !occluded
+    const poseSeconds = scheduledActorPresentationStep(entry, {
+      model, motionKey, visible: inFrustum && !occluded, deltaSeconds,
+      distanceSquared: cameraPosition
+        ? BABYLON.Vector3.DistanceSquared(root.position, cameraPosition) : 0,
+      fullRate: Boolean(dialogueFacing?.active || secondaryObjectActive),
+    });
+    const applied = poseSeconds !== null
       ? this.motionRuntime?.apply(
         model,
         routeState,
@@ -2446,13 +2502,12 @@ export class ScheduledActorRuntime {
     this.updateLocalObjects(entry, root, model, routeState);
     root.computeWorldMatrix(true);
     if (
-      inFrustum
-      && !occluded
+      poseSeconds !== null
       && model?.characterAssetFormat !== "MT7"
       && model?.loader
       && model?.renderRoot
     ) {
-      updateNativeCharacterSecondaryMotion(model, deltaSeconds);
+      updateNativeCharacterSecondaryMotion(model, poseSeconds);
       this.secondaryMotionModels.add(model);
     }
   }

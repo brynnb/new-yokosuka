@@ -15,8 +15,11 @@ character-presentation subsystem, not an OP00 timeline correction:
 - `play/characters/NativeSecondaryMotionRuntime.js` discovers special MT5
   chains, keeps their persistent solver state, and produces node-addressed
   render matrices.
-- `play/characters/NativeArticulatedSurfaceMotion.js` translates the cyclic
-  type-`0x81` angular records used by sleeves and other constrained surfaces.
+- `play/characters/NativeArticulatedSurfaceMotion.js` translates scripted/cyclic
+  type-`0x81` surfaces and the shared angular-inertia response for ordinary
+  type-`0x79` and `0x7a`–`0x7e` attachments.
+- `play/characters/NativeSecondaryMotionSurface.js` preserves type-`0x83`
+  vertex surfaces through batching and applies their native radial projection.
 - `play/characters/NativeSecondaryMotionCollision.js` reconstructs the
   animated native body proxy and applies the native ordered collision
   projection.
@@ -101,16 +104,18 @@ At each native 30 Hz presentation frame:
 2. The ordinary body MOTN pose is applied.
 3. Detailed face and hand presentation is applied.
 4. Secondary motion reads the resulting body/head matrices.
-5. The solver advances persistent world-space endpoints.
-6. Records are resolved root-to-tip. Each mode-scaled segment constraint is
+5. The selected handler advances persistent endpoint or angular state.
+6. Records are resolved root-to-tip. For chains, each mode-scaled segment constraint is
    followed by its endpoint collision, so a corrected endpoint immediately
    becomes the following record's origin.
-7. The current animated 28-point body descriptor is built from controller
-   matrices. Every special point is projected through the twelve native spans
-   in authored order, including native clearance and node-radius correction.
+7. KOK chains use the animated 28-point descriptor and twelve ordered spans,
+   including native clearance and node-radius correction. Angular surfaces
+   do not enter that collision path.
 8. Only the special nodes are replaced in a complete node-addressed matrix
    map, which is uploaded once to the character skeleton.
-9. The camera pose is applied.
+9. Type-`0x83` projects its own original vertices against the owner's first
+   native collision sphere; borrowed parent vertices retain the body pose.
+10. The camera pose is applied.
 
 World-space integration is intentional. It lets actor translation and rotation
 produce inertia instead of reacting only to local head animation. Results are
@@ -143,13 +148,66 @@ the last solved special-node matrices are carried by their freshly animated
 body attachment. The body, eyes, and other nodes stay under their existing
 owners. Inactive script-controlled sleeves receive no matrix override.
 
-The ordinary-NPC audit identifies thirteen models with supported type-`0x78`
-chains. Their hookup is now exercised with real native walking poses. This
-does not upgrade the default chain profile to an exact Dreamcast reconstruction:
-non-KOK chains retain the existing shared approximation, while KOK keeps its
-executable-backed parameters. Unknown special-node handlers remain disabled.
+The retained corpus audit now loads all 241 bundled Shenmue I character
+models, including cutscene variants absent from the ordinary NPC inventory.
+It finds 53 models with characterized secondary-motion nodes: type `0x78`
+on 16 models, `0x79` on 33, `0x7a/7b/7c/7d/7e` on `4/2/3/2/1`, `0x81` on
+one, and `0x83` on two. Counts overlap. Single-node surfaces, zero-length
+angular nodes and same-type sibling branches are retained instead of silently
+dropped. This proves discovery, finite GPU-rig upload and cleanup, not that
+all 241 models have been visually compared with Dreamcast playback.
+
+`tests/e2e/character-secondary-motion.spec.js` renders native walking previews
+for NZM, BWW, TOS, MCZ, FUK, TAT, YAB and SYU with their real textures. A
+hardware-GPU run verifies advancing angular output, both acquired vertex
+surfaces and the continued GPU ownership of the body, without browser errors.
+Representative screenshots were reviewed; this is not a full-scene/native
+visual comparison. The browser uses one model at a time and the bounded runner.
+
+```sh
+node scripts/testing/run-tests.mjs script tools/animation/audit_secondary_motion_coverage.mjs \
+  --out tools/evidence/secondary-motion-runtime-coverage.json
+```
+
+Non-KOK type-`0x78` chains retain their existing approximation. Unknown
+special-node handlers remain disabled; eyes and garment anchors are not
+reclassified as hair merely because their node type is special.
 
 ## Current fidelity boundary
+
+### Ordinary angular attachments and radial surfaces
+
+The original dispatcher selects `0x7a`–`0x7e` handlers at `0x0c134380`,
+`0x0c134874`, `0x0c135158`, `0x0c135352` and `0x0c135714`. Their extracted
+phase increments are `15/-20`, `15/-20`, `10/-15`, `20/-30` and `20/-30`
+degrees. Native motion scales, amplitude caps and decay constants are retained
+where the source supplies them. These are angular transforms, not free-point
+chains. The full authored local matrix is preserved, so applying a bend does
+not discard an attachment's orientation or move its root away from the body.
+
+The browser's **good-enough approximation** derives amplitude from animated
+parent translation/rotation, using the authored offset/model radius as the
+rotation lever. It does not reconstruct every native owner-history, wind or
+contact branch. Type `0x79` also reaches the native angular helpers and can
+have coincident origins (Chai is one example). Outside MGR's captured opening
+wind mode, it uses the same bounded response with the existing `0x7c` default
+phases; those phases are not asserted to be type-`0x79` native globals.
+Teleport/seek resets, deterministic phases and a 30 Hz clock are shared rules,
+not per-character overrides.
+
+Type `0x83` at `FUN_0c13672c` is a different operation: project the node's
+original own vertices outside the OSAG owner's first sphere. The sphere is
+decoded from `FUN_0c131cbc`'s original model-profile selector and the controller
+47 point table, not inferred from mesh bounds. YAB uses `0x0c2989a8`; SYU uses
+`0x0c298938`. The original selector's explicit default is also retained.
+The native denominator floor is extracted, and exact coincident points retain
+the native zero-distance behavior. No wind or normal recalculation is added.
+
+Only that tiny vertex-owned surface is CPU-updated; the rest of the actor
+stays GPU-skinned. Each update starts from immutable original buffers, keeps
+borrowed parent vertices body-owned, and restores the skeleton/buffers when
+released. The native loader preserves these surfaces before body batching;
+ordinary player previews use the same implementation without batching.
 
 ### Script-controlled sleeves
 
@@ -239,9 +297,10 @@ The type-`0x81` classification and constants are regenerated independently:
 python3 -m tools.animation.extract_secondary_motion_handler_evidence
 ```
 
-That extractor hash-pins the supported executable, handler, and complete
-helper closure, verifies the MGR branch and literals, and proves that the
-type-`0x78` collision target is absent. The companion read-only runtime tool,
+That extractor hash-pins the supported executable and characterized handler
+ranges, retains the type-`0x79` angular-helper links and `0x7a`–`0x7e` constants,
+and verifies the MGR/scripted branches and radial projection literal. Its
+type-`0x81` helper closure has no type-`0x78` collision target. The companion read-only runtime tool,
 `tools/emulator/capture_shenmue1_secondary_motion_runtime.py`, records the actual SH-4
 argument contract: `r4` is the persistent OSAG record, `r5` is the special MT5
 render node, `r6` is the runtime mode, and `r7` is the matrix callback/context.
@@ -259,7 +318,9 @@ Before enabling another special node type:
    identity, never actor tag, map ID, or cutscene ID.
 6. Test discovery against a canonical model, fixed-step determinism, constraint
    preservation, discontinuity reset, cleanup, and renderer upload.
-7. Validate at least one native capture containing substantial source motion.
+7. Run a rendered check and retain the fidelity boundary. Exact native behavior
+   requires source/capture evidence; a deliberate shared approximation must
+   state which native inputs remain unrecovered rather than claiming fidelity.
 
 This extension path allows the same subsystem to serve scripted scenes,
-ordinary NPCs, and player models when their presentation loops adopt it.
+ordinary NPCs, and player models through their existing shared post-pose stage.
