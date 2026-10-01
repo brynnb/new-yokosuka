@@ -203,7 +203,7 @@ export function spatiallyBatchMt7MapRoot(root, options = {}) {
   return step.value;
 }
 
-function immutableMt5Mesh(mesh, root) {
+export function immutableMt5Mesh(mesh, root) {
   if (
     !mesh.material || mesh.material.getClassName() === "MultiMaterial"
     || mesh.material.needAlphaBlendingForMesh(mesh)
@@ -255,6 +255,7 @@ function yieldBatchWork() {
  */
 export async function batchStaticWorldRoots(roots, {
   signal, yieldWork = yieldBatchWork, workBudgetMs = WORK_BUDGET_MS,
+  cellSize = STATIC_WORLD_BATCH_CELL_SIZE,
 } = {}) {
   const results = [];
   let checkpoint = performance.now();
@@ -263,7 +264,7 @@ export async function batchStaticWorldRoots(roots, {
     if (!isWorldMapFile(root._filename || "") || root._mt5CharacterRig
       || root._runtimePlacement || root._scheduledSceneObject
       || root.metadata?.staticBatchInputMeshCount !== undefined) continue;
-    const batches = batchMapRoot(root, {eligible: immutableMt5Mesh, label: "mt5"});
+    const batches = batchMapRoot(root, {eligible: immutableMt5Mesh, label: "mt5", cellSize});
     let step;
     do {
       signal?.throwIfAborted();

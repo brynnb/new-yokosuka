@@ -11,6 +11,7 @@ Reverse-engineering evidence and original-game findings belong under
 - [Audio archive browser](audio-archive.md)
 - [Asset browser and shared scene rendering](asset-browser.md)
 - [World loading and transitions](world-loading-and-transitions.md)
+- [Prepared scenery experiment (local lab)](../guides/tooling/scenery-bundle-lab.md)
 - [World time, lighting, seasons, and variants](world-time-and-variants.md)
 - [Multiplayer server and persistence](multiplayer-server.md)
 - [Scheduled NPCs](scheduled-npcs.md)

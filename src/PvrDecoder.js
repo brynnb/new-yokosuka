@@ -149,7 +149,7 @@ function isPowerOfTwo(value) {
     return value > 0 && (value & (value - 1)) === 0;
 }
 
-function uploadMipChain(texture, mipChain) {
+export function uploadMipChain(texture, mipChain) {
     const engine = texture.getScene()?.getEngine?.();
     const internalTexture = texture.getInternalTexture?.();
     if (
@@ -264,6 +264,13 @@ export class PvrDecoder {
         texture._alphaAwareMipmaps = mipChain
             ? uploadMipChain(texture, mipChain)
             : false;
+        // Sampler wrappers clone the texture while sharing its GPU resource.
+        // Keep the pixel-upload policy with that resource for prepared exports.
+        if (texture.getInternalTexture()) texture.getInternalTexture()._pvrUploadPolicy = {
+            alphaAware: texture._alphaAwareMipmaps,
+            gradientAlpha: hasGradientAlpha,
+            preserveCoverage: !hasGradientAlpha && preserveAlphaTestCoverage,
+        };
         // When enabled, the GPU builds a complete mip chain even when the
         // source PVR stores only its largest level. Anisotropy keeps thin,
         // angled billboard textures from collapsing into jagged texel rows.

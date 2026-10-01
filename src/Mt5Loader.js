@@ -2020,7 +2020,14 @@ export class Mt5Loader {
             .getDescendants(false)
             .some(node => typeof node.getTotalVertices === "function" && node.getTotalVertices() > 0);
 
-        return hasRenderableGeometry ? [modelRoot] : [];
+        if (!hasRenderableGeometry) {
+            // Empty/collision-only resources still create hierarchy nodes.
+            // No returned owner means scene cleanup cannot otherwise find them
+            // (D000 MAP05 left over a thousand empty meshes on every visit).
+            modelRoot.dispose(false, false);
+            return [];
+        }
+        return [modelRoot];
     }
 
     readNode(reader, nodes) {
