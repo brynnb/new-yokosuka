@@ -3,9 +3,10 @@ import { Mt5Loader, Mt5AlphaToCoverageMaterial } from "../Mt5Loader.js";
 import { buildAlphaAwareMipChain, uploadMipChain } from "../PvrDecoder.js";
 import { SceneStandardMaterial } from "./SceneStandardMaterial.js";
 import { SceneryTextureArrayMaterial } from "./SceneryTextureArrayMaterial.js";
-import { batchStaticWorldRoots, immutableMt5Mesh } from "./StaticWorldBatching.js";
+import { batchStaticWorldRoots, batchStaticSceneryLayer, immutableMt5Mesh } from "./StaticWorldBatching.js";
+import { isWorldMapFile } from "../WorldMapFiles.js";
 
-export const SCENERY_BUNDLE_SCHEMA = "new-yokosuka-scenery-experiment-v1";
+export const SCENERY_BUNDLE_SCHEMA = "new-yokosuka-scenery-experiment-v2";
 const COLORS = ["diffuseColor", "ambientColor", "emissiveColor", "specularColor"];
 const MATERIAL = ["alpha", "backFaceCulling", "twoSidedLighting", "sideOrientation",
   "disableLighting", "specularPower", "maxSimultaneousLights", "useVertexColors",
@@ -99,17 +100,32 @@ function serialMetadata(mesh) {
 /**
  * A scene-only prototype, intentionally not a gameplay save/export format.
  * Use unbatched resident map roots after shared visibility/surface preparation.
- * Root/layer identity survives; scripts, characters and placements are excluded.
+ * Root/layer identity survives; scripts and characters are excluded. A caller
+ * may additionally supply one audited fixed-placement layer. This is explicit
+ * permission for its direct children only, never a global placement exemption.
  * The compiler mutates its disposable input scene. Production never calls it.
  */
 export async function compileSceneryBundle(roots, {
   signal, cellSize = 128, textureArrays = true, maxArrayLayers = 64,
   provenance = {}, yieldWork = () => new Promise(resolve => setTimeout(resolve, 0)),
+  fixedPlacementLayer = null,
 } = {}) {
   if (!Number.isInteger(maxArrayLayers) || maxArrayLayers < 1 || maxArrayLayers > 256) {
     throw new Error("Invalid scenery texture array limit");
   }
-  roots = [...roots].sort((a, b) => String(a._filename).localeCompare(String(b._filename)));
+  roots = [...roots].sort((a, b) => a === fixedPlacementLayer ? 1 : b === fixedPlacementLayer ? -1
+    : String(a._filename || a.name).localeCompare(String(b._filename || b.name)));
+  if (fixedPlacementLayer && !roots.includes(fixedPlacementLayer)) throw new Error("Missing fixed-placement layer");
+  const fixedPlacementRoots = new Set(fixedPlacementLayer?.getChildren() || []);
+  for (const root of roots) {
+    if ((root !== fixedPlacementLayer && !isWorldMapFile(root._filename || ""))
+      || root._runtimePlacement || root._scheduledSceneObject) throw new Error(`Unapproved scenery root: ${root.name}`);
+  }
+  for (const root of fixedPlacementRoots) {
+    if (!root._runtimePlacement || !root.metadata?.sceneryPlacement || !root.isEnabled(false)) {
+      throw new Error(`Invalid fixed-placement root: ${root.name}`);
+    }
+  }
   const writer = new BinaryWriter();
   const textures = [];
   const textureKeys = new Map();
@@ -124,6 +140,14 @@ export async function compileSceneryBundle(roots, {
   });
   for (const meshes of rootMeshes) for (const mesh of meshes) {
     signal?.throwIfAborted();
+    for (let node = mesh; node; node = node.parent) {
+      if (node.animations?.length || node.actionManager || node._scheduledSceneObject
+        || (node._runtimePlacement && !fixedPlacementRoots.has(node))
+        || node.metadata?.runtimeObject || node.metadata?.nativeAseqSceneObject
+        || Object.keys(node.metadata || {}).some(key => key.startsWith("interactive"))) {
+        throw new Error(`Runtime-owned scenery: ${mesh.name}`);
+      }
+    }
     if (mesh.skeleton || mesh.morphTargetManager || !mesh.isWorldMatrixFrozen
       || mesh.subMeshes.length !== 1 || mesh.getVerticesDataKinds().some(kind => !["position", "normal", "uv", "uv2", "color"].includes(kind))) {
       throw new Error(`Non-static or unsupported scenery: ${mesh.name}`);
@@ -177,7 +201,7 @@ export async function compileSceneryBundle(roots, {
     const texture = record.texture === null ? null : textures[record.texture];
     // Alpha/coverage queues retain their established material and sorting code.
     // uv2 and nontrivial texture transforms are not silently reinterpreted.
-    if (!immutableMt5Mesh(mesh, roots[r]) || record.alphaMode !== "opaque"
+    if (!immutableMt5Mesh(mesh, roots[r], {fixedPlacementRoots}) || record.alphaMode !== "opaque"
       || record.alpha !== 1 || !texture || texture.hasAlpha || texture.level !== 1
       || mesh.isVerticesDataPresent("uv2") || texture.coordinatesIndex !== 0
       || texture.uScale !== 1 || texture.vScale !== 1
@@ -228,6 +252,8 @@ export async function compileSceneryBundle(roots, {
   let batches;
   try {
     batches = await batchStaticWorldRoots(roots, {signal, cellSize, yieldWork});
+    if (fixedPlacementLayer) batches.push({layer: "fixed-placements",
+      ...await batchStaticSceneryLayer(fixedPlacementLayer, {signal, cellSize, yieldWork, fixedPlacementRoots})});
   } finally {
     // Replaced source materials no longer have mesh owners. Dispose them even
     // if batching was cancelled; the caller owns the remaining scene roots.

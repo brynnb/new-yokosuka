@@ -3,11 +3,11 @@ import state from "../../src/state.js";
 import { PlaySceneRuntime } from "../../play/PlaySceneRuntime.js";
 import { GraphicsPreferences } from "../../src/rendering/GraphicsPreferences.js";
 import { loadMt5Scene } from "../../src/rendering/SceneAssets.js";
-import { clearWorldSceneAssets } from "../../src/rendering/SceneResources.js";
+import { clearWorldSceneAssets, freezeSceneRoots } from "../../src/rendering/SceneResources.js";
 import { fetchAsset } from "../../src/assetLoader.js";
 import { resolveSceneComposition } from "../../src/SceneCompositions.js";
 import { isWorldMapFile } from "../../src/WorldMapFiles.js";
-import { batchStaticWorldRoots } from "../../src/rendering/StaticWorldBatching.js";
+import { batchStaticWorldRoots, staticBatchSourceForFace } from "../../src/rendering/StaticWorldBatching.js";
 import { createWorldSpatialIndex } from "../../src/rendering/SceneSpatialIndex.js";
 import { prepareWorldCollision } from "../../play/world/WorldCollision.js";
 import { compileSceneryBundle, loadSceneryBundle } from "../../src/rendering/PreparedSceneryBundle.js";
@@ -16,6 +16,13 @@ import { applyTimeOfDay } from "../../src/lighting.js";
 import { suppressDobuitaCinemaFacadeFaces } from "../../play/world/DobuitaCinemaPoster.js";
 import { NativeSceneLighting } from "../../src/rendering/NativeSceneLighting.js";
 import { nativeLightingArea } from "../../src/rendering/SceneEnvironmentProfiles.js";
+import { PlacementRuntime, applyPlacementTransform } from "../../play/world/PlacementRuntime.js";
+import { configureMt5TexturePack } from "../../play/assets/configureMt5TexturePack.js";
+import { Mt5Loader } from "../../src/Mt5Loader.js";
+import { runtimeAssetGroup } from "../../src/RuntimeAssets.js";
+import { fetchAssetBuffer } from "../../src/AssetCache.js";
+import { auditFixedSceneryPlacements, sceneryPlacementId } from "./scenery-placement-policy.js";
+import { ScheduledSceneObjectCatalog } from "../../play/world/ScheduledSceneObjectCatalog.js";
 
 const status = document.querySelector("#status");
 const graphicsPreferences = new GraphicsPreferences({storage: null});
@@ -37,10 +44,87 @@ const views = [
   [[-16, 1.7, 27], [5, 1.7, 27]],
   [[-4, 1.7, 27], [-30, 1.7, 27]],
   [[-10, 14, 25], [10, 0, 30]],
+  [[12, 1.7, 35], [16, 1.7, 38]],
 ];
 let index, loaded, controller;
 let sourceFilenames = [];
 let sourceTextures = [];
+let placementAudit, fixedRoots = [], placementInputs = new Map();
+const placementAssets = new PlacementRuntime({scene,
+  bundledModels: runtimeAssetGroup("play/assets/dobuita/*.CHRM"),
+  bundledTextures: runtimeAssetGroup("play/assets/dobuita/*_textures.bin"),
+  fetchArrayBuffer: fetchAssetBuffer});
+const placementFiles = ["play/data/d000-runtime-placements.json",
+  "play/data/shenmue1-scheduled-scene-objects.json", "tools/evidence/d000-static-fixtures.json"];
+
+async function placementPlan(signal) {
+  const inputs = new Map();
+  const documents = [];
+  for (const file of placementFiles) {
+    const response = await fetch(`/${file}`, {signal});
+    if (!response.ok) throw new Error(`Missing placement evidence: ${file}`);
+    const bytes = await response.arrayBuffer();
+    inputs.set(file, bytes);
+    documents.push(JSON.parse(new TextDecoder().decode(bytes)));
+  }
+  const [manifest, scheduled, fixtures] = documents;
+  const audit = auditFixedSceneryPlacements(manifest.placements,
+    new ScheduledSceneObjectCatalog(scheduled).definitions("dobuita"), fixtures);
+  return {audit, inputs, placements: manifest.placements.filter((_, i) => audit.rows[i].included)};
+}
+
+async function loadFixedPlacements(signal) {
+  const plan = await placementPlan(signal);
+  placementAudit = plan.audit; placementInputs = plan.inputs;
+  const groups = new Map();
+  for (const placement of plan.placements) {
+    if (!groups.has(placement.model)) groups.set(placement.model, []);
+    groups.get(placement.model).push(placement);
+  }
+  for (const [model, placements] of [...groups].sort(([a], [b]) => a.localeCompare(b))) {
+    signal?.throwIfAborted();
+    const {modelBuffer, texturePack} = await placementAssets.readModelAssets(model, placements, signal);
+    placementInputs.set(model, modelBuffer);
+    const packs = texturePack instanceof ArrayBuffer ? {base: texturePack} : texturePack;
+    for (const [key, bytes] of Object.entries(packs || {})) {
+      if (bytes instanceof ArrayBuffer) placementInputs.set(`${model}/texture-pack/${key}`, bytes);
+    }
+    const loader = new Mt5Loader(scene);
+    configureMt5TexturePack(loader, texturePack);
+    for (const placement of placements) {
+      signal?.throwIfAborted();
+      const roots = await loader.load(modelBuffer, texturePack);
+      if (signal?.aborted) {
+        roots.forEach(root => root.dispose(false, true));
+        signal.throwIfAborted();
+      }
+      fixedRoots.push(...roots); state.currentMeshes.push(...roots);
+      if (!roots.length) throw new Error(`Fixed placement has no geometry: ${placement.id || placement.runtime.objectTag}`);
+      const identity = {id: sceneryPlacementId(placement), model,
+        objectTag: placement.runtime.objectTag || null};
+      roots.forEach((root, i) => {
+        applyPlacementTransform(root, placement);
+        root.name = `${identity.id}:${i}`;
+        for (const node of [root, ...root.getDescendants(false)]) {
+          node.metadata = {...node.metadata, sceneryPlacement: identity};
+        }
+      });
+      freezeSceneRoots(roots);
+    }
+  }
+}
+
+function groupFixedPlacements() {
+  const layer = new B.TransformNode("dobuita-fixed-placements", scene);
+  layer.metadata = {fixedSceneryLayer: true, placementIds: fixedRoots.map(root => root.metadata.sceneryPlacement.id)};
+  // Identity parent: preserve each source transform and its non-terrain/camera
+  // collision flags. Never masquerade as MAP geometry to enable batching.
+  for (const root of fixedRoots) root.parent = layer;
+  state.currentMeshes = state.currentMeshes.filter(root => !fixedRoots.includes(root));
+  state.currentMeshes.push(layer);
+  freezeSceneRoots([layer]);
+  return layer;
+}
 let mode = "none";
 const timings = [];
 const draws = [];
@@ -55,6 +139,7 @@ const render = () => {
   }
 };
 function view(number = 0) {
+  document.querySelector("#view").value = number;
   camera.position.copyFromFloats(...views[number][0]);
   camera.setTarget(B.Vector3.FromArray(views[number][1]));
 }
@@ -73,6 +158,7 @@ function clear() {
   // decoded texture wrappers that do not appear in any mesh material.
   for (const texture of sourceTextures) if (scene.textures.includes(texture)) texture.dispose();
   sourceTextures = [];
+  fixedRoots = []; placementInputs.clear();
   lighting.clear();
 }
 async function source({batch = true, signal} = {}) {
@@ -92,6 +178,7 @@ async function source({batch = true, signal} = {}) {
       includeHiddenVariants: true, timeOfDayIndex: 0, variantProfile: composition.variantProfile,
       variantZone: composition.source, onStatus: text => { status.textContent = text; },
     });
+    if (loaded) await loadFixedPlacements(signal);
   } finally {
     sourceTextures = scene.textures.filter(texture => !existingTextures.has(texture));
   }
@@ -120,21 +207,23 @@ async function run(action) {
 async function loadOriginal(signal) {
   const start = performance.now();
   await source({signal}); await finish();
-  const result = {mode, loadMs: performance.now() - start, meshes: scene.meshes.length};
+  const result = {mode, loadMs: performance.now() - start, meshes: scene.meshes.length, placements: placementAudit.summary};
   status.textContent = JSON.stringify(result); return result;
 }
 async function compile(signal) {
   await source({batch: false, signal});
   status.textContent = "Compiling and deduplicating static scenery…";
   const sourceHashes = [];
-  const inputs = new Map([...state.texturePacks].filter(([,buffer]) => buffer instanceof ArrayBuffer));
+  const inputs = new Map([...state.texturePacks, ...placementInputs].filter(([,buffer]) => buffer instanceof ArrayBuffer));
   for (const filename of sourceFilenames) inputs.set(filename, await (await fetchAsset(filename)).arrayBuffer());
   for (const [file, buffer] of [...inputs].sort(([a], [b]) => a.localeCompare(b))) {
     signal.throwIfAborted();
     const hash = [...new Uint8Array(await crypto.subtle.digest("SHA-256", buffer))].map(n => n.toString(16).padStart(2, "0")).join("");
     sourceHashes.push({file, hash});
   }
-  const bundle = await compileSceneryBundle(state.currentMeshes, {signal, provenance: {area: "D000", sources: sourceHashes}});
+  const fixedPlacementLayer = groupFixedPlacements();
+  const bundle = await compileSceneryBundle(state.currentMeshes, {signal, fixedPlacementLayer,
+    provenance: {area: "D000", sources: sourceHashes, placements: placementAudit}});
   const binaryResponse = await fetch("/scenery-output/world.bin", {method: "PUT", body: bundle.binary, signal});
   if (!binaryResponse.ok) throw new Error("Could not save scenery binary");
   const manifestResponse = await fetch("/scenery-output/world.json", {method: "PUT", body: JSON.stringify(bundle.manifest), signal});
@@ -147,6 +236,16 @@ async function loadPrepared(signal) {
   clear();
   const start = performance.now();
   const manifest = await (await fetch("/scenery-output/world.json", {signal})).json();
+  const plan = await placementPlan(signal);
+  if (JSON.stringify(manifest.provenance.placements) !== JSON.stringify(plan.audit)) {
+    throw new Error("Placement ownership changed; rebuild the scenery bundle");
+  }
+  for (const [file, bytes] of plan.inputs) {
+    const hash = [...new Uint8Array(await crypto.subtle.digest("SHA-256", bytes))].map(n => n.toString(16).padStart(2, "0")).join("");
+    if (manifest.provenance.sources.find(source => source.file === file)?.hash !== hash) {
+      throw new Error(`Stale placement input; rebuild the scenery bundle: ${file}`);
+    }
+  }
   const binary = new Uint8Array(await (await fetch("/scenery-output/world.bin", {signal})).arrayBuffer());
   loaded = await loadSceneryBundle(scene, manifest, binary, {signal});
   state.currentMeshes = loaded.roots;
@@ -170,9 +269,9 @@ async function measure(seconds = 5) {
 }
 
 // Sequential rendered comparisons, not a headless assertion about visibility.
-// Keep only canvas pixels (about 80 MiB at 1440x770), never two live worlds.
+// Keep only canvas pixels (about 102 MiB at 1440x770), never two live worlds.
 async function compare(signal) {
-  const cases = [0, 2, 3].flatMap(time => [0, 1].flatMap(season => [0, 1, 2].map(view => ({time, season, view}))));
+  const cases = [0, 2, 3].flatMap(time => [0, 1].flatMap(season => views.map((_, view) => ({time, season, view}))));
   if (state.canvas.width * state.canvas.height * 4 * cases.length > 128 * 1024 * 1024) {
     throw new Error("Narrow the browser window before comparing (128 MiB snapshot limit)");
   }
@@ -199,11 +298,36 @@ async function compare(signal) {
   };
   const before = [], ground = [], timing = [];
   await loadOriginal(signal);
+  // Aim through each approved object's actual bounds from six directions.
+  // Unlike ground rays these specifically exercise the combined prop surfaces.
+  const propRays = fixedRoots.flatMap(root => {
+    const {min, max} = root.getHierarchyBoundingVectors(true);
+    const center = min.add(max).scale(0.5);
+    const distance = B.Vector3.Distance(min, max) + 2;
+    return [B.Vector3.Right(), B.Vector3.Left(), B.Vector3.Up(), B.Vector3.Down(),
+      B.Vector3.Forward(), B.Vector3.Backward()].map(direction => (
+      new B.Ray(center.subtract(direction.scale(distance)), direction, distance * 2)
+    ));
+  });
+  const sampleProps = () => propRays.map(ray => {
+    const hit = index.pickWithRay(ray, mesh => mesh.metadata?.sceneryPlacement
+      || mesh.metadata?.staticBatchSources?.some(source => source.sceneryPlacement));
+    return hit?.hit ? {distance: hit.distance, id: (hit.pickedMesh.metadata.sceneryPlacement
+      || staticBatchSourceForFace(hit.pickedMesh, hit.faceId)?.sceneryPlacement)?.id} : null;
+  });
+  const originalPropHits = sampleProps();
   for (const entry of cases) {
     before.push(await capture(entry)); ground.push(sampleGround());
     if (entry.time === 0 && entry.season === 0) timing.push({...entry, ...await measure(3)});
   }
   await loadPrepared(signal);
+  const preparedPropHits = sampleProps();
+  const fixedPlacementPicks = {samples: propRays.length, hits: originalPropHits.filter(Boolean).length,
+    mismatches: preparedPropHits.filter((hit, i) => {
+      const original = originalPropHits[i];
+      return Boolean(hit) !== Boolean(original)
+        || (hit && (Math.abs(hit.distance - original.distance) > 0.0001 || hit.id !== original.id));
+    }).length};
   const comparisons = [];
   for (let j = 0; j < cases.length; j++) {
     const after = await capture(cases[j]), reference = before[j];
@@ -221,7 +345,7 @@ async function compare(signal) {
     before[j] = null;
     if (cases[j].time === 0 && cases[j].season === 0) timing.push({...cases[j], ...await measure(3)});
   }
-  const report = {comparisons, timing};
+  const report = {comparisons, timing, fixedPlacementPicks};
   console.info("Scenery comparison", report);
   status.textContent = JSON.stringify(report);
   return report;
@@ -234,7 +358,8 @@ document.querySelector("#compare").onclick = () => run(compare);
 document.querySelector("#view").onchange = event => view(Number(event.target.value));
 for (const id of ["time", "season"]) document.querySelector(`#${id}`).onchange = environment;
 window.sceneryLab = {runtime, scene, engine, source: () => run(loadOriginal), compile: () => run(compile),
-  prepared: () => run(loadPrepared), compare: () => run(compare), measure, view, environment, clear, get index() {return index;}};
+  prepared: () => run(loadPrepared), compare: () => run(compare), measure, view, environment, clear,
+  get index() {return index;}, get placements() {return placementAudit;}};
 window.addEventListener("pagehide", () => { controller?.abort(); clear(); });
 window.addEventListener("resize", () => engine.resize());
 view();

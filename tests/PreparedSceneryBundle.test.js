@@ -6,6 +6,7 @@ import {freezeSceneRoots} from "../src/rendering/SceneResources.js";
 import {createWorldSpatialIndex} from "../src/rendering/SceneSpatialIndex.js";
 import {staticBatchSourceForFace} from "../src/rendering/StaticWorldBatching.js";
 import {Mt5Loader} from "../src/Mt5Loader.js";
+import {applyPlacementTransform} from "../play/world/PlacementRuntime.js";
 
 function fixture(t) {
   const engine = new B.NullEngine();
@@ -132,4 +133,56 @@ test("empty MT5 resources do not leave unowned hierarchy nodes in the scene", as
   const counts = [scene.meshes.length, scene.transformNodes.length];
   assert.deepEqual(await new Mt5Loader(scene).load(bytes), []);
   assert.deepEqual([scene.meshes.length, scene.transformNodes.length], counts);
+});
+
+test("fixed placements batch across roots while retaining transforms, source identity and collision roles", async t => {
+  const {scene, root, make} = fixture(t);
+  const layer = new B.TransformNode("fixed-props", scene);
+  for (let i = 0; i < 2; i++) {
+    const prop = new B.TransformNode(`prop-${i}`, scene);
+    prop.parent = layer;
+    const placement = {id: `prop-${i}`, model: "PROP.MT5", position: [4 * i, 2, 0],
+      rotationDegrees: [0, 90, 0], scale: [2, 1, 0.5]};
+    applyPlacementTransform(prop, placement);
+    const identity = {id: placement.id, model: placement.model, objectTag: null};
+    prop.metadata = {sceneryPlacement: identity};
+    const mesh = make(`surface-${i}`, 0);
+    mesh.parent = prop;
+    mesh.metadata = {terrain: false, cameraBlocker: true, sourceModel: placement.model, sceneryPlacement: identity};
+  }
+  freezeSceneRoots([root, layer]);
+  const original = layer.getChildMeshes()[0];
+  const points = original.getVerticesData("position");
+  const expected = B.Vector3.TransformCoordinates(B.Vector3.FromArray(points), original.getWorldMatrix());
+  const bundle = await compileSceneryBundle([layer], {fixedPlacementLayer: layer, textureArrays: false, yieldWork: async () => {}});
+  assert.equal(bundle.manifest.statistics.outputMeshes, 1);
+  layer.dispose(false, true);
+  const loaded = await loadSceneryBundle(scene, bundle.manifest, bundle.binary);
+  t.after(() => loaded.dispose());
+  const mesh = loaded.roots[0].getChildMeshes()[0];
+  assert.equal(mesh.metadata.terrain, false);
+  assert.equal(mesh.metadata.cameraBlocker, true);
+  assert.equal(mesh.metadata.sceneryPlacement, undefined, "identity belongs to a face range, not the entire batch");
+  assert.equal(staticBatchSourceForFace(mesh, 0).sceneryPlacement.id, "prop-0");
+  assert.equal(staticBatchSourceForFace(mesh, mesh.metadata.staticBatchSources[1].firstFace).sceneryPlacement.id, "prop-1");
+  const actual = B.Vector3.TransformCoordinates(B.Vector3.FromArray(mesh.getVerticesData("position")), mesh.getWorldMatrix());
+  assert.ok(B.Vector3.Distance(expected, actual) < 1e-6);
+});
+
+test("compiler never accepts live placement ownership just because its matrices are frozen", async t => {
+  const {scene, root, make} = fixture(t);
+  const mesh = make("owned", 0);
+  const layer = new B.TransformNode("fixed-props", scene);
+  root.parent = layer;
+  root._runtimePlacement = true;
+  root.metadata = {sceneryPlacement: {id: "owned"}, runtimeObject: {objectTag: "door"}};
+  freezeSceneRoots([layer]);
+  await assert.rejects(compileSceneryBundle([root]), /Unapproved/);
+  await assert.rejects(compileSceneryBundle([layer], {fixedPlacementLayer: layer}), /Runtime-owned/);
+  delete root.metadata.runtimeObject;
+  mesh.metadata.interactiveDoor = {};
+  await assert.rejects(compileSceneryBundle([layer], {fixedPlacementLayer: layer}), /Runtime-owned/);
+  delete mesh.metadata.interactiveDoor;
+  root.setEnabled(false);
+  await assert.rejects(compileSceneryBundle([layer], {fixedPlacementLayer: layer}), /Invalid fixed-placement/);
 });

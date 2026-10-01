@@ -20,6 +20,8 @@ function sourceRanges(meshes) {
       firstVertex, vertexCount: mesh.getTotalVertices(),
       meshName: mesh.name, meshUniqueId: mesh.uniqueId,
       nodeAddress: mesh._mt5NodeAddress ?? null,
+      ...(mesh.metadata?.sceneryPlacement ? {sceneryPlacement: mesh.metadata.sceneryPlacement} : {}),
+      sourceModel: mesh.metadata?.sourceModel,
       originalFaceIds: mesh._mt5OriginalFaceIds
         ? Array.from(mesh._mt5OriginalFaceIds) : null,
       // Retain the original broad-phase test. Babylon permits a small epsilon
@@ -91,6 +93,7 @@ export function staticBatchSourceForFace(mesh, faceId) {
     meshName: range.meshName, meshUniqueId: range.meshUniqueId,
     nodeAddress: range.nodeAddress,
     faceId: range.originalFaceIds?.[localFace] ?? localFace,
+    ...(range.sceneryPlacement ? {sceneryPlacement: range.sceneryPlacement} : {}),
   };
 }
 
@@ -168,6 +171,13 @@ function* batchMapRoot(root, {
       const source = meshes[0];
       const properties = Object.fromEntries(RENDER_PROPERTIES.map(key => [key, source[key]]));
       const metadata = {...staticMetadata(source, meshes.length), staticBatchSources: sourceRanges(meshes)};
+      // A combined fixed-prop layer can contain several source models. The
+      // per-face records above retain identity; no whole batch belongs to the
+      // first prop merely because that happened to be its first surface.
+      if (meshes.some(mesh => mesh.metadata?.sceneryPlacement)) {
+        delete metadata.sceneryPlacement;
+        delete metadata.sourceModel;
+      }
       const normals = mergedNormalsInRootSpace(meshes, root);
       const merged = BABYLON.Mesh.MergeMeshes(meshes, true, true);
       if (!merged) throw new Error("Compatible static world meshes could not be merged");
@@ -203,7 +213,7 @@ export function spatiallyBatchMt7MapRoot(root, options = {}) {
   return step.value;
 }
 
-export function immutableMt5Mesh(mesh, root) {
+export function immutableMt5Mesh(mesh, root, {fixedPlacementRoots} = {}) {
   if (
     !mesh.material || mesh.material.getClassName() === "MultiMaterial"
     || mesh.material.needAlphaBlendingForMesh(mesh)
@@ -229,7 +239,8 @@ export function immutableMt5Mesh(mesh, root) {
   for (let node = mesh; node; node = node.parent) {
     const metadata = node.metadata;
     if (!node.isWorldMatrixFrozen || node.animations?.length || node.actionManager
-      || node._runtimePlacement || node._scheduledSceneObject
+      || (node._runtimePlacement && !fixedPlacementRoots?.has(node)) || node._scheduledSceneObject
+      || metadata?.runtimeObject
       || metadata?.localEffect || metadata?.nativeAseqSceneObject
       || metadata?.arcadeSuppressedVariant
       || Object.keys(metadata || {}).some(key => key.startsWith("interactive"))) return false;
@@ -247,6 +258,29 @@ function yieldBatchWork() {
     : new Promise(resolve => setTimeout(resolve, 0));
 }
 
+/** Explicit offline layer entry point. Gameplay never approves placed roots. */
+export async function batchStaticSceneryLayer(root, {
+  signal, yieldWork = yieldBatchWork, workBudgetMs = WORK_BUDGET_MS,
+  cellSize = STATIC_WORLD_BATCH_CELL_SIZE, fixedPlacementRoots,
+  workBudget = {checkpoint: performance.now()},
+} = {}) {
+  const batches = batchMapRoot(root, {
+    eligible: (mesh, owner) => immutableMt5Mesh(mesh, owner, {fixedPlacementRoots}),
+    label: "mt5", cellSize,
+  });
+  let step;
+  do {
+    signal?.throwIfAborted();
+    step = batches.next();
+    if (!step.done && performance.now() - workBudget.checkpoint >= workBudgetMs) {
+      await yieldWork();
+      signal?.throwIfAborted();
+      workBudget.checkpoint = performance.now();
+    }
+  } while (!step.done);
+  return step.value;
+}
+
 /**
  * Gameplay-only finalization, after surface edits/runtime ownership and before
  * building collision/render indices. Viewer inspection never calls this.
@@ -258,24 +292,16 @@ export async function batchStaticWorldRoots(roots, {
   cellSize = STATIC_WORLD_BATCH_CELL_SIZE,
 } = {}) {
   const results = [];
-  let checkpoint = performance.now();
+  // Share the deadline across small layers too. Resetting it at every root can
+  // turn many individually cheap layers into one long uninterruptible task.
+  const workBudget = {checkpoint: performance.now()};
   for (const root of roots) {
     signal?.throwIfAborted();
     if (!isWorldMapFile(root._filename || "") || root._mt5CharacterRig
       || root._runtimePlacement || root._scheduledSceneObject
       || root.metadata?.staticBatchInputMeshCount !== undefined) continue;
-    const batches = batchMapRoot(root, {eligible: immutableMt5Mesh, label: "mt5", cellSize});
-    let step;
-    do {
-      signal?.throwIfAborted();
-      step = batches.next();
-      if (!step.done && performance.now() - checkpoint >= workBudgetMs) {
-        await yieldWork();
-        signal?.throwIfAborted();
-        checkpoint = performance.now();
-      }
-    } while (!step.done);
-    results.push({filename: root._filename, ...step.value});
+    const result = await batchStaticSceneryLayer(root, {signal, yieldWork, workBudgetMs, cellSize, workBudget});
+    results.push({filename: root._filename, ...result});
   }
   return results;
 }

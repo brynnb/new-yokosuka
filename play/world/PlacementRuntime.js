@@ -26,6 +26,21 @@ function freezePlacedRoot(root, freezeWorldMatrices = true) {
   }
 }
 
+// The offline scenery compiler uses the same source coordinate conversion as
+// gameplay, without installing gameplay callbacks on its disposable scene.
+export function applyPlacementTransform(root, placement) {
+  root._filename = placement.model;
+  root._runtimePlacement = true;
+  root._runtimePlacementRecord = placement;
+  root.position.set(...placement.position);
+  if (placement.rotationDegrees) {
+    root.rotationQuaternion = Mt5Loader.sourceOrderQuaternion(
+      ...placement.rotationDegrees.map(BABYLON.Tools.ToRadians),
+    );
+  }
+  if (placement.scale) root.scaling.set(...placement.scale);
+}
+
 export class PlacementRuntime {
   constructor({
     scene,
@@ -161,17 +176,8 @@ export class PlacementRuntime {
       const configuredRoots = [];
       for (const root of roots) {
         root.name = `${root.name}_${model}_${index}`;
-        root._filename = model;
-        root._runtimePlacement = true;
-        root._runtimePlacementRecord = placement;
+        applyPlacementTransform(root, placement);
         placedRoots.push(root);
-        root.position.set(...placement.position);
-        if (placement.rotationDegrees) {
-          root.rotationQuaternion = Mt5Loader.sourceOrderQuaternion(
-            ...placement.rotationDegrees.map(BABYLON.Tools.ToRadians),
-          );
-        }
-        if (placement.scale) root.scaling.set(...placement.scale);
         this.setMetadata(root, "runtimeObject", {
           root,
           model,
