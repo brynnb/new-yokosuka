@@ -20,7 +20,7 @@ export function encodeModelTemplate(model, roots, encodeMesh) {
           parent: index === 0 ? null : indices.get(node.parent),
           position: node.position.asArray(), rotation: node.rotation.asArray(),
           quaternion: node.rotationQuaternion?.asArray() || null, scaling: node.scaling.asArray(),
-          enabled: node.isEnabled(false),
+          enabled: node.isEnabled(false), metadata: node.metadata ? copy(node.metadata) : null,
           mesh: node.getTotalVertices?.() > 0 ? encodeMesh(node) : null};
       }),
       sourceNodes: (root._mt5Nodes || []).map(node => ({
@@ -46,6 +46,7 @@ export function instantiateModelTemplate(scene, template, createMesh, signal) {
         if (index === 0) roots.push(node);
         else node.parent = nodes[part.parent];
         node.name = part.name;
+        if (!part.mesh) node.metadata = part.metadata ? copy(part.metadata) : null;
         node.position.copyFromFloats(...part.position);
         node.rotation.copyFromFloats(...part.rotation);
         node.scaling.copyFromFloats(...part.scaling);

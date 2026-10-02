@@ -55,6 +55,8 @@ verified identical; their player spawns and gameplay modes stay separate.
 | Old Warehouse No. 8 | `ms08` | 707 | 72 |
 | Combat Practice | `mfbt` | 785 | 164 |
 | Forklift Races | `ma00race` | 4,165 | 843 |
+| Opening Vision — Shenhua and the Hawk | `op02` | 413 | 187 |
+| Introduction — murder, mail, dream/awakening | `op00` | 1,336 | 342 |
 
 These counts include inactive resident layers, not only pieces visible in one
 frame. They compare decoded source parts with offline batching, not measured
@@ -63,9 +65,27 @@ rules and time/season/weather selection remain authoritative. Only Dobuita's
 fixed-prop audit grants permission to bake placements into the map; elsewhere
 placements remain independently owned even when their models are prepared.
 
-Shenmue II (MT7), interiors with interactive resident geometry, and cutscene-only
-stages remain on their original loaders. Their effects and ownership need a
+Shenmue II (MT7), other interiors with interactive resident geometry, and other
+cutscene-only stages remain on their original loaders. Their effects and ownership need a
 separate audit before admitting them, not merely another filename allowlist.
+
+### Intro cutscenes
+
+The same `/play/?scenery=prepared` option covers all four new-character opening
+scenes. `op02` supplies Shenhua and the hawk; the murder, mail and awakening
+scenes share `op00`. No separate cutscene renderer or playback implementation
+is introduced. For a focused rebuild, use `npm run build:scenery -- op00` and
+`npm run build:scenery -- op02`.
+
+Playback and preparation share `IntroductionEnvironments.js`, which consumes the
+existing generated packages. Resident scene objects, attached props and
+native-node geometry masks retain their original transform hierarchy and node
+addresses. Whole-map visibility remains independently controlled. The shared
+variant owner marks individual seasonal surfaces as unbatchable, so OP00's snow
+can still switch without retaining hundreds of separate ordinary ground pieces.
+Characters, motion, faces, package-created effects, cameras and audio keep their
+normal loaders and owners. These bundles speed up environment preparation and
+reduce scenery submissions; they do not eliminate actor preparation costs.
 
 ## Optional scenery-only comparison lab
 
@@ -133,7 +153,8 @@ Only one scene and one test workload run at a time.
 The compiler mutates a disposable source scene. It is not a generic scene saver.
 WebGL 2 is required for the texture-array path; WebGPU is not implemented.
 Unsupported materials, animated geometry, and nonstandard vertex buffers fail
-explicitly. Per-texture variant ownership is not supported by this lab.
+explicitly. Per-texture variant surfaces remain separate under the shared
+variant owner; they are not merged with the permanent surfaces around them.
 
 ## Placement ownership audit
 
@@ -170,12 +191,14 @@ Sources and producing tools:
 The bundle records every included/excluded placement and its reason, plus hashes
 of policy input files and decoded model/texture inputs. Changes to placement or
 ownership evidence make the lab reject stale output and ask for a rebuild.
-Experimental schema v3 includes rigid model templates; rebuild older bundles.
+Experimental schema v4 adds controlled resident hierarchies and preserves the
+normal-transform flag on flattened, non-uniformly scaled scenery. Rebuild older
+bundles with `npm run build:scenery -- --all`.
 Admission requires all placements of a model to use the same source/texture
 identity and a supported rigid owner. Authored animation, scripts, hidden-state
 records, characters, and unreviewed owners are not assumed safe for sharing.
 
-## Prepared-model checks (v3)
+## Prepared-model checks
 
 With the local asset server running and the bundle built:
 
@@ -218,6 +241,14 @@ and checks resource cleanup. Matching ray hits alone cannot establish that an
 arrival is safe: both loaders previously agreed that MKSG's old travel point
 had no floor. Its exploration spawn now uses a verified native player pose near
 the entrance (see [capture provenance](../../../tools/evidence/mksg-warehouse-door-transitions.json)).
+
+For cinematic worlds, authored camera/actor entry positions are not travel
+spawns, so the spawn-ground and wall-clearance requirements do not apply. The
+same geometry/normal and variant comparisons still run, plus real map-layer and
+node-mask ownership, resident scene-object movement/cancellation, and attachment
+registration checks for all four intro packages. These are headless checks, not
+proof of visual equivalence, complete playback, or an FPS improvement. A fresh
+rendered intro pass remains the final verification step.
 NullEngine cannot render texture-array shaders, so this check
 uses ordinary materials over the unchanged geometry for picking and visibility
 only; it is not visual or FPS proof. The template check separately compares

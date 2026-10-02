@@ -11,7 +11,9 @@ import {loadMt5Scene} from "../../src/rendering/SceneAssets.js";
 import {createSceneLoaders, clearWorldSceneAssets} from "../../src/rendering/SceneResources.js";
 import {createWorldSpatialIndex} from "../../src/rendering/SceneSpatialIndex.js";
 import {updateModelVisibility} from "../../src/variants.js";
-import {isWorldMapFile} from "../../src/WorldMapFiles.js";
+import {NativeAseqMapLayerRuntime} from "../../play/events/NativeAseqMapLayerRuntime.js";
+import {NativeAseqSceneObjectRuntime} from "../../play/events/NativeAseqSceneObjectRuntime.js";
+import {NativeAseqAttachedObjectRuntime} from "../../play/events/NativeAseqAttachedObjectRuntime.js";
 import {prepareWorldCollision} from "../../play/world/WorldCollision.js";
 import {loadNativeCollisionDefinitionForWorld, createNativeWorldCollision} from "../../play/world/NativeWorldCollision.js";
 import {suppressDobuitaCinemaFacadeFaces} from "../../play/world/DobuitaCinemaPoster.js";
@@ -43,7 +45,8 @@ function snapshots(index, rays, world) {
     return {
       layers: state.currentMeshes.filter(root => root.isEnabled()).map(root => root._filename).sort(),
       hits: rays.map(ray => {
-        const hit = index.pickWithRay(ray, mesh => mesh.isEnabled() && mesh.isVisible && mesh.isPickable && mesh.metadata?.terrain);
+        const hit = index.pickWithRay(ray, mesh => mesh.isEnabled() && mesh.isVisible && mesh.isPickable
+          && (world.cutsceneOnly || mesh.metadata?.terrain));
         return hit.hit ? hit.pickedPoint.asArray() : null;
       }),
       support: rays.map(ray => {
@@ -53,8 +56,64 @@ function snapshots(index, rays, world) {
       spawnHits: index.multiPickWithRay(new B.Ray(world.spawn.add(new B.Vector3(0, 4, 0)), B.Vector3.Down(), 16), defaultTerrainPredicate)
         .map(hit => ({point: hit.pickedPoint.asArray(), normal: hit.getNormal(true, false)?.asArray(),
           mesh: hit.pickedMesh.name, source: hit.pickedMesh.metadata?.sourceModel, face: hit.faceId})),
+      surfaces: state.currentMeshes.flatMap(root => root.getChildMeshes()
+        .filter(mesh => mesh.metadata?.environmentSurfaceVariant)
+        .map(mesh => [root._filename, mesh.metadata.mt5TextureId, mesh.isEnabled(false)])).sort(),
     };
   });
+}
+
+// Exercise the real owners on both decoded and prepared resident resources.
+// Package-created actors/effects are unchanged and are not fabricated here.
+async function introOwnershipSnapshots(spec) {
+  if (!spec.ownership) return null;
+  const roots = state.currentMeshes;
+  const initial = roots.map(root => [root, root.isEnabled(false)]);
+  const matrices = root => [root, ...root.getDescendants(false)].map(node => ({name: node === root ? root._filename : node.name,
+    matrix: node.computeWorldMatrix(true).asArray(), enabled: node.isEnabled(false)}));
+  const results = {};
+  for (const [id, environment] of Object.entries(spec.ownership.environments)) {
+    const layers = new NativeAseqMapLayerRuntime({definitions: environment.mapLayers,
+      geometryMasks: environment.mapGeometryMasks});
+    const row = results[id] = {};
+    layers.load(roots);
+    row.masks = layers.maskedGeometry.map(({mesh}) => [mesh._mt5Node?.addr, mesh.isEnabled()]);
+    row.layers = [false, true].map(visible => {
+      layers.applyActivity({activityId: "bundle-validation", browserMapVisibility: (environment.mapLayers || [])
+        .map(definition => ({nativeName: definition.nativeName, visible}))});
+      return [...layers.roots].map(([name, root]) => [name, root.isEnabled(false)]);
+    });
+    layers.clear();
+    const resident = values => Object.fromEntries(Object.entries(values || {}).filter(([, value]) =>
+      roots.some(root => root._filename === value.browserFilename)));
+    const definitions = resident(environment.sceneObjects);
+    if (Object.keys(definitions).length) {
+      const objects = new NativeAseqSceneObjectRuntime({definitions});
+      await objects.load(roots);
+      objects.prepareActivity({activityId: "bundle-validation", nativeSceneObjectStates:
+        [...objects.persistentActorTags].map(actorTag => ({actorTag, presented: true}))});
+      const before = [...objects.objects.values()].map(record => matrices(record.root));
+      const records = objects.begin("probe", [...objects.objects.keys()]);
+      for (const record of records) {
+        objects.activate("probe", record.actorCode);
+        record.root.position.x += 3;
+      }
+      row.moved = records.map(record => matrices(record.root));
+      objects.end("probe", "cancelled");
+      assert.deepEqual([...objects.objects.values()].map(record => matrices(record.root)), before, `${id}: cancelled object poses`);
+      objects.clear();
+    }
+    const attachments = resident(environment.attachedObjects);
+    if (Object.keys(attachments).length) {
+      const attached = new NativeAseqAttachedObjectRuntime({definitions: attachments, resolveActor: () => null});
+      await attached.load(roots);
+      row.attached = [...attached.objects].map(([tag, {root}]) => [tag, matrices(root),
+        root._mt5Nodes.map(node => [node.addr, node.flag, node.parentAddr])]);
+      attached.clear();
+    }
+    for (const [root, enabled] of initial) root.setEnabled(enabled);
+  }
+  return results;
 }
 
 try {
@@ -79,6 +138,7 @@ try {
       if (key === "dobuita") suppressDobuitaCinemaFacadeFaces(state.currentMeshes);
       prepareWorldCollision(state.currentMeshes, {nativeHorizontalCollision: Boolean(collision)});
       const geometry = rootGeometry();
+      const originalOwnership = await introOwnershipSnapshots(spec);
       const rays = [];
       for (const x of [-30, -15, -7, -2, 0, 2, 7, 15, 30]) {
         for (const z of [-30, -15, -7, -2, 0, 2, 7, 15, 30]) {
@@ -93,7 +153,7 @@ try {
       // the geometry/visibility/picking check only. This does NOT validate the
       // array shader, appearance, lighting or FPS; those require rendered QA.
       const geometryManifest = {...manifest, arrays: [], templates: [],
-        roots: manifest.roots.filter(root => isWorldMapFile(root.filename)),
+        roots: manifest.roots.filter(root => spec.filenames.includes(root.filename)),
         materials: manifest.materials.map(({array, ...material}) => array === undefined ? material
           : {...material, texture: manifest.arrays[array].textures[0]}),
       };
@@ -101,17 +161,22 @@ try {
       state.preparedSceneryResources = bundle;
       state.currentMeshes = [...bundle.roots];
       assert.deepEqual(rootGeometry(), geometry, `${key}: original map roots and triangle counts`);
+      assert.deepEqual(await introOwnershipSnapshots(spec), originalOwnership, `${key}: native ownership, masks and moving geometry`);
       index = createWorldSpatialIndex(scene, state.currentMeshes);
       const prepared = snapshots(index, rays, world);
       for (const [i, result] of prepared.entries()) {
         assert.deepEqual(result.layers, original[i].layers, `${key}: variant ${JSON.stringify(cases[i])}`);
-        assert.ok(original[i].support[40], `${key}: source map must support travel spawn ${world.spawn.asArray()}`);
-        assert.ok(result.support[40], `${key}: variant ${i} must support the player at the travel spawn\n${JSON.stringify({original: original[i].spawnHits, prepared: result.spawnHits})}`);
+        assert.deepEqual(result.surfaces, original[i].surfaces, `${key}: seasonal surface ownership`);
+        if (!world.cutsceneOnly) {
+          assert.ok(original[i].support[40], `${key}: source map must support travel spawn ${world.spawn.asArray()}`);
+          assert.ok(result.support[40], `${key}: variant ${i} must support the player at the travel spawn\n${JSON.stringify({original: original[i].spawnHits, prepared: result.spawnHits})}`);
+        }
         for (const [j, support] of result.support.entries()) {
           const expected = original[i].support[j];
           assert.equal(Boolean(support), Boolean(expected), `${key}: controller support case ${i}, ray ${j}`);
           if (support) {
-            assert.ok(Math.abs(support.height - expected.height) < 0.0001, `${key}: support height case ${i}, ray ${j}`);
+            assert.ok(Math.abs(support.height - expected.height) < 0.0001,
+              `${key}: support height case ${i}, ray ${j}: ${JSON.stringify({support, expected, ray: rays[j].origin.asArray()})}`);
             assert.ok(B.Vector3.Distance(B.Vector3.FromArray(support.normal), B.Vector3.FromArray(expected.normal)) < 0.0001,
               `${key}: support normal case ${i}, ray ${j}`);
           }
@@ -124,7 +189,7 @@ try {
         }
       }
       createNativeWorldCollision({scene, currentMeshes: state.currentMeshes, definition: collision});
-      assert.ok(nativeCollisionPositionClear(scene.meshes, world.spawn, DEFAULT_THIRD_PERSON_CONTROLLER_OPTIONS.playerRadius),
+      assert.ok(world.cutsceneOnly || nativeCollisionPositionClear(scene.meshes, world.spawn, DEFAULT_THIRD_PERSON_CONTROLLER_OPTIONS.playerRadius),
         `${key}: travel spawn must clear native wall boundaries`);
       index.dispose(); index = null;
       clearWorldSceneAssets(state);
@@ -132,7 +197,8 @@ try {
       console.info(JSON.stringify({world: key, variants: cases.length, groundRays: cases.length * rays.length,
         groundHits: original.reduce((n, row) => n + row.hits.filter(Boolean).length, 0),
         triangles: geometry.reduce((n, row) => n + row.triangles, 0),
-        controllerSamples: cases.length * rays.length, spawnSupportAndWallClearance: "passed",
+        controllerSamples: cases.length * rays.length, spawnSupportAndWallClearance: world.cutsceneOnly ? "not applicable to authored cinematic spawn" : "passed",
+        cinematicOwners: Object.keys(originalOwnership || {}),
         result: "matching source geometry counts, layer visibility, player support and cleanup",
         validation: "headless; not a rendered or FPS check"}));
     } finally {

@@ -242,7 +242,7 @@ export function immutableMt5Mesh(mesh, root, {fixedPlacementRoots} = {}) {
       || (node._runtimePlacement && !fixedPlacementRoots?.has(node)) || node._scheduledSceneObject
       || metadata?.runtimeObject
       || metadata?.localEffect || metadata?.nativeAseqSceneObject
-      || metadata?.arcadeSuppressedVariant
+      || metadata?.arcadeSuppressedVariant || metadata?.environmentSurfaceVariant
       || Object.keys(metadata || {}).some(key => key.startsWith("interactive"))) return false;
     // A whole layer can be inactive until night/winter. Disabled subtrees
     // inside it have a separate owner (for example AUTH geometry masks).
@@ -297,7 +297,7 @@ export async function batchStaticWorldRoots(roots, {
   const workBudget = {checkpoint: performance.now()};
   for (const root of roots) {
     signal?.throwIfAborted();
-    if (!isWorldMapFile(root._filename || "") || root._mt5CharacterRig
+    if (!isWorldMapFile(root._filename || "") || root._mt5CharacterRig || root._preparedModelTemplate
       || root._runtimePlacement || root._scheduledSceneObject
       || root.metadata?.staticBatchInputMeshCount !== undefined) continue;
     const result = await batchStaticSceneryLayer(root, {signal, yieldWork, workBudgetMs, cellSize, workBudget});

@@ -124,6 +124,9 @@ export function updateModelVisibility(sceneState = state) {
       for (const node of [root, ...root.getDescendants(false)]) {
         const textureId = String(node.metadata?.mt5TextureId || "").toLowerCase();
         if (!controlledSet.has(textureId)) continue;
+        // Even an enabled winter overlay is not immutable scenery. Keep its
+        // native texture identity through batching so summer can hide it later.
+        node.metadata.environmentSurfaceVariant = true;
         node.setEnabled(activeSet.has(textureId));
       }
     }

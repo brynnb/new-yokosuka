@@ -66,6 +66,9 @@ export class PreparedSceneryRuntime {
     if (JSON.stringify(manifest.templates.map(row => row.model)) !== JSON.stringify(models)) {
       throw new Error("Prepared model coverage changed; rebuild the scenery bundle");
     }
+    if (JSON.stringify(manifest.hierarchies.map(row => row.model)) !== JSON.stringify(spec.ownership?.hierarchyFilenames || [])) {
+      throw new Error("Prepared resident hierarchy coverage changed; rebuild the scenery bundle");
+    }
     return {manifest, models: new Set(models), placements: world.placements.filter(row => !included.has(sceneryPlacementId(row)))};
   }
 

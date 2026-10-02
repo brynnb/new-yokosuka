@@ -83,6 +83,8 @@ Object.assign(state, {scene, currentMeshes: [], currentLoadId: 0, currentTimeOfD
 try {
   state.allFiles = await (await fetchAsset("models.json")).json();
   const spec = preparedScenerySpec(world, state.allFiles);
+  if (spec.ownership) Object.assign(state, {currentSeason: spec.context.seasonIndex,
+    currentWeatherIndex: spec.context.weatherIndex, currentTimeOfDay: spec.context.timeOfDayIndex});
   const documents = [];
   for (const file of spec.policyFiles) {
     const bytes = await readFile(new URL(file, project));
@@ -130,6 +132,7 @@ try {
   prepareWorldCollision(state.currentMeshes, {nativeHorizontalCollision: Boolean(collision)});
   console.info(`[Scenery:${key}] Compiling geometry and shared textures`);
   const bundle = await compileSceneryBundle(state.currentMeshes, {fixedPlacementLayer: fixedLayer, modelTemplates: templates,
+    sceneryFilenames: spec.ownership ? spec.filenames : [], hierarchyFilenames: spec.ownership?.hierarchyFilenames || [],
     provenance: {key, contract: spec.contract, area: spec.zone,
       sources: [...sources].sort(([a], [b]) => a.localeCompare(b)).map(([file, hash]) => ({file, hash})), placements: audit}});
   await mkdir(output, {recursive: true});

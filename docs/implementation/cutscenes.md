@@ -31,6 +31,14 @@ another renderer or emulate the original game's full story-flag progression.
 The existing transport applies: Space advances five seconds; X ends the current
 scene and proceeds to the next. Runtime failures stop startup with an error.
 
+The local [prepared-scenery experiment](../guides/tooling/scenery-bundle-lab.md#intro-cutscenes)
+also covers all four opening scenes through the normal world loader: OP02 has
+one bundle, and the three OP00 scenes share another. Static scenery is prepared
+offline; generated scene-object/attachment owners and node masks retain native
+hierarchies, and seasonal surfaces remain independently controlled. Actor,
+camera, motion and audio preparation are unchanged. This remains opt-in via
+`/play/?scenery=prepared`, not a published production asset path.
+
 A character without `lastLoginAt` needs the opening. Multiplayer connects only
 after the opening and final world load, so the server's existing first-login
 timestamp is not written during a cinematic. Reloading an interrupted opening

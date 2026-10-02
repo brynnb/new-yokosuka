@@ -7,7 +7,7 @@ import { batchStaticWorldRoots, batchStaticSceneryLayer, immutableMt5Mesh } from
 import { isWorldMapFile } from "../WorldMapFiles.js";
 import {encodeModelTemplate, instantiateModelTemplate} from "./PreparedModelTemplates.js";
 
-export const SCENERY_BUNDLE_SCHEMA = "new-yokosuka-scenery-experiment-v3";
+export const SCENERY_BUNDLE_SCHEMA = "new-yokosuka-scenery-experiment-v4";
 const COLORS = ["diffuseColor", "ambientColor", "emissiveColor", "specularColor"];
 const MATERIAL = ["alpha", "backFaceCulling", "twoSidedLighting", "sideOrientation",
   "disableLighting", "specularPower", "maxSimultaneousLights", "useVertexColors",
@@ -101,16 +101,17 @@ function serialMetadata(mesh) {
 /**
  * Prepared rendering resources, intentionally not a gameplay save/export format.
  * Use unbatched resident map roots after shared visibility/surface preparation.
- * Root/layer identity survives; scripts and characters are excluded. A caller
+ * Root/layer identity survives; characters are excluded. A caller
  * may additionally supply one audited fixed-placement layer. This is explicit
  * permission for its direct children only, never a global placement exemption.
- * Rigid templates retain hierarchy and are never merged into static scenery.
+ * Rigid templates and explicitly controlled resident roots retain hierarchy
+ * and are never merged into static scenery. Scripts acquire them after loading.
  * The compiler mutates its disposable input scene. Production never calls it.
  */
 export async function compileSceneryBundle(roots, {
   signal, cellSize = 128, textureArrays = true, maxArrayLayers = 64,
   provenance = {}, yieldWork = () => new Promise(resolve => setTimeout(resolve, 0)),
-  fixedPlacementLayer = null, modelTemplates = [],
+  fixedPlacementLayer = null, modelTemplates = [], sceneryFilenames = [], hierarchyFilenames = [],
 } = {}) {
   if (!Number.isInteger(maxArrayLayers) || maxArrayLayers < 1 || maxArrayLayers > 256) {
     throw new Error("Invalid scenery texture array limit");
@@ -121,12 +122,20 @@ export async function compileSceneryBundle(roots, {
   const fixedPlacementRoots = new Set(fixedPlacementLayer?.getChildren() || []);
   modelTemplates = [...modelTemplates].sort((a, b) => a.model.localeCompare(b.model));
   if (new Set(modelTemplates.map(row => row.model)).size !== modelTemplates.length) throw new Error("Duplicate model templates");
-  const templateRoots = new Set(modelTemplates.flatMap(row => row.roots));
-  const allRoots = [...roots, ...templateRoots];
+  const approved = new Set(sceneryFilenames);
+  const preserved = new Set(hierarchyFilenames);
   for (const root of roots) {
-    if ((root !== fixedPlacementLayer && !isWorldMapFile(root._filename || ""))
+    if ((root !== fixedPlacementLayer && !isWorldMapFile(root._filename || "") && !approved.has(root._filename))
       || root._runtimePlacement || root._scheduledSceneObject) throw new Error(`Unapproved scenery root: ${root.name}`);
   }
+  for (const filename of preserved) if (roots.filter(root => root._filename === filename).length !== 1) {
+    throw new Error(`Expected one controlled scenery root: ${filename}`);
+  }
+  const residentRoots = roots;
+  const hierarchyRoots = roots.filter(root => preserved.has(root._filename));
+  roots = roots.filter(root => !preserved.has(root._filename));
+  const templateRoots = new Set([...modelTemplates.flatMap(row => row.roots), ...hierarchyRoots]);
+  const allRoots = [...roots, ...templateRoots];
   for (const root of fixedPlacementRoots) {
     if (!root._runtimePlacement || !root.metadata?.sceneryPlacement || !root.isEnabled(false)) {
       throw new Error(`Invalid fixed-placement root: ${root.name}`);
@@ -139,7 +148,7 @@ export async function compileSceneryBundle(roots, {
   const materials = [];
   const materialKeys = new Map();
   const materialRecords = new Map();
-  const originalCount = roots.reduce((sum, root) => sum + root.getChildMeshes().filter(m => m.getTotalVertices()).length, 0);
+  const originalCount = residentRoots.reduce((sum, root) => sum + root.getChildMeshes().filter(m => m.getTotalVertices()).length, 0);
   const rootMeshes = allRoots.map(root => {
     if (root.metadata?.staticBatchInputMeshCount !== undefined) throw new Error("Compile before static batching");
     return root.getChildMeshes().filter(mesh => mesh.getTotalVertices() > 0);
@@ -258,6 +267,10 @@ export async function compileSceneryBundle(roots, {
   let batches;
   try {
     batches = await batchStaticWorldRoots(roots, {signal, cellSize, yieldWork});
+    for (const root of roots) if (approved.has(root._filename) && !isWorldMapFile(root._filename)) {
+      batches.push({filename: root._filename,
+        ...await batchStaticSceneryLayer(root, {signal, cellSize, yieldWork})});
+    }
     if (fixedPlacementLayer) batches.push({layer: "fixed-placements",
       ...await batchStaticSceneryLayer(fixedPlacementLayer, {signal, cellSize, yieldWork, fixedPlacementRoots})});
   } finally {
@@ -274,6 +287,7 @@ export async function compileSceneryBundle(roots, {
   }
   const encodeMesh = mesh => ({
     name: mesh.name, properties: fields(mesh, MESH),
+    nonUniformScaling: mesh.nonUniformScaling,
     material: arrayMaterialIds.get(mesh.material) ?? materialRecords.get(mesh.material),
     nodeAddress: mesh._mt5NodeAddress ?? null,
     originalFaceIds: mesh._mt5OriginalFaceIds ? Array.from(mesh._mt5OriginalFaceIds) : null,
@@ -285,7 +299,7 @@ export async function compileSceneryBundle(roots, {
     const inverse = root.getWorldMatrix().clone().invert();
     return {
       filename: root._filename, name: root._filename || root.name, enabled: root.isEnabled(false),
-      matrix: root.getWorldMatrix().asArray(), metadata: serialMetadata(root),
+      matrix: root.getWorldMatrix().asArray(), nonUniformScaling: root.nonUniformScaling, metadata: serialMetadata(root),
       meshes: root.getChildMeshes().filter(mesh => mesh.getTotalVertices() > 0).map(mesh => ({
         ...encodeMesh(mesh), enabled: enabledWithinRoot(mesh, root),
         matrix: mesh.getWorldMatrix().multiply(inverse).asArray(),
@@ -293,11 +307,14 @@ export async function compileSceneryBundle(roots, {
     };
   });
   const templates = modelTemplates.map(row => encodeModelTemplate(row.model, row.roots, encodeMesh));
+  const hierarchies = hierarchyRoots.map(root => encodeModelTemplate(root._filename, [root], encodeMesh));
+  const hierarchyMeshes = hierarchyRoots.reduce((n, root) => n + root.getChildMeshes().filter(m => m.getTotalVertices()).length, 0);
   const binary = writer.finish();
   const manifest = {schema: SCENERY_BUNDLE_SCHEMA, provenance, cellSize,
     binaryBytes: binary.length, binaryHash: await digest(binary),
-    textures, arrays, materials, roots: records, templates,
-    statistics: {sourceMeshes: originalCount, outputMeshes: records.reduce((n, root) => n + root.meshes.length, 0),
+    textures, arrays, materials, roots: records, templates, hierarchies,
+    statistics: {sourceMeshes: originalCount, outputMeshes: records.reduce((n, root) => n + root.meshes.length, hierarchyMeshes),
+      hierarchyMeshes,
       uniqueTextures: textures.length, arrayGroups: arrays.length, arraySourceMeshes: assignments.length,
       modelTemplates: templates.length, templateMeshes: templates.reduce((n, t) => n + t.roots.reduce((sum, root) => sum + root.nodes.filter(node => node.mesh).length, 0), 0), batches}};
   return {manifest, binary};
@@ -401,13 +418,26 @@ export async function loadSceneryBundle(scene, manifest, binary, {signal} = {}) 
       root.setPreTransformMatrix(B.Matrix.FromArray(record.matrix));
       root.setEnabled(record.enabled);
       root.freezeWorldMatrix();
+      root._updateNonUniformScalingState(record.nonUniformScaling);
       for (const part of record.meshes) {
         const mesh = createMesh(part);
         mesh.parent = root;
         mesh.setPreTransformMatrix(B.Matrix.FromArray(part.matrix));
         mesh.setEnabled(part.enabled);
         mesh.freezeWorldMatrix();
+        // Babylon infers this from TRS scaling, not a pre-transform matrix.
+        // Flattened, frozen scenery must retain the source flag: both lighting
+        // shaders and picking normals need inverse-transpose for stretched
+        // parts. Controlled/moving roots use real hierarchical TRS instead.
+        mesh._updateNonUniformScalingState(part.nonUniformScaling);
       }
+      await new Promise(resolve => setTimeout(resolve, 0));
+    }
+    for (const record of manifest.hierarchies) {
+      // Keep native pivots and node-address lookup for AUTH, attachments and
+      // seasonal surface selectors. Do not flatten these transforms or batch
+      // them again when WorldLoader finishes loading the remaining owners.
+      roots.push(...instantiateModelTemplate(scene, record, createMesh, signal));
       await new Promise(resolve => setTimeout(resolve, 0));
     }
     signal?.throwIfAborted();

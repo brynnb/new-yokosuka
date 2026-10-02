@@ -4,7 +4,9 @@ import * as B from "@babylonjs/core";
 import {compileSceneryBundle, loadSceneryBundle} from "../src/rendering/PreparedSceneryBundle.js";
 import {freezeSceneRoots} from "../src/rendering/SceneResources.js";
 import {createWorldSpatialIndex} from "../src/rendering/SceneSpatialIndex.js";
-import {staticBatchSourceForFace} from "../src/rendering/StaticWorldBatching.js";
+import {staticBatchSourceForFace, batchStaticWorldRoots} from "../src/rendering/StaticWorldBatching.js";
+import {NativeAseqMapLayerRuntime} from "../play/events/NativeAseqMapLayerRuntime.js";
+import {updateModelVisibility} from "../src/variants.js";
 import {Mt5Loader, Mt5AlphaToCoverageMaterial} from "../src/Mt5Loader.js";
 import {buildAlphaAwareMipChain} from "../src/PvrDecoder.js";
 import {applyPlacementTransform} from "../play/world/PlacementRuntime.js";
@@ -35,6 +37,83 @@ function fixture(t) {
   };
   return {scene, root, make};
 }
+
+test("flattened unbatched scenery retains stretched normal transforms", async t => {
+  const {scene, root, make} = fixture(t);
+  const mesh = make("stretched-alpha", 0);
+  mesh.scaling.set(2, 1, 3);
+  mesh.rotation.x = 0.4;
+  mesh.material._mt5AlphaMode = "blend";
+  mesh.material.alpha = 0.5; // remains separate, unlike merged opaque parts
+  mesh.setVerticesData("normal", new Float32Array(Array.from({length: mesh.getTotalVertices()}, () => [1, 1, 1]).flat()));
+  freezeSceneRoots([root]);
+  const ray = new B.Ray(new B.Vector3(0, 5, 0), B.Vector3.Down(), 10);
+  const expected = scene.pickWithRay(ray).getNormal(true);
+  const packed = await compileSceneryBundle([root], {textureArrays: false});
+  root.dispose(false, true);
+  const bundle = await loadSceneryBundle(scene, packed.manifest, packed.binary);
+  assert.equal(bundle.roots[0].getChildMeshes()[0].nonUniformScaling, true);
+  assert.ok(B.Vector3.Distance(scene.pickWithRay(ray).getNormal(true), expected) < 1e-6);
+  bundle.dispose();
+});
+
+test("active seasonal surfaces stay independently switchable after preparation", async t => {
+  const {scene, root, make} = fixture(t);
+  root._filename = "S1_OP00_JIMENHAL.MT5";
+  const snow = make("snow", 0);
+  snow.metadata.mt5TextureId = "snow";
+  make("base-a", 0); make("base-b", 3);
+  const state = {scene, currentMeshes: [root], currentSeason: 1, currentVariantProfile: {
+    groups: [], surfaceGroups: [{assets: ["JIMENHAL"], type: "season", variants: [null, ["snow"]]}],
+  }};
+  updateModelVisibility(state);
+  freezeSceneRoots([root]);
+  const packed = await compileSceneryBundle([root], {sceneryFilenames: [root._filename], textureArrays: false});
+  assert.equal(packed.manifest.statistics.outputMeshes, 2, "base batches; enabled snow remains separate");
+  root.dispose(false, true);
+  const bundle = await loadSceneryBundle(scene, packed.manifest, packed.binary);
+  state.currentMeshes = bundle.roots;
+  const preparedSnow = bundle.roots[0].getChildMeshes().find(mesh => mesh.metadata.mt5TextureId === "snow");
+  for (const season of [0, 1, 0]) {
+    state.currentSeason = season;
+    updateModelVisibility(state);
+    assert.equal(preparedSnow.isEnabled(), season === 1);
+    assert.equal(bundle.roots[0].getChildMeshes().find(mesh => mesh !== preparedSnow).isEnabled(), true);
+  }
+  bundle.dispose();
+});
+
+test("controlled resident geometry preserves native selectors and survives later world batching", async t => {
+  const {scene, root, make} = fixture(t);
+  root._filename = "S1_OP02_MAP03.MT5";
+  root.metadata = {nativeOwner: "test"};
+  const masked = make("masked", 0);
+  make("retained", 3);
+  root._mt5Nodes = [{addr: 3344, mesh: masked, parentAddr: 0, flag: 8}];
+  freezeSceneRoots([root]);
+  const packed = await compileSceneryBundle([root], {hierarchyFilenames: [root._filename]});
+  assert.equal(packed.manifest.roots.length, 0);
+  assert.equal(packed.manifest.hierarchies.length, 1);
+  root.dispose(false, true);
+  const bundle = await loadSceneryBundle(scene, packed.manifest, packed.binary);
+  const loaded = bundle.roots[0];
+  assert.deepEqual(loaded.metadata, {nativeOwner: "test"});
+  assert.deepEqual(await batchStaticWorldRoots(bundle.roots), []);
+  const masks = new NativeAseqMapLayerRuntime({geometryMasks: [{browserFilename: loaded._filename, nodeAddress: 3344}]});
+  masks.load(bundle.roots);
+  assert.equal(loaded._mt5NodesByAddress.get(3344).mesh.isEnabled(), false);
+  assert.equal(loaded.getChildMeshes().find(mesh => mesh.name === "retained").isEnabled(), true);
+  masks.clear();
+  assert.equal(loaded._mt5NodesByAddress.get(3344).mesh.isEnabled(), true);
+  bundle.dispose();
+  // Cancellation after the last controlled root must clean it up too.
+  const counts = [scene.meshes.length, scene.transformNodes.length, scene.materials.length, scene.textures.length];
+  const controller = new AbortController();
+  const observer = scene.onNewMeshAddedObservable.add(() => controller.abort());
+  await assert.rejects(loadSceneryBundle(scene, packed.manifest, packed.binary, {signal: controller.signal}), /abort/i);
+  scene.onNewMeshAddedObservable.remove(observer);
+  assert.deepEqual([scene.meshes.length, scene.transformNodes.length, scene.materials.length, scene.textures.length], counts);
+});
 
 test("prepared doors share geometry but retain independent native pivots, picks and lifetime", async t => {
   const {scene, root, make} = fixture(t);
