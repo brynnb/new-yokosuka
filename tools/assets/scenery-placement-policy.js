@@ -7,6 +7,22 @@ export function sceneryPlacementId(placement) {
     Number.isInteger(runtime.staticVariantIndex) ? `:variant-${runtime.staticVariantIndex}` : ""}`);
 }
 
+// These owners animate rigid native hierarchy nodes, never deform vertices.
+// Admit a model only if every placement of it uses that supported contract.
+export function preparedPlacementModels(placements) {
+  const groups = Map.groupBy(placements, placement => placement.model);
+  return [...groups].filter(([, rows]) => new Set(rows.map(row => JSON.stringify([
+    row.assetFile, row.texturePackFile, row.texturePackModel,
+  ]))).size === 1 && rows.every(placement => {
+    const runtime = placement.runtime || {};
+    const behavior = jomoObjectBehavior(placement.model, runtime.objectTag, runtime);
+    return ["d000-door", "vending-machine"].includes(behavior.kind)
+      && !runtime.authoredMovementFile && !runtime.authoredMovement?.length
+      && !runtime.stateDependent && !runtime.inactiveBelowMap
+      && !behavior.ambientAnimation && !behavior.stateTransitionAnimation;
+  })).map(([model]) => model).sort();
+}
+
 /**
  * Conservative D000 experiment policy, not a generic "kind:none means static"
  * rule. MAPINFO type-1 proxies and independently audited passive fixtures are

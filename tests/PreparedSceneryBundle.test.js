@@ -7,6 +7,8 @@ import {createWorldSpatialIndex} from "../src/rendering/SceneSpatialIndex.js";
 import {staticBatchSourceForFace} from "../src/rendering/StaticWorldBatching.js";
 import {Mt5Loader} from "../src/Mt5Loader.js";
 import {applyPlacementTransform} from "../play/world/PlacementRuntime.js";
+import {DoorInteractions} from "../play/interactions/DoorInteractions.js";
+import {clearWorldSceneAssets} from "../src/rendering/SceneResources.js";
 
 function fixture(t) {
   const engine = new B.NullEngine();
@@ -33,6 +35,55 @@ function fixture(t) {
   return {scene, root, make};
 }
 
+test("prepared doors share geometry but retain independent native pivots, picks and lifetime", async t => {
+  const {scene, root, make} = fixture(t);
+  // Babylon creates this scene-owned material lazily during picking.
+  void scene.defaultMaterial;
+  const counts = [scene.meshes.length, scene.transformNodes.length, scene.materials.length, scene.textures.length];
+  const panel = new B.TransformNode("door-pivot", scene);
+  panel.parent = root;
+  panel.position.x = 0.8;
+  const leaf = make("door-leaf", 0);
+  leaf.parent = panel;
+  root._mt5Nodes = [{addr: 64, flag: 8, parentAddr: 0, rot: {x: 0, y: 0, z: 0}, mesh: panel}];
+  panel._mt5Node = root._mt5Nodes[0];
+  const originalIndices = [...leaf.getIndices()];
+  const packed = await compileSceneryBundle([], {modelTemplates: [{model: "door.MT5", roots: [root]}], yieldWork: async () => {}});
+  root.dispose(false, true);
+  const bundle = await loadSceneryBundle(scene, packed.manifest, packed.binary);
+  const [first] = bundle.instantiate("door.MT5");
+  const [second] = bundle.instantiate("door.MT5");
+  second.position.x = 3;
+  const a = first.getChildMeshes()[0], b = second.getChildMeshes()[0];
+  assert.equal(a.geometry, b.geometry);
+  assert.equal(a.material, b.material);
+  assert.notEqual(first._mt5Nodes[0], second._mt5Nodes[0]);
+  assert.equal(first._mt5Nodes[0].mesh.position.x, 0.8);
+  const doors = new DoorInteractions({signedRenderKey: node => node.flag, getActorPosition: () => B.Vector3.Zero(),
+    setMetadata(node, key, value) { node.metadata = {...node.metadata, [key]: value}; }});
+  const door = doors.registerHinged(first, {});
+  const other = doors.registerHinged(second, {});
+  first.computeWorldMatrix(true); second.computeWorldMatrix(true);
+  const ray = new B.Ray(new B.Vector3(3.8, 10, 0), B.Vector3.Down(), 20);
+  assert.equal(scene.pickWithRay(ray, mesh => mesh === b).hit, true);
+  doors.toggle(door); doors.update(1);
+  assert.equal(door.state, "open");
+  assert.equal(other.state, "closed");
+  assert.equal(second._mt5Nodes[0].mesh.rotationQuaternion, null);
+  assert.notEqual(first._mt5Nodes[0].mesh.rotationQuaternion, null);
+  assert.deepEqual([...b.getIndices()], originalIndices);
+  first.dispose(false, false);
+  assert.equal(b.geometry.isDisposed(), false);
+  assert.equal(scene.pickWithRay(ray, mesh => mesh === b).hit, true);
+  const state = {currentMeshes: [second], preparedSceneryResources: bundle};
+  clearWorldSceneAssets(state);
+  bundle.dispose();
+  assert.equal(state.preparedSceneryResources, null);
+  assert.deepEqual([scene.meshes.length, scene.transformNodes.length + 1, scene.materials.length, scene.textures.length], counts,
+    scene.materials.map(material => material.name).join(","));
+  assert.throws(() => bundle.instantiate("door.MT5"), /disposed/);
+});
+
 test("prepared scenery deduplicates resources and round-trips geometry, layers and original picks", async t => {
   const {scene, root, make} = fixture(t);
   make("floor-a", 0); make("floor-b", 3);
@@ -58,6 +109,38 @@ test("prepared scenery deduplicates resources and round-trips geometry, layers a
   assert.equal(after.hit, true, "children of an inactive layer must reappear with it");
   assert.ok(B.Vector3.Distance(before.pickedPoint, after.pickedPoint) < 1e-6);
   assert.equal(staticBatchSourceForFace(after.pickedMesh, after.faceId).meshName, "floor-b");
+});
+
+test("prepared model failures and cancellation clean partial instances without damaging existing copies", async t => {
+  const {scene, root, make} = fixture(t);
+  make("first", 0); make("last", 3);
+  const packed = await compileSceneryBundle([], {modelTemplates: [{model: "door.MT5", roots: [root]}]});
+  root.dispose(false, true);
+  const baseline = [scene.meshes.length, scene.transformNodes.length, scene.materials.length, scene.textures.length];
+  const controller = new AbortController();
+  const bundle = await loadSceneryBundle(scene, packed.manifest, packed.binary, {signal: controller.signal});
+  const [existing] = bundle.instantiate("door.MT5");
+  const nodeCounts = [scene.meshes.length, scene.transformNodes.length];
+  const records = packed.manifest.templates[0].roots[0].nodes;
+  const lastParent = records.at(-1).parent;
+  records.at(-1).parent = records.length;
+  assert.throws(() => bundle.instantiate("door.MT5"), /hierarchy/);
+  records.at(-1).parent = lastParent;
+  assert.deepEqual([scene.meshes.length, scene.transformNodes.length], nodeCounts);
+  let created = 0;
+  // Babylon defers its mesh-added observable; interrupt actual construction to
+  // exercise cancellation after the final node, before an instance is returned.
+  const addMesh = scene.addMesh.bind(scene);
+  t.mock.method(scene, "addMesh", (...args) => {
+    addMesh(...args);
+    if (++created === 2) controller.abort();
+  });
+  assert.throws(() => bundle.instantiate("door.MT5"), /abort/i);
+  assert.deepEqual([scene.meshes.length, scene.transformNodes.length], nodeCounts);
+  assert.ok(existing.getChildMeshes().every(mesh => !mesh.geometry.isDisposed()));
+  assert.throws(() => bundle.instantiate("door.MT5"), /abort/i);
+  bundle.dispose();
+  assert.deepEqual([scene.meshes.length, scene.transformNodes.length, scene.materials.length, scene.textures.length], baseline);
 });
 
 test("opaque textures share batches without collapsing independent roots", async t => {

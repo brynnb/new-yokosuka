@@ -8,6 +8,8 @@
     "docs:check": "node scripts/check-documentation.mjs",
     "tools:check": "node scripts/check-tools.mjs",
     "lab:scenery": "node tools/assets/scenery-bundle-lab.mjs",
+    "build:scenery": "node tools/assets/build-scenery-bundle.mjs",
+    "test:scenery-models": "node scripts/testing/run-tests.mjs script tools/assets/validate-prepared-models.mjs",
     "postinstall": "node scripts/prepare-emulatorjs.mjs",
     "prepare:arcade": "node scripts/prepare-emulatorjs.mjs",
     "build:scheduled-actors": "node tools/actors/build_play_scheduled_actor_shards.mjs",

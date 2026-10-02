@@ -1,25 +1,39 @@
 # Prepared scenery experiment
 
 This local Dobuita experiment compiles decoded map scenery and audited fixed
-placements into a ready-to-render bundle. Normal gameplay is unchanged unless
+placements into a ready-to-render bundle, with reusable rigid models for doors
+and vending machines. Normal gameplay is unchanged unless
 the local prepared-scenery option is selected. It does not publish assets.
 The purpose is to test whether fewer independently drawn pieces reduce CPU work
 without changing the scene's appearance.
 
 ## Test in the actual game
 
-After building the bundle once as described below, run `npm run dev:all` and
+Run `npm run dev:all`, then build the bundle from a second terminal:
+
+```sh
+npm run build:scenery
+```
+
+This command uses the normal decoders with Babylon's non-rendering `NullEngine`;
+it does not open a browser. It reads assets from the running local Vite server.
+Set `SCENERY_ASSET_ORIGIN` if that server uses a port other than 5173.
+Output goes to `.disc-work/scenery-bundle/world.json` and `world.bin` (Git-ignored).
+
+Then
 open <http://127.0.0.1:5173/play/?scenery=prepared> (use your configured Vite
 port). Enter the world and travel to Dobuita. Its map and approved fixed objects
-load from the prepared bundle; NPCs, doors, shutters, interactions, and other
-worlds keep their normal gameplay owners. Without `scenery=prepared`, the game
+load from the prepared bundle. Its doors and vending machines instantiate
+prepared model templates, retaining independent pivots, picking and gameplay
+state. NPCs, shutters, interactions, and other worlds keep their normal gameplay
+owners. Without `scenery=prepared`, the game
 uses its ordinary asset loader. The option is restricted to local development.
 Travel releases the bundle's geometry, materials, and textures normally.
 Changed placement or schedule inputs require rebuilding rather than silently
 loading a stale bundle. The dev server reads the ignored bundle directly;
 production builds do not include it.
 
-## Build and compare scenery
+## Optional scenery-only comparison lab
 
 Install the normal client dependencies and configure
 [runtime assets](../runtime-assets.md), then run from the repository root:
@@ -72,6 +86,11 @@ Only one scene and one test workload run at a time.
   excludes every runtime placement; only this compiler grants explicit approval.
 - Original face ranges and picking bounds survive batching. Geometry is flattened
   for rendering, not for interactive model-hierarchy inspection.
+- Rigid templates keep their original hierarchy and native render keys. Repeated
+  copies share geometry, textures and materials, but never their transforms or
+  interaction state. Door leaves are not merged into buildings. The normal
+  placement owner registers doors and vending machines without parsing those
+  models again; it also skips their redundant raw-asset prefetches.
 - Loading the bundle uploads ready geometry and textures. It does not parse MT5
   models or merge meshes again. A schema and binary SHA-256 detect stale/mixed or
   corrupted output. Input model/texture-pack hashes are recorded in the manifest.
@@ -92,9 +111,10 @@ catalog, and the existing source-backed passive-fixture evidence. It covers all
 | --- | --- |
 | 55 MAPINFO type-1 doorway/collision proxies | Include as fixed scenery, preserving collision roles |
 | HDCA, the parked pink van | Include: passive, root-only geometry; three matching native captures and only one initial enable call |
-| 65 type-2 door leaves | Keep under the door interaction owner |
+| 65 type-2 door leaves | Use prepared templates; keep under the door interaction owner |
 | 13 BN shop-decoration records | Keep separate: the native shutter table pairs these with BS objects; no direct transform call is not proof of independent visibility |
-| 20 other props | Keep separate: interactions, animation, state, or travel ownership |
+| 5 vending machines | Use prepared templates; keep under the vending interaction owner |
+| 15 other props | Keep separate: interactions, animation, state, or travel ownership |
 | 16 scheduled BS shutters | Keep under the clock/schedule owner |
 
 In particular, CAR7 has `behavior.kind: "none"` but `stateDependent: true` and
@@ -115,9 +135,35 @@ Sources and producing tools:
 The bundle records every included/excluded placement and its reason, plus hashes
 of policy input files and decoded model/texture inputs. Changes to placement or
 ownership evidence make the lab reject stale output and ask for a rebuild.
-Experimental schema v2 replaces the earlier map-only bundle; rebuild it once.
+Experimental schema v3 includes rigid model templates; rebuild older bundles.
+Admission requires all placements of a model to use the same source/texture
+identity and a supported rigid owner. Authored animation, scripts, hidden-state
+records, characters, and unreviewed owners are not assumed safe for sharing.
 
-## Rendered evidence
+## Prepared-model checks (v3)
+
+With the local asset server running and the bundle built:
+
+```sh
+npm run test:scenery-models
+```
+
+This sequential, non-rendering check loads all 35 original models and compares
+their vertex buffers, native render keys and world transforms with all 70
+prepared placements, plus decoded texture pixels, sampler and surface settings.
+It exercises the actual placement registration and door
+pose methods, checks that opening each door leaves other copies unchanged, and
+checks cleanup against baseline resource counts.
+
+The current Dobuita output replaces 407 per-placement geometry copies with 257
+shared geometries. The scenery portion remains 524 meshes; templates add about
+1 MiB of binary data, bringing the binary to 32,159,528 bytes and the shared
+texture catalog to 259 entries. This is a loading/memory improvement, not mesh
+instancing or a claim of fewer door draw calls. These checks passed, along with
+focused cancellation and failure-cleanup tests. Fresh rendered verification of
+the v3 templates remains outstanding; the browser tool was unavailable for it.
+
+## Earlier scenery-only rendered evidence (v2)
 
 Local Chromium development run, 1440×900 viewport and 1440×770 canvas, standard
 resolution, MSAA 4×, native Dobuita point lights, no NPCs or gameplay. Original
@@ -154,7 +200,7 @@ and original placement identity. This includes the nonuniform scales in the
 MAPINFO proxy records; these objects are not incorrectly converted into terrain.
 These are bounded checks, not proof covering every position or device.
 
-## Boundary before gameplay adoption
+## Boundaries before wider rollout
 
 This proves a useful scenery-rendering reduction, **not** a full-game FPS result.
 The lab excludes NPCs, player animation, the 98 retained runtime props/doors,
@@ -163,10 +209,11 @@ placements. Their ownership must remain separate when integrating a bundle;
 they must not be baked into static scenery.
 In particular, this does not prove door interactions or character movement.
 
-The next integration should be an opt-in Dobuita loader using this bundle for
-static map roots and approved fixed placements, filtering those exact placement
-IDs from the ordinary loader to avoid drawing them twice. Retain the existing
-owners for everything else. Verify
+The opt-in Dobuita loader is integrated and filters the approved fixed-placement
+IDs from the ordinary loader to avoid drawing them twice. The v3 loader also
+prepares 70 of the 98 retained placements; the other 28 and all 16 scheduled
+shutters still use their original asset path. Existing gameplay owners remain
+authoritative throughout. Verify
 real gameplay, loading cancellation/cleanup, cache versioning, lighting, travel,
 interactions, and low-end hardware before changing the default loader. Keep the
 original parser for individual-model inspection and producing bundles. A robust
@@ -175,7 +222,7 @@ cross-device bundle format and publication pipeline are separate follow-up work.
 Focused automated checks:
 
 ```sh
-npm test -- tests/PreparedSceneryBundle.test.js tests/StaticWorldBatching.test.js tests/PvrMipmaps.test.js tests/SceneAssets.test.js tests/SceneryPlacementPolicy.test.js tests/PlacementRuntime.test.js
+npm test -- tests/PreparedSceneryBundle.test.js tests/PreparedSceneryRuntime.test.js tests/StaticWorldBatching.test.js tests/PvrMipmaps.test.js tests/SceneAssets.test.js tests/SceneryPlacementPolicy.test.js tests/PlacementRuntime.test.js tests/DoorInteractions.test.js
 ```
 
 These cover resource deduplication, reproducible fixture output, independent

@@ -5,8 +5,9 @@ import { SceneStandardMaterial } from "./SceneStandardMaterial.js";
 import { SceneryTextureArrayMaterial } from "./SceneryTextureArrayMaterial.js";
 import { batchStaticWorldRoots, batchStaticSceneryLayer, immutableMt5Mesh } from "./StaticWorldBatching.js";
 import { isWorldMapFile } from "../WorldMapFiles.js";
+import {encodeModelTemplate, instantiateModelTemplate} from "./PreparedModelTemplates.js";
 
-export const SCENERY_BUNDLE_SCHEMA = "new-yokosuka-scenery-experiment-v2";
+export const SCENERY_BUNDLE_SCHEMA = "new-yokosuka-scenery-experiment-v3";
 const COLORS = ["diffuseColor", "ambientColor", "emissiveColor", "specularColor"];
 const MATERIAL = ["alpha", "backFaceCulling", "twoSidedLighting", "sideOrientation",
   "disableLighting", "specularPower", "maxSimultaneousLights", "useVertexColors",
@@ -98,17 +99,18 @@ function serialMetadata(mesh) {
 }
 
 /**
- * A scene-only prototype, intentionally not a gameplay save/export format.
+ * Prepared rendering resources, intentionally not a gameplay save/export format.
  * Use unbatched resident map roots after shared visibility/surface preparation.
  * Root/layer identity survives; scripts and characters are excluded. A caller
  * may additionally supply one audited fixed-placement layer. This is explicit
  * permission for its direct children only, never a global placement exemption.
+ * Rigid templates retain hierarchy and are never merged into static scenery.
  * The compiler mutates its disposable input scene. Production never calls it.
  */
 export async function compileSceneryBundle(roots, {
   signal, cellSize = 128, textureArrays = true, maxArrayLayers = 64,
   provenance = {}, yieldWork = () => new Promise(resolve => setTimeout(resolve, 0)),
-  fixedPlacementLayer = null,
+  fixedPlacementLayer = null, modelTemplates = [],
 } = {}) {
   if (!Number.isInteger(maxArrayLayers) || maxArrayLayers < 1 || maxArrayLayers > 256) {
     throw new Error("Invalid scenery texture array limit");
@@ -117,6 +119,10 @@ export async function compileSceneryBundle(roots, {
     : String(a._filename || a.name).localeCompare(String(b._filename || b.name)));
   if (fixedPlacementLayer && !roots.includes(fixedPlacementLayer)) throw new Error("Missing fixed-placement layer");
   const fixedPlacementRoots = new Set(fixedPlacementLayer?.getChildren() || []);
+  modelTemplates = [...modelTemplates].sort((a, b) => a.model.localeCompare(b.model));
+  if (new Set(modelTemplates.map(row => row.model)).size !== modelTemplates.length) throw new Error("Duplicate model templates");
+  const templateRoots = new Set(modelTemplates.flatMap(row => row.roots));
+  const allRoots = [...roots, ...templateRoots];
   for (const root of roots) {
     if ((root !== fixedPlacementLayer && !isWorldMapFile(root._filename || ""))
       || root._runtimePlacement || root._scheduledSceneObject) throw new Error(`Unapproved scenery root: ${root.name}`);
@@ -134,7 +140,7 @@ export async function compileSceneryBundle(roots, {
   const materialKeys = new Map();
   const materialRecords = new Map();
   const originalCount = roots.reduce((sum, root) => sum + root.getChildMeshes().filter(m => m.getTotalVertices()).length, 0);
-  const rootMeshes = roots.map(root => {
+  const rootMeshes = allRoots.map(root => {
     if (root.metadata?.staticBatchInputMeshCount !== undefined) throw new Error("Compile before static batching");
     return root.getChildMeshes().filter(mesh => mesh.getTotalVertices() > 0);
   });
@@ -148,7 +154,7 @@ export async function compileSceneryBundle(roots, {
         throw new Error(`Runtime-owned scenery: ${mesh.name}`);
       }
     }
-    if (mesh.skeleton || mesh.morphTargetManager || !mesh.isWorldMatrixFrozen
+    if (mesh.skeleton || mesh.morphTargetManager || (!mesh.isWorldMatrixFrozen && ![...templateRoots].some(root => mesh.isDescendantOf(root)))
       || mesh.subMeshes.length !== 1 || mesh.getVerticesDataKinds().some(kind => !["position", "normal", "uv", "uv2", "color"].includes(kind))) {
       throw new Error(`Non-static or unsupported scenery: ${mesh.name}`);
     }
@@ -257,7 +263,7 @@ export async function compileSceneryBundle(roots, {
   } finally {
     // Replaced source materials no longer have mesh owners. Dispose them even
     // if batching was cancelled; the caller owns the remaining scene roots.
-    const used = new Set(roots.flatMap(root => root.getChildMeshes().map(mesh => mesh.material)));
+    const used = new Set(allRoots.flatMap(root => root.getChildMeshes().map(mesh => mesh.material)));
     const candidates = new Set();
     for (const material of [...materialRecords.keys(), ...arrayMaterialIds.keys()]) {
       for (const texture of material.getActiveTextures()) candidates.add(texture);
@@ -266,29 +272,34 @@ export async function compileSceneryBundle(roots, {
     for (const material of used) for (const texture of material?.getActiveTextures() || []) candidates.delete(texture);
     for (const texture of candidates) texture.dispose();
   }
+  const encodeMesh = mesh => ({
+    name: mesh.name, properties: fields(mesh, MESH),
+    material: arrayMaterialIds.get(mesh.material) ?? materialRecords.get(mesh.material),
+    nodeAddress: mesh._mt5NodeAddress ?? null,
+    originalFaceIds: mesh._mt5OriginalFaceIds ? Array.from(mesh._mt5OriginalFaceIds) : null,
+    metadata: serialMetadata(mesh), alphaToCoverage: mesh._mt5AlphaToCoverage === true,
+    vertices: Object.fromEntries(mesh.getVerticesDataKinds().map(kind => [kind, writer.add(new Float32Array(mesh.getVerticesData(kind)))])),
+    indices: writer.add(new Uint32Array(mesh.getIndices())),
+  });
   const records = roots.map(root => {
     const inverse = root.getWorldMatrix().clone().invert();
     return {
       filename: root._filename, name: root._filename || root.name, enabled: root.isEnabled(false),
       matrix: root.getWorldMatrix().asArray(), metadata: serialMetadata(root),
       meshes: root.getChildMeshes().filter(mesh => mesh.getTotalVertices() > 0).map(mesh => ({
-        name: mesh.name, enabled: enabledWithinRoot(mesh, root), properties: fields(mesh, MESH),
+        ...encodeMesh(mesh), enabled: enabledWithinRoot(mesh, root),
         matrix: mesh.getWorldMatrix().multiply(inverse).asArray(),
-        material: arrayMaterialIds.get(mesh.material) ?? materialRecords.get(mesh.material),
-        nodeAddress: mesh._mt5NodeAddress ?? null,
-        originalFaceIds: mesh._mt5OriginalFaceIds ? Array.from(mesh._mt5OriginalFaceIds) : null,
-        metadata: serialMetadata(mesh), alphaToCoverage: mesh._mt5AlphaToCoverage === true,
-        vertices: Object.fromEntries(mesh.getVerticesDataKinds().map(kind => [kind, writer.add(new Float32Array(mesh.getVerticesData(kind)))])),
-        indices: writer.add(new Uint32Array(mesh.getIndices())),
       })),
     };
   });
+  const templates = modelTemplates.map(row => encodeModelTemplate(row.model, row.roots, encodeMesh));
   const binary = writer.finish();
   const manifest = {schema: SCENERY_BUNDLE_SCHEMA, provenance, cellSize,
     binaryBytes: binary.length, binaryHash: await digest(binary),
-    textures, arrays, materials, roots: records,
+    textures, arrays, materials, roots: records, templates,
     statistics: {sourceMeshes: originalCount, outputMeshes: records.reduce((n, root) => n + root.meshes.length, 0),
-      uniqueTextures: textures.length, arrayGroups: arrays.length, arraySourceMeshes: assignments.length, batches}};
+      uniqueTextures: textures.length, arrayGroups: arrays.length, arraySourceMeshes: assignments.length,
+      modelTemplates: templates.length, templateMeshes: templates.reduce((n, t) => n + t.roots.reduce((sum, root) => sum + root.nodes.filter(node => node.mesh).length, 0), 0), batches}};
   return {manifest, binary};
 }
 
@@ -300,7 +311,9 @@ export async function loadSceneryBundle(scene, manifest, binary, {signal} = {}) 
   if (manifest.arrays.length && (scene.getEngine().webGLVersion < 2 || scene.getEngine().isWebGPU)) {
     throw new Error("Experimental scenery texture arrays require WebGL 2");
   }
-  const ownedTextures = [], ownedMaterials = [], roots = [];
+  const ownedTextures = [], ownedMaterials = [], roots = [], instanceRoots = [];
+  const templateGeometries = new Map();
+  let disposed = false;
   const textures = new Map();
   const textureFor = id => {
     if (textures.has(id)) return textures.get(id);
@@ -351,6 +364,25 @@ export async function loadSceneryBundle(scene, manifest, binary, {signal} = {}) 
       return material;
     };
     const coverage = new Mt5Loader(scene);
+    const createMesh = (part, shared = false) => {
+      const mesh = new B.Mesh(part.name, scene);
+      try {
+        const geometry = shared && templateGeometries.get(part);
+        if (geometry && !geometry.isDisposed()) geometry.applyToMesh(mesh);
+        else {
+          for (const [kind, span] of Object.entries(part.vertices)) mesh.setVerticesData(kind, readSpan(binary, span), false);
+          mesh.setIndices(readSpan(binary, part.indices));
+          if (shared) templateGeometries.set(part, mesh.geometry);
+        }
+        Object.assign(mesh, part.properties);
+        mesh.metadata = restoreMetadata(part.metadata);
+        mesh._mt5NodeAddress = part.nodeAddress;
+        mesh._mt5OriginalFaceIds = part.originalFaceIds;
+        mesh.material = materialFor(part.material);
+        if (part.alphaToCoverage) coverage.configureAlphaToCoverage(mesh, "alphatest");
+        return mesh;
+      } catch (error) { mesh.dispose(false, false); throw error; }
+    };
     for (const record of manifest.roots) {
       signal?.throwIfAborted();
       const root = new B.TransformNode(record.name, scene);
@@ -361,25 +393,28 @@ export async function loadSceneryBundle(scene, manifest, binary, {signal} = {}) 
       root.setEnabled(record.enabled);
       root.freezeWorldMatrix();
       for (const part of record.meshes) {
-        const mesh = new B.Mesh(part.name, scene);
+        const mesh = createMesh(part);
         mesh.parent = root;
-        for (const [kind, span] of Object.entries(part.vertices)) mesh.setVerticesData(kind, readSpan(binary, span), false);
-        mesh.setIndices(readSpan(binary, part.indices));
         mesh.setPreTransformMatrix(B.Matrix.FromArray(part.matrix));
-        Object.assign(mesh, part.properties);
-        mesh.metadata = restoreMetadata(part.metadata);
-        mesh._mt5NodeAddress = part.nodeAddress;
-        mesh._mt5OriginalFaceIds = part.originalFaceIds;
-        mesh.material = materialFor(part.material);
         mesh.setEnabled(part.enabled);
         mesh.freezeWorldMatrix();
-        if (part.alphaToCoverage) coverage.configureAlphaToCoverage(mesh, "alphatest");
       }
       await new Promise(resolve => setTimeout(resolve, 0));
     }
     signal?.throwIfAborted();
-    return {roots, dispose() {
-      for (const root of roots) root.dispose(false, false);
+    const templates = new Map(manifest.templates.map(template => [template.model, template]));
+    return {roots, hasModel: model => templates.has(model), instantiate(model) {
+      if (disposed) throw new Error("Prepared bundle is disposed");
+      const template = templates.get(model);
+      if (!template) throw new Error(`Missing prepared model: ${model}`);
+      const instances = instantiateModelTemplate(scene, template, part => createMesh(part, true), signal);
+      instanceRoots.push(...instances);
+      return instances;
+    }, dispose() {
+      if (disposed) return;
+      disposed = true;
+      for (const root of [...roots, ...instanceRoots]) root.dispose(false, false);
+      for (const geometry of templateGeometries.values()) geometry.dispose();
       for (const material of ownedMaterials) material?.dispose();
       for (const texture of ownedTextures) texture.dispose();
     }};

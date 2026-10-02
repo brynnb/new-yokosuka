@@ -149,7 +149,8 @@ export class WorldLoader {
     const prefetchController = new AbortController();
     const prefetchSignal = signal
       ? AbortSignal.any([signal, prefetchController.signal]) : prefetchController.signal;
-    const placementData = capture(this.placementRuntime.prefetch?.(placements, prefetchSignal));
+    const placementData = capture(this.placementRuntime.prefetch?.(
+      preparedPlan ? placements.filter(row => !preparedPlan.models.has(row.model)) : placements, prefetchSignal));
     const actorData = capture(this.scheduledActors.prefetch?.(scheduledActorDefinitions, world.id, prefetchSignal));
     const collisionData = capture(loadNativeCollisionDefinitionForWorld(world));
     try {
@@ -238,6 +239,7 @@ export class WorldLoader {
         placements,
         () => progress.advance(),
         world.id,
+        {signal, preparedModels: preparedPlan ? this.state.preparedSceneryResources : null},
       );
       ensureActive(signal);
       await this.scheduledSceneObjects?.load(

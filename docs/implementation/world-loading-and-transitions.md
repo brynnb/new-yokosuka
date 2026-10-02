@@ -157,6 +157,22 @@ until world disposal, including after cancellation and replay.
 
 ### Download reuse and optional preparation
 
+Local `/play/?scenery=prepared` opts Dobuita into the experimental prepared
+bundle. `PreparedSceneryRuntime` validates its schema and placement-policy inputs,
+loads the prebuilt scenery, and removes only the audited fixed placements from
+the ordinary placement list. `PlacementRuntime` also consumes rigid templates
+for eligible doors and vending machines: copies share vertex buffers and
+materials while keeping independent native pivots, transforms and interactions.
+Their raw-model prefetches are skipped. Characters, scheduled shutters and
+other gameplay owners retain their existing paths. Shared materials must remain
+unfrozen so each copy binds its own transform and lighting correctly.
+
+The bundle is owned by the world session; failed or cancelled assembly drains
+before teardown, and disposal releases all copies and shared resources. This
+is a local experiment, not a published asset format or a production default.
+See [prepared scenery tooling](../guides/tooling/scenery-bundle-lab.md) for
+building, validation, measured evidence and remaining rollout checks.
+
 `src/AssetCache.js` coalesces binary asset requests across consumers, runs at
 most four downloads at once, retries a transient failure once, and bounds each
 attempt to 30 seconds. One cancelled subscriber does not cancel another's

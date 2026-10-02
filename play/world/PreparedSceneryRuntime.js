@@ -1,7 +1,7 @@
 import {loadSceneryBundle, SCENERY_BUNDLE_SCHEMA} from "../../src/rendering/PreparedSceneryBundle.js";
 import {readSceneResource, runSceneLoad} from "../../src/rendering/SceneAssets.js";
 import {updateModelVisibility} from "../../src/variants.js";
-import {auditFixedSceneryPlacements, sceneryPlacementId} from "../../tools/assets/scenery-placement-policy.js";
+import {auditFixedSceneryPlacements, sceneryPlacementId, preparedPlacementModels} from "../../tools/assets/scenery-placement-policy.js";
 import {ScheduledSceneObjectCatalog} from "./ScheduledSceneObjectCatalog.js";
 
 const POLICY_FILES = ["play/data/d000-runtime-placements.json",
@@ -47,7 +47,11 @@ export class PreparedSceneryRuntime {
       throw new Error("Gameplay placement ownership changed; rebuild the scenery bundle");
     }
     const included = new Set(audit.rows.filter(row => row.included).map(row => row.id));
-    return {manifest, placements: world.placements.filter(row => !included.has(sceneryPlacementId(row)))};
+    const models = preparedPlacementModels(world.placements);
+    if (JSON.stringify(manifest.templates.map(row => row.model)) !== JSON.stringify(models)) {
+      throw new Error("Prepared model coverage changed; rebuild the scenery bundle");
+    }
+    return {manifest, models: new Set(models), placements: world.placements.filter(row => !included.has(sceneryPlacementId(row)))};
   }
 
   async load({world, composition, manifest, signal, additionalProgressTotal, onProgress}) {
@@ -59,7 +63,7 @@ export class PreparedSceneryRuntime {
       const bundle = await loadSceneryBundle(state.scene, manifest, bytes, {signal});
       if (cancelled()) { bundle.dispose(); return false; }
       state.preparedSceneryResources = bundle;
-      state.currentMeshes = bundle.roots;
+      state.currentMeshes = [...bundle.roots];
       state.singleModelMode = false;
       state.currentZone = composition.source;
       state.currentScenePrefix = world.prefix;

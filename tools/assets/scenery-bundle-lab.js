@@ -21,7 +21,7 @@ import { configureMt5TexturePack } from "../../play/assets/configureMt5TexturePa
 import { Mt5Loader } from "../../src/Mt5Loader.js";
 import { runtimeAssetGroup } from "../../src/RuntimeAssets.js";
 import { fetchAssetBuffer } from "../../src/AssetCache.js";
-import { auditFixedSceneryPlacements, sceneryPlacementId } from "./scenery-placement-policy.js";
+import { auditFixedSceneryPlacements, sceneryPlacementId, preparedPlacementModels } from "./scenery-placement-policy.js";
 import { ScheduledSceneObjectCatalog } from "../../play/world/ScheduledSceneObjectCatalog.js";
 
 const status = document.querySelector("#status");
@@ -49,7 +49,7 @@ const views = [
 let index, loaded, controller;
 let sourceFilenames = [];
 let sourceTextures = [];
-let placementAudit, fixedRoots = [], placementInputs = new Map();
+let placementAudit, fixedRoots = [], templateRoots = [], placementInputs = new Map();
 const placementAssets = new PlacementRuntime({scene,
   bundledModels: runtimeAssetGroup("play/assets/dobuita/*.CHRM"),
   bundledTextures: runtimeAssetGroup("play/assets/dobuita/*_textures.bin"),
@@ -70,7 +70,29 @@ async function placementPlan(signal) {
   const [manifest, scheduled, fixtures] = documents;
   const audit = auditFixedSceneryPlacements(manifest.placements,
     new ScheduledSceneObjectCatalog(scheduled).definitions("dobuita"), fixtures);
-  return {audit, inputs, placements: manifest.placements.filter((_, i) => audit.rows[i].included)};
+  return {audit, inputs, placements: manifest.placements.filter((_, i) => audit.rows[i].included), allPlacements: manifest.placements};
+}
+
+async function loadModelTemplates(signal) {
+  const {allPlacements} = await placementPlan(signal);
+  const templates = [];
+  for (const model of preparedPlacementModels(allPlacements)) {
+    signal?.throwIfAborted();
+    const placements = allPlacements.filter(row => row.model === model);
+    const {modelBuffer, texturePack} = await placementAssets.readModelAssets(model, placements, signal);
+    placementInputs.set(model, modelBuffer);
+    const packs = texturePack instanceof ArrayBuffer ? {base: texturePack} : texturePack;
+    for (const [key, bytes] of Object.entries(packs || {})) {
+      if (bytes instanceof ArrayBuffer) placementInputs.set(`${model}/texture-pack/${key}`, bytes);
+    }
+    const loader = new Mt5Loader(scene);
+    configureMt5TexturePack(loader, texturePack);
+    const roots = await loader.load(modelBuffer, texturePack);
+    templateRoots.push(...roots);
+    if (!roots.length) throw new Error(`Prepared model has no geometry: ${model}`);
+    templates.push({model, roots});
+  }
+  return templates;
 }
 
 async function loadFixedPlacements(signal) {
@@ -153,11 +175,16 @@ function clear() {
   engine.stopRenderLoop(render);
   index?.dispose(); index = null;
   if (loaded) { loaded.dispose(); loaded = null; state.currentMeshes = []; }
-  else clearWorldSceneAssets(state);
+  else {
+    state.currentMeshes.push(...templateRoots);
+    clearWorldSceneAssets(state);
+  }
   // This isolated tool owns the entire source load, including unreferenced
   // decoded texture wrappers that do not appear in any mesh material.
   for (const texture of sourceTextures) if (scene.textures.includes(texture)) texture.dispose();
   sourceTextures = [];
+  for (const root of templateRoots) root.dispose(false, false);
+  templateRoots = [];
   fixedRoots = []; placementInputs.clear();
   lighting.clear();
 }
@@ -212,6 +239,13 @@ async function loadOriginal(signal) {
 }
 async function compile(signal) {
   await source({batch: false, signal});
+  const texturesBeforeTemplates = new Set(scene.textures);
+  let modelTemplates;
+  try {
+    modelTemplates = await loadModelTemplates(signal);
+  } finally {
+    sourceTextures.push(...scene.textures.filter(texture => !texturesBeforeTemplates.has(texture)));
+  }
   status.textContent = "Compiling and deduplicating static scenery…";
   const sourceHashes = [];
   const inputs = new Map([...state.texturePacks, ...placementInputs].filter(([,buffer]) => buffer instanceof ArrayBuffer));
@@ -222,7 +256,7 @@ async function compile(signal) {
     sourceHashes.push({file, hash});
   }
   const fixedPlacementLayer = groupFixedPlacements();
-  const bundle = await compileSceneryBundle(state.currentMeshes, {signal, fixedPlacementLayer,
+  const bundle = await compileSceneryBundle(state.currentMeshes, {signal, fixedPlacementLayer, modelTemplates,
     provenance: {area: "D000", sources: sourceHashes, placements: placementAudit}});
   const binaryResponse = await fetch("/scenery-output/world.bin", {method: "PUT", body: bundle.binary, signal});
   if (!binaryResponse.ok) throw new Error("Could not save scenery binary");

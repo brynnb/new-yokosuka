@@ -3,10 +3,25 @@ import assert from "node:assert/strict";
 import placements from "../play/data/d000-runtime-placements.json" with {type: "json"};
 import scheduledManifest from "../play/data/shenmue1-scheduled-scene-objects.json" with {type: "json"};
 import fixtures from "../tools/evidence/d000-static-fixtures.json" with {type: "json"};
-import {auditFixedSceneryPlacements} from "../tools/assets/scenery-placement-policy.js";
+import {auditFixedSceneryPlacements, preparedPlacementModels} from "../tools/assets/scenery-placement-policy.js";
 import {ScheduledSceneObjectCatalog} from "../play/world/ScheduledSceneObjectCatalog.js";
 
 const sceneObjects = new ScheduledSceneObjectCatalog(scheduledManifest).definitions("dobuita");
+
+test("prepared rigid models cover doors and vending only, with a single asset identity per model", () => {
+  const models = preparedPlacementModels(placements.placements);
+  assert.equal(models.length, 35);
+  assert.equal(placements.placements.filter(row => models.includes(row.model)).length, 70);
+  const door = placements.placements.find(row => row.runtime.staticDoorType === 2);
+  const eligible = row => preparedPlacementModels([row]).includes(row.model);
+  assert.equal(eligible(door), true);
+  for (const changes of [{authoredMovementFile: "motion.AUTH"}, {stateDependent: true}, {inactiveBelowMap: true}]) {
+    assert.equal(eligible({...door, runtime: {...door.runtime, ...changes}}), false);
+  }
+  for (const key of ["assetFile", "texturePackFile", "texturePackModel"]) {
+    assert.deepEqual(preparedPlacementModels([door, {...door, [key]: "different-source"}]), []);
+  }
+});
 
 test("Dobuita policy accounts for every placement and retains all scheduled, interactive and unknown owners", () => {
   const audit = auditFixedSceneryPlacements(placements.placements, sceneObjects, fixtures);
