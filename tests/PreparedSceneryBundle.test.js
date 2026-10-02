@@ -5,7 +5,8 @@ import {compileSceneryBundle, loadSceneryBundle} from "../src/rendering/Prepared
 import {freezeSceneRoots} from "../src/rendering/SceneResources.js";
 import {createWorldSpatialIndex} from "../src/rendering/SceneSpatialIndex.js";
 import {staticBatchSourceForFace} from "../src/rendering/StaticWorldBatching.js";
-import {Mt5Loader} from "../src/Mt5Loader.js";
+import {Mt5Loader, Mt5AlphaToCoverageMaterial} from "../src/Mt5Loader.js";
+import {buildAlphaAwareMipChain} from "../src/PvrDecoder.js";
 import {applyPlacementTransform} from "../play/world/PlacementRuntime.js";
 import {DoorInteractions} from "../play/interactions/DoorInteractions.js";
 import {clearWorldSceneAssets} from "../src/rendering/SceneResources.js";
@@ -189,6 +190,45 @@ test("transparent scenery keeps ordinary materials and separate mesh ordering", 
   assert.equal(manifest.materials[0].separateCullingPass, true);
 });
 
+test("prepared alpha edges follow destination MSAA instead of compiler settings", async t => {
+  for (const sourceSamples of [1, 4]) for (const targetSamples of [1, 4]) {
+    const {scene, root, make} = fixture(t);
+    const engine = scene.getEngine();
+    Object.defineProperty(engine, "currentSampleCount", {get: () => targetSamples});
+    const coverageChanges = [];
+    t.mock.method(engine, "setAlphaToCoverage", value => coverageChanges.push(value));
+    const leaf = make("leaf", 0);
+    leaf.material.dispose(false, true);
+    const pixels = new Uint8Array([220, 180, 70, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    const texture = new B.RawTexture(pixels, 2, 2, 5, scene, true, false);
+    texture.hasAlpha = true;
+    Object.assign(texture.getInternalTexture(), {_bufferView: pixels, format: 5, type: 0,
+      _pvrUploadPolicy: {alphaAware: true, gradientAlpha: false, preserveCoverage: sourceSamples === 1}});
+    leaf.material = sourceSamples === 4 ? new Mt5AlphaToCoverageMaterial("leaf", scene) : new B.StandardMaterial("leaf", scene);
+    Object.assign(leaf.material, {diffuseTexture: texture, _mt5AlphaMode: "alphatest", useAlphaFromDiffuseTexture: true,
+      transparencyMode: sourceSamples === 4 ? B.Material.MATERIAL_ALPHABLEND : B.Material.MATERIAL_ALPHATEST});
+    leaf._mt5AlphaToCoverage = sourceSamples === 4;
+    freezeSceneRoots([root]);
+    const packed = await compileSceneryBundle([root], {textureArrays: false, yieldWork: async () => {}});
+    root.dispose(false, true);
+    const mips = [];
+    t.mock.method(engine, "_uploadArrayBufferViewToTexture", (_texture, data) => mips.push([...data]));
+    const bundle = await loadSceneryBundle(scene, packed.manifest, packed.binary);
+    const mesh = bundle.roots[0].getChildMeshes()[0];
+    assert.equal(mesh.material instanceof Mt5AlphaToCoverageMaterial, targetSamples === 4);
+    assert.equal(mesh.material.needAlphaBlendingForMesh(mesh), false);
+    assert.equal(mesh.material.transparencyMode,
+      targetSamples === 4 ? B.Material.MATERIAL_ALPHABLEND : B.Material.MATERIAL_ALPHATEST);
+    assert.equal(mesh._mt5AlphaToCoverage === true, targetSamples === 4);
+    mesh.onBeforeBindObservable.notifyObservers(mesh);
+    mesh.onAfterRenderObservable.notifyObservers(mesh);
+    assert.deepEqual(coverageChanges, targetSamples === 4 ? [true, false] : []);
+    assert.deepEqual(mips, buildAlphaAwareMipChain(pixels, 2, 2, {preserveCoverage: targetSamples === 1})
+      .slice(1).map(level => [...level.pixels]));
+    bundle.dispose();
+  }
+});
+
 test("bundle reader rejects corruption and cancellation without leaving partial scene objects", async t => {
   const {scene, root, make} = fixture(t);
   make("floor", 0); freezeSceneRoots([root]);
@@ -216,6 +256,40 @@ test("empty MT5 resources do not leave unowned hierarchy nodes in the scene", as
   const counts = [scene.meshes.length, scene.transformNodes.length];
   assert.deepEqual(await new Mt5Loader(scene).load(bytes), []);
   assert.deepEqual([scene.meshes.length, scene.transformNodes.length], counts);
+});
+
+test("MT5 parsing releases unused pack textures but retains textures on hidden surfaces", async t => {
+  const {scene} = fixture(t);
+  const loader = new Mt5Loader(scene);
+  const baseline = scene.textures.length;
+  const bytes = new ArrayBuffer(80);
+  new Uint8Array(bytes).set(new TextEncoder().encode("HRCM"));
+  new DataView(bytes).setUint32(4, 12, true);
+  new DataView(bytes).setUint32(8, 16, true);
+  let used, unused;
+  t.mock.method(loader, "readTextures", () => {
+    used = new B.RawTexture(new Uint8Array([1, 2, 3, 255]), 1, 1, 5, scene);
+    unused = new B.RawTexture(new Uint8Array([4, 5, 6, 255]), 1, 1, 5, scene);
+    loader.textureCache.set(0, used); loader.textureCache.set(1, unused);
+    const orphan = new B.StandardMaterial("discarded surface", scene);
+    orphan.diffuseTexture = unused.clone();
+    loader.materialCache.set("discarded surface", orphan);
+  });
+  t.mock.method(loader, "applyNodeHierarchyTransforms", root => {
+    const mesh = B.MeshBuilder.CreateGround("hidden surface", {}, scene);
+    mesh.parent = root;
+    mesh.setEnabled(false);
+    mesh.material = new B.StandardMaterial("used", scene);
+    mesh.material.diffuseTexture = used;
+    loader.materialCache.set("used", mesh.material);
+  });
+  const roots = await loader.load(bytes);
+  assert.equal(scene.textures.includes(unused), false);
+  assert.equal(scene.textures.includes(used), true);
+  assert.equal(scene.materials.some(material => material.name === "discarded surface"), false);
+  assert.deepEqual([...loader.textureCache.values()], [used]);
+  clearWorldSceneAssets({currentMeshes: roots, loader});
+  assert.equal(scene.textures.length, baseline);
 });
 
 test("fixed placements batch across roots while retaining transforms, source identity and collision roles", async t => {

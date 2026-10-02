@@ -23,6 +23,8 @@ import { runtimeAssetGroup } from "../../src/RuntimeAssets.js";
 import { fetchAssetBuffer } from "../../src/AssetCache.js";
 import { auditFixedSceneryPlacements, sceneryPlacementId, preparedPlacementModels } from "./scenery-placement-policy.js";
 import { ScheduledSceneObjectCatalog } from "../../play/world/ScheduledSceneObjectCatalog.js";
+import {WORLDS} from "../../play/config/worlds.js";
+import {preparedScenerySpec} from "../../play/world/PreparedSceneryPlan.js";
 
 const status = document.querySelector("#status");
 const graphicsPreferences = new GraphicsPreferences({storage: null});
@@ -257,10 +259,11 @@ async function compile(signal) {
   }
   const fixedPlacementLayer = groupFixedPlacements();
   const bundle = await compileSceneryBundle(state.currentMeshes, {signal, fixedPlacementLayer, modelTemplates,
-    provenance: {area: "D000", sources: sourceHashes, placements: placementAudit}});
-  const binaryResponse = await fetch("/scenery-output/world.bin", {method: "PUT", body: bundle.binary, signal});
+    provenance: {key: "dobuita", contract: preparedScenerySpec(WORLDS.dobuita, state.allFiles).contract,
+      area: "D000", sources: sourceHashes, placements: placementAudit}});
+  const binaryResponse = await fetch("/scenery-output/dobuita/world.bin", {method: "PUT", body: bundle.binary, signal});
   if (!binaryResponse.ok) throw new Error("Could not save scenery binary");
-  const manifestResponse = await fetch("/scenery-output/world.json", {method: "PUT", body: JSON.stringify(bundle.manifest), signal});
+  const manifestResponse = await fetch("/scenery-output/dobuita/world.json", {method: "PUT", body: JSON.stringify(bundle.manifest), signal});
   if (!manifestResponse.ok) throw new Error("Could not save scenery manifest");
   clear();
   status.textContent = JSON.stringify(bundle.manifest.statistics);
@@ -269,7 +272,7 @@ async function compile(signal) {
 async function loadPrepared(signal) {
   clear();
   const start = performance.now();
-  const manifest = await (await fetch("/scenery-output/world.json", {signal})).json();
+  const manifest = await (await fetch("/scenery-output/dobuita/world.json", {signal})).json();
   const plan = await placementPlan(signal);
   if (JSON.stringify(manifest.provenance.placements) !== JSON.stringify(plan.audit)) {
     throw new Error("Placement ownership changed; rebuild the scenery bundle");
@@ -280,7 +283,7 @@ async function loadPrepared(signal) {
       throw new Error(`Stale placement input; rebuild the scenery bundle: ${file}`);
     }
   }
-  const binary = new Uint8Array(await (await fetch("/scenery-output/world.bin", {signal})).arrayBuffer());
+  const binary = new Uint8Array(await (await fetch("/scenery-output/dobuita/world.bin", {signal})).arrayBuffer());
   loaded = await loadSceneryBundle(scene, manifest, binary, {signal});
   state.currentMeshes = loaded.roots;
   // Visibility ownership is the same data-driven system as the original path.

@@ -154,7 +154,7 @@ export class WorldLoader {
     const actorData = capture(this.scheduledActors.prefetch?.(scheduledActorDefinitions, world.id, prefetchSignal));
     const collisionData = capture(loadNativeCollisionDefinitionForWorld(world));
     try {
-      if (!["MT7", "GLB"].includes(world.assetFormat)) {
+      if (!preparedPlan && !["MT7", "GLB"].includes(world.assetFormat)) {
         const response = await fetchAsset("models.json");
         ensureActive(signal);
         this.state.allFiles = await response.json();

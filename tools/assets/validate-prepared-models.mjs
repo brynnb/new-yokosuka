@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import assert from "node:assert/strict";
 import {readFile} from "node:fs/promises";
+import {spawn} from "node:child_process";
 import * as B from "@babylonjs/core";
 import state from "../../src/state.js";
 import {loadSceneryBundle} from "../../src/rendering/PreparedSceneryBundle.js";
@@ -10,10 +11,28 @@ import {Mt5Loader} from "../../src/Mt5Loader.js";
 import {configureMt5TexturePack} from "../../play/assets/configureMt5TexturePack.js";
 import {PlacementRuntime, applyPlacementTransform} from "../../play/world/PlacementRuntime.js";
 import {DoorInteractions} from "../../play/interactions/DoorInteractions.js";
-import {VendingInteractions} from "../../play/interactions/VendingInteractions.js";
+import {VendingInteractions, vendingBinForMachine} from "../../play/interactions/VendingInteractions.js";
+import {vendingMachineForPlacement} from "../../src/VendingCatalog.js";
 import {runtimeAssetGroup} from "../../src/RuntimeAssets.js";
 import {fetchAssetBuffer} from "../../src/AssetCache.js";
 import {fetchAsset} from "../../src/assetLoader.js";
+import {PREPARED_SCENERY_WORLDS, preparedSceneryKey} from "../../play/world/PreparedSceneryPlan.js";
+import {jomoObjectBehavior} from "../../src/JomoObjectRegistry.js";
+
+const args = process.argv.slice(2);
+if (args.includes("--all")) {
+  for (const key of new Set(PREPARED_SCENERY_WORLDS.map(id => preparedSceneryKey(WORLDS[id])))) {
+    await new Promise((resolve, reject) => {
+      const child = spawn(process.execPath, [import.meta.filename, key], {stdio: "inherit"});
+      child.on("error", reject);
+      child.on("exit", code => code === 0 ? resolve() : reject(new Error(`Prepared-model validation failed: ${key}`)));
+    });
+  }
+  process.exit(0);
+}
+const world = WORLDS[args[0] || "dobuita"];
+const key = preparedSceneryKey(world);
+if (!key) throw new Error("Choose a supported prepared world");
 
 const origin = new URL(process.env.SCENERY_ASSET_ORIGIN || "http://127.0.0.1:5173");
 if (!["127.0.0.1", "localhost", "[::1]"].includes(origin.hostname) || origin.protocol !== "http:") throw new Error("Use the local asset server");
@@ -75,18 +94,28 @@ function compareSurfaces(instance, source) {
 }
 try {
   state.allFiles = await (await fetchAsset("models.json")).json();
-  const manifest = JSON.parse(await readFile(new URL("../../.disc-work/scenery-bundle/world.json", import.meta.url)));
-  const binary = new Uint8Array(await readFile(new URL("../../.disc-work/scenery-bundle/world.bin", import.meta.url)));
+  const manifest = JSON.parse(await readFile(new URL(`../../.disc-work/scenery-bundle/${key}/world.json`, import.meta.url)));
+  const binary = new Uint8Array(await readFile(new URL(`../../.disc-work/scenery-bundle/${key}/world.bin`, import.meta.url)));
   // Templates use ordinary materials; omit static texture arrays, which need
   // an actual WebGL context. This verifies geometry/behavior, not appearance.
   const templateManifest = {...manifest, roots: [], arrays: []};
   const bundle = await loadSceneryBundle(scene, templateManifest, binary);
   worldState.preparedSceneryResources = bundle;
-  const placements = WORLDS.dobuita.placements.filter(row => bundle.hasModel(row.model));
-  await runtime.load(placements, null, "dobuita", {preparedModels: bundle});
-  assert.equal(worldState.currentMeshes.length, 70);
-  assert.equal(doors.entries.length, 65);
-  assert.equal(vending.entries.length, 5);
+  const placements = world.placements.filter(row => bundle.hasModel(row.model));
+  const kinds = placements.map(row => jomoObjectBehavior(row.model, row.runtime.objectTag, row.runtime).kind);
+  // Some cabinets have separate bins. Resolve that dependency with the same
+  // owner as gameplay, then load it normally alongside the prepared cabinet.
+  const candidates = world.placements.map(row => ({_runtimePlacementRecord: row}));
+  const dependencies = new Set();
+  for (const [index, row] of placements.entries()) if (kinds[index] === "vending-machine") {
+    const bin = vendingBinForMachine(vendingMachineForPlacement(world.id, row), {}, candidates);
+    const dependency = bin.root._runtimePlacementRecord;
+    if (dependency && !placements.includes(dependency)) dependencies.add(dependency);
+  }
+  await runtime.load([...placements, ...dependencies], null, world.id, {preparedModels: bundle});
+  assert.equal(worldState.currentMeshes.length, placements.length + dependencies.size);
+  assert.equal(doors.entries.length, kinds.filter(kind => kind === "d000-door").length);
+  assert.equal(vending.entries.length, kinds.filter(kind => kind === "vending-machine").length);
   let sourceMeshCount = 0;
   for (const model of manifest.templates.map(row => row.model)) {
     const rows = placements.filter(row => row.model === model);
@@ -107,9 +136,11 @@ try {
     for (const material of scene.materials.slice()) if (!sourceMaterials.has(material)) material.dispose(false, false);
     for (const texture of scene.textures.slice()) if (!sourceTextures.has(texture)) texture.dispose();
   }
-  const meshes = worldState.currentMeshes.flatMap(root => root.getChildMeshes().filter(mesh => mesh.getTotalVertices() > 0));
+  const meshes = worldState.currentMeshes.filter(root => root._preparedModelTemplate)
+    .flatMap(root => root.getChildMeshes().filter(mesh => mesh.getTotalVertices() > 0));
   const uniqueGeometryCount = new Set(meshes.map(mesh => mesh.geometry)).size;
-  assert.ok(uniqueGeometryCount < sourceMeshCount);
+  assert.ok(uniqueGeometryCount <= sourceMeshCount);
+  if (new Set(placements.map(row => row.model)).size < placements.length) assert.ok(uniqueGeometryCount < sourceMeshCount);
   for (const door of doors.entries) {
     const before = snapshot(door.root);
     const others = doors.entries.filter(other => other !== door && other.root._filename === door.root._filename);
@@ -120,8 +151,8 @@ try {
     doors.setPose(door, {progress: 0});
   }
   clearWorldSceneAssets(worldState);
-  assert.deepEqual(counts(), baseline);
-  console.info(JSON.stringify({models: manifest.templates.length, placements: placements.length,
+  assert.deepEqual(counts(), baseline, scene.textures.map(texture => texture.name).join(", "));
+  console.info(JSON.stringify({world: world.id, models: manifest.templates.length, placements: placements.length,
     doors: doors.entries.length, vendingMachines: vending.entries.length, originalGeometryCopies: sourceMeshCount,
     sharedGeometries: uniqueGeometryCount, transformsAndVertices: "identical", texturesAndSurfaceSettings: "identical",
     independentDoors: "passed", cleanup: "passed",

@@ -4,13 +4,15 @@
 import {mkdir, readFile, writeFile, rename} from "node:fs/promises";
 import {fileURLToPath} from "node:url";
 import {createHash} from "node:crypto";
+import {spawn} from "node:child_process";
+import {cpus} from "node:os";
 import * as B from "@babylonjs/core";
 import state from "../../src/state.js";
 import {createSceneLoaders, freezeSceneRoots} from "../../src/rendering/SceneResources.js";
 import {loadMt5Scene} from "../../src/rendering/SceneAssets.js";
 import {compileSceneryBundle} from "../../src/rendering/PreparedSceneryBundle.js";
-import {resolveSceneComposition} from "../../src/SceneCompositions.js";
-import {isWorldMapFile} from "../../src/WorldMapFiles.js";
+import {WORLDS} from "../../play/config/worlds.js";
+import {PREPARED_SCENERY_WORLDS, preparedSceneryKey, preparedScenerySpec} from "../../play/world/PreparedSceneryPlan.js";
 import {fetchAsset} from "../../src/assetLoader.js";
 import {fetchAssetBuffer} from "../../src/AssetCache.js";
 import {runtimeAssetGroup} from "../../src/RuntimeAssets.js";
@@ -20,14 +22,44 @@ import {configureMt5TexturePack} from "../../play/assets/configureMt5TexturePack
 import {Mt5Loader} from "../../src/Mt5Loader.js";
 import {suppressDobuitaCinemaFacadeFaces} from "../../play/world/DobuitaCinemaPoster.js";
 import {prepareWorldCollision} from "../../play/world/WorldCollision.js";
-import {auditFixedSceneryPlacements, sceneryPlacementId, preparedPlacementModels} from "./scenery-placement-policy.js";
+import {loadNativeCollisionDefinitionForWorld} from "../../play/world/NativeWorldCollision.js";
+import {auditFixedSceneryPlacements, sceneryPlacementId} from "./scenery-placement-policy.js";
 
 const project = new URL("../../", import.meta.url);
+const args = process.argv.slice(2);
+if (args.includes("--all")) {
+  if (args.length !== 1) throw new Error("Use build:scenery -- --all or build:scenery -- <world>");
+  const sample = () => cpus().reduce((sum, cpu) => ({idle: sum.idle + cpu.times.idle,
+    total: sum.total + Object.values(cpu.times).reduce((a, b) => a + b, 0)}), {idle: 0, total: 0});
+  const before = sample();
+  await new Promise(resolve => setTimeout(resolve, 500));
+  const after = sample();
+  const used = 1 - (after.idle - before.idle) / Math.max(1, after.total - before.total);
+  const workers = used > 0.5 ? 2 : used > 0.03 ? 4 : 6;
+  const queue = [...new Set(PREPARED_SCENERY_WORLDS.map(id => preparedSceneryKey(WORLDS[id])))];
+  console.info(`[Scenery] ${queue.length} bundles, ${workers} workers (CPU ${(used * 100).toFixed(1)}%)`);
+  const failures = [];
+  await Promise.all(Array.from({length: workers}, async () => {
+    while (queue.length) {
+      const key = queue.shift();
+      await new Promise(resolve => {
+        const child = spawn(process.execPath, ["--max-old-space-size=1024", import.meta.filename, key], {stdio: "inherit"});
+        child.on("error", error => { failures.push(`${key}: ${error.message}`); resolve(); });
+        child.on("exit", code => { if (code !== 0) failures.push(key); resolve(); });
+      });
+    }
+  }));
+  if (failures.length) throw new Error(`Failed scenery builds: ${failures.join(", ")}`);
+  process.exit(0);
+}
+const world = WORLDS[args[0] || "dobuita"];
+const key = preparedSceneryKey(world);
+if (args.length > 1 || !key) throw new Error(`Choose a prepared world: ${PREPARED_SCENERY_WORLDS.join(", ")}`);
 const origin = new URL(process.env.SCENERY_ASSET_ORIGIN || "http://127.0.0.1:5173");
 if (!["127.0.0.1", "localhost", "[::1]"].includes(origin.hostname) || origin.protocol !== "http:") {
   throw new Error("SCENERY_ASSET_ORIGIN must name the local HTTP asset server");
 }
-const output = new URL(".disc-work/scenery-bundle/", project);
+const output = new URL(`.disc-work/scenery-bundle/${key}/`, project);
 const sources = new Map();
 const sha = bytes => createHash("sha256").update(bytes).digest("hex");
 const nativeFetch = globalThis.fetch;
@@ -49,31 +81,29 @@ const scene = new B.Scene(engine);
 Object.assign(state, {scene, currentMeshes: [], currentLoadId: 0, currentTimeOfDay: 0, currentSeason: 0,
   ...createSceneLoaders(scene)});
 try {
-  const policyFiles = ["play/data/d000-runtime-placements.json",
-    "play/data/shenmue1-scheduled-scene-objects.json", "tools/evidence/d000-static-fixtures.json"];
+  state.allFiles = await (await fetchAsset("models.json")).json();
+  const spec = preparedScenerySpec(world, state.allFiles);
   const documents = [];
-  for (const file of policyFiles) {
+  for (const file of spec.policyFiles) {
     const bytes = await readFile(new URL(file, project));
     sources.set(file, sha(bytes));
     documents.push(JSON.parse(bytes));
   }
-  const [manifest, scheduled, fixtures] = documents;
-  const audit = auditFixedSceneryPlacements(manifest.placements,
-    new ScheduledSceneObjectCatalog(scheduled).definitions("dobuita"), fixtures);
-  const composition = resolveSceneComposition("D000", {timeOfDayIndex: 0, seasonIndex: 0}, {includeInactiveVariants: true});
-  state.allFiles = await (await fetchAsset("models.json")).json();
-  console.info("[Scenery] Loading Dobuita map source");
-  await loadMt5Scene(state, composition.prefix, {filenames: new Set([...composition.filenames].filter(isWorldMapFile)),
-    includeHiddenVariants: true, timeOfDayIndex: 0, variantProfile: composition.variantProfile, variantZone: composition.source});
+  const [, scheduled, fixtures] = documents;
+  const audit = key === "dobuita" ? auditFixedSceneryPlacements(world.placements,
+    new ScheduledSceneObjectCatalog(scheduled).definitions(world.id), fixtures) : null;
+  console.info(`[Scenery:${key}] Loading ${world.label} map source`);
+  await loadMt5Scene(state, world.prefix, {filenames: new Set(spec.filenames),
+    includeHiddenVariants: true, timeOfDayIndex: 0, variantProfile: spec.variantProfile, variantZone: spec.zone});
   const reader = new PlacementRuntime({scene, bundledModels: runtimeAssetGroup("play/assets/dobuita/*.CHRM"),
     bundledTextures: runtimeAssetGroup("play/assets/dobuita/*_textures.bin"), fetchArrayBuffer: fetchAssetBuffer});
-  const fixedIds = new Set(audit.rows.filter(row => row.included).map(row => row.id));
-  const templateModels = new Set(preparedPlacementModels(manifest.placements));
-  const fixedLayer = new B.TransformNode("dobuita-fixed-placements", scene);
-  fixedLayer.metadata = {fixedSceneryLayer: true, placementIds: [...fixedIds]};
+  const fixedIds = new Set(audit?.rows.filter(row => row.included).map(row => row.id) || []);
+  const templateModels = new Set(spec.models);
+  const fixedLayer = fixedIds.size ? new B.TransformNode(`${key}-fixed-placements`, scene) : null;
+  if (fixedLayer) fixedLayer.metadata = {fixedSceneryLayer: true, placementIds: [...fixedIds]};
   const templates = [];
-  const groups = Map.groupBy(manifest.placements, row => row.model);
-  console.info(`[Scenery] Preparing fixed objects and ${templateModels.size} reusable models`);
+  const groups = Map.groupBy(world.placements, row => row.model);
+  console.info(`[Scenery:${key}] Preparing fixed objects and ${templateModels.size} reusable models`);
   for (const [model, placements] of [...groups].sort(([a], [b]) => a.localeCompare(b))) {
     const fixed = placements.filter(row => fixedIds.has(sceneryPlacementId(row)));
     if (!fixed.length && !templateModels.has(model)) continue;
@@ -93,20 +123,23 @@ try {
       }
     }
   }
-  state.currentMeshes.push(fixedLayer);
+  if (fixedLayer) state.currentMeshes.push(fixedLayer);
   freezeSceneRoots(state.currentMeshes);
-  suppressDobuitaCinemaFacadeFaces(state.currentMeshes);
-  prepareWorldCollision(state.currentMeshes, {nativeHorizontalCollision: true});
-  console.info("[Scenery] Compiling geometry and shared textures");
+  if (key === "dobuita") suppressDobuitaCinemaFacadeFaces(state.currentMeshes);
+  const collision = await loadNativeCollisionDefinitionForWorld(world);
+  prepareWorldCollision(state.currentMeshes, {nativeHorizontalCollision: Boolean(collision)});
+  console.info(`[Scenery:${key}] Compiling geometry and shared textures`);
   const bundle = await compileSceneryBundle(state.currentMeshes, {fixedPlacementLayer: fixedLayer, modelTemplates: templates,
-    provenance: {area: "D000", sources: [...sources].sort(([a], [b]) => a.localeCompare(b)).map(([file, hash]) => ({file, hash})), placements: audit}});
+    provenance: {key, contract: spec.contract, area: spec.zone,
+      sources: [...sources].sort(([a], [b]) => a.localeCompare(b)).map(([file, hash]) => ({file, hash})), placements: audit}});
   await mkdir(output, {recursive: true});
   for (const [name, data] of [["world.bin", bundle.binary], ["world.json", JSON.stringify(bundle.manifest)]]) {
     const pending = new URL(`${name}.pending`, output);
     await writeFile(pending, data);
     await rename(pending, new URL(name, output));
   }
-  console.info(JSON.stringify({output: fileURLToPath(output), bytes: bundle.binary.byteLength, ...bundle.manifest.statistics}));
+  const {batches, ...statistics} = bundle.manifest.statistics;
+  console.info(JSON.stringify({world: world.id, output: fileURLToPath(output), bytes: bundle.binary.byteLength, ...statistics}));
 } finally {
   globalThis.fetch = nativeFetch;
   scene.dispose(); engine.dispose();

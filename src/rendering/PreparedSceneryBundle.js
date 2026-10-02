@@ -315,6 +315,10 @@ export async function loadSceneryBundle(scene, manifest, binary, {signal} = {}) 
   const templateGeometries = new Map();
   let disposed = false;
   const textures = new Map();
+  // The offline compiler has no MSAA framebuffer. Resolve edge smoothing on
+  // the destination engine, using the same policy as live MT5 decoding.
+  const coverage = new Mt5Loader(scene);
+  const supportsCoverage = coverage.supportsAlphaToCoverage();
   const textureFor = id => {
     if (textures.has(id)) return textures.get(id);
     const record = manifest.textures[id];
@@ -325,7 +329,9 @@ export async function loadSceneryBundle(scene, manifest, binary, {signal} = {}) 
     ownedTextures.push(texture);
     Object.assign(texture, fields(record, SAMPLER));
     if (record.alphaAware && record.generateMipMaps) {
-      const levels = buildAlphaAwareMipChain(pixels, record.width, record.height, {preserveCoverage: record.preserveCoverage});
+      const levels = buildAlphaAwareMipChain(pixels, record.width, record.height, {
+        preserveCoverage: !record.gradientAlpha && !supportsCoverage,
+      });
       uploadMipChain(texture, levels);
     }
     textures.set(id, texture);
@@ -349,21 +355,24 @@ export async function loadSceneryBundle(scene, manifest, binary, {signal} = {}) 
       if (ownedMaterials[id]) return ownedMaterials[id];
       const record = manifest.materials[id];
       if (!record) throw new Error("Invalid scenery material reference");
-      const material = record.alphaToCoverage
+      const useCoverage = record.alphaMode === "alphatest" && supportsCoverage;
+      const material = useCoverage
         ? new Mt5AlphaToCoverageMaterial(`prepared_${id}`, scene)
         : new SceneStandardMaterial(`prepared_${id}`, scene);
       ownedMaterials[id] = material;
       Object.assign(material, fields(record, MATERIAL));
       for (const key of COLORS) material[key] = B.Color3.FromArray(record[key]);
       material._mt5AlphaMode = record.alphaMode;
-      material._mt5PreservesAlphaForCoverage = record.alphaToCoverage;
+      material._mt5PreservesAlphaForCoverage = useCoverage;
+      if (record.alphaMode === "alphatest") {
+        material.transparencyMode = useCoverage ? B.Material.MATERIAL_ALPHABLEND : B.Material.MATERIAL_ALPHATEST;
+      }
       if (record.array !== undefined) {
         if (!arrays[record.array]) throw new Error("Invalid scenery array reference");
         new SceneryTextureArrayMaterial(material, arrays[record.array]);
       } else if (record.texture !== null) material.diffuseTexture = textureFor(record.texture);
       return material;
     };
-    const coverage = new Mt5Loader(scene);
     const createMesh = (part, shared = false) => {
       const mesh = new B.Mesh(part.name, scene);
       try {
@@ -379,7 +388,7 @@ export async function loadSceneryBundle(scene, manifest, binary, {signal} = {}) 
         mesh._mt5NodeAddress = part.nodeAddress;
         mesh._mt5OriginalFaceIds = part.originalFaceIds;
         mesh.material = materialFor(part.material);
-        if (part.alphaToCoverage) coverage.configureAlphaToCoverage(mesh, "alphatest");
+        coverage.configureAlphaToCoverage(mesh, mesh.material._mt5AlphaMode);
         return mesh;
       } catch (error) { mesh.dispose(false, false); throw error; }
     };

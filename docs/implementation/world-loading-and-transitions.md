@@ -157,9 +157,12 @@ until world disposal, including after cancellation and replay.
 
 ### Download reuse and optional preparation
 
-Local `/play/?scenery=prepared` opts Dobuita into the experimental prepared
-bundle. `PreparedSceneryRuntime` validates its schema and placement-policy inputs,
-loads the prebuilt scenery, and removes only the audited fixed placements from
+Local `/play/?scenery=prepared` opts reviewed Shenmue I exploration zones into
+experimental per-world bundles. `PreparedSceneryPlan` selects exact map files
+and variants from the existing world definitions; Harbor and Forklift Playground
+share an identical scenery contract. `PreparedSceneryRuntime` validates the
+schema, world contract and placement-policy inputs, loads the prebuilt scenery,
+and removes only Dobuita's audited fixed placements from
 the ordinary placement list. `PlacementRuntime` also consumes rigid templates
 for eligible doors and vending machines: copies share vertex buffers and
 materials while keeping independent native pivots, transforms and interactions.
@@ -170,6 +173,7 @@ unfrozen so each copy binds its own transform and lighting correctly.
 The bundle is owned by the world session; failed or cancelled assembly drains
 before teardown, and disposal releases all copies and shared resources. This
 is a local experiment, not a published asset format or a production default.
+Unsupported interiors, cinematic stages and MT7 worlds keep their normal loaders.
 See [prepared scenery tooling](../guides/tooling/scenery-bundle-lab.md) for
 building, validation, measured evidence and remaining rollout checks.
 

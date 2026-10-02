@@ -2020,6 +2020,25 @@ export class Mt5Loader {
             .getDescendants(false)
             .some(node => typeof node.getTotalVertices === "function" && node.getTotalVertices() > 0);
 
+        // Packs may contain unused textures (JD00's vending bin), and skipped
+        // surfaces may leave materials even in an empty map layer (MFSY).
+        // Per-placement loaders are discarded after parsing. Release those
+        // unowned allocations now, but keep disabled/hidden surfaces intact.
+        const usedMaterials = new Set(modelRoot.getChildMeshes().map(mesh => mesh.material));
+        const textureCandidates = new Set([
+            ...this.textureCache.values(),
+            ...[...this.materialCache.values()].flatMap(material => material.getActiveTextures()),
+        ]);
+        for (const [id, material] of this.materialCache) {
+            if (usedMaterials.has(material)) continue;
+            material.dispose(false, false);
+            this.materialCache.delete(id);
+        }
+        const usedTextures = new Set([...usedMaterials]
+            .flatMap(material => material?.getActiveTextures() || []));
+        for (const texture of textureCandidates) if (!usedTextures.has(texture)) texture.dispose();
+        for (const [id, texture] of this.textureCache) if (!usedTextures.has(texture)) this.textureCache.delete(id);
+
         if (!hasRenderableGeometry) {
             // Empty/collision-only resources still create hierarchy nodes.
             // No returned owner means scene cleanup cannot otherwise find them

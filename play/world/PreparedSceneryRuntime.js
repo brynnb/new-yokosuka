@@ -1,11 +1,11 @@
 import {loadSceneryBundle, SCENERY_BUNDLE_SCHEMA} from "../../src/rendering/PreparedSceneryBundle.js";
 import {readSceneResource, runSceneLoad} from "../../src/rendering/SceneAssets.js";
 import {updateModelVisibility} from "../../src/variants.js";
-import {auditFixedSceneryPlacements, sceneryPlacementId, preparedPlacementModels} from "../../tools/assets/scenery-placement-policy.js";
+import {auditFixedSceneryPlacements, sceneryPlacementId} from "../../tools/assets/scenery-placement-policy.js";
 import {ScheduledSceneObjectCatalog} from "./ScheduledSceneObjectCatalog.js";
+import {preparedSceneryKey, preparedScenerySpec} from "./PreparedSceneryPlan.js";
+import {fetchAsset} from "../../src/assetLoader.js";
 
-const POLICY_FILES = ["play/data/d000-runtime-placements.json",
-  "play/data/shenmue1-scheduled-scene-objects.json", "tools/evidence/d000-static-fixtures.json"];
 const hash = async bytes => [...new Uint8Array(await crypto.subtle.digest("SHA-256", bytes))]
   .map(byte => byte.toString(16).padStart(2, "0")).join("");
 
@@ -16,7 +16,7 @@ export class PreparedSceneryRuntime {
     this.baseUrl = baseUrl;
   }
 
-  supports(world) { return world.id === "dobuita" && world.sceneComposition === "D000"; }
+  supports(world) { return preparedSceneryKey(world) !== null; }
 
   async read(path, signal) {
     return readSceneResource(async () => {
@@ -27,27 +27,42 @@ export class PreparedSceneryRuntime {
   }
 
   async plan(world, signal) {
-    const manifest = JSON.parse(new TextDecoder().decode(await this.read(`${this.baseUrl}/world.json`, signal)));
-    if (manifest.schema !== SCENERY_BUNDLE_SCHEMA || manifest.provenance?.area !== "D000") {
-      throw new Error("Rebuild the local Dobuita scenery bundle before testing /play");
+    const key = preparedSceneryKey(world);
+    const manifest = JSON.parse(new TextDecoder().decode(await this.read(`${this.baseUrl}/${key}/world.json`, signal)));
+    if (manifest.schema !== SCENERY_BUNDLE_SCHEMA || manifest.provenance?.key !== key) {
+      throw new Error(`Rebuild the local ${key} scenery bundle before testing /play`);
     }
+    const allFiles = await readSceneResource(async () => {
+      const response = await fetchAsset("models.json");
+      if (!response.ok) throw new Error(`Model catalog request failed (${response.status})`);
+      return response.json();
+    }, {signal});
+    const spec = preparedScenerySpec(world, allFiles);
+    if (JSON.stringify(manifest.provenance.contract) !== JSON.stringify(spec.contract)) {
+      throw new Error(`Prepared world definition changed; rebuild the bundle: ${key}`);
+    }
+    this.state.allFiles = allFiles;
+    this.state.mt5Files = allFiles.filter(file => /\.mt5$/i.test(file));
     const documents = [];
-    for (const file of POLICY_FILES) {
+    for (const file of spec.policyFiles) {
       const bytes = await this.read(`/${file}`, signal);
       if (manifest.provenance.sources.find(row => row.file === file)?.hash !== await hash(bytes)) {
         throw new Error(`Prepared scenery input changed; rebuild the bundle: ${file}`);
       }
       documents.push(JSON.parse(new TextDecoder().decode(bytes)));
     }
-    const [, scheduled, fixtures] = documents;
-    // Recheck the actual gameplay placements, including any route enrichment.
-    const audit = auditFixedSceneryPlacements(world.placements,
-      new ScheduledSceneObjectCatalog(scheduled).definitions(world.id), fixtures);
-    if (JSON.stringify(audit) !== JSON.stringify(manifest.provenance.placements)) {
-      throw new Error("Gameplay placement ownership changed; rebuild the scenery bundle");
+    const included = new Set();
+    if (spec.policyFiles.length) {
+      const [, scheduled, fixtures] = documents;
+      // Recheck the actual gameplay placements, including any route enrichment.
+      const audit = auditFixedSceneryPlacements(world.placements,
+        new ScheduledSceneObjectCatalog(scheduled).definitions(world.id), fixtures);
+      if (JSON.stringify(audit) !== JSON.stringify(manifest.provenance.placements)) {
+        throw new Error("Gameplay placement ownership changed; rebuild the scenery bundle");
+      }
+      for (const row of audit.rows) if (row.included) included.add(row.id);
     }
-    const included = new Set(audit.rows.filter(row => row.included).map(row => row.id));
-    const models = preparedPlacementModels(world.placements);
+    const models = spec.models;
     if (JSON.stringify(manifest.templates.map(row => row.model)) !== JSON.stringify(models)) {
       throw new Error("Prepared model coverage changed; rebuild the scenery bundle");
     }
@@ -58,17 +73,17 @@ export class PreparedSceneryRuntime {
     const state = this.state;
     return runSceneLoad(state, {signal}, async cancelled => {
       onProgress({loaded: 0, total: additionalProgressTotal + 1});
-      const bytes = new Uint8Array(await this.read(`${this.baseUrl}/world.bin`, signal));
+      const bytes = new Uint8Array(await this.read(`${this.baseUrl}/${preparedSceneryKey(world)}/world.bin`, signal));
       if (cancelled()) return false;
       const bundle = await loadSceneryBundle(state.scene, manifest, bytes, {signal});
       if (cancelled()) { bundle.dispose(); return false; }
       state.preparedSceneryResources = bundle;
       state.currentMeshes = [...bundle.roots];
       state.singleModelMode = false;
-      state.currentZone = composition.source;
+      state.currentZone = manifest.provenance.contract.zone;
       state.currentScenePrefix = world.prefix;
       state.currentSceneComposition = composition;
-      state.currentVariantProfile = composition.variantProfile;
+      state.currentVariantProfile = manifest.provenance.contract.variantProfile;
       updateModelVisibility(state);
       onProgress({loaded: 1, total: additionalProgressTotal + 1});
       return true;

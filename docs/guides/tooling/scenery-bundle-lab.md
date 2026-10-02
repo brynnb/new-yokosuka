@@ -1,37 +1,71 @@
 # Prepared scenery experiment
 
-This local Dobuita experiment compiles decoded map scenery and audited fixed
-placements into a ready-to-render bundle, with reusable rigid models for doors
-and vending machines. Normal gameplay is unchanged unless
+This local experiment compiles decoded Shenmue I map scenery into ready-to-render
+bundles, with reusable rigid models for supported doors and vending machines.
+Dobuita additionally includes its audited fixed placements. Normal gameplay is unchanged unless
 the local prepared-scenery option is selected. It does not publish assets.
 The purpose is to test whether fewer independently drawn pieces reduce CPU work
 without changing the scene's appearance.
 
 ## Test in the actual game
 
-Run `npm run dev:all`, then build the bundle from a second terminal:
+Run `npm run dev:all`, then build the bundles from a second terminal:
 
 ```sh
-npm run build:scenery
+npm run build:scenery -- --all
 ```
 
 This command uses the normal decoders with Babylon's non-rendering `NullEngine`;
 it does not open a browser. It reads assets from the running local Vite server.
 Set `SCENERY_ASSET_ORIGIN` if that server uses a port other than 5173.
-Output goes to `.disc-work/scenery-bundle/world.json` and `world.bin` (Git-ignored).
+Output goes to `.disc-work/scenery-bundle/<world>/world.json` and `world.bin`
+(Git-ignored). For one zone, use `npm run build:scenery -- mfsy`; no argument
+builds Dobuita. The bulk builder uses isolated processes with a 1 GiB Node heap
+ceiling each, selecting 2, 4 or 6 workers from current CPU utilization. Tests
+remain serial and memory-limited through the usual test launcher.
 
-Then
-open <http://127.0.0.1:5173/play/?scenery=prepared> (use your configured Vite
-port). Enter the world and travel to Dobuita. Its map and approved fixed objects
-load from the prepared bundle. Its doors and vending machines instantiate
+Then open <http://127.0.0.1:5173/play/?scenery=prepared> (use your configured Vite
+port). Travel normally between the supported zones below. Their maps
+load from the corresponding bundle. Supported doors and vending machines instantiate
 prepared model templates, retaining independent pivots, picking and gameplay
-state. NPCs, shutters, interactions, and other worlds keep their normal gameplay
+state. NPCs, shutters, interactions, vehicles and unsupported worlds keep their normal gameplay
 owners. Without `scenery=prepared`, the game
 uses its ordinary asset loader. The option is restricted to local development.
 Travel releases the bundle's geometry, materials, and textures normally.
 Changed placement or schedule inputs require rebuilding rather than silently
 loading a stale bundle. The dev server reads the ignored bundle directly;
 production builds do not include it.
+
+## Zone coverage
+
+The shared preparation plan uses the game's existing world definitions,
+composition layers and model catalog. A changed filename selection, variant
+profile, collision identity or placement record rejects the stale bundle.
+Harbor and Forklift Playground share one bundle after their contracts are
+verified identical; their player spawns and gameplay modes stay separate.
+
+| Zone | Build key | Decoded scenery meshes | Prepared scenery meshes |
+| --- | --- | ---: | ---: |
+| Dobuita | `dobuita` | 4,335 | 524 |
+| Hazuki Residence Grounds | `exterior` | 1,540 | 136 |
+| Yamanose | `yamanose` | 1,360 | 222 |
+| Sakuragaoka | `sakuragaoka` | 2,213 | 567 |
+| New Yokosuka Harbor / Forklift Playground | `mfsy` | 4,056 | 690 |
+| Old Warehouse District | `mksg` | 1,612 | 222 |
+| Old Warehouse No. 8 | `ms08` | 707 | 72 |
+| Combat Practice | `mfbt` | 785 | 164 |
+| Forklift Races | `ma00race` | 4,165 | 843 |
+
+These counts include inactive resident layers, not only pieces visible in one
+frame. They compare decoded source parts with offline batching, not measured
+FPS or the already-batched ordinary game's draw count. Original collision
+rules and time/season/weather selection remain authoritative. Only Dobuita's
+fixed-prop audit grants permission to bake placements into the map; elsewhere
+placements remain independently owned even when their models are prepared.
+
+Shenmue II (MT7), interiors with interactive resident geometry, and cutscene-only
+stages remain on their original loaders. Their effects and ownership need a
+separate audit before admitting them, not merely another filename allowlist.
 
 ## Optional scenery-only comparison lab
 
@@ -46,8 +80,8 @@ Open <http://127.0.0.1:5190/tools/assets/scenery-bundle-lab.html>.
 Use `SCENERY_LAB_PORT` to select a different port if necessary. This separate
 loopback server does not replace an existing game or Vite process.
 
-1. Click **Build bundle** once. This uses the normal model decoder and saves
-   `.disc-work/scenery-bundle/world.json` and `world.bin` locally (Git-ignored).
+1. Click **Build bundle** once. This Dobuita-only lab uses the normal model decoder and saves
+   `.disc-work/scenery-bundle/dobuita/world.json` and `world.bin` locally (Git-ignored).
 2. Switch between **Load original** and **Load bundle**. Both use the same camera,
    normal lighting/material pipeline, time/season rules, and ground-picking index.
 3. Use the view dropdown or WASD and mouse to inspect. Change time and season
@@ -79,7 +113,8 @@ Only one scene and one test workload run at a time.
 - Whole model roots remain independent: day/night windows, seasonal roads, and
   background layers continue to use the shared variant system. Transparent
   surfaces retain ordinary materials and their separate mesh ordering. Native
-  alpha-aware mipmaps and alpha-to-coverage are preserved.
+  alpha-aware mipmaps and alpha-to-coverage use the destination engine's MSAA
+  setting, not the offline compiler's framebuffer settings.
 - Audited fixed placements form a separate permanent layer. Compatible pieces
   can combine across those object roots, but retain their non-terrain collision
   roles and per-face placement/model identity. Ordinary gameplay batching still
@@ -148,6 +183,10 @@ With the local asset server running and the bundle built:
 npm run test:scenery-models
 ```
 
+Pass a build key to check another world, or `-- --all` to check them serially.
+The validator also loads required non-prepared dependencies through the ordinary
+placement path, such as Sakuragaoka's separate vending-machine bin.
+
 This sequential, non-rendering check loads all 35 original models and compares
 their vertex buffers, native render keys and world transforms with all 70
 prepared placements, plus decoded texture pixels, sampler and surface settings.
@@ -161,7 +200,29 @@ shared geometries. The scenery portion remains 524 meshes; templates add about
 texture catalog to 259 entries. This is a loading/memory improvement, not mesh
 instancing or a claim of fewer door draw calls. These checks passed, along with
 focused cancellation and failure-cleanup tests. Fresh rendered verification of
-the v3 templates remains outstanding; the browser tool was unavailable for it.
+the new zones remains outstanding; the browser tool was unavailable for it.
+Dobuita's v3 gameplay was subsequently checked by the user.
+
+For all prepared map geometry and environment variants, run:
+
+```sh
+npm run test:scenery -- --all
+```
+
+This reads the served bundles through the actual gameplay preparation plan,
+compares root/triangle counts against freshly decoded source assets, and checks
+81 ground rays for six time/season/weather cases per bundle. It also checks
+resource cleanup. NullEngine cannot render texture-array shaders, so this check
+uses ordinary materials over the unchanged geometry for picking and visibility
+only; it is not visual or FPS proof. The template check separately compares
+original texture pixels and surface settings. Expanding coverage exposed unused
+MT5 pack textures and materials from discarded surfaces; the shared decoder now
+releases those allocations while preserving every live or disabled surface.
+All nine unique bundles passed these checks: 4,374 ground samples across 54
+environment cases, plus 103 prepared placements (91 doors and 12 vending
+machines). Harbor's playground alias reuses its verified bundle rather than
+being counted again. Focused tests also cover loading alpha surfaces with and
+without MSAA, independently of the compiler's settings.
 
 ## Earlier scenery-only rendered evidence (v2)
 
