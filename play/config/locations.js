@@ -26,7 +26,13 @@ export const DOBUITA_SPAWN = new BABYLON.Vector3(
   61.92,
 );
 export const NEW_YOKOSUKA_HARBOR_SPAWN = new BABYLON.Vector3(53, 0, 42);
-export const OLD_WAREHOUSE_DISTRICT_SPAWN = new BABYLON.Vector3(60, 0, -9);
+// Settled native AKIR position near the entrance, not a guessed map center.
+// (60, 0, -9) has no floor in either the original or prepared map.
+// Provenance: tools/evidence/mksg-warehouse-door-transitions.json explorationSpawn.
+export const OLD_WAREHOUSE_DISTRICT_SPAWN = new BABYLON.Vector3(
+  -4.619426727294922, 0, -7.9173688888549805,
+);
+export const OLD_WAREHOUSE_DISTRICT_YAW = Math.PI / 4;
 export const FORKLIFT_PLAYGROUND_SPAWN = new BABYLON.Vector3(1.6, 0, 29);
 export const FORKLIFT_RACE_PLAYER_SPAWN = new BABYLON.Vector3(48, 0, 105);
 export const VOID_RESET_HEIGHT = -10;

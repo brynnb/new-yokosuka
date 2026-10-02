@@ -211,8 +211,14 @@ npm run test:scenery -- --all
 
 This reads the served bundles through the actual gameplay preparation plan,
 compares root/triangle counts against freshly decoded source assets, and checks
-81 ground rays for six time/season/weather cases per bundle. It also checks
-resource cleanup. NullEngine cannot render texture-array shaders, so this check
+81 ground rays for six time/season/weather cases per bundle. It also runs the
+player controller's actual terrain-support queries at those points, requires
+walkable ground at each travel spawn, checks native wall clearance at the spawn,
+and checks resource cleanup. Matching ray hits alone cannot establish that an
+arrival is safe: both loaders previously agreed that MKSG's old travel point
+had no floor. Its exploration spawn now uses a verified native player pose near
+the entrance (see [capture provenance](../../../tools/evidence/mksg-warehouse-door-transitions.json)).
+NullEngine cannot render texture-array shaders, so this check
 uses ordinary materials over the unchanged geometry for picking and visibility
 only; it is not visual or FPS proof. The template check separately compares
 original texture pixels and surface settings. Expanding coverage exposed unused

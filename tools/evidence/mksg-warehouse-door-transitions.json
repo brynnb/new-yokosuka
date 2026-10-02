@@ -1,5 +1,20 @@
 {
   "schema": "new-yokosuka-mksg-warehouse-door-transitions-v1",
+  "explorationSpawn": {
+    "capture": "captures/pvr/20260724-164607-frame-972/ram.bin",
+    "ramSha256": "97b7fdd05d77642df0c28d260b7b6a1fb233cf5b4855201f796854aab56a4569",
+    "extractor": "tools/worlds/extract_tagged_runtime_objects.js",
+    "taskAddress": "0x8c4afae0",
+    "objectTag": "AKIR",
+    "positionOffsets": ["0x28", "0x2c", "0x30"],
+    "yawOffset": "0x38",
+    "nativePosition": [4.619426727294922, 0, -7.9173688888549805],
+    "nativeYawRaw": 57344,
+    "browserPosition": [-4.619426727294922, 0, -7.9173688888549805],
+    "browserYawDegrees": 45,
+    "confidence": "exact-captured-player-pose",
+    "note": "A settled native player pose selected for exploration travel, not proof of a particular entry-number arrival. The former (60, 0, -9) travel point has no supporting map geometry."
+  },
   "nativeEdges": [
     {
       "source": "MKSG",

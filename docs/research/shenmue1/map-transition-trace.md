@@ -580,6 +580,17 @@ a local literal map-transition operation, so the browser reverse edge to
 MKSG is an intentional reconstruction. Full provenance is in
 `tools/evidence/mksg-warehouse-door-transitions.json`.
 
+Exploration travel into MKSG uses the settled `AKIR` pose from the same
+`20260724-164607-frame-972` capture: browser position
+`(-4.619426727294922, 0, -7.9173688888549805)`, yaw `45°`. RAM task
+`0x8c4afae0` stores native XYZ at `+0x28/+0x2c/+0x30` and yaw at `+0x38`;
+the evidence record includes the RAM hash. This is a captured safe exploration
+pose, not a claim that a particular native entry number selects it. The former
+hand-set travel point `(60, 0, -9)` has no supporting geometry in either the
+original or prepared map. The scenery validator now checks actual player
+support and native wall clearance at travel spawns, rather than just equality
+between the two loaders.
+
 A real Disc 3 forklift-race save supplied a settled MA00 population. The
 browser now uses the captured five-forklift grid, Mark transform, ten active
 static fixtures, and the exact native competitor route. Actors and alternate

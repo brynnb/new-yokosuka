@@ -13,8 +13,10 @@ import {createWorldSpatialIndex} from "../../src/rendering/SceneSpatialIndex.js"
 import {updateModelVisibility} from "../../src/variants.js";
 import {isWorldMapFile} from "../../src/WorldMapFiles.js";
 import {prepareWorldCollision} from "../../play/world/WorldCollision.js";
-import {loadNativeCollisionDefinitionForWorld} from "../../play/world/NativeWorldCollision.js";
+import {loadNativeCollisionDefinitionForWorld, createNativeWorldCollision} from "../../play/world/NativeWorldCollision.js";
 import {suppressDobuitaCinemaFacadeFaces} from "../../play/world/DobuitaCinemaPoster.js";
+import {ThirdPersonController, DEFAULT_THIRD_PERSON_CONTROLLER_OPTIONS,
+  defaultTerrainPredicate, defaultStepSurfacePredicate, nativeCollisionPositionClear} from "../../src/ThirdPersonController.js";
 
 const origin = new URL(process.env.SCENERY_ASSET_ORIGIN || "http://127.0.0.1:5173");
 if (!["127.0.0.1", "localhost", "[::1]"].includes(origin.hostname) || origin.protocol !== "http:") throw new Error("Use the local asset server");
@@ -29,7 +31,12 @@ function rootGeometry() {
     triangles: root.getChildMeshes().reduce((n, mesh) => n + mesh.getTotalIndices() / 3, 0),
   })).sort((a, b) => a.filename.localeCompare(b.filename));
 }
-function snapshots(index, rays) {
+function snapshots(index, rays, world) {
+  const controller = Object.assign(Object.create(ThirdPersonController.prototype), {
+    scene: state.scene, raycastIndex: index, collider: {position: world.spawn.clone()},
+    terrainPredicate: defaultTerrainPredicate, stepSurfacePredicate: defaultStepSurfacePredicate,
+    options: {...DEFAULT_THIRD_PERSON_CONTROLLER_OPTIONS},
+  });
   return cases.map(({time, season, weather}) => {
     Object.assign(state, {currentTimeOfDay: time, currentSeason: season, currentWeatherIndex: weather});
     updateModelVisibility(state);
@@ -39,6 +46,13 @@ function snapshots(index, rays) {
         const hit = index.pickWithRay(ray, mesh => mesh.isEnabled() && mesh.isVisible && mesh.isPickable && mesh.metadata?.terrain);
         return hit.hit ? hit.pickedPoint.asArray() : null;
       }),
+      support: rays.map(ray => {
+        const hit = controller.sampleTerrain(ray.origin.x, ray.origin.z, world.spawn.y);
+        return hit ? {height: hit.height, normal: hit.normal.asArray()} : null;
+      }),
+      spawnHits: index.multiPickWithRay(new B.Ray(world.spawn.add(new B.Vector3(0, 4, 0)), B.Vector3.Down(), 16), defaultTerrainPredicate)
+        .map(hit => ({point: hit.pickedPoint.asArray(), normal: hit.getNormal(true, false)?.asArray(),
+          mesh: hit.pickedMesh.name, source: hit.pickedMesh.metadata?.sourceModel, face: hit.faceId})),
     };
   });
 }
@@ -72,7 +86,7 @@ try {
         }
       }
       index = createWorldSpatialIndex(scene, state.currentMeshes);
-      const original = snapshots(index, rays);
+      const original = snapshots(index, rays, world);
       index.dispose(); index = null;
       clearWorldSceneAssets(state);
       // NullEngine has no texture-array GPU API. Use ordinary materials for
@@ -88,9 +102,20 @@ try {
       state.currentMeshes = [...bundle.roots];
       assert.deepEqual(rootGeometry(), geometry, `${key}: original map roots and triangle counts`);
       index = createWorldSpatialIndex(scene, state.currentMeshes);
-      const prepared = snapshots(index, rays);
+      const prepared = snapshots(index, rays, world);
       for (const [i, result] of prepared.entries()) {
         assert.deepEqual(result.layers, original[i].layers, `${key}: variant ${JSON.stringify(cases[i])}`);
+        assert.ok(original[i].support[40], `${key}: source map must support travel spawn ${world.spawn.asArray()}`);
+        assert.ok(result.support[40], `${key}: variant ${i} must support the player at the travel spawn\n${JSON.stringify({original: original[i].spawnHits, prepared: result.spawnHits})}`);
+        for (const [j, support] of result.support.entries()) {
+          const expected = original[i].support[j];
+          assert.equal(Boolean(support), Boolean(expected), `${key}: controller support case ${i}, ray ${j}`);
+          if (support) {
+            assert.ok(Math.abs(support.height - expected.height) < 0.0001, `${key}: support height case ${i}, ray ${j}`);
+            assert.ok(B.Vector3.Distance(B.Vector3.FromArray(support.normal), B.Vector3.FromArray(expected.normal)) < 0.0001,
+              `${key}: support normal case ${i}, ray ${j}`);
+          }
+        }
         for (const [j, point] of result.hits.entries()) {
           const expected = original[i].hits[j];
           assert.equal(Boolean(point), Boolean(expected), `${key}: case ${i}, ray ${j} hit/miss`);
@@ -98,13 +123,17 @@ try {
             `${key}: case ${i}, ray ${j}: ${point} vs ${expected}`);
         }
       }
+      createNativeWorldCollision({scene, currentMeshes: state.currentMeshes, definition: collision});
+      assert.ok(nativeCollisionPositionClear(scene.meshes, world.spawn, DEFAULT_THIRD_PERSON_CONTROLLER_OPTIONS.playerRadius),
+        `${key}: travel spawn must clear native wall boundaries`);
       index.dispose(); index = null;
       clearWorldSceneAssets(state);
       assert.deepEqual(counts(scene), baseline, `${key}: resource cleanup`);
       console.info(JSON.stringify({world: key, variants: cases.length, groundRays: cases.length * rays.length,
         groundHits: original.reduce((n, row) => n + row.hits.filter(Boolean).length, 0),
         triangles: geometry.reduce((n, row) => n + row.triangles, 0),
-        result: "matching source geometry counts, layer visibility, ground samples and cleanup",
+        controllerSamples: cases.length * rays.length, spawnSupportAndWallClearance: "passed",
+        result: "matching source geometry counts, layer visibility, player support and cleanup",
         validation: "headless; not a rendered or FPS check"}));
     } finally {
       index?.dispose(); scene.dispose(); engine.dispose();
