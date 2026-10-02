@@ -1025,6 +1025,8 @@ function createPlayRuntime() {
     placementRuntime,
     scheduledActors,
     scheduledSceneObjects,
+    preparedScenery: LOCAL_DEBUG && new URLSearchParams(window.location.search).get("scenery") === "prepared"
+      ? {baseUrl: "/scenery-output"} : null,
     onProgress: setLoadingProgress,
     beforePlacements: async (world, meshes) => {
       if (world.id === WORLDS.dobuita.id) {

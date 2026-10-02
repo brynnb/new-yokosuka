@@ -47,6 +47,8 @@ export function clearWorldSceneAssets(state) {
     root.dispose(false, false);
   }
   state.currentMeshes = [];
+  const preparedSceneryResources = state.preparedSceneryResources;
+  state.preparedSceneryResources = null;
   // This cleanup also handles a cancelled single-actor/model load. Materials
   // (notably NPC query materials) and textures can still belong to other live
   // roots. Release them only after their last mesh owner has gone, including
@@ -65,6 +67,7 @@ export function clearWorldSceneAssets(state) {
   // cannot release a multi-model scene. Collect ownership from every root.
   for (const material of materials) material.dispose(false, false);
   for (const texture of textures) texture.dispose();
+  preparedSceneryResources?.dispose();
   state.loader?.textureCache?.clear?.();
   state.loader?.materialCache?.clear?.();
   state.mt7Loader?.clearCaches();

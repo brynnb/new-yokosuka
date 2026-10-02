@@ -63,19 +63,33 @@ export const DOBUITA_CINEMA_FACADE_HIDDEN_FACES = Object.freeze([
 
 let posterMeshes = [];
 
-function meshesForDefinition(currentMeshes, definition) {
+function surfacesForDefinition(currentMeshes, definition) {
   return currentMeshes.filter(
     (root) => root._filename === definition.sourceFilename,
   ).flatMap((root) => [
     ...(root.getClassName?.() === "Mesh" ? [root] : []),
     ...root.getChildMeshes(false),
-  ]).filter((mesh) => (
-    mesh.name === definition.meshName
-    && (
-      !Number.isInteger(definition.nodeAddress)
-      || nearestMt5Node(mesh)?.addr === definition.nodeAddress
-    )
-  ));
+  ]).flatMap(mesh => {
+    const ranges = mesh.metadata?.staticBatchSources;
+    if (ranges) return ranges.filter(source => source.meshName === definition.meshName
+      && source.nodeAddress === definition.nodeAddress).map(source => ({
+        mesh,
+        faceIds: definition.faceIds.map(face => {
+          const index = source.originalFaceIds ? source.originalFaceIds.indexOf(face) : face;
+          return index >= 0 && index < source.faceCount ? source.firstFace + index : -1;
+        }),
+        center: BABYLON.Vector3.TransformCoordinates(
+          BABYLON.Vector3.Center(source.pickingBounds.minimum, source.pickingBounds.maximum),
+          BABYLON.Matrix.Invert(source.pickingBounds.inverseWorld)),
+      })).filter(surface => surface.faceIds.every(face => face >= 0));
+    if (mesh.name !== definition.meshName || (Number.isInteger(definition.nodeAddress)
+      && (nearestMt5Node(mesh)?.addr ?? mesh._mt5NodeAddress) !== definition.nodeAddress)) return [];
+    const faceIds = definition.faceIds.map(face => mesh._mt5OriginalFaceIds
+      ? Array.from(mesh._mt5OriginalFaceIds).indexOf(face) : face);
+    if (!faceIds.every(face => face >= 0 && face * 3 + 2 < (mesh.getIndices()?.length || 0))) return [];
+    mesh.computeWorldMatrix(true);
+    return [{mesh, faceIds, center: mesh.getBoundingInfo().boundingBox.centerWorld}];
+  });
 }
 
 function nearestMt5Node(node) {
@@ -87,10 +101,10 @@ function nearestMt5Node(node) {
 export function suppressDobuitaCinemaFacadeFaces(currentMeshes) {
   let suppressedFaceCount = 0;
   for (const definition of DOBUITA_CINEMA_FACADE_HIDDEN_FACES) {
-    for (const mesh of meshesForDefinition(currentMeshes, definition)) {
+    for (const {mesh, faceIds} of surfacesForDefinition(currentMeshes, definition)) {
       const indices = Array.from(mesh.getIndices?.() || []);
       if (indices.length === 0) continue;
-      for (const faceId of definition.faceIds) {
+      for (const faceId of faceIds) {
         const offset = faceId * 3;
         if (offset + 2 >= indices.length) continue;
         indices[offset + 1] = indices[offset];
@@ -167,17 +181,11 @@ function createPosterMesh(scene, definition) {
 
 function suppressPosterSourceFaces(currentMeshes, definition) {
   const targetCenter = BABYLON.Vector3.FromArray(definition.sourceCenter);
-  const candidates = meshesForDefinition(currentMeshes, definition).filter(
-    (mesh) => definition.faceIds.every(
-      (faceId) => faceId * 3 + 2 < (mesh.getIndices()?.length || 0),
-    ),
-  ).map((mesh) => {
-    mesh.computeWorldMatrix(true);
-    const bounds = mesh.getBoundingInfo().boundingBox;
+  const candidates = surfacesForDefinition(currentMeshes, definition).map(surface => {
     return {
-      mesh,
+      ...surface,
       distance: BABYLON.Vector3.DistanceSquared(
-        bounds.centerWorld,
+        surface.center,
         targetCenter,
       ),
     };
@@ -186,7 +194,7 @@ function suppressPosterSourceFaces(currentMeshes, definition) {
   if (!source) return false;
 
   const indices = Array.from(source.getIndices() || []);
-  for (const faceId of definition.faceIds) {
+  for (const faceId of candidates[0].faceIds) {
     const offset = faceId * 3;
     indices[offset + 1] = indices[offset];
     indices[offset + 2] = indices[offset];

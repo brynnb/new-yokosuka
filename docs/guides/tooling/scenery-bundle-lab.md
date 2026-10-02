@@ -1,12 +1,25 @@
 # Prepared scenery experiment
 
 This local Dobuita experiment compiles decoded map scenery and audited fixed
-placements into a ready-to-render bundle. It does not change `/play`, publish
-assets, or connect to the game server.
+placements into a ready-to-render bundle. Normal gameplay is unchanged unless
+the local prepared-scenery option is selected. It does not publish assets.
 The purpose is to test whether fewer independently drawn pieces reduce CPU work
 without changing the scene's appearance.
 
-## Run and compare
+## Test in the actual game
+
+After building the bundle once as described below, run `npm run dev:all` and
+open <http://127.0.0.1:5173/play/?scenery=prepared> (use your configured Vite
+port). Enter the world and travel to Dobuita. Its map and approved fixed objects
+load from the prepared bundle; NPCs, doors, shutters, interactions, and other
+worlds keep their normal gameplay owners. Without `scenery=prepared`, the game
+uses its ordinary asset loader. The option is restricted to local development.
+Travel releases the bundle's geometry, materials, and textures normally.
+Changed placement or schedule inputs require rebuilding rather than silently
+loading a stale bundle. The dev server reads the ignored bundle directly;
+production builds do not include it.
+
+## Build and compare scenery
 
 Install the normal client dependencies and configure
 [runtime assets](../runtime-assets.md), then run from the repository root:
