@@ -71,13 +71,38 @@ reloads rather than continuing to write the old context.
 Sidebar cutscene previews remain isolated previews and do not mark an opening
 complete or modify the story save.
 
+## Starting notebook
+
+The notebook displays numbered pages instead of placeholder categories. After
+the Story opening/awakening completes, pages 1–5 contain the starting phone
+numbers and Ryo's notes about Lan Di, the stolen mirror and Meng Cun. The page
+order and facts follow [Force Vector's notebook transcription](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/14458);
+the English wording and layout are lightly adapted, not a native-file extraction.
+Later additions (including Master Chen's number, the allowance and Fuku-san's
+clues) are deliberately not granted at the start.
+
+`play/config/notebook.js` supplies these immutable pages from the server-saved
+`playMode` and `openingCompleted` fields. No separate notebook save or migration
+is necessary for these unconditional starting entries: reconnects and existing
+completed Story saves receive the same pages without duplication. Free roam
+and unfinished openings have an empty notebook. Changing characters/modes or
+logging out clears the previous view. Later notebook additions still require
+recovering the original entry/flag mapping; this starting catalog does not infer
+those flags or grant any quest progress.
+
+The last viewed page is a browser-only preference, stored as a stable page ID in
+`localStorage` under `new-yokosuka.notebook-page.v1:<characterId>:<playMode>`.
+Closing/reopening or reloading resumes that page. Different characters and
+modes have separate bookmarks; unavailable storage leaves in-session navigation
+working. The bookmark never unlocks entries or changes server progress.
+
 ## Current limits
 
 This is the mode/persistence foundation, not complete playable story coverage.
 The native interpreter and the server/Yarn event engine still have distinct
 state representations; mode isolation does not bridge their milestones or
-make arbitrary client-submitted native flags server-validated. Notebook entry
-generation, unimplemented quest triggers, original sleep/deadline behavior and
+make arbitrary client-submitted native flags server-validated. Notebook entries
+beyond the opening, unimplemented quest triggers, original sleep/deadline behavior and
 event-driven calendar changes remain tracked in
 [storyline gameplay integration](../design/storyline-gameplay.md).
 

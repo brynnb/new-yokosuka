@@ -7,6 +7,7 @@ import {
   useGuestAccount,
 } from "../play/account/AccountSession.js";
 import { useGameUiStore } from "../play/ui/react/gameUiStore.js";
+import { useJournalStore, setJournalCharacter, turnJournalPage } from "../play/ui/react/journalStore.js";
 
 function memoryStorage(entries = []) {
   const values = new Map(entries);
@@ -23,7 +24,7 @@ test("mode reload resumes the owned character without another menu or intro prom
   const storage = memoryStorage([["new-yokosuka.mode-resume.v1", "7"]]);
   Object.defineProperty(globalThis, "sessionStorage", {configurable: true, value: storage});
   globalThis.document = {body: {classList: {remove() {}}}};
-  const character = {id: 7, name: "Tester", playMode: "story", modeRevision: 3};
+  const character = {id: 7, name: "Tester", playMode: "story", modeRevision: 3, openingCompleted: true};
   const calls = [];
   try {
     const account = new AccountSession({
@@ -42,6 +43,7 @@ test("mode reload resumes the owned character without another menu or intro prom
     });
     await account.start();
     assert.equal(account.character, character);
+    assert.equal(useJournalStore.getState().pages.length, 5);
     assert.deepEqual(calls, ["/api/session", "/api/characters", "closed"]);
     assert.equal(storage.getItem("new-yokosuka.mode-resume.v1"), null);
   } finally {
@@ -49,6 +51,19 @@ test("mode reload resumes the owned character without another menu or intro prom
     if (previousStorage) Object.defineProperty(globalThis, "sessionStorage", previousStorage);
     else delete globalThis.sessionStorage;
   }
+});
+
+test("opening completion updates the notebook through the same welcome path as reconnects", () => {
+  setJournalCharacter(null);
+  const account = new AccountSession();
+  account.applyWelcome({ id: 42, playMode: "story", openingCompleted: false });
+  assert.equal(useJournalStore.getState().pages.length, 0);
+  account.applyWelcome({ id: 42, playMode: "story", openingCompleted: true });
+  assert.equal(useJournalStore.getState().pages.length, 5);
+  turnJournalPage(1);
+  account.applyPurchase({ outcome: "purchased", yen: 400, inventory: [] });
+  assert.equal(useJournalStore.getState().pages.length, 5);
+  assert.equal(useJournalStore.getState().pageIndex, 1);
 });
 
 test('machine purchase updates money and collection without resetting character HUD', () => {
@@ -239,6 +254,8 @@ test("logout revokes the account session, clears local state, and reloads", asyn
   account.characters = [{ id: 2 }];
   account.character = { id: 2 };
   account.inventory = [{ id: 3 }];
+  account.applyWelcome({ id: 2, playMode: "story", openingCompleted: true });
+  assert.equal(useJournalStore.getState().pages.length, 5);
 
   await account.logout({
     reload: () => {
@@ -254,6 +271,7 @@ test("logout revokes the account session, clears local state, and reloads", asyn
   assert.deepEqual(account.characters, []);
   assert.equal(account.character, null);
   assert.deepEqual(account.inventory, []);
+  assert.equal(useJournalStore.getState().pages.length, 0);
   assert.equal(reloads, 1);
 });
 
