@@ -404,10 +404,14 @@ The OP00 awakening writes bank-2 bit `961 = 1` at `0x20536`, then requests
 transition. Fix this through the source-backed opening transaction, not by
 globally changing preview behavior or seeding an isolated workaround bit.
 
-Two integration mismatches must also be resolved: the existing free-roam bank-2
-default (`0xec` in byte 0) includes bit `5`, which selects STEP `11` rather
-than the allowance's required `0`; Story mode must not inherit that baseline.
-Also, OP00's final clock write at `0x2051e` is Dec. 3 **08:55** before its JOMO
+The free-roam bank-2 preset (`0xec` in byte 0) includes bit `5`, which selects
+STEP `11` rather than the allowance's required `0`. New Story contexts now use
+the original bank reset instead; stored saves are not rewritten. PostgreSQL
+tests cover both directions of mode switching, including a fresh Ryo switching
+before any dialogue save. This fixes baseline isolation, not the still-pending
+opening effects and room initialization.
+
+OP00's final clock write at `0x2051e` is Dec. 3 **08:55** before its JOMO
 transition, whereas the current personal clock starts at 08:50. The dream's
 08:50 caption is presentation; it does not establish the post-scene clock.
 

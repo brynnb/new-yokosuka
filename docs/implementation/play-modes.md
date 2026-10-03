@@ -29,13 +29,17 @@ rewards or a second economy.
   Explicitly skipping a scene counts as completing that presentation.
 - Existing characters migrate to Free roam with their old saves intact.
 
-The post-opening story starts December 3, 1986 at 08:50, at JOMO entry 1 beside
-Ryo's bed. Sources are the OP00 awakening package, the JOMO MAPINFO entry,
-[cutscene chronology](cutscenes.md), and
-`tools/evidence/native-dialogue-free-roam-bootstrap.json`. The latter records
-the original post-opening native banks; despite its historical filename it is
-not an instruction to set later story milestones. Both new contexts initialize
-from those verified banks.
+The current personal clock starts December 3, 1986 at 08:50, at JOMO entry 1
+beside Ryo's bed. The recovered OP00 program's final clock write is 08:55;
+settling that arrival and its native effects is still part of the pending
+[story-controller integration](../design/storyline-gameplay.md#original-first-allowance-evidence).
+
+New Story contexts now use the original zeroed native banks, before opening and
+room initialization. Free roam retains the save-derived preset documented in
+`tools/evidence/native-dialogue-free-roam-bootstrap.json`. That record verifies
+the bytes of a particular save, not its suitability as the first frame of a
+new story: bit 5 selects STEP 11 and skips initial branches. The server chooses
+the baseline for the active/target mode and preserves existing saved snapshots.
 
 ## Shared world, personal presentation
 
