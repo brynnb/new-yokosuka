@@ -1603,6 +1603,116 @@ test("signed runtime arithmetic preserves the native half-turn angle tie", async
   assert.equal(wrapped.result | 0, -1000);
 });
 
+for (const kind of ["engineOperation", "secondaryEngineOperation"]) {
+  test(`${kind} preserves returned state, typed reads and branch across a yield`, async () => {
+    const observed = [];
+    const writes = [];
+    const resultComparison = {
+      kind: "operationResult",
+      comparison: "equal",
+      constant: 0x12345678,
+      resolvedBranch: {
+        branchFileOffset: "0x118",
+        comparisonTrueSuccessor: "0x120",
+        comparisonFalseSuccessor: "0x130",
+      },
+    };
+    const query = (offset, target, extra = {}) => ({
+      ...operation(offset, "query"), kind, resultTarget: target, ...extra,
+    });
+    const program = {
+      entryFunction: "0x100",
+      functions: [{
+        id: "0x100", entryBlock: "0x100",
+        blocks: [{
+          id: "0x100",
+          actions: [
+            query("0x102", { kind: "frameField", offset: 8, width: 1 }),
+            query("0x104", { kind: "frameField", offset: 12, width: 2 }),
+            query("0x106", { kind: "frameField", offset: 16, width: 4 }),
+            query("0x108", { kind: "sceneField", offset: 0, width: 4, storeFileOffset: "0x10c" }, { resultComparison }),
+          ],
+          successors: ["0x110"],
+        }, {
+          id: "0x110", actions: [],
+          terminator: { fileOffset: "0x118", mnemonic: "bf" },
+          successors: ["0x120", "0x130"],
+        }, {
+          id: "0x120", actions: [{ ...operation("0x122", "observe"), kind }], successors: [],
+        }, {
+          id: "0x130", actions: [operation("0x132", "wrong-branch")], successors: [],
+        }],
+      }],
+    };
+    let calls = 0;
+    const interpreter = createNativeEventInterpreter({
+      program,
+      executeOperation: (action, context) => {
+        calls++;
+        if (action.semanticId === "query") return {
+          status: action.callFileOffset === "0x108" ? "yielded" : "continued",
+          result: 0x12345678, request: { kind: "wait" },
+        };
+        assert.equal(action.semanticId, "observe");
+        observed.push(
+          context.readFrameField(8), context.readFrameField(12), context.readFrameField(16),
+          context.readOperationResult("0x108"),
+          context.readSceneField({ offset: 29, width: 1, signedLoad: true }),
+          context.readSceneField(0),
+        );
+        return { status: "continued" };
+      },
+    });
+    const context = {
+      writeSceneField: write => writes.push(write),
+      readSceneField: descriptor => descriptor,
+    };
+    const first = await interpreter.run(null, context);
+    assert.equal(first.status, "yielded");
+    assert.equal(first.state.frames[0].actionIndex, 4);
+    assert.equal(first.state.frames[0].fields[8], 0x78);
+    assert.equal(first.state.frames[0].operationResults["0x108"], 0x12345678);
+    assert.equal(first.state.frames[0].pendingOperationComparison.result, 0x12345678);
+    const resumed = await interpreter.run(first.state, context);
+    assert.equal(resumed.status, "completed");
+    assert.equal(calls, 5, "resume must not rerun the yielded operation");
+    assert.deepEqual(observed, [
+      0x78, 0x5678, 0x12345678, 0x12345678,
+      { offset: 29, width: 1, signedLoad: true },
+      { offset: 0, width: 4, signedLoad: false },
+    ]);
+    assert.deepEqual(writes, [{
+      offset: 0, width: 4, value: 0x12345678,
+      source: { functionFileOffset: "0x100", callFileOffset: "0x108", storeFileOffset: "0x10c" },
+    }]);
+  });
+
+  test(`${kind} stops on missing comparison results and handler failure`, async () => {
+    for (const [handlerResult, expected] of [
+      [{ status: "continued" }, "operation-result-missing"],
+      [{ status: "stopped", reason: "not-ready", result: 1 }, "operation-stopped"],
+    ]) {
+      const program = {
+        entryFunction: "0x100",
+        functions: [{ id: "0x100", entryBlock: "0x100", blocks: [{
+          id: "0x100", successors: [], actions: [{
+            ...operation("0x102"), kind,
+            resultTarget: { kind: "frameField", offset: 8 },
+            resultComparison: { comparison: "equal", constant: 0 },
+          }],
+        }] }],
+      };
+      const result = await createNativeEventInterpreter({
+        program, executeOperation: () => handlerResult,
+      }).run();
+      assert.equal(result.status, "stopped");
+      assert.equal(result.reason.kind, expected);
+      assert.equal(result.state.frames[0].fields[8], undefined);
+      assert.equal(result.state.frames[0].actionIndex, 0);
+    }
+  });
+}
+
 test("stops before an unresolved secondary operation", async () => {
   const program = {
     entryFunction: "0x100",
@@ -2061,6 +2171,57 @@ test("branches on an exact stacked operation-result expression", async () => {
   }).run();
   assert.equal(result.status, "completed");
   assert.deepEqual(calls, ["previous", "current", "expression-nonzero"]);
+});
+
+test("call-result predicates require the actual typed frame value", async () => {
+  for (const [stored, expected] of [[0, "eligible"], [1, "ineligible"], [undefined, null]]) {
+    const seen = [];
+    const program = {
+      entryFunction: "0x100",
+      functions: [{ id: "0x100", entryBlock: "0x100", blocks: [{
+        id: "0x100", successors: ["0x110"], actions: [{
+          ...operation("0x102"),
+          resultComparison: {
+            kind: "callResultExpression", comparison: "equal", constant: 0,
+            expression: {
+              kind: "bitwise-and",
+              left: { kind: "call-result", callFileOffset: "0x102" },
+              right: {
+                kind: "comparison-mask", operand: {
+                  kind: "equal",
+                  left: { kind: "frame-field", offset: 0, width: 4, signedLoad: false },
+                  right: { kind: "constant", value: 0 },
+                },
+              },
+            },
+            resolvedBranch: {
+              branchFileOffset: "0x112",
+              comparisonTrueSuccessor: "0x120",
+              comparisonFalseSuccessor: "0x130",
+            },
+          },
+        }],
+      }, {
+        id: "0x110", actions: [], successors: ["0x120", "0x130"],
+        terminator: { fileOffset: "0x112", mnemonic: "bf" },
+      }, {
+        id: "0x120", actions: [operation("0x122", "ineligible")], successors: [],
+      }, {
+        id: "0x130", actions: [operation("0x132", "eligible")], successors: [],
+      }] }],
+    };
+    const result = await createNativeEventInterpreter({
+      program,
+      executeOperation: action => {
+        if (action.callFileOffset === "0x102") return { result: -1 };
+        seen.push(action.semanticId);
+        return { status: "continued" };
+      },
+    }).run(null, { initialFrameFields: { 0: stored } });
+    assert.equal(result.status, expected ? "completed" : "stopped");
+    assert.deepEqual(seen, expected ? [expected] : []);
+    if (!expected) assert.equal(result.reason.detail, "frame-field-expression-source-missing:0");
+  }
 });
 
 test("branches on an exact scene and direct-call result expression", async () => {

@@ -344,6 +344,49 @@ class DialogueControlFlowIndexTest(unittest.TestCase):
             {"kind": "call-result", "callFileOffset": "0x114"},
         )
 
+    def test_call_predicate_loads_replace_stale_register_constants(self):
+        # JOMO's initial allowance gate combines a call result with frame[0].
+        # Splitting a memory operand at its first comma used to leave r5 = 1,
+        # turning the authored frame[0] == 0 check into a constant false test.
+        for operand, expected_kind, expected_offset in [
+            ("@(0,r14),r5", "frame-field", 0),
+            ("@(r0,r14),r5", "frame-field", 4),
+            ("@(0,r9),r5", "scene-field", 0),
+            ("@(r0,r9),r5", "scene-field", 4),
+            ("@(0,r7),r5", None, None),
+        ]:
+            with self.subTest(operand=operand):
+                rows = [
+                    (0x100, "jsr", "@r0", None),
+                    (0x102, "nop", "", None),
+                    (0x104, "mov", "r0,r4", None),
+                    (0x106, "mov", "#1,r5", None),
+                    (0x108, "cmp/eq", "r5,r4", None),
+                    (0x10a, "subc", "r4,r4", None),
+                    (0x10c, "mov", "#4,r0", None),
+                    (0x10e, "mov.l", operand, None),
+                    (0x110, "mov", "#0,r6", None),
+                    (0x112, "cmp/eq", "r6,r5", None),
+                    (0x114, "subc", "r5,r5", None),
+                    (0x116, "and", "r5,r4", None),
+                    (0x118, "mov", "r4,r0", None),
+                    (0x11a, "cmp/eq", "#0,r0", None),
+                    (0x11c, "bf", "0x130", None),
+                    (0x11e, "nop", "", None),
+                    (0x130, "rts", "", None),
+                ]
+                predicates = call_result_expression_branch_predicates(
+                    rows, basic_blocks(rows, 0x100, 0x132),
+                )
+                if expected_kind is None:
+                    self.assertEqual(predicates, [])
+                    continue
+                self.assertEqual(len(predicates), 1)
+                self.assertEqual(predicates[0]["expression"]["right"]["operand"]["left"], {
+                    "kind": expected_kind, "offset": expected_offset,
+                    "width": 4, "signedLoad": False,
+                })
+
     def test_recovers_exact_constant_branch_expression(self):
         rows = [
             (0x100, "mov", "#-1,r4", None),
@@ -1022,6 +1065,64 @@ class DialogueControlFlowIndexTest(unittest.TestCase):
                 "valueSource": "0x104",
             }],
         )
+
+    def test_recovers_immediate_room_writes_and_dispatcher_read(self):
+        # Disc 1 JOMO MAPINFO: mode 7 requests event 33; room initialization
+        # sets byte 29; the persistent dispatcher copies scene[0] to frame[4].
+        # Source SHA256 4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9.
+        rows = {row[0]: row for row in [
+            (0x42e2e, "mov", "#0,r4", None),
+            (0x42e30, "add", "r9,r4", None),
+            (0x42e32, "mov", "#33,r5", None),
+            (0x42e34, "mov.l", "r5,@r4", None),
+            (0x8b880, "mov", "#29,r4", None),
+            (0x8b882, "add", "r9,r4", None),
+            (0x8b884, "mov", "#1,r5", None),
+            (0x8b886, "mov.b", "r5,@r4", None),
+            (0x8beb6, "mov", "#4,r4", None),
+            (0x8beb8, "add", "r14,r4", None),
+            (0x8beba, "mov.l", "@(0,r9),r5", None),
+            (0x8bebc, "mov.l", "r5,@r4", None),
+        ]}
+        self.assertEqual([
+            (write["callFileOffset"], write["offset"], write["width"], write["value"])
+            for write in scene_field_constant_writes(rows, 0)
+        ], [("0x42e34", 0, 4, 33), ("0x8b886", 29, 1, 1)])
+        self.assertEqual(frame_field_scene_writes(rows), [{
+            "kind": "frameFieldSceneWrite", "callFileOffset": "0x8bebc",
+            "offset": 4, "width": 4, "sceneOffset": 0,
+            "sceneOffsetHex": "0x0", "sceneWidth": 4, "signedLoad": False,
+            "addressDefinitionFileOffset": "0x8beb6",
+            "sourceDefinitionFileOffset": "0x8beba",
+        }])
+
+    def test_room_constant_write_does_not_cross_unknown_address_or_control_flow(self):
+        for instruction in [
+            ("mov", "r6,r4"), ("jsr", "@r0"), ("bf", "0x108"),
+        ]:
+            with self.subTest(instruction=instruction):
+                rows = {row[0]: row for row in [
+                    (0x100, "mov", "#0,r4", None),
+                    (0x102, "add", "r9,r4", None),
+                    (0x104, *instruction, None),
+                    (0x106, "mov", "#33,r5", None),
+                    (0x108, "mov.l", "r5,@r4", None),
+                ]}
+                self.assertEqual(scene_field_constant_writes(rows, 0), [])
+
+    def test_recovers_small_indexed_scene_byte_into_coroutine_frame(self):
+        rows = {row[0]: row for row in [
+            (0x100, "mov", "#12,r4", None),
+            (0x102, "add", "r14,r4", None),
+            (0x104, "mov", "#29,r0", None),
+            (0x106, "mov.b", "@(r0,r9),r5", None),
+            (0x108, "mov.l", "r5,@r4", None),
+        ]}
+        writes = frame_field_scene_writes(rows)
+        self.assertEqual(len(writes), 1)
+        self.assertEqual(writes[0]["sceneOffset"], 29)
+        self.assertEqual(writes[0]["sceneWidth"], 1)
+        self.assertTrue(writes[0]["signedLoad"])
 
     def test_recovers_exact_scene_field_or_write(self):
         rows = {

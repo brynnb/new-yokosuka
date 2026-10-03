@@ -301,48 +301,99 @@ need stronger server/instance authority than a browser completion message.
 
 Implement this **after** one ordinary non-QTE story scene works end to end.
 
-## Recommended first vertical slice
+## Active implementation goal
 
-Choose one already packaged, browser-proven, noninteractive cutscene with:
+Implement source-backed personal area controllers, starting with the complete
+awakening → Hazuki residence initialization → Ine-san's first allowance → saved
+continuation. Work builds on the existing Story/Free roam and script-event
+systems. This is not complete storyline coverage yet.
 
-- one unambiguous source area;
-- one simple personal prerequisite;
-- one idempotent completion milestone;
-- no combat/QTE outcome;
-- no required mid-scene world transition; and
-- a known return world/spawn.
+The original controller consumes several kinds of input: EVNT regions,
+position/facing checks, interactions, native banks, the personal clock, and
+earlier controller results. EVNT records alone are not a cutscene-trigger
+catalog. Room initialization, event dispatch, waits and completion chaining must
+remain part of the generated program rather than becoming individual browser
+location checks.
 
-Fuku-san's letter is a candidate if its full browser test is green when work
-begins. D000 selector 18 is no longer excluded on the basis of the old missing
-BGM, active-channel cleanup, or incomplete DRAUTH presentation failures:
-`tests/NativeAutomaticEventGateIntegration.test.js` covers those boundaries and
-passes at this documentation review. That is focused native integration evidence,
-not proof of a complete server-authoritative personal-story route. Choose a
-first slice by the ownership and outcome requirements above.
+Implementation order and completion criteria:
 
-Build the slice in this order:
+1. **Repair shared recovery and execution.** Preserve immediate-offset room
+   writes, scene-to-frame reads, secondary operation returns and compound
+   predicates. Recover the arithmetic/stack dataflow needed by the first room;
+   never substitute a guessed constant for an unavailable value.
+2. **Generate the first area controller package.** Include its original roots,
+   initialization, interaction selection, dispatcher and event owner. Record
+   source hashes/offsets and unresolved inputs. Keep packages sharded; do not
+   bundle a whole-disc research index into the client.
+3. **Bridge authoritative state.** Extend server script predicates/effects to
+   address original native banks explicitly, under the existing lease, revision
+   and transaction rules. Generate ordinary conditions/effects from recovered
+   logic rather than writing one Go handler per story scene. Do not expose an
+   arbitrary client-selected native function or accept client-authored rewards.
+4. **Retain bounded personal room sessions.** Extend existing room-controller
+   ownership and automatic dispatch. Re-evaluate affected dependencies when
+   state, spatial membership, interaction or time changes, preserving authored
+   timers/order. Avoid full-corpus per-frame polling. Mode switches, travel,
+   reconnects and cancellation must fence stale continuations and duplicate
+   fallback dispatch.
+5. **Complete the opening-to-allowance slice.** Reuse native presentation with a
+   live story settlement distinct from the preview sandbox. Settle source-backed
+   flags, notebook additions, yen, clock and destination atomically. Explicitly
+   define completed/skipped/cancelled/failed behavior. Verify a fresh save, each
+   negative gate, failure/retry, duplicate completion, reconnect and the next
+   interaction, including a rendered full-stack run.
+6. **Expand controller families and measure coverage.** Generate a corpus-wide
+   report separating discovered sources, recovered conditions, executable
+   routes and verified gameplay. Extend shared primitives for remaining S1
+   families and typed QTE/combat outcomes. Investigate equivalent S2 story
+   scripts separately; recovered S2 worlds/entrances are not evidence of story
+   support. Keep unsupported source boundaries explicit.
 
-1. Define a stable personal phase/milestone and preserve the exact native
-   bank/index evidence beside it. Do not invent a friendly flag meaning from a
-   single consumer.
-2. Add an exact server `automatic` trigger for the source area with ineligible,
-   eligible, already-complete, and `pass_trigger` behavior.
-3. Have the server issue one story-event session and the bounded presentation
-   ID.
-4. Launch the existing package/program through the shared cutscene director.
-   Keep the menu-preview sandbox out of this live transaction.
-5. Require an explicit terminal `completed` or reviewed `skipped` settlement.
-   `stopped`, interpreter continuation, cleanup failure, world change, and
-   disconnect are not success.
-6. Commit the milestone and required native compatibility state once. On any
-   other terminal condition, commit neither.
-7. Restore the shared world/camera/input/actors and put the player at the
-   reviewed destination.
-8. Leave and re-enter, then reload/reconnect, and prove the scene does not
-   repeat unless its replay policy says it should.
+### Original first-allowance evidence
 
-Only after this works should the same session boundary be generalized to a
-second cutscene and then to typed QTE outcomes.
+Offsets below refer to disc-1 `SCENE/01/JOMO/MAPINFO.BIN`, SHA-256
+`4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9`.
+They are native-code evidence, not proof of rendered gameplay.
+
+| Original step | Evidence |
+| --- | --- |
+| Root launches persistent controller and interaction loop | Root `0x88b70`; launches `0x8bd7c` at `0x895f2` and `0x436d8` at `0x8968a` |
+| Initialization enables the allowance interaction | Function `0x8b6dc`, byte `scene[29] = 1` at `0x8b886` |
+| Eligibility checks state and interaction candidate | `0x41290`, then proximity/facing helper `0x16ea8`; selected interaction mode `7` |
+| Input dispatch requests the room event | `0x423d0` mode `7`; dword `scene[0] = 33` at `0x42e34` |
+| Persistent owner consumes that request | `scene[0]` copied to frame offset `4` at `0x8bebc`; event `33` calls `0x60fe8` at `0x8ce8e` |
+| Event body selects allowance presentation | `01KOZ` resource request at `0x610c6`; activity `35` at `0x611b2` |
+
+The initialization condition at `0x8b852` combines current-scene `1`, computed
+frame field `0 == 0`, bank-2 bit `832 == 0`, operation `0x01c7(3,0,2) == 1`, and
+bank-2 bit `961 == 1`. Do not assign story names to the numeric record/global
+inputs without recovering their writers. Bit `832` is also written by other
+initialization branches, so calling it simply “watched allowance” is inaccurate.
+
+The OP00 awakening writes bank-2 bit `961 = 1` at `0x20536`, then requests
+`JOMO` entry `1` at `0x2054e`. Currently the opening uses sandboxed previews and
+`CompleteOpening` only sets `opening_completed`; it does not commit that native
+transition. Fix this through the source-backed opening transaction, not by
+globally changing preview behavior or seeding an isolated workaround bit.
+
+### Foundation checkpoint
+
+The shared interpreter now applies result storage, typed scene reads, branch
+comparisons and yield/resume handling equally to both native operation
+dispatchers. Extraction now recovers small immediate-offset scene writes and
+direct/indexed scene-to-frame reads. Compound-call predicate extraction correctly
+replaces old register constants when reading frame/scene memory; unsupported
+loads invalidate the value. Frame inputs use the existing typed frame evaluator.
+
+Regression tests reproduced the missing returns and false constant predicate
+before these changes, then passed. Direct disassembly of the hashed JOMO file
+also confirms the writes/reads above and the recovered frame input at `0x8b852`.
+These are parser/runtime checks, not a completed room package or browser test.
+The full generated corpus has not been rebuilt for these changes. Remaining
+first-slice work includes the two `0x0184` results combined into frame offset
+`0`, their authoritative input, interaction-manager operations, room ownership,
+and server settlement. No live progression should be claimed from this
+checkpoint alone.
 
 ## Validation that actually proves storyline integration
 

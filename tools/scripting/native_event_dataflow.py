@@ -1584,7 +1584,12 @@ def scene_field_constant_writes(
     static_data_base: int,
     reached: set[int] | None = None,
 ) -> list[dict[str, Any]]:
-    """Recover exact constant stores through ``literal + r9`` addresses."""
+    """Recover exact constant stores through scene-rooted addresses.
+
+    Small room fields use immediate offsets rather than PC-relative literals.
+    In particular, JOMO writes its dispatcher event word at offset zero this
+    way; omitting those writes makes otherwise recovered event bodies inert.
+    """
 
     ordered = [rows[address] for address in sorted(rows)]
     indices = {row[0]: index for index, row in enumerate(ordered)}
@@ -1597,17 +1602,8 @@ def scene_field_constant_writes(
         match = REGISTER_STORE.fullmatch(store[2])
         if match is None:
             continue
-        address_register = match.group("address")
-        add = rows.get(address - 4)
-        base = rows.get(address - 6)
-        if (
-            add is None
-            or add[1:3] != ("add", f"r9,{address_register}")
-            or base is None
-            or base[1] != "mov.l"
-            or base[3] is None
-            or not base[2].endswith(f",{address_register}")
-        ):
+        target = _rooted_address_offset(rows, address, match.group("address"), "r9")
+        if target is None:
             continue
         value = resolve_register(
             ordered,
@@ -1620,12 +1616,12 @@ def scene_field_constant_writes(
         writes.append({
             "kind": "sceneFieldWrite",
             "callFileOffset": hx(address),
-            "offset": base[3],
-            "offsetHex": hx(base[3]),
+            "offset": target[0],
+            "offsetHex": hx(target[0]),
             "width": {"mov.b": 1, "mov.w": 2, "mov.l": 4}[store[1]],
             "value": value.value,
             "valueHex": f"0x{value.value:08x}",
-            "addressDefinitionFileOffset": hx(base[0]),
+            "addressDefinitionFileOffset": hx(target[1]),
             "valueSource": value.source,
         })
     return writes
@@ -1782,21 +1778,35 @@ def frame_field_scene_writes(
         source_register = match.group("source")
         load = rows.get(address - 2)
         addend_word = None
+        direct_scene_load = (
+            BASE_REGISTER_SLOT.fullmatch(load[2])
+            if load is not None and load[1] in {"mov.b", "mov.w", "mov.l"}
+            else None
+        )
+        if direct_scene_load is not None and (
+            direct_scene_load.group("base") != "r9"
+            or direct_scene_load.group("destination") != source_register
+        ):
+            direct_scene_load = None
         indexed_scene_load = (
             load is not None
             and load[1] in {"mov.b", "mov.w", "mov.l"}
             and load[2] == f"@(r0,r9),{source_register}"
         )
-        if indexed_scene_load:
+        if direct_scene_load:
+            source = (int(direct_scene_load.group("offset")), load[0])
+            source_width = {"mov.b": 1, "mov.w": 2, "mov.l": 4}[load[1]]
+        elif indexed_scene_load:
             source_definition = rows.get(address - 4)
-            if (
-                source_definition is None
-                or source_definition[1] != "mov.l"
-                or not source_definition[2].endswith(",r0")
-                or source_definition[3] is None
-            ):
+            source_offset = None
+            if source_definition is not None and source_definition[2].endswith(",r0"):
+                if source_definition[1] == "mov":
+                    source_offset = signed_immediate(source_definition[2], "r0")
+                elif source_definition[1] == "mov.l":
+                    source_offset = source_definition[3]
+            if source_offset is None:
                 continue
-            source = (source_definition[3], source_definition[0])
+            source = (source_offset, source_definition[0])
             source_width = {"mov.b": 1, "mov.w": 2, "mov.l": 4}[load[1]]
         elif (
             load is not None
@@ -1833,7 +1843,7 @@ def frame_field_scene_writes(
                 continue
             source_address_register = "r5"
             addend_word = float_sequence[7][3]
-        if not indexed_scene_load:
+        if not indexed_scene_load and not direct_scene_load:
             source = _rooted_address_offset(
                 rows,
                 load[0],

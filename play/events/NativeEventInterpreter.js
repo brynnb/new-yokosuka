@@ -186,7 +186,10 @@ function stopped(state, kind, detail = {}) {
   };
 }
 
-function operationResultExpression(expression, results, readSceneField) {
+function operationResultExpression(expression, results, readSceneField, readFrameField) {
+  if (expression?.kind === "frame-field") {
+    return evaluateNativeFrameExpression(expression, readFrameField);
+  }
   if (["operation-result", "call-result"].includes(expression?.kind)) {
     const value = results?.[expression.callFileOffset];
     return Number.isInteger(value)
@@ -228,12 +231,14 @@ function operationResultExpression(expression, results, readSceneField) {
       expression.left,
       results,
       readSceneField,
+      readFrameField,
     );
     if (!left.resolved) return left;
     const right = operationResultExpression(
       expression.right,
       results,
       readSceneField,
+      readFrameField,
     );
     if (!right.resolved) return right;
     const matched = {
@@ -256,6 +261,7 @@ function operationResultExpression(expression, results, readSceneField) {
       expression.operand,
       results,
       readSceneField,
+      readFrameField,
     );
     if (!operand.resolved) return operand;
     if (!Object.hasOwn(expression, "comparison")) {
@@ -281,7 +287,7 @@ function operationResultExpression(expression, results, readSceneField) {
   ) {
     let value;
     for (const item of expression.operands) {
-      const operand = operationResultExpression(item, results, readSceneField);
+      const operand = operationResultExpression(item, results, readSceneField, readFrameField);
       if (!operand.resolved) return operand;
       value = value === undefined
         ? operand.value
@@ -298,12 +304,14 @@ function operationResultExpression(expression, results, readSceneField) {
       expression.left,
       results,
       readSceneField,
+      readFrameField,
     );
     if (!left.resolved) return left;
     const right = operationResultExpression(
       expression.right,
       results,
       readSceneField,
+      readFrameField,
     );
     if (!right.resolved) return right;
     return {
@@ -489,8 +497,18 @@ export class NativeEventInterpreter {
       if (frame.actionIndex < actions.length) {
         const action = actions[frame.actionIndex];
         state.steps += 1;
-        if (action.kind === "engineOperation") {
+        if (action.kind === "engineOperation" || action.kind === "secondaryEngineOperation") {
+          // Both dispatchers return values through the same native calling
+          // convention. Room controllers also consume secondary results for
+          // candidate selection and branching; discarding them loses that state.
           if (action.adapterStatus !== "proven" || !action.semanticId) {
+            if (action.kind === "secondaryEngineOperation") {
+              return stopped(state, "unresolved-secondary-operation", {
+                operationHex: action.operationHex,
+                callFileOffset: action.callFileOffset,
+                dispatcher: action.dispatcher,
+              });
+            }
             return stopped(state, "unresolved-operation", {
               operationHex: action.operationHex,
               callFileOffset: action.callFileOffset,
@@ -584,40 +602,6 @@ export class NativeEventInterpreter {
             return stopped(state, "operation-result-missing", {
               semanticId: action.semanticId,
               callFileOffset: action.callFileOffset,
-            });
-          }
-          frame.actionIndex += 1;
-          if (result?.status === "yielded") {
-            return yielded(state, result.request);
-          }
-          continue;
-        }
-        if (action.kind === "secondaryEngineOperation") {
-          if (action.adapterStatus !== "proven" || !action.semanticId) {
-            return stopped(state, "unresolved-secondary-operation", {
-              operationHex: action.operationHex,
-              callFileOffset: action.callFileOffset,
-              dispatcher: action.dispatcher,
-            });
-          }
-          const result = await this.executeOperation(action, {
-            ...context,
-            location: location(state),
-            functionDefinition: target.definition,
-            readFrameField: offset => frame.fields?.[offset],
-            writeFrameField: write => {
-              frame.fields[write.offset] = write.value;
-            },
-            readSceneField: offset => context.readSceneField?.({
-              offset,
-              width: 4,
-              signedLoad: false,
-            }),
-          });
-          if (result?.status === "stopped") {
-            return stopped(state, "operation-stopped", {
-              semanticId: action.semanticId,
-              detail: result.reason,
             });
           }
           frame.actionIndex += 1;
@@ -1026,6 +1010,7 @@ export class NativeEventInterpreter {
               definition.expression,
               frame.operationResults,
               context.readSceneField || this.readSceneField,
+              offset => frame.fields?.[offset],
             );
             if (!evaluated.resolved) {
               return stopped(state, "unresolved-branch-predicate", {

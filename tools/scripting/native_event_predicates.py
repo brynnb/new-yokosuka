@@ -980,22 +980,29 @@ def call_result_expression_branch_predicates(
             if row is None:
                 continue
             _offset, mnemonic, operands, literal = row
-            parts = operands.split(",", 1) if "," in operands else []
-            indexed_scene_load = re.fullmatch(
-                r"@\((r(?:1[0-5]|[0-9])),r9\),(r(?:1[0-5]|[0-9]))",
+            # A memory address contains its own comma. Splitting at the first
+            # one leaves the actual destination unchanged (e.g. r5 = 1 before
+            # loading frame[0] in JOMO's allowance gate), fabricating a constant
+            # predicate. Unknown memory loads must invalidate that destination.
+            parts = operands.rsplit(",", 1) if "," in operands else []
+            rooted_load = re.fullmatch(
+                r"@\((\d+|r(?:1[0-5]|[0-9])),(r9|r14)\),(r(?:1[0-5]|[0-9]))",
                 operands,
             )
 
-            if mnemonic in {"mov.b", "mov.w", "mov.l"} and indexed_scene_load:
-                address_expression = registers.get(indexed_scene_load.group(1))
-                destination = indexed_scene_load.group(2)
+            if mnemonic in {"mov.b", "mov.w", "mov.l"} and rooted_load:
+                index, root, destination = rooted_load.groups()
+                address_expression = (
+                    {"kind": "constant", "value": int(index)}
+                    if index.isdigit() else registers.get(index)
+                )
                 if (
                     isinstance(address_expression, dict)
                     and address_expression.get("kind") == "constant"
                 ):
                     width = {"mov.b": 1, "mov.w": 2, "mov.l": 4}[mnemonic]
                     registers[destination] = {
-                        "kind": "scene-field",
+                        "kind": "scene-field" if root == "r9" else "frame-field",
                         "offset": address_expression["value"],
                         "width": width,
                         "signedLoad": width != 4,
@@ -1060,27 +1067,6 @@ def call_result_expression_branch_predicates(
                     registers[destination] = stack.pop() if stack else None
                 elif destination == "@-r13":
                     stack.append(registers.get(source))
-                elif source.startswith("@(") and source.endswith(")"):
-                    index_registers = source[2:-1].split(",")
-                    address_expression = (
-                        registers.get(index_registers[0])
-                        if len(index_registers) == 2
-                        and index_registers[1] == "r9"
-                        else None
-                    )
-                    if (
-                        isinstance(address_expression, dict)
-                        and address_expression.get("kind") == "constant"
-                    ):
-                        width = {"mov.b": 1, "mov.w": 2, "mov.l": 4}[mnemonic]
-                        registers[destination] = {
-                            "kind": "scene-field",
-                            "offset": address_expression["value"],
-                            "width": width,
-                            "signedLoad": width != 4,
-                        }
-                    else:
-                        registers[destination] = None
                 elif source.startswith("@"):
                     address_expression = registers.get(source[1:])
                     if (
