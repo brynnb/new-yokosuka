@@ -534,6 +534,16 @@
       <main class="viewport" id="canvas-container">
         <canvas id="renderCanvas" tabindex="-1"></canvas>
         <div id="pool-ui-root"></div>
+        <div class="dialogue-stack">
+        <section class="dialogue-panel dialogue-panel--controls" id="inspection-controls" aria-label="Toy inspection" aria-live="polite" hidden>
+          <div class="inspection-summary">
+            <strong id="inspection-item"></strong>
+            <span>A / D to rotate · Left or right drag to turn freely</span>
+          </div>
+          <button class="dialogue-option dialogue-option--key" id="inspection-close" type="button">
+            Close inspection <kbd id="inspection-close-key">X</kbd>
+          </button>
+        </section>
         <div
           class="dialogue-overlay"
           id="dialogue-overlay"
@@ -556,6 +566,7 @@
             ></p>
             <div class="dialogue-options" id="dialogue-options" hidden></div>
           </section>
+        </div>
         </div>
         <button id="sky-btn" type="button">Time: Day</button>
         <canvas class="transition-frame" id="transition-frame" hidden aria-hidden="true"></canvas>

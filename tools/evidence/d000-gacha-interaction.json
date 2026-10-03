@@ -3,6 +3,7 @@
   "status": "verified",
   "source": {
     "mapinfo": ".disc-work/exact/d000/MAPINFO.BIN",
+    "mapinfoSha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
     "dispatchCalls": ".disc-work/d000-dispatch-calls.json",
     "ram": "captures/pvr/20260724-010057-frame-4933/ram.bin"
   },
@@ -157,6 +158,188 @@
       "recordFlags": 770
     }
   ],
+  "capsuleProps": {
+    "sourceRoutines": {
+      "hand": "0x535e4",
+      "leftRegrip": "0x53e98",
+      "dispense": "0x555ac"
+    },
+    "recovered": {
+      "rightGrip": {
+        "renderKey": -65,
+        "position": [
+          0.12600000202655792,
+          0.03500000014901161,
+          -0.0560000017285347
+        ],
+        "rotationRaw": [
+          16384,
+          0,
+          0
+        ]
+      },
+      "leftGrip": {
+        "renderKey": -66,
+        "position": [
+          0.09000000357627869,
+          0.07500000298023224,
+          0.00800000037997961
+        ],
+        "rotationRaw": [
+          13111,
+          817,
+          50684
+        ]
+      },
+      "leftRegrip": [
+        0.06700000166893005,
+        0.061000000685453415,
+        0.03790000081062317
+      ],
+      "openFrame": 360,
+      "lidReleaseFrame": 410,
+      "regripFrame": 430,
+      "regripEndFrame": 450,
+      "baseReleaseFrame": 503,
+      "dispensePosition": [
+        0.10000000149011612,
+        0.5,
+        0.20000000298023224
+      ],
+      "dropDistance": 0.07999999821186066,
+      "dropAcceleration": 0.0010000000474974513
+    },
+    "attachments": [
+      {
+        "callFileOffset": "0x53672",
+        "operationHex": "0x00e6",
+        "arguments": [
+          "GABS",
+          "AKIR",
+          18,
+          "runtime",
+          "runtime"
+        ]
+      },
+      {
+        "callFileOffset": "0x53698",
+        "operationHex": "0x00e6",
+        "arguments": [
+          "runtime",
+          "AKIR",
+          18,
+          "runtime",
+          "runtime"
+        ]
+      },
+      {
+        "callFileOffset": "0x538e8",
+        "operationHex": "0x00e6",
+        "arguments": [
+          "runtime",
+          "AKIR",
+          12,
+          "runtime",
+          "runtime"
+        ]
+      }
+    ],
+    "models": [
+      {
+        "browserAsset": "S3_D000_CAPS5FTG.MT5",
+        "source": ".disc-work/exact/d000/unpacked/OMG/CAPS5FTG.CHRM",
+        "byteLength": 2756,
+        "sha256": "df0dbc0dff1286b18bde0500debad8f6924d2c757b17ba52daaa7d3f7943ac2a"
+      },
+      {
+        "browserAsset": "S3_D000_CAPS5GRG.MT5",
+        "source": ".disc-work/exact/d000/unpacked/OMG/CAPS5GRG.CHRM",
+        "byteLength": 2812,
+        "sha256": "8a60cf5c5d46d2acec6e4a86e83c1473a65b03c61d7102a708d807246190ebfe"
+      },
+      {
+        "browserAsset": "S3_D000_CAPS5BLG.MT5",
+        "source": ".disc-work/exact/d000/unpacked/OMG/CAPS5BLG.CHRM",
+        "byteLength": 2812,
+        "sha256": "39e018bd1c8a5595c0e7ece1fa4464c33772a98feda4b086d821440f72167b83"
+      },
+      {
+        "browserAsset": "S3_D000_CAPS5RDG.MT5",
+        "source": ".disc-work/exact/d000/unpacked/OMG/CAPS5RDG.CHRM",
+        "byteLength": 2812,
+        "sha256": "3de9edc4225bdb4522b2005dc0c672095156f369e87ba147ff5b9bfc6ab9ca7a"
+      },
+      {
+        "browserAsset": "S3_D000_CAPS5YEG.MT5",
+        "source": ".disc-work/exact/d000/unpacked/OMG/CAPS5YEG.CHRM",
+        "byteLength": 2812,
+        "sha256": "91bf6ce774c2c825c6fa357171c784385de8356d605417c78757e9b39d4f8614"
+      }
+    ],
+    "adaptation": "Dispense/pickup follow parent motion gates 215/310. Drop position and acceleration are recovered; resting spin and the full native throw/bin collision coroutine are not reproduced. Release frames are original, discarded shells use a short browser gravity drop."
+  },
+  "approach": {
+    "functionFileOffset": "0x524cc",
+    "selector": 0,
+    "sourceLocalPosition": [
+      -0.051100000739097595,
+      0,
+      0.6507710218429565
+    ],
+    "sourceLiteralOffsets": [
+      "0x525b8",
+      null,
+      "0x525bc"
+    ],
+    "worldPointHelper": "0x57c4e",
+    "helperCalls": [
+      {
+        "callFileOffset": "0x57c64",
+        "operationHex": "0x0043",
+        "arguments": [
+          "DAMY",
+          "runtime"
+        ]
+      },
+      {
+        "callFileOffset": "0x57c7c",
+        "operationHex": "0x0018",
+        "arguments": [
+          "DAMY",
+          939524096,
+          "runtime"
+        ]
+      },
+      {
+        "callFileOffset": "0x57c90",
+        "operationHex": "0x0043",
+        "arguments": [
+          "DAMY",
+          4294967295
+        ]
+      },
+      {
+        "callFileOffset": "0x57cac",
+        "operationHex": "0x0019",
+        "arguments": [
+          "DAMY",
+          4294967295,
+          "runtime",
+          0
+        ]
+      }
+    ],
+    "playerPositionWrite": {
+      "callFileOffset": "0x5256e",
+      "operationHex": "0x0018",
+      "arguments": [
+        "AKIR",
+        939524096,
+        "runtime"
+      ]
+    },
+    "proof": "The selector-0 branch reads the local X/Z literals, transforms them through a DAMY object attached to the active machine, and writes the resulting world point to AKIR. The initial interaction wrapper passes selector 0 through 0x5636c to 0x524cc."
+  },
   "nativeSetupCalls": {
     "machineInstantiate": {
       "callFileOffset": "0x50a64",
@@ -467,7 +650,7 @@
         4
       ],
       "nativeConsumer": "0x57330",
-      "semanticLabel": null
+      "semanticLabel": "rare-tail count"
     },
     "categories": [
       {
@@ -1898,6 +2081,10 @@
           "value": 0.3333333134651184
         },
         {
+          "comparisonFileOffset": "0x56fca",
+          "value": 0.05000000074505806
+        },
+        {
           "comparisonFileOffset": "0x573f4",
           "value": 0.6666666865348816
         },
@@ -1908,9 +2095,9 @@
       ]
     }
   },
-  "browserSemantics": "the selected low-detail GCH body is replaced by its exact HI_GACH model while the source-native M_GACH interaction plays; its owned GBX component remains in place",
+  "browserSemantics": "the GCH body uses its exact HI_GACH visual both at rest and during interaction, preserving the original picking owner and GBX component; the controller walks to the recovered approach point before M_GACH plays, followed by a held-toy inspection until the player closes it",
   "unresolved": [
-    "the exact category model lists and persistent collectible-ID pools are recovered and the physical CCOW selector is traced into category state; the native 100-yen debit is recovered, but random split semantics, browser economy/collection state, and result presentation are not yet implemented"
+    "The native selection policy is verified by tools/worlds/verify_capsule_selection.mjs. The browser reveal uses an original hand pose, models and voices, but its camera framing and new/duplicate reaction choice approximate the full native presentation."
   ],
   "failures": []
 }

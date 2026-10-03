@@ -162,7 +162,7 @@ export class MultiplayerClient {
     this.lastSentPresence = null;
     this.lastSentAt = -Infinity;
     this.sequence = 0;
-    this.pendingVending = new Map();
+    this.pendingPurchases = new Map();
     this.pendingTransitions = new Map();
     this.pendingTransitionCommits = new Map();
     this.sessionReplaced = false;
@@ -207,7 +207,7 @@ export class MultiplayerClient {
       this.welcomed = false;
       this.identity = null;
       this.lastSentPresence = null;
-      this.rejectPendingVending(
+      this.rejectPendingPurchases(
         new Error("The multiplayer connection was lost."),
       );
       this.rejectPendingTransitions(
@@ -413,19 +413,32 @@ export class MultiplayerClient {
   }
 
   purchaseVending(machineId, drinkKey, requestId = crypto.randomUUID()) {
+    if (!String(drinkKey || '').trim()) return Promise.reject(new Error('Invalid vending selection.'));
+    return this.purchaseMachine('vending', machineId, {drinkKey: String(drinkKey).trim()}, requestId);
+  }
+
+  purchaseCapsule(machineId, requestId = crypto.randomUUID()) {
+    return this.purchaseMachine('capsule', machineId, {}, requestId);
+  }
+
+  purchaseMachine(kind, machineId, selection, requestId) {
     if (!this.canSend()) {
       return Promise.reject(
-        new Error("The vending machine requires a server connection."),
+        new Error("The machine requires a server connection."),
       );
     }
     const normalizedMachine = String(machineId || "").trim();
-    const normalizedDrink = String(drinkKey || "").trim();
     const normalizedRequest = String(requestId || "").trim();
-    if (!normalizedMachine || !normalizedDrink || !normalizedRequest) {
-      return Promise.reject(new Error("Invalid vending selection."));
+    if (!normalizedMachine || !normalizedRequest) {
+      return Promise.reject(new Error("Invalid machine selection."));
     }
-    if (this.pendingVending.has(normalizedRequest)) {
-      return this.pendingVending.get(normalizedRequest).promise;
+    if (this.pendingPurchases.has(normalizedRequest)) {
+      const pending = this.pendingPurchases.get(normalizedRequest);
+      if (pending.kind !== kind || pending.machineId !== normalizedMachine
+        || JSON.stringify(pending.selection) !== JSON.stringify(selection)) {
+        return Promise.reject(new Error('That purchase request is already in use.'));
+      }
+      return pending.promise;
     }
     let resolve;
     let reject;
@@ -434,27 +447,30 @@ export class MultiplayerClient {
       reject = rejectPromise;
     });
     const timer = globalThis.setTimeout(() => {
-      const pending = this.pendingVending.get(normalizedRequest);
+      const pending = this.pendingPurchases.get(normalizedRequest);
       if (!pending) return;
-      this.pendingVending.delete(normalizedRequest);
-      pending.reject(new Error("The vending machine did not respond."));
+      this.pendingPurchases.delete(normalizedRequest);
+      pending.reject(new Error(kind === 'capsule'
+        ? 'The capsule machine did not respond. Check Collection before buying again.'
+        : 'The vending machine did not respond.'));
     }, VENDING_TIMEOUT_MS);
-    this.pendingVending.set(normalizedRequest, {
+    this.pendingPurchases.set(normalizedRequest, {
       promise,
       resolve,
       reject,
       timer,
+      kind, machineId: normalizedMachine, selection,
     });
     const sent = this.send({
       v: MULTIPLAYER_PROTOCOL_VERSION,
-      type: "vending_purchase",
+      type: `${kind}_purchase`,
       requestId: normalizedRequest,
       machineId: normalizedMachine,
-      drinkKey: normalizedDrink,
+      ...selection,
     });
     if (!sent) {
       globalThis.clearTimeout(timer);
-      this.pendingVending.delete(normalizedRequest);
+      this.pendingPurchases.delete(normalizedRequest);
       reject(new Error("The vending request could not be sent."));
     }
     return promise;
@@ -823,11 +839,12 @@ export class MultiplayerClient {
           achievedAt: message.achievedAt,
         });
         break;
+      case "capsule_result":
       case "vending_result": {
-        const pending = this.pendingVending.get(message.requestId);
-        if (pending) {
+        const pending = this.pendingPurchases.get(message.requestId);
+        if (pending && message.type === `${pending.kind}_result`) {
           globalThis.clearTimeout(pending.timer);
-          this.pendingVending.delete(message.requestId);
+          this.pendingPurchases.delete(message.requestId);
           if (message.outcome === "purchased") {
             pending.resolve(message);
           } else {
@@ -839,7 +856,8 @@ export class MultiplayerClient {
             pending.reject(error);
           }
         }
-        this.callbacks.onVendingResult?.(message);
+        if (message.type === 'capsule_result') this.callbacks.onCapsuleResult?.(message);
+        else this.callbacks.onVendingResult?.(message);
         break;
       }
       case "script_event_yield":
@@ -853,12 +871,12 @@ export class MultiplayerClient {
     }
   }
 
-  rejectPendingVending(error) {
-    for (const pending of this.pendingVending.values()) {
+  rejectPendingPurchases(error) {
+    for (const pending of this.pendingPurchases.values()) {
       globalThis.clearTimeout(pending.timer);
       pending.reject(error);
     }
-    this.pendingVending.clear();
+    this.pendingPurchases.clear();
   }
 
   createPendingTransition(collection, requestId, timeoutMessage) {

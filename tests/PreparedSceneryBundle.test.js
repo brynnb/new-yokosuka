@@ -12,6 +12,7 @@ import {buildAlphaAwareMipChain} from "../src/PvrDecoder.js";
 import {applyPlacementTransform} from "../play/world/PlacementRuntime.js";
 import {DoorInteractions} from "../play/interactions/DoorInteractions.js";
 import {clearWorldSceneAssets} from "../src/rendering/SceneResources.js";
+import {installWorldMt7MapEffect} from "../src/rendering/MapEffects.js";
 
 function fixture(t) {
   const engine = new B.NullEngine();
@@ -37,6 +38,121 @@ function fixture(t) {
   };
   return {scene, root, make};
 }
+
+test("MT7 opaque scenery uses texture arrays without converting its material/normal policy to MT5", async t => {
+  const {root, make} = fixture(t);
+  root._filename = "S2DC_D4_QGBT_MPK00_MAP.MT7";
+  const meshes = [make("a", 0), make("b", 3, [50, 60, 70, 255])];
+  for (const mesh of meshes) {
+    delete mesh.material._mt5AlphaMode;
+    Object.assign(mesh.material, {transparencyMode: B.Material.MATERIAL_OPAQUE, backFaceCulling: false, twoSidedLighting: false});
+  }
+  freezeSceneRoots([root]);
+  const packed = await compileSceneryBundle([root], {sceneryFilenames: [root._filename]});
+  assert.equal(packed.manifest.arrays.length, 1);
+  assert.equal(packed.manifest.statistics.outputMeshes, 1);
+  const material = packed.manifest.materials[packed.manifest.roots[0].meshes[0].material];
+  assert.equal(material.alphaMode, undefined);
+  assert.equal(material.transparencyMode, B.Material.MATERIAL_OPAQUE);
+  assert.equal(material.twoSidedLighting, false);
+  assert.equal(material.backFaceCulling, false);
+});
+
+test("MT7 scroll effects keep independent samplers and are released with prepared TransformNode roots", async t => {
+  const {scene, root, make} = fixture(t);
+  root._filename = "S2DC_D1_AR02_MPK00_MAP18.MT7";
+  root._mt7MapEffectDefinition = {id: "scroll", scrollUPerSecond: 0.1, scrollVPerSecond: 0.2};
+  const water = make("water", 0);
+  const staticRoot = new B.TransformNode("static", scene);
+  staticRoot._filename = "S2DC_D1_AR02_MPK00_MAP.MT7";
+  const ground = make("ground", 3);
+  ground.parent = staticRoot;
+  const translucent = make("alpha-test", 6);
+  delete translucent.material._mt5AlphaMode;
+  Object.assign(translucent.material, {transparencyMode: B.Material.MATERIAL_ALPHATEST, twoSidedLighting: true});
+  freezeSceneRoots([root, staticRoot]);
+  const packed = await compileSceneryBundle([root, staticRoot], {sceneryFilenames: [root._filename, staticRoot._filename]});
+  assert.equal(packed.manifest.textures.length, 2, "identical initial pixels do not alias animated and stationary samplers");
+  assert.equal(packed.manifest.arrays.length, 0);
+  root.dispose(false, true); staticRoot.dispose(false, true);
+  const observers = scene.onBeforeRenderObservable.observers.length;
+  const bundle = await loadSceneryBundle(scene, packed.manifest, packed.binary);
+  const animated = bundle.roots.find(r => r._mt7MapEffectDefinition);
+  const stationary = bundle.roots.find(r => !r._mt7MapEffectDefinition).getChildMeshes()[0].material.diffuseTexture;
+  const effect = animated._worldMt7MapEffectRuntime;
+  assert.equal(installWorldMt7MapEffect(animated), null, "installation is idempotent");
+  effect.update(2);
+  assert.ok(Math.abs(effect.bindings[0].texture.uOffset - 0.2) < 1e-6);
+  assert.equal(stationary.uOffset, 0);
+  const alpha = animated.getChildMeshes().find(m => m.name === "alpha-test").material;
+  assert.equal(alpha.transparencyMode, B.Material.MATERIAL_ALPHATEST);
+  assert.equal(alpha.twoSidedLighting, true);
+  assert.equal(alpha instanceof Mt5AlphaToCoverageMaterial, false);
+  bundle.dispose();
+  await new Promise(resolve => setTimeout(resolve, 0)); // Babylon defers observer removal.
+  assert.equal(scene.onBeforeRenderObservable.observers.length, observers);
+});
+
+test("MT7 prop templates retain native door addresses, pivots and moving child geometry", async t => {
+  const {scene, root, make} = fixture(t);
+  root._filename = "S2DC_D1_ARA0_MPK00_PROP.MT7";
+  const pivot = new B.TransformNode("hinge", scene);
+  pivot.parent = root;
+  pivot.position.set(-2, 0, 1);
+  pivot.rotationQuaternion = B.Quaternion.FromEulerAngles(0, 0.3, 0);
+  const leaf = make("door-leaf", 1);
+  leaf.parent = pivot;
+  root._mt7Nodes = [{sourceNode: {offset: 64, id: 8, position: [-2, 0, 1], mesh: {boundsCenter: [1, 0, 0]}}, transform: pivot}];
+  freezeSceneRoots([root]);
+  const sourcePosition = leaf.getAbsolutePosition().clone();
+  const packed = await compileSceneryBundle([root], {sceneryFilenames: [root._filename], hierarchyFilenames: [root._filename]});
+  assert.equal(packed.manifest.roots.length, 0);
+  root.dispose(false, true);
+  const bundle = await loadSceneryBundle(scene, packed.manifest, packed.binary);
+  const restored = bundle.roots[0], panel = restored._mt7Nodes[0];
+  assert.equal(panel.sourceNode.offset, 64);
+  assert.deepEqual(panel.sourceNode.mesh.boundsCenter, [1, 0, 0]);
+  const mesh = restored.getChildMeshes()[0];
+  mesh.computeWorldMatrix(true);
+  assert.ok(B.Vector3.Distance(mesh.getAbsolutePosition(), sourcePosition) < 1e-6);
+  const doors = new DoorInteractions({setMetadata: () => {}});
+  const door = doors.registerShenmue2Hinged(restored, [panel], {id: "test"});
+  assert.equal(door.directions[0], 1);
+  panel.transform.rotationQuaternion = B.Quaternion.FromEulerAngles(0, 1, 0);
+  mesh.computeWorldMatrix(true);
+  assert.ok(B.Vector3.Distance(mesh.getAbsolutePosition(), sourcePosition) > 0.1);
+  bundle.dispose();
+});
+
+test("runtime-addressed surfaces retain names, faces and materials while neighboring scenery batches", async t => {
+  const {scene, root, make} = fixture(t);
+  const sign = make("sign", 0);
+  const indices = Array.from(sign.getIndices());
+  const uvs = Array.from(sign.getVerticesData("uv"));
+  make("wall-a", 3); make("wall-b", 6);
+  freezeSceneRoots([root]);
+  const selectors = [{sourceFilename: root._filename, meshName: "sign"}];
+  const packed = await compileSceneryBundle([root], {surfaceSelectors: selectors, textureArrays: false});
+  assert.equal(packed.manifest.statistics.outputMeshes, 2);
+  root.dispose(false, true);
+  const bundle = await loadSceneryBundle(scene, packed.manifest, packed.binary);
+  const restored = bundle.roots[0].getChildMeshes().find(mesh => mesh.name === "sign");
+  assert.equal(restored.metadata.runtimeSurface, true);
+  assert.deepEqual(Array.from(restored.getIndices()), indices);
+  assert.deepEqual(Array.from(restored.getVerticesData("uv")), uvs);
+  assert.equal(restored.material.getClassName(), "StandardMaterial");
+  await batchStaticWorldRoots(bundle.roots);
+  assert.equal(restored.isDisposed(), false);
+  bundle.dispose();
+});
+
+test("an unresolved runtime surface fails preparation instead of silently batching it", async t => {
+  const {root, make} = fixture(t);
+  make("wall", 0); freezeSceneRoots([root]);
+  await assert.rejects(compileSceneryBundle([root], {surfaceSelectors: [
+    {sourceFilename: root._filename, meshName: "missing"},
+  ]}), /Missing runtime scenery surface/);
+});
 
 test("flattened unbatched scenery retains stretched normal transforms", async t => {
   const {scene, root, make} = fixture(t);

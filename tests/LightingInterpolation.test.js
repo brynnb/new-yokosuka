@@ -4,11 +4,24 @@ import test from "node:test";
 import {
   interpolateClearColors,
   interpolateLightingPresets,
+  validateLightingOverride,
 } from "../src/LightingInterpolation.js";
 import {
   clearColorForPreset,
   skyTextureForPreset,
 } from "../src/lighting.js";
+
+test("shot lighting accepts only finite shared preset fields and owns its colors", () => {
+  const input = { hemiIntensity: 0.45, hemiDiffuse: [0.4, 0.47, 0.7], dirDirection: [-1, -2, -1] };
+  const value = validateLightingOverride(input);
+  assert.deepEqual(value, input);
+  input.hemiDiffuse[0] = 1;
+  assert.equal(value.hemiDiffuse[0], 0.4);
+  for (const invalid of [null, [], { typo: 1 }, { hemiIntensity: NaN },
+    { dirIntensity: -1 }, { hemiDiffuse: [1, 2] }, { hemiDiffuse: [1, 2, Infinity] }]) {
+    assert.throws(() => validateLightingOverride(invalid), /lighting override/);
+  }
+});
 
 test("lighting interpolation preserves endpoints and blends every field", () => {
   const day = {

@@ -9,9 +9,9 @@ import * as Mt5Transform from './Mt5Transform.js';
 import * as Mt5TexturePolicy from './Mt5TexturePolicy.js';
 import { alignMt5CharacterSurfaceOrientations, applyMt5NormalPolicy } from './Mt5NormalPolicy.js';
 import {
-    applyMt5OverlayDefinition,
+    applyModelOverlayDefinition,
     overlayDefinitionForFile,
-} from './Mt5OverlayManifest.js';
+} from './ModelDepthOverlays.js';
 import { PvrDecoder } from './PvrDecoder.js';
 import { enableTransparentTriangleSorting } from './rendering/TransparentTriangleSort.js';
 import { SceneStandardMaterial } from './rendering/SceneStandardMaterial.js';
@@ -2003,7 +2003,7 @@ export class Mt5Loader {
             buffer?.byteLength,
         );
         if (overlayDefinition) {
-            applyMt5OverlayDefinition(modelRoot, overlayDefinition, {
+            applyModelOverlayDefinition(modelRoot, overlayDefinition, {
                 depthBiasFactor: this.overlayDepthBiasFactor,
                 depthBiasUnits: this.overlayDepthBiasUnits,
             });
@@ -2436,12 +2436,17 @@ export class Mt5Loader {
             const firstStrip = poly.strips[0];
             const mirrorU = Boolean(firstStrip?._mt5MirrorU);
             const mirrorV = Boolean(firstStrip?._mt5MirrorV);
-            const groupKey = `${tid}:${mirrorU ? 1 : 0}:${mirrorV ? 1 : 0}`;
+            // Op 0x0e and per-vertex BGRA can make an opaque RGB565 texture
+            // translucent (the CAPS5FTG lid uses alpha 127). Keep those strips
+            // separate from opaque geometry sharing the same texture.
+            const vertexAlpha = poly.strips.some(strip => strip.some(p => p.color[3] < 1));
+            const groupKey = `${tid}:${mirrorU ? 1 : 0}:${mirrorV ? 1 : 0}:${vertexAlpha ? 1 : 0}`;
             if (!texGroups.has(groupKey)) {
                 texGroups.set(groupKey, {
                     texId: tid,
                     mirrorU,
                     mirrorV,
+                    vertexAlpha,
                     polys: [],
                 });
             }
@@ -2452,6 +2457,7 @@ export class Mt5Loader {
             texId,
             mirrorU,
             mirrorV,
+            vertexAlpha,
             polys,
         } of texGroups.values()) {
             const positions = [];
@@ -2467,7 +2473,7 @@ export class Mt5Loader {
             const colors = [];
 
             const tex = this.textureCache.get(texId);
-            const alphaMode = this.alphaModeForTexture(texId, tex);
+            const alphaMode = vertexAlpha ? "blend" : this.alphaModeForTexture(texId, tex);
             const isAlpha = alphaMode === "alphatest" || alphaMode === "blend";
             const atlasProjectionBounds = this.computeRyoHeadAtlasProjectionBounds(polys, texId, node);
             const coplanarOverlayDistance = (
@@ -2584,8 +2590,6 @@ export class Mt5Loader {
                 subMesh._mt5NodeAddress = node?.addr ?? null;
                 subMesh.parent = rootMesh;
 
-                const tex = this.textureCache.get(texId);
-                const alphaMode = this.alphaModeForTexture(texId, tex);
                 const debugTextureless = (
                     (this.ryoHeadAtlasDebug === "regions" || this.ryoHeadAtlasDebug === "strip-index") &&
                     this.isRyoHeadAtlasTexture(texId)
@@ -2653,8 +2657,8 @@ export class Mt5Loader {
                     }
 
                     if (!debugTextureless && alphaMode === "blend") {
-                        mat.diffuseTexture.hasAlpha = true;
-                        mat.useAlphaFromDiffuseTexture = true;
+                        if (mat.diffuseTexture) mat.diffuseTexture.hasAlpha = Boolean(tex.hasAlpha);
+                        mat.useAlphaFromDiffuseTexture = Boolean(tex?.hasAlpha);
                         mat.transparencyMode = BABYLON.StandardMaterial.MATERIAL_ALPHABLEND;
                         mat.needDepthPrePass = false;
                         mat.separateCullingPass = true;

@@ -155,10 +155,14 @@ unfreezing is insufficient: OP00's `RMJN` black car was enabled at its AUTH
 position but still culled using its old parked location. Props remain dynamic
 until world disposal, including after cancellation and replay.
 
-### Download reuse and optional preparation
+### Download reuse and prepared scenery
 
-Local `/play/?scenery=prepared` opts reviewed Shenmue I exploration zones into
-experimental per-world bundles. `PreparedSceneryPlan` selects exact map files
+Local `/play/` uses available prepared bundles for reviewed Shenmue I worlds
+and all registered Shenmue II MT7 destinations
+by default; `?scenery=original` selects the original loader for comparisons.
+An absent manifest (HTTP 404) is reported and uses original assets. Stale or
+malformed bundles, missing binaries and other request errors still fail explicitly.
+`PreparedSceneryPlan` selects exact map files
 and variants from the existing world definitions; Harbor and Forklift Playground
 share an identical scenery contract. `PreparedSceneryRuntime` validates the
 schema, world contract and placement-policy inputs, loads the prebuilt scenery,
@@ -172,8 +176,14 @@ unfrozen so each copy binds its own transform and lighting correctly.
 
 The bundle is owned by the world session; failed or cancelled assembly drains
 before teardown, and disposal releases all copies and shared resources. This
-is a local experiment, not a published asset format or a production default.
-Unsupported interiors, cinematic stages and MT7 worlds keep their normal loaders.
+is currently a development default, not a production default: bundles and validation
+inputs still need production asset-delivery integration and publication. Reviewed
+interiors, practice/race areas and the four opening cutscenes share this loader;
+unsupported Shenmue I interiors and cinematic stages keep their normal loaders.
+Shenmue II uses the same compiler and reader: MAPM scenery can batch, while
+PROP hierarchies retain native offsets and pivots for the ordinary door owner.
+Independent timed layers and animated map textures retain their shared runtime
+owners; animated samplers are never deduplicated into stationary textures.
 See [prepared scenery tooling](../guides/tooling/scenery-bundle-lab.md) for
 building, validation, measured evidence and remaining rollout checks.
 

@@ -345,6 +345,52 @@ export class PlayWorldLifecycle {
     return this.multiplayerRuntime.publishPresence(true);
   }
 
+  capturePlayerReturnState() {
+    const controller = this.getController();
+    if (!controller || !this.worldRuntime.ready || this.worldRuntime.switching
+      || this.playerRuntime.characterSwitching) {
+      throw new Error("Wait for the current world or avatar to finish loading.");
+    }
+    return {
+      world: this.worldRuntime.activeWorld,
+      avatarId: this.playerRuntime.activeCharacterId,
+      position: this.actorRoot.position.asArray(),
+      yaw: this.actorRoot.rotation.y,
+      controllerState: controller.captureTravelState(),
+      cameraYaw: controller.cameraYaw,
+    };
+  }
+
+  async restorePlayerReturnState(snapshot, { signal } = {}) {
+    signal?.throwIfAborted();
+    await this.loadingScreen.begin(snapshot.world, signal);
+    signal?.throwIfAborted();
+    const character = this.characterById.get(snapshot.avatarId);
+    await this.playerRuntime.switchCharacter(character, { persist: false, signal });
+    signal?.throwIfAborted();
+    if (this.playerRuntime.activeCharacterId !== snapshot.avatarId) {
+      throw new Error(`Could not restore selected character ${snapshot.avatarId}`);
+    }
+    const loaded = await this.worldRuntime.select(snapshot.world, {
+      debugSpawn: { position: snapshot.position, yaw: snapshot.yaw },
+      controllerState: snapshot.controllerState,
+      persistLocation: false,
+      reveal: false,
+    });
+    signal?.throwIfAborted();
+    if (!loaded) throw new Error(`Could not return to ${snapshot.world.label || snapshot.world.id}.`);
+    // select() normally grounds travel arrivals. A preview must also preserve
+    // an exact elevated/no-clip position, plus the player's independent camera.
+    this.resetPlayer(this.vectorFromArray(snapshot.position), snapshot.yaw, {
+      persist: false, snapToTerrain: false,
+    });
+    const controller = this.getController();
+    controller.restoreTravelState(snapshot.controllerState);
+    controller.cameraYaw = snapshot.cameraYaw;
+    controller.updateCamera(1);
+    this.multiplayerRuntime.markPresenceDirty();
+  }
+
   async initialize({
     initialWorldOverride = null,
     initialPlacement = null,

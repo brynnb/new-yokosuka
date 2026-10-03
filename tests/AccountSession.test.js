@@ -17,6 +17,23 @@ function memoryStorage(entries = []) {
   };
 }
 
+test('machine purchase updates money and collection without resetting character HUD', () => {
+  const account = new AccountSession();
+  account.applyWelcome({id: 42, name: 'Ryo', level: 4, currentHp: 70, maxHp: 120, yen: 500}, []);
+  const inventory = [{key: 'toy', category: 'capsule_toy', quantity: 2}];
+  account.applyPurchase({outcome: 'purchased', yen: 400, inventory});
+  assert.equal(account.character.id, 42);
+  assert.deepEqual(account.inventory, inventory);
+  const hud = useGameUiStore.getState();
+  assert.equal(hud.yen, '$400');
+  assert.equal(hud.playerName, 'Ryo');
+  assert.equal(hud.level, 4);
+  assert.equal(hud.hp, 'HP 70 / 120');
+  account.applyPurchase({outcome: 'rejected', yen: 0, inventory: []});
+  assert.equal(account.character.yen, 400);
+  assert.deepEqual(account.inventory, inventory);
+});
+
 test("local development reuses an active guest without showing choices", async () => {
   const session = {
     account: { accountType: "guest" },

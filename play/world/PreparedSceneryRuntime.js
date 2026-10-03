@@ -4,23 +4,25 @@ import {updateModelVisibility} from "../../src/variants.js";
 import {auditFixedSceneryPlacements, sceneryPlacementId} from "../../tools/assets/scenery-placement-policy.js";
 import {ScheduledSceneObjectCatalog} from "./ScheduledSceneObjectCatalog.js";
 import {preparedSceneryKey, preparedScenerySpec} from "./PreparedSceneryPlan.js";
-import {fetchAsset} from "../../src/assetLoader.js";
+import {fetchAsset, fetchShenmue2Catalog} from "../../src/assetLoader.js";
 
 const hash = async bytes => [...new Uint8Array(await crypto.subtle.digest("SHA-256", bytes))]
   .map(byte => byte.toString(16).padStart(2, "0")).join("");
 
-/** Local opt-in adapter; all remaining world owners use the ordinary loader. */
+/** Prepared local scenery; all remaining world owners use the ordinary loader. */
 export class PreparedSceneryRuntime {
-  constructor(state, {baseUrl = "/scenery-output"} = {}) {
+  constructor(state, {baseUrl = "/scenery-output", allowMissing = false} = {}) {
     this.state = state;
     this.baseUrl = baseUrl;
+    this.allowMissing = allowMissing;
   }
 
   supports(world) { return preparedSceneryKey(world) !== null; }
 
-  async read(path, signal) {
+  async read(path, signal, {allowMissing = false} = {}) {
     return readSceneResource(async () => {
       const response = await fetch(path, {signal, cache: "no-store"});
+      if (allowMissing && response.status === 404) return null;
       if (!response.ok) throw new Error(`Prepared scenery request failed (${response.status}): ${path}`);
       return response.arrayBuffer();
     }, {signal});
@@ -28,11 +30,20 @@ export class PreparedSceneryRuntime {
 
   async plan(world, signal) {
     const key = preparedSceneryKey(world);
-    const manifest = JSON.parse(new TextDecoder().decode(await this.read(`${this.baseUrl}/${key}/world.json`, signal)));
+    const bytes = await this.read(`${this.baseUrl}/${key}/world.json`, signal, {allowMissing: this.allowMissing});
+    // Fresh checkouts need not have compiled bundles. Only an absent manifest
+    // selects the original loader; stale inputs, corrupt data and missing binary
+    // payloads must remain visible errors instead of masking a broken build.
+    if (bytes === null) {
+      console.info(`[Scenery:${key}] No bundle; loading original assets. Build with npm run build:scenery -- ${key}`);
+      return null;
+    }
+    const manifest = JSON.parse(new TextDecoder().decode(bytes));
     if (manifest.schema !== SCENERY_BUNDLE_SCHEMA || manifest.provenance?.key !== key) {
-      throw new Error(`Rebuild the local ${key} scenery bundle before testing /play`);
+      throw new Error(`Rebuild the local ${key} scenery bundle before loading this world`);
     }
     const allFiles = await readSceneResource(async () => {
+      if (world.assetFormat === "MT7") return fetchShenmue2Catalog();
       const response = await fetchAsset("models.json");
       if (!response.ok) throw new Error(`Model catalog request failed (${response.status})`);
       return response.json();
@@ -41,8 +52,10 @@ export class PreparedSceneryRuntime {
     if (JSON.stringify(manifest.provenance.contract) !== JSON.stringify(spec.contract)) {
       throw new Error(`Prepared world definition changed; rebuild the bundle: ${key}`);
     }
-    this.state.allFiles = allFiles;
-    this.state.mt5Files = allFiles.filter(file => /\.mt5$/i.test(file));
+    if (world.assetFormat !== "MT7") {
+      this.state.allFiles = allFiles;
+      this.state.mt5Files = allFiles.filter(file => /\.mt5$/i.test(file));
+    }
     const documents = [];
     for (const file of spec.policyFiles) {
       const bytes = await this.read(`/${file}`, signal);
@@ -69,7 +82,7 @@ export class PreparedSceneryRuntime {
     if (JSON.stringify(manifest.hierarchies.map(row => row.model)) !== JSON.stringify(spec.ownership?.hierarchyFilenames || [])) {
       throw new Error("Prepared resident hierarchy coverage changed; rebuild the scenery bundle");
     }
-    return {manifest, models: new Set(models), placements: world.placements.filter(row => !included.has(sceneryPlacementId(row)))};
+    return {manifest, spec, models: new Set(models), placements: world.placements.filter(row => !included.has(sceneryPlacementId(row)))};
   }
 
   async load({world, composition, manifest, signal, additionalProgressTotal, onProgress}) {
@@ -83,11 +96,15 @@ export class PreparedSceneryRuntime {
       state.preparedSceneryResources = bundle;
       state.currentMeshes = [...bundle.roots];
       state.singleModelMode = false;
-      state.currentZone = manifest.provenance.contract.zone;
-      state.currentScenePrefix = world.prefix;
-      state.currentSceneComposition = composition;
-      state.currentVariantProfile = manifest.provenance.contract.variantProfile;
-      updateModelVisibility(state);
+      // Match loadMt7Scene: MT7's authoritative timed-layer owner runs later.
+      // A legacy currentZone would also let MT5 variants alter those roots on
+      // subsequent clock/weather changes, not just during initial loading.
+      state.currentZone = world.assetFormat === "MT7" ? null : manifest.provenance.contract.zone;
+      state.currentScenePrefix = world.assetFormat === "MT7" ? null : world.prefix;
+      state.currentSceneComposition = world.assetFormat === "MT7" ? null : composition;
+      state.currentVariantProfile = manifest.provenance.contract.variantProfile || null;
+      // MT7 day/night layers belong to WorldMapLayerState, not MT5 variants.
+      if (world.assetFormat !== "MT7") updateModelVisibility(state);
       onProgress({loaded: 1, total: additionalProgressTotal + 1});
       return true;
     });

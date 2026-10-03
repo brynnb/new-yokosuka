@@ -36,11 +36,10 @@ export function installWorldMt7MapEffect(root) {
     if (disposed) return;
     disposed = true;
     scene.onBeforeRenderObservable.remove(renderObserver);
-    scene.onMeshRemovedObservable.remove(removalObserver);
+    root.onDisposeObservable.remove(removalObserver);
   };
-  removalObserver = scene.onMeshRemovedObservable.add((mesh) => {
-    if (mesh === root) dispose();
-  });
+  // Prepared roots are TransformNodes; mesh-removal events miss their teardown.
+  removalObserver = root.onDisposeObservable.addOnce(dispose);
   root._worldMt7MapEffectRuntime = {
     effect,
     bindings,

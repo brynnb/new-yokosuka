@@ -65,16 +65,19 @@ WebP quality fallback. Contact sheets use WebP.
 - **Replace an existing export**: add `--force`
 - **Change the per-image limit**: add `--max-mb 10`
 
-### generate_mt5_overlay_manifest.js
-Offline geometry analysis for MT5 facade details that were authored almost
+### generate_model_overlay_manifest.js
+Offline geometry analysis for MT5 and MT7 facade details that were authored almost
 coplanar with a larger backing surface, such as windows, shutters, flat doors,
 and signs. The analyzer works from geometry rather than filenames or texture
 names: it finds small, parallel faces that are almost fully contained by a
 larger face, assigns a stable overlay rank, and writes the original MT5 node,
-texture, and face IDs to `play/data/mt5-overlay-manifest.json`.
+texture, and face IDs to `play/data/mt5-overlay-manifest.json`. Shenmue II uses
+`play/data/mt7-overlay-manifest.json` as a small index of fetchable per-area
+JSON under `public/data/mt7-overlays/`, addressing each native node, material
+group, batch, and face rather than treating a reused texture as one surface.
 
-At runtime `Mt5Loader` only splits the listed faces and gives the resulting
-material a Babylon `zOffset`/`zOffsetUnits` bias. It does not rewrite the MT5
+At runtime the shared `ModelDepthOverlays` implementation only splits the listed faces and gives the resulting
+material a Babylon `zOffset`/`zOffsetUnits` bias. It does not rewrite the model
 binary, move vertices, or make the browser analyze every mesh.
 
 Packaged viewer maps use the same source mapping as the browser
@@ -85,18 +88,50 @@ through the same analyzer and per-face bias as ordinary world maps; whole
 terrain layers must not be hidden to work around coplanar triangles.
 
 - **Usage**: `npm run build:mt5-overlays`
+- **Shenmue II (all extracted discs)**: `npm run build:mt7-overlays`
 - **Limit to one family while developing**:
-  `node tools/assets/generate_mt5_overlay_manifest.js --match 'S2_MFSY_MAP11' --output /var/tmp/mt5-overlays-sample.json`
+  `node tools/assets/generate_model_overlay_manifest.js --match 'S2_MFSY_MAP11' --output /var/tmp/mt5-overlays-sample.json`
 - **Add another extracted-model search root**:
-  `node tools/assets/generate_mt5_overlay_manifest.js --root /path/to/models`
+  `node tools/assets/generate_model_overlay_manifest.js --root /path/to/models`
 - **Control analysis concurrency**: `--workers 4` (default; accepts 1–6).
 
 `--match` produces a partial manifest; use a separate output for diagnostics.
 Rebuild without that filter to update the checked-in full manifest.
 
-Regenerate the manifest after replacing map MT5 binaries. Definitions carry
+Regenerate the manifest after replacing map binaries. Definitions carry
 the source byte length and are ignored at runtime when it does not match, so a
 stale entry cannot silently be applied to a differently sized model.
+
+The S2 generator reads `.disc-work/shenmue2-models/viewer-models.json` by
+default (`--catalog` overrides it), processes MAPM scenery only, and fails if
+any catalogued map is missing. Geometry containment determines overlay order;
+this is a rendering approximation, not a recovered Dreamcast depth-order table.
+Characters, animated props, native door hierarchies, positions, UVs and alpha
+behavior are retained. Work is split into bounded batches with at most four
+workers by default. Rebuild local S2 scenery after updating these definitions:
+`npm run build:scenery -- --shenmue2`. Bundles retain the bias and record each
+map definition's revision so an older bundle cannot silently omit the fix.
+
+MT7 coverage is accumulated across the strips of one native material group.
+Ranks include intermediate relationships (wall → ivy → window), not just the
+largest backing wall. For equal-sized layers the original polygon list type
+puts translucent details after opaque surfaces, independently of file order.
+
+`tests/Mt7OverlayManifest.test.js` checks Fortune's Pier against the extracted
+model and verifies that bundling retains triangles, UVs, alpha and depth bias.
+The opt-in rendered regression uses the actual world loader at the reported
+Fortune's Pier position, comparing small camera pans with and without bias in
+both original and prepared paths:
+
+```sh
+PLAYWRIGHT_S2_OVERLAYS=true PLAYWRIGHT_SKIP_WEB_SERVER=true \
+  PLAYWRIGHT_BASE_URL=http://127.0.0.1:5173 npm run test:e2e -- \
+  tests/e2e/s2-depth-overlays.spec.js --project=chromium --workers=1
+```
+
+Run a local asset server and rebuild `s2ak00` first. This test checks rendering,
+not FPS; `npm run test:scenery -- s2ak00` separately checks collision, native
+door ownership, layer visibility and resource cleanup.
 
 ### upload_to_r2.js
 Shared publisher for the Shenmue I and Shenmue II model libraries. Shenmue I

@@ -4,6 +4,7 @@ import { buildHiddenSuffixes, updateModelVisibility } from "../variants.js";
 import { clearWorldSceneAssets, freezeSceneRoots } from "./SceneResources.js";
 import { spatiallyBatchMt7MapRoot } from "./StaticWorldBatching.js";
 import { installWorldMt7MapEffect } from "./MapEffects.js";
+import mt7OverlayManifest from '../../play/data/mt7-overlay-manifest.json' with {type: 'json'};
 
 // Bound each resource read so a stalled request cannot hold the scene queue
 // forever. Late I/O results never reach model parsing after timeout/cancel.
@@ -277,6 +278,21 @@ export async function loadMt7Scene(state, records, options = {}) {
     state.currentSceneComposition = null;
     state.currentVariantProfile = null;
     const packs = new Map();
+    const overlayShards = new Map();
+    const overlayFor = async record => {
+      const entry = record.kind === 'MAPM' && mt7OverlayManifest.files[record.filename];
+      if (!entry) return null;
+      if (!overlayShards.has(entry.shard)) overlayShards.set(entry.shard, readSceneResource(async () => {
+        const response = await fetch(entry.shard, {signal: options.signal, cache: 'no-cache'});
+        if (!response.ok) throw new Error(`Depth overlay request failed (${response.status}): ${entry.shard}`);
+        return response.json();
+      }, options));
+      const definition = (await overlayShards.get(entry.shard)).files?.[record.filename];
+      if (definition?.revision !== entry.revision || definition?.byteLength !== entry.byteLength) {
+        throw new Error(`Stale depth overlay definition: ${record.filename}`);
+      }
+      return definition;
+    };
     const texturePackFor = filename => {
       if (!filename) return Promise.resolve(null);
       if (!packs.has(filename)) packs.set(filename, (async () => {
@@ -293,15 +309,17 @@ export async function loadMt7Scene(state, records, options = {}) {
     const queue = [...records];
     const processRecord = async record => {
       try {
-        const [response, textures] = await Promise.all([
+        const [response, textures, overlayDefinition] = await Promise.all([
           readSceneResource(() => fetchShenmue2Asset("models", record.filename), options),
           texturePackFor(record.texturePack),
+          overlayFor(record),
         ]);
         if (!response.ok) throw new Error(`HTTP ${response.status}: ${record.filename}`);
         const buffer = await readSceneResource(() => response.arrayBuffer(), {...options, retries: 0});
         if (cancelled()) return;
         const roots = state.mt7Loader.load(buffer, textures, {
           sourceFilename: record.filename, assetKind: record.kind,
+          overlayDefinition,
         });
         if (cancelled()) { roots.forEach(root => root.dispose()); return; }
         for (const root of roots) {
@@ -316,7 +334,7 @@ export async function loadMt7Scene(state, records, options = {}) {
           // Only immutable MAPM geometry may be batched; PROP is never merged.
           if (record.kind === "MAPM") {
             if (options.batchStatic === true) spatiallyBatchMt7MapRoot(root);
-            installWorldMt7MapEffect(root);
+            if (options.installEffects !== false) installWorldMt7MapEffect(root);
           }
           state.currentMeshes.push(root);
         }

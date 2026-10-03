@@ -6,6 +6,15 @@ are stored in R2, not in the current Git tree. The two project-created account
 logos, runtime code, and structured JSON manifests remain in the repository.
 This separation does not change ownership or grant redistribution rights.
 
+AI-reconstructed inventory UI icons are a separate, repository-tracked asset
+set: `play/ui/assets/inventory/` contains the 256px transparent lossless WebP
+images imported by the inventory component. Vite emits versioned URLs for
+these; they do not require R2 publication. `artwork/inventory/catalog.json`
+records their provenance and distinguishes displayed items from unused/demo
+artwork. Full-resolution reserve images in `artwork/inventory/reserve/` are
+not imported or copied into the production build. The inventory currently
+displays a curated catalog, not server-backed character possessions.
+
 `src/runtime-assets.generated.json` maps repository-relative source paths to
 SHA-256 hashes and byte sizes. `src/RuntimeAssets.js` resolves these to
 `shenmue/runtime/<sha256>/<source-path>` under `VITE_ASSET_URL`. Each build pins
@@ -32,6 +41,13 @@ different local content. `VITE_OFFLINE_ASSETS=true` selects the original local
 paths instead. This flag does not provide the separate world library; extract
 those models as described in the tools guide. New extraction output remains
 ignored until explicitly registered in the runtime manifest.
+
+Local `/play/` also uses available [prepared scenery](tooling/scenery-bundle-lab.md)
+by default, including Shenmue II zones from all four discs. Build with
+`npm run build:scenery -- --all` while Vite is running, or `--shenmue2` for only
+Shenmue II. Output stays Git-ignored under `.disc-work/scenery-bundle/`; it is not
+included in production builds or published by this command. Worlds without a
+local bundle use original assets. `?scenery=original` is a comparison switch.
 
 The full research test suite also reads disc extracts, world models and generated
 capture evidence outside this manifest. Restore alone does not supply those

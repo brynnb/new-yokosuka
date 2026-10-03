@@ -83,6 +83,8 @@ test("generic activity compiler reuses an exact canonical motion bank", (context
       primaryPointer: 0xaf81b,
       secondaryPointer: 0xaf828,
       file: "SEQDATA1.AUTH",
+      browserLightingPresetIndex: 3,
+      browserLightingOverride: { hemiIntensity: 0.45, hemiDiffuse: [0.4, 0.47, 0.7] },
       actors: ["SMTH", "TONY", "AKIR"],
       durationFrames: 70,
       frameCount: 5,
@@ -99,6 +101,9 @@ test("generic activity compiler reuses an exact canonical motion bank", (context
     }],
   };
   const manifest = buildNativeAseqActivityPack(config);
+  assert.equal(manifest.activities[0].browserLightingPresetIndex, 3);
+  assert.deepEqual(manifest.activities[0].browserLightingOverride, config.activities[0].browserLightingOverride);
+  assert.equal(manifest.activities[1].browserLightingOverride, undefined);
 
   assert.deepEqual(manifest.motionBanks, [{
     bank: 16,

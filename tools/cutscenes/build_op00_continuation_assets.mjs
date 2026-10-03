@@ -161,6 +161,17 @@ for (const definition of definitions) {
       // The montage borrows actors, not the dojo. Reuse shared dream staging;
       // this black backdrop does not reproduce the native fog/flash controllers.
       ...(dream ? { browserIsolatedStage: true, browserBackgroundColor: [0, 0, 0, 1] } : {}),
+      // Owner 0x1dda8 calls lighting helper 0x11f44 before sleeping AUTH 28.
+      // Native light units are not Babylon units: match the reference's dim,
+      // cool bedroom with a shot-local preset, not OP00's shared daytime light.
+      // This is visual calibration, not an exact decoding of that helper.
+      ...(slot === 28 ? { browserLightingPresetIndex: 3, browserLightingOverride: {
+        ambientColor: [0.18, 0.13, 0.18],
+        hemiIntensity: 0.45, hemiDiffuse: [0.4, 0.47, 0.7], hemiGround: [0.09, 0.1, 0.19],
+        skyIntensity: 0.2, skyDiffuse: [0.5, 0.57, 0.8],
+        dirIntensity: 0.1, dirDiffuse: [0.55, 0.62, 0.95],
+        fillIntensity: 0.12, fillDiffuse: [0.2, 0.3, 0.6],
+      } } : {}),
       browserMapVisibility: mapNames.map(nativeName => ({
         nativeName, visible: !dream && (nativeName === "OMO" ? bedroom : nativeName !== "OMADO" && !bedroom),
       })),
@@ -256,7 +267,9 @@ for (const definition of definitions) {
     ...(faceCallbackSelections.length ? { nativeFaceCallbackSource: { path: callbackEvidencePath, mapinfoSha256: mapHash, selections: faceCallbackSelections } } : {}),
     nativeHandCallbackSource: { path: callbackEvidencePath, mapinfoSha256: mapHash, selections: handCallbackSelections,
       ownerFunction: owner.id, unpresentedOwnerCues: ownerHands.unpresentedCues },
-    limitations: ["Native post-process dream flashes and per-shot lighting are not reproduced.", "Sleeping blanket deformation remains the separate tracked blanket issue.",
+    limitations: [definition.id === "op00-dream"
+      ? "Native post-process dream flashes and per-shot lighting are not reproduced exactly; sleeping slot 28 uses reference-matched browser lighting."
+      : "Native post-process dream flashes and per-shot lighting are not reproduced.", "Sleeping blanket deformation remains the separate tracked blanket issue.",
       ...(definition.id === "op00-dream" ? ["Lan Di's separate HNDM right-hand motion in callback 0x11dac is not yet projected; his authored static HAND pose is retained."] : [])],
   }, null, 2) + "\n");
   // Feed the same authoritative owner-order compiler used by the murder scene.

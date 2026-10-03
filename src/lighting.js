@@ -229,15 +229,19 @@ export function applyTimeOfDayLighting({
   fromIndex,
   toIndex,
   progress,
+  lightingOverride = null,
 }) {
   const from = timeOfDayPresets[fromIndex];
   const to = timeOfDayPresets[toIndex];
   if (!from || !to) return;
-  applyLightingPreset(interpolateLightingPresets(
-    from.lighting || DEFAULT_LIGHTING,
-    to.lighting || DEFAULT_LIGHTING,
-    progress,
-  ));
+  applyLightingPreset({
+    ...interpolateLightingPresets(
+      from.lighting || DEFAULT_LIGHTING,
+      to.lighting || DEFAULT_LIGHTING,
+      progress,
+    ),
+    ...lightingOverride,
+  });
   const [r, g, b, a] = interpolateClearColors(
     clearColorForPreset(fromIndex),
     clearColorForPreset(toIndex),

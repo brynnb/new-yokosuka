@@ -2,6 +2,8 @@ import * as B from "@babylonjs/core";
 
 const SOURCE_FIELDS = ["addr", "flag", "modelAddr", "rot", "scl", "pos", "child",
   "sibling", "parentAddr", "unk1", "unk2"];
+const MT7_SOURCE_FIELDS = ["offset", "id", "position", "rotationRaw", "scale", "meshOffset",
+  "childOffset", "siblingOffset", "parentOffset", "parentMismatch"];
 const copy = value => JSON.parse(JSON.stringify(value));
 
 // Preserve native pivots/render keys, not just the final visible mesh transforms.
@@ -9,7 +11,7 @@ const copy = value => JSON.parse(JSON.stringify(value));
 export function encodeModelTemplate(model, roots, encodeMesh) {
   if (!roots.length) throw new Error(`Empty rigid model: ${model}`);
   return {model, roots: roots.map(root => {
-    if (root._mt5CharacterRig) throw new Error(`Character rig is not a rigid template: ${model}`);
+    if (root._mt5CharacterRig || root._mt7CharacterGpuRig) throw new Error(`Character rig is not a rigid template: ${model}`);
     const nodes = [root, ...root.getDescendants(false)];
     const indices = new Map(nodes.map((node, index) => [node, index]));
     return {
@@ -26,6 +28,14 @@ export function encodeModelTemplate(model, roots, encodeMesh) {
       sourceNodes: (root._mt5Nodes || []).map(node => ({
         ...copy(Object.fromEntries(SOURCE_FIELDS.filter(key => node[key] !== undefined).map(key => [key, node[key]]))),
         mesh: indices.get(node.mesh),
+      })),
+      // Keep native identity and the bounds used by sliding-door direction
+      // selection, not the parser's duplicate geometry or recursive pointers.
+      mt7Nodes: (root._mt7Nodes || []).map(({sourceNode, transform}) => ({
+        sourceNode: {...copy(Object.fromEntries(MT7_SOURCE_FIELDS.filter(key => sourceNode[key] !== undefined)
+          .map(key => [key, sourceNode[key]]))),
+        ...(sourceNode.mesh ? {mesh: {boundsCenter: sourceNode.mesh.boundsCenter}} : {})},
+        transform: indices.get(transform),
       })),
     };
   })};
@@ -66,6 +76,10 @@ export function instantiateModelTemplate(scene, template, createMesh, signal) {
       });
       root._mt5NodesByAddress = new Map(root._mt5Nodes.map(node => [node.addr, node]));
       for (const node of root._mt5Nodes) node._mt5ParentNode = root._mt5NodesByAddress.get(node.parentAddr) || null;
+      if (record.mt7Nodes.length) root._mt7Nodes = record.mt7Nodes.map(({sourceNode, transform}) => {
+        if (!nodes[transform]) throw new Error(`Missing MT7 template node: ${template.model}:${sourceNode.offset}`);
+        return {sourceNode: copy(sourceNode), transform: nodes[transform]};
+      });
     }
     signal?.throwIfAborted();
     return roots;

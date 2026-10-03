@@ -1,4 +1,5 @@
 import { Color3, Color4, Layer, RawTexture } from "@babylonjs/core";
+import { validateLightingOverride } from "../../src/LightingInterpolation.js";
 
 function requireText(value, label) {
   if (typeof value !== "string" || !value.trim()) {
@@ -67,6 +68,7 @@ export class NativeAseqMapLayerRuntime {
     this.acquireActivityLighting = acquireActivityLighting;
     this.releaseActivityLighting = null;
     this.lightingPresetIndex = null;
+    this.lightingOverride = null;
     this.lightingSnapshot = null;
   }
 
@@ -149,6 +151,11 @@ export class NativeAseqMapLayerRuntime {
     }
     const color = activity.browserBackgroundColor;
     const lightingPresetIndex = activity.browserLightingPresetIndex ?? null;
+    const lightingOverride = activity.browserLightingOverride ?? null;
+    const validatedLighting = lightingOverride === null ? null : validateLightingOverride(lightingOverride);
+    if (lightingOverride !== null && lightingPresetIndex === null) {
+      throw new Error(`AUTH activity ${activity.activityId} lighting override requires a base preset`);
+    }
     if (lightingPresetIndex !== null && (!Number.isInteger(lightingPresetIndex)
       || lightingPresetIndex < 0 || lightingPresetIndex > 3 || !this.acquireActivityLighting)) {
       throw new Error(`AUTH activity ${activity.activityId} has invalid lighting ownership`);
@@ -171,12 +178,13 @@ export class NativeAseqMapLayerRuntime {
       activityId: null,
       residentSnapshots: null,
     };
-    if (lightingPresetIndex !== this.lightingPresetIndex) {
+    if (lightingPresetIndex !== this.lightingPresetIndex || lightingOverride !== this.lightingOverride) {
       this.#restoreLighting();
       this.releaseActivityLighting?.();
       this.releaseActivityLighting = null;
       this.lightingPresetIndex = lightingPresetIndex;
-      if (lightingPresetIndex !== null) this.releaseActivityLighting = this.acquireActivityLighting(lightingPresetIndex);
+      this.lightingOverride = lightingOverride;
+      if (lightingPresetIndex !== null) this.releaseActivityLighting = this.acquireActivityLighting(lightingPresetIndex, validatedLighting);
     }
     const isolateEnvironment = activity.browserIsolatedStage || activity.browserIsolatedEnvironment;
     if (isolateEnvironment && !this.releaseEnvironmentIsolation) {
@@ -281,6 +289,7 @@ export class NativeAseqMapLayerRuntime {
     this.releaseActivityLighting?.();
     this.releaseActivityLighting = null;
     this.lightingPresetIndex = null;
+    this.lightingOverride = null;
     return true;
   }
 

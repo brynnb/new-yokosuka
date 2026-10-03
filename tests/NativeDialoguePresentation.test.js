@@ -183,6 +183,23 @@ test("presentation message keeps subtitle labels separate from actor routing", (
   assert.equal(message.nativeDurationSeconds, 1.5);
 });
 
+test("bookkeeping tokens keep their stream time without adding a delay", () => {
+  const result = buildNativeDialoguePresentationProgram([
+    { kind: "runtimeWrite", selector: 0, rawValue: 1 },
+    { kind: "message", messageIndex: 0 },
+    { kind: "progressMarker", encodedOperand: 2 },
+    { kind: "runtimeWrite", selector: 0, rawValue: 2 },
+  ], [{ nativeDurationSeconds: 1.5 }]);
+  assert.deepEqual(result.commands.map((command) => command.nativeTimeSeconds), [0, 0, 1.5, 1.5]);
+  assert.equal(result.nativeDurationSeconds, 1.5);
+
+  const unresolved = buildNativeDialoguePresentationProgram([
+    { kind: "message" }, { kind: "progressMarker" },
+  ], [{ nativeDurationSeconds: null }]);
+  assert.equal(unresolved.commands[1].nativeTimeSeconds, null);
+  assert.equal(unresolved.nativeDurationSeconds, null);
+});
+
 test("presentation program preserves native command ordering and timing", () => {
   const messages = [
     { voiceId: "FIRST", nativeDurationSeconds: 1.5 },

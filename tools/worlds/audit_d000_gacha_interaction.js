@@ -6,6 +6,8 @@ import path from "node:path";
 import * as BABYLON from "@babylonjs/core";
 import {
   DOBUITA_GACHA_MACHINES,
+  GACHA_SOURCE_APPROACH,
+  GACHA_CAPSULE,
 } from "../../src/DobuitaGachaInteraction.js";
 import { MotnLoader } from "../../src/MotnLoader.js";
 import { Mt5Loader } from "../../src/Mt5Loader.js";
@@ -261,12 +263,11 @@ if (
  *    includes one zero entry, so pool size must come from the adjacent byte
  *    table rather than a zero terminator.
  *
- * Keep the two adjacent byte tables neutrally named here. Their first table
+ * The first of the two adjacent byte tables
  * is independently identified as the pool length because every value equals
  * the number of uint16 lookup entries in the corresponding branch. The second
- * table
- * participates in the random-selection split at 0x57330, but its semantic
- * label is not yet proved.
+ * table supplies rare-tail counts at 0x57330, confirmed by executing the
+ * selection range in verify_capsule_selection.mjs.
  */
 const prizeModelListCalls = [
   0x4f9e2, 0x4fa26, 0x4fa6a, 0x4faae,
@@ -337,11 +338,45 @@ if (
   failures.push("prize pool-length table no longer matches all ID pools");
 }
 
+const sourceLocalPosition = [mapinfo.readFloatLE(0x525b8), 0, mapinfo.readFloatLE(0x525bc)];
+if (JSON.stringify(sourceLocalPosition) !== JSON.stringify(GACHA_SOURCE_APPROACH)) {
+  failures.push("gacha approach position differs from the native selector-0 literals");
+}
+
+const floats = offsets => offsets.map(offset => mapinfo.readFloatLE(offset));
+const words = offsets => offsets.map(offset => mapinfo.readUInt32LE(offset));
+const recoveredCapsule = {
+  rightGrip: {renderKey: -0x41, position: floats([0x536f4, 0x536f8, 0x536fc]), rotationRaw: [mapinfo.readUInt32LE(0x53700), 0, 0]},
+  leftGrip: {renderKey: -0x42, position: floats([0x53940, 0x53944, 0x53948]), rotationRaw: words([0x5394c, 0x53950, 0x53954])},
+  leftRegrip: floats([0xad34c, 0xad350, 0xad354]),
+  openFrame: mapinfo.readFloatLE(0x53830),
+  lidReleaseFrame: mapinfo.readFloatLE(0x53964),
+  regripFrame: mapinfo.readFloatLE(0x53a20),
+  regripEndFrame: mapinfo.readFloatLE(0x53bc4),
+  baseReleaseFrame: mapinfo.readFloatLE(0x53d94),
+  dispensePosition: [-mapinfo.readFloatLE(0x55954), mapinfo.readFloatLE(0x55958), mapinfo.readFloatLE(0x55950)],
+  dropDistance: mapinfo.readFloatLE(0x55970), dropAcceleration: mapinfo.readFloatLE(0x55974),
+};
+for (const [key, value] of Object.entries(recoveredCapsule)) {
+  if (JSON.stringify(GACHA_CAPSULE[key]) !== JSON.stringify(value)) failures.push(`capsule ${key} differs from original data`);
+}
+const capsuleProps = {
+  sourceRoutines: {hand: '0x535e4', leftRegrip: '0x53e98', dispense: '0x555ac'},
+  recovered: recoveredCapsule,
+  attachments: [callAt(0x53672, '0x00e6'), callAt(0x53698, '0x00e6'), callAt(0x538e8, '0x00e6')],
+  models: [GACHA_CAPSULE.lidModel, ...GACHA_CAPSULE.baseModels].map(browserAsset => {
+    const filename = path.resolve('.disc-work/exact/d000/unpacked/OMG', browserAsset.replace('S3_D000_', '').replace('.MT5', '.CHRM'));
+    return {browserAsset, source: path.relative(process.cwd(), filename), ...hashFile(filename)};
+  }),
+  adaptation: 'Dispense/pickup follow parent motion gates 215/310. Drop position and acceleration are recovered; resting spin and the full native throw/bin collision coroutine are not reproduced. Release frames are original, discarded shells use a short browser gravity drop.',
+};
+
 const report = {
   schema: "new-yokosuka-d000-gacha-interaction-v1",
   status: failures.length === 0 ? "verified" : "failed",
   source: {
     mapinfo: path.relative(process.cwd(), mapinfoPath),
+    mapinfoSha256: sha256(mapinfo),
     dispatchCalls: path.relative(process.cwd(), dispatchPath),
     ram: path.relative(process.cwd(), ramPath),
   },
@@ -350,6 +385,22 @@ const report = {
   machineRecords: recoveredRecords,
   populatedMachineRecords: populatedRecords,
   productionRegistry: DOBUITA_GACHA_MACHINES,
+  capsuleProps,
+  approach: {
+    functionFileOffset: "0x524cc",
+    selector: 0,
+    sourceLocalPosition,
+    sourceLiteralOffsets: ["0x525b8", null, "0x525bc"],
+    worldPointHelper: "0x57c4e",
+    helperCalls: [
+      callAt(0x57c64, "0x0043"),
+      callAt(0x57c7c, "0x0018"),
+      callAt(0x57c90, "0x0043"),
+      callAt(0x57cac, "0x0019"),
+    ],
+    playerPositionWrite: callAt(0x5256e, "0x0018"),
+    proof: "The selector-0 branch reads the local X/Z literals, transforms them through a DAMY object attached to the active machine, and writes the resulting world point to AKIR. The initial interaction wrapper passes selector 0 through 0x5636c to 0x524cc.",
+  },
   nativeSetupCalls: {
     machineInstantiate: callAt(0x50a64, "0x0018"),
     machinePlace: callAt(0x50a82, "0x001d"),
@@ -405,7 +456,7 @@ const report = {
       fileOffset: "0xabd5c",
       values: prizeSelectionSplitTable,
       nativeConsumer: "0x57330",
-      semanticLabel: null,
+      semanticLabel: 'rare-tail count',
     },
     categories: prizeCategories,
     modelSelectionCalls: [
@@ -504,6 +555,10 @@ const report = {
           value: mapinfo.readFloatLE(0x56f50),
         },
         {
+          comparisonFileOffset: "0x56fca",
+          value: mapinfo.readFloatLE(0x56fe0),
+        },
+        {
           comparisonFileOffset: "0x573f4",
           value: mapinfo.readFloatLE(0x57408),
         },
@@ -515,16 +570,15 @@ const report = {
     },
   },
   browserSemantics: (
-    "the selected low-detail GCH body is replaced by its exact HI_GACH "
-    + "model while the source-native M_GACH interaction plays; its owned "
-    + "GBX component remains in place"
+    "the GCH body uses its exact HI_GACH visual both at rest and during "
+    + "interaction, preserving the original picking owner and GBX component; "
+    + "the controller walks to the recovered approach point before M_GACH "
+    + "plays, followed by a held-toy inspection until the player closes it"
   ),
   unresolved: [
-    "the exact category model lists and persistent collectible-ID pools are "
-      + "recovered and the physical CCOW selector is traced into category "
-      + "state; the native 100-yen debit is recovered, but random split "
-      + "semantics, browser economy/collection state, and result presentation "
-      + "are not yet implemented",
+    "The native selection policy is verified by tools/worlds/verify_capsule_selection.mjs. "
+      + "The browser reveal uses an original hand pose, models and voices, but its camera "
+      + "framing and new/duplicate reaction choice approximate the full native presentation.",
   ],
   failures,
 };

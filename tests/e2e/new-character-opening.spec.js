@@ -23,10 +23,27 @@ test(`opening transitions preserve presentation and reach the bedside after drea
   // Use the real application, account flow, scene loading and renderer. Only
   // account HTTP and the multiplayer transport are fake; no real account is made.
   // The unrelated, externally hosted house TV is excluded from this test.
+  // Instrument the module the app actually receives: a warm Vite server may
+  // import it with an HMR timestamp, giving a separate class from a bare import.
+  await page.route("**/play/world/PlayWorldLifecycle.js*", async route => {
+    const response = await route.fetch();
+    await route.fulfill({ response, body: `${await response.text()}\n
+      const openingInitialize = PlayWorldLifecycle.prototype.initialize;
+      PlayWorldLifecycle.prototype.initialize = function(options) {
+        window.openingTest.lifecycle = this;
+        return openingInitialize.call(this, options);
+      };
+      const openingLoadAssets = PlayWorldLifecycle.prototype.loadAssets;
+      PlayWorldLifecycle.prototype.loadAssets = function(...args) {
+        const probe = window.openingTest;
+        probe.loads.push({ phase: probe.screen.phase, opacity: getComputedStyle(document.querySelector('#loading')).opacity });
+        return openingLoadAssets.apply(this, args);
+      };
+    ` });
+  });
   await page.route("**/play/play.js*", route => route.fulfill({ contentType: "application/javascript", body: `
     import { PlayApplication } from '/play/PlayApplication.js';
     import { NativeCutsceneDirector } from '/play/cutscenes/NativeCutsceneDirector.js';
-    import { PlayWorldLifecycle } from '/play/world/PlayWorldLifecycle.js';
     import { MultiplayerSession } from '/play/multiplayer/MultiplayerSession.js';
     import { ArcadeAttractScreens } from '/play/arcade/ArcadeAttractScreens.js';
     import { LoadingScreen } from '/play/ui/LoadingScreen.js';
@@ -80,11 +97,6 @@ test(`opening transitions preserve presentation and reach the bedside after drea
       requestAnimationFrame(sample);
     };
     requestAnimationFrame(sample);
-    const loadAssets = PlayWorldLifecycle.prototype.loadAssets;
-    PlayWorldLifecycle.prototype.loadAssets = function(...args) {
-      probe.loads.push({ phase: probe.screen.phase, opacity: getComputedStyle(document.querySelector('#loading')).opacity });
-      return loadAssets.apply(this, args);
-    };
     const start = NativeCutsceneDirector.prototype.start;
     NativeCutsceneDirector.prototype.start = async function(cutscene, options) {
       probe.director = this;
@@ -99,11 +111,6 @@ test(`opening transitions preserve presentation and reach the bedside after drea
       const result = await start.call(this, cutscene, options);
       if (result) probe.started.push(cutscene.id);
       return result;
-    };
-    const initialize = PlayWorldLifecycle.prototype.initialize;
-    PlayWorldLifecycle.prototype.initialize = function(options) {
-      probe.lifecycle = this;
-      return initialize.call(this, options);
     };
     MultiplayerSession.prototype.connect = function() {
       probe.connected.push({ worldId: this.getWorld().id, avatarId: probe.lifecycle.playerRuntime.activeCharacterId });

@@ -14,6 +14,7 @@ import {
 
 import { AvatarBrowserDialog } from "../../account/react/AvatarBrowserDialog.jsx";
 import {
+  INTRO_CUTSCENE_SELECTIONS,
   TRAVEL_DESTINATION_GROUPS,
 } from "./SidebarData.js";
 import {
@@ -26,6 +27,7 @@ import {
   DEFAULT_APPEARANCE_VALUE,
   focusGameAfterSidebarSelect,
   selectSidebarCharacter,
+  selectSidebarCutscene,
   selectSidebarEmote,
   selectSidebarTravel,
   setSidebarPickerOpen,
@@ -175,12 +177,12 @@ export function SidebarApp() {
         <Card
           size="2"
           variant="surface"
-          aria-label="Travel, animation, and character selection"
+          aria-label="Travel, animation, cutscene, and character selection"
         >
           <Flex direction="column" gap="2">
             <SidebarSelect
               id="travel-button"
-              placeholder="Travel To..."
+              placeholder="Travel to..."
               picker="travel"
               onValueChange={selectSidebarTravel}
             >
@@ -198,7 +200,7 @@ export function SidebarApp() {
             </SidebarSelect>
             <SidebarSelect
               id="animation-button"
-              placeholder="Select Emote..."
+              placeholder="Select emote..."
               picker="animation"
               disabled={animationDisabled}
               disabledReason={animationDisabledReason}
@@ -209,6 +211,18 @@ export function SidebarApp() {
                   <Text color={emote.id === activeEmoteId ? "teal" : undefined}>
                     {emote.label}
                   </Text>
+                </Select.Item>
+              ))}
+            </SidebarSelect>
+            <SidebarSelect
+              id="cutscene-button"
+              placeholder="Play cutscene..."
+              picker="cutscene"
+              onValueChange={selectSidebarCutscene}
+            >
+              {INTRO_CUTSCENE_SELECTIONS.map(([id, label]) => (
+                <Select.Item value={id} key={id}>
+                  {label}
                 </Select.Item>
               ))}
             </SidebarSelect>
@@ -275,6 +289,16 @@ export function SidebarApp() {
               aria-controls="inventory-overlay"
             >
               Inventory
+            </Button>
+            <Button
+              id="collection-button"
+              type="button"
+              color="gray"
+              variant="soft"
+              aria-haspopup="dialog"
+              aria-controls="inventory-overlay"
+            >
+              Collection
             </Button>
           </Grid>
         </Card>

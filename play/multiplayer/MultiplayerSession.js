@@ -213,6 +213,7 @@ export class MultiplayerSession {
       onNPCRemoved: game.onNPCRemoved,
       onArcadeHighScore: game.onArcadeHighScore,
       onVendingResult: game.onVendingResult,
+      onCapsuleResult: game.onCapsuleResult,
       onScriptEventYield: game.onScriptEventYield,
       onScriptEventRejected: game.onScriptEventRejected,
       onSessionReplaced: game.onSessionReplaced,

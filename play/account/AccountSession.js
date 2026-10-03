@@ -165,7 +165,11 @@ export class AccountSession {
     if (!character) return;
     this.character = { ...this.character, ...character };
     this.inventory = inventory;
-    this.renderProgression(character);
+    this.renderProgression(this.character);
+  }
+
+  applyPurchase(result) {
+    if (result?.outcome === 'purchased') this.applyWelcome({yen: result.yen}, result.inventory || []);
   }
 
   renderProgression(character) {

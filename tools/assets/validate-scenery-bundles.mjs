@@ -4,19 +4,25 @@ import assert from "node:assert/strict";
 import * as B from "@babylonjs/core";
 import state from "../../src/state.js";
 import {WORLDS} from "../../play/config/worlds.js";
-import {PREPARED_SCENERY_WORLDS, preparedSceneryKey, preparedScenerySpec} from "../../play/world/PreparedSceneryPlan.js";
+import {PREPARED_SCENERY_WORLDS, preparedSceneryKey} from "../../play/world/PreparedSceneryPlan.js";
 import {PreparedSceneryRuntime} from "../../play/world/PreparedSceneryRuntime.js";
 import {loadSceneryBundle} from "../../src/rendering/PreparedSceneryBundle.js";
-import {loadMt5Scene} from "../../src/rendering/SceneAssets.js";
+import {loadMt5Scene, loadMt7Scene} from "../../src/rendering/SceneAssets.js";
 import {createSceneLoaders, clearWorldSceneAssets} from "../../src/rendering/SceneResources.js";
 import {createWorldSpatialIndex} from "../../src/rendering/SceneSpatialIndex.js";
 import {updateModelVisibility} from "../../src/variants.js";
+import {WorldMapLayerState} from "../../src/rendering/WorldMapLayerState.js";
+import {installWorldMt7MapEffect} from "../../src/rendering/MapEffects.js";
+import {bindShenmue2NativeDoors} from "../../play/world/Shenmue2NativeDoors.js";
+import {DoorInteractions} from "../../play/interactions/DoorInteractions.js";
+import shenmue2Transitions from "../../play/data/shenmue2-boundary-transitions.json" with {type: "json"};
 import {NativeAseqMapLayerRuntime} from "../../play/events/NativeAseqMapLayerRuntime.js";
 import {NativeAseqSceneObjectRuntime} from "../../play/events/NativeAseqSceneObjectRuntime.js";
 import {NativeAseqAttachedObjectRuntime} from "../../play/events/NativeAseqAttachedObjectRuntime.js";
 import {prepareWorldCollision} from "../../play/world/WorldCollision.js";
 import {loadNativeCollisionDefinitionForWorld, createNativeWorldCollision} from "../../play/world/NativeWorldCollision.js";
 import {suppressDobuitaCinemaFacadeFaces} from "../../play/world/DobuitaCinemaPoster.js";
+import {keepOnlyYouArcadeMap01Jukebox, hideYouArcadeScreenFaces} from "../../play/arcade/ArcadeFixtures.js";
 import {ThirdPersonController, DEFAULT_THIRD_PERSON_CONTROLLER_OPTIONS,
   defaultTerrainPredicate, defaultStepSurfacePredicate, nativeCollisionPositionClear} from "../../src/ThirdPersonController.js";
 
@@ -24,10 +30,17 @@ const origin = new URL(process.env.SCENERY_ASSET_ORIGIN || "http://127.0.0.1:517
 if (!["127.0.0.1", "localhost", "[::1]"].includes(origin.hostname) || origin.protocol !== "http:") throw new Error("Use the local asset server");
 const nativeFetch = globalThis.fetch;
 globalThis.fetch = (input, options) => nativeFetch(new URL(input, origin), options);
-const keys = process.argv[2] === "--all"
-  ? [...new Set(PREPARED_SCENERY_WORLDS.map(id => preparedSceneryKey(WORLDS[id])))] : [process.argv[2] || "dobuita"];
+const selection = process.argv[2];
+const keys = ["--all", "--shenmue1", "--shenmue2"].includes(selection)
+  ? [...new Set(PREPARED_SCENERY_WORLDS.filter(id => selection === "--all"
+    || (WORLDS[id].assetFormat === "MT7") === (selection === "--shenmue2")).map(id => preparedSceneryKey(WORLDS[id])))]
+  : [selection || "dobuita"];
 const cases = [0, 2, 3].flatMap(time => [0, 1].map(season => ({time, season, weather: season ? 3 : 0})));
 const counts = scene => [scene.meshes.length, scene.transformNodes.length, scene.geometries.length, scene.materials.length, scene.textures.length];
+// Baking a hierarchy into float32 world-space vertices introduces a few ULPs
+// of rounding. S2 coordinates commonly sit hundreds of units from the origin;
+// use a scale-aware bound (eight float32 steps), not an origin-sized epsilon.
+const positionTolerance = point => Math.max(0.0001, 8 * 2 ** -23 * Math.max(...point.map(Math.abs)));
 function rootGeometry() {
   return state.currentMeshes.map(root => ({filename: root._filename,
     triangles: root.getChildMeshes().reduce((n, mesh) => n + mesh.getTotalIndices() / 3, 0),
@@ -41,7 +54,9 @@ function snapshots(index, rays, world) {
   });
   return cases.map(({time, season, weather}) => {
     Object.assign(state, {currentTimeOfDay: time, currentSeason: season, currentWeatherIndex: weather});
-    updateModelVisibility(state);
+    if (world.assetFormat === "MT7") {
+      new WorldMapLayerState().load(world, state.currentMeshes, new Date(Date.UTC(1986, 10, 29, [10, 16, 19, 23][time])));
+    } else updateModelVisibility(state);
     return {
       layers: state.currentMeshes.filter(root => root.isEnabled()).map(root => root._filename).sort(),
       hits: rays.map(ray => {
@@ -63,10 +78,50 @@ function snapshots(index, rays, world) {
   });
 }
 
+function shenmue2OwnershipSnapshot(world) {
+  if (world.assetFormat !== "MT7") return null;
+  const roots = state.currentMeshes;
+  const props = roots.filter(root => root.metadata?.shenmue2SceneAssetKind === "PROP").map(root => ({filename: root._filename,
+    nodes: root._mt7Nodes.map(({sourceNode, transform}) => ({offset: sourceNode.offset, id: sourceNode.id,
+      position: sourceNode.position, matrix: Array.from(transform.computeWorldMatrix(true).asArray())})),
+  })).sort((a, b) => a.filename.localeCompare(b.filename));
+  const setMetadata = (root, key, value) => {
+    for (const node of [root, ...root.getDescendants(false)]) {
+      node.metadata = {...node.metadata, [key]: value};
+      node.unfreezeWorldMatrix();
+    }
+  };
+  const runtime = new DoorInteractions({setMetadata});
+  const doors = bindShenmue2NativeDoors({currentMeshes: roots, worldId: world.id,
+    transitions: shenmue2Transitions.transitions, doorInteractions: runtime, setMetadata});
+  assert.equal(doors.length, shenmue2Transitions.transitions.filter(row => row.source.worldId === world.id && row.source.nativeDoor).length,
+    `${world.id}: every native door must bind`);
+  const matrices = door => door.nodes.flatMap(node => [node, ...node.getDescendants(false)])
+    .map(node => Array.from(node.computeWorldMatrix(true).asArray()));
+  const doorStates = doors.map(door => {
+    const closed = matrices(door);
+    runtime.toggle(door); runtime.update(2);
+    const open = matrices(door);
+    assert.notDeepEqual(open, closed, `${world.id}: door ${door.transition.id} must actually move`);
+    runtime.toggle(door); runtime.update(2);
+    assert.deepEqual(matrices(door), closed, `${world.id}: door closes to its bind pose`);
+    return {id: door.transition.id, closed, open};
+  });
+  const effects = roots.filter(root => root._mt7MapEffectDefinition).map(root => {
+    const runtime = root._worldMt7MapEffectRuntime || installWorldMt7MapEffect(root);
+    assert.ok(runtime, `${world.id}: native map effect binds`);
+    runtime.update(2);
+    const offsets = [...new Set(runtime.bindings.map(({texture}) => JSON.stringify([texture.uOffset, texture.vOffset])))].sort();
+    runtime.update(0);
+    return {filename: root._filename, effect: runtime.effect, offsets};
+  }).sort((a, b) => a.filename.localeCompare(b.filename));
+  return {props, doors: doorStates, effects};
+}
+
 // Exercise the real owners on both decoded and prepared resident resources.
 // Package-created actors/effects are unchanged and are not fabricated here.
 async function introOwnershipSnapshots(spec) {
-  if (!spec.ownership) return null;
+  if (!spec.ownership?.environments) return null;
   const roots = state.currentMeshes;
   const initial = roots.map(root => [root, root.isEnabled(false)]);
   const matrices = root => [root, ...root.getDescendants(false)].map(node => ({name: node === root ? root._filename : node.name,
@@ -116,6 +171,24 @@ async function introOwnershipSnapshots(spec) {
   return results;
 }
 
+function interiorOwnershipSnapshot(world, spec) {
+  if (world.id !== "arcade") return null;
+  const roots = state.currentMeshes;
+  // Real fixture owners address these exact names, face IDs and UVs. Compare
+  // before they mutate anything, then run the same map suppression as /play.
+  const surfaces = spec.ownership.surfaceSelectors.flatMap(({sourceFilename, meshName}) =>
+    roots.filter(root => root._filename === sourceFilename).flatMap(root => root.getChildMeshes())
+      .filter(mesh => mesh.name === meshName && mesh.getTotalVertices() > 0)
+      .map(mesh => ({sourceFilename, meshName, matrix: mesh.computeWorldMatrix(true).asArray(),
+        positions: Array.from(new Float32Array(mesh.getVerticesData("position"))),
+        uvs: Array.from(new Float32Array(mesh.getVerticesData("uv"))), indices: Array.from(mesh.getIndices())})));
+  assert.ok(surfaces.length >= spec.ownership.surfaceSelectors.length, "all arcade fixture selectors resolve");
+  const jukebox = keepOnlyYouArcadeMap01Jukebox(roots);
+  assert.equal(jukebox.retainedTriangles, 1250, "native jukebox node remains selectable");
+  hideYouArcadeScreenFaces(roots);
+  return {surfaces, jukebox};
+}
+
 try {
   for (const key of keys) {
     const world = WORLDS[key];
@@ -129,16 +202,18 @@ try {
     let index;
     try {
       const runtime = new PreparedSceneryRuntime(state);
-      const {manifest} = await runtime.plan(world);
-      const spec = preparedScenerySpec(world, state.allFiles);
+      const {manifest, spec} = await runtime.plan(world);
       const binary = new Uint8Array(await runtime.read(`/scenery-output/${spec.key}/world.bin`));
       const collision = await loadNativeCollisionDefinitionForWorld(world);
-      await loadMt5Scene(state, world.prefix, {filenames: new Set(spec.filenames),
+      if (world.assetFormat === "MT7") await loadMt7Scene(state, spec.records, {batchStatic: false, installEffects: false});
+      else await loadMt5Scene(state, world.prefix, {filenames: new Set(spec.filenames),
         includeHiddenVariants: true, timeOfDayIndex: 0, variantProfile: spec.variantProfile, variantZone: spec.zone});
       if (key === "dobuita") suppressDobuitaCinemaFacadeFaces(state.currentMeshes);
-      prepareWorldCollision(state.currentMeshes, {nativeHorizontalCollision: Boolean(collision)});
+      const originalInterior = interiorOwnershipSnapshot(world, spec);
+      prepareWorldCollision(state.currentMeshes, {interior: world.interior === true, nativeHorizontalCollision: Boolean(collision)});
       const geometry = rootGeometry();
       const originalOwnership = await introOwnershipSnapshots(spec);
+      const originalMt7 = shenmue2OwnershipSnapshot(world);
       const rays = [];
       for (const x of [-30, -15, -7, -2, 0, 2, 7, 15, 30]) {
         for (const z of [-30, -15, -7, -2, 0, 2, 7, 15, 30]) {
@@ -147,6 +222,13 @@ try {
       }
       index = createWorldSpatialIndex(scene, state.currentMeshes);
       const original = snapshots(index, rays, world);
+      const baselineIssues = [];
+      if (world.assetFormat === "MT7") for (const [i, row] of original.entries()) {
+        if (!row.support[40]) baselineIssues.push(`Original loader has no ground support at configured spawn ${world.spawn.asArray()} (variant ${i})`);
+      }
+      createNativeWorldCollision({scene, currentMeshes: state.currentMeshes, definition: collision});
+      const originalWallClearance = nativeCollisionPositionClear(scene.meshes, world.spawn, DEFAULT_THIRD_PERSON_CONTROLLER_OPTIONS.playerRadius);
+      if (!originalWallClearance && world.assetFormat === "MT7") baselineIssues.push(`Original spawn overlaps native walls: ${world.spawn.asArray()}`);
       index.dispose(); index = null;
       clearWorldSceneAssets(state);
       // NullEngine has no texture-array GPU API. Use ordinary materials for
@@ -160,14 +242,16 @@ try {
       const bundle = await loadSceneryBundle(scene, geometryManifest, binary);
       state.preparedSceneryResources = bundle;
       state.currentMeshes = [...bundle.roots];
+      assert.deepEqual(interiorOwnershipSnapshot(world, spec), originalInterior, `${key}: fixture geometry, UVs, faces and native jukebox selection`);
       assert.deepEqual(rootGeometry(), geometry, `${key}: original map roots and triangle counts`);
       assert.deepEqual(await introOwnershipSnapshots(spec), originalOwnership, `${key}: native ownership, masks and moving geometry`);
+      assert.deepEqual(shenmue2OwnershipSnapshot(world), originalMt7, `${key}: native prop hierarchies, opening/closing doors and scrolling textures`);
       index = createWorldSpatialIndex(scene, state.currentMeshes);
       const prepared = snapshots(index, rays, world);
       for (const [i, result] of prepared.entries()) {
         assert.deepEqual(result.layers, original[i].layers, `${key}: variant ${JSON.stringify(cases[i])}`);
         assert.deepEqual(result.surfaces, original[i].surfaces, `${key}: seasonal surface ownership`);
-        if (!world.cutsceneOnly) {
+        if (!world.cutsceneOnly && (world.assetFormat !== "MT7" || original[i].support[40])) {
           assert.ok(original[i].support[40], `${key}: source map must support travel spawn ${world.spawn.asArray()}`);
           assert.ok(result.support[40], `${key}: variant ${i} must support the player at the travel spawn\n${JSON.stringify({original: original[i].spawnHits, prepared: result.spawnHits})}`);
         }
@@ -175,7 +259,7 @@ try {
           const expected = original[i].support[j];
           assert.equal(Boolean(support), Boolean(expected), `${key}: controller support case ${i}, ray ${j}`);
           if (support) {
-            assert.ok(Math.abs(support.height - expected.height) < 0.0001,
+            assert.ok(Math.abs(support.height - expected.height) < positionTolerance([rays[j].origin.x, expected.height, rays[j].origin.z]),
               `${key}: support height case ${i}, ray ${j}: ${JSON.stringify({support, expected, ray: rays[j].origin.asArray()})}`);
             assert.ok(B.Vector3.Distance(B.Vector3.FromArray(support.normal), B.Vector3.FromArray(expected.normal)) < 0.0001,
               `${key}: support normal case ${i}, ray ${j}`);
@@ -184,21 +268,27 @@ try {
         for (const [j, point] of result.hits.entries()) {
           const expected = original[i].hits[j];
           assert.equal(Boolean(point), Boolean(expected), `${key}: case ${i}, ray ${j} hit/miss`);
-          if (point) assert.ok(B.Vector3.Distance(B.Vector3.FromArray(point), B.Vector3.FromArray(expected)) < 0.0001,
+          if (point) assert.ok(B.Vector3.Distance(B.Vector3.FromArray(point), B.Vector3.FromArray(expected)) < positionTolerance(expected),
             `${key}: case ${i}, ray ${j}: ${point} vs ${expected}`);
         }
       }
       createNativeWorldCollision({scene, currentMeshes: state.currentMeshes, definition: collision});
-      assert.ok(world.cutsceneOnly || nativeCollisionPositionClear(scene.meshes, world.spawn, DEFAULT_THIRD_PERSON_CONTROLLER_OPTIONS.playerRadius),
-        `${key}: travel spawn must clear native wall boundaries`);
+      const preparedWallClearance = nativeCollisionPositionClear(scene.meshes, world.spawn, DEFAULT_THIRD_PERSON_CONTROLLER_OPTIONS.playerRadius);
+      assert.equal(preparedWallClearance, originalWallClearance, `${key}: native wall clearance matches original loader`);
+      if (world.assetFormat !== "MT7") assert.ok(world.cutsceneOnly || preparedWallClearance, `${key}: travel spawn must clear native wall boundaries`);
       index.dispose(); index = null;
       clearWorldSceneAssets(state);
       assert.deepEqual(counts(scene), baseline, `${key}: resource cleanup`);
       console.info(JSON.stringify({world: key, variants: cases.length, groundRays: cases.length * rays.length,
         groundHits: original.reduce((n, row) => n + row.hits.filter(Boolean).length, 0),
         triangles: geometry.reduce((n, row) => n + row.triangles, 0),
-        controllerSamples: cases.length * rays.length, spawnSupportAndWallClearance: world.cutsceneOnly ? "not applicable to authored cinematic spawn" : "passed",
+        controllerSamples: cases.length * rays.length,
+        spawnSupportAndWallClearance: world.cutsceneOnly ? "not applicable to authored cinematic spawn"
+          : baselineIssues.length ? "pre-existing source issues; no bundle regression" : "passed",
+        baselineIssues,
         cinematicOwners: Object.keys(originalOwnership || {}),
+        mt7Owners: originalMt7 ? {props: originalMt7.props.length, doors: originalMt7.doors.length, effects: originalMt7.effects.length} : null,
+        interiorFixtures: originalInterior ? {surfaces: originalInterior.surfaces.length, jukebox: originalInterior.jukebox} : null,
         result: "matching source geometry counts, layer visibility, player support and cleanup",
         validation: "headless; not a rendered or FPS check"}));
     } finally {

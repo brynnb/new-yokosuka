@@ -2,6 +2,66 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import { PlayWorldLifecycle } from "../play/world/PlayWorldLifecycle.js";
+import { PlayerRuntime } from "../play/characters/PlayerRuntime.js";
+
+test("preview return restores the live avatar, exact position, heading and camera without persistence", async () => {
+  const calls = [];
+  const world = { id: "dobuita" };
+  const actorPosition = [12, 3, 45];
+  const travelState = { noClip: true, runToggled: true, firstPerson: false, cameraDistance: 4 };
+  const controller = {
+    cameraYaw: 2.1, captureTravelState: () => ({ ...travelState }),
+    restoreTravelState: state => calls.push(["controller", state]),
+    updateCamera: () => calls.push(["camera", controller.cameraYaw]),
+  };
+  const lifecycle = Object.assign(Object.create(PlayWorldLifecycle.prototype), {
+    worldRuntime: { activeWorld: world, ready: true, select: async (target, options) => {
+      assert.equal(target, world);
+      calls.push(["world", options]);
+      return true;
+    } },
+    actorRoot: { position: { asArray: () => [...actorPosition] }, rotation: { y: 0.25 } },
+    playerRuntime: { activeCharacterId: "fuku", switchCharacter: async (character, options) => {
+      assert.equal(character.id, "fuku");
+      assert.equal(options.persist, false);
+      calls.push(["avatar"]);
+      lifecycle.playerRuntime.activeCharacterId = character.id;
+    } },
+    getController: () => controller, characterById: new Map([["fuku", { id: "fuku" }]]),
+    loadingScreen: { begin: async () => calls.push(["cover"]) },
+    resetPlayer: (...args) => calls.push(["reset", ...args]),
+    vectorFromArray: value => value,
+    multiplayerRuntime: { markPresenceDirty: () => calls.push(["presence-dirty"]) },
+  });
+  const snapshot = lifecycle.capturePlayerReturnState();
+  actorPosition[0] = 99;
+  lifecycle.playerRuntime.activeCharacterId = "ryo";
+  controller.cameraYaw = 8;
+  await lifecycle.restorePlayerReturnState(snapshot);
+  assert.deepEqual(calls, [
+    ["cover"], ["avatar"],
+    ["world", { debugSpawn: { position: [12, 3, 45], yaw: 0.25 }, controllerState: travelState, persistLocation: false, reveal: false }],
+    ["reset", [12, 3, 45], 0.25, { persist: false, snapToTerrain: false }],
+    ["controller", travelState], ["camera", 2.1], ["presence-dirty"],
+  ]);
+});
+
+test("an aborted avatar load disposes its new model without replacing the gameplay avatar", async () => {
+  let resolve;
+  let disposed = false;
+  const runtime = Object.assign(Object.create(PlayerRuntime.prototype), {
+    activeCharacterId: "fuku", setCharacterDisabled() {}, isReady: () => true,
+    characterRuntime: { createModel: () => new Promise(done => { resolve = done; }) },
+  });
+  const controller = new AbortController();
+  const pending = runtime.switchCharacter({ id: "ryo" }, { persist: false, signal: controller.signal });
+  controller.abort();
+  resolve({ root: { dispose: () => { disposed = true; } } });
+  await assert.rejects(pending, { name: "AbortError" });
+  assert.equal(disposed, true);
+  assert.equal(runtime.activeCharacterId, "fuku");
+  assert.equal(runtime.characterSwitching, false);
+});
 
 test("failed avatar restoration cannot enter the world as cinematic Ryo", async () => {
   const lifecycle = Object.assign(Object.create(PlayWorldLifecycle.prototype), {

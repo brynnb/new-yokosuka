@@ -73,6 +73,38 @@ test("stage lighting and environment leases restore on completion, cancellation 
   } finally { scene.dispose(); engine.dispose(); }
 });
 
+test("dream lighting is owned only by its sleeping activity, including cancellation and replay", () => {
+  const dream = JSON.parse(fs.readFileSync("play/assets/introduction/op00-dream/manifest.json"));
+  let lighting = null;
+  const runtime = createNativeAseqMapLayerRuntime({ definitions: dream.mapLayers,
+    acquireActivityLighting: (index, override) => {
+      const previous = lighting;
+      lighting = { index, override };
+      return () => { lighting = previous; };
+    },
+  });
+  runtime.load(dream.mapLayers.map(layer => fakeRoot(layer.browserFilename)));
+  const sleep = dream.activities.find(activity => activity.slot === 28);
+  const wake = dream.activities.find(activity => activity.slot === 29);
+  for (let replay = 0; replay < 2; replay++) {
+    runtime.applyActivity(sleep);
+    assert.deepEqual(lighting, { index: 3, override: sleep.browserLightingOverride });
+    assert.throws(() => runtime.applyActivity({ ...sleep, browserLightingOverride: { hemiIntensity: NaN } }), /lighting override/);
+    assert.equal(lighting.index, 3, "invalid metadata must not release the current shot");
+    if (replay === 0) {
+      // No-scene unit fixture omits the montage's Layer, but uses its actual
+      // lighting metadata: releasing the sleeping lease is independent of it.
+      const montage = dream.activities.find(activity => activity.slot === 30);
+      runtime.applyActivity({ ...montage, browserBackgroundColor: undefined });
+      assert.equal(lighting, null);
+      runtime.applyActivity(wake);
+      assert.equal(lighting, null);
+    }
+    runtime.end();
+    assert.equal(lighting, null);
+  }
+});
+
 test("OP00 browser cutaway hides only OMADO and restores its world root", () => {
   const runtime = createNativeAseqMapLayerRuntime({
     definitions: inventory.mapVisibilityModels,

@@ -115,6 +115,9 @@ test("Lan Di dream isolates every montage shot but keeps the sleeping and waking
     const bedroom = [28, 29].includes(activity.slot);
     assert.equal(activity.browserIsolatedStage === true, !bedroom, `slot ${activity.slot}`);
     assert.deepEqual(activity.browserBackgroundColor, bedroom ? undefined : [0, 0, 0, 1]);
+    assert.equal(activity.browserLightingPresetIndex, activity.slot === 28 ? 3 : undefined);
+    assert.equal(Boolean(activity.browserLightingOverride), activity.slot === 28,
+      "the sleeping shot must not tint the montage or waking shot");
     assert.deepEqual(activity.browserMapVisibility.filter(state => state.visible).map(state => state.nativeName),
       bedroom ? ["OMO"] : []);
   }

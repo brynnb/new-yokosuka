@@ -1,15 +1,34 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import test from "node:test";
+import { Matrix, Quaternion, Vector3 } from "@babylonjs/core";
 import {
   DOBUITA_GACHA_MACHINES,
-  activeGachaMachineTag,
   gachaMachineTagForInspectable,
+  gachaInteractionPose,
+  GACHA_SOURCE_APPROACH,
 } from "../src/DobuitaGachaInteraction.js";
 
 const evidence = JSON.parse(
   fs.readFileSync("tools/evidence/d000-gacha-interaction.json", "utf8"),
 );
+
+test("approach uses the recovered local point for either machine at arbitrary placed rotations", () => {
+  assert.deepEqual(GACHA_SOURCE_APPROACH, evidence.approach.sourceLocalPosition);
+  for (const machine of DOBUITA_GACHA_MACHINES) {
+    for (const yaw of [0, Math.PI, 0.72]) {
+      const origin = new Vector3(-machine.sourcePosition[0], 0, machine.sourcePosition[2]);
+      const matrix = Matrix.Compose(Vector3.One(), Quaternion.RotationAxis(Vector3.Up(), yaw), origin);
+      const pose = gachaInteractionPose({ computeWorldMatrix: () => matrix });
+      const local = Vector3.TransformCoordinates(pose.position, matrix.clone().invert());
+      assert.ok(Math.abs(local.x + GACHA_SOURCE_APPROACH[0]) < 1e-5);
+      assert.ok(Math.abs(local.z - GACHA_SOURCE_APPROACH[2]) < 1e-5);
+      const forward = new Vector3(Math.sin(pose.yaw), 0, Math.cos(pose.yaw));
+      const towardMachine = origin.subtract(pose.position).normalize();
+      assert.ok(Vector3.Dot(forward, towardMachine) > 0.99);
+    }
+  }
+});
 
 test("retains the two populated native D000 gacha records", () => {
   assert.deepEqual(
@@ -61,20 +80,6 @@ test("maps either the machine or its owned capsule box to one interaction", () =
     gachaMachineTagForInspectable({
       objectTag: "GBX3",
       parentObjectTag: "GCH0",
-    }),
-    null,
-  );
-  assert.equal(
-    activeGachaMachineTag({
-      emote: { id: "dobuitaGacha" },
-      context: { inspectable: { objectTag: "GCH3" } },
-    }),
-    "GCH3",
-  );
-  assert.equal(
-    activeGachaMachineTag({
-      emote: { id: "bow" },
-      context: { inspectable: { objectTag: "GCH3" } },
     }),
     null,
   );

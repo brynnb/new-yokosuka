@@ -1,10 +1,29 @@
 # Native cutscenes
 
 The general cutscene preview selector is not ready for public use. The `/play`
-welcome menu and game sidebar intentionally omit its launch controls. The
-runtime also serves the new-character opening described below. Run the cutscene Playwright suites against the Vite
+welcome menu omits its launch controls. The game sidebar's **Play cutscene...**
+dropdown exposes only the four new-character opening scenes described below,
+using the same preview runtime. Run the cutscene Playwright suites against the Vite
 development server: their helper opens the internal selector through its source
 module, not a public menu button.
+
+Sidebar playback is a temporary preview, not story travel. Before loading it,
+`CutscenePreviewRuntime` captures the live world, avatar, position, facing and
+controller/camera settings through `PlayWorldLifecycle`. It uses the same
+director and dialogue sandbox as menu previews. Completion or X-skip reloads
+the previous zone and restores that snapshot behind the loading cover before
+revealing gameplay. Loading/runtime failure also attempts this return; failed
+recovery shows a loading error rather than silently accepting cinematic Ryo.
+Pending preparation is drained before restoration so a cancelled avatar load
+cannot replace the restored model later. Disposal/session replacement cancels
+the return. Movement, automatic story triggers and outgoing player presence
+remain suspended for the whole excursion, including the return load. This does
+not change the separate new-character opening arrival below.
+
+`PLAYWRIGHT_CUTSCENE_RETURN=true npm run test:e2e -- tests/e2e/sidebar-cutscene-return.spec.js`
+exercises the actual sidebar and GPU renderer with mock account/network
+boundaries: Ine-san's mail reaches authored completion, the other three opening
+scenes use X-skip, and all return to a non-Ryo avatar's original Dobuita location.
 
 The current selector uses generated preview programs over original AUTH data.
 These share the native program runtime but are not complete original room-owner
@@ -36,8 +55,9 @@ also covers all four opening scenes through the normal world loader: OP02 has
 one bundle, and the three OP00 scenes share another. Static scenery is prepared
 offline; generated scene-object/attachment owners and node masks retain native
 hierarchies, and seasonal surfaces remain independently controlled. Actor,
-camera, motion and audio preparation are unchanged. This remains opt-in via
-`/play/?scenery=prepared`, not a published production asset path.
+camera, motion and audio preparation are unchanged. Local `/play/` uses available
+bundles by default; `?scenery=original` selects the original loader for comparison.
+These bundles are not yet a published production asset path.
 
 A character without `lastLoginAt` needs the opening. Multiplayer connects only
 after the opening and final world load, so the server's existing first-login
@@ -1675,6 +1695,18 @@ and waking releases the black background. The continuation builder previously
 enabled exterior/dojo roots on every non-bedroom shot, leaking the murder set
 into the dream. This is a browser composition fix, not a reconstruction of
 OP00's native fog, flashes, or per-shot lighting controllers.
+
+Sleeping slot 28 now owns a cool, dim lighting override on the night preset;
+it must not inherit OP00's shared fixed-day setup. The continuation builder
+records this as `browserLightingPresetIndex` plus `browserLightingOverride`,
+using the shared lighting-preset fields. The environment synchronizer reapplies
+the override on clock ticks and the activity lease restores prior lighting on
+the next shot, completion, or cancellation. The montage and waking shot keep
+their existing lighting. This is visually calibrated against a reference of
+the original sleeping shot, not exact native light conversion: owner `0x1dda8`
+calls helper `0x11f44` at `0x1de22`, but its renderer/controller units are not
+equivalent to Babylon's light intensities. Global time-of-day presets and the
+server clock are unchanged.
 
 For KKYA–KKYF, original parent helper `0x5067c` releases `MPK00` using
 operation `0x013c` at `0x5070e` before a vision; `0x50748` reloads it afterward.

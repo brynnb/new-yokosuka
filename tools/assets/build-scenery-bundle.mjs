@@ -9,11 +9,11 @@ import {cpus} from "node:os";
 import * as B from "@babylonjs/core";
 import state from "../../src/state.js";
 import {createSceneLoaders, freezeSceneRoots} from "../../src/rendering/SceneResources.js";
-import {loadMt5Scene} from "../../src/rendering/SceneAssets.js";
+import {loadMt5Scene, loadMt7Scene} from "../../src/rendering/SceneAssets.js";
 import {compileSceneryBundle} from "../../src/rendering/PreparedSceneryBundle.js";
 import {WORLDS} from "../../play/config/worlds.js";
 import {PREPARED_SCENERY_WORLDS, preparedSceneryKey, preparedScenerySpec} from "../../play/world/PreparedSceneryPlan.js";
-import {fetchAsset} from "../../src/assetLoader.js";
+import {fetchAsset, fetchShenmue2Catalog} from "../../src/assetLoader.js";
 import {fetchAssetBuffer} from "../../src/AssetCache.js";
 import {runtimeAssetGroup} from "../../src/RuntimeAssets.js";
 import {PlacementRuntime, applyPlacementTransform} from "../../play/world/PlacementRuntime.js";
@@ -27,8 +27,8 @@ import {auditFixedSceneryPlacements, sceneryPlacementId} from "./scenery-placeme
 
 const project = new URL("../../", import.meta.url);
 const args = process.argv.slice(2);
-if (args.includes("--all")) {
-  if (args.length !== 1) throw new Error("Use build:scenery -- --all or build:scenery -- <world>");
+if (["--all", "--shenmue1", "--shenmue2"].includes(args[0])) {
+  if (args.length !== 1) throw new Error("Use build:scenery -- --all, --shenmue1, --shenmue2 or <world>");
   const sample = () => cpus().reduce((sum, cpu) => ({idle: sum.idle + cpu.times.idle,
     total: sum.total + Object.values(cpu.times).reduce((a, b) => a + b, 0)}), {idle: 0, total: 0});
   const before = sample();
@@ -36,7 +36,8 @@ if (args.includes("--all")) {
   const after = sample();
   const used = 1 - (after.idle - before.idle) / Math.max(1, after.total - before.total);
   const workers = used > 0.5 ? 2 : used > 0.03 ? 4 : 6;
-  const queue = [...new Set(PREPARED_SCENERY_WORLDS.map(id => preparedSceneryKey(WORLDS[id])))];
+  const queue = [...new Set(PREPARED_SCENERY_WORLDS.filter(id => args[0] === "--all"
+    || (WORLDS[id].assetFormat === "MT7") === (args[0] === "--shenmue2")).map(id => preparedSceneryKey(WORLDS[id])))];
   console.info(`[Scenery] ${queue.length} bundles, ${workers} workers (CPU ${(used * 100).toFixed(1)}%)`);
   const failures = [];
   await Promise.all(Array.from({length: workers}, async () => {
@@ -81,9 +82,10 @@ const scene = new B.Scene(engine);
 Object.assign(state, {scene, currentMeshes: [], currentLoadId: 0, currentTimeOfDay: 0, currentSeason: 0,
   ...createSceneLoaders(scene)});
 try {
-  state.allFiles = await (await fetchAsset("models.json")).json();
-  const spec = preparedScenerySpec(world, state.allFiles);
-  if (spec.ownership) Object.assign(state, {currentSeason: spec.context.seasonIndex,
+  const catalog = world.assetFormat === "MT7" ? await fetchShenmue2Catalog() : await (await fetchAsset("models.json")).json();
+  if (world.assetFormat !== "MT7") state.allFiles = catalog;
+  const spec = preparedScenerySpec(world, catalog);
+  if (spec.ownership && spec.context) Object.assign(state, {currentSeason: spec.context.seasonIndex,
     currentWeatherIndex: spec.context.weatherIndex, currentTimeOfDay: spec.context.timeOfDayIndex});
   const documents = [];
   for (const file of spec.policyFiles) {
@@ -95,7 +97,8 @@ try {
   const audit = key === "dobuita" ? auditFixedSceneryPlacements(world.placements,
     new ScheduledSceneObjectCatalog(scheduled).definitions(world.id), fixtures) : null;
   console.info(`[Scenery:${key}] Loading ${world.label} map source`);
-  await loadMt5Scene(state, world.prefix, {filenames: new Set(spec.filenames),
+  if (world.assetFormat === "MT7") await loadMt7Scene(state, spec.records, {batchStatic: false, installEffects: false});
+  else await loadMt5Scene(state, world.prefix, {filenames: new Set(spec.filenames),
     includeHiddenVariants: true, timeOfDayIndex: 0, variantProfile: spec.variantProfile, variantZone: spec.zone});
   const reader = new PlacementRuntime({scene, bundledModels: runtimeAssetGroup("play/assets/dobuita/*.CHRM"),
     bundledTextures: runtimeAssetGroup("play/assets/dobuita/*_textures.bin"), fetchArrayBuffer: fetchAssetBuffer});
@@ -129,10 +132,11 @@ try {
   freezeSceneRoots(state.currentMeshes);
   if (key === "dobuita") suppressDobuitaCinemaFacadeFaces(state.currentMeshes);
   const collision = await loadNativeCollisionDefinitionForWorld(world);
-  prepareWorldCollision(state.currentMeshes, {nativeHorizontalCollision: Boolean(collision)});
+  prepareWorldCollision(state.currentMeshes, {interior: world.interior === true, nativeHorizontalCollision: Boolean(collision)});
   console.info(`[Scenery:${key}] Compiling geometry and shared textures`);
   const bundle = await compileSceneryBundle(state.currentMeshes, {fixedPlacementLayer: fixedLayer, modelTemplates: templates,
     sceneryFilenames: spec.ownership ? spec.filenames : [], hierarchyFilenames: spec.ownership?.hierarchyFilenames || [],
+    surfaceSelectors: spec.ownership?.surfaceSelectors || [],
     provenance: {key, contract: spec.contract, area: spec.zone,
       sources: [...sources].sort(([a], [b]) => a.localeCompare(b)).map(([file, hash]) => ({file, hash})), placements: audit}});
   await mkdir(output, {recursive: true});

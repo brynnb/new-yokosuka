@@ -39,6 +39,71 @@
   display: contents;
 }
 
+.inventory-slot,
+.inventory-entry {
+  --card-background-color: var(--gray-5);
+}
+
+.inventory-slot {
+  aspect-ratio: 1;
+  padding: 4px;
+}
+
+.inventory-slot-icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.collection-toy-card {
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+}
+
+.collection-toy-thumbnail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 132px;
+  margin-bottom: var(--space-2);
+}
+
+.collection-toy-thumbnail img {
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.collection-toy-stage {
+  position: relative;
+  height: min(380px, 50dvh);
+  margin-block: var(--space-3);
+  background: var(--gray-3);
+  border-radius: var(--radius-3);
+  overflow: hidden;
+}
+
+.collection-toy-stage canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  cursor: grab;
+}
+
+.collection-toy-stage canvas:active { cursor: grabbing; }
+.collection-toy-stage:not([data-status="ready"]) canvas { visibility: hidden; }
+
+.collection-toy-status {
+  position: absolute;
+  inset: 0;
+  justify-content: center;
+  padding: var(--space-3);
+  text-align: center;
+}
+
 /* Reusable non-accent action: a neutral light surface with dark text. */
 .ny-button-light.rt-Button,
 .ny-button-light.rt-IconButton,

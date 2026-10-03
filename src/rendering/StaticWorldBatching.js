@@ -8,7 +8,7 @@ const RENDER_PROPERTIES = [
   "useVertexColors", "hasVertexAlpha", "isPickable", "checkCollisions",
   "receiveShadows", "applyFog", "visibility",
 ];
-const SURFACE_PROPERTIES = ["authoredWater", "mt5DepthOverlay", "terrain", "cameraBlocker"];
+const SURFACE_PROPERTIES = ["authoredWater", "mt5DepthOverlay", "mt7DepthOverlay", "terrain", "cameraBlocker"];
 
 function sourceRanges(meshes) {
   let firstFace = 0;
@@ -240,7 +240,7 @@ export function immutableMt5Mesh(mesh, root, {fixedPlacementRoots} = {}) {
     const metadata = node.metadata;
     if (!node.isWorldMatrixFrozen || node.animations?.length || node.actionManager
       || (node._runtimePlacement && !fixedPlacementRoots?.has(node)) || node._scheduledSceneObject
-      || metadata?.runtimeObject
+      || metadata?.runtimeObject || metadata?.runtimeSurface
       || metadata?.localEffect || metadata?.nativeAseqSceneObject
       || metadata?.arcadeSuppressedVariant || metadata?.environmentSurfaceVariant
       || Object.keys(metadata || {}).some(key => key.startsWith("interactive"))) return false;

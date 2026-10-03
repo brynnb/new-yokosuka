@@ -68,12 +68,21 @@ Custom mip levels are uploaded to Babylon's internal texture after the base
 `RawTexture` is created. Texture clones used for different MT5 wrap modes share
 that internal GPU texture and therefore share its mip chain.
 
-The per-face depth-bias pipeline in `Mt5OverlayManifest` must preserve the
+The per-face depth-bias pipeline in `ModelDepthOverlays` must preserve the
 source texture's `hasAlpha` as well as its wrap modes: Babylon's `RawTexture`
 clone shares pixels but resets those wrapper settings. Losing `hasAlpha`
 made transparent ground patches in the OP00 mail scene render as solid
 triangles. Split meshes also retain vertex-alpha enablement and `alphaIndex`
 so applying a depth bias does not change opacity or transparent draw order.
+
+This shared split/bias path also handles MT7 map scenery. Its generated ranks
+retain intermediate facade layers (brick → ivy → window), with coverage
+accumulated across each native material group's strips. Giving both ivy and
+windows the same rank still makes them fight each other. MT7 biased materials
+continue following time-of-day lighting; their authored alpha state and shared
+material ownership survive prepared-scenery serialization. See the
+[overlay generator](../guides/tooling/asset-extraction.md#generate_model_overlay_manifestjs)
+for source provenance and regeneration commands.
 
 The mip chain is also restored after WebGL context loss. If custom upload is
 unavailable, or the texture is not power-of-two, Babylon's ordinary generated

@@ -129,12 +129,24 @@ and requires the bundled opened `DENS502G` model to hash-match the disc.
 records and their generated `GCH`/`HGC`/`GBX` tag tables, follows the native
 instantiate/place/state/association calls, verifies the `CCOW` selector-byte
 route, and hash-checks the two exact `HI_GACH` interaction models. `/play`
-uses those high-detail models only while the source-native `M_GACH` motion is
-active.
+uses those high-detail models at rest and during the source-native `M_GACH`
+motion, retaining the placed objects' picking ownership and capsule bins.
+The selector-0 placement routine at MAPINFO `0x524cc` supplies the machine-local
+approach point (literals `0x525b8`/`0x525bc`); `/play` reflects source X and
+transforms it through the placed machine. The existing collision-aware player
+approach controller walks and turns into place, then input stays locked through
+the animation and held-toy inspection until X closes it. Blocked approaches and
+world changes release ownership. The separate server authorizes and persists
+the purchase before animation starts.
 It also recovers all sixteen native prize model-token lists, their counted
-16-bit collectible lookup pools, the adjacent random-split table without
-guessing its label, the exact `CCOW` selector-to-category-state path, and the
+16-bit collectible lookup pools, the adjacent rare-tail-count table,
+the exact `CCOW` selector-to-category-state path, and the
 native 100-yen currency debit.
+
+`verify_capsule_selection.mjs` executes the bounded original SH-4 selection
+range and emits native traces for the server's differential test. See
+[capsule prize selection](../../research/shenmue1/capsule-prizes.md) for the
+recovered odds, ownership checks, verifier command, and reveal voice extraction.
 
 - **Usage**:
   `node tools/worlds/audit_d000_gacha_interaction.js tools/evidence/d000-gacha-interaction.json`

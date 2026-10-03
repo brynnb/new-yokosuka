@@ -19,6 +19,7 @@ import {
   mt7TextureCoordinates,
   resolveMt7TextureEntry,
 } from "../src/Mt7Loader.js";
+import {overlayIdentityForMesh} from '../src/ModelDepthOverlays.js';
 
 function fixture() {
   const bytes = new Uint8Array(0x180);
@@ -93,6 +94,34 @@ test("parses a bounded Dreamcast MT7 node and vertex batch", () => {
   assert.equal(model.nodes[0].mesh.textureControlPixelFormat, 3);
   assert.deepEqual(model.nodes[0].mesh.batches[0].vertices[1].position, [1, 0, 0]);
   assert.deepEqual(mt7TriangleIndices(4), [0, 1, 2, 1, 3, 2]);
+});
+
+test('MT7 overlay identities address exact groups and apply only to matching scenery bytes', () => {
+  const engine = new BABYLON.NullEngine();
+  const scene = new BABYLON.Scene(engine);
+  const bytes = twoGroupFixture();
+  const overlays = [{nodeAddress: 0x10, groupIndex: 1, batchIndex: 0, rank: 1, faceIds: [0]}];
+  try {
+    for (const [assetKind, byteLength, expected] of [
+      ['MAPM', bytes.length, -1], ['PROP', bytes.length, 0], ['CHRM', bytes.length, 0], ['MAPM', bytes.length + 1, 0],
+    ]) {
+      const loader = new Mt7Loader(scene, {overlayManifest: {files: {'FIXTURE.MT7': {byteLength, overlays}}}});
+      const [root] = loader.load(bytes, null, {sourceFilename: 'fixture.MT7', assetKind});
+      const meshes = root.getChildMeshes().sort((a, b) => a.metadata.mt7GroupIndex - b.metadata.mt7GroupIndex);
+      assert.deepEqual(meshes.map(overlayIdentityForMesh), [
+        {nodeAddress: 0x10, groupIndex: 0, batchIndex: 0},
+        {nodeAddress: 0x10, groupIndex: 1, batchIndex: 0},
+      ]);
+      assert.equal(meshes[0].material.zOffset, 0);
+      assert.equal(meshes[1].material.zOffset, expected);
+      assert.equal(meshes[1].material.zOffsetUnits, expected);
+      assert.notEqual(meshes[1].material.metadata?.preserveEmissive, true);
+      assert.equal(meshes.reduce((n, mesh) => n + mesh.getTotalIndices() / 3, 0), 2);
+      root.dispose(); loader.clearCaches();
+      assert.deepEqual(scene.materials.filter(material => material !== scene.defaultMaterial), [],
+        'biased material owned and disposed by loader');
+    }
+  } finally {scene.dispose(); engine.dispose();}
 });
 
 test("emits explicit MT7 triangle-list batches without strip stitching", () => {

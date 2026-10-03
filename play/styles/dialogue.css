@@ -1,4 +1,4 @@
-.dialogue-overlay {
+.dialogue-stack {
   position: absolute;
   right: clamp(16px, 7vw, 120px);
   bottom: clamp(26px, 7vh, 92px);
@@ -6,8 +6,53 @@
   z-index: 7;
   display: grid;
   justify-items: center;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.dialogue-overlay {
+  display: grid;
+  justify-items: center;
+  width: 100%;
   pointer-events: auto;
   cursor: pointer;
+}
+
+.dialogue-panel.dialogue-panel--controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  pointer-events: auto;
+  text-align: left;
+}
+
+.dialogue-panel--controls[hidden] { display: none; }
+
+.inspection-summary { display: grid; gap: 4px; }
+.inspection-summary span { font-size: 13px; color: #c5ccd3; }
+
+.dialogue-option.dialogue-option--key {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: auto;
+  margin-left: auto;
+}
+
+.dialogue-option--key kbd {
+  display: grid;
+  place-items: center;
+  min-width: 30px;
+  height: 30px;
+  padding: 0 4px;
+  border: 1px solid rgb(240 216 144 / 0.65);
+  border-radius: 3px;
+  background: rgb(255 255 255 / 0.09);
+  font: inherit;
+  font-weight: 700;
 }
 
 .dialogue-overlay[hidden] {
@@ -106,7 +151,7 @@
 }
 
 @media (max-width: 850px) {
-  .dialogue-overlay {
+  .dialogue-stack {
     right: 12px;
     bottom: max(20px, env(safe-area-inset-bottom));
     left: 12px;

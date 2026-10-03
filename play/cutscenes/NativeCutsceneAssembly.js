@@ -33,6 +33,7 @@ export function createNativeCutsceneAssembly({
   finishLoading,
 }) {
   let activeLightingPresetIndex = null;
+  let activeLightingOverride = null;
   let activePrecipitation = null;
   const director = createPlayNativeCutsceneDirector({
     beforeComplete: cutscene => {
@@ -51,15 +52,18 @@ export function createNativeCutsceneAssembly({
       fetchArrayBuffer,
       getSkybox,
       acquireEnvironmentIsolation,
-      acquireActivityLighting: index => {
+      acquireActivityLighting: (index, lightingOverride = null) => {
         const previous = activeLightingPresetIndex;
+        const previousOverride = activeLightingOverride;
         activeLightingPresetIndex = index;
+        activeLightingOverride = lightingOverride;
         synchronizeWorldTime();
         let released = false;
         return () => {
           if (released) return;
           released = true;
           activeLightingPresetIndex = previous;
+          activeLightingOverride = previousOverride;
           synchronizeWorldTime();
         };
       },
@@ -168,6 +172,10 @@ export function createNativeCutsceneAssembly({
   Object.defineProperty(director, "activePrecipitation", {
     enumerable: true,
     get: () => activePrecipitation,
+  });
+  Object.defineProperty(director, "activeLightingOverride", {
+    enumerable: true,
+    get: () => activeLightingOverride,
   });
   return director;
 }

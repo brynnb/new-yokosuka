@@ -4,6 +4,7 @@ import exploration from '../play/data/shenmue2-exploration-worlds.json' with {ty
 
 import {
   CUTSCENE_SELECTIONS,
+  INTRO_CUTSCENE_SELECTIONS,
   SHENMUE_II_TRAVEL_DESTINATIONS,
   TRAVEL_DESTINATION_GROUPS,
   TRAVEL_DESTINATIONS,
@@ -44,7 +45,14 @@ test("travel dropdown groups every destination by game", () => {
   ]);
 });
 
-test("cutscene dropdown preserves the curated scene order", () => {
+test("sidebar offers only the four opening cutscenes in sequence", () => {
+  assert.deepEqual(INTRO_CUTSCENE_SELECTIONS.map(([id]) => id), [
+    "S1-OP02-00", "S1-000", "S1-OP00-MAIL", "S1-OP00-DREAM",
+  ]);
+  assert.ok(INTRO_CUTSCENE_SELECTIONS.every((entry) => CUTSCENE_SELECTIONS.includes(entry)));
+});
+
+test("internal cutscene catalog preserves the curated scene order", () => {
   assert.deepEqual(CUTSCENE_SELECTIONS, [
     ["S1-HOUO-01", "Phoenix Mirror — Ryo and Fuku-san"],
     ["S1-TOKI-01", "Chinese Letter — Xia Xiu Yu"],

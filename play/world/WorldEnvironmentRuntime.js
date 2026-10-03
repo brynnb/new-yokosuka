@@ -9,6 +9,7 @@ export class WorldEnvironmentRuntime {
     getWater,
     getMeshes,
     getCutsceneLightingPreset,
+    getCutsceneLightingOverride = () => null,
     getCutscenePrecipitation = () => null,
     dailyMusicCue,
     setWorldDate,
@@ -32,6 +33,7 @@ export class WorldEnvironmentRuntime {
     this.getWater = getWater;
     this.getMeshes = getMeshes;
     this.getCutsceneLightingPreset = getCutsceneLightingPreset;
+    this.getCutsceneLightingOverride = getCutsceneLightingOverride;
     this.getCutscenePrecipitation = getCutscenePrecipitation;
     this.dailyMusicCue = dailyMusicCue;
     this.setWorldDate = setWorldDate;
@@ -146,6 +148,7 @@ export class WorldEnvironmentRuntime {
         toIndex: cutscenePreset,
         progress: 0,
         presetIndex: cutscenePreset,
+        lightingOverride: this.getCutsceneLightingOverride(),
       };
     this.detectDayRollover(serverDate);
     this.dailyMusicCue.update(date, world.id);

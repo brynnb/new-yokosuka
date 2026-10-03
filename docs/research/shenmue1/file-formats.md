@@ -812,7 +812,7 @@ flat doors, and signs—only a few millimetres in front of a larger wall. With a
 large browser-camera clip range, those two depths can quantize to the same
 value at a distance and flicker even though they are stable close up.
 
-`tools/assets/mt5_overlay_analyzer.js` solves this without guessing from asset names.
+`tools/assets/model_overlay_analyzer.js` solves this without guessing from asset names.
 It projects nearly parallel MT5 triangles into the plane, measures overlap,
 and classifies a face as a detail only when it is substantially smaller and
 almost fully covered by a backing face. The offline generator scans available

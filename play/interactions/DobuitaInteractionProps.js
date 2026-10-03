@@ -1,9 +1,11 @@
 import * as BABYLON from "@babylonjs/core";
+import { CapsulePurchaseProps } from './CapsulePurchaseProps.js';
 import { interpolateAffineMatrix } from "../../src/AnimationMatrixInterpolation.js";
 import { fetchAsset, getTexturePack } from "../../src/assetLoader.js";
 import {
   DOBUITA_GACHA_MACHINES,
-  activeGachaMachineTag,
+  gachaMachineTagForInspectable,
+  gachaInteractionPose,
 } from "../../src/DobuitaGachaInteraction.js";
 import {
   DOBUITA_PHONE_BOOK_ATTACHMENTS,
@@ -47,6 +49,8 @@ export class DobuitaInteractionProps {
     getActiveEmote,
     getAnimationState,
     getRetargetMatrices,
+    getCharacterRoot,
+    getCharacterPoseAt,
     getNativeSceneState = () => null,
   }) {
     this.scene = scene;
@@ -60,19 +64,26 @@ export class DobuitaInteractionProps {
     this.getNativeSceneState = getNativeSceneState;
     this.phoneBook = null;
     this.gachaMachines = [];
+    this.capsules = new CapsulePurchaseProps({scene, getCharacterRoot, getCharacterPoseAt});
   }
 
   clear() {
+    this.capsules.clear();
     this.phoneBook = null;
     this.gachaMachines = [];
   }
 
   restore() {
+    this.capsules.restore();
     this.restorePhoneBook();
-    for (const machine of this.gachaMachines) {
-      machine.lowDetailRoot?.setEnabled(true);
-      machine.highDetailRoot?.setEnabled(false);
-    }
+  }
+
+  interactionPose(inspectable) {
+    const tag = gachaMachineTagForInspectable(inspectable);
+    if (!tag) return null;
+    const machine = this.gachaMachines.find(entry => entry.definition.machineTag === tag);
+    if (!machine) throw new Error(`Capsule machine ${tag} is not ready.`);
+    return gachaInteractionPose(machine.lowDetailRoot);
   }
 
   restorePhoneBook() {
@@ -108,12 +119,12 @@ export class DobuitaInteractionProps {
 
   update(frame, nextFrame, amount) {
     this.updatePhoneBook(frame, nextFrame, amount);
-    const activeMachineTag = activeGachaMachineTag(this.getActiveEmote());
-    for (const machine of this.gachaMachines) {
-      const active = machine.definition.machineTag === activeMachineTag;
-      machine.lowDetailRoot.setEnabled(!active);
-      machine.highDetailRoot.setEnabled(active);
-    }
+    const active = this.getActiveEmote();
+    const tag = active?.emote?.id === 'dobuitaGacha' && gachaMachineTagForInspectable(active.context?.inspectable);
+    const machine = this.getAnimationState() === 'dobuitaGacha:loop'
+      && this.gachaMachines.find(m => m.definition.machineTag === tag);
+    const sourceFrame = frame.frame + Math.max(0, amount) * (nextFrame.frame > frame.frame ? nextFrame.frame - frame.frame : 1);
+    this.capsules.update(active, machine, sourceFrame);
   }
 
   updatePhoneBook(frame, nextFrame, amount) {
@@ -249,9 +260,17 @@ export class DobuitaInteractionProps {
         highDetailRoot,
         captureRootTransform(lowDetailRoot),
       );
-      highDetailRoot.setEnabled(false);
+      // Keep one detailed visual at rest and during use, rather than popping
+      // between meshes. Retain the placed root as the native/collision owner;
+      // every visible replacement mesh must pick that same interaction.
+      for (const node of [highDetailRoot, ...highDetailRoot.getDescendants(false)]) {
+        node.metadata = { ...node.metadata, ...lowDetailRoot.metadata };
+      }
+      lowDetailRoot.setEnabled(false);
+      highDetailRoot.setEnabled(true);
       this.state.currentMeshes.push(highDetailRoot);
       return { ...machine, highDetailRoot };
     }));
+    await this.capsules.prepare();
   }
 }

@@ -1,9 +1,9 @@
-# Prepared scenery experiment
+# Prepared scenery
 
-This local experiment compiles decoded Shenmue I map scenery into ready-to-render
+The local build tool compiles decoded Shenmue I and II map scenery into ready-to-render
 bundles, with reusable rigid models for supported doors and vending machines.
-Dobuita additionally includes its audited fixed placements. Normal gameplay is unchanged unless
-the local prepared-scenery option is selected. It does not publish assets.
+Dobuita additionally includes its audited fixed placements. Local `/play/` uses
+available bundles by default. The tooling does not publish assets.
 The purpose is to test whether fewer independently drawn pieces reduce CPU work
 without changing the scene's appearance.
 
@@ -21,16 +21,21 @@ Set `SCENERY_ASSET_ORIGIN` if that server uses a port other than 5173.
 Output goes to `.disc-work/scenery-bundle/<world>/world.json` and `world.bin`
 (Git-ignored). For one zone, use `npm run build:scenery -- mfsy`; no argument
 builds Dobuita. The bulk builder uses isolated processes with a 1 GiB Node heap
-ceiling each, selecting 2, 4 or 6 workers from current CPU utilization. Tests
+ceiling each, selecting 2, 4 or 6 workers from current CPU utilization. Use
+`--shenmue1` or `--shenmue2` instead of `--all` to rebuild one game's zones. Tests
 remain serial and memory-limited through the usual test launcher.
 
-Then open <http://127.0.0.1:5173/play/?scenery=prepared> (use your configured Vite
+Then open <http://127.0.0.1:5173/play/> (use your configured Vite
 port). Travel normally between the supported zones below. Their maps
 load from the corresponding bundle. Supported doors and vending machines instantiate
 prepared model templates, retaining independent pivots, picking and gameplay
 state. NPCs, shutters, interactions, vehicles and unsupported worlds keep their normal gameplay
-owners. Without `scenery=prepared`, the game
-uses its ordinary asset loader. The option is restricted to local development.
+owners. No URL parameter is required. Use `?scenery=original` only when comparing
+against the ordinary asset loader. Prepared loading is restricted to Vite development
+until the bundles and their validation inputs are integrated with production asset delivery.
+If a supported world's manifest returns 404, the game reports the missing bundle
+in the console and loads original assets. Other request failures, stale or malformed
+manifests, and missing binary payloads remain errors; they never silently fall back.
 Travel releases the bundle's geometry, materials, and textures normally.
 Changed placement or schedule inputs require rebuilding rather than silently
 loading a stale bundle. The dev server reads the ignored bundle directly;
@@ -48,6 +53,8 @@ verified identical; their player spawns and gameplay modes stay separate.
 | --- | --- | ---: | ---: |
 | Dobuita | `dobuita` | 4,335 | 524 |
 | Hazuki Residence Grounds | `exterior` | 1,540 | 136 |
+| Hazuki Residence Interior | `interior` | 631 | 176 |
+| You Arcade | `arcade` | 768 | 176 |
 | Yamanose | `yamanose` | 1,360 | 222 |
 | Sakuragaoka | `sakuragaoka` | 2,213 | 567 |
 | New Yokosuka Harbor / Forklift Playground | `mfsy` | 4,056 | 690 |
@@ -65,13 +72,114 @@ rules and time/season/weather selection remain authoritative. Only Dobuita's
 fixed-prop audit grants permission to bake placements into the map; elsewhere
 placements remain independently owned even when their models are prepared.
 
-Shenmue II (MT7), other interiors with interactive resident geometry, and other
+Unreviewed Shenmue I interiors with interactive resident geometry and other
 cutscene-only stages remain on their original loaders. Their effects and ownership need a
 separate audit before admitting them, not merely another filename allowlist.
 
+### Shenmue II
+
+All 134 MT7 destinations registered in `/play/` across Discs 1–4 are supported.
+Their source selection is the same `shenmue2WorldSceneRecords` used by the ordinary
+loader: 789 MAPM/PROP model records, including 184 prop hierarchies. Disc variants
+and multi-pack scenes such as Shenhua's House remain distinct. Build a single
+zone with its world ID, for example `npm run build:scenery -- s2d4qgbt`.
+
+Static MAPM geometry uses the shared texture deduplication/array and spatial
+batching compiler. PROP retains native node offsets, parent transforms and door
+pivots; its parts are not baked into streets. The ordinary door interaction and
+FLDD collision owners still run after loading. Day/evening/night roots remain
+independent under `WorldMapLayerState`. Animated water/fountain layers retain
+their source UV-scroll definitions and separate mutable texture samplers, with
+disposal tied to their root. MT7's material, two-sided normal and alpha-test
+policies are preserved rather than replaced with MT5's alpha-to-coverage policy.
+
+Examples of decoded source pieces versus prepared meshes (not FPS or runtime
+draw-call comparisons): Bar Swing (Disc 1), 5,123 → 769; Worker's Pier,
+21,708 → 2,548. PROP hierarchy meshes are included in both totals.
+
+Run `npm run test:scenery -- --shenmue2` for serial source/bundle geometry,
+layer, ground-support, native-door and scrolling-texture comparisons. For the
+actual-game smoke test across all four discs, add
+`PLAYWRIGHT_PREPARED_GAME=shenmue2` to the browser command below. The separate
+`tests/e2e/prepared-shenmue2-rendering.spec.js` compares matched source/bundle
+frames, including opposite camera views and evening layers. Both browser tests
+require `PLAYWRIGHT_PREPARED_SCENERY=true` and local bundles.
+
+This prepares scenery only: it does not add NPC/story/door coverage to later
+discs where gameplay has not implemented those systems. The asset viewer still
+uses original models to preserve individual-part inspection.
+
+The full 134-zone source/bundle check passes geometry, layer, ownership and
+cleanup comparisons, including all 17 registered doors and six animated map
+layers. It reports these existing source-world issues separately (bundling does
+not change their spawn or collision data):
+
+- `s2aka3`, Fortune's Pier Free Stay Lodge: configured spawn `(0, 0, 0)` has no ground support.
+- `s2wes1`, Slot House W: configured spawn `(-116.700, 100.800, -117.700)` has no ground support.
+- `s2d3qbaa`, Great View Herbs: configured spawn `(-208.200, 103.600, 197.300)` overlaps native walls.
+
+The validator requires matching source/bundle support and wall clearance even
+for these records; it does not claim their source spawn is valid. Float32-baked
+geometry comparisons allow eight float32 steps at the coordinate's magnitude,
+with a minimum tolerance of 0.0001 units. This accounts for rounding when
+flattening large MT7 coordinates, not missing hits or changed layer ownership.
+
+Hardware-rendered Chromium checks also pass for Bar Swing (Discs 1 and 2),
+Worker's Pier, Golden Quarter, Thousand White Quarter, Blue Dragon Garden and
+Shenhua's House. Actual `/play/` travel and original-loader fallback were tested
+with mocked account/network services. A separate 21-view comparison uses fixed
+cameras, time layers and water clocks; mean channel differences on 64×64 frame
+samples ranged from 0.003 to 0.740 on a 0–255 scale. These are close rendered
+comparisons, not pixel-identical output or a measured FPS gain. The rebuilt
+Shenmue I interior/arcade/combat/forklift browser smoke test passes as well.
+
+### Interiors and activity areas
+
+Hazuki's interior uses prepared map geometry while furniture, drawers, doors,
+household interactions and actors retain their normal placement/script owners.
+Rebuild it with `npm run build:scenery -- interior`.
+
+You Arcade uses the same compiler, with explicit runtime-owned surface selectors
+derived from its existing fixture definitions. Signs, posters and replaced screen
+faces retain their original mesh names, face numbers, UVs and ordinary materials.
+The jukebox's source map retains its native node hierarchy. Surrounding static
+scenery can still combine; the attract videos, score displays, lights, moving
+parts and playable arcade games are created normally after loading. A missing
+fixture selector fails the build instead of silently dropping the fixture.
+Rebuild it with `npm run build:scenery -- arcade`.
+
+Combat Practice (`mfbt`), Forklift Playground (`ma00`, using the `mfsy` harbor
+bundle), and Forklift Races (`ma00race`, using its separate race-course bundle)
+already use the shared prepared loader. The bundles contain their scenery, not
+the fighters, forklifts, cargo, race logic or input handling.
+
+The source/bundle validator checks all five worlds, including their ground and
+controller support, travel-spawn wall clearance, environment variants and cleanup.
+For the arcade it additionally compares all 22 selected fixture meshes' geometry,
+UVs, transforms and face indices, and exercises the real screen suppression and
+native jukebox selection (1,250 retained triangles). These are headless checks;
+they do not by themselves demonstrate rendered correctness or higher FPS.
+
+The opt-in browser smoke test travels through all five worlds in the actual
+application, verifies successful bundle requests and floor positions, captures
+rendered views, and checks the arcade screens and combat mode. Account HTTP and
+multiplayer transport are mocked; vehicle snapshots use the existing authored
+spawn records. This checks vehicle loading alongside the scenery, not a complete
+online race or combat encounter. With the bundles built and Vite running:
+
+```sh
+PLAYWRIGHT_PREPARED_SCENERY=true E2E_APP_URL=http://127.0.0.1:5173 \
+  PLAYWRIGHT_SKIP_WEB_SERVER=true node scripts/testing/run-tests.mjs playwright \
+  tests/e2e/prepared-scenery.spec.js --project=chromium
+```
+
+This smoke test passed on hardware-rendered Chromium, together with the arcade's
+prepared-door geometry, independent opening and cleanup check. It does not
+measure FPS, video decoding cost, or character-animation performance.
+
 ### Intro cutscenes
 
-The same `/play/?scenery=prepared` option covers all four new-character opening
+Default local prepared loading also covers all four new-character opening
 scenes. `op02` supplies Shenhua and the hawk; the murder, mail and awakening
 scenes share `op00`. No separate cutscene renderer or playback implementation
 is introduced. For a focused rebuild, use `npm run build:scenery -- op00` and
@@ -146,7 +254,7 @@ Only one scene and one test workload run at a time.
   interaction state. Door leaves are not merged into buildings. The normal
   placement owner registers doors and vending machines without parsing those
   models again; it also skips their redundant raw-asset prefetches.
-- Loading the bundle uploads ready geometry and textures. It does not parse MT5
+- Loading the bundle uploads ready geometry and textures. It does not parse MT5/MT7
   models or merge meshes again. A schema and binary SHA-256 detect stale/mixed or
   corrupted output. Input model/texture-pack hashes are recorded in the manifest.
 
@@ -191,8 +299,8 @@ Sources and producing tools:
 The bundle records every included/excluded placement and its reason, plus hashes
 of policy input files and decoded model/texture inputs. Changes to placement or
 ownership evidence make the lab reject stale output and ask for a rebuild.
-Experimental schema v4 adds controlled resident hierarchies and preserves the
-normal-transform flag on flattened, non-uniformly scaled scenery. Rebuild older
+Experimental schema v5 adds native MT7 prop-node identity and map-effect ownership
+to the existing controlled hierarchies and normal-transform preservation. Rebuild older
 bundles with `npm run build:scenery -- --all`.
 Admission requires all placements of a model to use the same source/texture
 identity and a supported rigid owner. Authored animation, scripts, hidden-state
@@ -222,9 +330,9 @@ shared geometries. The scenery portion remains 524 meshes; templates add about
 1 MiB of binary data, bringing the binary to 32,159,528 bytes and the shared
 texture catalog to 259 entries. This is a loading/memory improvement, not mesh
 instancing or a claim of fewer door draw calls. These checks passed, along with
-focused cancellation and failure-cleanup tests. Fresh rendered verification of
-the new zones remains outstanding; the browser tool was unavailable for it.
-Dobuita's v3 gameplay was subsequently checked by the user.
+focused cancellation and failure-cleanup tests. Dobuita's v3 gameplay was
+subsequently checked by the user. Current interior/activity rendered coverage is
+described above; the headless checks do not establish visual parity in every zone.
 
 For all prepared map geometry and environment variants, run:
 
@@ -307,13 +415,13 @@ placements. Their ownership must remain separate when integrating a bundle;
 they must not be baked into static scenery.
 In particular, this does not prove door interactions or character movement.
 
-The opt-in Dobuita loader is integrated and filters the approved fixed-placement
+The default local Dobuita loader is integrated and filters the approved fixed-placement
 IDs from the ordinary loader to avoid drawing them twice. The v3 loader also
 prepares 70 of the 98 retained placements; the other 28 and all 16 scheduled
 shutters still use their original asset path. Existing gameplay owners remain
 authoritative throughout. Verify
 real gameplay, loading cancellation/cleanup, cache versioning, lighting, travel,
-interactions, and low-end hardware before changing the default loader. Keep the
+interactions, and low-end hardware before making bundles the production default. Keep the
 original parser for individual-model inspection and producing bundles. A robust
 cross-device bundle format and publication pipeline are separate follow-up work.
 

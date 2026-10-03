@@ -82,6 +82,23 @@ test("environment synchronization applies changed time, season, and weather once
   ]);
 });
 
+test("shot lighting survives periodic clock updates and disappears when released", () => {
+  const { runtime } = createRuntime();
+  let index = 3;
+  const override = { hemiIntensity: 0.45, hemiDiffuse: [0.4, 0.47, 0.7] };
+  runtime.getCutsceneLightingPreset = () => index;
+  runtime.getCutsceneLightingOverride = () => override;
+  const blends = [];
+  runtime.applyTimeOfDayLighting = blend => blends.push(blend);
+  runtime.synchronize();
+  runtime.synchronize();
+  assert.deepEqual(blends, Array(2).fill({ fromIndex: 3, toIndex: 3, progress: 0,
+    presetIndex: 3, lightingOverride: override }));
+  index = null;
+  runtime.synchronize();
+  assert.deepEqual(blends.at(-1), { presetIndex: 2 });
+});
+
 test("day rollover temporarily owns and restores the movement lock", async () => {
   const { calls, runtime } = createRuntime();
   await runtime.showDayRollover(new Date("1986-12-05T08:30:00Z"));

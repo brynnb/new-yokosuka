@@ -15,6 +15,11 @@ export class InspectableInteractions {
     setMetadata,
     showNotice = null,
     clearNotice = null,
+    resolvePose = () => null,
+    approach = null,
+    setMovementLocked = () => {},
+    purchase = null,
+    inspection = null,
   }) {
     this.dom = dom;
     this.signedRenderKey = signedRenderKey;
@@ -24,6 +29,12 @@ export class InspectableInteractions {
     this.setMetadata = setMetadata;
     this.showNotice = showNotice;
     this.clearNotice = clearNotice;
+    this.resolvePose = resolvePose;
+    this.approach = approach;
+    this.setMovementLocked = setMovementLocked;
+    this.purchase = purchase;
+    this.inspection = inspection;
+    this.active = null;
     this.entries = [];
     this.ambientAnimations = [];
     this.hintTimeout = null;
@@ -67,6 +78,7 @@ export class InspectableInteractions {
   }
 
   update(deltaSeconds) {
+    this.inspection?.update(deltaSeconds);
     for (const animation of this.ambientAnimations) {
       animation.elapsed += deltaSeconds;
       if (animation.kind === "d000-tko-node-spin") {
@@ -97,8 +109,12 @@ export class InspectableInteractions {
     }, 1800);
   }
 
-  inspect(inspectable) {
-    if (!inspectable) return;
+  get busy() {
+    return this.active !== null;
+  }
+
+  async inspect(inspectable) {
+    if (!inspectable || this.busy) return false;
     this.showHint(
       inspectable.label === "Examine" && inspectable.objectTag
         ? `Examine · ${inspectable.objectTag}`
@@ -107,10 +123,72 @@ export class InspectableInteractions {
     const emote = this.runtimeEmotes.find(
       (candidate) => candidate.id === inspectable.interactionEmoteId,
     ) || this.fallbackEmotes.find((candidate) => candidate.id === "thinking");
-    if (emote) this.playEmote(emote, null, { inspectable });
+    if (!emote) return false;
+    let interaction = null;
+    try {
+      const pose = this.resolvePose(inspectable);
+      if (!pose) return this.playEmote(emote, null, { inspectable });
+      if (emote.id !== inspectable.interactionEmoteId) {
+        throw new Error("This interaction's animation is unavailable.");
+      }
+      interaction = { emote, abort: new AbortController(), phase: "approaching" };
+      this.active = interaction;
+      this.setMovementLocked(true);
+      this.inspection?.begin(interaction.abort.signal, inspectable);
+      await this.approach(pose, interaction.abort.signal);
+      // A world change can dispose this interaction while its approach is
+      // awaiting cancellation. It must not start a clip or unlock a new owner.
+      if (this.active !== interaction) return false;
+      if (this.purchase) {
+        interaction.phase = 'purchasing';
+        interaction.purchase = await this.purchase(inspectable);
+        if (this.active !== interaction) return false;
+        if (interaction.purchase) this.inspection?.prepare(interaction.purchase);
+      }
+      interaction.phase = "animating";
+      if (!this.playEmote(emote, null, { inspectable })) {
+        throw new Error("This interaction's animation is unavailable.");
+      }
+      return true;
+    } catch (error) {
+      if (interaction && this.active !== interaction) return false;
+      if (interaction) this.release();
+      this.showHint(error.message || "Could not start this interaction.");
+      return false;
+    }
+  }
+
+  finishAnimation(emote) {
+    if (this.active?.phase === "animating" && this.active.emote.id === emote?.id) {
+      const purchase = this.active.purchase;
+      if (purchase && this.inspection) {
+        const interaction = this.active;
+        interaction.phase = 'inspecting';
+        void this.inspection.show(purchase).catch(error => {
+          if (this.active === interaction && !interaction.abort.signal.aborted) {
+            this.showHint(`Collected: ${purchase.itemName}. Could not show the toy: ${error.message}`);
+          }
+        }).finally(() => {
+          if (this.active === interaction) this.release();
+        });
+        return;
+      }
+      this.release();
+      if (purchase?.itemName) this.showHint(`Collected: ${purchase.itemName} — see Collection`);
+    }
+  }
+
+  release() {
+    const interaction = this.active;
+    if (!interaction) return;
+    this.active = null;
+    interaction.abort.abort();
+    this.inspection?.close();
+    this.setMovementLocked(false);
   }
 
   clear() {
+    this.release();
     this.entries.length = 0;
     this.ambientAnimations.length = 0;
     if (this.hintTimeout !== null) {

@@ -838,3 +838,27 @@ test("remote interpolation utilities smooth angles and snap teleports", () => {
     false,
   );
 });
+
+test('capsule purchases send only machine identity, deduplicate in-flight requests and reject on disconnect', async () => {
+  FakeWebSocket.instances.length = 0;
+  const results = [];
+  const client = new MultiplayerClient({url:'ws://test/ws', WebSocketClass:FakeWebSocket,
+    callbacks:{onCapsuleResult: result => results.push(result)}});
+  client.connect();
+  const socket = FakeWebSocket.instances[0];
+  socket.open();
+  const emit = body => socket.emit('message', {data:JSON.stringify({v:MULTIPLAYER_PROTOCOL_VERSION,...body})});
+  emit({type:'welcome',self:{id:'one',name:'Ryo'},worldState:{}});
+  const pending = client.purchaseCapsule('dobuita-gch0','capsule-test-001');
+  assert.equal(client.purchaseCapsule('dobuita-gch0','capsule-test-001'), pending);
+  await assert.rejects(client.purchaseCapsule('dobuita-gch3','capsule-test-001'), /already in use/);
+  assert.deepEqual(socket.sent.at(-1), {v:MULTIPLAYER_PROTOCOL_VERSION,type:'capsule_purchase',requestId:'capsule-test-001',machineId:'dobuita-gch0'});
+  emit({type:'capsule_result',requestId:'capsule-test-001',outcome:'purchased',itemName:'Akira 1',yen:400,inventory:[]});
+  assert.equal((await pending).itemName,'Akira 1');
+  assert.equal(results.length,1);
+  const disconnected = client.purchaseCapsule('dobuita-gch0','capsule-test-002');
+  const rejection = assert.rejects(disconnected, /connection|disconnect|closed/i);
+  client.close();
+  await rejection;
+  assert.equal(client.pendingPurchases.size,0);
+});

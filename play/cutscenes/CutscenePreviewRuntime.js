@@ -37,6 +37,9 @@ export class CutscenePreviewRuntime {
     cancelWorld = () => {},
     initializeWorld,
     ensureCharacter,
+    captureGameplay,
+    restoreGameplay,
+    showRecoveryError = () => {},
     startDirector,
     stopDirector,
     endDirector,
@@ -57,6 +60,9 @@ export class CutscenePreviewRuntime {
     this.cancelWorld = cancelWorld;
     this.initializeWorld = initializeWorld;
     this.ensureCharacter = ensureCharacter;
+    this.captureGameplay = captureGameplay;
+    this.restoreGameplay = restoreGameplay;
+    this.showRecoveryError = showRecoveryError;
     this.startDirector = startDirector;
     this.stopDirector = stopDirector;
     this.endDirector = endDirector;
@@ -71,9 +77,12 @@ export class CutscenePreviewRuntime {
     this.active = null;
     this.startingPreview = null;
     this.endingPreview = null;
+    this.gameplayPreview = null;
   }
 
-  get starting() { return this.startingPreview !== null || this.endingPreview !== null; }
+  get starting() {
+    return this.startingPreview !== null || this.endingPreview !== null || this.gameplayPreview?.restoring === true;
+  }
 
   async startLoaded(cutsceneId, { signal = null } = {}) {
     const cutscene = this.getCutscene(cutsceneId);
@@ -87,8 +96,14 @@ export class CutscenePreviewRuntime {
   }
 
   cancel(reason = "user-cancelled") {
+    // X during restoration must not cancel the return trip. Disposal, however,
+    // must prevent a late load from reviving gameplay in a destroyed session.
+    if (reason === "disposed" && this.gameplayPreview) {
+      this.gameplayPreview.controller.abort(new DOMException(reason, "AbortError"));
+      this.cancelWorld();
+    }
     const preview = this.active || this.startingPreview;
-    if (!preview) return false;
+    if (!preview) return this.gameplayPreview !== null;
     if (reason === "user-cancelled" && preview.started) {
       if (!this.endingPreview) {
         this.beginEnding(preview.cutsceneId);
@@ -112,7 +127,7 @@ export class CutscenePreviewRuntime {
     if (preview.dialogueSandbox) this.dialoguePersistence.endSandbox();
     if (this.endingPreview === preview) {
       this.endingPreview = null;
-      this.setStarting(this.startingPreview !== null);
+      this.setStarting(this.starting);
     }
     // The director has already covered the scene before releasing it.
     preview.resolve();
@@ -133,7 +148,7 @@ export class CutscenePreviewRuntime {
     if (preview.dialogueSandbox) this.dialoguePersistence.endSandbox();
     if (this.endingPreview === preview) {
       this.endingPreview = null;
-      this.setStarting(this.startingPreview !== null);
+      this.setStarting(this.starting);
     }
     preview.reject(new Error(
       `Cutscene ${cutscene.id} stopped before completion: ${cutsceneStopReason(reason)}`,
@@ -147,42 +162,55 @@ export class CutscenePreviewRuntime {
       this.showNotice("That cutscene is not available.");
       return false;
     }
-    if (this.startingPreview) this.cancel("superseded");
-    const request = { controller: new AbortController(), loadingWorld: true };
-    const { signal } = request.controller;
-    this.startingPreview = request;
-    this.showNotice(`Loading ${cutscene.label}...`);
-    this.setStarting(true, this.getWorld(cutscene.worldId));
-    try {
-      await waitForPreview(this.beginLoading(this.getWorld(cutscene.worldId), signal, cutscene.loadingPresentation), signal);
-      const loaded = await waitForPreview(this.selectWorld(this.getWorld(cutscene.worldId), {
-        controllerState: null,
-        persistLocation: false,
-        reveal: false,
-        loadingPresentation: cutscene.loadingPresentation,
-      }), signal);
-      request.loadingWorld = false;
-      if (!loaded) {
-        this.showNotice(`${cutscene.label} could not be loaded.`);
-        return false;
-      }
-      await waitForPreview(this.ensureCharacter(), signal);
-      if (await this.startLoaded(cutsceneId, { signal }) !== true) return false;
-      await this.finishLoading(signal);
-      this.showNotice(`Playing ${cutscene.label}.`);
-      return true;
-    } catch (error) {
-      if (signal.aborted) return false;
-      console.error(`Cutscene ${cutscene.id} stopped:`, error);
-      this.stopDirector("start-failed");
-      this.showNotice(`${cutscene.label} could not start.`);
+    if (this.active || this.starting || this.gameplayPreview) {
+      this.showNotice("Finish the current cutscene preview first.");
       return false;
-    } finally {
-      if (this.startingPreview === request) {
-        this.startingPreview = null;
-        this.setStarting(this.endingPreview !== null);
-      }
     }
+    let request;
+    let error = null;
+    try {
+      request = {
+        snapshot: this.captureGameplay(),
+        controller: new AbortController(),
+        pendingPreparation: null,
+      };
+      this.gameplayPreview = request;
+      // All preview entry points share the same director ownership, dialogue
+      // sandbox and settlement. Only sidebar playback owns a return snapshot.
+      await this.playFromMenu(cutsceneId);
+    } catch (failure) {
+      error = failure;
+    }
+    if (request) {
+      const { signal } = request.controller;
+      request.restoring = true;
+      this.setStarting(true);
+      try {
+        // Promise cancellation alone cannot undo a late avatar replacement.
+        // Drain the current preparation before restoring the previous session.
+        await Promise.allSettled([request.pendingPreparation]);
+        signal.throwIfAborted();
+        await this.restoreGameplay(request.snapshot, { signal });
+        signal.throwIfAborted();
+        await this.finishLoading(signal);
+      } catch (failure) {
+        if (!signal.aborted) {
+          error = failure;
+          // A failed return must not resume/publish a cinematic stand-in,
+          // even when the preview happened to share a normal gameplay map.
+          this.cancelWorld();
+          this.showRecoveryError("Could not return to your previous session.\nPlease refresh and try again.");
+        }
+      } finally {
+        if (this.gameplayPreview === request) this.gameplayPreview = null;
+        this.setStarting(this.starting);
+      }
+      if (signal.aborted) return false;
+    }
+    if (!error) return true;
+    console.error(`Cutscene ${cutscene.id} stopped:`, error);
+    this.showNotice(error.message || `${cutscene.label} could not play.`);
+    return false;
   }
 
   async playFromMenu(cutsceneId) {
@@ -208,45 +236,51 @@ export class CutscenePreviewRuntime {
     this.startingPreview = preview;
     void completion.catch(() => {});
     const { signal } = preview.controller;
+    const gameplay = this.gameplayPreview;
+    const prepare = value => {
+      const pending = Promise.resolve(value);
+      if (gameplay) gameplay.pendingPreparation = pending;
+      return waitForPreview(pending, signal);
+    };
     this.setStarting(true, world);
     try {
-      await waitForPreview(this.beginLoading(world, signal, cutscene.loadingPresentation), signal);
-      await waitForPreview(this.physicsReady, signal);
+      await prepare(this.beginLoading(world, signal, cutscene.loadingPresentation));
+      await prepare(this.physicsReady);
       this.disposeMenuBackground();
       this.startPlayRuntime();
       preview.loadingWorld = true;
       // World preparation also begins loading internally. Forward the same
       // presentation so it cannot replace this scene's caption with world time.
       if (!this.getController()) {
-        await waitForPreview(this.initializeWorld({
+        await prepare(this.initializeWorld({
           initialWorldOverride: world,
           fetchServerState: false,
           persistInitialLocation: false,
           reveal: false,
           loadingPresentation: cutscene.loadingPresentation,
           signal,
-        }), signal);
+        }));
       } else {
-        const loaded = await waitForPreview(this.selectWorld(world, {
+        const loaded = await prepare(this.selectWorld(world, {
           controllerState: null,
           persistLocation: false,
           reveal: false,
           loadingPresentation: cutscene.loadingPresentation,
-        }), signal);
+        }));
         if (!loaded) throw new Error(`${cutscene.label} could not be loaded.`);
       }
       preview.loadingWorld = false;
-      await waitForPreview(this.ensureCharacter(), signal);
+      await prepare(this.ensureCharacter({ signal }));
       if (!this.dialoguePersistence.gameplayState()) {
         this.dialoguePersistence.hydrate();
       }
       this.dialoguePersistence.beginSandbox();
       preview.dialogueSandbox = true;
-      if (await this.startLoaded(cutsceneId, { signal }) !== true) {
+      if (await prepare(this.startLoaded(cutsceneId, { signal })) !== true) {
         if (this.active === preview) this.complete();
       } else if (this.active === preview) {
         preview.started = true;
-        await this.finishLoading(signal);
+        await prepare(this.finishLoading(signal));
       }
     } catch (error) {
       if (signal.aborted) return completion;
@@ -259,7 +293,7 @@ export class CutscenePreviewRuntime {
     } finally {
       if (this.startingPreview === preview) {
         this.startingPreview = null;
-        this.setStarting(this.endingPreview !== null);
+        this.setStarting(this.starting);
       }
     }
     return completion;

@@ -192,7 +192,10 @@ export function buildNativeDialoguePresentationProgram(
       }
       continue;
     }
-    commands.push({ ...token });
+    // Progress markers and runtime writes occupy a position in the stream but
+    // consume no presentation time. Leaving them untimed stalls the timeline
+    // at the marker and prevents session completion from releasing movement.
+    commands.push({ ...token, nativeTimeSeconds });
   }
   return {
     commands,

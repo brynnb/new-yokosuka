@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { createScriptEventController } from "../play/scripts/ScriptEventController.js";
 
 import {
   createScriptEventDialoguePresenter,
@@ -106,6 +107,67 @@ test("unvoiced authored dialogue stays open for manual advance", async () => {
   assert.equal(root.hidden, false);
   assert.equal(audioCreated, false);
 });
+
+for (const delayedStage of ["lookup", "play"]) {
+  test(`Space finishes a server conversation without waiting for voice ${delayedStage}`, { timeout: 1000 }, async () => {
+    const root = element();
+    const locks = [];
+    const audioCallbacks = [];
+    let settleVoice;
+    let created = 0;
+    let nextRequest = 0;
+    let requestId;
+    let controller;
+    const pendingVoice = new Promise(resolve => { settleVoice = resolve; });
+    const presenter = createScriptEventDialoguePresenter({
+      root, speaker: element(), sourceText: element(), japaneseText: element(), options: optionsElement(),
+      voiceManifest: { urlFor: () => delayedStage === "lookup" ? pendingVoice : Promise.resolve("/voice.m4a") },
+      audioFactory: () => {
+        created++;
+        return {
+          addEventListener: (_type, listener) => audioCallbacks.push(listener),
+          play: () => delayedStage === "play" ? pendingVoice : Promise.resolve(),
+          pause() {}, removeAttribute() {}, load() {},
+        };
+      },
+      onAdvance: () => controller.advanceLine(),
+    });
+    controller = createScriptEventController({
+      client: {
+        startScriptEvent: (_selector, id) => { requestId = id; return true; },
+        advanceScriptEvent: (_run, action, options) => {
+          assert.equal(action, "continue");
+          requestId = options.requestId;
+          return true;
+        },
+      },
+      presentation: {
+        begin: () => locks.push(true), execute() {},
+        commit: () => locks.push(false), rollback() { assert.fail("must finish, not cancel"); },
+      },
+      dialogue: presenter,
+      createRequestId: () => `request-${++nextRequest}`,
+    });
+    const started = controller.start({ kind: "talk", actor: "FUKU" });
+    await controller.handleYield({ requestId, runId: 1, event: { type: "line" },
+      line: { text: "Fuku-san: Ryo-san!", metadata: ["speaker:FUKU", "voice:FUKU_TEST"] } });
+    await started;
+    assert.equal(presenter.active, true);
+    assert.equal(controller.advanceLine(), true);
+    await controller.handleYield({ requestId, runId: 1, event: { type: "complete" } });
+    assert.equal(controller.status, "idle");
+    assert.equal(presenter.active, false);
+    assert.equal(root.hidden, true);
+    assert.deepEqual(locks, [true, false]);
+    settleVoice("/late-voice.m4a");
+    await new Promise(resolve => setImmediate(resolve));
+    for (const callback of audioCallbacks) callback();
+    assert.equal(created, delayedStage === "play" ? 1 : 0);
+    assert.equal(controller.status, "idle");
+    assert.equal(presenter.audio, null);
+    assert.equal(nextRequest, 2, "late voice must not advance another line");
+  });
+}
 
 test("presenter renders exact runtime options and selects an available option", () => {
   const options = optionsElement();

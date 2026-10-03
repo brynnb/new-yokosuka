@@ -96,13 +96,8 @@ export class PlayMultiplayerAdapter {
         this.nativeStoryRuntime.applyDialogueState(dialogueState);
       },
       onConnected: reconnected => this.onConnected(reconnected),
-      onVendingResult: result => {
-        if (result.outcome !== "purchased") return;
-        this.accountSession.applyWelcome(
-          { yen: result.yen },
-          result.inventory || [],
-        );
-      },
+      onVendingResult: result => this.accountSession.applyPurchase(result),
+      onCapsuleResult: result => this.accountSession.applyPurchase(result),
       onSnapshot: (forklifts, cargo, npcs) => {
         this.forkliftAssembly.network.replaceServerSnapshot(forklifts);
         this.forkliftAssembly.cargo.replaceServerSnapshot(cargo);

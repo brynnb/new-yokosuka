@@ -6,6 +6,7 @@ import { DobuitaInteractionProps } from "./DobuitaInteractionProps.js";
 import { DoorInteractions } from "./DoorInteractions.js";
 import { DrawerInteractions } from "./DrawerInteractions.js";
 import { InspectableInteractions } from "./InspectableInteractions.js";
+import { CapsuleToyInspection } from './CapsuleToyInspection.js';
 import { InteractionManager } from "./InteractionManager.js";
 import { ScriptedInteractionRuntime } from "./ScriptedInteractionRuntime.js";
 import { VendingDrinkProp } from "./VendingDrinkProp.js";
@@ -13,6 +14,7 @@ import { VendingInteractions, vendingInteractionPose } from "./VendingInteractio
 import { WorldInteractionDispatcher } from "./WorldInteractionDispatcher.js";
 import { applyNativeDoorCollisionStates } from "../world/NativeWorldCollision.js";
 import { PlacementRuntime } from "../world/PlacementRuntime.js";
+import { gachaMachineTagForInspectable } from '../../src/DobuitaGachaInteraction.js';
 
 const bundledModels = runtimeAssetGroup("play/assets/dobuita/*.CHRM");
 const bundledTextures = runtimeAssetGroup("play/assets/dobuita/*_textures.bin");
@@ -29,6 +31,9 @@ export class PlayInteractionAssembly {
     getActorRoot,
     getCharacterRoot,
     getCharacterPoseAt,
+    getCharacterRuntime,
+    dialogueAudio,
+    getBinding,
     getController,
     worldSounds,
     getMultiplayerClient,
@@ -67,6 +72,22 @@ export class PlayInteractionAssembly {
       setMetadata: (...args) => this.setMetadata(...args),
       showNotice: (text, duration) => transientNotice.show(text, duration),
       clearNotice: () => transientNotice.hide(),
+      resolvePose: inspectable => this.dobuitaProps.interactionPose(inspectable),
+      purchase: inspectable => {
+        const tag = gachaMachineTagForInspectable(inspectable);
+        if (!tag) return null;
+        const client = getMultiplayerClient();
+        if (!client) throw new Error('The server is not connected.');
+        publishPresence(true);
+        return client.purchaseCapsule(`dobuita-${tag.toLowerCase()}`);
+      },
+      inspection: new CapsuleToyInspection({scene, dom, getController, getCharacterRoot,
+        getCharacterRuntime, getAnimation, audioSettings: dialogueAudio, getBinding}),
+      approach: (pose, signal) => {
+        getAnimation().clearEmote();
+        return getController().approachTo(pose.position, pose.yaw, { signal });
+      },
+      setMovementLocked: locked => getController()?.setMovementLocked(locked),
     });
     this.authMovement = new AuthMovementRuntime({
       assetUrls: bundledAuth,
@@ -121,6 +142,8 @@ export class PlayInteractionAssembly {
       getActiveEmote: () => getAnimation().activeEmote,
       getAnimationState: () => getAnimation().state,
       getRetargetMatrices,
+      getCharacterRoot,
+      getCharacterPoseAt,
       getNativeSceneState,
     });
     this.placement = new PlacementRuntime({

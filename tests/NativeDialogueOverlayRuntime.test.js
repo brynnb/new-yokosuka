@@ -15,6 +15,43 @@ function element() {
   };
 }
 
+test("skipping native dialogue through its final progress marker releases movement and ignores late voice", async () => {
+  const root = element();
+  const locks = [];
+  const pendingVoices = [];
+  const runtime = createNativeDialogueOverlayRuntime({
+    root, speaker: element(), sourceText: element(), japaneseText: element(),
+    voiceManifest: { urlFor: () => new Promise(resolve => pendingVoices.push(resolve)) },
+    audioFactory() { throw new Error("a skipped voice must not start"); },
+    onMovementLockChanged: locked => locks.push(locked),
+  });
+  // ENKI's default original conversation ends in a 0x90 progress marker.
+  // Exercise the real selector, body, timeline and overlay, not completion mocks.
+  await runtime.start({
+    actorCode: "ENKI", randomFloat: () => 0,
+    context: { gameDate: new Date("1986-01-01T00:00:00Z"), yen: 0,
+      currentMapIdentity: "NONE", playerPosition: [0, 0, 0],
+      readRuntimeComponent: () => 0, readActorRuntimeValue: () => 0 },
+  });
+  assert.equal(runtime.active, true);
+  let sawProgressMarker = false;
+  for (let skips = 0; skips < 100 && runtime.active; skips += 1) {
+    sawProgressMarker ||= runtime.interaction.timeline.program.commands.some(c => c.kind === "progressMarker");
+    assert.equal(runtime.advance(), true);
+    await runtime.interaction.pending;
+  }
+  assert.equal(sawProgressMarker, true);
+  assert.equal(runtime.interaction.status, "complete");
+  assert.equal(runtime.active, false);
+  assert.equal(root.hidden, true);
+  assert.deepEqual(locks, [true, false]);
+  for (const resolve of pendingVoices) resolve("/late-voice.m4a");
+  await Promise.resolve();
+  assert.equal(runtime.audio, null);
+  assert.equal(runtime.active, false);
+  runtime.dispose();
+});
+
 test("native overlay advances when the active voice audio finishes", async () => {
   const root = element();
   const speaker = element();

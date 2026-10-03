@@ -1,3 +1,22 @@
+import { DEFAULT_LIGHTING } from "./constants.js";
+
+// Shot-local adjustments use the same fields as the shared lighting presets.
+// Reject misspelled fields and non-finite values before taking scene ownership.
+export function validateLightingOverride(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    throw new TypeError("lighting override must be a preset-field object");
+  }
+  return Object.freeze(Object.fromEntries(Object.entries(value).map(([key, setting]) => {
+    const template = DEFAULT_LIGHTING[key];
+    const signed = key === "dirDirection" || key === "hemiDirY";
+    const valid = number => Number.isFinite(number) && (signed || number >= 0);
+    if (!Object.hasOwn(DEFAULT_LIGHTING, key) || (Array.isArray(template)
+      ? !Array.isArray(setting) || setting.length !== template.length || !setting.every(valid)
+      : !valid(setting))) throw new TypeError(`invalid lighting override field ${key}`);
+    return [key, Array.isArray(setting) ? Object.freeze([...setting]) : setting];
+  })));
+}
+
 function lerp(from, to, amount) {
   if (amount <= 0) return from;
   if (amount >= 1) return to;

@@ -421,9 +421,9 @@ and associates the pair.
 
 The interaction separately loads resource `HI_GACH`. Its exact
 `GAT0G00G`/`GAT0G03G` models have the same machine bounds as the street LODs
-plus native render nodes 152 and 153. `/play` now replaces only the selected
-machine body with the matching high-detail model while
-`AKI_ASOBU_GATYA` from `M_GACH` runs; the owned capsule box remains in its
+plus native render nodes 152 and 153. `/play` keeps both matching high-detail
+machine bodies loaded, avoiding a visible quality swap when clicked.
+`AKI_ASOBU_GATYA` from `M_GACH` runs after the player approaches; the owned capsule box remains in its
 native placement. `tools/evidence/d000-gacha-interaction.json` verifies the
 tables, calls, handler routes, model hashes, and motion.
 
@@ -434,8 +434,10 @@ table at file offset `0xabd4c` is proved to be the sixteen pool lengths because
 each value exactly matches the number of entries consumed by that category's
 lookup branch. Category 10 deliberately contains a zero lookup entry, so these
 are counted fields rather than zero-terminated arrays. The neighboring table
-at `0xabd5c` participates in the random split at `0x57330`; it remains
-deliberately unnamed until that comparison's meaning is proved.
+at `0xabd5c` supplies each category's rare-tail count to the random split at
+`0x57330`. The complete policy is documented in
+[capsule prize selection](capsule-prizes.md) and checked against execution of
+the original selection instructions.
 
 The physical-machine link is also direct: operation `0x0024` reads the active
 machine's `CCOW` selector at `0x56ef2` into category state, and the result
@@ -446,18 +448,20 @@ identified by the vending affordability and `MONEY_LOCK` paths. The exact
 random primitives are also known from their live engine handlers: operation
 `0x0009`, mode 16, returns the shared RNG result multiplied by a float bound;
 operation `0x004f`, mode 6, truncates that RNG result multiplied by an
-exclusive integer bound. The room branches at exact one-third, two-thirds,
-and one-third constants. How those branches combine the neighboring split
-table with collection state is not yet fully proved. Browser economy,
-collection state, and result presentation remain explicitly unresolved.
+exclusive integer bound. The room first allocates approximately one third to
+shared prizes, then 5% to the machine's rare tail, and the remainder to its
+normal pool. The two-thirds constant belongs to an ownership-dependent trial
+inside the rare branch, not the overall rare-prize chance. The browser/server
+[Collection integration](../../implementation/multiplayer-server.md#capsule-toy-collection)
+uses these recovered pools, ¥100 price, and the original selection policy.
 
 The native collection mutation itself is proved. After `0x4fe10` resolves the
 selected category/index to a 16-bit lookup value, operation `0x003d` receives
 that value with quantity 1 at `0x56e82`. Its mode-0 handler calls
-`0x0c0e38b6`; the duplicate-avoidance checks use operation `0x003f`, whose
-mode-0 handler calls the paired getter at `0x0c0e38be`. The remaining work is
-to reproduce the exact policy that chooses an index and then expose equivalent
-browser-side balance and collection persistence.
+`0x0c0e38b6`; ownership checks use operation `0x003f`, whose mode-0 handler
+calls the paired getter at `0x0c0e38be`. Those checks are not a general
+duplicate-prevention rule: the queried and awarded indices differ in the
+original code. Server selection deliberately preserves that behavior.
 
 ## Vending-machine AUTH timelines
 

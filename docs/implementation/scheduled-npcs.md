@@ -68,6 +68,9 @@ visible time between samples. Becoming visible, changing models/motions, returni
 from an activity, and approaching the camera force an immediate update; hidden
 time is not replayed as a large catch-up. Active dialogue and forklift riders use
 full cadence. Script/cutscene presentation keeps its existing exclusive ownership.
+Between samples, retain the whole pose, including the render-root translation
+used by S2 motions. Secondary-object placement may restore a driver's translation
+when releasing its forklift seat; it must not reset ordinary NPC animation roots.
 
 ### Repeatable performance comparisons
 

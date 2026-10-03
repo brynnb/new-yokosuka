@@ -25,6 +25,8 @@ function createRuntime() {
     selectWorld: () => (calls.push("select"), true),
     initializeWorld: () => calls.push("initialize"),
     ensureCharacter: () => calls.push("character"),
+    captureGameplay: () => ({ world: "dobuita", avatarId: "fuku", position: [1, 2, 3], yaw: 0.75 }),
+    restoreGameplay: async snapshot => calls.push(["restore-gameplay", snapshot]),
     startDirector: () => (calls.push("director"), true),
     stopDirector: reason => calls.push(["stop", reason]),
     endDirector: async reason => { calls.push(["end", reason]); runtime.complete(); },
@@ -213,9 +215,112 @@ for (const entry of ["initial-menu", "loaded-menu", "in-game"]) {
     if (entry !== "initial-menu") runtime.getController = () => ({});
     const pending = entry === "in-game" ? runtime.requestInGame("intro") : runtime.playFromMenu("intro");
     await new Promise(resolve => setImmediate(resolve));
-    if (entry !== "in-game") runtime.complete();
+    runtime.complete();
     await pending;
     assert.equal(seen.length, 2);
     assert.ok(seen.every(value => value === presentation));
   });
 }
+
+const turn = () => new Promise(resolve => setImmediate(resolve));
+
+for (const exit of ["complete", "skip", "runtime-error", "start-error", "timeout"]) {
+  test(`sidebar ${exit} returns the pre-preview session exactly once, after sandbox release`, async () => {
+    const { runtime, calls, cutscene } = createRuntime();
+    runtime.getController = () => ({});
+    const snapshot = runtime.captureGameplay();
+    runtime.captureGameplay = () => { calls.push("capture-gameplay"); return snapshot; };
+    let releaseReturn;
+    runtime.restoreGameplay = async value => {
+      assert.equal(value, snapshot);
+      assert.equal(runtime.gameplayPreview.snapshot, snapshot);
+      assert.equal(runtime.starting, true);
+      calls.push("return");
+      await new Promise(resolve => { releaseReturn = resolve; });
+    };
+    if (exit === "start-error") runtime.ensureCharacter = async () => { throw new Error("avatar unavailable"); };
+    if (exit === "timeout") runtime.selectWorld = async () => { throw new Error("world load timed out"); };
+    const pending = runtime.requestInGame("intro");
+    await turn();
+    assert.equal(await runtime.requestInGame("intro"), false, "repeat selection cannot replace the return snapshot");
+    if (exit === "complete") runtime.complete();
+    else if (exit === "skip") runtime.cancel();
+    else if (exit === "runtime-error") runtime.fail(cutscene, "broken activity");
+    await turn();
+    assert.equal(typeof releaseReturn, "function");
+    assert.equal(runtime.cancel(), true, "X during return is consumed without cancelling recovery");
+    assert.equal(calls.filter(call => call === "capture-gameplay").length, 1);
+    if (!["start-error", "timeout"].includes(exit)) {
+      assert.ok(calls.indexOf("end-sandbox") < calls.indexOf("return"));
+    }
+    releaseReturn();
+    assert.equal(await pending, ["complete", "skip"].includes(exit));
+    assert.equal(runtime.gameplayPreview, null);
+    assert.equal(runtime.starting, false);
+    assert.equal(calls.filter(call => call === "return").length, 1);
+    assert.ok(calls.lastIndexOf("reveal") > calls.indexOf("return"));
+    // A completed/failed request does not poison a subsequent preview.
+    runtime.ensureCharacter = async () => {};
+    runtime.selectWorld = async () => true;
+    runtime.restoreGameplay = async () => {};
+    const retry = runtime.requestInGame("intro");
+    await turn();
+    runtime.complete();
+    assert.equal(await retry, true);
+  });
+}
+
+for (const stage of ["world", "avatar", "director"]) {
+  test(`sidebar cancellation drains a late ${stage} load before restoring gameplay`, async () => {
+    const { runtime, calls } = createRuntime();
+    let release;
+    const work = async () => {
+      await new Promise(resolve => { release = resolve; });
+      calls.push("late-work");
+      return true;
+    };
+    runtime.getController = () => ({});
+    if (stage === "world") runtime.selectWorld = work;
+    if (stage === "avatar") runtime.ensureCharacter = work;
+    if (stage === "director") runtime.startDirector = work;
+    runtime.restoreGameplay = async () => calls.push("return");
+    const pending = runtime.requestInGame("intro");
+    await turn();
+    runtime.cancel();
+    await turn();
+    assert.equal(calls.includes("return"), false);
+    release();
+    assert.equal(await pending, true);
+    assert.ok(calls.indexOf("return") > calls.indexOf("late-work"));
+    assert.equal(runtime.active, null);
+    assert.equal(runtime.starting, false);
+  });
+}
+
+test("disposal prevents a pending sidebar load from restoring or revealing gameplay", async () => {
+  const { runtime, calls } = createRuntime();
+  let release;
+  runtime.ensureCharacter = () => new Promise(resolve => { release = resolve; });
+  const pending = runtime.requestInGame("intro");
+  await turn();
+  runtime.cancel("disposed");
+  release();
+  assert.equal(await pending, false);
+  assert.equal(calls.some(call => Array.isArray(call) && call[0] === "restore-gameplay"), false);
+  assert.equal(calls.includes("reveal"), false);
+});
+
+test("return-load failure stays covered and reports recovery failure instead of claiming success", async () => {
+  const { runtime, calls } = createRuntime();
+  runtime.restoreGameplay = async () => { throw new Error("return world offline"); };
+  runtime.cancelWorld = () => calls.push("cancel-world");
+  runtime.showRecoveryError = text => calls.push(["recovery-error", text]);
+  const pending = runtime.requestInGame("intro");
+  await turn();
+  calls.length = 0;
+  runtime.complete();
+  assert.equal(await pending, false);
+  assert.equal(calls.includes("reveal"), false);
+  assert.equal(calls.includes("cancel-world"), true);
+  assert.equal(calls.filter(call => call[0] === "recovery-error").length, 1);
+});

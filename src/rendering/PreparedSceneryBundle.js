@@ -6,8 +6,9 @@ import { SceneryTextureArrayMaterial } from "./SceneryTextureArrayMaterial.js";
 import { batchStaticWorldRoots, batchStaticSceneryLayer, immutableMt5Mesh } from "./StaticWorldBatching.js";
 import { isWorldMapFile } from "../WorldMapFiles.js";
 import {encodeModelTemplate, instantiateModelTemplate} from "./PreparedModelTemplates.js";
+import {installWorldMt7MapEffect} from "./MapEffects.js";
 
-export const SCENERY_BUNDLE_SCHEMA = "new-yokosuka-scenery-experiment-v4";
+export const SCENERY_BUNDLE_SCHEMA = "new-yokosuka-scenery-experiment-v5";
 const COLORS = ["diffuseColor", "ambientColor", "emissiveColor", "specularColor"];
 const MATERIAL = ["alpha", "backFaceCulling", "twoSidedLighting", "sideOrientation",
   "disableLighting", "specularPower", "maxSimultaneousLights", "useVertexColors",
@@ -112,6 +113,7 @@ export async function compileSceneryBundle(roots, {
   signal, cellSize = 128, textureArrays = true, maxArrayLayers = 64,
   provenance = {}, yieldWork = () => new Promise(resolve => setTimeout(resolve, 0)),
   fixedPlacementLayer = null, modelTemplates = [], sceneryFilenames = [], hierarchyFilenames = [],
+  surfaceSelectors = [],
 } = {}) {
   if (!Number.isInteger(maxArrayLayers) || maxArrayLayers < 1 || maxArrayLayers > 256) {
     throw new Error("Invalid scenery texture array limit");
@@ -136,6 +138,14 @@ export async function compileSceneryBundle(roots, {
   roots = roots.filter(root => !preserved.has(root._filename));
   const templateRoots = new Set([...modelTemplates.flatMap(row => row.roots), ...hierarchyRoots]);
   const allRoots = [...roots, ...templateRoots];
+  for (const {sourceFilename, meshName} of surfaceSelectors) {
+    const matches = residentRoots.filter(root => root._filename === sourceFilename)
+      .flatMap(root => root.getChildMeshes()).filter(mesh => mesh.name === meshName && mesh.getTotalVertices() > 0);
+    if (!matches.length) throw new Error(`Missing runtime scenery surface: ${sourceFilename}:${meshName}`);
+    // Material replacement and face surgery must still see the original mesh,
+    // vertex/UV buffers and face numbering after preparation. No texture arrays.
+    for (const mesh of matches) mesh.metadata = {...mesh.metadata, runtimeSurface: true};
+  }
   for (const root of fixedPlacementRoots) {
     if (!root._runtimePlacement || !root.metadata?.sceneryPlacement || !root.isEnabled(false)) {
       throw new Error(`Invalid fixed-placement root: ${root.name}`);
@@ -153,7 +163,8 @@ export async function compileSceneryBundle(roots, {
     if (root.metadata?.staticBatchInputMeshCount !== undefined) throw new Error("Compile before static batching");
     return root.getChildMeshes().filter(mesh => mesh.getTotalVertices() > 0);
   });
-  for (const meshes of rootMeshes) for (const mesh of meshes) {
+  const animationOwners = new Map();
+  for (const [r, meshes] of rootMeshes.entries()) for (const mesh of meshes) {
     signal?.throwIfAborted();
     for (let node = mesh; node; node = node.parent) {
       if (node.animations?.length || node.actionManager || node._scheduledSceneObject
@@ -168,6 +179,14 @@ export async function compileSceneryBundle(roots, {
       throw new Error(`Non-static or unsupported scenery: ${mesh.name}`);
     }
     const material = mesh.material;
+    const animationOwner = allRoots[r]._mt7MapEffectDefinition ? allRoots[r]._filename : null;
+    // Animated samplers cannot be deduplicated into a stationary surface (or
+    // another animation clock), even when their initial pixels are identical.
+    const sourceTexture = material.diffuseTexture;
+    if (sourceTexture && animationOwners.has(sourceTexture) && animationOwners.get(sourceTexture) !== animationOwner) {
+      throw new Error(`Texture shared across animation owners: ${mesh.name}`);
+    }
+    if (sourceTexture) animationOwners.set(sourceTexture, animationOwner);
     if (materialRecords.has(material)) continue;
     const description = materialRecord(material);
     const texture = material.diffuseTexture;
@@ -179,7 +198,7 @@ export async function compileSceneryBundle(roots, {
         || internal.format !== B.Constants.TEXTUREFORMAT_RGBA || internal.type !== B.Constants.TEXTURETYPE_UNSIGNED_BYTE) {
         throw new Error(`Scenery requires retained RGBA pixels: ${texture.name}`);
       }
-      const settings = {...fields(texture, SAMPLER), width, height,
+      const settings = {...fields(texture, SAMPLER), width, height, animationOwner,
         samplingMode: texture.samplingMode, generateMipMaps: internal.generateMipMaps,
         invertY: internal.invertY, alphaAware: internal._pvrUploadPolicy?.alphaAware === true,
         gradientAlpha: internal._pvrUploadPolicy?.gradientAlpha === true,
@@ -216,8 +235,10 @@ export async function compileSceneryBundle(roots, {
     const texture = record.texture === null ? null : textures[record.texture];
     // Alpha/coverage queues retain their established material and sorting code.
     // uv2 and nontrivial texture transforms are not silently reinterpreted.
-    if (!immutableMt5Mesh(mesh, roots[r], {fixedPlacementRoots}) || record.alphaMode !== "opaque"
+    if (!immutableMt5Mesh(mesh, roots[r], {fixedPlacementRoots})
+      || (record.alphaMode !== "opaque" && record.transparencyMode !== B.Material.MATERIAL_OPAQUE)
       || record.alpha !== 1 || !texture || texture.hasAlpha || texture.level !== 1
+      || texture.animationOwner
       || mesh.isVerticesDataPresent("uv2") || texture.coordinatesIndex !== 0
       || texture.uScale !== 1 || texture.vScale !== 1
       || [texture.uOffset, texture.vOffset, texture.uAng, texture.vAng, texture.wAng].some(value => value !== 0)) continue;
@@ -300,6 +321,7 @@ export async function compileSceneryBundle(roots, {
     return {
       filename: root._filename, name: root._filename || root.name, enabled: root.isEnabled(false),
       matrix: root.getWorldMatrix().asArray(), nonUniformScaling: root.nonUniformScaling, metadata: serialMetadata(root),
+      mapEffect: root._mt7MapEffectDefinition ? copy(root._mt7MapEffectDefinition) : null,
       meshes: root.getChildMeshes().filter(mesh => mesh.getTotalVertices() > 0).map(mesh => ({
         ...encodeMesh(mesh), enabled: enabledWithinRoot(mesh, root),
         matrix: mesh.getWorldMatrix().multiply(inverse).asArray(),
@@ -320,7 +342,7 @@ export async function compileSceneryBundle(roots, {
   return {manifest, binary};
 }
 
-/** Load prebuilt scenery without MT5 parsing or mesh merging. Fail closed. */
+/** Load prebuilt scenery without MT5/MT7 parsing or mesh merging. Fail closed. */
 export async function loadSceneryBundle(scene, manifest, binary, {signal} = {}) {
   signal?.throwIfAborted();
   if (manifest.schema !== SCENERY_BUNDLE_SCHEMA || binary.byteLength !== manifest.binaryBytes
@@ -431,6 +453,8 @@ export async function loadSceneryBundle(scene, manifest, binary, {signal} = {}) 
         // parts. Controlled/moving roots use real hierarchical TRS instead.
         mesh._updateNonUniformScalingState(part.nonUniformScaling);
       }
+      root._mt7MapEffectDefinition = record.mapEffect;
+      installWorldMt7MapEffect(root);
       await new Promise(resolve => setTimeout(resolve, 0));
     }
     for (const record of manifest.hierarchies) {

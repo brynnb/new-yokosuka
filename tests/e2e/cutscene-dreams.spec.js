@@ -22,6 +22,8 @@ test("Lan Di nightmare animates Ryo's sleep/wake face and isolates its black dre
           const maps = runtime.mapLayers;
           return {
             activity: window.__cutsceneBrowserProbe.activity,
+            lightingPresetIndex: maps.lightingPresetIndex,
+            lightingOverride: maps.lightingOverride,
             visibleRoots: maps.worldRoots.filter(root => root.isEnabled()).map(root => root._filename),
             blanketRoots: maps.worldRoots.filter(root => /FUTS30[12]G\.MT5$/i.test(root._filename)).map(root => root._filename),
             background: maps.background?.color.asArray() ?? null,
@@ -33,6 +35,9 @@ test("Lan Di nightmare animates Ryo's sleep/wake face and isolates its black dre
         });
         report.dreamStages.push(sample);
         expect(sample.activity.id).toBe(id);
+        expect(sample.lightingPresetIndex).toBe(slot === 28 ? 3 : null);
+        if (slot === 28) expect(sample.lightingOverride.hemiDiffuse).toEqual([0.4, 0.47, 0.7]);
+        else expect(sample.lightingOverride).toBeNull();
         expect(sample.blanketRoots, "The opening bedroom does not instantiate separate blankets").toEqual([]);
         const bedroom = [28, 29].includes(slot);
         expect(sample.gameplayRyoVisible, "the regular avatar is not in this cinematic's cast").toBe(false);

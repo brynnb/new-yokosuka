@@ -23,7 +23,7 @@ for (const viewport of [{ width: 1280, height: 900 }, { width: 390, height: 844 
     await expect(quickPlay).toHaveCSS("background-color", "rgb(140, 229, 240)");
     await page.screenshot({ path: testInfo.outputPath("account-primary-button.png") });
     await expect(page.locator(".account-entry-actions button").filter({ hasText: "Cutscenes" })).toHaveCount(0);
-    await expect(page.locator("#cutscene-button")).toHaveCount(0);
+    await expect(page.locator("#cutscene-button")).toHaveCount(1);
 
     // Isolate the real sidebar without creating an account or entering a world.
     // This checks production CSS as well as dev CSS when E2E_APP_URL is a preview.

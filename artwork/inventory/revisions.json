@@ -1,0 +1,54 @@
+{
+  "generator": "Built-in image_gen using imagegen skill",
+  "sourceArticle": "https://www.phantomriverstone.com/2021/12/unused-inventory-icons-discovered-in.html",
+  "referenceGallery": "https://shenmuedojo.com/media/shenmue/inventory-items/shenmue-i-general-items/",
+  "revisions": [
+    {
+      "id": "h214-key",
+      "prompt": "Use case: text-localization. Edit this exact key image, changing only the embossed marking on the bow. It must read exactly \"H214\", with a very clear UPPERCASE CAPITAL H: TWO equally tall straight vertical stems, joined by a single straight horizontal crossbar exactly at mid-height, no rounded lowercase arch. H must be the same cap height as all three digits 214. Simple squared industrial block sans-serif stamped lettering, clearly readable with balanced spacing. Preserve the key silhouette, bow opening, warm aged metal, camera angle, position, size, lighting, and genuine transparent alpha. Do not add any other text or change any other design details.",
+      "inputs": [
+        "Previous generated H214 key"
+      ],
+      "output": "reserve/h214-key.webp"
+    },
+    {
+      "id": "sword-handguard",
+      "prompt": "Use case: precise-object-edit. Faithful high-resolution texture/material restoration of this EXACT original-game Shenmue Hazuki Sword Handguard inventory model render. This reference is the actual game mesh, so its geometry and perspective are authoritative. Keep the same exact camera pose, orientation, projected silhouette, six perimeter notches, holes, central frame shape, and proportions. Do not redesign the object. Replace only the blurry low-resolution texture and low polygon stepping with a detailed realistic aged blackened iron surface, dark olive-black face and worn silver-gray edges. Smooth the low-poly facets into continuous curves while retaining precisely the same boundaries and symmetry in perspective. Six evenly spaced matching semicircular notches on a circular plate, two identical round holes either side of its central blade slot, all foreshortened consistently exactly like the render. Central motif stays nearly vertical (top a little right of bottom), plate's long projected axis lower left to upper right. Preserve the wide, flared, pointed ends and concave sides of the central frame. Preserve tapered blade slot width and length. Do not stretch it, turn anything sideways, enlarge either hole, add or remove notches, add engraving or make chunky protruding layers. Thin metal guard, modest natural surface wear without severe corrosion. Clean isolated high-quality game inventory artwork, single object centered with same margins on a square canvas. True transparent background and genuine transparency through both holes and the thin blade slot; do not fill holes with black paint. No text, background, UI, or cast floor shadow.",
+      "inputs": [
+        "Reference render of S2DC_D1_GLOBAL_ITEM_TUBA1T1I.MT7 with its original embedded texture; camera visually aligned to the original inventory icon"
+      ],
+      "output": "../../play/ui/assets/inventory/sword-handguard.webp",
+      "version": 6,
+      "referenceModel": {
+        "filename": "S2DC_D1_GLOBAL_ITEM_TUBA1T1I.MT7",
+        "sha256": "391a674de63cc6f891cceb8a4a2c926212ba95574573d84df1fa93ce4bb9ca41",
+        "textureId": "a4a7c1927330325f",
+        "textureSize": [
+          256,
+          256
+        ],
+        "renderer": "Existing Mt7Loader; orthographic reference view of original geometry and texture"
+      },
+      "finalOrientation": "User mirrored/flipped the generated PNG to match the original icon. That edited master is preserved exactly; only resizing and lossless WebP encoding are applied for runtime use.",
+      "finalMasterSHA256": "df4763f0f4c9ab443765175af7709e132986961ce2a0f079280b69b1338cec2b"
+    },
+    {
+      "id": "penglai-elixir",
+      "version": 2,
+      "prompt": "Use case: precise-object-edit. Correct the bottle silhouette of this HQ Shenmue inventory item. ITEM: Penglai White Medicine elixir bottle from the Hazuki basement. Image 1 is the original game icon, authority for the SHAPE, proportions and angle. Image 2 is the existing HQ remake: keep its off-white aged ceramic, short neck, broad white stopper with blue band beneath it, orange-red-bordered pale yellow paper label and exact label lettering \"蓬莱白薬\", but correct its body geometry.\nThe old remake is incorrectly a square cuboid with cut-off corners. The correct body is a softly rounded, perfume-flask-like shape: smoothly curved domed shoulders swell outward below the narrow neck, maximum width is high on the body, then BOTH sides gradually slope inward toward a visibly narrower gently rounded flat base. Broad upper body, narrow lower body. Continuous gentle compound curves and rounded cross-section, NOT a squared medicine jar, not straight vertical slab sides, not bevel-cut diagonal corners, not a block with a corner removed. Preserve a readable broad front surface for the label, with the label following the curved, tapered ceramic body. Keep the same upright slightly three-quarter view showing a little of the right side and cap top. Retain the source icon's squat compact proportions; do not turn it into a tall perfume spray bottle. No atomizer, handle, new decoration, fantasy potion details or glowing contents. Soft realistic ceramic highlights and restrained fine patina, no heavy grunge. Entire single bottle centered with transparent margins, genuinely transparent background, no floor or cast-shadow plate, no caption, UI, watermark, or extra text.",
+      "inputs": [
+        "Original Shenmue inventory icon for shape, proportions and angle",
+        "Previous HQ Penglai White Medicine remake for ceramic, label and surface detail"
+      ],
+      "output": "reserve/penglai-elixir.webp"
+    }
+  ],
+  "deterministicEdits": [
+    {
+      "id": "phoenix-mirror",
+      "operation": "sharp.flop() — exact horizontal pixel reversal including alpha, no AI generation",
+      "source": "Previously approved green Phoenix Mirror HQ PNG",
+      "output": "../../play/ui/assets/inventory/phoenix-mirror.webp"
+    }
+  ]
+}

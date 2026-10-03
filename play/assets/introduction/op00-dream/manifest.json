@@ -1209,6 +1209,43 @@
           "visible": false
         }
       ],
+      "browserLightingPresetIndex": 3,
+      "browserLightingOverride": {
+        "ambientColor": [
+          0.18,
+          0.13,
+          0.18
+        ],
+        "hemiIntensity": 0.45,
+        "hemiDiffuse": [
+          0.4,
+          0.47,
+          0.7
+        ],
+        "hemiGround": [
+          0.09,
+          0.1,
+          0.19
+        ],
+        "skyIntensity": 0.2,
+        "skyDiffuse": [
+          0.5,
+          0.57,
+          0.8
+        ],
+        "dirIntensity": 0.1,
+        "dirDiffuse": [
+          0.55,
+          0.62,
+          0.95
+        ],
+        "fillIntensity": 0.12,
+        "fillDiffuse": [
+          0.2,
+          0.3,
+          0.6
+        ]
+      },
       "nativeHandPoseCues": [
         {
           "activitySlot": 28,
@@ -3351,7 +3388,7 @@
     "unpresentedOwnerCues": []
   },
   "limitations": [
-    "Native post-process dream flashes and per-shot lighting are not reproduced.",
+    "Native post-process dream flashes and per-shot lighting are not reproduced exactly; sleeping slot 28 uses reference-matched browser lighting.",
     "Sleeping blanket deformation remains the separate tracked blanket issue.",
     "Lan Di's separate HNDM right-hand motion in callback 0x11dac is not yet projected; his authored static HAND pose is retained."
   ]

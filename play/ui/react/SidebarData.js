@@ -1,4 +1,5 @@
 import { CUTSCENE_SELECTIONS } from "../../config/cutscenes.js";
+import { NEW_CHARACTER_OPENING } from "../../cutscenes/NewCharacterOpening.js";
 import shenmue2Exploration from '../../data/shenmue2-exploration-worlds.json' with { type: 'json' };
 
 export const TRAVEL_DESTINATIONS = Object.freeze([
@@ -47,3 +48,10 @@ export const TRAVEL_DESTINATION_GROUPS = Object.freeze([
 ]);
 
 export { CUTSCENE_SELECTIONS };
+
+// Expose only the supported opening sequence, not the research preview catalog.
+export const INTRO_CUTSCENE_SELECTIONS = Object.freeze(
+  NEW_CHARACTER_OPENING.map((id) => (
+    CUTSCENE_SELECTIONS.find(([cutsceneId]) => cutsceneId === id)
+  )),
+);

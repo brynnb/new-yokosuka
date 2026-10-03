@@ -247,7 +247,19 @@ export class PlayInterfaceAssembly {
       closeJournal();
       openInventory();
     });
+    this.dom.collectionButton.addEventListener('click', event => {
+      event.stopPropagation();
+      closeJournal();
+      openInventory('collection');
+    });
     configureInventoryUi({
+      loadCollection: async signal => {
+        const characterId = accountSession.character?.id;
+        if (!characterId) throw new Error('Enter the world with a character to view Collection.');
+        const state = await accountSession.request(`/api/characters/${characterId}/state`, {signal, cache: 'no-store'});
+        if (accountSession.character?.id !== characterId) throw new Error('Character changed. Reopen Collection.');
+        return state.inventory;
+      },
       onOpen: () => {
         this.playUi.openModal("inventory");
         getMenuSounds().move();

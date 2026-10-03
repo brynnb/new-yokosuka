@@ -234,7 +234,7 @@ test("interaction runtime reports unresolved selection without starting", async 
   assert.equal(runtime.status, "unresolved");
 });
 
-test("interaction runtime reaches authored dialogue across the actor corpus", async () => {
+test("interaction runtime reaches and finishes authored dialogue across the actor corpus", async () => {
   const statusCounts = {};
   const context = {
     gameDate: new Date("1986-01-01T00:00:00Z"),
@@ -262,6 +262,12 @@ test("interaction runtime reaches authored dialogue across the actor corpus", as
       randomFloat: () => 0,
     });
     statusCounts[result.status] = (statusCounts[result.status] ?? 0) + 1;
+    for (let skip = 0; skip < 100 && runtime.status === "running"; skip += 1) {
+      assert.ok(runtime.timeline, `${actorCode}: expected a presentation to advance`);
+      assert.equal(runtime.advance(), true, `${actorCode}: stalled dialogue`);
+      await runtime.pending;
+    }
+    assert.equal(runtime.status, "complete", `${actorCode}: final line must release the session`);
     runtime.stop("corpusTest");
   }
 

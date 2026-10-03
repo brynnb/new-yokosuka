@@ -120,7 +120,7 @@ export class ScriptEventDialoguePresenter {
     this.hide();
   }
 
-  async show(line, event = {}) {
+  show(line, event = {}) {
     const detail = scriptEventLinePresentation(
       line,
       this.resolveSpeaker,
@@ -138,12 +138,28 @@ export class ScriptEventDialoguePresenter {
     this.dom.root.hidden = false;
     this.dom.root.setAttribute("aria-hidden", "false");
     this.onActiveChanged(true);
-    if (!detail.voiceId) return true;
+    // Subtitles are ready now. Optional voice loading must not hold the
+    // controller's ordered reply queue: Space can finish the conversation
+    // before a voice lookup or play() promise settles. requestId still guards
+    // late audio against line changes, cancellation and world teardown.
+    if (detail.voiceId) {
+      void this.playVoice(detail, requestId).catch(error => {
+        if (this.active && requestId === this.requestId) {
+          console.warn(`Could not play script voice ${detail.voiceId}:`, error);
+        }
+      });
+    }
+    return true;
+  }
+
+  async playVoice(detail, requestId) {
     let url;
     try {
       url = await this.voiceManifest.urlFor(detail.voiceId);
     } catch (error) {
-      console.warn(`Could not resolve script voice ${detail.voiceId}:`, error);
+      if (this.active && requestId === this.requestId) {
+        console.warn(`Could not resolve script voice ${detail.voiceId}:`, error);
+      }
       return true;
     }
     if (!url || !this.active || requestId !== this.requestId) return true;

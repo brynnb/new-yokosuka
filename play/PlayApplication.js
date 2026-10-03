@@ -380,6 +380,9 @@ function createPlayRuntime() {
     signedRenderKey,
     getActorRoot: () => actorRoot,
     getCharacterRoot: () => playerRuntime.modelRoot,
+    getCharacterRuntime: () => characterRuntime,
+    dialogueAudio,
+    getBinding: action => generalPreferences.binding(action),
     getCharacterPoseAt: (clipState, tick) => {
       const pose = playerRuntime.animation.clipPoseAt(clipState, tick);
       return characterRuntime.retarget(new Map([...characterRuntime.renderMatrixByKey]
@@ -443,9 +446,11 @@ function createPlayRuntime() {
   let cutscenePreviewRuntime = null;
   let openingSequenceActive = false;
 
-  async function ensureCutscenePreviewCharacter() {
+  async function ensureCutscenePreviewCharacter({ signal } = {}) {
+    signal?.throwIfAborted();
     if (playerRuntime.activeCharacterId === "ryo") return true;
-    await switchCharacter(CHARACTER_BY_ID.get("ryo"), { persist: false });
+    await switchCharacter(CHARACTER_BY_ID.get("ryo"), { persist: false, signal });
+    signal?.throwIfAborted();
     if (playerRuntime.activeCharacterId !== "ryo") {
       throw new Error("Cutscene preview could not load Ryo's authored actor model");
     }
@@ -547,12 +552,14 @@ function createPlayRuntime() {
       Boolean(controller)
       && worldRuntime.ready
       && isPersistentPlayerWorld(worldRuntime.activeWorld)
+      && !cutscenePreviewRuntime?.gameplayPreview
     ),
     getPlayerPresence: () => multiplayerAdapter.playerPresence(),
     getVehiclePresence: () => multiplayerAdapter.vehiclePresence(),
-    onSessionReplaced: message => (
-      worldLifecycle.unloadForReplacedSession(message)
-    ),
+    onSessionReplaced: message => {
+      cutscenePreviewRuntime?.cancel("disposed");
+      worldLifecycle.unloadForReplacedSession(message);
+    },
   });
   let debugRunSpeedMultiplier = 1;
   const worldClock = new WorldClock({
@@ -572,6 +579,7 @@ function createPlayRuntime() {
       nativeCutsceneDirector?.activeLightingPresetIndex ?? null
     ),
     getCutscenePrecipitation: () => nativeCutsceneDirector?.activePrecipitation ?? null,
+    getCutsceneLightingOverride: () => nativeCutsceneDirector?.activeLightingOverride ?? null,
     dailyMusicCue: ninePmMusicCue,
     setWorldDate: date => worldHud.setWorldDate(date),
     updateDebugClock: ({ serverDate, date, clock }) => {
@@ -673,6 +681,7 @@ function createPlayRuntime() {
     onActionCue: event => worldSounds.handleActionCue(event),
     onEmoteCleared: (emote) => {
       dobuitaInteractionProps.restore();
+      inspectableInteractions.finishAnimation(emote);
       if (NETWORK_EMOTE_IDS.has(emote?.id)) {
         vendingInteractions.finishAnimation();
         multiplayerRuntime.markPresenceDirty();
@@ -893,7 +902,7 @@ function createPlayRuntime() {
   } = scriptEvents;
   nativeScriptActivityRunner = assembledActivityRunner;
   const nativeStoryRuntime = new NativeStoryRuntime({
-    isStartupPresentationActive: () => openingSequenceActive,
+    isStartupPresentationActive: () => openingSequenceActive || Boolean(cutscenePreviewRuntime?.gameplayPreview),
     dialoguePersistence: nativeDialoguePersistence,
     dialogueOverlay: nativeDialogueOverlay,
     dialogueFaces: nativeDialogueFaces,
@@ -1025,8 +1034,10 @@ function createPlayRuntime() {
     placementRuntime,
     scheduledActors,
     scheduledSceneObjects,
-    preparedScenery: LOCAL_DEBUG && new URLSearchParams(window.location.search).get("scenery") === "prepared"
-      ? {baseUrl: "/scenery-output"} : null,
+    // Bundles are served by Vite until their production publication is wired up.
+    // Keep an original-loader comparison switch, but ordinary /play uses bundles.
+    preparedScenery: import.meta.env.DEV && new URLSearchParams(window.location.search).get("scenery") !== "original"
+      ? {baseUrl: "/scenery-output", allowMissing: true} : null,
     onProgress: setLoadingProgress,
     beforePlacements: async (world, meshes) => {
       if (world.id === WORLDS.dobuita.id) {
@@ -1271,8 +1282,8 @@ function createPlayRuntime() {
   }
 
 
-  async function switchCharacter(character, { persist = true } = {}) {
-    return playerRuntime.switchCharacter(character, { persist });
+  async function switchCharacter(character, options = {}) {
+    return playerRuntime.switchCharacter(character, options);
   }
 
   function applyAnimationFrame(amount = 0) {
@@ -1644,7 +1655,7 @@ function createPlayRuntime() {
       getActorRoot: () => actorRoot,
       getCurrentGameDate: currentServerGameDate,
       getMultiplayerClient: () => multiplayerRuntime.client,
-      getPresentationOwned: () => nativeStoryRuntime.presentationActive,
+      getPresentationOwned: () => nativeStoryRuntime.presentationActive || inspectableInteractions.busy,
       getWorld: () => worldRuntime.activeWorld,
       nativeDialogueOverlay,
       nativeDialoguePersistence,
@@ -1860,6 +1871,9 @@ function createPlayRuntime() {
     cancelWorld: () => worldRuntime.cancel(),
     initializeWorld: initialize,
     ensureCharacter: ensureCutscenePreviewCharacter,
+    captureGameplay: () => worldLifecycle.capturePlayerReturnState(),
+    restoreGameplay: (snapshot, options) => worldLifecycle.restorePlayerReturnState(snapshot, options),
+    showRecoveryError: setLoadingError,
     startDirector: (cutscene, options) => nativeCutsceneDirector.start(cutscene, options),
     stopDirector: reason => nativeCutsceneDirector.stop(reason),
     endDirector: reason => nativeCutsceneDirector.end(reason),

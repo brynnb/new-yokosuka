@@ -421,13 +421,18 @@ export class PlayerRuntime {
     }
   }
 
-  async switchCharacter(character, { persist = true } = {}) {
+  async switchCharacter(character, { persist = true, signal = null } = {}) {
+    signal?.throwIfAborted();
     if (this.characterSwitching || !character) return;
     if (character.id === this.activeCharacterId) return;
     this.characterSwitching = true;
     this.setCharacterDisabled(true);
     try {
       const { loader, root } = await this.characterRuntime.createModel(character);
+      if (signal?.aborted) {
+        root.dispose(false, true);
+        signal.throwIfAborted();
+      }
       const previousRoot = this.modelRoot;
       root.parent = this.modelOffset;
       this.animation.reset();
@@ -454,6 +459,7 @@ export class PlayerRuntime {
       this.markPresenceDirty();
       if (persist) this.persistLocation();
     } catch (error) {
+      if (signal?.aborted) throw error;
       console.error(error);
     } finally {
       this.characterSwitching = false;

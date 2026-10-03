@@ -1947,10 +1947,16 @@ export class ScheduledActorRuntime {
       && staticAttachment,
     );
     const active = forkliftActive || staticActive;
-    for (const candidate of entry.models?.values() || []) {
-      candidate.renderRoot.position.copyFrom(
-        candidate.standingRenderPosition,
+    // Only undo translation owned by this attachment when its driver leaves
+    // or changes model. Ordinary NPCs retain their entire last animation pose
+    // between cadence ticks: resetting every render root here erased S2's
+    // native vertical motion on skipped ticks and made the body vibrate.
+    const previousDriver = secondary?.driverModel;
+    if (previousDriver && (!forkliftActive || previousDriver !== model)) {
+      previousDriver.renderRoot.position.copyFrom(
+        previousDriver.standingRenderPosition,
       );
+      secondary.driverModel = null;
     }
     actorRoot.metadata.scheduledActorSecondaryObjectActive =
       forkliftActive;
@@ -1988,6 +1994,7 @@ export class ScheduledActorRuntime {
     model.renderRoot.position.addInPlace(
       scheduledForkliftDriverHorizontalOffset(),
     );
+    secondary.driverModel = model;
     // The selected CHRM remains the visible driver while its secondary object
     // is active. This is explicit because model-override schedules normally
     // toggle entire render roots as phases change.
