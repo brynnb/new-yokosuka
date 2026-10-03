@@ -111,10 +111,26 @@ bank mutation does not update that server flag. Some official-script tests
 seed these strings manually, which can make a route look integrated when
 ordinary gameplay cannot produce its prerequisite.
 
-The terminal server state received by the browser is not yet merged into the
-native snapshot, and script settlement does not yet update the connected
-personal NPC scheduler. Existing scripts using named `native.*` flags have not
-been silently converted. Consequently, server-first and native-fallback
+The server now publishes a private `script_event_committed` receipt after each
+durable effect transaction, separately from its presentation reply. This
+includes a gate's `pass_trigger` effects even if the next candidate fails. It
+refreshes only the corresponding personal NPC scheduler, using the saved bank-2
+flags and guarding against older revisions or a changed play mode.
+
+The browser flushes prior native saves before requesting an event, suppresses
+native saves during server-owned presentation, queues committed native receipts,
+then installs the newest receipt after activity cleanup. Cleanup therefore
+cannot restore a pre-event snapshot over a committed flag. Character/mode and
+local-session fences isolate delayed receipts, saves and cleanup. Lost replies
+and stalled pre-event saves time out without authorizing a native fallback;
+a late initial reply is cancelled without starting presentation. Cancelled
+preparation cannot dispatch a delayed start. Reconnect reloads durable state.
+These boundaries have focused tests, including real Yarn and PostgreSQL tests
+and same-day personal NPC schedule changes; they are not rendered evidence.
+
+Existing scripts using named `native.*` flags have not been silently converted.
+Receipt-driven reward/inventory UI refresh and the source-backed first story
+route remain unfinished. Consequently, server-first and native-fallback
 versions of the nominally same event can still advance different state and
 later select different branches.
 

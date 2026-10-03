@@ -215,6 +215,7 @@ export class MultiplayerSession {
       onVendingResult: game.onVendingResult,
       onCapsuleResult: game.onCapsuleResult,
       onScriptEventYield: game.onScriptEventYield,
+      onScriptEventCommitted: game.onScriptEventCommitted,
       onScriptEventRejected: game.onScriptEventRejected,
       onSessionReplaced: game.onSessionReplaced,
       onReset: () => {

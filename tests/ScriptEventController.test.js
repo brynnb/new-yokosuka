@@ -4,8 +4,10 @@ import test from "node:test";
 import {
   createScriptEventController,
 } from "../play/scripts/ScriptEventController.js";
+import { createNativeDialoguePersistence } from "../play/dialogue/NativeDialoguePersistence.js";
+import { createNativeDialogueSnapshot } from "../play/dialogue/NativeDialogueSnapshot.js";
 
-function harness() {
+function harness(overrides = {}) {
   let nextId = 0;
   const sent = [];
   const presentationCalls = [];
@@ -41,12 +43,125 @@ function harness() {
     createRequestId: () => `request-${++nextId}`,
     onStarted: identity => scriptStarts.push(identity),
     onError: error => errors.push(error),
+    ...overrides,
   });
   return {
     controller, sent, presentation, presentationCalls, dialogueCalls, errors,
     scriptStarts,
   };
 }
+
+test("server state ownership is prepared before dispatch and released after presentation cleanup", async () => {
+  const order = [];
+  let ready;
+  const h = harness({prepareStart: () => new Promise(resolve => { ready = () => resolve(() => order.push("release")); })});
+  const started = h.controller.start({kind:"talk", actor:"INE_"});
+  assert.equal(h.sent.length, 0);
+  assert.equal(h.controller.status, "starting");
+  ready();
+  await new Promise(resolve => setImmediate(resolve));
+  await h.controller.handleYield(yieldMessage("request-1", {type:"line"}, {line:{text:"Hello"}}));
+  await started;
+  h.presentation.commit = () => order.push("cleanup");
+  h.controller.advanceLine();
+  await h.controller.handleYield(yieldMessage("request-2", {type:"complete"}));
+  assert.deepEqual(order, ["cleanup", "release"]);
+});
+
+test("cancel during preparation does not dispatch and releases only its own ownership", async () => {
+  let ready, released = 0;
+  const h = harness({prepareStart: () => new Promise(resolve => {ready = () => resolve(() => released++);})});
+  const started = h.controller.start({kind:"talk", actor:"INE_"});
+  const rejected = assert.rejects(started, error => error.code === "start_cancelled");
+  h.controller.cancel();
+  ready();
+  await rejected;
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(released, 1);
+  assert.equal(h.sent.length, 0);
+});
+
+test("late start after cancellation is cancelled on the server instead of orphaning its lease", async () => {
+  const h = harness();
+  const started = h.controller.start({kind:"talk", actor:"INE_"});
+  const rejected = assert.rejects(started, error => error.code === "start_cancelled");
+  h.controller.cancel();
+  await rejected;
+  await h.controller.handleYield(yieldMessage("request-1", {type:"line"}, {line:{text:"Late"}}));
+  assert.equal(h.sent.at(-1).action, "cancel");
+  assert.equal(h.controller.status, "idle");
+  assert.deepEqual(h.presentationCalls, []);
+});
+
+test("a missing reply times out without authorizing native fallback and accepts a safe retry", async () => {
+  let released = 0;
+  const h = harness({requestTimeoutMs:10, prepareStart: async () => () => released++});
+  const started = h.controller.start({kind:"talk", actor:"INE_"});
+  const rejected = assert.rejects(started, error => error.code === "script_timeout");
+  await new Promise(resolve => setTimeout(resolve,25));
+  await rejected;
+  assert.equal(released, 1);
+  assert.equal(h.controller.status, "idle");
+  const next = h.controller.start({kind:"talk", actor:"INE_"});
+  await new Promise(resolve => setImmediate(resolve));
+  await h.controller.handleYield(yieldMessage("request-2", {type:"complete"}));
+  assert.equal((await next).outcome, "complete");
+});
+
+test("a stalled pre-event save times out, releases ownership and never dispatches late", async () => {
+  let acknowledge;
+  const persistence = createNativeDialoguePersistence({ saveSnapshot: snapshot => new Promise(resolve => {
+    acknowledge = () => resolve({ ...snapshot, revision: snapshot.revision + 1 });
+  }) });
+  persistence.hydrate(null).dialogueState.write(2, 900, 1);
+  persistence.markDirty();
+  const h = harness({ requestTimeoutMs: 10, prepareStart: options => persistence.beginServerEvent(options) });
+  const started = h.controller.start({ kind: "talk", actor: "INE_" });
+  const rejected = assert.rejects(started, error => error.code === "script_timeout");
+  await new Promise(resolve => setTimeout(resolve, 25));
+  await rejected;
+  assert.equal(h.controller.status, "idle");
+  assert.equal(persistence.serverEvent, null);
+  acknowledge();
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(h.sent.length, 0);
+  assert.equal(persistence.snapshot.revision, 1, "the earlier save is still durable");
+});
+
+test("committed gate state survives presentation failure and old activity cleanup", async () => {
+  const persistence = createNativeDialoguePersistence({ saveSnapshot: async () => assert.fail("unexpected save") });
+  const baseline = persistence.hydrate(null).toJSON();
+  const h = harness({ prepareStart: options => persistence.beginServerEvent(options) });
+  const started = h.controller.start({ kind: "talk", actor: "INE_" });
+  await new Promise(resolve => setImmediate(resolve));
+  await h.controller.handleYield(yieldMessage("request-1", { type: "line" }, { line: { text: "Hello" } }));
+  await started;
+  const saved = createNativeDialogueSnapshot(baseline);
+  saved.revision = 1;
+  saved.dialogueState.write(2, 832, 1);
+  persistence.acceptServerSnapshot(saved.toJSON());
+  h.presentation.rollback = () => persistence.restoreWorkingState(baseline);
+  await h.controller.fail(new Error("next presentation failed"));
+  assert.deepEqual(persistence.captureWorkingState(), saved.toJSON());
+  assert.equal(h.controller.status, "idle");
+  assert.equal(h.sent.at(-1).action, "cancel");
+});
+
+test("visual rollback failure still releases ownership and cancels the server run", async t => {
+  t.mock.method(console, "error", () => {});
+  let released = 0;
+  const h = harness({ prepareStart: async () => () => released++ });
+  const started = h.controller.start({ kind: "talk", actor: "INE_" });
+  await new Promise(resolve => setImmediate(resolve));
+  await h.controller.handleYield(yieldMessage("request-1", { type: "line" }, { line: { text: "Hello" } }));
+  await started;
+  h.presentation.rollback = () => { throw new Error("broken visual cleanup"); };
+  h.controller.cancel();
+  assert.equal(h.sent.at(-1).action, "cancel");
+  await h.controller.handleYield(yieldMessage("request-2", { type: "cancelled" }));
+  assert.equal(released, 1);
+  assert.equal(h.controller.status, "idle");
+});
 
 function yieldMessage(requestId, event, extra = {}) {
   return { requestId, runId: 41, event, ...extra };

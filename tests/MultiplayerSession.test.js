@@ -50,5 +50,6 @@ test("multiplayer session forwards authoritative script event callbacks", async 
     ), "utf8")
   ));
   assert.match(source, /onScriptEventYield: game\.onScriptEventYield/);
+  assert.match(source, /onScriptEventCommitted: game\.onScriptEventCommitted/);
   assert.match(source, /onScriptEventRejected: game\.onScriptEventRejected/);
 });

@@ -22,6 +22,8 @@ export class ScriptEventController {
     client,
     presentation,
     dialogue,
+    prepareStart = null,
+    requestTimeoutMs = 15000,
     createRequestId = defaultRequestId,
     onStateChanged = () => {},
     onStarted = () => {},
@@ -41,6 +43,9 @@ export class ScriptEventController {
     this.client = client;
     this.presentation = presentation;
     this.dialogue = dialogue;
+    this.prepareStart = prepareStart;
+    this.requestTimeoutMs = requestTimeoutMs;
+    this.abandonedStarts = new Set();
     this.createRequestId = createRequestId;
     this.onStateChanged = onStateChanged;
     this.onStarted = onStarted;
@@ -70,22 +75,89 @@ export class ScriptEventController {
       resolve = resolve_;
       reject = reject_;
     });
-    this.pendingStart = {
+    const pending = this.pendingStart = {
       requestId,
       selector: { ...selector },
       context: { ...context },
       resolve,
       reject,
+      releaseState: null,
+      sent: false,
+      controller: new AbortController(),
     };
-    if (this.client.startScriptEvent(selector, requestId) !== true) {
+    this.armRequestTimeout(pending);
+    if (this.prepareStart) {
+      this.emitState();
+      void this.preparePendingStart(pending);
+    } else this.sendStart(pending);
+    return result;
+  }
+
+  async preparePendingStart(pending) {
+    try {
+      const release = await this.prepareStart({ signal: pending.controller.signal });
+      if (typeof release !== "function") throw new Error("script state ownership did not provide cleanup");
+      if (this.pendingStart !== pending) {
+        release();
+        return;
+      }
+      pending.releaseState = release;
+      this.sendStart(pending);
+    } catch (error) {
+      if (this.pendingStart !== pending) return;
+      this.clearRequestTimeout(pending);
       this.pendingStart = null;
+      pending.releaseState?.();
+      pending.reject(error);
+      this.emitState();
+    }
+  }
+
+  sendStart(pending) {
+    const { selector, requestId } = pending;
+    if (this.client.startScriptEvent(selector, requestId) !== true) {
+      this.clearRequestTimeout(pending);
+      this.pendingStart = null;
+      pending.releaseState?.();
       const error = new Error("script event requires a server connection");
       error.code = "connection_unavailable";
-      reject(error);
-      return result;
+      pending.reject(error);
+      this.emitState();
+      return;
     }
+    pending.sent = true;
+    this.armRequestTimeout(pending);
     this.emitState();
-    return result;
+  }
+
+  clearRequestTimeout(owner) {
+    if (owner?.timer) clearTimeout(owner.timer);
+    if (owner) owner.timer = null;
+  }
+
+  abandonStart(pending) {
+    this.clearRequestTimeout(pending);
+    pending.controller.abort(new DOMException("script start abandoned", "AbortError"));
+    if (!pending.sent) return;
+    this.abandonedStarts.add(pending.requestId);
+    // Only retain recent requests; the server also expires abandoned leases.
+    if (this.abandonedStarts.size > 32) this.abandonedStarts.delete(this.abandonedStarts.values().next().value);
+  }
+
+  armRequestTimeout(owner) {
+    this.clearRequestTimeout(owner);
+    owner.timer = setTimeout(() => {
+      const error = new Error("script event response timed out; its result is not known");
+      error.code = "script_timeout";
+      if (this.pendingStart === owner) {
+        this.abandonStart(owner);
+        this.pendingStart = null;
+        owner.releaseState?.();
+        owner.reject(error);
+        this.emitState();
+      } else if (this.active === owner) void this.fail(error);
+    }, this.requestTimeoutMs);
+    owner.timer.unref?.();
   }
 
   handleYield(message) {
@@ -98,7 +170,9 @@ export class ScriptEventController {
   handleRejected(message) {
     const pending = this.pendingStart;
     if (pending && message?.requestId === pending.requestId) {
+      this.clearRequestTimeout(pending);
       this.pendingStart = null;
+      pending.releaseState?.();
       const error = new Error(message.message || "script event was rejected");
       error.code = message.code;
       pending.resolve({ outcome: "rejected", error, message });
@@ -108,6 +182,7 @@ export class ScriptEventController {
     if (!this.active || message?.requestId !== this.active.requestId) {
       return false;
     }
+    this.clearRequestTimeout(this.active);
     const error = new Error(message.message || "script event advance was rejected");
     error.code = message.code;
     void this.fail(error);
@@ -131,7 +206,9 @@ export class ScriptEventController {
   cancel(reason = "user-cancelled") {
     if (this.pendingStart) {
       const pending = this.pendingStart;
+      this.abandonStart(pending);
       this.pendingStart = null;
+      pending.releaseState?.();
       const error = new Error(`script event cancelled: ${reason}`);
       error.code = "start_cancelled";
       pending.reject(error);
@@ -143,8 +220,7 @@ export class ScriptEventController {
     this.active.cancelling = true;
     this.active.controller.abort(new DOMException(reason, "AbortError"));
     this.dialogue.hide();
-    this.presentation.rollback(reason);
-    this.active.presentationStarted = false;
+    this.rollbackPresentation(this.active, reason);
     return this.sendAdvance("cancel");
   }
 
@@ -163,22 +239,33 @@ export class ScriptEventController {
 
   reset(reason = "reset") {
     if (this.pendingStart) {
+      this.abandonStart(this.pendingStart);
       const error = new Error(`script event interrupted: ${reason}`);
       error.code = "start_interrupted";
       this.pendingStart.reject(error);
+      this.pendingStart.releaseState?.();
     }
     this.pendingStart = null;
+    this.clearRequestTimeout(this.active);
     this.active?.controller.abort(new DOMException(reason, "AbortError"));
     this.dialogue.hide();
-    if (this.active?.presentationStarted) this.presentation.rollback(reason);
+    this.rollbackPresentation(this.active, reason);
+    this.active?.releaseState?.();
     this.active = null;
     this.emitState();
   }
 
   async processYield(message) {
+    if (this.abandonedStarts.delete(message?.requestId)) {
+      if (Number.isSafeInteger(message.runId) && message.runId > 0 && !TERMINAL_EVENTS.has(message?.event?.type)) {
+        this.client.advanceScriptEvent(message.runId, "cancel", { requestId: this.createRequestId() });
+      }
+      return false;
+    }
     let active = this.active;
     const pending = this.pendingStart;
     if (pending && message?.requestId === pending.requestId) {
+      this.clearRequestTimeout(pending);
       this.pendingStart = null;
       active = {
         runId: message.runId,
@@ -198,6 +285,7 @@ export class ScriptEventController {
         cancelling: false,
         awaitingLine: false,
         optionIds: null,
+        releaseState: pending.releaseState,
       };
       this.active = active;
       try {
@@ -214,6 +302,7 @@ export class ScriptEventController {
     } else if (!active || message?.requestId !== active.requestId) {
       return false;
     }
+    this.clearRequestTimeout(active);
     const event = message?.event;
     if (!event?.type) throw new Error("server yielded an invalid script event");
     if (TERMINAL_EVENTS.has(event.type)) {
@@ -223,6 +312,7 @@ export class ScriptEventController {
         if (event.type === "complete") this.presentation.commit();
         else this.presentation.rollback(event.type);
       }
+      active.releaseState?.();
       this.active = null;
       this.emitState();
       return true;
@@ -285,21 +375,18 @@ export class ScriptEventController {
       return false;
     }
     active.requestId = requestId;
+    this.armRequestTimeout(active);
     this.emitState();
     return true;
   }
 
   async fail(error) {
     const active = this.active;
+    this.clearRequestTimeout(active);
     active?.controller.abort(error);
     this.dialogue.hide();
-    if (active?.presentationStarted) {
-      try {
-        this.presentation.rollback("client-error");
-      } catch (rollbackError) {
-        console.error("Script presentation rollback failed:", rollbackError);
-      }
-    }
+    this.rollbackPresentation(active, "client-error");
+    active?.releaseState?.();
     this.active = null;
     if (active) {
       this.client.advanceScriptEvent(active.runId, "cancel", {
@@ -309,6 +396,18 @@ export class ScriptEventController {
     this.onError(error);
     this.emitState();
     return false;
+  }
+
+  rollbackPresentation(active, reason) {
+    if (!active?.presentationStarted) return;
+    active.presentationStarted = false;
+    try {
+      this.presentation.rollback(reason);
+    } catch (error) {
+      // A failed visual cleanup must not retain a native-state owner or prevent
+      // the server cancellation request from releasing its run lease.
+      console.error("Script presentation rollback failed:", error);
+    }
   }
 
   emitState() {

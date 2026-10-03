@@ -151,6 +151,7 @@ export function createScriptEventAssembly({
     },
     presentation,
     dialogue: dialoguePresenter,
+    prepareStart: options => dialoguePersistence.beginServerEvent(options),
     onStarted: identity => {
       if (localDebug) console.info("[Script started]", identity);
     },

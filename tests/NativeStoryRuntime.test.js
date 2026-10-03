@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import { NativeStoryRuntime } from "../play/scripts/NativeStoryRuntime.js";
+import { createNativeDialoguePersistence } from "../play/dialogue/NativeDialoguePersistence.js";
 
 function createRuntime() {
   const calls = [];
@@ -140,4 +141,20 @@ test("startup ownership spans scene loading gaps without stopping authored playb
   assert.equal(runtime.presentationActive, false);
   runtime.updateAutomatic({ world: { nativeArea: "JOMO" }, enabled: true });
   assert.equal(calls.at(-1)[1].enabled, true);
+});
+
+test("story runtime applies receipts and invalidates state on malformed receipts or disposal", t => {
+  t.mock.method(console, "error", () => {});
+  const { runtime, calls } = createRuntime();
+  runtime.dialoguePersistence = createNativeDialoguePersistence({ saveSnapshot: async () => assert.fail("unexpected save") });
+  const saved = runtime.dialoguePersistence.hydrate(null).toJSON();
+  saved.revision = 1;
+  assert.equal(runtime.applyScriptSettlement({ nativeDialogue: saved }), true);
+  assert.equal(runtime.dialoguePersistence.snapshot.revision, 1);
+  assert.equal(runtime.applyScriptSettlement({ nativeDialogue: { revision: 2 } }), false);
+  assert.equal(runtime.dialoguePersistence.snapshot, null);
+  assert.deepEqual(calls.at(-1), ["reset", "invalid-story-settlement"]);
+  runtime.applyDialogueState(saved);
+  runtime.dispose();
+  assert.equal(runtime.dialoguePersistence.snapshot, null);
 });

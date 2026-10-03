@@ -863,6 +863,9 @@ export class MultiplayerClient {
       case "script_event_yield":
         this.callbacks.onScriptEventYield?.(message);
         break;
+      case "script_event_committed":
+        this.callbacks.onScriptEventCommitted?.(message);
+        break;
       case "script_event_rejected":
         this.callbacks.onScriptEventRejected?.(message);
         break;

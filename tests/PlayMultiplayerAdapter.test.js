@@ -71,6 +71,23 @@ test("multiplayer adapter owns presence animation revision", () => {
   assert.deepEqual(calls, ["dirty"]);
 });
 
+test("story receipts are fenced to the selected character and play mode", () => {
+  const received = [];
+  const accountSession = { character: { id: 12, modeRevision: 7 } };
+  const { adapter } = createAdapter({
+    accountSession,
+    nativeStoryRuntime: { applyScriptSettlement: state => received.push(state) },
+  });
+  const onReceipt = adapter.callbacks().onScriptEventCommitted;
+  const state = { nativeDialogue: { revision: 4 } };
+  onReceipt({ characterId: 12, modeRevision: 6, state });
+  onReceipt({ characterId: 11, modeRevision: 7, state });
+  onReceipt({ characterId: 12, modeRevision: 7, state });
+  accountSession.character = null;
+  onReceipt({ characterId: 12, modeRevision: 7, state });
+  assert.deepEqual(received, [state]);
+});
+
 test("multiplayer warp delegates validated coordinates to world lifecycle", () => {
   const { adapter, calls } = createAdapter();
 

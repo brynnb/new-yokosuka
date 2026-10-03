@@ -128,6 +128,12 @@ export class PlayMultiplayerAdapter {
       },
       onArcadeHighScore: event => this.arcadeCoordinator.applyLiveHighScore(event),
       onScriptEventYield: message => this.scriptEventController.handleYield(message),
+      onScriptEventCommitted: message => {
+        const character = this.accountSession.character;
+        if (!character || message.characterId !== character.id
+          || message.modeRevision !== character.modeRevision) return;
+        this.nativeStoryRuntime.applyScriptSettlement(message.state);
+      },
       onScriptEventRejected: message => (
         this.scriptEventController.handleRejected(message)
       ),

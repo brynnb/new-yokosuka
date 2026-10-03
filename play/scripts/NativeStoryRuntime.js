@@ -137,9 +137,24 @@ export class NativeStoryRuntime {
     else this.dialoguePersistence.clear();
   }
 
+  applyScriptSettlement(state) {
+    if (!state?.nativeDialogue) return false;
+    try {
+      return this.dialoguePersistence.acceptServerSnapshot(state.nativeDialogue);
+    } catch (error) {
+      // Never continue story decisions from a malformed/ambiguous receipt.
+      // A fresh welcome loads the durable snapshot even if the reply was lost.
+      this.eventController.reset("invalid-story-settlement");
+      this.dialoguePersistence.clear();
+      console.error("Story settlement could not be applied; reconnect required:", error);
+      return false;
+    }
+  }
+
   dispose() {
     this.cutscenes.dispose();
     this.dialogueOverlay.dispose();
     this.eventController.reset("disposed");
+    this.dialoguePersistence.clear();
   }
 }

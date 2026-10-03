@@ -105,8 +105,11 @@ working. The bookmark never unlocks entries or changes server progress.
 This is the mode/persistence foundation, not complete playable story coverage.
 The native interpreter and the server/Yarn event engine still have distinct
 state representations. Server events can now query and settle original native
-banks atomically with rewards, but existing routes, client receipt hydration,
-and live NPC refresh still need to adopt that bridge. Mode isolation does not
+banks atomically with rewards. The client applies committed native receipts
+after presentation cleanup, and the server refreshes only that player's NPC
+schedules. Existing named-flag routes still need to adopt the bridge;
+settlement-driven reward UI and the first complete story route remain pending.
+Mode isolation does not
 make arbitrary client-submitted native flags server-validated. Notebook entries
 beyond the opening, unimplemented quest triggers, original sleep/deadline behavior and
 event-driven calendar changes remain tracked in

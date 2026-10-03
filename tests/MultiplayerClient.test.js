@@ -71,6 +71,26 @@ function localState(overrides = {}) {
   };
 }
 
+test("WebSocket delivers durable script receipts independently of presentation replies", () => {
+  FakeWebSocket.instances.length = 0;
+  const received = [];
+  const client = new MultiplayerClient({
+    url: "ws://test/ws", WebSocketClass: FakeWebSocket,
+    callbacks: { onScriptEventCommitted: message => received.push(message) },
+  });
+  client.connect();
+  const socket = FakeWebSocket.instances[0];
+  socket.open();
+  const receipt = {
+    v: MULTIPLAYER_PROTOCOL_VERSION, type: "script_event_committed",
+    runId: 91, characterId: 2, modeRevision: 7,
+    state: { revision: 5, nativeDialogue: { revision: 4 } },
+  };
+  socket.emit("message", { data: JSON.stringify(receipt) });
+  assert.deepEqual(received, [receipt]);
+  client.close();
+});
+
 test("multiplayer URL follows page security and supports overrides", () => {
   assert.equal(
     multiplayerUrl({ protocol: "https:", host: "example.com" }),
