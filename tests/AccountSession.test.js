@@ -17,6 +17,40 @@ function memoryStorage(entries = []) {
   };
 }
 
+test("mode reload resumes the owned character without another menu or intro prompt", async () => {
+  const previousDocument = globalThis.document;
+  const previousStorage = Object.getOwnPropertyDescriptor(globalThis, "sessionStorage");
+  const storage = memoryStorage([["new-yokosuka.mode-resume.v1", "7"]]);
+  Object.defineProperty(globalThis, "sessionStorage", {configurable: true, value: storage});
+  globalThis.document = {body: {classList: {remove() {}}}};
+  const character = {id: 7, name: "Tester", playMode: "story", modeRevision: 3};
+  const calls = [];
+  try {
+    const account = new AccountSession({
+      request: async path => {
+        calls.push(path);
+        return path === "/api/session"
+          ? {account: {id: 2}}
+          : {characters: [character]};
+      },
+      flow: {
+        showClosed() { calls.push("closed"); },
+        authenticate() { throw new Error("must not return to login"); },
+        setConnectionStatus() {},
+      },
+      connectionStatus: {start() {}, stop() {}},
+    });
+    await account.start();
+    assert.equal(account.character, character);
+    assert.deepEqual(calls, ["/api/session", "/api/characters", "closed"]);
+    assert.equal(storage.getItem("new-yokosuka.mode-resume.v1"), null);
+  } finally {
+    globalThis.document = previousDocument;
+    if (previousStorage) Object.defineProperty(globalThis, "sessionStorage", previousStorage);
+    else delete globalThis.sessionStorage;
+  }
+});
+
 test('machine purchase updates money and collection without resetting character HUD', () => {
   const account = new AccountSession();
   account.applyWelcome({id: 42, name: 'Ryo', level: 4, currentHp: 70, maxHp: 120, yen: 500}, []);

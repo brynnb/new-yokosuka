@@ -1,5 +1,5 @@
-// First world login is the existing durable boundary. Do not stamp it until
-// the opening has finished: closing/reloading during playback must be retryable.
+// Completion is saved per mode only after successful playback. A failed or
+// cancelled load must be retryable; sidebar previews never mark it complete.
 export const NEW_CHARACTER_OPENING = Object.freeze([
   "S1-OP02-00",
   "S1-000",
@@ -21,12 +21,16 @@ export const NEW_CHARACTER_OPENING_ARRIVAL = Object.freeze({
 });
 
 export function needsNewCharacterOpening(character) {
-  return Boolean(character?.id && !character.lastLoginAt);
+  return Boolean(character?.id && character.openingCompleted === false);
 }
 
 export async function playNewCharacterOpening({ character, playCutscene, signal }) {
   if (!needsNewCharacterOpening(character)) return false;
-  for (const cutsceneId of NEW_CHARACTER_OPENING) {
+  // OP02 contains both Shenhua and the hawk. Other avatars skip the personal
+  // Hazuki prologue and enter Dobuita at the server-authored default position.
+  const scenes = character.playMode === "story"
+    ? NEW_CHARACTER_OPENING : NEW_CHARACTER_OPENING.slice(0, 1);
+  for (const cutsceneId of scenes) {
     signal?.throwIfAborted();
     // The existing runner owns loading, dialogue isolation and settlement.
     // Its user skip ends the current scene; a failure rejects the sequence.

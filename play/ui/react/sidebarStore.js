@@ -5,6 +5,7 @@ const callbacks = {
   onCutscene: () => {},
   onEmote: () => {},
   onCharacter: () => {},
+  onPlayMode: () => {},
   onSelectionCommitted: () => {},
 };
 let travelSelectionCommitted = false;
@@ -26,6 +27,9 @@ export const useSidebarStore = create(() => ({
   animationDisabledReason: null,
   characterDisabled: true,
   openPicker: null,
+  playMode: "free_roam",
+  modeBusy: false,
+  modeError: null,
 }));
 
 export function configureSidebarMenus({
@@ -37,6 +41,7 @@ export function configureSidebarMenus({
   onCutscene,
   onEmote,
   onCharacter,
+  onPlayMode = () => {},
   onSelectionCommitted,
 }) {
   travelSelectionCommitted = false;
@@ -45,6 +50,7 @@ export function configureSidebarMenus({
     onCutscene,
     onEmote,
     onCharacter,
+    onPlayMode,
     onSelectionCommitted,
   });
   useSidebarStore.setState({
@@ -63,6 +69,7 @@ export function setSidebarPickerOpen(picker, open) {
 }
 
 export function selectSidebarTravel(worldId) {
+  if (useSidebarStore.getState().modeBusy) return false;
   // Radix may publish another value while a controlled Select is closing.
   // Treat each explicit opening as one transaction so that a stale second
   // value cannot start another world load after the intended teleport.
@@ -74,13 +81,14 @@ export function selectSidebarTravel(worldId) {
 }
 
 export function selectSidebarCutscene(cutsceneId) {
+  if (useSidebarStore.getState().modeBusy) return false;
   setSidebarPickerOpen("cutscene", false);
   callbacks.onCutscene(cutsceneId);
 }
 
 export function selectSidebarEmote(emoteId) {
   const state = useSidebarStore.getState();
-  if (state.animationDisabled) return;
+  if (state.animationDisabled || state.modeBusy) return;
   const emote = state.emotes.find(
     ({ id }) => id === emoteId,
   );
@@ -90,6 +98,7 @@ export function selectSidebarEmote(emoteId) {
 
 export function selectSidebarCharacter(characterId) {
   const state = useSidebarStore.getState();
+  if (state.characterDisabled || state.playMode === "story" || state.modeBusy) return;
   const selectedId = characterId === DEFAULT_APPEARANCE_VALUE
     ? state.defaultCharacterId
     : characterId;
@@ -99,4 +108,9 @@ export function selectSidebarCharacter(characterId) {
   if (!character) return;
   setSidebarPickerOpen("character", false);
   callbacks.onCharacter(character);
+}
+
+export function selectSidebarPlayMode(mode) {
+  if (useSidebarStore.getState().modeBusy) return;
+  void callbacks.onPlayMode(mode);
 }

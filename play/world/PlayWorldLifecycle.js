@@ -12,6 +12,7 @@ import { YOU_ARCADE_INTERACTIONS } from "../config/arcadeFixtures.js";
 import { MJQ_POOL_INTERACTION } from "../config/pool.js";
 import { VOID_RESET_HEIGHT } from "../config/locations.js";
 import { isPersistentPlayerWorld } from "../state/PlayerPersistence.js";
+import { effectiveAvatar } from "../account/PlayModeSession.js";
 import { bindShenmue2NativeDoors } from "./Shenmue2NativeDoors.js";
 import {
   createArcadeInteractionAnchors,
@@ -409,7 +410,7 @@ export class PlayWorldLifecycle {
       ? serverSavedWorld
       : null;
     const savedAvatar = savedCharacter
-      ? this.characterById.get(savedCharacter.avatarId)
+      ? this.characterById.get(effectiveAvatar(savedCharacter))
       : null;
     const savedLocation = savedWorld ? {
       world: savedWorld,

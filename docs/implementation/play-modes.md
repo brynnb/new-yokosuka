@@ -1,0 +1,85 @@
+# Story mode and Free roam
+
+The sidebar switches a character between two server-saved contexts. The switch
+saves pending dialogue, checkpoints the current position, and reloads the game
+session. A one-use browser hint selects the same character again after checking
+the authenticated account. It never contains credentials or a client-owned save.
+
+| State | Story mode | Free roam |
+| --- | --- | --- |
+| Appearance | Ryo | Character's chosen creation avatar; appearance picker available |
+| Calendar | Personal, saved; pauses outside the connected story session | Shared public calendar |
+| Location and facing | Saved story position | Separate saved exploration position |
+| Native dialogue banks/progress and script flags | Personal story context | Separate exploration context |
+| Other players | Visible in the same geographical zone | Visible in the same geographical zone |
+
+Inventory, capsule collection, yen, experience and HP still belong to the
+character, shared across these modes. This does not introduce replayable story
+rewards or a second economy.
+
+## New characters and first story entry
+
+- Ryo starts in Story mode. The opening plays OP02 (Shenhua and hawk), murder,
+  Ine-san's mail, and the Lan Di dream/awakening.
+- Other avatars start in Free roam. Only OP02 plays, then they enter the normal
+  Dobuita spawn at (67.79, 0, 61.92), facing pi radians.
+- Entering Story mode for the first time starts the full opening as Ryo.
+- Completed openings do not replay when changing modes or reconnecting.
+  A load failure/disposal before completion leaves the opening retryable.
+  Explicitly skipping a scene counts as completing that presentation.
+- Existing characters migrate to Free roam with their old saves intact.
+
+The post-opening story starts December 3, 1986 at 08:50, at JOMO entry 1 beside
+Ryo's bed. Sources are the OP00 awakening package, the JOMO MAPINFO entry,
+[cutscene chronology](cutscenes.md), and
+`tools/evidence/native-dialogue-free-roam-bootstrap.json`. The latter records
+the original post-opening native banks; despite its historical filename it is
+not an instruction to set later story milestones. Both new contexts initialize
+from those verified banks.
+
+## Shared world, personal presentation
+
+Story viewers receive their own authoritative clock and NPC schedule stream.
+NPC engines share the existing compiled actor programs, but have separate
+schedule, avoidance and revision state. Bank-2 changes reselect that viewer's
+schedules; timed entrances and script-event calendar/presence checks use the same
+personal view. Public NPC updates cannot overwrite it. Player presence and chat
+still share the normal world room.
+
+The existing waking-day clock runs at 25 game seconds per real second and skips
+23:30–08:30. Story time advances while its WebSocket is connected, including
+ordinary dialogue, and is checkpointed even when standing still. It pauses on
+disconnect or a mode switch. Original sleep routines and event-driven time jumps
+are not newly implemented here. Weather still uses the configured server weather
+policy; seasonal layers use the existing two-season calendar rule (November
+through March is winter). That rule is an approximation, not the original game's
+full weather calendar.
+
+## Persistence and recovery
+
+Server migration `006_personal_play_modes.sql` adds the mode and context saves.
+The existing active character/native/Yarn tables stay authoritative. A mode swap
+archives them and restores the target context in one transaction. It preserves
+monotonically increasing native/script revisions and increments a mode revision
+that fences old position/clock writes. Live script leases prevent switching.
+
+The client disables switching during loading, dialogue, previews, modal actions,
+arcade play and vehicle driving. It waits for native saves first. If a request's
+acknowledgement is lost, it checks the server's revision; an uncertain outcome
+reloads rather than continuing to write the old context.
+
+Sidebar cutscene previews remain isolated previews and do not mark an opening
+complete or modify the story save.
+
+## Current limits
+
+This is the mode/persistence foundation, not complete playable story coverage.
+The native interpreter and the server/Yarn event engine still have distinct
+state representations; mode isolation does not bridge their milestones or
+make arbitrary client-submitted native flags server-validated. Notebook entry
+generation, unimplemented quest triggers, original sleep/deadline behavior and
+event-driven calendar changes remain tracked in
+[storyline gameplay integration](../design/storyline-gameplay.md).
+
+Use a separate local database when testing both worktrees. Do not point the new
+client at an older server: the character state and opening APIs are required.

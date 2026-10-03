@@ -14,6 +14,7 @@ Reverse-engineering evidence and original-game findings belong under
 - [Prepared scenery experiment (local lab)](../guides/tooling/scenery-bundle-lab.md)
 - [World time, lighting, seasons, and variants](world-time-and-variants.md)
 - [Multiplayer server and persistence](multiplayer-server.md)
+- [Story mode and Free roam](play-modes.md)
 - [Scheduled NPCs](scheduled-npcs.md)
 - [Shenmue II models](../guides/shenmue2-models.md)
 - [Shenmue II animation system](shenmue2-animation.md)
@@ -29,8 +30,7 @@ Reverse-engineering evidence and original-game findings belong under
 - [MJQ pool integration](mjq-pool.md)
 
 Extraction instructions belong in [guides](../guides/README.md). Plans for
-personal story progression belong in [design](../design/README.md), not the
-runtime feature list.
+remaining story-event integration belong in [design](../design/README.md).
 
 ## Play runtime ownership
 

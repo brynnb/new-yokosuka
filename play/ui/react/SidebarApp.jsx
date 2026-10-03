@@ -8,6 +8,7 @@ import {
   Heading,
   IconButton,
   Select,
+  SegmentedControl,
   Text,
   Tooltip,
 } from "@radix-ui/themes";
@@ -30,6 +31,7 @@ import {
   selectSidebarCutscene,
   selectSidebarEmote,
   selectSidebarTravel,
+  selectSidebarPlayMode,
   setSidebarPickerOpen,
   useSidebarStore,
 } from "./sidebarStore.js";
@@ -113,6 +115,9 @@ function SidebarToggle() {
 }
 
 export function SidebarApp() {
+  const playMode = useSidebarStore(state => state.playMode);
+  const modeBusy = useSidebarStore(state => state.modeBusy);
+  const modeError = useSidebarStore(state => state.modeError);
   const [avatarBrowserOpen, setAvatarBrowserOpen] = useState(false);
   const connectionState = useChatUiStore((state) => state.connectionState);
   const playerCount = useChatUiStore((state) => state.playerCount);
@@ -180,8 +185,17 @@ export function SidebarApp() {
           aria-label="Travel, animation, cutscene, and character selection"
         >
           <Flex direction="column" gap="2">
+            <SegmentedControl.Root value={playMode} onValueChange={selectSidebarPlayMode}
+              aria-label="Play mode" disabled={modeBusy}>
+              <SegmentedControl.Item value="story">Story mode</SegmentedControl.Item>
+              <SegmentedControl.Item value="free_roam">Free roam</SegmentedControl.Item>
+            </SegmentedControl.Root>
+            {modeBusy && <Text size="1" role="status">Saving and changing mode…</Text>}
+            {modeError && <Text size="1" color="red" role="alert">{modeError}</Text>}
+            {playMode === "story" && <Text size="1" color="gray">Ryo · Personal story and clock</Text>}
             <SidebarSelect
               id="travel-button"
+              disabled={modeBusy}
               placeholder="Travel to..."
               picker="travel"
               onValueChange={selectSidebarTravel}
@@ -216,6 +230,7 @@ export function SidebarApp() {
             </SidebarSelect>
             <SidebarSelect
               id="cutscene-button"
+              disabled={modeBusy}
               placeholder="Play cutscene..."
               picker="cutscene"
               onValueChange={selectSidebarCutscene}
@@ -233,7 +248,7 @@ export function SidebarApp() {
               value={activeCharacterId === defaultCharacterId
                 ? DEFAULT_APPEARANCE_VALUE
                 : activeCharacterId || DEFAULT_APPEARANCE_VALUE}
-              disabled={characterDisabled}
+              disabled={characterDisabled || playMode === "story" || modeBusy}
               onValueChange={selectSidebarCharacter}
             >
               <Select.Item value={DEFAULT_APPEARANCE_VALUE}>
@@ -261,7 +276,7 @@ export function SidebarApp() {
               type="button"
               color="gray"
               variant="soft"
-              disabled={characterDisabled}
+              disabled={characterDisabled || playMode === "story" || modeBusy}
               onClick={() => setAvatarBrowserOpen(true)}
             >
               Browse Avatars

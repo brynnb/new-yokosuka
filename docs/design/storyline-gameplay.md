@@ -1,7 +1,11 @@
 # Storyline gameplay integration
 
 Status: integration design; existing boundaries are distinguished from proposed work
-Last reviewed: August 23, 2026
+Last reviewed: October 3, 2026
+
+The [implemented play modes](../implementation/play-modes.md) now isolate Story
+and Free roam saves, calendars and NPC views. The event-settlement and native/Yarn
+integration gaps below remain; mode switching does not itself complete them.
 
 ## Purpose
 
@@ -43,15 +47,17 @@ shared-world entry or interaction
   -> browser restores the shared world or enters an authorized destination
 ```
 
-Do not let one player's story flag remove or relocate a shared NPC for every
-player. Brief scenes belong in personal presentation overlays. QTEs, fights,
+Each Story player can see NPCs in different places according to their saved
+calendar and flags without changing other players' NPCs. Brief scenes belong in
+personal presentation overlays. QTEs, fights,
 or events that materially alter a room may need a private or party event
 instance.
 
-The synchronized public date is for the public clock, lighting, businesses,
-and shared schedules. It is **not** the character's Shenmue chapter. Original
-month/day predicates are research evidence that must be converted into a
-reviewed personal phase or deliberately retained as a public-time condition.
+Free roam uses the synchronized public date. Story mode uses a server-saved
+personal calendar for lighting, businesses, NPC schedules and native date
+predicates. Players in the same zone can still see each other despite seeing
+different dates, times and NPCs. Preserve original calendar predicates in that
+personal context rather than translating them into public-world dates.
 
 ## The largest current architectural gap: two story states
 

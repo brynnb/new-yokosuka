@@ -1,6 +1,7 @@
 import { AccountConnectionStatus } from "./AccountConnectionStatus.js";
 import { setAccountMenuVisible } from "./AccountMenuPresentation.js";
 import { updateGameUi } from "../ui/react/gameUiStore.js";
+import { consumeModeResume } from "./PlayModeSession.js";
 
 const GUEST_TOKEN_KEY = "new-yokosuka.guest-token.v1";
 
@@ -87,6 +88,17 @@ export class AccountSession {
 
   async start({ previewCutscene = null } = {}) {
     const flow = await this.#accountFlow();
+    try {
+      const resumed = await consumeModeResume(this.request);
+      if (resumed) {
+        this.#apply(resumed);
+        this.character = resumed.character;
+        flow.showClosed();
+      }
+    } catch (error) {
+      // Authentication expiry/deletion returns to the existing account flow.
+      console.warn("[Play mode] Could not resume character:", error.message);
+    }
     this.connectionStatus.start((status) => flow.setConnectionStatus(status));
     let authenticationScreen = "entry";
     while (!this.character) {
