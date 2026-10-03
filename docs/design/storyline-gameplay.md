@@ -61,8 +61,9 @@ personal context rather than translating them into public-world dates.
 
 ## The largest current architectural gap: two story states
 
-There are currently two durable progression systems, and they do not
-automatically synchronize.
+There are two durable progression representations. The server now has an
+explicit native-bank transaction bridge; existing routes and browser consumers
+still need to adopt it. They do not automatically synchronize.
 
 ### Exact native state
 
@@ -88,7 +89,18 @@ The server's script-event store separately owns:
 - inventory and yen; and
 - its own optimistic revision and event-run leases.
 
-Yarn effects are staged and committed atomically at `complete`.
+Yarn effects are staged and committed atomically at `complete`. The server's
+`native_value("2:832")` and `set_native_value "2:832" 1` now read/write the
+actual native snapshot instead of a named flag. Compiler-indexed native-value
+dependencies pin the snapshot at event start. Native writes and rewards commit
+together, with one native revision increment and a complete `nativeDialogue`
+receipt. Concurrent legacy dialogue saves are refused while that lease owns
+the snapshot; cancellation, expiry and failure do not settle staged effects.
+
+The shared bank primitive, real Yarn compilation/execution and PostgreSQL
+settlement have been tested, including fresh Story state, read-after-write,
+repeat visits, preview isolation, duplicate completion, stale saves, rollback
+and pre-presentation trigger passing. This is not rendered gameplay evidence.
 
 ### They are not aliases
 
@@ -99,13 +111,15 @@ bank mutation does not update that server flag. Some official-script tests
 seed these strings manually, which can make a route look integrated when
 ordinary gameplay cannot produce its prerequisite.
 
-The terminal server state received by the browser is also not merged into the
-native snapshot. Consequently, server-first and native-fallback versions of
-the nominally same event can advance different state and later select
-different branches.
+The terminal server state received by the browser is not yet merged into the
+native snapshot, and script settlement does not yet update the connected
+personal NPC scheduler. Existing scripts using named `native.*` flags have not
+been silently converted. Consequently, server-first and native-fallback
+versions of the nominally same event can still advance different state and
+later select different branches.
 
-**Do not scale storyline authoring before choosing this boundary.** The
-recommended direction is:
+**Do not scale storyline authoring before completing this boundary.** The
+direction is:
 
 - the server is the durable authority for the MMO personal phase and
   consequential effects;
@@ -118,9 +132,13 @@ recommended direction is:
 
 Avoid a general two-way synchronizer. It creates ordering conflicts and makes
 it unclear which side wins after cancellation or reconnect. Prefer bounded,
-reviewed mappings at story-event settlement. Until that bridge exists, disable
+reviewed mappings at story-event settlement. Until a route adopts the bridge, disable
 the alternate fallback for a translated route rather than allowing two
 progression authorities to race.
+
+Legacy native-dialogue saves remain revision-checked client snapshots outside
+an owned native event lease. Full server validation of those mutations remains
+unfinished; the bank bridge alone does not establish anti-cheat authority.
 
 ## Area-entry dispatch already has important semantics
 

@@ -104,7 +104,9 @@ working. The bookmark never unlocks entries or changes server progress.
 
 This is the mode/persistence foundation, not complete playable story coverage.
 The native interpreter and the server/Yarn event engine still have distinct
-state representations; mode isolation does not bridge their milestones or
+state representations. Server events can now query and settle original native
+banks atomically with rewards, but existing routes, client receipt hydration,
+and live NPC refresh still need to adopt that bridge. Mode isolation does not
 make arbitrary client-submitted native flags server-validated. Notebook entries
 beyond the opening, unimplemented quest triggers, original sleep/deadline behavior and
 event-driven calendar changes remain tracked in
