@@ -327,8 +327,11 @@ function operationResultExpression(expression, results, readSceneField, readFram
   };
 }
 
-function frameFieldExpression(expression, fields) {
-  return evaluateNativeFrameExpression(expression, offset => fields?.[offset]);
+function frameFieldExpression(expression, fields, operationResults) {
+  return evaluateNativeFrameExpression(
+    expression, offset => fields?.[offset], 0,
+    callFileOffset => operationResults?.[callFileOffset],
+  );
 }
 
 function yielded(state, request) {
@@ -549,6 +552,9 @@ export class NativeEventInterpreter {
               detail: result.reason,
             });
           }
+          // A loop can revisit the same source call. An unavailable return
+          // must not leave the previous iteration's word usable by arithmetic.
+          delete frame.operationResults[action.callFileOffset];
           if (Object.hasOwn(result || {}, "result")) {
             frame.operationResults[action.callFileOffset] = result.result;
             const transformed = transformedOperationResult(
@@ -619,6 +625,7 @@ export class NativeEventInterpreter {
             });
           }
           frame.actionIndex += 1;
+          delete frame.operationResults[action.callFileOffset];
           state.frames.push({
             functionId: action.targetFileOffset,
             blockId: callee.definition.entryBlock,
@@ -746,6 +753,7 @@ export class NativeEventInterpreter {
           const evaluated = frameFieldExpression(
             action.expression,
             frame.fields,
+            frame.operationResults,
           );
           if (!evaluated.resolved) {
             return stopped(state, "frame-field-expression-input-missing", {
@@ -1055,7 +1063,8 @@ export class NativeEventInterpreter {
         return stopped(state, "unresolved-control-transfer", { transfer });
       }
       const finished = state.frames.pop();
-      if (finished.callerResultTarget || finished.callerResultComparison) {
+      if (finished.callerResultTarget || finished.callerResultComparison
+        || (state.frames.length && target.definition.returnValue)) {
         const definition = target.definition.returnValue;
         if (!["frame-field", "frame-field-mask"].includes(definition?.kind)) {
           return stopped(state, "direct-call-result-unresolved", {
@@ -1073,6 +1082,7 @@ export class NativeEventInterpreter {
         if (!caller) {
           return stopped(state, "direct-call-result-caller-missing");
         }
+        caller.operationResults[finished.callerResultCallFileOffset] = value;
         if (finished.callerResultTarget?.kind === "frameField") {
           caller.fields[finished.callerResultTarget.offset] = value;
         } else if (finished.callerResultTarget?.kind === "sceneField") {
@@ -1090,7 +1100,6 @@ export class NativeEventInterpreter {
           return stopped(state, "direct-call-result-target-unresolved");
         }
         if (finished.callerResultComparison) {
-          caller.operationResults[finished.callerResultCallFileOffset] = value;
           caller.pendingOperationComparison = {
             definition: finished.callerResultComparison,
             result: value,

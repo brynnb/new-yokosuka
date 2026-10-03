@@ -366,15 +366,50 @@ They are native-code evidence, not proof of rendered gameplay.
 
 The initialization condition at `0x8b852` combines current-scene `1`, computed
 frame field `0 == 0`, bank-2 bit `832 == 0`, operation `0x01c7(3,0,2) == 1`, and
-bank-2 bit `961 == 1`. Do not assign story names to the numeric record/global
-inputs without recovering their writers. Bit `832` is also written by other
-initialization branches, so calling it simply “watched allowance” is inaccurate.
+bank-2 bit `961 == 1`. Bit `832` is also written by other initialization
+branches, so calling it simply “watched allowance” is inaccurate.
+
+The inputs now have verified producers:
+
+- Frame offset `0` is the original **STEP** progress code. The two `0x0184`
+  queries at `0x8b798`/`0x8b7b6` return quotient/remainder; the code recombines
+  them as `quotient * 10 + remainder` at `0x8b7c4`.
+- Executable global `0xc22020c` is a signed word, reset to zero by
+  `0xc142908`. Its updater `0xc1429e2` scans the 80 ordered pairs at
+  `0xc2780b8`, selects the first set bank-2 bit and stores its paired STEP.
+  **No match retains the previous value.** The debug display is literally
+  `STEP %2d.%1d`; these are not assigned chapter names. The verified table is
+  generated in `nativePredicateValues.generated.js`.
+- Parameter byte `2` is written by the JOMO root itself. It reads arrival
+  entry via `0x0026` at `0x89090` into room dword `0`; zero entry writes
+  `0x01c7(3,1,2,0)` at `0x892de`, nonzero writes `0x01c7(3,1,2,1)` at
+  `0x89326`. This room field later becomes the dispatch request, so it is
+  not interchangeable with the immutable arrival input.
+- `0x0026` returns global `0xc20c3e0`. Executable operation `0x0030` at
+  `0xc16b492` queues its third argument through `0xc0f0a86`, controller
+  offset `0xd8`. The main update calls `0xc0f0a4e` at `0xc0c98f8` to copy
+  that pending value into the global. The same path carries scene and area
+  through offsets `0xd4`/`0xd0` into `0xc20c3d8`/`0xc20c3dc`.
+
+These executable findings use SHA-256
+`ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c`.
+The bounded code ranges, STEP table and arrival-field layout are recorded by
+`tools/scripting/extract_dialogue_predicate_values.py`. An entry is an authored
+arrival/event selector, not necessarily a door, and still requires the room's
+own initialization and predicates.
 
 The OP00 awakening writes bank-2 bit `961 = 1` at `0x20536`, then requests
 `JOMO` entry `1` at `0x2054e`. Currently the opening uses sandboxed previews and
 `CompleteOpening` only sets `opening_completed`; it does not commit that native
 transition. Fix this through the source-backed opening transaction, not by
 globally changing preview behavior or seeding an isolated workaround bit.
+
+Two integration mismatches must also be resolved: the existing free-roam bank-2
+default (`0xec` in byte 0) includes bit `5`, which selects STEP `11` rather
+than the allowance's required `0`; Story mode must not inherit that baseline.
+Also, OP00's final clock write at `0x2051e` is Dec. 3 **08:55** before its JOMO
+transition, whereas the current personal clock starts at 08:50. The dream's
+08:50 caption is presentation; it does not establish the post-scene clock.
 
 ### Foundation checkpoint
 
@@ -384,16 +419,21 @@ dispatchers. Extraction now recovers small immediate-offset scene writes and
 direct/indexed scene-to-frame reads. Compound-call predicate extraction correctly
 replaces old register constants when reading frame/scene memory; unsupported
 loads invalidate the value. Frame inputs use the existing typed frame evaluator.
+Balanced native-stack arithmetic now retains saved operation/direct-call returns
+through delay slots and subsequent calls. Unknown loads, unbalanced stack
+changes and control-flow joins discard that evidence; unavailable returns never
+reuse a previous loop iteration's result. Yield/resume retains valid returns.
 
 Regression tests reproduced the missing returns and false constant predicate
 before these changes, then passed. Direct disassembly of the hashed JOMO file
 also confirms the writes/reads above and the recovered frame input at `0x8b852`.
 These are parser/runtime checks, not a completed room package or browser test.
-The full generated corpus has not been rebuilt for these changes. Remaining
-first-slice work includes the two `0x0184` results combined into frame offset
-`0`, their authoritative input, interaction-manager operations, room ownership,
-and server settlement. No live progression should be claimed from this
-checkpoint alone.
+A scoped rebuild of all 408 disc-1 JOMO functions confirms the recovered STEP
+arithmetic reaches the compiled initializer. The full generated corpus has not
+been rebuilt. Remaining first-slice work includes authoritative STEP/arrival
+state, interaction-manager operations, execution of room initialization and
+ownership, and server settlement. No live progression should be claimed from
+this checkpoint alone.
 
 ## Validation that actually proves storyline integration
 

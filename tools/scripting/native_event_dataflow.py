@@ -12,6 +12,7 @@ from tools.worlds.extract_jomo_object_operations import (
     value_json,
 )
 from tools.scripting.native_event_predicates import (
+    branch_successors,
     comparison_branch_outcomes,
     hx,
     signed_immediate,
@@ -1083,9 +1084,9 @@ def frame_field_expression_writes(
     """Recover complete straight-line integer expressions stored in a frame.
 
     This models exact compiler-local arithmetic, not source-level intent.
-    Register state is discarded at every call or control transfer, and a
-    write is emitted only when its frame address and entire expression are
-    available from the supported SH-4 subset.
+    Calls invalidate scratch registers but preserve balanced r13 stack values
+    and expose their returned word. Control-flow joins discard this local
+    evidence. A write requires its complete frame address and expression.
     """
 
     allowed = reached if reached is not None else set(rows)
@@ -1097,6 +1098,9 @@ def frame_field_expression_writes(
     }
     fpul: dict[str, Any] | None = None
     macl: dict[str, Any] | None = None
+    stack: list[dict[str, Any] | None] = []
+    pending_call: int | None = None
+    previous_address: int | None = None
     writes = []
 
     def constant(value: int) -> dict[str, Any]:
@@ -1115,11 +1119,54 @@ def frame_field_expression_writes(
     terminators = {
         "bra", "braf", "bf", "bf.s", "bt", "bt.s", "jmp", "rts",
     }
+    join_addresses = {
+        successor
+        for row in rows.values() if row[1] in terminators
+        for successor in branch_successors(row, rows)
+    }
+
+    def reads_frame(value: dict[str, Any] | None) -> bool:
+        if value is None:
+            return False
+        return value.get("kind") == "frame-field" or any(
+            reads_frame(value.get(key)) for key in ("left", "right", "operand")
+        )
+
     for address in sorted(rows):
         if address not in allowed:
             continue
+        if address in join_addresses or (
+            previous_address is not None and address != previous_address + 2
+        ):
+            registers = {f"r{index}": None for index in range(16)}
+            floating_registers = {f"fr{index}": None for index in range(16)}
+            stack = []
+            fpul = macl = pending_call = None
+        previous_address = address
+        if pending_call is not None and address == pending_call + 4:
+            # Apply call clobbers after its delay slot. Values held on the
+            # native stack survive; a deferred read of mutable frame memory
+            # would not be the value pushed before the call, so discard it.
+            for index in range(8):
+                registers[f"r{index}"] = None
+            for register, value in registers.items():
+                if reads_frame(value):
+                    registers[register] = None
+            stack = [None if reads_frame(value) else value for value in stack]
+            floating_registers = {f"fr{index}": None for index in range(16)}
+            fpul = macl = None
+            registers["r0"] = {"kind": "operation-result", "callFileOffset": hx(pending_call)}
+            pending_call = None
         _address, mnemonic, operands, literal = rows[address]
-        parts = operands.split(",", 1) if "," in operands else []
+        parts = operands.rsplit(",", 1) if "," in operands else []
+
+        if (
+            assigned_register(mnemonic, operands) == "r13" and mnemonic != "add"
+        ) or (
+            "r13" in operands and mnemonic in {"mov.b", "mov.w"}
+            and ("@-r13" in operands or "@r13+" in operands)
+        ):
+            stack = []
 
         if mnemonic == "mov" and len(parts) == 2:
             source, destination = parts
@@ -1134,6 +1181,14 @@ def frame_field_expression_writes(
         elif mnemonic == "add" and len(parts) == 2:
             source, destination = parts
             current = registers.get(destination)
+            immediate = signed_immediate(operands, destination)
+            if destination == "r13":
+                if immediate is None or immediate < 0 or immediate % 4:
+                    stack = []
+                else:
+                    for _ in range(min(immediate // 4, len(stack))):
+                        stack.pop()
+                continue
             if (
                 source == "r14"
                 and current is not None
@@ -1164,7 +1219,11 @@ def frame_field_expression_writes(
             width = {"mov.b": 1, "mov.w": 2, "mov.l": 4}[mnemonic]
             direct = FRAME_LOAD.fullmatch(operands)
             indexed = FRAME_INDEXED_LOAD.fullmatch(operands)
-            if direct is not None:
+            if mnemonic == "mov.l" and destination == "@-r13":
+                stack.append(registers.get(source))
+            elif mnemonic == "mov.l" and source == "@r13+":
+                registers[destination] = stack.pop() if stack else None
+            elif direct is not None:
                 registers[direct.group("register")] = {
                     "kind": "frame-field",
                     "offset": int(direct.group("offset")),
@@ -1215,6 +1274,8 @@ def frame_field_expression_writes(
                         "width": width,
                         "expression": expression,
                     })
+            elif destination in registers:
+                registers[destination] = None
         elif mnemonic == "neg" and len(parts) == 2:
             source, destination = parts
             value = registers.get(source)
@@ -1310,13 +1371,7 @@ def frame_field_expression_writes(
                 else None
             )
         elif mnemonic in calls:
-            for index in range(8):
-                registers[f"r{index}"] = None
-            floating_registers = {
-                f"fr{index}": None for index in range(16)
-            }
-            fpul = None
-            macl = None
+            pending_call = address
         elif mnemonic in terminators:
             registers = {f"r{index}": None for index in range(16)}
             floating_registers = {
@@ -1324,6 +1379,8 @@ def frame_field_expression_writes(
             }
             fpul = None
             macl = None
+            stack = []
+            pending_call = None
         elif len(parts) == 2 and parts[1] in registers:
             registers[parts[1]] = None
 

@@ -57,6 +57,17 @@ VERIFIED_RANGES = {
     "stateBankReset": (0x0C159290, 0x42),
     "stateBankSaveExport": (0x0C09C854, 0x36),
     "stateBankSaveImport": (0x0C09C8B4, 0x36),
+    "storyStepReset": (0x0C142908, 12),
+    "storyStepUpdate": (0x0C1429E2, 132),
+    "storyStepDisplay": (0x0C142988, 52),
+    "storyStepFlagReader": (0x0C17F2F8, 74),
+    "storyStepBankAddresses": (0x0C15A1AE, 14),
+    "storyStepTable": (0x0C2780B8, 324),
+    "sceneTransitionOperation0030": (0x0C16B492, 36),
+    "sceneTransitionQueueWriter": (0x0C0F0A86, 64),
+    "sceneTransitionQueueReader": (0x0C0F0A4E, 56),
+    "sceneTransitionApply": (0x0C0C98E6, 22),
+    "arrivalEntryOperation0026": (0x0C1649A8, 8),
 }
 
 NATIVE_SPATIAL_TABLE_ADDRESS = 0x0C2791C0
@@ -228,6 +239,96 @@ def extract_actor_identity_table(executable: bytes) -> list[str | None]:
     return identities
 
 
+def extract_native_story_step(executable: bytes) -> dict[str, Any]:
+    """The executable's ordered STEP table, not inferred chapter labels.
+
+    0xc142a0a reads each pair's second word and calls 0xc17f2f8. That
+    reader gets the bank addresses from 0xc15a1ae and reads r15+8: bank 2
+    at 0xc223ef8. On its first nonzero bit, 0xc142a34 stores the pair's
+    first word. The sentinel path leaves the existing STEP untouched.
+    """
+    if sha256(executable) != EXECUTABLE_SHA256:
+        raise PredicateValueError("unexpected executable for native story STEP")
+    address, length = VERIFIED_RANGES["storyStepTable"]
+    data = executable_slice(executable, address, length)
+    label = executable_slice(executable, 0x0C278210, 13)
+    if label != b"STEP %2d.%1d\x00":
+        raise PredicateValueError("native story STEP display label changed")
+    records = []
+    for offset in range(0, len(data), 4):
+        step, bit = struct.unpack_from("<hH", data, offset)
+        if step == 0:
+            if offset != len(data) - 4 or bit != 0:
+                raise PredicateValueError("native story STEP sentinel changed")
+            break
+        if bit >= NATIVE_STATE_BANKS[2]["capacity"]:
+            raise PredicateValueError("native story STEP bit exceeds bank 2")
+        records.append({"step": step, "bank2Bit": bit})
+    return {
+        "runtimeAddress": hx(0x0C22020C),
+        "width": 2,
+        "signed": True,
+        "resetValue": 0,
+        "tableAddress": hx(address),
+        "tableSha256": sha256(data),
+        "displayFormat": label[:-1].decode("ascii"),
+        "selection": "first-set-bank2-bit-in-table-order",
+        "noMatch": "retain-previous-step",
+        "records": records,
+        "evidenceBoundary": [
+            "Values are native STEP codes, not assigned chapter or quest names.",
+            "Reset, ordered selection and decimal display are verified separately; no-match is not an implicit reset.",
+            "Timing counters updated by the owning routine are outside this bounded contract.",
+        ],
+    }
+
+
+def extract_native_arrival_state(executable: bytes) -> dict[str, Any]:
+    """Follow op0030's arguments through the pending transition into globals.
+
+    The queue writer/reader share controller offsets d4/d0/d8. The main
+    update passes the three globals' addresses to that reader, which stores
+    through them. This is stronger evidence than the globals' adjacency or
+    a scene-specific interpretation of op0026's return value.
+    """
+    if sha256(executable) != EXECUTABLE_SHA256:
+        raise PredicateValueError("unexpected executable for native arrival")
+    fields = []
+    for index, (name, literal, offset_literal) in enumerate((
+        ("scene", 0x0C0C99DC, 0x0C0F0B10),
+        ("area", 0x0C0C99D8, 0x0C0F0B12),
+        ("entry", 0x0C0C99D4, 0x0C0F0B14),
+    )):
+        fields.append({
+            "name": name,
+            "operation0030Argument": index,
+            "pendingControllerOffset": executable_u16(executable, offset_literal),
+            "runtimeAddress": hx(executable_u32(executable, literal)),
+            "width": 4,
+        })
+    if executable_u32(executable, 0x0C164C1C) != int(fields[2]["runtimeAddress"], 16):
+        raise PredicateValueError("arrival entry/query global mismatch")
+    if executable_u32(executable, 0x0C16B6A0) != 0x0C0F0A86:
+        raise PredicateValueError("scene transition queue target changed")
+    if executable_u32(executable, 0x0C0C99E0) != 0x0C0F0A4E:
+        raise PredicateValueError("scene transition consumer target changed")
+    return {
+        "requestOperation": "0x0030",
+        "entryQueryOperation": "0x0026",
+        "fields": fields,
+        "provenBehavior": (
+            "Operation 0x0030 queues scene, area and entry. The main transition "
+            "consumer copies them to the current globals; operation 0x0026 "
+            "returns the entry dword unchanged."
+        ),
+        "evidenceBoundary": [
+            "Entry is an authored arrival/event selector, not universally a door or spawn index.",
+            "Current arrival globals are distinct from mutable room-local scene fields.",
+            "Room-script initialization must execute its own conditions; an entry does not directly name a cutscene.",
+        ],
+    }
+
+
 def extract_native_spatial_records(executable: bytes) -> list[dict[str, Any]]:
     data = executable_slice(
         executable,
@@ -385,6 +486,8 @@ def build_report(executable: bytes, humans: bytes) -> dict[str, Any]:
             "defaultState": "all bytes zero",
             "banks": native_state_banks,
         },
+        "nativeStoryStep": extract_native_story_step(executable),
+        "nativeArrivalState": extract_native_arrival_state(executable),
         "nativeValueTypes": [
             {
                 "type": 1,

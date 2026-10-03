@@ -46,6 +46,8 @@ def build_runtime_data(evidence: dict[str, Any]) -> dict[str, Any]:
         "calendar": evidence["nativeCalendar"],
         "currency": evidence["nativeCurrency"],
         "stateBanks": evidence["nativeStateBanks"],
+        "storyStep": evidence["nativeStoryStep"],
+        "arrivalState": evidence["nativeArrivalState"],
         "actorRuntimeValues": {
             key: actor_runtime[key]
             for key in (

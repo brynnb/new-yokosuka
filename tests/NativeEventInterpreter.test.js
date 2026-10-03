@@ -10,6 +10,7 @@ import {
 import {
   createNativeClockRecordSemanticHandlers,
   createNativeEventOperationExecutor,
+  createNativeGlobalWordSemanticHandlers,
   nativeFloat32FromWord,
   nativeFloat32Word,
 } from "../play/events/NativeEventOperationRuntime.js";
@@ -1033,6 +1034,116 @@ test("executes exact frame-field integer expression writes", async () => {
   });
   assert.equal(result.status, "completed");
   assert.deepEqual(observed, [7, 374]);
+});
+
+test("recovers saved native query arithmetic across a serialized yield", async () => {
+  // JOMO 0x8b798 / 0x8b7b6 reconstruct the signed STEP word, then store
+  // quotient * 10 + remainder into frame[0] at 0x8b7c4.
+  const query = (offset, mode) => ({
+    ...operation(offset, "global-signed-word-divmod-10-query"),
+    operationHex: "0x0184",
+    arguments: [{ kind: "constant", value: mode }, { kind: "constant", value: 0 }],
+  });
+  const program = {
+    entryFunction: "0x8b6dc",
+    functions: [{
+      id: "0x8b6dc", entryBlock: "0x8b6dc",
+      blocks: [{
+        id: "0x8b6dc", successors: [],
+        actions: [query("0x8b798", 1), query("0x8b7b6", 0), {
+          kind: "frameFieldExpressionWrite", callFileOffset: "0x8b7c4", offset: 0, width: 4,
+          expression: {
+            kind: "add",
+            left: {
+              kind: "multiply",
+              left: { kind: "operation-result", callFileOffset: "0x8b798" },
+              right: { kind: "constant", value: 10 },
+            },
+            right: { kind: "operation-result", callFileOffset: "0x8b7b6" },
+          },
+        }, operation("0x8b7c6", "observe")],
+      }],
+    }],
+  };
+  for (const word of [0, 17, -11, 32767, -32768]) {
+    let observed;
+    let queries = 0;
+    const execute = createNativeEventOperationExecutor({
+      handlers: createNativeGlobalWordSemanticHandlers({
+        readNativeField: descriptor => {
+          assert.deepEqual(descriptor, { offset: 0x0c22020c, width: 2 });
+          return word & 0xffff;
+        },
+      }),
+    });
+    const interpreter = createNativeEventInterpreter({
+      program,
+      executeOperation: async (action, context) => {
+        if (action.semanticId === "observe") {
+          observed = context.readFrameField(0);
+          return { status: "continued" };
+        }
+        queries++;
+        const result = await execute(action, context);
+        return action.callFileOffset === "0x8b798"
+          ? { ...result, status: "yielded", request: { kind: "wait" } }
+          : result;
+      },
+    });
+    const first = await interpreter.run();
+    assert.equal(first.status, "yielded");
+    const saved = JSON.parse(JSON.stringify(first.state));
+    const resumed = await interpreter.run(saved);
+    assert.equal(resumed.status, "completed");
+    assert.equal(observed, word, "interpreter frame dwords are signed 32-bit words");
+    assert.equal(queries, 2);
+
+    delete saved.frames[0].operationResults["0x8b798"];
+    observed = undefined;
+    const missing = await interpreter.run(saved);
+    assert.equal(missing.reason.kind, "frame-field-expression-input-missing");
+    assert.equal(observed, undefined, "missing query data must never silently become zero");
+  }
+  const withoutReturn = createNativeEventInterpreter({
+    program,
+    executeOperation: () => ({ status: "continued" }),
+  });
+  const stale = withoutReturn.initialState();
+  stale.frames[0].operationResults = { "0x8b798": 12, "0x8b7b6": 3 };
+  const rejected = await withoutReturn.run(stale);
+  assert.equal(rejected.reason.kind, "frame-field-expression-input-missing");
+  assert.deepEqual(rejected.state.frames[0].operationResults, {});
+});
+
+test("saved arithmetic consumes a direct-call return without an immediate result target", async () => {
+  let observed;
+  const result = await createNativeEventInterpreter({
+    program: {
+      entryFunction: "0x100",
+      functions: [{
+        id: "0x100", entryBlock: "0x100",
+        blocks: [{
+          id: "0x100", successors: [], actions: [{
+            kind: "directCall", callFileOffset: "0x102", targetFileOffset: "0x200",
+          }, {
+            kind: "frameFieldExpressionWrite", callFileOffset: "0x104", offset: 0, width: 4,
+            expression: { kind: "operation-result", callFileOffset: "0x102" },
+          }, operation("0x106", "observe")],
+        }],
+      }, {
+        id: "0x200", entryBlock: "0x200",
+        returnValue: { kind: "frame-field", offset: 0, width: 4 },
+        blocks: [{
+          id: "0x200", successors: [], actions: [{
+            kind: "frameFieldWrite", callFileOffset: "0x202", offset: 0, width: 4, value: 17,
+          }],
+        }],
+      }],
+    },
+    executeOperation: (_action, context) => { observed = context.readFrameField(0); },
+  }).run();
+  assert.equal(result.status, "completed");
+  assert.equal(observed, 17);
 });
 
 test("executes exact frame-field float32 conversion expressions", async () => {

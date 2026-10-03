@@ -540,6 +540,63 @@ class DialogueControlFlowIndexTest(unittest.TestCase):
             },
         }])
 
+    def test_recovers_saved_call_result_arithmetic_into_frame(self):
+        # Original disc-1 JOMO 0x8b784..0x8b7c4: preserve destination and
+        # quotient*10 under the next call's arguments, then add its remainder.
+        rows = {row[0]: row for row in [
+            (0x8b784, "mov", "#0,r4", None),
+            (0x8b786, "add", "r14,r4", None),
+            (0x8b788, "mov", "#0,r5", None),
+            (0x8b78a, "mov", "#1,r6", None),
+            (0x8b78c, "mov.l", "r4,@-r13", None),
+            (0x8b78e, "mov.l", "r5,@-r13", None),
+            (0x8b790, "mov.l", "r6,@-r13", None),
+            (0x8b792, "mov.l", "0x8b85c,r5", 0x184),
+            (0x8b794, "mov.l", "@(40,r8),r0", None),
+            (0x8b796, "mov.l", "@(52,r8),r4", None),
+            (0x8b798, "jsr", "@r0", None),
+            (0x8b79a, "mov", "r13,r6", None),
+            (0x8b79c, "add", "#8,r13", None),
+            (0x8b79e, "mov", "r0,r4", None),
+            (0x8b7a0, "mov", "#10,r5", None),
+            (0x8b7a2, "mul.l", "r5,r4", None),
+            (0x8b7a4, "sts", "macl,r4", None),
+            (0x8b7a6, "mov", "#0,r5", None),
+            (0x8b7a8, "mov", "#0,r6", None),
+            (0x8b7aa, "mov.l", "r4,@-r13", None),
+            (0x8b7ac, "mov.l", "r5,@-r13", None),
+            (0x8b7ae, "mov.l", "r6,@-r13", None),
+            (0x8b7b0, "mov.l", "0x8b85c,r5", 0x184),
+            (0x8b7b2, "mov.l", "@(40,r8),r0", None),
+            (0x8b7b4, "mov.l", "@(52,r8),r4", None),
+            (0x8b7b6, "jsr", "@r0", None),
+            (0x8b7b8, "mov", "r13,r6", None),
+            (0x8b7ba, "add", "#8,r13", None),
+            (0x8b7bc, "mov", "r0,r4", None),
+            (0x8b7be, "mov.l", "@r13+,r5", None),
+            (0x8b7c0, "add", "r4,r5", None),
+            (0x8b7c2, "mov.l", "@r13+,r4", None),
+            (0x8b7c4, "mov.l", "r5,@r4", None),
+        ]}
+        self.assertEqual(frame_field_expression_writes(rows), [{
+            "kind": "frameFieldExpressionWrite", "callFileOffset": "0x8b7c4",
+            "offset": 0, "width": 4, "expression": {
+                "kind": "add", "left": {
+                    "kind": "multiply",
+                    "left": {"kind": "operation-result", "callFileOffset": "0x8b798"},
+                    "right": {"kind": "constant", "value": 10},
+                },
+                "right": {"kind": "operation-result", "callFileOffset": "0x8b7b6"},
+            },
+        }])
+        for barrier in [
+            ("bf", "0x8b7c4"), ("mov.l", "@(0,r7),r5"), ("mov", "r6,r13"),
+        ]:
+            with self.subTest(barrier=barrier):
+                changed = dict(rows)
+                changed[0x8b7c0] = (0x8b7c0, *barrier, None)
+                self.assertEqual(frame_field_expression_writes(changed), [])
+
     def test_recovers_exact_frame_float_conversion_expression_writes(self):
         rows = {
             row[0]: row
