@@ -1,4 +1,5 @@
 const PARAMETER_BYTE_LENGTH = 32;
+const RECORD_BYTE_LENGTH = 48;
 
 function requireByte(value, name) {
   if (!Number.isInteger(value) || value < 0 || value > 0xff) {
@@ -7,25 +8,23 @@ function requireByte(value, name) {
   return value;
 }
 
-function requireParameterBytes(values) {
+function requireBytes(values, length, name) {
   if (
     !Array.isArray(values)
     && !(values instanceof Uint8Array)
   ) {
     throw new TypeError(
-      "native operation 0x01c7 parameters must be byte-oriented",
+      `native operation 0x01c7 ${name} must be byte-oriented`,
     );
   }
   if (
-    values.length !== PARAMETER_BYTE_LENGTH
+    values.length !== length
     || Array.from(values).some(
       value => !Number.isInteger(value) || value < 0 || value > 0xff,
     )
   ) {
     throw new RangeError(
-      `native operation 0x01c7 parameters must contain ${
-        PARAMETER_BYTE_LENGTH
-      } bytes`,
+      `native operation 0x01c7 ${name} must contain ${length} bytes`,
     );
   }
   return Uint8Array.from(values);
@@ -49,6 +48,88 @@ export class NativeOperation01c7State {
     this.statusByte = undefined;
     this.booleanDword = undefined;
     this.parameterBytes = undefined;
+    this.recordBytes = undefined;
+    this.consumableLoadByte = undefined;
+  }
+
+  // Explicit cold-image startup, not a replacement for loading a saved game.
+  // The hashed executable has zeros here. Its status reset does NOT zero the
+  // saved parameters: see tools/evidence/operation-01c7-evidence.json.
+  initializeColdState() {
+    this.statusByte = 0;
+    this.consumableLoadByte = 0;
+    this.booleanDword = 0;
+    this.parameterBytes = new Uint8Array(PARAMETER_BYTE_LENGTH);
+    this.recordBytes = new Uint8Array(RECORD_BYTE_LENGTH);
+  }
+
+  importSaveSections({ recordBytes, parameterBytes }) {
+    // 0xc14aa86 copies both sections; marking the load is a separate native
+    // helper. Validate both before replacing either, and own their storage.
+    const record = requireBytes(recordBytes, RECORD_BYTE_LENGTH, "record");
+    const parameters = requireBytes(parameterBytes, PARAMETER_BYTE_LENGTH, "parameters");
+    this.recordBytes = record;
+    this.parameterBytes = parameters;
+  }
+
+  markLoaded() {
+    if (!this.recordBytes || !this.parameterBytes) {
+      throw new Error("native-operation-01c7-save-state-unavailable");
+    }
+    this.consumableLoadByte = 1;
+    this.statusByte = 1;
+  }
+
+  resetLoadStatus() {
+    this.consumableLoadByte = 0;
+    this.statusByte = 0;
+  }
+
+  consumeLoaded() {
+    if (this.consumableLoadByte === undefined) {
+      throw new Error("native-operation-01c7-load-state-unavailable");
+    }
+    if (this.consumableLoadByte === 0) return 0;
+    this.consumableLoadByte -= 1;
+    return 1;
+  }
+
+  readRecordBytes() {
+    if (!this.recordBytes) {
+      throw new Error("native-operation-01c7-record-state-unavailable");
+    }
+    return Array.from(this.recordBytes);
+  }
+
+  snapshot() {
+    return {
+      statusByte: this.statusByte,
+      consumableLoadByte: this.consumableLoadByte,
+      booleanDword: this.booleanDword,
+      parameterBytes: this.readParameterBytes(),
+      recordBytes: this.recordBytes ? Array.from(this.recordBytes) : undefined,
+    };
+  }
+
+  restore(snapshot) {
+    if (!snapshot || typeof snapshot !== "object" || Array.isArray(snapshot)) {
+      throw new TypeError("native operation 0x01c7 snapshot must be an object");
+    }
+    const next = {};
+    for (const key of ["statusByte", "consumableLoadByte"]) {
+      next[key] = snapshot[key] === undefined
+        ? undefined : requireByte(snapshot[key], key);
+    }
+    if (snapshot.booleanDword !== undefined
+      && snapshot.booleanDword !== 0 && snapshot.booleanDword !== 1) {
+      throw new RangeError("native operation 0x01c7 Boolean must be zero or one");
+    }
+    next.booleanDword = snapshot.booleanDword;
+    next.parameterBytes = snapshot.parameterBytes === undefined ? undefined
+      : requireBytes(snapshot.parameterBytes, PARAMETER_BYTE_LENGTH, "parameters");
+    next.recordBytes = snapshot.recordBytes === undefined ? undefined
+      : requireBytes(snapshot.recordBytes, RECORD_BYTE_LENGTH, "record");
+    Object.assign(this, next);
   }
 
   configureStatusByte(value) {
@@ -56,7 +137,7 @@ export class NativeOperation01c7State {
   }
 
   configureParameterBytes(values) {
-    this.parameterBytes = requireParameterBytes(values);
+    this.parameterBytes = requireBytes(values, PARAMETER_BYTE_LENGTH, "parameters");
   }
 
   queryStatus() {
@@ -157,10 +238,17 @@ export function createNativeOperation01c7SemanticHandlers({
               reason: "native-operation-01c7-record-apply-adapter-missing",
             };
           }
-          await applyRecord({
+          if (typeof context.readNativeOperation01c7Record !== "function") {
+            return { status: "stopped", reason: "native-operation-01c7-state-missing" };
+          }
+          const accepted = await applyRecord({
             recordAddress: 0x0c220370,
             parameterBufferAddress: 0x0c2203a3,
+            recordBytes: context.readNativeOperation01c7Record(),
           });
+          if (accepted !== true) {
+            return { status: "stopped", reason: "native-operation-01c7-record-apply-rejected" };
+          }
           return { status: "continued" };
         }
         if (mode === 2) {

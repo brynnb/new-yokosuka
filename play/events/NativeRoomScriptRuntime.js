@@ -223,6 +223,10 @@ import {
   createNativeOperation0193SemanticHandlers,
   createNativeOperation0193State,
 } from "./NativeOperation0193Runtime.js";
+import {
+  createNativeOperation01c7SemanticHandlers,
+  createNativeOperation01c7State,
+} from "./NativeOperation01c7Runtime.js";
 
 function stopped(reason) {
   return { status: "stopped", reason };
@@ -316,6 +320,7 @@ export class NativeRoomScriptRuntime {
     operation019e = {},
     operation015c = {},
     operation0193 = {},
+    operation01c7 = {},
     momtVectorSlot = {},
     associatedRecord = {},
     actorField = {},
@@ -359,6 +364,10 @@ export class NativeRoomScriptRuntime {
       || createNativeOperation015cState();
     this.operation0193State = operation0193.state
       || createNativeOperation0193State();
+    // Saved global state is owned by the personal session, not by an area.
+    // Leave it unavailable until cold startup or a saved import is explicit.
+    this.operation01c7State = operation01c7.state
+      || createNativeOperation01c7State();
     this.presentationControllerAdapter =
       createNativePresentationControllerFamilyAdapter(
         presentationController,
@@ -382,11 +391,14 @@ export class NativeRoomScriptRuntime {
         : {}
     );
     this.context = {
-      ...createNativeSceneFieldRuntimeContext(sceneState),
+      ...createNativeSceneFieldRuntimeContext(sceneState, {
+        operation01c7State: this.operation01c7State,
+      }),
       ...context,
       ...presentationControllerContext,
     };
     this.handlers = {
+      ...createNativeOperation01c7SemanticHandlers(operation01c7),
       ...createNativeDebugFormatSemanticHandlers(),
       ...createNativeClockRecordSemanticHandlers({
         readNativeClockRecord: () => this.clockRecordState.read(),
@@ -562,7 +574,9 @@ export class NativeRoomScriptRuntime {
     // area different from the rendered host world never writes stale records.
     return {
       ...this.context,
-      ...createNativeSceneFieldRuntimeContext(this.sceneState),
+      ...createNativeSceneFieldRuntimeContext(this.sceneState, {
+        operation01c7State: this.operation01c7State,
+      }),
     };
   }
 
@@ -735,6 +749,7 @@ export class NativeRoomScriptRuntime {
     };
     const snapshot = this.sceneState.snapshot();
     const clockRecordSnapshot = this.clockRecordState.snapshot();
+    const operation01c7Snapshot = this.operation01c7State.snapshot();
     const token = Symbol("native-room-script-transaction");
     let transactionHandlers;
     let programOwnership;
@@ -802,6 +817,7 @@ export class NativeRoomScriptRuntime {
         token,
         snapshot,
         clockRecordSnapshot,
+        operation01c7Snapshot,
         external,
         programOwnership,
         programOwnershipOpen: programOwnershipBegan,
@@ -812,6 +828,11 @@ export class NativeRoomScriptRuntime {
       };
     } catch (error) {
       const cleanupErrors = [];
+      try {
+        this.operation01c7State.restore(operation01c7Snapshot);
+      } catch (cleanupError) {
+        cleanupErrors.push(cleanupError);
+      }
       try {
         this.sceneState.restore(snapshot);
       } catch (cleanupError) {
@@ -994,6 +1015,11 @@ export class NativeRoomScriptRuntime {
     const active = this.requireTransaction(token);
     const activity = this.sceneState.readNativeOperation0050Activity();
     const cleanupErrors = [];
+    try {
+      this.operation01c7State.restore(active.operation01c7Snapshot);
+    } catch (error) {
+      cleanupErrors.push(error);
+    }
     if (activity) {
       try {
         if (

@@ -12,6 +12,7 @@ export function createNativeSceneFieldRuntimeContext(
   return {
     ...(operation01c7State
       ? {
+          readNativeOperation01c7Record: () => operation01c7State.readRecordBytes(),
           queryNativeOperation01c7Status: () => (
             operation01c7State.queryStatus()
           ),

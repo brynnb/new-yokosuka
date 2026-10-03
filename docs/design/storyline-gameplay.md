@@ -449,6 +449,60 @@ OP00's final clock write at `0x2051e` is Dec. 3 **08:55** before its JOMO
 transition, whereas the current personal clock starts at 08:50. The dream's
 08:50 caption is presentation; it does not establish the post-scene clock.
 
+### Saved room parameters and restore state (`0x01c7`)
+
+This is **global saved state**, not a fresh scratch buffer for every room.
+The original executable's save capture at `0xc09cb72` calls `0xc14a910`
+with record offset `0x7a4` and parameter offset `0x1b0`. Import at
+`0xc09cf96` calls `0xc14aa86` with those same offsets. The latter copies
+48 bytes to `0xc220370` and 32 bytes to `0xc2203a3`. The evidence extractor
+verifies both caller byte ranges, their pointer/offset literals and the
+helpers against the hashed original executable.
+
+Three distinct load-related bytes must not be conflated:
+
+| Address | Source-backed behavior |
+| --- | --- |
+| `0xc2203a0` | Consumable load indication; `0xc14aabe` decrements it and returns one, or returns zero when already zero |
+| `0xc2203a1` | Operation `0x01c7(0)` returns `-1` while this byte is nonzero; consuming the previous byte does not clear it |
+| `0xc2203a2` | A separate deferred clock-restore request consumed by `0xc14aa2e` |
+
+`0xc14aaa6` sets the first two bytes to one. `0xc14aab2` clears only those
+two bytes: it does **not** clear the record, parameters, or the Boolean dword
+written by mode two. The executable image initializes the whole block to
+zero, but this does not establish that every in-process new-game reset does
+so. Importing saved bytes and marking a load are also separate native steps.
+
+`NativeOperation01c7State` now models explicit cold initialization, importing
+both saved sections, marking/consuming/resetting load status, and isolated
+snapshots. `NativeRoomScriptRuntime` keeps this object across area changes and
+includes it in transaction rollback, including failed transaction setup.
+It deliberately remains unavailable until the session owner initializes or
+imports it. No default JOMO parameter byte is guessed. Mode one's actor-restore
+adapter receives the actual 48 record bytes and must explicitly accept them;
+missing data or rejected application stops execution.
+
+Still outstanding: persist these sections in the personal server context,
+connect fresh/resume session ownership, and implement the actor/clock restore
+adapters. The actor helper restores actor fields and invokes refresh helpers;
+it does not itself restore the clock. Capturing with no primary actor clears
+only the output record and leaves the parameter output untouched, so a partial
+capture must not be mistaken for a valid new save. The first JOMO root still
+also encounters unresolved actor operation `0x00f5(AKIR,259)`; this lifecycle
+support alone does not make the entire opening controller executable.
+
+Verification: the scoped, freshly recovered JOMO IR runs from `0x88b70` with
+the existing free-conversation state and explicit cold `0x01c7` state. It now
+writes `scene[52] = 0` from the original query, then stops on unresolved
+`0x00f5` at `0x88bd0`. No replacement handler was supplied for that stop.
+Focused tests cover saved-section ownership, byte bounds, separate load flags,
+atomic import, rejected actor restore, room changes, committed parameter
+changes, cancellation and failed transaction setup. These are headless checks,
+not rendered opening/allowance verification. The full local scripted-event
+inventory now contains 845 calls across 99 disc/area pairs; the former 690-call
+frequency assertion was stale. The evidence tool validates each supported
+call shape/parameter range and records the input hash and source scope.
+
 ### Foundation checkpoint
 
 The shared interpreter now applies result storage, typed scene reads, branch

@@ -60,6 +60,50 @@ test("room event contexts follow state replaced by native-area activation", () =
   );
 });
 
+test("01c7 saved global parameters survive room changes and roll back failed events", async () => {
+  const runtime = createNativeRoomScriptRuntime();
+  const state = runtime.operation01c7State;
+  runtime.activateArea("JOMO");
+  const execute = createNativeEventOperationExecutor({ handlers: runtime.semanticHandlers() });
+  const read = () => execute(action("native-operation-01c7-control", [3, 0, 2]),
+    runtime.eventContext());
+  assert.equal((await read()).reason, "native-operation-01c7-parameter-state-unavailable");
+  state.initializeColdState();
+  const original = state.snapshot();
+  let transaction = runtime.beginTransaction({ area: "JOMO" });
+  await execute(action("native-operation-01c7-control", [3, 1, 2, 1]), transaction.context);
+  state.markLoaded();
+  state.writeBooleanDword(1);
+  transaction.rollback({ reason: "cancelled" });
+  assert.deepEqual(state.snapshot(), original);
+
+  transaction = runtime.beginTransaction({ area: "JOMO" });
+  await execute(action("native-operation-01c7-control", [3, 1, 2, 1]), transaction.context);
+  transaction.commit();
+  runtime.activateArea("D000");
+  assert.equal((await read()).result, 1);
+  runtime.deactivateArea();
+  runtime.activateArea("JOMO");
+  assert.equal((await read()).result, 1);
+});
+
+test("room transaction begin failure restores saved globals before propagating the error", () => {
+  let runtime;
+  runtime = createNativeRoomScriptRuntime({
+    transaction: {
+      begin() {
+        runtime.operation01c7State.writeParameterByte(2, 255);
+        throw new Error("presentation setup failed");
+      },
+    },
+  });
+  runtime.operation01c7State.initializeColdState();
+  runtime.activateArea("JOMO");
+  assert.throws(() => runtime.beginTransaction({ area: "JOMO" }), /presentation setup failed/);
+  assert.equal(runtime.operation01c7State.readParameterByte(2), 0);
+  assert.equal(runtime.activeTransaction, null);
+});
+
 test("room script runtime composes exact stateful operation families", async () => {
   const runtime = createNativeRoomScriptRuntime({
     randomFloat: () => 0.5,
