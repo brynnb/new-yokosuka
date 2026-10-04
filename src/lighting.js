@@ -146,9 +146,9 @@ function ensureSkyDome() {
   return skyDome;
 }
 
-function applySkyBlend(fromIndex, toIndex, progress) {
-  const fromUrl = skyTextureForPreset(fromIndex);
-  const toUrl = skyTextureForPreset(toIndex);
+function applySkyBlend(fromIndex, toIndex, progress, skyTextureUrl = null) {
+  const fromUrl = skyTextureUrl ?? skyTextureForPreset(fromIndex);
+  const toUrl = skyTextureUrl ?? skyTextureForPreset(toIndex);
   if (!fromUrl || !toUrl || state.isInteriorScene) {
     disposeSkyDome();
     return;
@@ -230,6 +230,7 @@ export function applyTimeOfDayLighting({
   toIndex,
   progress,
   lightingOverride = null,
+  skyTextureUrl = null,
 }) {
   const from = timeOfDayPresets[fromIndex];
   const to = timeOfDayPresets[toIndex];
@@ -248,7 +249,7 @@ export function applyTimeOfDayLighting({
     progress,
   );
   state.scene.clearColor = new BABYLON.Color4(r, g, b, a);
-  applySkyBlend(fromIndex, toIndex, progress);
+  applySkyBlend(fromIndex, toIndex, progress, skyTextureUrl);
 }
 
 // Apply sky/time-of-day preset

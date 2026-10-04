@@ -5459,10 +5459,12 @@
       "argumentConstraints": [
         { "index": 0, "values": [1, 2, 27] }
       ],
-      "provenBehavior": "Dispatches the exact zero-operand presentation-controller routes selected by modes one, two, and twenty-seven.",
+      "provenBehavior": "Mode one creates the session-owned 100-byte WAIR environment controller if absent, reads the native clock and WDAT channels, samples four original lighting tables and selects the original SCROLL sky resource; it does not unfreeze weather or replace the date cache. Mode two releases only an existing WAIR owner and clears the effects flag. Mode twenty-seven reselects sky from an existing owner's clock/channels. Browser light-color/primary-sky projection is partial, not the full native solar/fog/particle renderer.",
       "sources": [
         "tools/scripting/operations/extract_native_presentation_controller_family_evidence.py",
-        "tools/evidence/native-presentation-controller-family-evidence.json"
+        "tools/evidence/native-presentation-controller-family-evidence.json",
+        "tools/worlds/extract_shenmue1_weather.py",
+        "play/data/shenmue1-native-weather.json"
       ]
     },
     {
@@ -5474,10 +5476,12 @@
       "argumentConstraints": [
         { "index": 0, "values": [15, 21, 23, 24, 25] }
       ],
-      "provenBehavior": "Dispatches the exact one-word presentation-controller routes selected by modes fifteen, twenty-one, twenty-three, twenty-four, and twenty-five.",
+      "provenBehavior": "Mode fifteen writes the effects synchronization flag word. Mode twenty-one clears supplied bits of the session-global environment mask. Modes twenty-three, twenty-four and twenty-five respectively enable/disable masks 0x0780, 0x1800 and 12 according to a truthy word. The native session initializer sets that mask to 0x1fff; room loading does not recreate it.",
       "sources": [
         "tools/scripting/operations/extract_native_presentation_controller_family_evidence.py",
-        "tools/evidence/native-presentation-controller-family-evidence.json"
+        "tools/evidence/native-presentation-controller-family-evidence.json",
+        "tools/worlds/extract_shenmue1_weather.py",
+        "play/data/shenmue1-native-weather.json"
       ]
     },
     {
@@ -5489,7 +5493,7 @@
       "argumentConstraints": [
         { "index": 0, "values": [1] }
       ],
-      "provenBehavior": "Mode one with a zero word clears the frozen flag, samples WDAT using the native clock, refreshes weather channels and caches the clock. A nonzero word sets the frozen flag without sampling or clearing channels. The browser implements cloud/rain/snow state; auxiliary channels and forecast-owner construction remain explicit gaps.",
+      "provenBehavior": "Mode one with a zero word clears the frozen flag, samples WDAT using the native clock, refreshes cloud/rain/snow/auxiliary channels and caches the clock. A nonzero word sets the frozen flag without sampling or clearing channels. The auxiliary WIT4 curve is two zero-intensity executable records, not the FCAS forecast table. Forecast-owner construction remains an explicit gap.",
       "sources": [
         "tools/scripting/operations/extract_native_presentation_controller_family_evidence.py",
         "tools/evidence/native-presentation-controller-family-evidence.json",

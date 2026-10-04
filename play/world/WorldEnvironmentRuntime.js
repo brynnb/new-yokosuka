@@ -26,6 +26,7 @@ export class WorldEnvironmentRuntime {
     applyTimeOfDayLighting,
     applyWaterTimeOfDay,
     getNativeWeather = () => null,
+    getNativeWeatherEnvironment = () => null,
   }) {
     this.clock = clock;
     this.weather = weather;
@@ -51,6 +52,7 @@ export class WorldEnvironmentRuntime {
     this.applyTimeOfDayLighting = applyTimeOfDayLighting;
     this.applyWaterTimeOfDay = applyWaterTimeOfDay;
     this.getNativeWeather = getNativeWeather;
+    this.getNativeWeatherEnvironment = getNativeWeatherEnvironment;
     this.lastCalendarDay = null;
     this.rolloverController = null;
     this.timer = null;
@@ -157,8 +159,12 @@ export class WorldEnvironmentRuntime {
     const { serverDate, date, blend: clockBlend } =
       this.clock.lightingState(world);
     const cutscenePreset = this.getCutsceneLightingPreset();
+    const nativeEnvironment = cutscenePreset !== null || this.isolatedStageOwners.size
+      || world?.assetFormat === "MT7" || world?.fixedWeather
+      ? null : this.getNativeWeatherEnvironment();
     const lightingBlend = cutscenePreset === null
-      ? clockBlend
+      ? nativeEnvironment ? { ...clockBlend, lightingOverride: nativeEnvironment.lightingOverride,
+        skyTextureUrl: nativeEnvironment.sky?.imagePath ?? null } : clockBlend
       : {
         fromIndex: cutscenePreset,
         toIndex: cutscenePreset,

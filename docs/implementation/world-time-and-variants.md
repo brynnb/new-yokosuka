@@ -158,6 +158,8 @@ Unknown initial state is not treated as an authored clear-weather instruction.
 The catalog contains 414 `CLUD`, 298 `RAIN` and 153 `SNOW` packed words.
 The executable interpolates packed date integers, not elapsed minutes, using
 float32 arithmetic. The independently stored 143 `FCAS` words remain opaque.
+The auxiliary WIT4 curve is recovered separately from two executable words;
+both have zero intensity. It is not a reinterpretation of FCAS.
 Regenerate and validate the catalog from your own disc and the reviewed executable:
 
 ```sh
@@ -170,10 +172,33 @@ python3 -m tools.worlds.extract_shenmue1_weather --check
 This is a categorical projection: nonzero snow selects snow, otherwise nonzero
 rain selects rain, otherwise nonzero cloud selects overcast. Fixed-weather
 scenes, free roam and MT7/S2 worlds retain their existing policies. Indoor
-precipitation is still suppressed. Native particle intensities, auxiliary
-channels, forecast sprites, explicit override modes and the original
+precipitation is still suppressed. Native particle intensities,
+forecast sprites, explicit override modes and the original
 minute-ahead 120-tick smoothing are not implemented. This integration does not
 establish that opening initialization or all story weather routes execute live.
+
+Room operation `0x0175(1)` creates a session-owned 100-byte `WAIR` environment
+owner only when absent. It samples the clock and weather without unfreezing
+weather or replacing the WDAT date cache. Its four original clear/cloud/rain/snow
+tables contain forty 100-byte time-keyed records. `NativeWeatherEnvironment`
+decodes those records, reproduces their midnight wrap and packed-color
+interpolation, and selects the six original `SCROLL` sky resources. Sky updates
+retain the source threshold asymmetry and hysteresis. Freezing weather does not
+freeze WAIR's time-of-day clock when the global updater is enabled.
+
+Modes 2 and 27 release/reselect the owner; mode 15 writes the effects flag;
+modes 21/23/24/25 clear or enable the original global mask bits. The mask starts
+at the executable's `0x1fff`, is not recreated on each room load, and rolls back
+with the owner, channels and applied projection when a room transaction fails.
+Releasing WAIR does not reset already-applied global lighting or sky.
+
+The shared browser lighting path projects the authored direct-light RGB and
+selected primary sky PNG. The existing PNGs are verified pixel-for-pixel against
+their original disc textures. Browser light intensities/directions, weather
+attenuation and sky-dome geometry remain existing policies; this is not the full
+native solar/fog/particle renderer. The second cloud/rain texture strip and native
+sprite fade timing are not reproduced. Cutscene lighting and isolated stages
+retain ownership; MT7/S2, fixed-weather worlds and Free roam are unchanged.
 
 ### Visual presets
 

@@ -61,6 +61,11 @@ Until that owner is initialized, server weather remains in use. The browser
 projects curve values onto its existing clear/overcast/rain/snow categories;
 native intensity, smoothing and forecast sprites are not reproduced. Seasonal
 layers retain the approximate two-season rule (November through March is winter).
+The recovered session-owned `WAIR` controller also samples forty original
+lighting keyframes and chooses original sky resources. Its browser projection
+uses authored direct-light RGB and the selected primary sky texture; solar/fog
+behavior, secondary strips and native sky fades remain incomplete. It does not
+override cutscene lighting or isolated-stage backdrops.
 See [weather source and presentation boundaries](world-time-and-variants.md#native-story-weather).
 
 ## Persistence and recovery

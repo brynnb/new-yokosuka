@@ -751,6 +751,11 @@ export class NativeRoomScriptRuntime {
     );
   }
 
+  readWeatherEnvironment() {
+    this.readWeatherState();
+    return this.weatherControllerState.readEnvironment();
+  }
+
   #clearRecoveredOperationState() {
     this.efptControllerState.clear();
     this.efptPrimaryControllerState.clear();

@@ -549,15 +549,24 @@ calendar packing, float32 interpolation, and executable proof are recovered by
 `tools/worlds/extract_shenmue1_weather.py`. Weather control participates in room
 transaction rollback. Story-mode rendering projects these values onto the
 existing four weather categories; native continuous particle intensity,
-minute-ahead 120-tick smoothing, auxiliary channels and forecast sprites remain
+minute-ahead 120-tick smoothing and forecast sprites remain
 unimplemented. This is partial presentation integration, not full native
 weather fidelity.
 
 With the original opening-tail clock explicitly supplied as
-`[86,12,3,3,8,55,0]`, the next headless stop is `0x0175(1)` at `0x88c5a`.
-Its helper at `0xc1badbc` constructs a separate presentation owner; that owner
-must be recovered rather than replacing the call with a no-op. The supplied
-clock and loader word do not prove live startup or opening settlement.
+`[86,12,3,3,8,55,0]`, the scoped headless run now passes `0x0175(1)` at `0x88c5a`.
+Its helper at `0xc1badbc` constructs a 100-byte `WAIR` owner, using four original
+time-keyed environment tables (forty records) and six original sky resources.
+The runtime preserves lifecycle, mask controls, packed-color interpolation,
+weather freeze ownership and source sky-selection thresholds transactionally.
+The auxiliary WIT4 weather curve is now recovered too: two zero-intensity words
+in the executable, separate from FCAS. Shared browser rendering projects the
+authored direct-light RGB and primary sky texture; native solar rotation, fog,
+secondary sky strips and particle/fade timing remain partial presentation gaps.
+This replaces the missing controller boundary with source-backed state, not a
+no-op. The next scoped headless stop is `0x0179(38)` at `0x88c92`, whose three
+helpers configure precipitation bounds. The supplied clock and loader word do
+not prove live startup or opening settlement.
 Focused tests cover saved-section ownership, byte bounds, separate load flags,
 atomic import, rejected actor restore, room changes, committed parameter
 changes, cancellation and failed transaction setup. These are headless checks,

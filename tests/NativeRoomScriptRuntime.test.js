@@ -75,6 +75,33 @@ test("weather source failure and failed room setup preserve the previous owner s
   assert.deepEqual(room.weatherControllerState.snapshot(), cold);
 });
 
+test("original WAIR controls use the shared presentation route and roll back with a room transaction", async () => {
+  const room = createNativeRoomScriptRuntime({ clockRecord: { readNativeClockRecord: () => [86, 12, 3, 3, 8, 55, 0] } });
+  room.activateArea("JOMO");
+  const execute = createNativeEventOperationExecutor({ handlers: room.semanticHandlers() });
+  const run = values => execute(action("native-operation-0175-control", values), room.eventContext());
+  const cold = room.weatherControllerState.snapshot();
+  const attempt = room.beginTransaction({ area: "JOMO" });
+  assert.equal((await run([1])).status, "continued");
+  assert.equal(room.readWeatherEnvironment().sky.resource, "SPRITE/SCROLL61.SPR");
+  assert.equal((await run([23, 0])).status, "continued");
+  assert.equal(room.weatherControllerState.environmentMask & 0x780, 0);
+  attempt.rollback({ reason: "cancelled" });
+  assert.deepEqual(room.weatherControllerState.snapshot(), cold);
+  assert.equal(room.readWeatherEnvironment(), null);
+  const committed = room.beginTransaction({ area: "JOMO" });
+  await run([1]);
+  committed.commit();
+  const owner = room.weatherControllerState.snapshot();
+  const teardown = room.beginTransaction({ area: "JOMO" });
+  await run([2]);
+  assert.equal(room.weatherControllerState.environmentOwner, null);
+  teardown.rollback({ reason: "world-change" });
+  assert.deepEqual(room.weatherControllerState.snapshot(), owner);
+  room.activateArea("JHD0");
+  assert.deepEqual(room.weatherControllerState.snapshot(), owner, "WAIR is session-owned across rooms");
+});
+
 test("native arrival queries and clock-control writes share room transaction ownership", async () => {
   const room = createNativeRoomScriptRuntime();
   room.activateArea("JOMO");

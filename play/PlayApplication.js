@@ -578,6 +578,8 @@ function createPlayRuntime() {
     sceneState: state,
     getNativeWeather: () => accountSession.character?.playMode === "story"
       ? nativeRoomScriptRuntime?.readWeatherState() ?? null : null,
+    getNativeWeatherEnvironment: () => accountSession.character?.playMode === "story"
+      ? nativeRoomScriptRuntime?.readWeatherEnvironment() ?? null : null,
     getWorld: () => worldRuntime.activeWorld,
     getReady: () => worldRuntime.ready,
     isSwitching: () => worldRuntime.switching,

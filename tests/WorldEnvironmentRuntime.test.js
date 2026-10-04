@@ -82,6 +82,35 @@ test("environment synchronization applies changed time, season, and weather once
   ]);
 });
 
+test("native Story environment projects through shared lighting while cutscene and fixed worlds retain ownership", () => {
+  const { runtime } = createRuntime();
+  const applied = [];
+  runtime.applyTimeOfDayLighting = blend => applied.push(blend);
+  let reads = 0;
+  runtime.getNativeWeatherEnvironment = () => {
+    reads += 1;
+    return { lightingOverride: { dirDiffuse: [.9, .8, .7] }, sky: { imagePath: "/textures/sky/air61.png" } };
+  };
+  runtime.synchronize();
+  assert.deepEqual(applied.at(-1).lightingOverride, { dirDiffuse: [.9, .8, .7] });
+  assert.equal(applied.at(-1).skyTextureUrl, "/textures/sky/air61.png");
+  runtime.getCutsceneLightingPreset = () => 3;
+  runtime.getCutsceneLightingOverride = () => ({ dirIntensity: .1 });
+  runtime.synchronize();
+  assert.equal(reads, 1, "cutscene ownership does not sample/mutate the Story environment");
+  assert.equal(applied.at(-1).presetIndex, 3);
+  assert.deepEqual(applied.at(-1).lightingOverride, { dirIntensity: .1 });
+  assert.equal(applied.at(-1).skyTextureUrl, undefined);
+  runtime.getCutsceneLightingPreset = () => null;
+  for (const world of [{ id: "s2", assetFormat: "MT7" }, { id: "fixed", fixedWeather: "clear" }]) {
+    runtime.getWorld = () => world;
+    runtime.synchronize();
+    assert.equal(reads, 1);
+    assert.equal(applied.at(-1).lightingOverride, undefined);
+    assert.equal(applied.at(-1).skyTextureUrl, undefined);
+  }
+});
+
 test("native story weather reuses shared presentation without changing lighting or indoor exposure", () => {
   const { runtime, calls, sceneState } = createRuntime();
   let channels = { cloud: 1, rain: 0, snow: 0 };

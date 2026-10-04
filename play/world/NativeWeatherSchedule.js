@@ -23,17 +23,6 @@ export function nativeWeatherDateKey(record) {
   return (year << 20) | (month << 16) | (day << 11) | (hour << 6) | minute;
 }
 
-function nativeLerp(from, to, progress) {
-  // The shared 0xc0ecf06 helper zeroes both tiny differences and tiny products.
-  let delta = f32(to - from);
-  if (Math.abs(delta) < EPSILON) delta = 0;
-  else {
-    delta = f32(delta * progress);
-    if (Math.abs(delta) < EPSILON) delta = 0;
-  }
-  return f32(from + delta);
-}
-
 /** Immutable, validated curves; binary lookup avoids a scan on every clock tick. */
 export class NativeWeatherSchedule {
   constructor(catalog) {
@@ -41,8 +30,8 @@ export class NativeWeatherSchedule {
       throw new TypeError("native weather catalog schema is unavailable");
     }
     this.curves = {};
-    for (const tag of ["CLUD", "RAIN", "SNOW"]) {
-      const words = catalog.curves?.[tag];
+    for (const tag of ["CLUD", "RAIN", "SNOW", "AUX"]) {
+      const words = tag === "AUX" ? catalog.auxiliaryCurve : catalog.curves?.[tag];
       if (!Array.isArray(words) || words.length < 2
         || words.some((word, i) => !Number.isInteger(word) || word < 0 || word > 0xffffffff
           || (i > 0 && (words[i - 1] & 0xffffff) >= (word & 0xffffff)))) {
@@ -51,12 +40,13 @@ export class NativeWeatherSchedule {
       this.curves[tag] = Object.freeze([...words]);
     }
     Object.freeze(this.curves);
+    this.environment = new NativeWeatherEnvironmentSchedule(catalog.environment);
   }
 
   sample(record) {
     const packedDate = nativeWeatherDateKey(record);
     const result = { packedDate };
-    for (const [tag, channel] of [["CLUD", "cloud"], ["RAIN", "rain"], ["SNOW", "snow"]]) {
+    for (const [tag, channel] of [["CLUD", "cloud"], ["RAIN", "rain"], ["SNOW", "snow"], ["AUX", "auxiliary"]]) {
       const words = this.curves[tag];
       // Native lookup needs a pair surrounding the input. Never make missing
       // source coverage look like a valid clear-weather fallback.
@@ -73,7 +63,7 @@ export class NativeWeatherSchedule {
       const from = words[low];
       const to = words[high];
       const progress = f32(f32(packedDate - (from & 0xffffff)) / f32((to & 0xffffff) - (from & 0xffffff)));
-      let value = nativeLerp(f32((from >>> 24) / 255), f32((to >>> 24) / 255), progress);
+      let value = nativeWeatherLerp(f32((from >>> 24) / 255), f32((to >>> 24) / 255), progress);
       if (tag !== "SNOW" && Math.abs(value) < EPSILON) value = 0;
       result[channel] = value;
     }
@@ -90,10 +80,15 @@ export class NativeWeatherControllerState {
   constructor(schedule) {
     if (!(schedule instanceof NativeWeatherSchedule)) throw new TypeError("native weather schedule is required");
     this.schedule = schedule;
-    this.restore({ frozen: null, channels: null, cachedClock: null });
+    // 0xc1ba710 is the session initializer, not a new default on each room.
+    this.restore({ frozen: 1, channels: null, cachedClock: null,
+      environmentOwner: null, environmentMask: schedule.environment.coldMask,
+      environmentFlags: { ...schedule.environment.coldFlags },
+      appliedLightRgb: null, appliedSky: null });
   }
 
   apply(detail, readClock) {
+    if (detail.operationId === 0x0175) return this.#applyEnvironmentControl(detail, readClock);
     if (detail.operationId !== 0x0176 || detail.mode !== 1 || typeof detail.truthyBranch !== "boolean") {
       return { status: "stopped", reason: "native-weather-control-route-unproved" };
     }
@@ -111,21 +106,86 @@ export class NativeWeatherControllerState {
     return { mutation: { ...this.snapshot(), nativeForecastOwner: "not-implemented" } };
   }
 
+  #applyEnvironmentControl(detail, readClock) {
+    const { mode, forwardedWords, truthyBranch } = detail;
+    if (mode === 1) {
+      if (this.environmentOwner) return { nativeNoOp: true, mutation: { environmentOwnerAlreadyActive: true } };
+      const clock = Array.from(readClock());
+      const channels = this.schedule.sample(clock);
+      const sample = this.schedule.environment.sample(clock, channels);
+      const sky = this.schedule.environment.sky(clock, channels);
+      // All source reads/validation precede the native pointer publication.
+      this.channels = channels;
+      this.environmentOwner = { tag: "WAIR", clock, channels: { ...channels }, sample, sky };
+      this.environmentFlags.effects = 1;
+      this.#applyOwnerProjection();
+    } else if (mode === 2) {
+      if (!this.environmentOwner) return { nativeNoOp: true, mutation: { environmentOwnerAlreadyReleased: true } };
+      this.environmentOwner = null;
+      this.environmentFlags.effects = 0;
+      // Releasing WAIR does not reset the global light or SCROLL renderer.
+    } else if (mode === 27) {
+      if (!this.environmentOwner) return { nativeNoOp: true, mutation: { environmentOwnerUnavailable: true } };
+      this.environmentOwner.sky = this.schedule.environment.sky(this.environmentOwner.clock, this.environmentOwner.channels);
+      this.appliedSky = { ...this.environmentOwner.sky };
+    } else if (mode === 15 && forwardedWords?.length === 1 && Number.isInteger(forwardedWords[0])) {
+      this.environmentFlags.effects = forwardedWords[0] >>> 0;
+    } else if (mode === 21 && forwardedWords?.length === 1 && Number.isInteger(forwardedWords[0])) {
+      this.environmentMask = (this.environmentMask & ~forwardedWords[0]) >>> 0;
+    } else if ([23, 24, 25].includes(mode) && typeof truthyBranch === "boolean") {
+      const mask = { 23: 0x780, 24: 0x1800, 25: 12 }[mode];
+      this.environmentMask = (truthyBranch ? this.environmentMask | mask : this.environmentMask & ~mask) >>> 0;
+    } else {
+      return { status: "stopped", reason: "native-weather-environment-control-route-unproved" };
+    }
+    return { mutation: { ...this.snapshot(), presentationBoundary: "browser-light-color-and-sky-projection" } };
+  }
+
+  #applyOwnerProjection() {
+    const owner = this.environmentOwner;
+    if (this.environmentFlags.lighting === 1 && (this.environmentMask & 2)) {
+      // Native records store A,R,G,B at +16. Keep browser intensity/direction
+      // policy separate: the full Dreamcast global-light API is not Babylon.
+      this.appliedLightRgb = owner.sample.values.slice(5, 8);
+    }
+    if (this.environmentFlags.sky === 1) this.appliedSky = { ...owner.sky };
+  }
+
   synchronize(enabled, readClock) {
     // The browser samples current game minutes. The native per-frame owner
     // instead queues minute-ahead targets with 120-tick smoothing. That visual
     // timing is not claimed by this adapter; explicit script refresh is exact.
-    if (this.frozen === 0 && enabled === 1) {
+    if (enabled === 1 && (this.frozen === 0 || this.environmentOwner)) {
       const record = readClock();
-      if (!this.cachedClock || [0, 1, 2, 4, 5].some((i, j) => record?.[i] !== this.cachedClock[j])) {
-        this.apply({ operationId: 0x0176, mode: 1, truthyBranch: false }, () => record);
+      const refreshWeather = this.frozen === 0
+        && (!this.cachedClock || [0, 1, 2, 4, 5].some((i, j) => record?.[i] !== this.cachedClock[j]));
+      const channels = refreshWeather ? this.schedule.sample(record) : this.channels;
+      // Native 0xc1baf84 still advances WAIR's clock while weather is frozen.
+      // Freeze owns weather curves, not the sun/time-of-day environment.
+      const owner = this.environmentOwner;
+      let nextOwner = owner;
+      if (owner && (owner.clock.some((b, i) => b !== record?.[i])
+        || Object.keys(channels).some(k => channels[k] !== owner.channels[k]))) {
+        const sample = this.schedule.environment.sample(record, channels);
+        const sky = this.schedule.environment.sky(record, channels, owner.sky);
+        nextOwner = { ...owner, clock: Array.from(record), channels: { ...channels }, sample, sky };
       }
+      // Validate the whole refresh before publishing either owner. A valid
+      // WDAT packed-date normalization does not imply a valid WAIR clock.
+      if (refreshWeather) {
+        this.channels = channels;
+        this.cachedClock = [record[0], record[1], record[2], record[4], record[5]];
+      }
+      this.environmentOwner = nextOwner;
+      if (owner) this.#applyOwnerProjection();
     }
     return this.channels ? { ...this.channels } : null;
   }
 
   snapshot() {
-    return structuredClone({ frozen: this.frozen, channels: this.channels, cachedClock: this.cachedClock });
+    return structuredClone({ frozen: this.frozen, channels: this.channels, cachedClock: this.cachedClock,
+      environmentOwner: this.environmentOwner, environmentMask: this.environmentMask,
+      environmentFlags: this.environmentFlags, appliedLightRgb: this.appliedLightRgb, appliedSky: this.appliedSky });
   }
 
   restore(snapshot) {
@@ -133,5 +193,18 @@ export class NativeWeatherControllerState {
     this.frozen = owned.frozen;
     this.channels = owned.channels;
     this.cachedClock = owned.cachedClock;
+    this.environmentOwner = owned.environmentOwner;
+    this.environmentMask = owned.environmentMask;
+    this.environmentFlags = owned.environmentFlags;
+    this.appliedLightRgb = owned.appliedLightRgb;
+    this.appliedSky = owned.appliedSky;
+  }
+
+  readEnvironment() {
+    if (!this.appliedLightRgb && !this.appliedSky) return null;
+    return { ownerActive: this.environmentOwner !== null,
+      lightingOverride: this.appliedLightRgb ? { dirDiffuse: [...this.appliedLightRgb] } : null,
+      sky: this.appliedSky ? { ...this.appliedSky } : null };
   }
 }
+import { NativeWeatherEnvironmentSchedule, nativeWeatherLerp } from "./NativeWeatherEnvironment.js";
