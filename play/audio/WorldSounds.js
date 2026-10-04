@@ -100,6 +100,7 @@ export class WorldSounds {
       ? this.surfaceIndexAt({
         area: this.movement.nativeArea,
         actorTag: this.movement.nativeActorTag,
+        actorStepRecord: this.movement.nativeActorStepRecord,
         browserX: this.movement.position?.x,
         browserZ: this.movement.position?.z,
         fallbackSurfaceIndex: this.surfaceIndexForTerrain(
@@ -107,6 +108,8 @@ export class WorldSounds {
         ),
       })
       : this.surfaceIndexForTerrain(this.movement.terrain);
+    // Original STEP byte +1 silences the callback before material selection.
+    if (surfaceIndex === null) return false;
     // FUN_0c17bb14 uses the engine RNG for contact kinds 0..5. Ryo's
     // authored walk/run cues are kinds 0/1 and 3/4 respectively.
     const variant = event.cue?.contactKind === 6

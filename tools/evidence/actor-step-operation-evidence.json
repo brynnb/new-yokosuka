@@ -1,0 +1,938 @@
+{
+  "schema": "new-yokosuka-actor-step-operation-evidence-v1",
+  "status": "exact-native-handler-and-recovered-corpus-inventory",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "executableRuntimeBase": "0xc010000",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "eventIr": ".disc-work/dialogue/native-event-ir.json",
+    "eventIrSha256": "9a5db90da0403def6269c9968061216a06c831cb43f71a08554065c320481dc0"
+  },
+  "operation": {
+    "operationId": 245,
+    "operationHex": "0x00f5",
+    "handlerAddress": "0x0c16b3e0",
+    "argumentCount": 2,
+    "recordTag": "STEP",
+    "packedMode": "(argument1 >>> 8) & 255",
+    "byteValue": "argument1 & 255",
+    "modeOffsets": {
+      "0": 1,
+      "1": 2
+    },
+    "otherModes": "native no-op",
+    "missingActorOrRecord": "native no-op",
+    "provenBehavior": "Writes byte +1 (enable) for mode 0, or byte +2 (fallback surface) for mode 1. The footstep callback returns without sound when byte +1 is zero, and uses byte +2 only when the collision material is zero."
+  },
+  "inventory": {
+    "callCount": 42,
+    "mapCount": 28,
+    "argumentKinds": {
+      "0": {
+        "constant": 19,
+        "frame-field": 23
+      },
+      "1": {
+        "constant": 42
+      }
+    },
+    "constantPackedValues": {
+      "0": 28,
+      "1": 6,
+      "259": 3,
+      "260": 2,
+      "269": 3
+    },
+    "calls": [
+      {
+        "disc": 1,
+        "area": "D000",
+        "function": "0x13ac",
+        "callFileOffset": "0x186c",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(r0,r14) at 0x1860",
+            "offset": 68,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x185c"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "D000",
+        "function": "0x7d3b0",
+        "callFileOffset": "0x7d4aa",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x7d49e"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x7d49c"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "D000",
+        "function": "0x7d3b0",
+        "callFileOffset": "0x7d99a",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x7d98e"
+          },
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x7d98c"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "DMAJ",
+        "function": "0x17e9e",
+        "callFileOffset": "0x18378",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(r0,r14) at 0x1836c",
+            "offset": 68,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x18368"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "DYKZ",
+        "function": "0x1c6d4",
+        "callFileOffset": "0x1cbb0",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(r0,r14) at 0x1cba4",
+            "offset": 68,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x1cba0"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JD00",
+        "function": "0x614",
+        "callFileOffset": "0xad4",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(r0,r14) at 0xac8",
+            "offset": 68,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0xac4"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JD00",
+        "function": "0x62108",
+        "callFileOffset": "0x621c2",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x621b6"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x621b4"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JD00",
+        "function": "0x62108",
+        "callFileOffset": "0x621e2",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x621d6"
+          },
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x621d4"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JD00",
+        "function": "0x76b90",
+        "callFileOffset": "0x77054",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x77048"
+          },
+          {
+            "kind": "constant",
+            "value": 269,
+            "hex": "0x0000010d",
+            "source": "0x77046"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JHD0",
+        "function": "0x7c",
+        "callFileOffset": "0x528",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(r0,r14) at 0x51c",
+            "offset": 68,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x518"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JOMO",
+        "function": "0x88b70",
+        "callFileOffset": "0x88bd0",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x88bc4"
+          },
+          {
+            "kind": "constant",
+            "value": 259,
+            "hex": "0x00000103",
+            "source": "0x88bc2"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "JU00",
+        "function": "0x7c",
+        "callFileOffset": "0x528",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(r0,r14) at 0x51c",
+            "offset": 68,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x518"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "TATQ",
+        "function": "0x1d8d8",
+        "callFileOffset": "0x1e596",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1280460867,
+            "hex": "0x4c524843",
+            "ascii": "CHRL",
+            "source": "0x1e58a"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x1e588"
+          }
+        ]
+      },
+      {
+        "disc": 1,
+        "area": "TATQ",
+        "function": "0x1d8d8",
+        "callFileOffset": "0x1e78a",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1280460867,
+            "hex": "0x4c524843",
+            "ascii": "CHRL",
+            "source": "0x1e77e"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x1e77c"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "D000",
+        "function": "0x12d4",
+        "callFileOffset": "0x1794",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(r0,r14) at 0x1788",
+            "offset": 68,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x1784"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "D000",
+        "function": "0x657e4",
+        "callFileOffset": "0x658de",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x658d2"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x658d0"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "D000",
+        "function": "0x657e4",
+        "callFileOffset": "0x65dce",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x65dc2"
+          },
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x65dc0"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "DMAJ",
+        "function": "0x17e9e",
+        "callFileOffset": "0x18378",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(r0,r14) at 0x1836c",
+            "offset": 68,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x18368"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "DYKZ",
+        "function": "0x1c6d4",
+        "callFileOffset": "0x1cbb0",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(r0,r14) at 0x1cba4",
+            "offset": 68,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x1cba0"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "JD00",
+        "function": "0x614",
+        "callFileOffset": "0xad4",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(r0,r14) at 0xac8",
+            "offset": 68,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0xac4"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "JD00",
+        "function": "0x610b4",
+        "callFileOffset": "0x61572",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x61566"
+          },
+          {
+            "kind": "constant",
+            "value": 269,
+            "hex": "0x0000010d",
+            "source": "0x61564"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "JHD0",
+        "function": "0x7c",
+        "callFileOffset": "0x528",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(r0,r14) at 0x51c",
+            "offset": 68,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x518"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "JOMO",
+        "function": "0x88b70",
+        "callFileOffset": "0x88bd0",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x88bc4"
+          },
+          {
+            "kind": "constant",
+            "value": 259,
+            "hex": "0x00000103",
+            "source": "0x88bc2"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "JU00",
+        "function": "0x7c",
+        "callFileOffset": "0x528",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(r0,r14) at 0x51c",
+            "offset": 68,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x518"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "MKSG",
+        "function": "0x211b4",
+        "callFileOffset": "0x212c2",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(60,r14) at 0x212b6",
+            "offset": 60
+          },
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x212b4"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "MKSG",
+        "function": "0x211b4",
+        "callFileOffset": "0x21b56",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(60,r14) at 0x21b4a",
+            "offset": 60
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x21b48"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "MKSG",
+        "function": "0x21bae",
+        "callFileOffset": "0x232e2",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x232d6"
+          },
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x232d4"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "MS08",
+        "function": "0x17e9e",
+        "callFileOffset": "0x18378",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(r0,r14) at 0x1836c",
+            "offset": 68,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x18368"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "MS8S",
+        "function": "0x1894a",
+        "callFileOffset": "0x18e24",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(r0,r14) at 0x18e18",
+            "offset": 68,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x18e14"
+          }
+        ]
+      },
+      {
+        "disc": 2,
+        "area": "YDB1",
+        "function": "0x2012c",
+        "callFileOffset": "0x20190",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x20184"
+          },
+          {
+            "kind": "constant",
+            "value": 260,
+            "hex": "0x00000104",
+            "source": "0x20182"
+          }
+        ]
+      },
+      {
+        "disc": 3,
+        "area": "D000",
+        "function": "0x12d4",
+        "callFileOffset": "0x1794",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(r0,r14) at 0x1788",
+            "offset": 68,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x1784"
+          }
+        ]
+      },
+      {
+        "disc": 3,
+        "area": "D000",
+        "function": "0x65468",
+        "callFileOffset": "0x65562",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x65556"
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x65554"
+          }
+        ]
+      },
+      {
+        "disc": 3,
+        "area": "D000",
+        "function": "0x65468",
+        "callFileOffset": "0x65a52",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x65a46"
+          },
+          {
+            "kind": "constant",
+            "value": 1,
+            "hex": "0x00000001",
+            "source": "0x65a44"
+          }
+        ]
+      },
+      {
+        "disc": 3,
+        "area": "DMAJ",
+        "function": "0x17e9e",
+        "callFileOffset": "0x18378",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(r0,r14) at 0x1836c",
+            "offset": 68,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x18368"
+          }
+        ]
+      },
+      {
+        "disc": 3,
+        "area": "DYKZ",
+        "function": "0x1c6d4",
+        "callFileOffset": "0x1cbb0",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(r0,r14) at 0x1cba4",
+            "offset": 68,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x1cba0"
+          }
+        ]
+      },
+      {
+        "disc": 3,
+        "area": "JD00",
+        "function": "0x8ec",
+        "callFileOffset": "0xdac",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(r0,r14) at 0xda0",
+            "offset": 68,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0xd9c"
+          }
+        ]
+      },
+      {
+        "disc": 3,
+        "area": "JD00",
+        "function": "0x5e6cc",
+        "callFileOffset": "0x5eb8a",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x5eb7e"
+          },
+          {
+            "kind": "constant",
+            "value": 269,
+            "hex": "0x0000010d",
+            "source": "0x5eb7c"
+          }
+        ]
+      },
+      {
+        "disc": 3,
+        "area": "JHD0",
+        "function": "0x7c",
+        "callFileOffset": "0x528",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(r0,r14) at 0x51c",
+            "offset": 68,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x518"
+          }
+        ]
+      },
+      {
+        "disc": 3,
+        "area": "JOMO",
+        "function": "0x88b70",
+        "callFileOffset": "0x88bd0",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x88bc4"
+          },
+          {
+            "kind": "constant",
+            "value": 259,
+            "hex": "0x00000103",
+            "source": "0x88bc2"
+          }
+        ]
+      },
+      {
+        "disc": 3,
+        "area": "JU00",
+        "function": "0x7c",
+        "callFileOffset": "0x528",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(r0,r14) at 0x51c",
+            "offset": 68,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x518"
+          }
+        ]
+      },
+      {
+        "disc": 3,
+        "area": "MS08",
+        "function": "0x19880",
+        "callFileOffset": "0x19d5c",
+        "arguments": [
+          {
+            "kind": "frame-field",
+            "source": "@(r0,r14) at 0x19d50",
+            "offset": 68,
+            "width": 4
+          },
+          {
+            "kind": "constant",
+            "value": 0,
+            "hex": "0x00000000",
+            "source": "0x19d4c"
+          }
+        ]
+      },
+      {
+        "disc": 3,
+        "area": "YDB1",
+        "function": "0x1fb8c",
+        "callFileOffset": "0x1fbf0",
+        "arguments": [
+          {
+            "kind": "constant",
+            "value": 1380535105,
+            "hex": "0x52494b41",
+            "ascii": "AKIR",
+            "source": "0x1fbe4"
+          },
+          {
+            "kind": "constant",
+            "value": 260,
+            "hex": "0x00000104",
+            "source": "0x1fbe2"
+          }
+        ]
+      }
+    ]
+  },
+  "verifiedRanges": {
+    "handler": {
+      "address": "0xc16b3e0",
+      "length": 46,
+      "sha256": "0f8989d4388a2f7c5fe54485465138e542a775d673b128b15c898ee221ee5514"
+    },
+    "stepWriter": {
+      "address": "0xc17bbbc",
+      "length": 56,
+      "sha256": "c9d619421a39027100def7e074a7942dcce2a8c72f8931b3f5e816c4dc84ad2a"
+    },
+    "actorResolver": {
+      "address": "0xc153956",
+      "length": 58,
+      "sha256": "b99d1c60ec19d8c20dec13ede36b9f81a3b04510da97159b53e03db38deba35f"
+    },
+    "recordResolver": {
+      "address": "0xc0aad5a",
+      "length": 52,
+      "sha256": "14abed9a9089fed352b450240afd7cf7dd112eca734db9e98d97a45a47aa05eb"
+    },
+    "footstepCallback": {
+      "address": "0xc17bb14",
+      "length": 168,
+      "sha256": "e3b5840bcc80408988e8acd30c3c9ce01e3d0fc11d14272ecc59fad97f0cb3e9"
+    }
+  },
+  "evidenceBoundary": [
+    "This is the actor STEP property, not the unrelated global story STEP at 0xc22020c.",
+    "Existing captured actor property bytes supply initial state; the writer does not allocate missing STEP records.",
+    "The corpus inventory covers recovered script IR, not every possible executable call site."
+  ]
+}

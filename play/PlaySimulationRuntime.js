@@ -9,6 +9,7 @@ export class PlaySimulationRuntime {
     playInput,
     mobileControls,
     nativeActorTag,
+    nativeActorStepRecord = () => null,
     cinemaSeatInteractions,
     worldSounds,
     forkliftNetwork,
@@ -33,6 +34,7 @@ export class PlaySimulationRuntime {
     this.playInput = playInput;
     this.mobileControls = mobileControls;
     this.nativeActorTag = nativeActorTag;
+    this.nativeActorStepRecord = nativeActorStepRecord;
     this.cinemaSeatInteractions = cinemaSeatInteractions;
     this.worldSounds = worldSounds;
     this.forkliftNetwork = forkliftNetwork;
@@ -122,6 +124,11 @@ export class PlaySimulationRuntime {
       nativeArea: this.worldRuntime.activeWorld.collisionArea
         ?? this.worldRuntime.activeWorld.nativeArea,
       nativeActorTag: this.nativeActorTag(),
+      nativeActorStepRecord: this.nativeActorStepRecord({
+        area: this.worldRuntime.activeWorld.collisionArea
+          ?? this.worldRuntime.activeWorld.nativeArea,
+        actorTag: this.nativeActorTag(),
+      }),
       position: {
         x: controller.collider.position.x,
         z: controller.collider.position.z,

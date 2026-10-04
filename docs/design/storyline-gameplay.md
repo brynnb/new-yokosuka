@@ -477,8 +477,8 @@ so. Importing saved bytes and marking a load are also separate native steps.
 both saved sections, marking/consuming/resetting load status, and isolated
 snapshots. `NativeRoomScriptRuntime` keeps this object across area changes and
 includes it in transaction rollback, including failed transaction setup.
-It deliberately remains unavailable until the session owner initializes or
-imports it. No default JOMO parameter byte is guessed. Mode one's actor-restore
+The actor section deliberately remains unavailable until the session owner initializes or
+imports it; parameter reads use the persisted personal snapshot. No default JOMO parameter byte is guessed. Mode one's actor-restore
 adapter receives the actual 48 record bytes and must explicitly accept them;
 missing data or rejected application stops execution.
 
@@ -499,14 +499,25 @@ adapters. Merely receiving a network snapshot does not mark a native save load
 or fabricate an actor restore record. The actor helper restores actor fields and invokes refresh helpers;
 it does not itself restore the clock. Capturing with no primary actor clears
 only the output record and leaves the parameter output untouched, so a partial
-capture must not be mistaken for a valid new save. The first JOMO root still
-also encounters unresolved actor operation `0x00f5(AKIR,259)`; this lifecycle
-support alone does not make the entire opening controller executable.
+capture must not be mistaken for a valid new save. This lifecycle support alone
+does not make the entire opening controller executable.
+
+Actor operation `0x00f5` now follows the original `STEP` property write:
+packed mode zero changes the footstep enable byte; mode one changes the fallback
+surface byte. Higher modes and proven absent actor/property records are native
+no-ops; unknown records remain explicit stops. This actor property is distinct
+from the global story `STEP`. Captured room bytes initialize known actor records,
+live audio consumes their changes, and cancellation restores their prior bytes.
+Real collision materials still take precedence over the fallback surface.
 
 Verification: the scoped, freshly recovered JOMO IR runs from `0x88b70` with
 the existing free-conversation state and explicit cold `0x01c7` state. It now
-writes `scene[52] = 0` from the original query, then stops on unresolved
-`0x00f5` at `0x88bd0`. No replacement handler was supplied for that stop.
+writes `scene[52] = 0` from the original query, executes `0x00f5(AKIR,259)`
+at `0x88bd0`, then stops at `0x88bd4` because `0x0149` has no clock-control
+gate (`0xc225251`). The executable's clock initialization distinguishes
+playable scenes from scene zero and scene 80; its connection to personal
+session/arrival state is still outstanding. No replacement handler or guessed
+gate value was supplied for that stop.
 Focused tests cover saved-section ownership, byte bounds, separate load flags,
 atomic import, rejected actor restore, room changes, committed parameter
 changes, cancellation and failed transaction setup. These are headless checks,

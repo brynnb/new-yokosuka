@@ -1,6 +1,7 @@
 import nativeInteractionManagerPack from "../data/events/nativeInteractionManagers.generated.json" with {
   type: "json",
 };
+import actorFootstepProperties from "../data/native-actor-footstep-properties.json" with { type: "json" };
 import {
   createNativeInteractionManagerCatalog,
 } from "./NativeInteractionManagerCatalog.js";
@@ -65,6 +66,15 @@ export function applyNativeRoomScriptProfile(sceneState, area) {
     throw new TypeError("native room script gameplay state is required");
   }
   const key = String(area || "").toUpperCase();
+  for (const [objectTag, { areas }] of Object.entries(actorFootstepProperties.actors)) {
+    const property = areas[key];
+    if (!property) continue;
+    const bytes = property.evidence.propertyBytes.match(/../g).map(byte => Number.parseInt(byte, 16));
+    sceneState.associatedRecords.configureStepRecord({
+      objectTag, actorAvailable: true, recordAvailable: true,
+      enabledByte: bytes[1], surfaceByte: bytes[2],
+    });
+  }
   const profile = PROFILES[key];
   if (!profile) return { area: key, applied: false, evidence: null };
   for (const field of profile.nativeFields) {

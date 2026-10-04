@@ -90,6 +90,22 @@ joined/delayed multi-playback compositions; they remain explicit fail-closed
 records until that timing format is decoded exactly rather than being flattened
 into a guessed mix.
 
+Room operation `0x00f5` can change this property during play. Its handler
+`0xc16b3e0` passes the packed value to `0xc17bbbc`: the second byte selects
+enable byte `+1` (mode zero) or fallback surface byte `+2` (mode one), and the
+low byte is written. Other modes and missing actors/records are native no-ops.
+The callback checks the enable byte **before** querying the material beneath
+the actor, so disabling footsteps suppresses every surface, not only fallback
+sounds. This actor property is separate from the global story-progress `STEP`.
+
+`tools/scripting/operations/extract_actor_step_operation_evidence.py` verifies
+the original handler, resolver, writer and callback hashes and inventories all
+42 recovered calls across 28 disc/area pairs. The shared associated-record
+state owns writes and transaction rollback; the existing footstep resolver
+and world-audio player consume its current bytes. Captured actor properties
+provide initial state in their proven areas. Unknown record availability stops
+execution rather than inventing a record or assuming the actor is missing.
+
 The browser-only Forklift Playground keeps `nativeArea: MA00` for its gameplay
 and forklift state, but renders the full MFSY Harbor map and MFSY placements.
 Its `collisionArea: MFSY` field therefore selects both collision and footstep

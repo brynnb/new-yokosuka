@@ -352,6 +352,9 @@ export function createNativeSceneFieldRuntimeContext(
     applyActorFigpByte10: detail => (
       sceneState.applyActorFigpByte10(detail)
     ),
+    applyActorStepPackedByte: detail => (
+      sceneState.associatedRecords.applyStepPackedByte(detail)
+    ),
     applyResolvedObjectFigpBytePair: detail => (
       sceneState.applyObjectFigpBytePair(detail)
     ),

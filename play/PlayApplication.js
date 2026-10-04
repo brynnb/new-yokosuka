@@ -1340,6 +1340,13 @@ function createPlayRuntime() {
     nativeActorTag: () => CHARACTER_BY_ID.get(
       playerRuntime.activeCharacterId,
     )?.nativeActorTag,
+    // A presentation can change rooms before the rendered host world changes.
+    // Do not borrow that room's actor property for the previous world's audio.
+    nativeActorStepRecord: ({ area, actorTag }) => (
+      actorTag && area === nativeRoomScriptRuntime.activeArea
+        ? nativeRoomScriptRuntime.sceneState.associatedRecords.readStepRecord(actorTag)
+        : null
+    ),
     cinemaSeatInteractions,
     worldSounds,
     forkliftNetwork,

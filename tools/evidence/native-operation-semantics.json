@@ -147,6 +147,15 @@
   ],
   "operations": [
     {
+      "operationId": 245,
+      "operationHex": "0x00f5",
+      "argumentCount": 2,
+      "semanticId": "actor-step-packed-byte-write",
+      "handlerAddress": "0x0c16b3e0",
+      "provenBehavior": "Resolves the actor's STEP record. Argument one's second byte selects offset +1 (mode 0) or +2 (mode 1); its low byte is written. Other modes and missing actors/records are native no-ops. The enable and fallback surface bytes are consumed by the original footstep callback.",
+      "sources": ["tools/evidence/actor-step-operation-evidence.json"]
+    },
+    {
       "operationId": 110,
       "operationHex": "0x006e",
       "argumentCount": 2,
