@@ -219,7 +219,7 @@ export class PlayWorldLifecycle {
     }
   }
 
-  async initializeLoadedWorld({ world, environment, loaded, signal }) {
+  async initializeLoadedWorld({ world, environment, loaded, signal, nativeArrival = null }) {
     if (this.playerRuntime.prepareWorld) await this.playerRuntime.prepareWorld(world, signal);
     this.worldRuntime.ensureLoadActive(signal);
     const controller = this.getController();
@@ -227,7 +227,7 @@ export class PlayWorldLifecycle {
     this.worldEnvironment.setWeatherOccluders(this.sceneState.currentMeshes);
     this.worldEnvironment.applyWeather(environment.precipitation);
     await this.nativeStoryRuntime.activateWorld(
-      world, this.sceneState.currentMeshes, signal,
+      world, this.sceneState.currentMeshes, signal, { nativeArrival },
     );
     this.worldRuntime.ensureLoadActive(signal);
     this.playerRuntime.syncFootwear();
@@ -395,6 +395,7 @@ export class PlayWorldLifecycle {
   async initialize({
     initialWorldOverride = null,
     initialPlacement = null,
+    initialNativeArrival = null,
     fetchServerState = true,
     persistInitialLocation = true,
     reveal = true,
@@ -454,6 +455,7 @@ export class PlayWorldLifecycle {
       persistLocation: false,
       reveal,
       loadingPresentation,
+      nativeArrival: initialNativeArrival ?? initialPlacement?.nativeArrival ?? null,
     });
     if (this.multiplayerRuntime.sessionReplaced) return;
     if (!loaded && !this.getController()) {

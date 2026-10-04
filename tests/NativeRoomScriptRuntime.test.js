@@ -24,6 +24,40 @@ function action(semanticId, arguments_) {
   };
 }
 
+test("native arrival queries and clock-control writes share room transaction ownership", async () => {
+  const room = createNativeRoomScriptRuntime();
+  room.activateArea("JOMO");
+  const execute = createNativeEventOperationExecutor({ handlers: room.semanticHandlers() });
+  const run = (id, values = []) => execute(action(id, values), room.eventContext());
+  assert.equal((await run("current-scene-query")).status, "stopped");
+  assert.equal((await run("native-fixed-global-dword-query")).status, "stopped");
+  room.applyArrival({ scene: 1, area: "JOMO", entry: 1 });
+  assert.deepEqual(await run("current-scene-query"), { result: 1 });
+  assert.deepEqual(await run("native-fixed-global-dword-query"), { result: 1 });
+  assert.equal((await run("conditional-global-byte-write", [0])).status, "stopped");
+  room.applyArrival({ scene: 1, area: "JOMO", entry: 1 }, { clockLoaderControlDword: 0 });
+  const readAdvance = () => room.sceneState.readNativeField({ offset: 0x0c225250, width: 1 });
+  assert.equal(readAdvance(), 1);
+  const transaction = room.beginTransaction({ area: "JOMO" });
+  assert.equal((await run("conditional-global-byte-write", [0])).status, "continued");
+  assert.equal(readAdvance(), 0);
+  assert.throws(() => room.applyArrival({ scene: 1, area: "JOMO", entry: 0 }), /during a transaction/);
+  transaction.rollback({ reason: "cancelled" });
+  assert.equal(readAdvance(), 1);
+  // The original loader's nonzero guard preserves an existing paused clock.
+  await run("conditional-global-byte-write", [0]);
+  room.applyArrival({ scene: 2, area: "JOMO", entry: 0 }, { clockLoaderControlDword: 1 });
+  assert.equal(readAdvance(), 0);
+  assert.deepEqual(await run("current-scene-query"), { result: 2 });
+  assert.deepEqual(await run("native-fixed-global-dword-query"), { result: 0 });
+  const snapshot = room.sceneState.snapshot();
+  assert.throws(() => room.applyArrival({ scene: 3, area: "JOMO", entry: 1 }, { clockLoaderControlDword: NaN }), /exact scene and loader/);
+  assert.deepEqual(room.sceneState.snapshot(), snapshot);
+  assert.throws(() => room.applyArrival({ scene: 3, area: "D000", entry: 0 }), /active room/);
+  room.activateArea("JHD0");
+  assert.equal((await run("native-fixed-global-dword-query")).status, "stopped");
+});
+
 function proceduralCreateAction() {
   return {
     kind: "engineOperation",

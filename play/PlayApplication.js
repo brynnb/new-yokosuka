@@ -163,7 +163,7 @@ import {
 import { CombatHud } from "./combat/CombatHud.js";
 import { accountSession } from "./account/AccountSession.js";
 import { PlayModeSession } from "./account/PlayModeSession.js";
-import { needsNewCharacterOpening, playNewCharacterOpening } from "./cutscenes/NewCharacterOpening.js";
+import { NEW_CHARACTER_OPENING_ARRIVAL, needsNewCharacterOpening, playNewCharacterOpening } from "./cutscenes/NewCharacterOpening.js";
 import { PlayLoopRuntime } from "./PlayLoopRuntime.js";
 import { PlaySceneRuntime } from "./PlaySceneRuntime.js";
 import { PlaySimulationRuntime } from "./PlaySimulationRuntime.js";
@@ -1968,7 +1968,10 @@ function createPlayRuntime() {
           body: JSON.stringify({ revision: accountSession.character.modeRevision }),
         });
         accountSession.applyWelcome(result.character);
-        await initialize();
+        await initialize({
+          initialNativeArrival: accountSession.character.playMode === "story"
+            ? NEW_CHARACTER_OPENING_ARRIVAL.nativeArrival : null,
+        });
         lifetime.signal.throwIfAborted();
         // Connect only after reaching the playable world. Cinematic positions
         // and Ryo's temporary avatar must never become multiplayer presence.

@@ -9,6 +9,7 @@ test("opening arrival uses native JOMO entry 1 facing the bedroom doorway", () =
     .entries.find(entry => entry.entry === 1).browserProjection;
   const arrival = NEW_CHARACTER_OPENING_ARRIVAL;
   assert.equal(arrival.worldId, "interior");
+  assert.deepEqual(arrival.nativeArrival, { scene: 1, area: "JOMO", entry: 1 });
   assert.deepEqual(arrival.position, entry.position);
   const placements = JSON.parse(fs.readFileSync("play/data/jomo-runtime-placements.json", "utf8"));
   const hinge = placements.placements.find(item => item.runtime?.objectTag === "dor7").position;

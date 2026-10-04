@@ -5,6 +5,22 @@ function requireWord(value, label) {
   return value >>> 0;
 }
 
+// The queue consumer writes these process globals, not room-local offsets.
+// Proven by dialogue-predicate-values.json's nativeArrivalState contract.
+export function nativeArrivalFields({ scene, area, entry }) {
+  if (!Number.isInteger(scene) || scene < 0 || scene > 0xffffffff
+    || !Number.isInteger(entry) || entry < 0 || entry > 0xffffffff
+    || typeof area !== "string" || !/^[A-Z0-9]{4}$/.test(area)) {
+    throw new TypeError("native arrival requires exact scene, four-character area and entry words");
+  }
+  const areaWord = [...area].reduce((word, char, i) => word | char.charCodeAt(0) << (8 * i), 0) >>> 0;
+  return [
+    { offset: 0x0c20c3d8, width: 4, value: scene },
+    { offset: 0x0c20c3dc, width: 4, value: areaWord },
+    { offset: 0x0c20c3e0, width: 4, value: entry },
+  ];
+}
+
 export class NativeAreaRequestState {
   constructor() {
     this.clear();

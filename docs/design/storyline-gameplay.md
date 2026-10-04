@@ -510,14 +510,30 @@ from the global story `STEP`. Captured room bytes initialize known actor records
 live audio consumes their changes, and cancellation restores their prior bytes.
 Real collision materials still take precedence over the fallback surface.
 
+Exact S1 transitions now carry their original scene/area/entry tuple through
+world loading into the room context before composition. All 65 currently
+playable S1 routes match their destination world's native area. The new Story
+opening supplies `(1,JOMO,1)` as native metadata while retaining the position
+returned by the server. Resume and manual travel do not invent an entry zero;
+S2 disc metadata is not interpreted as an S1 scene. Operations `0x0026` and
+`0x019c` read the exact entry and scene globals.
+
+The executable's clock initializer at `0xc181cbe` sets gate/advance to zero
+for scenes 0 and 80, and one for other scenes. The room loader calls it only
+when dword `0xc20c3fc` is zero; nonzero preserves prior control bytes. The
+source and bounded byte ranges are pinned in
+`tools/evidence/native-clock-initialization-evidence.json`. This models control
+bytes, not native timer registration, calendar bounds or server time advancement.
+The browser session/load owner does not yet supply the loader-control word.
+
 Verification: the scoped, freshly recovered JOMO IR runs from `0x88b70` with
-the existing free-conversation state and explicit cold `0x01c7` state. It now
-writes `scene[52] = 0` from the original query, executes `0x00f5(AKIR,259)`
-at `0x88bd0`, then stops at `0x88bd4` because `0x0149` has no clock-control
-gate (`0xc225251`). The executable's clock initialization distinguishes
-playable scenes from scene zero and scene 80; its connection to personal
-session/arrival state is still outstanding. No replacement handler or guessed
-gate value was supplied for that stop.
+the existing free-conversation state, explicit cold `0x01c7` state, and the
+source-backed `(1,JOMO,1)` arrival plus an explicitly supplied loader word zero.
+It writes `scene[52] = 0`, executes `0x00f5(AKIR,259)` at `0x88bd0`, and
+`0x0149(0)` pauses the native clock control. It next stops at `0x018b` at
+`0x1c374`, which writes a shared 44-byte controller record before `0x018a`
+activation. Pool ownership and preserved initialization fields remain under
+investigation. This is a headless source/state check, not proof of live startup.
 Focused tests cover saved-section ownership, byte bounds, separate load flags,
 atomic import, rejected actor restore, room changes, committed parameter
 changes, cancellation and failed transaction setup. These are headless checks,

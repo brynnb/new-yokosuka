@@ -6,7 +6,9 @@ import {
 } from "./NativeIndexedRecordRuntime.js";
 import {
   createNativeClockRecordState,
+  nativeClockInitializationFields,
 } from "./NativeClockRecordRuntime.js";
+import { nativeArrivalFields } from "./NativeAreaRequestRuntime.js";
 import {
   createNativeActorMhndSemanticHandlers,
 } from "./NativeActorMhndRuntime.js";
@@ -714,6 +716,18 @@ export class NativeRoomScriptRuntime {
     this.#clearRecoveredOperationState();
     this.activeArea = null;
     return true;
+  }
+
+  applyArrival(arrival, { clockLoaderControlDword = null } = {}) {
+    if (this.activeTransaction) throw new Error("cannot apply a native arrival during a transaction");
+    const fields = nativeArrivalFields(arrival);
+    if (arrival.area !== this.activeArea) throw new Error("native arrival does not match the active room");
+    // Validate every input before publishing any bytes. A missing loader word
+    // leaves clock control unavailable rather than inventing a cold load.
+    const clockFields = clockLoaderControlDword === null ? []
+      : nativeClockInitializationFields({ scene: arrival.scene, loaderControlDword: clockLoaderControlDword });
+    for (const field of [...fields, ...clockFields]) this.sceneState.writeNativeField(field);
+    return { arrival: { scene: arrival.scene, area: arrival.area, entry: arrival.entry }, clockInitialized: clockFields.length > 0 };
   }
 
   #clearRecoveredOperationState() {

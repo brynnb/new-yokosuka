@@ -6547,10 +6547,12 @@
     {
       "operationId": 412,
       "operationHex": "0x019c",
+      "argumentCount": 0,
       "semanticId": "current-scene-query",
       "handlerAddress": "0x0c1649b0",
       "provenBehavior": "Returns the current scene/disc number used by native transition callbacks.",
       "sources": [
+        "tools/evidence/native-clock-initialization-evidence.json",
         "docs/research/shenmue1/map-transition-trace.md",
         "tools/evidence/map-transition-catalog.json"
       ]

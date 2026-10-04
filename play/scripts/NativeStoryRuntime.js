@@ -53,8 +53,9 @@ export class NativeStoryRuntime {
       || this.cutscenes.active || this.getActivityRunner()?.active);
   }
 
-  activateWorld(world, meshes, signal) {
+  activateWorld(world, meshes, signal, { nativeArrival = null } = {}) {
     this.roomScripts.activateArea(world.nativeArea);
+    if (nativeArrival) this.roomScripts.applyArrival(nativeArrival);
     const composition = this.getRoomComposition();
     this.composeRoomScene(this.roomScripts.sceneState, composition);
     for (const resource of composition.resources) {

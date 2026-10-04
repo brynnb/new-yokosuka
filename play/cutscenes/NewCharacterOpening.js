@@ -13,6 +13,7 @@ export const NEW_CHARACTER_OPENING = Object.freeze([
 const bedsidePosition = Object.freeze([-17.600000381469727, 0, 4.099999904632568]);
 export const NEW_CHARACTER_OPENING_ARRIVAL = Object.freeze({
   worldId: "interior",
+  nativeArrival: Object.freeze({ scene: 1, area: "JOMO", entry: 1 }),
   position: bedsidePosition,
   // Face the doorway instead of retaining the native straight-ahead heading.
   // dor7's hinge is (-16.302, 0, 1.833); DR01_015's closed panel spans

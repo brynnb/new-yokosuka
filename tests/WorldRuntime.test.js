@@ -61,6 +61,21 @@ function createRuntime(overrides = {}) {
   return { controller, log, runtime };
 }
 
+test("world loading carries exact door arrivals, including re-entry into the same world", async () => {
+  const arrivals = [];
+  const { runtime } = createRuntime({ initializeWorld: detail => arrivals.push(detail.nativeArrival) });
+  const destination = { scene: 1, area: "JOMO", entry: 1 };
+  await runtime.select(world("next"), { transition: { destination } });
+  assert.deepEqual(arrivals, [destination]);
+  const second = { scene: 2, area: "JOMO", entry: 0 };
+  await runtime.select(runtime.activeWorld, { transition: { destination: second } });
+  assert.deepEqual(arrivals, [destination, second]);
+  await runtime.initialize(world("initial"), { nativeArrival: destination });
+  assert.deepEqual(arrivals.at(-1), destination);
+  await runtime.select(world("next"), { transition: { destination: { disc: 2, area: "AK00" } } });
+  assert.equal(arrivals.at(-1), null, "S2 disc metadata must not be reinterpreted as an S1 arrival");
+});
+
 test("world selection owns clear-load-initialize-reveal ordering and state", async () => {
   const { log, runtime } = createRuntime();
   const next = world("next");

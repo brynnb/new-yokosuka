@@ -63,6 +63,9 @@ export function createNativeSceneFieldRuntimeContext(
         ? { offset: descriptor, width: 4 }
         : descriptor,
     ),
+    readNativeFixedGlobalDword: ({ address }) => sceneState.readNativeField({
+      offset: address, width: 4, signedLoad: true,
+    }),
     writeSceneField: descriptor => sceneState.writeNativeField(descriptor),
     planGlobalControllerInitialize: value => (
       sceneState.planGlobalControllerInitialize(value)

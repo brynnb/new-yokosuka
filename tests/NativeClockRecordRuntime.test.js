@@ -9,7 +9,21 @@ import {
   createNativeClockRecordState,
   normalizeNativeClockRecord,
   nativeClockRecordFromGameDate,
+  nativeClockInitializationFields,
 } from "../play/events/NativeClockRecordRuntime.js";
+
+test("original clock initialization distinguishes playable scenes, disabled scenes and loader preservation", () => {
+  for (const scene of [0, 1, 2, 3, 80]) {
+    const fields = new Map(nativeClockInitializationFields({ scene, loaderControlDword: 0 })
+      .map(field => [field.offset, field.value]));
+    assert.equal(fields.get(0x0c225251), scene === 0 || scene === 80 ? 0 : 1);
+    assert.equal(fields.get(0x0c225250), fields.get(0x0c225251));
+    assert.equal(fields.get(0x0c225257), scene === 80 ? 1 : 0);
+    assert.equal(fields.get(0x0c225255), 30);
+    assert.deepEqual(nativeClockInitializationFields({ scene, loaderControlDword: 1 }), []);
+  }
+  assert.throws(() => nativeClockInitializationFields({ scene: 1 }), /exact scene and loader/);
+});
 
 function action(kind, offset = 4, semanticId = "native-clock-record-copy") {
   return {

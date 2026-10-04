@@ -27,6 +27,7 @@ function createRuntime() {
     roomScripts: {
       sceneState,
       activateArea: area => calls.push(["activate", area]),
+      applyArrival: arrival => calls.push(["arrival", arrival]),
       deactivateArea: () => calls.push("deactivate"),
     },
     scriptedEvents: {
@@ -104,6 +105,13 @@ test("story world activation and clearing preserve subsystem order", () => {
     "clear-resources",
     ["clear-cutscene", "interior"],
   ]);
+});
+
+test("original arrival is installed before room composition, without inferring it from asset names", () => {
+  const { calls, runtime } = createRuntime();
+  const arrival = { scene: 1, area: "JOMO", entry: 1 };
+  runtime.activateWorld({ id: "interior", nativeArea: "JOMO", prefix: "S2_JOMO" }, [], null, { nativeArrival: arrival });
+  assert.deepEqual(calls.slice(0, 3), [["activate", "JOMO"], ["arrival", arrival], "compose"]);
 });
 
 test("automatic story updates receive one explicit native context", () => {
