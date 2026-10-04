@@ -5489,10 +5489,12 @@
       "argumentConstraints": [
         { "index": 0, "values": [1] }
       ],
-      "provenBehavior": "Dispatches the exact mode-one presentation-controller route and its authored word.",
+      "provenBehavior": "Mode one with a zero word clears the frozen flag, samples WDAT using the native clock, refreshes weather channels and caches the clock. A nonzero word sets the frozen flag without sampling or clearing channels. The browser implements cloud/rain/snow state; auxiliary channels and forecast-owner construction remain explicit gaps.",
       "sources": [
         "tools/scripting/operations/extract_native_presentation_controller_family_evidence.py",
-        "tools/evidence/native-presentation-controller-family-evidence.json"
+        "tools/evidence/native-presentation-controller-family-evidence.json",
+        "tools/worlds/extract_shenmue1_weather.py",
+        "play/data/shenmue1-native-weather.json"
       ]
     },
     {

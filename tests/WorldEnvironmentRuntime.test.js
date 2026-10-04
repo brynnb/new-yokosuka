@@ -82,6 +82,30 @@ test("environment synchronization applies changed time, season, and weather once
   ]);
 });
 
+test("native story weather reuses shared presentation without changing lighting or indoor exposure", () => {
+  const { runtime, calls, sceneState } = createRuntime();
+  let channels = { cloud: 1, rain: 0, snow: 0 };
+  let world = { id: "interior", interior: true };
+  runtime.getNativeWeather = () => channels;
+  runtime.getWorld = () => world;
+  runtime.synchronize();
+  assert.equal(sceneState.currentWeather, "overcast");
+  assert.equal(sceneState.currentTimeOfDay, 2);
+  assert.deepEqual(calls.filter(c => Array.isArray(c) && c[0] === "weather").at(-1), ["weather", "clear"]);
+  channels = { cloud: 1, rain: 1, snow: 0 };
+  world = { id: "dobuita", interior: false };
+  runtime.synchronize();
+  assert.deepEqual(calls.filter(c => Array.isArray(c) && c[0] === "weather").at(-1), ["weather", "rain"]);
+  channels = { cloud: 0, rain: 0, snow: 0 };
+  world = { id: "fixed", fixedWeather: "snow" };
+  assert.equal(runtime.capture(world).environment.weather, "rain", "fixed worlds keep the clock's resolved policy");
+  world = { id: "s2", assetFormat: "MT7" };
+  assert.equal(runtime.capture(world).environment.weather, "rain", "S1 curves must not leak into S2 worlds");
+  runtime.getNativeWeather = () => null;
+  world = { id: "free-roam" };
+  assert.equal(runtime.capture(world).environment.weather, "rain", "uninitialized/free-roam keeps server weather");
+});
+
 test("shot lighting survives periodic clock updates and disappears when released", () => {
   const { runtime } = createRuntime();
   let index = 3;

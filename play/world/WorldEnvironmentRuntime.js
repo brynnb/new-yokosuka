@@ -1,3 +1,5 @@
+import { WORLD_WEATHER_NAMES } from "./WorldClock.js";
+
 export class WorldEnvironmentRuntime {
   constructor({
     clock,
@@ -23,6 +25,7 @@ export class WorldEnvironmentRuntime {
     updateMapLayer,
     applyTimeOfDayLighting,
     applyWaterTimeOfDay,
+    getNativeWeather = () => null,
   }) {
     this.clock = clock;
     this.weather = weather;
@@ -47,6 +50,7 @@ export class WorldEnvironmentRuntime {
     this.updateMapLayer = updateMapLayer;
     this.applyTimeOfDayLighting = applyTimeOfDayLighting;
     this.applyWaterTimeOfDay = applyWaterTimeOfDay;
+    this.getNativeWeather = getNativeWeather;
     this.lastCalendarDay = null;
     this.rolloverController = null;
     this.timer = null;
@@ -70,7 +74,19 @@ export class WorldEnvironmentRuntime {
   }
 
   capture(world) {
-    const environment = this.clock.environmentState(world);
+    let environment = this.clock.environmentState(world);
+    const nativeWeather = world?.assetFormat === "MT7" ? null : this.getNativeWeather();
+    if (nativeWeather && !world?.fixedWeather) {
+      // Reuse the established browser renderer's four weather categories.
+      // Native curves/controls are exact; continuous cloud opacity, native
+      // particle intensity and forecast sprites are not represented here yet.
+      const weather = nativeWeather.snow > 0 ? "snow"
+        : nativeWeather.rain > 0 ? "rain"
+          : nativeWeather.cloud > 0 ? "overcast" : "clear";
+      const exposed = world?.weatherExposure === "outdoor" || world?.interior !== true;
+      environment = { ...environment, weather, weatherIndex: WORLD_WEATHER_NAMES.indexOf(weather),
+        precipitation: exposed ? weather : "clear" };
+    }
     const seasonChanged =
       this.sceneState.currentSeason !== environment.seasonIndex;
     const weatherChanged = (

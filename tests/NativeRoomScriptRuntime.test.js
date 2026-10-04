@@ -24,6 +24,57 @@ function action(semanticId, arguments_) {
   };
 }
 
+test("source weather controls share staged clock, native enable state, and transaction rollback", async () => {
+  let clock = [86, 12, 3, 3, 1, 30, 0];
+  const room = createNativeRoomScriptRuntime({ clockRecord: { readNativeClockRecord: () => clock } });
+  room.activateArea("JOMO");
+  const execute = createNativeEventOperationExecutor({ handlers: room.semanticHandlers() });
+  const run = (id, values) => execute(action(id, values), room.eventContext());
+  await run("native-operation-0174-global-dword-write", [1, 1]);
+  assert.equal((await run("native-operation-0176-control", [1, 0])).status, "continued");
+  assert.equal(room.readWeatherState().cloud, 1);
+  const before = room.weatherControllerState.snapshot();
+  const transaction = room.beginTransaction({ area: "JOMO" });
+  room.clockRecordState.write([86, 12, 3, 3, 8, 55, 0]);
+  assert.equal((await run("native-operation-0176-control", [1, 0])).status, "continued");
+  assert.equal(room.readWeatherState().cloud, 0);
+  transaction.rollback({ reason: "cancelled" });
+  assert.deepEqual(room.weatherControllerState.snapshot(), before);
+  assert.equal(room.readWeatherState().cloud, 1);
+  await run("native-operation-0176-control", [1, 1]);
+  clock = [86, 12, 3, 3, 8, 55, 0];
+  assert.equal(room.readWeatherState().cloud, 1, "frozen weather ignores advancing authoritative time");
+  assert.equal((await run("native-operation-0176-control", [1, 0])).status, "continued");
+  const committed = room.beginTransaction({ area: "JOMO" });
+  await run("native-operation-0176-control", [1, 1]);
+  committed.commit();
+  assert.equal(room.weatherControllerState.snapshot().frozen, 1);
+  room.activateArea("JHD0");
+  assert.equal(room.weatherControllerState.snapshot().frozen, 1, "weather controls are session-owned, not newly zeroed in every room");
+});
+
+test("weather source failure and failed room setup preserve the previous owner state", async () => {
+  const missing = createNativeRoomScriptRuntime();
+  missing.activateArea("JOMO");
+  const execute = createNativeEventOperationExecutor({ handlers: missing.semanticHandlers() });
+  const before = missing.weatherControllerState.snapshot();
+  assert.equal((await execute(action("native-operation-0176-control", [1, 0]), missing.eventContext())).status, "stopped");
+  assert.deepEqual(missing.weatherControllerState.snapshot(), before);
+  let room;
+  room = createNativeRoomScriptRuntime({
+    clockRecord: { readNativeClockRecord: () => [86, 12, 3, 3, 8, 55, 0] },
+    transaction: { begin() {
+      room.weatherControllerState.apply({ operationId: 0x0176, mode: 1, truthyBranch: false },
+        () => room.clockRecordState.read());
+      throw Error("setup rejected");
+    } },
+  });
+  room.activateArea("JOMO");
+  const cold = room.weatherControllerState.snapshot();
+  assert.throws(() => room.beginTransaction({ area: "JOMO" }), /setup rejected/);
+  assert.deepEqual(room.weatherControllerState.snapshot(), cold);
+});
+
 test("native arrival queries and clock-control writes share room transaction ownership", async () => {
   const room = createNativeRoomScriptRuntime();
   room.activateArea("JOMO");

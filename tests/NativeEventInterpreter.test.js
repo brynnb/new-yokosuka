@@ -18,6 +18,7 @@ import {
   evaluateNativeFrameFieldComparison,
   evaluateNativeSceneFieldComparison,
 } from "../play/events/NativeEventPredicate.js";
+import { createNativePresentationControllerFamilySemanticHandlers } from "../play/events/NativePresentationControllerFamilyRuntime.js";
 
 function operation(offset, semanticId = "proven-operation") {
   return {
@@ -29,6 +30,26 @@ function operation(offset, semanticId = "proven-operation") {
     arguments: [],
   };
 }
+
+test("rejected presentation aborts the native program before later story writes", async () => {
+  let laterWrites = 0;
+  const handlers = {
+    ...createNativePresentationControllerFamilySemanticHandlers({
+      applyNativePresentationControllerRoute: () => ({ status: "stopped", reason: "source unavailable" }),
+    }),
+    "later-story-write": () => { laterWrites += 1; return { status: "continued" }; },
+  };
+  const program = { entryFunction: "0x100", functions: [{ id: "0x100", entryBlock: "0x100", blocks: [{
+    id: "0x100", actions: [{ ...operation("0x102", "native-operation-0176-control"),
+      arguments: [1, 0].map(value => ({ kind: "constant", value })) },
+    operation("0x104", "later-story-write")], successors: [],
+  }] }] };
+  const result = await createNativeEventInterpreter({ program,
+    executeOperation: createNativeEventOperationExecutor({ handlers }) }).run();
+  assert.equal(result.status, "stopped");
+  assert.equal(result.reason.detail, "source unavailable");
+  assert.equal(laterWrites, 0);
+});
 
 function comparison() {
   return {

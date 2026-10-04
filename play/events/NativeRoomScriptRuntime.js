@@ -9,6 +9,9 @@ import {
   nativeClockInitializationFields,
 } from "./NativeClockRecordRuntime.js";
 import { nativeArrivalFields } from "./NativeAreaRequestRuntime.js";
+import { NativeWeatherControllerState, NativeWeatherSchedule } from "../world/NativeWeatherSchedule.js";
+import nativeWeatherCatalog from "../data/shenmue1-native-weather.json" with { type: "json" };
+
 import {
   createNativeActorMhndSemanticHandlers,
 } from "./NativeActorMhndRuntime.js";
@@ -230,6 +233,8 @@ import {
   createNativeOperation01c7State,
 } from "./NativeOperation01c7Runtime.js";
 
+const nativeWeatherSchedule = new NativeWeatherSchedule(nativeWeatherCatalog);
+
 function stopped(reason) {
   return { status: "stopped", reason };
 }
@@ -382,6 +387,7 @@ export class NativeRoomScriptRuntime {
     this.clockRecordState = createNativeClockRecordState({
       readAuthoritativeRecord: clockRecord.readNativeClockRecord,
     });
+    this.weatherControllerState = new NativeWeatherControllerState(nativeWeatherSchedule);
     const presentationControllerContext = (
       this.presentationControllerAdapter.applyRouteCallback
         ? {
@@ -398,6 +404,13 @@ export class NativeRoomScriptRuntime {
       ...createNativeSceneFieldRuntimeContext(sceneState),
       ...context,
       ...presentationControllerContext,
+      applyNativeWeatherControl: detail => {
+        try {
+          return this.weatherControllerState.apply(detail, () => this.clockRecordState.read());
+        } catch (error) {
+          return stopped({ kind: "native-weather-control-unavailable", message: error.message });
+        }
+      },
     };
     this.handlers = {
       ...createNativeOperation01c7SemanticHandlers(operation01c7),
@@ -731,6 +744,13 @@ export class NativeRoomScriptRuntime {
     return { arrival: { scene: arrival.scene, area: arrival.area, entry: arrival.entry }, clockInitialized: clockFields.length > 0 };
   }
 
+  readWeatherState() {
+    return this.weatherControllerState.synchronize(
+      this.sceneState.nativeOperation0174GlobalDword,
+      () => this.clockRecordState.read(),
+    );
+  }
+
   #clearRecoveredOperationState() {
     this.efptControllerState.clear();
     this.efptPrimaryControllerState.clear();
@@ -771,6 +791,7 @@ export class NativeRoomScriptRuntime {
     const operation01c7State = this.operation01c7State;
     const operation01c7Snapshot = operation01c7State?.snapshot();
     const operation018aSnapshot = this.operation018aState.snapshot();
+    const weatherSnapshot = this.weatherControllerState.snapshot();
     const token = Symbol("native-room-script-transaction");
     let transactionHandlers;
     let programOwnership;
@@ -843,6 +864,7 @@ export class NativeRoomScriptRuntime {
         clockRecordSnapshot,
         operation01c7Snapshot,
         operation018aSnapshot,
+        weatherSnapshot,
         operation01c7State,
         external,
         programOwnership,
@@ -861,6 +883,11 @@ export class NativeRoomScriptRuntime {
       }
       try {
         this.operation018aState.restore(operation018aSnapshot);
+      } catch (cleanupError) {
+        cleanupErrors.push(cleanupError);
+      }
+      try {
+        this.weatherControllerState.restore(weatherSnapshot);
       } catch (cleanupError) {
         cleanupErrors.push(cleanupError);
       }
@@ -1049,6 +1076,11 @@ export class NativeRoomScriptRuntime {
     const active = this.requireTransaction(token);
     const activity = this.sceneState.readNativeOperation0050Activity();
     const cleanupErrors = [];
+    try {
+      this.weatherControllerState.restore(active.weatherSnapshot);
+    } catch (error) {
+      cleanupErrors.push(error);
+    }
     try {
       this.operation018aState.restore(active.operation018aSnapshot);
     } catch (error) {

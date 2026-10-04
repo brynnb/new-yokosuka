@@ -54,10 +54,14 @@ The existing waking-day clock runs at 25 game seconds per real second and skips
 23:30–08:30. Story time advances while its WebSocket is connected, including
 ordinary dialogue, and is checkpointed even when standing still. It pauses on
 disconnect or a mode switch. Original sleep routines and event-driven time jumps
-are not newly implemented here. Weather still uses the configured server weather
-policy; seasonal layers use the existing two-season calendar rule (November
-through March is winter). That rule is an approximation, not the original game's
-full weather calendar.
+are not newly implemented here. Free roam uses the configured server weather
+policy. In S1 Story mode, original room-script weather refresh/freeze controls
+can select the recovered cloud/rain/snow curves using the personal native clock.
+Until that owner is initialized, server weather remains in use. The browser
+projects curve values onto its existing clear/overcast/rain/snow categories;
+native intensity, smoothing and forecast sprites are not reproduced. Seasonal
+layers retain the approximate two-season rule (November through March is winter).
+See [weather source and presentation boundaries](world-time-and-variants.md#native-story-weather).
 
 ## Persistence and recovery
 

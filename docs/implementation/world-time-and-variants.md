@@ -143,8 +143,37 @@ also reports a discrete index chosen at each blend's midpoint.
 | 20:30 onward | Night | Night |
 
 Sunset currently begins at 18:00 on every calendar date. Seasonal sunset times,
-continuous native weather, and story-controlled calendar restrictions are not
-implemented.
+continuous native weather rendering, and story-controlled calendar restrictions
+are not implemented.
+
+### Native Story weather
+
+S1 room operation `0x0176(1,0)` samples the original `SPRITE/WEATHER.BIN`
+cloud, rain and snow curves at the staged seven-byte native clock and clears
+the freeze flag. A nonzero second operand sets the freeze flag without changing
+the values. `0x0174(1,1)` enables subsequent clock-driven updates. These controls
+are session-owned and roll back with failed or cancelled room transactions.
+Unknown initial state is not treated as an authored clear-weather instruction.
+
+The catalog contains 414 `CLUD`, 298 `RAIN` and 153 `SNOW` packed words.
+The executable interpolates packed date integers, not elapsed minutes, using
+float32 arithmetic. The independently stored 143 `FCAS` words remain opaque.
+Regenerate and validate the catalog from your own disc and the reviewed executable:
+
+```sh
+python3 -m tools.worlds.extract_shenmue1_weather
+python3 -m tools.worlds.extract_shenmue1_weather --check
+```
+
+`NativeWeatherSchedule` owns decoding and controller state;
+`WorldEnvironmentRuntime` reuses the normal weather renderer in Story mode.
+This is a categorical projection: nonzero snow selects snow, otherwise nonzero
+rain selects rain, otherwise nonzero cloud selects overcast. Fixed-weather
+scenes, free roam and MT7/S2 worlds retain their existing policies. Indoor
+precipitation is still suppressed. Native particle intensities, auxiliary
+channels, forecast sprites, explicit override modes and the original
+minute-ahead 120-tick smoothing are not implemented. This integration does not
+establish that opening initialization or all story weather routes execute live.
 
 ### Visual presets
 
@@ -358,8 +387,8 @@ MAP-layer rules, and the world-state HTTP contract.
   applied.
 - Sunset does not vary by date or season.
 - Server-configured winter is not yet connected to `/play` rendering.
-- The original story-constrained calendar and weather system are not
-  reproduced. This is intentional for personal story progression; original
-  date predicates are narrative-authoring evidence, not public runtime gates.
+- The original story-constrained calendar is not yet reproduced. Source-backed
+  S1 cloud/rain/snow curves and refresh/freeze controls have a partial Story-mode
+  projection described above; native weather presentation is not fully reproduced.
 - Not every numbered MAP layer has a proven time, season, or story-state owner;
   unresolved layers must not be classified from appearance or proximity alone.

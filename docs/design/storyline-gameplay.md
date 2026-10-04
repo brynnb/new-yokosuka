@@ -541,11 +541,23 @@ loader, allocator, writer and activation helpers. Transaction rollback restores
 the pool. This represents native record/controller state; per-frame ambient
 audio evaluation and browser playback are still separate integration work.
 
-The scoped headless JOMO run now passes both operations. Its next stop is
-`0x0176(1,0)` at `0x88c4a`, whose presentation-controller adapter is unavailable.
-The dispatcher ABI is known, but its helper/resource ownership needs recovery
-before browser integration. This is a headless source/state check, not proof
-of live startup.
+The scoped headless JOMO run now also passes `0x0176(1,0)` at `0x88c4a`.
+Its zero branch refreshes cloud/rain/snow curves from the original
+`SPRITE/WEATHER.BIN` at the staged native clock; its nonzero branch freezes
+updates without clearing the last values. The 865 curve words, original
+calendar packing, float32 interpolation, and executable proof are recovered by
+`tools/worlds/extract_shenmue1_weather.py`. Weather control participates in room
+transaction rollback. Story-mode rendering projects these values onto the
+existing four weather categories; native continuous particle intensity,
+minute-ahead 120-tick smoothing, auxiliary channels and forecast sprites remain
+unimplemented. This is partial presentation integration, not full native
+weather fidelity.
+
+With the original opening-tail clock explicitly supplied as
+`[86,12,3,3,8,55,0]`, the next headless stop is `0x0175(1)` at `0x88c5a`.
+Its helper at `0xc1badbc` constructs a separate presentation owner; that owner
+must be recovered rather than replacing the call with a no-op. The supplied
+clock and loader word do not prove live startup or opening settlement.
 Focused tests cover saved-section ownership, byte bounds, separate load flags,
 atomic import, rejected actor restore, room changes, committed parameter
 changes, cancellation and failed transaction setup. These are headless checks,
