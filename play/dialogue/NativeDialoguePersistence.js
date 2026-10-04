@@ -23,7 +23,9 @@ function savedSnapshot(value) {
     || Array.isArray(value.gameState.actorBytes)
     || !Object.values(value.gameState.actorBytes).every(Number.isInteger)
     || typeof value.gameState.scriptBits !== "string"
-    || value.gameState.scriptBits === "") {
+    || value.gameState.scriptBits === ""
+    || typeof value.gameState.sceneParameters !== "string"
+    || value.gameState.sceneParameters === "") {
     throw new Error("server supplied an incomplete native dialogue snapshot");
   }
   return createNativeDialogueSnapshot(value).toJSON();

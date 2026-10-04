@@ -16,9 +16,10 @@ import {
 import {
   createNativePersistentScriptBitState,
 } from "../events/NativePersistentScriptBitState.js";
+import { createNativeOperation01c7State } from "../events/NativeOperation01c7Runtime.js";
 
 export const NATIVE_DIALOGUE_SNAPSHOT_SCHEMA =
-  "new-yokosuka-native-dialogue-snapshot-v1";
+  "new-yokosuka-native-dialogue-snapshot-v5";
 
 const FREE_ROAM_STORY_BANKS = Object.freeze({
   2: Object.freeze([0xec, ...new Array(127).fill(0)]),
@@ -77,6 +78,9 @@ export class NativeDialogueSnapshot {
         `Unsupported native dialogue snapshot schema ${source.schema}`,
       );
     }
+    if (snapshot !== null && !source.gameState) {
+      throw new TypeError("Native dialogue snapshot gameState is required");
+    }
     this.revision = requireRevision(source.revision);
     this.dialogueState = createNativeDialogueState(
       source.state
@@ -106,6 +110,15 @@ export class NativeDialogueSnapshot {
         ) }
         : undefined,
     );
+    this.operation01c7State = createNativeOperation01c7State();
+    // Only a local preview without a supplied snapshot starts from cold zeros.
+    // Stored-version upgrades belong on the server, never in this wire decoder.
+    this.operation01c7State.configureParameterBytes(source.gameState
+      ? decodeBase64(source.gameState.sceneParameters, "Native scene parameters")
+      : new Uint8Array(32));
+    // A network snapshot is not a native save-load request. In particular do
+    // not fabricate a 48-byte actor/clock restore record or mark it loaded.
+    this.operation01c7State.resetLoadStatus();
   }
 
   sessionOptions() {
@@ -122,6 +135,7 @@ export class NativeDialogueSnapshot {
       dialogueState: this.dialogueState,
       actorByteState: this.actorByteState,
       persistentScriptBitState: this.persistentScriptBitState,
+      operation01c7State: this.operation01c7State,
     };
   }
 
@@ -151,6 +165,9 @@ export class NativeDialogueSnapshot {
         actorBytes: this.actorByteState.toJSON().actorBytes,
         scriptBits: encodeBase64(Uint8Array.from(
           this.persistentScriptBitState.toJSON().bytes,
+        )),
+        sceneParameters: encodeBase64(Uint8Array.from(
+          this.operation01c7State.readParameterBytes(),
         )),
       },
     };

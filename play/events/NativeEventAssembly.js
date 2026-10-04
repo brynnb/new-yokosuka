@@ -158,6 +158,7 @@ export function createNativePlayerSceneAssembly({
 }
 
 export function createNativeRoomScriptAssembly({
+  dialoguePersistence,
   scheduledActors,
   currentGameDate,
   sceneResourceRegistry,
@@ -181,6 +182,9 @@ export function createNativeRoomScriptAssembly({
   let roomScripts;
   roomScripts = createNativeRoomScriptRuntime({
     randomFloat,
+    operation01c7: {
+      getState: () => dialoguePersistence.gameplayState()?.operation01c7State ?? null,
+    },
     actorField: {
       resolveActorFieldState: ({ actorTag }) => ({
         actorAvailable: actorTag === "AKIR"

@@ -366,8 +366,10 @@ export class NativeRoomScriptRuntime {
       || createNativeOperation0193State();
     // Saved global state is owned by the personal session, not by an area.
     // Leave it unavailable until cold startup or a saved import is explicit.
-    this.operation01c7State = operation01c7.state
+    this.ownedOperation01c7State = operation01c7.state
       || createNativeOperation01c7State();
+    this.getOperation01c7State = operation01c7.getState
+      || (() => this.ownedOperation01c7State);
     this.presentationControllerAdapter =
       createNativePresentationControllerFamilyAdapter(
         presentationController,
@@ -391,9 +393,7 @@ export class NativeRoomScriptRuntime {
         : {}
     );
     this.context = {
-      ...createNativeSceneFieldRuntimeContext(sceneState, {
-        operation01c7State: this.operation01c7State,
-      }),
+      ...createNativeSceneFieldRuntimeContext(sceneState),
       ...context,
       ...presentationControllerContext,
     };
@@ -568,14 +568,18 @@ export class NativeRoomScriptRuntime {
     };
   }
 
-  eventContext() {
+  get operation01c7State() {
+    return this.getOperation01c7State();
+  }
+
+  eventContext(operation01c7State = this.operation01c7State) {
     // Area activation replaces stateful record containers. Rebuild their
     // context view at each event boundary so a program invoked for a native
     // area different from the rendered host world never writes stale records.
     return {
       ...this.context,
       ...createNativeSceneFieldRuntimeContext(this.sceneState, {
-        operation01c7State: this.operation01c7State,
+        operation01c7State,
       }),
     };
   }
@@ -749,7 +753,8 @@ export class NativeRoomScriptRuntime {
     };
     const snapshot = this.sceneState.snapshot();
     const clockRecordSnapshot = this.clockRecordState.snapshot();
-    const operation01c7Snapshot = this.operation01c7State.snapshot();
+    const operation01c7State = this.operation01c7State;
+    const operation01c7Snapshot = operation01c7State?.snapshot();
     const token = Symbol("native-room-script-transaction");
     let transactionHandlers;
     let programOwnership;
@@ -813,11 +818,15 @@ export class NativeRoomScriptRuntime {
           "native room-script transaction adapters must be synchronous",
         );
       }
+      if (operation01c7State !== this.operation01c7State) {
+        throw new Error("native saved-state owner changed during transaction setup");
+      }
       this.activeTransaction = {
         token,
         snapshot,
         clockRecordSnapshot,
         operation01c7Snapshot,
+        operation01c7State,
         external,
         programOwnership,
         programOwnershipOpen: programOwnershipBegan,
@@ -829,7 +838,7 @@ export class NativeRoomScriptRuntime {
     } catch (error) {
       const cleanupErrors = [];
       try {
-        this.operation01c7State.restore(operation01c7Snapshot);
+        operation01c7State?.restore(operation01c7Snapshot);
       } catch (cleanupError) {
         cleanupErrors.push(cleanupError);
       }
@@ -882,7 +891,7 @@ export class NativeRoomScriptRuntime {
       throw error;
     }
     return {
-      context: this.eventContext(),
+      context: this.eventContext(operation01c7State),
       handlers: {
         ...this.semanticHandlers(),
         ...transactionHandlers,
@@ -969,6 +978,9 @@ export class NativeRoomScriptRuntime {
 
   commitTransaction(token, detail = {}) {
     const active = this.requireTransaction(token);
+    if (active.operation01c7State !== this.operation01c7State) {
+      throw new Error("native room-script personal save changed during transaction");
+    }
     if (this.sceneState.readNativeOperation0050Activity()) {
       throw new Error("cannot commit while an AUTH activity is active");
     }
@@ -1016,7 +1028,9 @@ export class NativeRoomScriptRuntime {
     const activity = this.sceneState.readNativeOperation0050Activity();
     const cleanupErrors = [];
     try {
-      this.operation01c7State.restore(active.operation01c7Snapshot);
+      // The session may have hydrated another character/receipt. Restore only
+      // the owner this transaction captured, never whichever object is current.
+      active.operation01c7State?.restore(active.operation01c7Snapshot);
     } catch (error) {
       cleanupErrors.push(error);
     }

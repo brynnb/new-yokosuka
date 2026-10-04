@@ -482,9 +482,21 @@ imports it. No default JOMO parameter byte is guessed. Mode one's actor-restore
 adapter receives the actual 48 record bytes and must explicitly accept them;
 missing data or rejected application stops execution.
 
-Still outstanding: persist these sections in the personal server context,
-connect fresh/resume session ownership, and implement the actor/clock restore
-adapters. The actor helper restores actor fields and invokes refresh helpers;
+The 32 parameter bytes now persist in the existing personal native snapshot's
+v5 `gameState.sceneParameters` field. Server `native_value("01c7:2")` and
+`set_native_value "01c7:2" 1` use the same compiler dependency, pinned-revision,
+lease, transaction and receipt path as native bank values. Stored pre-v5
+snapshots upgrade once at the decode boundary; malformed v5 snapshots and
+old-client writes are rejected. This adds no guessed JOMO-specific initial
+value. Mode switching preserves separate parameter buffers for Story and Free
+roam. Client room execution resolves the current snapshot owner; a late
+rollback restores only the owner it captured, never a newer server receipt or
+another character. Preview/sandbox restores include the parameter bytes.
+
+Still outstanding: capture/persist the 48-byte actor/clock section, connect
+native fresh/resume load-status ownership, and implement the actor/clock restore
+adapters. Merely receiving a network snapshot does not mark a native save load
+or fabricate an actor restore record. The actor helper restores actor fields and invokes refresh helpers;
 it does not itself restore the clock. Capturing with no primary actor clears
 only the output record and leaves the parameter output untouched, so a partial
 capture must not be mistaken for a valid new save. The first JOMO root still
@@ -502,6 +514,11 @@ not rendered opening/allowance verification. The full local scripted-event
 inventory now contains 845 calls across 99 disc/area pairs; the former 690-call
 frequency assertion was stale. The evidence tool validates each supported
 call shape/parameter range and records the input hash and source scope.
+The parameter save path also passes real PostgreSQL mode round-trips and
+event settlement tests (rewards, duplicate/stale completion, failure rollback,
+cancellation and expiry), plus the official Yarn compiler/interpreter's
+read-after-write and receipt test. This is persistence/authority evidence;
+opening settlement and live room-controller startup are still incomplete.
 
 ### Foundation checkpoint
 

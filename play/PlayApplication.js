@@ -833,6 +833,7 @@ function createPlayRuntime() {
   const nativeSelectedObjectActionController =
     createNativeSelectedObjectActionController();
   const nativeRoomScriptRuntime = createNativeRoomScriptAssembly({
+    dialoguePersistence: nativeDialoguePersistence,
     scheduledActors,
     currentGameDate: currentServerGameDate,
     sceneResourceRegistry: nativeSceneResourceRegistry,

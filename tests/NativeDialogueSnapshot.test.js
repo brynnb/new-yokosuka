@@ -14,6 +14,7 @@ test("native dialogue snapshot round-trips all mutable interpreter state", () =>
   first.randomState.choose(4, () => 0.75);
   first.actorByteState.write("HATO", 3);
   first.persistentScriptBitState.write(202, 1);
+  first.operation01c7State.writeParameterByte(2, 1);
 
   const encoded = first.toJSON();
   assert.equal(encoded.schema, NATIVE_DIALOGUE_SNAPSHOT_SCHEMA);
@@ -32,6 +33,9 @@ test("native dialogue snapshot round-trips all mutable interpreter state", () =>
   assert.equal(second.gameplayState().actorByteState.read("HATO"), 3);
   assert.equal(second.persistentScriptBitState.read(202), 1);
   assert.equal(second.gameplayState().persistentScriptBitState.read(202), 1);
+  assert.equal(second.gameplayState().operation01c7State.readParameterByte(2), 1);
+  assert.equal(second.operation01c7State.queryStatus(), 0);
+  assert.throws(() => second.operation01c7State.readRecordBytes(), /state-unavailable/);
   assert.deepEqual(second.toJSON(), encoded);
 });
 
@@ -46,6 +50,19 @@ test("native dialogue snapshot rejects malformed transport state", () => {
     () => createNativeDialogueSnapshot({ schema: "future" }),
     /Unsupported/,
   );
+  for (const sceneParameters of [undefined, null, "AA==", "not base64"]) {
+    const state = createNativeDialogueSnapshot().toJSON();
+    state.gameState.sceneParameters = sceneParameters;
+    assert.throws(() => createNativeDialogueSnapshot(state), /base64|contain 32/);
+  }
+  for (const gameState of [undefined, null]) {
+    assert.throws(() => createNativeDialogueSnapshot({
+      ...createNativeDialogueSnapshot().toJSON(), gameState,
+    }), /gameState is required/);
+  }
+  assert.throws(() => createNativeDialogueSnapshot({
+    ...createNativeDialogueSnapshot().toJSON(), schema: "new-yokosuka-native-dialogue-snapshot-v1",
+  }), /Unsupported/);
 });
 
 test("native dialogue snapshot accepts only the next saved revision", () => {
