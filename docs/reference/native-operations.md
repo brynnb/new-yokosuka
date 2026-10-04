@@ -3,7 +3,7 @@
 Only bounded, evidence-backed semantics belong here.
 
 The [complete generated proven-operation index](native-operations.generated.md)
-contains all 25 entries in the reviewed native semantic registry. Regenerate it
+contains the entries in the reviewed native semantic registry. Regenerate it
 with `node tools/reference/generate_identifier_operation_references.mjs`, or add
 `--check` to validate freshness. Operations absent from that registry and
 unconstrained suboperations remain numeric and `unresolved`.

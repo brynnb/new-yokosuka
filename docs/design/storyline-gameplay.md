@@ -530,10 +530,22 @@ Verification: the scoped, freshly recovered JOMO IR runs from `0x88b70` with
 the existing free-conversation state, explicit cold `0x01c7` state, and the
 source-backed `(1,JOMO,1)` arrival plus an explicitly supplied loader word zero.
 It writes `scene[52] = 0`, executes `0x00f5(AKIR,259)` at `0x88bd0`, and
-`0x0149(0)` pauses the native clock control. It next stops at `0x018b` at
-`0x1c374`, which writes a shared 44-byte controller record before `0x018a`
-activation. Pool ownership and preserved initialization fields remain under
-investigation. This is a headless source/state check, not proof of live startup.
+`0x0149(0)` pauses the native clock control. Room loading now initializes the
+original `AMB1` pool: sixteen zeroed 44-byte records (704 bytes), with a separate
+inactive pointer. `0x018b` writes the authored record at `0x1c374`; `0x018a`
+activates that same pool, preserving fields at offsets 0–28 and clearing only
+32–40. Earlier modeling incorrectly treated the opaque command operand 25 as
+an allocation size and recreated the records at activation. The shared fix is
+backed by 482 writer calls across 35 disc/area pairs and the executable's room
+loader, allocator, writer and activation helpers. Transaction rollback restores
+the pool. This represents native record/controller state; per-frame ambient
+audio evaluation and browser playback are still separate integration work.
+
+The scoped headless JOMO run now passes both operations. Its next stop is
+`0x0176(1,0)` at `0x88c4a`, whose presentation-controller adapter is unavailable.
+The dispatcher ABI is known, but its helper/resource ownership needs recovery
+before browser integration. This is a headless source/state check, not proof
+of live startup.
 Focused tests cover saved-section ownership, byte bounds, separate load flags,
 atomic import, rejected actor restore, room changes, committed parameter
 changes, cancellation and failed transaction setup. These are headless checks,

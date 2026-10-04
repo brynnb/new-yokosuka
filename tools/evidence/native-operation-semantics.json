@@ -6061,7 +6061,7 @@
         { "index": 0, "values": [0] },
         { "index": 1, "values": [23976] }
       ],
-      "provenBehavior": "Allocates the fixed 0x09a0-byte primary controller owner with unit count 25 and record selector 0x5da8, initializes sixteen 44-byte slots with selector 0x28a0, and registers controller one for slots one through sixteen.",
+      "provenBehavior": "Sends opaque controller commands (0x09a0,1,25) and (0x5da8,0,0); activates the preallocated AMB1 pool, registers controller one for slots one through sixteen with command 0x28a0, and clears only record words +32/+36/+40 while preserving authored +0 through +28.",
       "sources": [
         "tools/scripting/operations/extract_operation_018a_evidence.py",
         "tools/evidence/operation-018a-evidence.json"
@@ -6077,7 +6077,7 @@
         { "index": 0, "values": [1] },
         { "index": 1, "values": [24232] }
       ],
-      "provenBehavior": "Allocates the fixed 0x09a0-byte secondary controller owner with unit count 50 and record selector 0x5ea8, registers controller three for slots three through one, and sets its initialized marker.",
+      "provenBehavior": "Sends opaque controller commands (0x09a0,1,50) and (0x5ea8,0,0), registers controller three for slots three through one, and sets its initialized marker. These commands are not allocation sizes or unit counts.",
       "sources": [
         "tools/scripting/operations/extract_operation_018a_evidence.py",
         "tools/evidence/operation-018a-evidence.json"
@@ -6110,6 +6110,28 @@
         { "index": 1, "kinds": ["frame-field"] }
       ],
       "provenBehavior": "Writes one to the selected primary slot's record word zero only when that slot's resource word at offset +8 is non-null; a null resource is an exact native no-op.",
+      "sources": [
+        "tools/scripting/operations/extract_operation_018a_evidence.py",
+        "tools/evidence/operation-018a-evidence.json"
+      ]
+    },
+    {
+      "operationId": 395,
+      "operationHex": "0x018b",
+      "argumentCount": 8,
+      "semanticId": "native-operation-018b-primary-record-write",
+      "handlerAddress": "0x0c16b1de",
+      "argumentConstraints": [
+        { "index": 0, "kinds": ["constant"], "values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16] },
+        { "index": 1, "kinds": ["constant"] },
+        { "index": 2, "kinds": ["static-pointer"] },
+        { "index": 3, "kinds": ["constant"] },
+        { "index": 4, "kinds": ["constant"] },
+        { "index": 5, "kinds": ["constant"] },
+        { "index": 6, "kinds": ["constant"] },
+        { "index": 7, "kinds": ["static-pointer"] }
+      ],
+      "provenBehavior": "Uses the preallocated AMB1 owner plus (argument0-1)*44. Writes record word +0=1, arguments 1/2 to +4/+8, raw float32 arguments 3/4/5 to +12/+16/+20, and arguments 6/7 to +24/+28. Preserves words +32/+36/+40; this operation does not activate the pool or play audio.",
       "sources": [
         "tools/scripting/operations/extract_operation_018a_evidence.py",
         "tools/evidence/operation-018a-evidence.json"

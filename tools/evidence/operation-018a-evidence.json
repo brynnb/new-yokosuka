@@ -1,5 +1,5 @@
 {
-  "schema": "new-yokosuka-operation-018a-evidence-v1",
+  "schema": "new-yokosuka-operation-018a-evidence-v2",
   "status": "exact-native-all-authored-routes",
   "source": {
     "executable": "1ST_READ.BIN",
@@ -12,10 +12,186 @@
     "operationHex": "0x018a",
     "handlerAddress": "0x0c16b150",
     "routes": {
-      "0": "Allocates 0x09a0 bytes with unit count 25, installs selector 0x5da8, initializes sixteen 44-byte slots, and registers controller one for slots one through sixteen.",
-      "1": "Allocates 0x09a0 bytes with unit count 50, installs selector 0x5ea8, registers controller three for slots three through one, and sets its initialized marker.",
+      "0": "Sends command (0x09a0,1,25), then (0x5da8,0,0); activates the existing AMB1 pool, registers controller one and sends (0x28a0,1,slot) for slots one through sixteen. Clears only words +32/+36/+40; preserves +0 through +28.",
+      "1": "Sends command (0x09a0,1,50), then (0x5ea8,0,0); registers controller three for slots three through one and sets its initialized marker. These are command operands, not allocation sizes or unit counts.",
       "2": "Resets one primary slot to words 0, 0, 127, and -1 and re-registers controller one; selectors above sixteen execute the helper for all sixteen slots in descending order.",
       "3": "Writes one to the selected primary slot's record word only when its resource word at offset +8 is non-null."
+    }
+  },
+  "roomPool": {
+    "initializer": "0x0c17b4fc",
+    "allocationTag": "AMB1",
+    "allocationBytes": 704,
+    "slotCount": 16,
+    "slotBytes": 44,
+    "ownerPointer": "0x0c224b44",
+    "activePointer": "0x0c224b48",
+    "initialization": "The room loader calls 0xc17b15a, which calls the pool initializer before room scripts. It clears the active pointer, allocates AMB1, stores the pool owner, then zero-fills all 704 bytes."
+  },
+  "recordWrite": {
+    "operationId": 395,
+    "operationHex": "0x018b",
+    "argumentCount": 8,
+    "handlerAddress": "0x0c16b1de",
+    "helperAddress": "0x0c17b976",
+    "recordAddress": "owner + (argument0 - 1) * 44",
+    "writes": [
+      {
+        "offset": 0,
+        "width": 4,
+        "constant": 1
+      },
+      {
+        "offset": 4,
+        "width": 4,
+        "argument": 1,
+        "representation": "word"
+      },
+      {
+        "offset": 8,
+        "width": 4,
+        "argument": 2,
+        "representation": "pointer"
+      },
+      {
+        "offset": 12,
+        "width": 4,
+        "argument": 3,
+        "representation": "float32-bits"
+      },
+      {
+        "offset": 16,
+        "width": 4,
+        "argument": 4,
+        "representation": "float32-bits"
+      },
+      {
+        "offset": 20,
+        "width": 4,
+        "argument": 5,
+        "representation": "float32-bits"
+      },
+      {
+        "offset": 24,
+        "width": 4,
+        "argument": 6,
+        "representation": "word"
+      },
+      {
+        "offset": 28,
+        "width": 4,
+        "argument": 7,
+        "representation": "pointer"
+      }
+    ],
+    "preservesOffsets": [
+      32,
+      36,
+      40
+    ],
+    "inventory": {
+      "callCount": 482,
+      "mapCount": 35,
+      "argumentKinds": {
+        "0": {
+          "constant": 482
+        },
+        "1": {
+          "constant": 482
+        },
+        "2": {
+          "static-pointer": 482
+        },
+        "3": {
+          "constant": 482
+        },
+        "4": {
+          "constant": 482
+        },
+        "5": {
+          "constant": 482
+        },
+        "6": {
+          "constant": 482
+        },
+        "7": {
+          "static-pointer": 482
+        }
+      },
+      "slotCounts": {
+        "1": 46,
+        "2": 45,
+        "3": 41,
+        "4": 38,
+        "5": 37,
+        "6": 39,
+        "7": 33,
+        "8": 33,
+        "9": 37,
+        "10": 28,
+        "11": 16,
+        "12": 16,
+        "13": 18,
+        "14": 16,
+        "15": 39
+      }
+    }
+  },
+  "verifiedRanges": {
+    "handler": {
+      "address": "0xc16b150",
+      "length": 142,
+      "sha256": "bfe92ddb52fa8b2cde4fc6acbb2eac6f63820b084f360e21fb7ef6538f3a2c76"
+    },
+    "slotController": {
+      "address": "0xc17b862",
+      "length": 72,
+      "sha256": "12623ad42c5ab832556087aa3e2885837afeed66387ea236209dfad1b0635406"
+    },
+    "primaryInitialize": {
+      "address": "0xc17b8bc",
+      "length": 186,
+      "sha256": "9e94a0e6cc11a831590d0d9534b24e8c5b83d0a6828aecc8efce9f842b5ea123"
+    },
+    "secondaryInitialize": {
+      "address": "0xc17ba50",
+      "length": 44,
+      "sha256": "f7e664cff9d25d658d130c183cddfb3e311c28081e17947e868c31d24c738816"
+    },
+    "roomPoolInitialize": {
+      "address": "0xc17b4fc",
+      "length": 42,
+      "sha256": "c703886b24d14edee12a64b4d5e208517d0f4c98661f416eb4995086d22ac6fe"
+    },
+    "poolZeroFill": {
+      "address": "0xc1dc970",
+      "length": 24,
+      "sha256": "5ad3e0d54fc4dd851554f442557da8a4e985f67c4f753bca372b415771537b61"
+    },
+    "ambientSystemPoolCall": {
+      "address": "0xc17b174",
+      "length": 8,
+      "sha256": "a41908db39686aea0de258410972400b03f104e3208f06d4b1c83dd5a190b46a"
+    },
+    "roomLoaderAmbientCall": {
+      "address": "0xc0f0702",
+      "length": 6,
+      "sha256": "03b28b518481d3b1016b0d1c487d4b36505ce21a7f250dd8c6711cb7f838e41f"
+    },
+    "commandDispatch": {
+      "address": "0xc17a91c",
+      "length": 212,
+      "sha256": "1ac3cdcc487ca9bb3ed1bd10e967b90f2be4ca2792258dbe74ac05ff6cbc5d7f"
+    },
+    "recordWriteHandler": {
+      "address": "0xc16b1de",
+      "length": 42,
+      "sha256": "250d5d0d94078c7f4a4cca69cc91bcd2f9493cf72a27fcdbe256ef5eab9d4172"
+    },
+    "recordWriter": {
+      "address": "0xc17b976",
+      "length": 42,
+      "sha256": "f3f62463d618b53120485ce3d28ce63f0a55522378639ffd50e85f9de9f6c632"
     }
   },
   "allDiscInventory": {
@@ -29,7 +205,8 @@
     }
   },
   "evidenceBoundary": [
-    "Controller IDs, allocation sizes, unit counts, slot count, registration order, and slot mutations are executable-proven.",
-    "No rendering or gameplay meaning is assigned to the controller records."
+    "Allocation belongs to room initialization, not 0x018a. The earlier report incorrectly labeled opaque command words and arguments as allocation sizes and unit counts.",
+    "The two map-relative pointers retain their provenance; no guessed process pointer is fabricated.",
+    "This contract covers record ownership, writes, activation and controller requests, not the per-frame native ambient-audio evaluator or browser audio playback."
   ]
 }

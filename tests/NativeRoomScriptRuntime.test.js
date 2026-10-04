@@ -232,6 +232,31 @@ test("room script area owns and clears operation 0x018a controller slots", async
   assert.equal(runtime.operation018aState.snapshot().primary, null);
 });
 
+test("room-owned AMB1 records survive commit and restore on cancellation or setup failure", async () => {
+  const room = createNativeRoomScriptRuntime();
+  room.activateArea("JOMO");
+  const write = action("native-operation-018b-primary-record-write", [1, 0, 0x92ffc, 0x3f333333, 0x40400000, 0x3f333333, 0, 0x93008]);
+  for (const index of [2, 7]) write.arguments[index].kind = "static-pointer";
+  const execute = createNativeEventOperationExecutor({ handlers: room.semanticHandlers() });
+  const initial = room.operation018aState.snapshot();
+  assert.equal(initial.primary.active, false);
+  const cancelled = room.beginTransaction({ area: "JOMO" });
+  await execute(write, cancelled.context);
+  await execute(action("native-operation-018a-primary-initialize", [0, 0x5da8]), cancelled.context);
+  cancelled.rollback({ reason: "cancelled" });
+  assert.deepEqual(room.operation018aState.snapshot(), initial);
+  const committed = room.beginTransaction({ area: "JOMO" });
+  await execute(write, committed.context);
+  committed.commit();
+  assert.equal(room.operation018aState.snapshot().primary.slots[0].recordWord0, 1);
+  const saved = room.operation018aState.snapshot();
+  room.createHandlers = () => { room.operation018aState.clear(); throw new Error("setup rejected"); };
+  assert.throws(() => room.beginTransaction({ area: "JOMO" }), /setup rejected/);
+  assert.deepEqual(room.operation018aState.snapshot(), saved);
+  room.activateArea("JHD0");
+  assert.deepEqual(room.operation018aState.snapshot(), initial, "another room gets its own zeroed pool");
+});
+
 test("room script context shares one typed presentation-controller adapter", async () => {
   const routes = [];
   const runtime = createNativeRoomScriptRuntime({

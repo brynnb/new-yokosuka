@@ -693,6 +693,7 @@ export class NativeRoomScriptRuntime {
       this.#clearRecoveredOperationState();
     }
     this.sceneState.initializeRoomRuntimeState();
+    this.operation018aState.initializeRoomPool();
     applyNativeRoomScriptProfile(this.sceneState, nextArea);
     this.activeArea = nextArea;
     return true;
@@ -769,6 +770,7 @@ export class NativeRoomScriptRuntime {
     const clockRecordSnapshot = this.clockRecordState.snapshot();
     const operation01c7State = this.operation01c7State;
     const operation01c7Snapshot = operation01c7State?.snapshot();
+    const operation018aSnapshot = this.operation018aState.snapshot();
     const token = Symbol("native-room-script-transaction");
     let transactionHandlers;
     let programOwnership;
@@ -840,6 +842,7 @@ export class NativeRoomScriptRuntime {
         snapshot,
         clockRecordSnapshot,
         operation01c7Snapshot,
+        operation018aSnapshot,
         operation01c7State,
         external,
         programOwnership,
@@ -853,6 +856,11 @@ export class NativeRoomScriptRuntime {
       const cleanupErrors = [];
       try {
         operation01c7State?.restore(operation01c7Snapshot);
+      } catch (cleanupError) {
+        cleanupErrors.push(cleanupError);
+      }
+      try {
+        this.operation018aState.restore(operation018aSnapshot);
       } catch (cleanupError) {
         cleanupErrors.push(cleanupError);
       }
@@ -1041,6 +1049,11 @@ export class NativeRoomScriptRuntime {
     const active = this.requireTransaction(token);
     const activity = this.sceneState.readNativeOperation0050Activity();
     const cleanupErrors = [];
+    try {
+      this.operation018aState.restore(active.operation018aSnapshot);
+    } catch (error) {
+      cleanupErrors.push(error);
+    }
     try {
       // The session may have hydrated another character/receipt. Restore only
       // the owner this transaction captured, never whichever object is current.

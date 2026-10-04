@@ -10,9 +10,14 @@ function requireWord(value, label) {
 function emptySlot(index) {
   return {
     index,
-    recordSelector: 0x28a0,
     recordWord0: 0,
+    word4: 0,
     resourceWord8: 0,
+    floatWord12: 0,
+    floatWord16: 0,
+    floatWord20: 0,
+    word24: 0,
+    resourceWord28: 0,
     word32: 0,
     word36: 0,
     word40: 0,
@@ -29,31 +34,83 @@ export class NativeOperation018aState {
     this.secondary = null;
   }
 
-  initializePrimary(recordSelector) {
-    const selector = requireWord(recordSelector, "native 0x018a primary record selector");
+  // 0xc17b4fc allocates/zeroes AMB1 during room loading, BEFORE room scripts.
+  // 0x018b writes the pool while its active pointer is still null. 0x018a is
+  // activation, not allocation: recreating slots there loses authored fields.
+  initializeRoomPool() {
     this.primary = {
-      allocationBytes: 0x09a0,
-      allocationUnits: 25,
-      recordSelector: selector,
-      controllerRegistrations: Array.from(
-        { length: SLOT_COUNT },
-        (_, index) => ({ controller: 1, slot: index + 1, kind: 0x07b0 }),
-      ),
+      allocationBytes: SLOT_COUNT * 44,
+      allocationTag: "AMB1",
+      active: false,
+      recordSelector: null,
+      setupCommands: [],
+      controllerRegistrations: [],
+      slotCommands: [],
       slots: Array.from({ length: SLOT_COUNT }, (_, index) => emptySlot(index + 1)),
     };
+    this.secondary = null;
+  }
+
+  initializePrimary(recordSelector) {
+    const selector = requireWord(recordSelector, "native 0x018a primary record selector");
+    if (!this.primary) throw new Error("native AMB1 room pool is unavailable");
+    Object.assign(this.primary, {
+      active: true,
+      recordSelector: selector,
+      setupCommands: [
+        { command: 0x09a0, channel: 1, argument: 25 },
+        { command: selector, channel: 0, argument: 0 },
+      ],
+      controllerRegistrations: Array.from(
+        { length: SLOT_COUNT },
+        (_, index) => ({ controller: 1, slot: index + 1, kind: 0x07b0, argument: 0 }),
+      ),
+      slotCommands: Array.from({ length: SLOT_COUNT }, (_, index) => (
+        { command: 0x28a0, channel: 1, argument: index + 1 }
+      )),
+    });
+    for (const slot of this.primary.slots) {
+      slot.word32 = 0;
+      slot.word36 = 0;
+      slot.word40 = 0;
+    }
     return { applied: true, route: "primary-initialize", recordSelector: selector };
+  }
+
+  writePrimarySlot(values, resourceOperand, tableOperand) {
+    if (!this.primary) throw new Error("native AMB1 room pool is unavailable");
+    if (!Array.isArray(values) || values.length !== 8) {
+      throw new TypeError("native 0x018b requires eight argument words");
+    }
+    const [index, word4, resourceWord8, floatWord12, floatWord16, floatWord20, word24, resourceWord28]
+      = values.map((value, i) => requireWord(value, `native 0x018b argument ${i}`));
+    if (index < 1 || index > SLOT_COUNT) throw new RangeError("native 0x018b slot must be between 1 and 16");
+    if (resourceOperand?.kind !== "static-pointer" || tableOperand?.kind !== "static-pointer") {
+      throw new TypeError("native 0x018b pointer provenance is unavailable");
+    }
+    // These are map-relative pointer operands, not guessed process addresses.
+    // Preserve their identity for the owning audio adapter's later dereference.
+    const pointers = structuredClone({ resourceOperand, tableOperand });
+    Object.assign(this.primary.slots[index - 1], {
+      recordWord0: 1, word4, resourceWord8, floatWord12, floatWord16, floatWord20,
+      word24, resourceWord28, ...pointers,
+    });
+    return { applied: true, route: "primary-record-write", slotIndex: index };
   }
 
   initializeSecondary(recordSelector) {
     const selector = requireWord(recordSelector, "native 0x018a secondary record selector");
     this.secondary = {
-      allocationBytes: 0x09a0,
-      allocationUnits: 50,
       recordSelector: selector,
+      setupCommands: [
+        { command: 0x09a0, channel: 1, argument: 50 },
+        { command: selector, channel: 0, argument: 0 },
+      ],
       controllerRegistrations: [3, 2, 1].map(slot => ({
         controller: 3,
         slot,
         kind: 0x07b0,
+        argument: 0,
       })),
       initialized: true,
     };
@@ -72,7 +129,7 @@ export class NativeOperation018aState {
 
   resetPrimarySlots(selectorValue) {
     const selector = requireWord(selectorValue, "native 0x018a slot selector");
-    if (!this.primary) {
+    if (!this.primary?.active) {
       return { applied: false, nativeNoOp: true, reason: "primary-uninitialized" };
     }
     const indices = selector > SLOT_COUNT
@@ -101,7 +158,7 @@ export class NativeOperation018aState {
 
   markPrimarySlot(selectorValue) {
     const selector = requireWord(selectorValue, "native 0x018a slot selector");
-    if (!this.primary) {
+    if (!this.primary?.active) {
       return { applied: false, nativeNoOp: true, reason: "primary-uninitialized" };
     }
     if (selector < 1 || selector > SLOT_COUNT) {
@@ -116,17 +173,13 @@ export class NativeOperation018aState {
   }
 
   snapshot() {
-    return {
-      primary: this.primary && {
-        ...this.primary,
-        controllerRegistrations: this.primary.controllerRegistrations.map(value => ({ ...value })),
-        slots: this.primary.slots.map(value => ({ ...value })),
-      },
-      secondary: this.secondary && {
-        ...this.secondary,
-        controllerRegistrations: this.secondary.controllerRegistrations.map(value => ({ ...value })),
-      },
-    };
+    return structuredClone({ primary: this.primary, secondary: this.secondary });
+  }
+
+  restore(snapshot) {
+    const { primary, secondary } = structuredClone(snapshot);
+    this.primary = primary;
+    this.secondary = secondary;
   }
 }
 
@@ -137,6 +190,16 @@ export function createNativeOperation018aState() {
 export function createNativeOperation018aSemanticHandlers({ state } = {}) {
   const activeState = state || createNativeOperation018aState();
   return {
+    "native-operation-018b-primary-record-write": ({ action, readArgument }) => {
+      try {
+        return { status: "continued", mutation: activeState.writePrimarySlot(
+          action.arguments.map((_, i) => readArgument(i)),
+          action.arguments[2], action.arguments[7],
+        ) };
+      } catch (error) {
+        return { status: "stopped", reason: error.message };
+      }
+    },
     "native-operation-018a-primary-initialize": ({ readArgument }) => {
       try {
         return { status: "continued", mutation: activeState.initializePrimary(readArgument(1)) };
