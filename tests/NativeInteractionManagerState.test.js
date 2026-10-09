@@ -3,7 +3,10 @@ import test from "node:test";
 
 import {
   createNativeInteractionManagerState,
+  createNativeEventOperationExecutor,
+  createNativeInteractionRecordSemanticHandlers,
 } from "../play/events/NativeEventOperationRuntime.js";
+import { createNativeRoomScriptRuntime } from "../play/events/NativeRoomScriptRuntime.js";
 import {
   createNativeSceneGameplayState,
 } from "../play/events/NativeSceneGameplayState.js";
@@ -18,6 +21,27 @@ const configuration = {
     { index: 99, key: 2, vectorWords: [0x41200000, 0, 0] },
   ],
 };
+
+test("pending-owner reset clears only its global word and rolls back with the room", async () => {
+  const room = createNativeRoomScriptRuntime();
+  room.activateArea("JOMO");
+  room.sceneState.configureInteractionManager(configuration);
+  room.sceneState.writeNativeField({ offset: 0x0c224010, width: 4, value: 0x1234 });
+  const action = { semanticId: "interaction-manager-pending-owner-clear",
+    arguments: [{ kind: "constant", value: 0 }] };
+  const execute = createNativeEventOperationExecutor({ handlers: createNativeInteractionRecordSemanticHandlers() });
+  const context = room.eventContext(), tx = room.beginTransaction({ area: "JOMO" });
+  // Transaction setup clears a manager when no source profile was supplied;
+  // install this fixture before checking the reset operation in isolation.
+  room.sceneState.configureInteractionManager(configuration);
+  assert.equal((await execute(action, context)).result, 0);
+  assert.equal(room.sceneState.readNativeField({ offset: 0x0c224010, width: 4 }), 0);
+  assert.deepEqual(room.sceneState.interactionManager.readConfiguration(), configuration);
+  tx.rollback({ reason: "cancelled" });
+  assert.equal(room.sceneState.readNativeField({ offset: 0x0c224010, width: 4 }), 0x1234);
+  assert.equal((await execute(action)).status, "stopped");
+  assert.equal((await execute({ ...action, arguments: [{ kind: "constant", value: 1 }] }, context)).status, "stopped");
+});
 
 test("native interaction manager preserves ordered first-match lookup", () => {
   const state = createNativeInteractionManagerState();

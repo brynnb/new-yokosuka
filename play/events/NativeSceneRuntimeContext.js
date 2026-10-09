@@ -10,6 +10,7 @@ export function createNativeSceneFieldRuntimeContext(
     throw new TypeError("native scene gameplay state is required");
   }
   return {
+    getNativeProgramDataMemory: () => sceneState.nativeProgramDataMemory,
     ...(operation01c7State
       ? {
           readNativeOperation01c7Record: () => operation01c7State.readRecordBytes(),

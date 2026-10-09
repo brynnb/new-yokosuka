@@ -6,6 +6,16 @@
     "runtimeBase": "0xc010000",
     "sha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
     "verifiedCodeRanges": {
+      "pendingOwnerControl": {
+        "runtimeAddress": "0xc15a82e",
+        "size": 206,
+        "sha256": "632bdee695b18abae8840d0c287797d6eed79d6d6441550648bc6e8b7ff3bd04"
+      },
+      "integerResultWriter": {
+        "runtimeAddress": "0xc0bb342",
+        "size": 10,
+        "sha256": "2ea5c246809c512414651272a9028324ca275f75d0808e12e743903b11ec720a"
+      },
       "contextConstructor": {
         "runtimeAddress": "0xc0bb124",
         "size": 130,
@@ -111,7 +121,16 @@
         "selector": 8,
         "runtimeAddress": "0xc0bb6cc"
       }
-    ]
+    ],
+    "pendingOwnerReset": {
+      "operationId": 418,
+      "handlerAddress": "0xc15a82e",
+      "mode": 0,
+      "globalDwordAddress": "0xc224010",
+      "storedWord": 0,
+      "result": 0,
+      "boundary": "Mode zero only: clears the pending-owner word without resolving or cancelling its former task. Mode one launch and other poll/cancel routes remain unsupported."
+    }
   },
   "callbackPath": [
     {

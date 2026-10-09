@@ -11,6 +11,7 @@ import {
 import { nativeArrivalFields } from "./NativeAreaRequestRuntime.js";
 import { NativeWeatherControllerState, NativeWeatherSchedule } from "../world/NativeWeatherSchedule.js";
 import nativeWeatherCatalog from "../data/shenmue1-native-weather.json" with { type: "json" };
+import { createNativeTypedTableSemanticHandlers } from "./NativeProgramDataRuntime.js";
 
 import {
   createNativeActorMhndSemanticHandlers,
@@ -413,6 +414,7 @@ export class NativeRoomScriptRuntime {
       },
     };
     this.handlers = {
+      ...createNativeTypedTableSemanticHandlers(),
       ...createNativeOperation01c7SemanticHandlers(operation01c7),
       ...createNativeDebugFormatSemanticHandlers(),
       ...createNativeClockRecordSemanticHandlers({
@@ -803,6 +805,7 @@ export class NativeRoomScriptRuntime {
     let programOwnershipBegan = false;
     let external;
     try {
+      if (transactionDetail.program?.staticData) this.sceneState.nativeProgramDataMemory.prepare(transactionDetail.program.staticData);
       transactionHandlers = this.createHandlers?.({
         ...transactionDetail,
         sceneState: this.sceneState,

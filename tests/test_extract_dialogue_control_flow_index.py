@@ -29,12 +29,14 @@ from tools.scripting.extract_dialogue_control_flow_index import (  # noqa: E402
     scene_field_comparisons,
     scene_field_bitwise_writes,
     scene_field_constant_writes,
+    scene_field_expression_writes,
     scripted_map_graphs,
     summary_report,
 )
 from tools.scripting.extract_dialogue_launch_arguments import (  # noqa: E402
     frame_argument_base,
     pushed_arguments,
+    relocate_static_call_arguments,
 )
 from tools.scripting.native_event_dataflow import (  # noqa: E402
     SIGNED_ANGLE_DIFFERENCE_HELPER_SIGNATURE,
@@ -42,6 +44,34 @@ from tools.scripting.native_event_dataflow import (  # noqa: E402
 
 
 class DialogueControlFlowIndexTest(unittest.TestCase):
+    def test_recovers_caller_frame_words_written_to_scene_table_references(self):
+        rows = {row[0]: row for row in [
+            (0x15790, "mov.l", "0x1593c,r4", 0xc0),
+            (0x15792, "add", "r9,r4", None),
+            (0x15794, "mov.l", "@(24,r14),r5", None),
+            (0x15796, "mov.l", "r5,@r4", None),
+        ]}
+        writes = scene_field_expression_writes(rows, 0x8fda4)
+        self.assertEqual(len(writes), 1)
+        self.assertEqual(writes[0]["offset"], 0xc0)
+        self.assertEqual(writes[0]["width"], 4)
+        self.assertEqual(writes[0]["expression"], {"kind": "frame-field", "offset": 24, "width": 4,
+                                                  "signedLoad": False, "source": "@(24,r14) at 0x15794"})
+        rows[0x15794] = (0x15794, "unknown", "r5", None)
+        self.assertEqual(scene_field_expression_writes(rows, 0x8fda4), [])
+
+    def test_local_static_call_arguments_use_their_actual_module_data_base_once(self):
+        raw = [{"kind": "static-pointer", "value": 0x28bc, "sourceFileOffset": "0x88eba"},
+               {"kind": "constant", "value": 15}]
+        fixed = relocate_static_call_arguments(raw, 0x8fda4)
+        self.assertEqual(fixed[0]["value"], 0x92660)
+        self.assertEqual(fixed[0]["staticDataOffset"], 0x28bc)
+        self.assertEqual(fixed[0]["sourceFileOffset"], "0x88eba")
+        self.assertEqual(fixed[1], raw[1])
+        self.assertEqual(raw[0]["value"], 0x28bc)
+        with self.assertRaisesRegex(ValueError, "already relocated"):
+            relocate_static_call_arguments(fixed, 0x8fda4)
+
     def test_recovers_macl_product_as_an_operation_argument_without_guessing_unknown_inputs(self):
         # Disc-1 JOMO 0x159aa..0x159b0 indexes a 13-word door record.
         rows = {row[0]: row for row in [

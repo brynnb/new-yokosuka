@@ -132,6 +132,7 @@ import {
   createNativeCameraShakeState,
 } from "./NativeCameraShakeRuntime.js";
 import creationContract from "../data/events/nativeSceneObjectCreation.generated.json" with { type: "json" };
+import { NativeProgramDataMemory } from "./NativeProgramDataRuntime.js";
 
 function requireFourcc(value) {
   const fourcc = String(value || "");
@@ -215,6 +216,7 @@ export class NativeSceneGameplayState {
 
   clear() {
     const previousNameCounter = this.objectVectorState?.nativeObjectNameCounter;
+    this.nativeProgramDataMemory = new NativeProgramDataMemory();
     this.globalByte = 0;
     this.currentPresentationOwner = null;
     this.objectRuntimeFlags = new Map();

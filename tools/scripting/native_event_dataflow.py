@@ -1695,6 +1695,37 @@ def scene_field_constant_writes(
     return writes
 
 
+def scene_field_expression_writes(
+    rows: dict[int, tuple[int, str, str, int | None]],
+    static_data_base: int,
+    reached: set[int] | None = None,
+) -> list[dict[str, Any]]:
+    """Recover nonconstant stores into scene state without guessing a value."""
+    ordered = [rows[address] for address in sorted(rows)]
+    indices = {row[0]: index for index, row in enumerate(ordered)}
+    writes = []
+    for address in sorted(reached if reached is not None else rows):
+        store = rows.get(address)
+        if store is None or store[1] not in {"mov.b", "mov.w", "mov.l"}:
+            continue
+        match = REGISTER_STORE.fullmatch(store[2])
+        if match is None:
+            continue
+        target = _rooted_address_offset(rows, address, match.group("address"), "r9")
+        if target is None:
+            continue
+        expression = _exact_integer_register_expression(
+            ordered, match.group("source"), indices[address], static_data_base,
+        )
+        if expression is None or expression.get("kind") == "constant":
+            continue
+        writes.append({"kind": "sceneFieldExpressionWrite", "callFileOffset": hx(address),
+                       "offset": target[0], "offsetHex": hx(target[0]),
+                       "width": {"mov.b": 1, "mov.w": 2, "mov.l": 4}[store[1]],
+                       "expression": expression, "addressDefinitionFileOffset": hx(target[1])})
+    return writes
+
+
 def scene_field_bitwise_writes(
     rows: dict[int, tuple[int, str, str, int | None]],
     reached: set[int] | None = None,

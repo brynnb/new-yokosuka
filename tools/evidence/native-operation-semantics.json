@@ -3564,10 +3564,10 @@
       "operationHex": "0x009a",
       "semanticId": "typed-indexed-table-access",
       "handlerAddress": "0x0c1737b4",
-      "provenBehavior": "Reads or writes byte, word, dword, or float elements selected by the native descriptor's base, type, and index fields.",
+      "provenBehavior": "Arguments zero through two are a memory base, mode and element index, not a descriptor struct. Read modes 1/2/4/5/8 load unsigned byte/word/raw dword/float bits/module-relative pointer; writes 11/12/14/15/18 store the low byte/word/raw dword/float bits/raw dword from argument three. Index scaling wraps at 32 bits. The primary dispatcher pre-clears its return cell, so writes and unsupported switch modes return zero. The browser operates on declared source-owned module data; unowned heap/frame aliases remain explicit unsupported inputs.",
       "sources": [
-        "tools/ghidra/LabelShenmueRuntimeAnchors.py",
-        "tools/evidence/d000-operation-handlers.json"
+        "tools/scripting/operations/extract_typed_table_access_evidence.py",
+        "tools/evidence/typed-table-access-evidence.json"
       ]
     },
     {
@@ -6607,6 +6607,16 @@
         "docs/research/shenmue1/map-transition-trace.md",
         "tools/evidence/map-transition-catalog.json"
       ]
+    },
+    {
+      "operationId": 418,
+      "operationHex": "0x01a2",
+      "argumentCount": 1,
+      "semanticId": "interaction-manager-pending-owner-clear",
+      "handlerAddress": "0x0c15a82e",
+      "argumentConstraints": [{ "index": 0, "values": [0] }],
+      "provenBehavior": "Mode zero clears the pending-owner dword at 0x0c224010 and publishes zero through the native integer result writer. It does not cancel the former task or reset descriptor and slot tables; nonzero launch/poll modes remain unsupported.",
+      "sources": ["tools/scripting/extract_dialogue_native_interaction_manager.py", "tools/evidence/dialogue-native-interaction-manager.json"]
     },
     {
       "operationId": 414,

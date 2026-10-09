@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
 import sys
+import base64
+import hashlib
+import struct
 import unittest
 from pathlib import Path
 
@@ -18,6 +21,32 @@ from tools.scripting.compile_native_event_ir import (  # noqa: E402
 
 
 class CompileNativeEventIrTest(unittest.TestCase):
+    def test_source_static_data_pool_is_bounded_to_the_original_scn3_section(self):
+        data = bytearray(80)
+        data[8:12] = b"SCN3"
+        struct.pack_into("<I", data, 12, 72)
+        struct.pack_into("<I", data, 24, 56)
+        data[64:80] = bytes(range(16))
+        source_map = {"disc": 1, "area": "TEST", "mapinfoSha256": hashlib.sha256(data).hexdigest(),
+                      "initialFunctionFileOffset": "0x38", "scn3FileOffset": "0x8",
+                      "mapinfoHex": data.hex(), "dialoguePathFunctions": []}
+        compiled = build_report({"maps": [source_map]}, {"operations": []})
+        pool = compiled["maps"][0]["staticData"]
+        self.assertEqual(pool["baseFileOffset"], 64)
+        self.assertEqual(pool["byteLength"], 16)
+        self.assertEqual(base64.b64decode(pool["data"]), bytes(range(16)))
+        self.assertEqual(pool["sha256"], hashlib.sha256(bytes(range(16))).hexdigest())
+        self.assertEqual(pool["sourceSha256"], source_map["mapinfoSha256"])
+        data[64] ^= 1
+        source_map["mapinfoHex"] = data.hex()
+        with self.assertRaisesRegex(ValueError, "source changed since"):
+            build_report({"maps": [source_map]}, {"operations": []})
+        struct.pack_into("<I", data, 12, 1000)
+        source_map["mapinfoHex"] = data.hex()
+        source_map["mapinfoSha256"] = hashlib.sha256(data).hexdigest()
+        with self.assertRaisesRegex(ValueError, "static-data source range"):
+            build_report({"maps": [source_map]}, {"operations": []})
+
     def test_recovers_only_declared_resource_strings_with_bounded_original_addresses(self):
         semantic = {"staticStringArgumentIndices": [2]}
         arguments = [{"kind": "constant", "value": 1}, {"kind": "constant", "value": 0},

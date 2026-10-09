@@ -884,6 +884,7 @@ def build_pack(
             "area": route["area"],
             "mapinfoSha256": source_map["mapinfoSha256"],
             "entryFunction": route["entryFunction"],
+            **({"staticData": source_map["staticData"]} if source_map.get("staticData") else {}),
             **({"selector": route["selector"]} if route.get("selector") else {}),
             **({"directEntries": direct_entries} if direct_entries else {}),
             **({"directEntryState": entry_state} if entry_state else {}),

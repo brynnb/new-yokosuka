@@ -1,0 +1,103 @@
+{
+  "schema": "new-yokosuka-native-typed-table-evidence-v1",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "sha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c"
+  },
+  "routes": [
+    {
+      "mode": 1,
+      "target": "0xc173820",
+      "access": "read",
+      "width": 1,
+      "valueKind": "unsigned-byte"
+    },
+    {
+      "mode": 2,
+      "target": "0xc173826",
+      "access": "read",
+      "width": 2,
+      "valueKind": "unsigned-word"
+    },
+    {
+      "mode": 4,
+      "target": "0xc17382c",
+      "access": "read",
+      "width": 4,
+      "valueKind": "raw-dword"
+    },
+    {
+      "mode": 5,
+      "target": "0xc173830",
+      "access": "read",
+      "width": 4,
+      "valueKind": "float32-bits"
+    },
+    {
+      "mode": 8,
+      "target": "0xc173846",
+      "access": "read",
+      "width": 4,
+      "valueKind": "module-relative-pointer"
+    },
+    {
+      "mode": 11,
+      "target": "0xc173858",
+      "access": "write",
+      "width": 1,
+      "valueKind": "low-byte"
+    },
+    {
+      "mode": 12,
+      "target": "0xc17385e",
+      "access": "write",
+      "width": 2,
+      "valueKind": "low-word"
+    },
+    {
+      "mode": 14,
+      "target": "0xc173864",
+      "access": "write",
+      "width": 4,
+      "valueKind": "raw-dword"
+    },
+    {
+      "mode": 15,
+      "target": "0xc173868",
+      "access": "write",
+      "width": 4,
+      "valueKind": "float32-bits"
+    },
+    {
+      "mode": 18,
+      "target": "0xc17386e",
+      "access": "write",
+      "width": 4,
+      "valueKind": "raw-dword"
+    }
+  ],
+  "verifiedRanges": {
+    "handler": {
+      "address": "0xc1737b4",
+      "length": 206,
+      "sha256": "85a87c0051bf9daaa09099fd2414c816ff445e68ff58c190bd51b89f026069ed"
+    },
+    "relativePointer": {
+      "address": "0xc0bb37e",
+      "length": 8,
+      "sha256": "6ef7333e7e1079d37677c87017b21a2c69d1b945bd1282b5a3b3db4f9768b290"
+    },
+    "primaryDispatcher": {
+      "address": "0xc0bb6fe",
+      "length": 44,
+      "sha256": "7987e9f08ccb1eac0d71e2a7fb2c217011f8a63dd4f846fe9f15dce7fd4b1061"
+    }
+  },
+  "contract": [
+    "Arguments zero/one/two are memory base, mode and element index; writes read a fourth raw word. There is no descriptor struct at the base pointer.",
+    "Byte, word and dword addresses use index multiplied by one, two and four respectively, with native 32-bit wrapping.",
+    "Float loads/stores preserve raw bits in the VM return cell. Mode eight adds the current module's data base to its loaded relative pointer word.",
+    "The primary dispatcher pre-clears its return cell. Writes and unsupported switch modes therefore return zero."
+  ],
+  "boundary": "The browser memory adapter operates only on declared source-owned module ranges. Native heap/frame-pointer aliases and unowned addresses remain explicit unsupported inputs."
+}

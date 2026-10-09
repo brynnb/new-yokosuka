@@ -567,6 +567,18 @@ export function createNativeInteractionRecordSemanticHandlers({
     return { status: "continued" };
   };
   return {
+    "interaction-manager-pending-owner-clear": async ({ context, readArgument }) => {
+      if (readArgument(0) !== 0) {
+        return { status: "stopped", reason: "interaction-pending-owner-mode-unproven" };
+      }
+      if (typeof context.writeSceneField !== "function") {
+        return { status: "stopped", reason: "interaction-pending-owner-writer-missing" };
+      }
+      // Native mode zero only forgets this pointer. It does not cancel the
+      // former task or reset the separately owned descriptor/slot tables.
+      await context.writeSceneField({ offset: 0x0c224010, width: 4, value: 0 });
+      return { status: "continued", result: 0 };
+    },
     "interaction-manager-nearest-descriptor-query": async ({
       action,
       context,

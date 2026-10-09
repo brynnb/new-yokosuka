@@ -1,7 +1,7 @@
 # Storyline gameplay integration
 
 Status: integration design; existing boundaries are distinguished from proposed work
-Last reviewed: October 3, 2026
+Last reviewed: October 9, 2026
 
 The [implemented play modes](../implementation/play-modes.md) now isolate Story
 and Free roam saves, calendars and NPC views. The event-settlement and native/Yarn
@@ -606,13 +606,32 @@ not a per-record field. The shared name resolver treats a zero name as null,
 not the separate current-presentation-owner cell. The browser therefore stops
 a CPAM install on that missing target instead of fabricating a current owner.
 
-The next headless stop is recognized but unimplemented `0x009a` typed table
-access at `0x159c4`: it reads the table rooted in scene field `+0xc0`, mode 4,
-using a thirteen-word row stride. Recovery now preserves its original
-`mul.l`/`sts macl` index calculation as frame field 4 multiplied by 13, through
-the existing exact integer-expression resolver. Unknown inputs or nonlocal
-writers remain unresolved. Table ownership and the missing reader still need
-integration; no table pointer or contents are substituted to advance startup.
+The scoped headless startup now executes `0x009a` typed table reads and writes.
+The original setup receives four module-relative table pointers through its
+caller frame and stores them at scene offsets `+0xc0` through `+0xcc`.
+Extraction preserves these frame-to-scene expressions and relocates local-call
+static pointers exactly once. For Disc 1 JOMO, static data begins at `0x8fda4`;
+the first table's relative offset `0x28bc` therefore resolves to `0x92660`, not
+to code at file offset `0x28bc`.
+
+Program packages carry the original bounded SCN3 static-data pool as fetched
+data, not in the Vite discovery index. The compiler rejects a source that has
+changed since control-flow recovery; the existing program loader verifies the
+package checksum. Transaction-owned memory preserves writes on repeat starts
+and restores them on cancellation. Byte/word/dword modes, raw float bits and
+module-relative pointer returns follow the executable's switch table. Heap or
+frame-pointer aliases remain unsupported instead of becoming guessed memory.
+
+The actual JOMO loop reads seventeen thirteen-word rows, clears each row's
+state word and terminates at `0xffffffff`. Native equality compares register
+bits, so the interpreter now treats that word and signed `-1` identically,
+including compound result/frame predicates. Primary `0x01a2(0)` at `0x15a4a`
+then clears only the pending-owner word at `0xc224010` and returns zero. It
+does not cancel a former task or clear the separate descriptor tables.
+The next stop is secondary `0x0000` at `0x15aa2`: the interaction-manager
+initializer and its runtime scene bindings still need execution support.
+These checks use the real scoped package but supplied clock/arrival context;
+they do not prove automatic live initialization or visible gameplay.
 
 The initialization route is catalogued, not automatically enabled as a live
 startup path. Source closure discovery, name bindings and request-queue state

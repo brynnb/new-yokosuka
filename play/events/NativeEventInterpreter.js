@@ -10,6 +10,11 @@ import {
   nativeFloat32Word,
 } from "./NativeEventNumericRuntime.js";
 import { evaluateNativeFrameExpression } from "./NativeFrameExpression.js";
+import { exactNativeIntegerValue } from "./NativeIntegerExpression.js";
+
+// SH-4 cmp/eq compares register bits. Signed/unsigned JavaScript spellings
+// of the same VM word (notably -1 and 0xffffffff sentinels) are identical.
+function sameNativeWord(left, right) { return (left >>> 0) === (right >>> 0); }
 
 function transformedOperationResult(action, result) {
   const transform = action.resultTransform;
@@ -242,7 +247,7 @@ function operationResultExpression(expression, results, readSceneField, readFram
     );
     if (!right.resolved) return right;
     const matched = {
-      equal: () => left.value === right.value,
+      equal: () => sameNativeWord(left.value, right.value),
       "signed-greater-than": () => (left.value | 0) > (right.value | 0),
       "signed-greater-or-equal": () => (
         (left.value | 0) >= (right.value | 0)
@@ -275,7 +280,7 @@ function operationResultExpression(expression, results, readSceneField, readFram
     }
     return {
       resolved: true,
-      value: operand.value === expression.constant
+      value: sameNativeWord(operand.value, expression.constant)
         ? expression.trueValue
         : expression.falseValue,
     };
@@ -768,6 +773,24 @@ export class NativeEventInterpreter {
           frame.actionIndex += 1;
           continue;
         }
+        if (action.kind === "sceneFieldExpressionWrite") {
+          if (![1, 2, 4].includes(action.width) || !Number.isInteger(action.offset)
+            || typeof context.writeSceneField !== "function") {
+            return stopped(state, "scene-field-expression-write-invalid", { callFileOffset: action.callFileOffset });
+          }
+          const value = exactNativeIntegerValue(action.expression, {
+            readFrameField: offset => frame.fields?.[offset], readSceneField: context.readSceneField,
+          });
+          if (value === null) {
+            return stopped(state, "scene-field-expression-input-missing", {
+              callFileOffset: action.callFileOffset });
+          }
+          const mask = action.width === 4 ? 0xffffffff : (2 ** (action.width * 8)) - 1;
+          context.writeSceneField({ offset: action.offset, width: action.width, value: (value >>> 0) & mask,
+            source: { functionFileOffset: frame.functionId, callFileOffset: action.callFileOffset } });
+          frame.actionIndex += 1;
+          continue;
+        }
         if (action.kind === "sceneFieldWrite") {
           if (
             ![1, 2, 4].includes(action.width)
@@ -1026,9 +1049,9 @@ export class NativeEventInterpreter {
                 detail: evaluated.reason,
               });
             }
-            comparisonMatched = evaluated.value === definition.constant;
+            comparisonMatched = sameNativeWord(evaluated.value, definition.constant);
           } else {
-            comparisonMatched = pending.result === definition.constant;
+            comparisonMatched = sameNativeWord(pending.result, definition.constant);
           }
           resolvedSuccessors.push(comparisonMatched
             ? pendingBranch.comparisonTrueSuccessor

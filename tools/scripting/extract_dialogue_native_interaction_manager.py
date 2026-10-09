@@ -23,6 +23,7 @@ import struct
 from collections import Counter
 from pathlib import Path
 from typing import Any
+from tools.lib.portable_paths import portable_project_path
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -50,6 +51,16 @@ INDIRECT_RECORD_SIZE = 36
 INDIRECT_RECORD_WORDS = INDIRECT_RECORD_SIZE // 4
 
 VERIFIED_RANGES = {
+    "pendingOwnerControl": (
+        0x0C15A82E,
+        206,
+        "632bdee695b18abae8840d0c287797d6eed79d6d6441550648bc6e8b7ff3bd04",
+    ),
+    "integerResultWriter": (
+        0x0C0BB342,
+        10,
+        "2ea5c246809c512414651272a9028324ca275f75d0808e12e743903b11ec720a",
+    ),
     "contextConstructor": (
         0x0C0BB124,
         130,
@@ -195,6 +206,10 @@ def verify_executable(executable: bytes) -> dict[str, Any]:
     ]
     if table != EXPECTED_DISPATCH_TABLE:
         raise ValueError(f"selector dispatch entries changed: {table}")
+    if (u32_runtime(executable, 0x0C29B068) != 0x0C15A82E
+            or u32_runtime(executable, 0x0C15A8D0) != 0x0C224010
+            or u32_runtime(executable, 0x0C15A8CC) != 0x0C0BB342):
+        raise ValueError("interaction pending-owner reset wiring changed")
 
     return {
         "executable": "1ST_READ.BIN",
@@ -210,6 +225,15 @@ def verify_executable(executable: bytes) -> dict[str, Any]:
             {"selector": index, "runtimeAddress": hx(address)}
             for index, address in enumerate(table)
         ],
+        "pendingOwnerReset": {
+            "operationId": 0x01A2,
+            "handlerAddress": hx(0x0C15A82E),
+            "mode": 0,
+            "globalDwordAddress": hx(0x0C224010),
+            "storedWord": 0,
+            "result": 0,
+            "boundary": "Mode zero only: clears the pending-owner word without resolving or cancelling its former task. Mode one launch and other poll/cancel routes remain unsupported.",
+        },
     }
 
 
@@ -352,7 +376,7 @@ def registration_schema(entry: dict[str, Any]) -> dict[str, Any]:
     return {
         "disc": entry["disc"],
         "area": entry["area"],
-        "source": entry["source"],
+        "source": portable_project_path(entry["source"]),
         "mapinfoSha256": entry["mapinfoSha256"],
         "setupFunction": entry["setupFunction"],
         "callFileOffset": entry["callFileOffset"],

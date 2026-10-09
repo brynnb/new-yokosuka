@@ -17,6 +17,12 @@ SPEC.loader.exec_module(MODULE)
 
 
 class NativeInteractionManagerExtractorTests(unittest.TestCase):
+    def test_pending_owner_reset_uses_the_original_field_and_integer_return(self):
+        source = MODULE.verify_executable(MODULE.DEFAULT_EXECUTABLE.read_bytes())
+        self.assertEqual(source["pendingOwnerReset"]["globalDwordAddress"], "0xc224010")
+        self.assertEqual(source["pendingOwnerReset"]["result"], 0)
+        self.assertEqual(source["pendingOwnerReset"]["mode"], 0)
+
     def test_descriptor_table_stops_on_first_aligned_sentinel(self):
         first = list(range(MODULE.DESCRIPTOR_WORDS))
         second = list(range(100, 100 + MODULE.DESCRIPTOR_WORDS))

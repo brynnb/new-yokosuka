@@ -12,6 +12,8 @@ behavior.
 from __future__ import annotations
 
 import argparse
+import base64
+import hashlib
 import json
 import struct
 from collections import Counter, defaultdict
@@ -711,6 +713,21 @@ def build_report(
                         ):
                             known_family_unresolved[family] += 1
         strings = recovered_static_strings(functions)
+        static_data = None
+        if item.get("scn3FileOffset") is not None:
+            if hashlib.sha256(mapinfo).hexdigest() != item["mapinfoSha256"]:
+                raise ValueError("native static-data source changed since control-flow recovery")
+            scn3 = int(item["scn3FileOffset"], 16)
+            if mapinfo[scn3:scn3 + 4] != b"SCN3":
+                raise ValueError("native static-data source has no SCN3 header")
+            base = scn3 + struct.unpack_from("<I", mapinfo, scn3 + 0x10)[0]
+            end = scn3 + struct.unpack_from("<I", mapinfo, scn3 + 4)[0]
+            if not scn3 + 0x30 <= base < end <= len(mapinfo):
+                raise ValueError("native static-data source range is invalid")
+            payload = mapinfo[base:end]
+            static_data = {"schema": "new-yokosuka-native-program-data-v1", "sourceSha256": item["mapinfoSha256"],
+                           "baseFileOffset": base, "byteLength": len(payload), "sha256": hashlib.sha256(payload).hexdigest(),
+                           "encoding": "base64", "data": base64.b64encode(payload).decode("ascii")}
         maps.append({
             "disc": item["disc"],
             "area": item["area"],
@@ -718,6 +735,7 @@ def build_report(
             "entryFunction": item["initialFunctionFileOffset"],
             "functions": functions,
             **({"staticStrings": strings} if strings else {}),
+            **({"staticData": static_data} if static_data is not None else {}),
         })
     functions = [
         function

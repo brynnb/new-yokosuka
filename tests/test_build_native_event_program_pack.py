@@ -123,12 +123,15 @@ class BuildNativeEventProgramPackTest(unittest.TestCase):
     def test_room_initialization_identity_requires_the_original_scn3_root(self):
         route = {"id": "startup", "disc": 1, "area": "TEST", "entryFunction": "0x100",
                  "selector": {"kind": "room-initialization"}}
+        self.source_map["staticData"] = {"schema": "new-yokosuka-native-program-data-v1", "data": "source-pool-fixture"}
         ir = {"schema": "new-yokosuka-native-event-ir-v1", "maps": [self.source_map]}
         manifest = {"schema": "new-yokosuka-native-event-program-routes-v1", "routes": [route]}
         built = build_pack(ir, manifest)
         self.assertEqual(built["programs"][0]["selector"], route["selector"])
+        self.assertEqual(built["programs"][0]["staticData"], self.source_map["staticData"])
         index, _ = build_runtime_index(built)
         self.assertEqual(index["programs"][0]["selector"], route["selector"])
+        self.assertNotIn("staticData", index["programs"][0], "large source data stays in the fetched program, not Vite's index")
         route["entryFunction"] = "0x200"
         with self.assertRaisesRegex(ValueError, "original SCN3 root"):
             build_pack(ir, manifest)

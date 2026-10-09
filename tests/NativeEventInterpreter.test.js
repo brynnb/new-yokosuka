@@ -117,6 +117,23 @@ test("native record copies update the current interpreter frame", async () => {
   assert.equal(observedHour, 14);
 });
 
+test("caller argument pointers flow through exact frame-to-scene stores", async () => {
+  const fields = new Map();
+  const program = { entryFunction: "0x100", functions: [{ id: "0x100", entryBlock: "0x100", blocks: [{ id: "0x100",
+    actions: [{ kind: "directCall", callFileOffset: "0x104", targetFileOffset: "0x200",
+      arguments: [{ kind: "constant", value: 0x52494b41 }, { kind: "static-pointer", value: 0x92660 }] }], successors: [] }] },
+    { id: "0x200", entryBlock: "0x200", frameArgumentBase: 20, blocks: [{ id: "0x200",
+      actions: [{ kind: "sceneFieldExpressionWrite", callFileOffset: "0x15796", offset: 192, width: 4,
+        expression: { kind: "frame-field", offset: 24, width: 4, signedLoad: false } }], successors: [] }] }] };
+  const interpreter = createNativeEventInterpreter({ program, executeOperation: () => ({ status: "continued" }) });
+  assert.equal((await interpreter.run(null, { writeSceneField: write => fields.set(write.offset, write.value) })).status, "completed");
+  assert.equal(fields.get(192), 0x92660);
+  const missing = await interpreter.run(null, { entryFunction: "0x200", writeSceneField: write => fields.set(write.offset, write.value) });
+  assert.equal(missing.status, "stopped");
+  assert.equal(missing.reason.kind, "scene-field-expression-input-missing");
+  assert.equal(fields.get(192), 0x92660, "a missing frame value cannot replace a valid table reference with zero");
+});
+
 test("executes exact scene-field bitwise OR writes", async () => {
   const fields = new Map([[0xb0, 0x80]]);
   const program = {
