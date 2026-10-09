@@ -604,3 +604,26 @@ Extracts placement transforms from MAPINFO.BIN SCN3 data, finding transform bloc
 
 ### analyze_chrs.py / debug_chrs.py / scan_entities.py
 Debug and analysis scripts for examining character data and entity structures in MAPINFO.BIN. These use hardcoded paths and are intended for interactive research.
+
+### Native event resource strings and initialization packages
+
+`compile_native_event_ir.py` uses the reviewed semantics registry's
+`staticStringArgumentIndices` to recover known MOTI/HNDM filename operands from
+their original MAPINFO offsets. It requires a nonempty printable ASCII resource
+name terminated within 256 bytes; invalid source data fails generation. Dynamic
+operands remain dynamic rather than receiving a guessed address or filename.
+The IR retains the exact pointer and filename, and collects source-offset
+string records for package generation.
+
+`build_native_event_program_pack.py` carries only recovered strings referenced by
+the selected function closure. Existing manual declarations remain usable, but a
+declaration that contradicts recovered MAPINFO fails generation. Initialization
+routes use the existing package format with selector kind `room-initialization`;
+the builder requires their entry to match the original SCN3 root. The first such
+route is Disc 1 JOMO at `0x88b70`, in `tools/data/native-event-program-routes.json`.
+
+A generated closure is not necessarily executable. The JOMO startup still has
+unsupported native operations and is not automatically enabled in the live
+Story loader. Generate scoped probes to a separate output directory; do not
+replace the complete runtime index or clean its shared asset directory using a
+one-area pack. See [storyline integration status](../../design/storyline-gameplay.md).

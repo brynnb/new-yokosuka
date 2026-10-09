@@ -97,6 +97,26 @@ def enrich_static_pointer_arguments(
     mapinfo: bytes,
     label: str,
 ) -> list[dict[str, Any]]:
+    string_indices = semantic.get("staticStringArgumentIndices", [])
+    if (not isinstance(string_indices, list)
+            or any(not isinstance(i, int) or isinstance(i, bool) or i < 0 or i >= len(arguments) for i in string_indices)
+            or len(set(string_indices)) != len(string_indices)):
+        raise ValueError("static string argument indices are malformed")
+    if string_indices:
+        arguments = list(arguments)
+        for index in string_indices:
+            argument = arguments[index]
+            # A dynamic operand is not evidence of a string at some guessed
+            # address. Keep it unresolved for the owning runtime boundary.
+            if argument.get("kind") != "static-pointer":
+                continue
+            pointer = argument.get("value")
+            if not isinstance(pointer, int) or isinstance(pointer, bool) or not 0 <= pointer < len(mapinfo):
+                raise ValueError(f"{label} static string pointer unavailable at {pointer}")
+            end = mapinfo.find(b"\0", pointer, min(len(mapinfo), pointer + 256))
+            if end <= pointer or any(byte < 32 or byte > 126 for byte in mapinfo[pointer:end]):
+                raise ValueError(f"{label} static resource string is empty, malformed or unterminated at {pointer}")
+            arguments[index] = {**argument, "staticString": mapinfo[pointer:end].decode("ascii")}
     static_word_count = semantic.get("staticPointerWordCount")
     sentinel_word = semantic.get("staticPointerSentinelWord")
     maximum_word_count = semantic.get("staticPointerMaximumWordCount")
@@ -143,6 +163,22 @@ def enrich_static_pointer_arguments(
             "staticWords": words,
         })
     return enriched
+
+
+def recovered_static_strings(functions: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    strings = {}
+    for function in functions:
+        for block in function.get("blocks", []):
+            for action in block.get("actions", []):
+                for argument in action.get("arguments", []):
+                    if "staticString" not in argument:
+                        continue
+                    pointer = argument["value"]
+                    record = {"pointer": pointer, "value": argument["staticString"], "sourceFileOffset": hex(pointer)}
+                    if pointer in strings and strings[pointer] != record:
+                        raise ValueError(f"inconsistent native static string at {pointer}")
+                    strings[pointer] = record
+    return [strings[pointer] for pointer in sorted(strings)]
 
 
 def exact_frame_expression(expression: dict[str, Any], depth: int = 0) -> bool:
@@ -674,12 +710,14 @@ def build_report(
                             ),
                         ):
                             known_family_unresolved[family] += 1
+        strings = recovered_static_strings(functions)
         maps.append({
             "disc": item["disc"],
             "area": item["area"],
             "mapinfoSha256": item["mapinfoSha256"],
             "entryFunction": item["initialFunctionFileOffset"],
             "functions": functions,
+            **({"staticStrings": strings} if strings else {}),
         })
     functions = [
         function

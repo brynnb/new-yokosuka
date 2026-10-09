@@ -570,11 +570,24 @@ The shared browser rain/snow path now applies the source exclusion predicate,
 including original padding, winding and mirrored scene X; native particle and
 splash generation remain partial. These fields roll back with a failed room
 transaction and survive WAIR release, matching their separate ownership.
-The current raw-IR probe stops at the `M_MOBJ.BIN` motion request at `0x88d08`
-because it has not yet supplied the program's static-string/resource metadata.
-The browser already owns that resolver/registry boundary; this probe failure
-alone is not evidence that its implementation is missing. The supplied clock
-and loader word do not prove live startup or opening settlement.
+The compiler now recovers declared MOTI/HNDM static filename operands from
+MAPINFO rather than requiring handwritten string records. The package builder
+retains only strings referenced by its selected function closure and rejects
+conflicting manual declarations. A catalogued JOMO initialization route uses
+the original SCN3 root `0x88b70`; the builder rejects another function mislabeled
+as room initialization. Its current source closure has 408 functions, fourteen
+static activity-record pairs and three motion filenames: `M_MOBJ.BIN`,
+`M_MDOR.BIN`, and `HMOT_OMO.BIN`. The scoped package is generated with current
+recovery code and the existing resource registry, without replacing the full
+public runtime index from a one-area probe.
+
+That package's headless startup queues both original global motion resources
+and reaches an unresolved operation `0x0008` at `0x15852` in shared helper
+`0x15788`. This is a genuine unsupported native operation, unlike the former
+probe's absent static-string resolver. The initialization route is catalogued,
+not automatically enabled as a live startup path. Source closure discovery and
+request-queue state are not proof that motion is resident or rendered. The
+supplied clock and loader word do not prove live startup or opening settlement.
 Focused tests cover saved-section ownership, byte bounds, separate load flags,
 atomic import, rejected actor restore, room changes, committed parameter
 changes, cancellation and failed transaction setup. These are headless checks,

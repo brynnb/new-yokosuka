@@ -79,6 +79,19 @@ class BuildNativeEventProgramPackTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "invalid or duplicated"):
             static_strings(route)
 
+    def test_source_strings_follow_only_the_selected_closure_and_reject_manual_conflicts(self):
+        strings = [{"pointer": 4, "value": "M_MOBJ.BIN", "sourceFileOffset": "0x4"},
+                   {"pointer": 20, "value": "unrelated", "sourceFileOffset": "0x14"}]
+        functions = [function("0x100", [{"kind": "engineOperation", "arguments": [
+            {"kind": "static-pointer", "value": 4, "staticString": "M_MOBJ.BIN"}]}])]
+        route = {"id": "test"}
+        self.assertEqual(static_strings(route, {"staticStrings": strings}, functions), [strings[0]])
+        route["staticStrings"] = [{**strings[0], "value": "WRONG.BIN"}]
+        with self.assertRaisesRegex(ValueError, "conflicts with MAPINFO"):
+            static_strings(route, {"staticStrings": strings}, functions)
+        with self.assertRaisesRegex(ValueError, "missing or inconsistent"):
+            static_strings({"id": "test"}, {"staticStrings": []}, functions)
+
     def test_static_vectors_preserve_exact_three_word_data(self):
         route = {
             "id": "test",
@@ -106,6 +119,19 @@ class BuildNativeEventProgramPackTest(unittest.TestCase):
             edges,
             {"directCall": 2, "childCoroutineLaunch": 1},
         )
+
+    def test_room_initialization_identity_requires_the_original_scn3_root(self):
+        route = {"id": "startup", "disc": 1, "area": "TEST", "entryFunction": "0x100",
+                 "selector": {"kind": "room-initialization"}}
+        ir = {"schema": "new-yokosuka-native-event-ir-v1", "maps": [self.source_map]}
+        manifest = {"schema": "new-yokosuka-native-event-program-routes-v1", "routes": [route]}
+        built = build_pack(ir, manifest)
+        self.assertEqual(built["programs"][0]["selector"], route["selector"])
+        index, _ = build_runtime_index(built)
+        self.assertEqual(index["programs"][0]["selector"], route["selector"])
+        route["entryFunction"] = "0x200"
+        with self.assertRaisesRegex(ValueError, "original SCN3 root"):
+            build_pack(ir, manifest)
 
     def test_closure_keeps_every_bounded_typed_table_child_target(self):
         self.source_map["functions"][0]["blocks"][0]["actions"][1] = {

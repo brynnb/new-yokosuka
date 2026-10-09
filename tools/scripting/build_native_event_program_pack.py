@@ -441,7 +441,8 @@ def event_cameras(
     }
 
 
-def static_strings(route: dict[str, Any]) -> list[dict[str, Any]]:
+def static_strings(route: dict[str, Any], source_map: dict[str, Any] | None = None,
+                   functions: list[dict[str, Any]] | None = None) -> list[dict[str, Any]]:
     result = []
     pointers: set[int] = set()
     for item in route.get("staticStrings", []):
@@ -468,6 +469,29 @@ def static_strings(route: dict[str, Any]) -> list[dict[str, Any]]:
             "value": value,
             "sourceFileOffset": source_offset,
         })
+    referenced = {
+        argument["value"]: argument["staticString"]
+        for function in functions or []
+        for block in function.get("blocks", [])
+        for action in block.get("actions", [])
+        for argument in action.get("arguments", [])
+        if argument.get("kind") == "static-pointer" and "staticString" in argument
+    }
+    by_pointer = {item["pointer"]: item for item in result}
+    source_entries = static_strings({"id": route["id"], "staticStrings": (source_map or {}).get("staticStrings", [])}) if source_map else []
+    source_by_pointer = {item["pointer"]: item for item in source_entries}
+    for pointer, value in referenced.items():
+        if source_map and source_by_pointer.get(pointer, {}).get("value") != value:
+            raise ValueError(f"{route['id']}: recovered static string is missing or inconsistent at {pointer}")
+    for item in source_entries:
+        if item["pointer"] not in referenced:
+            continue
+        previous = by_pointer.get(item["pointer"])
+        if previous and previous["value"] != item["value"]:
+            raise ValueError(f"{route['id']}: declared static string conflicts with MAPINFO at {item['pointer']}")
+        by_pointer[item["pointer"]] = item
+    if source_map:
+        return [by_pointer[pointer] for pointer in sorted(by_pointer)]
     return result
 
 
@@ -804,6 +828,9 @@ def build_pack(
             raise ValueError(f"native event route is missing or duplicated: {route_id}")
         route_ids.add(route_id)
         source_map = unique_map(event_ir, route)
+        if (route.get("selector", {}).get("kind") == "room-initialization"
+                and route["entryFunction"] != source_map.get("entryFunction")):
+            raise ValueError(f"{route_id}: room initialization must use the original SCN3 root")
         gate_entries = [
             event.get("gateEntryFunction")
             for event in route.get("automaticEvents", [])
@@ -835,7 +862,7 @@ def build_pack(
         automatic = automatic_events(route, functions)
         controllers = room_controllers(route, functions)
         camera_records = event_cameras(route, camera_catalog_loader)
-        strings = static_strings(route)
+        strings = static_strings(route, source_map, functions)
         vectors = static_vectors(route)
         blocks = [
             block
@@ -857,6 +884,7 @@ def build_pack(
             "area": route["area"],
             "mapinfoSha256": source_map["mapinfoSha256"],
             "entryFunction": route["entryFunction"],
+            **({"selector": route["selector"]} if route.get("selector") else {}),
             **({"directEntries": direct_entries} if direct_entries else {}),
             **({"directEntryState": entry_state} if entry_state else {}),
             "scriptedInteractions": interactions,

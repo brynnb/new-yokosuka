@@ -12,11 +12,29 @@ from tools.scripting.compile_native_event_ir import (  # noqa: E402
     deduplicate_frame_field_mutations,
     enrich_static_pointer_arguments,
     semantic_applies,
+    recovered_static_strings,
     summary_report,
 )
 
 
 class CompileNativeEventIrTest(unittest.TestCase):
+    def test_recovers_only_declared_resource_strings_with_bounded_original_addresses(self):
+        semantic = {"staticStringArgumentIndices": [2]}
+        arguments = [{"kind": "constant", "value": 1}, {"kind": "constant", "value": 0},
+                     {"kind": "static-pointer", "value": 4}]
+        enriched = enrich_static_pointer_arguments(semantic, arguments, b"xxxxM_MOBJ.BIN\0junk", "motion")
+        self.assertEqual(enriched[2]["staticString"], "M_MOBJ.BIN")
+        self.assertNotIn("staticString", arguments[2], "do not mutate the raw recovered operand")
+        functions = [{"blocks": [{"actions": [{"arguments": enriched}, {"arguments": enriched}]}]}]
+        self.assertEqual(recovered_static_strings(functions), [{"pointer": 4, "value": "M_MOBJ.BIN", "sourceFileOffset": "0x4"}])
+        dynamic = [*arguments[:2], {"kind": "frame-field", "offset": 12}]
+        self.assertEqual(enrich_static_pointer_arguments(semantic, dynamic, bytes(16), "motion"), dynamic)
+        for data in [b"xxxx\0", b"xxxx\xff\0", b"xxxx" + b"a" * 256 + b"\0", b"xxxxM_MOBJ.BIN"]:
+            with self.assertRaisesRegex(ValueError, "static resource string"):
+                enrich_static_pointer_arguments(semantic, arguments, data, "motion")
+        with self.assertRaisesRegex(ValueError, "indices"):
+            enrich_static_pointer_arguments({"staticStringArgumentIndices": [3]}, arguments, bytes(16), "motion")
+
     def test_enriches_static_pointer_words_for_any_operation_dispatcher(self):
         self.assertEqual(enrich_static_pointer_arguments(
             {"staticPointerWordCount": 3},
