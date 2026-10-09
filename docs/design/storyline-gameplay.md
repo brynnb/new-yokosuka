@@ -7,6 +7,11 @@ The [implemented play modes](../implementation/play-modes.md) now isolate Story
 and Free roam saves, calendars and NPC views. The event-settlement and native/Yarn
 integration gaps below remain; mode switching does not itself complete them.
 
+For walkthrough-guided, authored progression, use the
+[story event template](story-event-template.md). It defines important narrative
+behavior and explicit presentation approximations without requiring the
+original room controller to execute.
+
 ## Purpose
 
 This guide covers player-facing Shenmue I storyline work: entering an area or
@@ -335,10 +340,13 @@ need stronger server/instance authority than a browser completion message.
 
 Implement this **after** one ordinary non-QTE story scene works end to end.
 
-## Active implementation goal
+## Native controller reconstruction
 
-Implement source-backed personal area controllers, starting with the complete
-awakening → Hazuki residence initialization → Ine-san's first allowance → saved
+Native controller reconstruction is paused. The retained scope below describes
+that research path, not prerequisites for authored story events.
+
+The reconstruction scope is source-backed personal area controllers, starting
+with the complete awakening → Hazuki residence initialization → Ine-san's first allowance → saved
 continuation. Work builds on the existing Story/Free roam and script-event
 systems. This is not complete storyline coverage yet.
 
