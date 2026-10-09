@@ -133,6 +133,13 @@ export class PlayMultiplayerAdapter {
         if (!character || message.characterId !== character.id
           || message.modeRevision !== character.modeRevision) return;
         this.nativeStoryRuntime.applyScriptSettlement(message.state);
+        const state = message.state;
+        if (Number.isSafeInteger(state?.revision) && Number.isSafeInteger(state.yen)
+          && state.flags && typeof state.flags === "object"
+          && state.revision >= (character.scriptStateRevision ?? -1)) {
+          this.accountSession.applyWelcome({ yen: state.yen, storyFlags: state.flags,
+            scriptStateRevision: state.revision }, this.accountSession.inventory);
+        }
       },
       onScriptEventRejected: message => (
         this.scriptEventController.handleRejected(message)

@@ -292,11 +292,13 @@ export function buildNativeAseqActivityPack(config) {
       if (definition.sourceSha256 && sha256(source) !== definition.sourceSha256) {
         throw new Error(`${config.resourceName} source ${definition.sourcePath} changed`);
       }
-      const bytes = definition.sourceOffset === undefined ? source : source.subarray(
-        definition.sourceOffset, definition.sourceOffset + definition.byteLength,
-      );
+      const bytes = definition.archiveMember
+        ? parseIpacActivityArchive(source, definition.name).members.find(member => member.name === definition.archiveMember)?.bytes
+        : definition.sourceOffset === undefined ? source : source.subarray(
+            definition.sourceOffset, definition.sourceOffset + definition.byteLength,
+          );
       if (
-        bytes.length !== definition.byteLength
+        !bytes || bytes.length !== definition.byteLength
         || sha256(bytes) !== definition.sha256
       ) throw new Error(`${config.resourceName} loose member ${definition.name} changed`);
       return Object.freeze({ index, name: definition.name, extension: path.extname(definition.name).slice(1), bytes });
@@ -398,10 +400,12 @@ export function buildNativeAseqActivityPack(config) {
     source: looseSources ? {
       disc: config.disc,
       format: "loose-files",
-      members: looseSources.map(({ name, sourceManifestPath: sourcePath, sourceOffset, sourceSha256, byteLength, sha256: digest }) => ({
+      members: looseSources.map(({ name, sourceManifestPath: sourcePath, sourceOffset, sourceSha256, archiveMember, byteLength, sha256: digest }) => ({
         name,
         path: sourcePath,
-        ...(sourceOffset === undefined ? {} : { sourceOffset, sourceSha256 }),
+        ...(sourceOffset === undefined ? {} : { sourceOffset }),
+        ...(sourceSha256 ? { sourceSha256 } : {}),
+        ...(archiveMember ? { archiveMember } : {}),
         byteLength,
         sha256: digest,
       })),
@@ -445,6 +449,8 @@ export function buildNativeAseqActivityPack(config) {
         path: source.path,
         byteLength: source.bytes.length,
         sha256: sha256(source.bytes),
+        ...(definition.parseOptions?.sequenceIndexBase !== undefined
+          ? { sequenceIndexBase: definition.parseOptions.sequenceIndexBase } : {}),
         ...(definition.source ? { source: definition.source } : {}),
       };
     }),

@@ -27,6 +27,11 @@ export const OPENING_NOTEBOOK_PAGES = Object.freeze([
 ]);
 
 const EMPTY_PAGES = Object.freeze([]);
+const ALLOWANCE_PAGE = Object.freeze({
+  id: "story-first-allowance",
+  text: "Ine-san leaves ¥500 on the shoe cabinet each day.\n\nVisit Fuku-san at the dojo.",
+});
+const ALLOWANCE_PAGES = Object.freeze([...OPENING_NOTEBOOK_PAGES, ALLOWANCE_PAGE]);
 
 export function notebookPagesForCharacter(character) {
   // The server saves openingCompleted independently in each play context.
@@ -35,6 +40,6 @@ export function notebookPagesForCharacter(character) {
   return character?.id != null
     && character.playMode === "story"
     && character.openingCompleted === true
-    ? OPENING_NOTEBOOK_PAGES
+    ? character.storyFlags?.["notebook.s1.allowance"] === true ? ALLOWANCE_PAGES : OPENING_NOTEBOOK_PAGES
     : EMPTY_PAGES;
 }

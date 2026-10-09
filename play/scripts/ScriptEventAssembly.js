@@ -29,6 +29,7 @@ import {
 
 export function createScriptEventAssembly({
   nativeRuntime,
+  cutsceneDirector,
   getArea,
   dialoguePersistence,
   selectedObjectActionController,
@@ -57,6 +58,7 @@ export function createScriptEventAssembly({
 }) {
   const activityRunner = createNativeScriptActivityRunner({
     nativeRuntime,
+    cutsceneDirector,
     getArea,
     captureClientState: () => dialoguePersistence.captureWorkingState(),
     restoreClientState: snapshot => (

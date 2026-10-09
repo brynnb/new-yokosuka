@@ -91,7 +91,9 @@ export class NativeAseqActivityCatalog {
         throw new Error(`AUTH motion bank ${bank} is not an exact manifest output`);
       }
       if (this.motionBanks.has(bank)) throw new Error(`duplicate AUTH motion bank ${bank}`);
-      this.motionBanks.set(bank, output);
+      this.motionBanks.set(bank, { ...output,
+        sequenceIndexBase: requireInteger(record.sequenceIndexBase ?? 0, "motion sequence index base"),
+      });
     }
 
     this.activities = new Map();
@@ -459,6 +461,7 @@ export class NativeAseqActivityRuntime {
         .filter(command => command.motionBank === bank)
         .map(command => command.sequenceIndex);
       motionPackages.set(bank, MotnLoader.parse(await this.loadExact(output, { signal }), {
+        sequenceIndexBase: output.sequenceIndexBase,
         sequenceIndices: [...new Set(indices)],
       }));
     }

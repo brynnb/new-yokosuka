@@ -1,6 +1,23 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
+test("an authorized cutscene settles only after cleanup, including explicit skip but not cancellation", async () => {
+  for (const reason of [null, "user-cancelled", "world-change"]) {
+    const listeners = new Set(), restored = [];
+    const director = { onSettled(fn) { listeners.add(fn); return () => listeners.delete(fn); }, start: async () => true };
+    const runner = createNativeScriptActivityRunner({ nativeRuntime: { startObjectInteraction() {}, onSettled() {}, cancel() {} },
+      getArea: () => "JOMO", cutsceneDirector: director, captureClientState: () => 42, restoreClientState: value => restored.push(value) });
+    const activity = { kind: "native-cutscene", area: "JOMO", cutscene: { id: "allowance" } };
+    const pending = runner.start(activity, { area: "JOMO" });
+    const assertion = reason === "world-change" ? assert.rejects(pending, /did not complete/) : pending;
+    await Promise.resolve();
+    assert.deepEqual(restored, []);
+    for (const listener of listeners) listener({ cutscene: activity.cutscene, outcome: reason ? "stopped" : "completed", reason });
+    await assertion;
+    assert.deepEqual(restored, [42]); assert.equal(listeners.size, 0);
+  }
+});
+
 import {
   createNativeScriptActivityRunner,
   nativeFailureDetail,

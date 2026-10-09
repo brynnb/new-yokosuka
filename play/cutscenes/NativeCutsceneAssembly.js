@@ -37,6 +37,7 @@ export function createNativeCutsceneAssembly({
   let activePrecipitation = null;
   const director = createPlayNativeCutsceneDirector({
     beforeComplete: cutscene => {
+      if (cutscene.storyPresentation) return Promise.resolve();
       getPreviewRuntime().beginEnding(cutscene.id);
       return coverLoading();
     },
@@ -140,6 +141,7 @@ export function createNativeCutsceneAssembly({
       restoreArea: area => getRoomScripts().activateArea(area),
     },
     onComplete: (cutscene) => {
+      if (cutscene.storyPresentation) return;
       if (getPreviewRuntime().complete()) return;
       const completion = cutscene.completion;
       if (completion?.notice) transientNotice.show(completion.notice);
@@ -156,6 +158,7 @@ export function createNativeCutsceneAssembly({
       }
     },
     onStopped: (cutscene, reason) => {
+      if (cutscene.storyPresentation) return;
       if (["user-cancelled", "world-change", "superseded", "disposed"].includes(reason)) {
         const previewCompleted = getPreviewRuntime().complete();
         if (!previewCompleted && reason === "user-cancelled") void finishLoading();

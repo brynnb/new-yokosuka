@@ -11,6 +11,17 @@ import {
 } from "../play/ui/react/journalStore.js";
 
 const completedStory = { id: 7, playMode: "story", openingCompleted: true };
+
+test("a durable allowance flag adds one stable notebook page and survives a character reload", () => {
+  const character = { ...completedStory, storyFlags: { "notebook.s1.allowance": true } };
+  setJournalCharacter(character);
+  assert.equal(useJournalStore.getState().pages.length, 6);
+  assert.match(useJournalStore.getState().pages[5].text, /500.*shoe cabinet/);
+  setJournalCharacter({ ...character });
+  assert.equal(useJournalStore.getState().pages.length, 6);
+  setJournalCharacter({ ...character, playMode: "free_roam" });
+  assert.equal(useJournalStore.getState().pages.length, 0);
+});
 let previousStorage;
 let storedPages;
 

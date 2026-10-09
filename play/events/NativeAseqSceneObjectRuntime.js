@@ -129,6 +129,7 @@ export class NativeAseqSceneObjectRuntime {
       }
       return [normalized, Object.freeze({
         actorTag: normalized,
+        referenceOnly: value?.referenceOnly === true,
         model: requireText(value?.model, `${normalized} model`),
         browserFilename: requireText(
           value?.browserFilename,
@@ -171,10 +172,10 @@ export class NativeAseqSceneObjectRuntime {
     }
     this.clear();
     for (const [actorTag, definition] of this.definitions) {
-      let matches = roots.filter(root => (
+      let matches = definition.referenceOnly ? [] : roots.filter(root => (
         root?._filename?.toUpperCase() === definition.browserFilename.toUpperCase()
       ));
-      if (matches.length === 0 && definition.assetPath) {
+      if (matches.length === 0 && (definition.assetPath || definition.referenceOnly)) {
         if (typeof this.instantiateAsset !== "function") {
           throw new Error(`AUTH scene object ${actorTag} has no package asset loader`);
         }

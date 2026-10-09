@@ -4,6 +4,16 @@ import test from "node:test";
 
 import { MotnLoader } from "../src/MotnLoader.js";
 
+test("declared motion windows retain native IDs while filtering physical source entries", () => {
+    const bytes = fileArrayBuffer("play/assets/hazuki/first-allowance/M_01KOZ.MOTN");
+    const parsed = MotnLoader.parse(bytes, { sequenceIndexBase: 112, sequenceIndices: [113] });
+    assert.equal(parsed.sequences.length, 1);
+    assert.equal(parsed.sequences[0].sourceIndex, 1);
+    assert.equal(parsed.sequences[0].index, 113);
+    assert.equal(parsed.sequences[0].name, "JIJ_INE_AT1_WATASU_OKODUKAI_0100");
+    for (const base of [-1, NaN, 65536]) assert.throws(() => MotnLoader.parse(bytes, { sequenceIndexBase: base }), /index base/);
+});
+
 test("native mirror setup follows record sizes and ignores opcode-looking payloads", () => {
     const bytes = new Uint8Array(40);
     bytes.set([0x14, 0x13, 0, 0, 0x13, 0, 0, 0, 8]);

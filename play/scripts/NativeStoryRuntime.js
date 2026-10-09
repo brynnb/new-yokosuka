@@ -20,6 +20,7 @@ export class NativeStoryRuntime {
     getActivityRunner,
     sendDiagnostic,
     isStartupPresentationActive = () => false,
+    storyRegions = null,
   }) {
     this.dialoguePersistence = dialoguePersistence;
     this.dialogueOverlay = dialogueOverlay;
@@ -41,6 +42,7 @@ export class NativeStoryRuntime {
     this.getActivityRunner = getActivityRunner;
     this.sendDiagnostic = sendDiagnostic;
     this.isStartupPresentationActive = isStartupPresentationActive;
+    this.storyRegions = storyRegions;
     this.diagnosticElapsed = 0;
   }
 
@@ -73,6 +75,7 @@ export class NativeStoryRuntime {
     this.cutscenes.stop("world-change");
     this.dialogueOverlay.stop("world-change");
     this.automaticEvents.leaveArea();
+    this.storyRegions?.reset();
     this.eventController.reset("world-change");
     this.scriptedEvents.cancel("world-change");
     this.scriptedEvents.resetRoomControllers();
@@ -99,6 +102,7 @@ export class NativeStoryRuntime {
   updateScriptedEvents(deltaSeconds) { this.scriptedEvents.update(deltaSeconds); }
 
   updateAutomatic({ world, enabled, playerPosition, playerYaw }) {
+    this.storyRegions?.update({ area: world.nativeArea, enabled: enabled && !this.isStartupPresentationActive(), playerPosition });
     const gameplayState = this.getGameplayState();
     this.automaticEvents.update({
       area: world.nativeArea,
@@ -128,6 +132,7 @@ export class NativeStoryRuntime {
   }
 
   resetAfterDisconnect() {
+    this.storyRegions?.reset();
     this.dialogueOverlay.stop("disconnect");
     this.eventController.reset("disconnect");
     this.dialoguePersistence.clear();

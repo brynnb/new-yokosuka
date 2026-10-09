@@ -99,9 +99,11 @@ clues) are deliberately not granted at the start.
 is necessary for these unconditional starting entries: reconnects and existing
 completed Story saves receive the same pages without duplication. Free roam
 and unfinished openings have an empty notebook. Changing characters/modes or
-logging out clears the previous view. Later notebook additions still require
-recovering the original entry/flag mapping; this starting catalog does not infer
-those flags or grant any quest progress.
+logging out clears the previous view. The authored first-allowance event now
+unlocks a sixth page through the server-saved `notebook.s1.allowance` flag, with
+notes about daily money and visiting Fuku-san. Reconnect restores that flag in
+the private character profile. Further entries still need reviewed event/flag
+mappings; notebook display never grants progress itself.
 
 The last viewed page is a browser-only preference, stored as a stable page ID in
 `localStorage` under `new-yokosuka.notebook-page.v1:<characterId>:<playMode>`.
@@ -117,7 +119,12 @@ state representations. Server events can now query and settle original native
 banks atomically with rewards. The client applies committed native receipts
 after presentation cleanup, and the server refreshes only that player's NPC
 schedules. Existing named-flag routes still need to adopt the bridge;
-settlement-driven reward UI and the first complete story route remain pending.
+the authored first-allowance prototype now refreshes the balance and earned
+notebook page from durable receipts. It uses a small hallway volume, the
+original `01KOZ` presentation and server-owned one-time effects without booting
+the native room controller. Server/Yarn scenes pause the personal clock until
+their event lease ends; ordinary native conversations retain their previous
+clock behavior. See the [event specification](../design/story-event-template.md).
 Mode isolation does not
 make arbitrary client-submitted native flags server-validated. Notebook entries
 beyond the opening, unimplemented quest triggers, original sleep/deadline behavior and

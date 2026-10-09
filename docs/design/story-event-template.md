@@ -6,9 +6,9 @@ characters, motion, dialogue, voices and cameras supply the presentation.
 The server decides eligibility and saves the outcome. Playing the original
 Dreamcast room controller is not a prerequisite.
 
-This is a content specification, not an executable format or implemented event.
-Use the existing server/Yarn system and shared scene player when implementing
-it, rather than introducing another quest engine or renderer.
+The template is a content specification, not a new executable format.
+Implement events through the existing server/Yarn system and shared scene
+player, rather than introducing another quest engine or renderer.
 
 ## Reusable template
 
@@ -47,8 +47,16 @@ Keep consequential outcomes and story order reliable.
 
 ## Ine-san first allowance
 
-Proposed event ID: `s1.jomo.first-allowance`.
-Play mode: personal Story mode, as Ryo. This scene is not yet wired into gameplay.
+Event ID: `s1.jomo.first-allowance`.
+Play mode: personal Story mode, as Ryo. The personal-story worktree implements
+this as a local prototype using the server's official Yarn import
+`jomo-first-allowance` and the shared `first-allowance` scene package.
+
+Rendered tests cover natural completion, X-skip, the earned notebook page and
+reload without replay or another payment. The source presentation retains the
+original camera, body motion and eleven voice lines. Money and door reference
+actors currently have no rendered geometry, and separate hand/face callback
+detail is not reconstructed. These are explicit prototype presentation limits.
 
 The original event occurs after Ryo first leaves his bedroom. Ine-san gives him
 ¥500, explains the daily allowance and directs him to Fuku-san at the dojo.
@@ -65,7 +73,7 @@ are documented separately under [Original data](#original-data).
 | --- | --- |
 | Location | Shenmue I, Hazuki residence interior (`JOMO`), hallway outside Ryo's bedroom. |
 | Prerequisites | Story mode; opening completed; this character's first-allowance milestone not completed; no other activity owns the player. No extra weather or exact-minute requirement. Use the saved personal calendar rather than the public clock. |
-| Trigger | Cross the bedroom doorway into the hallway after the opening. Use a small authored activation area on the hall side of the existing bedroom door (`dor7`), not a door-click trigger. Its bounds need an in-world placement check. |
+| Trigger | Cross the bedroom doorway into the hallway after the opening. The prototype uses a small authored activation area on the hall side of the existing bedroom door (`dor7`), not a door-click trigger. Its bounds are stored in the shared story-region catalog and tested with rendered hallway entry. |
 | Player setup | Use the current Story-mode Ryo. Lock gameplay movement and interactions; align him to a nearby safe hall position facing Ine-san. Pause the personal clock for the scene and resume it afterward. |
 | Characters | Ryo (`AKIR`) and Ine-san (`INE_`). Stage only this player's actors; suppress their overlapping ambient copies locally. Fuku-san is mentioned, not added to this scene. Restore normal personal NPC presentation afterward. |
 | Props | Depict the money handover with available original props and clips. A simple handover gesture is an acceptable declared approximation; no banknote physics is required. |
@@ -128,3 +136,10 @@ the doorway does not pay again, and a failed/cancelled preparation remains
 retryable without changing money or notes. Free roam and other players remain
 unaffected. The final camera, controls and NPC restoration require a rendered
 gameplay check, not only a state test.
+
+The focused rendered check uses a real isolated server/database and restored
+local assets: set `NEW_YOKOSUKA_STORY_E2E=true` and run
+`tests/e2e/first-allowance.spec.js` against that development URL. Its setup marks
+the opening completed through the real API; it does not retest all four intro
+scenes. The hallway reset isolates the story trigger from door clicking.
+Do not run it against production.

@@ -156,6 +156,7 @@ import {
 import {
   createScriptEventAssembly,
 } from "./scripts/ScriptEventAssembly.js";
+import { StoryRegionRuntime } from "./scripts/StoryRegionRuntime.js";
 import { NativeStoryRuntime } from "./scripts/NativeStoryRuntime.js";
 import {
   CutscenePreviewRuntime,
@@ -871,6 +872,7 @@ function createPlayRuntime() {
     localDebug: LOCAL_DEBUG,
   });
   const scriptEvents = createScriptEventAssembly({
+    cutsceneDirector: nativeCutsceneDirector,
     nativeRuntime: nativeScriptedEventRuntime,
     getArea: () => worldRuntime.activeWorld.nativeArea,
     dialoguePersistence: nativeDialoguePersistence,
@@ -914,6 +916,11 @@ function createPlayRuntime() {
   } = scriptEvents;
   nativeScriptActivityRunner = assembledActivityRunner;
   const nativeStoryRuntime = new NativeStoryRuntime({
+    storyRegions: new StoryRegionRuntime({ controller: scriptEventController,
+      getCharacter: () => accountSession.character,
+      publishPresence: () => { multiplayerRuntime.markPresenceDirty(); multiplayerRuntime.publishPresence(true); },
+      onError: error => { console.warn("Story region did not start:", error); transientNotice.show("This story scene could not start. Walk back into the hall to retry."); },
+    }),
     isStartupPresentationActive: () => openingSequenceActive || Boolean(cutscenePreviewRuntime?.gameplayPreview),
     dialoguePersistence: nativeDialoguePersistence,
     dialogueOverlay: nativeDialogueOverlay,

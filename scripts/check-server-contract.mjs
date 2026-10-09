@@ -6,6 +6,15 @@ import { clientRoot, resolveServerRepo } from "./server-repo.mjs";
 
 const serverRoot = resolveServerRepo();
 
+// Deterministic export from the authoritative server catalogs. This updates
+// only scripting contracts, never gameplay assets or unrelated configuration.
+if (process.argv.includes("--sync-scripting")) {
+  for (const [source, target] of [
+    ["internal/scriptcontent/commands.v1.json", "play/data/server-command-registry.json"],
+    ["internal/scriptevent/story_regions.json", "play/data/story-regions.json"],
+  ]) fs.writeFileSync(path.join(clientRoot, target), fs.readFileSync(path.join(serverRoot, source)));
+}
+
 function readJSON(root, relativePath) {
   return JSON.parse(fs.readFileSync(path.join(root, relativePath), "utf8"));
 }
@@ -33,6 +42,9 @@ assert.deepEqual(
   readJSON(serverRoot, "internal/scriptcontent/commands.v1.json"),
   "script command registries differ",
 );
+
+assert.deepEqual(readJSON(clientRoot, "play/data/story-regions.json"),
+  readJSON(serverRoot, "internal/scriptevent/story_regions.json"), "story region contracts differ");
 
 assert.deepEqual(
   withoutKeys(

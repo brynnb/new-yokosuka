@@ -32,6 +32,7 @@ export class NativeScriptActivityRunner {
     captureClientState,
     restoreClientState,
     selectedObjectActionController = null,
+    cutsceneDirector = null,
   } = {}) {
     if (
       typeof nativeRuntime?.startObjectInteraction !== "function"
@@ -57,11 +58,13 @@ export class NativeScriptActivityRunner {
     this.captureClientState = captureClientState;
     this.restoreClientState = restoreClientState;
     this.selectedObjectActionController = selectedObjectActionController;
+    this.cutsceneDirector = cutsceneDirector;
     this.active = null;
   }
 
   async start(activity, context = {}) {
     if (this.active) throw new Error("a specialized script activity is already active");
+    if (activity?.kind === "native-cutscene") return this.startCutscene(activity, context);
     if (
       activity?.kind !== "native-object-interaction"
       || typeof activity.area !== "string"
@@ -146,6 +149,7 @@ export class NativeScriptActivityRunner {
   cancel(reason = "script-activity-cancelled") {
     const owner = this.active;
     if (!owner) return false;
+    if (owner.activity.kind === "native-cutscene") return this.cutsceneDirector.stop(reason);
     if (this.nativeRuntime.cancel(reason) !== true && this.active === owner) {
       this.finish(owner, false, { status: "cancelled", reason });
     }
@@ -186,6 +190,31 @@ export class NativeScriptActivityRunner {
     this.active = null;
     owner.unsubscribe?.();
     owner.settle({ accepted, result });
+    return true;
+  }
+
+  async startCutscene(activity, context) {
+    if (!this.cutsceneDirector || activity.area !== this.getArea() || context.area !== activity.area) {
+      throw new Error("story cutscene is not available in the active area");
+    }
+    let settle;
+    const settled = new Promise(resolve => { settle = resolve; });
+    const owner = { activity, settle, restoreClientStateRequired: true, clientState: this.captureClientState(),
+      clientStateRestored: false, unsubscribe: null, selectedObjectActionToken: null };
+    owner.unsubscribe = this.cutsceneDirector.onSettled(({ cutscene, outcome, reason }) => {
+      if (this.active !== owner || cutscene.id !== activity.cutscene.id) return;
+      this.finish(owner, outcome === "completed" || reason === "user-cancelled", { status: outcome, reason });
+    });
+    this.active = owner;
+    try {
+      const started = await this.cutsceneDirector.start(activity.cutscene);
+      if (!started && this.active === owner) this.finish(owner, false, { status: "cancelled" });
+    } catch (error) {
+      this.finish(owner, false, { status: "stopped", reason: error.message });
+      throw error;
+    }
+    const result = await settled;
+    if (!result.accepted) throw new Error(`story cutscene did not complete: ${nativeFailureDetail(result.result)}`);
     return true;
   }
 }

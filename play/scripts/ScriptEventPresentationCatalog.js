@@ -32,6 +32,12 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ["s1.jomo.first-allowance.scene", {
+    kind: "native-cutscene", area: "JOMO", durableEffects: "forbidden",
+    cutscene: { id: "story-s1-first-allowance", packageId: "first-allowance", worldId: "interior",
+      storyPresentation: true, activity: { slot: 35,
+        binding: { kind: "map-embedded-slot", activityId: "01KOZ/SEQDATA35.AUTH" } } },
+  }],
   ["d000.telephone-book.native", {
     kind: "native-object-interaction",
     area: "D000",

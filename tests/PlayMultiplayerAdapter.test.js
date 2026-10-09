@@ -88,6 +88,18 @@ test("story receipts are fenced to the selected character and play mode", () => 
   assert.deepEqual(received, [state]);
 });
 
+test("only newer durable story receipts refresh the balance and earned notebook flags", () => {
+  const updates = [], character = { id: 12, modeRevision: 7, scriptStateRevision: 3 };
+  const { adapter } = createAdapter({ accountSession: { character, inventory: [],
+    applyWelcome(value) { updates.push(value); Object.assign(character, value); } },
+    nativeStoryRuntime: { applyScriptSettlement() {} } });
+  const accept = state => adapter.callbacks().onScriptEventCommitted({ characterId: 12, modeRevision: 7, state });
+  accept({ revision: 4, yen: 2500, flags: { "notebook.s1.allowance": true } });
+  accept({ revision: 3, yen: 2000, flags: {} });
+  assert.equal(updates.length, 1); assert.equal(character.yen, 2500);
+  assert.equal(character.storyFlags["notebook.s1.allowance"], true);
+});
+
 test("multiplayer warp delegates validated coordinates to world lifecycle", () => {
   const { adapter, calls } = createAdapter();
 

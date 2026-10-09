@@ -1,6 +1,8 @@
 import { runtimeAssetGroup, runtimeAssetUrl } from "../../src/RuntimeAssets.js";
 import { INTRODUCTION_ENVIRONMENTS } from "./IntroductionEnvironments.js";
 import nativeActivityActorManifest from "../data/events/nativeActivityActors.json";
+import allowanceManifest from "../assets/hazuki/first-allowance/manifest.json";
+import allowanceAudio from "../../public/audio/world/first-allowance/manifest.json";
 import op00ActivityActorManifest from "../data/events/op00ActivityActors.json";
 import op00AssetInventory from "../assets/introduction/op00/asset-inventory.generated.json";
 import op00ActivityManifest from "../assets/introduction/op00/manifest.json";
@@ -227,6 +229,16 @@ const nativeSilentActivityMusic = resource => Object.freeze({
 });
 
 export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
+  Object.freeze({ id: "first-allowance", worldId: "interior", actorDefinitions: [],
+    actorTags: allowanceManifest.actorTags,
+    assets: Object.freeze({ ...runtimeAssetGroup("play/assets/hazuki/first-allowance/*.{AUTH,MOTN}"),
+      "play/assets/INE_M.CHRM": runtimeAssetUrl("play/assets/INE_M.CHRM"),
+      "play/assets/INE_textures.bin": runtimeAssetUrl("play/assets/INE_textures.bin"),
+    }),
+    actors: Object.freeze({ requirePlayer: true, preservePlayerOnComplete: false }),
+    environment: Object.freeze({ sceneObjects: allowanceManifest.sceneObjects, packageActors: allowanceManifest.packageActors }),
+    playback: Object.freeze({ manifest: allowanceManifest, audioManifest: allowanceAudio }),
+  }),
   ...jomoVisionPackages,
   ...[["op00-mail", op00MailManifest, op00MailAudio], ["op00-dream", op00DreamManifest, op00DreamAudio]].map(([id, manifest, audioManifest]) => Object.freeze({
     id, worldId: "op00", actorDefinitions: [], actorTags: manifest.actorTags,

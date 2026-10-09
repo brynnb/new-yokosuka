@@ -6,6 +6,22 @@ import {
   NativeAseqSceneObjectRuntime,
 } from "../play/events/NativeAseqSceneObjectRuntime.js";
 
+test("explicit transform-only references are owned and disposed without borrowing world geometry", async () => {
+  const engine = new BABYLON.NullEngine(), scene = new BABYLON.Scene(engine);
+  try {
+    const borrowed = new BABYLON.TransformNode("world", scene); borrowed._filename = "REF";
+    let created;
+    const runtime = new NativeAseqSceneObjectRuntime({ definitions: { REFR: {
+      model: "reference", browserFilename: "REF", referenceOnly: true,
+    } }, instantiateAsset: async definition => {
+      created = new BABYLON.TransformNode("reference", scene); created._filename = definition.browserFilename; return [created];
+    } });
+    await runtime.load([borrowed]);
+    assert.ok(created); assert.equal(borrowed.isEnabled(), true);
+    runtime.clear(); assert.equal(created.isDisposed(), true); assert.equal(borrowed.isDisposed(), false);
+  } finally { scene.dispose(); engine.dispose(); }
+});
+
 test("callback effect visibility survives movement and resets with its activity lease", async () => {
   const engine = new BABYLON.NullEngine();
   const scene = new BABYLON.Scene(engine);
