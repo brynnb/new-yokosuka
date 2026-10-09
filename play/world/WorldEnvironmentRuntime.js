@@ -198,7 +198,9 @@ export class WorldEnvironmentRuntime {
       this.updateMapLayer(date, presetChanged || seasonChanged);
       // Precipitation is separate from surface variants: a later shot can
       // retain settled snow on the ground without inheriting falling flakes.
-      this.weather.apply(this.getCutscenePrecipitation() ?? environment.precipitation);
+      const precipitation = this.getCutscenePrecipitation() ?? environment.precipitation;
+      this.weather.setNativeExclusions?.(nativeEnvironment?.precipitationExclusions?.[precipitation] ?? []);
+      this.weather.apply(precipitation);
       this.applyTimeOfDayLighting(lightingBlend);
       this.applyWaterTimeOfDay(this.getWater(), lightingBlend);
     }

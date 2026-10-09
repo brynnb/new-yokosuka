@@ -236,7 +236,7 @@ function createHandler(operationId, applyNativePresentationControllerRoute) {
     const applyRoute = (
       applyNativePresentationControllerRoute
       || context.applyNativePresentationControllerRoute
-      || ([0x0175, 0x0176].includes(operationId) ? context.applyNativeWeatherControl : undefined)
+      || ([0x0175, 0x0176, 0x0179].includes(operationId) ? context.applyNativeWeatherControl : undefined)
     );
     if (typeof applyRoute !== "function") {
       return {

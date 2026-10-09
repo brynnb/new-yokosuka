@@ -86,6 +86,10 @@ test("original WAIR controls use the shared presentation route and roll back wit
   assert.equal(room.readWeatherEnvironment().sky.resource, "SPRITE/SCROLL61.SPR");
   assert.equal((await run([23, 0])).status, "continued");
   assert.equal(room.weatherControllerState.environmentMask & 0x780, 0);
+  assert.equal((await execute(action("native-operation-0179-control", [38,
+    ...[[2, 2], [0, 2], [0, 0], [2, 0]].flat().map(nativeFloat32Word),
+    ...[-1, 3.3].map(nativeFloat32Word)]), room.eventContext())).status, "continued");
+  assert.equal(room.readWeatherEnvironment().precipitationExclusions.rain.length, 1);
   attempt.rollback({ reason: "cancelled" });
   assert.deepEqual(room.weatherControllerState.snapshot(), cold);
   assert.equal(room.readWeatherEnvironment(), null);

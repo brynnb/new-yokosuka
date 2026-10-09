@@ -111,6 +111,23 @@ test("native Story environment projects through shared lighting while cutscene a
   }
 });
 
+test("native dry-volume ownership follows effective precipitation and clears in other worlds", () => {
+  const { runtime } = createRuntime();
+  const exclusions = [];
+  const rain = [{ vertices: [[2, 2], [0, 2], [0, 0], [2, 0]], lower: -1, upper: 3 }];
+  runtime.weather.setNativeExclusions = volumes => exclusions.push(volumes);
+  runtime.getNativeWeatherEnvironment = () => ({ precipitationExclusions: { rain, snow: [] } });
+  runtime.synchronize();
+  assert.deepEqual(exclusions.at(-1), rain);
+  runtime.getCutscenePrecipitation = () => "clear";
+  runtime.synchronize();
+  assert.deepEqual(exclusions.at(-1), []);
+  runtime.getCutscenePrecipitation = () => null;
+  runtime.getWorld = () => ({ id: "s2", assetFormat: "MT7" });
+  runtime.synchronize();
+  assert.deepEqual(exclusions.at(-1), []);
+});
+
 test("native story weather reuses shared presentation without changing lighting or indoor exposure", () => {
   const { runtime, calls, sceneState } = createRuntime();
   let channels = { cloud: 1, rain: 0, snow: 0 };

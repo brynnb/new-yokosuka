@@ -1,6 +1,7 @@
 import * as BABYLON from "@babylonjs/core";
 
 import { WORLD_WEATHER_NAMES } from "./WorldClock.js";
+import { prepareNativePrecipitationExclusion, nativePrecipitationExcluded } from "./NativePrecipitationFields.js";
 
 const CAMERA_CUT_DISTANCE = 4;
 const PREWARM_STEP_OFFSET = 10;
@@ -154,6 +155,19 @@ export class WorldWeatherRuntime {
     this.surfaceGeneration = 0;
     this.surfaceRayTop = 1;
     this.surfaceRayLength = 2;
+    this.nativeExclusions = [];
+  }
+
+  setNativeExclusions(volumes = []) {
+    if (!Array.isArray(volumes)) throw new TypeError("native precipitation exclusions must be an array");
+    // Build before replacing: malformed source data cannot erase valid cover.
+    this.nativeExclusions = volumes.map(prepareNativePrecipitationExclusion);
+  }
+
+  excludedByNativeVolume(position) {
+    // The shared scene renderer mirrors native X, while Y/Z remain unchanged
+    // (the same conversion used by native actor and interaction positions).
+    return this.nativeExclusions.some(volume => nativePrecipitationExcluded(volume, -position.x, position.y, position.z));
   }
 
   cameraPosition() {
@@ -246,6 +260,11 @@ export class WorldWeatherRuntime {
         particle,
         isLocal,
       );
+      if (this.excludedByNativeVolume(position)) {
+        particle.age = particle.lifeTime;
+        particle.color.a = 0;
+        return;
+      }
       const surfaceY = this.surfaceHeightAt(position, particle);
       // A particle randomly created beneath a roof never came through that
       // roof. Move it just above the physical surface so it cannot flash for
@@ -261,8 +280,9 @@ export class WorldWeatherRuntime {
       for (const particle of liveParticles) {
         const surfaceY = this.surfaceHeightAt(particle.position, particle);
         if (
-          Number.isFinite(surfaceY)
-          && particle.position.y <= surfaceY + SURFACE_PADDING
+          this.excludedByNativeVolume(particle.position)
+          || (Number.isFinite(surfaceY)
+            && particle.position.y <= surfaceY + SURFACE_PADDING)
         ) {
           particle.age = particle.lifeTime;
           particle.color.a = 0;
@@ -374,6 +394,7 @@ export class WorldWeatherRuntime {
     this.clear();
     this.occluders = [];
     this.surfaceCache.clear();
+    this.nativeExclusions = [];
   }
 }
 

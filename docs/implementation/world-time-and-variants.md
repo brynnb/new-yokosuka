@@ -200,6 +200,20 @@ native solar/fog/particle renderer. The second cloud/rain texture strip and nati
 sprite fade timing are not reproduced. Cutscene lighting and isolated stages
 retain ownership; MT7/S2, fixed-weather worlds and Free roam are unchanged.
 
+`0x0179(38)` supplies a four-vertex dry volume and lower/upper heights to existing
+kind-one `FIXC` weather fields. It is an exclusion, not an event trigger or a
+restriction on where rain may spawn. The field is owned separately from WAIR;
+its default factory flags and density are recovered from the executable.
+Authored writes replace the existing rain (both native layers), snow and splash
+component volume. Empty lists and missing components receive no delayed write.
+The original height padding is float word `0x3dcccccc`; Y boundaries are inclusive
+and X/Z boundaries use strictly negative float32 cross-products, retaining the
+authored winding. The browser uses the same predicate after mirroring native X,
+alongside its physical-roof collision test. Failed/cancelled room transactions
+restore the field; mode/world changes clear the renderer's previous exclusions.
+Native particle spawn/retry timing, the splash renderer and the separate second
+volume commands remain incomplete presentation capabilities.
+
 ### Visual presets
 
 | Index | Name | Sky | Clear color |

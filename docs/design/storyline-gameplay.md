@@ -564,9 +564,17 @@ in the executable, separate from FCAS. Shared browser rendering projects the
 authored direct-light RGB and primary sky texture; native solar rotation, fog,
 secondary sky strips and particle/fade timing remain partial presentation gaps.
 This replaces the missing controller boundary with source-backed state, not a
-no-op. The next scoped headless stop is `0x0179(38)` at `0x88c92`, whose three
-helpers configure precipitation bounds. The supplied clock and loader word do
-not prove live startup or opening settlement.
+no-op. The scoped run also passes `0x0179(38)` at `0x88c92`: its three helpers
+write dry volumes to separately owned kind-one `FIXC` precipitation components.
+The shared browser rain/snow path now applies the source exclusion predicate,
+including original padding, winding and mirrored scene X; native particle and
+splash generation remain partial. These fields roll back with a failed room
+transaction and survive WAIR release, matching their separate ownership.
+The current raw-IR probe stops at the `M_MOBJ.BIN` motion request at `0x88d08`
+because it has not yet supplied the program's static-string/resource metadata.
+The browser already owns that resolver/registry boundary; this probe failure
+alone is not evidence that its implementation is missing. The supplied clock
+and loader word do not prove live startup or opening settlement.
 Focused tests cover saved-section ownership, byte bounds, separate load flags,
 atomic import, rejected actor restore, room changes, committed parameter
 changes, cancellation and failed transaction setup. These are headless checks,

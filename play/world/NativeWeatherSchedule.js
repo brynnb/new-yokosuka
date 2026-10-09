@@ -1,3 +1,6 @@
+import { NativeWeatherEnvironmentSchedule, nativeWeatherLerp } from "./NativeWeatherEnvironment.js";
+import { NativePrecipitationFieldState } from "./NativePrecipitationFields.js";
+
 const EPSILON = 2 ** -23;
 const f32 = Math.fround;
 const signedByte = value => value > 127 ? value - 256 : value;
@@ -41,6 +44,7 @@ export class NativeWeatherSchedule {
     }
     Object.freeze(this.curves);
     this.environment = new NativeWeatherEnvironmentSchedule(catalog.environment);
+    this.precipitationContract = catalog.precipitation;
   }
 
   sample(record) {
@@ -80,15 +84,17 @@ export class NativeWeatherControllerState {
   constructor(schedule) {
     if (!(schedule instanceof NativeWeatherSchedule)) throw new TypeError("native weather schedule is required");
     this.schedule = schedule;
+    this.precipitationFields = new NativePrecipitationFieldState(schedule.precipitationContract);
     // 0xc1ba710 is the session initializer, not a new default on each room.
     this.restore({ frozen: 1, channels: null, cachedClock: null,
       environmentOwner: null, environmentMask: schedule.environment.coldMask,
       environmentFlags: { ...schedule.environment.coldFlags },
-      appliedLightRgb: null, appliedSky: null });
+      appliedLightRgb: null, appliedSky: null, precipitationFields: [] });
   }
 
   apply(detail, readClock) {
     if (detail.operationId === 0x0175) return this.#applyEnvironmentControl(detail, readClock);
+    if (detail.operationId === 0x0179) return this.precipitationFields.apply(detail);
     if (detail.operationId !== 0x0176 || detail.mode !== 1 || typeof detail.truthyBranch !== "boolean") {
       return { status: "stopped", reason: "native-weather-control-route-unproved" };
     }
@@ -118,6 +124,7 @@ export class NativeWeatherControllerState {
       this.channels = channels;
       this.environmentOwner = { tag: "WAIR", clock, channels: { ...channels }, sample, sky };
       this.environmentFlags.effects = 1;
+      this.precipitationFields.activateDefault();
       this.#applyOwnerProjection();
     } else if (mode === 2) {
       if (!this.environmentOwner) return { nativeNoOp: true, mutation: { environmentOwnerAlreadyReleased: true } };
@@ -185,7 +192,8 @@ export class NativeWeatherControllerState {
   snapshot() {
     return structuredClone({ frozen: this.frozen, channels: this.channels, cachedClock: this.cachedClock,
       environmentOwner: this.environmentOwner, environmentMask: this.environmentMask,
-      environmentFlags: this.environmentFlags, appliedLightRgb: this.appliedLightRgb, appliedSky: this.appliedSky });
+      environmentFlags: this.environmentFlags, appliedLightRgb: this.appliedLightRgb, appliedSky: this.appliedSky,
+      precipitationFields: this.precipitationFields.snapshot() });
   }
 
   restore(snapshot) {
@@ -198,13 +206,14 @@ export class NativeWeatherControllerState {
     this.environmentFlags = owned.environmentFlags;
     this.appliedLightRgb = owned.appliedLightRgb;
     this.appliedSky = owned.appliedSky;
+    this.precipitationFields.restore(owned.precipitationFields);
   }
 
   readEnvironment() {
     if (!this.appliedLightRgb && !this.appliedSky) return null;
     return { ownerActive: this.environmentOwner !== null,
       lightingOverride: this.appliedLightRgb ? { dirDiffuse: [...this.appliedLightRgb] } : null,
-      sky: this.appliedSky ? { ...this.appliedSky } : null };
+      sky: this.appliedSky ? { ...this.appliedSky } : null,
+      precipitationExclusions: this.precipitationFields.readExclusions() };
   }
 }
-import { NativeWeatherEnvironmentSchedule, nativeWeatherLerp } from "./NativeWeatherEnvironment.js";
