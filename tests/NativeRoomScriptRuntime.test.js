@@ -24,6 +24,30 @@ function action(semanticId, arguments_) {
   };
 }
 
+test("created scene objects and generated-name counter commit or roll back with their room", async () => {
+  const room = createNativeRoomScriptRuntime();
+  room.activateArea("JOMO");
+  const execute = createNativeEventOperationExecutor({ handlers: room.semanticHandlers() });
+  const run = name => execute(action("native-named-scene-object-create", [1, 0, name]), room.eventContext());
+  const attempt = room.beginTransaction({ area: "JOMO" });
+  assert.equal((await run(0)).result, 0x30303020);
+  assert.equal((await execute({ ...action("native-object-cpam-install", [0x30303020]), kind: "secondaryEngineOperation" },
+    room.eventContext())).result, 0);
+  assert.equal(room.sceneState.objectVectorState.cameraParameterRecords.size, 1);
+  assert.equal(room.sceneState.objectVectorState.nativeObjectNameCounter, 1);
+  attempt.rollback({ reason: "cancelled" });
+  assert.equal(room.sceneState.objectVectorState.nativeObjectNameCounter, 0);
+  assert.equal(room.sceneState.objectVectorState.createdObjects.size, 0);
+  assert.equal(room.sceneState.objectVectorState.cameraParameterRecords.size, 0);
+  const committed = room.beginTransaction({ area: "JOMO" });
+  await run(0);
+  committed.commit();
+  room.activateArea("JHD0");
+  assert.equal(room.sceneState.objectVectorState.createdObjects.size, 0);
+  assert.equal(room.sceneState.objectVectorState.nativeObjectNameCounter, 1);
+  assert.equal((await run(0)).result, 0x31303020);
+});
+
 test("source weather controls share staged clock, native enable state, and transaction rollback", async () => {
   let clock = [86, 12, 3, 3, 1, 30, 0];
   const room = createNativeRoomScriptRuntime({ clockRecord: { readNativeClockRecord: () => clock } });

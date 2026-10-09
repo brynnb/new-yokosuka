@@ -67,6 +67,8 @@ export function createNativeSceneFieldRuntimeContext(
       offset: address, width: 4, signedLoad: true,
     }),
     writeSceneField: descriptor => sceneState.writeNativeField(descriptor),
+    createNamedSceneObject: detail => sceneState.createNamedSceneObject(detail),
+    installSceneObjectCameraParameters: detail => sceneState.installSceneObjectCameraParameters(detail),
     planGlobalControllerInitialize: value => (
       sceneState.planGlobalControllerInitialize(value)
     ),

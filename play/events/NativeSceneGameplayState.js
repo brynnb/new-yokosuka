@@ -131,6 +131,7 @@ import {
 import {
   createNativeCameraShakeState,
 } from "./NativeCameraShakeRuntime.js";
+import creationContract from "../data/events/nativeSceneObjectCreation.generated.json" with { type: "json" };
 
 function requireFourcc(value) {
   const fourcc = String(value || "");
@@ -213,6 +214,7 @@ export class NativeSceneGameplayState {
   }
 
   clear() {
+    const previousNameCounter = this.objectVectorState?.nativeObjectNameCounter;
     this.globalByte = 0;
     this.currentPresentationOwner = null;
     this.objectRuntimeFlags = new Map();
@@ -221,6 +223,9 @@ export class NativeSceneGameplayState {
     this.taggedObjectController = createNativeTaggedObjectControllerState();
     this.objectActivationWords = new Map();
     this.objectVectorState = createNativeSceneObjectVectorState();
+    // The generated-name counter is a native session-global word, not room
+    // state. Names/objects clear on travel; its next candidate does not.
+    if (previousNameCounter !== undefined) this.objectVectorState.nativeObjectNameCounter = previousNameCounter;
     this.presentationMutationState =
       createNativeScenePresentationMutationState();
     this.nativeNumberedMapLayerState = createNativeNumberedMapLayerState();
@@ -387,6 +392,36 @@ export class NativeSceneGameplayState {
       objectTag,
       { associated },
     );
+  }
+
+  createNamedSceneObject(detail) {
+    const created = this.objectVectorState.createNamedSceneObject({ ...detail,
+      isNameInUse: tag => this.objectVectorState.createdObjects.has(tag)
+        || this.objectVectorState.objectPositionVectors.direct.has(tag)
+        || this.actorFields.readActor(tag)?.actorAvailable === true });
+    const tag = created.objectTag;
+    this.nativeObjectDword5cState.configureObject({ objectTag: tag, dword5c: creationContract.dword5c });
+    this.actorFields.configureActor({ actorTag: tag, actorAvailable: true,
+      dword7c: creationContract.dword7c, replace: true });
+    return created;
+  }
+
+  installSceneObjectCameraParameters({ nameWord, source }) {
+    if (!Number.isInteger(nameWord) || nameWord < -0x80000000 || nameWord > 0xffffffff) {
+      throw new TypeError("native CPAM object name must be a 32-bit word");
+    }
+    // 0xc153956 returns null immediately for a zero name. It does not mean
+    // "current presentation owner", even when that separate cell is set.
+    const tag = nameWord === 0 ? null
+      : String.fromCharCode(...[0, 8, 16, 24].map(shift => (nameWord >>> shift) & 255));
+    if (!tag || (!this.objectVectorState.createdObjects.has(tag)
+      && !this.objectVectorState.objectPositionVectors.direct.has(tag)
+      && this.actorFields.readActor(tag)?.actorAvailable !== true)) {
+      // The native helper dereferences the resolved task immediately. Missing
+      // or opaque browser owner references must not become a guessed no-op.
+      throw new Error("native CPAM target is unavailable");
+    }
+    return this.objectVectorState.installCameraParameterRecord(tag, source);
   }
 
   writeObjectSecondaryVector(objectTag, vector, { associated = false } = {}) {

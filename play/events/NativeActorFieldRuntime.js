@@ -36,10 +36,12 @@ export class NativeActorFieldState {
     dword7c,
     dwordB8,
     floatWordBc,
+    replace = false,
   } = {}) {
     if (typeof actorAvailable !== "boolean") {
       throw new TypeError("native actor availability must be boolean");
     }
+    if (typeof replace !== "boolean") throw new TypeError("native actor replacement must be Boolean");
     for (const [name, value] of Object.entries({
       dword7c,
       dwordB8,
@@ -50,7 +52,7 @@ export class NativeActorFieldState {
       }
     }
     const state = {
-      ...(this.actors.get(requireFourcc(actorTag)) || {}),
+      ...(replace ? {} : this.actors.get(requireFourcc(actorTag)) || {}),
       actorAvailable,
       ...(dword7c === undefined ? {} : { dword7c: dword7c >>> 0 }),
       ...(dwordB8 === undefined ? {} : { dwordB8: dwordB8 >>> 0 }),

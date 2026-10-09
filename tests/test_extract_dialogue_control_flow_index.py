@@ -42,6 +42,25 @@ from tools.scripting.native_event_dataflow import (  # noqa: E402
 
 
 class DialogueControlFlowIndexTest(unittest.TestCase):
+    def test_recovers_macl_product_as_an_operation_argument_without_guessing_unknown_inputs(self):
+        # Disc-1 JOMO 0x159aa..0x159b0 indexes a 13-word door record.
+        rows = {row[0]: row for row in [
+            (0x159aa, "mov.l", "@(4,r14),r4", None),
+            (0x159ac, "mov", "#13,r5", None),
+            (0x159ae, "mul.l", "r5,r4", None),
+            (0x159b0, "sts", "macl,r4", None),
+        ]}
+        operand = {"kind": "runtime", "source": "sts at 0x159b0"}
+        recovered = operation_argument(operand, rows)
+        self.assertEqual(recovered["kind"], "integer-expression")
+        self.assertEqual(recovered["operator"], "multiply-low")
+        self.assertEqual(recovered["left"]["value"], 13)
+        self.assertEqual(recovered["right"]["offset"], 4)
+        self.assertEqual(recovered["right"]["width"], 4)
+        self.assertFalse(recovered["right"]["signedLoad"])
+        rows[0x159aa] = (0x159aa, "unknown", "r4", None)
+        self.assertEqual(operation_argument(operand, rows), operand)
+
     def test_recovers_interleaved_0084_request_around_019c_query(self):
         rows = {
             row[0]: row

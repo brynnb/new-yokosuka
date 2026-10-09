@@ -732,9 +732,20 @@ def operation_argument(
         else None
     )
     if sts_source is not None:
+        store_address = int(sts_source.group("address"), 16)
         expression = _exact_fpul_store_expression(
-            rows, int(sts_source.group("address"), 16),
+            rows, store_address,
         )
+        store = rows.get(store_address)
+        if expression is None and store is not None and store[1] == "sts" and store[2].startswith("macl,"):
+            # MACL is a real integer result, not an opaque runtime value.
+            # Reuse the exact local arithmetic resolver already used by
+            # div/rem recovery. It stops at calls, branches and unknown input
+            # writers, and requires the immediately preceding mul.l producer.
+            instructions = [rows[address] for address in sorted(rows) if address <= store_address]
+            expression = _exact_integer_register_expression(
+                instructions, store[2].split(",", 1)[1], len(instructions), 0,
+            )
         if expression is not None:
             return {**argument, **expression}
     if memory_load is not None:

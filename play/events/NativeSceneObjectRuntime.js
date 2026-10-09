@@ -1,3 +1,5 @@
+import creationContract from "../data/events/nativeSceneObjectCreation.generated.json" with { type: "json" };
+
 function requireFourcc(value) {
   const fourcc = String(value || "");
   if (fourcc.length !== 4) {
@@ -9,6 +11,21 @@ function requireFourcc(value) {
     }
   }
   return fourcc;
+}
+
+function creationWord(value, label) {
+  if (!Number.isInteger(value) || value < -0x80000000 || value > 0xffffffff) {
+    throw new TypeError(`${label} must be a 32-bit word`);
+  }
+  return value >>> 0;
+}
+
+function tagFromWord(word) {
+  return String.fromCharCode(...[0, 8, 16, 24].map(shift => (word >>> shift) & 255));
+}
+
+function wordFromTag(tag) {
+  return [0, 1, 2, 3].reduce((word, i) => word | (tag.charCodeAt(i) << (i * 8)), 0) >>> 0;
 }
 
 function requireVector3Words(value) {
@@ -78,6 +95,10 @@ function actionSource(action, context) {
 
 export class NativeSceneObjectVectorState {
   constructor() {
+    this.createdObjects = new Map();
+    this.cameraParameterRecords = new Map();
+    this.objectFloat48Words = new Map();
+    this.nativeObjectNameCounter = creationContract.autoName.initialCounter;
     // Operation 0x0018 owns float32 position vectors through the native
     // +0x08/+0x0c/+0x10 accessors. Operation 0x001d uses a different direct
     // vector (+0x14/+0x18/+0x1c) and an associated-object virtual dispatch.
@@ -99,6 +120,72 @@ export class NativeSceneObjectVectorState {
     this.motmRecords = new Map();
     this.directPointTransforms = new Map();
     this.nativeVectors = new Map();
+  }
+
+  createNamedSceneObject({ selector, motionWord, nameWord, source = null, isNameInUse = null }) {
+    const index = creationWord(selector, "native object category selector");
+    const motion = creationWord(motionWord, "native object motion operand");
+    const requested = creationWord(nameWord, "native object name");
+    if (creationContract.taskKinds[index] === undefined) throw new RangeError("native object category selector is unproved");
+    if (motion !== creationContract.supportedMotionOperand) throw new Error("native object motion installation is unimplemented");
+    let counter = this.nativeObjectNameCounter;
+    let selected = requested;
+    if (requested === 0) {
+      if (!Number.isInteger(counter) || counter < 0 || counter >= creationContract.autoName.modulus) {
+        throw new Error("native generated object-name counter is unavailable");
+      }
+      selected = null;
+      for (let i = 0; i < creationContract.autoName.modulus; i += 1) {
+        const tag = ` ${String(counter).padStart(3, "0")}`;
+        counter = (counter + 1) % creationContract.autoName.modulus;
+        const exists = isNameInUse ? isNameInUse(tag)
+          : this.createdObjects.has(tag) || this.objectPositionVectors.direct.has(tag);
+        if (typeof exists !== "boolean") throw new TypeError("native object name lookup must return a Boolean");
+        if (!exists) { selected = wordFromTag(tag); break; }
+      }
+      if (selected === null) throw new Error("native generated object-name namespace is exhausted");
+    }
+    const objectTag = tagFromWord(selected);
+    const previous = this.createdObjects.get(objectTag) ?? null;
+    const record = { objectTag, nameWord: selected, selector: index,
+      taskKind: creationContract.taskKinds[index], baseTag: creationContract.baseTag,
+      motionWord: motion, modelAttached: false, source: source ? { ...source } : null,
+      previousBinding: previous };
+    // A literal duplicate shadows the previous CHID binding. Never silently
+    // rename it or inherit that older object's direct/associated transforms.
+    this.objectPositionVectors.direct.set(objectTag, [...creationContract.positionWords]);
+    this.objectSecondaryVectors.direct.set(objectTag, [...creationContract.orientationWords]);
+    this.objectScaleVectors.set(objectTag, [...creationContract.scaleWords]);
+    this.objectPositionVectors.associated.delete(objectTag);
+    this.objectSecondaryVectors.associated.delete(objectTag);
+    this.motmRecords.delete(objectTag);
+    this.directPointTransforms.delete(objectTag);
+    this.cameraParameterRecords.delete(objectTag);
+    this.objectFloat48Words.delete(objectTag);
+    this.createdObjects.set(objectTag, record);
+    this.nativeObjectNameCounter = counter;
+    return { result: selected, objectTag, taskKind: record.taskKind };
+  }
+
+  readCreatedObject(objectTag) {
+    const record = this.createdObjects.get(requireFourcc(objectTag));
+    return record ? structuredClone(record) : null;
+  }
+
+  installCameraParameterRecord(objectTag, source = null) {
+    const key = requireFourcc(objectTag);
+    const cpam = creationContract.cpam;
+    const record = { recordTag: cpam.recordTag, recordBytes: cpam.recordBytes,
+      nativeUpdateCallback: cpam.nativeUpdateCallback,
+      payloadWord: cpam.initialPayloadWord,
+      source: source ? { ...source } : null };
+    // c0aac90 allocates a fresh named record each time, including a repeat
+    // install; do not collapse the original record ownership to one callback.
+    const records = this.cameraParameterRecords.get(key) ?? [];
+    this.cameraParameterRecords.set(key, [...records, record]);
+    // +0x48 belongs to the CEWP object, not any individual CPAM payload.
+    this.objectFloat48Words.set(key, cpam.initialFloatWord);
+    return { objectTag: key, floatWord48: cpam.initialFloatWord, ...record };
   }
 
   writeObjectVector(objectTag, vector, { associated = false } = {}) {
@@ -327,6 +414,8 @@ export class NativeSceneObjectVectorState {
 }
 
 export function createNativeSceneObjectSemanticHandlers({
+  createNamedSceneObject,
+  installSceneObjectCameraParameters,
   hasSceneObject,
   readObjectRuntimeFlag,
   writeObjectRuntimeFlag,
@@ -487,6 +576,33 @@ export function createNativeSceneObjectSemanticHandlers({
     };
   };
   return {
+    "native-named-scene-object-create": async ({ action, context, readArgument }) => {
+      const create = createNamedSceneObject || context.createNamedSceneObject;
+      if (typeof create !== "function") return { status: "stopped", reason: "native named-object creation adapter is missing" };
+      try {
+        const created = await create({ selector: readArgument(0), motionWord: readArgument(1),
+          nameWord: readArgument(2), source: actionSource(action, context) });
+        if (!created || !Number.isInteger(created.result) || created.result < 0 || created.result > 0xffffffff) {
+          return { status: "stopped", reason: "native named-object creation did not publish a name word" };
+        }
+        return { status: "continued", result: created.result, mutation: created };
+      } catch (error) {
+        return { status: "stopped", reason: error.message };
+      }
+    },
+    "native-object-cpam-install": async ({ action, context, readArgument }) => {
+      const install = installSceneObjectCameraParameters || context.installSceneObjectCameraParameters;
+      if (typeof install !== "function") return { status: "stopped", reason: "native CPAM installer is missing" };
+      try {
+        const mutation = await install({ nameWord: readArgument(0), source: actionSource(action, context) });
+        if (!mutation || mutation.recordTag !== "CPAM") return { status: "stopped", reason: "native CPAM installation was rejected" };
+        // This secondary dispatcher clears the VM result before invoking a
+        // void installer. Its C helper's allocation pointer is not a VM result.
+        return { status: "continued", result: 0, mutation };
+      } catch (error) {
+        return { status: "stopped", reason: error.message };
+      }
+    },
     "scene-object-exists-query": async ({ action, readArgument }) => {
       if (typeof hasSceneObject !== "function") {
         return {

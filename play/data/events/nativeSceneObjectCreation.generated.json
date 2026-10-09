@@ -1,0 +1,53 @@
+{
+  "schema": "new-yokosuka-native-scene-object-creation-v1",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "sha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c"
+  },
+  "operationId": 8,
+  "handlerAddress": "0x0c17344a",
+  "supportedMotionOperand": 0,
+  "taskKinds": [
+    5,
+    6,
+    7,
+    8
+  ],
+  "baseTag": "CEWP",
+  "associationTag": "CHAR",
+  "nameRecordTag": "CHID",
+  "imageRecordTag": "IMGM",
+  "positionWords": [
+    0,
+    0,
+    0
+  ],
+  "orientationWords": [
+    0,
+    0,
+    0
+  ],
+  "scaleWords": [
+    1065353216,
+    1065353216,
+    1065353216
+  ],
+  "dword5c": 133,
+  "dword7c": 0,
+  "cpam": {
+    "secondaryOperationId": 3,
+    "recordTag": "CPAM",
+    "recordBytes": 4,
+    "floatOffset": "0x48",
+    "initialFloatWord": 0,
+    "initialPayloadWord": 0,
+    "nativeUpdateCallback": "0x0c0f53ec",
+    "vmResult": 0
+  },
+  "autoName": {
+    "counterAddress": "0x0c29b12c",
+    "format": " %03d",
+    "initialCounter": 0,
+    "modulus": 1000
+  }
+}

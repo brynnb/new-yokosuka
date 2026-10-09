@@ -582,12 +582,42 @@ recovery code and the existing resource registry, without replacing the full
 public runtime index from a one-area probe.
 
 That package's headless startup queues both original global motion resources
-and reaches an unresolved operation `0x0008` at `0x15852` in shared helper
-`0x15788`. This is a genuine unsupported native operation, unlike the former
-probe's absent static-string resolver. The initialization route is catalogued,
-not automatically enabled as a live startup path. Source closure discovery and
-request-queue state are not proof that motion is resident or rendered. The
-supplied clock and loader word do not prove live startup or opening settlement.
+and now executes the zero-motion form of `0x0008` at `0x15852`. It creates a
+blank `CEWP` task and its `CHID` name binding; it does not resolve a model file.
+Selectors 0–3 map to constructor categories 5–8. The exact returned name is
+retained, including `dor0` casing; a zero name uses the original space-prefixed
+three-digit counter with collision retry and wrap at 1000. Direct position and
+orientation initialize to zero, scale to one, and object dword `+0x5c` to `0x85`.
+The constructor's known base fields replace older bindings' values, rather than
+inheriting stale transforms or actor fields. Name-counter and binding state
+roll back with the room transaction; travel clears bindings but preserves the
+session-global name counter. Nonzero motion attachment remains unsupported.
+
+Secondary `0x0003` at `0x15882` registers the four-byte `CPAM` record and resets
+object float `+0x48` to positive zero. Its VM result is zero, not the C helper's
+allocation pointer. The actual door helper now creates `dor0` through `dor9`,
+registers their CPAM records, and executes their presentation-disable commands.
+Rollback removes every new binding and record. This proves script-state
+ownership, not visible door models or native CPAM per-frame camera behavior.
+The latter remains an explicit presentation boundary.
+The original allocator zero-fills the four-byte payload and allocates another
+record on repeated installation; object `+0x48` remains shared object state,
+not a per-record field. The shared name resolver treats a zero name as null,
+not the separate current-presentation-owner cell. The browser therefore stops
+a CPAM install on that missing target instead of fabricating a current owner.
+
+The next headless stop is recognized but unimplemented `0x009a` typed table
+access at `0x159c4`: it reads the table rooted in scene field `+0xc0`, mode 4,
+using a thirteen-word row stride. Recovery now preserves its original
+`mul.l`/`sts macl` index calculation as frame field 4 multiplied by 13, through
+the existing exact integer-expression resolver. Unknown inputs or nonlocal
+writers remain unresolved. Table ownership and the missing reader still need
+integration; no table pointer or contents are substituted to advance startup.
+
+The initialization route is catalogued, not automatically enabled as a live
+startup path. Source closure discovery, name bindings and request-queue state
+are not proof that motion/model data is resident or rendered. The supplied
+clock and loader word do not prove live startup or opening settlement.
 Focused tests cover saved-section ownership, byte bounds, separate load flags,
 atomic import, rejected actor restore, room changes, committed parameter
 changes, cancellation and failed transaction setup. These are headless checks,

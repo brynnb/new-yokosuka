@@ -7,6 +7,15 @@
   ],
   "secondaryOperations": [
     {
+      "operationId": 3,
+      "operationHex": "0x0003",
+      "argumentCount": 1,
+      "semanticId": "native-object-cpam-install",
+      "handlerAddress": "0x0c15f388",
+      "provenBehavior": "Resolves the sole object-name operand, resets native object float +0x48 to positive zero and installs a four-byte CPAM record with update callback 0x0c0f53ec. The secondary dispatcher pre-clears its VM result, and this void installer leaves it zero rather than returning its C allocation pointer. Browser record ownership is transaction-backed; native per-frame camera projection and its visual effect remain a separate boundary.",
+      "sources": ["tools/scripting/operations/extract_scene_object_creation_evidence.py", "tools/evidence/scene-object-creation-evidence.json"]
+    },
+    {
       "operationId": 1,
       "operationHex": "0x0001",
       "argumentCount": 1,
@@ -146,6 +155,16 @@
     }
   ],
   "operations": [
+    {
+      "operationId": 8,
+      "operationHex": "0x0008",
+      "argumentCount": 3,
+      "semanticId": "native-named-scene-object-create",
+      "handlerAddress": "0x0c17344a",
+      "argumentConstraints": [{"index": 0, "values": [0, 1, 2, 3]}, {"index": 1, "values": [0]}],
+      "provenBehavior": "Creates a CEWP task with selector categories 5/6/7/8, installs the exact CHID name binding and initializes direct position/orientation to zero, scale to one and dword 0x5c to 0x85. A zero requested name uses a shared modulo-1000 counter and collision-checked space-prefixed three-digit name. Returns that four-byte name, not an allocated pointer. This proven form has no motion attachment; model-data installation and browser instantiation remain separate boundaries.",
+      "sources": ["tools/scripting/operations/extract_scene_object_creation_evidence.py", "tools/evidence/scene-object-creation-evidence.json"]
+    },
     {
       "operationId": 245,
       "operationHex": "0x00f5",

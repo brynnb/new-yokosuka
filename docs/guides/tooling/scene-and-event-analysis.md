@@ -627,3 +627,19 @@ unsupported native operations and is not automatically enabled in the live
 Story loader. Generate scoped probes to a separate output directory; do not
 replace the complete runtime index or clean its shared asset directory using a
 one-area pack. See [storyline integration status](../../design/storyline-gameplay.md).
+
+`extract_scene_object_creation_evidence.py` verifies the original executable's
+named-object constructor, selector table, CHID binding, result writer and name
+counter. It produces `scene-object-creation-evidence.json` and the small runtime
+contract `nativeSceneObjectCreation.generated.json`. The same source proof
+includes secondary operation 3's CPAM registration and explicitly separates
+record installation from its not-yet-reproduced camera update.
+
+- **Generate/check**: `python3 -m tools.scripting.operations.extract_scene_object_creation_evidence` (add `--check` to validate existing outputs).
+- **Boundary**: no model-file inference, nonzero motion attachment or rendered visibility is claimed by constructor-state tests.
+
+Native argument recovery also uses the shared exact arithmetic resolver for
+`sts macl` values immediately produced by `mul.l`. This covers ordinary frame
+indices such as JOMO's thirteen-word door rows, in addition to existing div/rem
+operands. Calls, branches, missing producers or unknown operand writers retain
+the unresolved boundary; the extractor does not replace them with zero.
