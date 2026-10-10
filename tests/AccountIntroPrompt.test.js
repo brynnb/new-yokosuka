@@ -19,7 +19,12 @@ test("the intro prompt precedes the welcome card", async () => {
 
   assert.match(component, /<p>Press Any Key<\/p>/);
   assert.match(component, /window\.addEventListener\("keydown"/);
-  assert.match(component, /window\.addEventListener\("pointerdown"/);
+  // Continue only after a completed tap so mobile playback authorization is
+  // issued synchronously before React leaves the splash. Pointer-down alone
+  // does not grant the same permission for a touch gesture.
+  assert.match(component, /window\.addEventListener\("click", continueToMenu/);
+  assert.match(component, /if \(!isAudioActivationGesture\(event\)\) return/);
+  assert.doesNotMatch(component, /window\.addEventListener\("pointerdown", continueToMenu/);
   assert.match(component, /screen === "entry" && !introAccepted/);
   assert.match(component, /setAccountMenuVisible\(true\)/);
   assert.match(component, /setAccountMenuVisible\(false\)/);
