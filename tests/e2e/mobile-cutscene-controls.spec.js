@@ -2,8 +2,8 @@ import {expect, test} from '@playwright/test';
 
 test.use({viewport: {width: 844, height: 390}, hasTouch: true});
 
-test('mobile cutscene controls replace gameplay input, seek and skip, then restore gameplay', async ({page}, testInfo) => {
-  test.setTimeout(180_000);
+test('mobile opening controls replace gameplay input, seek and skip, then restore gameplay', async ({page}, testInfo) => {
+  test.setTimeout(300_000);
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.addInitScript(() => {
@@ -17,7 +17,7 @@ test('mobile cutscene controls replace gameplay input, seek and skip, then resto
   }}));
   await page.route('**/api/characters', route => route.fulfill({json: {characters: [{
     id: 42, name: 'Mobiletester', avatarId: 'fuku', worldId: 'dobuita',
-    lastLoginAt: '2026-01-01T00:00:00Z', x: -24.5, y: 0, z: 29.5, yaw: 0.7,
+    lastLoginAt: null, x: -24.5, y: 0, z: 29.5, yaw: 0.7,
   }]}}));
   const instrument = (path, body) => page.route(`**/${path}*`, async route => {
     const response = await route.fetch();
@@ -31,11 +31,13 @@ test('mobile cutscene controls replace gameplay input, seek and skip, then resto
     };
   `);
   await instrument('play/cutscenes/CutscenePreviewRuntime.js', `
-    const requestMobilePreview = CutscenePreviewRuntime.prototype.requestInGame;
-    CutscenePreviewRuntime.prototype.requestInGame = async function(id) {
+    const requestMobilePreview = CutscenePreviewRuntime.prototype.playFromMenu;
+    CutscenePreviewRuntime.prototype.playFromMenu = async function(id) {
       window.mobileCutsceneTest.preview = this;
       const result = await requestMobilePreview.call(this, id);
-      window.mobileCutsceneTest.results.push(result);
+      // Menu completion resolves without a return value; record the settled
+      // scene identity, not requestInGame's separate boolean result contract.
+      window.mobileCutsceneTest.results.push(id);
       return result;
     };
   `);
@@ -63,14 +65,7 @@ test('mobile cutscene controls replace gameplay input, seek and skip, then resto
   await page.keyboard.press('Enter');
   await page.locator('.account-entry-actions button').filter({hasText: 'Quick Play'}).click();
   await page.locator('.account-shell-characters button').filter({hasText: /^Enter World$/}).click();
-  await page.waitForFunction(() => window.mobileCutsceneTest.ready || window.mobileCutsceneTest.errors.length, null, {timeout: 90_000});
-  expect(await page.evaluate(() => window.mobileCutsceneTest.errors)).toEqual([]);
-  await expect(page.locator('#mobile-joystick-zone')).toBeVisible();
-  await expect(page.getByRole('button', {name: 'Skip cutscene', exact: true})).toBeHidden();
-  // The menu is collapsed on phones; use the real sidebar action to start.
-  await page.locator('#sidebar-toggle').click();
-  await page.locator('#cutscene-button').click();
-  await page.getByRole('option', {name: /Ine-san Collects the Mail/}).click();
+  // Use the published first-login flow, not an unpublished debug dropdown.
   await expect(page.locator('body')).toHaveClass(/cutscene-starting/);
   await expect(page.locator('#mobile-joystick-zone')).toBeHidden();
   await expect(page.getByRole('button', {name: 'Skip cutscene', exact: true})).toBeHidden();
@@ -109,7 +104,27 @@ test('mobile cutscene controls replace gameplay input, seek and skip, then resto
   expect(await page.evaluate(() => window.mobileCutsceneTest.mobile.joystick)).toBeNull();
   await skip.tap();
   await page.waitForFunction(() => window.mobileCutsceneTest.results.length === 1, null, {timeout: 60_000});
-  expect(await page.evaluate(() => window.mobileCutsceneTest.results)).toEqual([true]);
+  // The opening keeps ownership across four scenes; no gameplay joystick may
+  // be recreated during a scene transition or a viewport change.
+  for (const [index, id] of ['S1-000', 'S1-OP00-MAIL', 'S1-OP00-DREAM'].entries()) {
+    await page.waitForFunction(id => {
+      const preview = window.mobileCutsceneTest.preview?.active;
+      return preview?.cutsceneId === id && preview.started
+        && !document.body.classList.contains('cutscene-starting');
+    }, id, {timeout: 90_000});
+    await expect(skip).toBeVisible();
+    await expect(page.locator('#mobile-joystick-zone')).toBeHidden();
+    expect(await page.evaluate(() => window.mobileCutsceneTest.mobile.joystick)).toBeNull();
+    await skip.tap();
+    await page.waitForFunction(count => window.mobileCutsceneTest.results.length === count,
+      index + 2, {timeout: 60_000});
+  }
+  await page.waitForFunction(() => window.mobileCutsceneTest.ready || window.mobileCutsceneTest.errors.length,
+    null, {timeout: 90_000});
+  expect(await page.evaluate(() => window.mobileCutsceneTest.errors)).toEqual([]);
+  expect(await page.evaluate(() => window.mobileCutsceneTest.results)).toEqual([
+    'S1-OP02-00', 'S1-000', 'S1-OP00-MAIL', 'S1-OP00-DREAM',
+  ]);
   await expect(page.locator('body')).not.toHaveClass(/cutscene-active|cutscene-starting/);
   await expect(skip).toBeHidden();
   await expect(page.locator('#mobile-joystick-zone')).toBeVisible();
