@@ -1,13 +1,15 @@
 import { createGameAudio } from "../audio/MediaElementAudio.js";
 import { effectiveEffectsVolume } from "../audio/AudioPreferences.js";
 import { applyMediaElementAudio } from "../audio/MediaElementAudio.js";
+import { getBrowserAudioPlayback, isAudioPermissionError } from "../audio/BrowserAudioPlayback.js";
 
 export class NativeAseqAudioPresentation {
   constructor({
-    audioFactory = source => createGameAudio(source),
+    audioFactory = source => createGameAudio(source, { recovery: "timeline" }),
     preferences,
     dialogueAudio,
     voicePresentation = null,
+    subscribeRecovery = listener => getBrowserAudioPlayback().subscribeRecovery(listener),
   } = {}) {
     if (
       typeof audioFactory !== "function"
@@ -30,6 +32,7 @@ export class NativeAseqAudioPresentation {
     }
     this.voicePresentation = voicePresentation;
     this.active = null;
+    this.unsubscribeRecovery = subscribeRecovery(() => this.#recoverAudio());
     this.unsubscribe = preferences.subscribe?.(() => this.#applyPreferences()) || null;
   }
 
@@ -96,6 +99,7 @@ export class NativeAseqAudioPresentation {
         audio.removeEventListener?.("loadedmetadata", record.metadataReady);
         audio.removeEventListener?.("ended", release);
         audio.removeEventListener?.("error", record.onError);
+        audio.removeEventListener?.("interrupted", record.onInterrupted);
         audio.pause?.();
         session.elements.delete(record);
         cue.records.delete(record);
@@ -111,8 +115,10 @@ export class NativeAseqAudioPresentation {
         console.warn("[Cutscene audio] resource failed", command.audio.sourcePath || assetUrl, audio.error?.code);
         release();
       };
+      record.onInterrupted = () => this.#blockRecord(record);
       audio.addEventListener?.("ended", release, { once: true });
       audio.addEventListener?.("error", record.onError, { once: true });
+      audio.addEventListener?.("interrupted", record.onInterrupted);
       if (kind === "voice") this.dialogueAudio.attach(audio);
       else this.#applySoundVolume(audio, state);
       if (!session.paused && !session.seeking) this.#playRecord(record);
@@ -124,6 +130,16 @@ export class NativeAseqAudioPresentation {
     const session = this.active;
     if (session?.owner !== owner) return false;
     session.frame += 1;
+    for (const record of [...session.elements]) {
+      const duration = Number.isFinite(record.audio.duration)
+        ? record.audio.duration : record.command.durationSeconds;
+      // AUTH carries voice durations even when permission prevents metadata
+      // loading. Use that authored bound, never guess how long a clip lasts.
+      if (!record.blocked || !Number.isFinite(duration) || duration <= 0) continue;
+      if (record.pendingOffset + (session.frame - record.startFrame) / 30 >= duration) {
+        record.release();
+      }
+    }
     for (const cue of session.cues) {
       if (cue.command.audio.silent && cue.positionSeconds >= (cue.command.durationSeconds || 0)) {
         session.cues.delete(cue);
@@ -173,7 +189,10 @@ export class NativeAseqAudioPresentation {
     active.paused = next;
     for (const record of [...active.elements]) {
       if (next) { record.playRevision += 1; record.audio.pause?.(); }
-      else if (!active.seeking && record.pendingOffset === null) this.#playRecord(record);
+      else if (!active.seeking) {
+        if (record.pendingOffset === null) this.#playRecord(record);
+        else this.#resumeAtOffset(record);
+      }
     }
     return true;
   }
@@ -193,6 +212,8 @@ export class NativeAseqAudioPresentation {
     if (this.active) this.end(this.active.owner);
     this.unsubscribe?.();
     this.unsubscribe = null;
+    this.unsubscribeRecovery?.();
+    this.unsubscribeRecovery = null;
   }
 
   #playRecord(record) {
@@ -201,18 +222,44 @@ export class NativeAseqAudioPresentation {
     try {
       const revision = ++record.playRevision;
       record.audio.play()?.then?.(() => {
+        if (revision !== record.playRevision) return;
         // A delayed play promise must not resurrect a cancelled/replaced session.
         if (record.released || this.active !== record.session
           || record.session.paused || record.session.seeking) record.audio.pause?.();
+        else {
+          record.blocked = false;
+          record.played = true;
+        }
       }, error => {
         if (revision !== record.playRevision || record.released
           || record.session.paused || record.session.seeking) return;
-        record.release();
-        console.warn("[Cutscene audio] playback failed", record.command.audio.sourcePath, error);
+        if (isAudioPermissionError(error)) this.#blockRecord(record);
+        else {
+          record.release();
+          console.warn("[Cutscene audio] playback failed", record.command.audio.sourcePath, error);
+        }
       });
     } catch (error) {
       record.release();
       throw error;
+    }
+  }
+
+  #blockRecord(record) {
+    if (record.released || record.blocked) return;
+    record.blocked = true;
+    record.pendingOffset = record.audio.currentTime || 0;
+    if (record.played) record.startFrame = record.session.frame;
+  }
+
+  #recoverAudio() {
+    const session = this.active;
+    if (!session || session.paused || session.seeking) return;
+    for (const record of [...session.elements]) {
+      if (!record.blocked) continue;
+      record.pendingOffset += (session.frame - record.startFrame) / 30;
+      record.startFrame = session.frame;
+      this.#resumeAtOffset(record);
     }
   }
 
@@ -223,9 +270,15 @@ export class NativeAseqAudioPresentation {
       if (!Number.isFinite(audio.duration)) return;
       clearTimeout(record.metadataTimeout);
       audio.removeEventListener?.("loadedmetadata", resume);
+      if (record.blocked) {
+        record.pendingOffset += (record.session.frame - record.startFrame) / 30;
+        record.startFrame = record.session.frame;
+      }
       if (record.pendingOffset >= audio.duration) { record.release(); return; }
       audio.currentTime = record.pendingOffset;
       record.pendingOffset = null;
+      record.blocked = false;
+      record.startFrame = record.session.frame;
       if (!record.session.paused) this.#playRecord(record);
     };
     clearTimeout(record.metadataTimeout);

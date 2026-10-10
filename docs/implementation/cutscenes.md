@@ -30,6 +30,10 @@ See source provenance, regeneration commands and remaining presentation limits i
 another renderer or emulate the original game's full story-flag progression.
 The existing transport applies: Space advances five seconds; X ends the current
 scene and proceeds to the next. Runtime failures stop startup with an error.
+On mobile, gameplay touch controls are hidden and release held movement during
+cutscenes and their loading transitions. Two compact buttons at the bottom right,
+**Skip 5s** and **Skip scene**, use the same transport actions. They appear only
+during playback; the joystick returns after gameplay resumes.
 
 All four opening scenes use the same prepared-scenery loader as gameplay.
 OP02 has one bundle; the three OP00 scenes share another. Static scenery is

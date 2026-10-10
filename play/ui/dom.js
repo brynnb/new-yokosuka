@@ -10,6 +10,8 @@ export function queryPlayDom(root = document) {
   mobileForkDown: root.getElementById("mobile-fork-down"),
   mobileForkUp: root.getElementById("mobile-fork-up"),
   mobileForkliftExit: root.getElementById("mobile-forklift-exit"),
+  mobileCutsceneForward: root.getElementById("mobile-cutscene-forward"),
+  mobileCutsceneSkip: root.getElementById("mobile-cutscene-skip"),
   mobileArcadeStick: root.getElementById("mobile-arcade-stick"),
   mobileArcadeButtons: [
     ...root.querySelectorAll("[data-arcade-control]"),

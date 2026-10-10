@@ -10,6 +10,7 @@ import { PoolApp } from "./PoolApp.jsx";
 import { SettingsApp } from "./SettingsApp.jsx";
 import { SidebarApp } from "./SidebarApp.jsx";
 import { NewYokosukaTheme } from "./NewYokosukaTheme.jsx";
+import { AudioRecoveryButton } from "./AudioRecoveryButton.jsx";
 
 const PORTALS = Object.freeze([
   ["account-ui-root", AccountApp, true],
@@ -21,6 +22,7 @@ const PORTALS = Object.freeze([
   ["inventory-ui-root", InventoryApp, true],
   ["pool-ui-root", PoolApp, true],
   ["sidebar-ui-root", SidebarApp, true, true],
+  ["audio-recovery-ui-root", AudioRecoveryButton, true, true],
 ]);
 
 export function UiRoot() {

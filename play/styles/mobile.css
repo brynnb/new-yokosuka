@@ -350,7 +350,8 @@
     backdrop-filter: none;
   }
 
-  .mobile-forklift-button {
+  .mobile-forklift-button,
+  .mobile-cutscene-button {
     min-width: 66px;
     min-height: 42px;
     padding: 0 12px;
@@ -382,9 +383,45 @@
     backdrop-filter: none;
   }
 
-  .mobile-forklift-button:active {
+  .mobile-forklift-button:active,
+  .mobile-cutscene-button:active {
     background: rgb(19 143 160 / 0.9);
     border-color: #58c2d1;
+  }
+
+  body:is(.cutscene-active, .cutscene-starting) .app :is(
+    .mobile-joystick-zone,
+    .mobile-chat-toggle,
+    .mobile-player-status,
+    .player-info-overlay,
+    .mobile-cinema-stand,
+    .mobile-stuck-button,
+    .mobile-forklift-controls,
+    .mobile-forklift-exit,
+    .sidebar-toggle,
+    #dialogue-controls-hud
+  ),
+  body:is(.cutscene-active, .cutscene-starting) #mobile-arcade-controls {
+    display: none;
+  }
+
+  body.cutscene-active:not(.cutscene-starting) .mobile-cutscene-controls {
+    position: absolute;
+    right: calc(12px + env(safe-area-inset-right, 0px));
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    z-index: 8;
+    display: flex;
+    gap: 8px;
+  }
+
+  .mobile-cutscene-button {
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+
+  .mobile-cutscene-button:focus-visible {
+    outline: 2px solid #58c2d1;
+    outline-offset: 2px;
   }
 
   .map-loading:not(.hidden) ~ .mobile-joystick-zone,

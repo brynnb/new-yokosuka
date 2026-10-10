@@ -1,4 +1,5 @@
 import { createGameAudio } from "../audio/MediaElementAudio.js";
+import { isAudioPermissionError } from "../audio/BrowserAudioPlayback.js";
 import {
   createNativeDialogueInteractionRuntime,
 } from "./NativeDialogueInteractionRuntime.js";
@@ -12,7 +13,7 @@ import {
 } from "./NativeDialogueVoiceManifest.js";
 
 function defaultAudioFactory(url) {
-  return createGameAudio(url);
+  return createGameAudio(url, { recovery: "resume" });
 }
 
 export class NativeDialogueOverlayRuntime {
@@ -135,7 +136,7 @@ export class NativeDialogueOverlayRuntime {
     try {
       await audio.play?.();
     } catch (error) {
-      if (this.audio === audio) {
+      if (this.audio === audio && !isAudioPermissionError(error) && error.name !== "AbortError") {
         console.warn(`Could not play dialogue ${message.voiceId}:`, error);
       }
     } finally {

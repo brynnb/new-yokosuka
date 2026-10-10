@@ -12,6 +12,8 @@ export class MobileControls {
     getArcadeGames,
     exitForklift,
     exitCinemaSeat,
+    advanceCutscene,
+    skipCutscene,
   }) {
     this.dom = dom;
     this.engine = engine;
@@ -20,6 +22,18 @@ export class MobileControls {
     this.getArcadeGames = getArcadeGames;
     this.exitForklift = exitForklift;
     this.exitCinemaSeat = exitCinemaSeat;
+    this.disposed = false;
+    this.cutsceneActive = false;
+    this.handleCutsceneForward = event => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (!this.disposed && this.cutsceneActive) advanceCutscene();
+    };
+    this.handleCutsceneSkip = event => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (!this.disposed && this.cutsceneActive) skipCutscene();
+    };
     this.joystick = null;
     this.arcadeJoystick = null;
     this.arcadeDirectionCodes = new Set();
@@ -78,7 +92,7 @@ export class MobileControls {
 
   syncJoystick() {
     const controller = this.getController();
-    if (!this.mediaQuery.matches || !controller || this.cinemaSeated) {
+    if (this.disposed || !this.mediaQuery.matches || !controller || this.cinemaSeated || this.cutsceneActive) {
       this.destroyJoystick();
       return;
     }
@@ -111,6 +125,23 @@ export class MobileControls {
     this.dom.app.classList.toggle("cinema-seated", next);
     if (next) this.destroyJoystick();
     else this.syncJoystick();
+  }
+
+  setCutsceneActive(active) {
+    if (this.disposed) return;
+    const next = Boolean(active);
+    if (next === this.cutsceneActive) return;
+    this.cutsceneActive = next;
+    if (next) {
+      // Hidden controls must also release held input, including across loading
+      // gaps and viewport changes. Restore a fresh joystick only on return.
+      this.destroyJoystick();
+      this.destroyArcadeJoystick();
+      this.forkLiftInput = 0;
+      this.setChatOpen(false);
+    } else {
+      this.syncJoystick();
+    }
   }
 
   collapseSidebar() {
@@ -162,7 +193,7 @@ export class MobileControls {
   }
 
   syncArcadeJoystick(active) {
-    if (!active || !this.mediaQuery.matches) {
+    if (this.disposed || !active || !this.mediaQuery.matches || this.cutsceneActive) {
       this.destroyArcadeJoystick();
       return;
     }
@@ -250,6 +281,8 @@ export class MobileControls {
   }
 
   initialize() {
+    this.dom.mobileCutsceneForward.addEventListener("click", this.handleCutsceneForward);
+    this.dom.mobileCutsceneSkip.addEventListener("click", this.handleCutsceneSkip);
     this.setSidebarCollapsed(
       this.mediaQuery.matches ? true : this.readSidebarCollapsed(),
       { persist: false },
@@ -326,6 +359,9 @@ export class MobileControls {
   }
 
   dispose() {
+    this.disposed = true;
+    this.dom.mobileCutsceneForward.removeEventListener("click", this.handleCutsceneForward);
+    this.dom.mobileCutsceneSkip.removeEventListener("click", this.handleCutsceneSkip);
     this.destroyJoystick();
     this.destroyArcadeJoystick();
     if (typeof this.mediaQuery.removeEventListener === "function") {

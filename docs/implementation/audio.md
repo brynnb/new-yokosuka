@@ -29,6 +29,38 @@ audible playback. World teardown sets the ambient world to `null`; successful
 world activation selects the next loop. Overall volume and master mute remain
 multipliers over every channel.
 
+## Mobile activation and recovery
+
+`BrowserAudioPlayback` is the shared streaming backend for music, ambience,
+dialogue and effects. It primes a bounded pool of 24 HTML audio players with
+silent PCM directly in a trusted splash/menu gesture, then reuses the same
+players for asynchronously loaded clips. This avoids per-player autoplay
+permission problems without decoding long music tracks into memory. Logical
+clips retain separate events, mute/volume, playback clocks and cancellation;
+exhausting the pool reports an explicit error rather than stealing a live clip.
+Priming has a ten-second timeout; a ready channel can play without waiting for
+slower players. Timeouts/decoder failures remain distinct from policy denials.
+
+`UserActivation` recognizes mouse press, touch/pen release, touch end, keyboard
+and click activation. Synthetic events and touch-down do not unlock playback;
+sticky `hasBeenActive` is not treated as proof of permission. Capture remains
+installed for later recovery. The splash advances on click/key, after this
+capture has called the backend, before asynchronous game loading.
+
+Current music, ambience and ordinary dialogue can resume after a permission
+denial or background interruption. One-shot effects are discarded rather than
+queued for an unrelated later tap. Cutscene audio uses its cinematic frame
+clock: recovery seeks surviving clips and drops expired clips, without replaying
+captions or resurrecting cancelled scenes. Seek metadata waits remain bounded.
+Babylon's existing spatial-audio context is registered when remote forklift
+sounds need it; the same gesture resumes that context without creating another.
+
+If current playback genuinely remains blocked, a small **Tap to enable sound**
+button appears. It disappears on confirmed playback or cancellation. Asset or
+decoder failures remain errors, not permission prompts. A Chromium touch test
+checks real decoded playback, async clip reuse and simulated renewed policy
+denial; it is not proof of behavior on physical iOS devices.
+
 ## Cutscene Audio Sessions
 
 `NativeAseqAudioPresentation` owns a single voice/effects session for an entire
@@ -168,6 +200,9 @@ Focused coverage lives in:
 - `tests/AudioPreferences.test.js`
 - `tests/AudioSettingsControls.test.js`
 - `tests/PlayMusicDirector.test.js`
+- `tests/BrowserAudioPlayback.test.js`
+- `tests/NativeAseqAudioPresentation.test.js`
+- `tests/e2e/mobile-audio-playback.spec.js` (rendered touch UI and real media)
 
 Run the focused suite with:
 

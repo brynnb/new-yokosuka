@@ -1,4 +1,6 @@
-import { applyMediaElementAudio } from "./MediaElementAudio.js";
+import { applyMediaElementAudio, createGameAudio } from "./MediaElementAudio.js";
+import { resolveRuntimeAssetUrl } from "../../src/RuntimeAssets.js";
+import { isAudioPermissionError } from "./BrowserAudioPlayback.js";
 
 export const PLAY_MUSIC_VOLUME_STORAGE_KEY = "new-yokosuka.music-volume";
 export const PLAY_MUSIC_MUTED_STORAGE_KEY = "new-yokosuka.music-muted";
@@ -36,7 +38,7 @@ function savePreference(storage, key, value) {
 
 export class PlayMusicDirector {
   constructor({
-    audioFactory = () => new Audio(),
+    audioFactory = () => createGameAudio("", { recovery: "resume" }),
     storage = globalThis.localStorage,
     requestFrame = (callback) => requestAnimationFrame(callback),
     cancelFrame = (handle) => cancelAnimationFrame(handle),
@@ -162,7 +164,9 @@ export class PlayMusicDirector {
       }
       const playResult = entry.audio.play();
       playResult?.catch?.((error) => {
-        console.warn(`[${this.audioLabel}] playback could not resume`, error);
+        if (!isAudioPermissionError(error) && error.name !== "AbortError") {
+          console.warn(`[${this.audioLabel}] playback could not resume`, error);
+        }
       });
     }
     this.#emitState();
@@ -343,7 +347,9 @@ export class PlayMusicDirector {
     if (!this.playbackPaused) {
       const playResult = audio.play();
       playResult?.catch?.((error) => {
-        console.warn(`[${this.audioLabel}] playback could not start`, error);
+        if (!isAudioPermissionError(error) && error.name !== "AbortError") {
+          console.warn(`[${this.audioLabel}] playback could not start`, error);
+        }
       });
     }
     this.#crossfade(previous, next);
@@ -420,4 +426,3 @@ export class PlayMusicDirector {
     this.onStateChange(this.getState());
   }
 }
-import { resolveRuntimeAssetUrl } from "../../src/RuntimeAssets.js";

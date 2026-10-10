@@ -1,9 +1,10 @@
 import { resolveRuntimeAssetUrl } from "../../src/RuntimeAssets.js";
+import { getBrowserAudioPlayback } from "./BrowserAudioPlayback.js";
 
-// Keep source paths in native data; translate them only when constructing a
-// real browser media element. Injected audio adapters can retain logical paths.
-export function createGameAudio(source) {
-  return new Audio(resolveRuntimeAssetUrl(source));
+// Keep source paths in native data; translate them at the shared browser
+// playback boundary. Injected audio adapters can retain logical paths.
+export function createGameAudio(source = "", options) {
+  return getBrowserAudioPlayback().create(source ? resolveRuntimeAssetUrl(source) : "", options);
 }
 
 function clampVolume(value) {

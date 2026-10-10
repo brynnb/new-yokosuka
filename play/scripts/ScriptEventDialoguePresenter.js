@@ -1,4 +1,5 @@
 import { createGameAudio } from "../audio/MediaElementAudio.js";
+import { isAudioPermissionError } from "../audio/BrowserAudioPlayback.js";
 import {
   createNativeDialogueVoiceManifest,
 } from "../dialogue/NativeDialogueVoiceManifest.js";
@@ -85,7 +86,7 @@ function optionPresentation(option) {
 }
 
 function defaultAudioFactory(url) {
-  return createGameAudio(url);
+  return createGameAudio(url, { recovery: "resume" });
 }
 
 export class ScriptEventDialoguePresenter {
@@ -156,7 +157,7 @@ export class ScriptEventDialoguePresenter {
     try {
       await audio.play?.();
     } catch (error) {
-      if (this.audio === audio) {
+      if (this.audio === audio && !isAudioPermissionError(error) && error.name !== "AbortError") {
         console.warn(`Could not play script voice ${detail.voiceId}:`, error);
       }
     }

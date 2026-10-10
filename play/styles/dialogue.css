@@ -112,6 +112,10 @@
     left: 12px;
   }
 
+  body.cutscene-active .dialogue-stack {
+    bottom: calc(68px + env(safe-area-inset-bottom, 0px));
+  }
+
   .dialogue-panel {
     padding: 12px 14px 14px;
   }
