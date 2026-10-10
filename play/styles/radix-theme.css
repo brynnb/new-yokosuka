@@ -39,6 +39,18 @@
   display: contents;
 }
 
+/* A shared floating control, above menus/dialogs and separate from the
+   bottom-right cinematic transport. Keep positioning after Radix's reset. */
+.new-yokosuka-theme .audio-recovery-button.rt-Button {
+  position: fixed;
+  top: calc(12px + env(safe-area-inset-top, 0px));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--ny-layer-floating-control);
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
 .inventory-slot,
 .inventory-entry {
   --card-background-color: var(--gray-5);

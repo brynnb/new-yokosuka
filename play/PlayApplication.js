@@ -292,6 +292,8 @@ function createPlayRuntime() {
     getArcadeGames: () => arcadeGames,
     exitForklift: () => forkliftModeRuntime.exit(),
     exitCinemaSeat: () => cinemaSeatInteractions.exit(),
+    advanceCutscene: () => nativeCutsceneDirector?.seekBySeconds(5),
+    skipCutscene: () => skipCutscene(),
   });
   mobileControls.initialize();
   const arcadeAssembly = new PlayArcadeAssembly({
@@ -434,11 +436,13 @@ function createPlayRuntime() {
   }
   function setCutscenePresentationActive(active) {
     document.body.classList.toggle("cutscene-active", Boolean(active));
+    mobileControls.setCutsceneActive(active || document.body.classList.contains("cutscene-starting"));
     setDialogueControlsActive("cutscene", active);
   }
 
   function setCutsceneStarting(active) {
     document.body.classList.toggle("cutscene-starting", Boolean(active));
+    mobileControls.setCutsceneActive(active || document.body.classList.contains("cutscene-active"));
   }
 
   let nativeCutsceneDirector = null;
@@ -942,6 +946,15 @@ function createPlayRuntime() {
     selectWorld,
     enabled: LOCAL_DEBUG,
   });
+  function skipCutscene() {
+    if (cutscenePreviewRuntime?.cancel()) return true;
+    if (!nativeCutsceneDirector?.active) return false;
+    void nativeCutsceneDirector.end("user-cancelled").catch(error => {
+      console.error("Cutscene ending failed:", error);
+    });
+    return true;
+  }
+
   function handleDialogueControlKeyDown(event) {
     if (
       event.repeat
@@ -973,13 +986,7 @@ function createPlayRuntime() {
     event.preventDefault();
     event.stopImmediatePropagation();
     if (stops) {
-      if (cutscenePreviewRuntime?.cancel()) return;
-      if (nativeCutsceneDirector?.active) {
-        void nativeCutsceneDirector.end("user-cancelled").catch(error => {
-          console.error("Cutscene ending failed:", error);
-        });
-        return;
-      }
+      if (skipCutscene()) return;
       if (scriptEventDialoguePresenter.active) {
         scriptEventController.cancel("user-cancelled");
         return;

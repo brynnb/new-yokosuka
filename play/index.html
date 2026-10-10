@@ -682,6 +682,20 @@
           id="mobile-forklift-exit"
           type="button"
         >Exit Lift</button>
+        <div class="mobile-cutscene-controls" aria-label="Cutscene controls">
+          <button
+            class="mobile-cutscene-button"
+            id="mobile-cutscene-forward"
+            type="button"
+            aria-label="Skip forward five seconds"
+          >Skip 5s</button>
+          <button
+            class="mobile-cutscene-button"
+            id="mobile-cutscene-skip"
+            type="button"
+            aria-label="Skip cutscene"
+          >Skip scene</button>
+        </div>
         <div class="stuck-hint" id="stuck-hint" role="status" hidden>
           <span class="stuck-hint-desktop">
             Stuck? Type /stuck in chat
@@ -1071,6 +1085,7 @@
     </div>
 
     <div id="react-ui-root"></div>
+    <div id="audio-recovery-ui-root"></div>
     <script type="module" src="./ui/react/main.jsx"></script>
     <script type="module" src="./play.js"></script>
   </body>

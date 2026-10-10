@@ -25,7 +25,9 @@ function fakeAudio(source) {
 
 function sessionHarness() {
   const media = [], captions = [], attached = new Set();
+  let recover;
   const audio = createNativeAseqAudioPresentation({
+    subscribeRecovery: callback => { recover = callback; return () => {}; },
     audioFactory: source => { const element = fakeAudio(source); media.push(element); return element; },
     preferences: { getState: () => ({ overallVolume: 1, effectsVolume: 1 }) },
     dialogueAudio: { attach: element => attached.add(element), detach: element => attached.delete(element) },
@@ -38,8 +40,66 @@ function sessionHarness() {
   audio.begin(session);
   const voice = id => ({ name: "voice", actorTag: "SINF",
     audio: { kind: "voice", speakerId: "SINF", assetUrl: `/${id}.wav` } });
-  return { audio, session, media, captions, attached, voice };
+  return { audio, session, media, captions, attached, voice, recover: () => recover() };
 }
+
+test("blocked voices recover at current cinematic time; expired and cancelled clips never replay", async () => {
+  const {audio, session, media, captions, voice, recover} = sessionHarness();
+  audio.play(session, voice("surviving"));
+  media[0].play = () => Promise.reject(new DOMException("blocked", "NotAllowedError"));
+  audio.setPaused(session, true); audio.setPaused(session, false);
+  await Promise.resolve();
+  assert.equal(audio.voiceCues().size, 1);
+  for (let i = 0; i < 90; i++) audio.advanceFrame(session);
+  media[0].play = () => { media[0].playCalls++; return Promise.resolve(); };
+  recover(); await Promise.resolve();
+  assert.equal(media[0].currentTime, 3);
+  assert.equal(captions.filter(([kind]) => kind === "play").length, 1);
+
+  audio.play(session, voice("expired"));
+  media[1].duration = 1;
+  media[1].play = () => Promise.reject(new DOMException("blocked", "NotAllowedError"));
+  audio.setPaused(session, true); audio.setPaused(session, false);
+  await Promise.resolve();
+  for (let i = 0; i < 60; i++) audio.advanceFrame(session);
+  const expiredCalls = media[1].playCalls;
+  recover(); await Promise.resolve();
+  assert.equal(media[1].playCalls, expiredCalls);
+  assert.equal(media[1].paused, true);
+  audio.end(session); recover();
+  assert.equal(audio.voiceCues().size, 0);
+  audio.dispose();
+});
+
+test("interrupted cinematic audio advances its offset, including time waiting for metadata", async () => {
+  const {audio, session, media, voice, recover} = sessionHarness();
+  audio.play(session, voice("interrupted"));
+  await Promise.resolve();
+  media[0].currentTime = 2;
+  media[0].listeners.get("interrupted")();
+  media[0].duration = NaN;
+  for (let i = 0; i < 30; i++) audio.advanceFrame(session);
+  recover();
+  for (let i = 0; i < 60; i++) audio.advanceFrame(session);
+  media[0].duration = 10;
+  media[0].listeners.get("loadedmetadata")();
+  assert.equal(media[0].currentTime, 5);
+  audio.end(session); audio.dispose();
+});
+
+test("authored AUTH duration expires blocked voices before browser metadata is available", async () => {
+  const {audio, session, media, voice, recover} = sessionHarness();
+  audio.play(session, {...voice("authored-duration"), durationSeconds: 2});
+  media[0].duration = NaN;
+  media[0].play = () => Promise.reject(new DOMException("blocked", "NotAllowedError"));
+  audio.setPaused(session, true); audio.setPaused(session, false);
+  await Promise.resolve();
+  for (let i = 0; i < 60; i++) audio.advanceFrame(session);
+  assert.equal(audio.voiceCues().size, 0);
+  recover();
+  assert.equal(media[0].playCalls, 1);
+  audio.dispose();
+});
 
 test("program audio and caption ownership survive normal shot changes, then end once", () => {
   const { audio, session, media, voice, captions, attached } = sessionHarness();

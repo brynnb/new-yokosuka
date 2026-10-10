@@ -226,6 +226,9 @@ export class ForkliftSounds {
       return this.channels.get(name).audio;
     }
     const audio = this.audioFactory(source);
+    // Ongoing machinery should recover after background audio interruption;
+    // one-shot effects deliberately do not queue for a later gesture.
+    if ("recovery" in audio && loop) audio.recovery = "resume";
     audio.loop = loop;
     audio.preload = "auto";
     const channel = { audio, gain, started: false, blocked: false };

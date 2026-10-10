@@ -1,4 +1,6 @@
 import { Sound } from "@babylonjs/core/Audio/sound.js";
+import { AbstractEngine } from "@babylonjs/core/Engines/abstractEngine.js";
+import { getBrowserAudioPlayback } from "./BrowserAudioPlayback.js";
 import {
   audioPreferences,
   effectiveEffectsVolume,
@@ -53,6 +55,7 @@ export class RemoteForkliftSounds {
     this.oneShots = new Set();
     this.pendingEvents = new Map();
     this.soundId = 0;
+    this.releaseAudioContext = null;
   }
 
   update(deltaSeconds, snapshots = []) {
@@ -99,6 +102,8 @@ export class RemoteForkliftSounds {
 
   dispose() {
     this.reset();
+    this.releaseAudioContext?.();
+    this.releaseAudioContext = null;
   }
 
   #ensureVehicle(snapshot) {
@@ -208,7 +213,7 @@ export class RemoteForkliftSounds {
   }
 
   #createSound(source, loop, gain, position) {
-    return this.soundFactory({
+    const sound = this.soundFactory({
       name: `remote-forklift-${this.soundId++}`,
       source,
       loop,
@@ -216,6 +221,11 @@ export class RemoteForkliftSounds {
       position,
       maxDistance: this.maxDistance,
     });
+    const context = AbstractEngine.audioEngine?.audioContext;
+    if (context && !this.releaseAudioContext) {
+      this.releaseAudioContext = getBrowserAudioPlayback().registerContext(context);
+    }
+    return sound;
   }
 
   #setGain(vehicle, name, gain) {

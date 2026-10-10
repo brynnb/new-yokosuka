@@ -1,40 +1,45 @@
-let activated = Boolean(
-  globalThis.navigator?.userActivation?.hasBeenActive,
-);
+// Sticky activation is not proof of playback permission. Keep capture alive
+// after the first gesture so background interruptions can be recovered too.
+let activated = false;
 const subscribers = new Set();
+const gestureSubscribers = new Set();
 let listening = false;
 
-function stopListening() {
-  if (!listening || !globalThis.window) return;
-  listening = false;
-  window.removeEventListener("pointerdown", activate, true);
-  window.removeEventListener("keydown", activate, true);
+export function isAudioActivationGesture(event) {
+  if (!event.isTrusted) return false;
+  if (event.type === "keydown") return !event.repeat && event.key !== "Escape";
+  if (event.type === "pointerdown") return event.pointerType === "mouse";
+  if (event.type === "pointerup") return event.pointerType !== "mouse";
+  return event.type === "touchend" || event.type === "click";
 }
 
-function activate() {
+function activate(event) {
+  if (!isAudioActivationGesture(event)) return;
+  // Issue backend play()/resume() inside capture, before awaits or React work.
+  for (const subscriber of gestureSubscribers) subscriber(event);
   if (activated) return;
   activated = true;
-  stopListening();
-  for (const subscriber of subscribers) subscriber();
+  const pending = [...subscribers];
   subscribers.clear();
+  for (const subscriber of pending) subscriber();
 }
 
 export function installUserActivationCapture() {
-  if (activated || listening || !globalThis.window) return;
+  if (listening || !globalThis.window) return;
   listening = true;
-  window.addEventListener("pointerdown", activate, {
-    capture: true,
-    once: true,
-  });
-  window.addEventListener("keydown", activate, {
-    capture: true,
-    once: true,
-  });
+  for (const type of ["pointerdown", "pointerup", "touchend", "keydown", "click"]) {
+    window.addEventListener(type, activate, { capture: true });
+  }
+}
+
+export function subscribeToAudioGesture(subscriber) {
+  gestureSubscribers.add(subscriber);
+  installUserActivationCapture();
+  return () => gestureSubscribers.delete(subscriber);
 }
 
 export function subscribeToUserActivation(subscriber) {
-  if (activated || globalThis.navigator?.userActivation?.hasBeenActive) {
-    activated = true;
+  if (activated) {
     subscriber();
     return () => {};
   }

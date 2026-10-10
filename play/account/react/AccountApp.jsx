@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { isAudioActivationGesture } from "../../audio/UserActivation.js";
 import {
   Button,
   Callout,
@@ -214,22 +215,20 @@ function AccountShell({
 function IntroPrompt({ onContinue }) {
   useEffect(() => {
     const continueToMenu = (event) => {
-      if (event.type === "keydown" && event.repeat) return;
+      if (!isAudioActivationGesture(event)) return;
       event.preventDefault();
       event.stopPropagation();
       onContinue();
     };
     window.addEventListener("keydown", continueToMenu, {
       capture: true,
-      once: true,
     });
-    window.addEventListener("pointerdown", continueToMenu, {
+    window.addEventListener("click", continueToMenu, {
       capture: true,
-      once: true,
     });
     return () => {
       window.removeEventListener("keydown", continueToMenu, true);
-      window.removeEventListener("pointerdown", continueToMenu, true);
+      window.removeEventListener("click", continueToMenu, true);
     };
   }, [onContinue]);
 
