@@ -100,7 +100,7 @@ export function prepareWorldCollision(
         };
         continue;
       }
-      if (mesh.metadata?.mt5DepthOverlay) {
+      if (mesh.metadata?.mt5DepthOverlay || mesh.metadata?.mt7DepthOverlay) {
         mesh.isPickable = true;
         mesh.checkCollisions = false;
         mesh.metadata = {

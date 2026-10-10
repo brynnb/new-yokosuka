@@ -1,4 +1,5 @@
 import * as BABYLON from "@babylonjs/core";
+import {overlayIdentityForMesh, overlayIdentityKey} from '../../src/ModelDepthOverlays.js';
 
 const DEFAULT_OPTIONS = Object.freeze({
   maximumPlaneDistance: 0.005,
@@ -152,22 +153,6 @@ function boundsOverlap(left, right) {
   );
 }
 
-function nodeAddressForMesh(mesh) {
-  let current = mesh?.parent || null;
-  while (current) {
-    if (Number.isInteger(current._mt5Node?.addr)) {
-      return current._mt5Node.addr;
-    }
-    current = current.parent || null;
-  }
-  return null;
-}
-
-function textureIdForMesh(mesh) {
-  const match = /^mt5_tex_(\d+)$/.exec(mesh?.name || "");
-  return match ? Number.parseInt(match[1], 10) : null;
-}
-
 function normalBucket(normal) {
   const precision = 200;
   return [normal.x, normal.y, normal.z]
@@ -175,20 +160,18 @@ function normalBucket(normal) {
     .join(":");
 }
 
-export function collectMt5Triangles(scene, options = {}) {
+export function collectModelTriangles(scene, options = {}) {
   const settings = { ...DEFAULT_OPTIONS, ...options };
   const triangles = [];
   let drawOrder = 0;
   for (const mesh of scene.meshes) {
-    const nodeAddress = nodeAddressForMesh(mesh);
-    const textureId = textureIdForMesh(mesh);
+    const identity = overlayIdentityForMesh(mesh);
     const positions = mesh.getVerticesData?.(
       BABYLON.VertexBuffer.PositionKind,
     );
     const indices = mesh.getIndices?.();
     if (
-      !Number.isInteger(nodeAddress)
-      || !Number.isInteger(textureId)
+      !identity
       || !positions
       || !indices
     ) {
@@ -217,13 +200,19 @@ export function collectMt5Triangles(scene, options = {}) {
       const projected = projectTriangle(points, axes);
       const area = polygonArea(projected);
       if (area <= settings.minimumTriangleArea) continue;
-      const meshKey = `${nodeAddress}:${textureId}`;
+      const meshKey = overlayIdentityKey(identity);
+      // MT5 coalesces one node/texture into a mesh. MT7 keeps every native
+      // strip separate; a facade decal often spans several strips of its
+      // backing material. Accumulate coverage across that authored group,
+      // while retaining exact per-batch IDs for the runtime face split.
+      const layerKey = Number.isInteger(identity.groupIndex)
+        ? `${identity.nodeAddress}:${identity.groupIndex}` : meshKey;
       triangles.push({
         id: triangles.length,
         mesh,
         meshKey,
-        nodeAddress,
-        textureId,
+        layerKey,
+        identity,
         faceId,
         points,
         normal,
@@ -232,6 +221,8 @@ export function collectMt5Triangles(scene, options = {}) {
         area,
         bounds: boundsForPolygon(projected),
         normalBucket: normalBucket(normal),
+        renderOrder: mesh.metadata?.mt7PolygonListType === 2 ? 2
+          : mesh.metadata?.mt7PolygonListType === 4 ? 1 : 0,
         drawOrder: drawOrder++,
       });
     }
@@ -242,17 +233,18 @@ export function collectMt5Triangles(scene, options = {}) {
 function addCoverage(coverage, detail, base, area, planeDistance) {
   if (!coverage.has(detail.id)) coverage.set(detail.id, new Map());
   const byMesh = coverage.get(detail.id);
-  const record = byMesh.get(base.meshKey) || {
+  const record = byMesh.get(base.layerKey) || {
     area: 0,
     baseTriangles: new Map(),
     planeDistance: 0,
     baseDrawOrder: base.drawOrder,
+    baseRenderOrder: base.renderOrder,
   };
   record.area += area;
   record.baseTriangles.set(base.id, base.area);
   record.planeDistance = Math.max(record.planeDistance, planeDistance);
   record.baseDrawOrder = Math.max(record.baseDrawOrder, base.drawOrder);
-  byMesh.set(base.meshKey, record);
+  byMesh.set(base.layerKey, record);
 }
 
 export function overlayRanksForEdges(meshKeys, rawEdges) {
@@ -362,9 +354,9 @@ export function overlayRanksForEdges(meshKeys, rawEdges) {
   ]));
 }
 
-export function detectMt5OverlayFaces(scene, options = {}) {
+export function detectModelOverlayFaces(scene, options = {}) {
   const settings = { ...DEFAULT_OPTIONS, ...options };
-  const triangles = collectMt5Triangles(scene, settings);
+  const triangles = collectModelTriangles(scene, settings);
   const byNormal = new Map();
   for (const triangle of triangles) {
     if (!byNormal.has(triangle.normalBucket)) {
@@ -385,7 +377,7 @@ export function detectMt5OverlayFaces(scene, options = {}) {
       ) {
         const right = normalGroup[rightIndex];
         if (right.bounds.minX >= left.bounds.maxX) break;
-        if (left.meshKey === right.meshKey) continue;
+        if (left.layerKey === right.layerKey) continue;
         if (!boundsOverlap(left.bounds, right.bounds)) continue;
         const alignment = BABYLON.Vector3.Dot(left.normal, right.normal);
         if (alignment < settings.minimumNormalAlignment) continue;
@@ -408,6 +400,7 @@ export function detectMt5OverlayFaces(scene, options = {}) {
     const candidates = coverage.get(triangle.id);
     if (!candidates) continue;
     let best = null;
+    const containedBy = [];
     for (const [baseMeshKey, candidate] of candidates) {
       const covered = Math.min(1, candidate.area / triangle.area);
       const baseArea = [...candidate.baseTriangles.values()].reduce(
@@ -423,9 +416,11 @@ export function detectMt5OverlayFaces(scene, options = {}) {
         covered >= 0.98
         && areaRatio >= 0.8
         && areaRatio <= 1.25
-        && triangle.drawOrder > candidate.baseDrawOrder
+        && (triangle.renderOrder > candidate.baseRenderOrder
+          || (triangle.renderOrder === candidate.baseRenderOrder && triangle.drawOrder > candidate.baseDrawOrder))
       );
       if (!isContainedDetail && !isEqualLayerDrawnLater) continue;
+      containedBy.push(baseMeshKey);
       const score = covered / Math.max(areaRatio, 1e-6);
       if (!best || score > best.score) {
         best = {
@@ -439,23 +434,29 @@ export function detectMt5OverlayFaces(scene, options = {}) {
     }
     if (!best) continue;
     selected.push({ triangle, ...best });
-    edgePairs.add(`${best.baseMeshKey}>${triangle.meshKey}`);
+    // MT7 facades layer shutters/windows over foliage over brick. Keeping
+    // only the largest backing face gives both details rank 1, so the ivy
+    // fights the windows even after biasing it away from the wall. Preserve
+    // every contained-layer relation. Native opaque/punch-through/translucent
+    // lists also take precedence over file order for equal-sized surfaces.
+    for (const base of Number.isInteger(triangle.identity.groupIndex) ? containedBy : [best.baseMeshKey]) {
+      edgePairs.add(`${base}>${triangle.layerKey}`);
+    }
   }
 
   const edges = [...edgePairs].map((edge) => edge.split(">"));
   const ranks = overlayRanksForEdges(
-    triangles.map((triangle) => triangle.meshKey),
+    triangles.map((triangle) => triangle.layerKey),
     edges,
   );
 
   const grouped = new Map();
   for (const item of selected) {
     const { triangle } = item;
-    const rank = Math.max(1, ranks.get(triangle.meshKey) || 1);
-    const key = `${triangle.nodeAddress}:${triangle.textureId}:${rank}`;
+    const rank = Math.max(1, ranks.get(triangle.layerKey) || 1);
+    const key = `${triangle.meshKey}:${rank}`;
     const group = grouped.get(key) || {
-      nodeAddress: triangle.nodeAddress,
-      textureId: triangle.textureId,
+      ...triangle.identity,
       rank,
       faceIds: [],
       minimumCoverage: 1,
@@ -483,7 +484,8 @@ export function detectMt5OverlayFaces(scene, options = {}) {
       }))
       .sort((left, right) => (
         left.nodeAddress - right.nodeAddress
-        || left.textureId - right.textureId
+        || (left.textureId ?? left.groupIndex) - (right.textureId ?? right.groupIndex)
+        || (left.batchIndex ?? 0) - (right.batchIndex ?? 0)
         || left.rank - right.rank
       )),
   };

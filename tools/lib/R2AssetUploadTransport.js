@@ -59,6 +59,7 @@ export class S3AssetUploadTransport {
       Body: fs.createReadStream(item.filePath),
       ContentLength: item.size,
       ContentType: contentType(item),
+      ContentEncoding: item.contentEncoding,
       CacheControl: cacheControl(item),
       Metadata: { sha256 },
     }));
@@ -112,6 +113,7 @@ export class WorkerAssetUploadTransport {
       body: await fs.promises.readFile(item.filePath),
       headers: {
         "content-type": contentType(item),
+        ...(item.contentEncoding ? {'content-encoding': item.contentEncoding} : {}),
         "cache-control": cacheControl(item),
         "x-r2-sha256": sha256,
       },

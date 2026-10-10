@@ -9,11 +9,12 @@ import * as Mt5Transform from './Mt5Transform.js';
 import * as Mt5TexturePolicy from './Mt5TexturePolicy.js';
 import { alignMt5CharacterSurfaceOrientations, applyMt5NormalPolicy } from './Mt5NormalPolicy.js';
 import {
-    applyMt5OverlayDefinition,
+    applyModelOverlayDefinition,
     overlayDefinitionForFile,
-} from './Mt5OverlayManifest.js';
+} from './ModelDepthOverlays.js';
 import { PvrDecoder } from './PvrDecoder.js';
 import { enableTransparentTriangleSorting } from './rendering/TransparentTriangleSort.js';
+import { SceneStandardMaterial } from './rendering/SceneStandardMaterial.js';
 
 // Alpha-to-coverage needs the fragment's filtered texture alpha. Babylon's
 // normal alpha-test path discards the edge first and then forces every
@@ -21,7 +22,7 @@ import { enableTransparentTriangleSorting } from './rendering/TransparentTriangl
 // smooth. This material compiles the alpha-preserving shader path while still
 // rendering in the opaque/depth-writing queue; multisample coverage, not
 // source-alpha blending, controls which samples are written.
-export class Mt5AlphaToCoverageMaterial extends BABYLON.StandardMaterial {
+export class Mt5AlphaToCoverageMaterial extends SceneStandardMaterial {
     needAlphaBlending() {
         return false;
     }
@@ -2002,7 +2003,7 @@ export class Mt5Loader {
             buffer?.byteLength,
         );
         if (overlayDefinition) {
-            applyMt5OverlayDefinition(modelRoot, overlayDefinition, {
+            applyModelOverlayDefinition(modelRoot, overlayDefinition, {
                 depthBiasFactor: this.overlayDepthBiasFactor,
                 depthBiasUnits: this.overlayDepthBiasUnits,
             });
@@ -2019,7 +2020,33 @@ export class Mt5Loader {
             .getDescendants(false)
             .some(node => typeof node.getTotalVertices === "function" && node.getTotalVertices() > 0);
 
-        return hasRenderableGeometry ? [modelRoot] : [];
+        // Packs may contain unused textures (JD00's vending bin), and skipped
+        // surfaces may leave materials even in an empty map layer (MFSY).
+        // Per-placement loaders are discarded after parsing. Release those
+        // unowned allocations now, but keep disabled/hidden surfaces intact.
+        const usedMaterials = new Set(modelRoot.getChildMeshes().map(mesh => mesh.material));
+        const textureCandidates = new Set([
+            ...this.textureCache.values(),
+            ...[...this.materialCache.values()].flatMap(material => material.getActiveTextures()),
+        ]);
+        for (const [id, material] of this.materialCache) {
+            if (usedMaterials.has(material)) continue;
+            material.dispose(false, false);
+            this.materialCache.delete(id);
+        }
+        const usedTextures = new Set([...usedMaterials]
+            .flatMap(material => material?.getActiveTextures() || []));
+        for (const texture of textureCandidates) if (!usedTextures.has(texture)) texture.dispose();
+        for (const [id, texture] of this.textureCache) if (!usedTextures.has(texture)) this.textureCache.delete(id);
+
+        if (!hasRenderableGeometry) {
+            // Empty/collision-only resources still create hierarchy nodes.
+            // No returned owner means scene cleanup cannot otherwise find them
+            // (D000 MAP05 left over a thousand empty meshes on every visit).
+            modelRoot.dispose(false, false);
+            return [];
+        }
+        return [modelRoot];
     }
 
     readNode(reader, nodes) {
@@ -2409,12 +2436,17 @@ export class Mt5Loader {
             const firstStrip = poly.strips[0];
             const mirrorU = Boolean(firstStrip?._mt5MirrorU);
             const mirrorV = Boolean(firstStrip?._mt5MirrorV);
-            const groupKey = `${tid}:${mirrorU ? 1 : 0}:${mirrorV ? 1 : 0}`;
+            // Op 0x0e and per-vertex BGRA can make an opaque RGB565 texture
+            // translucent (the CAPS5FTG lid uses alpha 127). Keep those strips
+            // separate from opaque geometry sharing the same texture.
+            const vertexAlpha = poly.strips.some(strip => strip.some(p => p.color[3] < 1));
+            const groupKey = `${tid}:${mirrorU ? 1 : 0}:${mirrorV ? 1 : 0}:${vertexAlpha ? 1 : 0}`;
             if (!texGroups.has(groupKey)) {
                 texGroups.set(groupKey, {
                     texId: tid,
                     mirrorU,
                     mirrorV,
+                    vertexAlpha,
                     polys: [],
                 });
             }
@@ -2425,6 +2457,7 @@ export class Mt5Loader {
             texId,
             mirrorU,
             mirrorV,
+            vertexAlpha,
             polys,
         } of texGroups.values()) {
             const positions = [];
@@ -2440,7 +2473,7 @@ export class Mt5Loader {
             const colors = [];
 
             const tex = this.textureCache.get(texId);
-            const alphaMode = this.alphaModeForTexture(texId, tex);
+            const alphaMode = vertexAlpha ? "blend" : this.alphaModeForTexture(texId, tex);
             const isAlpha = alphaMode === "alphatest" || alphaMode === "blend";
             const atlasProjectionBounds = this.computeRyoHeadAtlasProjectionBounds(polys, texId, node);
             const coplanarOverlayDistance = (
@@ -2557,8 +2590,6 @@ export class Mt5Loader {
                 subMesh._mt5NodeAddress = node?.addr ?? null;
                 subMesh.parent = rootMesh;
 
-                const tex = this.textureCache.get(texId);
-                const alphaMode = this.alphaModeForTexture(texId, tex);
                 const debugTextureless = (
                     (this.ryoHeadAtlasDebug === "regions" || this.ryoHeadAtlasDebug === "strip-index") &&
                     this.isRyoHeadAtlasTexture(texId)
@@ -2582,7 +2613,7 @@ export class Mt5Loader {
                             `mt5_mat_${texId}`,
                             this.scene,
                         )
-                        : new BABYLON.StandardMaterial(
+                        : new SceneStandardMaterial(
                             `mt5_mat_${texId}`,
                             this.scene,
                         );
@@ -2626,8 +2657,8 @@ export class Mt5Loader {
                     }
 
                     if (!debugTextureless && alphaMode === "blend") {
-                        mat.diffuseTexture.hasAlpha = true;
-                        mat.useAlphaFromDiffuseTexture = true;
+                        if (mat.diffuseTexture) mat.diffuseTexture.hasAlpha = Boolean(tex.hasAlpha);
+                        mat.useAlphaFromDiffuseTexture = Boolean(tex?.hasAlpha);
                         mat.transparencyMode = BABYLON.StandardMaterial.MATERIAL_ALPHABLEND;
                         mat.needDepthPrePass = false;
                         mat.separateCullingPass = true;

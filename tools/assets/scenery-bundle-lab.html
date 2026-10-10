@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><title>Prepared scenery experiment</title>
+<style>
+body{margin:0;background:#161616;color:#eee;font:14px system-ui}header{padding:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+button,select{font:inherit;padding:6px}canvas{display:block;width:100%;height:calc(100vh - 130px)}pre{margin:8px;white-space:pre-wrap}label{display:flex;align-items:center;gap:4px}
+</style>
+<header><strong>Scenery-only experiment</strong><button id="source">Load original</button><button id="compile">Build bundle</button><button id="prepared">Load bundle</button>
+<label>View <select id="view"><option value="0">Along the street</option><option value="1">Opposite direction</option><option value="2">Overview</option><option value="3">Fixed fixture</option></select></label>
+<label>Time <select id="time"><option value="0">Day</option><option value="2">Evening</option><option value="3">Night</option></select></label>
+<label>Season <select id="season"><option value="0">Summer</option><option value="1">Winter</option></select></label>
+<button id="measure">Measure 5 seconds</button><button id="compare">Compare 24 views</button></header>
+<canvas id="renderCanvas" aria-label="Dobuita scenery comparison"></canvas><pre id="status">Loading experiment…</pre>
+<script type="module" src="./scenery-bundle-lab.js"></script></html>

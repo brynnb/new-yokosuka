@@ -5,6 +5,9 @@ import path from "node:path";
 import test from "node:test";
 import { createHash } from "node:crypto";
 import { buildRuntimePlan } from "../tools/runtime-assets.mjs";
+import {buildSceneryUploadPlan} from '../tools/assets/scenery-publication.mjs';
+import {gunzipSync} from 'node:zlib';
+import uploadWorker from '../tools/r2-asset-upload-worker/worker.js';
 
 import {
   buildShenmue1Plan,
@@ -78,6 +81,40 @@ test("CLI requires an explicit game and supports external S2 staging", () => {
   assert.equal(options.game, "s2");
   assert.equal(options.s2Root, path.resolve("../staging"));
   assert.equal(options.dryRun, true);
+});
+
+test('scenery publication compresses losslessly without changing decoded content keys', t => {
+  const root = temporaryDirectory(t);
+  const directory = path.join(root, '.disc-work/scenery-bundle/dobuita');
+  fs.mkdirSync(directory, {recursive: true});
+  fs.mkdirSync(path.join(root, 'play/data'), {recursive: true});
+  const bytes = Buffer.from('original decoded scene');
+  const record = {size: bytes.length, sha256: createHash('sha256').update(bytes).digest('hex')};
+  for (const file of ['world.json', 'world.bin']) fs.writeFileSync(path.join(directory, file), bytes);
+  fs.writeFileSync(path.join(root, 'play/data/scenery-bundles.generated.json'), JSON.stringify({
+    schema: 'new-yokosuka-scenery-catalog-v1', bundles: {dobuita: {manifest: record, binary: record, policyHashes: {}}}}));
+  const plan = buildSceneryUploadPlan(root);
+  assert.equal(plan.length, 2);
+  assert.equal(parseArguments(['--game', 'scenery']).game, 'scenery');
+  for (const item of plan) {
+    assert.deepEqual(gunzipSync(fs.readFileSync(item.filePath)), bytes);
+    assert.equal(item.contentEncoding, 'gzip');
+    assert.match(item.key, new RegExp(`/scenery/${record.sha256}/dobuita/`));
+  }
+  fs.writeFileSync(path.join(directory, 'world.bin'), 'changed');
+  assert.throws(() => buildSceneryUploadPlan(root), /Unregistered scenery change/);
+});
+
+test('the shared R2 bridge retains transfer encoding and compressed checksum metadata', async () => {
+  let options;
+  const response = await uploadWorker.fetch(new Request('http://localhost/', {
+    method: 'PUT', body: 'compressed bytes', headers: {'x-r2-object-key': 'shenmue/scenery/test/world.bin',
+      'x-r2-sha256': 'a'.repeat(64), 'content-type': 'application/octet-stream', 'content-encoding': 'gzip',
+      'cache-control': 'public, max-age=31536000, immutable'}}),
+    {BUCKET: {put: async (_key, _body, metadata) => {options = metadata}}});
+  assert.equal(response.status, 201);
+  assert.equal(options.httpMetadata.contentEncoding, 'gzip');
+  assert.equal(options.customMetadata.sha256, 'a'.repeat(64));
 });
 
 test("runtime publication can select new audio without requiring unrelated restored assets", (t) => {

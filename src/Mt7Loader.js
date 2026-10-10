@@ -1,4 +1,5 @@
 import * as BABYLON from "@babylonjs/core";
+import { SceneStandardMaterial } from "./rendering/SceneStandardMaterial.js";
 import { parseMt7, mt7BatchTriangleIndices } from "./Mt7Parser.js";
 import {
   mt7MapEffectDefinition,
@@ -6,6 +7,7 @@ import {
 } from "./Mt7MapEffects.js";
 import { PvrDecoder } from "./PvrDecoder.js";
 import { findCharacterRigSeamGroups } from "./Mt5CharacterRig.js";
+import {applyModelOverlayDefinition, overlayDefinitionForFile} from './ModelDepthOverlays.js';
 
 // This texture ID is consistently authored as the tiled harbor/ocean surface
 // across the audited Shenmue II Dreamcast maps. Identifying the material by
@@ -146,8 +148,10 @@ export class Mt7Loader {
     generateMipMaps = true,
     characterRigSeamMode = null,
     characterRigSeamEpsilon = 1e-5,
+    overlayManifest = null,
   } = {}) {
     this.scene = scene;
+    this.overlayManifest = overlayManifest;
     this.generateMipMaps = generateMipMaps;
     this.characterRigSeamMode = characterRigSeamMode === "weld"
       ? "weld"
@@ -515,7 +519,7 @@ export class Mt7Loader {
       if (this.materialCache.has(stateKey)) {
         return this.materialCache.get(stateKey);
       }
-      const material = new BABYLON.StandardMaterial(
+      const material = new SceneStandardMaterial(
         `mt7_material_${stateKey}`,
         this.scene,
       );
@@ -669,6 +673,9 @@ export class Mt7Loader {
             ...(mesh.metadata || {}),
             mt7VertexEncoding: group.vertexEncoding,
             mt7NodeOffset: node.offset,
+            mt7GroupIndex: group.index,
+            mt7BatchIndex: batchIndex,
+            mt7PolygonListType: materialState.listType,
             sourceTextureId: textureId || null,
             surfaceKind: isAuthoredWater ? "water" : null,
             authoredWater: isAuthoredWater,
@@ -689,6 +696,18 @@ export class Mt7Loader {
       root.metadata.surfaceKind = "water-layer";
     } else if (root.metadata.authoredWaterMeshCount > 0) {
       root.metadata.surfaceKind = "mixed-with-water";
+    }
+
+    // Scenery-only definitions are generated offline. No runtime geometry
+    // search, vertex displacement or bias on unrelated uses of a texture.
+    const definition = options.overlayDefinition
+      ? overlayDefinitionForFile({files: {[sourceName.toUpperCase()]: options.overlayDefinition}}, sourceName, buffer.byteLength)
+      : overlayDefinitionForFile(this.overlayManifest, sourceName, buffer.byteLength);
+    if (definition && options.assetKind === 'MAPM') {
+      for (const mesh of applyModelOverlayDefinition(root, definition)) {
+        this.materials.add(mesh.material);
+        for (const texture of mesh.material?.getActiveTextures() || []) this.textures.add(texture);
+      }
     }
 
     if (this.characterRigSeamMode === "weld") {

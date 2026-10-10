@@ -8,7 +8,7 @@ const RENDER_PROPERTIES = [
   "useVertexColors", "hasVertexAlpha", "isPickable", "checkCollisions",
   "receiveShadows", "applyFog", "visibility",
 ];
-const SURFACE_PROPERTIES = ["authoredWater", "mt5DepthOverlay", "terrain", "cameraBlocker"];
+const SURFACE_PROPERTIES = ["authoredWater", "mt5DepthOverlay", "mt7DepthOverlay", "terrain", "cameraBlocker"];
 
 function sourceRanges(meshes) {
   let firstFace = 0;
@@ -20,6 +20,8 @@ function sourceRanges(meshes) {
       firstVertex, vertexCount: mesh.getTotalVertices(),
       meshName: mesh.name, meshUniqueId: mesh.uniqueId,
       nodeAddress: mesh._mt5NodeAddress ?? null,
+      ...(mesh.metadata?.sceneryPlacement ? {sceneryPlacement: mesh.metadata.sceneryPlacement} : {}),
+      sourceModel: mesh.metadata?.sourceModel,
       originalFaceIds: mesh._mt5OriginalFaceIds
         ? Array.from(mesh._mt5OriginalFaceIds) : null,
       // Retain the original broad-phase test. Babylon permits a small epsilon
@@ -91,11 +93,38 @@ export function staticBatchSourceForFace(mesh, faceId) {
     meshName: range.meshName, meshUniqueId: range.meshUniqueId,
     nodeAddress: range.nodeAddress,
     faceId: range.originalFaceIds?.[localFace] ?? localFace,
+    ...(range.sceneryPlacement ? {sceneryPlacement: range.sceneryPlacement} : {}),
   };
 }
 
 function staticMetadata(source, count) {
   return {...source.metadata, staticWorldGeometry: true, staticBatchSourceMeshCount: count};
+}
+
+function mergedNormalsInRootSpace(meshes, root) {
+  // Batches already share vertex layouts; unlit geometry may have no normals.
+  if (!meshes[0].isVerticesDataPresent(BABYLON.VertexBuffer.NormalKind)
+    || !meshes.some(mesh => mesh.nonUniformScaling)) return null;
+  // MergeMeshes and bakeTransformIntoVertices use the position transform for
+  // normals. Non-uniform authored scales need inverse-transpose instead, just
+  // like Babylon's vertex shader. Preserve each vertex's world-space normal,
+  // then undo the retained root's normal transform (transpose of its world).
+  const normals = new Float32Array(meshes.reduce((sum, mesh) => sum + mesh.getTotalVertices() * 3, 0));
+  const rootTranspose = BABYLON.Matrix.Transpose(root.getWorldMatrix());
+  const normal = BABYLON.Vector3.Zero();
+  let offset = 0;
+  for (const mesh of meshes) {
+    const worldNormal = BABYLON.Matrix.Transpose(BABYLON.Matrix.Invert(mesh.getWorldMatrix()));
+    const source = mesh.getVerticesData(BABYLON.VertexBuffer.NormalKind);
+    for (let index = 0; index < source.length; index += 3) {
+      BABYLON.Vector3.TransformNormalFromFloatsToRef(source[index], source[index + 1], source[index + 2], worldNormal, normal);
+      normal.normalize();
+      BABYLON.Vector3.TransformNormalToRef(normal, rootTranspose, normal);
+      normal.toArray(normals, offset);
+      offset += 3;
+    }
+  }
+  return normals;
 }
 
 /**
@@ -142,10 +171,19 @@ function* batchMapRoot(root, {
       const source = meshes[0];
       const properties = Object.fromEntries(RENDER_PROPERTIES.map(key => [key, source[key]]));
       const metadata = {...staticMetadata(source, meshes.length), staticBatchSources: sourceRanges(meshes)};
+      // A combined fixed-prop layer can contain several source models. The
+      // per-face records above retain identity; no whole batch belongs to the
+      // first prop merely because that happened to be its first surface.
+      if (meshes.some(mesh => mesh.metadata?.sceneryPlacement)) {
+        delete metadata.sceneryPlacement;
+        delete metadata.sourceModel;
+      }
+      const normals = mergedNormalsInRootSpace(meshes, root);
       const merged = BABYLON.Mesh.MergeMeshes(meshes, true, true);
       if (!merged) throw new Error("Compatible static world meshes could not be merged");
       merged.name = `${label}_static_${batchIndex++}`;
       if (!inverseRoot.isIdentity()) merged.bakeTransformIntoVertices(inverseRoot);
+      if (normals) merged.setVerticesData(BABYLON.VertexBuffer.NormalKind, normals, false);
       merged.parent = root;
       Object.assign(merged, properties);
       merged.metadata = metadata;
@@ -175,15 +213,19 @@ export function spatiallyBatchMt7MapRoot(root, options = {}) {
   return step.value;
 }
 
-function immutableMt5Mesh(mesh, root) {
+export function immutableMt5Mesh(mesh, root, {fixedPlacementRoots} = {}) {
   if (
     !mesh.material || mesh.material.getClassName() === "MultiMaterial"
     || mesh.material.needAlphaBlendingForMesh(mesh)
     || mesh.skeleton || mesh.morphTargetManager || mesh.isAnInstance
-    // Babylon's geometry merge transforms normals directly, whereas a
-    // non-uniformly scaled mesh uses the inverse-transpose for shading/picks.
-    // Keep these authored transforms intact rather than changing their normals.
-    || mesh.nonUniformScaling
+    // Correct scaled normals below, but leave tangent-frame/custom geometry
+    // intact until its handedness and shader inputs have equivalent coverage.
+    || (mesh.nonUniformScaling && (
+      !mesh.isVerticesDataPresent(BABYLON.VertexBuffer.NormalKind)
+      || mesh.isVerticesDataPresent(BABYLON.VertexBuffer.TangentKind)
+    ))
+    || !Number.isFinite(mesh.getWorldMatrix().determinant())
+    || mesh.getWorldMatrix().determinant() === 0
     || mesh.instances?.length || mesh.hasThinInstances
     || mesh.subMeshes?.length !== 1 || mesh.visibility !== 1
     || !mesh.isVisible || mesh.billboardMode || mesh.infiniteDistance
@@ -197,9 +239,10 @@ function immutableMt5Mesh(mesh, root) {
   for (let node = mesh; node; node = node.parent) {
     const metadata = node.metadata;
     if (!node.isWorldMatrixFrozen || node.animations?.length || node.actionManager
-      || node._runtimePlacement || node._scheduledSceneObject
+      || (node._runtimePlacement && !fixedPlacementRoots?.has(node)) || node._scheduledSceneObject
+      || metadata?.runtimeObject || metadata?.runtimeSurface
       || metadata?.localEffect || metadata?.nativeAseqSceneObject
-      || metadata?.arcadeSuppressedVariant
+      || metadata?.arcadeSuppressedVariant || metadata?.environmentSurfaceVariant
       || Object.keys(metadata || {}).some(key => key.startsWith("interactive"))) return false;
     // A whole layer can be inactive until night/winter. Disabled subtrees
     // inside it have a separate owner (for example AUTH geometry masks).
@@ -215,6 +258,29 @@ function yieldBatchWork() {
     : new Promise(resolve => setTimeout(resolve, 0));
 }
 
+/** Explicit offline layer entry point. Gameplay never approves placed roots. */
+export async function batchStaticSceneryLayer(root, {
+  signal, yieldWork = yieldBatchWork, workBudgetMs = WORK_BUDGET_MS,
+  cellSize = STATIC_WORLD_BATCH_CELL_SIZE, fixedPlacementRoots,
+  workBudget = {checkpoint: performance.now()},
+} = {}) {
+  const batches = batchMapRoot(root, {
+    eligible: (mesh, owner) => immutableMt5Mesh(mesh, owner, {fixedPlacementRoots}),
+    label: "mt5", cellSize,
+  });
+  let step;
+  do {
+    signal?.throwIfAborted();
+    step = batches.next();
+    if (!step.done && performance.now() - workBudget.checkpoint >= workBudgetMs) {
+      await yieldWork();
+      signal?.throwIfAborted();
+      workBudget.checkpoint = performance.now();
+    }
+  } while (!step.done);
+  return step.value;
+}
+
 /**
  * Gameplay-only finalization, after surface edits/runtime ownership and before
  * building collision/render indices. Viewer inspection never calls this.
@@ -223,26 +289,19 @@ function yieldBatchWork() {
  */
 export async function batchStaticWorldRoots(roots, {
   signal, yieldWork = yieldBatchWork, workBudgetMs = WORK_BUDGET_MS,
+  cellSize = STATIC_WORLD_BATCH_CELL_SIZE,
 } = {}) {
   const results = [];
-  let checkpoint = performance.now();
+  // Share the deadline across small layers too. Resetting it at every root can
+  // turn many individually cheap layers into one long uninterruptible task.
+  const workBudget = {checkpoint: performance.now()};
   for (const root of roots) {
     signal?.throwIfAborted();
-    if (!isWorldMapFile(root._filename || "") || root._mt5CharacterRig
+    if (!isWorldMapFile(root._filename || "") || root._mt5CharacterRig || root._preparedModelTemplate
       || root._runtimePlacement || root._scheduledSceneObject
       || root.metadata?.staticBatchInputMeshCount !== undefined) continue;
-    const batches = batchMapRoot(root, {eligible: immutableMt5Mesh, label: "mt5"});
-    let step;
-    do {
-      signal?.throwIfAborted();
-      step = batches.next();
-      if (!step.done && performance.now() - checkpoint >= workBudgetMs) {
-        await yieldWork();
-        signal?.throwIfAborted();
-        checkpoint = performance.now();
-      }
-    } while (!step.done);
-    results.push({filename: root._filename, ...step.value});
+    const result = await batchStaticSceneryLayer(root, {signal, yieldWork, workBudgetMs, cellSize, workBudget});
+    results.push({filename: root._filename, ...result});
   }
   return results;
 }

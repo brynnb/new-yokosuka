@@ -9,6 +9,7 @@ import {
   pickMeshesWithRay,
 } from "../src/rendering/SceneSpatialIndex.js";
 import { spatiallyBatchMt7MapRoot } from "../src/rendering/StaticWorldBatching.js";
+import { ThirdPersonController, nativeCollisionDisplacementAllowed } from "../src/ThirdPersonController.js";
 
 function ground(name, scene, material, x, y, metadata = {}) {
   const mesh = BABYLON.MeshBuilder.CreateGround(name, {
@@ -22,6 +23,126 @@ function ground(name, scene, material, x, y, metadata = {}) {
   mesh.computeWorldMatrix(true);
   return mesh;
 }
+
+test("collision broad phase preserves swept wall/corner contacts and ignores distant scenery", () => {
+  const engine = new BABYLON.NullEngine();
+  const scene = new BABYLON.Scene(engine);
+  scene.collisionsEnabled = true;
+  try {
+    const wall = BABYLON.MeshBuilder.CreateBox("wall", {width: 0.1, height: 8, depth: 10}, scene);
+    wall.position.x = 2;
+    wall.checkCollisions = true;
+    wall.freezeWorldMatrix();
+    const corner = BABYLON.MeshBuilder.CreateBox("corner", {width: 10, height: 8, depth: 0.1}, scene);
+    corner.position.z = 2;
+    corner.checkCollisions = true;
+    corner.freezeWorldMatrix();
+    const far = ground("far", scene, null, 100, 0);
+    far.checkCollisions = true;
+    far.freezeWorldMatrix();
+    const index = new WorldRaycastIndex(scene, [wall, corner, far]);
+    const collider = BABYLON.MeshBuilder.CreateBox("player", {size: 0.1}, scene);
+    collider.ellipsoid.set(0.24, 0.85, 0.24);
+    collider.ellipsoidOffset.set(0, 0.85, 0);
+    const controller = Object.assign(Object.create(ThirdPersonController.prototype), {
+      scene, collider, raycastIndex: index, options: {playerRadius: 0.24},
+    });
+    const coordinator = scene.collisionCoordinator;
+    const original = coordinator.getNewPosition;
+    let indexedCandidates;
+    coordinator.getNewPosition = function(...args) {
+      indexedCandidates = collider.surroundingMeshes;
+      return original.apply(this, args);
+    };
+    for (const start of [[0, 0, 0], [1.7, 0, 1.7], [16.1, 0, 0]]) {
+      for (const move of [[3, 0, 0], [3, 0, 3], [-18, 0, 2], [0.03, 0, 0.1]]) {
+        collider.position.copyFromFloats(...start);
+        collider.computeWorldMatrix(true);
+        collider.moveWithCollisions(BABYLON.Vector3.FromArray(move));
+        const expected = collider.position.clone();
+        collider.position.copyFromFloats(...start);
+        collider.computeWorldMatrix(true);
+        controller.moveColliderWithCollisions(BABYLON.Vector3.FromArray(move));
+        assert.ok(BABYLON.Vector3.Distance(expected, collider.position) < 1e-6, `${start} -> ${move}`);
+        assert.ok(!indexedCandidates.includes(far));
+        assert.equal(collider.surroundingMeshes, null);
+      }
+    }
+    index.dispose();
+  } finally { scene.dispose(); engine.dispose(); }
+});
+
+test("collision queries observe same-frame door movement, toggles, promotion and disposal", async () => {
+  const engine = new BABYLON.NullEngine();
+  const scene = new BABYLON.Scene(engine);
+  try {
+    const parked = ground("parked", scene, null, 100, 0);
+    parked.checkCollisions = true;
+    parked.freezeWorldMatrix();
+    const index = new WorldRaycastIndex(scene, [parked]);
+    const start = new BABYLON.Vector3(-0.4, 0, 0);
+    const end = new BABYLON.Vector3(0.4, 0, 0);
+    assert.deepEqual(index.collisionCandidates(start, end, 0.24), []);
+    const door = BABYLON.MeshBuilder.CreateBox("door", {width: 0.1, height: 3, depth: 4}, scene);
+    door.checkCollisions = true;
+    door.metadata = {nativeCollision: true, nativeCollisionSegments: [[[0, -2], [0, 2]]]};
+    await new Promise(resolve => setImmediate(resolve));
+    const blocked = () => nativeCollisionDisplacementAllowed(
+      index.collisionCandidates(start, end, 0.24), start, end.subtract(start), 0.24,
+    );
+    assert.equal(blocked(), false);
+    door.checkCollisions = false;
+    assert.equal(blocked(), true);
+    door.checkCollisions = true;
+    door.position.x = 30;
+    assert.equal(blocked(), true);
+    door.position.x = 0;
+    assert.equal(blocked(), false);
+    markWorldMeshDynamic(parked);
+    parked.position.x = 0;
+    assert.ok(index.collisionCandidates(start, end, 0.24).includes(parked));
+    door.dispose();
+    await new Promise(resolve => setImmediate(resolve));
+    assert.equal(blocked(), true);
+    index.dispose();
+  } finally { scene.dispose(); engine.dispose(); }
+});
+
+test("render candidates follow hidden actor parents without losing query proxies or reactivation", async () => {
+  const engine = new BABYLON.NullEngine();
+  const scene = new BABYLON.Scene(engine);
+  try {
+    const map = ground("map", scene, null, 0, 0);
+    map.freezeWorldMatrix();
+    const actor = new BABYLON.TransformNode("actor", scene);
+    const body = new BABYLON.TransformNode("body", scene);
+    body.parent = actor;
+    const part = ground("body-part", scene, null, 0, 0);
+    part.parent = body;
+    const proxy = ground("query-proxy", scene, null, 0, 0);
+    proxy.parent = actor;
+    const index = new WorldRaycastIndex(scene, [map], {accelerateRendering: true});
+    const select = () => {
+      scene.onBeforeActiveMeshesEvaluationObservable.notifyObservers(scene);
+      return index.selectionOctree.dynamicContent.slice();
+    };
+    body.setEnabled(false);
+    assert.deepEqual(select(), [proxy]);
+    body.setEnabled(true);
+    assert.deepEqual(select(), [part, proxy]);
+    actor.setEnabled(false);
+    assert.deepEqual(select(), []);
+    part.parent = null;
+    assert.deepEqual(select(), [part]);
+    actor.setEnabled(true);
+    part.dispose();
+    await new Promise(resolve => setImmediate(resolve));
+    assert.deepEqual(select(), [proxy]);
+    const observerCount = scene.onBeforeActiveMeshesEvaluationObservable.observers.length;
+    index.dispose();
+    assert.equal(scene.onBeforeActiveMeshesEvaluationObservable.observers.filter(o => !o._willBeUnregistered).length, observerCount - 1);
+  } finally { scene.dispose(); engine.dispose(); }
+});
 
 test("resident props promoted after indexing render and pick at their new position", () => {
   const engine = new BABYLON.NullEngine();

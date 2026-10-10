@@ -30,6 +30,7 @@ export default {
         sha256,
         httpMetadata: {
           contentType: request.headers.get("content-type") || "application/octet-stream",
+          contentEncoding: request.headers.get('content-encoding') || undefined,
           cacheControl: request.headers.get("cache-control") || undefined,
         },
         customMetadata: { sha256 },

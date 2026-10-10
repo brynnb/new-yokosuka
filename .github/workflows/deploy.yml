@@ -37,6 +37,9 @@ jobs:
       - name: Verify versioned runtime metadata
         run: node --test tests/RuntimeAssets.test.js
 
+      - name: Verify build-pinned scenery catalog
+        run: node tools/assets/scenery-publication.mjs check
+
       - name: Test atomic frontend releases
         run: node --test tests/FrontendRelease.test.js tests/LuckyBreakPackage.test.js
 

@@ -6,17 +6,17 @@ import * as BABYLON from "@babylonjs/core";
 import { Mt5Loader } from "../src/Mt5Loader.js";
 import { PACKAGED_VIEWER_ASSETS } from "../src/PackagedViewerAssets.js";
 import overlayManifest from "../play/data/mt5-overlay-manifest.json" with { type: "json" };
-import { mapSourcesForCatalog } from "../tools/assets/generate_mt5_overlay_manifest.js";
+import { mapSourcesForCatalog } from "../tools/assets/generate_model_overlay_manifest.js";
 
 import {
-  applyMt5OverlayDefinition,
+  applyModelOverlayDefinition,
   MAXIMUM_DEPTH_OVERLAY_RANK,
   overlayDefinitionForFile,
-} from "../src/Mt5OverlayManifest.js";
+} from "../src/ModelDepthOverlays.js";
 import {
-  detectMt5OverlayFaces,
+  detectModelOverlayFaces,
   overlayRanksForEdges,
-} from "../tools/assets/mt5_overlay_analyzer.js";
+} from "../tools/assets/model_overlay_analyzer.js";
 
 function meshForTriangles(scene, parent, textureId, positions, indices) {
   const mesh = new BABYLON.Mesh(`mt5_tex_${textureId}`, scene);
@@ -76,7 +76,7 @@ test("packaged opening terrain receives its generated bias without losing or mov
   }).sort();
   try {
     const [raw] = await new Mt5Loader(original).load(buffer, null, { sourceFilename: filename });
-    const result = detectMt5OverlayFaces(original);
+    const result = detectModelOverlayFaces(original);
     assert.deepEqual(overlayManifest.files[filename], {
       byteLength: buffer.byteLength, ...result,
     }, "checked-in definition matches canonical geometry analysis");
@@ -127,7 +127,7 @@ test("geometrically classifies contained facade details as overlays", () => {
       [0, 1, 2, 1, 3, 2],
     );
 
-    const result = detectMt5OverlayFaces(scene);
+    const result = detectModelOverlayFaces(scene);
     assert.deepEqual(result.overlays, [{
       nodeAddress: 0x100,
       textureId: 3,
@@ -140,6 +140,25 @@ test("geometrically classifies contained facade details as overlays", () => {
     scene.dispose();
     engine.dispose();
   }
+});
+
+test('MT7 facade ordering includes intermediate layers and native translucent lists', () => {
+  const engine = new BABYLON.NullEngine();
+  const scene = new BABYLON.Scene(engine);
+  try {
+    const root = new BABYLON.TransformNode('root', scene);
+    const part = (group, size, list = 0) => {
+      const mesh = meshForTriangles(scene, root, group,
+        [-size, -size, 0, size, -size, 0, -size, size, 0, size, size, 0], [0, 1, 2, 1, 3, 2]);
+      mesh.metadata = {mt7NodeOffset: 100, mt7GroupIndex: group, mt7BatchIndex: 0, mt7PolygonListType: list};
+      return mesh;
+    };
+    // Native file order is not transparent draw order. The equal-size paint
+    // overlay is first, then a small window, ivy, and the large brick backing.
+    part(0, 1, 2); part(1, 1); part(2, 2, 2); part(3, 4);
+    const result = detectModelOverlayFaces(scene);
+    assert.deepEqual(result.overlays.map(({groupIndex, rank}) => [groupIndex, rank]), [[0, 3], [1, 2], [2, 1]]);
+  } finally {scene.dispose(); engine.dispose();}
 });
 
 test("collapses cyclic overlay relationships before assigning ranks", () => {
@@ -191,7 +210,7 @@ test("splits only manifested faces and applies constant depth bias", () => {
     source.material.diffuseTexture.wrapV = BABYLON.Texture.MIRROR_ADDRESSMODE;
     source.material.diffuseTexture.wrapR = BABYLON.Texture.WRAP_ADDRESSMODE;
 
-    const overlays = applyMt5OverlayDefinition(modelRoot, {
+    const overlays = applyModelOverlayDefinition(modelRoot, {
       overlays: [{
         nodeAddress: 0x100,
         textureId: 3,
@@ -246,7 +265,7 @@ test("caps malformed manifest ranks before applying depth bias", () => {
       [0, 1, 2],
     );
 
-    const [overlay] = applyMt5OverlayDefinition(modelRoot, {
+    const [overlay] = applyModelOverlayDefinition(modelRoot, {
       overlays: [{
         nodeAddress: 0x100,
         textureId: 3,
@@ -299,7 +318,7 @@ for (const mode of ["opaque", "alphatest", "blend"]) {
         source.setVerticesData("color", [
           1, 1, 1, 1, 1, 1, 1, 0.5, 1, 1, 1, 0.25, 1, 1, 1, 1,
         ]);
-        const [overlay] = applyMt5OverlayDefinition(modelRoot, {
+        const [overlay] = applyModelOverlayDefinition(modelRoot, {
           overlays: [{ nodeAddress: 0x100, textureId: 3, rank: 1,
             faceIds: wholeMesh ? [0, 1] : [1] }],
         });

@@ -68,7 +68,7 @@ Custom mip levels are uploaded to Babylon's internal texture after the base
 `RawTexture` is created. Texture clones used for different MT5 wrap modes share
 that internal GPU texture and therefore share its mip chain.
 
-The per-face depth-bias pipeline in `Mt5OverlayManifest` must preserve the
+The per-face depth-bias pipeline in `ModelDepthOverlays` must preserve the
 source texture's `hasAlpha` as well as its wrap modes: Babylon's `RawTexture`
 clone shares pixels but resets those wrapper settings. Losing `hasAlpha`
 made transparent ground patches in the OP00 mail scene render as solid

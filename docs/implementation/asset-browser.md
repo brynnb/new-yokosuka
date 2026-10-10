@@ -17,6 +17,40 @@ The viewer retains individual nodes by disabling static batching; /play batches
 compatible static MT5 map parts and MT7 MAPM geometry. PROP hierarchies remain
 intact in both.
 
+Static batching retains model/layer roots, spatial cells, material and surface
+state, and source-face picking information. Scaled MT5 map parts use the
+inverse-transpose normal transform before merging; applying the position
+transform to normals would change lighting on non-uniformly scaled geometry.
+Blended surfaces, tangent-bearing scaled meshes, callbacks, moving/interactive
+owners and independently disabled subtrees remain unmerged. The viewer continues
+to retain individual inspection parts. Regression coverage is in
+`tests/StaticWorldBatching.test.js`, including mirrored/scaled geometry, ground
+picking, layer changes and cancellation.
+
+`SceneStandardMaterial.js` reuses Babylon's prepared shader state only for
+immutable world batches with clean submesh defines. It keeps ordinary per-mesh
+uniform binding active (including camera, fog and lighting), rather than freezing
+shared materials. Material/light/attribute dirty flags, replaced or new render-pass
+effects and script promotion back to dynamic geometry leave that fast path.
+Camera projection, clipping/depth state and light-resource readiness are still
+checked. Characters, instances, mutable surfaces, active material plugins and
+specialized rendering passes use normal shader preparation.
+
+`SceneSpatialIndex.js` shares its static cells between ray picking and swept
+collision queries. Dynamic door bounds and collision flags are read at query
+time. The controller passes a conservative nearby list to Babylon's sliding
+ellipsoid and uses the same index for native boundary/recovery checks; candidate
+lists are never retained across movements or travel. Before render selection,
+disabled dynamic meshes are omitted from the octree candidates. Occlusion query
+proxies stay independently enabled so hidden actors can become visible again.
+Coverage is in `tests/WorldRaycastIndex.test.js`, `tests/ThirdPersonController.test.js`
+and `tests/SceneStandardMaterial.test.js`.
+
+Scene cleanup releases meshes before their materials and textures. Partial-load
+cleanup retains resources referenced by surviving meshes; full travel releases
+the final owners. Scene-lifetime caches must observe resource disposal rather
+than returning disposed materials on the next world load.
+
 `AssetViewerEnvironment.js` connects the viewer's time controls and camera
 position to the shared native lighting, map-layer and water implementations.
 /play supplies its clock, actor position and scripted layer changes to those

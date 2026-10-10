@@ -7,6 +7,7 @@ import { WORKERS_PIER_FOUNTAIN_EFFECT } from "../src/Mt7MapEffects.js";
 import { AssetViewerEnvironment } from "../src/AssetViewerEnvironment.js";
 import { variantProfileForZone } from "../src/SceneCompositions.js";
 import { updateModelVisibility } from "../src/variants.js";
+import mt7OverlayIndex from '../play/data/mt7-overlay-manifest.json' with {type: 'json'};
 
 test("shared MT5 loading filters resident variants before the first frame, even without a clock change", async t => {
   t.mock.method(globalThis, "fetch", async url => String(url).endsWith(".json")
@@ -176,6 +177,32 @@ test("scene disposal releases earlier MT5 materials after their loader cache was
   engine.dispose();
 });
 
+test("partial scene cleanup retains shared textures and multi-material owners until final disposal", t => {
+  const engine = new B.NullEngine();
+  const scene = new B.Scene(engine);
+  t.after(() => { scene.dispose(); engine.dispose(); });
+  const texture = new B.RawTexture(new Uint8Array([255,255,255,255]), 1, 1, B.Engine.TEXTUREFORMAT_RGBA, scene);
+  const cancelled = B.MeshBuilder.CreateBox("cancelled", {}, scene);
+  cancelled.material = new B.StandardMaterial("cancelled", scene);
+  cancelled.material.diffuseTexture = texture;
+  const disposedMaterial = cancelled.material;
+  const resident = B.MeshBuilder.CreateBox("resident", {}, scene);
+  const surface = new B.StandardMaterial("resident_surface", scene);
+  surface.diffuseTexture = texture;
+  resident.material = new B.MultiMaterial("resident_multi", scene);
+  resident.material.subMaterials.push(surface);
+  resident.metadata = { customWorldGeometry: true };
+  resident.setEnabled(false);
+  clearWorldSceneAssets({ currentMeshes: [cancelled] });
+  assert.equal(scene.materials.includes(disposedMaterial), false);
+  assert.ok(scene.textures.includes(texture));
+  assert.ok(scene.materials.includes(surface));
+  clearWorldSceneAssets({ currentMeshes: [resident] });
+  assert.equal(scene.textures.includes(texture), false);
+  assert.equal(scene.materials.includes(surface), false);
+  assert.equal(scene.multiMaterials.length, 0);
+});
+
 test("both scene profiles share materials and map effects while inspection preserves parts", async t => {
   t.mock.method(globalThis, "fetch", async () => new Response(new Uint8Array([1]), {headers: {"Content-Type": "application/octet-stream"}}));
   for (const batchStatic of [false, true]) {
@@ -209,4 +236,57 @@ test("both scene profiles share materials and map effects while inspection prese
     scene.dispose();
     engine.dispose();
   }
+});
+
+test('MT7 scene loading shares validated overlay shards, retries and rejects late or stale data', async t => {
+  const filenames = ['S2DC_D1_AK00_MPK00_MAP.MT7', 'S2DC_D1_AK00_MPK00_MAP01.MT7'];
+  const records = filenames.map(filename => ({filename, area: 'AK00', kind: 'MAPM'}));
+  const shard = {files: Object.fromEntries(filenames.map(filename => [filename, {
+    ...mt7OverlayIndex.files[filename], overlays: [],
+  }]))};
+  const parsed = [];
+  const state = {currentMeshes: [], currentLoadId: 0, mt7Loader: {
+    clearCaches() {},
+    load(bytes, textures, options) { parsed.push(options); return []; },
+  }};
+  let requests = 0;
+  let readShard = () => Response.json(shard);
+  t.mock.method(globalThis, 'fetch', async url => {
+    if (String(url).includes('/data/mt7-overlays/')) { requests++; return readShard(); }
+    return new Response(new Uint8Array([1]), {headers: {'Content-Type': 'application/octet-stream'}});
+  });
+  readShard = () => {
+    if (requests === 1) throw Error('transient shard failure');
+    return Response.json(shard);
+  };
+  assert.equal(await loadMt7Scene(state, records), true);
+  assert.equal(requests, 2, 'one shared shard request plus one retry for both models');
+  assert.deepEqual(parsed.map(p => p.sourceFilename).sort(), [...filenames].sort());
+  for (const options of parsed) assert.deepEqual(options.overlayDefinition, shard.files[options.sourceFilename]);
+  parsed.length = 0;
+
+  readShard = () => Response.json({files: {[filenames[0]]: {...shard.files[filenames[0]], revision: 'stale'}}});
+  await assert.rejects(loadMt7Scene(state, records), error => error instanceof AggregateError
+    && error.errors.every(cause => cause.message.startsWith('Stale depth overlay definition:')));
+  assert.equal(parsed.length, 0, 'stale definitions never reach model parsing');
+
+  const late = [];
+  readShard = () => new Promise(resolve => late.push(resolve));
+  await assert.rejects(loadMt7Scene(state, records, {timeoutMs: 5, retries: 0}),
+    error => error.errors.every(cause => /timed out/.test(cause.message)));
+  const controller = new AbortController();
+  let started;
+  const start = new Promise(resolve => { started = resolve; });
+  readShard = () => { started(); return new Promise(resolve => late.push(resolve)); };
+  const cancelled = loadMt7Scene(state, records, {signal: controller.signal});
+  await start;
+  controller.abort();
+  assert.equal(await cancelled, false);
+  for (const resolve of late) resolve(Response.json(shard));
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(parsed.length, 0, 'late timeout/abort responses cannot mutate the scene');
+
+  readShard = () => Response.json(shard);
+  assert.equal(await loadMt7Scene(state, records), true, 'the next scene can recover normally');
+  assert.equal(parsed.length, 2);
 });

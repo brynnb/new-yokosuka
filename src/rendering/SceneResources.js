@@ -28,22 +28,46 @@ export function freezeSceneRoots(roots) {
 export function clearWorldSceneAssets(state) {
   const materials = new Set();
   const textures = new Set(state.loader?.textureCache?.values?.() || []);
+  const scenes = new Set();
+  const visitMaterial = (material, visit) => {
+    if (!material) return;
+    visit(material);
+    for (const child of material.subMaterials || []) visitMaterial(child, visit);
+  };
   for (const root of state.currentMeshes) {
+    if (root.getScene) scenes.add(root.getScene());
     for (const node of [root, ...(root.getDescendants?.(false) || [])]) {
-      if (node.material) {
-        materials.add(node.material);
-        for (const texture of node.material.getActiveTextures?.() || []) {
+      visitMaterial(node.material, material => {
+        materials.add(material);
+        for (const texture of material.getActiveTextures?.() || []) {
           if (!texture.isRenderTarget) textures.add(texture);
         }
-      }
+      });
     }
-    root.dispose(false, root.metadata?.customWorldGeometry === true);
+    root.dispose(false, false);
   }
   state.currentMeshes = [];
+  const preparedSceneryResources = state.preparedSceneryResources;
+  state.preparedSceneryResources = null;
+  // This cleanup also handles a cancelled single-actor/model load. Materials
+  // (notably NPC query materials) and textures can still belong to other live
+  // roots. Release them only after their last mesh owner has gone, including
+  // disabled models that are cached for a later schedule phase.
+  for (const scene of scenes) {
+    for (const mesh of scene.meshes) {
+      visitMaterial(mesh.material, material => {
+        materials.delete(material);
+        for (const texture of material.getActiveTextures?.() || []) {
+          textures.delete(texture);
+        }
+      });
+    }
+  }
   // MT5 resets its per-model caches between parses, so the last cache alone
   // cannot release a multi-model scene. Collect ownership from every root.
   for (const material of materials) material.dispose(false, false);
   for (const texture of textures) texture.dispose();
+  preparedSceneryResources?.dispose();
   state.loader?.textureCache?.clear?.();
   state.loader?.materialCache?.clear?.();
   state.mt7Loader?.clearCaches();

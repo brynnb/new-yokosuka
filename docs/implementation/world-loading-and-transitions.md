@@ -155,7 +155,38 @@ unfreezing is insufficient: OP00's `RMJN` black car was enabled at its AUTH
 position but still culled using its old parked location. Props remain dynamic
 until world disposal, including after cancellation and replay.
 
-### Download reuse and optional preparation
+### Download reuse and prepared scenery
+
+Local `/play/` uses available prepared bundles for reviewed Shenmue I worlds
+and all registered Shenmue II MT7 destinations by default. Production pins its
+published manifests/binaries through `play/data/scenery-bundles.generated.json`
+and immutable R2 URLs. `?scenery=original` selects the original loader for comparisons.
+An absent local manifest (HTTP 404) is reported and uses original assets. Missing published payloads, stale or
+malformed bundles, missing binaries and other request errors still fail explicitly.
+`PreparedSceneryPlan` selects exact map files
+and variants from the existing world definitions; Harbor and Forklift Playground
+share an identical scenery contract. `PreparedSceneryRuntime` validates the
+schema, world contract and placement-policy inputs, loads the prebuilt scenery,
+and removes only Dobuita's audited fixed placements from
+the ordinary placement list. `PlacementRuntime` also consumes rigid templates
+for eligible doors and vending machines: copies share vertex buffers and
+materials while keeping independent native pivots, transforms and interactions.
+Their raw-model prefetches are skipped. Characters, scheduled shutters and
+other gameplay owners retain their existing paths. Shared materials must remain
+unfrozen so each copy binds its own transform and lighting correctly.
+
+The bundle is owned by the world session; failed or cancelled assembly drains
+before teardown, and disposal releases all copies and shared resources. This
+uses local bundles in development and build-pinned, verified R2 versions in
+production. Reviewed
+interiors, practice/race areas and the four opening cutscenes share this loader;
+unsupported Shenmue I interiors and cinematic stages keep their normal loaders.
+Shenmue II uses the same compiler and reader: MAPM scenery can batch, while
+PROP hierarchies retain native offsets and pivots for the ordinary door owner.
+Independent timed layers and animated map textures retain their shared runtime
+owners; animated samplers are never deduplicated into stationary textures.
+See [prepared scenery tooling](../guides/tooling/scenery-bundle-lab.md) for
+building, validation, measured evidence and remaining rollout checks.
 
 `src/AssetCache.js` coalesces binary asset requests across consumers, runs at
 most four downloads at once, retries a transient failure once, and bounds each

@@ -36,6 +36,33 @@ function nodeAddressForMesh(mesh) {
   return null;
 }
 
+// MT7 can have many strips for one node/texture. Address the native material
+// group and batch, not the texture alone, or face IDs select unrelated strips.
+export function overlayIdentityForMesh(mesh) {
+  if (Number.isInteger(mesh?.metadata?.mt7NodeOffset)
+    && Number.isInteger(mesh.metadata.mt7GroupIndex)
+    && Number.isInteger(mesh.metadata.mt7BatchIndex)) {
+    return {nodeAddress: mesh.metadata.mt7NodeOffset,
+      groupIndex: mesh.metadata.mt7GroupIndex, batchIndex: mesh.metadata.mt7BatchIndex};
+  }
+  const nodeAddress = nodeAddressForMesh(mesh);
+  const textureId = textureIdForMesh(mesh);
+  return Number.isInteger(nodeAddress) && Number.isInteger(textureId)
+    ? {nodeAddress, textureId} : null;
+}
+
+export function overlayIdentityKey(identity) {
+  if (!Number.isInteger(identity?.nodeAddress)) return null;
+  if (Number.isInteger(identity.textureId)) return `${identity.nodeAddress}:${identity.textureId}`;
+  return Number.isInteger(identity.groupIndex) && Number.isInteger(identity.batchIndex)
+    ? `${identity.nodeAddress}:${identity.groupIndex}:${identity.batchIndex}` : null;
+}
+
+function overlayMetadata(source, values) {
+  const prefix = Number.isInteger(source.metadata?.mt7NodeOffset) ? 'mt7' : 'mt5';
+  return Object.fromEntries(Object.entries(values).map(([key, value]) => [`${prefix}DepthOverlay${key}`, value]));
+}
+
 function compactVertexData(source, selectedIndices) {
   const sourcePositions = source.getVerticesData(
     BABYLON.VertexBuffer.PositionKind,
@@ -121,9 +148,14 @@ function copyTextureRenderState(sourceTexture, targetTexture) {
   targetTexture.wrapU = sourceTexture.wrapU;
   targetTexture.wrapV = sourceTexture.wrapV;
   targetTexture.wrapR = sourceTexture.wrapR;
+  for (const key of ['_mt7AuthoredHasAlpha', '_hasGradientAlpha', '_pvrDataFormat']) {
+    if (sourceTexture[key] !== undefined) targetTexture[key] = sourceTexture[key];
+  }
 }
 
 function overlayMaterial(source, rank, options) {
+  let byRank = options.materialCache?.get(source.material);
+  if (byRank?.has(rank)) return byRank.get(rank);
   const material = source.material?.clone?.(
     `${source.material.name}_depth_overlay_${rank}`,
   );
@@ -150,10 +182,15 @@ function overlayMaterial(source, rank, options) {
   ) - units * rank;
   material.metadata = {
     ...(material.metadata || {}),
-    preserveEmissive: true,
-    mt5DepthOverlay: true,
-    mt5DepthOverlayRank: rank,
+    // MT5's authored emissive treatment is unchanged. MT7 decals must keep
+    // following time-of-day lighting just like their backing surfaces.
+    ...(!Number.isInteger(source.metadata?.mt7NodeOffset) ? {preserveEmissive: true} : {}),
+    ...overlayMetadata(source, {'': true, Rank: rank}),
   };
+  if (options.materialCache) {
+    if (!byRank) options.materialCache.set(source.material, byRank = new Map());
+    byRank.set(rank, material);
+  }
   return material;
 }
 
@@ -198,11 +235,8 @@ function splitOverlayFaces(source, groups, options) {
     source.checkCollisions = false;
     source.metadata = {
       ...(source.metadata || {}),
-      mt5DepthOverlay: true,
-      mt5DepthOverlayRank: group.rank,
-      mt5DepthOverlayManifestRank: group.manifestRank,
-      mt5DepthOverlaySourceMesh: source.name,
-      mt5DepthOverlayOriginalFaces: [...group.faceIds],
+      ...overlayMetadata(source, {'': true, Rank: group.rank,
+        ManifestRank: group.manifestRank, SourceMesh: source.name, OriginalFaces: [...group.faceIds]}),
     };
     return [source];
   }
@@ -248,15 +282,13 @@ function splitOverlayFaces(source, groups, options) {
     overlay.renderingGroupId = source.renderingGroupId;
     // Splitting faces must also retain vertex opacity and transparent order.
     overlay.hasVertexAlpha = source.hasVertexAlpha;
+    overlay.useVertexColors = source.useVertexColors;
     overlay.alphaIndex = source.alphaIndex;
     overlay.alwaysSelectAsActiveMesh = source.alwaysSelectAsActiveMesh;
     overlay.metadata = {
       ...(source.metadata || {}),
-      mt5DepthOverlay: true,
-      mt5DepthOverlayRank: group.rank,
-      mt5DepthOverlayManifestRank: group.manifestRank,
-      mt5DepthOverlaySourceMesh: source.name,
-      mt5DepthOverlayOriginalFaces: [...group.faceIds],
+      ...overlayMetadata(source, {'': true, Rank: group.rank,
+        ManifestRank: group.manifestRank, SourceMesh: source.name, OriginalFaces: [...group.faceIds]}),
     };
     overlays.push(overlay);
   }
@@ -266,30 +298,25 @@ function splitOverlayFaces(source, groups, options) {
   source._mt5OriginalFaceIds = remainingOriginalFaces;
   source.metadata = {
     ...(source.metadata || {}),
-    mt5DepthOverlaySource: true,
+    ...overlayMetadata(source, {Source: true}),
   };
   return overlays;
 }
 
-export function applyMt5OverlayDefinition(
+export function applyModelOverlayDefinition(
   modelRoot,
   definition,
   options = {},
 ) {
   if (!modelRoot || !Array.isArray(definition?.overlays)) return [];
+  // Strips often share one native material. Share each biased variant too,
+  // otherwise an offline fix would undo static-world draw-call batching.
+  options = {...options, materialCache: new Map()};
 
   const meshGroups = new Map();
   for (const entry of definition.overlays) {
-    const nodeAddress = Number(entry.nodeAddress);
-    const textureId = Number(entry.textureId);
-    if (
-      !Number.isInteger(nodeAddress)
-      || !Number.isInteger(textureId)
-      || !Array.isArray(entry.faceIds)
-    ) {
-      continue;
-    }
-    const key = `${nodeAddress}:${textureId}`;
+    const key = overlayIdentityKey(entry);
+    if (!key || !Array.isArray(entry.faceIds)) continue;
     if (!meshGroups.has(key)) meshGroups.set(key, []);
     meshGroups.get(key).push(entry);
   }
@@ -299,7 +326,7 @@ export function applyMt5OverlayDefinition(
   ));
   const overlays = [];
   for (const source of meshes) {
-    const key = `${nodeAddressForMesh(source)}:${textureIdForMesh(source)}`;
+    const key = overlayIdentityKey(overlayIdentityForMesh(source));
     const groups = meshGroups.get(key);
     if (!groups) continue;
     overlays.push(...splitOverlayFaces(source, groups, options));

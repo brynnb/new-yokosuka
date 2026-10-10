@@ -86,6 +86,39 @@ metadata as well as its binary dependencies.
 
 ## Existing clients and Git history
 
+### Prepared scenery
+
+Development uses local bundles under `.disc-work/scenery-bundle/`; production
+pins each world's manifest and binary in `play/data/scenery-bundles.generated.json`.
+Objects use immutable `shenmue/scenery/<decoded-sha256>/<world>/world.json` and
+`world.bin` keys on R2. Gzip transfer compression restores the original bytes
+before the loader validates their size and checksum. The checked-in version
+catalog means already-open and rollback clients retain their exact payloads.
+Scenery publication never deletes prior objects.
+
+With Vite serving extracted inputs, prepare and publish before deployment:
+
+```sh
+npm run build:scenery -- --all
+npm run assets:scenery:register
+npm run assets:scenery:check
+npm run upload:assets -- --game scenery --dry-run
+npm run upload:assets -- --game scenery --worker-url http://127.0.0.1:8799 --concurrency 4
+```
+
+Use the same loopback-only R2 upload bridge documented above. Registration
+requires all supported bundles and verifies world contracts, binary checksums
+and audited placement ownership. CI's catalog check needs no extracted files.
+Compressed publication copies remain ignored under `.disc-work/scenery-publication/`.
+Production never fetches the development-only audit documents; it validates
+the build-pinned hashes instead. A missing local manifest may select original
+assets, but missing or corrupt published payloads are errors.
+
+See [prepared scenery](tooling/scenery-bundle-lab.md) for zone coverage,
+moving-object ownership and validation. `?scenery=original` selects the ordinary
+loader for comparison. The runtime-only retention audit below does not cover
+the scenery namespace, and must not be used to authorize its deletion.
+
 The release script retains the previous two builds' `assets`, `audio`, and
 `music` files using build-native inventories. This keeps pre-migration clients'
 same-origin URLs available for the existing bounded retention period. New

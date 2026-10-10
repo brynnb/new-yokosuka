@@ -22,8 +22,25 @@ function freezePlacedRoot(root, freezeWorldMatrices = true) {
   for (const node of [root, ...root.getDescendants(false)]) {
     node.computeWorldMatrix?.(true);
     if (freezeWorldMatrices) node.freezeWorldMatrix?.();
-    node.material?.freeze?.();
+    // Prepared copies share materials (including with scenery). Binding must
+    // still update for each copy's transform, lights and visibility.
+    if (!root._preparedModelTemplate) node.material?.freeze?.();
   }
+}
+
+// The offline scenery compiler uses the same source coordinate conversion as
+// gameplay, without installing gameplay callbacks on its disposable scene.
+export function applyPlacementTransform(root, placement) {
+  root._filename = placement.model;
+  root._runtimePlacement = true;
+  root._runtimePlacementRecord = placement;
+  root.position.set(...placement.position);
+  if (placement.rotationDegrees) {
+    root.rotationQuaternion = Mt5Loader.sourceOrderQuaternion(
+      ...placement.rotationDegrees.map(BABYLON.Tools.ToRadians),
+    );
+  }
+  if (placement.scale) root.scaling.set(...placement.scale);
 }
 
 export class PlacementRuntime {
@@ -59,7 +76,7 @@ export class PlacementRuntime {
     this.localDebug = localDebug;
   }
 
-  async load(placements, onModelLoaded = null, worldId = null) {
+  async load(placements, onModelLoaded = null, worldId = null, {signal, preparedModels} = {}) {
     if (!placements?.length) return;
     const placedRoots = [];
     const placementAuditRecords = [];
@@ -74,6 +91,7 @@ export class PlacementRuntime {
     let nextGroup = 0;
     const loadNextGroup = async () => {
       while (nextGroup < groups.length) {
+        signal?.throwIfAborted();
         const [model, modelPlacements] = groups[nextGroup++];
         await this.loadModelGroup({
           model,
@@ -81,16 +99,21 @@ export class PlacementRuntime {
           worldId,
           placedRoots,
           placementAuditRecords,
+          signal, preparedModels,
         });
         onModelLoaded?.();
       }
     };
-    await Promise.all(
+    const results = await Promise.allSettled(
       Array.from(
         { length: Math.min(6, groups.length) },
         () => loadNextGroup(),
       ),
     );
+    // Drain all started assembly before the world owner can dispose resources.
+    const failed = results.find(result => result.status === "rejected");
+    if (failed) throw failed.reason;
+    signal?.throwIfAborted();
     this.doorInteractions.resolvePairedSlidingPanels();
     await this.authMovementRuntime.register(placedRoots);
     const placementAudit = summarizeRuntimePlacementAudit(
@@ -151,27 +174,27 @@ export class PlacementRuntime {
     return {modelBuffer, texturePack};
   }
 
-  async loadModelGroup({model, modelPlacements, worldId, placedRoots, placementAuditRecords}) {
-    const {modelBuffer, texturePack} = await this.readModelAssets(model, modelPlacements);
-    const placementLoader = new Mt5Loader(this.scene);
-    configureMt5TexturePack(placementLoader, texturePack);
+  async loadModelGroup({model, modelPlacements, worldId, placedRoots, placementAuditRecords, signal, preparedModels}) {
+    const prepared = preparedModels?.hasModel(model);
+    let modelBuffer, texturePack, placementLoader;
+    if (!prepared) {
+      ({modelBuffer, texturePack} = await this.readModelAssets(model, modelPlacements, signal));
+      placementLoader = new Mt5Loader(this.scene);
+      configureMt5TexturePack(placementLoader, texturePack);
+    }
 
     for (const [index, placement] of modelPlacements.entries()) {
-      const roots = await placementLoader.load(modelBuffer, texturePack);
+      signal?.throwIfAborted();
+      const roots = prepared ? preparedModels.instantiate(model) : await placementLoader.load(modelBuffer, texturePack);
+      // Track ownership before registration so failed/cancelled assembly is
+      // included in the normal world teardown too.
+      this.state.currentMeshes.push(...roots);
+      signal?.throwIfAborted();
       const configuredRoots = [];
       for (const root of roots) {
         root.name = `${root.name}_${model}_${index}`;
-        root._filename = model;
-        root._runtimePlacement = true;
-        root._runtimePlacementRecord = placement;
+        applyPlacementTransform(root, placement);
         placedRoots.push(root);
-        root.position.set(...placement.position);
-        if (placement.rotationDegrees) {
-          root.rotationQuaternion = Mt5Loader.sourceOrderQuaternion(
-            ...placement.rotationDegrees.map(BABYLON.Tools.ToRadians),
-          );
-        }
-        if (placement.scale) root.scaling.set(...placement.scale);
         this.setMetadata(root, "runtimeObject", {
           root,
           model,
@@ -252,7 +275,7 @@ export class PlacementRuntime {
             && !placement.runtime?.authoredMovementFile,
         );
       }
-      this.state.currentMeshes.push(...roots);
+      if (prepared) await new Promise(resolve => setTimeout(resolve, 0));
     }
   }
 

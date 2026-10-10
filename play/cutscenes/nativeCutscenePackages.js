@@ -1,4 +1,5 @@
 import { runtimeAssetGroup, runtimeAssetUrl } from "../../src/RuntimeAssets.js";
+import { INTRODUCTION_ENVIRONMENTS } from "./IntroductionEnvironments.js";
 import nativeActivityActorManifest from "../data/events/nativeActivityActors.json";
 import op00ActivityActorManifest from "../data/events/op00ActivityActors.json";
 import op00AssetInventory from "../assets/introduction/op00/asset-inventory.generated.json";
@@ -243,7 +244,7 @@ export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
     }),
     actors: Object.freeze({ requirePlayer: false, preservePlayerOnComplete: false }),
     presentation: Object.freeze({ facialAssets: manifest.facialAssets, handAssets: manifest.handAssets }),
-    environment: Object.freeze({ packageActors: manifest.packageActors, sceneObjects: manifest.sceneObjects, mapLayers: manifest.mapLayers }),
+    environment: INTRODUCTION_ENVIRONMENTS[id],
     playback: Object.freeze({ manifest, audioManifest }),
     music: Object.freeze({ cues: manifest.music, gain: 0.82 }),
   })),
@@ -418,11 +419,7 @@ export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
       facialAssets: op00AssetInventory.facialAssets,
       handAssets: op00AssetInventory.handAssets,
     }),
-    environment: Object.freeze({
-      sceneObjects: op00AssetInventory.sceneObjects,
-      mapLayers: op00AssetInventory.mapVisibilityModels,
-      attachedObjects: op00AssetInventory.attachedObjects,
-    }),
+    environment: INTRODUCTION_ENVIRONMENTS["op00-opening"],
     playback: Object.freeze({
       manifest: op00ActivityManifest,
       audioManifest: op00AudioManifest,
@@ -455,12 +452,7 @@ export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
       clothTracks: op02ActivityManifest.clothTracks,
       nodeMotion: op02ActivityManifest.nodeMotion,
     }),
-    environment: Object.freeze({
-      packageActors: op02ActivityManifest.packageActors,
-      mapLayers: op02ActivityManifest.mapLayers,
-      mapGeometryMasks: op02ActivityManifest.mapGeometryMasks,
-      scrollSprites: op02ActivityManifest.scrollSprites,
-    }),
+    environment: INTRODUCTION_ENVIRONMENTS["op02-opening"],
     playback: Object.freeze({
       manifest: op02ActivityManifest,
       audioManifest: op02AudioManifest,

@@ -115,7 +115,7 @@ function printPlan(plan, options) {
   console.log(
     `${options.dryRun ? "Dry run" : "Publishing"}: ${plan.length} objects, ${formatBytes(bytes)}`,
   );
-  for (const game of ["s1", "s2", "runtime"]) {
+  for (const game of ["s1", "s2", "runtime", "scenery"]) {
     const selected = plan.filter((item) => item.game === game);
     if (selected.length === 0) continue;
     const gameBytes = selected.reduce((sum, item) => sum + item.size, 0);

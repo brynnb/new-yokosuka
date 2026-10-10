@@ -1025,6 +1025,10 @@ function createPlayRuntime() {
     placementRuntime,
     scheduledActors,
     scheduledSceneObjects,
+    // Development uses rebuildable local output; production pins immutable R2
+    // versions through the checked-in catalog. Keep the comparison switch.
+    preparedScenery: new URLSearchParams(window.location.search).get("scenery") !== "original"
+      ? {baseUrl: import.meta.env.DEV ? "/scenery-output" : null, allowMissing: import.meta.env.DEV} : null,
     onProgress: setLoadingProgress,
     beforePlacements: async (world, meshes) => {
       if (world.id === WORLDS.dobuita.id) {

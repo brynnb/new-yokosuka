@@ -558,6 +558,31 @@ test("alpha-to-coverage MT5 billboards preserve alpha without blend sorting", ()
     engine.dispose();
 });
 
+test('opaque textures retain authored vertex opacity without blending opaque strips sharing the atlas', () => {
+    const engine = new BABYLON.NullEngine();
+    try {
+        const scene = new BABYLON.Scene(engine);
+        const loader = new Mt5Loader(scene);
+        const texture = BABYLON.RawTexture.CreateRGBATexture(new Uint8Array([255, 255, 255, 255]), 1, 1, scene);
+        texture.hasAlpha = false;
+        loader.textureCache.set(0, texture);
+        loader.globalVertices = [[0, 0, 0], [1, 0, 0], [0, 1, 0]].map(pos => ({pos, norm: [0, 0, 1]}));
+        const polygons = [1, 127 / 255].map(alpha => ({texId: 0, hasUV: true, strips: [[0, 1, 2].map(idx => ({
+            idx, u: idx === 1 ? 1 : 0, v: idx === 2 ? 1 : 0, color: [1, 1, 1, alpha],
+        }))]}));
+        const root = loader.createMeshFromModel({polygons});
+        const [opaque, clear] = root.getChildMeshes();
+        assert.equal(opaque.material.transparencyMode, BABYLON.Material.MATERIAL_OPAQUE);
+        assert.equal(opaque.hasVertexAlpha, false);
+        assert.equal(clear.material.transparencyMode, BABYLON.Material.MATERIAL_ALPHABLEND);
+        assert.equal(clear.hasVertexAlpha, true);
+        assert.equal(clear.material.useAlphaFromDiffuseTexture, false);
+        assert.ok(Math.abs(clear.getVerticesData('color')[3] - 127 / 255) < 1e-6);
+        assert.notEqual(opaque.material, clear.material);
+        assert.equal(texture.hasAlpha, false);
+    } finally { engine.dispose(); }
+});
+
 test("alpha-to-coverage texture decoding keeps naturally filtered alpha", () => {
     const engine = new BABYLON.NullEngine();
     Object.defineProperty(engine, "currentSampleCount", { value: 4 });

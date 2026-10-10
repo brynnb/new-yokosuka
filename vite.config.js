@@ -183,6 +183,22 @@ function serveMotionAssets(server) {
   });
 }
 
+function servePreparedScenery(server) {
+  server.middlewares.use((request, response, next) => {
+    const pathname = new URL(request.url, "http://localhost").pathname;
+    const match = /^\/scenery-output\/([a-z0-9-]+)\/(world\.(?:json|bin))$/.exec(pathname);
+    if (!match || !["GET", "HEAD"].includes(request.method)) return next();
+    const source = resolve(projectRoot, ".disc-work/scenery-bundle", match[1], match[2]);
+    if (!existsSync(source)) {
+      response.statusCode = 404;
+      response.end(`Build the local scenery bundle with npm run build:scenery -- ${match[1]} first.`);
+      return;
+    }
+    response.setHeader("Cache-Control", "no-store");
+    serveFile(request, response, source);
+  });
+}
+
 function serveLocalModelAssets(server) {
   if (localModelRoots.length === 0) return;
   server.middlewares.use((request, response, next) => {
@@ -304,6 +320,7 @@ export default defineConfig({
       configureServer(server) {
         redirectCanonicalAppRoutes(server);
         serveMotionAssets(server);
+        servePreparedScenery(server);
         serveLocalModelAssets(server);
         serveLocalShenmue2Assets(server);
         serveArcadeFiles(server);

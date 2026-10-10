@@ -23,6 +23,7 @@ import { shenmue2WorldSceneRecords } from "./Shenmue2SceneRecords.js";
 import { worldLoadWorkCount } from "./WorldLoadProgress.js";
 import { assetContainerTopLevelNodes } from "./GlbWorld.js";
 import { clearWorldSceneAssets, freezeSceneRoots } from "../../src/rendering/SceneResources.js";
+import {PreparedSceneryRuntime} from "./PreparedSceneryRuntime.js";
 
 export class WorldLoadCancelledError extends Error {
   constructor() {
@@ -45,6 +46,7 @@ export class WorldLoader {
     onProgress = () => {},
     beforePlacements = () => {},
     afterPlacements = () => {},
+    preparedScenery = null,
   }) {
     this.scene = scene;
     this.state = state;
@@ -54,6 +56,7 @@ export class WorldLoader {
     this.onProgress = onProgress;
     this.beforePlacements = beforePlacements;
     this.afterPlacements = afterPlacements;
+    this.preparedScenery = preparedScenery ? new PreparedSceneryRuntime(state, preparedScenery) : null;
   }
 
   workCount(world, scheduledActorDefinitions, postLoadUnits = 1) {
@@ -133,6 +136,10 @@ export class WorldLoader {
     signal = null,
   }) {
     ensureActive(signal);
+    const preparedPlan = this.preparedScenery?.supports(world)
+      ? await this.preparedScenery.plan(world, signal) : null;
+    ensureActive(signal);
+    const placements = preparedPlan?.placements || world.placements;
     // Start independent I/O while resident geometry is loading. Only the
     // existing ordered stages below may attach anything to the Babylon scene.
     // Capture rejection immediately, including if geometry fails first.
@@ -142,11 +149,12 @@ export class WorldLoader {
     const prefetchController = new AbortController();
     const prefetchSignal = signal
       ? AbortSignal.any([signal, prefetchController.signal]) : prefetchController.signal;
-    const placementData = capture(this.placementRuntime.prefetch?.(world.placements, prefetchSignal));
+    const placementData = capture(this.placementRuntime.prefetch?.(
+      preparedPlan ? placements.filter(row => !preparedPlan.models.has(row.model)) : placements, prefetchSignal));
     const actorData = capture(this.scheduledActors.prefetch?.(scheduledActorDefinitions, world.id, prefetchSignal));
     const collisionData = capture(loadNativeCollisionDefinitionForWorld(world));
     try {
-      if (!["MT7", "GLB"].includes(world.assetFormat)) {
+      if (!preparedPlan && !["MT7", "GLB"].includes(world.assetFormat)) {
         const response = await fetchAsset("models.json");
         ensureActive(signal);
         this.state.allFiles = await response.json();
@@ -157,7 +165,7 @@ export class WorldLoader {
       }
 
       const additionalProgressTotal = this.workCount(
-        world,
+        preparedPlan ? {...world, placements} : world,
         scheduledActorDefinitions,
         postLoadUnits,
       );
@@ -188,7 +196,10 @@ export class WorldLoader {
         progress.total = sceneProgress.total;
         progress.report();
       };
-      const sceneLoaded = world.assetFormat === "MT7"
+      const sceneLoaded = preparedPlan
+        ? await this.preparedScenery.load({world, composition, manifest: preparedPlan.manifest,
+          signal, additionalProgressTotal, onProgress: onSceneProgress})
+        : world.assetFormat === "MT7"
         ? await this.loadShenmue2Scene({
             world,
             additionalProgressTotal,
@@ -225,9 +236,10 @@ export class WorldLoader {
       const placementResult = await placementData;
       if (placementResult.error) throw placementResult.error;
       await this.placementRuntime.load(
-        world.placements,
+        placements,
         () => progress.advance(),
         world.id,
+        {signal, preparedModels: preparedPlan ? this.state.preparedSceneryResources : null},
       );
       ensureActive(signal);
       await this.scheduledSceneObjects?.load(

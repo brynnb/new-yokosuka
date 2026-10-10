@@ -31,6 +31,14 @@ another renderer or emulate the original game's full story-flag progression.
 The existing transport applies: Space advances five seconds; X ends the current
 scene and proceeds to the next. Runtime failures stop startup with an error.
 
+All four opening scenes use the same prepared-scenery loader as gameplay.
+OP02 has one bundle; the three OP00 scenes share another. Static scenery is
+prepared offline while scene-object/attachment owners, native node masks and
+seasonal surfaces retain their independent ownership. Character, camera,
+motion and audio playback are unchanged. Production pins the published bundle
+versions; `?scenery=original` remains a comparison switch. See
+[prepared scenery](../guides/tooling/scenery-bundle-lab.md#intro-cutscenes).
+
 A character without `lastLoginAt` needs the opening. Multiplayer connects only
 after the opening and final world load, so the server's existing first-login
 timestamp is not written during a cinematic. Reloading an interrupted opening
