@@ -20,15 +20,13 @@ import {
   transformedPoint,
 } from "./ForkliftCargoRules.js";
 
+const havokWasmUrl = new URL("../node_modules/@babylonjs/havok/lib/esm/HavokPhysics.wasm", import.meta.url).href;
+
 export async function ensureForkliftPhysics(scene) {
   if (scene.getPhysicsEngine()) return scene.getPhysicsEngine();
-  const [
-    { default: HavokPhysics },
-    { default: havokWasmUrl },
-  ] = await Promise.all([
-    import("@babylonjs/havok"),
-    import("@babylonjs/havok/lib/esm/HavokPhysics.wasm?url"),
-  ]);
+  // Resolve the binary as an asset URL rather than importing it as JavaScript.
+  // The physics engine itself is still loaded only when a forklift needs it.
+  const { default: HavokPhysics } = await import("@babylonjs/havok");
   const havok = await HavokPhysics({ locateFile: () => havokWasmUrl });
   scene.enablePhysics(
     new BABYLON.Vector3(0, -9.81, 0),

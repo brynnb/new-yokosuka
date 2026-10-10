@@ -35,6 +35,11 @@ test("deployment verifies Vite's exact content-hashed play entry", () => {
   assert.doesNotMatch(deployWorkflow, /\/assets\/play-/);
 });
 
+test('frontend deployment preserves shared proxy and game connections', () => {
+  assert.match(deployWorkflow, /sudo cmp \/tmp\/new-yokosuka-cache\.caddy \/etc\/caddy\/new-yokosuka-cache\.caddy/);
+  assert.doesNotMatch(deployWorkflow, /systemctl\s+(?:reload|restart|stop)\s/);
+});
+
 test("frontend releases stage, switch, roll back, and retain three builds", () => {
   const testRoot = mkdtempSync(join(tmpdir(), "new-yokosuka-release-"));
   const appDirectory = join(testRoot, "app");

@@ -102,9 +102,16 @@ go test ./...
 
 The workflow builds with hosted assets and a 4 GiB Node heap, stages the
 complete `dist` output under the commit SHA, and validates the persistent
-motion banks before activation. It installs the Caddy cache policy, verifies
+motion banks before activation. It requires the installed Caddy cache policy to
+match this repository and validates the existing proxy configuration, verifies
 the separately deployed backend at `http://127.0.0.1:8084/healthz`, and changes
 the live `dist` symlink atomically.
+
+Client deployment never reloads shared Caddy or restarts game services. The
+static-root path stays unchanged, so switching its frontend symlink is enough.
+If the installed cache policy differs, the workflow fails before activation;
+update shared proxy configuration in separately authorized maintenance instead
+of disconnecting other games' WebSockets during a client release.
 
 HTML revalidates on every visit while content-hashed assets are cached for a
 year. After activation, the workflow verifies those public cache headers. A

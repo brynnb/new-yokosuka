@@ -111,9 +111,11 @@ jobs:
           ssh "${SSH_OPTS[@]}" "$REMOTE" "chmod 755 /tmp/new-yokosuka-frontend-release; mkdir -p '$APP_DIR/releases'"
           tar czf - -C dist . | ssh "${SSH_OPTS[@]}" "$REMOTE" "/tmp/new-yokosuka-frontend-release stage '$APP_DIR' '$RELEASE_ID'"
 
-          # Keep browser documents fresh while caching content-hashed bundles.
+          # Caddy is shared with other games. Require its installed cache policy
+          # rather than reloading it for an unchanged frontend deployment;
+          # a reload closes WebSockets when stream_close_delay is unset.
           scp "${SSH_OPTS[@]}" deploy/new-yokosuka-cache.caddy "${REMOTE}:/tmp/new-yokosuka-cache.caddy"
-          ssh "${SSH_OPTS[@]}" "$REMOTE" "sudo install -m 0644 /tmp/new-yokosuka-cache.caddy /etc/caddy/new-yokosuka-cache.caddy; sudo grep -qF 'import /etc/caddy/new-yokosuka-cache.caddy' /etc/caddy/Caddyfile; sudo caddy validate --adapter caddyfile --config /etc/caddy/Caddyfile"
+          ssh "${SSH_OPTS[@]}" "$REMOTE" "set -e; sudo cmp /tmp/new-yokosuka-cache.caddy /etc/caddy/new-yokosuka-cache.caddy; sudo grep -qF 'import /etc/caddy/new-yokosuka-cache.caddy' /etc/caddy/Caddyfile; sudo caddy validate --adapter caddyfile --config /etc/caddy/Caddyfile"
 
           # The backend is deployed from its own repository. Refuse to expose a
           # new client release while that separately managed service is unhealthy.
@@ -127,8 +129,8 @@ jobs:
             exit 1
           fi
 
-          # Atomically expose the completed frontend and load the validated cache policy.
-          ssh "${SSH_OPTS[@]}" "$REMOTE" "set -e; /tmp/new-yokosuka-frontend-release activate '$APP_DIR' '$RELEASE_ID'; sudo systemctl reload caddy"
+          # The static root is unchanged; the symlink switch needs no proxy reload.
+          ssh "${SSH_OPTS[@]}" "$REMOTE" "/tmp/new-yokosuka-frontend-release activate '$APP_DIR' '$RELEASE_ID'"
 
           # Verify the public cache contract as part of every deployment.
           if ! {
@@ -143,7 +145,7 @@ jobs:
               "https://www.newyokosuka.com$ASSET_PATH" &&
             grep -qi '^cache-control: public, max-age=31536000, immutable' /tmp/new-yokosuka-asset-headers;
           }; then
-            ssh "${SSH_OPTS[@]}" "$REMOTE" "set -e; /tmp/new-yokosuka-frontend-release rollback '$APP_DIR' '$RELEASE_ID'; sudo systemctl reload caddy"
+            ssh "${SSH_OPTS[@]}" "$REMOTE" "/tmp/new-yokosuka-frontend-release rollback '$APP_DIR' '$RELEASE_ID'"
             exit 1
           fi
 
