@@ -158,9 +158,10 @@ until world disposal, including after cancellation and replay.
 ### Download reuse and prepared scenery
 
 Local `/play/` uses available prepared bundles for reviewed Shenmue I worlds
-and all registered Shenmue II MT7 destinations
-by default; `?scenery=original` selects the original loader for comparisons.
-An absent manifest (HTTP 404) is reported and uses original assets. Stale or
+and all registered Shenmue II MT7 destinations by default. Production pins its
+published manifests/binaries through `play/data/scenery-bundles.generated.json`
+and immutable R2 URLs. `?scenery=original` selects the original loader for comparisons.
+An absent local manifest (HTTP 404) is reported and uses original assets. Missing published payloads, stale or
 malformed bundles, missing binaries and other request errors still fail explicitly.
 `PreparedSceneryPlan` selects exact map files
 and variants from the existing world definitions; Harbor and Forklift Playground

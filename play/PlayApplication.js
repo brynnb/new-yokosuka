@@ -1034,10 +1034,10 @@ function createPlayRuntime() {
     placementRuntime,
     scheduledActors,
     scheduledSceneObjects,
-    // Bundles are served by Vite until their production publication is wired up.
-    // Keep an original-loader comparison switch, but ordinary /play uses bundles.
-    preparedScenery: import.meta.env.DEV && new URLSearchParams(window.location.search).get("scenery") !== "original"
-      ? {baseUrl: "/scenery-output", allowMissing: true} : null,
+    // Development uses rebuildable local output; production pins immutable R2
+    // versions through the checked-in catalog. Keep the comparison switch.
+    preparedScenery: new URLSearchParams(window.location.search).get("scenery") !== "original"
+      ? {baseUrl: import.meta.env.DEV ? "/scenery-output" : null, allowMissing: import.meta.env.DEV} : null,
     onProgress: setLoadingProgress,
     beforePlacements: async (world, meshes) => {
       if (world.id === WORLDS.dobuita.id) {

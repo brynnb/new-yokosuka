@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildRuntimePlan, validateSourcePath } from "../runtime-assets.mjs";
+import {buildSceneryUploadPlan, checkSceneryCatalog} from '../assets/scenery-publication.mjs';
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const DEFAULT_PREFIX = "shenmue";
@@ -11,7 +12,7 @@ export function usage() {
   return `Publish extracted Shenmue assets to Cloudflare R2.
 
 Usage:
-  npm run upload:assets -- --game <s1|s2|all|runtime> [options]
+  npm run upload:assets -- --game <s1|s2|all|runtime|scenery> [options]
 
 Options:
   --game <value>       Asset library to publish (required)
@@ -36,7 +37,9 @@ Environment:
   R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_ENDPOINT, R2_BUCKET_NAME
 
 Files are never deleted from R2. Content files are completed before either
-catalog is published, so clients cannot discover partially uploaded releases.`;
+catalog is published, so clients cannot discover partially uploaded releases.
+Scenery uses the build-pinned catalog and verified gzip representations of
+.disc-work/scenery-bundle output. Run scenery-publication.mjs register first.`;
 }
 
 export function parseArguments(argv) {
@@ -89,8 +92,8 @@ export function parseArguments(argv) {
   }
 
   if (options.help) return options;
-  if (!new Set(["s1", "s2", "all", "runtime"]).has(options.game)) {
-    throw new Error("--game must be s1, s2, all, or runtime");
+  if (!new Set(["s1", "s2", "all", "runtime", "scenery"]).has(options.game)) {
+    throw new Error("--game must be s1, s2, all, runtime, or scenery");
   }
   options.s1Root = path.resolve(options.s1Root);
   options.s2Root = path.resolve(options.s2Root);
@@ -200,6 +203,10 @@ export function buildShenmue2Plan(root, prefix = DEFAULT_PREFIX) {
 }
 
 export function buildUploadPlan(options) {
+  if (options.game === 'scenery') {
+    checkSceneryCatalog(repositoryRoot);
+    return buildSceneryUploadPlan(repositoryRoot);
+  }
   if (options.game === "runtime") {
     const plan = buildRuntimePlan(repositoryRoot, options);
     if (!plan.length) throw new Error("No runtime assets match the requested source prefix");

@@ -70,6 +70,15 @@ versioned objects before deploying the client. See [runtime assets](docs/guides/
 The upload command validates local hashes and verifies remote writes; a Git
 diff alone is not evidence that assets have been published.
 
+Prepared scenery has a separate build-pinned catalog at
+`play/data/scenery-bundles.generated.json`. After rebuilding, register all bundles
+and publish/verify them with `--game scenery` before deploying. CI checks that
+the catalog's preparation definitions and ownership inputs remain current;
+it does not regenerate extracted geometry. Test a hosted production build with
+NPCs active, travel, an already-open client's pinned URLs, and the
+`?scenery=original` comparison path. No backend migration or restart is introduced
+by scenery delivery alone. See the runtime-assets guide for publication commands.
+
 Versioned JSON remains in Git even when binary payloads are hosted remotely.
 `tests/RuntimeAssets.test.js` checks those local JSON sizes and checksums against
 the runtime registry, and deployment CI runs it before building. After running

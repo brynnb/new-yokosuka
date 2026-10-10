@@ -10,6 +10,8 @@ import {auditFixedSceneryPlacements, preparedPlacementModels} from "../tools/ass
 import {preparedSceneryKey, preparedScenerySpec, PREPARED_SCENERY_WORLDS} from "../play/world/PreparedSceneryPlan.js";
 import {SCENE_COMPOSITIONS} from "../src/SceneCompositions.js";
 import {INTRODUCTION_ENVIRONMENTS} from "../play/cutscenes/IntroductionEnvironments.js";
+import publishedCatalog from '../play/data/scenery-bundles.generated.json' with {type: 'json'};
+import {sceneryAssetKey, sceneryAssetUrl} from '../src/rendering/SceneryAssetCatalog.js';
 
 const catalog = [...new Set([...["S1_JOMO_MAP.MT5", "S1_JOMO_MAP02.MT5", "S3_DGCT_MAP.MT5",
   "S3_DGCT_MAP01.MT5", "S3_DGCT_MAP02.MT5", "S3_DGCT_MAP03.MT5"], ...Object.values(SCENE_COMPOSITIONS.sources).flatMap(source => (
@@ -27,6 +29,55 @@ test("an unbuilt optional bundle selects original assets without retrying or mut
   assert.equal(fetch.mock.calls[0].arguments[0], "/scenery-output/interior/world.json");
   assert.deepEqual(state, {currentMeshes: ["existing scene"]});
   assert.match(info.mock.calls[0].arguments[0], /loading original assets/);
+});
+
+test('published scenery pins immutable payloads, keeps cache reuse, and rejects changed bytes', async t => {
+  const bytes = new TextEncoder().encode('payload');
+  const record = {size: bytes.length, sha256: createHash('sha256').update(bytes).digest('hex')};
+  const catalog = {schema: publishedCatalog.schema, bundles: {interior: {manifest: record, binary: record, policyHashes: {}}}};
+  const runtime = new PreparedSceneryRuntime({}, {baseUrl: null, catalog});
+  assert.equal(runtime.supports(WORLDS.interior), true);
+  assert.equal(runtime.supports(WORLDS.dobuita), false);
+  const resource = runtime.resource('interior', 'world.bin');
+  assert.match(resource.url, new RegExp(`${record.sha256}/interior/world.bin$`));
+  const fetch = t.mock.method(globalThis, 'fetch', async () => new Response(bytes));
+  assert.equal((await runtime.read(resource.url, null, {integrity: record})).byteLength, bytes.length);
+  assert.equal(fetch.mock.calls[0].arguments[1].cache, undefined);
+  fetch.mock.mockImplementation(async () => new Response('changed'));
+  await assert.rejects(runtime.read(resource.url, null, {integrity: record}), /integrity check failed/);
+  assert.throws(() => sceneryAssetKey('../bad', 'world.bin', record), /Invalid/);
+  const next = {...record, sha256: 'a'.repeat(64)};
+  assert.notEqual(sceneryAssetUrl('interior', 'world.bin', record), sceneryAssetUrl('interior', 'world.bin', next));
+  assert.equal(runtime.resource('interior', 'world.bin').url, resource.url, 'an existing build retains its version');
+});
+
+test('published Dobuita validates policy without requesting tooling files', async t => {
+  const world = WORLDS.dobuita, spec = preparedScenerySpec(world, catalog);
+  const sourceBytes = await Promise.all(spec.policyFiles.map(file => readFile(new URL(`../${file}`, import.meta.url))));
+  const documents = sourceBytes.map(bytes => JSON.parse(bytes));
+  const policyHashes = Object.fromEntries(spec.policyFiles.map((file, i) => [file, createHash('sha256').update(sourceBytes[i]).digest('hex')]));
+  const manifest = {schema: SCENERY_BUNDLE_SCHEMA, hierarchies: [], templates: spec.models.map(model => ({model})),
+    provenance: {key: 'dobuita', contract: spec.contract, sources: Object.entries(policyHashes).map(([file, hash]) => ({file, hash})),
+      placements: auditFixedSceneryPlacements(world.placements, new ScheduledSceneObjectCatalog(documents[1]).definitions(world.id), documents[2])}};
+  const bytes = new TextEncoder().encode(JSON.stringify(manifest));
+  const versions = {schema: publishedCatalog.schema, bundles: {dobuita: {
+    manifest: {size: bytes.length, sha256: createHash('sha256').update(bytes).digest('hex')},
+    binary: {size: 1, sha256: 'a'.repeat(64)}, policyHashes}}};
+  const runtime = new PreparedSceneryRuntime({}, {baseUrl: null, catalog: versions});
+  const paths = [];
+  t.mock.method(globalThis, 'fetch', async url => {
+    paths.push(url);
+    if (url.endsWith('/dobuita/world.json')) return new Response(bytes);
+    if (url.endsWith('/models.json')) return new Response(JSON.stringify(catalog));
+    throw new Error(`Unexpected production request: ${url}`);
+  });
+  const plan = await runtime.plan(WORLDS.dobuita);
+  assert.equal(plan.placements.length, 98);
+  assert.equal(paths.length, 2);
+  assert.ok(paths.every(url => !url.includes('tools/evidence')));
+  const altered = structuredClone(versions);
+  altered.bundles.dobuita.policyHashes['tools/evidence/d000-static-fixtures.json'] = 'stale';
+  await assert.rejects(new PreparedSceneryRuntime({}, {baseUrl: null, catalog: altered}).plan(WORLDS.dobuita), /policy mismatch/);
 });
 
 test("scenery validation stays strict and a missing binary is never an optional bundle", async t => {

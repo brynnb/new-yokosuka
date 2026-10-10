@@ -45,9 +45,35 @@ ignored until explicitly registered in the runtime manifest.
 Local `/play/` also uses available [prepared scenery](tooling/scenery-bundle-lab.md)
 by default, including Shenmue II zones from all four discs. Build with
 `npm run build:scenery -- --all` while Vite is running, or `--shenmue2` for only
-Shenmue II. Output stays Git-ignored under `.disc-work/scenery-bundle/`; it is not
+Shenmue II. Output stays Git-ignored under `.disc-work/scenery-bundle/` and is not
 included in production builds or published by this command. Worlds without a
 local bundle use original assets. `?scenery=original` is a comparison switch.
+
+Production uses `play/data/scenery-bundles.generated.json` to pin the exact
+manifest and binary for each published world. R2 keys use
+`shenmue/scenery/<decoded-sha256>/<world>/world.json` or `world.bin`. Payloads
+are gzip-compressed for transfer; browser decoding restores the original bytes,
+whose size and hash the loader verifies. These keys never require a mutable
+"latest" catalog or deployment-time model conversion. Unsupported worlds retain
+the ordinary loader; a missing or corrupt registered payload is an error.
+
+After rebuilding scenery, register and publish it before deploying:
+
+```sh
+node tools/assets/scenery-publication.mjs register
+node tools/assets/scenery-publication.mjs check
+npm run upload:assets -- --game scenery --dry-run
+npm run upload:assets -- --game scenery --worker-url http://127.0.0.1:8799 --concurrency 4
+```
+
+Registration requires all supported bundles, verifies binary checksums and
+current world/placement contracts, and pins the audited ownership-input hashes.
+The separate `check` command also works in a clean clone without extracted
+payloads; deployment CI runs it. Compressed publication copies remain ignored
+under `.disc-work/scenery-publication/`. Uploads verify compressed storage bytes;
+the runtime verifies decoded bytes. Preserve all scenery keys used by current,
+rollback and already-open clients. The existing runtime-only retention audit
+does not cover this separate namespace; this workflow has no deletion operation.
 
 The full research test suite also reads disc extracts, world models and generated
 capture evidence outside this manifest. Restore alone does not supply those

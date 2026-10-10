@@ -3,7 +3,9 @@
 The local build tool compiles decoded Shenmue I and II map scenery into ready-to-render
 bundles, with reusable rigid models for supported doors and vending machines.
 Dobuita additionally includes its audited fixed placements. Local `/play/` uses
-available bundles by default. The tooling does not publish assets.
+available bundles by default; production uses the build-pinned R2 catalog.
+The build command does not publish assets. Registration and publication are
+documented in [runtime assets](../runtime-assets.md).
 The purpose is to test whether fewer independently drawn pieces reduce CPU work
 without changing the scene's appearance.
 
@@ -31,15 +33,16 @@ load from the corresponding bundle. Supported doors and vending machines instant
 prepared model templates, retaining independent pivots, picking and gameplay
 state. NPCs, shutters, interactions, vehicles and unsupported worlds keep their normal gameplay
 owners. No URL parameter is required. Use `?scenery=original` only when comparing
-against the ordinary asset loader. Prepared loading is restricted to Vite development
-until the bundles and their validation inputs are integrated with production asset delivery.
+against the ordinary asset loader. Development reads editable local bundles;
+production reads immutable R2 versions. Production ownership checks use the
+registered policy hashes and never request development-only tooling files.
 If a supported world's manifest returns 404, the game reports the missing bundle
 in the console and loads original assets. Other request failures, stale or malformed
 manifests, and missing binary payloads remain errors; they never silently fall back.
 Travel releases the bundle's geometry, materials, and textures normally.
 Changed placement or schedule inputs require rebuilding rather than silently
 loading a stale bundle. The dev server reads the ignored bundle directly;
-production builds do not include it.
+production builds include only the small version catalog, not extracted bundles.
 
 ## Zone coverage
 

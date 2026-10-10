@@ -9,6 +9,8 @@
     "tools:check": "node scripts/check-tools.mjs",
     "lab:scenery": "node tools/assets/scenery-bundle-lab.mjs",
     "build:scenery": "node tools/assets/build-scenery-bundle.mjs",
+    "assets:scenery:register": "node tools/assets/scenery-publication.mjs register",
+    "assets:scenery:check": "node tools/assets/scenery-publication.mjs check",
     "test:scenery-models": "node scripts/testing/run-tests.mjs script tools/assets/validate-prepared-models.mjs",
     "test:scenery": "node scripts/testing/run-tests.mjs script tools/assets/validate-scenery-bundles.mjs",
     "postinstall": "node scripts/prepare-emulatorjs.mjs",
