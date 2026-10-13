@@ -1332,12 +1332,32 @@ export class ScheduledActorRuntime {
         root: model.root,
         model,
         snapshot: captureActivityRoot(model.root),
+        renderSnapshot: {
+          enabled: model.renderRoot?.isEnabled?.(false),
+          occlusionCulled: Boolean(model.occlusionRenderCulled),
+          cameraFaded: Boolean(model.cameraFadeState),
+        },
       };
     });
-    for (const actor of selected) {
-      actor.entry.activityPresentation = actor;
-      this.activityActorOwners.set(actor.instanceId, owner);
-      actor.root.setEnabled(true);
+    try {
+      for (const actor of selected) {
+        actor.entry.activityPresentation = actor;
+        this.activityActorOwners.set(actor.instanceId, owner);
+        actor.root.setEnabled(true);
+        // Ambient GPU occlusion disables renderRoot independently of placement.
+        // updateEntry skips activity-owned actors, so a previously hidden body
+        // would otherwise stay invisible throughout the scene. Cinematic
+        // ownership also excludes close-camera fading until the actor is released.
+        setScheduledActorOcclusionCulled(actor.model, false);
+        actor.model.renderRoot?.setEnabled?.(true);
+        setScheduledActorCameraFade(actor.model, false);
+      }
+    } catch(error) {
+      try { this.endActivityActors(owner); }
+      catch(cleanupError) {
+        throw new AggregateError([error,cleanupError],"Scheduled activity acquisition cleanup failed");
+      }
+      throw error;
     }
     return selected.map(({ actorCode, instanceId, root, model }) => ({
       actorCode,
@@ -1368,14 +1388,25 @@ export class ScheduledActorRuntime {
       ) === owner
     ));
     if (entries.length === 0) return false;
+    const errors=[];
     for (const entry of entries) {
       const activity = entry.activityPresentation;
-      restoreActivityRoot(activity.root, activity.snapshot);
+      // Release every state owner even if a disposed mesh/material rejects one
+      // restoration. A failed cleanup must not leave actors permanently leased.
+      for(const restore of [
+        ()=>setScheduledActorCameraFade(activity.model,activity.renderSnapshot.cameraFaded),
+        ()=>setScheduledActorOcclusionCulled(activity.model,activity.renderSnapshot.occlusionCulled),
+        ()=>{if(typeof activity.renderSnapshot.enabled==="boolean")activity.model.renderRoot.setEnabled(activity.renderSnapshot.enabled);},
+        ()=>restoreActivityRoot(activity.root,activity.snapshot),
+      ]) {
+        try { restore(); } catch(error) { errors.push(error); }
+      }
       this.activityActorOwners.delete(activity.instanceId);
       entry.activityPresentation = null;
       entry.motionKey = null;
       entry.motionElapsedSeconds = 0;
     }
+    if(errors.length)throw new AggregateError(errors,"Scheduled activity cleanup failed");
     return true;
   }
 
@@ -2213,7 +2244,7 @@ export class ScheduledActorRuntime {
       ])) {
         setScheduledActorCameraFade(
           model,
-          cameraFadeEnabled && scheduledActorModelBlocksCamera(
+          !entry.activityPresentation && cameraFadeEnabled && scheduledActorModelBlocksCamera(
             model,
             cameraOcclusionTarget,
             cameraPosition,
