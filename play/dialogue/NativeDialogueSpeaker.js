@@ -7,6 +7,7 @@ import {
 // their Japanese speaker labels and conversation context in the extracted SRF
 // subtitles.
 export const NATIVE_DIALOGUE_SPEAKER_LABELS = Object.freeze({
+  CHRL: "Charlie",
   AKIR: "Ryo Hazuki",
   UNO_: "Tao Duo Ji",
   RNKT: "Tao Lin Xia",

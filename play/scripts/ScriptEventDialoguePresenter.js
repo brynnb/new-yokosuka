@@ -1,4 +1,8 @@
 import { createGameAudio } from "../audio/MediaElementAudio.js";
+import storyChallenges from "../data/story-challenges.json" with { type: "json" };
+
+const CHALLENGE_KEYS = Object.freeze({A:"Enter",B:"Shift",Left:"ArrowLeft",Right:"ArrowRight",Up:"ArrowUp",Down:"ArrowDown"});
+if(storyChallenges.buttonCodes.some(code=>!CHALLENGE_KEYS[code]))throw new Error("Unmapped story challenge button");
 import {
   createNativeDialogueVoiceManifest,
 } from "../dialogue/NativeDialogueVoiceManifest.js";
@@ -249,27 +253,29 @@ export class ScriptEventDialoguePresenter {
 
   showChallenge(prompt) {
     this.hide();
+    const definition=storyChallenges.challenges.find(challenge=>challenge.id===prompt.id);
     if(!Number.isSafeInteger(prompt.index)||!Number.isSafeInteger(prompt.count)||prompt.count<1
-      ||prompt.index<0||prompt.index>=prompt.count||prompt.ready&&!['A','B'].includes(prompt.button))throw new Error("Invalid challenge prompt");
+      ||prompt.index<0||prompt.index>=prompt.count||!definition||prompt.count!==definition.buttons.length
+      ||prompt.ready&&prompt.button!==definition.buttons[prompt.index])throw new Error("Invalid challenge prompt");
     const requestId=++this.requestId;
     const current=()=>this.active&&requestId===this.requestId;
     this.active=true;
     this.dom.root.hidden=false;this.dom.root.setAttribute("aria-hidden","false");
     this.dom.speaker.textContent=prompt.label;
-    this.dom.sourceText.textContent=prompt.ready ? `Press ${prompt.button} (${prompt.button==='A'?'Enter':'Shift'}) · ${prompt.index+1} / ${prompt.count}` : "Get ready…";
+    this.dom.sourceText.textContent=prompt.ready ? `Press ${prompt.button} (${CHALLENGE_KEYS[prompt.button]}) · ${prompt.index+1} / ${prompt.count}` : "Get ready…";
     this.dom.japaneseText.hidden=true;
     this.onActiveChanged(true);
     if(!prompt.ready){queueMicrotask(()=>{if(current())this.onChallengeResponse("challenge_ready",prompt.token);});return true;}
     const document=this.dom.options.ownerDocument;
-    for(const buttonCode of ['A','B']) {
+    for(const buttonCode of new Set(definition.buttons)) {
       const button=document.createElement("button");button.type="button";button.className="dialogue-option";
-      button.textContent=`${buttonCode} · ${buttonCode==='A'?'Enter':'Shift'}`;button.dataset.challengeButton=buttonCode;
+      button.textContent=`${buttonCode} · ${CHALLENGE_KEYS[buttonCode]}`;button.dataset.challengeButton=buttonCode;
       button.addEventListener("click",()=>{if(current())this.onChallengeResponse("challenge_input",prompt.token,buttonCode);});
       this.dom.options.append(button);
     }
     this.dom.options.hidden=false;
     this.challengeKeyHandler=event=>{
-      const code=event.key==='Enter'?'A':event.key==='Shift'?'B':null;
+      const code=storyChallenges.buttonCodes.find(code=>CHALLENGE_KEYS[code]===event.key);
       if(!code||event.repeat||!current())return;
       event.preventDefault();event.stopImmediatePropagation();this.onChallengeResponse("challenge_input",prompt.token,code);
     };

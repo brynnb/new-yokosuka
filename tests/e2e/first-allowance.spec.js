@@ -60,6 +60,8 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       PlayWorldLifecycle.prototype.initialize = function(...args) { window.storyProbe.lifecycle = this; return probeInitialize.apply(this,args); };`],
     ["scripts/AuthoredSceneStagingRuntime", `const probeStage = AuthoredSceneStagingRuntime.prototype.play;
       AuthoredSceneStagingRuntime.prototype.play = function(...args) { window.storyProbe.authoredScene = this; return probeStage.apply(this,args); };`],
+    ["scripts/ScriptAutomaticEventRuntime", `const probeAutomatic = ScriptAutomaticEventRuntime.prototype.update;
+      ScriptAutomaticEventRuntime.prototype.update = function(...args) { window.storyProbe.automatic = this; return probeAutomatic.apply(this,args); };`],
     ["cutscenes/NativeCutsceneDirector", `const probeStart = NativeCutsceneDirector.prototype.start;
       NativeCutsceneDirector.prototype.start = function(cutscene,...args) { window.storyProbe.director = this; window.storyProbe.starts.push(cutscene.id); return probeStart.call(this,cutscene,...args).catch(error => { window.storyProbe.sceneErrors.push(error.message); throw error; }); };`],
     ["scripts/StoryRegionRuntime", `const probeUpdate = StoryRegionRuntime.prototype.update;
@@ -115,6 +117,12 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     }
     if(process.env.NEW_YOKOSUKA_TATTOO_E2E === "true") {
       await verifyTattooFirstVisit(page,testInfo,character);
+      expect(errors).toEqual([]);
+      expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+      return;
+    }
+    if(process.env.NEW_YOKOSUKA_CHARLIE_QTE_E2E === "true") {
+      await verifyCharlieConfrontation(page,testInfo,character);
       expect(errors).toEqual([]);
       expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
       return;
@@ -876,4 +884,54 @@ async function verifyTattooFirstVisit(page,testInfo,character) {
   const reloaded=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
   expect(reloaded.character.storyFlags["notebook.s1.charlie-return-tomorrow"]).toBe(true);
   expect(reloaded.character.worldId).toBe("tatq");expect(reloaded.character.avatarId).toBe("ryo");
+}
+
+async function verifyCharlieConfrontation(page,testInfo,character) {
+  expect(character.storyFlags["notebook.s1.tattoo-parlor"]).toBe(true);
+  const waitUntil=async label=>{
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+    await page.locator("#story-wait-button").click();await page.getByRole("option",{name:label,exact:true}).click();
+    await page.getByRole("button",{name:label,exact:true}).click();
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  };
+  await page.waitForFunction(()=>window.storyProbe.automatic?.attempted&&!window.storyProbe.automatic.pending,null,{timeout:60_000});
+  if(await page.evaluate(()=>window.storyProbe.regions.controller.active?.scriptIdentity.scriptSlug!=="story-s1-charlie-tattoo-confrontation")) {
+    await waitUntil("Wait until tomorrow morning");await waitUntil("Wait until 2 p.m.");
+    await enterInteriorDoor(page,{world:"tatq",filename:"S1_D000_DR01_007.MT5",position:[100.4,2.7724,99.9],yaw:2.181661565});
+  }
+  await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0||window.storyProbe.sceneErrors.length,null,{timeout:60_000});
+  expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  await page.screenshot({path:testInfo.outputPath("charlie-parlor-introduction.png")});
+  const toChallenge=async()=>{
+    for(let i=0;i<30&&!await page.evaluate(()=>window.storyProbe.regions.controller.active?.challengePrompt||window.storyProbe.sceneErrors.length);i++) {
+      await page.keyboard.press("Space");await page.waitForTimeout(200);
+    }
+    await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.ready||window.storyProbe.sceneErrors.length,null,{timeout:60_000});
+    expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  };
+  await toChallenge();await page.screenshot({path:testInfo.outputPath("charlie-parlor-challenge.png")});
+  await page.keyboard.press("ArrowRight");await expect(page.getByRole("button",{name:"Try again",exact:true})).toBeVisible();
+  let saved=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+  expect(saved.character.storyFlags["notebook.s1.charlie-cartel-appointment"]).not.toBe(true);
+  await page.getByRole("button",{name:"Try again",exact:true}).click();await toChallenge();
+  for(const [index,button,key]of [[0,"Left","ArrowLeft"],[1,"A","Enter"]]) {
+    await page.waitForFunction(({index,button})=>{
+      const p=window.storyProbe.regions.controller.active?.challengePrompt;return p?.ready&&p.index===index&&p.button===button;
+    },{index,button});await page.keyboard.press(key);
+  }
+  await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0);
+  await page.screenshot({path:testInfo.outputPath("charlie-parlor-appointment.png")});
+  for(let i=0;i<30&&!await page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.charlie-cartel-appointment"]);i++) {
+    await page.keyboard.press("Space");await page.waitForTimeout(200);
+  }
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.charlie-cartel-appointment"])).toBe(true);
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  saved=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+  expect(saved.character.yen).toBe(character.yen);expect(saved.character.currentHp).toBe(character.currentHp);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+  await page.locator("button").filter({hasText:/^Notebook$/}).click();
+  for(let i=0;i<50&&await page.locator("#journal-next").isEnabled();i++)await page.locator("#journal-next").click();
+  await expect(page.getByText(/Charlie promised to arrange a meeting/)).toBeVisible();
+  await page.screenshot({path:testInfo.outputPath("charlie-cartel-notebook.png")});
 }

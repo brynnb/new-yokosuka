@@ -3,6 +3,19 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"charlie-tattoo-confrontation","actor":"CHRL","participants":["HORS","TONY","SMTH"],"presentActors":["HORS"],"area":"TATQ","trigger":"automatic","priority":210,
+      "title":"Charlie — the cartel appointment","hours":[14,24],"requiredFlags":["notebook.s1.tattoo-parlor"],"dayAfter":"story.s1.parking-lot-ambush.day",
+      "completedFlag":"story.s1.charlie-tattoo-confrontation.completed","effects":["notebook.s1.charlie-cartel-appointment"],"recordDays":["story.s1.charlie-parlor.day"],
+      "challenge":"s1.tatq.charlie","staging":"s1.tatq.charlie-introduction","challengeStaging":"s1.tatq.charlie-confrontation",
+      "dialogueArchives":[
+        {"path":"data/SCENE/01/STREAM/A0136A.AFS","sha256":"b5b0652fb0b71f3bc64f361d35bd9699b1836dc2b4c794a1f2a337f1ba8528d6"},
+        {"path":"data/SCENE/01/STREAM/A0136.AFS","sha256":"d4c15c2353ecd53bc2a9afda1e46131f62e019bcd583d8d40071cea134514a9a"}
+      ],
+      "leadInVoiceIds":["A0136AB001","A0136AC001","A0136AB002","A0136AB003","A0136AC002","A0136AB005","A0136AC003","A0136AD001","A0136AA001","A0136AD002","A0136AD003"],
+      "voiceIds":["A0136B002","A0136A002","A0136B003","A0136B005","A0136A003","A0136B007","A0136B008","A0136B009","A0136A004","A0136B010","A0136A005","A0136B011","A0136A006"],
+      "provenance":"Original TATQ A0136A/A0136 dialogue and QTE.PKS body assets. Walkthrough-backed later-than-ambush day, 14:00 opening, Left/A QTE and next-day 15:00 appointment. First-night artist visit is optional when arriving on a later day. Held cast/camera staging and prompt timing are authored; knife/curtain/throw choreography is not recreated. Failure retries the encounter; only a real server-validated challenge followed by complete conversation settles the appointment."
+    },
+    {
       "id":"saijo-tattoo-location","actor":"SAJO","area":"DBYO","title":"Saijo — the tattoo parlor in Okayama Heights","hours":[17,3],"priority":210,
       "requiredFlags":["notebook.s1.tattoo-parlor"],"completedFlag":"story.s1.saijo-tattoo-location.completed","effects":["notebook.s1.okayama-heights"],
       "voiceIds":["F1131A034","F1131B049","F1131A035","F1131A037","F1131B051","F1131A038","F1131B052","F1131B053","F1131B055","F1131A074","F1131B056","F1131A040"]

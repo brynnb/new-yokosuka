@@ -1,6 +1,30 @@
 {
   "schema":"new-yokosuka-authored-story-scenes-v1",
   "scenes":[{
+    "id":"s1.tatq.charlie-introduction","area":"TATQ","worldId":"tatq",
+    "provenance":"Authored held staging of the original A0136A cast. Original TATQ AUTH at MAPINFO 0x23ce4 supplies actor positions; motion, running/curtain/knife choreography and camera direction are approximated.",
+    "actorDefinitions":[
+      {"actorCode":"TONY","label":"Tony Abrams","modelCode":"GIJ_M","activityOnly":true},
+      {"actorCode":"SMTH","label":"Smith Bradley","modelCode":"GIB_M","activityOnly":true}
+    ],
+    "actors":[
+      {"tag":"AKIR","pose":{"x":2.18472,"y":0,"z":2.179908,"rotationX":0,"rotationY":30.3323,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"HORS","pose":{"x":0.10125,"y":0.04,"z":-1.678591,"rotationX":0,"rotationY":194.32393,"rotationZ":0},"motion":{"bank":"mobj","name":"OTH_MAN_TALK_KOSITE_LP","loop":true}},
+      {"tag":"TONY","pose":{"x":0.122229,"y":0,"z":-0.255379,"rotationX":0,"rotationY":-45,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"SMTH","pose":{"x":-0.550528,"y":0,"z":-0.665646,"rotationX":0,"rotationY":-120.977951,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}
+    ],
+    "camera":{"positionX":-2,"positionY":1.85,"positionZ":2.5,"targetX":0.55,"targetY":1.1,"targetZ":-0.2,"roll":0,"perspective":70}
+  },{
+    "id":"s1.tatq.charlie-confrontation","area":"TATQ","worldId":"tatq",
+    "provenance":"Original AUTH 0x281e0 supplies Ryo/CHRL positions. BIS_L is the sole bespoke humanoid body in TATQ QTE.PKS, correlated with its newly introduced CHRL role; rendered identity verified. Generic standing holds and the camera are authored. First-frame M_0136 QTE poses were visibly unsuitable without their original surrounding scene, so they are not silently presented as the native knife choreography.",
+    "actorDefinitions":[{"actorCode":"CHRL","label":"Charlie","modelCode":"BIS_L","activityOnly":true}],
+    "actors":[
+      {"tag":"AKIR","pose":{"x":-0.533373,"y":0,"z":-2.581587,"rotationX":0,"rotationY":0,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"CHRL","pose":{"x":-0.89589,"y":0,"z":-3.498957,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"HORS","presented":false,"motion":{"bank":"mobj","name":"OTH_MAN_TALK_KOSITE_LP","loop":true}}
+    ],
+    "camera":{"positionX":2,"positionY":1.6,"positionZ":-2.9,"targetX":-0.7,"targetY":1.1,"targetZ":-2.9,"roll":0,"perspective":65}
+  },{
     "id":"s1.tatq.first-visit","area":"TATQ","worldId":"tatq",
     "provenance":"HORS room anchor [-1.3584,0,-2.4255] from original CM_D000.BIN journey at 14:00, selector tables 0x19230/0x1974c. Ryo's nearby floor position, facing, standing motions and camera are authored approximations, not the original grab scene.",
     "actorDefinitions":[],

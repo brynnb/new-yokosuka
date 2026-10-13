@@ -19,6 +19,11 @@
     {"kind":"activity","policy":"closed"}
   ],
   "capabilities": [
+    {"kind":"challenge","identifier":"s1.tatq.charlie","description":"Server-validated Left/A tattoo-parlor confrontation. Readiness starts the authored two-second windows; movie completion cannot win."},
+    {"kind":"sequence","identifier":"s1.tatq.charlie-introduction.start","description":"Authored held original artist/sailor cast before the Charlie QTE."},
+    {"kind":"sequence","identifier":"s1.tatq.charlie-introduction.finish","description":"Restore the pre-introduction actor/camera state before the challenge cast."},
+    {"kind":"sequence","identifier":"s1.tatq.charlie-confrontation.start","description":"Authored Ryo/Charlie standing staging; native knife choreography remains omitted."},
+    {"kind":"sequence","identifier":"s1.tatq.charlie-confrontation.finish","description":"Restore exact parlor arrival, camera and NPC ownership after the challenge/interrogation."},
     {"kind":"sequence","identifier":"s1.tatq.first-visit.start","description":"Authored two-person staging around the original tattoo artist room position; no claim of recovered grab choreography."},
     {"kind":"sequence","identifier":"s1.tatq.first-visit.finish","description":"Restore the tattoo-parlor entry position, camera and ambient artist ownership."},
     {"kind":"combat","identifier":"s1.d000.parking-lot","description":"Server-controlled five-opponent ambush; presentation completion cannot award victory."},

@@ -214,7 +214,8 @@ Do not describe the first conversation as fully animation-faithful.
 | Charlie inquiries: Ono → jacket shops; optional Kinuyo → Nagai office → shopkeepers | Seven connected, rendered original-voiced talks and notebook leads verified after the bar-earned checkpoint, including personal daytime waiting, unlocked controls and reload. |
 | Arcade-area ambush → tattoo-parlour lead | Connected rendered introduction/trap, real five-opponent fight, loss/retry, original interrogation and saved notebook verified. Server/compiler/PostgreSQL tests cover calendar/region gates, cancellation, timeout, pre-clue rollback and personal settlement. Combat balance and interrogation staging are adapted. |
 | Find the tattoo parlor → same-night artist visit | Connected Saijo/Kurita original-voiced clues and real upstairs door entry verified. Rendered two-person visit, cancellation/re-entry, saved tomorrow clue and reload verified; same-day/hour/presence gates and atomic visit-date settlement tested through the real compiler/database. Camera, held poses and omitted grab gesture are adaptations. |
-| Charlie's parlor QTE / Nozomi / Chinese letter | Missing connected authored progression. |
+| Charlie's parlor QTE → cartel appointment | Connected real browser check verifies original-voiced cast, wrong direction/retry, Left/A success, Charlie's rendered identity, conversation and saved notebook. Server/compiler/database tests cover calendar/presence gates, cancellation before/after winning and atomic appointment-day settlement. Held staging and omitted knife/throw choreography are explicit adaptations. |
+| Nozomi after the parlor / Chinese letter | Missing connected authored progression. |
 | Harbor warehouses / Master Chen / Phoenix Mirror | Missing connected authored progression. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
@@ -710,7 +711,7 @@ later-day visit after 2 p.m. The
 [Shotgunnova walkthrough](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404)
 distinguishes the ambush-night artist talk from later-day first arrivals, which
 belong to Charlie's confrontation. Do not impose an invented extra waiting day
-on those later arrivals; that connected confrontation is the next missing event.
+on those later arrivals; the connected confrontation below handles them directly.
 Our optional location path uses Saijo and Kurita; the original gang-joining and
 Nagai alternatives are not yet authored here.
 
@@ -739,3 +740,45 @@ ownership now temporarily clears ambient occlusion and camera fading, then
 restores their exact prior policy. Partial acquisition or failed restoration
 still releases every actor lease. This shared boundary covers borrowed cinematic
 actors, not a tattoo-artist-only visibility override.
+
+## Charlie: confrontation and the cartel appointment
+
+Event ID: `story-s1-charlie-tattoo-confrontation`; automatic `TATQ` entry at a
+higher priority than the same-night artist conversation.
+
+| Field | Implemented adaptation |
+| --- | --- |
+| Prerequisites / trigger | Personal Story Ryo, completed opening, tattoo-parlor lead, resident HORS, 14:00–midnight and a personal day later than the ambush. Cross the parlor door or resume inside an eligible room. The same-night artist conversation and optional location clues are not mandatory for later-day first arrivals. |
+| Characters / setup | Hold Ryo, Takashiro, Tony and Smith for the introduction, then switch to Ryo/Charlie. Reuse shared actor ownership, model loading, camera and input locks. An owned out-of-shot HORS is hidden during the confrontation and restored afterward. |
+| Dialogue / timing | Eleven original A0136A voice/subtitle pairs cover the frightened sailors and artist's directions. Then a real Left/A QTE; only winning reaches thirteen selected original A0136 lines and the next-day 3 p.m. appointment. Voice endings or supported Space advance conversation lines; Space cannot answer a challenge. |
+| Presentation / props | Original AUTH records at MAPINFO `0x23ce4` and `0x281e0` anchor actor positions. Cameras and standing holds are authored. Curtain interaction, a rendered knife, dodging, throwing and arm-grab choreography remain omitted; this is not an exact original QTE presentation. No new gameplay item is granted. |
+| Challenge | Closed server catalog `s1.tatq.charlie`, Left then A. Keyboard uses ArrowLeft then Enter; touch buttons use the same prompt tokens. Two-second server windows and strict restart are adaptations. Wrong input/timeout offers retry or leave; ordinary Continue or a client win claim cannot succeed. |
+| Calendar / environment | Preserve personal weather, season and ordinary room music/ambience; no forced lighting or date jump. Event ownership pauses the personal clock. Record the successful conversation's personal day, rather than resetting the public world time. |
+| Settlement / exit | After scene cleanup, atomically commit `story.s1.charlie-tattoo-confrontation.completed`, `notebook.s1.charlie-cartel-appointment` and `story.s1.charlie-parlor.day`. Appointment eligibility can derive the following day from that ordinal. Restore exact room-entry avatar/location/facing/camera and controls. Money, persistent HP and experience stay unchanged. |
+| Skip / failure / replay | Space skips lines but never the QTE. Cancellation, failed preparation and unfinished post-win conversation grant no appointment or partial date. Completed encounters do not replay; reconnect reads the committed state. Failed attempts remain retryable. |
+
+The original [GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf)
+and [Shotgunnova walkthrough](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404)
+support the day/time gate, Left/A order and appointment. Original
+`SCENE/01/STREAM/A0136A.AFS` and `A0136.AFS` are hash-pinned by the generator.
+`TATQ/QTE.PKS` supplies the scene-specific `BIS_L`/`BIS_F` body/face and its PKF
+supplies textures. That sole bespoke humanoid is correlated with CHRL and was
+visually verified as Charlie; a direct native model-allocation trace is not
+claimed. `build_tatq_story_assets.mjs` reproduces and explicitly registers those
+ignored assets. The M_0136 waiting clips were inspected/rendered, but their
+first-frame poses were not suitable as a standalone scene; generic original
+standing motion is an intentional replacement, not a fallback alias.
+
+`NEW_YOKOSUKA_CHARLIE_QTE_E2E=true` continues the earned ambush/parlor checkpoint.
+It uses actual personal waiting, real door entry or an already-starting resumed
+room event, original voice playback, a wrong direction, retry, real Left/Enter
+inputs, the clue conversation, unchanged HP/money and the notebook. Full-stack
+tests also prove same-day exclusion, missing artist/early-hour rejection,
+later-day first arrival without the optional artist flag, cancellation before
+and after winning, atomic day/clue settlement, repeat protection and another
+character's isolation. Detailed choreography and mobile controller/gamepad
+input have not been visually verified.
+
+The source assets and newly encoded Story voices are registered in the immutable
+runtime catalog. They have **not** been published to R2 from this worktree;
+publication and verification are required before any later authorized deployment.

@@ -4,14 +4,15 @@ import { AuthoredSceneStagingRuntime } from "../play/scripts/AuthoredSceneStagin
 
 function harness() {
   const calls = [];
+  const root={enabled:true,setEnabled(value){this.enabled=value;}};
   let prepare = async () => {};
   const runtime = new AuthoredSceneStagingRuntime({
     actors: {
       prepare: (...args) => prepare(...args),
       begin: () => calls.push("actors-begin"),
       applyTransform: () => true,
-      activeActor: () => ({ model: {} }),
-      end: () => (calls.push("actors-end"), true),
+      activeActor: () => ({ model: {},root }),
+      end: () => (root.enabled=true,calls.push("actors-end"), true),
     },
     camera: {
       begin: () => calls.push("camera-begin"),
@@ -25,7 +26,7 @@ function harness() {
   const transaction = { area: "DBHB" };
   const scene = { id: "bar", area: "DBHB", actors: [{ tag: "AKIR", motion: { bank: "free", name: "stand" } }],
     camera: { positionX: 0, positionY: 1, positionZ: 2, targetX: 0, targetY: 1, targetZ: 0, roll: 0, perspective: 60 } };
-  return { runtime, transaction, scene, calls, deferPrepare: fn => { prepare = fn; } };
+  return { runtime, transaction, scene, calls,root, deferPrepare: fn => { prepare = fn; } };
 }
 
 test("authored tableau retains ownership across dialogue/QTE and releases exact pose", async () => {
@@ -65,4 +66,12 @@ test("failed preparation is observable and retryable without acquiring actors/ca
   h.deferPrepare(async () => {});
   assert.equal(await h.runtime.play({ kind: "scene-staging-start", scene: h.scene }, h.transaction), true);
   h.runtime.cancel(h.transaction);
+});
+
+test("out-of-shot residents remain owned and hidden until scene cleanup",async()=>{
+  const h=harness();h.scene.actors[0].presented=false;
+  await h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction);
+  assert.equal(h.root.enabled,false);assert.equal(h.runtime.active.actorsBegun,true);
+  h.runtime.update(h.transaction,.1);assert.equal(h.root.enabled,false);
+  h.runtime.cancel(h.transaction);assert.equal(h.root.enabled,true);
 });

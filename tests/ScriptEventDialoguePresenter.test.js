@@ -43,11 +43,11 @@ test("challenge prompts own their tokens, touch buttons and timeout lifetime", a
   const presenter=createScriptEventDialoguePresenter({root:element(),speaker:element(),sourceText:element(),japaneseText:element(),options:optionsElement(),
     onChallengeResponse:(...args)=>calls.push(args)});
   const token="a".repeat(32);
-  presenter.showChallenge({id:"test",label:"Defend yourself",token,index:0,count:2,ready:false});
+  presenter.showChallenge({id:"s1.heartbeats.alley",label:"Defend yourself",token,index:0,count:2,ready:false});
   await Promise.resolve();assert.deepEqual(calls,[["challenge_ready",token]]);
-  presenter.showChallenge({id:"test",label:"Defend yourself",token,index:0,count:2,ready:true,button:"B",deadlineMs:2000,serverTimeMs:0});
+  presenter.showChallenge({id:"s1.heartbeats.alley",label:"Defend yourself",token,index:0,count:2,ready:true,button:"B",deadlineMs:2000,serverTimeMs:0});
   const stale=presenter.dom.options.children[0].listeners.click;
-  presenter.dom.options.children[1].listeners.click();assert.deepEqual(calls.at(-1),["challenge_input",token,"B"]);
+  presenter.dom.options.children[0].listeners.click();assert.deepEqual(calls.at(-1),["challenge_input",token,"B"]);
   presenter.hide();stale();assert.equal(calls.length,2);
   assert.equal(presenter.challengeTimer,null);
 });
@@ -70,6 +70,21 @@ test("combat controls retain focus between snapshots and reject old-attempt clic
   assert.equal(calls.length,count);
   assert.equal(root.attributes.get("data-presentation"),"combat");
   presenter.hide();assert.equal(root.attributes.get("data-presentation"),"dialogue");
+});
+
+test("directional QTEs share keyboard/touch routing and reject mismatched prompt order",()=>{
+  const calls=[],options=optionsElement();
+  const presenter=createScriptEventDialoguePresenter({root:element(),speaker:element(),sourceText:element(),japaneseText:element(),options,
+    onChallengeResponse:(...args)=>calls.push(args)});
+  const prompt={id:"s1.tatq.charlie",label:"Defend yourself",token:"a".repeat(32),index:0,count:2,ready:true,button:"Left",deadlineMs:2000,serverTimeMs:0};
+  presenter.showChallenge(prompt);
+  assert.deepEqual(options.children.map(b=>b.dataset.challengeButton),["Left","A"]);
+  presenter.challengeKeyHandler({key:"ArrowLeft",repeat:false,preventDefault(){},stopImmediatePropagation(){}});
+  assert.deepEqual(calls.at(-1),["challenge_input",prompt.token,"Left"]);
+  const old=presenter.challengeKeyHandler;presenter.hide();old({key:"ArrowLeft"});
+  assert.equal(calls.length,1);
+  assert.throws(()=>presenter.showChallenge({...prompt,button:"A"}),/Invalid challenge prompt/);
+  presenter.hide();
 });
 
 test("line presentation requires an explicit known speaker and permits optional voice", () => {

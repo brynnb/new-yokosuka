@@ -22,6 +22,7 @@ export class AuthoredSceneStagingRuntime {
     if (!Array.isArray(scene.actors) || scene.actors.length === 0
       || new Set(scene.actors.map(actor => actor.tag)).size !== scene.actors.length
       || scene.actors.some(actor => !/^[A-Z0-9_]{4}$/.test(actor.tag)
+        || (actor.presented !== undefined && typeof actor.presented !== "boolean")
         || !actor.motion?.bank || !actor.motion?.name
         || (actor.pose && ["x", "y", "z", "rotationX", "rotationY", "rotationZ"].some(key => !Number.isFinite(actor.pose[key]))))
       || ["positionX", "positionY", "positionZ", "targetX", "targetY", "targetZ", "roll", "perspective"].some(key => !Number.isFinite(scene.camera?.[key]))) {
@@ -43,6 +44,9 @@ export class AuthoredSceneStagingRuntime {
       owner.cameraBegun = true;
       for (const actor of scene.actors) {
         if (actor.pose && !this.actors.applyTransform(owner, actor.tag, actor.pose)) throw new Error(`Cannot stage actor ${actor.tag}`);
+        // Borrow out-of-shot residents too: hiding an owned root suppresses
+        // their ambient copy without moving it away or leaving a global flag.
+        if(actor.presented===false)this.actors.activeActor(actor.tag).root.setEnabled(false);
       }
       if (!this.update(transaction, 0)) throw new Error(`Cannot present scene ${scene.id}`);
       return true;

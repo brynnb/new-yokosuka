@@ -19,23 +19,28 @@ const voices = new Set(), streamVoices = new Map(), imports = [];
 for (const route of spec.routes) {
   const participants = [route.actor, ...(route.participants || [])];
   let source;
-  if (route.dialogueArchive) {
-    const filename = path.join(process.env.SHENMUE_DISC1_EXTRACTED_ROOT || path.join(root, "extracted_files"), route.dialogueArchive.path);
+  if (route.dialogueArchive || route.dialogueArchives) {
+    const archiveSources=[];
+    const messages=[];
+    for(const archive of route.dialogueArchives || [route.dialogueArchive]) {
+    const filename = path.join(process.env.SHENMUE_DISC1_EXTRACTED_ROOT || path.join(root, "extracted_files"), archive.path);
     const bytes = fs.readFileSync(filename);
-    if (createHash("sha256").update(bytes).digest("hex") !== route.dialogueArchive.sha256) throw new Error(`Changed archive for ${route.id}`);
+    if (createHash("sha256").update(bytes).digest("hex") !== archive.sha256) throw new Error(`Changed archive for ${route.id}`);
     const members = afsMembers(bytes, route.id);
     const speech = members.filter(member => /\.str$/i.test(member.name));
     const records = parseNativeSrfRecords(members.find(member => /\.srf$/i.test(member.name)).bytes);
     if (speech.length !== records.length) throw new Error(`Unmatched voice/subtitle records for ${route.id}`);
-    source = { generatedFrom: { archive: `disc1/${route.dialogueArchive.path}`, sha256: route.dialogueArchive.sha256 },
-      messages: records.map((record, index) => {
+    archiveSources.push({archive:`disc1/${archive.path}`,sha256:archive.sha256});
+    messages.push(...records.map((record, index) => {
         const member = speech[index], voiceId = member.name.replace(/\.str$/i, "");
         streamVoices.set(voiceId, { voiceId, actorCodes: [record.speakerId], variants: [{
           sha256: createHash("sha256").update(member.bytes).digest("hex"), nativeByteLength: member.bytes.length,
           sources: [{ archivePath: filename, member: member.name }],
         }] });
         return { ...record, voiceId };
-      }) };
+      }));
+    }
+    source={generatedFrom:archiveSources[0],archiveSources,messages};
   } else {
     ({ NATIVE_DIALOGUE_MESSAGE_RESOURCE: source } = await import(pathToFileURL(path.join(root, "play/data/dialogue/messages", `${route.actor}.generated.js`))));
   }
@@ -57,6 +62,7 @@ for (const route of spec.routes) {
     : `(game_hour() < ${route.hours[0]} && game_hour() >= ${route.hours[1]})`);
   if(route.bounds)gates.push(`!actor_in_bounds("AKIR", "${route.bounds}")`);
   if(route.sameDayAs)gates.push(`game_day() != progress_value("${route.sameDayAs}")`);
+  if(route.dayAfter && !route.legacyDateNotice)gates.push(`progress_value("${route.dayAfter}") == 0 || game_day() <= progress_value("${route.dayAfter}")`);
   const nativeEffects = (route.nativeEffects || []).map(effect => {
     if (!/^2:\d+$/.test(effect.address) || ![0, 1].includes(effect.value) || !route.nativeSources?.length) throw new Error(`Unreviewed native effect in ${route.id}`);
     return `<<set_native_value "${effect.address}" ${effect.value}>>`;
@@ -72,7 +78,9 @@ for (const route of spec.routes) {
     if(questions.length)body=body.replace("\n===\ntitle: Clue", "\n<<endif>>\n===\ntitle: Clue");
   } else if (route.challenge) {
     if (!route.staging || !leadIn.length) throw new Error(`Challenge ${route.id} needs reviewed staging and lead-in`);
-    body = `<<jump Attempt>>\n===\ntitle: Attempt\n---\n<<play_sequence "${route.staging}.start">>\n${leadIn.join("\n")}\n<<start_challenge "${route.challenge}">>\n<<if challenge_result("${route.challenge}") != "success">>\n<<play_sequence "${route.staging}.finish">>\n-> Try again\n    <<jump Attempt>>\n-> Leave it for now\n    <<complete>>\n<<else>>\n${lines.join("\n")}\n<<play_sequence "${route.staging}.finish">>\n${effects.join("\n")}\n<<complete>>\n<<endif>>`;
+    const challengeStage=route.challengeStaging||route.staging;
+    const leadInBody=`<<play_sequence "${route.staging}.start">>\n${leadIn.join("\n")}${route.challengeStaging?`\n<<play_sequence "${route.staging}.finish">>\n<<play_sequence "${challengeStage}.start">>`:""}`;
+    body = `<<jump Attempt>>\n===\ntitle: Attempt\n---\n${leadInBody}\n<<start_challenge "${route.challenge}">>\n<<if challenge_result("${route.challenge}") != "success">>\n<<play_sequence "${challengeStage}.finish">>\n-> Try again\n    <<jump Attempt>>\n-> Leave it for now\n    <<complete>>\n<<else>>\n${lines.join("\n")}\n<<play_sequence "${challengeStage}.finish">>\n${effects.join("\n")}\n<<complete>>\n<<endif>>`;
   } else {
     const begin=route.staging?`<<play_sequence "${route.staging}.start">>`:participants.map(actor=>`<<look_at_actor "${actor}" "AKIR">>`).join("\n");
     const finish=route.staging?`<<play_sequence "${route.staging}.finish">>`:participants.map(actor=>`<<clear_actor_look "${actor}">>`).join("\n");
@@ -83,13 +91,13 @@ for (const route of spec.routes) {
   const sourceText = `title: Start\ntags: adaptation story disc1 ${route.area} ${route.actor}\n---\n<<if ${gates.join(" || ")}>>\n    <<pass_trigger>>\n<<endif>>\n${body}\n===\n${route.combat?"title: Done\n---\n<<complete>>\n===\n":""}`;
   imports.push({ Slug: `story-s1-${route.id}`, Title: route.title,
     Description: route.provenance || spec.provenance, Summary: route.combat?"Original introduction, server-controlled fight, original clue dialogue. No movie-completion victory or currency/item reward.":route.challenge ? "Personal voiced encounter; explicit server-validated QTE before clue settlement. Authored staging; no item or currency reward." : "Personal investigation conversation; original voiced lines, authored sequence, existing NPC facing and gameplay camera. No item or currency reward.",
-    NativeSources: [{ role: "dialogue", locator: `${source.generatedFrom.archive}#${route.actor}/${route.id}`, sha256: source.generatedFrom.sha256 }, ...(route.nativeSources || [])],
+    NativeSources: [...(source.archiveSources||[source.generatedFrom]).map(info=>({role:"dialogue",locator:`${info.archive}#${route.actor}/${route.id}`,sha256:info.sha256})), ...(route.nativeSources || [])],
     SourceText: sourceText, Triggers: [{ nodeId: "Start", kind: route.trigger || "talk", area: route.area, ...(route.trigger ? {} : { actor: route.actor }), priority: route.priority ?? 200 }],
     TestFixtures: [{ Name: "Eligible personal investigation", StartNode: "Start", Fixture: {
       playMode: "story", openingCompleted: true, scene: route.area, gameHour: route.hours ? Math.max(10,route.hours[0]) : 10,
       flags: Object.fromEntries(route.requiredFlags.map(flag => [flag, true])),
       actorPresence: Object.fromEntries((route.presentActors || participants).map(actor => [actor, true])),
-      ...((route.recordDays?.length||route.combat)?{gameDate:"1986-12-04"}:{}),
+      ...((route.recordDays?.length||route.combat||route.dayAfter||route.sameDayAs)?{gameDate:"1986-12-04"}:{}),
       ...(route.dayAfter?{progress:{[route.dayAfter]:Date.UTC(1986,11,3)/86400000}}:{}),
       ...(route.sameDayAs?{progress:{[route.sameDayAs]:Date.UTC(1986,11,4)/86400000}}:{}),
       ...(route.bounds?{actorBounds:{AKIR:{[route.bounds]:true}}}:{}),
@@ -125,6 +133,11 @@ if (process.argv.includes("--voices")) {
     for (const line of additions.lines) map.set(line.voiceId, line);
     existing.lines = [...map.values()].sort((a,b) => a.voiceId.localeCompare(b.voiceId));
     fs.writeFileSync(filename, JSON.stringify(existing, null, 2) + "\n");
+    // Ignored extraction files need explicit immutable asset records. Updating
+    // only existing records would leave new voices on bare local URLs and make
+    // clean builds unable to fetch them after separately authorized publication.
+    execFileSync(process.execPath,["tools/runtime-assets.mjs","update","public/audio/dialogue/manifest.json",
+      ...existing.lines.filter(line=>voices.has(line.voiceId)).map(line=>`public${line.url}`)],{cwd:root,stdio:"inherit"});
   } finally { fs.rmSync(temporary, { recursive: true, force: true }); }
 }
 console.log(`Generated ${imports.length} official conversations (${voices.size} original voice lines).`);

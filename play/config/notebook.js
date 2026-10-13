@@ -79,6 +79,8 @@ const STORY_PAGES = Object.freeze([
     text:"Kurita-san lives in room 102 at Okayama Heights. The tattoo parlor must be in one of the upstairs rooms.\n\nLook for the marked door on the second floor."}) },
   { flag:"notebook.s1.charlie-return-tomorrow",page:Object.freeze({id:"story-charlie-return-tomorrow",
     text:"Takashiro told me to come back tomorrow. Charlie might be at the tattoo parlor.\n\nReturn to Okayama Heights on a later day, after the parlor opens at 2 p.m."}) },
+  { flag:"notebook.s1.charlie-cartel-appointment",page:Object.freeze({id:"story-charlie-cartel-appointment",
+    text:"Charlie promised to arrange a meeting with members of the Chinese cartel.\n\nMeet him at You Arcade at 3 p.m. on the following day.\n\nI warned him not to break his word."}) },
 ]);
 
 export function notebookPagesForCharacter(character) {
