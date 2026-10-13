@@ -3,6 +3,23 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"saijo-tattoo-location","actor":"SAJO","area":"DBYO","title":"Saijo — the tattoo parlor in Okayama Heights","hours":[17,3],"priority":210,
+      "requiredFlags":["notebook.s1.tattoo-parlor"],"completedFlag":"story.s1.saijo-tattoo-location.completed","effects":["notebook.s1.okayama-heights"],
+      "voiceIds":["F1131A034","F1131B049","F1131A035","F1131A037","F1131B051","F1131A038","F1131B052","F1131B053","F1131B055","F1131A074","F1131B056","F1131A040"]
+    },
+    {
+      "id":"kurita-okayama-location","actor":"KURI","area":"D000","title":"Kurita — Okayama Heights and the second floor","hours":[10,20.5],"priority":210,
+      "requiredFlags":["notebook.s1.okayama-heights"],"completedFlag":"story.s1.kurita-okayama-location.completed","effects":["notebook.s1.okayama-second-floor"],
+      "voiceIds":["F1033A038","F1033B079","F1033A039","F1033A040","F1033B080","F1033A041","F1033B081","F1033B082","F1033A042","F1033B083"]
+    },
+    {
+      "id":"first-tattoo-visit","actor":"HORS","area":"TATQ","trigger":"automatic","blockNativeTalk":true,"title":"Takashiro — return tomorrow for Charlie","hours":[14,24],"staging":"s1.tatq.first-visit",
+      "requiredFlags":["notebook.s1.tattoo-parlor"],"completedFlag":"story.s1.first-tattoo-visit.completed","effects":["notebook.s1.charlie-return-tomorrow"],"recordDays":["story.s1.first-tattoo-visit.day"],
+      "sameDayAs":"story.s1.parking-lot-ambush.day",
+      "voiceIds":["F1024A001","F1024B002","F1024A002","F1024A003","F1024B003","F1024B004","F1024A004","F1024B005","F1024B006","F1024B007","F1024B008","F1024A005","F1024A006","F1024B009","F1024A007","F1024B010","F1024A008","F1024B011","F1024A009","F1024B012"],
+      "provenance":"Original HUMANS.AFS HORS/F1024 first-visit subtitles and voices. Walkthrough-backed same-night visit after the ambush, followed by a later-day return after 14:00; directly finding the parlor is allowed. Later-day first arrivals belong to the subsequent Charlie encounter, not an invented extra waiting day. Shared authored two-person staging around HORS's original room position, without the original grab gesture/camera direction. Server atomically records the personal visit day and notebook, without guessing native flags."
+    },
+    {
       "id":"parking-lot-ambush","actor":"TONY","presentActors":[],"area":"D000","trigger":"enter","title":"Charlie's gang — the parking-lot ambush","hours":[19,23.5],
       "requiredFlags":["story.s1.heartbeats-bar.completed","notebook.s1.charlie-evening"],"completedFlag":"story.s1.parking-lot-ambush.completed","effects":["notebook.s1.tattoo-parlor"],
       "bounds":"s1.d000.arcade-ambush","dayAfter":"story.s1.heartbeats-bar.day","recordDays":["story.s1.parking-lot-ambush.day"],

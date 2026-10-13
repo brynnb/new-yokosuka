@@ -213,7 +213,8 @@ Do not describe the first conversation as fully animation-faithful.
 | Heartbeats interior → Charlie notebook lead | Connected real-door/browser check verifies voiced lead-in, failed QTE/retry, successful B,A,B,A inputs, clue settlement, restored Ryo/camera/controls and no replay on re-entry. Rendered cast uses held standing poses; attack choreography is not implemented. |
 | Charlie inquiries: Ono → jacket shops; optional Kinuyo → Nagai office → shopkeepers | Seven connected, rendered original-voiced talks and notebook leads verified after the bar-earned checkpoint, including personal daytime waiting, unlocked controls and reload. |
 | Arcade-area ambush → tattoo-parlour lead | Connected rendered introduction/trap, real five-opponent fight, loss/retry, original interrogation and saved notebook verified. Server/compiler/PostgreSQL tests cover calendar/region gates, cancellation, timeout, pre-clue rollback and personal settlement. Combat balance and interrogation staging are adapted. |
-| Tattoo parlour / Chinese letter | Missing connected authored progression. |
+| Find the tattoo parlor → same-night artist visit | Connected Saijo/Kurita original-voiced clues and real upstairs door entry verified. Rendered two-person visit, cancellation/re-entry, saved tomorrow clue and reload verified; same-day/hour/presence gates and atomic visit-date settlement tested through the real compiler/database. Camera, held poses and omitted grab gesture are adaptations. |
+| Charlie's parlor QTE / Nozomi / Chinese letter | Missing connected authored progression. |
 | Harbor warehouses / Master Chen / Phoenix Mirror | Missing connected authored progression. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
@@ -557,7 +558,8 @@ cover missing prerequisites/Hato, opening hours, cancelled preparation,
 cancel-after-win, clue settlement, repeat and cross-character isolation.
 
 The inquiries below continue this clue. The parking-lot ambush continues their
-evening lead; tattoo-parlour and Chinese-letter progression remain missing.
+evening lead; the same-night tattoo-parlour visit is connected. Charlie's later
+confrontation and Chinese-letter progression remain missing.
 
 ## Searching for Charlie: daytime inquiries
 
@@ -693,3 +695,47 @@ out-of-region rejection, another character's inability to advance the run,
 timeout, cancellation before and after victory, atomic clue/date settlement,
 repeat protection and stale post-completion inputs. Headless result tests do
 not establish visual fidelity.
+
+## Finding the tattoo parlor and the same-night visit
+
+| Event / location | Gate and trigger | Presentation and saved outcome |
+| --- | --- | --- |
+| `saijo-tattoo-location`, Bar Yokosuka (`DBYO`) | Tattoo-parlor lead, resident Saijo, 17:00–03:00; normal talk click. Later-story priority outranks his earlier sailors clue. | Twelve selected original F1131 lines identify Takashiro and Okayama Heights. Save `notebook.s1.okayama-heights` and the talk milestone. |
+| `kurita-okayama-location`, Dobuita (`D000`) | Okayama clue, resident Kurita, 10:00–20:30; normal talk click. | Ten original F1033 lines give the opposite-Bar-Yokosuka location and second-floor direction. Save `notebook.s1.okayama-second-floor` and the talk milestone. This extra direction is optional, not an entry requirement. |
+| `first-tattoo-visit`, Tattoo Parlor (`TATQ`) | Tattoo-parlor lead, resident Takashiro (`HORS`), 14:00–midnight, same personal day as the ambush; automatic entry. Directly discovering the room is allowed without either location talk. | Twenty original F1024 lines: ask for Charlie, refuse a tattoo, and receive the tomorrow lead. A shared authored two-person scene holds Ryo/Takashiro, then restores exact entry position, facing, camera and NPC ownership. Atomically save `story.s1.first-tattoo-visit.completed`, `notebook.s1.charlie-return-tomorrow` and the personal visit-day ordinal. |
+
+The [original GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf),
+pages 24–26, supports the alternate location searches, upstairs entrance and
+later-day visit after 2 p.m. The
+[Shotgunnova walkthrough](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404)
+distinguishes the ambush-night artist talk from later-day first arrivals, which
+belong to Charlie's confrontation. Do not impose an invented extra waiting day
+on those later arrivals; that connected confrontation is the next missing event.
+Our optional location path uses Saijo and Kurita; the original gang-joining and
+Nagai alternatives are not yet authored here.
+
+All three use the personal calendar and existing server/Yarn settlement. They
+have no weather requirement, new prop, item, currency reward, clock jump or QTE.
+Voice lengths/manual Space control line timing; the ordinary zone music and
+ambience remain. Cancellation, preparation failure and disconnection settle no
+clue/date; completed visits cannot pay or replay. The parlor's original grab
+gesture and camera direction are not reconstructed. Its held poses, Ryo's nearby
+position and side camera are authored around HORS's original room anchor
+`[-1.3584, 0, -2.4255]` from the 14:00 CM_D000 schedule journey.
+
+`NEW_YOKOSUKA_TATTOO_E2E=true` continues the ambush-earned checkpoint. It clicks
+both residents, observes original voice playback, enters through the real
+upstairs door, checks the artist's rendered body, cancels and re-enters, completes
+the conversation, inspects the notebook and reloads the saved room/Ryo without
+replay. Exterior travel is shortened; walking the full stairs route and every
+original gesture are not claimed. The real compiler/PostgreSQL suite checks
+ineligible players, actor presence, hours, later-day exclusion, cancellation,
+repeat protection, unchanged economy and clue/date settlement. The shared wait
+menu now includes a confirmed/cancellable 14:00 target for the coming encounter.
+
+The rendered visit exposed an ownership bug: ordinary GPU occlusion had disabled
+the artist's render hierarchy while his placement remained enabled. Activity
+ownership now temporarily clears ambient occlusion and camera fading, then
+restores their exact prior policy. Partial acquisition or failed restoration
+still releases every actor lease. This shared boundary covers borrowed cinematic
+actors, not a tattoo-artist-only visibility override.

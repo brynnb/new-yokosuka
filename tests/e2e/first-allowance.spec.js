@@ -58,6 +58,8 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       ScriptEventDialoguePresenter.prototype.show = function(...args) { window.storyProbe.dialogue = this; return probeShow.apply(this,args); };`],
     ["world/PlayWorldLifecycle", `const probeInitialize = PlayWorldLifecycle.prototype.initialize;
       PlayWorldLifecycle.prototype.initialize = function(...args) { window.storyProbe.lifecycle = this; return probeInitialize.apply(this,args); };`],
+    ["scripts/AuthoredSceneStagingRuntime", `const probeStage = AuthoredSceneStagingRuntime.prototype.play;
+      AuthoredSceneStagingRuntime.prototype.play = function(...args) { window.storyProbe.authoredScene = this; return probeStage.apply(this,args); };`],
     ["cutscenes/NativeCutsceneDirector", `const probeStart = NativeCutsceneDirector.prototype.start;
       NativeCutsceneDirector.prototype.start = function(cutscene,...args) { window.storyProbe.director = this; window.storyProbe.starts.push(cutscene.id); return probeStart.call(this,cutscene,...args).catch(error => { window.storyProbe.sceneErrors.push(error.message); throw error; }); };`],
     ["scripts/StoryRegionRuntime", `const probeUpdate = StoryRegionRuntime.prototype.update;
@@ -107,6 +109,12 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     }
     if(process.env.NEW_YOKOSUKA_AMBUSH_E2E === "true") {
       await verifyParkingLotAmbush(page,testInfo,character);
+      expect(errors).toEqual([]);
+      expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+      return;
+    }
+    if(process.env.NEW_YOKOSUKA_TATTOO_E2E === "true") {
+      await verifyTattooFirstVisit(page,testInfo,character);
       expect(errors).toEqual([]);
       expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
       return;
@@ -516,32 +524,7 @@ async function verifyBarQte(page, testInfo, character) {
     await expect.poll(() => page.evaluate(() => window.storyProbe.regions.controller.status)).toBe("idle");
   }
   if (await page.evaluate(() => window.storyProbe.lifecycle.worldRuntime.activeWorld.id !== "dbhb")) {
-    await page.evaluate(async () => {
-      const life = window.storyProbe.lifecycle;
-      await life.travelToWorld("dobuita");
-      life.resetPlayer(life.vectorFromArray([124.56, -1.8, 64.41]), -.955742, { persist: false });
-      const door = life.doorInteractions.entries.find(entry => entry.root._filename === "S1_D000_DR02_016.MT5");
-      if (!door) throw new Error("Heartbeats door is missing");
-      const bounds = door.root.getHierarchyBoundingVectors(true), center = bounds.min.add(bounds.max).scale(.5);
-      const controller = life.getController();
-      controller.setFirstPerson(true);
-      controller.cameraYaw = Math.atan2(-(center.x - 124.56), -(center.z - 64.41));
-      controller.cameraPitch = 0;
-      controller.updateCamera(1);
-    });
-    await page.waitForTimeout(800);
-    const point = await page.evaluate(() => {
-      const life = window.storyProbe.lifecycle;
-      const door = life.doorInteractions.entries.find(entry => entry.root._filename === "S1_D000_DR02_016.MT5");
-      if (!door) throw new Error("Heartbeats door is missing");
-      const bounds = door.root.getHierarchyBoundingVectors(true);
-      const center = bounds.min.add(bounds.max).scale(.5), canvas = life.engine.getRenderingCanvas(), rect = canvas.getBoundingClientRect();
-      const screen = center.constructor.Project(center, life.scene.getTransformMatrix().constructor.Identity(), life.scene.getTransformMatrix(),
-        life.scene.activeCamera.viewport.toGlobal(life.engine.getRenderWidth(), life.engine.getRenderHeight()));
-      return { x: rect.x + screen.x * rect.width / life.engine.getRenderWidth(), y: rect.y + screen.y * rect.height / life.engine.getRenderHeight() };
-    });
-    await page.mouse.click(point.x, point.y);
-    await page.waitForFunction(() => window.storyProbe.lifecycle.worldRuntime.activeWorld.id === "dbhb", null, { timeout: 30_000 });
+    await enterInteriorDoor(page,{world:"dbhb",filename:"S1_D000_DR02_016.MT5",position:[124.56,-1.8,64.41],yaw:-.955742});
   }
   await page.waitForFunction(() => window.storyProbe.dialogue?.active || window.storyProbe.sceneErrors.length, null, { timeout: 60_000 });
   expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
@@ -598,6 +581,42 @@ async function verifyBarQte(page, testInfo, character) {
   await page.waitForTimeout(1500);
   expect(await page.evaluate(() => window.storyProbe.regions.controller.status)).toBe("idle");
   expect(await page.evaluate(() => window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+}
+
+async function enterInteriorDoor(page,{world,filename,position,yaw=0}) {
+    await page.evaluate(async ({filename,position,yaw}) => {
+      const life = window.storyProbe.lifecycle;
+      await life.travelToWorld("dobuita");
+      life.resetPlayer(life.vectorFromArray(position), yaw, { persist: false });
+      const door = life.doorInteractions.entries.find(entry => entry.root._filename === filename);
+      if (!door) throw new Error(`Interior door ${filename} is missing`);
+      const bounds = door.root.getHierarchyBoundingVectors(true), center = bounds.min.add(bounds.max).scale(.5);
+      const controller = life.getController();
+      controller.setFirstPerson(true);
+      controller.cameraYaw = Math.atan2(-(center.x - position[0]), -(center.z - position[2]));
+      controller.cameraPitch = Math.atan2(position[1]+controller.options.firstPersonHeadHeight-center.y,
+        Math.hypot(center.x-position[0],center.z-position[2]));
+      controller.updateCamera(1);
+    },{filename,position,yaw});
+    await page.waitForTimeout(800);
+    const point = await page.evaluate(filename => {
+      const life = window.storyProbe.lifecycle;
+      const door = life.doorInteractions.entries.find(entry => entry.root._filename === filename);
+      if (!door) throw new Error(`Interior door ${filename} is missing`);
+      const bounds = door.root.getHierarchyBoundingVectors(true);
+      const center = bounds.min.add(bounds.max).scale(.5), canvas = life.engine.getRenderingCanvas(), rect = canvas.getBoundingClientRect();
+      const viewProjection=life.scene.activeCamera.getViewMatrix(true).multiply(life.scene.activeCamera.getProjectionMatrix(true));
+      const screen = center.constructor.Project(center, viewProjection.constructor.Identity(), viewProjection,
+        life.scene.activeCamera.viewport.toGlobal(life.engine.getRenderWidth(), life.engine.getRenderHeight()));
+      return { x: rect.x + screen.x * rect.width / life.engine.getRenderWidth(), y: rect.y + screen.y * rect.height / life.engine.getRenderHeight(),
+        depth:screen.z,doorCenter:center.asArray(),playerPosition:life.getController().collider.position.asArray(),
+        filename:door.root._filename,selector:door.doorSelector,type:door.type,state:door.state };
+    },filename);
+    console.info("Door pick",point);
+    expect(point.x).toBeGreaterThan(280);expect(point.x).toBeLessThan(1025);
+    expect(point.y).toBeGreaterThan(0);expect(point.y).toBeLessThan(720);
+    await page.mouse.click(point.x, point.y);
+    await page.waitForFunction(world => window.storyProbe.lifecycle.worldRuntime.activeWorld.id === world, world, { timeout: 30_000 });
 }
 
 async function verifyCharlieInquiries(page, testInfo, character) {
@@ -776,4 +795,85 @@ async function verifySavedAmbush(page,testInfo,character) {
   expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
   expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
   await page.screenshot({path:testInfo.outputPath("ambush-saved-return.png")});
+}
+
+async function verifyTattooFirstVisit(page,testInfo,character) {
+  expect(character.storyFlags["notebook.s1.tattoo-parlor"]).toBe(true);
+  if(!character.storyFlags["story.s1.first-tattoo-visit.completed"]) {
+    const state=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+    const hour=new Date(state.worldState.gameTimeMs).getUTCHours();
+    if(hour<17) {
+      await page.locator("#story-wait-button").click();
+      await page.getByRole("option",{name:"Wait until 7 p.m.",exact:true}).click();
+      await page.getByRole("button",{name:"Wait until 7 p.m.",exact:true}).click();
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+    }
+    for(const [actor,world,flag]of [["SAJO","dbyo","notebook.s1.okayama-heights"],["KURI","dobuita","notebook.s1.okayama-second-floor"]]) {
+      if(character.storyFlags[flag])continue;
+      await page.evaluate(async world=>window.storyProbe.lifecycle.travelToWorld(world),world);
+      await page.waitForFunction(actor=>window.storyProbe.lifecycle.scheduledActors.dialogueActor(actor),actor,{timeout:60_000});
+      const point=await residentClickPoint(page,actor);await page.mouse.click(point.x,point.y);
+      await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0,null,{timeout:15_000});
+      await page.screenshot({path:testInfo.outputPath(`tattoo-location-${actor}.png`)});
+      for(let i=0;i<30&&!await page.evaluate(flag=>window.storyProbe.regions.getCharacter()?.storyFlags?.[flag],flag);i++) {
+        await page.keyboard.press("Space");await page.waitForTimeout(180);
+      }
+      await expect.poll(()=>page.evaluate(flag=>window.storyProbe.regions.getCharacter()?.storyFlags?.[flag],flag)).toBe(true);
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+    }
+    // Use the actual upstairs door, transition authorization, arrival and
+    // automatic room-entry trigger. Only the exterior approach is shortened.
+    // A resumed checkpoint may already be inside with its automatic event
+    // starting. Let that owned entry continue instead of racing it with a
+    // test-only travel reset. The retry below still exercises the actual door.
+    if(await page.evaluate(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id!=="tatq")) {
+      await enterInteriorDoor(page,{world:"tatq",filename:"S1_D000_DR01_007.MT5",position:[100.4,2.7724,99.9],yaw:2.181661565});
+    }
+    await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0||window.storyProbe.sceneErrors.length,null,{timeout:60_000});
+    expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+    expect(await page.evaluate(()=>window.storyProbe.regions.controller.active?.scriptIdentity.scriptSlug)).toBe("story-s1-first-tattoo-visit");
+    expect(await page.evaluate(()=>!!window.storyProbe.lifecycle.scheduledActors.dialogueActor("HORS"))).toBe(true);
+    const artist=await page.evaluate(()=>{
+      const actor=window.storyProbe.authoredScene.actors.activeActor("HORS"),model=actor.model;
+      const bounds=model.renderRoot.getHierarchyBoundingVectors(true);
+      return {position:actor.root.position.asArray(),rootEnabled:actor.root.isEnabled(),renderEnabled:model.renderRoot.isEnabled(),
+        occlusionCulled:model.occlusionRenderCulled,modelCode:model.modelCode,bounds:[bounds.min.asArray(),bounds.max.asArray()]};
+    });
+    console.info("Staged tattoo artist",artist);expect(artist.renderEnabled).toBe(true);
+    await page.screenshot({path:testInfo.outputPath("tattoo-first-visit.png")});
+    await page.keyboard.press("KeyX");
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+    const cancelled=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+    expect(cancelled.character.storyFlags["notebook.s1.charlie-return-tomorrow"]).not.toBe(true);
+    expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+    await enterInteriorDoor(page,{world:"tatq",filename:"S1_D000_DR01_007.MT5",position:[100.4,2.7724,99.9],yaw:2.181661565});
+    await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0||window.storyProbe.sceneErrors.length,null,{timeout:60_000});
+    expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+    for(let i=0;i<35&&!await page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.charlie-return-tomorrow"]);i++) {
+      await page.keyboard.press("Space");await page.waitForTimeout(180);
+    }
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.charlie-return-tomorrow"])).toBe(true);
+  }
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  const saved=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+  expect(saved.character.worldId).toBe("tatq");expect(saved.character.yen).toBe(character.yen);
+  expect(saved.character.currentHp).toBe(character.currentHp);
+  expect(saved.character.storyFlags["story.s1.first-tattoo-visit.completed"]).toBe(true);
+  await page.locator("button").filter({hasText:/^Notebook$/}).click();
+  for(let i=0;i<40&&await page.locator("#journal-next").isEnabled();i++)await page.locator("#journal-next").click();
+  await expect(page.getByText(/Takashiro told me to come back tomorrow/)).toBeVisible();
+  await page.screenshot({path:testInfo.outputPath("tattoo-tomorrow-notebook.png")});
+  await page.locator("#journal-close").click();
+  await page.reload();await page.keyboard.press("Enter");
+  await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();
+  await page.locator(".character-slot-button:not(.empty)").first().click();
+  await page.locator("button").filter({hasText:/^Enter World$/}).click();
+  await page.waitForFunction(()=>window.storyProbe.ready,null,{timeout:120_000});
+  await page.waitForTimeout(1500);
+  expect(await page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  const reloaded=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+  expect(reloaded.character.storyFlags["notebook.s1.charlie-return-tomorrow"]).toBe(true);
+  expect(reloaded.character.worldId).toBe("tatq");expect(reloaded.character.avatarId).toBe("ryo");
 }

@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { ScriptedInteractionRuntime } from "../play/interactions/ScriptedInteractionRuntime.js";
 
-function createHarness({ result, error, presentationOwned = false, playMode = "free_roam" } = {}) {
+function createHarness({ result, error, presentationOwned = false, playMode = "free_roam",area="D000" } = {}) {
   const notices = [];
   let fallbackCount = 0;
   const runtime = new ScriptedInteractionRuntime({
@@ -11,7 +11,7 @@ function createHarness({ result, error, presentationOwned = false, playMode = "f
     getCurrentGameDate: () => ({}),
     getMultiplayerClient: () => null,
     getPresentationOwned: () => presentationOwned,
-    getWorld: () => ({ nativeArea: "D000", cutsceneOnly: false }),
+    getWorld: () => ({ nativeArea: area, cutsceneOnly: false }),
     nativeDialogueOverlay: {},
     nativeDialoguePersistence: { gameplayState: () => null },
     nativeRoomScriptRuntime: { eventContext: () => ({}) },
@@ -85,6 +85,13 @@ for (const response of [
   await h.runtime.startNpc({ actorCode: "HRSK", id: "nozomi" });
   assert.equal(h.fallbackCount(), 0);
   assert.equal(h.notices.length, 1);
+});
+
+test("an authored room-entry conversation cannot fall back to native talk afterward",async()=>{
+  const h=createHarness({result:{outcome:"rejected",error:{code:"no_script"}},playMode:"story",area:"TATQ"});
+  h.runtime.startNativeNpc=h.fallback;
+  await h.runtime.startNpc({actorCode:"HORS",id:"tattoo-artist"});
+  assert.equal(h.fallbackCount(),0);assert.equal(h.notices.length,1);
 });
 
 for (const [playMode, actorCode] of [["free_roam", "HRSK"], ["story", "HATO"]]) test(`native talk remains available for ${playMode} ${actorCode}`, async () => {

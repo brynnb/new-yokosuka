@@ -73,6 +73,12 @@ const STORY_PAGES = Object.freeze([
     text:"Charlie was seen around the jacket shop at about 7 p.m.\n\nLook around Dobuita in the evening. Be alert near You Arcade."}) },
   { flag:"notebook.s1.tattoo-parlor",page:Object.freeze({id:"story-tattoo-parlor",
     text:"Charlie's friends ambushed me in the parking lot.\n\nTony says there is a tattoo parlor in Yokosuka. If Charlie had his tattoo done here, someone there may know him.\n\nFind the tattoo parlor."}) },
+  { flag:"notebook.s1.okayama-heights",page:Object.freeze({id:"story-okayama-heights",
+    text:"Saijo-san says Takashiro runs the tattoo parlor in Okayama Heights.\n\nThe apartments are across from Bar Yokosuka in Dobuita."}) },
+  { flag:"notebook.s1.okayama-second-floor",page:Object.freeze({id:"story-okayama-second-floor",
+    text:"Kurita-san lives in room 102 at Okayama Heights. The tattoo parlor must be in one of the upstairs rooms.\n\nLook for the marked door on the second floor."}) },
+  { flag:"notebook.s1.charlie-return-tomorrow",page:Object.freeze({id:"story-charlie-return-tomorrow",
+    text:"Takashiro told me to come back tomorrow. Charlie might be at the tattoo parlor.\n\nReturn to Okayama Heights on a later day, after the parlor opens at 2 p.m."}) },
 ]);
 
 export function notebookPagesForCharacter(character) {

@@ -9,8 +9,9 @@ walkthrough-guided Yarn events with original presentation assets. The
 [connected progression checklist](story-event-template.md#connected-progression-checklist)
 is the source of truth for playable coverage and verification. Connected browser
 coverage reaches the opening, allowance, early witnesses, Heartbeats and the
-Charlie inquiries and the parking-lot ambush's tattoo-parlour lead. The whole
-storyline is not implemented.
+Charlie inquiries, the parking-lot ambush and the same-night tattoo-parlour visit.
+The whole storyline is not implemented; Charlie's later confrontation and the
+Chinese-letter chapter remain unconnected.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

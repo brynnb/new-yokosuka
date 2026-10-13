@@ -56,6 +56,7 @@ for (const route of spec.routes) {
     ? `(game_hour() < ${route.hours[0]} || game_hour() >= ${route.hours[1]})`
     : `(game_hour() < ${route.hours[0]} && game_hour() >= ${route.hours[1]})`);
   if(route.bounds)gates.push(`!actor_in_bounds("AKIR", "${route.bounds}")`);
+  if(route.sameDayAs)gates.push(`game_day() != progress_value("${route.sameDayAs}")`);
   const nativeEffects = (route.nativeEffects || []).map(effect => {
     if (!/^2:\d+$/.test(effect.address) || ![0, 1].includes(effect.value) || !route.nativeSources?.length) throw new Error(`Unreviewed native effect in ${route.id}`);
     return `<<set_native_value "${effect.address}" ${effect.value}>>`;
@@ -73,7 +74,9 @@ for (const route of spec.routes) {
     if (!route.staging || !leadIn.length) throw new Error(`Challenge ${route.id} needs reviewed staging and lead-in`);
     body = `<<jump Attempt>>\n===\ntitle: Attempt\n---\n<<play_sequence "${route.staging}.start">>\n${leadIn.join("\n")}\n<<start_challenge "${route.challenge}">>\n<<if challenge_result("${route.challenge}") != "success">>\n<<play_sequence "${route.staging}.finish">>\n-> Try again\n    <<jump Attempt>>\n-> Leave it for now\n    <<complete>>\n<<else>>\n${lines.join("\n")}\n<<play_sequence "${route.staging}.finish">>\n${effects.join("\n")}\n<<complete>>\n<<endif>>`;
   } else {
-    body = `${participants.map(actor => `<<look_at_actor "${actor}" "AKIR">>`).join("\n")}\n${lines.join("\n")}\n${participants.map(actor => `<<clear_actor_look "${actor}">>`).join("\n")}\n${effects.join("\n")}\n<<complete>>`;
+    const begin=route.staging?`<<play_sequence "${route.staging}.start">>`:participants.map(actor=>`<<look_at_actor "${actor}" "AKIR">>`).join("\n");
+    const finish=route.staging?`<<play_sequence "${route.staging}.finish">>`:participants.map(actor=>`<<clear_actor_look "${actor}">>`).join("\n");
+    body = `${begin}\n${lines.join("\n")}\n${finish}\n${effects.join("\n")}\n<<complete>>`;
   }
   // complete requests durable settlement; it does not short-circuit Yarn.
   // Conditional early endings jump to an actual terminal node instead.
@@ -81,13 +84,14 @@ for (const route of spec.routes) {
   imports.push({ Slug: `story-s1-${route.id}`, Title: route.title,
     Description: route.provenance || spec.provenance, Summary: route.combat?"Original introduction, server-controlled fight, original clue dialogue. No movie-completion victory or currency/item reward.":route.challenge ? "Personal voiced encounter; explicit server-validated QTE before clue settlement. Authored staging; no item or currency reward." : "Personal investigation conversation; original voiced lines, authored sequence, existing NPC facing and gameplay camera. No item or currency reward.",
     NativeSources: [{ role: "dialogue", locator: `${source.generatedFrom.archive}#${route.actor}/${route.id}`, sha256: source.generatedFrom.sha256 }, ...(route.nativeSources || [])],
-    SourceText: sourceText, Triggers: [{ nodeId: "Start", kind: route.trigger || "talk", area: route.area, ...(route.trigger ? {} : { actor: route.actor }), priority: 200 }],
+    SourceText: sourceText, Triggers: [{ nodeId: "Start", kind: route.trigger || "talk", area: route.area, ...(route.trigger ? {} : { actor: route.actor }), priority: route.priority ?? 200 }],
     TestFixtures: [{ Name: "Eligible personal investigation", StartNode: "Start", Fixture: {
       playMode: "story", openingCompleted: true, scene: route.area, gameHour: route.hours ? Math.max(10,route.hours[0]) : 10,
       flags: Object.fromEntries(route.requiredFlags.map(flag => [flag, true])),
       actorPresence: Object.fromEntries((route.presentActors || participants).map(actor => [actor, true])),
       ...((route.recordDays?.length||route.combat)?{gameDate:"1986-12-04"}:{}),
       ...(route.dayAfter?{progress:{[route.dayAfter]:Date.UTC(1986,11,3)/86400000}}:{}),
+      ...(route.sameDayAs?{progress:{[route.sameDayAs]:Date.UTC(1986,11,4)/86400000}}:{}),
       ...(route.bounds?{actorBounds:{AKIR:{[route.bounds]:true}}}:{}),
     } }],
   });
@@ -97,7 +101,8 @@ fs.writeFileSync(path.join(server, "internal/officialscript/early_investigation.
 // different native branch when their server gate passes or is unavailable.
 fs.writeFileSync(path.join(root, "play/data/authored-story-talks.json"), JSON.stringify({
   schema: "new-yokosuka-authored-story-talks-v1",
-  talks: spec.routes.filter(route => !route.trigger).map(({ area, actor }) => ({ area, actor })),
+  talks: [...new Map(spec.routes.filter(route => !route.trigger || route.blockNativeTalk)
+    .map(({ area, actor }) => [`${area}:${actor}`,{area,actor}])).values()],
 }, null, 2) + "\n");
 if (process.argv.includes("--voices")) {
   if (!process.env.VGMSTREAM_CLI) throw new Error("VGMSTREAM_CLI is required for --voices");
