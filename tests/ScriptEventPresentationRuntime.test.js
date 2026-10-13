@@ -64,6 +64,17 @@ test("catalog exposes only exact reviewed presentation and activity records", ()
   });
 });
 
+test("the optional Nozomi encounter reuses the original YBHN presentation without native effects", () => {
+  const activity = createScriptEventPresentationCatalog().activity("s1.d000.nozomi-after-parlor.scene");
+  assert.equal(activity.area, "D000");
+  assert.equal(activity.durableEffects, "forbidden");
+  assert.equal(activity.returnPlayerState, true);
+  assert.equal(activity.cutscene.packageId, "ybhn");
+  assert.deepEqual(activity.cutscene.activity, {
+    slot: 27, binding: { primaryPointer: 0xaf8ae, secondaryPointer: 0xaf8bb },
+  });
+});
+
 test("runtime dispatches Hato commands through an owned transaction", async () => {
   const { runtime, calls } = harness();
   runtime.begin({ area: "D000", actorCode: "HATO" });

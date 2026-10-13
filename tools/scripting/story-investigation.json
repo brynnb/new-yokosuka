@@ -3,6 +3,16 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"nozomi-after-parlor","actor":"HRSK","presentActors":[],"area":"D000","trigger":"enter","priority":210,
+      "title":"Nozomi — concern after the tattoo parlor","hours":[14,23.5],
+      "requiredFlags":["story.s1.charlie-tattoo-confrontation.completed"],"sameDayAs":"story.s1.charlie-parlor.day",
+      "bounds":"s1.d000.nozomi-after-parlor","completedFlag":"story.s1.nozomi-after-parlor.completed","effects":["notebook.s1.nozomi-worried"],
+      "activities":["s1.d000.nozomi-after-parlor.scene"],"voiceIds":[],
+      "dialogueArchive":{"path":"data/SCENE/01/STREAM/01YOB.AFS","sha256":"d7bd8c1d2e9c38e4cc9359cda3b6842bacb45b27b0b719d2e0c8c3776e542a61"},
+      "nativeSources":[{"role":"presentation","locator":"disc1/data/SCENE/01/D000/YBHN.PKS#SEQDATA0.AUTH","sha256":"e281659f780b89a21898624d872a77ca43cd20203b06afae65ad5b52b8fe44ab"}],
+      "provenance":"Original YBHN/SEQDATA0.AUTH, M_01YOB and 01YOB voices/cameras. GameSpot's 2000 guide places Nozomi's concern after descending the tattoo-parlor stairs. The authored approach surrounds the original Ryo anchor; this optional same-day event is not required for the Chinese letter. Personal 14:00–23:30 eligibility and restoring the approach position are adaptations. No item, reward, native-flag guess or public NPC mutation."
+    },
+    {
       "id":"charlie-tattoo-confrontation","actor":"CHRL","participants":["HORS","TONY","SMTH"],"presentActors":["HORS"],"area":"TATQ","trigger":"automatic","priority":210,
       "title":"Charlie — the cartel appointment","hours":[14,24],"requiredFlags":["notebook.s1.tattoo-parlor"],"dayAfter":"story.s1.parking-lot-ambush.day",
       "completedFlag":"story.s1.charlie-tattoo-confrontation.completed","effects":["notebook.s1.charlie-cartel-appointment"],"recordDays":["story.s1.charlie-parlor.day"],

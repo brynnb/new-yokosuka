@@ -16,6 +16,14 @@ if (!server) throw new Error("NEW_YOKOSUKA_SERVER_DIR is required");
 const spec = JSON.parse(fs.readFileSync(path.join(import.meta.dirname, "story-investigation.json")));
 if (spec.schema !== "new-yokosuka-authored-talk-routes-v1") throw new Error("Unsupported talk route schema");
 const voices = new Set(), streamVoices = new Map(), imports = [];
+const triggerPriorities = new Map();
+for (const route of spec.routes) {
+  // The server rejects equal-priority candidates before running their gates.
+  // Distinct bounds/flags do not disambiguate an otherwise identical selector.
+  const key = [route.trigger || "talk", route.area, route.trigger ? "" : route.actor, route.priority ?? 200].join(":");
+  if (triggerPriorities.has(key)) throw new Error(`Ambiguous trigger priority: ${triggerPriorities.get(key)} and ${route.id} (${key})`);
+  triggerPriorities.set(key, route.id);
+}
 for (const route of spec.routes) {
   const participants = [route.actor, ...(route.participants || [])];
   let source;
@@ -81,6 +89,11 @@ for (const route of spec.routes) {
     const challengeStage=route.challengeStaging||route.staging;
     const leadInBody=`<<play_sequence "${route.staging}.start">>\n${leadIn.join("\n")}${route.challengeStaging?`\n<<play_sequence "${route.staging}.finish">>\n<<play_sequence "${challengeStage}.start">>`:""}`;
     body = `<<jump Attempt>>\n===\ntitle: Attempt\n---\n${leadInBody}\n<<start_challenge "${route.challenge}">>\n<<if challenge_result("${route.challenge}") != "success">>\n<<play_sequence "${challengeStage}.finish">>\n-> Try again\n    <<jump Attempt>>\n-> Leave it for now\n    <<complete>>\n<<else>>\n${lines.join("\n")}\n<<play_sequence "${challengeStage}.finish">>\n${effects.join("\n")}\n<<complete>>\n<<endif>>`;
+  } else if (route.activities) {
+    // A noninteractive original cinematic is presentation inside the same
+    // Yarn transaction, not another writable/native progression authority.
+    if (!route.activities.length || lines.length || route.staging) throw new Error(`Invalid presentation-only route ${route.id}`);
+    body = `${route.activities.map(id => `<<start_activity "${id}">>`).join("\n")}\n${effects.join("\n")}\n<<complete>>`;
   } else {
     const begin=route.staging?`<<play_sequence "${route.staging}.start">>`:participants.map(actor=>`<<look_at_actor "${actor}" "AKIR">>`).join("\n");
     const finish=route.staging?`<<play_sequence "${route.staging}.finish">>`:participants.map(actor=>`<<clear_actor_look "${actor}">>`).join("\n");
@@ -90,7 +103,7 @@ for (const route of spec.routes) {
   // Conditional early endings jump to an actual terminal node instead.
   const sourceText = `title: Start\ntags: adaptation story disc1 ${route.area} ${route.actor}\n---\n<<if ${gates.join(" || ")}>>\n    <<pass_trigger>>\n<<endif>>\n${body}\n===\n${route.combat?"title: Done\n---\n<<complete>>\n===\n":""}`;
   imports.push({ Slug: `story-s1-${route.id}`, Title: route.title,
-    Description: route.provenance || spec.provenance, Summary: route.combat?"Original introduction, server-controlled fight, original clue dialogue. No movie-completion victory or currency/item reward.":route.challenge ? "Personal voiced encounter; explicit server-validated QTE before clue settlement. Authored staging; no item or currency reward." : "Personal investigation conversation; original voiced lines, authored sequence, existing NPC facing and gameplay camera. No item or currency reward.",
+    Description: route.provenance || spec.provenance, Summary: route.combat?"Original introduction, server-controlled fight, original clue dialogue. No movie-completion victory or currency/item reward.":route.challenge ? "Personal voiced encounter; explicit server-validated QTE before clue settlement. Authored staging; no item or currency reward." : route.activities ? "Original noninteractive presentation; completion or explicit skip settles the personal milestone/notebook through Yarn. Cancellation or preparation failure settles nothing." : "Personal investigation conversation; original voiced lines, authored sequence, existing NPC facing and gameplay camera. No item or currency reward.",
     NativeSources: [...(source.archiveSources||[source.generatedFrom]).map(info=>({role:"dialogue",locator:`${info.archive}#${route.actor}/${route.id}`,sha256:info.sha256})), ...(route.nativeSources || [])],
     SourceText: sourceText, Triggers: [{ nodeId: "Start", kind: route.trigger || "talk", area: route.area, ...(route.trigger ? {} : { actor: route.actor }), priority: route.priority ?? 200 }],
     TestFixtures: [{ Name: "Eligible personal investigation", StartNode: "Start", Fixture: {

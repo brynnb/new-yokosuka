@@ -936,7 +936,7 @@ function createPlayRuntime() {
     storyRegions: new StoryRegionRuntime({ controller: scriptEventController,
       getCharacter: () => accountSession.character,
       publishPresence: () => { multiplayerRuntime.markPresenceDirty(); multiplayerRuntime.publishPresence(true); },
-      onError: error => { console.warn("Story region did not start:", error); transientNotice.show("This story scene could not start. Walk back into the hall to retry."); },
+      onError: error => { console.warn("Story region did not start:", error); transientNotice.show("This story scene could not start. Leave the area and approach again to retry."); },
     }),
     isStartupPresentationActive: () => openingSequenceActive || Boolean(cutscenePreviewRuntime?.gameplayPreview),
     dialoguePersistence: nativeDialoguePersistence,

@@ -11,7 +11,10 @@ is the source of truth for playable coverage and verification. Connected browser
 coverage reaches the opening, allowance, early witnesses, Heartbeats and the
 Charlie inquiries, the parking-lot ambush, the same-night tattoo-parlour visit
 and Charlie's later confrontation/cartel appointment. The whole storyline is
-not implemented; the following Nozomi and Chinese-letter events remain unconnected.
+not implemented. Nozomi's optional post-parlor encounter is also connected
+through the original YBHN presentation, with rendered cancellation/re-entry,
+natural completion, notebook settlement and reload verified. The next-day dojo
+spar and Chinese-letter events remain unconnected.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

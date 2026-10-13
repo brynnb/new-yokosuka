@@ -215,7 +215,8 @@ Do not describe the first conversation as fully animation-faithful.
 | Arcade-area ambush → tattoo-parlour lead | Connected rendered introduction/trap, real five-opponent fight, loss/retry, original interrogation and saved notebook verified. Server/compiler/PostgreSQL tests cover calendar/region gates, cancellation, timeout, pre-clue rollback and personal settlement. Combat balance and interrogation staging are adapted. |
 | Find the tattoo parlor → same-night artist visit | Connected Saijo/Kurita original-voiced clues and real upstairs door entry verified. Rendered two-person visit, cancellation/re-entry, saved tomorrow clue and reload verified; same-day/hour/presence gates and atomic visit-date settlement tested through the real compiler/database. Camera, held poses and omitted grab gesture are adaptations. |
 | Charlie's parlor QTE → cartel appointment | Connected real browser check verifies original-voiced cast, wrong direction/retry, Left/A success, Charlie's rendered identity, conversation and saved notebook. Server/compiler/database tests cover calendar/presence gates, cancellation before/after winning and atomic appointment-day settlement. Held staging and omitted knife/throw choreography are explicit adaptations. |
-| Nozomi after the parlor / Chinese letter | Missing connected authored progression. |
+| Nozomi after the parlor | Connected optional same-day encounter: original YBHN cast/cameras visibly verified, cancellation/re-entry, natural ending, notebook and reload without replay pass in the real browser. Not a prerequisite for the letter. |
+| Next-day dojo spar / Chinese letter | Missing connected authored progression. |
 | Harbor warehouses / Master Chen / Phoenix Mirror | Missing connected authored progression. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
@@ -782,3 +783,46 @@ input have not been visually verified.
 The source assets and newly encoded Story voices are registered in the immutable
 runtime catalog. They have **not** been published to R2 from this worktree;
 publication and verification are required before any later authorized deployment.
+
+## Nozomi's concern after the tattoo parlor
+
+Event ID: `story-s1-nozomi-after-parlor`; official import `nozomi-after-parlor`.
+
+| Field | Implemented adaptation |
+| --- | --- |
+| Location / trigger | Dobuita (`D000`), lower approach to the Okayama Heights stairs. Cross authored region `s1.d000.nozomi-after-parlor`; the server uses its accepted Ryo presence, not trigger-request coordinates. |
+| Prerequisites / personal calendar | Story Ryo, opening and Charlie confrontation complete, same personal day as the saved parlor encounter, 14:00–23:30, Nozomi encounter incomplete. This is optional and must not gate the following day's letter. |
+| Player / actors | Borrow Ryo and Nozomi (`HRSK`) through shared cinematic ownership. Nozomi can be staged even when her ordinary personal schedule is elsewhere; no public or other-player NPC is moved. |
+| Sequence / timing / camera | Play the existing `YBHN/SEQDATA0.AUTH` package: original 2,130-frame timeline, `M_01YOB` body motion, cameras and 26 original `01YOB` voice cues. No new handwritten dialogue or invented camera offsets. |
+| Props / challenge | None. No QTE, fight, reward or item. Completing a noninteractive scene is not a combat win. |
+| Weather / audio | Preserve personal season/weather and ordinary broad environment. Reuse the package's original voices/SFX and existing BGM018 render, then restore the prior zone music. This does not reconstruct incidental native room initialization. |
+| Completion | After presentation cleanup, atomically save `story.s1.nozomi-after-parlor.completed` and `notebook.s1.nozomi-worried`. No currency, persistent HP, experience, clock jump or guessed native bit. |
+| Exit / skip / failure | Restore the pre-scene approach position, facing, camera and controls. Natural ending or explicit cinematic X-skip accepts the noninteractive encounter. Event cancellation, lost connection or failed preparation settles nothing; re-entering the region or resuming the eligible saved approach retries it. A committed scene does not replay. |
+
+The [GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf),
+page 26, places this conversation after Ryo comes down the tattoo-parlor stairs
+and records Nozomi's concern. The original archive hashes and motion bindings
+are retained by `build_ybhn_activity_pack.mjs` and `build_ybhn_audio_pack.mjs`;
+the authored import pins both `YBHN.PKS` and `01YOB.AFS`. The same-day/hour gate,
+activation box and exact return-to-approach policy are adaptations, not a
+recovered native trigger. The box includes the walkable street edge before
+scenery collision and excludes the upstairs arrival elevation.
+
+Dobuita now has several area-entry candidates. Their explicit priorities let
+an ineligible Nozomi gate pass to the earlier ambush/alley candidates. Equal
+priorities are ambiguous before any gate executes; both the content generator
+and the complete official-import catalog test reject that mistake rather than
+weakening the server's ambiguity safeguard.
+
+`NEW_YOKOSUKA_NOZOMI_PARLOR_E2E=true` resumes the earned Charlie checkpoint,
+uses the real return door when starting in the parlor, and shortens the stair
+walk to the lower approach. It checks cancellation without a notebook entry,
+physical walk/re-entry, natural original-timeline completion, restored controls
+and camera, notebook settlement and reload without replay. A separate run with
+`NEW_YOKOSUKA_NOZOMI_PARLOR_SKIP=true` also passed the real parlor exit,
+original voice playback and explicit X-skip after the cancelled attempt.
+This is not proof
+of walking every stair from the upstairs door or full frame-for-frame fidelity.
+Real compiler/PostgreSQL tests cover missing progress/date, wrong day/hour,
+out-of-bounds rejection, cancellation/retry, stale acknowledgements, mode
+locking, another character's isolation and unchanged economy.

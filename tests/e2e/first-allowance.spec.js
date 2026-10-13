@@ -127,6 +127,12 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
       return;
     }
+    if(process.env.NEW_YOKOSUKA_NOZOMI_PARLOR_E2E === "true") {
+      await verifyNozomiAfterParlor(page,testInfo,character);
+      expect(errors).toEqual([]);
+      expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+      return;
+    }
     if(process.env.NEW_YOKOSUKA_BAR_QTE_E2E === "true") {
       await verifyBarQte(page, testInfo, character);
       expect(errors).toEqual([]);
@@ -591,10 +597,10 @@ async function verifyBarQte(page, testInfo, character) {
   expect(await page.evaluate(() => window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
 }
 
-async function enterInteriorDoor(page,{world,filename,position,yaw=0}) {
-    await page.evaluate(async ({filename,position,yaw}) => {
+async function enterInteriorDoor(page,{world,filename,position,yaw=0,fromWorld="dobuita"}) {
+    await page.evaluate(async ({filename,position,yaw,fromWorld}) => {
       const life = window.storyProbe.lifecycle;
-      await life.travelToWorld("dobuita");
+      if(life.worldRuntime.activeWorld.id!==fromWorld)await life.travelToWorld(fromWorld);
       life.resetPlayer(life.vectorFromArray(position), yaw, { persist: false });
       const door = life.doorInteractions.entries.find(entry => entry.root._filename === filename);
       if (!door) throw new Error(`Interior door ${filename} is missing`);
@@ -605,7 +611,7 @@ async function enterInteriorDoor(page,{world,filename,position,yaw=0}) {
       controller.cameraPitch = Math.atan2(position[1]+controller.options.firstPersonHeadHeight-center.y,
         Math.hypot(center.x-position[0],center.z-position[2]));
       controller.updateCamera(1);
-    },{filename,position,yaw});
+    },{filename,position,yaw,fromWorld});
     await page.waitForTimeout(800);
     const point = await page.evaluate(filename => {
       const life = window.storyProbe.lifecycle;
@@ -625,6 +631,7 @@ async function enterInteriorDoor(page,{world,filename,position,yaw=0}) {
     expect(point.y).toBeGreaterThan(0);expect(point.y).toBeLessThan(720);
     await page.mouse.click(point.x, point.y);
     await page.waitForFunction(world => window.storyProbe.lifecycle.worldRuntime.activeWorld.id === world, world, { timeout: 30_000 });
+    await page.waitForFunction(()=>{const life=window.storyProbe.lifecycle;return life.worldRuntime.ready&&!life.worldRuntime.switching&&!life.playerRuntime.characterSwitching;});
 }
 
 async function verifyCharlieInquiries(page, testInfo, character) {
@@ -934,4 +941,87 @@ async function verifyCharlieConfrontation(page,testInfo,character) {
   for(let i=0;i<50&&await page.locator("#journal-next").isEnabled();i++)await page.locator("#journal-next").click();
   await expect(page.getByText(/Charlie promised to arrange a meeting/)).toBeVisible();
   await page.screenshot({path:testInfo.outputPath("charlie-cartel-notebook.png")});
+}
+
+async function verifyNozomiAfterParlor(page,testInfo,character) {
+  expect(character.storyFlags["story.s1.charlie-tattoo-confrontation.completed"]).toBe(true);
+  expect(character.storyFlags["story.s1.nozomi-after-parlor.completed"]).not.toBe(true);
+  const before=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+  // Real return-door authorization when resuming in the parlor. A previous
+  // interrupted check may have saved the eligible Dobuita approach instead:
+  // let its already-starting scene continue, don't race it with test travel.
+  if(await page.evaluate(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id==="tatq")) {
+    await enterInteriorDoor(page,{world:"dobuita",fromWorld:"tatq",filename:"S1_TATQ_DR01_017.MT5",position:[-2.2,0,1.5]});
+  }
+  const walkIntoRegion=async()=>{
+    // Shorten the stair traversal to its lower approach, then use actual W
+    // movement and the spatial trigger. No script reply/flag is injected.
+    await page.evaluate(()=>{
+      const life=window.storyProbe.lifecycle;
+      life.resetPlayer(life.vectorFromArray([101.3,0,100.8]),Math.PI,{persist:false});
+      const controller=life.getController();controller.setFirstPerson(true);
+      controller.cameraYaw=0;controller.cameraPitch=.1;controller.updateCamera(1);
+    });
+    await page.waitForFunction(()=>!window.storyProbe.regions.inside.has("s1.d000.nozomi-after-parlor"));
+    await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+    try {
+      await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-nozomi-after-parlor"
+        ||window.storyProbe.sceneErrors.length,null,{timeout:20_000});
+    } catch(error) {
+      console.info("Nozomi approach",await page.evaluate(()=>({frame:window.storyProbe.lastRegionFrame,
+        region:window.storyProbe.regions.regions.find(r=>r.id==="s1.d000.nozomi-after-parlor"),
+        eligible:window.storyProbe.regions.getCharacter()?.storyFlags?.["story.s1.charlie-tattoo-confrontation.completed"],inside:[...window.storyProbe.regions.inside],
+        status:window.storyProbe.regions.controller.status,starts:window.storyProbe.starts})));
+      throw error;
+    } finally {await page.keyboard.up("KeyW");}
+    expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  };
+  if(await page.evaluate(()=>window.storyProbe.regions.inside.has("s1.d000.nozomi-after-parlor"))) {
+    await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-nozomi-after-parlor"||window.storyProbe.sceneErrors.length,null,{timeout:60_000});
+    expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  } else await walkIntoRegion();
+  await page.waitForTimeout(3500);
+  await page.waitForFunction(()=>[...(window.storyProbe.director?.activeCutscene?.packageRuntime.audio.active?.elements||[])]
+    .some(record=>record.kind==="voice"&&record.command.audio.voiceId.startsWith("01YOB")&&record.audio.currentTime>0&&!record.audio.paused),null,{timeout:15_000});
+  await page.screenshot({path:testInfo.outputPath("nozomi-after-parlor-before-cancel.png")});
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-cancel-owned-scene"));
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  const cancelled=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+  expect(cancelled.character.storyFlags["notebook.s1.nozomi-worried"]).not.toBe(true);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+  await walkIntoRegion();await page.waitForTimeout(7000);
+  await page.screenshot({path:testInfo.outputPath("nozomi-after-parlor-original-scene.png")});
+  // Natural ending verifies the actual timeline, not a test-forged success.
+  // A separate replay from the earned pre-scene checkpoint also covers the
+  // supported explicit cinematic skip; it is not substituted for that check.
+  if(process.env.NEW_YOKOSUKA_NOZOMI_PARLOR_SKIP==="true")await page.keyboard.press("KeyX");
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.nozomi-worried"]),{timeout:100_000}).toBe(true);
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  const returned=await page.evaluate(()=>({position:window.storyProbe.lifecycle.getController().collider.position.asArray(),
+    firstPerson:window.storyProbe.lifecycle.getController().firstPerson,
+    owners:window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size}));
+  expect(returned.firstPerson).toBe(true);expect(returned.owners).toBe(0);
+  expect(returned.position[0]).toBeCloseTo(101.3,1);
+  expect(returned.position[2]).toBeGreaterThan(99.5);
+  const saved=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+  expect(saved.character.storyFlags["story.s1.nozomi-after-parlor.completed"]).toBe(true);
+  expect(saved.character.yen).toBe(character.yen);expect(saved.character.currentHp).toBe(character.currentHp);
+  expect(new Date(saved.worldState.gameTimeMs).getUTCDate()).toBe(new Date(before.worldState.gameTimeMs).getUTCDate());
+  await page.locator("button").filter({hasText:/^Notebook$/}).click();
+  for(let i=0;i<60&&await page.locator("#journal-next").isEnabled();i++)await page.locator("#journal-next").click();
+  await expect(page.getByText(/Nozomi came looking for me near Okayama Heights/)).toBeVisible();
+  await page.screenshot({path:testInfo.outputPath("nozomi-concern-notebook.png")});
+  await page.locator("#journal-close").click();
+  await page.reload();await page.keyboard.press("Enter");
+  await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();
+  await page.locator(".character-slot-button:not(.empty)").first().click();
+  await page.locator("button").filter({hasText:/^Enter World$/}).click();
+  await page.waitForFunction(()=>window.storyProbe.ready,null,{timeout:120_000});
+  await page.waitForTimeout(1500);
+  expect(await page.evaluate(()=>window.storyProbe.starts.includes("story-s1-nozomi-after-parlor"))).toBe(false);
+  const reloaded=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+  expect(reloaded.character.storyFlags["notebook.s1.nozomi-worried"]).toBe(true);
+  expect(reloaded.character.worldId).toBe("dobuita");expect(reloaded.character.avatarId).toBe("ryo");
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
 }

@@ -81,6 +81,8 @@ const STORY_PAGES = Object.freeze([
     text:"Takashiro told me to come back tomorrow. Charlie might be at the tattoo parlor.\n\nReturn to Okayama Heights on a later day, after the parlor opens at 2 p.m."}) },
   { flag:"notebook.s1.charlie-cartel-appointment",page:Object.freeze({id:"story-charlie-cartel-appointment",
     text:"Charlie promised to arrange a meeting with members of the Chinese cartel.\n\nMeet him at You Arcade at 3 p.m. on the following day.\n\nI warned him not to break his word."}) },
+  { flag:"notebook.s1.nozomi-worried",page:Object.freeze({id:"story-nozomi-worried",
+    text:"Nozomi came looking for me near Okayama Heights.\n\nShe seems worried about me and my entrance exams. I promised we'd talk later."}) },
 ]);
 
 export function notebookPagesForCharacter(character) {
