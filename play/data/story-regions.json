@@ -2,6 +2,18 @@
   "schema": "new-yokosuka-story-regions-v1",
   "regions": [
     {
+      "id": "s1.ju00.first-kitten.shrine",
+      "area": "JU00",
+      "actor": "AKIR",
+      "playMode": "story",
+      "openingCompleted": true,
+      "requiredFlags": ["story.s1.first-dojo.completed"],
+      "completedFlag": "story.s1.first-kitten.completed",
+      "min": [33, 2, 40],
+      "max": [39, 4, 45],
+      "provenance": "Authored shrine approach around original CATA1 SEQDATA0 Ryo position [35.987,2.6,42.576], native X mirrored. Requires rendered entry validation."
+    },
+    {
       "id": "s1.jomo.first-allowance.hall",
       "area": "JOMO",
       "actor": "AKIR",

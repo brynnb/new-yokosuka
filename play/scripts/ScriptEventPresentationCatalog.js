@@ -32,6 +32,15 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ...[
+    ["introduction", 334785, 334798],
+    ["fish", 334804, 334817],
+    ["tofu", 334823, 334836],
+  ].map(([part, primaryPointer, secondaryPointer]) => [`s1.ju00.first-kitten.${part}`, {
+    kind: "native-cutscene", area: "JU00", durableEffects: "forbidden",
+    cutscene: { id: `story-s1-first-kitten-${part}`, packageId: "cata1", worldId: "yamanose",
+      storyPresentation: true, activity: { slot: 0, binding: { primaryPointer, secondaryPointer } } },
+  }]),
   ["s1.jhd0.first-dojo.scene", {
     kind: "native-cutscene", area: "JHD0", durableEffects: "forbidden",
     cutscene: { id: "story-s1-first-dojo", packageId: "first-dojo", worldId: "exterior",

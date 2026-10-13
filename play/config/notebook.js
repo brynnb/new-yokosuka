@@ -35,6 +35,10 @@ const STORY_PAGES = Object.freeze([
   { flag: "notebook.s1.allowance", page: ALLOWANCE_PAGE },
   { flag: "notebook.s1.men-in-black", page: Object.freeze({ id: "story-men-in-black",
     text: "Ask around to find out whether anyone saw men wearing black on the day of the attack." }) },
+  { flag: "notebook.s1.black-car", page: Object.freeze({ id: "story-black-car",
+    text: "Megumi's sister saw a big black car on the rainy day of the attack.\n\nAsk about the black car." }) },
+  { flag: "notebook.s1.yamagishi-witness", page: Object.freeze({ id: "story-yamagishi-witness",
+    text: "Yamagishi-san was nearly hit by the black car. He hurt himself when he fell.\n\nVisit him at home in Sakuragaoka, near the candy shop." }) },
 ]);
 
 export function notebookPagesForCharacter(character) {

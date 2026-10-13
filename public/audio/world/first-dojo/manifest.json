@@ -1117,7 +1117,21 @@
   ],
   "sounds": [],
   "authoredLeadIn": {
-    "evidence": "JHD0 MAPINFO 0x3aec8; original line order, held MSKA poses/camera and voice-length timing are authored approximations",
+    "evidence": "JHD0 MAPINFO 0x3aec8; original line order, held MSKA poses, two-person camera and voice-length timing are authored approximations",
+    "camera": {
+      "positionX": -3,
+      "positionY": 2.3,
+      "positionZ": -17.2,
+      "targetX": -5.7,
+      "targetY": 1.85,
+      "targetZ": -19.05,
+      "roll": 0,
+      "perspective": 60
+    },
+    "actorYawOffsets": {
+      "AKIR": 180,
+      "FUKU": 180
+    },
     "lines": [
       {
         "sourcePath": "SA1116/SA1116B001.str",

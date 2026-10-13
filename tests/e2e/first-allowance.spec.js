@@ -4,7 +4,7 @@ import { randomUUID } from "node:crypto";
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
 
 for (const [ending, freshOpening] of [["complete", false], ["skip", false], ["complete", true]]) test(`first allowance renders and persists after ${ending}${freshOpening ? " from a fresh opening" : ""}`, async ({ page }, testInfo) => {
-  test.setTimeout(freshOpening ? 480_000 : 240_000);
+  test.setTimeout(process.env.NEW_YOKOSUKA_KITTEN_E2E === "true" ? 600_000 : freshOpening ? 480_000 : 240_000);
   const errors = [];
   page.on("pageerror", error => errors.push(error.message));
   const guestToken = randomUUID();
@@ -178,7 +178,7 @@ for (const [ending, freshOpening] of [["complete", false], ["skip", false], ["co
     await page.screenshot({ path: testInfo.outputPath("saved-continuation.png") });
   }
   expect(errors).toEqual([]);
-  if (freshOpening && process.env.NEW_YOKOSUKA_DOJO_E2E === "true") {
+  if (ending === "complete" && process.env.NEW_YOKOSUKA_DOJO_E2E === "true") {
     // Bounded continuation check: use real world loading, then place just
     // outside the dojo volume. Walking triggers it; no direct event start.
     await page.evaluate(async () => {
@@ -208,5 +208,46 @@ for (const [ending, freshOpening] of [["complete", false], ["skip", false], ["co
     await page.screenshot({ path: testInfo.outputPath("first-dojo-notebook.png") });
     await page.locator("#journal-close").click();
     expect(errors).toEqual([]);
+    if (process.env.NEW_YOKOSUKA_KITTEN_E2E === "true") {
+      await page.evaluate(async () => {
+        const life = window.storyProbe.lifecycle;
+        await life.travelToWorld("yamanose");
+        life.resetPlayer(life.vectorFromArray([36, 2.6, 45.3]), Math.PI, { persist: false });
+      });
+      await page.locator("#renderCanvas").focus();
+      await page.keyboard.down("KeyW");
+      try {
+        await page.waitForFunction(() => window.storyProbe.starts.includes("story-s1-first-kitten-introduction"), null, { timeout: 20_000 });
+      } finally { await page.keyboard.up("KeyW"); }
+      await page.waitForFunction(() => window.storyProbe.director?.activeCutscene?.cutscene.id === "story-s1-first-kitten-introduction", null, { timeout: 60_000 });
+      await page.waitForTimeout(3000);
+      await page.screenshot({ path: testInfo.outputPath("first-kitten-introduction.png") });
+      // A permitted scene skip must lead to a real choice, not automatically
+      // award the fish-only witness clue or play both incompatible endings.
+      await page.keyboard.press("KeyX");
+      await expect(page.getByRole("button", { name: "Dried fish", exact: true })).toBeVisible();
+      const beforeChoice = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+      expect(beforeChoice.character.storyFlags["notebook.s1.yamagishi-witness"]).not.toBe(true);
+      await page.screenshot({ path: testInfo.outputPath("first-kitten-food-choice.png") });
+      await page.getByRole("button", { name: "Dried fish", exact: true }).click();
+      await page.waitForFunction(() => window.storyProbe.director?.activeCutscene?.cutscene.id === "story-s1-first-kitten-fish", null, { timeout: 60_000 });
+      await page.waitForTimeout(3000);
+      await page.screenshot({ path: testInfo.outputPath("first-kitten-fish.png") });
+      await page.waitForFunction(() => !window.storyProbe.director.active, null, { timeout: 120_000 });
+      await expect.poll(() => page.evaluate(() => window.storyProbe.regions.getCharacter()?.storyFlags?.["story.s1.first-kitten.completed"])).toBe(true);
+      const final = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+      expect(final.character.storyFlags["notebook.s1.black-car"]).toBe(true);
+      expect(final.character.storyFlags["notebook.s1.yamagishi-witness"]).toBe(true);
+      expect(final.character.yen).toBe(character.yen + 500);
+      expect(await page.evaluate(() => window.storyProbe.starts.some(id => id === "story-s1-first-kitten-tofu"))).toBe(false);
+      expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      await page.locator("button").filter({ hasText: /^Notebook$/ }).click();
+      await page.locator("#journal-next").click();
+      await page.locator("#journal-next").click();
+      await expect(page.getByText(/Visit him at home in Sakuragaoka/)).toBeVisible();
+      await page.screenshot({ path: testInfo.outputPath("first-kitten-notebook.png") });
+      expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
+      expect(errors).toEqual([]);
+    }
   }
 });

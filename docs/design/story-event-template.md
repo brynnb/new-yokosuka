@@ -167,7 +167,7 @@ or the Chinese-cartel conversation (`01KAK`).
 | Prerequisites | Personal Story mode, completed opening and first allowance, no completed first-dojo milestone. No extra date/weather restriction. |
 | Player / actors | Ryo and Fuku-san, using the existing MSKA actor ownership, personal staging and cleanup. Movement is locked by the shared event presenter. |
 | Sequence | Eleven original `SA1116` dialogue lines: ask about Lan Di, the mirror and the men in black. Then the original `MSKA/SEQDATA2.AUTH` ending: Ryo resolves to avenge his father. |
-| Timing / cameras | Lead-in lines use decoded voice lengths plus a 0.3-second pause. Hold MSKA's initial actor poses and camera, then run its original timeline. The lead-in staging is an approximation, not recovered original conversation animation or camera direction. |
+| Timing / cameras | Lead-in lines use decoded voice lengths plus a 0.3-second pause. Hold MSKA's initial actor poses, turn them inward, and use an authored two-person camera; then run its original timeline unchanged. The lead-in staging is an approximation, not recovered original conversation animation or camera direction. |
 | Audio / weather | Original SA1116 and A0125 voices/subtitles; original MSKA effects and BGM202. Extending that music over the lead-in is an adaptation. Preserve the personal environment; no forced weather or calendar jump. |
 | Props / challenge | None. No QTE or combat; this is not the optional sparring lesson. |
 | Effects | Atomically set `story.s1.first-dojo.completed` and `notebook.s1.men-in-black`. Add the next investigation page; do not grant currency, items or a made-up native flag. |
@@ -191,11 +191,10 @@ by the original ending. The original MSKA selector preview remains unchanged.
 
 The connected local browser check passes through the opening, allowance,
 reload, dojo trigger, natural scene completion and the saved seventh notebook
-page. The captured lead-in shows Ryo from behind: this reused camera does not
-yet frame the conversation well, and that capture does not establish Fuku-san's
-visibility. Improve and render-check the two-person staging before treating
-the presentation as polished. Voice playback fidelity was not assessed by
-listening to the automated run.
+page. A subsequent captured lead-in verifies Ryo and seated Fuku-san together
+with inward-facing poses and the authored camera. Poses are held rather than
+recreating the original conversation gestures. Voice playback fidelity was not
+assessed by listening to the automated run.
 
 The notebook page is a lightly adapted investigation prompt. Exact native
 notebook flags and the original leave-home restriction are not implemented.
@@ -206,8 +205,8 @@ Do not describe the first conversation as fully animation-faithful.
 | Sequence | Current state |
 | --- | --- |
 | Opening → bedside → first allowance → saved continuation | Rendered/full-stack verified, including explicit intro skips, natural allowance completion, one-time payment and reload. |
-| First dojo visit → men-in-black notebook objective | Connected browser/full-stack progression and notebook verified; server gate/cancellation/settlement tested. Lead-in camera and two-person framing still need refinement. |
-| Yamanose kitten / first black-car lead | Existing presentation assets; not yet connected through this authored progression. |
+| First dojo visit → men-in-black notebook objective | Connected browser/full-stack progression and notebook verified; server gate/cancellation/settlement tested. Authored two-person lead-in rendered; held poses remain an approximation. |
+| Yamanose kitten / first black-car lead | Connected rendered approach, introduction skip, food choice, natural fish ending and saved notebook verified. Real server/compiler tests cover both food settlements, cancellation/retry and clue isolation. Tofu visuals and prop fidelity remain unverified. |
 | Yamagishi → Dobuita black-car investigation → sailors | Missing connected authored progression. |
 | Heartbeats / Charlie / tattoo parlour / Chinese letter | Missing connected authored progression and verified challenge outcomes. |
 | Harbor warehouses / Master Chen / Phoenix Mirror | Missing connected authored progression. |
@@ -220,3 +219,47 @@ playable or verified. Run `NEW_YOKOSUKA_DOJO_E2E=true` with the fresh-opening
 browser test to extend it through the dojo. That bounded check uses real world
 loading and walks across the dojo trigger, but resets near its entrance rather
 than proving the entire walk from the residence hallway.
+
+## Megumi and the kitten: first black-car lead
+
+Event ID: `s1.ju00.first-kitten`; official Yarn import: `ju00-first-kitten`.
+
+| Field | Event definition |
+| --- | --- |
+| Location / trigger | Approach the Yamanose shrine (`JU00`). The authored volume surrounds the original CATA1 entry position; server-accepted presence supplies the bounds check. |
+| Prerequisites | Personal Story mode, opening and first dojo complete; first kitten encounter not complete. No forced weather, date change or exact-minute gate in this adaptation. |
+| Actors / props | Reuse CATA1's Ryo, Megumi, kitten, box, fish/tofu, motion, attachments and cameras. No new actor or prop renderer. |
+| Sequence / challenge | Play `SEQDATA0.AUTH`, then show a real food choice through Yarn. Dried fish selects `SEQDATA1.AUTH`; tofu selects `SEQDATA2.AUTH`. These are alternative endings, not a three-clip sequence. No QTE or fight. |
+| Timing / audio | Original AUTH cues, `01CAT1` voices and BGM051. Each clip currently acquires/releases its presentation around the choice; seamless original interstitial gestures and music continuity across the choice are not claimed. |
+| Effects | Both branches save `story.s1.first-kitten.completed` and `notebook.s1.black-car`. Only fish saves `notebook.s1.yamagishi-witness`. No currency/item reward, food deduction or guessed native flag. The scene's offered food is not player inventory in this adaptation. |
+| Exit / retry | Stay in Yamanose, restore gameplay camera/avatar/controls. Explicit clip skip advances to the choice or settlement, never chooses food for the player. Cancel/failure commits no partial clue and allows another approach. Completed encounter does not replay. |
+
+### Sources and remaining scope
+
+The original voice cues establish the branch distinction: `SEQDATA1` contains
+`01CAT1B019`–`B021` about Yamagishi, whereas `SEQDATA2` contains Megumi's
+rejection of tofu and Ryo's suggestion to try fish. Source archive hashes and
+bindings are in `play/assets/yamanose/cata1/manifest.json` and
+`tools/evidence/cata1-native-lifecycle.json`.
+[Adrenaline SL's walkthrough](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/18346)
+also distinguishes the optional kitten care from essential progression. Do not
+make the fish-only clue a mandatory gate for the entire investigation: other
+witnesses and direct approaches to Yamagishi must remain possible. Later kitten
+care/naming and alternate investigation leads are still unimplemented in this
+authored progression. This first encounter is not proof of those systems.
+
+Use `NEW_YOKOSUKA_KITTEN_E2E=true` with `NEW_YOKOSUKA_DOJO_E2E=true` to extend
+the allowance browser check. It loads Yamanose normally, resets near the shrine
+to bound test duration, walks into the event, skips the introduction explicitly,
+chooses fish, waits for natural branch completion, and checks saved clues and
+the notebook. It does not prove the entire walking route between zones or the
+tofu branch's rendered appearance.
+
+The connected local run passed with Ryo and Megumi visible, a real food-choice
+panel, and the earned ninth notebook page. The current handoff visibly returns
+to the gameplay camera for the choice before the selected clip starts; seamless
+interstitial presentation is follow-up polish. The early fish-shot capture does
+not establish that the fish/kitten props animate correctly throughout. Keep that
+separate from the verified server outcome and do not call this a frame-faithful
+recreation. The test uses the authoritative isolated server and local assets;
+these events and audio have not been published to production.

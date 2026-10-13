@@ -44,6 +44,16 @@ try {
   fs.writeFileSync(path.join(root, output, "manifest.json"), JSON.stringify({
     schema: "new-yokosuka-aseq-audio-pack-v2", generatedBy: "tools/cutscenes/build_first_dojo_assets.mjs",
     source: { path: "disc1/SCENE/01/STREAM/SA1116.AFS", sha256: sourceHash }, voices, sounds: [],
-    authoredLeadIn: { evidence: "JHD0 MAPINFO 0x3aec8; original line order, held MSKA poses/camera and voice-length timing are authored approximations", lines },
+    authoredLeadIn: {
+      evidence: "JHD0 MAPINFO 0x3aec8; original line order, held MSKA poses, two-person camera and voice-length timing are authored approximations",
+      // Native coordinates (the shared presenter mirrors X). Frame the two
+      // extracted MSKA actor positions instead of reusing its departing shot.
+      camera: { positionX: -3, positionY: 2.3, positionZ: -17.2,
+        targetX: -5.7, targetY: 1.85, targetZ: -19.05, roll: 0, perspective: 60 },
+      // MSKA begins after the conversation with both actors looking away.
+      // Turn its held poses inward only for the authored lead-in.
+      actorYawOffsets: { AKIR: 180, FUKU: 180 },
+      lines,
+    },
   }, null, 2) + "\n");
 } finally { fs.rmSync(temporary, { recursive: true, force: true }); }

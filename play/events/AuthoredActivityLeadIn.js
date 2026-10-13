@@ -15,9 +15,31 @@ export function prependAuthoredActivityLeadIn(prepared, leadIn, audioCatalog) {
     Object.entries(track.channels).map(([key, curve]) => [key, transform(curve)])),
   });
   const held = curve => curve.times.length ? { times: [0], values: [curve.values[0]], tangents: [0] } : curve;
+  // Authored cameras use the same native-coordinate channels as AUTH. Keep
+  // the replacement local to the lead-in; the extracted ending stays intact.
+  const camera = leadIn.camera;
+  const yawOffsets = leadIn.actorYawOffsets || {};
+  if (Object.entries(yawOffsets).some(([tag, angle]) => !prepared.sequence.actors.includes(tag) || !Number.isFinite(angle))) {
+    throw new Error("Invalid authored lead-in actor facing");
+  }
+  if (camera && (["positionX", "positionY", "positionZ", "targetX", "targetY", "targetZ", "roll", "perspective"]
+    .some(key => !Number.isFinite(camera[key])) || camera.perspective <= 0 || camera.perspective >= 180)) {
+    throw new Error("Invalid authored lead-in camera");
+  }
   const frames = [{ frame: 1, commands: visuals.map(command => {
-    if (command.name === "camera") return { ...command, camera: mapChannels(command.camera, held) };
-    if (command.name === "move") return { ...command, movement: mapChannels(command.movement, held) };
+    if (command.name === "camera") return { ...command, camera: camera
+      ? { ...command.camera, channels: Object.fromEntries(Object.entries(camera).map(([key, value]) =>
+        [key, { times: [0], values: [value], tangents: [0] }])) }
+      : mapChannels(command.camera, held) };
+    if (command.name === "move") {
+      const movement = mapChannels(command.movement, held);
+      if (yawOffsets[command.actorTag] !== undefined) {
+        const curve = movement.channels.rotationY;
+        if (!curve?.values.length) throw new Error("Authored facing needs an established actor rotation");
+        movement.channels.rotationY = { ...curve, values: [curve.values[0] + yawOffsets[command.actorTag]] };
+      }
+      return { ...command, movement };
+    }
     return { ...command, hold: true };
   }) }];
   let offset = 1;
