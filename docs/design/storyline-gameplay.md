@@ -441,20 +441,20 @@ arrival/event selector, not necessarily a door, and still requires the room's
 own initialization and predicates.
 
 The OP00 awakening writes bank-2 bit `961 = 1` at `0x20536`, then requests
-`JOMO` entry `1` at `0x2054e`. Currently the opening uses sandboxed previews and
-`CompleteOpening` only sets `opening_completed`; it does not commit that native
-transition. Fix this through the source-backed opening transaction, not by
-globally changing preview behavior or seeding an isolated workaround bit.
+`JOMO` entry `1` at `0x2054e`. Opening presentations remain sandboxed previews;
+the server's `CompleteOpening` transaction commits this flag, bedside arrival,
+08:55 time, and `opening_completed` together. Retries preserve later progress.
+This is a bounded source-backed handoff, not native JOMO-controller execution.
 
 The free-roam bank-2 preset (`0xec` in byte 0) includes bit `5`, which selects
 STEP `11` rather than the allowance's required `0`. New Story contexts now use
 the original bank reset instead; stored saves are not rewritten. PostgreSQL
 tests cover both directions of mode switching, including a fresh Ryo switching
 before any dialogue save. This fixes baseline isolation, not the still-pending
-opening effects and room initialization.
+room initialization. Opening effects are now settled separately and atomically.
 
 OP00's final clock write at `0x2051e` is Dec. 3 **08:55** before its JOMO
-transition, whereas the current personal clock starts at 08:50. The dream's
+transition; the server now commits that value after the opening. The dream's
 08:50 caption is presentation; it does not establish the post-scene clock.
 
 ### Saved room parameters and restore state (`0x01c7`)

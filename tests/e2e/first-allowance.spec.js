@@ -20,6 +20,9 @@ for (const [ending, freshOpening] of [["complete", false], ["skip", false], ["co
   } else {
     expect(character.playMode).toBe("story");
     expect(character.openingCompleted).toBe(false);
+    // No gameplay writer may start with the pre-opening clock and location.
+    const earlyConnection = await page.request.get(`/ws?characterId=${character.id}`);
+    expect(earlyConnection.status()).toBe(409);
   }
   await page.addInitScript(token => {
     localStorage.setItem("new-yokosuka.guest-token.v1", token);
@@ -76,6 +79,7 @@ for (const [ending, freshOpening] of [["complete", false], ["skip", false], ["co
       character: window.storyProbe.regions.getCharacter(),
     }));
     expect(arrival.character.openingCompleted).toBe(true);
+    expect(arrival.character.storyTimeMs).toBe(Date.UTC(1986, 11, 3, 8, 55));
     expect(arrival.character.worldId).toBe("interior");
     expect(Math.hypot(arrival.position[0] + 17.6, arrival.position[2] - 4.1)).toBeLessThan(0.2);
     expect(arrival.locked).toBe(false);

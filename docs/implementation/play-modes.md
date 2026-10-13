@@ -29,10 +29,11 @@ rewards or a second economy.
   Explicitly skipping a scene counts as completing that presentation.
 - Existing characters migrate to Free roam with their old saves intact.
 
-The current personal clock starts December 3, 1986 at 08:50, at JOMO entry 1
-beside Ryo's bed. The recovered OP00 program's final clock write is 08:55;
-settling that arrival and its native effects is still part of the pending
-[story-controller integration](../design/storyline-gameplay.md#original-first-allowance-evidence).
+The pre-opening clock is December 3, 1986 at 08:50. Completing the opening
+atomically saves OP00's final time (08:55), bank-2 flag 961, and JOMO entry 1
+beside Ryo's bed. A retry returns the current save without rewinding progress.
+Gameplay connects only after that handoff; sandboxed cutscene previews do not
+write these effects. See the [original evidence](../design/storyline-gameplay.md#original-first-allowance-evidence).
 
 New Story contexts now use the original zeroed native banks, before opening and
 room initialization. Free roam retains the save-derived preset documented in

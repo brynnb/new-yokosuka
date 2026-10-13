@@ -145,7 +145,8 @@ to the hallway to isolate natural completion and skip behavior.
 
 The `fresh opening` variant instead creates a new Story-mode Ryo, loads all four
 intro scenes and uses the normal X-skip for each. It checks that the server has
-not recorded completion early, verifies the actual bedside arrival, then walks
+not recorded completion early, rejects an early gameplay connection, verifies
+the actual bedside arrival and saved 08:55 handoff, then walks
 through the bedroom doorway with normal input/collision and no hallway reset.
 It waits for natural allowance completion, checks the one-time payment and
 notebook page, and reloads to verify the saved avatar, position, controls and
