@@ -10,15 +10,27 @@ const server = process.env.NEW_YOKOSUKA_SERVER_DIR;
 if (!server) throw new Error("NEW_YOKOSUKA_SERVER_DIR is required");
 const spec = JSON.parse(fs.readFileSync(path.join(import.meta.dirname,"story-combat.json")));
 const nativeActors = JSON.parse(fs.readFileSync(path.join(root,"play/data/events/nativeActivityActors.json"))).worlds;
+const scenes=JSON.parse(fs.readFileSync(path.join(root,"play/data/authored-story-scenes.json"))).scenes;
 const encounters = spec.encounters.map(input => {
   if(input.sourceTime && !["start","end"].includes(input.sourceTime))throw new Error(`Invalid staging time ${input.id}`);
-  const bytes = fs.readFileSync(path.join(root,input.sourceActivity));
-  if(createHash("sha256").update(bytes).digest("hex")!==input.sha256)throw new Error(`Changed staging ${input.id}`);
-  const track = parseAuthMovement(bytes);
-  const actors = track.actors.map(actor => {
-    const pose = evaluateAuthActor(actor, input.sourceTime === "start" ? 0 : actor.duration);
-    if(!input.health[actor.tag])throw new Error(`Missing balance for ${actor.tag}`);
-    return {tag:actor.tag,x:-pose.x,y:pose.y,z:pose.z,health:input.health[actor.tag]};
+  let poses,definitions;
+  if(input.sourceScene){
+    if(input.sourceActivity||input.sourceTime)throw new Error(`Ambiguous staging ${input.id}`);
+    const scene=scenes.find(s=>s.id===input.sourceScene);
+    if(!scene||scene.area!==input.area||scene.worldId!==input.worldId)throw new Error(`Wrong authored staging ${input.id}`);
+    poses=scene.actors.filter(a=>input.health[a.tag]).map(a=>({tag:a.tag,...a.pose}));
+    definitions=scene.actorDefinitions;
+  }else{
+    const bytes = fs.readFileSync(path.join(root,input.sourceActivity));
+    if(createHash("sha256").update(bytes).digest("hex")!==input.sha256)throw new Error(`Changed staging ${input.id}`);
+    const track = parseAuthMovement(bytes);
+    poses=track.actors.map(actor=>({tag:actor.tag,...evaluateAuthActor(actor,input.sourceTime==="start"?0:actor.duration)}));
+    definitions=nativeActors[input.worldId];
+  }
+  if(poses.length!==Object.keys(input.health).length||poses[0]?.tag!=="AKIR")throw new Error(`Incomplete combat cast ${input.id}`);
+  const actors = poses.map(pose => {
+    if(!input.health[pose.tag]||![pose.x,pose.y,pose.z].every(Number.isFinite))throw new Error(`Invalid placement ${pose.tag}`);
+    return {tag:pose.tag,x:-pose.x,y:pose.y,z:pose.z,health:input.health[pose.tag]};
   });
   const actions = input.actions.map(({input:command,move:id,adaptedDamage})=> {
     const move = MARTIAL_ARTS_MOVES[id];
@@ -29,9 +41,9 @@ const encounters = spec.encounters.map(input => {
       guardDamage:move.guardDamage,hitStunMs:Math.ceil(move.hitStun*1000/30)};
   });
   return {id:input.id,label:input.label,area:input.area,worldId:input.worldId,provenance:input.provenance,
-    sourceActivity:input.sourceActivity,sha256:input.sha256,actors,actions,
+    ...(input.sourceScene?{sourceScene:input.sourceScene}:{sourceActivity:input.sourceActivity,sha256:input.sha256}),actors,actions,
     actorDefinitions:actors.filter(a=>a.tag!=="AKIR").map(actor=>{
-      const def=nativeActors[input.worldId]?.find(def=>def.actorCode===actor.tag);
+      const def=definitions?.find(def=>def.actorCode===actor.tag);
       if(!def)throw new Error(`No reviewed actor model ${actor.tag}`);return def;
     }),
     bounds:{minX:Math.min(...actors.map(a=>a.x))-input.arenaPadding,maxX:Math.max(...actors.map(a=>a.x))+input.arenaPadding,

@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { StoryCombatRuntime } from "../play/scripts/StoryCombatRuntime.js";
 import catalog from "../play/data/story-combat.json" with { type: "json" };
+import { PLAYER_COMBAT_CONFIG } from "../play/characters/PlayerMotionLibrary.js";
 
 function harness() {
   const calls=[],target=new EventTarget();let now=1000,prepare=async()=>{};
@@ -14,8 +15,9 @@ function harness() {
     capturePlayerState:()=>"snapshot",restorePlayerState:snapshot=>calls.push(snapshot),
     onIntent:(...args)=>(calls.push(args),true),target,now:()=>now,
   });
-  const view={id:catalog.encounters[0].id,token:"a".repeat(32),ready:false,sequence:0,
-    actors:catalog.encounters[0].actors.map(actor=>({...actor,yaw:0,maxHealth:actor.health,pose:"stance",poseMs:0}))};
+  const definition=catalog.encounters.find(d=>d.id==="s1.d000.parking-lot");
+  const view={id:definition.id,token:"a".repeat(32),ready:false,sequence:0,
+    actors:definition.actors.map(actor=>({...actor,yaw:0,maxHealth:actor.health,pose:"stance",poseMs:0}))};
   return {runtime,view,calls,transaction:{area:"D000"},setPrepare:fn=>{prepare=fn;},advance:()=>{now+=100;}};
 }
 
@@ -42,4 +44,23 @@ test("cancelled actor preparation cannot acquire beneath a newer combat",async()
 test("a combat catalog entry cannot acquire in a different world area",async()=>{
   const h=harness();await assert.rejects(h.runtime.show(h.view,{area:"JOMO"}),/No combat presentation/);
   assert.equal(h.runtime.active,null);assert.deepEqual(h.calls,[]);
+});
+
+test("guard and hit reactions retain their fight bank even during a moving frame",async()=>{
+  const h=harness(),selected=[];
+  h.runtime.motionRuntime.applyNamed=(model,motion)=>(selected.push({tag:model.tag,...motion}),true);
+  await h.runtime.show(h.view,h.transaction);
+  for(const [pose,bank,name]of[
+    ["walk","free","AKI_AKI_WALK_LP"],
+    ["guard","fight",PLAYER_COMBAT_CONFIG.guard],
+    ["hit","fight",PLAYER_COMBAT_CONFIG.reactions.hit],
+    ["defeated","fight",PLAYER_COMBAT_CONFIG.reactions.defeated],
+  ]){
+    const view={...h.view,actors:h.view.actors.map(actor=>({...actor,pose,moving:true}))};
+    await h.runtime.show(view,h.transaction);selected.length=0;
+    assert.equal(h.runtime.update(h.transaction,.1),true);
+    assert.equal(selected.length,view.actors.length);
+    assert.ok(selected.every(selection=>selection.bank===bank&&selection.name===name));
+  }
+  h.runtime.finish(h.transaction);
 });

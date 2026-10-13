@@ -218,7 +218,8 @@ Do not describe the first conversation as fully animation-faithful.
 | Nozomi after the parlor | Connected optional same-day encounter: original YBHN cast/cameras visibly verified, cancellation/re-entry, natural ending, notebook and reload without replay pass in the real browser. Not a prerequisite for the letter. |
 | Next-day dojo spar → Ine-san invitation → Chinese letter | Connected browser check verifies real timed practice, original Fuku/Ine scenes, visible envelope handoff, cancellation/re-entry, natural letter ending, notebook and saved reload. Server/compiler/database tests prove practice authority and atomic once-only possession. Meditation and forced wake-up travel are omitted adaptations. |
 | Fuku-san at the gate | Connected rendered walk-in, cancellation/re-entry, original voices/body/camera, natural ending and saved reload verified. Requires the saved Chinese letter and actual possession; no duplicate handoff. Shared prop-frame repair and presentation verification are described below. |
-| Gao Wen / letter translation | Missing connected authored progression. |
+| Gao Wen rescue / translator referral | Connected browser check verifies original-voiced cast, real three-opponent loss/retry/win, failed A-QTE attempt/retry, original kick/ball/hostage presentation, grandmother referral, notebook, restored controls and saved reload. Compiler/database gates, cancellation, stale input and personal isolation pass. Roadside staging/ball trajectory/basic AI are explicit adaptations. |
+| Xia Xiu Yu / Chinese-letter translation | Missing connected authored progression. |
 | Harbor warehouses / Master Chen / Phoenix Mirror | Missing connected authored progression. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
@@ -923,8 +924,61 @@ prop. The fresh opening's four explicit intro skips, natural allowance ending,
 save and reload also pass after that repair. Exact expression/finger fidelity
 and every other standalone prop scene have not been visually audited.
 
-Next is the connected Gao Wen rescue, not another native-controller project.
-Original `E1049.AFS` contains the theft and post-rescue dialogue; `KOJI.PKS`
-contains `M_KOJI` soccer/hostage/kick clips and the `FBB0201G` ball. The authored
-flow still needs a real three-opponent fight and A-button challenge before its
-clue can settle. Those sources do not by themselves constitute playable coverage.
+## Gao Wen rescue and translator referral
+
+Official imports: `story-s1-gao-rescue` and `story-s1-gao-translator`.
+The [GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf)
+(printed pages 27–28) supplies the theft, three-opponent fight, A-button rescue,
+Chinese boy and grandmother/translator order. Original `E1049` and `F1060`
+subtitles supply the dialogue, rather than newly written story exposition.
+
+| Field | Implementation |
+| --- | --- |
+| Location | Sakuragaoka (`JD00`), then Gao Wen's ordinary personal schedule in Dobuita (`D000`). Roadside staging around the existing Sakuragaoka arrival is an explicit substitute for the original construction-lot route and exact placement. |
+| Prerequisites | Story Ryo, opening and Fuku gate complete, actual `chinese_letter` possession, rescue incomplete. The referral requires the saved rescue, letter possession and Gao's resident presence. |
+| Trigger | Automatic Sakuragaoka entry; after rescue, click Gao in Dobuita through ordinary NPC interaction. |
+| Player setup | Borrow the shared cinematic player/actor ownership, lock ordinary movement during dialogue/QTE and use the shared combat input during the fight. Restore the entry pose and camera between presentations. |
+| Characters | Gao (`KOM_L`), Charlie (`BIK_L`), Hama (`KMD_L`), Hatanaka (`KAZ_L`), Okayasu (`OKA_L`) and Murasaki (`PPL_L`). Original KOJI CHRT proves Charlie's model binding. The community character inventory and native fighter filenames corroborate the other identities; this is not a recovered native roster-initialization trace. |
+| Props | Original `FBB0201G` soccer ball and its KOJI textures, attached with the existing shared controller-matrix/prop runtime. Offsets, attachment switches and hiding after the kick are authored; the airborne ball trajectory is not reconstructed. |
+| Action sequence | Original-voiced theft/ambush introduction → real three-opponent fight → Charlie holds Gao → A-button challenge → original kick/release motions → original thanks → separate grandmother referral talk. |
+| Dialogue | Reviewed E1049 theft, hostage and thanks lines; condensed original F1060 talk identifies Xia Xiu Yu and Russiya China Shop. No new choice determines whether the letter can be translated. |
+| Timing | Voice completion/ordinary advance controls dialogue. The server simulates the fight and a two-second A prompt. The kick tableau waits for the longest loaded non-looping original motion: Gao's 418 frames (13.93 seconds). Ryo's 243-frame kick moves after frame 120. This is motion timing, not recovered native camera timing. |
+| Camera shots | Authored two-person/wider cameras and the existing gameplay combat camera. No claim of original KOJI camera/controller execution. |
+| Weather and lighting | Preserve the character's personal Sakuragaoka/Dobuita environment. Daytime rescue availability 08:30–23:30 and referral 08:30–19:00 are adaptations; no forced date, weather or 14:30 teleport. |
+| Audio | Original E1049/F1060 voice assets; retain the normal zone music as an adaptation. Scene-specific soccer/strike sound effects are not yet reconstructed. |
+| Interactive challenge | Three live fighters using existing movement, guard, hand/kick/throw controls and server health/hit calculations, followed by the closed-catalog A QTE. Health, speed, arena bounds and basic AI are authored balance, not the original free-battle engine. |
+| Completion effects | One atomic rescue milestone plus `notebook.s1.gao-wen`; the separate talk atomically saves `notebook.s1.russiya-translator`. No reward, item consumption, calendar jump or guessed native flag. Temporary fight health does not change persistent MMO HP. |
+| Exit behavior | Remain in the entered zone, restoring player pose, camera, controls and ambient NPC ownership. No public NPC mutation. |
+| Skip, failure and replay | Ordinary advance only skips dialogue, not the fight/QTE. A lost fight retries the fight; a lost QTE retries the hostage attempt. Cancelled/failed aftermath saves no clue. Leaving and re-entering can retry; committed milestones do not replay or grant again. |
+
+`tools/cutscenes/build_gao_wen_assets.mjs` hash-checks original KOJI PKS/PKF and
+the full fighter MT5s, extracts their embedded textures, and registers the
+existing character-loader assets. Its tracked manifest records model bindings,
+source hashes and output hashes; it does not translate the native room owner.
+Original `M_KOJI` clips drive Gao's held/release/talk and Ryo's soccer kick.
+Other ordinary standing/combat motions reuse existing shared banks.
+
+The real compiler/PostgreSQL boundary test proves prerequisites, possession,
+hours, cancellation before and after victory, actual fight/QTE outcomes, retry
+tokens, ignored stale input, atomic notebook writes, unchanged inventory/yen/HP,
+repeat refusal and character isolation. `NEW_YOKOSUKA_GAO_E2E=true` continues
+the earned Fuku/letter checkpoint through cancelled introduction/re-entry,
+three-opponent loss/retry/win using physical movement/guard/kick inputs, failed
+keyboard B input/retry, successful A input, full kick/aftermath, normal Dobuita
+resident interaction, notebook and saved reload. Inspected rendered captures
+show Gao/Charlie/Ryo, the hostage hold, ball and actual kick; complete original
+projectile/finger/gesture fidelity is not claimed. Test travel is shortened,
+and this is not proof of walking the original construction-lot route.
+
+The rendered check found and repaired two shared presentation omissions.
+Guard/hit animation banks now follow the selected pose even when the independent
+movement flag is true. Authored scenes and story combat also run the same native
+cloth/hair post-pose update as gameplay; otherwise Ryo's acquired jacket surface
+remained detached at the preceding pose during root travel. Motion-timed scenes
+wait for the longest original clip rather than cutting the kick off at an
+invented four-second hold. Ball controller 34 is the raised foot; controller 11
+is a wrist and must not be described as a foot.
+
+The new asset catalogs reproduce byte-for-byte through the canonical producers.
+New model/voice assets are local and registered, not published to R2.
+Xia's translation and the subsequent harbor sequence remain unimplemented.

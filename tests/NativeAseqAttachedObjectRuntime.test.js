@@ -105,7 +105,9 @@ test("AUTH FIXO props follow the exact parent controller and hide between activi
         latestControllerFamily: {
           nodes: [{ index: 3, type: 12 }],
         },
-        latestControllerMatrices: [null, null, null, parentMatrix],
+        // Named-motion interpolation uses typed matrices; exact AUTH frames
+        // use ordinary arrays. Both must follow the same attachment path.
+        latestControllerMatrices: [null, null, null, new Float32Array(parentMatrix)],
       },
     };
     const runtime = new NativeAseqAttachedObjectRuntime({

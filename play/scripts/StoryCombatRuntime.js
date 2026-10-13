@@ -1,6 +1,7 @@
 import catalog from "../data/story-combat.json" with { type: "json" };
 import { CombatInput } from "../combat/CombatInput.js";
 import { PLAYER_COMBAT_CONFIG } from "../characters/PlayerMotionLibrary.js";
+import { updateNativeCharacterSecondaryMotion } from "../characters/NativeCharacterSecondaryMotion.js";
 
 // Presentation/input only. Health, movement limits, hits and victory come from
 // server snapshots. Reuse the same cinematic actor and named-motion adapters.
@@ -57,10 +58,17 @@ export class StoryCombatRuntime {
       pose.yaw+=Math.atan2(Math.sin(view.yaw-pose.yaw),Math.cos(view.yaw-pose.yaw))*alpha;
       if(!this.actors.applyTransform(owner,view.tag,{x:-pose.x,y:pose.y,z:pose.z,rotationX:0,rotationY:180-pose.yaw*180/Math.PI,rotationZ:0}))return false;
       const action=owner.definition.actions.find(action=>action.input===view.pose);
+      // A guarded step or a hit during movement retains the movement flag in
+      // the authoritative snapshot. Select the bank by animation, not that
+      // independent flag: guard/reaction clips belong to M_FGT1, not MOTION.
+      const walking=view.moving&&!["guard","hit","defeated"].includes(view.pose);
       const selection=action?{bank:view.tag==="AKIR"?"free":"fight",name:view.tag==="AKIR"?action.playerAnimation:action.enemyAnimation,loop:false}
-        :{bank:view.moving?"free":"fight",name:view.pose==="defeated"?PLAYER_COMBAT_CONFIG.reactions.defeated:view.pose==="hit"?PLAYER_COMBAT_CONFIG.reactions.hit:
-          view.pose==="guard"?PLAYER_COMBAT_CONFIG.guard:view.moving?"AKI_AKI_WALK_LP":PLAYER_COMBAT_CONFIG.stance,loop:!["hit","defeated"].includes(view.pose)};
+        :{bank:walking?"free":"fight",name:view.pose==="defeated"?PLAYER_COMBAT_CONFIG.reactions.defeated:view.pose==="hit"?PLAYER_COMBAT_CONFIG.reactions.hit:
+          view.pose==="guard"?PLAYER_COMBAT_CONFIG.guard:walking?"AKI_AKI_WALK_LP":PLAYER_COMBAT_CONFIG.stance,loop:!["hit","defeated"].includes(view.pose)};
       if(!this.motionRuntime.applyNamed(this.actors.activeActor(view.tag)?.model,selection,view.poseMs/1000+age))return false;
+      // These actors are borrowed from gameplay, so its usual post-pose pass
+      // is suspended. Keep cloth/hair on the same shared native update path.
+      updateNativeCharacterSecondaryMotion(this.actors.activeActor(view.tag)?.model, deltaSeconds);
     }
     const controller=this.getController();controller.updateCamera(Math.max(.01,deltaSeconds));
     if(!owner.view.ready)return true;

@@ -95,11 +95,22 @@ the enclosing story event retryable unless its reviewed script explicitly settle
 a different outcome.
 
 Authored combat definitions live in `tools/scripting/story-combat.json`.
-`build_story_combat.mjs` derives original actor positions and exports the shared
+`build_story_combat.mjs` derives positions from a hash-pinned original AUTH or a
+reviewed authored scene (never both) and exports the shared
 practice move rules to the server's `internal/scriptevent/combats.json`.
 `check-server-contract.mjs --sync-scripting` projects that exact catalog back
 into the client. Content, simulation authority and Babylon presentation remain
 separate; do not implement one-off fights in Yarn command handlers.
+
+`postCombatChallenge` on a reviewed investigation route links a fight, a separate
+challenge and its aftermath within that same Yarn transaction. Failed fights
+retry the fight; failed challenges retry their staging. Only the common success
+ending stages notebook/effects. Authored scene staging can borrow original prop
+models through the shared attachment runtime. `waitForMotions: true` waits for
+the longest loaded non-looping clip, with a 120-second safety ceiling; use an
+explicit `durationSeconds` only for a reviewed authored hold. These timing
+options are mutually exclusive. Neither presentation feature decides a gameplay
+result.
 
 ## Original and community scripts
 

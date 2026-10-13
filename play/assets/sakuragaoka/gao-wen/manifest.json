@@ -1,0 +1,191 @@
+{
+  "schema": "new-yokosuka-authored-scene-assets-v1",
+  "generatedBy": "tools/cutscenes/build_gao_wen_assets.mjs",
+  "bindings": [
+    {
+      "actorTag": "CHRL",
+      "image": "BIK_L",
+      "model": "BIK_L",
+      "characterRecordOffset": 112,
+      "imagePropertyOffset": 140,
+      "defImageRecordOffset": 8,
+      "presentation": null
+    },
+    {
+      "actorTag": "FBB_",
+      "image": "Lily",
+      "model": "FBB0201G",
+      "characterRecordOffset": 232,
+      "imagePropertyOffset": 320,
+      "defImageRecordOffset": 40,
+      "presentation": null
+    },
+    {
+      "actorTag": "FBB1",
+      "image": "Lily",
+      "model": "FBB0201G",
+      "characterRecordOffset": 360,
+      "imagePropertyOffset": 448,
+      "defImageRecordOffset": 40,
+      "presentation": null
+    },
+    {
+      "actorTag": "FBB2",
+      "image": "Lily",
+      "model": "FBB0201G",
+      "characterRecordOffset": 496,
+      "imagePropertyOffset": 584,
+      "defImageRecordOffset": 40,
+      "presentation": null
+    },
+    {
+      "actorTag": "FBB3",
+      "image": "Lily",
+      "model": "FBB0201G",
+      "characterRecordOffset": 632,
+      "imagePropertyOffset": 720,
+      "defImageRecordOffset": 40,
+      "presentation": null
+    },
+    {
+      "actorTag": "KEIB",
+      "image": "Daisy",
+      "model": "KEIS500G",
+      "characterRecordOffset": 768,
+      "imagePropertyOffset": 796,
+      "defImageRecordOffset": 72,
+      "presentation": null
+    },
+    {
+      "actorTag": "DMY8",
+      "image": "Lily",
+      "model": "FBB0201G",
+      "characterRecordOffset": 852,
+      "imagePropertyOffset": 920,
+      "defImageRecordOffset": 40,
+      "presentation": null
+    },
+    {
+      "actorTag": "DMY7",
+      "image": "Lily",
+      "model": "FBB0201G",
+      "characterRecordOffset": 952,
+      "imagePropertyOffset": 1020,
+      "defImageRecordOffset": 40,
+      "presentation": null
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/characters/BIK_L.CHRM",
+      "byteLength": 31948,
+      "sha256": "29bd5864daa461b8c455d5895e1df105418a1d9860ea5846869992ba34a49c52",
+      "source": {
+        "path": "data/SCENE/01/JD00/KOJI.PKS",
+        "sha256": "0443e8099ea5d0e25aa1319b7cc539d160283d95b79b1e18ef95b6f8696d85a6",
+        "member": "BIK_L.CHRM"
+      }
+    },
+    {
+      "path": "play/assets/sakuragaoka/gao-wen/FBB0201G.CHRM",
+      "byteLength": 4492,
+      "sha256": "5d27cea0f483ec2906346af2fc468729b8c2f9276ca221e3f47389278549583e",
+      "source": {
+        "path": "data/SCENE/01/JD00/KOJI.PKS",
+        "sha256": "0443e8099ea5d0e25aa1319b7cc539d160283d95b79b1e18ef95b6f8696d85a6",
+        "member": "FBB0201G.CHRM"
+      }
+    },
+    {
+      "path": "play/assets/sakuragaoka/gao-wen/M_KOJI.MOTN",
+      "byteLength": 196420,
+      "sha256": "c8c7f32075a825975289a988cf22de0c9c06281abd3e40bd2de33f3aa5024c70",
+      "source": {
+        "path": "data/SCENE/01/JD00/KOJI.PKS",
+        "sha256": "0443e8099ea5d0e25aa1319b7cc539d160283d95b79b1e18ef95b6f8696d85a6",
+        "member": "M_KOJI.MOTN"
+      }
+    },
+    {
+      "path": "play/assets/characters/BIK_textures.bin",
+      "byteLength": 168416,
+      "sha256": "48c69b1e4c846ca028aaca19df57141146783ae53ea8813c5331d7913d909c67",
+      "source": {
+        "path": "data/SCENE/01/JD00/KOJI.PKF",
+        "sha256": "c18dbffe894b3e1e2e70643651c16cdb3e81583b412b6a996060603754497e55"
+      }
+    },
+    {
+      "path": "play/assets/characters/KMD_L.CHRM",
+      "byteLength": 163548,
+      "sha256": "c4024cba2a9da3b4d45272ef65e44c456b00113289698e54704934bb41f5e8c1",
+      "source": {
+        "path": "data/SCENE/01/MODEL/CHARA/KMD_L.MT5",
+        "sha256": "c4024cba2a9da3b4d45272ef65e44c456b00113289698e54704934bb41f5e8c1"
+      }
+    },
+    {
+      "path": "play/assets/characters/KMD_textures.bin",
+      "byteLength": 131268,
+      "sha256": "37563ee419337d5e4a2c0383c8db9e00a9ef528f10a627a5c9dc45e21f1a6f0c",
+      "source": {
+        "path": "data/SCENE/01/MODEL/CHARA/KMD_L.MT5",
+        "sha256": "c4024cba2a9da3b4d45272ef65e44c456b00113289698e54704934bb41f5e8c1"
+      }
+    },
+    {
+      "path": "play/assets/characters/KAZ_L.CHRM",
+      "byteLength": 171820,
+      "sha256": "bdb90f5a5463be74307967fcc9a75bfa5d47014c0554ed222650abb293d308e7",
+      "source": {
+        "path": "data/SCENE/01/MODEL/CHARA/KAZ_L.MT5",
+        "sha256": "bdb90f5a5463be74307967fcc9a75bfa5d47014c0554ed222650abb293d308e7"
+      }
+    },
+    {
+      "path": "play/assets/characters/KAZ_textures.bin",
+      "byteLength": 139404,
+      "sha256": "2b5414ba9980527da75e93b7d73c2bf97e079febb6f02cb3f87444a828a03b61",
+      "source": {
+        "path": "data/SCENE/01/MODEL/CHARA/KAZ_L.MT5",
+        "sha256": "bdb90f5a5463be74307967fcc9a75bfa5d47014c0554ed222650abb293d308e7"
+      }
+    },
+    {
+      "path": "play/assets/characters/OKA_L.CHRM",
+      "byteLength": 136180,
+      "sha256": "eb2ee99ddb37b3e4c70705597d3b540dd6d0cc54cfa8a4174fbf6dbc1e7eb087",
+      "source": {
+        "path": "data/SCENE/01/MODEL/CHARA/OKA_L.MT5",
+        "sha256": "eb2ee99ddb37b3e4c70705597d3b540dd6d0cc54cfa8a4174fbf6dbc1e7eb087"
+      }
+    },
+    {
+      "path": "play/assets/characters/OKA_textures.bin",
+      "byteLength": 106636,
+      "sha256": "ade9f3613079b76e32c6106a42cc57772e832ef006bb13e88951da9666bfb4a9",
+      "source": {
+        "path": "data/SCENE/01/MODEL/CHARA/OKA_L.MT5",
+        "sha256": "eb2ee99ddb37b3e4c70705597d3b540dd6d0cc54cfa8a4174fbf6dbc1e7eb087"
+      }
+    },
+    {
+      "path": "play/assets/characters/PPL_L.CHRM",
+      "byteLength": 141488,
+      "sha256": "2dc4a2a2f38dfd684b8fe7dd88e40207a9218b68ec206bf664271ecc550a29fc",
+      "source": {
+        "path": "data/SCENE/01/MODEL/CHARA/PPL_L.MT5",
+        "sha256": "2dc4a2a2f38dfd684b8fe7dd88e40207a9218b68ec206bf664271ecc550a29fc"
+      }
+    },
+    {
+      "path": "play/assets/characters/PPL_textures.bin",
+      "byteLength": 106608,
+      "sha256": "037dd57ff8da93edc04e90b6e22b1d4ee4d8bb12cccc63ae0ae1e471c54a191b",
+      "source": {
+        "path": "data/SCENE/01/MODEL/CHARA/PPL_L.MT5",
+        "sha256": "2dc4a2a2f38dfd684b8fe7dd88e40207a9218b68ec206bf664271ecc550a29fc"
+      }
+    }
+  ]
+}

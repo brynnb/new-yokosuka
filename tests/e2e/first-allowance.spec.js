@@ -105,6 +105,12 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_GAO_E2E === "true") {
+      await verifyGaoRescue(page,testInfo,character);
+      expect(errors).toEqual([]);
+      expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+      return;
+    }
     if(process.env.NEW_YOKOSUKA_FUKU_GATE_E2E === "true") {
       await verifyFukuLetterGate(page,testInfo,character);
       expect(errors).toEqual([]);
@@ -1182,5 +1188,124 @@ async function verifyFukuLetterGate(page,testInfo,character) {
   await page.waitForFunction(()=>window.storyProbe.ready,null,{timeout:120_000});
   await page.waitForTimeout(1000);expect(await page.evaluate(()=>window.storyProbe.starts.includes("story-s1-fuku-letter-gate"))).toBe(false);
   expect((await state()).character.storyFlags["story.s1.fuku-letter-gate.completed"]).toBe(true);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+}
+
+async function verifyGaoRescue(page,testInfo,character) {
+  expect(character.storyFlags["story.s1.fuku-letter-gate.completed"]).toBe(true);
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const noErrors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  const scene=async id=>{
+    await page.waitForFunction(id=>window.storyProbe.authoredScene?.active?.scene.id===id||window.storyProbe.sceneErrors.length,id,{timeout:60_000});
+    await noErrors();
+  };
+  const advanceTo=async type=>{
+    for(let i=0;i<40&&!await page.evaluate(type=>type==="combat"?!!window.storyProbe.regions.controller.active?.combatView:!!window.storyProbe.regions.controller.active?.challengePrompt,type);i++){
+      await page.keyboard.press('Space');await page.waitForTimeout(180);
+    }
+    await page.waitForFunction(type=>(type==="combat"?window.storyProbe.regions.controller.active?.combatView?.ready:window.storyProbe.regions.controller.active?.challengePrompt?.ready)||window.storyProbe.sceneErrors.length,type,{timeout:30_000});
+    await noErrors();
+  };
+  if(!character.storyFlags["story.s1.gao-rescue.completed"]){
+    const hour=new Date((await saved()).worldState.gameTimeMs).getUTCHours();
+    if(hour>=23||hour<8){
+      await page.locator('#story-wait-button').click();await page.getByRole('option',{name:'Wait until tomorrow morning',exact:true}).click();
+      await page.getByRole('button',{name:'Wait until tomorrow morning',exact:true}).click();
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+    }
+    await page.evaluate(()=>window.storyProbe.lifecycle.travelToWorld('sakuragaoka'));
+    await scene('s1.jd00.gao-introduction');
+    await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0,null,{timeout:20_000});
+    await page.screenshot({path:testInfo.outputPath('gao-original-cast.png')});
+    await page.evaluate(()=>window.storyProbe.regions.controller.cancel('test-cancel-gao'));
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe('idle');
+    expect((await saved()).character.storyFlags['notebook.s1.gao-wen']).not.toBe(true);
+    expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+    await page.evaluate(async()=>{await window.storyProbe.lifecycle.travelToWorld('yamanose');await window.storyProbe.lifecycle.travelToWorld('sakuragaoka');});
+    await scene('s1.jd00.gao-introduction');await advanceTo('combat');
+    await page.screenshot({path:testInfo.outputPath('gao-three-opponent-fight.png')});
+    expect(await page.evaluate(()=>window.storyProbe.regions.controller.active.combatView.actors.length)).toBe(4);
+    const lostToken=await page.evaluate(()=>window.storyProbe.regions.controller.active.combatView.token);
+    await expect(page.getByRole('button',{name:'Try again',exact:true})).toBeVisible({timeout:60_000});
+    expect((await saved()).character.storyFlags['notebook.s1.gao-wen']).not.toBe(true);
+    await page.getByRole('button',{name:'Try again',exact:true}).click();await advanceTo('combat');
+    await page.waitForFunction(old=>{
+      const view=window.storyProbe.regions.controller.active?.combatView,owner=window.storyProbe.combatRuntime.active;
+      return view?.ready&&view.token!==old&&owner?.token===view.token&&owner.view.ready&&!!owner.input;
+    },lostToken,{timeout:30_000});
+    await page.locator('#renderCanvas').focus();await page.keyboard.down('KeyI');
+    await page.keyboard.down('KeyS');await page.waitForTimeout(350);await page.keyboard.up('KeyS');
+    const heldMovement=new Set();
+    try {
+      for(let i=0;i<1600&&await page.evaluate(()=>!!window.storyProbe.regions.controller.active?.combatView);i++) {
+        // Read the authoritative positions, then use physical keyboard input.
+        // Standing still against three attackers is not a guaranteed victory.
+        const keys=await page.evaluate(()=>{
+          const runtime=window.storyProbe.combatRuntime,view=runtime.active?.view;
+          if(!view)return [];
+          const player=view.actors[0];
+          const opponents=view.actors.slice(1).filter(actor=>actor.health>0)
+            .sort((a,b)=>Math.hypot(player.x-a.x,player.z-a.z)-Math.hypot(player.x-b.x,player.z-b.z));
+          const enemy=opponents[0];if(!enemy)return [];
+          const distance=Math.hypot(player.x-enemy.x,player.z-enemy.z);if(distance>=.9)return [];
+          const x=(player.x-enemy.x)/Math.max(.01,distance),z=(player.z-enemy.z)/Math.max(.01,distance);
+          const yaw=runtime.getController().cameraYaw,bindings=runtime.active.input.getBindings();
+          const forward=-Math.sin(yaw)*x-Math.cos(yaw)*z,side=Math.cos(yaw)*x-Math.sin(yaw)*z;
+          return [Math.abs(forward)>.25?(forward>0?bindings.up:bindings.down):null,
+            Math.abs(side)>.25?(side>0?bindings.right:bindings.left):null].filter(Boolean);
+        });
+        for(const key of heldMovement)if(!keys.includes(key)){await page.keyboard.up(key);heldMovement.delete(key);}
+        for(const key of keys)if(!heldMovement.has(key)){await page.keyboard.down(key);heldMovement.add(key);}
+        await page.keyboard.press('KeyK');await page.waitForTimeout(80);
+      }
+    } finally {
+      await page.keyboard.up('KeyI');for(const key of heldMovement)await page.keyboard.up(key);
+    }
+    await testInfo.attach('gao-combat-inputs',{body:JSON.stringify(await page.evaluate(()=>({
+      intents:window.storyProbe.combatIntents.slice(-12),view:window.storyProbe.regions.controller.active?.combatView,
+      held:[...(window.storyProbe.combatRuntime.active?.input?.held||[])],errors:window.storyProbe.sceneErrors,
+    }))),contentType:'application/json'});
+    await noErrors();
+    expect(await page.evaluate(()=>window.storyProbe.combatIntents.some(intent=>intent.guard&&intent.action==='leg'))).toBe(true);
+    expect(await page.evaluate(()=>window.storyProbe.combatIntents.some(intent=>Math.hypot(intent.moveX,intent.moveZ)>0))).toBe(true);
+    await scene('s1.jd00.gao-hostage');await page.screenshot({path:testInfo.outputPath('gao-hostage-with-ball.png')});await advanceTo('challenge');
+    expect((await saved()).character.storyFlags['notebook.s1.gao-wen']).not.toBe(true);
+    await page.keyboard.press('Shift');
+    await expect(page.getByRole('button',{name:'Try again',exact:true})).toBeVisible();
+    await page.getByRole('button',{name:'Try again',exact:true}).click();await advanceTo('challenge');
+    await page.locator('button[data-challenge-button="A"]').click();await scene('s1.jd00.gao-kick');
+    await page.waitForTimeout(4900);await page.screenshot({path:testInfo.outputPath('gao-original-kick.png')});
+    await scene('s1.jd00.gao-aftermath');await page.screenshot({path:testInfo.outputPath('gao-original-thanks.png')});
+    for(let i=0;i<30&&!await page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.['notebook.s1.gao-wen']);i++){
+      await page.keyboard.press('Space');await page.waitForTimeout(200);
+    }
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.['notebook.s1.gao-wen'])).toBe(true);
+  }
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+  const hour=new Date((await saved()).worldState.gameTimeMs).getUTCHours();
+  if(hour>=19||hour<9){
+    await page.locator('#story-wait-button').click();await page.getByRole('option',{name:'Wait until tomorrow morning',exact:true}).click();
+    await page.getByRole('button',{name:'Wait until tomorrow morning',exact:true}).click();
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  }
+  await page.evaluate(()=>window.storyProbe.lifecycle.travelToWorld('dobuita'));
+  await page.waitForFunction(()=>window.storyProbe.lifecycle.scheduledActors.dialogueActor('KKBN'),null,{timeout:60_000});
+  const point=await residentClickPoint(page,'KKBN');await page.mouse.click(point.x,point.y);
+  await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0,null,{timeout:15_000});
+  await page.screenshot({path:testInfo.outputPath('gao-russiya-referral.png')});
+  for(let i=0;i<30&&!await page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.['notebook.s1.russiya-translator']);i++){
+    await page.keyboard.press('Space');await page.waitForTimeout(200);
+  }
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.['notebook.s1.russiya-translator'])).toBe(true);
+  const state=await saved();expect(state.character.yen).toBe(character.yen);expect(state.character.currentHp).toBe(character.currentHp);
+  expect(state.inventory.filter(i=>i.key==='chinese_letter').map(i=>i.quantity)).toEqual([1]);
+  await page.locator('button').filter({hasText:/^Notebook$/}).click();
+  for(let i=0;i<60&&await page.locator('#journal-next').isEnabled();i++)await page.locator('#journal-next').click();
+  await expect(page.getByText(/Gao Wen's grandmother, Xia Xiu Yu/)).toBeVisible();await page.screenshot({path:testInfo.outputPath('gao-translator-notebook.png')});
+  await page.locator('#journal-close').click();await page.reload();await page.keyboard.press('Enter');
+  await page.locator('.account-entry-actions button').filter({hasText:'Quick Play'}).click();await page.locator('.character-slot-button:not(.empty)').first().click();
+  await page.locator('button').filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready,null,{timeout:120_000});
+  expect((await saved()).character.storyFlags['notebook.s1.russiya-translator']).toBe(true);
   expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
 }

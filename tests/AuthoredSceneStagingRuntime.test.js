@@ -75,3 +75,46 @@ test("out-of-shot residents remain owned and hidden until scene cleanup",async()
   h.runtime.update(h.transaction,.1);assert.equal(h.root.enabled,false);
   h.runtime.cancel(h.transaction);assert.equal(h.root.enabled,true);
 });
+
+test("a timed tableau acknowledges only its duration and releases owned props on cancellation",async()=>{
+  for(const cancel of [false,true]){
+    const h=harness(),frames=[];let cleared=0,signal;
+    h.scene.durationSeconds=2;h.scene.attachedObjects={BALL:{}};
+    h.runtime.createAttachedObjects=(_defs,_resolve,abortSignal)=>(signal=abortSignal,{
+      load:async()=>{},beginActivity:()=>true,update:frame=>(frames.push(frame),true),clear:()=>cleared++,
+    });
+    let settled=false;
+    const playing=h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction).then(()=>settled=true);
+    await new Promise(r=>setImmediate(r));
+    assert.equal(settled,false);h.runtime.update(h.transaction,1);assert.equal(settled,false);
+    if(cancel){h.runtime.cancel(h.transaction);await assert.rejects(playing,{name:"AbortError"});}
+    else{h.runtime.update(h.transaction,1);await playing;assert.equal(settled,true);h.runtime.cancel(h.transaction);}
+    assert.deepEqual(frames,cancel?[0,30]:[0,30,60]);assert.equal(cleared,1);assert.equal(signal.aborted,true);
+  }
+});
+
+test("a cancelled prop loader cannot acquire beneath the next tableau",async()=>{
+  const h=harness();let loaded,cleared=0;
+  h.scene.attachedObjects={BALL:{}};
+  h.runtime.createAttachedObjects=()=>({load:()=>new Promise(r=>loaded=r),clear:()=>cleared++});
+  const old=h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction);
+  await new Promise(r=>setImmediate(r));h.runtime.cancel(h.transaction);
+  const scene={...h.scene,id:"next",attachedObjects:undefined},next={area:"DBHB"};
+  await h.runtime.play({kind:"scene-staging-start",scene},next);
+  const before=[...h.calls];loaded();await assert.rejects(old,{name:"AbortError"});
+  assert.deepEqual(h.calls,before);assert.equal(h.runtime.active.transaction,next);assert.equal(cleared,2);
+  h.runtime.cancel(next);
+});
+
+test("a motion-timed scene waits for its longest loaded clip, not a guessed short delay",async()=>{
+  const h=harness();h.scene.waitForMotions=true;h.scene.actors[0].motion.loop=false;
+  h.runtime.motionRuntime.namedDurationSeconds=()=>418/30;
+  let finished=false;
+  const pending=h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction).then(()=>{finished=true;});
+  await new Promise(r=>setImmediate(r));
+  h.runtime.update(h.transaction,4);await Promise.resolve();assert.equal(finished,false);
+  h.runtime.update(h.transaction,418/30-4);await pending;assert.equal(finished,true);
+  h.runtime.release(h.transaction);
+  h.scene.actors[0].motion.loop=true;
+  await assert.rejects(h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction),/non-looping motions/);
+});

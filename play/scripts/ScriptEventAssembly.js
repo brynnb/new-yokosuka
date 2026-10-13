@@ -29,6 +29,10 @@ import {
 import { AuthoredSceneStagingRuntime } from "./AuthoredSceneStagingRuntime.js";
 import { StoryCombatRuntime } from "./StoryCombatRuntime.js";
 import { createNativeAseqBabylonActors, createNativeAseqBabylonCamera } from "../events/NativeAseqBabylonPresentation.js";
+import { NativeAseqAttachedObjectRuntime } from "../events/NativeAseqAttachedObjectRuntime.js";
+import { createNativeCutsceneSceneObjectLoader } from "../cutscenes/NativeCutsceneSceneObjectLoader.js";
+import { fetchAssetBuffer } from "../../src/AssetCache.js";
+import { runtimeAssetUrl } from "../../src/RuntimeAssets.js";
 
 export function createScriptEventAssembly({
   nativeRuntime,
@@ -51,6 +55,7 @@ export function createScriptEventAssembly({
   capturePlayerState,
   restorePlayerState,
   camera,
+  scene,
   getPlayerModel,
   syncPlayerTransform,
   motionRuntime,
@@ -138,6 +143,9 @@ export function createScriptEventAssembly({
           scheduledActors, motionRuntime, preservePlayerOnComplete: false, playerYawOffsetRadians: Math.PI }),
         camera: createNativeAseqBabylonCamera(camera), motionRuntime,
         capturePlayerState, restorePlayerState,
+        createAttachedObjects:(definitions,resolveActor,signal)=>new NativeAseqAttachedObjectRuntime({definitions,resolveActor,
+          instantiateAsset:createNativeCutsceneSceneObjectLoader({scene,loadAsset:path=>fetchAssetBuffer(runtimeAssetUrl(path),{signal})}),
+        }),
       }),
       playerMotionRuntime,
       playerXmptRuntime,

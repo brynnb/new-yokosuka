@@ -85,6 +85,8 @@ const STORY_PAGES = Object.freeze([
     text:"Nozomi came looking for me near Okayama Heights.\n\nShe seems worried about me and my entrance exams. I promised we'd talk later."}) },
   { flag:"notebook.s1.chinese-letter",page:Object.freeze({id:"story-chinese-letter",
     text:"Ine-san gave me a mysterious letter addressed to my father.\n\nIt's written in Chinese. Find someone who can read it."}) },
+  {flag:"notebook.s1.gao-wen",page:Object.freeze({id:"story-gao-wen",text:"Saved a Chinese boy named Gao Wen from Charlie's gang.\n\nCharlie's cartel meeting was a trap. The Chinese letter is my remaining lead. Find someone who can read it."})},
+  {flag:"notebook.s1.russiya-translator",page:Object.freeze({id:"story-russiya-translator",text:"Gao Wen's grandmother, Xia Xiu Yu, can read Chinese.\n\nVisit her at Russiya China Shop in Dobuita, near the fortune teller."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

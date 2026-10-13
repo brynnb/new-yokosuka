@@ -19,6 +19,16 @@
     {"kind":"activity","policy":"closed"}
   ],
   "capabilities": [
+    {"kind":"combat","identifier":"s1.jd00.gao-rescue","description":"Real three-opponent rescue fight; victory is required before the separate A QTE."},
+    {"kind":"challenge","identifier":"s1.jd00.gao-ball","description":"Server-validated A soccer-ball QTE after the rescue fight."},
+    {"kind":"sequence","identifier":"s1.jd00.gao-introduction.start","description":"Original cast/voices with authored roadside staging."},
+    {"kind":"sequence","identifier":"s1.jd00.gao-introduction.finish","description":"Restore the introduction before combat."},
+    {"kind":"sequence","identifier":"s1.jd00.gao-hostage.start","description":"Original hostage clips and ball, authored placement; no automatic rescue."},
+    {"kind":"sequence","identifier":"s1.jd00.gao-hostage.finish","description":"Restore the hostage tableau before retry or successful kick."},
+    {"kind":"sequence","identifier":"s1.jd00.gao-kick.start","description":"Timed original kick/release clips after a real A input; no outcome authority."},
+    {"kind":"sequence","identifier":"s1.jd00.gao-kick.finish","description":"Release kick props/camera before the saved clue dialogue."},
+    {"kind":"sequence","identifier":"s1.jd00.gao-aftermath.start","description":"Gao Wen thanks Ryo with his original ball and voiced clue."},
+    {"kind":"sequence","identifier":"s1.jd00.gao-aftermath.finish","description":"Restore player/actors/props before one atomic rescue milestone."},
     {"kind":"bounds","identifier":"s1.jhd0.fuku-letter-gate","description":"Authored grounds-gate approach around TGMA's original Ryo position."},
     {"kind":"activity","identifier":"s1.jhd0.fuku-letter-gate.scene","description":"Original TGMA Chinese-letter discussion, not another item handoff; saved possession and completion are server-owned."},
     {"kind":"combat","identifier":"s1.jhd0.fuku-practice","description":"Server-timed nonlethal dojo spar; practiced is distinct from combat victory."},

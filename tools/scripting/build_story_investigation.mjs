@@ -99,7 +99,13 @@ for (const route of spec.routes) {
       if(!route.staging)throw new Error(`Missing combat ending ${route.id}`);
       ending=`<<play_sequence "${route.staging}.start">>\n${choices}${lines.join("\n")}\n<<play_sequence "${route.staging}.finish">>`;
     }
-    body=`${dating}${(route.introductionActivities||[]).map(id=>`<<start_activity "${id}">>`).join("\n")}\n<<jump Fight>>\n===\ntitle: Fight\n---\n<<start_combat "${route.combat}">>\n<<if combat_result("${route.combat}") != "${outcome}">>\n-> Try again\n    <<jump Fight>>\n-> Leave it for now\n    <<complete>>\n<<else>>\n${ending}\n${effects.join("\n")}\n<<complete>>\n${questions.length?"":"<<endif>>"}`;
+    const intro=route.introductionStaging?`<<play_sequence "${route.introductionStaging}.start">>\n${leadIn.join("\n")}\n<<play_sequence "${route.introductionStaging}.finish">>`:"";
+    if(route.postCombatChallenge){
+      if(questions.length||route.completionActivities)throw new Error(`Ambiguous combat/challenge ending ${route.id}`);
+      const challenge=route.postCombatChallenge;
+      ending=`<<jump Rescue>>\n<<endif>>\n===\ntitle: Rescue\n---\n<<play_sequence "${challenge.staging}.start">>\n${dialogueLines(challenge.voiceIds).join("\n")}\n<<start_challenge "${challenge.id}">>\n<<if challenge_result("${challenge.id}") != "success">>\n<<play_sequence "${challenge.staging}.finish">>\n-> Try again\n    <<jump Rescue>>\n-> Leave it for now\n    <<complete>>\n<<else>>\n<<play_sequence "${challenge.staging}.finish">>\n<<play_sequence "${challenge.successStaging}.start">>\n<<play_sequence "${challenge.successStaging}.finish">>\n${ending}`;
+    }
+    body=`${dating}${(route.introductionActivities||[]).map(id=>`<<start_activity "${id}">>`).join("\n")}\n${intro}\n<<jump Fight>>\n===\ntitle: Fight\n---\n<<start_combat "${route.combat}">>\n<<if combat_result("${route.combat}") != "${outcome}">>\n-> Try again\n    <<jump Fight>>\n-> Leave it for now\n    <<complete>>\n<<else>>\n${ending}\n${effects.join("\n")}\n<<complete>>\n${questions.length?"":"<<endif>>"}`;
     // The victory choice node ends the conditional before jumping to Clue.
     if(questions.length)body=body.replace("\n===\ntitle: Clue", "\n<<endif>>\n===\ntitle: Clue");
   } else if (route.challenge) {

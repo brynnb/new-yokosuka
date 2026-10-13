@@ -3,6 +3,26 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"gao-rescue","actor":"KKBN","participants":["CHRL"],"presentActors":[],"area":"JD00","trigger":"automatic","priority":210,
+      "title":"Gao Wen — Charlie's broken promise","hours":[8.5,23.5],
+      "requiredFlags":["story.s1.fuku-letter-gate.completed"],"requiredItems":[{"key":"chinese_letter","quantity":1}],
+      "completedFlag":"story.s1.gao-rescue.completed","effects":["notebook.s1.gao-wen"],
+      "combat":"s1.jd00.gao-rescue","introductionStaging":"s1.jd00.gao-introduction","staging":"s1.jd00.gao-aftermath",
+      "dialogueArchive":{"path":"data/SCENE/01/STREAM/E1049.AFS","sha256":"ca98be773bb90fea1b32346b8422da7dace74e84d1f695edff80c6f0ec8c4af2"},
+      "leadInVoiceIds":["E1049A001","E1049B001","E1049B002","E1049A002","E1049B003","E1049C011","E1049C012"],
+      "postCombatChallenge":{"id":"s1.jd00.gao-ball","staging":"s1.jd00.gao-hostage","successStaging":"s1.jd00.gao-kick","voiceIds":["E1049C006","E1049B004","E1049A009"]},
+      "voiceIds":["E1049A008","E1049B009","E1049A010","E1049A011","E1049B010","E1049B011","E1049A012","E1049B012","E1049A013","E1049B013"],
+      "nativeSources":[{"role":"models-motion","locator":"disc1/data/SCENE/01/JD00/KOJI.PKS","sha256":"0443e8099ea5d0e25aa1319b7cc539d160283d95b79b1e18ef95b6f8696d85a6"}],
+      "provenance":"Walkthrough-guided encounter after the Chinese-letter/gate sequence: original E1049 voices, KOJI cast/ball/motions, real three-opponent fight then server-validated A QTE. Daytime availability on later dates, roadside staging around the existing Sakuragaoka entry, held introduction and simplified kick/ball choreography are explicit adaptations. Lost fight retries the fight; lost QTE retries only the hostage attempt. Cancelled aftermath saves no clue. No reward, native-flag guess or public NPC mutation."
+    },
+    {
+      "id":"gao-translator","actor":"KKBN","area":"D000","priority":220,"title":"Gao Wen — grandmother at Russiya China Shop","hours":[8.5,19],
+      "requiredFlags":["story.s1.gao-rescue.completed"],"requiredItems":[{"key":"chinese_letter","quantity":1}],
+      "completedFlag":"story.s1.gao-translator.completed","effects":["notebook.s1.russiya-translator"],
+      "voiceIds":["F1060A001","F1060B001","F1060A003","F1060A004","F1060B004","F1060A005","F1060B005","F1060A009","F1060B009","F1060A011","F1060B012"],
+      "provenance":"Original F1060 Gao Wen dialogue, condensed into one optional daytime talk after the rescue. It identifies his grandmother Xia Xiu Yu and Russiya China Shop. No native selector reconstruction, item consumption or public schedule changes."
+    },
+    {
       "id":"fuku-letter-gate","actor":"FUKU","presentActors":[],"area":"JHD0","trigger":"enter","priority":220,
       "title":"Fuku-san — the Chinese letter at the gate","hours":[8.5,23.5],
       "requiredFlags":["story.s1.chinese-letter.completed"],"requiredItems":[{"key":"chinese_letter","quantity":1}],

@@ -79,15 +79,32 @@ export function composeScheduledActorDefinitions(
     )),
   );
   const definitions = [];
+  const supplementalActors = new Map();
   const localObjectModels = new Set();
   const motionRequirements = new Map();
 
   for (const collection of collections) {
     requireDefinitions(collection, "scheduled actor collection");
-    definitions.push(...collection.filter(definition => (
-      definition.activityOnly !== true
-      || !residentActorCodes.has(definition.actorCode)
-    )));
+    for (const definition of collection) {
+      if (definition.activityOnly === true) {
+        if (residentActorCodes.has(definition.actorCode)) continue;
+        const previous = supplementalActors.get(definition.actorCode);
+        if (previous) {
+          // A cinematic and its following fight commonly borrow the same
+          // actor. Coalesce identical definitions, but never silently pick
+          // between competing models/poses for the same event-owned role.
+          const keys = Object.keys(definition);
+          if (keys.length !== Object.keys(previous).length || keys.some(
+            key => JSON.stringify(definition[key]) !== JSON.stringify(previous[key]),
+          )) {
+            throw new Error(`Conflicting supplemental actor ${definition.actorCode}`);
+          }
+          continue;
+        }
+        supplementalActors.set(definition.actorCode, definition);
+      }
+      definitions.push(definition);
+    }
 
     for (const [bank, names] of Object.entries(
       scheduledActorMotionRequirements(collection),

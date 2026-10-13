@@ -76,6 +76,7 @@ export class PlayCharacterAssembly {
         free: "/motion/MOTION.BIN",
         fight: "/motion/M_FGT1.BIN",
         mobj: scheduledMobjMotionUrl,
+        ...Object.fromEntries(Object.entries(authoredScenes.motionBanks||{}).map(([name,path])=>[name,runtimeAssetUrl(path)])),
         s2Npc: shenmue2NpcMotionUrl,
         s2NpcTable: shenmue2NpcTableMotionUrl,
         s2Motion: shenmue2MotionUrl,

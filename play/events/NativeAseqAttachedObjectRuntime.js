@@ -406,7 +406,7 @@ export class NativeAseqAttachedObjectRuntime {
         ? parent.model.latestControllerMatrices?.[nodes[0].index]
         : null;
       const parentRenderRoot = parent?.model?.renderRoot;
-      if (!record || !parentRenderRoot || !Array.isArray(parentMatrix) || parentMatrix.length !== 16) {
+      if (!record || !parentRenderRoot || !(Array.isArray(parentMatrix)||ArrayBuffer.isView(parentMatrix)) || parentMatrix.length !== 16) {
         record?.root.setEnabled(false);
         continue;
       }

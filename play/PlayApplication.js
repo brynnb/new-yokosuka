@@ -882,6 +882,7 @@ function createPlayRuntime() {
     localDebug: LOCAL_DEBUG,
   });
   const scriptEvents = createScriptEventAssembly({
+    scene,
     getController:()=>controller,
     getBinding:action=>generalPreferences.binding(action),
     camera,

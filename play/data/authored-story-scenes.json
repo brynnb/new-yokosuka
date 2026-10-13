@@ -1,6 +1,62 @@
 {
   "schema":"new-yokosuka-authored-story-scenes-v1",
+  "motionBanks":{"koji":"play/assets/sakuragaoka/gao-wen/M_KOJI.MOTN"},
   "scenes":[{
+    "id":"s1.jd00.gao-introduction","area":"JD00","worldId":"sakuragaoka",
+    "provenance":"Original E1049 cast and KOJI CHRT CHRL/BIK_L binding. Gang identities/models from the Shenmue-Mods character inventory; original JD00 EN_HAMA/EN_HATA/EN_RYOU files support the three fighter identities. Positions/camera are authored around the existing walkable Sakuragaoka entry, rather than claimed recovered construction-lot transforms. Original path into the lot is not reproduced.",
+    "actorDefinitions":[
+      {"actorCode":"KKBN","label":"Xie Gao Wen","modelCode":"KOM_L","activityOnly":true},
+      {"actorCode":"CHRL","label":"Charlie Grant","modelCode":"BIK_L","activityOnly":true},
+      {"actorCode":"TDSI","label":"Tadashi Hama","modelCode":"KMD_L","activityOnly":true},
+      {"actorCode":"HTNK","label":"Yoshihide Hatanaka","modelCode":"KAZ_L","activityOnly":true},
+      {"actorCode":"OKYS","label":"Minoru Okayasu","modelCode":"OKA_L","activityOnly":true},
+      {"actorCode":"MRSK","label":"Shingo Murasaki","modelCode":"PPL_L","activityOnly":true}
+    ],
+    "actors":[
+      {"tag":"AKIR","pose":{"x":8,"y":0,"z":22,"rotationX":0,"rotationY":0,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"KKBN","pose":{"x":8,"y":0,"z":20.7,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"koji","name":"GAK_YAS_SOCCOR_SEIKOU_TALK_LP_KOJ","loop":true}},
+      {"tag":"CHRL","pose":{"x":11,"y":0,"z":20.7,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"TDSI","pose":{"x":7,"y":0,"z":20.5,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"HTNK","pose":{"x":9.5,"y":0,"z":20.5,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"OKYS","pose":{"x":10,"y":0,"z":21.8,"rotationX":0,"rotationY":230,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"MRSK","pose":{"x":10.5,"y":0,"z":22.5,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}
+    ],
+    "camera":{"positionX":10.5,"positionY":1.7,"positionZ":24,"targetX":8,"targetY":1,"targetZ":21.3,"roll":0,"perspective":65}
+  },{
+    "id":"s1.jd00.gao-hostage","area":"JD00","worldId":"sakuragaoka","actorDefinitions":[],
+    "provenance":"Original KOJI hostage loops and ball model, authored placement/hand offset/camera. This is presentation before a server-validated A QTE, not an automatic rescue.",
+    "actors":[
+      {"tag":"AKIR","pose":{"x":8,"y":0,"z":22,"rotationX":0,"rotationY":0,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"KKBN","pose":{"x":8,"y":0,"z":20.7,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"koji","name":"GAK_KID_TUKAMARU_BALL_LP_KOUJI_QTE","loop":true}},
+      {"tag":"CHRL","pose":{"x":8,"y":0,"z":20.4,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"koji","name":"OTH_CHY_TUKAMARU_BALL_LP_KOUJI_QTE","loop":true}}
+    ],
+    "attachedObjects":{"FBB_":{"browserFilename":"FBB0201G.CHRM","assetPath":"play/assets/sakuragaoka/gao-wen/FBB0201G.CHRM","textureAssetPath":"play/assets/characters/BIK_textures.bin",
+      "attachments":[{"activityId":"s1.jd00.gao-hostage","frame":0,"parentActorTag":"AKIR","controlId":18,"translation":[0,0,0.08],"rotationRaw":[0,0,0]}]}},
+    "camera":{"positionX":10.5,"positionY":1.7,"positionZ":22,"targetX":8,"targetY":1,"targetZ":21,"roll":0,"perspective":65}
+  },{
+    "id":"s1.jd00.gao-kick","area":"JD00","worldId":"sakuragaoka","actorDefinitions":[],"waitForMotions":true,
+    "provenance":"Original KOJI success/kick/release clips after a real A input; wait for the longest original clip (Gao, 418 frames). Authored poses/camera and ball hand-to-foot switch/hiding are approximations, not recovered native projectile cues. Ryo's 243-frame clip kicks after frame 120; controller type 34 is the raised foot, not wrist type 11.",
+    "actors":[
+      {"tag":"AKIR","pose":{"x":8,"y":0,"z":22,"rotationX":0,"rotationY":0,"rotationZ":0},"motion":{"bank":"koji","name":"AKI_QOK_KERU_BALL_A_KOUJI_QTE","loop":false}},
+      {"tag":"KKBN","pose":{"x":8,"y":0,"z":20.7,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"koji","name":"GAK_KID_HANARERU_KOUJI_QTE","loop":false}},
+      {"tag":"CHRL","pose":{"x":8,"y":0,"z":20.4,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"koji","name":"OTH_CHY_OTOSU_BALL_KOUJI_QTE","loop":false}}
+    ],
+    "attachedObjects":{"FBB_":{"browserFilename":"FBB0201G.CHRM","assetPath":"play/assets/sakuragaoka/gao-wen/FBB0201G.CHRM","textureAssetPath":"play/assets/characters/BIK_textures.bin",
+      "attachments":[{"activityId":"s1.jd00.gao-kick","frame":0,"parentActorTag":"AKIR","controlId":18,"translation":[0,0,0.08],"rotationRaw":[0,0,0]},
+        {"activityId":"s1.jd00.gao-kick","frame":126,"parentActorTag":"AKIR","controlId":34,"translation":[0,0.1,0.03],"rotationRaw":[0,0,0]}],
+      "presentation":[{"activityId":"s1.jd00.gao-kick","frame":0,"visible":true},{"activityId":"s1.jd00.gao-kick","frame":152,"visible":false}]}},
+    "camera":{"positionX":10.5,"positionY":1.7,"positionZ":22,"targetX":8,"targetY":1,"targetZ":21,"roll":0,"perspective":65}
+  },{
+    "id":"s1.jd00.gao-aftermath","area":"JD00","worldId":"sakuragaoka","actorDefinitions":[],
+    "provenance":"Original post-rescue E1049 voices and Gao Wen's KOJI talk loop/ball model. Authored two-person standing shot; Charlie's departure path is omitted.",
+    "actors":[
+      {"tag":"AKIR","pose":{"x":8,"y":0,"z":22,"rotationX":0,"rotationY":0,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"KKBN","pose":{"x":8,"y":0,"z":20.7,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"koji","name":"GAK_YAS_SOCCOR_SEIKOU_TALK_LP_KOJ","loop":true}}
+    ],
+    "attachedObjects":{"FBB_":{"browserFilename":"FBB0201G.CHRM","assetPath":"play/assets/sakuragaoka/gao-wen/FBB0201G.CHRM","textureAssetPath":"play/assets/characters/BIK_textures.bin",
+      "attachments":[{"activityId":"s1.jd00.gao-aftermath","frame":0,"parentActorTag":"KKBN","controlId":18,"translation":[0,0,0.08],"rotationRaw":[0,0,0]}]}},
+    "camera":{"positionX":10.5,"positionY":1.7,"positionZ":24,"targetX":8,"targetY":1,"targetZ":21.3,"roll":0,"perspective":65}
+  },{
     "id":"s1.tatq.charlie-introduction","area":"TATQ","worldId":"tatq",
     "provenance":"Authored held staging of the original A0136A cast. Original TATQ AUTH at MAPINFO 0x23ce4 supplies actor positions; motion, running/curtain/knife choreography and camera direction are approximated.",
     "actorDefinitions":[
