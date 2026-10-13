@@ -32,6 +32,11 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ["s1.jhd0.first-dojo.scene", {
+    kind: "native-cutscene", area: "JHD0", durableEffects: "forbidden",
+    cutscene: { id: "story-s1-first-dojo", packageId: "first-dojo", worldId: "exterior",
+      storyPresentation: true, activity: { slot: 0, binding: { primaryPointer: 0x5ee04, secondaryPointer: 0x5ee09 } } },
+  }],
   ["s1.jomo.first-allowance.scene", {
     kind: "native-cutscene", area: "JOMO", durableEffects: "forbidden",
     cutscene: { id: "story-s1-first-allowance", packageId: "first-allowance", worldId: "interior",

@@ -178,4 +178,35 @@ for (const [ending, freshOpening] of [["complete", false], ["skip", false], ["co
     await page.screenshot({ path: testInfo.outputPath("saved-continuation.png") });
   }
   expect(errors).toEqual([]);
+  if (freshOpening && process.env.NEW_YOKOSUKA_DOJO_E2E === "true") {
+    // Bounded continuation check: use real world loading, then place just
+    // outside the dojo volume. Walking triggers it; no direct event start.
+    await page.evaluate(async () => {
+      const life = window.storyProbe.lifecycle;
+      await life.travelToWorld("exterior");
+      life.resetPlayer(life.vectorFromArray([4.6, 0.97, -17.8]), Math.PI, { persist: false });
+    });
+    await page.locator("#renderCanvas").focus();
+    await page.keyboard.down("KeyW");
+    try {
+      await page.waitForFunction(() => window.storyProbe.starts.includes("story-s1-first-dojo"), null, { timeout: 20_000 });
+    } finally { await page.keyboard.up("KeyW"); }
+    await page.waitForFunction(() => window.storyProbe.director?.activeCutscene?.cutscene.id === "story-s1-first-dojo"
+      || window.storyProbe.sceneErrors.length, null, { timeout: 60_000 });
+    expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
+    await page.waitForTimeout(3000);
+    await page.screenshot({ path: testInfo.outputPath("first-dojo-dialogue.png") });
+    await page.waitForFunction(() => !window.storyProbe.director.active, null, { timeout: 120_000 });
+    await expect.poll(() => page.evaluate(() => window.storyProbe.regions.getCharacter()?.storyFlags?.["story.s1.first-dojo.completed"])).toBe(true);
+    const saved = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+    expect(saved.character.storyFlags["notebook.s1.men-in-black"]).toBe(true);
+    expect(saved.character.yen).toBe(character.yen + 500);
+    expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+    await page.locator("button").filter({ hasText: /^Notebook$/ }).click();
+    await page.locator("#journal-next").click();
+    await expect(page.getByText(/Ask around to find out/)).toBeVisible();
+    await page.screenshot({ path: testInfo.outputPath("first-dojo-notebook.png") });
+    await page.locator("#journal-close").click();
+    expect(errors).toEqual([]);
+  }
 });

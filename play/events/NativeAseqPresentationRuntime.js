@@ -373,6 +373,7 @@ export class NativeAseqPresentationRuntime {
             startFrame: command.startFrame,
             endFrame: command.endFrame,
             sampleFrameOffset: command.motion.sampleFrameOffset || 0,
+            hold: command.hold === true,
           });
           continue;
         }
@@ -449,7 +450,7 @@ export class NativeAseqPresentationRuntime {
       );
     }
     for (const [actorTag, motion] of active.motionByActor) {
-      const elapsedFrames = active.currentFrame - motion.commandFrame;
+      const elapsedFrames = motion.hold ? 0 : active.currentFrame - motion.commandFrame;
       const updateCount = motion.endFrame - motion.startFrame;
       if (elapsedFrames >= updateCount) {
         active.motionByActor.delete(actorTag);

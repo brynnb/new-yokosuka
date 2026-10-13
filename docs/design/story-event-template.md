@@ -154,3 +154,69 @@ absence of replay/payment. The test clicks the rendered door if it is closed;
 an already-open door retains its pose. Source-program initialization, natural
 timing of the four intros, audio fidelity and mid-event network loss are
 separate checks, not claims made by this test. Do not run it against production.
+
+## Fuku-san: the first dojo visit
+
+Event ID: `s1.jhd0.first-dojo`; official Yarn import: `jhd0-first-dojo`.
+This is the next connected encounter, not the later Pit Blow lesson (`E1017`)
+or the Chinese-cartel conversation (`01KAK`).
+
+| Field | Event definition |
+| --- | --- |
+| Location / trigger | Enter the authored dojo entrance/floor volume in Hazuki grounds (`JHD0`). The server validates its accepted player position independently. |
+| Prerequisites | Personal Story mode, completed opening and first allowance, no completed first-dojo milestone. No extra date/weather restriction. |
+| Player / actors | Ryo and Fuku-san, using the existing MSKA actor ownership, personal staging and cleanup. Movement is locked by the shared event presenter. |
+| Sequence | Eleven original `SA1116` dialogue lines: ask about Lan Di, the mirror and the men in black. Then the original `MSKA/SEQDATA2.AUTH` ending: Ryo resolves to avenge his father. |
+| Timing / cameras | Lead-in lines use decoded voice lengths plus a 0.3-second pause. Hold MSKA's initial actor poses and camera, then run its original timeline. The lead-in staging is an approximation, not recovered original conversation animation or camera direction. |
+| Audio / weather | Original SA1116 and A0125 voices/subtitles; original MSKA effects and BGM202. Extending that music over the lead-in is an adaptation. Preserve the personal environment; no forced weather or calendar jump. |
+| Props / challenge | None. No QTE or combat; this is not the optional sparring lesson. |
+| Effects | Atomically set `story.s1.first-dojo.completed` and `notebook.s1.men-in-black`. Add the next investigation page; do not grant currency, items or a made-up native flag. |
+| Exit / failure | Stay in Hazuki grounds with camera and controls restored. Explicit X-skip completes the presentation; failure/cancellation leaves the event retryable. Repeat entry cannot settle twice. |
+
+### Provenance and limitations
+
+The [Notebook Guide](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/14458)
+places the men-in-black objective after entering the dojo following Ine-san's
+allowance. The [Japanization Guide](https://shenmuesubs.sourceforge.net/howto/shenmue1/addons/S1_JPG_083.pdf)
+identifies SA1116 as Ryo asking Fuku-san about the attackers and A0125 as his
+resolve to avenge Iwao. The original JHD0 owner `0x3aec8` supplies the eleven-line
+order and selects the MSKA ending. Source hashes remain in
+`tools/evidence/mska-native-lifecycle.json` and the generated audio manifest.
+
+`tools/cutscenes/build_first_dojo_assets.mjs` reads the original AFS subtitles
+and speech, decodes the eleven voices and measures their durations. It does
+not execute or translate the room controller. `AuthoredActivityLeadIn` feeds
+that bounded staging into the same scene presentation/ownership system used
+by the original ending. The original MSKA selector preview remains unchanged.
+
+The connected local browser check passes through the opening, allowance,
+reload, dojo trigger, natural scene completion and the saved seventh notebook
+page. The captured lead-in shows Ryo from behind: this reused camera does not
+yet frame the conversation well, and that capture does not establish Fuku-san's
+visibility. Improve and render-check the two-person staging before treating
+the presentation as polished. Voice playback fidelity was not assessed by
+listening to the automated run.
+
+The notebook page is a lightly adapted investigation prompt. Exact native
+notebook flags and the original leave-home restriction are not implemented.
+Do not describe the first conversation as fully animation-faithful.
+
+### Connected progression checklist
+
+| Sequence | Current state |
+| --- | --- |
+| Opening → bedside → first allowance → saved continuation | Rendered/full-stack verified, including explicit intro skips, natural allowance completion, one-time payment and reload. |
+| First dojo visit → men-in-black notebook objective | Connected browser/full-stack progression and notebook verified; server gate/cancellation/settlement tested. Lead-in camera and two-person framing still need refinement. |
+| Yamanose kitten / first black-car lead | Existing presentation assets; not yet connected through this authored progression. |
+| Yamagishi → Dobuita black-car investigation → sailors | Missing connected authored progression. |
+| Heartbeats / Charlie / tattoo parlour / Chinese letter | Missing connected authored progression and verified challenge outcomes. |
+| Harbor warehouses / Master Chen / Phoenix Mirror | Missing connected authored progression. |
+| Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
+| Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
+| Shenmue II reuse and missing-input audit | Pending the connected S1 foundation. |
+
+Individual previews and recovered program inventories do not promote rows to
+playable or verified. Run `NEW_YOKOSUKA_DOJO_E2E=true` with the fresh-opening
+browser test to extend it through the dojo. That bounded check uses real world
+loading and walks across the dojo trigger, but resets near its entrance rather
+than proving the entire walk from the residence hallway.

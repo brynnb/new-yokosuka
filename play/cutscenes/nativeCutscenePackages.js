@@ -3,6 +3,7 @@ import { INTRODUCTION_ENVIRONMENTS } from "./IntroductionEnvironments.js";
 import nativeActivityActorManifest from "../data/events/nativeActivityActors.json";
 import allowanceManifest from "../assets/hazuki/first-allowance/manifest.json";
 import allowanceAudio from "../../public/audio/world/first-allowance/manifest.json";
+import firstDojoAudio from "../../public/audio/world/first-dojo/manifest.json";
 import op00ActivityActorManifest from "../data/events/op00ActivityActors.json";
 import op00AssetInventory from "../assets/introduction/op00/asset-inventory.generated.json";
 import op00ActivityManifest from "../assets/introduction/op00/manifest.json";
@@ -228,7 +229,7 @@ const nativeSilentActivityMusic = resource => Object.freeze({
   }),
 });
 
-export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
+const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
   Object.freeze({ id: "first-allowance", worldId: "interior", actorDefinitions: [],
     actorTags: allowanceManifest.actorTags,
     assets: Object.freeze({ ...runtimeAssetGroup("play/assets/hazuki/first-allowance/*.{AUTH,MOTN}"),
@@ -1002,3 +1003,17 @@ export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
     music: nativeSilentActivityMusic("SAKR"),
   }),
 ]);
+
+// Keep the original MSKA preview untouched. Story mode adds the preceding
+// SA1116 conversation using declared held-pose staging, not a native controller.
+const firstDojoBase = SOURCE_CUTSCENE_PACKAGES.find(definition => definition.id === "mska");
+export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([...SOURCE_CUTSCENE_PACKAGES, Object.freeze({
+  ...firstDojoBase,
+  id: "first-dojo",
+  playback: Object.freeze({
+    manifest: { ...mskaActivityManifest, activities: mskaActivityManifest.activities.map(activity => ({
+      ...activity, authoredLeadIn: firstDojoAudio.authoredLeadIn,
+    })) },
+    audioManifest: { ...mskaAudioManifest, voices: [...firstDojoAudio.voices, ...mskaAudioManifest.voices] },
+  }),
+})]);

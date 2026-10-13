@@ -43,7 +43,7 @@ export function setJournalCharacter(character) {
   if (current.contextKey !== contextKey) {
     closeJournal();
     useJournalStore.setState({ contextKey, pages, pageIndex: rememberedPageIndex(contextKey, pages) });
-  } else if (current.pages !== pages) {
+  } else if (current.pages.length !== pages.length || current.pages.some((page, index) => page !== pages[index])) {
     useJournalStore.setState({
       pages,
       pageIndex: rememberedPageIndex(contextKey, pages),

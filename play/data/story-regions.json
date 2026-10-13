@@ -11,6 +11,18 @@
       "min": [-17.5, -0.3, 0.4],
       "max": [-16.0, 1.4, 1.6],
       "provenance": "Authored browser-space hallway volume beyond dor7, whose opening is centered at X=-16.752, Z=1.833. This is not a recovered native event volume."
+    },
+    {
+      "id": "s1.jhd0.first-dojo.entrance",
+      "area": "JHD0",
+      "actor": "AKIR",
+      "playMode": "story",
+      "openingCompleted": true,
+      "requiredFlags": ["story.s1.first-allowance.completed"],
+      "completedFlag": "story.s1.first-dojo.completed",
+      "min": [1, 0.6, -26],
+      "max": [8, 2.4, -18],
+      "provenance": "Authored dojo volume around the original MSKA actor positions (native X mirrored for browser space) and the documented dojo sparring floor at [2.46,1.06,-21.66]. Requires rendered entry validation."
     }
   ]
 }

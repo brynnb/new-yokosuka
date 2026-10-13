@@ -2,6 +2,18 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { StoryRegionRuntime } from "../play/scripts/StoryRegionRuntime.js";
 
+test("dojo entry waits for the previous milestone even when already inside", () => {
+  const character = { id: 1, modeRevision: 0, playMode: "story", openingCompleted: true, storyFlags: {} };
+  let starts = 0;
+  const runtime = new StoryRegionRuntime({ controller: { status: "idle", start: async () => { starts++; } },
+    getCharacter: () => character, publishPresence() {} });
+  const frame = { area: "JHD0", playerPosition: [4.6, 1, -20], enabled: true };
+  assert.equal(runtime.update(frame), false);
+  character.storyFlags["story.s1.first-allowance.completed"] = true;
+  assert.equal(runtime.update(frame), true);
+  assert.equal(starts, 1);
+});
+
 test("the hallway trigger waits for eligibility, publishes presence first, and dispatches once per entry", async () => {
   const calls = [], character = { id: 1, modeRevision: 0, playMode: "story", openingCompleted: false };
   const controller = { status: "idle", start: async (selector, context) => { calls.push([selector, context]); return { outcome: "started" }; } };

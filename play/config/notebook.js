@@ -31,7 +31,11 @@ const ALLOWANCE_PAGE = Object.freeze({
   id: "story-first-allowance",
   text: "Ine-san leaves ¥500 on the shoe cabinet each day.\n\nVisit Fuku-san at the dojo.",
 });
-const ALLOWANCE_PAGES = Object.freeze([...OPENING_NOTEBOOK_PAGES, ALLOWANCE_PAGE]);
+const STORY_PAGES = Object.freeze([
+  { flag: "notebook.s1.allowance", page: ALLOWANCE_PAGE },
+  { flag: "notebook.s1.men-in-black", page: Object.freeze({ id: "story-men-in-black",
+    text: "Ask around to find out whether anyone saw men wearing black on the day of the attack." }) },
+]);
 
 export function notebookPagesForCharacter(character) {
   // The server saves openingCompleted independently in each play context.
@@ -40,6 +44,6 @@ export function notebookPagesForCharacter(character) {
   return character?.id != null
     && character.playMode === "story"
     && character.openingCompleted === true
-    ? character.storyFlags?.["notebook.s1.allowance"] === true ? ALLOWANCE_PAGES : OPENING_NOTEBOOK_PAGES
+    ? [...OPENING_NOTEBOOK_PAGES, ...STORY_PAGES.filter(entry => character.storyFlags?.[entry.flag] === true).map(entry => entry.page)]
     : EMPTY_PAGES;
 }

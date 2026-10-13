@@ -20,7 +20,7 @@ import { parseDTPK, translateDTPKRate } from "./dtpk.mjs";
 const sha256 = bytes => createHash("sha256").update(bytes).digest("hex");
 const align = value => (value + 0x7ff) & ~0x7ff;
 
-function afsMembers(bytes, label) {
+export function afsMembers(bytes, label) {
   if (bytes.subarray(0, 4).toString("binary") !== "AFS\0") {
     throw new Error(`${label} signature changed`);
   }
