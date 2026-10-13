@@ -140,6 +140,95 @@
       "maxAttackers": 3,
       "timeoutMs": 180000,
       "inputBufferMs": 400
+    },
+    {
+      "id": "s1.jhd0.fuku-practice",
+      "label": "Practice with Fuku-san",
+      "area": "JHD0",
+      "worldId": "exterior",
+      "provenance": "KAKG dialogue's original Ryo/Fuku positions and existing combat moves. The GameSpot 2000 walkthrough describes a spar that ends automatically before Ine-san's letter. Thirty seconds of server-timed, nonlethal practice, shared basic AI/moves and arena padding are adaptations; this result is practiced, never an ambush victory.",
+      "sourceActivity": "play/assets/hazuki/kakg/SEQDATK2.AUTH",
+      "sha256": "5b42a5329495c02803ac6e0cec1054921048088c47ed45f9efb1e0b046066267",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": 6.90109920501709,
+          "y": 0.9601140022277832,
+          "z": -24.015302658081055,
+          "health": 100
+        },
+        {
+          "tag": "FUKU",
+          "x": 7.263717174530029,
+          "y": 0.969336986541748,
+          "z": -22.437179565429688,
+          "health": 100
+        }
+      ],
+      "actions": [
+        {
+          "input": "hand",
+          "id": "tigerKnuckle",
+          "label": "Tiger Knuckle",
+          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
+          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
+          "durationMs": 634,
+          "startupMs": 134,
+          "range": 1.25,
+          "arcDegrees": 70,
+          "damage": 5,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "leg",
+          "id": "crescentKick",
+          "label": "Crescent Kick",
+          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
+          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
+          "durationMs": 800,
+          "startupMs": 234,
+          "range": 1.55,
+          "arcDegrees": 70,
+          "damage": 6,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "throw",
+          "id": "overthrow",
+          "label": "Overthrow",
+          "playerAnimation": "AKI_AKI_NGS_SEOI",
+          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
+          "durationMs": 1667,
+          "startupMs": 367,
+          "range": 0.9,
+          "arcDegrees": 55,
+          "damage": 12,
+          "guardDamage": 0,
+          "hitStunMs": 1000
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "FUKU",
+          "label": "Masayuki Fukuhara",
+          "modelCode": "FUK_M",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": 5.70109920501709,
+        "maxX": 8.463717174530029,
+        "minZ": -25.215302658081054,
+        "maxZ": -21.237179565429688
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 1.6,
+      "maxAttackers": 1,
+      "timeoutMs": 120000,
+      "practiceDurationMs": 30000,
+      "inputBufferMs": 400
     }
   ]
 }

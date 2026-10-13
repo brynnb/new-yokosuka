@@ -3,6 +3,25 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"cartel-dojo","actor":"FUKU","presentActors":[],"area":"JHD0","trigger":"enter","priority":210,
+      "title":"Fuku-san — practice before the cartel meeting","hours":[8.5,23.5],
+      "requiredFlags":["story.s1.charlie-tattoo-confrontation.completed"],"dayAfter":"story.s1.charlie-parlor.day","bounds":"s1.jhd0.cartel-dojo.entrance",
+      "completedFlag":"story.s1.cartel-dojo.completed","effects":["story.s1.ine-letter-invitation"],"recordDays":["story.s1.cartel-dojo.day"],
+      "combat":"s1.jhd0.fuku-practice","combatCompletion":"practiced","completionActivities":["s1.jhd0.fuku-resolve.scene","s1.jhd0.ine-letter-invitation.scene"],"voiceIds":[],
+      "dialogueArchive":{"path":"data/SCENE/01/STREAM/01KAK.AFS","sha256":"e1480d24adc6921e9c17fd5a9d71828b9796f1baaf25d0e3fab6c7975c12ec76"},
+      "nativeSources":[{"role":"presentation","locator":"disc1/data/SCENE/01/JHD0/KAKG.PKS#SEQDATK2,SEQDATK3","sha256":"a8949fed9faa0f0825e43361fc6ece41ebecd411fae21d4e88235008d4d64411"}],
+      "provenance":"GameSpot 2000 guide's next-day dojo spar, Fuku conversation and Ine-san invitation. Reuses KAKG slot 2/3 voices, motion and cameras after real server-timed nonlethal practice. Thirty-second duration, generic basic combat and walking into the dojo instead of a forced wake-up teleport are adaptations. The preceding meditation is not recreated. Completing movies cannot complete the practice; cancellation saves no invitation."
+    },
+    {
+      "id":"chinese-letter","actor":"INE_","presentActors":[],"area":"JOMO","trigger":"automatic","priority":210,"blockNativeTalk":true,
+      "title":"Ine-san — the Chinese letter","hours":[8.5,23.5],"requiredFlags":["story.s1.ine-letter-invitation"],
+      "completedFlag":"story.s1.chinese-letter.completed","effects":["notebook.s1.chinese-letter"],"items":[{"key":"chinese_letter","quantity":1}],
+      "activities":["s1.jomo.chinese-letter.scene"],"voiceIds":[],
+      "dialogueArchive":{"path":"data/SCENE/01/STREAM/A01124.AFS","sha256":"7ac4574163fbd50637288bcf2a16869c6b36a928ce7693bf8bd771ef85902d2d"},
+      "nativeSources":[{"role":"presentation","locator":"disc1/data/SCENE/01/JOMO/MAPINFO.BIN#AUTH@0xa8860","sha256":"4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9"}],
+      "provenance":"Original JOMO letter handoff AUTH at 0xa8860, COMMON01 M_01CRY motion and A01124 dialogue. Authoring connects the prior dojo/Ine-san invitation to normal house entry, without reconstructing its room controller. Server grants the non-stackable Chinese letter and notebook atomically after presentation cleanup, without changing the calendar or guessing native flags."
+    },
+    {
       "id":"nozomi-after-parlor","actor":"HRSK","presentActors":[],"area":"D000","trigger":"enter","priority":210,
       "title":"Nozomi — concern after the tattoo parlor","hours":[14,23.5],
       "requiredFlags":["story.s1.charlie-tattoo-confrontation.completed"],"sameDayAs":"story.s1.charlie-parlor.day",

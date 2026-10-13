@@ -7,5 +7,11 @@
     "health":{"AKIR":100,"SMTH":28,"TONY":28,"SERA":36,"HARY":18,"JONZ":18},
     "playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":3,"timeoutMs":180000,"arenaPadding":1.5,
     "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+  },{
+    "id":"s1.jhd0.fuku-practice","label":"Practice with Fuku-san","area":"JHD0","worldId":"exterior",
+    "sourceActivity":"play/assets/hazuki/kakg/SEQDATK2.AUTH","sha256":"5b42a5329495c02803ac6e0cec1054921048088c47ed45f9efb1e0b046066267","sourceTime":"end",
+    "provenance":"KAKG dialogue's original Ryo/Fuku positions and existing combat moves. The GameSpot 2000 walkthrough describes a spar that ends automatically before Ine-san's letter. Thirty seconds of server-timed, nonlethal practice, shared basic AI/moves and arena padding are adaptations; this result is practiced, never an ambush victory.",
+    "health":{"AKIR":100,"FUKU":100},"playerSpeed":2.4,"enemySpeed":1.6,"maxAttackers":1,"timeoutMs":120000,"practiceDurationMs":30000,"arenaPadding":1.2,
+    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
   }]
 }

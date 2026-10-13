@@ -33,6 +33,15 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ...[["fuku-resolve",2,0x5f167,0x5f16c],["ine-letter-invitation",3,0x5f16d,0x5f172]].map(([part,slot,primaryPointer,secondaryPointer])=>[`s1.jhd0.${part}.scene`,{
+    kind:"native-cutscene",area:"JHD0",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:`story-s1-${part}`,packageId:"kakg",worldId:"exterior",storyPresentation:true,activity:{slot,binding:{primaryPointer,secondaryPointer}}},
+  }]),
+  ["s1.jomo.chinese-letter.scene", {
+    kind:"native-cutscene",area:"JOMO",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:"story-s1-chinese-letter",packageId:"chinese-letter",worldId:"interior",storyPresentation:true,
+      activity:{slot:0,binding:{kind:"map-embedded-slot",activityId:"01CRY/LETTER.AUTH"}}},
+  }],
   ["s1.d000.nozomi-after-parlor.scene", {
     kind: "native-cutscene", area: "D000", durableEffects: "forbidden", returnPlayerState: true,
     cutscene: { id: "story-s1-nozomi-after-parlor", packageId: "ybhn", worldId: "dobuita",

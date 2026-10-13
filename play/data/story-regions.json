@@ -1,6 +1,10 @@
 {
   "schema": "new-yokosuka-story-regions-v1",
   "regions": [
+    {"id":"s1.jhd0.cartel-dojo.entrance","area":"JHD0","actor":"AKIR","playMode":"story","openingCompleted":true,
+      "requiredFlags":["story.s1.charlie-tattoo-confrontation.completed"],"completedFlag":"story.s1.cartel-dojo.completed",
+      "min":[1,0.6,-26],"max":[8,2.4,-18],
+      "provenance":"Reuse the rendered dojo-floor approach from the first visit; later-day eligibility is server-owned. No forced bedroom-to-dojo teleport or native room controller."},
     {"id":"s1.d000.nozomi-after-parlor","area":"D000","actor":"AKIR","playMode":"story","openingCompleted":true,
       "requiredFlags":["story.s1.charlie-tattoo-confrontation.completed"],"completedFlag":"story.s1.nozomi-after-parlor.completed",
       "min":[99.3,-0.5,95.8],"max":[104,2,100.4],

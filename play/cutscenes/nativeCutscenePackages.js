@@ -3,6 +3,8 @@ import { INTRODUCTION_ENVIRONMENTS } from "./IntroductionEnvironments.js";
 import nativeActivityActorManifest from "../data/events/nativeActivityActors.json";
 import allowanceManifest from "../assets/hazuki/first-allowance/manifest.json";
 import allowanceAudio from "../../public/audio/world/first-allowance/manifest.json";
+import chineseLetterManifest from "../assets/hazuki/chinese-letter/manifest.json";
+import chineseLetterAudio from "../../public/audio/world/chinese-letter/manifest.json";
 import firstDojoAudio from "../../public/audio/world/first-dojo/manifest.json";
 import op00ActivityActorManifest from "../data/events/op00ActivityActors.json";
 import op00AssetInventory from "../assets/introduction/op00/asset-inventory.generated.json";
@@ -230,6 +232,18 @@ const nativeSilentActivityMusic = resource => Object.freeze({
 });
 
 const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
+  Object.freeze({id:"chinese-letter",worldId:"interior",actorDefinitions:[],actorTags:chineseLetterManifest.actorTags,
+    assets:Object.freeze({...runtimeAssetGroup("play/assets/hazuki/chinese-letter/*.{AUTH,MOTN,MT5}"),
+      ...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets,...op00HandAssets,
+      "play/assets/INE_M.CHRM":runtimeAssetUrl("play/assets/INE_M.CHRM"),
+      "play/assets/INE_textures.bin":runtimeAssetUrl("play/assets/INE_textures.bin")}),
+    actors:Object.freeze({requirePlayer:true,preservePlayerOnComplete:false}),
+    environment:Object.freeze({sceneObjects:chineseLetterManifest.sceneObjects,packageActors:chineseLetterManifest.packageActors}),
+    presentation:Object.freeze({facialAssets:{AKIR:nativeFaceManifest.facialAssets.AKIR,INE_:nativeFaceManifest.facialAssets.INE_},
+      handAssets:{AKIR:op00AssetInventory.handAssets.AKIR,INE_:op00AssetInventory.handAssets.INE_}}),
+    playback:Object.freeze({manifest:chineseLetterManifest,audioManifest:chineseLetterAudio}),
+    music:Object.freeze({cues:[{startActivity:true,trackId:"bgm115",loop:true}],gain:1}),
+  }),
   Object.freeze({ id: "first-allowance", worldId: "interior", actorDefinitions: [],
     actorTags: allowanceManifest.actorTags,
     assets: Object.freeze({ ...runtimeAssetGroup("play/assets/hazuki/first-allowance/*.{AUTH,MOTN}"),

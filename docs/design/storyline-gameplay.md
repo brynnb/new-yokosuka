@@ -14,7 +14,10 @@ and Charlie's later confrontation/cartel appointment. The whole storyline is
 not implemented. Nozomi's optional post-parlor encounter is also connected
 through the original YBHN presentation, with rendered cancellation/re-entry,
 natural completion, notebook settlement and reload verified. The next-day dojo
-spar and Chinese-letter events remain unconnected.
+spar, Fuku-san/Ine-san follow-ups and original Chinese-letter handoff are now
+connected and rendered, with once-only letter possession/notebook settlement
+verified. Fuku-san's gate conversation, Gao Wen and the translator path remain
+unconnected; the later storyline is still missing.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

@@ -38,3 +38,8 @@ test("cancelled actor preparation cannot acquire beneath a newer combat",async()
   const before=h.calls.length;resolve();await assert.rejects(old,{name:"AbortError"});
   assert.equal(h.calls.length,before);assert.equal(h.runtime.active.transaction,next);h.runtime.finish(next);
 });
+
+test("a combat catalog entry cannot acquire in a different world area",async()=>{
+  const h=harness();await assert.rejects(h.runtime.show(h.view,{area:"JOMO"}),/No combat presentation/);
+  assert.equal(h.runtime.active,null);assert.deepEqual(h.calls,[]);
+});

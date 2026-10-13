@@ -216,7 +216,8 @@ Do not describe the first conversation as fully animation-faithful.
 | Find the tattoo parlor → same-night artist visit | Connected Saijo/Kurita original-voiced clues and real upstairs door entry verified. Rendered two-person visit, cancellation/re-entry, saved tomorrow clue and reload verified; same-day/hour/presence gates and atomic visit-date settlement tested through the real compiler/database. Camera, held poses and omitted grab gesture are adaptations. |
 | Charlie's parlor QTE → cartel appointment | Connected real browser check verifies original-voiced cast, wrong direction/retry, Left/A success, Charlie's rendered identity, conversation and saved notebook. Server/compiler/database tests cover calendar/presence gates, cancellation before/after winning and atomic appointment-day settlement. Held staging and omitted knife/throw choreography are explicit adaptations. |
 | Nozomi after the parlor | Connected optional same-day encounter: original YBHN cast/cameras visibly verified, cancellation/re-entry, natural ending, notebook and reload without replay pass in the real browser. Not a prerequisite for the letter. |
-| Next-day dojo spar / Chinese letter | Missing connected authored progression. |
+| Next-day dojo spar → Ine-san invitation → Chinese letter | Connected browser check verifies real timed practice, original Fuku/Ine scenes, visible envelope handoff, cancellation/re-entry, natural letter ending, notebook and saved reload. Server/compiler/database tests prove practice authority and atomic once-only possession. Meditation and forced wake-up travel are omitted adaptations. |
+| Fuku-san at the gate / Gao Wen / letter translation | Missing connected authored progression. |
 | Harbor warehouses / Master Chen / Phoenix Mirror | Missing connected authored progression. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
@@ -826,3 +827,55 @@ of walking every stair from the upstairs door or full frame-for-frame fidelity.
 Real compiler/PostgreSQL tests cover missing progress/date, wrong day/hour,
 out-of-bounds rejection, cancellation/retry, stale acknowledgements, mode
 locking, another character's isolation and unchanged economy.
+
+## Next-day dojo practice and the Chinese letter
+
+Two official Yarn imports connect this sequence: `cartel-dojo` in the grounds,
+then `chinese-letter` in the house. Normal house travel is between the two
+settled events; no transient Yarn session is expected to survive a world reload.
+
+| Field | Implemented adaptation |
+| --- | --- |
+| Location / trigger | Walk into the Hazuki dojo-floor region in `JHD0`. After the invitation, enter the house (`JOMO`) through normal travel; its automatic entry selects the letter event. |
+| Prerequisites / personal time | Story Ryo, opening and Charlie confrontation complete; dojo encounter incomplete; a later personal day than the parlor appointment, 08:30–23:30. Optional Nozomi concern is not a prerequisite. The letter requires the saved invitation and is retryable on later house entries. |
+| Actors / practice | Ryo and Fuku-san use the existing cinematic actor ownership and shared combat moves. Thirty seconds of server-timed, nonlethal practice: both can move, attack and defend, but neither is knocked out. Valid heartbeat/input sequencing is required; stalled or cancelled preparation is not completion. The result is `practiced`, distinct from a fight's `success`. |
+| Action / dialogue | After practice, play original `KAKG/SEQDATK2.AUTH` (Fuku-san's concern and Ryo's cartel lead), then `SEQDATK3.AUTH` (Ine-san's invitation). In the house, play the original 2,016-frame letter handoff, including its 13 A01124 voice cues and original M_01CRY motion/cameras. |
+| Props / audio | The house presentation renders the original `MALS501G.MT5` envelope and `TTMS246G.MT5` tatami model. Its room resource cluster supplies A1_INET2, A01124 and BGM115; reuse the viewer's already rendered, hash-pinned BGM115. Dojo conversations reuse their existing slot-specific audio/music. |
+| Weather / camera | Preserve personal weather/season and broad room lighting. Practice uses the shared third-person gameplay camera; conversation/handoff shots use the original AUTH cameras. |
+| Settlement | Completing the dojo follow-ups atomically saves `story.s1.cartel-dojo.completed`, `story.s1.ine-letter-invitation` and the personal dojo day. Completing the separate handoff atomically grants one non-stackable `chinese_letter` through existing inventory/economy storage and saves `story.s1.chinese-letter.completed` plus `notebook.s1.chinese-letter`. No yen, persistent HP/XP reward or guessed native bit. |
+| Exit / skip / failure | Restore each event's entry position, camera and controls. Cinematic X-skip acknowledges noninteractive presentation only; it cannot finish practice. Cancelling practice or its unfinished follow-up saves no invitation. Cancelling the letter saves no item/notebook, but preserves the previously earned invitation. Reconnect resumes committed outcomes without another grant. |
+
+The [GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf),
+page 26, supplies the next-day spar, concern, house invitation and unreadable
+letter order. The adaptation requires approaching the dojo rather than forcing
+Ryo there on waking. The preceding meditation, exact original spar duration,
+Fuku-specific fighting style and walk-follow-Ine choreography are not recreated.
+Practice uses the existing simplified combat arena/AI, not ordinary scenery
+collision. Its temporary health never changes the MMO character's health.
+
+`build_chinese_letter_assets.mjs` reproduces the embedded JOMO AUTH at
+`0xa8860` (22,008 bytes, SHA-256
+`6505ad7b3c4ad0266bfb15d1849d5e7e4a77105d5a0bd54fd0d2e428bd065572`),
+COMMON01's four-entry M_01CRY bank with sequence-index base 80, and the two
+standalone models. MAIL/envelope and TTMI/tatami pairing uses their identities
+and the adjacent original resource cluster; native allocation code is not
+reconstructed. Package slot zero is only a local package ordinal, not a claimed
+native room slot. Separate hand/face callback cues are not recovered, so exact
+finger/expression fidelity is not claimed.
+
+`NEW_YOKOSUKA_LETTER_E2E=true` starts from the earned Charlie/Nozomi checkpoint,
+uses the real personal wait UI, walks across the dojo trigger, cancels/retries
+practice, sends physical kick/guard inputs, observes original follow-up voices,
+then cancels/re-enters the house handoff and lets it finish naturally. Rendered
+checks show Fuku-san, Ine-san and the original envelope. Notebook/reload and
+restored Ryo/location/controls pass. Test travel is shortened; walking every
+connecting route and the natural endings of both dojo movies are not proved.
+The compiler/PostgreSQL test separately verifies same-day/region gates,
+cancellation before/after practice, atomic invitation, cancelled handoff,
+one item/economy grant on completion, repeat refusal and character isolation.
+
+Migration `008_story_items.sql` adds the letter definition. Its possession is
+authoritative and server-saved; the existing general inventory artwork grid is
+still a display catalog, not a full possession-aware story inventory interface.
+New handoff assets are registered locally but not published to R2. No production
+migration or deployment has occurred from this worktree.

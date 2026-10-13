@@ -195,7 +195,9 @@ export class ScriptEventDialoguePresenter {
     this.dom.japaneseText.hidden=true;this.onActiveChanged(true);
     const player=view.actors.find(actor=>actor.tag==="AKIR");
     const remaining=view.actors.filter(actor=>actor.tag!=="AKIR"&&actor.health>0).length;
-    this.dom.sourceText.textContent=view.ready?`Health: ${player.health}/${player.maxHealth} · Opponents: ${remaining}\nUse your movement/combat controls or the buttons below. Cancel to leave.`:"Preparing the fight...";
+    this.dom.sourceText.textContent=view.ready
+      ? `${view.practice?`Practice · ${Math.ceil(view.remainingMs/1000)} seconds remaining`:`Health: ${player.health}/${player.maxHealth} · Opponents: ${remaining}`}\nUse your movement/combat controls or the buttons below. Cancel to leave.`
+      : view.practice?"Preparing practice...":"Preparing the fight...";
     if(this.combatToken===view.token)return true;
     this.clearOptions();this.combatToken=view.token;
     const current=()=>this.active&&this.combatToken===view.token;

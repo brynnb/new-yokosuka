@@ -76,12 +76,26 @@ for (const route of spec.routes) {
     return `<<set_native_value "${effect.address}" ${effect.value}>>`;
   });
   const effects=[...nativeEffects,...(route.recordDays||[]).map(key=>`<<record_game_day "${key}">>`),
+    ...(route.items||[]).map(({key,quantity})=>{
+      if(!/^[a-z][a-z0-9_]*$/.test(key)||!Number.isSafeInteger(quantity)||quantity<1)throw new Error(`Invalid inventory effect in ${route.id}`);
+      return `<<give_item "${key}" ${quantity}>>`;
+    }),
     ...[route.completedFlag,...route.effects].map(flag=>`<<set_flag "${flag}">>`)];
   let body;
   if(route.combat) {
     const dating=route.dayAfter ? `<<if progress_value("${route.dayAfter}") == 0>>\n${route.legacyDateNotice?`Ryo Hazuki: ${route.legacyDateNotice} #speaker:AKIR\n<<record_game_day "${route.dayAfter}">>\n<<jump Done>>`:'<<pass_trigger>>'}\n<<endif>>\n<<if game_day() <= progress_value("${route.dayAfter}")>>\n<<pass_trigger>>\n<<endif>>\n` : "";
     const choices=questions.length?questions.map(choice=>`-> ${choice.label}\n${choice.lines.map(line=>`    ${line}`).join("\n")}\n    <<jump Clue>>`).join("\n")+"\n===\ntitle: Clue\n---\n":"";
-    body=`${dating}${(route.introductionActivities||[]).map(id=>`<<start_activity "${id}">>`).join("\n")}\n<<jump Fight>>\n===\ntitle: Fight\n---\n<<start_combat "${route.combat}">>\n<<if combat_result("${route.combat}") != "success">>\n-> Try again\n    <<jump Fight>>\n-> Leave it for now\n    <<complete>>\n<<else>>\n<<play_sequence "${route.staging}.start">>\n${choices}${lines.join("\n")}\n<<play_sequence "${route.staging}.finish">>\n${effects.join("\n")}\n<<complete>>\n${questions.length?"":"<<endif>>"}`;
+    const outcome=route.combatCompletion||"success";
+    if(!["success","practiced"].includes(outcome))throw new Error(`Invalid combat outcome ${route.id}`);
+    let ending;
+    if(route.completionActivities) {
+      if(route.staging || lines.length || questions.length || !route.completionActivities.length)throw new Error(`Invalid combat ending ${route.id}`);
+      ending=route.completionActivities.map(id=>`<<start_activity "${id}">>`).join("\n");
+    } else {
+      if(!route.staging)throw new Error(`Missing combat ending ${route.id}`);
+      ending=`<<play_sequence "${route.staging}.start">>\n${choices}${lines.join("\n")}\n<<play_sequence "${route.staging}.finish">>`;
+    }
+    body=`${dating}${(route.introductionActivities||[]).map(id=>`<<start_activity "${id}">>`).join("\n")}\n<<jump Fight>>\n===\ntitle: Fight\n---\n<<start_combat "${route.combat}">>\n<<if combat_result("${route.combat}") != "${outcome}">>\n-> Try again\n    <<jump Fight>>\n-> Leave it for now\n    <<complete>>\n<<else>>\n${ending}\n${effects.join("\n")}\n<<complete>>\n${questions.length?"":"<<endif>>"}`;
     // The victory choice node ends the conditional before jumping to Clue.
     if(questions.length)body=body.replace("\n===\ntitle: Clue", "\n<<endif>>\n===\ntitle: Clue");
   } else if (route.challenge) {

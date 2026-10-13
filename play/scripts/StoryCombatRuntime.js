@@ -15,7 +15,7 @@ export class StoryCombatRuntime {
       this.active.view=view;this.active.receivedAt=this.now();return true;
     }
     const definition=catalog.encounters.find(def=>def.id===view.id);
-    if(!definition)throw new Error(`No combat presentation ${view.id}`);
+    if(!definition || definition.area!==transaction.area)throw new Error(`No combat presentation ${view.id} in ${transaction.area}`);
     if(view.actors.length!==definition.actors.length || view.actors.some(actor=>!definition.actors.some(def=>def.tag===actor.tag)))throw new Error("Combat cast does not match the reviewed catalog");
     const owner={transaction,definition,view,token:view.token,controller:new AbortController(),snapshot:this.capturePlayerState(),
       actorsBegun:false,input:null,receivedAt:this.now(),poll:0,sequence:view.sequence,poses:new Map(),queuedAction:"",guard:false};

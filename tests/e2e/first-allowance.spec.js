@@ -103,6 +103,12 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_LETTER_E2E === "true") {
+      await verifyDojoAndChineseLetter(page,testInfo,character);
+      expect(errors).toEqual([]);
+      expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+      return;
+    }
     if(process.env.NEW_YOKOSUKA_CHARLIE_INQUIRIES_E2E === "true") {
       await verifyCharlieInquiries(page, testInfo, character);
       expect(errors).toEqual([]);
@@ -1023,5 +1029,82 @@ async function verifyNozomiAfterParlor(page,testInfo,character) {
   const reloaded=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
   expect(reloaded.character.storyFlags["notebook.s1.nozomi-worried"]).toBe(true);
   expect(reloaded.character.worldId).toBe("dobuita");expect(reloaded.character.avatarId).toBe("ryo");
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+}
+
+async function verifyDojoAndChineseLetter(page,testInfo,character) {
+  expect(character.storyFlags["story.s1.charlie-tattoo-confrontation.completed"]).toBe(true);
+  const savedState=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const waitScene=async id=>{
+    await page.waitForFunction(id=>window.storyProbe.director?.activeCutscene?.cutscene.id===id||window.storyProbe.sceneErrors.length,id,{timeout:60_000});
+    expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+    await page.waitForFunction(()=>[...(window.storyProbe.director?.activeCutscene?.packageRuntime.audio.active?.elements||[])]
+      .some(r=>r.kind==="voice"&&r.audio.currentTime>0&&!r.audio.paused),null,{timeout:30_000});
+  };
+  if(!character.storyFlags["story.s1.cartel-dojo.completed"]) {
+    await page.locator("#story-wait-button").click();
+    await page.getByRole("option",{name:"Wait until tomorrow morning",exact:true}).click();
+    await page.getByRole("button",{name:"Wait until tomorrow morning",exact:true}).click();
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+    await page.evaluate(()=>window.storyProbe.lifecycle.travelToWorld("exterior"));
+    const enterDojo=async()=>{
+      await page.evaluate(()=>{
+        const life=window.storyProbe.lifecycle;life.resetPlayer(life.vectorFromArray([4.6,1,-16.8]),Math.PI,{persist:false});
+        const c=life.getController();c.setFirstPerson(true);c.cameraYaw=0;c.updateCamera(1);
+      });
+      await page.waitForFunction(()=>!window.storyProbe.regions.inside.has("s1.jhd0.cartel-dojo.entrance"));
+      await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+      try{await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.combatView?.ready||window.storyProbe.sceneErrors.length,null,{timeout:30_000});}
+      finally{await page.keyboard.up("KeyW");}
+      expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+    };
+    await enterDojo();await page.screenshot({path:testInfo.outputPath("fuku-dojo-practice.png")});
+    expect(await page.evaluate(()=>window.storyProbe.regions.controller.active.combatView.practice)).toBe(true);
+    await page.keyboard.press("KeyX");
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+    let saved=await savedState();expect(saved.character.storyFlags["story.s1.ine-letter-invitation"]).not.toBe(true);
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+    await enterDojo();
+    await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyI");
+    try {
+      for(let i=0;i<65&&await page.evaluate(()=>!!window.storyProbe.regions.controller.active?.combatView);i++) {
+        await page.keyboard.press("KeyK");await page.waitForTimeout(500);
+      }
+    } finally {await page.keyboard.up("KeyI");}
+    await waitScene("story-s1-fuku-resolve");
+    expect(await page.evaluate(()=>window.storyProbe.combatIntents.some(i=>i.action==="leg"))).toBe(true);
+    await page.screenshot({path:testInfo.outputPath("fuku-cartel-resolve.png")});await page.keyboard.press("KeyX");
+    await waitScene("story-s1-ine-letter-invitation");
+    await page.screenshot({path:testInfo.outputPath("ine-letter-invitation.png")});await page.keyboard.press("KeyX");
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["story.s1.ine-letter-invitation"])).toBe(true);
+    saved=await savedState();expect(saved.character.storyFlags["story.s1.cartel-dojo.completed"]).toBe(true);
+    expect(saved.character.yen).toBe(character.yen);expect(saved.character.currentHp).toBe(character.currentHp);
+  }
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  await page.evaluate(()=>window.storyProbe.lifecycle.travelToWorld("interior"));
+  await waitScene("story-s1-chinese-letter");
+  await page.screenshot({path:testInfo.outputPath("chinese-letter-before-cancel.png")});
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-cancel-letter"));
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+  expect((await savedState()).character.storyFlags["notebook.s1.chinese-letter"]).not.toBe(true);
+  await page.evaluate(async()=>{const life=window.storyProbe.lifecycle;await life.travelToWorld("exterior");await life.travelToWorld("interior");});
+  await waitScene("story-s1-chinese-letter");
+  await page.screenshot({path:testInfo.outputPath("chinese-letter-original-handoff.png")});
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.chinese-letter"]),{timeout:100_000}).toBe(true);
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+  await page.locator("button").filter({hasText:/^Notebook$/}).click();
+  for(let i=0;i<60&&await page.locator("#journal-next").isEnabled();i++)await page.locator("#journal-next").click();
+  await expect(page.getByText(/Ine-san gave me a mysterious letter/)).toBeVisible();
+  await page.screenshot({path:testInfo.outputPath("chinese-letter-notebook.png")});await page.locator("#journal-close").click();
+  await page.reload();await page.keyboard.press("Enter");
+  await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();
+  await page.locator(".character-slot-button:not(.empty)").first().click();
+  await page.locator("button").filter({hasText:/^Enter World$/}).click();
+  await page.waitForFunction(()=>window.storyProbe.ready,null,{timeout:120_000});
+  await page.waitForTimeout(1000);expect(await page.evaluate(()=>window.storyProbe.starts.includes("story-s1-chinese-letter"))).toBe(false);
+  const saved=await savedState();expect(saved.character.storyFlags["notebook.s1.chinese-letter"]).toBe(true);
+  expect(saved.character.worldId).toBe("interior");expect(saved.character.avatarId).toBe("ryo");
+  expect(saved.character.yen).toBe(character.yen);expect(saved.character.currentHp).toBe(character.currentHp);
   expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
 }

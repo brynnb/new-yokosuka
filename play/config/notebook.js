@@ -83,6 +83,8 @@ const STORY_PAGES = Object.freeze([
     text:"Charlie promised to arrange a meeting with members of the Chinese cartel.\n\nMeet him at You Arcade at 3 p.m. on the following day.\n\nI warned him not to break his word."}) },
   { flag:"notebook.s1.nozomi-worried",page:Object.freeze({id:"story-nozomi-worried",
     text:"Nozomi came looking for me near Okayama Heights.\n\nShe seems worried about me and my entrance exams. I promised we'd talk later."}) },
+  { flag:"notebook.s1.chinese-letter",page:Object.freeze({id:"story-chinese-letter",
+    text:"Ine-san gave me a mysterious letter addressed to my father.\n\nIt's written in Chinese. Find someone who can read it."}) },
 ]);
 
 export function notebookPagesForCharacter(character) {
