@@ -8,6 +8,86 @@ import { NativeProgramDataMemory } from "../play/events/NativeProgramDataRuntime
 import { NativePersistentScriptBitState } from "../play/events/NativePersistentScriptBitState.js";
 import { createNativeSceneGameplayState } from "../play/events/NativeSceneGameplayState.js";
 import managerPack from "../play/data/events/nativeInteractionManagers.generated.json" with { type: "json" };
+import { createNativeRoomScriptRuntime } from "../play/events/NativeRoomScriptRuntime.js";
+import { createNativeEventOperationExecutor } from "../play/events/NativeEventOperationRuntime.js";
+import { createNativeScriptedEventRuntime } from "../play/events/NativeScriptedEventRuntime.js";
+import { createNativeActorByteState } from "../play/events/NativeActorByteState.js";
+import { createNativeSceneResourceRegistry } from "../play/events/NativeSceneResourceRegistry.js";
+import { createNativeFreeConversationState } from "../play/events/NativeScriptedSceneRuntime.js";
+import { createNativeDialogueState } from "../play/dialogue/NativeDialogueState.js";
+
+function initializerAction() {
+  const arguments_ = [0x100, 0x140, 0x180, 0x180, 208, 224, 264, 304, 344,
+    0x52494b41, 15, 0x184, 0x188, 424].map((value, index) => (
+    [4, 5, 6, 7, 8, 13].includes(index) ? { kind: "scene-address", offset: value }
+      : { kind: "constant", value }
+  ));
+  return { kind: "secondaryEngineOperation", operationId: 0, adapterStatus: "proven",
+    semanticId: "interaction-manager-initialize", callFileOffset: "0x15aa2", arguments: arguments_ };
+}
+
+test("secondary initializer binds room ownership, returns VM zero, and rolls back the captured save owner", async () => {
+  const input = fixture(), room = createNativeRoomScriptRuntime();
+  room.activateArea("JOMO");
+  room.sceneState.nativeProgramDataMemory = input.memory;
+  room.sceneState.writeObjectVector("AKIR", [0, 0, 0]);
+  const tx = room.beginTransaction({ area: "JOMO" });
+  const execute = createNativeEventOperationExecutor({ handlers: tx.handlers });
+  const context = { ...tx.context, nativePersistentScriptBitState: input.persistentBits };
+  const result = await execute(initializerAction(), context);
+  assert.equal(result.status, "continued", JSON.stringify(result));
+  assert.equal(result.result, 0, "C register r0 is not the pre-cleared VM return cell");
+  const binding = room.sceneState.interactionManager.ownerBinding;
+  assert.equal(binding.resolvedOwner, "AKIR");
+  assert.equal(binding.rawOwnerWord, 0x52494b41);
+  assert.deepEqual(binding.sceneBindings.map(x => x.offset), [208, 224, 264, 304, 344, 424]);
+  assert.equal(binding.task.suspended, false);
+  assert.equal(room.sceneState.readInteractionContextWord56(), 0);
+  tx.update({ deltaSeconds: 1 / 30 });
+  room.sceneState.writeInteractionRecordFields(0, [1, 2, 3, 4, 5, 6, 7]);
+  assert.deepEqual(Array.from({ length: 7 }, (_, i) => input.memory.read(0x100, i + 6, 4)), [1, 2, 3, 4, 5, 6, 7]);
+  assert.throws(() => room.sceneState.writeInteractionRecordFields(1, [1, 2, 3, 4, 5, 6, 7]), /outside/);
+  room.sceneState.writeInteractionContextWord56(1);
+  assert.throws(() => tx.update({ deltaSeconds: 1 / 30 }), /update mode 1 is unimplemented/);
+  const replacement = new NativePersistentScriptBitState();
+  context.nativePersistentScriptBitState = replacement;
+  const changed = await execute(initializerAction(), context);
+  assert.equal(changed.status, "stopped");
+  tx.rollback({ reason: "cancelled" });
+  assert.equal(input.persistentBits.read(255), 0);
+  assert.equal(input.persistentBits.read(7), 1);
+  assert.equal(replacement.read(255), 0);
+  assert.equal(room.sceneState.interactionManager.ownerBinding, null);
+  assert.equal(room.sceneState.nativeProgramDataMemory.read(0x100, 7, 4), 77);
+  const next = room.beginTransaction({ area: "JOMO" });
+  const stale = await execute(initializerAction(), { ...context, nativePersistentScriptBitState: input.persistentBits });
+  assert.equal(stale.status, "stopped", "an old event callback cannot initialize a newer transaction");
+  const accepted = await execute(initializerAction(), { ...next.context, nativePersistentScriptBitState: input.persistentBits });
+  assert.equal(accepted.status, "continued");
+  next.commit();
+  assert.equal(input.persistentBits.read(255), 1);
+  assert.equal(room.sceneState.interactionManager.ownerBinding.resolvedOwner, "AKIR");
+  room.activateArea("JHD0");
+  assert.equal(room.sceneState.interactionManager.ownerBinding, null);
+});
+
+test("secondary initializer rejects frame-address aliases and unavailable persistent state before mutation", async () => {
+  for (const failure of ["binding", "bits"]) {
+    const input = fixture(), room = createNativeRoomScriptRuntime();
+    room.activateArea("JOMO");
+    room.sceneState.nativeProgramDataMemory = input.memory;
+    const tx = room.beginTransaction({ area: "JOMO" });
+    const action = initializerAction();
+    if (failure === "binding") action.arguments[4].kind = "frame-address";
+    const execute = createNativeEventOperationExecutor({ handlers: tx.handlers });
+    const result = await execute(action, { ...tx.context,
+      nativePersistentScriptBitState: failure === "bits" ? null : input.persistentBits });
+    assert.equal(result.status, "stopped");
+    assert.equal(input.memory.read(0x100, 7, 4), 77);
+    assert.equal(room.sceneState.interactionManager.ownerBinding, null);
+    tx.rollback();
+  }
+});
 
 function memoryFor(bytes, baseFileOffset = 0x100) {
   const memory = new NativeProgramDataMemory();
@@ -127,4 +207,49 @@ test("all original room tables initialize with the exact recovered graph and fla
   }
   assert.equal(report.registrations.length, 96);
   assert.equal(descriptorCount, 517);
+});
+
+// Feed this the canonical builder's scoped JOMO pack, never a hand-edited
+// action list. This proves source execution, not rendering or full startup.
+test("original JOMO startup executes selector zero and unwinds when the next source boundary stops", {
+  skip: !process.env.NY_JOMO_STARTUP_PACK && "set NY_JOMO_STARTUP_PACK to a freshly compiled scoped package",
+}, async () => {
+  const programPack = JSON.parse(fs.readFileSync(process.env.NY_JOMO_STARTUP_PACK));
+  const program = programPack.programs.find(p => p.id === "disc1-jomo-room-initialization-0x88b70");
+  assert.equal(program.mapinfoSha256, "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9");
+  const resources = createNativeSceneResourceRegistry(), bits = new NativePersistentScriptBitState();
+  const dialogueState = createNativeDialogueState();
+  const room = createNativeRoomScriptRuntime({ motionResource: resources.adapter(),
+    operation013c: resources.adapter(), operation013e: resources.adapter(),
+    clockRecord: { readNativeClockRecord: () => [86, 12, 3, 3, 8, 55, 0] },
+    scriptedScene: { freeConversationState: createNativeFreeConversationState({ dialogueState }) } });
+  room.activateArea("JOMO");
+  room.operation01c7State.initializeColdState();
+  room.applyArrival({ scene: 1, area: "JOMO", entry: 1 }, { clockLoaderControlDword: 0 });
+  room.sceneState.writeObjectVector("AKIR", [0, 0, 0]);
+  let initialized;
+  const runtime = createNativeScriptedEventRuntime({ programPack, actorByteState: createNativeActorByteState(),
+    createExecution(detail) {
+      const tx = room.beginTransaction(detail), handler = tx.handlers["interaction-manager-initialize"];
+      tx.handlers["interaction-manager-initialize"] = async call => {
+        const result = await handler(call);
+        initialized = { result, binding: structuredClone(room.sceneState.interactionManager.ownerBinding), bits: bits.toJSON() };
+        return result;
+      };
+      return tx;
+    } });
+  const result = await runtime.startProgram({ programId: program.id,
+    context: { dialogueState, nativePersistentScriptBitState: bits } });
+  assert.equal(initialized?.result.status, "continued", JSON.stringify(result));
+  assert.equal(initialized.result.mutation.descriptorCount, 17);
+  assert.equal(initialized.result.mutation.controlLimit, 15);
+  assert.equal(initialized.binding.resolvedOwner, "AKIR");
+  assert.equal(initialized.binding.source.callFileOffset, "0x15aa2");
+  assert.deepEqual(initialized.bits.bytes.slice(12, 17), [240, 243, 255, 191, 31]);
+  assert.equal(result.status, "stopped");
+  assert.equal(result.reason.result.reason.semanticId, "native-operation-0166-control");
+  assert.equal(result.reason.result.reason.detail, "native operation 0x0166 scheduler path is unavailable");
+  assert.equal(result.reason.result.location.blockId, "0x88ece");
+  assert.equal(room.sceneState.interactionManager.ownerBinding, null);
+  assert.deepEqual(bits.toJSON(), new NativePersistentScriptBitState().toJSON());
 });

@@ -6,6 +6,26 @@
     "runtimeBase": "0xc010000",
     "sha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
     "verifiedCodeRanges": {
+      "managerTaskCreate": {
+        "runtimeAddress": "0xc15f42c",
+        "size": 48,
+        "sha256": "3039ca3cfa34160aa4fec56885e68c8d62471e0725c6f78d97df7287dee057e4"
+      },
+      "managerTaskUpdate": {
+        "runtimeAddress": "0xc15e482",
+        "size": 298,
+        "sha256": "d1593b6c752f9b87d9a34d5d7f0b208bcfa89a6e6feba989a1e09e1548f0d75d"
+      },
+      "taskResume": {
+        "runtimeAddress": "0xc0975d6",
+        "size": 42,
+        "sha256": "3255aa981e175a5cb05e3050de991fbf85257e86bcf6381c90101f0569023309"
+      },
+      "taskPayload": {
+        "runtimeAddress": "0xc09766a",
+        "size": 14,
+        "sha256": "e6e92c85994bb269cabbf26002f45ecd445e15b46406c59a49ef9481d1a7e57f"
+      },
       "pendingOwnerControl": {
         "runtimeAddress": "0xc15a82e",
         "size": 206,
@@ -135,6 +155,24 @@
       "storedWord": 0,
       "result": 0,
       "boundary": "Mode zero only: clears the pending-owner word without resolving or cancelling its former task. Mode one launch and other poll/cancel routes remain unsupported."
+    },
+    "managerTask": {
+      "createAddress": "0x0c15f42c",
+      "globalOwnerAddress": "0x0c224260",
+      "category": 5,
+      "kind": 11,
+      "workBytes": 660,
+      "updateCallback": "0x0c15e482",
+      "createdSuspended": true,
+      "initializerResumesTask": true,
+      "initializerVmResult": 0,
+      "controlWordOffset": "0x38",
+      "initialControlWord": 0,
+      "activeUpdateModes": [
+        1,
+        2
+      ],
+      "boundary": "Mode zero returns without work. Modes one and two perform camera/proximity and candidate updates and require separate runtime support."
     }
   },
   "callbackPath": [

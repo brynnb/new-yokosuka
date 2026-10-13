@@ -409,8 +409,14 @@ export class NativeSceneGameplayState {
   }
 
   installSceneObjectCameraParameters({ nameWord, source }) {
+    const tag = this.resolveSceneObjectName(nameWord);
+    if (!tag) throw new Error("native CPAM target is unavailable");
+    return this.objectVectorState.installCameraParameterRecord(tag, source);
+  }
+
+  resolveSceneObjectName(nameWord) {
     if (!Number.isInteger(nameWord) || nameWord < -0x80000000 || nameWord > 0xffffffff) {
-      throw new TypeError("native CPAM object name must be a 32-bit word");
+      throw new TypeError("native object name must be a 32-bit word");
     }
     // 0xc153956 returns null immediately for a zero name. It does not mean
     // "current presentation owner", even when that separate cell is set.
@@ -419,11 +425,9 @@ export class NativeSceneGameplayState {
     if (!tag || (!this.objectVectorState.createdObjects.has(tag)
       && !this.objectVectorState.objectPositionVectors.direct.has(tag)
       && this.actorFields.readActor(tag)?.actorAvailable !== true)) {
-      // The native helper dereferences the resolved task immediately. Missing
-      // or opaque browser owner references must not become a guessed no-op.
-      throw new Error("native CPAM target is unavailable");
+      return null;
     }
-    return this.objectVectorState.installCameraParameterRecord(tag, source);
+    return tag;
   }
 
   writeObjectSecondaryVector(objectTag, vector, { associated = false } = {}) {
@@ -1346,7 +1350,60 @@ export class NativeSceneGameplayState {
         "native interaction record update requires seven words",
       );
     }
+    const tables = this.interactionManager.initializedTables;
+    if (tables) {
+      if (index >= tables.descriptorCount || values.some(value => !Number.isInteger(value)
+        || value < -0x80000000 || value > 0xffffffff)) {
+        throw new RangeError("native interaction descriptor update is outside its initialized table");
+      }
+      const pointer = tables.descriptorPointer + index * 52;
+      for (let word = 0; word < 7; word += 1) {
+        this.nativeProgramDataMemory.write(pointer, word + 6, 4, values[word]);
+      }
+    }
     this.interactionRecords.set(index, [...values]);
+  }
+
+  initializeInteractionManager({ pointers, sceneBindings, ownerWord, controlArgument, persistentBits, source }) {
+    if (!Array.isArray(pointers) || pointers.length !== 6) throw new Error("native manager requires six static inputs");
+    for (const pointer of pointers) this.nativeProgramDataMemory.access(pointer, 0, 4);
+    if (!Array.isArray(sceneBindings) || sceneBindings.length !== 6
+      || sceneBindings.some(binding => binding?.kind !== "scene-address"
+        || !Number.isInteger(binding.offset) || binding.offset < 0
+        || binding.offset > 0xfffffffc || binding.offset % 4 !== 0)) {
+      throw new Error("native manager requires six aligned scene-address bindings");
+    }
+    const resolvedOwner = this.resolveSceneObjectName(ownerWord);
+    const initialized = this.interactionManager.initializeTables({
+      id: this.interactionManager.identity,
+      memory: this.nativeProgramDataMemory, persistentBits, controlArgument,
+      descriptorPointer: pointers[0], indexPointer: pointers[1],
+      indexEndPointer: pointers[2], recordPointer: pointers[3],
+    });
+    this.interactionRecords.clear();
+    this.interactionContextWord56 = 0;
+    this.interactionManager.ownerBinding = {
+      rawOwnerWord: ownerWord >>> 0, resolvedOwner,
+      staticInputs: [...pointers],
+      sceneBindings: sceneBindings.map(({ kind, offset }) => ({ kind, offset })),
+      word3c: 0,
+      // The original global task is created suspended by 0xc15f42c, then
+      // resumed by selector zero. Its mode-zero update exits without work.
+      task: { category: 5, kind: 11, workBytes: 0x294,
+        updateCallback: "0x0c15e482", suspended: false },
+      source: source ? { ...source } : null,
+    };
+    return initialized;
+  }
+
+  updateInteractionManager() {
+    const binding = this.interactionManager.ownerBinding;
+    if (!binding || binding.task.suspended) return;
+    // c15e4a2-c15e4b0 only dispatches modes one and two. Do not silently
+    // claim those camera/proximity/candidate-selection callbacks execute.
+    if (this.interactionContextWord56 === 1 || this.interactionContextWord56 === 2) {
+      throw new Error(`native interaction-manager update mode ${this.interactionContextWord56} is unimplemented`);
+    }
   }
 
   writeInteractionContextWord56(value) {

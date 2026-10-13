@@ -44,6 +44,7 @@ export class NativeInteractionManagerState {
     this.indirectRecordVectors = null;
     this.runtimeSlots = null;
     this.initializedTables = null;
+    this.ownerBinding = null;
     this.revision = 0;
   }
 
@@ -97,6 +98,7 @@ export class NativeInteractionManagerState {
       words: [0, 0, -1, -3, 0, 5],
     }));
     this.initializedTables = null;
+    this.ownerBinding = null;
     this.revision += 1;
     return this.readConfiguration();
   }

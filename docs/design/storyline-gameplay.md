@@ -636,8 +636,8 @@ bits, so the interpreter now treats that word and signed `-1` identically,
 including compound result/frame predicates. Primary `0x01a2(0)` at `0x15a4a`
 then clears only the pending-owner word at `0xc224010` and returns zero. It
 does not cancel a former task or clear the separate descriptor tables.
-The next stop is secondary `0x0000` at `0x15aa2`: the interaction-manager
-initializer and its runtime scene bindings still need execution support.
+Secondary `0x0000` at `0x15aa2` now executes the interaction-manager
+initializer and retains its runtime scene bindings, as detailed below.
 These checks use the real scoped package but supplied clock/arrival context;
 they do not prove automatic live initialization or visible gameplay.
 
@@ -656,8 +656,7 @@ The original initializer at `0xc15dbcc` sets each slot's six words to
 match those verified bytes instead of zeroing the third/control words. Focused
 tests cover these values, allocation exhaustion, same-source continuation,
 source replacement, cancellation, setup failure and travel reset. This fixes
-the existing state owner; it does **not** implement secondary `0x0000`'s full
-scene-binding/task initialization or establish rendered JOMO startup.
+the existing state owner; it does **not** establish rendered JOMO startup.
 
 The table portion of that initializer is now available as
 `NativeInteractionManagerState.initializeTables`. It reads the actual bounded
@@ -677,12 +676,32 @@ extractor now records these indices and verifies the writer and scratch
 constant. Local original-data tests cover all 96 registrations / 517 descriptors
 and compare the rebuilt graphs against the existing exact-source catalog.
 
-This table initializer is not yet dispatched as a successful secondary `0x0000`:
-the six scene-address bindings, resolved owner and resumed native manager task
-still need a complete runtime adapter. Persistent bits must remain in the
-existing personal-save transaction, not be copied into a new room-local save
-store. Accordingly the real startup stop remains `0x15aa2`; the corpus test is
-table-initialization evidence, not proof of a running room controller or visuals.
+Secondary `0x0000` now dispatches this initializer in the existing room
+transaction. It retains six scene-address bindings, the raw and resolved owner,
+and the resumed manager task's source-backed metadata. JOMO initializes seventeen
+descriptors with control limit fifteen and owner `AKIR`. Its VM result is zero:
+the dispatcher clears that cell and the initializer does not write it; the C
+return register is not the script result. Descriptor updates subsequently write
+the same owned program-memory rows.
+
+The native task callback only dispatches work for control modes one and two;
+initialization sets mode zero, whose update exits without work. The runtime
+supports this idle state and explicitly rejects modes one and two until their
+behavior is implemented. This is not a complete proximity/camera controller.
+
+Persistent-bit writes use the existing personal-save object. The transaction
+captures that exact object for rollback, rejects replacement owners and stale
+callbacks, and restores its bytes alongside the room snapshot on cancellation
+or failure. It does not add a separate save store. Focused tests cover commit,
+rollback, travel, invalid bindings, descriptor writes and unsupported modes.
+
+The optional original-data startup integration test accepts a freshly compiled,
+scoped package through `NY_JOMO_STARTUP_PACK`. It verifies the actual initializer
+call and flag bytes, then an explicit stop at block `0x88ece`: operation
+`0x0166`'s scheduler path string is unavailable in the compiled package. That
+stop rolls back the new bindings and persistent bits. The test uses supplied
+clock/arrival/actor context and resource-request adapters, not rendered assets.
+This research boundary is not a prerequisite for the authored allowance route.
 
 The initialization route is catalogued, not automatically enabled as a live
 startup path. Source closure discovery, name bindings and request-queue state

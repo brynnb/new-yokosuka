@@ -7,6 +7,23 @@
   ],
   "secondaryOperations": [
     {
+      "operationId": 0,
+      "operationHex": "0x0000",
+      "argumentCount": 14,
+      "semanticId": "interaction-manager-initialize",
+      "handlerAddress": "0x0c15dbcc",
+      "argumentConstraints": [
+        {"index": 4, "kinds": ["scene-address"]},
+        {"index": 5, "kinds": ["scene-address"]},
+        {"index": 6, "kinds": ["scene-address"]},
+        {"index": 7, "kinds": ["scene-address"]},
+        {"index": 8, "kinds": ["scene-address"]},
+        {"index": 13, "kinds": ["scene-address"]}
+      ],
+      "provenBehavior": "Resumes the native interaction-manager task; binds six static inputs, six scene addresses and the resolved/raw owner; clears manager words 0x38/0x3c; initializes descriptor memory, persistent script bits, candidate scratch and sixteen runtime slots. The secondary VM result remains its pre-cleared zero. Task update modes one and two remain explicit runtime boundaries; mode zero exits without work.",
+      "sources": ["tools/scripting/extract_dialogue_native_interaction_manager.py", "tools/evidence/dialogue-native-interaction-manager.json"]
+    },
+    {
       "operationId": 3,
       "operationHex": "0x0003",
       "argumentCount": 1,

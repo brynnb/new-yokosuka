@@ -12,6 +12,7 @@ import { nativeArrivalFields } from "./NativeAreaRequestRuntime.js";
 import { NativeWeatherControllerState, NativeWeatherSchedule } from "../world/NativeWeatherSchedule.js";
 import nativeWeatherCatalog from "../data/shenmue1-native-weather.json" with { type: "json" };
 import { createNativeTypedTableSemanticHandlers } from "./NativeProgramDataRuntime.js";
+import { NativePersistentScriptBitState } from "./NativePersistentScriptBitState.js";
 
 import {
   createNativeActorMhndSemanticHandlers,
@@ -593,11 +594,26 @@ export class NativeRoomScriptRuntime {
     // Area activation replaces stateful record containers. Rebuild their
     // context view at each event boundary so a program invoked for a native
     // area different from the rendered host world never writes stale records.
+    const token = this.activeTransaction?.token;
     return {
       ...this.context,
       ...createNativeSceneFieldRuntimeContext(this.sceneState, {
         operation01c7State,
       }),
+      initializeInteractionManager: detail => {
+        if (!token) throw new Error("interaction initialization requires an active room transaction");
+        const active = this.requireTransaction(token);
+        const bits = detail.persistentBits;
+        if (!(bits instanceof NativePersistentScriptBitState)) throw new Error("native persistent script bits are unavailable");
+        if (active.interactionBitOwner && active.interactionBitOwner !== bits) {
+          throw new Error("interaction initialization persistent owner changed during the transaction");
+        }
+        if (!active.interactionBitOwner) {
+          active.interactionBitOwner = bits;
+          active.interactionBitSnapshot = bits.bytes.slice();
+        }
+        return this.sceneState.initializeInteractionManager(detail);
+      },
     };
   }
 
@@ -998,6 +1014,7 @@ export class NativeRoomScriptRuntime {
       ? active.aseqFrameClock.consume(deltaSeconds)
       : 1;
     for (let tick = 0; tick < nativeTicks; tick += 1) {
+      this.sceneState.updateInteractionManager();
       this.sceneState.advanceSceneEightChannelTransition();
       const activityUpdate = this.sceneState
         .advanceNativeOperation0050Activity();
@@ -1084,6 +1101,12 @@ export class NativeRoomScriptRuntime {
     const active = this.requireTransaction(token);
     const activity = this.sceneState.readNativeOperation0050Activity();
     const cleanupErrors = [];
+    try {
+      // Restore the exact captured save object, never a newly hydrated player.
+      if (active.interactionBitOwner) active.interactionBitOwner.bytes.set(active.interactionBitSnapshot);
+    } catch (error) {
+      cleanupErrors.push(error);
+    }
     try {
       this.weatherControllerState.restore(active.weatherSnapshot);
     } catch (error) {
