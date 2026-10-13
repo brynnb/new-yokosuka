@@ -16,8 +16,10 @@ through the original YBHN presentation, with rendered cancellation/re-entry,
 natural completion, notebook settlement and reload verified. The next-day dojo
 spar, Fuku-san/Ine-san follow-ups and original Chinese-letter handoff are now
 connected and rendered, with once-only letter possession/notebook settlement
-verified. Fuku-san's gate conversation, Gao Wen and the translator path remain
-unconnected; the later storyline is still missing.
+verified. Fuku-san's original TGMA gate conversation is also connected, with
+rendered approach/cancellation/natural completion/reload and actual letter
+possession checks. Gao Wen, the translator path and the later storyline are
+still missing connected authored progression.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

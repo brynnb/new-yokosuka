@@ -3,6 +3,16 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"fuku-letter-gate","actor":"FUKU","presentActors":[],"area":"JHD0","trigger":"enter","priority":220,
+      "title":"Fuku-san — the Chinese letter at the gate","hours":[8.5,23.5],
+      "requiredFlags":["story.s1.chinese-letter.completed"],"requiredItems":[{"key":"chinese_letter","quantity":1}],
+      "bounds":"s1.jhd0.fuku-letter-gate","completedFlag":"story.s1.fuku-letter-gate.completed","effects":[],
+      "activities":["s1.jhd0.fuku-letter-gate.scene"],"voiceIds":[],
+      "dialogueArchive":{"path":"data/SCENE/01/STREAM/A0139.AFS","sha256":"5d4284d25e61bef963dece6291eb9203b88ac6da96ff0c75d1a0916f21085655"},
+      "nativeSources":[{"role":"presentation","locator":"disc1/data/SCENE/01/JHD0/TGMA.PKS#SEQDATA4.AUTH","sha256":"095c988fcb8cf05c8559188b8705cc720c48305e9f1f8de3b577d97d676b95c2"}],
+      "provenance":"Original TGMA/A0139 conversation: Fuku asks Ryo about Ine-san's Chinese letter, rather than giving him another letter. GameSpot 2000 guide places it at the grounds gate after the handoff. Authored approach around TGMA's original Ryo anchor, daytime window and restoring the player's approach are adaptations. Uses existing original motion/camera/audio/letter attachment. Requires saved possession; no duplicate letter, money, calendar jump or guessed native flags."
+    },
+    {
       "id":"cartel-dojo","actor":"FUKU","presentActors":[],"area":"JHD0","trigger":"enter","priority":210,
       "title":"Fuku-san — practice before the cartel meeting","hours":[8.5,23.5],
       "requiredFlags":["story.s1.charlie-tattoo-confrontation.completed"],"dayAfter":"story.s1.charlie-parlor.day","bounds":"s1.jhd0.cartel-dojo.entrance",

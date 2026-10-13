@@ -75,6 +75,15 @@ test("the optional Nozomi encounter reuses the original YBHN presentation withou
   });
 });
 
+test("Fuku's gate conversation borrows TGMA without granting another letter", () => {
+  const activity=createScriptEventPresentationCatalog().activity("s1.jhd0.fuku-letter-gate.scene");
+  assert.equal(activity.area,"JHD0");
+  assert.equal(activity.returnPlayerState,true);
+  assert.equal(activity.durableEffects,"forbidden");
+  assert.equal(activity.cutscene.packageId,"tgma");
+  assert.deepEqual(activity.cutscene.activity,{slot:0,binding:{primaryPointer:0x601b8,secondaryPointer:0x601bd}});
+});
+
 test("runtime dispatches Hato commands through an owned transaction", async () => {
   const { runtime, calls } = harness();
   runtime.begin({ area: "D000", actorCode: "HATO" });

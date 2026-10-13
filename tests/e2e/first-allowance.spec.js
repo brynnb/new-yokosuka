@@ -62,7 +62,9 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       AuthoredSceneStagingRuntime.prototype.play = function(...args) { window.storyProbe.authoredScene = this; return probeStage.apply(this,args); };`],
     ["scripts/ScriptAutomaticEventRuntime", `const probeAutomatic = ScriptAutomaticEventRuntime.prototype.update;
       ScriptAutomaticEventRuntime.prototype.update = function(...args) { window.storyProbe.automatic = this; return probeAutomatic.apply(this,args); };`],
-    ["cutscenes/NativeCutsceneDirector", `const probeStart = NativeCutsceneDirector.prototype.start;
+    ["cutscenes/NativeCutsceneDirector", `const probeActivityAdapter = NativeCutsceneDirector.prototype.nativeActivityAdapter;
+      NativeCutsceneDirector.prototype.nativeActivityAdapter = function(...args) { window.storyProbe.director = this; return probeActivityAdapter.apply(this,args); };
+      const probeStart = NativeCutsceneDirector.prototype.start;
       NativeCutsceneDirector.prototype.start = function(cutscene,...args) { window.storyProbe.director = this; window.storyProbe.starts.push(cutscene.id); return probeStart.call(this,cutscene,...args).catch(error => { window.storyProbe.sceneErrors.push(error.message); throw error; }); };`],
     ["scripts/StoryRegionRuntime", `const probeUpdate = StoryRegionRuntime.prototype.update;
       StoryRegionRuntime.prototype.update = function(...args) { window.storyProbe.regions = this; window.storyProbe.lastRegionFrame = args[0]; return probeUpdate.apply(this,args); };`],
@@ -103,6 +105,12 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_FUKU_GATE_E2E === "true") {
+      await verifyFukuLetterGate(page,testInfo,character);
+      expect(errors).toEqual([]);
+      expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+      return;
+    }
     if(process.env.NEW_YOKOSUKA_LETTER_E2E === "true") {
       await verifyDojoAndChineseLetter(page,testInfo,character);
       expect(errors).toEqual([]);
@@ -1106,5 +1114,73 @@ async function verifyDojoAndChineseLetter(page,testInfo,character) {
   const saved=await savedState();expect(saved.character.storyFlags["notebook.s1.chinese-letter"]).toBe(true);
   expect(saved.character.worldId).toBe("interior");expect(saved.character.avatarId).toBe("ryo");
   expect(saved.character.yen).toBe(character.yen);expect(saved.character.currentHp).toBe(character.currentHp);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+}
+
+async function verifyFukuLetterGate(page,testInfo,character) {
+  expect(character.storyFlags["story.s1.chinese-letter.completed"]).toBe(true);
+  // A separately selected presentation check replays only the already-earned
+  // scene. It is not a fake server completion or evidence of new progression.
+  if(process.env.NEW_YOKOSUKA_FUKU_GATE_PRESENTATION_E2E === "true") {
+    await page.evaluate(async()=>{
+      const {createScriptEventPresentationCatalog}=await import('/play/scripts/ScriptEventPresentationCatalog.js');
+      const cutscene=createScriptEventPresentationCatalog().activity('s1.jhd0.fuku-letter-gate.scene').cutscene;
+      window.storyProbe.director.start(cutscene).catch(e=>window.storyProbe.sceneErrors.push(e.message));
+    });
+    await page.waitForFunction(()=>window.storyProbe.director.activeCutscene?.packageRuntime.presentation?.active?.currentFrame>425,null,{timeout:30_000});
+    expect(await page.evaluate(()=>{
+      const r=window.storyProbe.director.activeCutscene.packageRuntime;
+      return r.attachedObjects.objects.get('TEGS').root.isEnabled()&&r.attachedObjects.active.frame>=425;
+    })).toBe(true);
+    expect(await page.evaluate(()=>window.storyProbe.director.activeCutscene.packageRuntime.attachedObjects.objects.get('TEGS').root.getChildMeshes()
+      .filter(m=>m.getTotalVertices()>0).every(m=>!!m.material?.diffuseTexture))).toBe(true);
+    await page.screenshot({path:testInfo.outputPath('fuku-gate-letter-probe.png')});
+    await page.waitForFunction(()=>window.storyProbe.director.activeCutscene?.packageRuntime.presentation?.active?.currentFrame>560,null,{timeout:10_000});
+    await page.screenshot({path:testInfo.outputPath('fuku-gate-letter-front.png')});
+    await page.waitForFunction(()=>window.storyProbe.director.activeCutscene?.packageRuntime.presentation?.active?.currentFrame>805,null,{timeout:20_000});
+    expect(await page.evaluate(()=>window.storyProbe.director.activeCutscene.packageRuntime.attachedObjects.objects.get('TEGS').root.isEnabled())).toBe(false);
+    await page.keyboard.press('KeyX');
+    await expect.poll(()=>page.evaluate(()=>!!window.storyProbe.director.activeCutscene)).toBe(false);
+    return;
+  }
+  expect(character.storyFlags["story.s1.fuku-letter-gate.completed"]).not.toBe(true);
+  await page.evaluate(()=>window.storyProbe.lifecycle.travelToWorld("exterior"));
+  const enter=async()=>{
+    await page.evaluate(()=>{
+      const life=window.storyProbe.lifecycle;
+      // Bound the walk, not its outcome: actual movement/collision/presence
+      // must cross the authored gate volume and start the server event.
+      life.resetPlayer(life.vectorFromArray([.8,0,1]),0,{persist:false});
+      const c=life.getController();c.setFirstPerson(true);c.cameraYaw=Math.PI;c.updateCamera(1);
+    });
+    await page.waitForFunction(()=>!window.storyProbe.regions.inside.has("s1.jhd0.fuku-letter-gate"));
+    await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+    try{await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-fuku-letter-gate"||window.storyProbe.sceneErrors.length,null,{timeout:30_000});}
+    finally{await page.keyboard.up("KeyW");}
+    expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+    await page.waitForFunction(()=>[...(window.storyProbe.director?.activeCutscene?.packageRuntime.audio.active?.elements||[])]
+      .some(r=>r.kind==="voice"&&r.command.audio.voiceId.startsWith("A0139")&&r.audio.currentTime>0&&!r.audio.paused),null,{timeout:15_000});
+  };
+  await enter();await page.screenshot({path:testInfo.outputPath("fuku-letter-gate-before-cancel.png")});
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-cancel-gate"));
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+  const state=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  expect((await state()).character.storyFlags["story.s1.fuku-letter-gate.completed"]).not.toBe(true);
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  await enter();await page.waitForTimeout(14000);
+  await page.screenshot({path:testInfo.outputPath("fuku-letter-gate-original-scene.png")});
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["story.s1.fuku-letter-gate.completed"]),{timeout:60_000}).toBe(true);
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().firstPerson)).toBe(true);
+  const saved=await state();expect(saved.character.yen).toBe(character.yen);expect(saved.character.currentHp).toBe(character.currentHp);
+  expect(saved.inventory.filter(i=>i.key==="chinese_letter").map(i=>i.quantity)).toEqual([1]);
+  await page.reload();await page.keyboard.press("Enter");
+  await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();
+  await page.locator(".character-slot-button:not(.empty)").first().click();
+  await page.locator("button").filter({hasText:/^Enter World$/}).click();
+  await page.waitForFunction(()=>window.storyProbe.ready,null,{timeout:120_000});
+  await page.waitForTimeout(1000);expect(await page.evaluate(()=>window.storyProbe.starts.includes("story-s1-fuku-letter-gate"))).toBe(false);
+  expect((await state()).character.storyFlags["story.s1.fuku-letter-gate.completed"]).toBe(true);
   expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
 }

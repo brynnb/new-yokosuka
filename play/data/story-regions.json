@@ -1,6 +1,10 @@
 {
   "schema": "new-yokosuka-story-regions-v1",
   "regions": [
+    {"id":"s1.jhd0.fuku-letter-gate","area":"JHD0","actor":"AKIR","playMode":"story","openingCompleted":true,
+      "requiredFlags":["story.s1.chinese-letter.completed"],"completedFlag":"story.s1.fuku-letter-gate.completed",
+      "min":[-0.2,-0.5,2],"max":[1.8,1.5,4],
+      "provenance":"Authored approach around original TGMA SEQDATA4 Ryo [-0.794366,0,3.207726], native X mirrored. Inventory/daytime eligibility is independently server-owned. No recovered original trigger-volume claim."},
     {"id":"s1.jhd0.cartel-dojo.entrance","area":"JHD0","actor":"AKIR","playMode":"story","openingCompleted":true,
       "requiredFlags":["story.s1.charlie-tattoo-confrontation.completed"],"completedFlag":"story.s1.cartel-dojo.completed",
       "min":[1,0.6,-26],"max":[8,2.4,-18],

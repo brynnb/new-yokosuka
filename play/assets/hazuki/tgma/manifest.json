@@ -45,6 +45,7 @@
     "TEGS": {
       "browserFilename": "MALS509G.CHRM",
       "assetPath": "play/assets/hazuki/tgma/MALS509G.CHRM",
+      "textureAssetPath": "play/assets/hazuki/tgma/TGMA_TEXTURES.BIN",
       "attachments": [
         {
           "activitySlot": 0,
@@ -695,6 +696,21 @@
       "path": "play/assets/hazuki/tgma/FUB_FTBL.BIN",
       "byteLength": 5004,
       "sha256": "c2be5f63cb0918f4a26b982f68be29c5aadcae95fdb7a24a7ecbe4d6bc2c4f32"
+    },
+    {
+      "path": "play/assets/hazuki/tgma/TGMA_TEXTURES.BIN",
+      "byteLength": 18480,
+      "sha256": "d2665705353be90eeecff77153342d6722056cadb5242b4a3e7b32e494c386d8",
+      "source": {
+        "path": "extracted_files/data/SCENE/01/JHD0/TGMA.PKF",
+        "sha256": "820b77bb6e2c9d247d13f593a452ad7784b06196f79b042caff629b696d01fee",
+        "recordOffsets": [
+          36
+        ],
+        "textureIds": [
+          "dcacc0626733365f"
+        ]
+      }
     }
   ],
   "activities": [

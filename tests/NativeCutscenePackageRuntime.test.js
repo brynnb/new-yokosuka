@@ -66,6 +66,28 @@ function runtimeWith(resources) {
   return runtime;
 }
 
+test("standalone attached objects use the accepted AUTH frame and reject failed presentation", () => {
+  const calls=[],activityRuntime={active:{currentFrame:0}};
+  const runtime=runtimeWith({activityRuntime,
+    definition:{id:"frame-owned"},
+    playback:{update:dt=>{calls.push(["advance",dt]);activityRuntime.active.currentFrame=350;}},
+    attachedObjects:{update:frame=>{calls.push(["props",frame]);return true;}},
+  });
+  runtime.update(1/30);
+  assert.deepEqual(calls,[["advance",1/30],["props",350]]);
+  runtime.attachedObjects.update=()=>false;
+  runtime.stop=reason=>calls.push(["stop",reason]);
+  assert.throws(()=>runtime.update(1/30),/rejected attached objects at frame 350/);
+  assert.deepEqual(calls.at(-1),["stop","attachment-presentation-failed"]);
+  activityRuntime.updateActivity=()=>true;
+  assert.throws(()=>runtime.nativeActivityAdapter().updateActivity({currentFrame:350}),/rejected attached objects at frame 350/);
+  // Completion has already cleaned the activity. Do not reapply frame zero
+  // or resurrect its hidden props after the terminal callback.
+  activityRuntime.active=null;runtime.playback.update=()=>{};
+  runtime.attachedObjects.update=()=>{throw Error("must not update a completed activity");};
+  runtime.update(1/30);
+});
+
 function programRuntimeWith({
   calls,
   actors = null,

@@ -375,9 +375,14 @@ export class NativeCutscenePackageRuntime {
 
   update(deltaSeconds) {
     this.playback.update(deltaSeconds);
-    this.attachedObjects?.update(
-      this.playback.currentActivityPosition?.()?.frame,
-    );
+    // The AUTH activity owns the accepted native frame. The standalone clock
+    // has no currentActivityPosition API; optional access used to feed
+    // undefined to props and silently leave them at frame zero forever.
+    const frame = this.activityRuntime.active?.currentFrame;
+    if (frame != null && this.attachedObjects?.update(frame) === false) {
+      this.stop("attachment-presentation-failed");
+      throw new Error(`cutscene package ${this.id} rejected attached objects at frame ${frame}`);
+    }
   }
 
   stop(reason = "stopped") {
@@ -846,7 +851,9 @@ export class NativeCutscenePackageRuntime {
       },
       updateActivity: (detail) => {
         const accepted = this.activityRuntime.updateActivity(detail);
-        if (accepted === true) this.attachedObjects?.update(detail.currentFrame);
+        if (accepted === true && this.attachedObjects?.update(detail.currentFrame) === false) {
+          throw new Error(`cutscene package ${this.id} rejected attached objects at frame ${detail.currentFrame}`);
+        }
         if (accepted !== true && this.activityRuntime.lastUpdateError) {
           throw this.activityRuntime.lastUpdateError;
         }

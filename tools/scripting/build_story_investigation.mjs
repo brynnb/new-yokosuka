@@ -64,7 +64,11 @@ for (const route of spec.routes) {
   const lines = dialogueLines(route.voiceIds);
   const leadIn = dialogueLines(route.leadInVoiceIds || []);
   const questions=(route.victoryChoices || []).map(choice=>({label:choice.label,lines:dialogueLines(choice.voiceIds)}));
-  const gates = ['play_mode() != "story"', '!opening_completed()', ...(route.presentActors || participants).map(actor => `!actor_present("${actor}")`), ...route.requiredFlags.map(flag => `!flag_set("${flag}")`), `flag_set("${route.completedFlag}")`];
+  const requiredItems = (route.requiredItems || []).map(({key,quantity}) => {
+    if(!/^[a-z][a-z0-9_]*$/.test(key)||!Number.isSafeInteger(quantity)||quantity<1)throw new Error(`Invalid inventory prerequisite in ${route.id}`);
+    return {key,quantity};
+  });
+  const gates = ['play_mode() != "story"', '!opening_completed()', ...(route.presentActors || participants).map(actor => `!actor_present("${actor}")`), ...route.requiredFlags.map(flag => `!flag_set("${flag}")`), ...requiredItems.map(({key,quantity})=>`!has_item("${key}", ${quantity})`), `flag_set("${route.completedFlag}")`];
   if (route.hours) gates.push(route.hours[0] < route.hours[1]
     ? `(game_hour() < ${route.hours[0]} || game_hour() >= ${route.hours[1]})`
     : `(game_hour() < ${route.hours[0]} && game_hour() >= ${route.hours[1]})`);
@@ -123,6 +127,7 @@ for (const route of spec.routes) {
     TestFixtures: [{ Name: "Eligible personal investigation", StartNode: "Start", Fixture: {
       playMode: "story", openingCompleted: true, scene: route.area, gameHour: route.hours ? Math.max(10,route.hours[0]) : 10,
       flags: Object.fromEntries(route.requiredFlags.map(flag => [flag, true])),
+      ...(requiredItems.length?{inventory:Object.fromEntries(requiredItems.map(({key,quantity})=>[key,quantity]))}:{}),
       actorPresence: Object.fromEntries((route.presentActors || participants).map(actor => [actor, true])),
       ...((route.recordDays?.length||route.combat||route.dayAfter||route.sameDayAs)?{gameDate:"1986-12-04"}:{}),
       ...(route.dayAfter?{progress:{[route.dayAfter]:Date.UTC(1986,11,3)/86400000}}:{}),

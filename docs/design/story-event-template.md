@@ -217,7 +217,8 @@ Do not describe the first conversation as fully animation-faithful.
 | Charlie's parlor QTE → cartel appointment | Connected real browser check verifies original-voiced cast, wrong direction/retry, Left/A success, Charlie's rendered identity, conversation and saved notebook. Server/compiler/database tests cover calendar/presence gates, cancellation before/after winning and atomic appointment-day settlement. Held staging and omitted knife/throw choreography are explicit adaptations. |
 | Nozomi after the parlor | Connected optional same-day encounter: original YBHN cast/cameras visibly verified, cancellation/re-entry, natural ending, notebook and reload without replay pass in the real browser. Not a prerequisite for the letter. |
 | Next-day dojo spar → Ine-san invitation → Chinese letter | Connected browser check verifies real timed practice, original Fuku/Ine scenes, visible envelope handoff, cancellation/re-entry, natural letter ending, notebook and saved reload. Server/compiler/database tests prove practice authority and atomic once-only possession. Meditation and forced wake-up travel are omitted adaptations. |
-| Fuku-san at the gate / Gao Wen / letter translation | Missing connected authored progression. |
+| Fuku-san at the gate | Connected rendered walk-in, cancellation/re-entry, original voices/body/camera, natural ending and saved reload verified. Requires the saved Chinese letter and actual possession; no duplicate handoff. Shared prop-frame repair and presentation verification are described below. |
+| Gao Wen / letter translation | Missing connected authored progression. |
 | Harbor warehouses / Master Chen / Phoenix Mirror | Missing connected authored progression. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
@@ -879,3 +880,51 @@ authoritative and server-saved; the existing general inventory artwork grid is
 still a display catalog, not a full possession-aware story inventory interface.
 New handoff assets are registered locally but not published to R2. No production
 migration or deployment has occurred from this worktree.
+
+## Fuku-san and the Chinese letter at the gate
+
+Event ID: `s1.jhd0.fuku-letter-gate`; official import: `story-s1-fuku-letter-gate`.
+The original `A0139` subtitles establish that Fuku asks about the letter Ryo
+already received. This is not a second handoff. The
+[GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf)
+(printed page 26) places this conversation at the grounds gate before leaving.
+
+| Field | Implementation |
+| --- | --- |
+| Location / trigger | Cross `s1.jhd0.fuku-letter-gate` in Hazuki grounds (`JHD0`); authored bounds around TGMA's original Ryo anchor, browser `[0.794366,0,3.207726]`. Rendered input/collision crossing verified. |
+| Prerequisites / timing | Story Ryo, opening complete, saved Chinese-letter handoff **and** one `chinese_letter` in authoritative inventory, personal 08:30–23:30, not already completed. The daytime window is an adaptation, not a recovered native predicate. |
+| Player / cast | Existing personal TGMA presentation owns Ryo and Fuku (`FUB_M`), locks gameplay and suppresses their overlapping ambient copies. No public NPC mutation or remote-player state change. |
+| Sequence / dialogue / audio | Original `TGMA/SEQDATA4.AUTH`, `M_0139`, eight A0139 voices and A1_INET2 effects: Fuku asks about Ine-san, the letter, and finding a Chinese reader. Existing Hazuki residence music extends over the scene as an adaptation. |
+| Props / camera / duration | Original folding letter `MALS509G`, controller-18 attachment, articulated nodes 152/153, original camera/body timeline, 954 frames (31.8 seconds). Letter shows at frame 350 and hides at 800. Its exact TEXN texture comes from `TGMA.PKF`; no replacement illustration. |
+| Weather / lighting | Preserve this character's personal outdoor environment. No forced weather/date or new lighting rule. |
+| Challenge / effects | No QTE or fight. Atomically set only `story.s1.fuku-letter-gate.completed` after presentation cleanup. No item, notebook duplication, currency, HP, calendar jump or inferred native flag. |
+| Exit / skip / failure / replay | Restore approach position, previous camera and controls in grounds. Explicit cinematic skip settles once; cancellation/preparation failure settles nothing and can retry after leaving/re-entering. Reload preserves completion; stale acknowledgements cannot settle the retry. |
+
+Provenance is pinned in the import, existing TGMA lifecycle evidence and asset
+manifest. `TGMA.PKS` SHA-256 is
+`095c988fcb8cf05c8559188b8705cc720c48305e9f1f8de3b577d97d676b95c2`.
+The newly registered 18,480-byte texture pack comes from `TGMA.PKF` SHA-256
+`820b77bb6e2c9d247d13f593a452ad7784b06196f79b042caff629b696d01fee`.
+It is built by the existing TGMA producer and is not published to R2 yet.
+
+The connected earned-save check (`NEW_YOKOSUKA_FUKU_GATE_E2E=true`) walks the
+region, hears original voice playback, cancels/re-enters, lets the scene end
+naturally, checks one letter/unlocked controls and reloads without replay.
+The optional `NEW_YOKOSUKA_FUKU_GATE_PRESENTATION_E2E=true` replays only the
+already-earned presentation, not a new story settlement, to verify the letter
+unfolding/texture/show-hide cues. Corresponding screenshots are inspected;
+headless enabled-state assertions alone are not visual proof.
+
+This check exposed a shared standalone-player bug: prop updating called a
+nonexistent `currentActivityPosition` method and silently stayed at frame zero.
+Packages now use the AUTH activity's accepted frame, including after cleanup,
+and reject attachment failures instead of completing with a silently hidden
+prop. The fresh opening's four explicit intro skips, natural allowance ending,
+save and reload also pass after that repair. Exact expression/finger fidelity
+and every other standalone prop scene have not been visually audited.
+
+Next is the connected Gao Wen rescue, not another native-controller project.
+Original `E1049.AFS` contains the theft and post-rescue dialogue; `KOJI.PKS`
+contains `M_KOJI` soccer/hostage/kick clips and the `FBB0201G` ball. The authored
+flow still needs a real three-opponent fight and A-button challenge before its
+clue can settle. Those sources do not by themselves constitute playable coverage.

@@ -33,6 +33,11 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ["s1.jhd0.fuku-letter-gate.scene", {
+    kind:"native-cutscene",area:"JHD0",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:"story-s1-fuku-letter-gate",packageId:"tgma",worldId:"exterior",storyPresentation:true,
+      activity:{slot:0,binding:{primaryPointer:0x601b8,secondaryPointer:0x601bd}}},
+  }],
   ...[["fuku-resolve",2,0x5f167,0x5f16c],["ine-letter-invitation",3,0x5f16d,0x5f172]].map(([part,slot,primaryPointer,secondaryPointer])=>[`s1.jhd0.${part}.scene`,{
     kind:"native-cutscene",area:"JHD0",durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:`story-s1-${part}`,packageId:"kakg",worldId:"exterior",storyPresentation:true,activity:{slot,binding:{primaryPointer,secondaryPointer}}},

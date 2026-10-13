@@ -310,6 +310,7 @@ export class NativeAseqAttachedObjectRuntime {
         browserFilename,
         sceneObject: value.sceneObject === true,
         assetPath: String(value?.assetPath || "").trim() || null,
+        textureAssetPath: String(value?.textureAssetPath || "").trim() || null,
         attachments: Object.freeze(attachments),
         presentation: Object.freeze(presentation),
         nodeTransforms: Object.freeze(nodeTransforms),
