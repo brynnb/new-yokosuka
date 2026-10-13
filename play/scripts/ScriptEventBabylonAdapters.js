@@ -14,8 +14,7 @@ export class ScriptEventBabylonAdapters {
     getPlayerPosition,
     beginCameraPresentation,
     abortCameraPresentation,
-    getMovementLocked,
-    setMovementLocked,
+    acquireMovementLock,
     startActivity,
     cancelActivity,
     telephoneRuntime = null,
@@ -30,8 +29,7 @@ export class ScriptEventBabylonAdapters {
       || typeof getPlayerPosition !== "function"
       || typeof beginCameraPresentation !== "function"
       || typeof abortCameraPresentation !== "function"
-      || typeof getMovementLocked !== "function"
-      || typeof setMovementLocked !== "function"
+      || typeof acquireMovementLock !== "function"
       || typeof startActivity !== "function"
       || typeof cancelActivity !== "function"
     ) {
@@ -55,8 +53,7 @@ export class ScriptEventBabylonAdapters {
     this.getPlayerPosition = getPlayerPosition;
     this.beginCameraPresentation = beginCameraPresentation;
     this.abortCameraPresentation = abortCameraPresentation;
-    this.getMovementLocked = getMovementLocked;
-    this.setMovementLocked = setMovementLocked;
+    this.acquireMovementLock = acquireMovementLock;
     this.startActivityAdapter = startActivity;
     this.cancelActivityAdapter = cancelActivity;
     if (
@@ -136,7 +133,7 @@ export class ScriptEventBabylonAdapters {
       area,
       actor,
       actorFacingStates: new Map(),
-      movementLocked: this.getMovementLocked(),
+      releaseMovementLock: this.acquireMovementLock(),
       cameraToken: null,
       playerMotionToken: null,
       playerXmptToken: null,
@@ -145,7 +142,6 @@ export class ScriptEventBabylonAdapters {
       pendingActivity: null,
       context: { ...context },
     };
-    this.setMovementLocked(true);
     return transaction;
   }
 
@@ -296,7 +292,6 @@ export class ScriptEventBabylonAdapters {
       this.motionCueRuntime
       && this.motionCueRuntime.update(transaction, deltaSeconds) !== true
     ) return false;
-    this.setMovementLocked(true);
     const pending = transaction.pendingMotion;
     if (
       pending
@@ -319,8 +314,8 @@ export class ScriptEventBabylonAdapters {
     if (this.sceneStagingRuntime?.active?.transaction === transaction) {
       throw new Error("script presentation committed before scene staging cleanup");
     }
-    this.restoreActorFacing(transaction);
     try {
+      this.restoreActorFacing(transaction);
       if (transaction.cameraToken) {
         this.cameraRuntime.commitTransaction(transaction.cameraToken);
       }
@@ -331,11 +326,19 @@ export class ScriptEventBabylonAdapters {
         ? this.playerMotionRuntime.commitTransaction(transaction.playerMotionToken)
         : true;
     } finally {
-      this.setMovementLocked(transaction.movementLocked);
+      transaction.releaseMovementLock();
     }
   }
 
   rollback(transaction) {
+    try {
+      return this.rollbackOwnedPresentation(transaction);
+    } finally {
+      transaction.releaseMovementLock();
+    }
+  }
+
+  rollbackOwnedPresentation(transaction) {
     let sceneCleanupError = null;
     try { this.sceneStagingRuntime?.cancel(transaction); }
     catch (error) { sceneCleanupError = error; }
@@ -358,19 +361,15 @@ export class ScriptEventBabylonAdapters {
         this.cameraRuntime.rollbackTransaction(transaction.cameraToken);
       }
     } finally {
-      try {
-        if (transaction.playerXmptToken) {
-          this.playerXmptRuntime.rollbackTransaction(
-            transaction.playerXmptToken,
-          );
-        }
-        if (transaction.playerMotionToken) {
+      if (transaction.playerXmptToken) {
+        this.playerXmptRuntime.rollbackTransaction(
+          transaction.playerXmptToken,
+        );
+      }
+      if (transaction.playerMotionToken) {
         this.playerMotionRuntime.rollbackTransaction(
           transaction.playerMotionToken,
         );
-        }
-      } finally {
-        this.setMovementLocked(transaction.movementLocked);
       }
     }
     if (sceneCleanupError) throw sceneCleanupError;

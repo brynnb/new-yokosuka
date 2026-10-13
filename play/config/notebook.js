@@ -59,6 +59,18 @@ const STORY_PAGES = Object.freeze([
     text:"Saijo-san says sailors visit MJQ Jazz Bar and Heartbeats.\n\nHeartbeats is in the alley across from Knocking Motorcycle Shop. Go after 7 p.m. and be careful."}) },
   { flag:"notebook.s1.charlie",page:Object.freeze({id:"story-charlie",
     text:"Hato at Heartbeats told me about Charlie.\n\nHe deals in smuggled goods and may know about the Chinese cartel. Shades, a black leather jacket, and a tattoo on his arm.\n\nAsk at Knocking Motorcycle Shop."}) },
+  { flag:"notebook.s1.charlie-jackets",page:Object.freeze({id:"story-charlie-jackets",
+    text:"Ono-san says Charlie sometimes visits Tsuruoka-san at Jupitor's Jackets.\n\nAsk Tsuruoka-san or Kurita-san at the military surplus shop."}) },
+  { flag:"notebook.s1.nagai-industries",page:Object.freeze({id:"story-nagai-industries",
+    text:"Kinuyo-san has heard that people with tattoos visit Nagai Industries.\n\nLook past Lapis Fortune Teller, near the bars. The office opens at 1 p.m. Be careful."}) },
+  { flag:"notebook.s1.nagai-younger-men",page:Object.freeze({id:"story-nagai-younger-men",
+    text:"Nagai-san doesn't know Charlie.\n\nAsk the younger men in the upstairs office."}) },
+  { flag:"notebook.s1.toshiki-charlie",page:Object.freeze({id:"story-toshiki-charlie",
+    text:"Hasegawa-san has seen Charlie around at night.\n\nAsk Toshiki in the same office for details."}) },
+  { flag:"notebook.s1.charlie-hangouts",page:Object.freeze({id:"story-charlie-hangouts",
+    text:"Toshiki says Charlie hangs around Kurita Military Surplus and Jupitor's Jackets in Dobuita at night.\n\nAsk the shopkeepers when they last saw him."}) },
+  { flag:"notebook.s1.charlie-evening",page:Object.freeze({id:"story-charlie-evening",
+    text:"Charlie was seen around the jacket shop at about 7 p.m.\n\nLook around Dobuita in the evening. Be alert near You Arcade."}) },
 ]);
 
 export function notebookPagesForCharacter(character) {

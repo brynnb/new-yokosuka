@@ -64,8 +64,8 @@ export class PlayInterfaceAssembly {
       getBinding: action => generalPreferences.binding(action),
       getMenuRoot: () => this.menuRoot(),
       getMenuSounds,
-      getMovementLocked: () => Boolean(getController()?.movementLocked),
-      setMovementLocked: locked => getController()?.setMovementLocked(locked),
+      // Account menus can open before an avatar/controller exists.
+      acquireMovementLock: () => getController()?.acquireMovementLock() || (() => {}),
     });
     this.playInput = new PlayInputRuntime({
       getBinding: action => generalPreferences.binding(action),

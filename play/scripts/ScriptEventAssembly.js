@@ -54,8 +54,7 @@ export function createScriptEventAssembly({
   syncPlayerTransform,
   motionRuntime,
   cameraPresentation,
-  getMovementLocked,
-  setMovementLocked,
+  acquireMovementLock,
   dom,
   dialogueAudio,
   setDialogueControlsActive,
@@ -136,8 +135,7 @@ export function createScriptEventAssembly({
       getPlayerPosition,
       beginCameraPresentation: cameraPresentation.begin,
       abortCameraPresentation: cameraPresentation.abort,
-      getMovementLocked,
-      setMovementLocked,
+      acquireMovementLock,
       startActivity: (activity, context) => (
         activityRunner.start(activity, context)
       ),

@@ -12,6 +12,7 @@ function harness({
   playerXmptRuntime = null,
   additionalActors = [],
   sceneStagingRuntime = null,
+  failFacingRestore = false,
 } = {}) {
   const calls = [];
   let motionStatus = 0;
@@ -42,6 +43,7 @@ function harness({
     }) : additionalActors.find(actor => actor.actorCode === code) || null,
     dialogueFacingState: id => structuredClone(facing.get(id) || null),
     restoreDialogueFacingState: (id, state) => {
+      if (failFacingRestore) throw new Error("actor disappeared");
       calls.push(["facing-restore", id, state]);
       if (state) facing.set(id, structuredClone(state));
       else facing.delete(id);
@@ -62,10 +64,10 @@ function harness({
     getPlayerPosition: () => [4, 5, 6],
     beginCameraPresentation: () => calls.push(["presentation-begin"]),
     abortCameraPresentation: () => calls.push(["presentation-abort"]),
-    getMovementLocked: () => movementLocked,
-    setMovementLocked: value => {
-      movementLocked = value;
-      calls.push(["movement", value]);
+    acquireMovementLock: () => {
+      movementLocked = true;
+      calls.push(["movement", true]);
+      return () => { movementLocked = false; calls.push(["movement", false]); };
     },
     startActivity: async (activity, context) => {
       calls.push(["activity", activity, context]);
@@ -129,6 +131,14 @@ test("failed tableau cleanup still restores the script's movement lock", () => {
   const transaction = h.adapters.begin({ area: "D000" });
   assert.equal(h.movementLocked(), true);
   assert.throws(() => h.adapters.rollback(transaction), /actor cleanup failed/);
+  assert.equal(h.movementLocked(), false);
+});
+
+test("failed actor cleanup cannot leak the script's movement lock", () => {
+  const h = harness({ failFacingRestore: true });
+  const transaction = h.adapters.begin({ area: "D000", actorCode: "HATO", actorInstanceId: "hato-1" });
+  assert.equal(h.adapters.lookAtActor({ actorCode: "HATO", targetActorCode: "AKIR" }, transaction), true);
+  assert.throws(() => h.adapters.rollback(transaction), /actor disappeared/);
   assert.equal(h.movementLocked(), false);
 });
 

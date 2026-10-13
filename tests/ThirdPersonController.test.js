@@ -39,6 +39,30 @@ import {
     terrainTransitionAllowed,
 } from "../src/ThirdPersonController.js";
 
+test("temporary movement owners release independently of each other and manual gameplay locks", () => {
+    for (const earlierFirst of [true, false]) {
+        const controller = Object.assign(Object.create(ThirdPersonController.prototype), {
+            manualMovementLocked: false, movementLocked: false, movementLockOwners: new Set(),
+            keys: new Set(), clearTouchMovement() {},
+        });
+        const releaseDate = controller.acquireMovementLock();
+        const releaseStory = controller.acquireMovementLock();
+        controller.setMovementLocked(false);
+        assert.equal(controller.movementLocked, true);
+        (earlierFirst ? releaseDate : releaseStory)();
+        assert.equal(controller.movementLocked, true);
+        (earlierFirst ? releaseStory : releaseDate)();
+        assert.equal(controller.movementLocked, false);
+        assert.equal(releaseDate(), false, "late/duplicate release is harmless");
+        controller.setMovementLocked(true);
+        const releaseTemporary = controller.acquireMovementLock();
+        releaseTemporary();
+        assert.equal(controller.movementLocked, true);
+        controller.setMovementLocked(false);
+        assert.equal(controller.movementLocked, false);
+    }
+});
+
 test("camera blockers exclude scheduled NPC meshes", () => {
     const enabled = () => true;
     assert.equal(defaultCameraBlockerPredicate({

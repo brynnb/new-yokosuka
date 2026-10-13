@@ -211,7 +211,8 @@ Do not describe the first conversation as fully animation-faithful.
 | Three Blades → Liu family → Liu Senior's sailors lead | Connected browser continuation verified through Ajiichi, daytime referrals, Liu Barber and Liu Senior. The nighttime cook/Yong/Wu referral is now also rendered and connected; all referrals converge on the same Liu clue. |
 | Nighttime sailors → Heartbeats alley | Personal waiting, Saijo's voiced lead and the alley's failure/retry/success path verified in the browser. Timed input is server-validated; defensive choreography remains approximate. |
 | Heartbeats interior → Charlie notebook lead | Connected real-door/browser check verifies voiced lead-in, failed QTE/retry, successful B,A,B,A inputs, clue settlement, restored Ryo/camera/controls and no replay on re-entry. Rendered cast uses held standing poses; attack choreography is not implemented. |
-| Charlie investigation / ambush / tattoo parlour / Chinese letter | Missing connected authored progression and remaining challenge presentation/outcomes. |
+| Charlie inquiries: Ono → jacket shops; optional Kinuyo → Nagai office → shopkeepers | Seven connected, rendered original-voiced talks and notebook leads verified after the bar-earned checkpoint, including personal daytime waiting, unlocked controls and reload. |
+| Arcade-area ambush / tattoo parlour / Chinese letter | Missing connected authored progression and remaining challenge presentation/outcomes. |
 | Harbor warehouses / Master Chen / Phoenix Mirror | Missing connected authored progression. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
@@ -554,5 +555,80 @@ or natural timing of every voice line. Real Yarn/PostgreSQL checks additionally
 cover missing prerequisites/Hato, opening hours, cancelled preparation,
 cancel-after-win, clue settlement, repeat and cross-character isolation.
 
-Charlie investigation, later ambushes, tattoo parlour and Chinese-letter
-progression remain missing; this is not completion of that whole chapter.
+The inquiries below continue this clue. The later ambush, tattoo parlour and
+Chinese-letter progression remain missing; this is not completion of that whole
+chapter.
+
+## Searching for Charlie: daytime inquiries
+
+These ordinary talks are data in `tools/scripting/story-investigation.json`,
+compiled into the existing official Yarn imports. All use personal Story mode,
+a completed opening, original HUMANS.AFS text/voice pairs, current NPC presence,
+the normal talk picker and existing participant-facing cleanup. There is no
+extra weather condition, camera package, item, reward or combat result.
+
+| Event / location | Gate | Original voice group | Saved clue |
+| --- | --- | --- | --- |
+| `ono-charlie-jackets` — Knocking Motorcycle Shop, Dobuita; 10:00–21:00 | Charlie lead | F1114 | Ask Tsuruoka at Jupitor's Jackets. |
+| `tsuruoka-charlie-evening` — Jupitor's Jackets, Dobuita; 10:00–20:00 | Charlie lead | F1032 | Sightings around 19:00. |
+| `kurita-charlie-evening` — Kurita Military Surplus, Dobuita; 10:00–20:30 | Charlie lead | F1033 | The same evening clue; alternative to Tsuruoka. |
+| `kinuyo-nagai-referral` — Kinuyo in Dobuita; 10:00–20:00 | Charlie lead | F1155 | Optional Nagai Industries inquiry, past Lapis. |
+| `nagai-charlie-inquiry` — Nagai Industries; 13:00–23:30 | Kinuyo's referral | F1223 | Ask the younger men in the office. |
+| `hasegawa-charlie-inquiry` — same office and hours | Kinuyo's referral | F1107 | Ask Toshiki for details. |
+| `toshiki-charlie-hangouts` — same office and hours | Kinuyo's referral | F1150 | Charlie visits the military surplus and jacket shops at night; ask the shopkeepers when. |
+
+### Common sequence, outcomes and provenance
+
+Click a resident, lock gameplay input, turn that resident toward Ryo, play the
+selected original voiced lines, restore facing, then settle that talk's completed
+milestone and its notebook clue together. Space advances a line; X/cancellation,
+failed preparation or disconnect settle nothing and leave a retry. Completed
+talks do not repeat or grant another page. Reload reads the same authoritative
+flags. No guessed native compatibility bits are written for these clues.
+
+The authored line order condenses first/repeat conversations rather than
+reconstructing native per-person dialogue counters. Tsuruoka and Kurita can be
+asked directly after learning about Charlie; Ono's referral is useful direction,
+not an extra mandatory gate. Nagai Industries remains optional, and its clues
+do not suppress the simpler shopkeeper route. Ambient/work poses and the
+player's gameplay camera remain the existing renderer's presentation, not
+recovered original conversation direction or gestures.
+
+The [original GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf)
+establishes the inquiry order and optional office route. The
+[Shotgunnova walkthrough](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404)
+distinguishes learning about evening visits from the later-night ambush: the
+ambush is not available on the bar-brawl day. The current inquiry events do not
+grant an ambush win or tattoo-parlour milestone. The later encounter still needs
+an explicit calendar gate and a validated combat outcome.
+
+The talk gates above are pragmatic authored daytime windows plus actual
+personal NPC presence. They are not a recovered native business/selector table.
+The shared waiting catalog now also offers 10:00 and 13:00 targets, through the
+same confirm/cancel, atomic personal clock settlement and private NPC refresh
+as evening/morning waiting. This remains a wait-anywhere adaptation; it does not
+implement sleeping, curfew or daily allowance collection.
+
+### Verification and input ownership
+
+`NEW_YOKOSUKA_CHARLIE_INQUIRIES_E2E=true` resumes a character that earned the
+bar clue in the earlier browser flow. It advances the actual personal clock,
+clicks all seven rendered residents, observes initial voice playback, advances
+the remaining lines with supported Space input, checks notebook leads and
+unchanged money, then reloads the saved Ryo, office location, date and progress.
+Travel is shortened by placing the test player near the real scheduled residents;
+this is not proof of walking every route or listening to every recorded line.
+Real PostgreSQL/Yarn tests separately cover gates, closing times, missing
+participants, cancellation/retry, repeated settlement and other-character
+isolation.
+
+The browser check exposed overlapping input locks: a talk could save the date
+overlay's `movementLocked=true` and restore that obsolete boolean on exit.
+The player controller now supplies independently owned temporary lock tokens.
+Yarn presentation, date overlays, modals and cutscenes release only their own
+tokens; a manual gameplay lock and other live owners remain effective. Focused
+tests cover both completion orders and modal handoff; a next-day browser check
+verifies that date transition and conversation cleanup leave movement unlocked.
+The fresh opening → natural allowance → saved reload check and desktop/mobile
+arcade-results modals also pass with the shared lock primitive. Error-path tests
+verify that failed actor cleanup still releases the event's input token.

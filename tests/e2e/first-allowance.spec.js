@@ -86,6 +86,12 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_CHARLIE_INQUIRIES_E2E === "true") {
+      await verifyCharlieInquiries(page, testInfo, character);
+      expect(errors).toEqual([]);
+      expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
+      return;
+    }
     if(process.env.NEW_YOKOSUKA_BAR_QTE_E2E === "true") {
       await verifyBarQte(page, testInfo, character);
       expect(errors).toEqual([]);
@@ -384,13 +390,25 @@ async function residentClickPoint(page, actor) {
   await page.waitForTimeout(1200);
   return page.evaluate(actor => {
     const life = window.storyProbe.lifecycle;
-    const point = life.vectorFromArray(life.scheduledActors.dialogueActor(actor).position);
-    point.y += 1.3;
+    const model = life.scheduledActors.dialogueActorModel(actor);
+    if (!model?.renderRoot) throw new Error(`No visible body for ${actor}`);
+    const bounds = model.renderRoot.getHierarchyBoundingVectors(true);
+    const point = bounds.min.add(bounds.max).scale(.5);
+    // Walking residents can move between positioning the player and clicking.
+    // Aim at the current rendered body, not a stale root + guessed head height.
+    const controller = life.getController(), position = controller.collider.position;
+    controller.cameraYaw = Math.atan2(-(point.x - position.x), -(point.z - position.z));
+    controller.cameraPitch = Math.atan2(position.y + controller.options.firstPersonHeadHeight - point.y,
+      Math.hypot(point.x - position.x, point.z - position.z));
+    controller.updateCamera(1);
     const rect = life.engine.getRenderingCanvas().getBoundingClientRect();
-    const screen = point.constructor.Project(point, life.scene.getTransformMatrix().constructor.Identity(), life.scene.getTransformMatrix(),
+    const viewProjection = life.scene.activeCamera.getViewMatrix(true).multiply(life.scene.activeCamera.getProjectionMatrix(true));
+    const screen = point.constructor.Project(point, viewProjection.constructor.Identity(), viewProjection,
       life.scene.activeCamera.viewport.toGlobal(life.engine.getRenderWidth(), life.engine.getRenderHeight()));
     return { x: rect.x + screen.x * rect.width / life.engine.getRenderWidth(),
-      y: rect.y + screen.y * rect.height / life.engine.getRenderHeight() };
+      y: rect.y + screen.y * rect.height / life.engine.getRenderHeight(),
+      modelCode: model.modelCode, actorPosition: life.scheduledActors.dialogueActor(actor).position,
+      renderedCenter: point.asArray(), playerPosition: position.asArray(), bounds: [bounds.min.asArray(), bounds.max.asArray()] };
   }, actor);
 }
 
@@ -561,4 +579,78 @@ async function verifyBarQte(page, testInfo, character) {
   await page.waitForTimeout(1500);
   expect(await page.evaluate(() => window.storyProbe.regions.controller.status)).toBe("idle");
   expect(await page.evaluate(() => window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+}
+
+async function verifyCharlieInquiries(page, testInfo, character) {
+  expect(character.storyFlags["notebook.s1.charlie"]).toBe(true);
+  const waitUntil = async (option, expectedHour) => {
+    await expect.poll(() => page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+    await page.locator("#story-wait-button").click();
+    await page.getByRole("option", { name: option, exact: true }).click();
+    await page.getByRole("button", { name: option, exact: true }).click();
+    await expect.poll(() => page.evaluate(() => window.storyProbe.regions.controller.status)).toBe("idle");
+    await expect.poll(() => page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+    const state = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+    expect(new Date(state.worldState.gameTimeMs).getUTCHours()).toBe(expectedHour);
+    expect(state.character.yen).toBe(character.yen);
+  };
+  // Resume the bar-earned clue, then advance the real personal clock. No
+  // fabricated flags, NPC routes or script completion replies are injected.
+  await waitUntil("Wait until tomorrow morning", 8);
+  await waitUntil("Wait until 10 a.m.", 10);
+  const talks = [
+    ["ONO_", "dobuita", "story.s1.ono-charlie-jackets.completed"],
+    ["TURU", "dobuita", "story.s1.tsuruoka-charlie-evening.completed"],
+    ["KURI", "dobuita", "story.s1.kurita-charlie-evening.completed"],
+    ["FKSM", "dobuita", "story.s1.kinuyo-nagai-referral.completed"],
+    ["NGAI", "dykz", "story.s1.nagai-charlie-inquiry.completed"],
+    ["TYHG", "dykz", "story.s1.hasegawa-charlie-inquiry.completed"],
+    ["TOSK", "dykz", "story.s1.toshiki-charlie-hangouts.completed"],
+  ];
+  for (const [actor, world, flag] of talks) {
+    if (actor === "NGAI") await waitUntil("Wait until 1 p.m.", 13);
+    if (character.storyFlags[flag]) continue;
+    await page.evaluate(async world => { await window.storyProbe.lifecycle.travelToWorld(world); }, world);
+    await page.waitForFunction(actor => window.storyProbe.lifecycle.scheduledActors.dialogueActor(actor), actor, { timeout: 60_000 });
+    const point = await residentClickPoint(page, actor);
+    expect(point.x).toBeGreaterThan(280);
+    expect(point.x).toBeLessThan(1025);
+    await page.screenshot({ path: testInfo.outputPath(`charlie-${actor}-before-talk.png`) });
+    await page.mouse.click(point.x, point.y);
+    await page.waitForFunction(() => window.storyProbe.dialogue?.active || window.storyProbe.sceneErrors.length);
+    expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
+    await page.waitForFunction(() => {
+      const audio = window.storyProbe.dialogue?.audio;
+      return audio && !audio.paused && audio.currentTime > 0;
+    }, null, { timeout: 15_000 });
+    await page.screenshot({ path: testInfo.outputPath(`charlie-${actor}-voiced.png`) });
+    for (let i = 0; i < 30 && !await page.evaluate(flag => window.storyProbe.regions.getCharacter()?.storyFlags?.[flag], flag); i++) {
+      await page.keyboard.press("Space"); await page.waitForTimeout(180);
+    }
+    await expect.poll(() => page.evaluate(flag => window.storyProbe.regions.getCharacter()?.storyFlags?.[flag], flag)).toBe(true);
+    await expect.poll(() => page.evaluate(() => window.storyProbe.regions.controller.status)).toBe("idle");
+    await expect.poll(() => page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  }
+  const saved = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+  expect(saved.character.yen).toBe(character.yen);
+  expect(saved.character.storyFlags["notebook.s1.charlie-evening"]).toBe(true);
+  expect(saved.character.storyFlags["notebook.s1.charlie-hangouts"]).toBe(true);
+  await page.locator("button").filter({ hasText: /^Notebook$/ }).click();
+  for (let i = 0; i < 30 && await page.locator("#journal-next").isEnabled(); i++) await page.locator("#journal-next").click();
+  await expect(page.getByText(/Charlie was seen around the jacket shop at about 7 p.m./)).toBeVisible();
+  await page.screenshot({ path: testInfo.outputPath("charlie-evening-notebook.png") });
+  await page.locator("#journal-close").click();
+  await page.reload();
+  await page.keyboard.press("Enter");
+  await page.locator(".account-entry-actions button").filter({ hasText: "Quick Play" }).click();
+  await page.locator(".character-slot-button:not(.empty)").first().click();
+  await page.locator("button").filter({ hasText: /^Enter World$/ }).click();
+  await page.waitForFunction(() => window.storyProbe.ready, null, { timeout: 120_000 });
+  const reloaded = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+  for (const [, , flag] of talks) expect(reloaded.character.storyFlags[flag]).toBe(true);
+  expect(reloaded.character.yen).toBe(character.yen);
+  expect(reloaded.character.avatarId).toBe("ryo");
+  expect(reloaded.character.worldId).toBe("dykz");
+  expect(new Date(reloaded.worldState.gameTimeMs).getUTCDate()).toBe(new Date(saved.worldState.gameTimeMs).getUTCDate());
+  expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
 }

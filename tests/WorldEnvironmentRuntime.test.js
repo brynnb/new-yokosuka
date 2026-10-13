@@ -4,6 +4,7 @@ import test from "node:test";
 import {
   WorldEnvironmentRuntime,
 } from "../play/world/WorldEnvironmentRuntime.js";
+import { ThirdPersonController } from "../src/ThirdPersonController.js";
 
 function createRuntime({ environment = {}, lighting = {} } = {}) {
   const calls = [];
@@ -47,8 +48,10 @@ function createRuntime({ environment = {}, lighting = {} } = {}) {
     setWorldDate: () => calls.push("date"),
     updateDebugClock: () => calls.push("debug"),
     showDayRollover: () => calls.push("rollover"),
-    getMovementLocked: () => false,
-    setMovementLocked: value => calls.push(["locked", value]),
+    acquireMovementLock: () => {
+      calls.push(["locked", true]);
+      return () => calls.push(["locked", false]);
+    },
     updateSceneLighting: () => calls.push("scene-lighting"),
     applyTimeOfDay: value => calls.push(["time", value]),
     updateModelVisibility: () => calls.push("visibility"),
@@ -177,6 +180,28 @@ test("day rollover temporarily owns and restores the movement lock", async () =>
     "rollover",
     ["locked", false],
   ]);
+});
+
+test("date-overlay completion cannot restore a stale lock over a completed or newer event", async () => {
+  for (const eventFirst of [true, false]) {
+    const { runtime } = createRuntime();
+    const player = Object.assign(Object.create(ThirdPersonController.prototype), {
+      movementLocked: false, manualMovementLocked: false, movementLockOwners: new Set(),
+      keys: new Set(), clearTouchMovement() {},
+    });
+    runtime.acquireMovementLock = () => player.acquireMovementLock();
+    let finish;
+    runtime.showDayRolloverOverlay = () => new Promise(resolve => { finish = resolve; });
+    const dateOverlay = runtime.showDayRollover(new Date("1986-12-05T08:30:00Z"));
+    const releaseEvent = player.acquireMovementLock();
+    if (eventFirst) releaseEvent();
+    finish(false);
+    await dateOverlay;
+    assert.equal(player.movementLocked, !eventFirst);
+    if (!eventFirst) releaseEvent();
+    assert.equal(player.movementLocked, false);
+    assert.equal(player.movementLockOwners.size, 0);
+  }
 });
 
 test("disposing the environment stops its synchronization timer", () => {

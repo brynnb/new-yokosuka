@@ -609,8 +609,7 @@ function createPlayRuntime() {
     showDayRollover: (world, date, signal) => (
       loadingScreen.showDayRollover(world, date, signal)
     ),
-    getMovementLocked: () => Boolean(controller?.movementLocked),
-    setMovementLocked: locked => controller?.setMovementLocked(locked),
+    acquireMovementLock: () => controller.acquireMovementLock(),
     updateSceneLighting: () => nativeSceneLighting.update(),
     applyTimeOfDay,
     updateModelVisibility,
@@ -913,8 +912,7 @@ function createPlayRuntime() {
       actorRoot.position.z,
     ],
     cameraPresentation: nativeCameraPresentation,
-    getMovementLocked: () => Boolean(controller?.movementLocked),
-    setMovementLocked: locked => controller?.setMovementLocked(locked),
+    acquireMovementLock: () => controller.acquireMovementLock(),
     dom,
     dialogueAudio,
     setDialogueControlsActive: active => (

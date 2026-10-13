@@ -34,7 +34,7 @@ for (const width of [1280, 390]) {
     await page.evaluate(async () => {
       // Reuse Vite's already-loaded module URL: importing a second Babylon
       // bundle registers engine extensions twice, which is not a game failure.
-      const babylonUrl = performance.getEntriesByType("resource").find(entry => entry.name.includes("/.vite/deps/@babylonjs_core.js"))?.name;
+      const babylonUrl = performance.getEntriesByType("resource").find(entry => new URL(entry.name).pathname.endsWith("/deps/@babylonjs_core.js"))?.name;
       if (!babylonUrl) throw Error("Cannot locate the application's Babylon module");
       const resultsUrl = performance.getEntriesByType("resource").find(entry => new URL(entry.name).pathname === "/play/ui/react/arcadeResultsStore.js")?.name;
       if (!resultsUrl) throw Error("Cannot locate the application's results store");
@@ -48,10 +48,13 @@ for (const width of [1280, 390]) {
       document.body.classList.remove("account-pending", "account-menu-visible");
       document.documentElement.classList.remove("mobile-sidebar-pending");
       const dom = queryPlayDom();
-      const controller = { movementLocked: false, setMovementLocked(value) { this.movementLocked = value; } };
+      const { ThirdPersonController } = await import('/src/ThirdPersonController.js');
+      const controller = Object.assign(Object.create(ThirdPersonController.prototype), {
+        movementLocked: false, manualMovementLocked: false, movementLockOwners: new Set(),
+        keys: new Set(), clearTouchMovement() {},
+      });
       const ui = new PlayUiCoordinator({
-        canvas: dom.canvas, getMovementLocked: () => controller.movementLocked,
-        setMovementLocked: value => controller.setMovementLocked(value),
+        canvas: dom.canvas, acquireMovementLock: () => controller.acquireMovementLock(),
       });
       results.configureArcadeResultsUi({
         onOpen: () => ui.openModal("arcade-results"),

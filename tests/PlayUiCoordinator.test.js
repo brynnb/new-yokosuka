@@ -1,20 +1,24 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { PlayUiCoordinator } from "../play/ui/PlayUiCoordinator.js";
+import { ThirdPersonController } from "../src/ThirdPersonController.js";
 
 function createHarness(initiallyLocked = false) {
-  let movementLocked = initiallyLocked;
+  const controller = Object.assign(Object.create(ThirdPersonController.prototype), {
+    movementLocked: initiallyLocked, manualMovementLocked: initiallyLocked,
+    movementLockOwners: new Set(), keys: new Set(), clearTouchMovement() {},
+  });
   const coordinator = new PlayUiCoordinator({
-    getMovementLocked: () => movementLocked,
-    setMovementLocked: value => { movementLocked = value; },
+    acquireMovementLock: () => controller.acquireMovementLock(),
   });
   return {
     coordinator,
-    movementLocked: () => movementLocked,
+    controller,
+    movementLocked: () => controller.movementLocked,
   };
 }
 
-test("a modal restores the movement state it observed on open", () => {
+test("a modal releases only its own lock, retaining an independent gameplay lock", () => {
   const unlocked = createHarness(false);
   unlocked.coordinator.openModal("settings");
   assert.equal(unlocked.movementLocked(), true);
@@ -49,10 +53,24 @@ test("opening or closing one modal twice is idempotent", () => {
 test("a modal can hand movement locking to the runtime it starts", () => {
   const harness = createHarness(false);
   harness.coordinator.openModal("pool-chooser");
+  const releasePool = harness.controller.acquireMovementLock();
   harness.coordinator.handoffModal("pool-chooser");
   assert.equal(harness.movementLocked(), true);
 
   harness.coordinator.openModal("settings");
   harness.coordinator.closeModal("settings");
   assert.equal(harness.movementLocked(), true);
+  releasePool();
+  assert.equal(harness.movementLocked(), false);
+});
+
+test("a modal and event may finish in either order without restoring stale locks", () => {
+  for (const modalFirst of [true, false]) {
+    const h = createHarness();
+    const releaseEvent = h.controller.acquireMovementLock();
+    h.coordinator.openModal("journal");
+    if (modalFirst) { h.coordinator.closeModal("journal"); releaseEvent(); }
+    else { releaseEvent(); h.coordinator.closeModal("journal"); }
+    assert.equal(h.movementLocked(), false);
+  }
 });

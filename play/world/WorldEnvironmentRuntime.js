@@ -17,8 +17,7 @@ export class WorldEnvironmentRuntime {
     setWorldDate,
     updateDebugClock,
     showDayRollover,
-    getMovementLocked,
-    setMovementLocked,
+    acquireMovementLock,
     updateSceneLighting,
     applyTimeOfDay,
     updateModelVisibility,
@@ -43,8 +42,7 @@ export class WorldEnvironmentRuntime {
     this.setWorldDate = setWorldDate;
     this.updateDebugClock = updateDebugClock;
     this.showDayRolloverOverlay = showDayRollover;
-    this.getMovementLocked = getMovementLocked;
-    this.setMovementLocked = setMovementLocked;
+    this.acquireMovementLock = acquireMovementLock;
     this.updateSceneLighting = updateSceneLighting;
     this.applyTimeOfDay = applyTimeOfDay;
     this.updateModelVisibility = updateModelVisibility;
@@ -105,8 +103,7 @@ export class WorldEnvironmentRuntime {
     if (this.rolloverController || !this.getReady() || this.isSwitching()) return;
     const controller = new AbortController();
     this.rolloverController = controller;
-    const movementWasLocked = this.getMovementLocked();
-    this.setMovementLocked(true);
+    const releaseMovementLock = this.acquireMovementLock();
     try {
       await this.showDayRolloverOverlay(
         this.getWorld(),
@@ -116,8 +113,8 @@ export class WorldEnvironmentRuntime {
     } finally {
       if (this.rolloverController === controller) {
         this.rolloverController = null;
-        this.setMovementLocked(movementWasLocked);
       }
+      releaseMovementLock();
     }
   }
 

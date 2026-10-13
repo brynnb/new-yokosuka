@@ -3,6 +3,41 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"ono-charlie-jackets","actor":"ONO_","area":"D000","title":"Ono — Charlie and the jacket shop","hours":[10,21],
+      "requiredFlags":["notebook.s1.charlie"],"completedFlag":"story.s1.ono-charlie-jackets.completed","effects":["notebook.s1.charlie-jackets"],
+      "voiceIds":["F1114A032","F1114B048","F1114A033","F1114B049","F1114B050","F1114A035","F1114B051","F1114B052","F1114A036","F1114B053"]
+    },
+    {
+      "id":"tsuruoka-charlie-evening","actor":"TURU","area":"D000","title":"Tsuruoka — Charlie's evening visits","hours":[10,20],
+      "requiredFlags":["notebook.s1.charlie"],"completedFlag":"story.s1.tsuruoka-charlie-evening.completed","effects":["notebook.s1.charlie-evening"],
+      "voiceIds":["F1032A026","F1032B041","F1032A027","F1032B042","F1032A028","F1032B043","F1032B044","F1032A029","F1032B045","F1032B047","F1032A030","F1032B048","F1032A031","F1032B049","F1032B052"]
+    },
+    {
+      "id":"kurita-charlie-evening","actor":"KURI","area":"D000","title":"Kurita — Charlie's evening visits","hours":[10,20.5],
+      "requiredFlags":["notebook.s1.charlie"],"completedFlag":"story.s1.kurita-charlie-evening.completed","effects":["notebook.s1.charlie-evening"],
+      "voiceIds":["F1033A028","F1033B047","F1033A029","F1033B048","F1033B049","F1033A031","F1033B050","F1033B051","F1033A032","F1033B053","F1033B055","F1033A030"]
+    },
+    {
+      "id":"kinuyo-nagai-referral","actor":"FKSM","area":"D000","title":"Kinuyo — Nagai Industries","hours":[10,20],
+      "requiredFlags":["notebook.s1.charlie"],"completedFlag":"story.s1.kinuyo-nagai-referral.completed","effects":["notebook.s1.nagai-industries"],
+      "voiceIds":["F1155A030","F1155B059","F1155B060","F1155A031","F1155A032","F1155B061","F1155A033","F1155B062","F1155B063","F1155B064","F1155A034","F1155A035","F1155B065","F1155B066","F1155B068","F1155B069","F1155B070"]
+    },
+    {
+      "id":"nagai-charlie-inquiry","actor":"NGAI","area":"DYKZ","title":"Nagai — ask the younger men","hours":[13,23.5],
+      "requiredFlags":["notebook.s1.nagai-industries"],"completedFlag":"story.s1.nagai-charlie-inquiry.completed","effects":["notebook.s1.nagai-younger-men"],
+      "voiceIds":["F1223A001","F1223B001","F1223A002","F1223B002","F1223B003","F1223A003","F1223A006","F1223B004","F1223B005","F1223A007","F1223B006","F1223A008","F1223B007","F1223B008"]
+    },
+    {
+      "id":"hasegawa-charlie-inquiry","actor":"TYHG","area":"DYKZ","title":"Hasegawa — ask Toshiki","hours":[13,23.5],
+      "requiredFlags":["notebook.s1.nagai-industries"],"completedFlag":"story.s1.hasegawa-charlie-inquiry.completed","effects":["notebook.s1.toshiki-charlie"],
+      "voiceIds":["F1107A002","F1107A004","F1107B003","F1107A005","F1107B004","F1107A006","F1107B005","F1107A007","F1107B006","F1107B007","F1107A008","F1107B010"]
+    },
+    {
+      "id":"toshiki-charlie-hangouts","actor":"TOSK","area":"DYKZ","title":"Toshiki — Charlie's hangouts","hours":[13,23.5],
+      "requiredFlags":["notebook.s1.nagai-industries"],"completedFlag":"story.s1.toshiki-charlie-hangouts.completed","effects":["notebook.s1.charlie-hangouts"],
+      "voiceIds":["F1150A001","F1150B001","F1150A003","F1150B002","F1150B003","F1150A004","F1150B004","F1150B005","F1150A005","F1150B009"]
+    },
+    {
       "id":"heartbeats-bar","actor":"HATO","participants":["SERA","JONZ","HARY"],"presentActors":["HATO"],"area":"DBHB","trigger":"automatic",
       "title":"Heartbeats — the bar fight and Charlie lead","hours":[19,4],
       "requiredFlags":["notebook.s1.sailors","story.s1.heartbeats-alley.completed"],"completedFlag":"story.s1.heartbeats-bar.completed","effects":["notebook.s1.charlie"],

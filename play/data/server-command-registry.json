@@ -18,6 +18,8 @@
     {"kind":"activity","policy":"closed"}
   ],
   "capabilities": [
+    {"kind":"story-time","identifier":"s1.wait.late-morning","description":"Reviewed personal waiting target at 10:00, useful for daytime shop inquiries."},
+    {"kind":"story-time","identifier":"s1.wait.afternoon","description":"Reviewed personal waiting target at 13:00, when Nagai Industries opens."},
     {"kind":"sequence","identifier":"s1.heartbeats.bar.staging.start","description":"Authored bar cast and camera, held across dialogue and a real QTE; presentation only."},
     {"kind":"sequence","identifier":"s1.heartbeats.bar.staging.finish","description":"Restore the bar cast, camera and player pose before any clue settlement."},
     {"kind":"bounds","identifier":"s1.d000.heartbeats-alley","description":"Authored approach around original YQ14 Ryo staging in shared Dobuita coordinates."},

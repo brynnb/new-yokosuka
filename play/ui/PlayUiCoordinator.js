@@ -7,39 +7,39 @@ export class PlayUiCoordinator {
     getBinding = () => null,
     getMenuRoot = () => null,
     getMenuSounds = () => null,
-    getMovementLocked,
-    setMovementLocked,
+    acquireMovementLock,
   }) {
     this.canvas = canvas;
     this.controlHintHud = controlHintHud;
     this.getBinding = getBinding;
     this.getMenuRoot = getMenuRoot;
     this.getMenuSounds = getMenuSounds;
-    this.getMovementLocked = getMovementLocked;
-    this.setMovementLocked = setMovementLocked;
+    this.acquireMovementLock = acquireMovementLock;
     this.lockOwners = new Set();
-    this.movementLockBeforeModals = false;
+    this.releaseModalMovementLock = null;
     this.activeControlHintDevice = "keyboard";
   }
 
   openModal(owner) {
     if (this.lockOwners.has(owner)) return;
     if (this.lockOwners.size === 0) {
-      this.movementLockBeforeModals = Boolean(this.getMovementLocked());
+      this.releaseModalMovementLock = this.acquireMovementLock();
     }
     this.lockOwners.add(owner);
-    this.setMovementLocked(true);
   }
 
   closeModal(owner) {
     if (!this.lockOwners.delete(owner)) return;
-    this.setMovementLocked(
-      this.lockOwners.size > 0 || this.movementLockBeforeModals,
-    );
+    if (this.lockOwners.size === 0) {
+      this.releaseModalMovementLock?.();
+      this.releaseModalMovementLock = null;
+    }
   }
 
   handoffModal(owner) {
-    this.lockOwners.delete(owner);
+    // The destination runtime acquires its own lock before this handoff.
+    // Retaining a modal's lock after dropping its owner would orphan it.
+    this.closeModal(owner);
   }
 
   visibleMenuControls() {

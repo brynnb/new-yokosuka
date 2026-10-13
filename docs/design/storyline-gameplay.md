@@ -1,15 +1,15 @@
 # Storyline gameplay integration
 
 Status: authored Story prototype plus retained native-engine research
-Last reviewed: October 12, 2026
+Last reviewed: October 13, 2026
 
 The [implemented play modes](../implementation/play-modes.md) isolate Story
 and Free roam saves, calendars and NPC views. The current implementation uses
 walkthrough-guided Yarn events with original presentation assets. The
 [connected progression checklist](story-event-template.md#connected-progression-checklist)
-is the source of truth for playable coverage and verification. Opening,
-allowance, dojo and the first kitten encounter have connected browser evidence;
-the whole storyline is not implemented.
+is the source of truth for playable coverage and verification. Connected browser
+coverage reaches the opening, allowance, early witnesses, Heartbeats and the
+Charlie inquiries. The whole storyline is not implemented.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

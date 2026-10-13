@@ -98,11 +98,10 @@ export function createNativeCutsceneAssembly({
       }
       const snapshot = {
         noClip: controller.noClip,
-        movementLocked: controller.movementLocked,
         lightingPresetIndex: activeLightingPresetIndex,
         precipitation: activePrecipitation,
       };
-      controller.setMovementLocked(true);
+      const releaseMovementLock = controller.acquireMovementLock();
       controller.setNoClip(true);
       setPresentationActive(true);
       musicControls.setPlaybackPaused(false);
@@ -123,7 +122,7 @@ export function createNativeCutsceneAssembly({
         if (released) return;
         released = true;
         controller.setNoClip(snapshot.noClip);
-        controller.setMovementLocked(snapshot.movementLocked);
+        releaseMovementLock();
         setPresentationActive(false);
         if (requestedLightingPresetIndex !== undefined) {
           activeLightingPresetIndex = snapshot.lightingPresetIndex;
