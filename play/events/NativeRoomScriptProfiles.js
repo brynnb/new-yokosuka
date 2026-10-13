@@ -158,13 +158,19 @@ export function applyNativeInteractionManagerProfile(sceneState, program) {
   ) {
     throw new TypeError("native room script gameplay state is required");
   }
-  sceneState.clearInteractionManager();
-  if (!program) return { applied: false, managerId: null };
-  const manager = NATIVE_INTERACTION_MANAGERS.getBySource(program);
+  const manager = program ? NATIVE_INTERACTION_MANAGERS.getBySource(program) : null;
   if (!manager) {
+    sceneState.clearInteractionManager();
     return { applied: false, managerId: null };
   }
-  sceneState.configureInteractionManager(manager);
+  // This is room-owned state, not per-event scratch. A new transaction in the
+  // same exact source must retain committed slots for subsequent native polls.
+  // Area activation clears the owner; a different disc/hash replaces it. The
+  // transaction snapshot still restores the old owner if setup/execution fails.
+  if (sceneState.interactionManager?.identity !== manager.id
+    || !sceneState.interactionManager.isConfigured()) {
+    sceneState.configureInteractionManager(manager);
+  }
   return { applied: true, managerId: manager.id };
 }
 

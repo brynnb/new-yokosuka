@@ -87,7 +87,10 @@ export class NativeInteractionManagerState {
       [...records].map(([index, record]) => [index, record.vectorWords]),
     );
     this.runtimeSlots = Array.from({ length: 16 }, () => ({
-      words: [0, 0, 0, -3, 0, 0],
+      // Original manager initializer 0xc15dbcc, stores at 0xc15dc6c-0xc15dcda.
+      // Keep word two's -1 sentinel and word five's control value: these are
+      // not an all-zero payload with only a free-status marker.
+      words: [0, 0, -1, -3, 0, 5],
     }));
     this.revision += 1;
     return this.readConfiguration();
@@ -153,7 +156,9 @@ export class NativeInteractionManagerState {
       words: [
         secondWord,
         firstWord,
-        0,
+        // 0xc15dede writes offsets 0, 4, 12, 16 and 20 only. Offset 8 belongs
+        // to the existing slot; reallocation must not silently overwrite it.
+        this.runtimeSlots[index].words[2],
         2,
         0,
         5,

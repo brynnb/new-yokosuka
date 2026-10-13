@@ -641,6 +641,24 @@ initializer and its runtime scene bindings still need execution support.
 These checks use the real scoped package but supplied clock/arrival context;
 they do not prove automatic live initialization or visible gameplay.
 
+The existing interaction-manager lookup profile now preserves committed runtime
+slots across consecutive events from the same exact disc/area/MAPINFO source.
+Previously every transaction reconfigured the manager and discarded its slots,
+so a later native status query could not observe the earlier allocation.
+Cancelled execution and failed setup restore the previous manager snapshot;
+changing native area clears it, and a different or unrecognized source cannot
+reuse the old owner. This remains a bounded sixteen-slot room session, not a
+new persistent save store.
+
+The original initializer at `0xc15dbcc` sets each slot's six words to
+`[0, 0, -1, -3, 0, 5]`. The allocator at `0xc15dede` writes offsets 0, 4, 12,
+16 and 20 while preserving offset 8. Runtime initialization and allocation now
+match those verified bytes instead of zeroing the third/control words. Focused
+tests cover these values, allocation exhaustion, same-source continuation,
+source replacement, cancellation, setup failure and travel reset. This fixes
+the existing state owner; it does **not** implement secondary `0x0000`'s full
+scene-binding/task initialization or establish rendered JOMO startup.
+
 The initialization route is catalogued, not automatically enabled as a live
 startup path. Source closure discovery, name bindings and request-queue state
 are not proof that motion/model data is resident or rendered. The supplied
