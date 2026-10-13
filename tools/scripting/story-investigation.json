@@ -3,6 +3,17 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"parking-lot-ambush","actor":"TONY","presentActors":[],"area":"D000","trigger":"enter","title":"Charlie's gang — the parking-lot ambush","hours":[19,23.5],
+      "requiredFlags":["story.s1.heartbeats-bar.completed","notebook.s1.charlie-evening"],"completedFlag":"story.s1.parking-lot-ambush.completed","effects":["notebook.s1.tattoo-parlor"],
+      "bounds":"s1.d000.arcade-ambush","dayAfter":"story.s1.heartbeats-bar.day","recordDays":["story.s1.parking-lot-ambush.day"],
+      "legacyDateNotice":"This older Story save has no date for the bar fight. I'll continue this lead on another night.",
+      "combat":"s1.d000.parking-lot","introductionActivities":["s1.d000.ambush.introduction","s1.d000.ambush.trap"],"staging":"s1.d000.ambush.interrogation",
+      "dialogueArchive":{"path":"data/SCENE/01/STREAM/E1068.AFS","sha256":"7be992b858de13bcd6522cd242b784ed8fa480f189b9b2f27abb9c940732349a"},
+      "victoryChoices":[{"label":"Ask about Charlie","voiceIds":["E1068A001","E1068B001","E1068B003"]},{"label":"Ask about the tattoo","voiceIds":[]}],
+      "voiceIds":["E1068A002","E1068B004","E1068B005","E1068B006","E1068A003","E1068B007","E1068B008"],
+      "provenance":"Original DRAUTH introductions and E1068 voice/subtitle pairs. Walkthrough-backed five-opponent fight, nighttime Suzume Park-side approach, and later-than-bar-brawl day. Authored arena/health/basic combat rules and interrogation camera/standing pose are approximations. Failure retries only the fight; successful settlement leaves the player at the approach rather than reproducing the original parking-lot exit. Older prototype saves missing the bar date explicitly record a conservative dating baseline and require another night."
+    },
+    {
       "id":"ono-charlie-jackets","actor":"ONO_","area":"D000","title":"Ono — Charlie and the jacket shop","hours":[10,21],
       "requiredFlags":["notebook.s1.charlie"],"completedFlag":"story.s1.ono-charlie-jackets.completed","effects":["notebook.s1.charlie-jackets"],
       "voiceIds":["F1114A032","F1114B048","F1114A033","F1114B049","F1114B050","F1114A035","F1114B051","F1114B052","F1114A036","F1114B053"]
@@ -39,6 +50,7 @@
     },
     {
       "id":"heartbeats-bar","actor":"HATO","participants":["SERA","JONZ","HARY"],"presentActors":["HATO"],"area":"DBHB","trigger":"automatic",
+      "recordDays":["story.s1.heartbeats-bar.day"],
       "title":"Heartbeats — the bar fight and Charlie lead","hours":[19,4],
       "requiredFlags":["notebook.s1.sailors","story.s1.heartbeats-alley.completed"],"completedFlag":"story.s1.heartbeats-bar.completed","effects":["notebook.s1.charlie"],
       "challenge":"s1.heartbeats.bar","staging":"s1.heartbeats.bar.staging",

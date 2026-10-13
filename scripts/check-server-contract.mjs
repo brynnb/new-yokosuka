@@ -13,6 +13,7 @@ if (process.argv.includes("--sync-scripting")) {
     ["internal/scriptcontent/commands.v1.json", "play/data/server-command-registry.json"],
     ["internal/scriptevent/story_regions.json", "play/data/story-regions.json"],
     ["internal/scriptcontent/story_time.v1.json", "play/data/story-time-transitions.json"],
+    ["internal/scriptevent/combats.json", "play/data/story-combat.json"],
   ]) fs.writeFileSync(path.join(clientRoot, target), fs.readFileSync(path.join(serverRoot, source)));
 }
 
@@ -49,6 +50,8 @@ assert.deepEqual(readJSON(clientRoot, "play/data/story-regions.json"),
 
 assert.deepEqual(readJSON(clientRoot,"play/data/story-time-transitions.json"),
   readJSON(serverRoot,"internal/scriptcontent/story_time.v1.json"),"Story time transition catalogs differ");
+assert.deepEqual(readJSON(clientRoot,"play/data/story-combat.json"),
+  readJSON(serverRoot,"internal/scriptevent/combats.json"),"Story combat catalogs differ");
 
 assert.deepEqual(
   withoutKeys(

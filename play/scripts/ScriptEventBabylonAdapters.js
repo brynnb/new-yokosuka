@@ -20,6 +20,7 @@ export class ScriptEventBabylonAdapters {
     telephoneRuntime = null,
     motionCueRuntime = null,
     sceneStagingRuntime = null,
+    combatRuntime = null,
   } = {}) {
     if (
       typeof cameraRuntime?.beginTransaction !== "function"
@@ -81,6 +82,7 @@ export class ScriptEventBabylonAdapters {
     }
     this.motionCueRuntime = motionCueRuntime;
     this.sceneStagingRuntime = sceneStagingRuntime;
+    this.combatRuntime=combatRuntime;
   }
 
   adapter() {
@@ -108,7 +110,9 @@ export class ScriptEventBabylonAdapters {
       update: (transaction, deltaSeconds) => (
         this.update(transaction, deltaSeconds)
       ),
-      ownsPlayerPresentation: transaction => Boolean(transaction.cameraToken
+      showCombat:(view,transaction)=>this.combatRuntime.show(view,transaction),
+      endCombat:transaction=>this.combatRuntime.finish(transaction),
+      ownsPlayerPresentation: transaction => Boolean(transaction.cameraToken || this.combatRuntime?.active?.transaction===transaction
         || this.sceneStagingRuntime?.active?.transaction === transaction),
       commit: transaction => this.commit(transaction),
       rollback: (transaction, reason) => this.rollback(transaction, reason),
@@ -282,6 +286,7 @@ export class ScriptEventBabylonAdapters {
   }
 
   update(transaction, deltaSeconds) {
+    if(this.combatRuntime?.update(transaction,deltaSeconds)===false)return false;
     if (this.sceneStagingRuntime?.update(transaction, deltaSeconds) === false) return false;
     if (transaction.cameraToken) this.cameraRuntime.update(deltaSeconds);
     if (
@@ -306,6 +311,7 @@ export class ScriptEventBabylonAdapters {
   }
 
   commit(transaction) {
+    if(this.combatRuntime?.active?.transaction===transaction)throw new Error("Combat presentation has not released ownership");
     if (transaction.pendingMotion || transaction.pendingActivity) {
       throw new Error("script presentation committed during an unfinished operation");
     }
@@ -340,8 +346,10 @@ export class ScriptEventBabylonAdapters {
 
   rollbackOwnedPresentation(transaction) {
     let sceneCleanupError = null;
-    try { this.sceneStagingRuntime?.cancel(transaction); }
+    try { this.combatRuntime?.finish(transaction); }
     catch (error) { sceneCleanupError = error; }
+    try { this.sceneStagingRuntime?.cancel(transaction); }
+    catch (error) { sceneCleanupError ||= error; }
     this.telephoneRuntime?.cancel(transaction);
     this.motionCueRuntime?.cancel(transaction);
     if (transaction.pendingActivity) {

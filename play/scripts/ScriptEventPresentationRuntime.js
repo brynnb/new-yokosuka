@@ -44,6 +44,8 @@ export class ScriptEventPresentationRuntime {
   get ownsPlayerPresentation() {
     return Boolean(this.transaction && this.adapters.ownsPlayerPresentation?.(this.transaction));
   }
+  showCombat(view) {if(!this.transaction)throw new Error("Combat has no presentation transaction");return this.adapters.showCombat(view,this.transaction);}
+  endCombat() {return this.adapters.endCombat(this.transaction);}
 
   async execute(event) {
     if (!this.transaction) {

@@ -53,6 +53,7 @@ export class NativeStoryRuntime {
 
   get presentationActive() {
     return Boolean(this.isStartupPresentationActive()
+      || this.eventController.ownsPlayerPresentation
       || this.cutscenes.active || this.getActivityRunner()?.active);
   }
 

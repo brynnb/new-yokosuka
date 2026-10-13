@@ -102,6 +102,8 @@ export class ScriptEventDialoguePresenter {
     onAdvance = () => {},
     onSelect = () => {},
     onChallengeResponse = () => {},
+    onCombatAction = () => {},
+    onCombatGuard = () => {},
     onActiveChanged = () => {},
   } = {}) {
     this.dom = { root, speaker, sourceText, japaneseText, options };
@@ -115,6 +117,7 @@ export class ScriptEventDialoguePresenter {
     this.onAdvance = onAdvance;
     this.onSelect = onSelect;
     this.onChallengeResponse = onChallengeResponse;
+    this.onCombatAction=onCombatAction;this.onCombatGuard=onCombatGuard;
     this.onActiveChanged = onActiveChanged;
     this.audio = null;
     this.active = false;
@@ -179,6 +182,31 @@ export class ScriptEventDialoguePresenter {
       }
     }
     return true;
+  }
+  showCombat(view) {
+    this.releaseAudio();this.active=true;
+    this.dom.root.setAttribute("data-presentation","combat");
+    this.dom.speaker.textContent=view.label.toUpperCase();
+    this.dom.root.hidden=false;this.dom.root.setAttribute("aria-hidden","false");
+    this.dom.japaneseText.hidden=true;this.onActiveChanged(true);
+    const player=view.actors.find(actor=>actor.tag==="AKIR");
+    const remaining=view.actors.filter(actor=>actor.tag!=="AKIR"&&actor.health>0).length;
+    this.dom.sourceText.textContent=view.ready?`Health: ${player.health}/${player.maxHealth} · Opponents: ${remaining}\nUse your movement/combat controls or the buttons below. Cancel to leave.`:"Preparing the fight...";
+    if(this.combatToken===view.token)return true;
+    this.clearOptions();this.combatToken=view.token;
+    const current=()=>this.active&&this.combatToken===view.token;
+    for(const [label,action]of [["Punch","hand"],["Kick","leg"],["Throw","throw"]]) {
+      const button=this.dom.options.ownerDocument.createElement("button");button.type="button";button.className="dialogue-option";button.textContent=label;
+      button.addEventListener("click",()=>{
+        if(!current())return;
+        this.onCombatAction(action);this.dom.options.ownerDocument.querySelector?.("#renderCanvas")?.focus();
+      });
+      this.dom.options.append(button);
+    }
+    const guard=this.dom.options.ownerDocument.createElement("button");guard.type="button";guard.className="dialogue-option";guard.textContent="Guard (hold)";
+    guard.addEventListener("pointerdown",event=>{if(current()){guard.setPointerCapture?.(event.pointerId);this.onCombatGuard(true);}});
+    for(const name of ["pointerup","pointercancel","lostpointercapture"])guard.addEventListener(name,()=>{if(current())this.onCombatGuard(false);});
+    this.dom.options.append(guard);this.dom.options.hidden=false;return true;
   }
 
   showOptions(options) {
@@ -256,6 +284,8 @@ export class ScriptEventDialoguePresenter {
   }
 
   hide() {
+    this.combatToken=null;this.onCombatGuard?.(false);
+    this.dom.root.setAttribute("data-presentation","dialogue");
     clearTimeout(this.challengeTimer);this.challengeTimer=null;
     if(this.challengeKeyHandler)this.challengeKeyTarget.removeEventListener("keydown",this.challengeKeyHandler,true);
     this.challengeKeyHandler=null;

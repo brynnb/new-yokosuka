@@ -73,6 +73,7 @@ export class PlayCharacterAssembly {
       bankUrls: {
         mbas: scheduledMbasMotionUrl,
         free: "/motion/MOTION.BIN",
+        fight: "/motion/M_FGT1.BIN",
         mobj: scheduledMobjMotionUrl,
         s2Npc: shenmue2NpcMotionUrl,
         s2NpcTable: shenmue2NpcTableMotionUrl,

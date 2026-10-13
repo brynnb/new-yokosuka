@@ -9,7 +9,8 @@ walkthrough-guided Yarn events with original presentation assets. The
 [connected progression checklist](story-event-template.md#connected-progression-checklist)
 is the source of truth for playable coverage and verification. Connected browser
 coverage reaches the opening, allowance, early witnesses, Heartbeats and the
-Charlie inquiries. The whole storyline is not implemented.
+Charlie inquiries and the parking-lot ambush's tattoo-parlour lead. The whole
+storyline is not implemented.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative
@@ -331,6 +332,15 @@ old callbacks or movie completion from awarding success. Failure and timeout
 offer a retry; cancellation settles nothing. The Heartbeats interior now uses
 the same primitive for B/A/B/A, with original E1030 voices and an authored held
 cast, then settles the Charlie clue. Later story challenges remain missing.
+
+The parking-lot ambush extends the same event ownership with `start_combat` and
+`combat_result`. The server simulates bounded movement, health, strikes and
+opponent decisions from sequenced player intents; a client cannot supply health,
+damage, position or victory. The browser reuses cinematic actor ownership,
+named-motion rendering, the gameplay camera and existing combat input. The fight
+is ephemeral within the Yarn run; only the final interrogation settles its clue.
+The [event definition](story-event-template.md#arcade-area-ambush-the-tattoo-parlour-lead)
+records the original assets and intentionally simplified mechanics.
 
 The native controller-state runtime can read the original-shaped controller
 fields, but ordinary gameplay input is not currently written into those

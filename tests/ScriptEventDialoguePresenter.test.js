@@ -52,6 +52,26 @@ test("challenge prompts own their tokens, touch buttons and timeout lifetime", a
   assert.equal(presenter.challengeTimer,null);
 });
 
+test("combat controls retain focus between snapshots and reject old-attempt clicks", () => {
+  const calls=[];
+  const root=element(),options=optionsElement();
+  const presenter=createScriptEventDialoguePresenter({root,speaker:element(),sourceText:element(),japaneseText:element(),options,
+    onCombatAction:action=>calls.push(action),onCombatGuard:guard=>calls.push(guard)});
+  const view={label:"Fight",token:"a".repeat(32),ready:true,actors:[{tag:"AKIR",health:100,maxHealth:100},{tag:"TONY",health:28}]};
+  presenter.showCombat(view);
+  const [punch,,,guard]=options.children;
+  presenter.showCombat({...view,sequence:2});
+  assert.equal(options.children[0],punch);
+  punch.listeners.click();guard.listeners.pointerdown({pointerId:1});
+  assert.deepEqual(calls.slice(-2),["hand",true]);
+  presenter.hide();presenter.showCombat({...view,token:"b".repeat(32)});
+  const count=calls.length;
+  punch.listeners.click();guard.listeners.pointerup();
+  assert.equal(calls.length,count);
+  assert.equal(root.attributes.get("data-presentation"),"combat");
+  presenter.hide();assert.equal(root.attributes.get("data-presentation"),"dialogue");
+});
+
 test("line presentation requires an explicit known speaker and permits optional voice", () => {
   assert.deepEqual(scriptEventLinePresentation({
     text: "Hato: Ain't got time.[br/]Get out.",

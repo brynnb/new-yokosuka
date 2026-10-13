@@ -33,6 +33,10 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ...[["introduction",0,0xb138a,0xb1391],["trap",1,0xb1392,0xb1399]].map(([part,slot,primaryPointer,secondaryPointer])=>[`s1.d000.ambush.${part}`,{
+    kind:"native-cutscene",area:"D000",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:`story-parking-lot-${part}`,packageId:"drauth",worldId:"dobuita",storyPresentation:true,activity:{slot,binding:{primaryPointer,secondaryPointer}}},
+  }]),
   ...[
     ["introduction",0,718875,718888],
     ["beer",1,718893,718906],

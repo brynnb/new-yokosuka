@@ -38,6 +38,19 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   for (const [file, hook] of [
     ["scripts/ScriptEventController", `const probeFailure = ScriptEventController.prototype.fail;
       ScriptEventController.prototype.fail = function(error,...args) { window.storyProbe.sceneErrors.push(error.message); return probeFailure.call(this,error,...args); };`],
+    ["scripts/StoryCombatRuntime", `const probeCombatShow = StoryCombatRuntime.prototype.show;
+      StoryCombatRuntime.prototype.show = function(...args) {
+        window.storyProbe.combatRuntime = this;
+        if(!this.probeIntent) {
+          this.probeIntent = true; const send = this.onIntent;
+          this.onIntent = (...args) => {
+            const accepted = send(...args);
+            if(accepted && args[0] === 'combat_input') window.storyProbe.combatIntents.push({...args[2],token:args[1],time:performance.now()});
+            return accepted;
+          };
+        }
+        return probeCombatShow.apply(this,args);
+      };`],
     ["dialogue/NativeDialogueOverlayRuntime", `window.nativeDialogueHookInstalled = true;
       const probeNativeStart = NativeDialogueOverlayRuntime.prototype.start;
       NativeDialogueOverlayRuntime.prototype.start = function(options,...args) { window.storyProbe.nativeStarts.push(options.actorCode); return probeNativeStart.call(this,options,...args); };`],
@@ -56,7 +69,7 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.route("**/play/play.js*", route => route.fulfill({ contentType: "application/javascript", body: `
     import { PlayApplication } from '/play/PlayApplication.js';
     import { ArcadeAttractScreens } from '/play/arcade/ArcadeAttractScreens.js';
-    window.storyProbe = { starts: [], nativeStarts: [], ready: false, errors: [], sceneErrors: [] };
+    window.storyProbe = { starts: [], nativeStarts: [], combatIntents: [], ready: false, errors: [], sceneErrors: [] };
     const create = ArcadeAttractScreens.prototype.create;
     ArcadeAttractScreens.prototype.create = function(id) { return this.definitions[id]?.audioChannel === 'tv' ? null : create.call(this,id); };
     const application = new PlayApplication();
@@ -90,6 +103,12 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       await verifyCharlieInquiries(page, testInfo, character);
       expect(errors).toEqual([]);
       expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
+      return;
+    }
+    if(process.env.NEW_YOKOSUKA_AMBUSH_E2E === "true") {
+      await verifyParkingLotAmbush(page,testInfo,character);
+      expect(errors).toEqual([]);
+      expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
       return;
     }
     if(process.env.NEW_YOKOSUKA_BAR_QTE_E2E === "true") {
@@ -653,4 +672,108 @@ async function verifyCharlieInquiries(page, testInfo, character) {
   expect(reloaded.character.worldId).toBe("dykz");
   expect(new Date(reloaded.worldState.gameTimeMs).getUTCDate()).toBe(new Date(saved.worldState.gameTimeMs).getUTCDate());
   expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+}
+
+async function verifyParkingLotAmbush(page,testInfo,character) {
+  expect(character.storyFlags["notebook.s1.charlie-evening"]).toBe(true);
+  if(character.storyFlags["story.s1.parking-lot-ambush.completed"]) {
+    await verifySavedAmbush(page,testInfo,character);
+    return;
+  }
+  const wait=async label=> {
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+    await page.locator("#story-wait-button").click();await page.getByRole("option",{name:label,exact:true}).click();
+    await page.getByRole("button",{name:label,exact:true}).click();
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  };
+  const hour=new Date((await(await page.request.get(`/api/characters/${character.id}/state`)).json()).worldState.gameTimeMs).getUTCHours();
+  if(hour>=23){await wait("Wait until tomorrow morning");await wait("Wait until 7 p.m.");}
+  else if(hour<19)await wait("Wait until 7 p.m.");
+  const approach=async()=> {
+    await page.evaluate(async()=>{const life=window.storyProbe.lifecycle;await life.travelToWorld("dobuita");life.resetPlayer(life.vectorFromArray([-19.76,0,32]),Math.PI,{persist:false});});
+    await page.waitForTimeout(500);await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+    try{await page.waitForFunction(()=>window.storyProbe.regions.controller.status!=="idle" || window.storyProbe.starts.includes("story-parking-lot-introduction") || window.storyProbe.sceneErrors.length,null,{timeout:15_000});}
+    finally{await page.keyboard.up("KeyW");}
+  };
+  await approach();
+  await page.waitForFunction(()=>window.storyProbe.dialogue?.active || window.storyProbe.starts.includes("story-parking-lot-introduction") || window.storyProbe.sceneErrors.length);
+  if(await page.getByText(/This older Story save has no date/).isVisible()) {
+    await page.keyboard.press("Space");await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+    const before=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+    expect(before.character.storyFlags["story.s1.parking-lot-ambush.completed"]).not.toBe(true);
+    await approach();await page.waitForTimeout(1500);
+    expect(await page.evaluate(()=>window.storyProbe.starts.includes("story-parking-lot-introduction"))).toBe(false,"dating baseline cannot permit a same-night ambush");
+    await wait("Wait until tomorrow morning");await wait("Wait until 7 p.m.");await approach();
+  }
+  for(const part of ["introduction","trap"]) {
+    await page.waitForFunction(part=>window.storyProbe.director?.activeCutscene?.cutscene.id===`story-parking-lot-${part}` || window.storyProbe.sceneErrors.length,part,{timeout:90_000});
+    expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+    await page.waitForTimeout(2000);await page.screenshot({path:testInfo.outputPath(`ambush-${part}.png`)});
+    await page.keyboard.press("KeyX");
+  }
+  await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.combatView?.ready || window.storyProbe.sceneErrors.length,null,{timeout:60_000});
+  expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  await page.screenshot({path:testInfo.outputPath("ambush-fight.png")});
+  // Let the real server-controlled opponents defeat an idle player, then retry.
+  await expect(page.getByRole("button",{name:"Try again",exact:true})).toBeVisible({timeout:60_000});
+  let saved=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+  expect(saved.character.storyFlags["notebook.s1.tattoo-parlor"]).not.toBe(true);
+  await page.getByRole("button",{name:"Try again",exact:true}).click();
+  await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.combatView?.ready,null,{timeout:60_000});
+  await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyI");
+  try {
+    for(let i=0;i<400 && await page.evaluate(()=>!!window.storyProbe.regions.controller.active?.combatView);i++) {
+      await page.keyboard.press("KeyK");await page.waitForTimeout(250);
+    }
+  } finally {await page.keyboard.up("KeyI");}
+  const intents=await page.evaluate(()=>window.storyProbe.combatIntents);
+  await testInfo.attach("combat-inputs",{body:JSON.stringify(intents),contentType:"application/json"});
+  expect(intents.some(intent=>intent.guard&&intent.action==="leg")).toBe(true);
+  await expect(page.getByRole("button",{name:"Ask about Charlie",exact:true})).toBeVisible({timeout:30_000});
+  saved=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+  expect(saved.character.storyFlags["notebook.s1.tattoo-parlor"]).not.toBe(true,"winning alone does not settle an unfinished clue conversation");
+  await page.getByRole("button",{name:"Ask about Charlie",exact:true}).click();
+  await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0);await page.screenshot({path:testInfo.outputPath("ambush-interrogation.png")});
+  for(let i=0;i<30 && !await page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.tattoo-parlor"]);i++){await page.keyboard.press("Space");await page.waitForTimeout(200);}
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.tattoo-parlor"])).toBe(true);
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  saved=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+  expect(saved.character.yen).toBe(character.yen);expect(saved.character.currentHp).toBe(character.currentHp);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+  await page.locator("button").filter({hasText:/^Notebook$/}).click();
+  for(let i=0;i<40 && await page.locator("#journal-next").isEnabled();i++)await page.locator("#journal-next").click();
+  await expect(page.getByText(/Tony says there is a tattoo parlor in Yokosuka/)).toBeVisible();await page.screenshot({path:testInfo.outputPath("ambush-notebook.png")});
+  await page.locator("#journal-close").click();
+  await verifySavedAmbush(page,testInfo,character);
+}
+
+async function verifySavedAmbush(page,testInfo,character) {
+  const before=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+  expect(before.character.storyFlags["story.s1.parking-lot-ambush.completed"]).toBe(true);
+  expect(before.character.storyFlags["notebook.s1.tattoo-parlor"]).toBe(true);
+  const starts=await page.evaluate(()=>window.storyProbe.starts.length);
+  // Walk over the real trigger again. Completed progress must not replay it.
+  await page.evaluate(async()=>{
+    const life=window.storyProbe.lifecycle;await life.travelToWorld("dobuita");
+    life.resetPlayer(life.vectorFromArray([-19.76,0,32]),Math.PI,{persist:false});
+  });
+  await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+  await page.waitForTimeout(800);await page.keyboard.up("KeyW");await page.waitForTimeout(1500);
+  expect(await page.evaluate(()=>window.storyProbe.starts.length)).toBe(starts);
+  expect(await page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+  await page.reload();await page.keyboard.press("Enter");
+  await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();
+  await page.locator(".character-slot-button:not(.empty)").first().click();
+  await page.locator("button").filter({hasText:/^Enter World$/}).click();
+  await page.waitForFunction(()=>window.storyProbe.ready,null,{timeout:120_000});
+  const saved=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+  expect(saved.character.storyFlags["notebook.s1.tattoo-parlor"]).toBe(true);
+  expect(saved.character.storyFlags["story.s1.parking-lot-ambush.completed"]).toBe(true);
+  expect(saved.character.avatarId).toBe("ryo");expect(saved.character.worldId).toBe("dobuita");
+  expect(saved.character.yen).toBe(character.yen);expect(saved.character.currentHp).toBe(character.currentHp);
+  expect(new Date(saved.worldState.gameTimeMs).getUTCDate()).toBe(new Date(before.worldState.gameTimeMs).getUTCDate());
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+  await page.screenshot({path:testInfo.outputPath("ambush-saved-return.png")});
 }

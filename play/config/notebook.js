@@ -71,6 +71,8 @@ const STORY_PAGES = Object.freeze([
     text:"Toshiki says Charlie hangs around Kurita Military Surplus and Jupitor's Jackets in Dobuita at night.\n\nAsk the shopkeepers when they last saw him."}) },
   { flag:"notebook.s1.charlie-evening",page:Object.freeze({id:"story-charlie-evening",
     text:"Charlie was seen around the jacket shop at about 7 p.m.\n\nLook around Dobuita in the evening. Be alert near You Arcade."}) },
+  { flag:"notebook.s1.tattoo-parlor",page:Object.freeze({id:"story-tattoo-parlor",
+    text:"Charlie's friends ambushed me in the parking lot.\n\nTony says there is a tattoo parlor in Yokosuka. If Charlie had his tattoo done here, someone there may know him.\n\nFind the tattoo parlor."}) },
 ]);
 
 export function notebookPagesForCharacter(character) {

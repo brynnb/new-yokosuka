@@ -1,0 +1,145 @@
+{
+  "schema": "new-yokosuka-authored-story-combat-v1",
+  "encounters": [
+    {
+      "id": "s1.d000.parking-lot",
+      "label": "Escape the ambush",
+      "area": "D000",
+      "worldId": "dobuita",
+      "provenance": "Original DRAUTH trap cast and AMOV positions; five opponents and at most three simultaneous attackers corroborated by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Shared practice move identities/timing supply presentation. Health, speed, circular hit/separation rules, rectangular arena padding, basic control set and strict restart are authored adaptations, not the original free-battle engine.",
+      "sourceActivity": "play/assets/dobuita/drauth/SEQDATA2.AUTH",
+      "sha256": "a410bfb4d1a82db5bf09cdb05398ad55fc078fe3f31126033f6c20b52e7c83da",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -35.639862060546875,
+          "y": 0.07831700146198273,
+          "z": 21.82711410522461,
+          "health": 100
+        },
+        {
+          "tag": "SMTH",
+          "x": -35.32868194580078,
+          "y": 0.014113999903202057,
+          "z": 21.820791244506836,
+          "health": 28
+        },
+        {
+          "tag": "HARY",
+          "x": -37.41405487060547,
+          "y": 0.0423629991710186,
+          "z": 18.12541961669922,
+          "health": 18
+        },
+        {
+          "tag": "TONY",
+          "x": -35.89595413208008,
+          "y": 0.09539499878883362,
+          "z": 16.053421020507812,
+          "health": 28
+        },
+        {
+          "tag": "SERA",
+          "x": -35.149253845214844,
+          "y": 0.04264499992132187,
+          "z": 21.630762100219727,
+          "health": 36
+        },
+        {
+          "tag": "JONZ",
+          "x": -32.876338958740234,
+          "y": 0.05223200097680092,
+          "z": 19.73839569091797,
+          "health": 18
+        }
+      ],
+      "actions": [
+        {
+          "input": "hand",
+          "id": "tigerKnuckle",
+          "label": "Tiger Knuckle",
+          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
+          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
+          "durationMs": 634,
+          "startupMs": 134,
+          "range": 1.25,
+          "arcDegrees": 70,
+          "damage": 5,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "leg",
+          "id": "crescentKick",
+          "label": "Crescent Kick",
+          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
+          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
+          "durationMs": 800,
+          "startupMs": 234,
+          "range": 1.55,
+          "arcDegrees": 70,
+          "damage": 6,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "throw",
+          "id": "overthrow",
+          "label": "Overthrow",
+          "playerAnimation": "AKI_AKI_NGS_SEOI",
+          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
+          "durationMs": 1667,
+          "startupMs": 367,
+          "range": 0.9,
+          "arcDegrees": 55,
+          "damage": 12,
+          "guardDamage": 0,
+          "hitStunMs": 1000
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "SMTH",
+          "label": "Smith Bradley",
+          "modelCode": "GIB_M",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "HARY",
+          "label": "Harry Thompson",
+          "modelCode": "GIE_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "TONY",
+          "label": "Tony Abrams",
+          "modelCode": "GIJ_M",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "SERA",
+          "label": "Takeshi Sera",
+          "modelCode": "TUW_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "JONZ",
+          "label": "Jones Henders",
+          "modelCode": "GIF_L",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -38.91405487060547,
+        "maxX": -31.376338958740234,
+        "minZ": 14.553421020507812,
+        "maxZ": 23.32711410522461
+      },
+      "playerSpeed": 3.2,
+      "enemySpeed": 2.2,
+      "maxAttackers": 3,
+      "timeoutMs": 180000,
+      "inputBufferMs": 400
+    }
+  ]
+}

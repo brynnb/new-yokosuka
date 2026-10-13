@@ -384,7 +384,7 @@ export class MultiplayerClient {
   advanceScriptEvent(
     runId,
     action,
-    { optionId = null, requestId = crypto.randomUUID(), challengeToken = null, button = null } = {},
+    { optionId = null, requestId = crypto.randomUUID(), challengeToken = null, button = null, combatToken=null, combat=null } = {},
   ) {
     if (!this.canSend() || !Number.isSafeInteger(runId) || runId <= 0) {
       return false;
@@ -398,6 +398,8 @@ export class MultiplayerClient {
       ...(optionId === null ? {} : { optionId }),
       ...(challengeToken === null ? {} : { challengeToken }),
       ...(button === null ? {} : { button }),
+      ...(combatToken===null?{}:{combatToken}),
+      ...(combat===null?{}:{combat}),
     });
   }
 

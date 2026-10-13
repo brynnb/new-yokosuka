@@ -21,6 +21,8 @@ export const NATIVE_DIALOGUE_SPEAKER_LABELS = Object.freeze({
   JOE_: "Jou Higuchi",
   RBRT: "Robert Wells",
   HARY: "Harry Thompson",
+  TONY: "Tony Abrams",
+  SMTH: "Smith Bradley",
   JONZ: "Jones Henders",
   DOOR: "Voice Behind Door",
 });

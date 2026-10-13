@@ -882,6 +882,8 @@ function createPlayRuntime() {
     localDebug: LOCAL_DEBUG,
   });
   const scriptEvents = createScriptEventAssembly({
+    getController:()=>controller,
+    getBinding:action=>generalPreferences.binding(action),
     camera,
     getPlayerModel: () => characterRuntime.presentationModel(playerRuntime.characterLoader, playerRuntime.modelRoot, actorRoot),
     syncPlayerTransform: () => controller?.collider?.position.copyFrom(actorRoot.position),

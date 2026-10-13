@@ -50,30 +50,45 @@ for (const route of spec.routes) {
   });
   const lines = dialogueLines(route.voiceIds);
   const leadIn = dialogueLines(route.leadInVoiceIds || []);
+  const questions=(route.victoryChoices || []).map(choice=>({label:choice.label,lines:dialogueLines(choice.voiceIds)}));
   const gates = ['play_mode() != "story"', '!opening_completed()', ...(route.presentActors || participants).map(actor => `!actor_present("${actor}")`), ...route.requiredFlags.map(flag => `!flag_set("${flag}")`), `flag_set("${route.completedFlag}")`];
   if (route.hours) gates.push(route.hours[0] < route.hours[1]
     ? `(game_hour() < ${route.hours[0]} || game_hour() >= ${route.hours[1]})`
     : `(game_hour() < ${route.hours[0]} && game_hour() >= ${route.hours[1]})`);
+  if(route.bounds)gates.push(`!actor_in_bounds("AKIR", "${route.bounds}")`);
   const nativeEffects = (route.nativeEffects || []).map(effect => {
     if (!/^2:\d+$/.test(effect.address) || ![0, 1].includes(effect.value) || !route.nativeSources?.length) throw new Error(`Unreviewed native effect in ${route.id}`);
     return `<<set_native_value "${effect.address}" ${effect.value}>>`;
   });
+  const effects=[...nativeEffects,...(route.recordDays||[]).map(key=>`<<record_game_day "${key}">>`),
+    ...[route.completedFlag,...route.effects].map(flag=>`<<set_flag "${flag}">>`)];
   let body;
-  if (route.challenge) {
+  if(route.combat) {
+    const dating=route.dayAfter ? `<<if progress_value("${route.dayAfter}") == 0>>\n${route.legacyDateNotice?`Ryo Hazuki: ${route.legacyDateNotice} #speaker:AKIR\n<<record_game_day "${route.dayAfter}">>\n<<jump Done>>`:'<<pass_trigger>>'}\n<<endif>>\n<<if game_day() <= progress_value("${route.dayAfter}")>>\n<<pass_trigger>>\n<<endif>>\n` : "";
+    const choices=questions.length?questions.map(choice=>`-> ${choice.label}\n${choice.lines.map(line=>`    ${line}`).join("\n")}\n    <<jump Clue>>`).join("\n")+"\n===\ntitle: Clue\n---\n":"";
+    body=`${dating}${(route.introductionActivities||[]).map(id=>`<<start_activity "${id}">>`).join("\n")}\n<<jump Fight>>\n===\ntitle: Fight\n---\n<<start_combat "${route.combat}">>\n<<if combat_result("${route.combat}") != "success">>\n-> Try again\n    <<jump Fight>>\n-> Leave it for now\n    <<complete>>\n<<else>>\n<<play_sequence "${route.staging}.start">>\n${choices}${lines.join("\n")}\n<<play_sequence "${route.staging}.finish">>\n${effects.join("\n")}\n<<complete>>\n${questions.length?"":"<<endif>>"}`;
+    // The victory choice node ends the conditional before jumping to Clue.
+    if(questions.length)body=body.replace("\n===\ntitle: Clue", "\n<<endif>>\n===\ntitle: Clue");
+  } else if (route.challenge) {
     if (!route.staging || !leadIn.length) throw new Error(`Challenge ${route.id} needs reviewed staging and lead-in`);
-    body = `<<jump Attempt>>\n===\ntitle: Attempt\n---\n<<play_sequence "${route.staging}.start">>\n${leadIn.join("\n")}\n<<start_challenge "${route.challenge}">>\n<<if challenge_result("${route.challenge}") != "success">>\n<<play_sequence "${route.staging}.finish">>\n-> Try again\n    <<jump Attempt>>\n-> Leave it for now\n    <<complete>>\n<<else>>\n${lines.join("\n")}\n<<play_sequence "${route.staging}.finish">>\n${nativeEffects.concat([route.completedFlag, ...route.effects].map(flag => `<<set_flag "${flag}">>`)).join("\n")}\n<<complete>>\n<<endif>>`;
+    body = `<<jump Attempt>>\n===\ntitle: Attempt\n---\n<<play_sequence "${route.staging}.start">>\n${leadIn.join("\n")}\n<<start_challenge "${route.challenge}">>\n<<if challenge_result("${route.challenge}") != "success">>\n<<play_sequence "${route.staging}.finish">>\n-> Try again\n    <<jump Attempt>>\n-> Leave it for now\n    <<complete>>\n<<else>>\n${lines.join("\n")}\n<<play_sequence "${route.staging}.finish">>\n${effects.join("\n")}\n<<complete>>\n<<endif>>`;
   } else {
-    body = `${participants.map(actor => `<<look_at_actor "${actor}" "AKIR">>`).join("\n")}\n${lines.join("\n")}\n${participants.map(actor => `<<clear_actor_look "${actor}">>`).join("\n")}\n${nativeEffects.concat([route.completedFlag, ...route.effects].map(flag => `<<set_flag "${flag}">>`)).join("\n")}\n<<complete>>`;
+    body = `${participants.map(actor => `<<look_at_actor "${actor}" "AKIR">>`).join("\n")}\n${lines.join("\n")}\n${participants.map(actor => `<<clear_actor_look "${actor}">>`).join("\n")}\n${effects.join("\n")}\n<<complete>>`;
   }
-  const sourceText = `title: Start\ntags: adaptation story disc1 ${route.area} ${route.actor}\n---\n<<if ${gates.join(" || ")}>>\n    <<pass_trigger>>\n<<endif>>\n${body}\n===\n`;
+  // complete requests durable settlement; it does not short-circuit Yarn.
+  // Conditional early endings jump to an actual terminal node instead.
+  const sourceText = `title: Start\ntags: adaptation story disc1 ${route.area} ${route.actor}\n---\n<<if ${gates.join(" || ")}>>\n    <<pass_trigger>>\n<<endif>>\n${body}\n===\n${route.combat?"title: Done\n---\n<<complete>>\n===\n":""}`;
   imports.push({ Slug: `story-s1-${route.id}`, Title: route.title,
-    Description: route.provenance || spec.provenance, Summary: route.challenge ? "Personal voiced encounter; explicit server-validated QTE before clue settlement. Authored staging; no item or currency reward." : "Personal investigation conversation; original voiced lines, authored sequence, existing NPC facing and gameplay camera. No item or currency reward.",
+    Description: route.provenance || spec.provenance, Summary: route.combat?"Original introduction, server-controlled fight, original clue dialogue. No movie-completion victory or currency/item reward.":route.challenge ? "Personal voiced encounter; explicit server-validated QTE before clue settlement. Authored staging; no item or currency reward." : "Personal investigation conversation; original voiced lines, authored sequence, existing NPC facing and gameplay camera. No item or currency reward.",
     NativeSources: [{ role: "dialogue", locator: `${source.generatedFrom.archive}#${route.actor}/${route.id}`, sha256: source.generatedFrom.sha256 }, ...(route.nativeSources || [])],
     SourceText: sourceText, Triggers: [{ nodeId: "Start", kind: route.trigger || "talk", area: route.area, ...(route.trigger ? {} : { actor: route.actor }), priority: 200 }],
     TestFixtures: [{ Name: "Eligible personal investigation", StartNode: "Start", Fixture: {
       playMode: "story", openingCompleted: true, scene: route.area, gameHour: route.hours ? Math.max(10,route.hours[0]) : 10,
       flags: Object.fromEntries(route.requiredFlags.map(flag => [flag, true])),
       actorPresence: Object.fromEntries((route.presentActors || participants).map(actor => [actor, true])),
+      ...((route.recordDays?.length||route.combat)?{gameDate:"1986-12-04"}:{}),
+      ...(route.dayAfter?{progress:{[route.dayAfter]:Date.UTC(1986,11,3)/86400000}}:{}),
+      ...(route.bounds?{actorBounds:{AKIR:{[route.bounds]:true}}}:{}),
     } }],
   });
 }

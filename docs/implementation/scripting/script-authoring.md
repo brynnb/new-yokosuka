@@ -81,8 +81,25 @@ complete adapters. The client rejects unknown or incomplete entries.
 
 `start_activity` is currently a server-orchestrated presentation command. Its
 acknowledgement says that registered client presentation settled; it is not a
-gameplay-result claim. Result-bearing activities require a separate
-server-owned protocol before scripts may branch on success or award anything.
+gameplay-result claim. Result-bearing activities use the server-owned challenge
+or combat protocol before scripts branch on success or award anything.
+
+`start_challenge "registered-id"` / `challenge_result("registered-id")` use
+server-timed prompts. `start_combat "registered-id"` /
+`combat_result("registered-id")` use a server-controlled ephemeral fight. IDs
+come from closed catalogs, not arbitrary client assets. The browser sends
+readiness and sequenced movement/attack/guard intentions; only the server computes
+hits, health and the result. Ordinary Continue, an introduction skip, stale input
+or a supplied win Boolean cannot authorize a success branch. Cancel/failure leaves
+the enclosing story event retryable unless its reviewed script explicitly settles
+a different outcome.
+
+Authored combat definitions live in `tools/scripting/story-combat.json`.
+`build_story_combat.mjs` derives original actor positions and exports the shared
+practice move rules to the server's `internal/scriptevent/combats.json`.
+`check-server-contract.mjs --sync-scripting` projects that exact catalog back
+into the client. Content, simulation authority and Babylon presentation remain
+separate; do not implement one-off fights in Yarn command handlers.
 
 ## Original and community scripts
 

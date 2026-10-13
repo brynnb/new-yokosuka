@@ -27,6 +27,7 @@ import {
   createTelephoneReceiverBabylonAdapter,
 } from "./TelephoneReceiverBabylonAdapter.js";
 import { AuthoredSceneStagingRuntime } from "./AuthoredSceneStagingRuntime.js";
+import { StoryCombatRuntime } from "./StoryCombatRuntime.js";
 import { createNativeAseqBabylonActors, createNativeAseqBabylonCamera } from "../events/NativeAseqBabylonPresentation.js";
 
 export function createScriptEventAssembly({
@@ -53,6 +54,8 @@ export function createScriptEventAssembly({
   getPlayerModel,
   syncPlayerTransform,
   motionRuntime,
+  getController,
+  getBinding,
   cameraPresentation,
   acquireMovementLock,
   dom,
@@ -119,9 +122,17 @@ export function createScriptEventAssembly({
     playerMotionRuntime,
     playSound,
   });
+  let controller;
+  const combatRuntime=new StoryCombatRuntime({
+    actors:createNativeAseqBabylonActors({getPlayerModel,syncPlayerTransform,scheduledActors,motionRuntime,
+      preservePlayerOnComplete:false,playerYawOffsetRadians:Math.PI}),
+    motionRuntime,getController,getBinding,capturePlayerState,restorePlayerState,
+    onIntent:(action,token,intent)=>controller?.combatResponse(action,token,intent),
+  });
   const presentation = createScriptEventPresentationRuntime({
     adapters: createScriptEventBabylonAdapters({
       cameraRuntime,
+      combatRuntime,
       sceneStagingRuntime: new AuthoredSceneStagingRuntime({
         actors: createNativeAseqBabylonActors({ getPlayerModel, syncPlayerTransform,
           scheduledActors, motionRuntime, preservePlayerOnComplete: false, playerYawOffsetRadians: Math.PI }),
@@ -144,7 +155,6 @@ export function createScriptEventAssembly({
       motionCueRuntime,
     }),
   });
-  let controller;
   const dialoguePresenter = createScriptEventDialoguePresenter({
     root: dom.dialogueOverlay,
     speaker: dom.dialogueSpeaker,
@@ -155,6 +165,8 @@ export function createScriptEventAssembly({
     onAdvance: () => controller?.advanceLine(),
     onSelect: optionId => controller?.selectOption(optionId),
     onChallengeResponse: (action,token,button) => controller?.challengeResponse(action,token,button),
+    onCombatAction:action=>combatRuntime.action(action),
+    onCombatGuard:guard=>combatRuntime.setGuard(guard),
     onActiveChanged: setDialogueControlsActive,
   });
   controller = createScriptEventController({

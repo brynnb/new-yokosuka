@@ -12,6 +12,7 @@ function harness({
   playerXmptRuntime = null,
   additionalActors = [],
   sceneStagingRuntime = null,
+  combatRuntime = null,
   failFacingRestore = false,
 } = {}) {
   const calls = [];
@@ -85,6 +86,7 @@ function harness({
     telephoneRuntime,
     motionCueRuntime,
     sceneStagingRuntime,
+    combatRuntime,
   });
   return {
     adapters,
@@ -132,6 +134,15 @@ test("failed tableau cleanup still restores the script's movement lock", () => {
   assert.equal(h.movementLocked(), true);
   assert.throws(() => h.adapters.rollback(transaction), /actor cleanup failed/);
   assert.equal(h.movementLocked(), false);
+});
+
+test("failed combat cleanup still releases camera and input ownership", () => {
+  const h = harness({ combatRuntime: { finish() { throw new Error("combat actor cleanup failed"); } } });
+  const transaction = h.adapters.begin({ area: "D000" });
+  assert.equal(h.adapters.startCamera({ area: "D000",cameraNumber:2950 }, transaction),true);
+  assert.throws(() => h.adapters.rollback(transaction), /combat actor cleanup failed/);
+  assert.equal(h.movementLocked(), false);
+  assert.equal(h.calls.some(([name]) => name === "camera-rollback"), true);
 });
 
 test("failed actor cleanup cannot leak the script's movement lock", () => {

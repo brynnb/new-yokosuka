@@ -2,6 +2,7 @@
   "schema": "new-yokosuka-command-registry-v1",
   "version": "new-yokosuka-commands-v1",
   "identifierKinds": [
+    {"kind":"combat","policy":"closed"},
     {"kind":"challenge","policy":"closed"},
     {"kind":"story-time","policy":"closed"},
     {"kind":"flag","policy":"open"},
@@ -18,6 +19,12 @@
     {"kind":"activity","policy":"closed"}
   ],
   "capabilities": [
+    {"kind":"combat","identifier":"s1.d000.parking-lot","description":"Server-controlled five-opponent ambush; presentation completion cannot award victory."},
+    {"kind":"bounds","identifier":"s1.d000.arcade-ambush","description":"Authored Suzume Park-side approach around original DRAUTH Ryo arrival."},
+    {"kind":"activity","identifier":"s1.d000.ambush.introduction","description":"Original DRAUTH invitation/lure presentation; no fight outcome."},
+    {"kind":"activity","identifier":"s1.d000.ambush.trap","description":"Original DRAUTH trap presentation; no fight outcome."},
+    {"kind":"sequence","identifier":"s1.d000.ambush.interrogation.start","description":"Authored Ryo/Tony staging for original E1068 clue dialogue."},
+    {"kind":"sequence","identifier":"s1.d000.ambush.interrogation.finish","description":"Restore borrowed cast/player/camera before settlement."},
     {"kind":"story-time","identifier":"s1.wait.late-morning","description":"Reviewed personal waiting target at 10:00, useful for daytime shop inquiries."},
     {"kind":"story-time","identifier":"s1.wait.afternoon","description":"Reviewed personal waiting target at 13:00, when Nagai Industries opens."},
     {"kind":"sequence","identifier":"s1.heartbeats.bar.staging.start","description":"Authored bar cast and camera, held across dialogue and a real QTE; presentation only."},
@@ -64,6 +71,8 @@
     {"kind":"activity","identifier":"d000.telephone-book.native","description":"Recovered D000 telephone-book specialized activity."}
   ],
   "entries": [
+    {"name":"start_combat","kind":"command","description":"Begins an ephemeral server-controlled fight and yields validated snapshots until a terminal result.","parameters":[{"name":"combat","type":"string","identifierKind":"combat"}],"authority":"server","wait":"none","cleanup":"event-owned","sideEffects":["player-control"],"dependencies":[]},
+    {"name":"combat_result","kind":"function","description":"Reads only the server-computed fight outcome for this event run.","parameters":[{"name":"combat","type":"string","identifierKind":"combat"}],"returnType":"string","authority":"server","wait":"none","cleanup":"none","dependencies":[]},
     {"name":"start_challenge","kind":"command","description":"Starts a registered server-validated timed-input challenge.","parameters":[{"name":"challenge","type":"string","identifierKind":"challenge"}],"authority":"server","wait":"none","cleanup":"event-owned","sideEffects":["player-control"],"dependencies":[]},
     {"name":"challenge_result","kind":"function","description":"Returns the server-validated outcome of the challenge in the current event run.","parameters":[{"name":"challenge","type":"string","identifierKind":"challenge"}],"returnType":"string","authority":"server","wait":"none","cleanup":"none","dependencies":[]},
     {"name":"advance_story_time","kind":"command","description":"Advances personal Story time to a reviewed waiting target at successful settlement.","parameters":[{"name":"transition","type":"string","identifierKind":"story-time"}],"authority":"server","wait":"none","cleanup":"transactional","sideEffects":["calendar"],"dependencies":[]},

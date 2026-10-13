@@ -212,7 +212,8 @@ Do not describe the first conversation as fully animation-faithful.
 | Nighttime sailors → Heartbeats alley | Personal waiting, Saijo's voiced lead and the alley's failure/retry/success path verified in the browser. Timed input is server-validated; defensive choreography remains approximate. |
 | Heartbeats interior → Charlie notebook lead | Connected real-door/browser check verifies voiced lead-in, failed QTE/retry, successful B,A,B,A inputs, clue settlement, restored Ryo/camera/controls and no replay on re-entry. Rendered cast uses held standing poses; attack choreography is not implemented. |
 | Charlie inquiries: Ono → jacket shops; optional Kinuyo → Nagai office → shopkeepers | Seven connected, rendered original-voiced talks and notebook leads verified after the bar-earned checkpoint, including personal daytime waiting, unlocked controls and reload. |
-| Arcade-area ambush / tattoo parlour / Chinese letter | Missing connected authored progression and remaining challenge presentation/outcomes. |
+| Arcade-area ambush → tattoo-parlour lead | Connected rendered introduction/trap, real five-opponent fight, loss/retry, original interrogation and saved notebook verified. Server/compiler/PostgreSQL tests cover calendar/region gates, cancellation, timeout, pre-clue rollback and personal settlement. Combat balance and interrogation staging are adapted. |
+| Tattoo parlour / Chinese letter | Missing connected authored progression. |
 | Harbor warehouses / Master Chen / Phoenix Mirror | Missing connected authored progression. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
@@ -555,9 +556,8 @@ or natural timing of every voice line. Real Yarn/PostgreSQL checks additionally
 cover missing prerequisites/Hato, opening hours, cancelled preparation,
 cancel-after-win, clue settlement, repeat and cross-character isolation.
 
-The inquiries below continue this clue. The later ambush, tattoo parlour and
-Chinese-letter progression remain missing; this is not completion of that whole
-chapter.
+The inquiries below continue this clue. The parking-lot ambush continues their
+evening lead; tattoo-parlour and Chinese-letter progression remain missing.
 
 ## Searching for Charlie: daytime inquiries
 
@@ -599,8 +599,8 @@ establishes the inquiry order and optional office route. The
 [Shotgunnova walkthrough](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404)
 distinguishes learning about evening visits from the later-night ambush: the
 ambush is not available on the bar-brawl day. The current inquiry events do not
-grant an ambush win or tattoo-parlour milestone. The later encounter still needs
-an explicit calendar gate and a validated combat outcome.
+grant an ambush win or tattoo-parlour milestone. The later encounter uses the
+separate calendar gate and server-controlled fight described below.
 
 The talk gates above are pragmatic authored daytime windows plus actual
 personal NPC presence. They are not a recovered native business/selector table.
@@ -632,3 +632,64 @@ verifies that date transition and conversation cleanup leave movement unlocked.
 The fresh opening → natural allowance → saved reload check and desktop/mobile
 arcade-results modals also pass with the shared lock primitive. Error-path tests
 verify that failed actor cleanup still releases the event's input token.
+
+## Arcade-area ambush: the tattoo-parlour lead
+
+Event ID: `story-s1-parking-lot-ambush`, official import `parking-lot-ambush`.
+
+| Field | Implemented adaptation |
+| --- | --- |
+| Location and trigger | Dobuita (`D000`), approach to You Arcade from the Suzume Park side. Cross authored region `s1.d000.arcade-ambush`, centred on the original introduction's Ryo arrival. The server checks accepted presence, not coordinates supplied in the trigger request. |
+| Prerequisites / calendar | Personal Story Ryo, opening and Heartbeats bar complete, evening-visits clue, 19:00–23:30 and a later personal day than the bar brawl; ambush incomplete. No forced weather. |
+| Introduction / trap | Original DRAUTH `SEQDATA1.AUTH` and `SEQDATA2.AUTH`, packaged through the existing native cutscene player. Explicit X-skip advances these noninteractive introductions; it does not win the fight. Original cast, voices, motion, camera timeline and available BGM013 cue are reused. |
+| Fight | Ryo against Smith Bradley (`SMTH`), Harry Thompson (`HARY`), Tony Abrams (`TONY`), Takeshi Sera (`SERA`) and Jones Henders (`JONZ`). Start from the trap's decoded final AMOV positions. Shared basic punch, kick, throw and guard controls; at most three attackers act simultaneously. |
+| Victory dialogue | Stage Ryo and Tony in the lot; choose Charlie or the tattoo, then play the selected original E1068 voice/subtitle lines. Both choices converge on a tattoo parlor in Yokosuka, with its location still unknown. |
+| Completion | After interrogation cleanup, atomically record the personal fight day, `story.s1.parking-lot-ambush.completed` and `notebook.s1.tattoo-parlor`. No yen, item, persistent HP or experience reward/change. |
+| Exit | Restore the pre-introduction approach position, facing and camera; release private actor/input ownership and resume the personal clock. This deliberately differs from the original parking-lot exit. |
+| Failure / cancellation | Health defeat or heartbeat/time limit offers retry or leave; retry restarts only the fight. Cancelled preparation, fight or unfinished interrogation settles no clue. Completed encounters do not replay. Reconnect reads committed progress; an uncommitted fight restarts rather than persisting every punch. |
+
+### Provenance and approximations
+
+- Original `D000/DRAUTH.PKS` supplies the cast and introduction/trap timelines;
+  the trap AUTH hash is checked by `build_story_combat.mjs` before deriving
+  actor positions. The original `SCENE/01/STREAM/E1068.AFS` supplies ten selected
+  lines: AKIR A001–A003 and TONY B001, B003–B008. The generated import retains
+  its source hash.
+- The [Shotgunnova walkthrough](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404)
+  supports nighttime, the later-than-bar day, Suzume-side approach, five thugs
+  and at most three active attackers. The
+  [original guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf)
+  supports interrogation leading to the tattoo parlor.
+- `tools/scripting/story-combat.json` authors health, movement speed, rectangular
+  arena padding and the strict retry policy. The generator reuses shared practice
+  move identities, timings, damage, ranges, stun and 400 ms input buffering.
+  These are playable rules, not a reconstructed original free-battle engine.
+  Guard is simplified, only three basic moves are exposed, and paired throws,
+  enemy-specific combos, root-motion choreography and combat sound cues remain
+  presentation gaps. The arena uses bounded movement and fighter separation,
+  not the ordinary scenery collision system. The temporary fight HP does not
+  modify the character's persistent MMO HP.
+- The interrogation's standing poses and two-person camera are authored; Tony's
+  original grabbed pose is not recreated. Fight music retains normal zone
+  music; the introduction's BGM013 is not claimed as the recovered battle theme.
+- New bar completions record their date. Older prototype saves with the bar flag
+  but no date receive an explicit unvoiced notice, record the current day as a
+  conservative baseline, and must return another night. No silent guessed date
+  or automatic ambush win is supplied.
+
+### Verification
+
+`NEW_YOKOSUKA_AMBUSH_E2E=true` continues the earned Charlie-inquiry checkpoint.
+It walks across the real trigger, renders/skips both original introductions,
+loses to the actual server-controlled opponents, retries with physical guard/kick
+inputs, questions Tony with original voice playback, verifies the notebook and
+unchanged persistent health/money, then checks repeat entry and reload. Travel
+to the approach is shortened; this is not a proof of the entire walk from the
+previous shop or every combat move's choreography.
+
+The real compiler/PostgreSQL test executes the canonical generated import with
+server-simulated intents. It checks missing-date migration, same-day/daytime/
+out-of-region rejection, another character's inability to advance the run,
+timeout, cancellation before and after victory, atomic clue/date settlement,
+repeat protection and stale post-completion inputs. Headless result tests do
+not establish visual fidelity.

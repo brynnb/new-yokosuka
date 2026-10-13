@@ -1,6 +1,10 @@
 {
   "schema": "new-yokosuka-story-regions-v1",
   "regions": [
+    {"id":"s1.d000.arcade-ambush","area":"D000","actor":"AKIR","playMode":"story","openingCompleted":true,
+      "requiredFlags":["story.s1.heartbeats-bar.completed","notebook.s1.charlie-evening"],"completedFlag":"story.s1.parking-lot-ambush.completed",
+      "min":[-22,-0.5,27.5],"max":[-17,1.5,31],
+      "provenance":"Authored Suzume Park-side approach around original DRAUTH SEQDATA1 Ryo arrival [-19.76086,0,29.20248], native X mirrored; rendered walk/collision validation required."},
     {
       "id":"s1.d000.heartbeats-alley","area":"D000","actor":"AKIR","playMode":"story","openingCompleted":true,
       "requiredFlags":["notebook.s1.sailors"],"completedFlag":"story.s1.heartbeats-alley.completed",

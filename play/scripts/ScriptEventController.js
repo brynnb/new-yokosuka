@@ -213,6 +213,12 @@ export class ScriptEventController {
     active.challengeInputPending=true;
     return this.sendAdvance(action,{challengeToken:token,...(button ? {button}: {})});
   }
+  combatResponse(action,token,intent=null) {
+    const active=this.active;
+    if(!active?.combatView || active.cancelling || active.combatInputPending || token!==active.combatView.token)return false;
+    active.combatInputPending=true;
+    return this.sendAdvance(action,{combatToken:token,...(intent?{combat:intent}:{})});
+  }
 
   cancel(reason = "user-cancelled") {
     if (this.pendingStart) {
@@ -316,6 +322,7 @@ export class ScriptEventController {
     this.clearRequestTimeout(active);
     const event = message?.event;
     if (!event?.type) throw new Error("server yielded an invalid script event");
+    if(active.combatView && event.type!=="combat") {this.presentation.endCombat();this.dialogue.hide();active.combatView=null;active.combatInputPending=false;}
     if (TERMINAL_EVENTS.has(event.type)) {
       active.controller.abort(new DOMException(event.type, "AbortError"));
       this.dialogue.hide();
@@ -331,6 +338,13 @@ export class ScriptEventController {
     if (!active.presentationStarted) {
       this.presentation.begin(active.context);
       active.presentationStarted = true;
+    }
+    if(event.type==="combat") {
+      const view=message.combat;
+      if(!view || !/^[0-9a-f]{32}$/.test(view.token))throw new Error("Invalid combat snapshot");
+      active.combatView=view;active.combatInputPending=false;
+      if(!await this.present(active,()=>this.presentation.showCombat(view)))return false;
+      this.dialogue.showCombat(view);this.emitState();return true;
     }
     if(event.type==="challenge") {
       const prompt=message.challenge;
