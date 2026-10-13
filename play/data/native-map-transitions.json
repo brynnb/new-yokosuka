@@ -78,7 +78,7 @@
     "canonicalExactDoorWithEntryPlacementCount": 25,
     "canonicalExactDoorWithResolvedModelCount": 25,
     "reverseMatchedD000TransitionCount": 22,
-    "reverseMatchedD000DerivedSpawnCount": 10,
+    "reverseMatchedD000DerivedSpawnCount": 6,
     "nativeVolumeTransitionCount": 25,
     "runtimeDisc1NativeVolumeTransitionCount": 8,
     "runtimeDisc1NativeVolumeWithEntryPlacementCount": 7
@@ -4027,20 +4027,18 @@
         "worldId": "daza",
         "scene": 1,
         "area": "DAZA",
-        "entry": null,
+        "entry": 0,
         "browserSpawn": {
           "position": [
-            -3.5899999141693115,
+            -3.5,
             0.0,
-            0.9219999969005584
+            -0.4000000059604645
           ],
-          "yawDegrees": 0.0,
-          "yawRadians": 0.0,
-          "sourceKind": "reverse interior door transform",
-          "evidence": {
-            "returnTransitionId": "daza-door-to-d000-entry-2",
-            "inwardOffset": 0.85
-          }
+          "yawDegrees": 180.0,
+          "yawRadians": 3.141592653589793,
+          "sourceKind": "CHRS Character AKIR",
+          "recordOffset": "0x21f94",
+          "sourceSha256": "0017e3ff3f2f899dab42b9629a596bcbadc9dd2e26f9b3468f084772cc79fe40"
         }
       },
       "supported": true,
@@ -4064,7 +4062,7 @@
           ],
           "usesInvisibleProxy": true
         },
-        "destinationPlacement": "derived from exact reverse interior door transform"
+        "destinationPlacement": "original live AKIR CHRS placement"
       }
     },
     {
@@ -4080,20 +4078,18 @@
         "worldId": "dbhb",
         "scene": 1,
         "area": "DBHB",
-        "entry": null,
+        "entry": 0,
         "browserSpawn": {
           "position": [
-            -1.0409497792752501e-16,
+            -0.6800000071525574,
             0.0,
-            -8.950000381469726
+            -7.320000171661377
           ],
-          "yawDegrees": 180.0,
-          "yawRadians": 3.141592653589793,
-          "sourceKind": "reverse interior door transform",
-          "evidence": {
-            "returnTransitionId": "dbhb-door-to-d000-entry-3",
-            "inwardOffset": 0.85
-          }
+          "yawDegrees": 0.0,
+          "yawRadians": 0.0,
+          "sourceKind": "CHRS Character AKIR",
+          "recordOffset": "0x24530",
+          "sourceSha256": "34c9c357ac832d80fd9bd9b8cadbf02a770388a394c65a234d35594bcedfe9a7"
         }
       },
       "supported": true,
@@ -4117,7 +4113,7 @@
           ],
           "usesInvisibleProxy": false
         },
-        "destinationPlacement": "derived from exact reverse interior door transform"
+        "destinationPlacement": "original live AKIR CHRS placement"
       }
     },
     {
@@ -4181,20 +4177,18 @@
         "worldId": "dcbn",
         "scene": 1,
         "area": "DCBN",
-        "entry": null,
+        "entry": 0,
         "browserSpawn": {
           "position": [
-            0.899999976158142,
+            1.5800000429153442,
             0.0,
-            0.6050000429153443
+            0.8700000047683716
           ],
-          "yawDegrees": 180.0,
-          "yawRadians": 3.141592653589793,
-          "sourceKind": "reverse interior door transform",
-          "evidence": {
-            "returnTransitionId": "dcbn-door-to-d000-entry-15",
-            "inwardOffset": 0.85
-          }
+          "yawDegrees": 178.6799999475479,
+          "yawRadians": 3.1185543065480066,
+          "sourceKind": "CHRS Character AKIR",
+          "recordOffset": "0x2ee2c",
+          "sourceSha256": "2af6d72477e1bd9026fbf3e551dc7550857e0ae0e68191164c203b2297dce8ee"
         }
       },
       "supported": true,
@@ -4218,7 +4212,7 @@
           ],
           "usesInvisibleProxy": false
         },
-        "destinationPlacement": "derived from exact reverse interior door transform"
+        "destinationPlacement": "original live AKIR CHRS placement"
       }
     },
     {
@@ -4633,20 +4627,18 @@
         "worldId": "drsa",
         "scene": 1,
         "area": "DRSA",
-        "entry": null,
+        "entry": 0,
         "browserSpawn": {
           "position": [
-            -3.1500000953674316,
+            -3.200000047683716,
             0.0,
-            0.85
+            -0.75
           ],
-          "yawDegrees": 0.0,
-          "yawRadians": 0.0,
-          "sourceKind": "reverse interior door transform",
-          "evidence": {
-            "returnTransitionId": "drsa-dor2-to-d000-entry-10",
-            "inwardOffset": 0.85
-          }
+          "yawDegrees": 180.0,
+          "yawRadians": 3.141592653589793,
+          "sourceKind": "CHRS Character AKIR",
+          "recordOffset": "0x1d794",
+          "sourceSha256": "9429fd83a1ac20930f6e55241a41d5e03726bae8e4f941195b40031a82566f5d"
         }
       },
       "supported": true,
@@ -4670,7 +4662,7 @@
           ],
           "usesInvisibleProxy": true
         },
-        "destinationPlacement": "derived from exact reverse interior door transform"
+        "destinationPlacement": "original live AKIR CHRS placement"
       }
     },
     {
@@ -7487,5 +7479,5 @@
       }
     }
   ],
-  "evidenceBoundary": "D000 storefronts are associated by each interior's exact reverse D000 Entry rather than equating coroutine dispatch ordinals with logical door selectors. Destinations without an authored player Entry use the exact reverse interior door transform plus a fixed inward offset. Interior return-door roots are exact native door-controller records; they remain non-interactive until the native Door Box dimensions are decoded."
+  "evidenceBoundary": "D000 storefronts are associated by each interior's exact reverse D000 Entry rather than equating coroutine dispatch ordinals with logical door selectors. Destinations without an authored player Entry use the original live AKIR CHRS placement when available; otherwise they use the exact reverse interior door transform plus a fixed inward offset. Facing away from the exit is an adaptation. Interior return-door roots are exact native door-controller records; they remain non-interactive until the native Door Box dimensions are decoded."
 }

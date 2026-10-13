@@ -1,6 +1,7 @@
 import commandRegistry from "../data/server-command-registry.json" with {
   type: "json",
 };
+import authoredScenes from "../data/authored-story-scenes.json" with { type: "json" };
 
 const CAMERAS = new Map([
   ["d000.hato.camera.2950", { area: "D000", cameraNumber: 2950 }],
@@ -150,6 +151,10 @@ function closedDoorMotionCueSequences({ selector, target, requestWord, sourceOff
 // A sequence remains non-executable until every consequential player-visible
 // operation has a proven Babylon adapter.
 const SEQUENCES = new Map([
+  ...authoredScenes.scenes.flatMap(scene => [
+    [`${scene.id}.start`, { kind: "scene-staging-start", area: scene.area, scene, executable: true }],
+    [`${scene.id}.finish`, { kind: "scene-staging-finish", area: scene.area, scene, executable: true }],
+  ]),
   ["d000.door.1.closed-check.start", {
     kind: "actor-motion-cue-start",
     sequenceId: "d000.door.1.closed-check",

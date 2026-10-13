@@ -11,6 +11,7 @@ function harness({
   motionCueRuntime = null,
   playerXmptRuntime = null,
   additionalActors = [],
+  sceneStagingRuntime = null,
 } = {}) {
   const calls = [];
   let motionStatus = 0;
@@ -81,6 +82,7 @@ function harness({
     },
     telephoneRuntime,
     motionCueRuntime,
+    sceneStagingRuntime,
   });
   return {
     adapters,
@@ -120,6 +122,14 @@ test("Babylon adapters compose XMPT and motion-cue ownership", () => {
   assert.deepEqual(xmptCalls, [["begin"], ["commit", "xmpt"]]);
   assert.equal(h.calls.some(([name]) => name === "motion-begin"), true);
   assert.equal(motionCueCalls.at(-1)[0], "settled");
+});
+
+test("failed tableau cleanup still restores the script's movement lock", () => {
+  const h = harness({ sceneStagingRuntime: { cancel() { throw new Error("actor cleanup failed"); } } });
+  const transaction = h.adapters.begin({ area: "D000" });
+  assert.equal(h.movementLocked(), true);
+  assert.throws(() => h.adapters.rollback(transaction), /actor cleanup failed/);
+  assert.equal(h.movementLocked(), false);
 });
 
 test("Babylon adapters own telephone motion and its timeline together", () => {

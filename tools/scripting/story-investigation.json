@@ -3,6 +3,16 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"heartbeats-bar","actor":"HATO","participants":["SERA","JONZ","HARY"],"presentActors":["HATO"],"area":"DBHB","trigger":"automatic",
+      "title":"Heartbeats — the bar fight and Charlie lead","hours":[19,4],
+      "requiredFlags":["notebook.s1.sailors","story.s1.heartbeats-alley.completed"],"completedFlag":"story.s1.heartbeats-bar.completed","effects":["notebook.s1.charlie"],
+      "challenge":"s1.heartbeats.bar","staging":"s1.heartbeats.bar.staging",
+      "dialogueArchive":{"path":"data/SCENE/01/STREAM/E1030.AFS","sha256":"293e91c89786994e8747d3057f4cf5731ba5302b2c46f5b753c0455e7566f069"},
+      "provenance":"Original E1030 SRF subtitles and matched STR voices. Winning B,A,B,A order: GameSpot Dreamcast guide https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf. Condensed line order, held standing poses, fixed camera, two-second windows and strict retry are authored approximations, not native QTE choreography. Remain in the bar on exit; original forced ejection is deferred.",
+      "leadInVoiceIds":["E1030E001","E1030A011","E1030E002","E1030A012","E1030B001","E1030D006","E1030A001","E1030B002"],
+      "voiceIds":["E1030E003","E1030E004","E1030A013","E1030E005","E1030E006","E1030A015","E1030E007","E1030A016","E1030E013","E1030E014","E1030E015","E1030E016","E1030A020","E1030E017","E1030E018","E1030A021","E1030E012"]
+    },
+    {
       "id": "sumiya-witness", "actor": "SUMI", "area": "JD00",
       "title": "Sumiya — the injured witness",
       "requiredFlags": ["story.s1.first-dojo.completed"],

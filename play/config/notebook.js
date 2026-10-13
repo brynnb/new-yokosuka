@@ -57,6 +57,8 @@ const STORY_PAGES = Object.freeze([
     text: "Lan Di may be connected to a Chinese cartel based at the harbor.\n\nAsk sailors who travel to Hong Kong or Shanghai. Look in Dobuita's bars at night." }) },
   { flag:"notebook.s1.heartbeats",page:Object.freeze({id:"story-heartbeats",
     text:"Saijo-san says sailors visit MJQ Jazz Bar and Heartbeats.\n\nHeartbeats is in the alley across from Knocking Motorcycle Shop. Go after 7 p.m. and be careful."}) },
+  { flag:"notebook.s1.charlie",page:Object.freeze({id:"story-charlie",
+    text:"Hato at Heartbeats told me about Charlie.\n\nHe deals in smuggled goods and may know about the Chinese cartel. Shades, a black leather jacket, and a tattoo on his arm.\n\nAsk at Knocking Motorcycle Shop."}) },
 ]);
 
 export function notebookPagesForCharacter(character) {

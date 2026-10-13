@@ -26,6 +26,7 @@ import {
   ScheduledActorMotionRuntime,
 } from "./ScheduledActorMotionRuntime.js";
 import ma00RaceManifest from "../data/ma00-race-scheduled-actors.json";
+import authoredScenes from "../data/authored-story-scenes.json";
 const scheduledMbasMotionUrl = runtimeAssetUrl("play/assets/scheduled-actors/M_MBAS.BIN");
 const scheduledMobjMotionUrl = runtimeAssetUrl("play/assets/scheduled-actors/M_MOBJ.BIN");
 const shenmue2NpcMotionUrl = runtimeAssetUrl("play/assets/shenmue2-motion/NPC.MOT");
@@ -125,11 +126,14 @@ export class PlayCharacterAssembly {
     const actors = await scheduledActorsForWorld(world.id);
     const activityActors = nativeCutscenePackageRegistry
       .actorDefinitionsForWorld(world.id);
-    if (world.id !== "ma00race" && activityActors.length === 0) return actors;
+    const authoredActors = authoredScenes.scenes.filter(scene => scene.worldId === world.id)
+      .flatMap(scene => scene.actorDefinitions);
+    if (world.id !== "ma00race" && activityActors.length === 0 && authoredActors.length === 0) return actors;
     return composeScheduledActorDefinitions([
       actors,
       world.id === "ma00race" ? ma00RaceManifest.actors : [],
       activityActors,
+      authoredActors,
     ], {
       worldId: world.id,
       localObjectModelRequirements:

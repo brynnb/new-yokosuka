@@ -20,6 +20,7 @@ export class ScriptEventBabylonAdapters {
     cancelActivity,
     telephoneRuntime = null,
     motionCueRuntime = null,
+    sceneStagingRuntime = null,
   } = {}) {
     if (
       typeof cameraRuntime?.beginTransaction !== "function"
@@ -82,6 +83,7 @@ export class ScriptEventBabylonAdapters {
       throw new TypeError("Babylon script adapters received an incomplete motion-cue runtime");
     }
     this.motionCueRuntime = motionCueRuntime;
+    this.sceneStagingRuntime = sceneStagingRuntime;
   }
 
   adapter() {
@@ -109,6 +111,8 @@ export class ScriptEventBabylonAdapters {
       update: (transaction, deltaSeconds) => (
         this.update(transaction, deltaSeconds)
       ),
+      ownsPlayerPresentation: transaction => Boolean(transaction.cameraToken
+        || this.sceneStagingRuntime?.active?.transaction === transaction),
       commit: transaction => this.commit(transaction),
       rollback: (transaction, reason) => this.rollback(transaction, reason),
     };
@@ -209,6 +213,9 @@ export class ScriptEventBabylonAdapters {
   }
 
   playSequence(sequence, transaction) {
+    if (sequence.kind === "scene-staging-start" || sequence.kind === "scene-staging-finish") {
+      return this.sceneStagingRuntime?.play(sequence, transaction) ?? false;
+    }
     if (
       sequence.kind === "actor-motion-cue-start"
       || sequence.kind === "actor-motion-cue-finish"
@@ -279,6 +286,7 @@ export class ScriptEventBabylonAdapters {
   }
 
   update(transaction, deltaSeconds) {
+    if (this.sceneStagingRuntime?.update(transaction, deltaSeconds) === false) return false;
     if (transaction.cameraToken) this.cameraRuntime.update(deltaSeconds);
     if (
       this.telephoneRuntime
@@ -308,6 +316,9 @@ export class ScriptEventBabylonAdapters {
     }
     this.telephoneRuntime?.assertSettled(transaction);
     this.motionCueRuntime?.assertSettled(transaction);
+    if (this.sceneStagingRuntime?.active?.transaction === transaction) {
+      throw new Error("script presentation committed before scene staging cleanup");
+    }
     this.restoreActorFacing(transaction);
     try {
       if (transaction.cameraToken) {
@@ -325,6 +336,9 @@ export class ScriptEventBabylonAdapters {
   }
 
   rollback(transaction) {
+    let sceneCleanupError = null;
+    try { this.sceneStagingRuntime?.cancel(transaction); }
+    catch (error) { sceneCleanupError = error; }
     this.telephoneRuntime?.cancel(transaction);
     this.motionCueRuntime?.cancel(transaction);
     if (transaction.pendingActivity) {
@@ -359,6 +373,7 @@ export class ScriptEventBabylonAdapters {
         this.setMovementLocked(transaction.movementLocked);
       }
     }
+    if (sceneCleanupError) throw sceneCleanupError;
     return true;
   }
 

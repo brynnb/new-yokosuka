@@ -47,7 +47,8 @@ export class NativeStoryRuntime {
   }
 
   get ownsPlayerPresentation() {
-    return this.isStartupPresentationActive() || this.cutscenes.ownsPlayerPresentation;
+    return Boolean(this.isStartupPresentationActive() || this.cutscenes.ownsPlayerPresentation
+      || this.eventController.ownsPlayerPresentation);
   }
 
   get presentationActive() {

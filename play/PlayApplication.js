@@ -883,6 +883,10 @@ function createPlayRuntime() {
     localDebug: LOCAL_DEBUG,
   });
   const scriptEvents = createScriptEventAssembly({
+    camera,
+    getPlayerModel: () => characterRuntime.presentationModel(playerRuntime.characterLoader, playerRuntime.modelRoot, actorRoot),
+    syncPlayerTransform: () => controller?.collider?.position.copyFrom(actorRoot.position),
+    motionRuntime: scheduledActorMotionRuntime,
     capturePlayerState:()=>worldLifecycle.capturePlayerReturnState(),
     restorePlayerState:snapshot=>worldLifecycle.restorePlayerPose(snapshot),
     cutsceneDirector: nativeCutsceneDirector,

@@ -1,0 +1,20 @@
+{
+  "schema":"new-yokosuka-authored-story-scenes-v1",
+  "scenes":[{
+    "id":"s1.heartbeats.bar.staging","area":"DBHB","worldId":"dbhb",
+    "provenance":"Model identities reuse the reviewed SERA/TUW_L, JONZ/GIF_L and HARY/GIE_L mappings in nativeActivityActors.json. Positions and camera are authored around DBHB's original AKIR arrival [-0.68,0,-7.32], MAPINFO CHRS 0x24530, sha256 34c9c357ac832d80fd9bd9b8cadbf02a770388a394c65a234d35594bcedfe9a7. Standing loops are an approximation; original attacks, props and recovery choreography are not reconstructed.",
+    "actorDefinitions":[
+      {"actorCode":"SERA","label":"Takeshi Sera","modelCode":"TUW_L","activityOnly":true},
+      {"actorCode":"JONZ","label":"Jones Henders","modelCode":"GIF_L","activityOnly":true},
+      {"actorCode":"HARY","label":"Harry Thompson","modelCode":"GIE_L","activityOnly":true}
+    ],
+    "actors":[
+      {"tag":"AKIR","pose":{"x":2.15,"y":0,"z":-6.7,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"SERA","pose":{"x":2.1,"y":0,"z":-5.7,"rotationX":0,"rotationY":0,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"JONZ","pose":{"x":2.5,"y":0,"z":-4.6,"rotationX":0,"rotationY":-20,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"HARY","pose":{"x":2,"y":0,"z":-3.5,"rotationX":0,"rotationY":20,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"HATO","motion":{"bank":"mobj","name":"OTH_MAN_MIMAWASU_CAUNTER_LP_H75_F","loop":true}}
+    ],
+    "camera":{"positionX":1.8,"positionY":1.6,"positionZ":-7.32,"targetX":1.8,"targetY":1.2,"targetZ":-4.7,"roll":0,"perspective":70}
+  }]
+}

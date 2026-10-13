@@ -273,6 +273,10 @@ export class NativeAseqBabylonActors {
       throw new Error("AUTH player model is unavailable");
     }
     const playerSnapshot = player ? captureRoot(player.root) : null;
+    // Direct authored Yarn staging also uses this primitive, without the
+    // cutscene director's visibility setup. Borrow the hidden first-person
+    // render hierarchy explicitly and restore it at the same lease boundary.
+    const visiblePlayer = ownsPlayer && !this.program ? captureRenderVisibility(player) : null;
     // The gameplay avatar remains loaded while a cutscene plays. A shot that
     // does not declare AKIR must explicitly borrow its render visibility;
     // otherwise the last player pose is left standing in shots owned only by
@@ -392,6 +396,7 @@ export class NativeAseqBabylonActors {
       // over the same meshes and capture another shot's detached GPU buffers.
       player: player ? { model: player, root: player.root, snapshot: playerSnapshot } : null,
       hiddenPlayer,
+      visiblePlayer,
       scheduled: new Map([...scheduledMap].map(([actorCode, actor]) => [
         actorCode,
         { ...actor, snapshot: captureRoot(actor.root) },
@@ -399,6 +404,7 @@ export class NativeAseqBabylonActors {
       sceneObjects: sceneObjectMap,
       packageActors: packageActorMap,
     };
+    visiblePlayer?.root.setEnabled(true);
     return true;
   }
 
@@ -715,6 +721,7 @@ export class NativeAseqBabylonActors {
     }
     try {
       restoreRenderVisibility(active.hiddenPlayer);
+      restoreRenderVisibility(active.visiblePlayer);
     } catch (error) {
       errors.push(error);
     }

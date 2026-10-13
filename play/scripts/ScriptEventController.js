@@ -64,6 +64,10 @@ export class ScriptEventController {
     return "running";
   }
 
+  get ownsPlayerPresentation() {
+    return Boolean(this.active?.presentationStarted && this.presentation.ownsPlayerPresentation);
+  }
+
   start(selector, context = {}) {
     if (this.pendingStart || this.active) {
       return Promise.reject(new Error("a script event is already active"));

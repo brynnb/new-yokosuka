@@ -328,14 +328,15 @@ challenge record; `challenge_result` reads its validated result in that event
 run. Readiness starts the server timer after presentation is ready. Fresh
 prompt tokens, receipt-time checks and ordered inputs prevent ordinary Continue,
 old callbacks or movie completion from awarding success. Failure and timeout
-offer a retry; cancellation settles nothing. The bar sequence and the remaining
-story challenges are not yet connected.
+offer a retry; cancellation settles nothing. The Heartbeats interior now uses
+the same primitive for B/A/B/A, with original E1030 voices and an authored held
+cast, then settles the Charlie clue. Later story challenges remain missing.
 
 The native controller-state runtime can read the original-shaped controller
 fields, but ordinary gameplay input is not currently written into those
 records. The authored challenge is independent of native-controller recovery.
-The alley's defensive choreography and original recovery branches remain
-presentation gaps, distinct from its verified input/result boundary.
+The alley and bar's defensive choreography and original recovery branches
+remain presentation gaps, distinct from their verified input/result boundary.
 
 `activity_result` exists in fixtures, but live world facts do not populate it.
 The event-advance protocol now also carries challenge readiness, button input

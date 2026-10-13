@@ -147,6 +147,8 @@ test("startup ownership spans scene loading gaps without stopping authored playb
   opening = false;
   assert.equal(runtime.ownsPlayerPresentation, false);
   assert.equal(runtime.presentationActive, false);
+  runtime.eventController.ownsPlayerPresentation = true;
+  assert.equal(runtime.ownsPlayerPresentation, true, "authored Yarn staging also owns the camera and actor pose");
   runtime.updateAutomatic({ world: { nativeArea: "JOMO" }, enabled: true });
   assert.equal(calls.at(-1)[1].enabled, true);
 });

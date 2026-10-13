@@ -219,6 +219,15 @@ test("render presentation preserves subsystem order and updates player HUD", () 
     animationDeltaSeconds: 0.04, fixedStepAlpha: 0.5 });
   assert.equal(calls.some(([name]) => name === "model-visible"), false,
     "first-person gameplay visibility must not undo a cinematic's actor mask");
+  for (const [worldSwitching, avatarSwitching] of [[true, false], [false, true], [false, false]]) {
+    runtime.world.runtime.switching = worldSwitching;
+    runtime.player.runtime.characterSwitching = avatarSwitching;
+    calls.length = 0;
+    runtime.update({ deltaSeconds: 0.02, wallDeltaSeconds: 0.03,
+      animationDeltaSeconds: 0.04, fixedStepAlpha: 0.5 });
+    assert.equal(calls.find(([name]) => name === "automatic-events")[1].enabled, !worldSwitching && !avatarSwitching,
+      "ready geometry does not authorize a story event during travel/avatar finalization");
+  }
 });
 
 test("render presentation skips world-owned work until the world is ready", () => {

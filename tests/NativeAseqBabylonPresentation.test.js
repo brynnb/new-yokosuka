@@ -7,6 +7,28 @@ import {
   createNativeAseqBabylonCamera,
 } from "../play/events/NativeAseqBabylonPresentation.js";
 
+test("a direct actor lease shows first-person Ryo and restores his previous visibility", () => {
+  const engine = new BABYLON.NullEngine(), scene = new BABYLON.Scene(engine);
+  try {
+    const root = new BABYLON.TransformNode("player", scene);
+    const renderRoot = new BABYLON.TransformNode("player-render", scene);
+    renderRoot.parent = root;
+    renderRoot.setEnabled(false);
+    const runtime = createNativeAseqBabylonActors({
+      getPlayerModel: () => ({ root, renderRoot, loader: {} }),
+      syncPlayerTransform() {},
+      scheduledActors: { beginActivityActors() {}, activityActor() {}, endActivityActors() {} },
+      motionRuntime: { applyActivitySequence() {} },
+    });
+    const owner = {};
+    runtime.begin(owner, ["AKIR"]);
+    assert.equal(renderRoot.isEnabled(false), true);
+    runtime.end(owner, "stopped");
+    assert.equal(renderRoot.isEnabled(false), false);
+    assert.equal(root.isEnabled(false), true);
+  } finally { scene.dispose(); engine.dispose(); }
+});
+
 test("AUTH preparation requests only scheduled actors, excluding other ownership types", async () => {
   const calls = [];
   const runtime = createNativeAseqBabylonActors({

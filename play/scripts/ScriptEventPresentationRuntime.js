@@ -41,6 +41,10 @@ export class ScriptEventPresentationRuntime {
     return true;
   }
 
+  get ownsPlayerPresentation() {
+    return Boolean(this.transaction && this.adapters.ownsPlayerPresentation?.(this.transaction));
+  }
+
   async execute(event) {
     if (!this.transaction) {
       throw new Error("script presentation transaction is not active");

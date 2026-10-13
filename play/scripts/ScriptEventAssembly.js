@@ -26,6 +26,8 @@ import {
 import {
   createTelephoneReceiverBabylonAdapter,
 } from "./TelephoneReceiverBabylonAdapter.js";
+import { AuthoredSceneStagingRuntime } from "./AuthoredSceneStagingRuntime.js";
+import { createNativeAseqBabylonActors, createNativeAseqBabylonCamera } from "../events/NativeAseqBabylonPresentation.js";
 
 export function createScriptEventAssembly({
   nativeRuntime,
@@ -47,6 +49,10 @@ export function createScriptEventAssembly({
   getPlayerPosition,
   capturePlayerState,
   restorePlayerState,
+  camera,
+  getPlayerModel,
+  syncPlayerTransform,
+  motionRuntime,
   cameraPresentation,
   getMovementLocked,
   setMovementLocked,
@@ -117,6 +123,12 @@ export function createScriptEventAssembly({
   const presentation = createScriptEventPresentationRuntime({
     adapters: createScriptEventBabylonAdapters({
       cameraRuntime,
+      sceneStagingRuntime: new AuthoredSceneStagingRuntime({
+        actors: createNativeAseqBabylonActors({ getPlayerModel, syncPlayerTransform,
+          scheduledActors, motionRuntime, preservePlayerOnComplete: false, playerYawOffsetRadians: Math.PI }),
+        camera: createNativeAseqBabylonCamera(camera), motionRuntime,
+        capturePlayerState, restorePlayerState,
+      }),
       playerMotionRuntime,
       playerXmptRuntime,
       scheduledActors,

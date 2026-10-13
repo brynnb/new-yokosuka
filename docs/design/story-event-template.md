@@ -210,7 +210,8 @@ Do not describe the first conversation as fully animation-faithful.
 | Sumiya / Yamagishi → Nozomi → Tom | Connected browser clicks, visible actors/facing, initial voice playback, saved clues and restored controls verified for all four. Real server/compiler tests cover cancellation/retry, personal eligibility, NPC presence, Yamagishi hours and cross-character isolation. Conversation-specific gestures remain an approximation. |
 | Three Blades → Liu family → Liu Senior's sailors lead | Connected browser continuation verified through Ajiichi, daytime referrals, Liu Barber and Liu Senior. The nighttime cook/Yong/Wu referral is now also rendered and connected; all referrals converge on the same Liu clue. |
 | Nighttime sailors → Heartbeats alley | Personal waiting, Saijo's voiced lead and the alley's failure/retry/success path verified in the browser. Timed input is server-validated; defensive choreography remains approximate. |
-| Heartbeats interior / Charlie / tattoo parlour / Chinese letter | Missing connected authored progression and remaining challenge presentation/outcomes. |
+| Heartbeats interior → Charlie notebook lead | Connected real-door/browser check verifies voiced lead-in, failed QTE/retry, successful B,A,B,A inputs, clue settlement, restored Ryo/camera/controls and no replay on re-entry. Rendered cast uses held standing poses; attack choreography is not implemented. |
+| Charlie investigation / ambush / tattoo parlour / Chinese letter | Missing connected authored progression and remaining challenge presentation/outcomes. |
 | Harbor warehouses / Master Chen / Phoenix Mirror | Missing connected authored progression. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
@@ -503,6 +504,55 @@ Use `NEW_YOKOSUKA_ALLEY_QTE_E2E=true` with the connected saved fixture.
 Current presentation limits: prompts follow the original beer staging after
 returning to the gameplay camera. The original defensive choreography,
 between-input recovery animation and gamepad button routing remain unfinished.
-The indoor B/A/B/A catalog record is a reusable challenge definition, not a
-completed Heartbeats bar event. The bar scene and Charlie clue must still be
-connected and rendered before that chapter is claimed playable.
+The indoor B/A/B/A encounter below now consumes the same challenge primitive.
+
+## Heartbeats interior: the bar encounter and Charlie lead
+
+Official event: `heartbeats-bar` (`story-s1-heartbeats-bar`). It is compiled from
+the investigation content catalog into ordinary Yarn, not a new quest system.
+
+| Field | Definition |
+| --- | --- |
+| Location / trigger | Enter Heartbeats (`DBHB`) through its Dobuita door; the existing automatic room-entry dispatcher starts the event. |
+| Prerequisites / time | Personal Story Ryo, opening and sailors clue complete, alley QTE won, Hato present, 19:00–04:00, bar milestone incomplete. Use the personal calendar; no forced date or weather. |
+| Player / cast / props | Lock input and borrow Ryo, Hato and three original actor models: Sera (`TUW_L`), Jones (`GIF_L`) and Harry (`GIE_L`). The authored scene places Ryo near the original arrival and holds standing loops. No separate drink, weapon or thrown-object prop is animated. |
+| Sequence / dialogue | Original `E1030` welcome, sailors question, mockery and confrontation; then a real defensive QTE; only after winning, Hato names Charlie and describes his motorcycle, clothes and tattoo. The 25 selected original voice/subtitle lines are condensed into authored order. |
+| Camera / timing / audio | One authored room shot; original voices advance on their audio ending or supported Space input. The scene remains owned across the challenge. No invented music identity or exact native fight timing. Preserve existing room sound, weather and lighting. |
+| Challenge | Four timed inputs, B/A/B/A, through the same server-validated prompt system as the alley. Shift/Enter or onscreen buttons. Readiness starts timing; old tokens, movie completion and Continue cannot win. Two seconds per input and strict restart are adaptations. |
+| Effects | Atomically set `story.s1.heartbeats-bar.completed` and `notebook.s1.charlie` after successful input and completed clue dialogue. No currency, item, HP or speculative native-bit effect. |
+| Exit / retry / skip | Restore the exact prior room position, avatar visibility, camera mode and controls. Stay inside Heartbeats; the original forced ejection is not implemented. Space may advance voice lines but not prompts. Wrong/late input offers retry or leaving without progress. X/cancellation, failed preparation or disconnect settle no clue. Re-enter a cancelled event to retry; a completed event does not replay. |
+
+### Sources and verification
+
+The [Japanization guide](https://shenmuesubs.sourceforge.net/howto/shenmue1/addons/S1_JPG_083.pdf)
+identifies `E1030` as the Heartbeats encounter. Original SRF speakers and ordered
+AFS speech members establish each selected subtitle/voice pair; source SHA-256
+is `293e91c89786994e8747d3057f4cf5731ba5302b2c46f5b753c0455e7566f069`.
+The [GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf)
+corroborates the winning inputs and Charlie lead. Neither source establishes
+our standing poses, camera or retry timing; those are declared approximations.
+
+`AuthoredSceneStagingRuntime` borrows the shared cinematic actor/camera
+primitives under the existing script presentation transaction. It stages no
+server NPCs and writes no progress; other players keep their own views. Late
+model preparation cannot acquire actors beneath a cancelled/new transaction.
+The automatic dispatcher waits for world travel and avatar loading to finish.
+
+The entry generator now prefers an original live AKIR CHRS placement when a
+room has no Entry record, rather than guessing the interior side of an exit
+door. This corrects DBHB's outside-wall arrival and also uses available source
+placements for DAZA, DCBN and DRSA. DBHB uses native record `0x24530` at browser
+`(-0.68, 0, -7.32)`; facing into the room remains the established adaptation.
+
+The isolated browser check (`NEW_YOKOSUKA_BAR_QTE_E2E=true`, using an earned
+alley checkpoint) clicks the real Heartbeats door, observes voice playback,
+fails/retries the challenge, enters B/A/B/A, advances the original clue dialogue,
+checks the notebook and unchanged money, verifies restored Ryo/first-person
+camera/arrival/controls, and re-enters without replay or owned cast. Captures
+show Ryo and the three encounter actors; they do not prove fight choreography
+or natural timing of every voice line. Real Yarn/PostgreSQL checks additionally
+cover missing prerequisites/Hato, opening hours, cancelled preparation,
+cancel-after-win, clue settlement, repeat and cross-character isolation.
+
+Charlie investigation, later ambushes, tattoo parlour and Chinese-letter
+progression remain missing; this is not completion of that whole chapter.

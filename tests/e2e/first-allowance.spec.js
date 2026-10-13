@@ -36,6 +36,8 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   // Instrument the actual served modules, including HMR timestamp variants.
   // Importing a bare second copy can observe a different prototype from /play.
   for (const [file, hook] of [
+    ["scripts/ScriptEventController", `const probeFailure = ScriptEventController.prototype.fail;
+      ScriptEventController.prototype.fail = function(error,...args) { window.storyProbe.sceneErrors.push(error.message); return probeFailure.call(this,error,...args); };`],
     ["dialogue/NativeDialogueOverlayRuntime", `window.nativeDialogueHookInstalled = true;
       const probeNativeStart = NativeDialogueOverlayRuntime.prototype.start;
       NativeDialogueOverlayRuntime.prototype.start = function(options,...args) { window.storyProbe.nativeStarts.push(options.actorCode); return probeNativeStart.call(this,options,...args); };`],
@@ -84,6 +86,12 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_BAR_QTE_E2E === "true") {
+      await verifyBarQte(page, testInfo, character);
+      expect(errors).toEqual([]);
+      expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
+      return;
+    }
     await continueWitnesses(page, testInfo, character, character.yen, true);
     if(process.env.NEW_YOKOSUKA_ALLEY_QTE_E2E === "true") {
       await page.locator("#journal-close").click();
@@ -459,4 +467,98 @@ async function verifyAlleyQte(page,testInfo,character) {
   const saved=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
   expect(saved.character.storyFlags["story.s1.heartbeats-alley.completed"]).toBe(true);
   expect(saved.character.yen).toBe(character.yen);
+}
+
+async function verifyBarQte(page, testInfo, character) {
+  expect(character.storyFlags["story.s1.heartbeats-alley.completed"]).toBe(true);
+  const state = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+  if (new Date(state.worldState.gameTimeMs).getUTCHours() < 19) {
+    await page.locator("#story-wait-button").click();
+    await page.getByRole("option", { name: "Wait until 7 p.m.", exact: true }).click();
+    await page.getByRole("button", { name: "Wait until 7 p.m.", exact: true }).click();
+    await expect.poll(() => page.evaluate(() => window.storyProbe.regions.controller.status)).toBe("idle");
+  }
+  if (await page.evaluate(() => window.storyProbe.lifecycle.worldRuntime.activeWorld.id !== "dbhb")) {
+    await page.evaluate(async () => {
+      const life = window.storyProbe.lifecycle;
+      await life.travelToWorld("dobuita");
+      life.resetPlayer(life.vectorFromArray([124.56, -1.8, 64.41]), -.955742, { persist: false });
+      const door = life.doorInteractions.entries.find(entry => entry.root._filename === "S1_D000_DR02_016.MT5");
+      if (!door) throw new Error("Heartbeats door is missing");
+      const bounds = door.root.getHierarchyBoundingVectors(true), center = bounds.min.add(bounds.max).scale(.5);
+      const controller = life.getController();
+      controller.setFirstPerson(true);
+      controller.cameraYaw = Math.atan2(-(center.x - 124.56), -(center.z - 64.41));
+      controller.cameraPitch = 0;
+      controller.updateCamera(1);
+    });
+    await page.waitForTimeout(800);
+    const point = await page.evaluate(() => {
+      const life = window.storyProbe.lifecycle;
+      const door = life.doorInteractions.entries.find(entry => entry.root._filename === "S1_D000_DR02_016.MT5");
+      if (!door) throw new Error("Heartbeats door is missing");
+      const bounds = door.root.getHierarchyBoundingVectors(true);
+      const center = bounds.min.add(bounds.max).scale(.5), canvas = life.engine.getRenderingCanvas(), rect = canvas.getBoundingClientRect();
+      const screen = center.constructor.Project(center, life.scene.getTransformMatrix().constructor.Identity(), life.scene.getTransformMatrix(),
+        life.scene.activeCamera.viewport.toGlobal(life.engine.getRenderWidth(), life.engine.getRenderHeight()));
+      return { x: rect.x + screen.x * rect.width / life.engine.getRenderWidth(), y: rect.y + screen.y * rect.height / life.engine.getRenderHeight() };
+    });
+    await page.mouse.click(point.x, point.y);
+    await page.waitForFunction(() => window.storyProbe.lifecycle.worldRuntime.activeWorld.id === "dbhb", null, { timeout: 30_000 });
+  }
+  await page.waitForFunction(() => window.storyProbe.dialogue?.active || window.storyProbe.sceneErrors.length, null, { timeout: 60_000 });
+  expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
+  await page.waitForFunction(() => window.storyProbe.dialogue?.audio?.currentTime > 0, null, { timeout: 15_000 });
+  await page.screenshot({ path: testInfo.outputPath("heartbeats-bar-introduction.png") });
+  // Read the rendered cast and perform the real challenge. Space only skips
+  // voice lines; it must not answer or bypass a challenge prompt.
+  for (let i = 0; i < 20 && !await page.evaluate(() => !!window.storyProbe.regions.controller.active?.challengePrompt); i++) {
+    await page.keyboard.press("Space"); await page.waitForTimeout(150);
+  }
+  await page.waitForFunction(() => window.storyProbe.regions.controller.active?.challengePrompt?.ready);
+  await page.screenshot({ path: testInfo.outputPath("heartbeats-bar-prompt.png") });
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("button", { name: "Try again", exact: true })).toBeVisible();
+  let saved = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+  expect(saved.character.storyFlags["notebook.s1.charlie"]).not.toBe(true);
+  await page.getByRole("button", { name: "Try again", exact: true }).click();
+  for (let i = 0; i < 20 && !await page.evaluate(() => !!window.storyProbe.regions.controller.active?.challengePrompt); i++) {
+    await page.keyboard.press("Space"); await page.waitForTimeout(150);
+  }
+  for (const [index, button] of ["B", "A", "B", "A"].entries()) {
+    await page.waitForFunction(({ index, button }) => {
+      const p = window.storyProbe.regions.controller.active?.challengePrompt;
+      return p?.ready && p.index === index && p.button === button;
+    }, { index, button });
+    await page.keyboard.press(button === "B" ? "Shift" : "Enter");
+  }
+  await page.waitForFunction(() => window.storyProbe.regions.controller.status === "line");
+  for (let i = 0; i < 30 && !await page.evaluate(() => window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.charlie"]); i++) {
+    await page.keyboard.press("Space"); await page.waitForTimeout(200);
+  }
+  await expect.poll(() => page.evaluate(() => window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.charlie"])).toBe(true);
+  expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  saved = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+  expect(saved.character.yen).toBe(character.yen);
+  expect(saved.character.storyFlags["story.s1.heartbeats-bar.completed"]).toBe(true);
+  const returned = await page.evaluate(() => ({
+    position: window.storyProbe.lifecycle.getController().collider.position.asArray(),
+    firstPerson: window.storyProbe.lifecycle.getController().firstPerson,
+    avatar: window.storyProbe.lifecycle.playerRuntime.activeCharacterId,
+    owners: window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size,
+  }));
+  expect(returned.avatar).toBe("ryo");
+  expect(returned.owners).toBe(0);
+  expect(returned.firstPerson).toBe(true);
+  expect(Math.hypot(returned.position[0] + .68, returned.position[2] + 7.32)).toBeLessThan(.1);
+  await page.locator("button").filter({ hasText: /^Notebook$/ }).click();
+  for (let i = 0; i < 30 && !await page.getByText(/Hato at Heartbeats told me about Charlie/).isVisible(); i++) await page.locator("#journal-next").click();
+  await expect(page.getByText(/Hato at Heartbeats told me about Charlie/)).toBeVisible();
+  await page.screenshot({ path: testInfo.outputPath("charlie-notebook.png") });
+  await page.locator("#journal-close").click();
+  // Room reload must not replay the encounter or leave its event-only cast.
+  await page.evaluate(async () => { const life = window.storyProbe.lifecycle; await life.travelToWorld("dobuita"); await life.travelToWorld("dbhb"); });
+  await page.waitForTimeout(1500);
+  expect(await page.evaluate(() => window.storyProbe.regions.controller.status)).toBe("idle");
+  expect(await page.evaluate(() => window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
 }
