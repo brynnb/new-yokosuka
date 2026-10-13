@@ -44,7 +44,15 @@ const STORY_PAGES = Object.freeze([
   { flag: "notebook.s1.tom-witness", page: Object.freeze({ id: "story-tom-witness",
     text: "The black car splashed Nozomi with mud.\n\nTom argued with the people in the car. Ask him at the hot dog truck." }) },
   { flag: "notebook.s1.chinese-community", page: Object.freeze({ id: "story-chinese-community",
-    text: "Tom saw a man in a deep-green Chinese coat. Lan Di.\n\nAsk the Chinese community in Dobuita for information." }) },
+    text: "Tom saw a man in a deep-green Chinese coat. Lan Di.\n\nAsk the Chinese community in Dobuita for information. Visit Tao-san at Ajiichi, opposite Hattori Sporting Goods, from 10 a.m." }) },
+  { flag: "notebook.s1.three-blades", page: Object.freeze({ id: "story-three-blades",
+    text: "The Three Blades: barbers, tailors and cooks.\n\nAsk Maeda-san at the barber shop near You Arcade, Itoi-san at Mary's Patches, or the cook at Manpukuken Ramen." }) },
+  { flag: "notebook.s1.liu-barber", page: Object.freeze({ id: "story-liu-barber",
+    text: "Visit Liu Barber and Hair Salon, past Funny Bear Burgers toward Sakuragaoka.\n\nThe shop is open from 10 a.m. to 7 p.m." }) },
+  { flag: "notebook.s1.liu-senior", page: Object.freeze({ id: "story-liu-senior",
+    text: "Liu-san's father is a first-generation Chinese. He may know about Lan Di.\n\nLook in Suzume Park, in the alley next to You Arcade." }) },
+  { flag: "notebook.s1.sailors", page: Object.freeze({ id: "story-sailors",
+    text: "Lan Di may be connected to a Chinese cartel based at the harbor.\n\nAsk sailors who travel to Hong Kong or Shanghai. Look in Dobuita's bars at night." }) },
 ]);
 
 export function notebookPagesForCharacter(character) {

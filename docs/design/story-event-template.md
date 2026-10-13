@@ -208,7 +208,7 @@ Do not describe the first conversation as fully animation-faithful.
 | First dojo visit → men-in-black notebook objective | Connected browser/full-stack progression and notebook verified; server gate/cancellation/settlement tested. Authored two-person lead-in rendered; held poses remain an approximation. |
 | Yamanose kitten / first black-car lead | Connected rendered approach, introduction skip, food choice, natural fish ending and saved notebook verified. Real server/compiler tests cover both food settlements, cancellation/retry and clue isolation. Tofu visuals and prop fidelity remain unverified. |
 | Sumiya / Yamagishi → Nozomi → Tom | Connected browser clicks, visible actors/facing, initial voice playback, saved clues and restored controls verified for all four. Real server/compiler tests cover cancellation/retry, personal eligibility, NPC presence, Yamagishi hours and cross-character isolation. Conversation-specific gestures remain an approximation. |
-| Chinese-community enquiry → sailors | Missing connected authored progression. |
+| Three Blades → Liu family → Liu Senior's sailors lead | Connected browser continuation verified through Ajiichi, both daytime referrals, Liu Barber, Liu Senior's park placement, voices, saved native bit/notebook and restored controls. Real server/compiler tests cover participant presence, opening hours, cancellation and atomic native schedule compatibility. Cook/Wong/Wu alternative remains missing. |
 | Heartbeats / Charlie / tattoo parlour / Chinese letter | Missing connected authored progression and verified challenge outcomes. |
 | Harbor warehouses / Master Chen / Phoenix Mirror | Missing connected authored progression. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
@@ -315,7 +315,7 @@ checkout and run `node tools/scripting/build_story_investigation.mjs`.
 Adding `--voices` requires `VGMSTREAM_CLI` and the extracted original game data;
 it merges only the selected voices into the existing local audio catalog.
 Audio binaries are ignored and need separate publication before deployment.
-Import the four reviewed built-ins into the isolated test database. Neither
+Import the reviewed built-ins into the isolated test database. Neither
 generation nor a local import publishes production content.
 
 Set `NEW_YOKOSUKA_INVESTIGATION_E2E=true` alongside the dojo and kitten test
@@ -331,3 +331,94 @@ shared conversation-facing direction: character models face local -Z, so
 FACE must apply the same half-turn as scheduled movement. No NPC-specific
 rotation override was added. Existing ambient gestures, including sweeping
 and dancing, remain active rather than becoming dedicated conversation clips.
+
+## Three Blades and the Liu family
+
+The investigation catalog continues through these ordinary conversations:
+
+| Event / location | Important conditions | Participants / original voices | Completion |
+| --- | --- | --- | --- |
+| `tao-three-blades`, Ajiichi (`DCHA`) | Tom's Chinese-community clue; personal 10:00–21:00. | Tao (`UNO_`) and Lin Xia (`RNKT`), F1050. | Three Blades notebook: Maeda, Itoi and Manpukuken Ramen. |
+| `itoi-liu-referral`, Mary's Patches in Dobuita | Three Blades clue; 10:00–20:00. | Itoi (`ITOI`), F1031. | Liu Barber notebook lead. |
+| `maeda-liu-referral`, Maeda Barber (`DTKY`) | Three Blades clue; 10:00–18:00. | Maeda (`MADA`), F1035. | Same Liu Barber lead; either referral suffices. |
+| `liu-barber-father`, Liu Barber (`DRHT`) | Either referral; 10:00–19:00. | Liu Ji You (`KYUR`) and Liu En Ling (`ONRR`), F1049. | Find Liu Senior in Suzume Park; atomically enable his reviewed native park schedule. |
+| `liu-senior-sailors`, Suzume Park in Dobuita | Liu family clue; 08:30–20:30. | Liu Gong Hui (`RKKI`), F1274. | Sailors notebook: Hong Kong/Shanghai sailors may know about the harbor cartel. |
+
+All require personal Story mode, completed opening, authoritative presence of
+every named NPC participant, and an unfinished individual conversation.
+The shared presenter faces each participant toward Ryo and restores each prior
+facing independently on completion or cancellation. The original voiced
+English lines supply the action sequence and timing; voice completion or Space
+advances. Preserve the player's gameplay camera and current personal weather.
+No currency, item, QTE, combat, calendar jump or forced travel is involved.
+Controls restore in the current shop or park; cancellations grant no partial
+clues. Alternate referrals unlock one stable notebook page, not duplicate pages.
+
+[Shotgunnova's walkthrough](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404)
+sections 1.05–1.07 and scenes 1-17–1-19 corroborate the sequence, the spouses'
+roles and the business hours. Original message text, speaker IDs and voice
+references come from HUMANS.AFS, with hashes in each generated import.
+Question sequences are condensed; gameplay cameras and ambient gestures are
+retained instead of claiming the original conversation direction. The cook
+route through Manpukuken and Wong/Wu remains to be connected. The shop's
+original phase-dependent closure is not newly implemented by these talks.
+
+### Liu Senior's personal placement
+
+The original RKKI schedule condition at CM_D000.BIN `0x5896c` requires bank-2
+bit 65 set and bit 70 clear. It selects schedule table `0x59b5c`, which places
+him in Dobuita at original position `(13.35, 0.08, 47.71)` from 08:35, mirrored
+to browser X `-13.35`. The generated actor catalog retains the exact predicate
+and source file hash `f5703c148278bc3ec3f656644cd2291de97e5dbfea9d528b31b24842366301cc`.
+
+The authored Liu-family completion writes `2:65 = 1` through the existing native
+bank transaction bridge, together with the named milestone and notebook clue.
+This is a reviewed compatibility mapping to an established schedule consumer;
+it does not assert that the original barber conversation was the only setter,
+or invent a complete historical meaning for bit 65. It leaves bit 70 untouched.
+The private commit receipt refreshes that character's NPC engine on the same
+day; public NPCs and other characters retain their own state. Failure and
+cancellation must not commit the bank write separately from the clue.
+
+Rebuild audio and imports with the investigation builder, then import these
+official built-ins through `cmd/script-import --builtin ...`. The Go catalog
+adds the canonical fresh Story snapshot to previews requiring native effects;
+this avoids duplicating the binary save layout in the JavaScript generator.
+Set `NEW_YOKOSUKA_THREE_BLADES_E2E=true` with the prior connected-test flags to
+extend the browser check. It waits for the real personal clock to reach 10:00,
+loads the existing interiors, clicks residents, tests both daytime referrals,
+checks the stored native bit, then follows Liu Senior and the saved notebook.
+
+The local rendered continuation passed using the same character whose opening
+investigation clues were earned in the prior browser run. It restored the saved
+Story context, loaded the actual interiors, clicked all five residents, verified
+their initial voice playback, used Space for the remaining original lines,
+confirmed `2:65` in the durable save, and found Liu Senior at the source park
+position. The sixteenth notebook page and unlocked controls were verified.
+The test resets nearby to bound travel and retains the gameplay camera; it
+does not claim original multi-person camera direction or gesture fidelity.
+
+For focused rechecks, `NEW_YOKOSUKA_STORY_RESUME_ID` and
+`NEW_YOKOSUKA_STORY_RESUME_TOKEN` select a previously earned isolated test
+character. The test requires Tom's saved lead and resumes unfinished witness
+conversations without creating story flags or advancing the clock. The normal
+variant still connects the whole sequence from the earlier allowance check.
+Opening-hour waits derive their wall-clock budget from `worldState.dayLengthMs`
+and the remaining personal game time, rather than assuming a speed multiplier.
+
+This rendered work exposed a shared schedule bug: Tao's 10:00 descriptor has
+no repeated room assignment, so the evaluator must inherit DCHA from his earlier
+descriptor. The server now retains eligible prior room assignments for both
+primary and secondary routes. Cold-start and explicit replacement tests pass;
+the restaurant capture verifies Tao's visible presence after the correction.
+
+The builder also emits `play/data/authored-story-talks.json`, a small area/actor
+projection used by the existing interaction dispatcher. In Story mode, these
+translated talks never fall back to the original native selector on a declined
+gate, missing server script or offline connection. That prevents an unavailable
+or completed authored conversation from independently changing native flags.
+Free roam and unconverted NPC talks retain their existing native behavior.
+Focused checks cover those boundaries, and the rendered repeat check clicks
+completed Liu Senior, verifies the notebook guidance, restored movement and
+absence of a native dialogue launch. Native consistency outside this translated
+catalog remains a separate content gap.

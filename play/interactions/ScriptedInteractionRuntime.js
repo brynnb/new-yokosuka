@@ -1,6 +1,9 @@
 import { hasNativeDialogueSelector } from "../dialogue/NativeDialogueSelector.js";
 import { isWithinDialogueRange } from "../dialogue/DialogueProximity.js";
 import { playerWorldInteractionAllowed } from "./PlayerWorldInteractionPolicy.js";
+import authoredStoryTalks from "../data/authored-story-talks.json" with { type: "json" };
+
+const SERVER_OWNED_STORY_TALKS = new Set(authoredStoryTalks.talks.map(talk => `${talk.area}:${talk.actor}`));
 
 const FALLBACK_SCRIPT_CODES = new Set([
   "no_script",
@@ -153,6 +156,8 @@ export class ScriptedInteractionRuntime {
       this.transientNotice.show("Finish the current conversation first.");
       return;
     }
+    const serverOwnedStoryTalk = this.accountSession.character?.playMode === "story"
+      && SERVER_OWNED_STORY_TALKS.has(`${this.getWorld().nativeArea}:${npcSelection.actorCode}`);
     this.getMultiplayerClient()?.forcePresence();
     try {
       const result = await this.scriptEventController.start({
@@ -164,18 +169,26 @@ export class ScriptedInteractionRuntime {
         actorInstanceId: npcSelection.id,
       });
       if (!this.canStart()) return;
+      if (serverOwnedStoryTalk && result.outcome === "declined") {
+        this.transientNotice.show("This conversation is not available right now. Check your notebook for the next lead.");
+        return;
+      }
       if (
         result.outcome === "declined"
         || (result.outcome === "rejected"
           && FALLBACK_SCRIPT_CODES.has(result.error.code))
-      ) this.startNativeNpc(npcSelection);
+      ) {
+        if (serverOwnedStoryTalk) this.transientNotice.show("This conversation is unavailable. Please try again when connected.");
+        else this.startNativeNpc(npcSelection);
+      }
       else if (result.outcome === "rejected") {
         this.transientNotice.show(result.error.message);
       }
     } catch (error) {
       if (!this.canStart()) return;
       if (error?.code === "connection_unavailable") {
-        this.startNativeNpc(npcSelection);
+        if (serverOwnedStoryTalk) this.transientNotice.show("This conversation is unavailable. Please try again when connected.");
+        else this.startNativeNpc(npcSelection);
       } else if (![
         "start_cancelled",
         "start_interrupted",

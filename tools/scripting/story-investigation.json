@@ -33,6 +33,48 @@
       "completedFlag": "story.s1.tom-black-car.completed",
       "effects": ["notebook.s1.chinese-community"],
       "voiceIds": ["F1038A001","F1038B008","F1038A007","F1038B009","F1038A008","F1038B010","F1038A009","F1038B011","F1038A010","F1038B012","F1038A012","F1038B013","F1038A013","F1038B014","F1038B015","F1038A014","F1038A015","F1038B016","F1038B017","F1038A016","F1038B018","F1038B019","F1038A017","F1038B020","F1038B021","F1038B022","F1038B023","F1038A018"]
+    },
+    {
+      "id": "tao-three-blades", "actor": "UNO_", "participants": ["RNKT"], "area": "DCHA",
+      "title": "Tao and Lin Xia — the Three Blades", "hours": [10,21],
+      "requiredFlags": ["notebook.s1.chinese-community"],
+      "completedFlag": "story.s1.tao-three-blades.completed",
+      "effects": ["notebook.s1.three-blades"],
+      "voiceIds": ["F1050A001","F1050B008","F1050A010","F1050B023","F1050A011","F1050C002","F1050A012","F1050B024","F1050B025","F1050A013","F1050A014","F1050A016","F1050B026","F1050B027","F1050B028","F1050C003","F1050B029","F1050A017","F1050A018","F1050B030","F1050B031","F1050C004","F1050C005","F1050C006","F1050A019","F1050B032","F1050B033","F1050B034","F1050B035","F1050A020","F1050C007","F1050C008","F1050C009","F1050C010","F1050B036","F1050B037","F1050B038","F1050A021","F1050B039","F1050A022"]
+    },
+    {
+      "id": "itoi-liu-referral", "actor": "ITOI", "area": "D000",
+      "title": "Itoi — Liu's barber shop", "hours": [10,20],
+      "requiredFlags": ["notebook.s1.three-blades"],
+      "completedFlag": "story.s1.itoi-liu-referral.completed",
+      "effects": ["notebook.s1.liu-barber"],
+      "voiceIds": ["F1031A018","F1031A019","F1031B018","F1031A020","F1031B019","F1031A021","F1031B020","F1031A022","F1031B021","F1031A023","F1031A024","F1031B022","F1031B023","F1031B024","F1031A025","F1031A026","F1031A028","F1031B026","F1031A029","F1031B027","F1031A027"]
+    },
+    {
+      "id": "maeda-liu-referral", "actor": "MADA", "area": "DTKY",
+      "title": "Maeda — Liu's barber shop", "hours": [10,18],
+      "requiredFlags": ["notebook.s1.three-blades"],
+      "completedFlag": "story.s1.maeda-liu-referral.completed",
+      "effects": ["notebook.s1.liu-barber"],
+      "voiceIds": ["F1035A003","F1035B007","F1035B028","F1035B029","F1035A024","F1035A025","F1035B030","F1035A026","F1035B031","F1035B032","F1035A027","F1035B033","F1035B034","F1035A028","F1035B035","F1035B036","F1035A029"]
+    },
+    {
+      "id": "liu-barber-father", "actor": "KYUR", "participants": ["ONRR"], "area": "DRHT",
+      "title": "The Lius — find their father", "hours": [10,19],
+      "requiredFlags": ["notebook.s1.liu-barber"],
+      "completedFlag": "story.s1.liu-barber-father.completed",
+      "effects": ["notebook.s1.liu-senior"],
+      "nativeEffects": [{"address":"2:65","value":1}],
+      "nativeSources": [{"role":"actor-program","locator":"disc1/MISC/CM_D000.BIN#RKKI:0x5896c;65-set,70-clear=>0x59b5c","sha256":"f5703c148278bc3ec3f656644cd2291de97e5dbfea9d528b31b24842366301cc"}],
+      "voiceIds": ["F1049A021","F1049B001","F1049C001","F1049B002","F1049A002","F1049A003","F1049B003","F1049A004","F1049B004","F1049C002","F1049B005","F1049A007","F1049A008","F1049C003","F1049B006","F1049C004","F1049B007","F1049A011","F1049B008","F1049B009","F1049C005","F1049B010","F1049A012","F1049B011","F1049C006","F1049A013","F1049C007","F1049A014"]
+    },
+    {
+      "id": "liu-senior-sailors", "actor": "RKKI", "area": "D000",
+      "title": "Liu Senior — the sailors lead", "hours": [8.5,20.5],
+      "requiredFlags": ["notebook.s1.liu-senior"],
+      "completedFlag": "story.s1.liu-senior-sailors.completed",
+      "effects": ["notebook.s1.sailors"],
+      "voiceIds": ["F1274A001","F1274B001","F1274A002","F1274B002","F1274A005","F1274A006","F1274B004","F1274A007","F1274B005","F1274B006","F1274B007","F1274A009","F1274B008","F1274B009","F1274A010","F1274B010","F1274B011","F1274A011","F1274A012","F1274B012"]
     }
   ]
 }

@@ -131,10 +131,7 @@ export class ScriptEventBabylonAdapters {
     const transaction = {
       area,
       actor,
-      actorFacingState: actor
-        ? this.scheduledActors.dialogueFacingState(actor.instanceId)
-        : null,
-      actorFacingRestored: false,
+      actorFacingStates: new Map(),
       movementLocked: this.getMovementLocked(),
       cameraToken: null,
       playerMotionToken: null,
@@ -177,7 +174,9 @@ export class ScriptEventBabylonAdapters {
   }
 
   lookAtActor(request, transaction) {
-    const actor = transaction.actor;
+    const actor = transaction.actor?.actorCode === request.actorCode
+      ? transaction.actor
+      : this.scheduledActors.dialogueActor(request.actorCode);
     if (
       !actor
       || request.actorCode !== actor.actorCode
@@ -185,6 +184,12 @@ export class ScriptEventBabylonAdapters {
     ) return false;
     const target = this.getPlayerPosition();
     if (!finitePosition(target)) return false;
+    // Each participant retains its own prior facing. Restaurant and barber
+    // conversations can address both spouses; cancellation restores both.
+    if (!transaction.actorFacingStates.has(actor.instanceId)) {
+      transaction.actorFacingStates.set(actor.instanceId,
+        this.scheduledActors.dialogueFacingState(actor.instanceId));
+    }
     return this.scheduledActors.setDialogueFacingTarget(
       actor.instanceId,
       target,
@@ -196,10 +201,11 @@ export class ScriptEventBabylonAdapters {
   }
 
   clearActorLook(request, transaction) {
-    const actor = transaction.actor;
+    const actor = transaction.actor?.actorCode === request.actorCode
+      ? transaction.actor
+      : this.scheduledActors.dialogueActor(request.actorCode);
     if (!actor || request.actorCode !== actor.actorCode) return false;
-    this.restoreActorFacing(transaction);
-    return true;
+    return this.restoreActorFacing(transaction, actor.instanceId);
   }
 
   playSequence(sequence, transaction) {
@@ -356,14 +362,15 @@ export class ScriptEventBabylonAdapters {
     return true;
   }
 
-  restoreActorFacing(transaction) {
-    if (!transaction.actor || transaction.actorFacingRestored) return false;
-    this.scheduledActors.restoreDialogueFacingState(
-      transaction.actor.instanceId,
-      transaction.actorFacingState,
-    );
-    transaction.actorFacingRestored = true;
-    return true;
+  restoreActorFacing(transaction, instanceId = null) {
+    let restored = false;
+    for (const [id, state] of transaction.actorFacingStates) {
+      if (instanceId && id !== instanceId) continue;
+      this.scheduledActors.restoreDialogueFacingState(id, state);
+      transaction.actorFacingStates.delete(id);
+      restored = true;
+    }
+    return restored;
   }
 }
 

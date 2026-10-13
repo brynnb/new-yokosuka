@@ -51,7 +51,7 @@ schedules; timed entrances and script-event calendar/presence checks use the sam
 personal view. Public NPC updates cannot overwrite it. Player presence and chat
 still share the normal world room.
 
-The existing waking-day clock runs at 25 game seconds per real second and skips
+The existing waking-day clock runs at 15 game seconds per real second and skips
 23:30–08:30. Story time advances while its WebSocket is connected, including
 ordinary dialogue, and is checkpointed even when standing still. It pauses on
 disconnect or a mode switch. Original sleep routines and event-driven time jumps

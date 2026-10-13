@@ -3,21 +3,26 @@ import { randomUUID } from "node:crypto";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
 
-for (const [ending, freshOpening] of [["complete", false], ["skip", false], ["complete", true]]) test(`first allowance renders and persists after ${ending}${freshOpening ? " from a fresh opening" : ""}`, async ({ page }, testInfo) => {
+const resumeId = Number(process.env.NEW_YOKOSUKA_STORY_RESUME_ID || 0);
+const variants = resumeId ? [["resume", false]] : [["complete", false], ["skip", false], ["complete", true]];
+for (const [ending, freshOpening] of variants) test(resumeId ? "investigation continues from an earned saved checkpoint" : `first allowance renders and persists after ${ending}${freshOpening ? " from a fresh opening" : ""}`, async ({ page }, testInfo) => {
   test.setTimeout(process.env.NEW_YOKOSUKA_INVESTIGATION_E2E === "true" ? 900_000 : process.env.NEW_YOKOSUKA_KITTEN_E2E === "true" ? 600_000 : freshOpening ? 480_000 : 240_000);
   const errors = [];
   page.on("pageerror", error => errors.push(error.message));
-  const guestToken = randomUUID();
+  const guestToken = resumeId ? process.env.NEW_YOKOSUKA_STORY_RESUME_TOKEN : randomUUID();
+  expect(guestToken).toBeTruthy();
   const auth = await page.request.post("/api/auth/guest", { data: { guestToken } });
   expect(auth.ok(), await auth.text()).toBe(true);
   const name = "Scene" + randomUUID().slice(0, 6).replace(/[0-9]/g, digit => String.fromCharCode(103 + Number(digit)));
-  const response = await page.request.post("/api/characters", { data: { name, avatarId: "ryo" } });
+  const response = resumeId ? await page.request.get(`/api/characters/${resumeId}/state`)
+    : await page.request.post("/api/characters", { data: { name, avatarId: "ryo" } });
   expect(response.ok(), await response.text()).toBe(true);
-  const character = await response.json();
-  if (!freshOpening) {
+  const detail = await response.json();
+  const character = resumeId ? detail.character : detail;
+  if (!freshOpening && !resumeId) {
     const opening = await page.request.post(`/api/characters/${character.id}/opening-complete`, { data: { revision: 0 } });
     expect(opening.ok()).toBe(true);
-  } else {
+  } else if (freshOpening) {
     expect(character.playMode).toBe("story");
     expect(character.openingCompleted).toBe(false);
     // No gameplay writer may start with the pre-opening clock and location.
@@ -31,6 +36,9 @@ for (const [ending, freshOpening] of [["complete", false], ["skip", false], ["co
   // Instrument the actual served modules, including HMR timestamp variants.
   // Importing a bare second copy can observe a different prototype from /play.
   for (const [file, hook] of [
+    ["dialogue/NativeDialogueOverlayRuntime", `window.nativeDialogueHookInstalled = true;
+      const probeNativeStart = NativeDialogueOverlayRuntime.prototype.start;
+      NativeDialogueOverlayRuntime.prototype.start = function(options,...args) { window.storyProbe.nativeStarts.push(options.actorCode); return probeNativeStart.call(this,options,...args); };`],
     ["scripts/ScriptEventDialoguePresenter", `const probeShow = ScriptEventDialoguePresenter.prototype.show;
       ScriptEventDialoguePresenter.prototype.show = function(...args) { window.storyProbe.dialogue = this; return probeShow.apply(this,args); };`],
     ["world/PlayWorldLifecycle", `const probeInitialize = PlayWorldLifecycle.prototype.initialize;
@@ -46,7 +54,7 @@ for (const [ending, freshOpening] of [["complete", false], ["skip", false], ["co
   await page.route("**/play/play.js*", route => route.fulfill({ contentType: "application/javascript", body: `
     import { PlayApplication } from '/play/PlayApplication.js';
     import { ArcadeAttractScreens } from '/play/arcade/ArcadeAttractScreens.js';
-    window.storyProbe = { starts: [], ready: false, errors: [], sceneErrors: [] };
+    window.storyProbe = { starts: [], nativeStarts: [], ready: false, errors: [], sceneErrors: [] };
     const create = ArcadeAttractScreens.prototype.create;
     ArcadeAttractScreens.prototype.create = function(id) { return this.definitions[id]?.audioChannel === 'tv' ? null : create.call(this,id); };
     const application = new PlayApplication();
@@ -74,6 +82,13 @@ for (const [ending, freshOpening] of [["complete", false], ["skip", false], ["co
   await page.waitForFunction(() => window.storyProbe.ready || window.storyProbe.errors.length, null, { timeout: 120_000 });
   expect(await page.evaluate(() => window.storyProbe.errors)).toEqual([]);
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
+  if (resumeId) {
+    expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    await continueWitnesses(page, testInfo, character, character.yen, true);
+    expect(errors).toEqual([]);
+    expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
+    return;
+  }
   if (freshOpening) {
     const arrival = await page.evaluate(() => ({
       position: window.storyProbe.lifecycle.getController().collider.position.asArray(),
@@ -250,63 +265,114 @@ for (const [ending, freshOpening] of [["complete", false], ["skip", false], ["co
       await page.screenshot({ path: testInfo.outputPath("first-kitten-notebook.png") });
       await page.locator("#journal-close").click();
       if (process.env.NEW_YOKOSUKA_INVESTIGATION_E2E === "true") {
-        for (const [actor, world, flag] of [
-          ["SUMI", "sakuragaoka", "story.s1.sumiya-witness.completed"],
-          ["YAMA", "sakuragaoka", "notebook.s1.dobuita-black-car"],
-          ["HRSK", "dobuita", "notebook.s1.tom-witness"],
-          ["TOM_", "dobuita", "notebook.s1.chinese-community"],
-        ]) {
-          await page.evaluate(async world => { await window.storyProbe.lifecycle.travelToWorld(world); }, world);
-          await page.waitForFunction(actor => window.storyProbe.lifecycle.scheduledActors.dialogueActor(actor), actor, { timeout: 60_000 });
-          // Bound travel time without fabricating a talk result: position by
-          // the real scheduled NPC, then project and click its visible mesh.
-          await page.evaluate(actor => {
-            const life = window.storyProbe.lifecycle;
-            const npc = life.scheduledActors.dialogueActor(actor);
-            const [x, y, z] = npc.position;
-            life.resetPlayer(life.vectorFromArray([x, y, z + 2]), Math.PI, { persist: false });
-            const controller = life.getController();
-            controller.setFirstPerson(true);
-            controller.cameraYaw = 0;
-            controller.cameraPitch = 0;
-          }, actor);
-          await page.waitForTimeout(1200);
-          const point = await page.evaluate(actor => {
-            const life = window.storyProbe.lifecycle;
-            const npc = life.scheduledActors.dialogueActor(actor);
-            const point = life.vectorFromArray(npc.position);
-            point.y += 1.3;
-            const rect = life.engine.getRenderingCanvas().getBoundingClientRect();
-            const screen = point.constructor.Project(point, life.scene.getTransformMatrix().constructor.Identity(), life.scene.getTransformMatrix(),
-              life.scene.activeCamera.viewport.toGlobal(life.engine.getRenderWidth(), life.engine.getRenderHeight()));
-            return { x: rect.x + screen.x * rect.width / life.engine.getRenderWidth(),
-              y: rect.y + screen.y * rect.height / life.engine.getRenderHeight() };
-          }, actor);
-          await page.screenshot({ path: testInfo.outputPath(`${actor}-before-talk.png`) });
-          await page.mouse.click(point.x, point.y);
-          await page.waitForFunction(() => window.storyProbe.dialogue?.active, null, { timeout: 15_000 });
-          await page.waitForFunction(() => {
-            const audio = window.storyProbe.dialogue?.audio;
-            return audio && !audio.paused && audio.currentTime > 0;
-          }, null, { timeout: 15_000 });
-          await page.waitForTimeout(1500);
-          await page.screenshot({ path: testInfo.outputPath(`${actor}-dialogue.png`) });
-          // First voice really plays; advance the remaining original lines
-          // with the supported Space control to keep this smoke test bounded.
-          for (let line = 0; line < 100; line++) {
-            if (await page.evaluate(flag => !!window.storyProbe.regions.getCharacter()?.storyFlags?.[flag], flag)) break;
-            await page.keyboard.press("Space");
-            await page.waitForTimeout(250);
-          }
-          await expect.poll(() => page.evaluate(flag => window.storyProbe.regions.getCharacter()?.storyFlags?.[flag], flag)).toBe(true);
-          expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
-          const saved = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
-          expect(saved.character.storyFlags[flag]).toBe(true);
-          expect(saved.character.yen).toBe(character.yen + 500);
-        }
+        await continueWitnesses(page, testInfo, character, character.yen + 500);
       }
       expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
       expect(errors).toEqual([]);
     }
   }
 });
+
+async function continueWitnesses(page, testInfo, character, expectedYen, resumeAfterTom = false) {
+  for (const [actor, world, flag] of [
+    ...(resumeAfterTom ? [] : [
+      ["SUMI", "sakuragaoka", "story.s1.sumiya-witness.completed"],
+      ["YAMA", "sakuragaoka", "notebook.s1.dobuita-black-car"],
+      ["HRSK", "dobuita", "notebook.s1.tom-witness"],
+      ["TOM_", "dobuita", "notebook.s1.chinese-community"],
+    ]),
+    ...(process.env.NEW_YOKOSUKA_THREE_BLADES_E2E === "true" ? [
+      ["UNO_", "dcha", "notebook.s1.three-blades"],
+      ["ITOI", "dobuita", "notebook.s1.liu-barber"],
+      ["MADA", "dtky", "story.s1.maeda-liu-referral.completed"],
+      ["KYUR", "drht", "notebook.s1.liu-senior"],
+      ["RKKI", "dobuita", "notebook.s1.sailors"],
+    ] : []),
+  ]) {
+    if (resumeAfterTom && character.storyFlags?.[flag]) continue;
+    if (actor === "UNO_") {
+      // Use the advancing personal clock; don't bypass opening hours.
+      const state = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+      const target = new Date(state.worldState.gameTimeMs);
+      target.setUTCHours(10, 0, 0, 0);
+      const remainingGameMs = Math.max(0, target.getTime() - state.worldState.gameTimeMs);
+      const remainingRealMs = remainingGameMs * state.worldState.dayLengthMs / 86_400_000;
+      await expect.poll(async () => {
+        const state = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+        return state.worldState.gameTimeMs;
+      }, { timeout: remainingRealMs + 30_000, intervals: [2000] }).toBeGreaterThanOrEqual(target.getTime());
+    }
+    await page.evaluate(async world => { await window.storyProbe.lifecycle.travelToWorld(world); }, world);
+    await page.waitForFunction(actor => window.storyProbe.lifecycle.scheduledActors.dialogueActor(actor), actor, { timeout: 60_000 });
+    if (actor === "RKKI") {
+      const position = await page.evaluate(() => window.storyProbe.lifecycle.scheduledActors.dialogueActor("RKKI").position);
+      expect(Math.hypot(position[0] + 13.35, position[2] - 47.71)).toBeLessThan(0.3);
+    }
+    const point = await residentClickPoint(page, actor);
+    await page.screenshot({ path: testInfo.outputPath(`${actor}-before-talk.png`) });
+    await page.mouse.click(point.x, point.y);
+    await page.waitForFunction(() => window.storyProbe.dialogue?.active, null, { timeout: 15_000 });
+    await page.waitForFunction(() => {
+      const audio = window.storyProbe.dialogue?.audio;
+      return audio && !audio.paused && audio.currentTime > 0;
+    }, null, { timeout: 15_000 });
+    await page.waitForTimeout(1500);
+    await page.screenshot({ path: testInfo.outputPath(`${actor}-dialogue.png`) });
+    // First voice really plays; advance the remaining original lines
+    // with the supported Space control to keep this smoke test bounded.
+    for (let line = 0; line < 100; line++) {
+      if (await page.evaluate(flag => !!window.storyProbe.regions.getCharacter()?.storyFlags?.[flag], flag)) break;
+      await page.keyboard.press("Space");
+      await page.waitForTimeout(250);
+    }
+    await expect.poll(() => page.evaluate(flag => window.storyProbe.regions.getCharacter()?.storyFlags?.[flag], flag)).toBe(true);
+    expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+    const saved = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+    expect(saved.character.storyFlags[flag]).toBe(true);
+    expect(saved.character.yen).toBe(expectedYen);
+    if (actor === "KYUR") {
+      const snapshot = await (await page.request.get(`/api/characters/${character.id}/dialogue`)).json();
+      expect(Buffer.from(snapshot.state.banks[2], "base64")[8] & 2).toBe(2);
+    }
+  }
+  if (process.env.NEW_YOKOSUKA_THREE_BLADES_E2E === "true") {
+    await page.evaluate(async () => { await window.storyProbe.lifecycle.travelToWorld("dobuita"); });
+    await page.waitForFunction(() => window.storyProbe.lifecycle.scheduledActors.dialogueActor("RKKI"));
+    const point = await residentClickPoint(page, "RKKI");
+    expect(await page.evaluate(() => window.nativeDialogueHookInstalled)).toBe(true);
+    const beforeNative = await page.evaluate(() => window.storyProbe.nativeStarts.length);
+    await page.mouse.click(point.x, point.y);
+    await expect(page.getByText("This conversation is not available right now. Check your notebook for the next lead.", { exact: true })).toBeVisible();
+    expect(await page.evaluate(() => window.storyProbe.nativeStarts.length)).toBe(beforeNative);
+    expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+    await page.locator("button").filter({ hasText: /^Notebook$/ }).click();
+    for (let index = 0; index < 30 && await page.locator("#journal-next").isEnabled(); index++) await page.locator("#journal-next").click();
+    await expect(page.getByText(/Ask sailors who travel to Hong Kong or Shanghai/)).toBeVisible();
+    await page.screenshot({ path: testInfo.outputPath("sailors-notebook.png") });
+  }
+}
+
+async function residentClickPoint(page, actor) {
+  // Bound travel time without fabricating a talk result: position by the
+  // real scheduled NPC, then project its visible mesh for a normal click.
+  await page.evaluate(actor => {
+    const life = window.storyProbe.lifecycle;
+    const [x, y, z] = life.scheduledActors.dialogueActor(actor).position;
+    life.resetPlayer(life.vectorFromArray([x, y, z + 2]), Math.PI, { persist: false });
+    const controller = life.getController();
+    controller.setFirstPerson(true);
+    controller.cameraYaw = 0;
+    controller.cameraPitch = 0;
+  }, actor);
+  await page.waitForTimeout(1200);
+  return page.evaluate(actor => {
+    const life = window.storyProbe.lifecycle;
+    const point = life.vectorFromArray(life.scheduledActors.dialogueActor(actor).position);
+    point.y += 1.3;
+    const rect = life.engine.getRenderingCanvas().getBoundingClientRect();
+    const screen = point.constructor.Project(point, life.scene.getTransformMatrix().constructor.Identity(), life.scene.getTransformMatrix(),
+      life.scene.activeCamera.viewport.toGlobal(life.engine.getRenderWidth(), life.engine.getRenderHeight()));
+    return { x: rect.x + screen.x * rect.width / life.engine.getRenderWidth(),
+      y: rect.y + screen.y * rect.height / life.engine.getRenderHeight() };
+  }, actor);
+}

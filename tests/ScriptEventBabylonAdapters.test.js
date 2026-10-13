@@ -10,6 +10,7 @@ function harness({
   telephoneRuntime = null,
   motionCueRuntime = null,
   playerXmptRuntime = null,
+  additionalActors = [],
 } = {}) {
   const calls = [];
   let motionStatus = 0;
@@ -35,9 +36,9 @@ function harness({
     rollbackTransaction: token => (calls.push(["motion-rollback", token]), true),
   };
   const scheduledActors = {
-    dialogueActor: () => ({
+    dialogueActor: code => code === "HATO" ? ({
       actorCode: "HATO", instanceId: "hato-1", position: [1, 2, 3],
-    }),
+    }) : additionalActors.find(actor => actor.actorCode === code) || null,
     dialogueFacingState: id => structuredClone(facing.get(id) || null),
     restoreDialogueFacingState: (id, state) => {
       calls.push(["facing-restore", id, state]);
@@ -201,6 +202,21 @@ test("Babylon adapter rollback releases a waiting motion and restores facing", a
   assert.equal(h.movementLocked(), false);
   assert.equal(h.calls.some(([name]) => name === "camera-rollback"), false);
   assert.ok(h.calls.some(([name]) => name === "motion-rollback"));
+});
+
+for (const ending of ["commit", "rollback"]) test(`multi-participant conversation ${ending} restores each prior facing`, () => {
+  const h = harness({ additionalActors: [{ actorCode: "RNKT", instanceId: "wife-1", position: [1, 0, 4] }] });
+  const owner = h.adapters.begin({ area: "D000", actorCode: "HATO" });
+  for (const actorCode of ["HATO", "RNKT"]) {
+    assert.equal(h.adapters.lookAtActor({ actorCode, targetActorCode: "AKIR" }, owner), true);
+  }
+  assert.equal(h.facing.has("wife-1"), true);
+  assert.equal(h.adapters.clearActorLook({ actorCode: "HATO" }, owner), true);
+  assert.equal(h.facing.has("wife-1"), true, "clearing one participant must retain the other");
+  assert.equal(h.adapters[ending](owner), true);
+  assert.equal(h.facing.has("wife-1"), false);
+  assert.deepEqual(h.facing.get("hato-1"), { target: [9, 8, 7], active: true });
+  assert.equal(h.movementLocked(), false);
 });
 
 test("specialized activity runs without pre-owning its native camera or motion", async () => {

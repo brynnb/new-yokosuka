@@ -143,6 +143,13 @@ receipt-driven character/notebook updates. Untranslated native-fallback
 conversations can still select branches from native state that does not know
 about a newly authored milestone; named flags are not native aliases.
 
+Translated investigation talks are listed in the generated
+`play/data/authored-story-talks.json` authority projection. Story mode blocks
+their native fallback when the server declines or cannot serve a route. The
+Liu-family event also writes reviewed native bit `2:65` atomically with the
+park clue, so the retained personal scheduler selects Liu Senior's source park
+routine. These are explicit bridges, not a two-way state synchronizer.
+
 For each translated route, preserve one authority for its effects. The
 direction is:
 
