@@ -659,6 +659,31 @@ source replacement, cancellation, setup failure and travel reset. This fixes
 the existing state owner; it does **not** implement secondary `0x0000`'s full
 scene-binding/task initialization or establish rendered JOMO startup.
 
+The table portion of that initializer is now available as
+`NativeInteractionManagerState.initializeTables`. It reads the actual bounded
+program-memory tables, validates the full descriptor/index/record graph before
+mutation, builds the existing lookup state, resets descriptor words and runtime
+slots, and initializes ten candidate scratch records with the executable's exact
+`0x4b18967f` distance word. Counts use the native signed control-limit comparison.
+Room snapshots restore this state and its program-memory writes together.
+
+Importantly, `0xc15e5ee` and `0xc15e5fa` call the already recovered persistent-save
+bit writer `0xc0f0b5e`: each unsigned half of descriptor word two is set to one in
+the 256-bit section at native save offset `0x059c`. This is **not** the separate
+dialogue-bank numbering scheme. Out-of-range IDs are ignored by the original
+writer. JOMO's seventeen descriptors encode IDs in the range 100–132, with gaps
+and duplicate pairs; their gameplay labels are not inferred. The canonical
+extractor now records these indices and verifies the writer and scratch
+constant. Local original-data tests cover all 96 registrations / 517 descriptors
+and compare the rebuilt graphs against the existing exact-source catalog.
+
+This table initializer is not yet dispatched as a successful secondary `0x0000`:
+the six scene-address bindings, resolved owner and resumed native manager task
+still need a complete runtime adapter. Persistent bits must remain in the
+existing personal-save transaction, not be copied into a new room-local save
+store. Accordingly the real startup stop remains `0x15aa2`; the corpus test is
+table-initialization evidence, not proof of a running room controller or visuals.
+
 The initialization route is catalogued, not automatically enabled as a live
 startup path. Source closure discovery, name bindings and request-queue state
 are not proof that motion/model data is resident or rendered. The supplied

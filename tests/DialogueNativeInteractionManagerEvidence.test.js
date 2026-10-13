@@ -77,6 +77,7 @@ test("manager layout preserves separate runtime slots and candidate scratch", ()
     offset: "0x4c",
     recordCount: 10,
     recordSizeBytes: 20,
+    initialWords: [0xffffffff, 0, 0x4b18967f, 0x4b18967f, 0],
   });
   assert.deepEqual(evidence.managerLayout.runtimeSlots, {
     offset: "0x114",
@@ -84,4 +85,14 @@ test("manager layout preserves separate runtime slots and candidate scratch", ()
     recordSizeBytes: 24,
     initialWords: [0, 0, 0xffffffff, 0xfffffffd, 0, 5],
   });
+});
+
+test("descriptor initialization calls the existing persistent-save bit writer for both halves of word two", () => {
+  assert.equal(evidence.descriptorSchema.persistentScriptBitWrites.writerAddress, "0x0c0f0b5e");
+  assert.equal(evidence.descriptorSchema.persistentScriptBitWrites.sourceWord, 2);
+  assert.equal(evidence.descriptorSchema.persistentScriptBitWrites.capacityBits, 256);
+  for (const descriptor of evidence.verifiedAnchors[0].descriptorTable.records) {
+    assert.deepEqual(descriptor.initialPersistentBitIndices,
+      [descriptor.words[2] & 0xffff, descriptor.words[2] >>> 16]);
+  }
 });

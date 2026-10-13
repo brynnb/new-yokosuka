@@ -51,6 +51,11 @@
         "size": 136,
         "sha256": "8ac7593126664a31246cd16520458e19b4ec0b6ce40e2ba42a747b91e1350519"
       },
+      "persistentScriptBitWriter": {
+        "runtimeAddress": "0xc0f0b5e",
+        "size": 100,
+        "sha256": "9463956839c415863ea632e4813fcd2a1829bc20d9082042d344b6a10655bc0d"
+      },
       "candidateScratchInitialize": {
         "runtimeAddress": "0xc15e634",
         "size": 56,
@@ -237,7 +242,14 @@
     "candidateScratch": {
       "offset": "0x4c",
       "recordCount": 10,
-      "recordSizeBytes": 20
+      "recordSizeBytes": 20,
+      "initialWords": [
+        4294967295,
+        0,
+        1259902591,
+        1259902591,
+        0
+      ]
     },
     "runtimeSlots": {
       "offset": "0x114",
@@ -265,6 +277,23 @@
       "word5": 0,
       "word6": 0,
       "words7Through12": "0xffffffff"
+    },
+    "persistentScriptBitWrites": {
+      "sourceWord": 2,
+      "indexOrder": [
+        "low unsigned 16 bits",
+        "high unsigned 16 bits"
+      ],
+      "writerAddress": "0x0c0f0b5e",
+      "callAddresses": [
+        "0x0c15e5ee",
+        "0x0c15e5fa"
+      ],
+      "value": 1,
+      "capacityBits": 256,
+      "outOfRangeBehavior": "no write",
+      "saveByteOffset": "0x059c",
+      "evidence": "tools/evidence/persistent-script-bit-operation-evidence.json"
     },
     "provenIndirectLookup": "descriptor word 0 indexes a dword sequence in static input 2; that sequence terminates at 0xffffffff. Each sequence value indexes a 36-byte record in static input 4, whose word 0 is compared with the requested numeric key.",
     "indirectRecordSizeBytes": 36,
@@ -354,6 +383,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               98,
               99
@@ -395,6 +428,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               78,
@@ -438,6 +475,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               90
             ],
@@ -477,6 +518,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               40,
@@ -520,6 +565,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               60,
               61
@@ -561,6 +610,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               62,
@@ -604,6 +657,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               64,
               65
@@ -645,6 +702,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               66,
@@ -688,6 +749,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               68,
               69
@@ -729,6 +794,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               70,
@@ -772,6 +841,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               72,
               73
@@ -813,6 +886,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               74,
@@ -856,6 +933,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               42,
               43
@@ -897,6 +978,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               44,
@@ -940,6 +1025,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               46,
               47
@@ -981,6 +1070,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               48,
@@ -1024,6 +1117,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               50,
               51
@@ -1065,6 +1162,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               86,
@@ -1108,6 +1209,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               52,
               53
@@ -1149,6 +1254,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               54,
@@ -1192,6 +1301,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               80,
               81
@@ -1233,6 +1346,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               56,
@@ -1276,6 +1393,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               84,
               85
@@ -1317,6 +1438,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               58,
@@ -1360,6 +1485,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               82,
               83
@@ -1401,6 +1530,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               21,
@@ -1444,6 +1577,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               19,
               20
@@ -1486,6 +1623,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               97
             ],
@@ -1525,6 +1666,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               9,
@@ -1568,6 +1713,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              110,
+              110
+            ],
             "indirectRecordIndices": [
               91
             ],
@@ -1607,6 +1756,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               5,
@@ -1650,6 +1803,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               36,
               37
@@ -1691,6 +1848,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               33,
@@ -1734,6 +1895,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               76,
               77
@@ -1775,6 +1940,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               116,
@@ -1818,6 +1987,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               35
             ],
@@ -1858,6 +2031,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               4
             ],
@@ -1897,6 +2074,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               7,
@@ -1940,6 +2121,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               32
             ],
@@ -1979,6 +2164,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               106,
@@ -2022,6 +2211,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               30,
               31
@@ -2063,6 +2256,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               2,
@@ -2106,6 +2303,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               92,
               93
@@ -2148,6 +2349,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               94
             ],
@@ -2187,6 +2392,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               17,
@@ -2230,6 +2439,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               15,
               16
@@ -2271,6 +2484,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               13,
@@ -2314,6 +2531,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               11,
               12
@@ -2356,6 +2577,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               29
             ],
@@ -2395,6 +2620,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               108,
@@ -2438,6 +2667,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               110,
               111
@@ -2479,6 +2712,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               102,
@@ -2522,6 +2759,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               118,
               119
@@ -2563,6 +2804,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               0,
@@ -2606,6 +2851,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               112,
               113
@@ -2647,6 +2896,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               95,
@@ -2690,6 +2943,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               100,
               101
@@ -2731,6 +2988,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               25,
@@ -2774,6 +3035,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               27
             ],
@@ -2813,6 +3078,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               114,
@@ -2856,6 +3125,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               38,
               39
@@ -2897,6 +3170,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              100,
+              100
             ],
             "indirectRecordIndices": [
               104,
@@ -2940,6 +3217,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               23,
               24
@@ -2982,6 +3263,10 @@
               "0xffffffff",
               "0xffffffff"
             ],
+            "initialPersistentBitIndices": [
+              100,
+              100
+            ],
             "indirectRecordIndices": [
               88,
               89
@@ -3023,6 +3308,10 @@
               "0xffffffff",
               "0xffffffff",
               "0xffffffff"
+            ],
+            "initialPersistentBitIndices": [
+              101,
+              101
             ],
             "indirectRecordIndices": [
               28

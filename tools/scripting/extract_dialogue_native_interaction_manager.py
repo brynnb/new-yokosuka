@@ -96,6 +96,11 @@ VERIFIED_RANGES = {
         136,
         "8ac7593126664a31246cd16520458e19b4ec0b6ce40e2ba42a747b91e1350519",
     ),
+    "persistentScriptBitWriter": (
+        0x0C0F0B5E,
+        100,
+        "9463956839c415863ea632e4813fcd2a1829bc20d9082042d344b6a10655bc0d",
+    ),
     "candidateScratchInitialize": (
         0x0C15E634,
         56,
@@ -210,6 +215,9 @@ def verify_executable(executable: bytes) -> dict[str, Any]:
             or u32_runtime(executable, 0x0C15A8D0) != 0x0C224010
             or u32_runtime(executable, 0x0C15A8CC) != 0x0C0BB342):
         raise ValueError("interaction pending-owner reset wiring changed")
+    if (u32_runtime(executable, 0x0C15E774) != 0x0C0F0B5E
+            or u32_runtime(executable, 0x0C15E778) != 0x4B18967F):
+        raise ValueError("descriptor bit-writer or candidate distance constant changed")
 
     return {
         "executable": "1ST_READ.BIN",
@@ -259,6 +267,7 @@ def descriptor_records(
                 "fileOffset": hx(offset),
                 "words": words,
                 "wordsHex": [f"0x{word:08x}" for word in words],
+                "initialPersistentBitIndices": [words[2] & 0xFFFF, words[2] >> 16],
             }
         )
         offset += DESCRIPTOR_SIZE
@@ -497,6 +506,7 @@ def build_report(
                 "offset": "0x4c",
                 "recordCount": 10,
                 "recordSizeBytes": 20,
+                "initialWords": [0xFFFFFFFF, 0, 0x4B18967F, 0x4B18967F, 0],
             },
             "runtimeSlots": {
                 "offset": "0x114",
@@ -517,6 +527,17 @@ def build_report(
                 "word5": 0,
                 "word6": 0,
                 "words7Through12": "0xffffffff",
+            },
+            "persistentScriptBitWrites": {
+                "sourceWord": 2,
+                "indexOrder": ["low unsigned 16 bits", "high unsigned 16 bits"],
+                "writerAddress": "0x0c0f0b5e",
+                "callAddresses": ["0x0c15e5ee", "0x0c15e5fa"],
+                "value": 1,
+                "capacityBits": 256,
+                "outOfRangeBehavior": "no write",
+                "saveByteOffset": "0x059c",
+                "evidence": "tools/evidence/persistent-script-bit-operation-evidence.json",
             },
             "provenIndirectLookup": (
                 "descriptor word 0 indexes a dword sequence in static input "
