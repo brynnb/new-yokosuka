@@ -2,6 +2,8 @@
   "schema": "new-yokosuka-command-registry-v1",
   "version": "new-yokosuka-commands-v1",
   "identifierKinds": [
+    {"kind":"challenge","policy":"closed"},
+    {"kind":"story-time","policy":"closed"},
     {"kind":"flag","policy":"open"},
     {"kind":"progress","policy":"open"},
     {"kind":"native-value","policy":"open"},
@@ -16,6 +18,13 @@
     {"kind":"activity","policy":"closed"}
   ],
   "capabilities": [
+    {"kind":"bounds","identifier":"s1.d000.heartbeats-alley","description":"Authored approach around original YQ14 Ryo staging in shared Dobuita coordinates."},
+    {"kind":"activity","identifier":"s1.heartbeats.alley.introduction","description":"Original YQ14 introduction, projected into the same-coordinate Dobuita world."},
+    {"kind":"activity","identifier":"s1.heartbeats.alley.beer","description":"Original YQ14 beer staging before the server-validated defensive challenge."},
+    {"kind":"challenge","identifier":"s1.heartbeats.alley","description":"Server-validated B,A defensive QTE; authored timing and strict retry."},
+    {"kind":"challenge","identifier":"s1.heartbeats.bar","description":"Server-validated B,A,B,A bar QTE; authored timing and strict retry."},
+    {"kind":"story-time","identifier":"s1.wait.evening","description":"Reviewed personal waiting target at 19:00 on the current Story date."},
+    {"kind":"story-time","identifier":"s1.wait.morning","description":"Reviewed personal waiting target at 08:30 on the following Story date."},
     {"kind":"bounds","identifier":"s1.jomo.first-allowance.hall","description":"Authored hall volume outside Ryo's bedroom; browser coordinates, not a native facing record."},
     {"kind":"bounds","identifier":"s1.jhd0.first-dojo.entrance","description":"Authored Hazuki dojo entrance volume in browser coordinates."},
     {"kind":"bounds","identifier":"s1.ju00.first-kitten.shrine","description":"Authored shrine approach around original CATA1 staging, browser coordinates."},
@@ -51,6 +60,9 @@
     {"kind":"activity","identifier":"d000.telephone-book.native","description":"Recovered D000 telephone-book specialized activity."}
   ],
   "entries": [
+    {"name":"start_challenge","kind":"command","description":"Starts a registered server-validated timed-input challenge.","parameters":[{"name":"challenge","type":"string","identifierKind":"challenge"}],"authority":"server","wait":"none","cleanup":"event-owned","sideEffects":["player-control"],"dependencies":[]},
+    {"name":"challenge_result","kind":"function","description":"Returns the server-validated outcome of the challenge in the current event run.","parameters":[{"name":"challenge","type":"string","identifierKind":"challenge"}],"returnType":"string","authority":"server","wait":"none","cleanup":"none","dependencies":[]},
+    {"name":"advance_story_time","kind":"command","description":"Advances personal Story time to a reviewed waiting target at successful settlement.","parameters":[{"name":"transition","type":"string","identifierKind":"story-time"}],"authority":"server","wait":"none","cleanup":"transactional","sideEffects":["calendar"],"dependencies":[]},
     {"name":"record_game_day","kind":"command","description":"Records the authoritative calendar day in a named progress value for daily reward deduplication.","parameters":[{"name":"progress","type":"string","identifierKind":"progress"}],"authority":"server","wait":"none","cleanup":"transactional","sideEffects":["story-state"],"dependencies":[{"access":"write","kind":"progress","parameter":"progress"}]},
     {"name":"play_mode","kind":"function","description":"Reads the character's authoritative personal play mode pinned at event start.","parameters":[],"returnType":"string","authority":"server","wait":"none","cleanup":"none","dependencies":[]},
     {"name":"opening_completed","kind":"function","description":"Reads whether the authoritative opening completed in this play context.","parameters":[],"returnType":"bool","authority":"server","wait":"none","cleanup":"none","dependencies":[]},

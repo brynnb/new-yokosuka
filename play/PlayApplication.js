@@ -737,6 +737,17 @@ function createPlayRuntime() {
     onEmote: playEmote,
     onCharacter: switchCharacter,
     onPlayMode: mode => playModeSession.switchTo(mode),
+    onStoryWait: async id => {
+      if (accountSession.character?.playMode !== "story" || !playModeSession?.canSwitch() || playModeSession.pending || scriptEventController.status !== "idle") {
+        transientNotice.show("Finish your current activity before waiting.");
+        return;
+      }
+      try {
+        const result = await scriptEventController.start({ kind:"activity",activity:id },{ area:worldRuntime.activeWorld.nativeArea });
+        if (result.outcome === "declined") transientNotice.show("That time has already passed today.");
+        else if (result.outcome === "rejected") transientNotice.show(result.error.message);
+      } catch (error) { transientNotice.show("Could not wait right now. Please try again."); }
+    },
     onSelectionCommitted: focusGameSurface,
   });
   const nativeDialogue = createNativeDialogueAssembly({
@@ -872,6 +883,8 @@ function createPlayRuntime() {
     localDebug: LOCAL_DEBUG,
   });
   const scriptEvents = createScriptEventAssembly({
+    capturePlayerState:()=>worldLifecycle.capturePlayerReturnState(),
+    restorePlayerState:snapshot=>worldLifecycle.restorePlayerPose(snapshot),
     cutsceneDirector: nativeCutsceneDirector,
     nativeRuntime: nativeScriptedEventRuntime,
     getArea: () => worldRuntime.activeWorld.nativeArea,

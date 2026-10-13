@@ -101,6 +101,7 @@ export class ScriptEventDialoguePresenter {
     audioSettings = null,
     onAdvance = () => {},
     onSelect = () => {},
+    onChallengeResponse = () => {},
     onActiveChanged = () => {},
   } = {}) {
     this.dom = { root, speaker, sourceText, japaneseText, options };
@@ -113,6 +114,7 @@ export class ScriptEventDialoguePresenter {
     this.audioSettings = audioSettings;
     this.onAdvance = onAdvance;
     this.onSelect = onSelect;
+    this.onChallengeResponse = onChallengeResponse;
     this.onActiveChanged = onActiveChanged;
     this.audio = null;
     this.active = false;
@@ -217,7 +219,47 @@ export class ScriptEventDialoguePresenter {
     return true;
   }
 
+  showChallenge(prompt) {
+    this.hide();
+    if(!Number.isSafeInteger(prompt.index)||!Number.isSafeInteger(prompt.count)||prompt.count<1
+      ||prompt.index<0||prompt.index>=prompt.count||prompt.ready&&!['A','B'].includes(prompt.button))throw new Error("Invalid challenge prompt");
+    const requestId=++this.requestId;
+    const current=()=>this.active&&requestId===this.requestId;
+    this.active=true;
+    this.dom.root.hidden=false;this.dom.root.setAttribute("aria-hidden","false");
+    this.dom.speaker.textContent=prompt.label;
+    this.dom.sourceText.textContent=prompt.ready ? `Press ${prompt.button} (${prompt.button==='A'?'Enter':'Shift'}) · ${prompt.index+1} / ${prompt.count}` : "Get ready…";
+    this.dom.japaneseText.hidden=true;
+    this.onActiveChanged(true);
+    if(!prompt.ready){queueMicrotask(()=>{if(current())this.onChallengeResponse("challenge_ready",prompt.token);});return true;}
+    const document=this.dom.options.ownerDocument;
+    for(const buttonCode of ['A','B']) {
+      const button=document.createElement("button");button.type="button";button.className="dialogue-option";
+      button.textContent=`${buttonCode} · ${buttonCode==='A'?'Enter':'Shift'}`;button.dataset.challengeButton=buttonCode;
+      button.addEventListener("click",()=>{if(current())this.onChallengeResponse("challenge_input",prompt.token,buttonCode);});
+      this.dom.options.append(button);
+    }
+    this.dom.options.hidden=false;
+    this.challengeKeyHandler=event=>{
+      const code=event.key==='Enter'?'A':event.key==='Shift'?'B':null;
+      if(!code||event.repeat||!current())return;
+      event.preventDefault();event.stopImmediatePropagation();this.onChallengeResponse("challenge_input",prompt.token,code);
+    };
+    // The challenge owns these keys before ordinary document-level shortcuts
+    // such as Enter-to-chat. Release this capture with the prompt's lifetime.
+    this.challengeKeyTarget=document.defaultView || document;
+    this.challengeKeyTarget.addEventListener("keydown",this.challengeKeyHandler,true);
+    const remaining=prompt.deadlineMs-prompt.serverTimeMs;
+    if(!Number.isFinite(remaining)||remaining<0)throw new Error("Invalid challenge deadline");
+    this.challengeTimer=setTimeout(()=>{if(current())this.onChallengeResponse("challenge_poll",prompt.token);},remaining+100);
+    return true;
+  }
+
   hide() {
+    clearTimeout(this.challengeTimer);this.challengeTimer=null;
+    if(this.challengeKeyHandler)this.challengeKeyTarget.removeEventListener("keydown",this.challengeKeyHandler,true);
+    this.challengeKeyHandler=null;
+    this.challengeKeyTarget=null;
     const wasActive = this.active;
     this.active = false;
     this.requestId += 1;

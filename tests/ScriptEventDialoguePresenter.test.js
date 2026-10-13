@@ -20,7 +20,9 @@ function element() {
 function optionsElement() {
   const children = [];
   const document = {
+    addEventListener(){},removeEventListener(){},
     createElement: () => ({
+      dataset:{},
       listeners: {},
       addEventListener(type, listener) { this.listeners[type] = listener; },
       focus() { this.focused = true; },
@@ -35,6 +37,20 @@ function optionsElement() {
     querySelector() { return children.find(child => !child.disabled) || null; },
   };
 }
+
+test("challenge prompts own their tokens, touch buttons and timeout lifetime", async () => {
+  const calls=[];
+  const presenter=createScriptEventDialoguePresenter({root:element(),speaker:element(),sourceText:element(),japaneseText:element(),options:optionsElement(),
+    onChallengeResponse:(...args)=>calls.push(args)});
+  const token="a".repeat(32);
+  presenter.showChallenge({id:"test",label:"Defend yourself",token,index:0,count:2,ready:false});
+  await Promise.resolve();assert.deepEqual(calls,[["challenge_ready",token]]);
+  presenter.showChallenge({id:"test",label:"Defend yourself",token,index:0,count:2,ready:true,button:"B",deadlineMs:2000,serverTimeMs:0});
+  const stale=presenter.dom.options.children[0].listeners.click;
+  presenter.dom.options.children[1].listeners.click();assert.deepEqual(calls.at(-1),["challenge_input",token,"B"]);
+  presenter.hide();stale();assert.equal(calls.length,2);
+  assert.equal(presenter.challengeTimer,null);
+});
 
 test("line presentation requires an explicit known speaker and permits optional voice", () => {
   assert.deepEqual(scriptEventLinePresentation({

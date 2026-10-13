@@ -33,6 +33,14 @@ const PLAYER_MOTIONS = new Map([
 
 const ACTIVITIES = new Map([
   ...[
+    ["introduction",0,718875,718888],
+    ["beer",1,718893,718906],
+  ].map(([part,slot,primaryPointer,secondaryPointer])=>[`s1.heartbeats.alley.${part}`,{
+    kind:"native-cutscene",area:"D000",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:`story-s1-heartbeats-${part}`,packageId:"story-heartbeats-alley",worldId:"dobuita",storyPresentation:true,
+      activity:{slot,binding:{primaryPointer,secondaryPointer}}},
+  }]),
+  ...[
     ["introduction", 334785, 334798],
     ["fish", 334804, 334817],
     ["tofu", 334823, 334836],

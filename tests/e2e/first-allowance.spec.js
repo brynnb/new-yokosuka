@@ -85,6 +85,14 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
     await continueWitnesses(page, testInfo, character, character.yen, true);
+    if(process.env.NEW_YOKOSUKA_ALLEY_QTE_E2E === "true") {
+      await page.locator("#journal-close").click();
+      await verifyAlleyQte(page,testInfo,character);
+    }
+    if (process.env.NEW_YOKOSUKA_NIGHT_STORY_E2E === "true") {
+      await page.locator("#journal-close").click();
+      await continueNightWitnesses(page,testInfo,character);
+    }
     expect(errors).toEqual([]);
     expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
     return;
@@ -347,6 +355,7 @@ async function continueWitnesses(page, testInfo, character, expectedYen, resumeA
     expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
     await page.locator("button").filter({ hasText: /^Notebook$/ }).click();
     for (let index = 0; index < 30 && await page.locator("#journal-next").isEnabled(); index++) await page.locator("#journal-next").click();
+    for(let index=0;index<30 && !await page.getByText(/Ask sailors who travel to Hong Kong or Shanghai/).isVisible() && await page.locator("#journal-previous").isEnabled();index++)await page.locator("#journal-previous").click();
     await expect(page.getByText(/Ask sailors who travel to Hong Kong or Shanghai/)).toBeVisible();
     await page.screenshot({ path: testInfo.outputPath("sailors-notebook.png") });
   }
@@ -375,4 +384,79 @@ async function residentClickPoint(page, actor) {
     return { x: rect.x + screen.x * rect.width / life.engine.getRenderWidth(),
       y: rect.y + screen.y * rect.height / life.engine.getRenderHeight() };
   }, actor);
+}
+
+async function continueNightWitnesses(page,testInfo,character) {
+  const state=await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+  if (new Date(state.worldState.gameTimeMs).getUTCHours()<19) {
+    await page.locator("#story-wait-button").click();
+    await page.getByRole("option",{name:"Wait until 7 p.m.",exact:true}).click();
+    await expect(page.getByRole("button",{name:"Wait until 7 p.m.",exact:true})).toBeVisible();
+    await page.screenshot({path:testInfo.outputPath("wait-evening-choice.png")});
+    await page.getByRole("button",{name:"Keep exploring",exact:true}).click();
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+    const declined=await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+    expect(new Date(declined.worldState.gameTimeMs).getUTCHours()).toBeLessThan(19);
+    await page.locator("#story-wait-button").click();
+    await page.getByRole("option",{name:"Wait until 7 p.m.",exact:true}).click();
+    await page.getByRole("button",{name:"Wait until 7 p.m.",exact:true}).click();
+    await expect.poll(async()=>new Date((await(await page.request.get(`/api/characters/${character.id}/state`)).json()).worldState.gameTimeMs).getUTCHours()).toBe(19);
+  }
+  for(const [actor,world,flag] of [["JUKY","drme","notebook.s1.yong-wu"],["GRKN","dbyo","story.s1.yong-wu-liu-referral.completed"],["SAJO","dbyo","notebook.s1.heartbeats"]]) {
+    await page.evaluate(async world=>{await window.storyProbe.lifecycle.travelToWorld(world);},world);
+    await page.waitForFunction(actor=>window.storyProbe.lifecycle.scheduledActors.dialogueActor(actor),actor,{timeout:60_000});
+    const point=await residentClickPoint(page,actor);await page.mouse.click(point.x,point.y);
+    await page.waitForFunction(()=>window.storyProbe.dialogue?.active,null,{timeout:15_000});
+    await page.waitForFunction(()=>{const a=window.storyProbe.dialogue?.audio;return a&&!a.paused&&a.currentTime>0;},null,{timeout:15_000});
+    await page.screenshot({path:testInfo.outputPath(`${actor}-night-dialogue.png`)});
+    for(let line=0;line<100;line++){if(await page.evaluate(flag=>!!window.storyProbe.regions.getCharacter()?.storyFlags?.[flag],flag))break;await page.keyboard.press("Space");await page.waitForTimeout(250);}
+    await expect.poll(()=>page.evaluate(flag=>window.storyProbe.regions.getCharacter()?.storyFlags?.[flag],flag)).toBe(true);
+    expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  }
+  await page.locator("button").filter({hasText:/^Notebook$/}).click();
+  while(await page.locator("#journal-next").isEnabled())await page.locator("#journal-next").click();
+  await expect(page.getByText(/Heartbeats is in the alley across from Knocking Motorcycle Shop/)).toBeVisible();
+  await page.screenshot({path:testInfo.outputPath("heartbeats-notebook.png")});
+  await page.locator("#journal-close").click();
+  const evening=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+  await page.locator("#story-wait-button").click();
+  await page.getByRole("option",{name:"Wait until tomorrow morning",exact:true}).click();
+  await page.getByRole("button",{name:"Wait until tomorrow morning",exact:true}).click();
+  await expect.poll(async()=>new Date((await(await page.request.get(`/api/characters/${character.id}/state`)).json()).worldState.gameTimeMs).getUTCDate()).toBe(new Date(evening.worldState.gameTimeMs).getUTCDate()+1);
+  const morning=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+  expect(new Date(morning.worldState.gameTimeMs).getUTCHours()).toBe(8);
+  expect(morning.character.storyFlags["notebook.s1.heartbeats"]).toBe(true);
+  expect(morning.character.yen).toBe(character.yen);
+}
+
+async function verifyAlleyQte(page,testInfo,character) {
+  const state=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+  if(new Date(state.worldState.gameTimeMs).getUTCHours()<19){
+    await page.locator("#story-wait-button").click();
+    await page.getByRole("option",{name:"Wait until 7 p.m.",exact:true}).click();
+    await page.getByRole("button",{name:"Wait until 7 p.m.",exact:true}).click();
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+  }
+  await page.evaluate(async()=>{const life=window.storyProbe.lifecycle;await life.travelToWorld("dobuita");life.resetPlayer(life.vectorFromArray([124.56,-1.8,67.4]),Math.PI,{persist:false});});
+  await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+  try{await page.waitForFunction(()=>window.storyProbe.starts.includes("story-s1-heartbeats-introduction")||window.storyProbe.sceneErrors.length,null,{timeout:20_000});}
+  finally{await page.keyboard.up("KeyW");}
+  expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  await page.screenshot({path:testInfo.outputPath("heartbeats-alley-introduction.png")});
+  await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.ready,null,{timeout:90_000});
+  await page.screenshot({path:testInfo.outputPath("heartbeats-alley-prompt.png")});
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("button",{name:"Try again",exact:true})).toBeVisible();
+  const failed=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+  expect(failed.character.storyFlags["story.s1.heartbeats-alley.completed"]).not.toBe(true);
+  await page.getByRole("button",{name:"Try again",exact:true}).click();
+  await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.ready&&window.storyProbe.regions.controller.active.challengePrompt.button==="B",null,{timeout:90_000});
+  await page.keyboard.press("Shift");
+  await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.button==="A",null,{timeout:5000});
+  await page.keyboard.press("Enter");
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["story.s1.heartbeats-alley.completed"])).toBe(true);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  const saved=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+  expect(saved.character.storyFlags["story.s1.heartbeats-alley.completed"]).toBe(true);
+  expect(saved.character.yen).toBe(character.yen);
 }

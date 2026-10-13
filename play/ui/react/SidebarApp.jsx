@@ -32,9 +32,11 @@ import {
   selectSidebarEmote,
   selectSidebarTravel,
   selectSidebarPlayMode,
+  selectSidebarStoryWait,
   setSidebarPickerOpen,
   useSidebarStore,
 } from "./sidebarStore.js";
+import storyTime from "../../data/story-time-transitions.json" with { type: "json" };
 
 function SidebarSelect({
   id,
@@ -193,6 +195,10 @@ export function SidebarApp() {
             {modeBusy && <Text size="1" role="status">Saving and changing mode…</Text>}
             {modeError && <Text size="1" color="red" role="alert">{modeError}</Text>}
             {playMode === "story" && <Text size="1" color="gray">Ryo · Personal story and clock</Text>}
+            {playMode === "story" && <SidebarSelect id="story-wait-button" placeholder="Wait until..." picker="wait" disabled={modeBusy}
+              onValueChange={selectSidebarStoryWait}>
+              {storyTime.transitions.map(target => <Select.Item key={target.id} value={target.id}>{target.label}</Select.Item>)}
+            </SidebarSelect>}
             <SidebarSelect
               id="travel-button"
               disabled={modeBusy}

@@ -203,6 +203,13 @@ export class ScriptEventController {
     return this.sendAdvance("select", { optionId });
   }
 
+  challengeResponse(action,token,button=null) {
+    const active=this.active;
+    if(!active?.challengePrompt || active.cancelling || active.challengeInputPending || token!==active.challengePrompt.token)return false;
+    active.challengeInputPending=true;
+    return this.sendAdvance(action,{challengeToken:token,...(button ? {button}: {})});
+  }
+
   cancel(reason = "user-cancelled") {
     if (this.pendingStart) {
       const pending = this.pendingStart;
@@ -321,6 +328,14 @@ export class ScriptEventController {
       this.presentation.begin(active.context);
       active.presentationStarted = true;
     }
+    if(event.type==="challenge") {
+      const prompt=message.challenge;
+      if(!prompt || !/^[0-9a-f]{32}$/.test(prompt.token))throw new Error("server challenge prompt is invalid");
+      active.challengePrompt=prompt;active.challengeInputPending=false;
+      if(!await this.present(active,()=>this.dialogue.showChallenge(prompt)))return false;
+      this.emitState();return true;
+    }
+    if(active.challengePrompt){this.dialogue.hide();active.challengePrompt=null;active.challengeInputPending=false;}
     if (event.type === "command") {
       if (!await this.present(active, () => this.presentation.execute(event))) return false;
       return this.sendAdvance("continue");

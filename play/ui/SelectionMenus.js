@@ -15,6 +15,7 @@ export class SelectionMenus {
     onEmote,
     onCharacter,
     onPlayMode,
+    onStoryWait,
     onSelectionCommitted,
   }) {
     this.initialState = {
@@ -27,6 +28,7 @@ export class SelectionMenus {
       onEmote,
       onCharacter,
       onPlayMode,
+      onStoryWait,
       onSelectionCommitted,
     };
   }

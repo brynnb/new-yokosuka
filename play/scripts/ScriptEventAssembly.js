@@ -45,6 +45,8 @@ export function createScriptEventAssembly({
   cameraRuntime,
   scheduledActors,
   getPlayerPosition,
+  capturePlayerState,
+  restorePlayerState,
   cameraPresentation,
   getMovementLocked,
   setMovementLocked,
@@ -64,6 +66,8 @@ export function createScriptEventAssembly({
     restoreClientState: snapshot => (
       dialoguePersistence.restoreWorkingState(snapshot)
     ),
+    capturePlayerState,
+    restorePlayerState,
     selectedObjectActionController,
   });
   const telephoneReceiver = createTelephoneReceiverBabylonAdapter({
@@ -140,6 +144,7 @@ export function createScriptEventAssembly({
     audioSettings: dialogueAudio,
     onAdvance: () => controller?.advanceLine(),
     onSelect: optionId => controller?.selectOption(optionId),
+    onChallengeResponse: (action,token,button) => controller?.challengeResponse(action,token,button),
     onActiveChanged: setDialogueControlsActive,
   });
   controller = createScriptEventController({

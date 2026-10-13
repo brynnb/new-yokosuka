@@ -382,6 +382,11 @@ export class PlayWorldLifecycle {
     if (!loaded) throw new Error(`Could not return to ${snapshot.world.label || snapshot.world.id}.`);
     // select() normally grounds travel arrivals. A preview must also preserve
     // an exact elevated/no-clip position, plus the player's independent camera.
+    this.restorePlayerPose(snapshot);
+  }
+
+  restorePlayerPose(snapshot) {
+    if(this.worldRuntime.activeWorld!==snapshot.world||this.playerRuntime.activeCharacterId!==snapshot.avatarId)throw new Error("Player pose return context changed");
     this.resetPlayer(this.vectorFromArray(snapshot.position), snapshot.yaw, {
       persist: false, snapToTerrain: false,
     });

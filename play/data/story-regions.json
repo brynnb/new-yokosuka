@@ -2,6 +2,12 @@
   "schema": "new-yokosuka-story-regions-v1",
   "regions": [
     {
+      "id":"s1.d000.heartbeats-alley","area":"D000","actor":"AKIR","playMode":"story","openingCompleted":true,
+      "requiredFlags":["notebook.s1.sailors"],"completedFlag":"story.s1.heartbeats-alley.completed",
+      "min":[122,-3,62],"max":[126,1,67],
+      "provenance":"Authored approach around original DBHB-to-D000 entry 3 return point [124.56,-1.8,64.41], MAPINFO record 0xd35e0. YQ14 cinematic Ryo pose [121.728,-1.883,76.075] is staging, not a walkable arrival point."
+    },
+    {
       "id": "s1.ju00.first-kitten.shrine",
       "area": "JU00",
       "actor": "AKIR",

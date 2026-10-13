@@ -26,7 +26,9 @@ for (const route of spec.routes) {
     return `${nativeDialogueSpeakerLabel({ speakerId: line.speakerId })}: ${line.displayText.replaceAll("\n", "[br/]")} #voice:${id} #speaker:${line.speakerId}`;
   });
   const gates = ['play_mode() != "story"', '!opening_completed()', ...participants.map(actor => `!actor_present("${actor}")`), ...route.requiredFlags.map(flag => `!flag_set("${flag}")`), `flag_set("${route.completedFlag}")`];
-  if (route.hours) gates.push(`game_hour() < ${route.hours[0]}`, `game_hour() >= ${route.hours[1]}`);
+  if (route.hours) gates.push(route.hours[0] < route.hours[1]
+    ? `(game_hour() < ${route.hours[0]} || game_hour() >= ${route.hours[1]})`
+    : `(game_hour() < ${route.hours[0]} && game_hour() >= ${route.hours[1]})`);
   const nativeEffects = (route.nativeEffects || []).map(effect => {
     if (!/^2:\d+$/.test(effect.address) || ![0, 1].includes(effect.value) || !route.nativeSources?.length) throw new Error(`Unreviewed native effect in ${route.id}`);
     return `<<set_native_value "${effect.address}" ${effect.value}>>`;
@@ -37,7 +39,7 @@ for (const route of spec.routes) {
     NativeSources: [{ role: "dialogue", locator: `${source.generatedFrom.archive}#${route.actor}/${route.id}`, sha256: source.generatedFrom.sha256 }, ...(route.nativeSources || [])],
     SourceText: sourceText, Triggers: [{ nodeId: "Start", kind: "talk", area: route.area, actor: route.actor, priority: 200 }],
     TestFixtures: [{ Name: "Eligible personal investigation", StartNode: "Start", Fixture: {
-      playMode: "story", openingCompleted: true, scene: route.area, gameHour: 10,
+      playMode: "story", openingCompleted: true, scene: route.area, gameHour: route.hours ? Math.max(10,route.hours[0]) : 10,
       flags: Object.fromEntries(route.requiredFlags.map(flag => [flag, true])),
       actorPresence: Object.fromEntries(participants.map(actor => [actor, true])),
     } }],

@@ -31,6 +31,8 @@ export class NativeScriptActivityRunner {
     getArea,
     captureClientState,
     restoreClientState,
+    capturePlayerState = null,
+    restorePlayerState = null,
     selectedObjectActionController = null,
     cutsceneDirector = null,
   } = {}) {
@@ -57,6 +59,8 @@ export class NativeScriptActivityRunner {
     this.getArea = getArea;
     this.captureClientState = captureClientState;
     this.restoreClientState = restoreClientState;
+    this.capturePlayerState=capturePlayerState;
+    this.restorePlayerState=restorePlayerState;
     this.selectedObjectActionController = selectedObjectActionController;
     this.cutsceneDirector = cutsceneDirector;
     this.active = null;
@@ -158,6 +162,10 @@ export class NativeScriptActivityRunner {
 
   finish(owner, accepted, result) {
     if (this.active !== owner) return false;
+    if(owner.playerState){
+      try{this.restorePlayerState(owner.playerState);}catch(error){accepted=false;result={status:"stopped",reason:"player-return-failed",message:error.message};}
+      owner.playerState=null;
+    }
     if (owner.restoreClientStateRequired && !owner.clientStateRestored) {
       try {
         this.restoreClientState(owner.clientState);
@@ -201,6 +209,10 @@ export class NativeScriptActivityRunner {
     const settled = new Promise(resolve => { settle = resolve; });
     const owner = { activity, settle, restoreClientStateRequired: true, clientState: this.captureClientState(),
       clientStateRestored: false, unsubscribe: null, selectedObjectActionToken: null };
+    if(activity.returnPlayerState){
+      if(!this.capturePlayerState||!this.restorePlayerState)throw new Error("Scene player return hooks are unavailable");
+      owner.playerState=this.capturePlayerState();
+    }
     owner.unsubscribe = this.cutsceneDirector.onSettled(({ cutscene, outcome, reason }) => {
       if (this.active !== owner || cutscene.id !== activity.cutscene.id) return;
       this.finish(owner, outcome === "completed" || reason === "user-cancelled", { status: outcome, reason });

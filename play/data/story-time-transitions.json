@@ -1,0 +1,7 @@
+{
+  "schema": "new-yokosuka-story-time-transitions-v1",
+  "transitions": [
+    {"id":"s1.wait.evening","label":"Wait until 7 p.m.","hour":19,"minute":0,"nextDay":false},
+    {"id":"s1.wait.morning","label":"Wait until tomorrow morning","hour":8,"minute":30,"nextDay":true}
+  ]
+}

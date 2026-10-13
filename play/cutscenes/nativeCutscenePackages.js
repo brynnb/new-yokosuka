@@ -1008,6 +1008,11 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
 // SA1116 conversation using declared held-pose staging, not a native controller.
 const firstDojoBase = SOURCE_CUTSCENE_PACKAGES.find(definition => definition.id === "mska");
 export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([...SOURCE_CUTSCENE_PACKAGES, Object.freeze({
+  // YQ14 uses Dobuita's original global coordinates. Story encounters reuse
+  // this package in the live street; the isolated viewer preview stays intact.
+  ...SOURCE_CUTSCENE_PACKAGES.find(definition=>definition.id==="yq14"),
+  id:"story-heartbeats-alley",worldId:"dobuita",
+}), Object.freeze({
   ...firstDojoBase,
   id: "first-dojo",
   playback: Object.freeze({

@@ -322,23 +322,25 @@ world merely changing.
 
 ## QTEs are a separate result problem
 
-Current AUTH/QTE-looking packages can stage camera and animation without
-implementing an interactive story QTE. The missing pieces are:
-
-- gameplay input feeding the native QTE/controller state;
-- prompt/window timing and success/failure/timeout branches;
-- a typed client-to-server result message tied to the active event token;
-- server validation and idempotent settlement; and
-- disconnect/retry policy.
+The authored Heartbeats alley now combines original AUTH staging with a shared
+server-validated timed-input primitive. `start_challenge` selects a closed
+challenge record; `challenge_result` reads its validated result in that event
+run. Readiness starts the server timer after presentation is ready. Fresh
+prompt tokens, receipt-time checks and ordered inputs prevent ordinary Continue,
+old callbacks or movie completion from awarding success. Failure and timeout
+offer a retry; cancellation settles nothing. The bar sequence and the remaining
+story challenges are not yet connected.
 
 The native controller-state runtime can read the original-shaped controller
 fields, but ordinary gameplay input is not currently written into those
-records. A scene such as Heartbeats Alley can therefore look like a QTE from
-its AUTH staging while having no prompt/input/result loop at all.
+records. The authored challenge is independent of native-controller recovery.
+The alley's defensive choreography and original recovery branches remain
+presentation gaps, distinct from its verified input/result boundary.
 
 `activity_result` exists in fixtures, but live world facts do not populate it.
-The current event-advance protocol carries only continue/select/cancel. Arcade
-QTE score APIs are unrelated and must not become storyline authority.
+The event-advance protocol now also carries challenge readiness, button input
+and deadline polling under the existing active run. No browser-supplied win
+boolean is accepted. Arcade QTE score APIs remain separate from story authority.
 
 Do not let “the activity finished presenting” set a QTE-success flag. Define a
 small typed outcome such as `success`, `failure`, `timeout`, or a reviewed
@@ -346,7 +348,7 @@ bounded score. The server must validate it against the active session and
 allowed route. Consequential combat, inventory, money, or shared-world effects
 need stronger server/instance authority than a browser completion message.
 
-Implement this **after** one ordinary non-QTE story scene works end to end.
+See the [alley event and limits](story-event-template.md#heartbeats-alley-staged-introduction-and-defensive-challenge).
 
 ## Native controller reconstruction
 
@@ -847,6 +849,7 @@ can be followed from imports and tests:
 
 Generated evidence remains the authority for changing counts. At this review
 point, most shipped cutscene programs are menu-preview wrappers, only one exact
-native automatic gameplay route is declared, and no live typed story-QTE
-result path exists. Recheck those facts rather than copying the numbers into a
+native automatic gameplay route is declared. Authored spatial story routes and
+a live typed timed-input path now coexist with that retained native research.
+Recheck current coverage rather than copying historical counts into a
 new plan.

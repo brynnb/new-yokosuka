@@ -6,6 +6,7 @@ const callbacks = {
   onEmote: () => {},
   onCharacter: () => {},
   onPlayMode: () => {},
+  onStoryWait: () => {},
   onSelectionCommitted: () => {},
 };
 let travelSelectionCommitted = false;
@@ -42,6 +43,7 @@ export function configureSidebarMenus({
   onEmote,
   onCharacter,
   onPlayMode = () => {},
+  onStoryWait = () => {},
   onSelectionCommitted,
 }) {
   travelSelectionCommitted = false;
@@ -51,6 +53,7 @@ export function configureSidebarMenus({
     onEmote,
     onCharacter,
     onPlayMode,
+    onStoryWait,
     onSelectionCommitted,
   });
   useSidebarStore.setState({
@@ -113,4 +116,12 @@ export function selectSidebarCharacter(characterId) {
 export function selectSidebarPlayMode(mode) {
   if (useSidebarStore.getState().modeBusy) return;
   void callbacks.onPlayMode(mode);
+}
+
+export function selectSidebarStoryWait(id) {
+  const state = useSidebarStore.getState();
+  if (state.playMode !== "story" || state.modeBusy) return false;
+  setSidebarPickerOpen("wait",false);
+  void callbacks.onStoryWait(id);
+  return true;
 }

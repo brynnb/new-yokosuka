@@ -94,10 +94,11 @@ test("only newer durable story receipts refresh the balance and earned notebook 
     applyWelcome(value) { updates.push(value); Object.assign(character, value); } },
     nativeStoryRuntime: { applyScriptSettlement() {} } });
   const accept = state => adapter.callbacks().onScriptEventCommitted({ characterId: 12, modeRevision: 7, state });
-  accept({ revision: 4, yen: 2500, flags: { "notebook.s1.allowance": true } });
+  accept({ revision: 4, yen: 2500, flags: { "notebook.s1.allowance": true }, storyTimeMs:Date.UTC(1986,11,3,19) });
   accept({ revision: 3, yen: 2000, flags: {} });
   assert.equal(updates.length, 1); assert.equal(character.yen, 2500);
   assert.equal(character.storyFlags["notebook.s1.allowance"], true);
+  assert.equal(character.storyTimeMs,Date.UTC(1986,11,3,19));
 });
 
 test("multiplayer warp delegates validated coordinates to world lifecycle", () => {

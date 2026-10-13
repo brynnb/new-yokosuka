@@ -208,8 +208,9 @@ Do not describe the first conversation as fully animation-faithful.
 | First dojo visit → men-in-black notebook objective | Connected browser/full-stack progression and notebook verified; server gate/cancellation/settlement tested. Authored two-person lead-in rendered; held poses remain an approximation. |
 | Yamanose kitten / first black-car lead | Connected rendered approach, introduction skip, food choice, natural fish ending and saved notebook verified. Real server/compiler tests cover both food settlements, cancellation/retry and clue isolation. Tofu visuals and prop fidelity remain unverified. |
 | Sumiya / Yamagishi → Nozomi → Tom | Connected browser clicks, visible actors/facing, initial voice playback, saved clues and restored controls verified for all four. Real server/compiler tests cover cancellation/retry, personal eligibility, NPC presence, Yamagishi hours and cross-character isolation. Conversation-specific gestures remain an approximation. |
-| Three Blades → Liu family → Liu Senior's sailors lead | Connected browser continuation verified through Ajiichi, both daytime referrals, Liu Barber, Liu Senior's park placement, voices, saved native bit/notebook and restored controls. Real server/compiler tests cover participant presence, opening hours, cancellation and atomic native schedule compatibility. Cook/Wong/Wu alternative remains missing. |
-| Heartbeats / Charlie / tattoo parlour / Chinese letter | Missing connected authored progression and verified challenge outcomes. |
+| Three Blades → Liu family → Liu Senior's sailors lead | Connected browser continuation verified through Ajiichi, daytime referrals, Liu Barber and Liu Senior. The nighttime cook/Yong/Wu referral is now also rendered and connected; all referrals converge on the same Liu clue. |
+| Nighttime sailors → Heartbeats alley | Personal waiting, Saijo's voiced lead and the alley's failure/retry/success path verified in the browser. Timed input is server-validated; defensive choreography remains approximate. |
+| Heartbeats interior / Charlie / tattoo parlour / Chinese letter | Missing connected authored progression and remaining challenge presentation/outcomes. |
 | Harbor warehouses / Master Chen / Phoenix Mirror | Missing connected authored progression. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
@@ -360,7 +361,7 @@ roles and the business hours. Original message text, speaker IDs and voice
 references come from HUMANS.AFS, with hashes in each generated import.
 Question sequences are condensed; gameplay cameras and ambient gestures are
 retained instead of claiming the original conversation direction. The cook
-route through Manpukuken and Wong/Wu remains to be connected. The shop's
+route through Manpukuken and Yong/Wu is now connected as described below. The shop's
 original phase-dependent closure is not newly implemented by these talks.
 
 ### Liu Senior's personal placement
@@ -422,3 +423,86 @@ Focused checks cover those boundaries, and the rendered repeat check clicks
 completed Liu Senior, verifies the notebook guidance, restored movement and
 absence of a native dialogue launch. Native consistency outside this translated
 catalog remains a separate content gap.
+
+## Personal waiting and nighttime leads
+
+The Story-only sidebar offers waiting until 19:00 or the next day's 08:30.
+This is an authored convenience, not a recovered original menu. Both targets
+live in the authoritative `internal/scriptcontent/story_time.v1.json` catalog
+and its generated client projection. Each starts an ordinary Yarn event and
+asks the player to confirm or keep exploring. `advance_story_time` resolves
+the target from trusted personal calendar facts; its internal timestamp effect
+settles in the same transaction as other event effects. It does not change
+location, avatar, money, inventory or clue flags.
+
+The private commit receipt advances the live clock and reselects that viewer's
+NPC schedules. Mode/revision checks reject stale receipts, and monotonic clock
+checkpointing prevents an older location writer from undoing the jump.
+Cancellation and the decline option advance nothing. Reconnect restores the
+stored time. Waiting until an already-passed evening declines; morning means
+the next calendar day. This does not implement the original bed interaction,
+curfew destination, daily allowance or deadline scenes.
+
+After waiting, these original-voiced talks use the existing investigation
+generator and multi-participant presenter:
+
+| Event | Location and hours | Required clue | Result |
+| --- | --- | --- | --- |
+| `junko-yong-wu` | Manpukuken Ramen (`DRME`), 17:00–04:00 | Three Blades | Ask former members Yong and Wu at night. |
+| `yong-wu-liu-referral` | Bar Yokosuka (`DBYO`), 17:00–03:00; Wu (`GRKN`) and Yong (`ECHO`) | Junko's lead | Same Liu Barber clue as Itoi/Maeda. |
+| `saijo-sailor-bars` | Bar Yokosuka, 17:00–03:00; Saijo (`SAJO`) | Liu Senior's sailors lead | MJQ and Heartbeats; Heartbeats is opposite the motorcycle shop. |
+
+The winning story chain and hours are corroborated by
+[Shotgunnova's walkthrough](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404).
+Text/speakers/voices come from original HUMANS.AFS F1019, F1276 and F1131.
+Questions are condensed; cameras and ambient gestures retain the ordinary talk
+presentation. Source actor presence remains required for every participant.
+The hours compiler handles intervals that cross midnight, though ordinary
+Story waking time still rolls past the late-night closing hours.
+
+The isolated browser continuation verified declining/confirming waiting,
+all three residents and initial voices, the earned Heartbeats notebook page,
+restored movement, and next-morning time without losing clues or money. Real
+Yarn/PostgreSQL tests cover cancellation, repeat, stale checkpoints and other
+characters; realtime tests cover private receipts and stale-mode rejection.
+Use `NEW_YOKOSUKA_NIGHT_STORY_E2E=true` with a saved connected test character.
+
+## Heartbeats alley: staged introduction and defensive challenge
+
+Event: `d000-heartbeats-alley`; personal Story mode with the opening and sailors
+clue complete, after 19:00. An authored Dobuita approach surrounds the original
+DBHB return-entry point `(124.56, -1.8, 64.41)`, derived from MAPINFO record
+`0xd35e0`. It is not the separate cinematic Ryo pose at
+`(121.728, -1.883, 76.075)`; using that pose as a walking arrival caused a void
+reset and was corrected before verification.
+
+The server independently checks the accepted position and eligibility.
+The client reuses original YQ14 `SEQDATA1.AUTH` and `SEQDATA2.AUTH`, motion,
+actors, cameras, voices and beer prop through the same package renderer. The
+Story projection binds their global coordinates to Dobuita; the asset-viewer
+preview retains its original isolated world. Each scene part explicitly
+restores the prior player/controller/camera pose before continuing. No time or
+weather override is added beyond the nighttime gate.
+
+Then the shared prompt presenter requests B followed by A, matching the
+[original guide's winning order](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf).
+Desktop mapping is Shift/Enter; onscreen A/B buttons also work. Two-second
+windows and restarting on any miss are declared adaptations. The server
+starts timing only after readiness, issues a fresh token per prompt, checks
+receipt time and order, ignores an old token and rejects ordinary Continue as
+a way to bypass input. Movies and explicit scene skips cannot award success.
+
+Failure offers retry or departure and grants no flag. Correct inputs settle
+`story.s1.heartbeats-alley.completed` once through Yarn; no item, money or HP
+effect is added. Cancellation, timeout, missing preparation and disconnect
+must leave the attempt retryable. The browser failure/retry/success check uses
+ordinary walking into the region and keyboard responses, then verifies the
+durable flag and unlocked movement. It starts near the entrance to bound travel.
+Use `NEW_YOKOSUKA_ALLEY_QTE_E2E=true` with the connected saved fixture.
+
+Current presentation limits: prompts follow the original beer staging after
+returning to the gameplay camera. The original defensive choreography,
+between-input recovery animation and gamepad button routing remain unfinished.
+The indoor B/A/B/A catalog record is a reusable challenge definition, not a
+completed Heartbeats bar event. The bar scene and Charlie clue must still be
+connected and rendered before that chapter is claimed playable.

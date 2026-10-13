@@ -9,9 +9,22 @@ import {
   selectSidebarCutscene,
   selectSidebarEmote,
   selectSidebarTravel,
+  selectSidebarStoryWait,
   setSidebarPickerOpen,
   useSidebarStore,
 } from "../play/ui/react/sidebarStore.js";
+
+test("waiting dispatches only in the available Story context", () => {
+  const calls=[];
+  configureSidebarMenus({emotes:[],characters:[],onStoryWait:id=>calls.push(id)});
+  useSidebarStore.setState({playMode:"free_roam",modeBusy:false});
+  assert.equal(selectSidebarStoryWait("s1.wait.evening"),false);
+  useSidebarStore.setState({playMode:"story",modeBusy:true});
+  assert.equal(selectSidebarStoryWait("s1.wait.evening"),false);
+  useSidebarStore.setState({modeBusy:false});
+  assert.equal(selectSidebarStoryWait("s1.wait.evening"),true);
+  assert.deepEqual(calls,["s1.wait.evening"]);
+});
 
 test("Radix sidebar selections route through the game callbacks", async () => {
   const calls = [];

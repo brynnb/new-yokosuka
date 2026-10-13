@@ -138,7 +138,8 @@ export class PlayMultiplayerAdapter {
           && state.flags && typeof state.flags === "object"
           && state.revision >= (character.scriptStateRevision ?? -1)) {
           this.accountSession.applyWelcome({ yen: state.yen, storyFlags: state.flags,
-            scriptStateRevision: state.revision }, this.accountSession.inventory);
+            scriptStateRevision: state.revision,
+            ...(Number.isSafeInteger(state.storyTimeMs) ? { storyTimeMs:state.storyTimeMs } : {}) }, this.accountSession.inventory);
         }
       },
       onScriptEventRejected: message => (
