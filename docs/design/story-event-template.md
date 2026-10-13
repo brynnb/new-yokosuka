@@ -137,9 +137,19 @@ retryable without changing money or notes. Free roam and other players remain
 unaffected. The final camera, controls and NPC restoration require a rendered
 gameplay check, not only a state test.
 
-The focused rendered check uses a real isolated server/database and restored
+The focused rendered checks use a real isolated server/database and restored
 local assets: set `NEW_YOKOSUKA_STORY_E2E=true` and run
-`tests/e2e/first-allowance.spec.js` against that development URL. Its setup marks
-the opening completed through the real API; it does not retest all four intro
-scenes. The hallway reset isolates the story trigger from door clicking.
-Do not run it against production.
+`tests/e2e/first-allowance.spec.js` against that development URL. The two bounded
+allowance variants mark the opening completed through the real API and reset
+to the hallway to isolate natural completion and skip behavior.
+
+The `fresh opening` variant instead creates a new Story-mode Ryo, loads all four
+intro scenes and uses the normal X-skip for each. It checks that the server has
+not recorded completion early, verifies the actual bedside arrival, then walks
+through the bedroom doorway with normal input/collision and no hallway reset.
+It waits for natural allowance completion, checks the one-time payment and
+notebook page, and reloads to verify the saved avatar, position, controls and
+absence of replay/payment. The test clicks the rendered door if it is closed;
+an already-open door retains its pose. Source-program initialization, natural
+timing of the four intros, audio fidelity and mid-event network loss are
+separate checks, not claims made by this test. Do not run it against production.

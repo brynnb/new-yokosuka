@@ -3,8 +3,8 @@ import { randomUUID } from "node:crypto";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
 
-for (const ending of ["complete", "skip"]) test(`first allowance renders and persists after ${ending}`, async ({ page }, testInfo) => {
-  test.setTimeout(240_000);
+for (const [ending, freshOpening] of [["complete", false], ["skip", false], ["complete", true]]) test(`first allowance renders and persists after ${ending}${freshOpening ? " from a fresh opening" : ""}`, async ({ page }, testInfo) => {
+  test.setTimeout(freshOpening ? 480_000 : 240_000);
   const errors = [];
   page.on("pageerror", error => errors.push(error.message));
   const guestToken = randomUUID();
@@ -14,8 +14,13 @@ for (const ending of ["complete", "skip"]) test(`first allowance renders and per
   const response = await page.request.post("/api/characters", { data: { name, avatarId: "ryo" } });
   expect(response.ok(), await response.text()).toBe(true);
   const character = await response.json();
-  const opening = await page.request.post(`/api/characters/${character.id}/opening-complete`, { data: { revision: 0 } });
-  expect(opening.ok()).toBe(true);
+  if (!freshOpening) {
+    const opening = await page.request.post(`/api/characters/${character.id}/opening-complete`, { data: { revision: 0 } });
+    expect(opening.ok()).toBe(true);
+  } else {
+    expect(character.playMode).toBe("story");
+    expect(character.openingCompleted).toBe(false);
+  }
   await page.addInitScript(token => {
     localStorage.setItem("new-yokosuka.guest-token.v1", token);
     localStorage.setItem("new-yokosuka.quick-play-confirmations.v1", "3");
@@ -47,13 +52,64 @@ for (const ending of ["complete", "skip"]) test(`first allowance renders and per
   await page.locator(".account-entry-actions button").filter({ hasText: "Quick Play" }).click();
   await page.locator(".character-slot-button:not(.empty)").first().click();
   await page.locator("button").filter({ hasText: /^Enter World$/ }).click();
+  const openingScenes = ["S1-OP02-00", "S1-000", "S1-OP00-MAIL", "S1-OP00-DREAM"];
+  if (freshOpening) {
+    // Exercise real loading and the explicit player skip, not the completion
+    // API or a fake director result. Natural intro timing is a separate check.
+    for (const id of openingScenes) {
+      await page.waitForFunction(id => window.storyProbe.director?.activeCutscene?.cutscene.id === id
+        || window.storyProbe.errors.length || window.storyProbe.sceneErrors.length, id, { timeout: 120_000 });
+      expect(await page.evaluate(() => [...window.storyProbe.errors, ...window.storyProbe.sceneErrors])).toEqual([]);
+      const before = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+      expect(before.character.openingCompleted).toBe(false);
+      await page.screenshot({ path: testInfo.outputPath(`${id}-before-skip.png`) });
+      await page.keyboard.press("KeyX");
+    }
+  }
   await page.waitForFunction(() => window.storyProbe.ready || window.storyProbe.errors.length, null, { timeout: 120_000 });
   expect(await page.evaluate(() => window.storyProbe.errors)).toEqual([]);
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
-  await page.evaluate(() => {
-    const life = window.storyProbe.lifecycle;
-    life.resetPlayer(life.vectorFromArray([-16.75, 0, 1]), Math.PI, { persist: false });
-  });
+  if (freshOpening) {
+    const arrival = await page.evaluate(() => ({
+      position: window.storyProbe.lifecycle.getController().collider.position.asArray(),
+      locked: window.storyProbe.lifecycle.getController().movementLocked,
+      character: window.storyProbe.regions.getCharacter(),
+    }));
+    expect(arrival.character.openingCompleted).toBe(true);
+    expect(arrival.character.worldId).toBe("interior");
+    expect(Math.hypot(arrival.position[0] + 17.6, arrival.position[2] - 4.1)).toBeLessThan(0.2);
+    expect(arrival.locked).toBe(false);
+    expect(await page.evaluate(() => window.storyProbe.starts)).toEqual(openingScenes);
+    await page.screenshot({ path: testInfo.outputPath("fresh-bedside.png") });
+    // Project the actual bedroom door into the canvas, click it through the
+    // normal picker, then walk out with normal collisions. No hallway teleport.
+    const doorPoint = await page.evaluate(() => {
+      const life = window.storyProbe.lifecycle;
+      const door = life.doorInteractions.entries.find(entry => entry.objectTag === "dor7");
+      if (!door) throw new Error("Bedroom door dor7 is unavailable");
+      const bounds = door.root.getHierarchyBoundingVectors(true);
+      const point = bounds.min.add(bounds.max).scale(0.5);
+      const canvas = life.engine.getRenderingCanvas();
+      const rect = canvas.getBoundingClientRect();
+      const screen = point.constructor.Project(point, life.scene.getTransformMatrix().constructor.Identity(), life.scene.getTransformMatrix(),
+        life.scene.activeCamera.viewport.toGlobal(life.engine.getRenderWidth(), life.engine.getRenderHeight()));
+      return { state: door.state, x: rect.x + screen.x * rect.width / life.engine.getRenderWidth(),
+        y: rect.y + screen.y * rect.height / life.engine.getRenderHeight() };
+    });
+    if (doorPoint.state === "closed") await page.mouse.click(doorPoint.x, doorPoint.y);
+    await page.waitForFunction(() => window.storyProbe.lifecycle.doorInteractions.entries
+      .find(entry => entry.objectTag === "dor7")?.state === "open");
+    await page.locator("#renderCanvas").focus();
+    await page.keyboard.down("KeyW");
+    try {
+      await page.waitForFunction(() => window.storyProbe.starts.includes("story-s1-first-allowance"), null, { timeout: 15_000 });
+    } finally { await page.keyboard.up("KeyW"); }
+  } else {
+    await page.evaluate(() => {
+      const life = window.storyProbe.lifecycle;
+      life.resetPlayer(life.vectorFromArray([-16.75, 0, 1]), Math.PI, { persist: false });
+    });
+  }
   try {
     await page.waitForFunction(() => window.storyProbe.director?.activeCutscene?.cutscene.id === "story-s1-first-allowance" || window.storyProbe.sceneErrors.length, null, { timeout: 30_000 });
     expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
@@ -78,7 +134,20 @@ for (const ending of ["complete", "skip"]) test(`first allowance renders and per
   expect(state.character.yen).toBe(character.yen + 500);
   expect(state.character.storyFlags["story.s1.first-allowance.completed"]).toBe(true);
   expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
-  expect(await page.evaluate(() => window.storyProbe.starts)).toEqual(["story-s1-first-allowance"]);
+  const continuation = await page.evaluate(() => ({
+    position: window.storyProbe.lifecycle.getController().collider.position.asArray(),
+    avatar: window.storyProbe.lifecycle.playerRuntime.activeCharacterId,
+  }));
+  expect(continuation.avatar).toBe("ryo");
+  if (freshOpening) {
+    expect(continuation.position[0]).toBeGreaterThanOrEqual(-17.5);
+    expect(continuation.position[0]).toBeLessThanOrEqual(-16);
+    expect(continuation.position[2]).toBeGreaterThanOrEqual(0.4);
+    expect(continuation.position[2]).toBeLessThanOrEqual(1.6);
+  }
+  expect(await page.evaluate(() => window.storyProbe.starts)).toEqual([
+    ...(freshOpening ? openingScenes : []), "story-s1-first-allowance",
+  ]);
   await page.locator("button").filter({ hasText: /^Notebook$/ }).click();
   for (let index = 0; index < 5; index++) await page.locator("#journal-next").click();
   await expect(page.getByText(/Ine-san leaves.*500/)).toBeVisible();
@@ -94,6 +163,15 @@ for (const ending of ["complete", "skip"]) test(`first allowance renders and per
     await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.storyFlags?.["notebook.s1.allowance"]);
     expect(await page.evaluate(() => window.storyProbe.starts)).toEqual([]);
     expect(await page.evaluate(() => window.storyProbe.regions.getCharacter().yen)).toBe(character.yen + 500);
+    const resumed = await page.evaluate(() => ({
+      position: window.storyProbe.lifecycle.getController().collider.position.asArray(),
+      locked: window.storyProbe.lifecycle.getController().movementLocked,
+      avatar: window.storyProbe.lifecycle.playerRuntime.activeCharacterId,
+    }));
+    expect(Math.hypot(...resumed.position.map((value, index) => value - continuation.position[index]))).toBeLessThan(0.2);
+    expect(resumed.locked).toBe(false);
+    expect(resumed.avatar).toBe("ryo");
+    await page.screenshot({ path: testInfo.outputPath("saved-continuation.png") });
   }
   expect(errors).toEqual([]);
 });
