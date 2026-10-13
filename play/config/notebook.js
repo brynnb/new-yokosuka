@@ -39,6 +39,12 @@ const STORY_PAGES = Object.freeze([
     text: "Megumi's sister saw a big black car on the rainy day of the attack.\n\nAsk about the black car." }) },
   { flag: "notebook.s1.yamagishi-witness", page: Object.freeze({ id: "story-yamagishi-witness",
     text: "Yamagishi-san was nearly hit by the black car. He hurt himself when he fell.\n\nVisit him at home in Sakuragaoka, near the candy shop." }) },
+  { flag: "notebook.s1.dobuita-black-car", page: Object.freeze({ id: "story-dobuita-black-car",
+    text: "The black car went toward Dobuita.\n\nAsk the people who work in the shopping district." }) },
+  { flag: "notebook.s1.tom-witness", page: Object.freeze({ id: "story-tom-witness",
+    text: "The black car splashed Nozomi with mud.\n\nTom argued with the people in the car. Ask him at the hot dog truck." }) },
+  { flag: "notebook.s1.chinese-community", page: Object.freeze({ id: "story-chinese-community",
+    text: "Tom saw a man in a deep-green Chinese coat. Lan Di.\n\nAsk the Chinese community in Dobuita for information." }) },
 ]);
 
 export function notebookPagesForCharacter(character) {

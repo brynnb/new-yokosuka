@@ -56,5 +56,11 @@ test("investigation notebook is ordered, personal, and derived from committed fl
   assert.ok(!notebookPagesForCharacter(character).some(page => page.id === "story-yamagishi-witness"));
   character.storyFlags["notebook.s1.yamagishi-witness"] = true;
   assert.equal(notebookPagesForCharacter(character)[8].id, "story-yamagishi-witness");
+  for (const clue of ["dobuita-black-car", "tom-witness", "chinese-community"]) {
+    character.storyFlags[`notebook.s1.${clue}`] = true;
+  }
+  assert.deepEqual(notebookPagesForCharacter(character).slice(9).map(page => page.id),
+    ["story-dobuita-black-car", "story-tom-witness", "story-chinese-community"]);
+  assert.equal(notebookPagesForCharacter({ ...character, storyFlags: {} }).length, 5);
   assert.equal(notebookPagesForCharacter({ ...character, playMode: "free_roam" }).length, 0);
 });

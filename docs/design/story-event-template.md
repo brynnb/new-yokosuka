@@ -207,7 +207,8 @@ Do not describe the first conversation as fully animation-faithful.
 | Opening → bedside → first allowance → saved continuation | Rendered/full-stack verified, including explicit intro skips, natural allowance completion, one-time payment and reload. |
 | First dojo visit → men-in-black notebook objective | Connected browser/full-stack progression and notebook verified; server gate/cancellation/settlement tested. Authored two-person lead-in rendered; held poses remain an approximation. |
 | Yamanose kitten / first black-car lead | Connected rendered approach, introduction skip, food choice, natural fish ending and saved notebook verified. Real server/compiler tests cover both food settlements, cancellation/retry and clue isolation. Tofu visuals and prop fidelity remain unverified. |
-| Yamagishi → Dobuita black-car investigation → sailors | Missing connected authored progression. |
+| Sumiya / Yamagishi → Nozomi → Tom | Connected browser clicks, visible actors/facing, initial voice playback, saved clues and restored controls verified for all four. Real server/compiler tests cover cancellation/retry, personal eligibility, NPC presence, Yamagishi hours and cross-character isolation. Conversation-specific gestures remain an approximation. |
+| Chinese-community enquiry → sailors | Missing connected authored progression. |
 | Heartbeats / Charlie / tattoo parlour / Chinese letter | Missing connected authored progression and verified challenge outcomes. |
 | Harbor warehouses / Master Chen / Phoenix Mirror | Missing connected authored progression. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
@@ -245,8 +246,9 @@ bindings are in `play/assets/yamanose/cata1/manifest.json` and
 also distinguishes the optional kitten care from essential progression. Do not
 make the fish-only clue a mandatory gate for the entire investigation: other
 witnesses and direct approaches to Yamagishi must remain possible. Later kitten
-care/naming and alternate investigation leads are still unimplemented in this
-authored progression. This first encounter is not proof of those systems.
+care/naming are still unimplemented. Sumiya now supplies the alternate witness
+lead in the authored conversation catalog below. This first encounter is not
+proof of the later kitten systems.
 
 Use `NEW_YOKOSUKA_KITTEN_E2E=true` with `NEW_YOKOSUKA_DOJO_E2E=true` to extend
 the allowance browser check. It loads Yamanose normally, resets near the shrine
@@ -263,3 +265,69 @@ not establish that the fish/kitten props animate correctly throughout. Keep that
 separate from the verified server outcome and do not call this a frame-faithful
 recreation. The test uses the authoritative isolated server and local assets;
 these events and audio have not been published to production.
+
+## Early black-car investigation
+
+The authored input is `tools/scripting/story-investigation.json`.
+`build_story_investigation.mjs` deterministically resolves its line IDs against
+the original HUMANS.AFS message catalogs and emits ordinary official Yarn
+imports for the separate server. It is content translation, not another quest
+runtime. The imports use the existing NPC picker, conversation presenter,
+server-owned gates and atomic settlement.
+
+| Event / location | Prerequisites in this adaptation | Original voices | Saved lead |
+| --- | --- | --- | --- |
+| `sumiya-witness`, Sumiya (`SUMI`) in Sakuragaoka (`JD00`) | Opening and first dojo complete; this conversation not complete. | F1129 | Yamagishi hurt himself avoiding the car; visit his home. Alternative to the kitten's fish-only witness clue. |
+| `yamagishi-black-car`, Yamagishi (`YAMA`) in Sakuragaoka | Opening, dojo and witness clue; not complete; personal 08:30–19:00. | F1053 | The car went toward Dobuita. |
+| `nozomi-black-car`, Nozomi (`HRSK`) in Dobuita (`D000`) | Opening and Yamagishi conversation complete; not complete. | F1239 | Tom argued with the occupants. |
+| `tom-black-car`, Tom (`TOM_`) in Dobuita | Opening and Nozomi conversation complete; not complete. | F1038 | A man in a deep-green Chinese coat; ask the Chinese community. |
+
+All four require Story mode and authoritative presence of the corresponding
+NPC in this player's zone. The existing personal schedule supplies placement;
+other players' NPCs are not changed. No item, yen, native-flag guess, calendar
+jump or weather override is added. These are ordinary conversations with no
+QTE or combat.
+
+Click the scheduled NPC to start. The shared presenter locks movement, faces
+the NPC toward Ryo, displays the original English subtitle and plays its
+original voice. Voice completion or Space advances a line. It preserves the
+gameplay camera rather than inventing original shot timings. It does not
+reproduce specific conversation gestures or lip animation. Completion adds
+the personal milestone and lightly adapted notebook page together, then
+restores controls/facing. X/cancellation commits no partial clue; repeat and
+reload cannot duplicate completion.
+
+### Provenance and deliberate simplifications
+
+The line text, speakers and voice IDs are resolved from the original English
+HUMANS.AFS catalog, whose source hash is retained in each generated import.
+[Shotgunnova's walkthrough](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404)
+supplies the witness chain and Yamagishi's 08:30–19:00 availability.
+The authored ordering condenses multiple questions into one conversation;
+it is not a recovered original selector or timing table. In particular, the
+original allows Nozomi to supply her clue without another witness's referral;
+this first authored route orders Yamagishi → Nozomi → Tom explicitly. Other
+witnesses, optional enquiries and native-dialogue consistency outside these
+translated routes remain incomplete. The player may still explore freely.
+
+Rebuild server content with `NEW_YOKOSUKA_SERVER_DIR` set to the separate server
+checkout and run `node tools/scripting/build_story_investigation.mjs`.
+Adding `--voices` requires `VGMSTREAM_CLI` and the extracted original game data;
+it merges only the selected voices into the existing local audio catalog.
+Audio binaries are ignored and need separate publication before deployment.
+Import the four reviewed built-ins into the isolated test database. Neither
+generation nor a local import publishes production content.
+
+Set `NEW_YOKOSUKA_INVESTIGATION_E2E=true` alongside the dojo and kitten test
+flags to extend the connected browser check through Sumiya, Yamagishi, Nozomi and Tom.
+It loads their actual zones and clicks the actual scheduled actors, while
+resetting nearby to bound travel time. The first voice must play; Space
+advances the remaining lines. This does not establish full natural audio or
+animation fidelity.
+
+The connected run passed locally through allowance, reload, dojo, kitten and
+all four witnesses. Rendered captures also exposed and verified a fix for the
+shared conversation-facing direction: character models face local -Z, so
+FACE must apply the same half-turn as scheduled movement. No NPC-specific
+rotation override was added. Existing ambient gestures, including sweeping
+and dancing, remain active rather than becoming dedicated conversation clips.

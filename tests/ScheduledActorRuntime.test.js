@@ -224,19 +224,24 @@ test("clearing a world disposes a late actor instead of attaching it to the next
   } finally { scene.dispose(); engine.dispose(); }
 });
 
-test("scheduled FACE yaw uses the browser actor-to-target direction", () => {
+test("scheduled FACE yaw points the model's local -Z toward the browser target", () => {
   assert.equal(
     scheduledActorFacingYaw([1, 0, 2], [1, 1.5, 6]),
-    0,
+    Math.PI,
   );
   assert.equal(
     scheduledActorFacingYaw([1, 0, 2], [4, 1.5, 2]),
-    Math.PI / 2,
+    3 * Math.PI / 2,
   );
   assert.equal(
     scheduledActorFacingYaw([1, 0, 2], [1, 1.5, 2]),
     null,
   );
+  for (const target of [[0, 0, 1], [1, 0, 0], [0, 0, -1], [-1, 0, 0]]) {
+    const yaw = scheduledActorFacingYaw([0, 0, 0], target);
+    const forward = BABYLON.Vector3.TransformNormal(new BABYLON.Vector3(0, 0, -1), BABYLON.Matrix.RotationY(yaw));
+    assert.ok(BABYLON.Vector3.Dot(forward, BABYLON.Vector3.FromArray(target)) > 0.999);
+  }
 });
 
 test("scheduled actor objects resolve from the active world's source registry", () => {
@@ -1241,7 +1246,7 @@ test("scheduled actors apply only activated dialogue FACE targets", () => {
     { activate: true },
   ), true);
   runtime.update(0);
-  assert.equal(root.rotation.y, 0);
+  assert.equal(root.rotation.y, Math.PI);
 
   assert.equal(runtime.clearDialogueFacingTarget("AKSK:example"), true);
   runtime.update(0);
@@ -1253,5 +1258,5 @@ test("scheduled actors apply only activated dialogue FACE targets", () => {
     { activate: true },
   ), true);
   runtime.update(0);
-  assert.equal(root.rotation.y, Math.PI / 2);
+  assert.equal(root.rotation.y, 3 * Math.PI / 2);
 });

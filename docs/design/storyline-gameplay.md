@@ -1,11 +1,15 @@
 # Storyline gameplay integration
 
-Status: integration design; existing boundaries are distinguished from proposed work
-Last reviewed: October 9, 2026
+Status: authored Story prototype plus retained native-engine research
+Last reviewed: October 12, 2026
 
-The [implemented play modes](../implementation/play-modes.md) now isolate Story
-and Free roam saves, calendars and NPC views. The event-settlement and native/Yarn
-integration gaps below remain; mode switching does not itself complete them.
+The [implemented play modes](../implementation/play-modes.md) isolate Story
+and Free roam saves, calendars and NPC views. The current implementation uses
+walkthrough-guided Yarn events with original presentation assets. The
+[connected progression checklist](story-event-template.md#connected-progression-checklist)
+is the source of truth for playable coverage and verification. Opening,
+allowance, dojo and the first kitten encounter have connected browser evidence;
+the whole storyline is not implemented.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative
@@ -134,20 +138,21 @@ These boundaries have focused tests, including real Yarn and PostgreSQL tests
 and same-day personal NPC schedule changes; they are not rendered evidence.
 
 Existing scripts using named `native.*` flags have not been silently converted.
-Receipt-driven reward/inventory UI refresh and the source-backed first story
-route remain unfinished. Consequently, server-first and native-fallback
-versions of the nominally same event can still advance different state and
-later select different branches.
+The authored opening and allowance now use atomic server settlement and
+receipt-driven character/notebook updates. Untranslated native-fallback
+conversations can still select branches from native state that does not know
+about a newly authored milestone; named flags are not native aliases.
 
-**Do not scale storyline authoring before completing this boundary.** The
+For each translated route, preserve one authority for its effects. The
 direction is:
 
 - the server is the durable authority for the MMO personal phase and
   consequential effects;
 - exact native bank/index/byte identities remain stored evidence, not replaced
   by guessed friendly names;
-- every reviewed milestone has one explicit mapping between MMO phase and the
-  native values that native dialogue/programs consume; and
+- map a milestone to native values only where an established remaining
+  consumer needs them; ordinary authored conversations do not require guessing
+  undocumented native flags; and
 - one event settlement updates the authoritative milestone and its required
   native compatibility state together, or fails without updating either.
 
@@ -170,12 +175,10 @@ browser-world residency.
 
 Important consequences:
 
-- The trigger schema supports both `enter` and `automatic`, but normal
-  gameplay currently sends only `automatic`. `enter` appearing in a test or
-  database row does not make it reachable.
-- This is a room-entry check, not a continuous arbitrary spatial-volume
-  detector. A trigger halfway through a room needs an interaction, a reviewed
-  spatial trigger source, or an explicit extension.
+- `automatic` remains a room-entry check. The shared `StoryRegionRuntime` also
+  sends `enter` on crossings of authored story regions; the server validates
+  the accepted player position against matching bounds. Allowance, dojo and
+  kitten events use that path. A trigger row alone does not create a region.
 - Same-world respawn does not leave/re-enter the native area and therefore
   does not re-arm automatic dispatch.
 - A cross-world transition tears down cutscene, dialogue, server-script,
@@ -220,10 +223,10 @@ lease, authoritative predicate evaluation, staged effects, ordered yields,
 choices, trace history, cancellation, `pass_trigger`, and atomic commit on
 `complete`. Use that rather than creating a second quest-state engine.
 
-Only a small official catalog is presently live: Hato, the JOMO/Goro automatic
-telephone event, the D000 telephone-book activity, and three D000 closed-door
-interactions. Their existence proves the transaction path; it does not imply
-game-wide story coverage.
+The official catalog includes legacy native translations and the authored
+Story prototype. Repository inclusion is not production publication. Import
+the intended reviewed definitions into an isolated database for testing;
+their existence does not imply game-wide story coverage.
 
 ### Native presentation stack
 
@@ -232,17 +235,15 @@ binding, AUTH playback, actors, camera, motion, dialogue, face/hand cues,
 audio, music, props, map presentation, and cleanup. A storyline-specific
 cutscene renderer would be a regression.
 
-Use one of these, in descending order of preference:
+Use the smallest existing presentation that fits the event:
 
-1. a reviewed real room owner/program when its gating and lifecycle are
-   executable;
-2. an already packaged multi-activity owner route; or
-3. an existing synthetic preview wrapper as a declared good-enough
-   presentation when the real owner is not worth recovering yet.
+1. original dialogue through the shared conversation presenter;
+2. a packaged scene or bounded authored lead-in using the existing actor,
+   audio and camera machinery; or
+3. a reviewed real room owner/program when already executable and useful.
 
-The third option is acceptable for the current product target, but its limits
-must be explicit. A preview wrapper supplies the visual sequence; the server
-story definition must separately own eligibility, durable effects, replay
+Approximations must be explicit. A preview wrapper supplies the visual sequence;
+the server story definition must separately own eligibility, durable effects, replay
 policy, return location, and any omitted interstitial logic.
 
 Do not call an arbitrary child function merely because it reaches an AUTH.
@@ -280,16 +281,16 @@ consumer without proving the setter or exclusive human meaning. Preserve the
 numeric evidence, confidence, and competing interpretations. Do not compile a
 friendly label into a hard prerequisite solely because it sounds plausible.
 
-## The missing live story-scene seam
+## Bounded story presentation
 
-The browser has no generic server-orchestrated “launch this reviewed cutscene
-in live gameplay and return a typed settlement” command. Existing
-`start_activity` is deliberately limited to a small closed catalog and is
-presentation-only. It waits for Babylon cleanup but cannot report a gameplay
-result or authorize a reward.
+Authored allowance, dojo and kitten events now launch reviewed presentation
+through the existing server command/catalog and Babylon adapter, then settle
+their effects through Yarn. Explicit skip is accepted for these noninteractive
+scenes; cancellation and failure do not settle. This is not a QTE or combat
+outcome protocol.
 
-Add one generic **bounded** story-presentation capability, not an arbitrary
-program/function executor. A useful catalog record should identify:
+Keep that capability bounded, not an arbitrary program/function executor.
+Each added presentation should identify:
 
 ```text
 story presentation ID

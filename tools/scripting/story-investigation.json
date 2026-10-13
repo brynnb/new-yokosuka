@@ -1,0 +1,38 @@
+{
+  "schema": "new-yokosuka-authored-talk-routes-v1",
+  "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
+  "routes": [
+    {
+      "id": "sumiya-witness", "actor": "SUMI", "area": "JD00",
+      "title": "Sumiya — the injured witness",
+      "requiredFlags": ["story.s1.first-dojo.completed"],
+      "completedFlag": "story.s1.sumiya-witness.completed",
+      "effects": ["notebook.s1.yamagishi-witness"],
+      "voiceIds": ["F1129A001","F1129B001","F1129A003","F1129B002","F1129A004","F1129B003","F1129B004","F1129A005","F1129A007","F1129B005","F1129B006","F1129B007","F1129A008","F1129B008","F1129B009","F1129B013","F1129A009"]
+    },
+    {
+      "id": "yamagishi-black-car", "actor": "YAMA", "area": "JD00",
+      "title": "Yamagishi — toward Dobuita", "hours": [8.5,19],
+      "requiredFlags": ["story.s1.first-dojo.completed","notebook.s1.yamagishi-witness"],
+      "completedFlag": "story.s1.yamagishi-black-car.completed",
+      "effects": ["notebook.s1.dobuita-black-car"],
+      "voiceIds": ["F1053A001","F1053B005","F1053A005","F1053B006","F1053A006","F1053B007","F1053A008","F1053B008","F1053B009","F1053B010","F1053A009","F1053A010","F1053B011","F1053B012","F1053A011","F1053B016","F1053A014","F1053A015"]
+    },
+    {
+      "id": "nozomi-black-car", "actor": "HRSK", "area": "D000",
+      "title": "Nozomi — Tom's argument",
+      "requiredFlags": ["story.s1.yamagishi-black-car.completed"],
+      "completedFlag": "story.s1.nozomi-black-car.completed",
+      "effects": ["notebook.s1.tom-witness"],
+      "voiceIds": ["F1239A001","F1239B001","F1239B002","F1239A002","F1239B003","F1239A003","F1239B004","F1239A004","F1239B005","F1239A005","F1239B006","F1239A008","F1239B007","F1239A009","F1239B008","F1239B009","F1239A010","F1239B010","F1239A011","F1239B011","F1239A013"]
+    },
+    {
+      "id": "tom-black-car", "actor": "TOM_", "area": "D000",
+      "title": "Tom — the man in green",
+      "requiredFlags": ["story.s1.nozomi-black-car.completed"],
+      "completedFlag": "story.s1.tom-black-car.completed",
+      "effects": ["notebook.s1.chinese-community"],
+      "voiceIds": ["F1038A001","F1038B008","F1038A007","F1038B009","F1038A008","F1038B010","F1038A009","F1038B011","F1038A010","F1038B012","F1038A012","F1038B013","F1038A013","F1038B014","F1038B015","F1038A014","F1038A015","F1038B016","F1038B017","F1038A016","F1038B018","F1038B019","F1038A017","F1038B020","F1038B021","F1038B022","F1038B023","F1038A018"]
+    }
+  ]
+}

@@ -334,7 +334,10 @@ export function scheduledActorFacingYaw(position, target) {
   const deltaX = target[0] - position[0];
   const deltaZ = target[2] - position[2];
   if (deltaX === 0 && deltaZ === 0) return null;
-  return Math.atan2(deltaX, deltaZ);
+  // Character models face local -Z, just as the scheduled-route root yaw
+  // below adds PI to its travel heading. Using the heading directly here
+  // makes every NPC turn its back to the player during FACE/look_at_actor.
+  return Math.atan2(deltaX, deltaZ) + Math.PI;
 }
 
 export function scheduledActorModelScaleCorrection(

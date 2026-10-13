@@ -4,7 +4,7 @@ import { randomUUID } from "node:crypto";
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
 
 for (const [ending, freshOpening] of [["complete", false], ["skip", false], ["complete", true]]) test(`first allowance renders and persists after ${ending}${freshOpening ? " from a fresh opening" : ""}`, async ({ page }, testInfo) => {
-  test.setTimeout(process.env.NEW_YOKOSUKA_KITTEN_E2E === "true" ? 600_000 : freshOpening ? 480_000 : 240_000);
+  test.setTimeout(process.env.NEW_YOKOSUKA_INVESTIGATION_E2E === "true" ? 900_000 : process.env.NEW_YOKOSUKA_KITTEN_E2E === "true" ? 600_000 : freshOpening ? 480_000 : 240_000);
   const errors = [];
   page.on("pageerror", error => errors.push(error.message));
   const guestToken = randomUUID();
@@ -31,6 +31,8 @@ for (const [ending, freshOpening] of [["complete", false], ["skip", false], ["co
   // Instrument the actual served modules, including HMR timestamp variants.
   // Importing a bare second copy can observe a different prototype from /play.
   for (const [file, hook] of [
+    ["scripts/ScriptEventDialoguePresenter", `const probeShow = ScriptEventDialoguePresenter.prototype.show;
+      ScriptEventDialoguePresenter.prototype.show = function(...args) { window.storyProbe.dialogue = this; return probeShow.apply(this,args); };`],
     ["world/PlayWorldLifecycle", `const probeInitialize = PlayWorldLifecycle.prototype.initialize;
       PlayWorldLifecycle.prototype.initialize = function(...args) { window.storyProbe.lifecycle = this; return probeInitialize.apply(this,args); };`],
     ["cutscenes/NativeCutsceneDirector", `const probeStart = NativeCutsceneDirector.prototype.start;
@@ -246,6 +248,63 @@ for (const [ending, freshOpening] of [["complete", false], ["skip", false], ["co
       await page.locator("#journal-next").click();
       await expect(page.getByText(/Visit him at home in Sakuragaoka/)).toBeVisible();
       await page.screenshot({ path: testInfo.outputPath("first-kitten-notebook.png") });
+      await page.locator("#journal-close").click();
+      if (process.env.NEW_YOKOSUKA_INVESTIGATION_E2E === "true") {
+        for (const [actor, world, flag] of [
+          ["SUMI", "sakuragaoka", "story.s1.sumiya-witness.completed"],
+          ["YAMA", "sakuragaoka", "notebook.s1.dobuita-black-car"],
+          ["HRSK", "dobuita", "notebook.s1.tom-witness"],
+          ["TOM_", "dobuita", "notebook.s1.chinese-community"],
+        ]) {
+          await page.evaluate(async world => { await window.storyProbe.lifecycle.travelToWorld(world); }, world);
+          await page.waitForFunction(actor => window.storyProbe.lifecycle.scheduledActors.dialogueActor(actor), actor, { timeout: 60_000 });
+          // Bound travel time without fabricating a talk result: position by
+          // the real scheduled NPC, then project and click its visible mesh.
+          await page.evaluate(actor => {
+            const life = window.storyProbe.lifecycle;
+            const npc = life.scheduledActors.dialogueActor(actor);
+            const [x, y, z] = npc.position;
+            life.resetPlayer(life.vectorFromArray([x, y, z + 2]), Math.PI, { persist: false });
+            const controller = life.getController();
+            controller.setFirstPerson(true);
+            controller.cameraYaw = 0;
+            controller.cameraPitch = 0;
+          }, actor);
+          await page.waitForTimeout(1200);
+          const point = await page.evaluate(actor => {
+            const life = window.storyProbe.lifecycle;
+            const npc = life.scheduledActors.dialogueActor(actor);
+            const point = life.vectorFromArray(npc.position);
+            point.y += 1.3;
+            const rect = life.engine.getRenderingCanvas().getBoundingClientRect();
+            const screen = point.constructor.Project(point, life.scene.getTransformMatrix().constructor.Identity(), life.scene.getTransformMatrix(),
+              life.scene.activeCamera.viewport.toGlobal(life.engine.getRenderWidth(), life.engine.getRenderHeight()));
+            return { x: rect.x + screen.x * rect.width / life.engine.getRenderWidth(),
+              y: rect.y + screen.y * rect.height / life.engine.getRenderHeight() };
+          }, actor);
+          await page.screenshot({ path: testInfo.outputPath(`${actor}-before-talk.png`) });
+          await page.mouse.click(point.x, point.y);
+          await page.waitForFunction(() => window.storyProbe.dialogue?.active, null, { timeout: 15_000 });
+          await page.waitForFunction(() => {
+            const audio = window.storyProbe.dialogue?.audio;
+            return audio && !audio.paused && audio.currentTime > 0;
+          }, null, { timeout: 15_000 });
+          await page.waitForTimeout(1500);
+          await page.screenshot({ path: testInfo.outputPath(`${actor}-dialogue.png`) });
+          // First voice really plays; advance the remaining original lines
+          // with the supported Space control to keep this smoke test bounded.
+          for (let line = 0; line < 100; line++) {
+            if (await page.evaluate(flag => !!window.storyProbe.regions.getCharacter()?.storyFlags?.[flag], flag)) break;
+            await page.keyboard.press("Space");
+            await page.waitForTimeout(250);
+          }
+          await expect.poll(() => page.evaluate(flag => window.storyProbe.regions.getCharacter()?.storyFlags?.[flag], flag)).toBe(true);
+          expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+          const saved = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+          expect(saved.character.storyFlags[flag]).toBe(true);
+          expect(saved.character.yen).toBe(character.yen + 500);
+        }
+      }
       expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
       expect(errors).toEqual([]);
     }
