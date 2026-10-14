@@ -82,9 +82,13 @@ saved possessions through shared authored pickup choices. Connected rendered
 drawer/case use, leave/cancel/retry, inventory/notebook settlement, unlocked
 controls and reload without duplicate grants pass, alongside compiler/database
 checks. Their captions/cameras are authored and detailed lid/hand choreography
-is omitted. The scroll/switch puzzle,
-basement investigation, Phoenix Mirror recovery and later storyline remain
-unimplemented.
+is omitted. The two original dojo scrolls now connect to independent
+handguard/sword switch events. Real clicks, leave/cancel/retry, unchanged owned
+items, server-saved switches, personal scroll/wall presentation and reload pass
+in the browser. Original recess/opened-wall geometry is visibly checked;
+scroll rolling, detailed object/hand placement and sideways wall movement are
+approximations. Basement admission/descent and investigation, Phoenix Mirror
+recovery and later storyline remain unimplemented.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

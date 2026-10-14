@@ -3,6 +3,24 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"dojo-handguard-switch","actor":"AKIR","presentActors":[],"area":"JHD0","trigger":"use","object":"KAK2","objectLabel":"Left dojo scroll","priority":220,
+      "title":"Hazuki dojo — the handguard recess","bounds":"s1.jhd0.handguard-switch","requiredFlags":[],"requiredItems":[{"key":"sword_handguard","quantity":1}],
+      "completedFlag":"story.s1.dojo-handguard-switch.completed","effects":["notebook.s1.dojo-handguard-switch"],
+      "staging":"s1.jhd0.handguard-switch","yarnTemplate":"story-item-pickup.yarn","voiceIds":[],"optionSelections":[0],
+      "authoredText":{"prompt":"The left scroll covers part of the wall. The family handguard might fit behind it.","confirm":"Lift the scroll and fit the handguard","receipt":"The handguard fits the recess. The other scroll may hide the next part of the mechanism."},
+      "nativeSources":[{"role":"original-object-placement","locator":"disc1/SCENE/01/JHD0/MAPINFO.BIN#KAK2/SKAB","sha256":"e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca"}],
+      "provenance":"GameSpot guide printed p38: remove the left scroll, place the family handguard in the recess. KAK2's original placement is left when facing the wall. Original scroll/wall geometry; hiding the scroll, unvoiced captions and camera/held Ryo are authored approximations. Server validates proximity and possession and saves only this switch/notebook. Handguard remains owned as access; no item, money, calendar or mirror grant."
+    },
+    {
+      "id":"dojo-sword-switch","actor":"AKIR","presentActors":[],"area":"JHD0","trigger":"use","object":"KAK1","objectLabel":"Right dojo scroll","priority":220,
+      "title":"Hazuki dojo — the sword switch","bounds":"s1.jhd0.sword-switch","requiredFlags":["story.s1.dojo-handguard-switch.completed"],"requiredItems":[{"key":"dojo_sword","quantity":1},{"key":"sword_handguard","quantity":1}],
+      "completedFlag":"story.s1.dojo-sword-switch.completed","effects":["notebook.s1.dojo-hidden-door"],
+      "staging":"s1.jhd0.sword-switch","yarnTemplate":"story-item-pickup.yarn","voiceIds":[],"optionSelections":[0],
+      "authoredText":{"prompt":"The right scroll hides a slot. The dojo sword might operate it.","confirm":"Lift the scroll and insert the sword","receipt":"The mechanism releases the hidden wall. There is a passage behind it."},
+      "nativeSources":[{"role":"original-object-placement","locator":"disc1/SCENE/01/JHD0/MAPINFO.BIN#KAK1/SKAB/PONK","sha256":"e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca"}],
+      "provenance":"GameSpot guide printed p38-39: remove the right scroll, insert the sword after the handguard to release the basement entrance. Original KAK1/SKAB geometry; visibility and sideways wall movement, unvoiced captions and held pose/camera are authored, not recovered mechanical animation. Two genuine possessions and the first completed switch gate settlement. Only the switch/notebook saves; basement descent and mirror discovery are independent later events. Sword remains owned as personal access."
+    },
+    {
       "id":"iwao-mysterious-key","actor":"AKIR","presentActors":[],"area":"JOMO","trigger":"use","object":"ihko","objectLabel":"Gray key case","priority":220,
       "title":"Iwao's room — the mysterious key","bounds":"s1.jomo.iwao-key","requiredFlags":[],
       "completedFlag":"story.s1.iwao-key.completed","effects":["notebook.s1.mysterious-key"],"items":[{"key":"mysterious_key","quantity":1}],

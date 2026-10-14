@@ -20,6 +20,12 @@
     {"kind":"activity","policy":"closed"}
   ],
   "capabilities": [
+    {"kind":"bounds","identifier":"s1.jhd0.handguard-switch","description":"Accepted proximity to the original left dojo scroll; use-only."},
+    {"kind":"bounds","identifier":"s1.jhd0.sword-switch","description":"Accepted proximity to the original right dojo scroll; use-only."},
+    {"kind":"sequence","identifier":"s1.jhd0.handguard-switch.start","description":"Original scroll/recess inspection, authored unvoiced choice and temporary object visibility."},
+    {"kind":"sequence","identifier":"s1.jhd0.handguard-switch.finish","description":"Restore temporary inspection before durable personal switch settlement."},
+    {"kind":"sequence","identifier":"s1.jhd0.sword-switch.start","description":"Original right scroll/wall with authored temporary opening; no client-owned basement admission."},
+    {"kind":"sequence","identifier":"s1.jhd0.sword-switch.finish","description":"Restore temporary opening before durable personal switch settlement."},
     {"kind":"bounds","identifier":"s1.jomo.iwao-key","description":"Accepted Iwao-room key-case proximity, use-only."},
     {"kind":"sequence","identifier":"s1.jomo.iwao-key.start","description":"Authored original-room key inspection; no item settlement."},
     {"kind":"sequence","identifier":"s1.jomo.iwao-key.finish","description":"Restore the player's key-case approach."},

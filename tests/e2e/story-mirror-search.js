@@ -2,6 +2,65 @@ import {expect} from "@playwright/test";
 import nativeMapTransitions from "../../play/data/native-map-transitions.json" with {type:"json"};
 import jomoPlacements from "../../play/data/jomo-runtime-placements.json" with {type:"json"};
 
+export async function verifyDojoSwitches(page,testInfo,character){
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const before=await saved();
+  for(const key of ["sword_handguard","dojo_sword"])expect(before.inventory.some(item=>item.key===key)).toBe(true);
+  const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);};
+  const objectState=tag=>page.evaluate(tag=>{
+    const root=window.storyProbe.lifecycle.scene.meshes.find(m=>m.metadata?.runtimeObject?.objectTag===tag)?.metadata.runtimeObject.root;
+    if(!root)throw Error(`Missing original object ${tag}`);
+    return {enabled:root.isEnabled(false),position:root.position.asArray()};
+  },tag);
+  const click=async(tag,position)=>{
+    const point=await page.evaluate(async({tag,position})=>{
+      const {runtimePlacementBounds}=await import("/src/RuntimePlacementAudit.js"),l=window.storyProbe.lifecycle;
+      l.resetPlayer(l.vectorFromArray(position),0,{persist:false});
+      const entry=l.scene.meshes.find(m=>m.metadata?.interactiveInspectable?.objectTag===tag)?.metadata.interactiveInspectable;
+      if(!entry)throw Error(`Missing original scroll ${tag}`);
+      const b=runtimePlacementBounds(entry.root),p=b.min.add(b.max).scale(.5),c=l.getController();
+      c.setFirstPerson(true);c.cameraYaw=Math.atan2(-(p.x-c.collider.position.x),-(p.z-c.collider.position.z));
+      c.cameraPitch=Math.atan2(c.collider.position.y+c.options.firstPersonHeadHeight-p.y,Math.hypot(p.x-c.collider.position.x,p.z-c.collider.position.z));c.updateCamera(1);
+      const rect=l.engine.getRenderingCanvas().getBoundingClientRect(),v=l.scene.activeCamera.getViewMatrix(true).multiply(l.scene.activeCamera.getProjectionMatrix(true));
+      const s=p.constructor.Project(p,v.constructor.Identity(),v,l.scene.activeCamera.viewport.toGlobal(l.engine.getRenderWidth(),l.engine.getRenderHeight()));
+      return {x:rect.x+s.x*rect.width/l.engine.getRenderWidth(),y:rect.y+s.y*rect.height/l.engine.getRenderHeight()};
+    },{tag,position});
+    await page.waitForTimeout(250);await page.mouse.click(point.x,point.y);
+    await page.waitForFunction(()=>window.storyProbe.dialogue?.active||window.storyProbe.sceneErrors.length,null,{timeout:15_000});
+    expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);await page.keyboard.press("Space");
+  };
+  if(await page.evaluate(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id)!=="exterior")await page.evaluate(()=>window.storyProbe.lifecycle.travelToWorld("exterior"));
+  await expect(page.locator("#loading")).toBeHidden({timeout:90_000});await idle();
+  const wallBefore=await objectState("SKAB");
+  for(const sw of [{tag:"KAK2",position:[9.2,1,-21.937],choice:"Lift the scroll and fit the handguard",scene:"s1.jhd0.handguard-switch",flag:"story.s1.dojo-handguard-switch.completed"},
+    {tag:"KAK1",position:[9.2,1,-22.947],choice:"Lift the scroll and insert the sword",scene:"s1.jhd0.sword-switch",flag:"story.s1.dojo-sword-switch.completed"}]){
+    expect((await saved()).character.storyFlags[sw.flag]).not.toBe(true);
+    await click(sw.tag,sw.position);await page.getByRole("button",{name:"Leave it for now",exact:true}).click();await idle();
+    expect((await objectState(sw.tag)).enabled).toBe(true);
+    await click(sw.tag,sw.position);await page.getByRole("button",{name:sw.choice,exact:true}).click();
+    await page.waitForFunction(scene=>window.storyProbe.authoredScene?.active?.scene.id===scene||window.storyProbe.sceneErrors.length,sw.scene,{timeout:20_000});
+    expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);await page.waitForTimeout(800);
+    await page.screenshot({path:testInfo.outputPath(`${sw.tag}-recess-inspection.png`)});
+    expect((await objectState(sw.tag)).enabled).toBe(false);
+    await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-cancel-switch"));await idle();
+    expect((await saved()).character.storyFlags[sw.flag]).not.toBe(true);expect((await objectState(sw.tag)).enabled).toBe(true);
+    expect((await objectState("SKAB")).position).toEqual(wallBefore.position);
+    await click(sw.tag,sw.position);await page.getByRole("button",{name:sw.choice,exact:true}).click();
+    await page.waitForFunction(()=>window.storyProbe.dialogue?.active&&window.storyProbe.authoredScene?.active,null,{timeout:20_000});await page.keyboard.press("Space");
+    await expect.poll(async()=>(await saved()).character.storyFlags[sw.flag]).toBe(true);await idle();
+    await expect.poll(async()=>(await objectState(sw.tag)).enabled).toBe(false);
+  }
+  const after=await saved();expect(after.inventory).toEqual(before.inventory);expect(after.character.yen).toBe(before.character.yen);expect(after.character.currentHp).toBe(before.character.currentHp);
+  expect(after.character.storyFlags["story.s1.phoenix-mirror.completed"]).not.toBe(true);
+  await page.screenshot({path:testInfo.outputPath("dojo-switches-saved.png")});
+  await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();
+  await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();
+  await page.waitForFunction(()=>window.storyProbe.ready,null,{timeout:90_000});await idle();
+  for(const tag of ["KAK1","KAK2"])expect((await objectState(tag)).enabled).toBe(false);
+  expect((await objectState("SKAB")).position[2]).toBeCloseTo(wallBefore.position[2]+2.15,5);
+  expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+}
+
 export async function verifyDojoItems(page,testInfo,character){
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const noErrors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);

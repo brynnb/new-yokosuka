@@ -233,7 +233,8 @@ Do not describe the first conversation as fully animation-faithful.
 | Gui Zhang's street encounter | Connected original introduction, server-timed nonlethal fight, bodyguard explanation and rooftop Chai shot. Rendered cancellation/re-entry, physical combat inputs, natural ending, notebook and reload pass. Approach bounds, AI/balance and music-start timing are authored. |
 | Return-home handguard / family crest | Connected original voiced Fuku referral, physical altar-room door/approach and embedded Ine-san presentation. Rendered cancellation/re-entry, natural scene ending, independent notebook settlement, restored controls and reload pass. Held Fuku gestures, close-up and handguard handling are adaptations. |
 | Iwao's key / dojo sword case | Connected real drawer/case picking, explicit leave/pickup choices, live cancellation/retry, saved inventory/notebook and reload without duplicate grants pass in the browser. Compiler/database proximity, key prerequisite, stale acknowledgement and character isolation checks pass. Captions/cameras are authored; detailed lid/hand choreography remains omitted. |
-| Phoenix Mirror search | Missing scroll/switch puzzle, basement investigation and mirror recovery. |
+| Dojo scrolls / hidden-wall switches | Connected real-object clicks, explicit leave/fit choices, live cancellation/retry, independent server settlement, saved scroll/wall presentation and reload pass. Original recess/opened-wall geometry is visibly checked. Scroll rolling, handguard/sword placement and wall translation are authored approximations; basement travel is not yet connected. |
+| Phoenix Mirror search | Missing playable basement entrance/descent, basement investigation and mirror recovery. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
 | Shenmue II reuse and missing-input audit | Pending the connected S1 foundation. |
@@ -1656,3 +1657,35 @@ origin, despite the rendered drawer being correctly placed. Both placement
 auditing and containment now use the shared geometry-only bounds helper.
 Picking excludes contained props while their drawer is closed/opening, using
 the same availability rule as interaction dispatch.
+
+## Dojo scroll and switch puzzle
+
+Official imports: `story-s1-dojo-handguard-switch` and
+`story-s1-dojo-sword-switch`. The
+[contemporary GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf),
+printed pages 38–39, establishes the two puzzle actions and subsequent basement
+descent. These are ordinary authored use events, not native-controller execution.
+
+| Field | Authored integration |
+| --- | --- |
+| Location / trigger | Use original KAK2 (left scroll, z=-21.937), then KAK1 (right scroll, z=-22.947), on the dojo wall opposite its entrance. Server-accepted use-only bounds cover the real objects; merely walking nearby never solves a switch. |
+| Prerequisites | Personal Story Ryo and completed opening. The left action requires actual sword_handguard possession; the right requires the completed left action and actual handguard and dojo_sword. Ordering follows the walkthrough, not a claim about all native alternative orders. No invented crest, weather or calendar gate. |
+| Sequence / choices | Prompt, explicit lift-and-fit or leave choice, owned close-up and acknowledgement. Both reuse the ordinary Yarn pickup/inspection template. They grant no new item. |
+| Presentation | Original scrolls, recess and SKAB hidden wall. Scroll removal is condensed to visibility; a declared 2.15-unit sideways wall translation clears its original two-meter visual width. Held Ryo, camera and unvoiced captions are authored. Detailed scroll rolling, mounted handguard/sword meshes and hand animation are not reproduced. Date/weather/music remain unchanged. |
+| Effects | Each switch and notebook page settle independently through the existing server transaction. Possessions remain as personal access, with no currency, HP, time, basement arrival or mirror reward. |
+| Failure / replay | Leave, live cancellation, preparation failure and stale acknowledgement settle nothing. Temporary object transforms restore before returning avatar/camera/controls. Saved flags prevent repeat grants or repeated transforms. |
+| Personal world / recovery | The existing Story runtime derives object presentation from server flags. It applies on world load/reload and restores on character/mode changes and teardown. There is no second writable save store or shared global room switch. Moving hierarchies transfer to the existing dynamic spatial-index owner rather than retaining stale frozen bounds. |
+
+Compiler/PostgreSQL checks cover out-of-bounds and premature-right rejection,
+leave/cancel/stale replies, once-only independent settlement and unchanged
+inventory/economy/calendar. The connected browser check uses real scroll picks,
+verifies leave and live cancellation restores, retries and acknowledges both,
+then reloads the saved room. Inspected captures show the original recess and
+the revealed space behind the moved wall. Shared presentation tests cover
+failed preparation, malformed/missing/ambiguous targets, cancellation cleanup,
+character isolation, mode restoration and non-accumulating offsets.
+
+**Still missing:** physical entrance/descent into YDB1 and its investigation.
+The room view and saved switch flags do not prove walkable admission, safe
+basement arrival, flashlight/candle use, or Phoenix Mirror recovery. These remain
+separate connected event work, not silently credited by switch completion.

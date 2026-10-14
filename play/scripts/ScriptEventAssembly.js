@@ -154,6 +154,7 @@ export function createScriptEventAssembly({
         camera: createNativeAseqBabylonCamera(camera), motionRuntime,
         capturePlayerState, restorePlayerState,
         createAttachedObjects,
+        currentMeshes,
       }),
       playerMotionRuntime,
       playerXmptRuntime,

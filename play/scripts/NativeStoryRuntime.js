@@ -21,6 +21,7 @@ export class NativeStoryRuntime {
     sendDiagnostic,
     isStartupPresentationActive = () => false,
     storyRegions = null,
+    storyObjects = null,
   }) {
     this.dialoguePersistence = dialoguePersistence;
     this.dialogueOverlay = dialogueOverlay;
@@ -43,6 +44,7 @@ export class NativeStoryRuntime {
     this.sendDiagnostic = sendDiagnostic;
     this.isStartupPresentationActive = isStartupPresentationActive;
     this.storyRegions = storyRegions;
+    this.storyObjects = storyObjects;
     this.diagnosticElapsed = 0;
   }
 
@@ -70,6 +72,7 @@ export class NativeStoryRuntime {
       this.mapClipState.load(world, meshes),
     );
     this.mapRenderPreparation.load(world, meshes);
+    this.storyObjects?.load(world.nativeArea, meshes);
     return this.sceneLighting.create(world, { signal });
   }
 
@@ -79,6 +82,7 @@ export class NativeStoryRuntime {
     this.automaticEvents.leaveArea();
     this.storyRegions?.reset();
     this.eventController.reset("world-change");
+    this.storyObjects?.clear();
     this.scriptedEvents.cancel("world-change");
     this.scriptedEvents.resetRoomControllers();
     this.roomScripts.deactivateArea();
@@ -104,6 +108,9 @@ export class NativeStoryRuntime {
   updateScriptedEvents(deltaSeconds) { this.scriptedEvents.update(deltaSeconds); }
 
   updateAutomatic({ world, enabled, playerPosition, playerYaw }) {
+    // An owned tableau may temporarily expose a recess. Reapply durable
+    // presentation after cleanup, never over an in-flight preview.
+    if (!this.presentationActive) this.storyObjects?.update();
     this.storyRegions?.update({ area: world.nativeArea, enabled: enabled && !this.isStartupPresentationActive(), playerPosition });
     const gameplayState = this.getGameplayState();
     this.automaticEvents.update({
@@ -163,6 +170,7 @@ export class NativeStoryRuntime {
     this.cutscenes.dispose();
     this.dialogueOverlay.dispose();
     this.eventController.reset("disposed");
+    this.storyObjects?.clear();
     this.dialoguePersistence.clear();
   }
 }

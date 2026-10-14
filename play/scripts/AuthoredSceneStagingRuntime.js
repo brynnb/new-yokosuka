@@ -2,15 +2,17 @@
 // borrows the shared cinematic actors/camera; it never saves story state or
 // interprets a challenge. This is intentionally authored, not decoded AUTH.
 import { updateNativeCharacterSecondaryMotion } from "../characters/NativeCharacterSecondaryMotion.js";
+import {applyStoryObjectTransforms} from "./StoryObjectPresentation.js";
 
 export class AuthoredSceneStagingRuntime {
-  constructor({ actors, camera, motionRuntime, capturePlayerState, restorePlayerState, createAttachedObjects }) {
+  constructor({ actors, camera, motionRuntime, capturePlayerState, restorePlayerState, createAttachedObjects, currentMeshes }) {
     this.actors = actors;
     this.camera = camera;
     this.motionRuntime = motionRuntime;
     this.capturePlayerState = capturePlayerState;
     this.restorePlayerState = restorePlayerState;
     this.createAttachedObjects = createAttachedObjects;
+    this.currentMeshes = currentMeshes;
     this.active = null;
   }
 
@@ -61,6 +63,10 @@ export class AuthoredSceneStagingRuntime {
         signal.throwIfAborted();
       }
       if (this.active !== owner) return false;
+      if (scene.objectTransforms) {
+        if (!this.currentMeshes) throw Error(`No world object provider for ${scene.id}`);
+        owner.restoreObjects = applyStoryObjectTransforms(this.currentMeshes(), scene.objectTransforms);
+      }
       this.actors.begin(owner, scene.actors.map(actor => actor.tag));
       owner.actorsBegun = true;
       this.camera.begin(owner);
@@ -110,6 +116,7 @@ export class AuthoredSceneStagingRuntime {
     // cancel instead of acknowledging an incomplete restoration.
     const errors = [];
     for (const [enabled, cleanup] of [
+      [!!owner.restoreObjects, () => owner.restoreObjects()],
       [!!owner.objects,()=>owner.objects.clear()],
       [owner.cameraBegun, () => this.camera.end(owner)],
       [owner.actorsBegun, () => this.actors.end(owner, "stopped")],

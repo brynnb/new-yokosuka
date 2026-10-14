@@ -1,6 +1,12 @@
 {
   "schema": "new-yokosuka-story-regions-v1",
   "regions": [
+    {"id":"s1.jhd0.handguard-switch","area":"JHD0","actor":"AKIR","trigger":"use","playMode":"story","openingCompleted":true,
+      "requiredFlags":[],"completedFlag":"story.s1.dojo-handguard-switch.completed","min":[8.7,0,-23.4],"max":[12,3.5,-20.2],
+      "provenance":"Use-only proximity to original KAK2 left scroll [11.242,2.9721,-21.937]. Actual handguard possession is independently required by Yarn."},
+    {"id":"s1.jhd0.sword-switch","area":"JHD0","actor":"AKIR","trigger":"use","playMode":"story","openingCompleted":true,
+      "requiredFlags":["story.s1.dojo-handguard-switch.completed"],"completedFlag":"story.s1.dojo-sword-switch.completed","min":[8.7,0,-24.4],"max":[12,3.5,-21.2],
+      "provenance":"Use-only proximity to original KAK1 right scroll [11.2439,2.9721,-22.947]. First switch and actual sword/handguard possession gate the event, not walking into this area."},
     {"id":"s1.jomo.iwao-key","area":"JOMO","actor":"AKIR","trigger":"use","playMode":"story","openingCompleted":true,
       "requiredFlags":[],"completedFlag":"story.s1.iwao-key.completed","min":[0.4,-0.5,-2],"max":[3.6,2,1.1],
       "provenance":"Use-only proximity around original IWWH drawer and ihko/KAGI case [2.088,0.27,-0.4905]. Existing contained-object picking requires opening the drawer. Key can be obtained early; no invented crest prerequisite."},

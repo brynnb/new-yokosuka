@@ -29,6 +29,21 @@ function harness() {
   return { runtime, transaction, scene, calls,root, deferPrepare: fn => { prepare = fn; } };
 }
 
+test("a tableau restores temporary world objects after cancellation and failed presentation", async () => {
+  const h = harness();
+  const root = {position: {clone: () => ({x: 1}), copyFrom: () => {}},
+    enabled: true, isEnabled() {return this.enabled;}, setEnabled(v) {this.enabled = v;}, computeWorldMatrix() {},
+    _runtimePlacementRecord: {runtime: {objectTag: "SCRO"}}};
+  h.runtime.currentMeshes = () => [root];
+  h.scene.objectTransforms = [{object: "SCRO", visible: false}];
+  await h.runtime.play({kind: "scene-staging-start", scene: h.scene}, h.transaction);
+  assert.equal(root.enabled, false);
+  h.runtime.cancel(h.transaction); assert.equal(root.enabled, true);
+  h.runtime.camera.apply = () => false;
+  await assert.rejects(h.runtime.play({kind: "scene-staging-start", scene: h.scene}, h.transaction), /Cannot present/);
+  assert.equal(root.enabled, true);
+});
+
 test("authored tableau retains ownership across dialogue/QTE and releases exact pose", async () => {
   const h = harness();
   assert.equal(await h.runtime.play({ kind: "scene-staging-start", scene: h.scene }, h.transaction), true);

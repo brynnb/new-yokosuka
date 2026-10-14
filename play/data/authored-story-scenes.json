@@ -2,6 +2,18 @@
   "schema":"new-yokosuka-authored-story-scenes-v1",
   "motionBanks":{"koji":"play/assets/sakuragaoka/gao-wen/M_KOJI.MOTN","mgqb":"play/assets/harbor/goro-encounter/M_MGQB.MOTN","mbui":"play/assets/harbor/warehouse-eight/M_0153A.MOTN","oldDistrict":"play/assets/harbor/old-district-entry/M_0153.MOTN"},
   "scenes":[{
+    "id":"s1.jhd0.handguard-switch","area":"JHD0","worldId":"exterior","actorDefinitions":[],
+    "provenance":"Original KAK2/SKAB left-scroll/recess location; authored held Ryo and close-up. Visibility condenses scroll rolling and handguard handling; no recovered original voice or hand choreography.",
+    "objectTransforms":[{"object":"KAK2","visible":false}],
+    "actors":[{"tag":"AKIR","pose":{"x":-9.7,"y":0.75,"z":-21.937,"rotationX":0,"rotationY":90,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}],
+    "camera":{"positionX":-9.8,"positionY":2.6,"positionZ":-21.937,"targetX":-11.24,"targetY":2,"targetZ":-21.937,"roll":0,"perspective":50}
+  },{
+    "id":"s1.jhd0.sword-switch","area":"JHD0","worldId":"exterior","actorDefinitions":[],
+    "provenance":"Original KAK1/SKAB right-scroll mechanism; authored sideways wall movement and held close-up. Descent/collision are separate, not implied by this presentation.",
+    "objectTransforms":[{"object":"KAK1","visible":false},{"object":"SKAB","offset":[0,0,2.15]}],
+    "actors":[{"tag":"AKIR","pose":{"x":-9.7,"y":0.75,"z":-22.947,"rotationX":0,"rotationY":90,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}],
+    "camera":{"positionX":-9.8,"positionY":2.6,"positionZ":-22.947,"targetX":-11.8,"targetY":1.8,"targetZ":-22.45,"roll":0,"perspective":65}
+  },{
     "id":"s1.jomo.iwao-key","area":"JOMO","worldId":"interior","actorDefinitions":[],
     "provenance":"Original IWWH/ihko/KAGI room placement, authored held Ryo inspection pose and case close-up. No recovered pickup or detailed hand animation.",
     "actors":[{"tag":"AKIR","pose":{"x":-1.4,"y":0,"z":0.5,"rotationX":0,"rotationY":145,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}],

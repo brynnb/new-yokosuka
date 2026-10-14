@@ -157,6 +157,7 @@ import {
   createScriptEventAssembly,
 } from "./scripts/ScriptEventAssembly.js";
 import { StoryRegionRuntime } from "./scripts/StoryRegionRuntime.js";
+import {StoryObjectPresentation} from "./scripts/StoryObjectPresentation.js";
 import { NativeStoryRuntime } from "./scripts/NativeStoryRuntime.js";
 import {
   CutscenePreviewRuntime,
@@ -934,6 +935,7 @@ function createPlayRuntime() {
   } = scriptEvents;
   nativeScriptActivityRunner = assembledActivityRunner;
   const nativeStoryRuntime = new NativeStoryRuntime({
+    storyObjects: new StoryObjectPresentation({getCharacter: () => accountSession.character}),
     storyRegions: new StoryRegionRuntime({ controller: scriptEventController,
       getCharacter: () => accountSession.character,
       getGameDate: currentServerGameDate,

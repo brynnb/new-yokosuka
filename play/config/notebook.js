@@ -106,6 +106,8 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.hazuki-family-crest",page:Object.freeze({id:"story-hazuki-family-crest",text:"Snow ring, two stars, one sword — the Hazuki family crest.\n\nIne-san thinks Dad may have left a clue connecting the handguard and the mirror. Search his room and the dojo."})},
   {flag:"notebook.s1.mysterious-key",page:Object.freeze({id:"story-mysterious-key",text:"Found a small key inside the gray case in Dad's drawer.\n\nCould it open the long locked case in the dojo?"})},
   {flag:"notebook.s1.dojo-sword",page:Object.freeze({id:"story-dojo-sword",text:"The mysterious key opened the long sword case in the dojo.\n\nA sword and the family handguard. Look behind the two hanging scrolls opposite the dojo entrance."})},
+  {flag:"notebook.s1.dojo-handguard-switch",page:Object.freeze({id:"story-dojo-handguard-switch",text:"The family handguard fits the recess behind the left dojo scroll.\n\nThe right scroll may hide another part of the mechanism."})},
+  {flag:"notebook.s1.dojo-hidden-door",page:Object.freeze({id:"story-dojo-hidden-door",text:"Inserted the dojo sword behind the right scroll.\n\nThe hidden wall opened. Could the Phoenix Mirror be behind it?"})},
 ]);
 
 export function notebookPagesForCharacter(character) {
