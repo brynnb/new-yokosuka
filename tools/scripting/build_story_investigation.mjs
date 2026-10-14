@@ -20,9 +20,12 @@ const voiceRouteIds = process.argv.flatMap((value,index)=>value === "--voice-rou
 if (voiceRouteIds.some(id=>!spec.routes.some(route=>route.id===id))) throw new Error("Unknown --voice-route");
 const exportedVoices = new Set();
 const triggerPriorities = new Map();
+const storyRegions=JSON.parse(fs.readFileSync(path.join(server,"internal/scriptevent/story_regions.json"))).regions;
 for (const route of spec.routes) {
   const disc=route.disc ?? 1;
   if(![1,2,3].includes(disc))throw Error(`Invalid Shenmue I source disc in ${route.id}`);
+  const region=storyRegions.find(r=>r.id===route.bounds);
+  if(region?.hours&&JSON.stringify(region.hours)!==JSON.stringify(route.hours))throw Error(`Client dispatch and authoritative Yarn hours disagree in ${route.id}`);
   // The server rejects equal-priority candidates before running their gates.
   // Distinct bounds/flags do not disambiguate an otherwise identical selector.
   const key = [route.trigger || "talk", route.area, route.object || (route.trigger ? "" : route.actor), route.priority ?? 200].join(":");

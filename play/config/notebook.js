@@ -94,6 +94,8 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.goro-directions",page:Object.freeze({id:"story-goro-harbor",text:"Goro gave me directions to Warehouse No. 8.\n\nFollow the street into the New Warehouse District, then turn right."})},
   {flag:"notebook.s1.warehouse-eight-rear",page:Object.freeze({id:"story-warehouse-eight-rear",text:"The guard won't let me enter Warehouse No. 8.\n\nLook for another way in around the back."})},
   {flag:"notebook.s1.old-warehouse-eight",page:Object.freeze({id:"story-old-warehouse-eight",text:"There are two Warehouse No. 8s.\n\nThe workers mentioned another one in the Old Warehouse District. That's where I should look."})},
+  {flag:"notebook.s1.old-district-night",page:Object.freeze({id:"story-old-district-night",text:"The Old Warehouse District is heavily guarded during the day.\n\nReturn after 7 p.m. to look for a way inside."})},
+  {flag:"notebook.s1.old-district-patrols",page:Object.freeze({id:"story-old-district-patrols",text:"I'm inside the Old Warehouse District.\n\nI need to find Warehouse No. 8 without being caught by the patrolling guards."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

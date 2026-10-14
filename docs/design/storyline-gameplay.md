@@ -44,8 +44,13 @@ Warehouse No. 8 now connects the guard refusal, rear-window climb choice,
 original entering-window motion and office arrival to the overheard invoice
 conversation. Rendered cancellation/retry, declining the climb, saved travel,
 office reload and the Old Warehouse District notebook clue pass. Crate physics
-and the upper-walkway search are deliberately condensed. Old-district stealth,
-Master Chen and the later storyline remain unimplemented.
+and the upper-walkway search are deliberately condensed. The daytime compound
+guard and nighttime Right flashlight QTE now connect that clue to a saved
+Old Warehouse District arrival. Real browser checks cover waiting at the gate,
+wrong input/retry, original motion, ground support, control restoration and
+reload. Original CHRS default entry 0 is used inside the district, rather than
+entry 2 at its exit door. Guard avoidance, Master Chen and the later storyline
+remain unimplemented.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

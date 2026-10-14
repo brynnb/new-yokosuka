@@ -3,6 +3,24 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"old-district-day-gate","disc":2,"actor":"KEBB","presentActors":[],"area":"MFSY","trigger":"enter","priority":214,
+      "title":"Old Warehouse District — daytime gate","hours":[8.5,19],"bounds":"s1.mfsy.old-district-day-gate",
+      "requiredFlags":["story.s1.warehouse-eight-overheard.completed"],"completedFlag":"story.s1.old-district-day-gate.completed","effects":["notebook.s1.old-district-night"],
+      "staging":"s1.mfsy.old-district-day-gate","voiceIds":["SA1039A001","SA1039B001","SA1039A002","SA1039B008","SA1039A003","SA1039B009","SA1039B010","SA1039A004"],
+      "dialogueArchive":{"path":"data/SCENE/02/STREAM/SA1039.AFS","sha256":"ab3fb3c36214c2395b26cebe198adec17cbdf81bf4d9e6a01587049a1c369c4a"},
+      "provenance":"Original SA1039 KEBB guard voices. Guide printed p33-34 says the daytime gate is restricted and entry is possible after 19:00. Authored gate approach/staging near original MFSY entry 1; optional advice, not a prerequisite for players arriving at night."
+    },
+    {
+      "id":"old-district-night-entry","disc":2,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":215,
+      "title":"Old Warehouse District — catch the flashlight","hours":[19,24],"bounds":"s1.mfsy.old-district-night-entry",
+      "requiredFlags":["story.s1.warehouse-eight-overheard.completed"],"completedFlag":"story.s1.old-district-entry.completed","effects":["notebook.s1.old-district-patrols"],
+      "staging":"s1.mfsy.old-district-night-approach","yarnTemplate":"story-old-district-entry.yarn","challenge":"s1.mfsy.old-district-flashlight","voiceIds":[],
+      "dialogueArchive":{"path":"data/SCENE/02/STREAM/E1008.AFS","sha256":"db217c0f13a12038b6f48bc0a7b0271f47ff7305072c84a0ca627639ed95a007"},
+      "nativeSources":[{"role":"motion-and-props","locator":"disc2/SCENE/02/MKSG/EVENT.PKS#M_0153.MOTN/KAIS500G.CHRM","sha256":"278572918f746220750e700c65b42a57c9872c3bc68baec95e41d61938d617a3"}],
+      "activityResults":{"s1.mfsy.old-district-flashlight":"success"},
+      "provenance":"Guide printed p34 establishes nighttime Right QTE before patrolling guards. Original head-bump/catch motions and flashlight model; close-up gate placement, held prompt and right-hand cue are authored. Success settles entry at original MKSG CHRS default entry 0 inside the district, not entry 2 beside the closed compound exit. Stealth/Master Chen remain separate outcomes. Daytime advice is optional."
+    },
+    {
       "id":"warehouse-eight-refusal","disc":2,"actor":"KEBG","presentActors":[],"area":"MFSY","trigger":"enter","priority":211,
       "title":"Warehouse No. 8 — front entrance refused","bounds":"s1.mfsy.warehouse-eight-front",
       "requiredFlags":["story.s1.goro-harbor.completed"],"completedFlag":"story.s1.warehouse-eight-refusal.completed","effects":["notebook.s1.warehouse-eight-rear"],

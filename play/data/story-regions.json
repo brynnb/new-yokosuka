@@ -1,6 +1,12 @@
 {
   "schema": "new-yokosuka-story-regions-v1",
   "regions": [
+    {"id":"s1.mfsy.old-district-day-gate","area":"MFSY","actor":"AKIR","playMode":"story","openingCompleted":true,"hours":[8.5,19],
+      "requiredFlags":["story.s1.warehouse-eight-overheard.completed"],"completedFlag":"story.s1.old-district-day-gate.completed",
+      "min":[114,-0.5,-18],"max":[122,2,-7],"provenance":"Authored approach around original MFSY entry 1 [118,0,-12]. Yarn owns the daytime gate; advice is optional for nighttime entry."},
+    {"id":"s1.mfsy.old-district-night-entry","area":"MFSY","actor":"AKIR","playMode":"story","openingCompleted":true,"hours":[19,24],
+      "requiredFlags":["story.s1.warehouse-eight-overheard.completed"],"completedFlag":"story.s1.old-district-entry.completed",
+      "min":[114,-0.5,-18],"max":[122,2,-7],"provenance":"Same gate approach; server-owned personal hours select nighttime Right QTE. Success enters the compound, not Warehouse No.8 or Master Chen."},
     {"id":"s1.mfsy.warehouse-eight-front","area":"MFSY","actor":"AKIR","playMode":"story","openingCompleted":true,
       "requiredFlags":["story.s1.goro-harbor.completed"],"completedFlag":"story.s1.warehouse-eight-refusal.completed",
       "min":[-9,-0.5,130],"max":[-3,2,135],"provenance":"Authored outside approach to original OTC8 front shutter [-7.3,0,135.14]; not a reconstructed native trigger."},

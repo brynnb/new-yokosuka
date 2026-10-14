@@ -225,7 +225,8 @@ Do not describe the first conversation as fully animation-faithful.
 | Bus / first harbor arrival | Original BUSS boarding connected to a physical bus click after the earned Amihama lead. Stay, cancellation/re-entry, natural boarding, atomic harbor location/milestone, controls and saved reload verified. Timetable, fare and original harbor arrival movie are not reproduced; existing browser spawn is reused. |
 | Goro's first harbor encounter | Connected approach, original voiced cast, cancellation/re-entry, wrong input/retry, actual Left/A/B success, original winning motion, directions/notebook, controls and saved reload verified. Real compiler/database tests cover earned arrival gate, accepted bounds, stale input, cancellation after winning, once-only effects and personal isolation. Placement/cameras/held challenge poses are authored. |
 | New Warehouse No. 8: refusal → rear window → overheard clue | Connected rendered approach, original voiced guard, cancellation/re-entry, climb decline/retry, correctly aligned original entering-window motion, exact office arrival, cancelled conversation/reload, saved Old Warehouse District notebook and restored controls verified. Real compiler/database tests cover bounds, stale acknowledgement, cancelled/declined climb without travel, atomic original arrival, once-only effects and personal isolation. Crate physics and walkway search are condensed. |
-| Old Warehouse District / Master Chen / Phoenix Mirror | Missing connected authored progression beyond the saved Old Warehouse No. 8 clue. |
+| Old Warehouse District daytime gate / nighttime entry | Optional original voiced guard, cancellation/re-entry, waiting in the same area until 19:00, failed Right QTE/retry, original head-bump/catch motion, saved original inside-district arrival, ground support, restored control and reload verified. Compiler/database tests prove personal-hour boundaries, cancelled successful input without travel, exact atomic arrival and no fabricated stealth/Chen success. Shot, held prompt and flashlight binding are authored. |
+| Old Warehouse District guard avoidance / Master Chen / Phoenix Mirror | Missing connected authored progression beyond the saved nighttime compound entry. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
 | Shenmue II reuse and missing-input audit | Pending the connected S1 foundation. |
@@ -1235,7 +1236,7 @@ including after a successful QTE but before the directions finish. Stale input
 cannot settle another run. Reload retains the clue without replay; Free roam
 and other characters' progress are unaffected.
 
-`build:goro-story-assets` verifies the original MGQB archive/member hashes and
+`build:harbor-story-assets` verifies the original MGQB archive/member hashes and
 selected complete motion records, preserving the full bank. The manifest records
 source identity and adaptation boundaries. `build_story_investigation.mjs`
 translates the reviewed Disc 2 dialogue into ordinary official Yarn and exports
@@ -1269,7 +1270,7 @@ conversation. SA1035's original speaker tag identifies the refusing guard;
 E1009B identifies offscreen workers `TMHN` and `TKSA`. Neither requires copying
 their ambient schedules into a new story controller.
 
-`build:warehouse-story-assets` verifies the original MBUI archive/member hashes
+`build:harbor-story-assets` verifies the original MBUI archive/member hashes
 and complete `AKI_HAIRU_MADO_SOUKO_0153` clip, retaining its motion bank. The
 entering pose uses the original MFSY return entry 5 `[-18.5,3.6,153.6]`, with
 facing reversed to enter. The `8MAD` object's origin lies between two separated
@@ -1298,3 +1299,80 @@ overheard conversation and reloads its saved office continuation, then earns
 the notebook clue with restored controls/economy. Inspected captures confirm
 the guard, aligned climb, upper walkway and notebook. Audio starts in-browser;
 listening fidelity was not assessed. No assets or scripts are deployed publicly.
+
+## Old Warehouse District: daytime warning and nighttime access
+
+`story-s1-old-district-day-gate` is optional advice after the warehouse-invoice
+clue. Approach the compound during personal hours 08:30–19:00: original SA1039
+voices identify guard Yasutomo Miyagi (`KEBB/KVB_L`), refuse access and suggest
+returning at night. Original guard conversation motion accompanies authored
+poses/camera near MFSY return entry 1. Completion saves the nighttime notebook
+lead once. No daytime-advice flag is required to enter at night.
+
+At 19:00–24:00, the same approach selects `story-s1-old-district-night-entry`.
+The [GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf)
+(printed pages 33–34) establishes the nighttime head-bump/flashlight Right QTE
+before guard avoidance. The event reuses original E1008A010, complete MKSG
+`M_0153.MOTN` head-bump and flashlight-taking clips, original `KAIS500G.CHRM`
+and EVENT textures. Wrong/late input allows retry or leaving without travel.
+Genuine Right success must still finish the catch presentation before the
+ordinary Yarn transaction saves entry, notebook and destination together.
+Cancelling after winning therefore cannot move the player or save arrival.
+
+The destination is original MKSG CHRS default entry 0 `[17,0,-15]`, recorded
+at MAPINFO `0x3d958`; source SHA-256 is
+`8c26c6de22132f8b42a450b31fb3ad4f0a954948e794419319528ac63ce790ae`.
+An initial rendered check exposed entry 2 `[67,0,-4.6]` facing the closed
+compound exit. That legitimate source entry is not the right authored starting
+point. Choosing the original interior CHRS placement is an adaptation, not a
+claim that the native flashlight owner's exact travel was reconstructed.
+
+The harbor-gate close-up, held final head-bump pose, two-second input window,
+right-hand flashlight attachment/appearance cue and omission of its falling
+trajectory are authored. The original guard-station choreography is not
+recreated. Personal environment/calendar are retained; this does not change
+the project's 21:00 lighting policy. Currency, inventory and HP are unchanged.
+
+Shared region dispatch now observes the actual personal game date, not the
+debug lighting clock. An ineligible region does not consume its entry latch:
+waiting at the same gate until 19:00 can start the night scene. The generator
+rejects disagreements between these dispatch hours and authoritative Yarn
+hours. Unit tests cover missing clock, exact boundaries, overnight windows,
+re-entry and malformed metadata. The server still independently checks time
+and accepted position; client scheduling is not authorization.
+
+`NEW_YOKOSUKA_OLD_DISTRICT_E2E=true` resumes the genuinely earned invoice clue.
+It verifies the original daytime cast/voice, cancellation/re-entry, real waiting
+without another approach, wrong direction/retry, real Right input, original
+motion, saved compound load, supported floor/restored control and reload
+without replay. `TestHarborWarehouseInvestigationAndNighttimeEntry` extends the
+connected real compiler/PostgreSQL test through both gate variants, including
+stale/cancelled acknowledgements, personal-hour boundaries and atomic arrival.
+Night access is explicitly **not** stealth or Master Chen completion.
+
+`build:harbor-story-assets` replaces the two smaller harbor exporters with one
+pinned-source extraction path for all three banks and the flashlight. Existing
+Goro/window motion bytes are unchanged; manifests record the shared producer.
+Audio starts in-browser; listening fidelity was not assessed. No deployment or
+R2 publication is performed.
+
+### Next implementation boundary: actual guard avoidance
+
+The existing timed-input challenge alone cannot express moving between guards.
+Extend the same ephemeral challenge/session and Yarn result boundary with a
+movement-challenge kind, not a second quest/save engine. The server must own
+movement limits, patrol phase, detection and success; the browser supplies only
+sequenced movement/hide/door-use intent and renders private actor snapshots.
+Reuse cinematic actor ownership, original motion banks and the existing input
+adapter. Cancellation, missing input and stale tokens must not win.
+
+Original MKSG MAPINFO has one COLI field (`0000`) containing 113 records: 98
+code-0, seven code-9 and eight code-100 door records. Reuse the current parser
+and browser-coordinate projection to compile static movement/vision boundaries;
+do not authorize movement through warehouse walls using only a large rectangle.
+Patrol routes/detection balance may be authored and documented, with rendered
+wall/cover checks. Success requires actually reaching and using Warehouse No.8's
+door. Being caught must follow an explicit retry/calendar/destination branch,
+without a Chen clue or fabricated victory. The existing `clear_flag`,
+`set_progress`, `advance_story_time` and `travel_story` effects can settle that
+recovery together. Master Chen's encounter remains a subsequent event.

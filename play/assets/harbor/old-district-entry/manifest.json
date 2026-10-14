@@ -1,0 +1,69 @@
+{
+  "schema": "new-yokosuka-authored-story-assets-v1",
+  "generatedBy": "tools/cutscenes/build_harbor_story_assets.mjs",
+  "source": {
+    "disc": 2,
+    "path": "disc2/SCENE/02/MKSG/EVENT.PKS",
+    "sha256": "278572918f746220750e700c65b42a57c9872c3bc68baec95e41d61938d617a3"
+  },
+  "textureSource": {
+    "path": "disc2/SCENE/02/MKSG/EVENT.PKF",
+    "sha256": "6f9938cb2d140e66046887b50d7a8501b8de5f889d87242aca42b294d8efbcf8"
+  },
+  "outputs": [
+    {
+      "path": "play/assets/harbor/old-district-entry/M_0153.MOTN",
+      "byteLength": 405060,
+      "sha256": "34c93d4ed46449c91fe8ed522f4e25d99303badecfdd4b73f2667e883358d406"
+    },
+    {
+      "path": "play/assets/harbor/old-district-entry/KAIS500G.CHRM",
+      "byteLength": 3780,
+      "sha256": "3163fd040eb7538b1bb7c230f18051a9d3202b2e4e45c1877e92b4dfc8df2d47"
+    },
+    {
+      "path": "play/assets/harbor/old-district-entry/EVENT.PKF",
+      "byteLength": 281688,
+      "sha256": "6f9938cb2d140e66046887b50d7a8501b8de5f889d87242aca42b294d8efbcf8"
+    }
+  ],
+  "sequences": [
+    {
+      "index": 0,
+      "name": "AKI_ATAMABUTUKERU1_0153",
+      "durationFrames": 509,
+      "controllerFamilyIndex": 0
+    },
+    {
+      "index": 10,
+      "name": "AKI_KAITYUUDENTOUTORU1_0153",
+      "durationFrames": 217,
+      "controllerFamilyIndex": 0
+    },
+    {
+      "index": 12,
+      "name": "AKI_KANGAETEIRU_STAND_LP_0132",
+      "durationFrames": 60,
+      "controllerFamilyIndex": 0
+    },
+    {
+      "index": 19,
+      "name": "AKI_OIDASU_SOUKOGAI_F",
+      "durationFrames": 352,
+      "controllerFamilyIndex": 0
+    },
+    {
+      "index": 38,
+      "name": "GRD_KAIWA_STAND_LP_0132",
+      "durationFrames": 91,
+      "controllerFamilyIndex": 0
+    },
+    {
+      "index": 39,
+      "name": "GRD_STAND_LP_0132",
+      "durationFrames": 90,
+      "controllerFamilyIndex": 0
+    }
+  ],
+  "adaptation": "Original head-bump/flashlight-catch bank and prop. Authored close-up at the harbor gate, held QTE pose and right-hand binding/cue. Right is server validated before original compound arrival; this does not complete stealth. Original room-controller, falling trajectory and guard-station choreography are not reconstructed."
+}

@@ -1,7 +1,39 @@
 {
   "schema":"new-yokosuka-authored-story-scenes-v1",
-  "motionBanks":{"koji":"play/assets/sakuragaoka/gao-wen/M_KOJI.MOTN","mgqb":"play/assets/harbor/goro-encounter/M_MGQB.MOTN","mbui":"play/assets/harbor/warehouse-eight/M_0153A.MOTN"},
+  "motionBanks":{"koji":"play/assets/sakuragaoka/gao-wen/M_KOJI.MOTN","mgqb":"play/assets/harbor/goro-encounter/M_MGQB.MOTN","mbui":"play/assets/harbor/warehouse-eight/M_0153A.MOTN","oldDistrict":"play/assets/harbor/old-district-entry/M_0153.MOTN"},
   "scenes":[{
+    "id":"s1.mfsy.old-district-day-gate","area":"MFSY","worldId":"mfsy",
+    "provenance":"Original SA1039 guard/model and GRD conversation motion; authored gate placement/camera near original MFSY entry 1.",
+    "actorDefinitions":[{"actorCode":"KEBB","label":"Yasutomo Miyagi","modelCode":"KVB_L","activityOnly":true}],
+    "actors":[
+      {"tag":"AKIR","pose":{"x":-118,"y":0,"z":-12,"rotationX":0,"rotationY":270,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"KEBB","pose":{"x":-115.5,"y":0,"z":-12,"rotationX":0,"rotationY":90,"rotationZ":0},"motion":{"bank":"oldDistrict","name":"GRD_KAIWA_STAND_LP_0132","loop":true}}
+    ],
+    "camera":{"positionX":-117,"positionY":1.8,"positionZ":-17,"targetX":-117,"targetY":1.1,"targetZ":-12,"roll":0,"perspective":65}
+  },{
+    "id":"s1.mfsy.old-district-night-approach","area":"MFSY","worldId":"mfsy","actorDefinitions":[],
+    "provenance":"Original E1008 line and thinking motion; authored nighttime close-up at the gate. No daytime guard is staged.",
+    "actors":[{"tag":"AKIR","pose":{"x":-118,"y":0,"z":-12,"rotationX":0,"rotationY":270,"rotationZ":0},"motion":{"bank":"oldDistrict","name":"AKI_KANGAETEIRU_STAND_LP_0132","loop":true}}],
+    "camera":{"positionX":-120,"positionY":1.7,"positionZ":-15,"targetX":-118,"targetY":1.1,"targetZ":-12,"roll":0,"perspective":55}
+  },{
+    "id":"s1.mfsy.old-district-head-bump","area":"MFSY","worldId":"mfsy","actorDefinitions":[],"waitForMotions":true,
+    "provenance":"Original MKSG head-bump motion, authored harbor-gate alignment/close-up. Guard-station room/camera is not reconstructed.",
+    "actors":[{"tag":"AKIR","pose":{"x":-118,"y":0,"z":-12,"rotationX":0,"rotationY":270,"rotationZ":0},"motion":{"bank":"oldDistrict","name":"AKI_ATAMABUTUKERU1_0153","loop":false}}],
+    "camera":{"positionX":-120,"positionY":1.7,"positionZ":-15,"targetX":-118,"targetY":1.1,"targetZ":-12,"roll":0,"perspective":55}
+  },{
+    "id":"s1.mfsy.old-district-prompt","area":"MFSY","worldId":"mfsy","actorDefinitions":[],
+    "provenance":"Hold the original head-bump final pose for the server-validated Right prompt; an authored cue, not native QTE timing.",
+    "actors":[{"tag":"AKIR","pose":{"x":-118,"y":0,"z":-12,"rotationX":0,"rotationY":270,"rotationZ":0},"motion":{"bank":"oldDistrict","name":"AKI_ATAMABUTUKERU1_0153","loop":false,"elapsedSeconds":16.9}}],
+    "camera":{"positionX":-120,"positionY":1.7,"positionZ":-15,"targetX":-118,"targetY":1.1,"targetZ":-12,"roll":0,"perspective":55}
+  },{
+    "id":"s1.mfsy.old-district-catch","area":"MFSY","worldId":"mfsy","actorDefinitions":[],"waitForMotions":true,
+    "provenance":"Original flashlight-taking motion/model after real Right success. Authored right-hand binding and appearance cue; no recovered falling trajectory or guard-station choreography.",
+    "actors":[{"tag":"AKIR","pose":{"x":-118,"y":0,"z":-12,"rotationX":0,"rotationY":270,"rotationZ":0},"motion":{"bank":"oldDistrict","name":"AKI_KAITYUUDENTOUTORU1_0153","loop":false}}],
+    "attachedObjects":{"FLAS":{"browserFilename":"KAIS500G.CHRM","assetPath":"play/assets/harbor/old-district-entry/KAIS500G.CHRM","textureAssetPath":"play/assets/harbor/old-district-entry/EVENT.PKF",
+      "attachments":[{"activityId":"s1.mfsy.old-district-catch","frame":120,"parentActorTag":"AKIR","controlId":18,"translation":[0,0,0],"rotationRaw":[0,0,0]}],
+      "presentation":[{"activityId":"s1.mfsy.old-district-catch","frame":0,"visible":false},{"activityId":"s1.mfsy.old-district-catch","frame":120,"visible":true}]}},
+    "camera":{"positionX":-115,"positionY":0.9,"positionZ":-14.4,"targetX":-115.8,"targetY":0.35,"targetZ":-12,"roll":0,"perspective":45}
+  },{
     "id":"s1.mfsy.warehouse-eight-refusal","area":"MFSY","worldId":"mfsy",
     "provenance":"Original guard model/tag and SA1035 voices. Authored poses and camera beside original OTC8 front shutter.",
     "actorDefinitions":[{"actorCode":"KEBG","label":"Shozo Kuga","modelCode":"KVG_L","activityOnly":true}],
