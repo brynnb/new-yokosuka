@@ -2,6 +2,19 @@
   "schema":"new-yokosuka-authored-story-scenes-v1",
   "motionBanks":{"koji":"play/assets/sakuragaoka/gao-wen/M_KOJI.MOTN","mgqb":"play/assets/harbor/goro-encounter/M_MGQB.MOTN","mbui":"play/assets/harbor/warehouse-eight/M_0153A.MOTN","oldDistrict":"play/assets/harbor/old-district-entry/M_0153.MOTN"},
   "scenes":[{
+    "id":"s1.mksg.patrol-introduction","area":"MKSG","worldId":"mksg","actorDefinitions":[],
+    "provenance":"Original E1006 warning; authored camera at original MKSG default start. Guards are prepared by the shared navigation cast, not duplicated scenery actors.",
+    "actors":[{"tag":"AKIR","pose":{"x":-17,"y":0,"z":-15,"rotationX":0,"rotationY":0,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}],
+    "camera":{"positionX":-16,"positionY":1.7,"positionZ":-19,"targetX":-17,"targetY":1.1,"targetZ":-15,"roll":0,"perspective":60}
+  },{
+    "id":"s1.mksg.caught","area":"MKSG","worldId":"mksg","actorDefinitions":[],
+    "provenance":"Original guard dismissal voice/motion with authored two-person shot. The next-day return is server settlement, not a native escort controller.",
+    "actors":[
+      {"tag":"AKIR","pose":{"x":-17,"y":0,"z":-15,"rotationX":0,"rotationY":270,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"KEBB","pose":{"x":-15.3,"y":0,"z":-15,"rotationX":0,"rotationY":90,"rotationZ":0},"motion":{"bank":"oldDistrict","name":"GRD_KAIWA_STAND_LP_0132","loop":true}}
+    ],
+    "camera":{"positionX":-16.2,"positionY":1.7,"positionZ":-19.5,"targetX":-16.2,"targetY":1.1,"targetZ":-15,"roll":0,"perspective":60}
+  },{
     "id":"s1.mfsy.old-district-day-gate","area":"MFSY","worldId":"mfsy",
     "provenance":"Original SA1039 guard/model and GRD conversation motion; authored gate placement/camera near original MFSY entry 1.",
     "actorDefinitions":[{"actorCode":"KEBB","label":"Yasutomo Miyagi","modelCode":"KVB_L","activityOnly":true}],

@@ -20,6 +20,13 @@
     {"kind":"activity","policy":"closed"}
   ],
   "capabilities": [
+    {"kind":"story-destination","identifier":"s1.harbor.old-eight-interior","description":"Original warehouse interior arrival, only after successful patrol avoidance/door use."},
+    {"kind":"story-destination","identifier":"s1.harbor.old-district-gate","description":"Original harbor return after actual capture; not a connection timeout penalty."},
+    {"kind":"sequence","identifier":"s1.mksg.patrol-introduction.start","description":"Original voiced warning before an interactive patrol challenge."},
+    {"kind":"sequence","identifier":"s1.mksg.patrol-introduction.finish","description":"Release introduction before movement control."},
+    {"kind":"sequence","identifier":"s1.mksg.caught.start","description":"Original guard dismissal with authored recovery staging."},
+    {"kind":"sequence","identifier":"s1.mksg.caught.finish","description":"Release capture presentation before next-day/gate settlement."},
+    {"kind":"challenge","identifier":"s1.mksg.patrols","description":"Server-owned movement, collision, patrol detection and Warehouse No.8 door use."},
     {"kind":"bounds","identifier":"s1.mfsy.old-district-day-gate","description":"Accepted compound-gate approach; personal daytime evaluated by Yarn."},
     {"kind":"bounds","identifier":"s1.mfsy.old-district-night-entry","description":"Accepted compound-gate approach; personal nighttime evaluated by Yarn."},
     {"kind":"challenge","identifier":"s1.mfsy.old-district-flashlight","description":"Original Right flashlight QTE; server receipt time decides success."},

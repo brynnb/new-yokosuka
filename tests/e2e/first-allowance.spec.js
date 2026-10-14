@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { randomUUID } from "node:crypto";
-import {verifyOldDistrictEntry} from "./story-harbor.js";
+import {verifyOldDistrictEntry,verifyOldDistrictStealth} from "./story-harbor.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
 
@@ -53,6 +53,8 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
         }
         return probeCombatShow.apply(this,args);
       };`],
+    ["scripts/StoryNavigationRuntime", `const probeNavigationShow = StoryNavigationRuntime.prototype.show;
+      StoryNavigationRuntime.prototype.show = function(...args) { window.storyProbe.navigation = this; return probeNavigationShow.apply(this,args); };`],
     ["dialogue/NativeDialogueOverlayRuntime", `window.nativeDialogueHookInstalled = true;
       const probeNativeStart = NativeDialogueOverlayRuntime.prototype.start;
       NativeDialogueOverlayRuntime.prototype.start = function(options,...args) { window.storyProbe.nativeStarts.push(options.actorCode); return probeNativeStart.call(this,options,...args); };`],
@@ -112,6 +114,11 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_STEALTH_E2E === "true") {
+      await verifyOldDistrictStealth(page,testInfo,character);
+      expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+      return;
+    }
     if(process.env.NEW_YOKOSUKA_GORO_E2E === "true") {
       await verifyFirstGoro(page,testInfo,character);
       expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);

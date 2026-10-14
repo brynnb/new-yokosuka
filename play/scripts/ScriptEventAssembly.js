@@ -28,6 +28,7 @@ import {
 } from "./TelephoneReceiverBabylonAdapter.js";
 import { AuthoredSceneStagingRuntime } from "./AuthoredSceneStagingRuntime.js";
 import { StoryCombatRuntime } from "./StoryCombatRuntime.js";
+import {StoryNavigationRuntime} from "./StoryNavigationRuntime.js";
 import { createNativeAseqBabylonActors, createNativeAseqBabylonCamera } from "../events/NativeAseqBabylonPresentation.js";
 import { NativeAseqAttachedObjectRuntime } from "../events/NativeAseqAttachedObjectRuntime.js";
 import { createNativeCutsceneSceneObjectLoader } from "../cutscenes/NativeCutsceneSceneObjectLoader.js";
@@ -128,24 +129,31 @@ export function createScriptEventAssembly({
     playSound,
   });
   let controller;
+  const createAttachedObjects=(definitions,resolveActor,signal)=>new NativeAseqAttachedObjectRuntime({definitions,resolveActor,
+    instantiateAsset:createNativeCutsceneSceneObjectLoader({scene,loadAsset:path=>fetchAssetBuffer(runtimeAssetUrl(path),{signal})}),
+  });
   const combatRuntime=new StoryCombatRuntime({
     actors:createNativeAseqBabylonActors({getPlayerModel,syncPlayerTransform,scheduledActors,motionRuntime,
       preservePlayerOnComplete:false,playerYawOffsetRadians:Math.PI}),
     motionRuntime,getController,getBinding,capturePlayerState,restorePlayerState,
     onIntent:(action,token,intent)=>controller?.combatResponse(action,token,intent),
   });
+  const navigationRuntime=new StoryNavigationRuntime({
+    actors:createNativeAseqBabylonActors({getPlayerModel,syncPlayerTransform,scheduledActors,motionRuntime,preservePlayerOnComplete:false,playerYawOffsetRadians:Math.PI}),
+    motionRuntime,getController,getBinding,capturePlayerState,restorePlayerState,createAttachedObjects,
+    onIntent:(action,token,intent)=>controller?.navigationResponse(action,token,intent),
+  });
   const presentation = createScriptEventPresentationRuntime({
     adapters: createScriptEventBabylonAdapters({
       cameraRuntime,
       combatRuntime,
+      navigationRuntime,
       sceneStagingRuntime: new AuthoredSceneStagingRuntime({
         actors: createNativeAseqBabylonActors({ getPlayerModel, syncPlayerTransform,
           scheduledActors, motionRuntime, preservePlayerOnComplete: false, playerYawOffsetRadians: Math.PI }),
         camera: createNativeAseqBabylonCamera(camera), motionRuntime,
         capturePlayerState, restorePlayerState,
-        createAttachedObjects:(definitions,resolveActor,signal)=>new NativeAseqAttachedObjectRuntime({definitions,resolveActor,
-          instantiateAsset:createNativeCutsceneSceneObjectLoader({scene,loadAsset:path=>fetchAssetBuffer(runtimeAssetUrl(path),{signal})}),
-        }),
+        createAttachedObjects,
       }),
       playerMotionRuntime,
       playerXmptRuntime,
@@ -175,6 +183,9 @@ export function createScriptEventAssembly({
     onChallengeResponse: (action,token,button) => controller?.challengeResponse(action,token,button),
     onCombatAction:action=>combatRuntime.action(action),
     onCombatGuard:guard=>combatRuntime.setGuard(guard),
+    onNavigationUse:()=>navigationRuntime.use(),
+    onNavigationHide:hide=>navigationRuntime.hide(hide),
+    onNavigationDirection:(x,z)=>navigationRuntime.direction(x,z),
     onActiveChanged: setDialogueControlsActive,
   });
   controller = createScriptEventController({

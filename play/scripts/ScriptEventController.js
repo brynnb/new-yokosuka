@@ -220,6 +220,10 @@ export class ScriptEventController {
     active.combatInputPending=true;
     return this.sendAdvance(action,{combatToken:token,...(intent?{combat:intent}:{})});
   }
+  navigationResponse(action,token,intent=null){
+    const a=this.active;if(!a?.challengePrompt?.navigation||a.cancelling||a.challengeInputPending||token!==a.challengePrompt.token)return false;
+    a.challengeInputPending=true;return this.sendAdvance(action,{challengeToken:token,...(intent?{navigation:intent}:{})});
+  }
 
   cancel(reason = "user-cancelled") {
     if (this.pendingStart) {
@@ -324,6 +328,7 @@ export class ScriptEventController {
     const event = message?.event;
     if (!event?.type) throw new Error("server yielded an invalid script event");
     if(active.combatView && event.type!=="combat") {this.presentation.endCombat();this.dialogue.hide();active.combatView=null;active.combatInputPending=false;}
+    if(active.challengePrompt?.navigation&&event.type!=="challenge"){this.presentation.endNavigation();this.dialogue.hide();active.challengePrompt=null;active.challengeInputPending=false;}
     if (TERMINAL_EVENTS.has(event.type)) {
       active.controller.abort(new DOMException(event.type, "AbortError"));
       this.dialogue.hide();
@@ -351,6 +356,10 @@ export class ScriptEventController {
       const prompt=message.challenge;
       if(!prompt || !/^[0-9a-f]{32}$/.test(prompt.token))throw new Error("server challenge prompt is invalid");
       active.challengePrompt=prompt;active.challengeInputPending=false;
+      if(prompt.navigation){
+        if(!await this.present(active,()=>this.presentation.showNavigation(prompt)))return false;
+        this.dialogue.showNavigation(prompt);this.emitState();return true;
+      }
       if(!await this.present(active,()=>this.dialogue.showChallenge(prompt)))return false;
       this.emitState();return true;
     }

@@ -108,6 +108,7 @@ export class ScriptEventDialoguePresenter {
     onChallengeResponse = () => {},
     onCombatAction = () => {},
     onCombatGuard = () => {},
+    onNavigationUse=()=>{},onNavigationHide=()=>{},onNavigationDirection=()=>{},
     onActiveChanged = () => {},
   } = {}) {
     this.dom = { root, speaker, sourceText, japaneseText, options };
@@ -122,6 +123,7 @@ export class ScriptEventDialoguePresenter {
     this.onSelect = onSelect;
     this.onChallengeResponse = onChallengeResponse;
     this.onCombatAction=onCombatAction;this.onCombatGuard=onCombatGuard;
+    Object.assign(this,{onNavigationUse,onNavigationHide,onNavigationDirection});
     this.onActiveChanged = onActiveChanged;
     this.audio = null;
     this.active = false;
@@ -215,6 +217,21 @@ export class ScriptEventDialoguePresenter {
     this.dom.options.append(guard);this.dom.options.hidden=false;return true;
   }
 
+  showNavigation(prompt){
+    this.releaseAudio();this.active=true;this.dom.root.setAttribute("data-presentation","combat");
+    this.dom.root.hidden=false;this.dom.root.setAttribute("aria-hidden","false");this.dom.speaker.textContent=prompt.label;
+    const v=prompt.navigation;this.dom.sourceText.textContent=prompt.ready?`${Math.ceil(v.remainingMs/1000)}s · Alert ${Math.round(v.alert*100)}%\n${v.canUse?'Warehouse No.8 — use the door':v.canHide?'Cover nearby — hold Hide to crouch':'Avoid patrols; hide near walls and corners'}`:"Preparing patrols…";
+    this.dom.japaneseText.hidden=true;this.onActiveChanged(true);
+    if(this.navigationToken===prompt.token){this.navigationUseButton.disabled=!prompt.ready||!v.canUse;return true;}
+    this.clearOptions();this.navigationToken=prompt.token;
+    const current=()=>this.active&&this.navigationToken===prompt.token,document=this.dom.options.ownerDocument;
+    const focusWorld=()=>document.querySelector?.("#renderCanvas")?.focus();
+    const hold=(label,down,up)=>{const b=document.createElement("button");b.type="button";b.className="dialogue-option";b.textContent=label;b.addEventListener("pointerdown",e=>{if(current()){b.setPointerCapture?.(e.pointerId);down();}});for(const type of ["pointerup","pointercancel","lostpointercapture"])b.addEventListener(type,()=>{if(current()){up();focusWorld();}});this.dom.options.append(b);};
+    for(const [label,x,z]of [["↑",0,1],["←",-1,0],["↓",0,-1],["→",1,0]])hold(label,()=>this.onNavigationDirection(x,z),()=>this.onNavigationDirection(0,0));
+    hold("Hide (hold)",()=>this.onNavigationHide(true),()=>this.onNavigationHide(false));
+    const use=document.createElement("button");use.type="button";use.className="dialogue-option";use.textContent="Enter door";use.disabled=!prompt.ready||!v.canUse;use.addEventListener("click",()=>{if(current()){this.onNavigationUse();focusWorld();}});this.dom.options.append(use);this.navigationUseButton=use;this.dom.options.hidden=false;return true;
+  }
+
   showOptions(options) {
     if (!Array.isArray(options) || options.length === 0) {
       throw new Error("script event has no presented options");
@@ -293,6 +310,7 @@ export class ScriptEventDialoguePresenter {
 
   hide() {
     this.combatToken=null;this.onCombatGuard?.(false);
+    this.navigationToken=null;this.onNavigationHide(false);this.onNavigationDirection(0,0);
     this.dom.root.setAttribute("data-presentation","dialogue");
     clearTimeout(this.challengeTimer);this.challengeTimer=null;
     if(this.challengeKeyHandler)this.challengeKeyTarget.removeEventListener("keydown",this.challengeKeyHandler,true);

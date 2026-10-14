@@ -226,7 +226,8 @@ Do not describe the first conversation as fully animation-faithful.
 | Goro's first harbor encounter | Connected approach, original voiced cast, cancellation/re-entry, wrong input/retry, actual Left/A/B success, original winning motion, directions/notebook, controls and saved reload verified. Real compiler/database tests cover earned arrival gate, accepted bounds, stale input, cancellation after winning, once-only effects and personal isolation. Placement/cameras/held challenge poses are authored. |
 | New Warehouse No. 8: refusal → rear window → overheard clue | Connected rendered approach, original voiced guard, cancellation/re-entry, climb decline/retry, correctly aligned original entering-window motion, exact office arrival, cancelled conversation/reload, saved Old Warehouse District notebook and restored controls verified. Real compiler/database tests cover bounds, stale acknowledgement, cancelled/declined climb without travel, atomic original arrival, once-only effects and personal isolation. Crate physics and walkway search are condensed. |
 | Old Warehouse District daytime gate / nighttime entry | Optional original voiced guard, cancellation/re-entry, waiting in the same area until 19:00, failed Right QTE/retry, original head-bump/catch motion, saved original inside-district arrival, ground support, restored control and reload verified. Compiler/database tests prove personal-hour boundaries, cancelled successful input without travel, exact atomic arrival and no fabricated stealth/Chen success. Shot, held prompt and flashlight binding are authored. |
-| Old Warehouse District guard avoidance / Master Chen / Phoenix Mirror | Missing connected authored progression beyond the saved nighttime compound entry. |
+| Old Warehouse District guard avoidance | Connected original-geometry movement, patrols, cover and actual door use; rendered cancellation/reload, capture/next-morning recovery, re-entry, success and saved MS08 arrival verified. Real compiler/database tests cover interrupted input, real detection, atomic recovery and character isolation. Routes, vision/balance and framing are authored, not recovered guard AI. |
+| Master Chen / Phoenix Mirror | Missing connected authored progression beyond the earned MS08 arrival. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
 | Shenmue II reuse and missing-input audit | Pending the connected S1 foundation. |
@@ -1356,23 +1357,51 @@ Goro/window motion bytes are unchanged; manifests record the shared producer.
 Audio starts in-browser; listening fidelity was not assessed. No deployment or
 R2 publication is performed.
 
-### Next implementation boundary: actual guard avoidance
+### Connected guard avoidance
 
-The existing timed-input challenge alone cannot express moving between guards.
-Extend the same ephemeral challenge/session and Yarn result boundary with a
-movement-challenge kind, not a second quest/save engine. The server must own
-movement limits, patrol phase, detection and success; the browser supplies only
-sequenced movement/hide/door-use intent and renders private actor snapshots.
-Reuse cinematic actor ownership, original motion banks and the existing input
-adapter. Cancellation, missing input and stale tokens must not win.
+`story-s1-old-district-stealth` automatically continues an earned MKSG entry.
+It extends the existing `start_challenge`/Yarn result boundary with a navigation
+kind, not a second quest/save engine. The server owns movement, wall collision,
+patrol phase, vision and door-use success. The browser supplies sequenced
+movement/hide/sprint/use intents and renders private actor snapshots through
+the same cinematic ownership and server-pose renderer used by Story combat.
+Frequent input remains ephemeral; durable lease renewal is bounded to once per
+second and tracing records the terminal outcome, not every movement snapshot.
 
 Original MKSG MAPINFO has one COLI field (`0000`) containing 113 records: 98
 code-0, seven code-9 and eight code-100 door records. Reuse the current parser
-and browser-coordinate projection to compile static movement/vision boundaries;
-do not authorize movement through warehouse walls using only a large rectangle.
-Patrol routes/detection balance may be authored and documented, with rendered
-wall/cover checks. Success requires actually reaching and using Warehouse No.8's
-door. Being caught must follow an explicit retry/calendar/destination branch,
-without a Chen clue or fabricated victory. The existing `clear_flag`,
-`set_progress`, `advance_story_time` and `travel_story` effects can settle that
-recovery together. Master Chen's encounter remains a subsequent event.
+and browser-coordinate projection compile 406 static wall segments. The producer
+pins the MAPINFO hash and rejects patrol routes crossing those walls. Run
+`NEW_YOKOSUKA_SERVER_DIR=/path/to/server npm run build:story-navigation`, then
+`scripts/check-server-contract.mjs --sync-scripting` to export the authoritative
+catalog to the client. Original model identities are KEBB/KVB_L, KEBC/KVC_L and
+KEBD/KVD_L; the collected flashlight uses the existing attachment loader.
+
+Three ping-pong patrol paths, 2D vision cones, movement speeds and detection
+balance are declared adaptations in `tools/scripting/story-navigation.json`.
+Hiding is stationary beside an actual wall and reduces visibility distance;
+it is not invisibility. There is no reconstructed native guard AI, escort
+controller, flashlight beam or guard lip animation. Authored shots keep the
+actors and camera in the clear corridor; they are not original camera tracks.
+
+Only reaching and using the original Warehouse No.8 door position settles
+`story.s1.old-district-stealth.completed` and the original MS08 CHRS entry 0
+([26.5, 0, -2.3], native facing 310 degrees). Capture plays original E1006E009,
+increments the existing named capture counter, advances the personal calendar
+to the next morning and returns to MFSY's gate, clearing compound admission.
+The flashlight milestone remains saved, so an earned flashlight catch is not
+repeated on the next attempt. This retry rule is an authored simplification.
+Cancellation, missing input/timeout and stale tokens do not win or charge a
+capture penalty. All effects use the existing atomic Yarn settlement.
+
+Connected real-browser checks walk the route using keyboard intent, crouch at
+cover, use the real door, restore control and reload the saved warehouse. A
+second check deliberately crosses a guard's sightline, verifies next-day gate
+recovery, waits through the Story UI, re-enters and completes the route. The
+isolated test fixture rewinds only this new milestone from an actually earned
+compound checkpoint; it does not fabricate the earlier storyline or a win.
+Screenshots are inspected separately from state assertions; audio starts but
+listening fidelity is not claimed. Compiler/PostgreSQL checks also prove
+interruption/cancellation, actual capture, replay fencing and per-character
+isolation. Master Chen remains a separate subsequent event. No R2 publication
+or deployment is performed.

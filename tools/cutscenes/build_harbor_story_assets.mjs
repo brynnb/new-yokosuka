@@ -20,7 +20,7 @@ const definitions=[{
 },{
   folder:"old-district-entry",archive:"MKSG/EVENT.PKS",sha256:"278572918f746220750e700c65b42a57c9872c3bc68baec95e41d61938d617a3",
   motion:"M_0153.MOTN",motionSha256:"34c93d4ed46449c91fe8ed522f4e25d99303badecfdd4b73f2667e883358d406",
-  sequences:[[0,"AKI_ATAMABUTUKERU1_0153"],[10,"AKI_KAITYUUDENTOUTORU1_0153"],[12,"AKI_KANGAETEIRU_STAND_LP_0132"],[19,"AKI_OIDASU_SOUKOGAI_F"],[38,"GRD_KAIWA_STAND_LP_0132"],[39,"GRD_STAND_LP_0132"]],
+  sequences:[[0,"AKI_ATAMABUTUKERU1_0153"],[10,"AKI_KAITYUUDENTOUTORU1_0153"],[12,"AKI_KANGAETEIRU_STAND_LP_0132"],[19,"AKI_OIDASU_SOUKOGAI_F"],[36,"AKI_UZUKUMARU_BOX_0153"],[38,"GRD_KAIWA_STAND_LP_0132"],[39,"GRD_STAND_LP_0132"]],
   models:[{name:"KAIS500G.CHRM",sha256:"3163fd040eb7538b1bb7c230f18051a9d3202b2e4e45c1877e92b4dfc8df2d47"}],
   textures:{path:"MKSG/EVENT.PKF",sha256:"6f9938cb2d140e66046887b50d7a8501b8de5f889d87242aca42b294d8efbcf8"},
   adaptation:"Original head-bump/flashlight-catch bank and prop. Authored close-up at the harbor gate, held QTE pose and right-hand binding/cue. Right is server validated before original compound arrival; this does not complete stealth. Original room-controller, falling trajectory and guard-station choreography are not reconstructed.",

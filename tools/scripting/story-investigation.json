@@ -3,6 +3,15 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"old-district-stealth","disc":2,"actor":"AKIR","participants":["KEBB"],"presentActors":[],"area":"MKSG","trigger":"automatic","priority":210,"hours":[19,24],
+      "title":"Old Warehouse District — evade patrols","requiredFlags":["story.s1.old-district-entry.completed"],"completedFlag":"story.s1.old-district-stealth.completed","effects":[],
+      "staging":"s1.mksg.patrol-introduction","yarnTemplate":"story-old-district-stealth.yarn","challenge":"s1.mksg.patrols","navigation":true,"voiceIds":[],
+      "dialogueArchive":{"path":"data/SCENE/02/STREAM/E1006.AFS","sha256":"71e02e2ac02798d403ac73ae8d8a123bf3b0b3923de574c181b0d09ec262ff3e"},
+      "nativeSources":[{"role":"movement-geometry","locator":"disc2/SCENE/02/MKSG/MAPINFO.BIN#COLI/0000","sha256":"8c26c6de22132f8b42a450b31fb3ad4f0a954948e794419319528ac63ce790ae"}],
+      "activityResults":{"s1.mksg.patrols":"success"},
+      "provenance":"Guide printed p34-35: avoid patrolling guards, use Warehouse No.8's door; being caught returns Ryo the next day. Original collision geometry, character models and voices; three patrol routes, 2D vision, detection/cover balance and presentation are authored. Server movement/door-use result gates MS08 arrival. Cancellation/connection interruption do not penalize the calendar or grant success; actual capture settles next morning and gate recovery atomically. Master Chen is a separate subsequent event."
+    },
+    {
       "id":"old-district-day-gate","disc":2,"actor":"KEBB","presentActors":[],"area":"MFSY","trigger":"enter","priority":214,
       "title":"Old Warehouse District — daytime gate","hours":[8.5,19],"bounds":"s1.mfsy.old-district-day-gate",
       "requiredFlags":["story.s1.warehouse-eight-overheard.completed"],"completedFlag":"story.s1.old-district-day-gate.completed","effects":["notebook.s1.old-district-night"],
@@ -13,7 +22,7 @@
     {
       "id":"old-district-night-entry","disc":2,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":215,
       "title":"Old Warehouse District — catch the flashlight","hours":[19,24],"bounds":"s1.mfsy.old-district-night-entry",
-      "requiredFlags":["story.s1.warehouse-eight-overheard.completed"],"completedFlag":"story.s1.old-district-entry.completed","effects":["notebook.s1.old-district-patrols"],
+      "requiredFlags":["story.s1.warehouse-eight-overheard.completed"],"completedFlag":"story.s1.old-district-entry.completed","effects":["notebook.s1.old-district-patrols","story.s1.old-district-flashlight.caught"],
       "staging":"s1.mfsy.old-district-night-approach","yarnTemplate":"story-old-district-entry.yarn","challenge":"s1.mfsy.old-district-flashlight","voiceIds":[],
       "dialogueArchive":{"path":"data/SCENE/02/STREAM/E1008.AFS","sha256":"db217c0f13a12038b6f48bc0a7b0271f47ff7305072c84a0ca627639ed95a007"},
       "nativeSources":[{"role":"motion-and-props","locator":"disc2/SCENE/02/MKSG/EVENT.PKS#M_0153.MOTN/KAIS500G.CHRM","sha256":"278572918f746220750e700c65b42a57c9872c3bc68baec95e41d61938d617a3"}],

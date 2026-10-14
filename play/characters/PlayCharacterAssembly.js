@@ -1,5 +1,6 @@
 import { runtimeAssetGroup, runtimeAssetUrl } from "../../src/RuntimeAssets.js";
 import storyCombat from "../data/story-combat.json" with { type: "json" };
+import storyNavigation from "../data/story-navigation.json" with {type:"json"};
 import { scheduledActorsForWorld } from "../../src/PlayScheduledActors.js";
 import {
   composeScheduledActorDefinitions,
@@ -132,13 +133,15 @@ export class PlayCharacterAssembly {
     const authoredActors = authoredScenes.scenes.filter(scene => scene.worldId === world.id)
       .flatMap(scene => scene.actorDefinitions);
     const combatActors=storyCombat.encounters.filter(encounter=>encounter.worldId===world.id).flatMap(encounter=>encounter.actorDefinitions);
-    if (world.id !== "ma00race" && activityActors.length === 0 && authoredActors.length === 0 && combatActors.length===0) return actors;
+    const navigationActors=storyNavigation.challenges.filter(d=>d.worldId===world.id).flatMap(d=>d.guards.map(g=>({actorCode:g.tag,modelCode:g.modelCode,label:g.label,activityOnly:true})));
+    if (world.id !== "ma00race" && activityActors.length === 0 && authoredActors.length === 0 && combatActors.length===0&&navigationActors.length===0) return actors;
     return composeScheduledActorDefinitions([
       actors,
       world.id === "ma00race" ? ma00RaceManifest.actors : [],
       activityActors,
       authoredActors,
       combatActors,
+      navigationActors,
     ], {
       worldId: world.id,
       localObjectModelRequirements:

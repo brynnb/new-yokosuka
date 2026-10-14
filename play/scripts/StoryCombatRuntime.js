@@ -1,7 +1,7 @@
 import catalog from "../data/story-combat.json" with { type: "json" };
 import { CombatInput } from "../combat/CombatInput.js";
 import { PLAYER_COMBAT_CONFIG } from "../characters/PlayerMotionLibrary.js";
-import { updateNativeCharacterSecondaryMotion } from "../characters/NativeCharacterSecondaryMotion.js";
+import {renderServerStoryActors} from "./ServerStoryActorPresentation.js";
 
 // Presentation/input only. Health, movement limits, hits and victory come from
 // server snapshots. Reuse the same cinematic actor and named-motion adapters.
@@ -51,25 +51,17 @@ export class StoryCombatRuntime {
   setGuard(guard) {if(this.active)this.active.guard=guard;}
   update(transaction,deltaSeconds) {
     const owner=this.active;if(!owner || owner.transaction!==transaction || !owner.actorsBegun)return true;
-    const age=Math.max(0,(this.now()-owner.receivedAt)/1000),alpha=deltaSeconds===0?1:1-Math.exp(-20*deltaSeconds);
-    for(const view of owner.view.actors) {
-      let pose=owner.poses.get(view.tag);if(!pose){pose={x:view.x,y:view.y,z:view.z,yaw:view.yaw};owner.poses.set(view.tag,pose);}
-      pose.x+=(view.x-pose.x)*alpha;pose.y+=(view.y-pose.y)*alpha;pose.z+=(view.z-pose.z)*alpha;
-      pose.yaw+=Math.atan2(Math.sin(view.yaw-pose.yaw),Math.cos(view.yaw-pose.yaw))*alpha;
-      if(!this.actors.applyTransform(owner,view.tag,{x:-pose.x,y:pose.y,z:pose.z,rotationX:0,rotationY:180-pose.yaw*180/Math.PI,rotationZ:0}))return false;
+    const age=Math.max(0,(this.now()-owner.receivedAt)/1000);
+    if(!renderServerStoryActors({owner,actors:this.actors,motionRuntime:this.motionRuntime,deltaSeconds,age,selectMotion:view=>{
       const action=owner.definition.actions.find(action=>action.input===view.pose);
       // A guarded step or a hit during movement retains the movement flag in
       // the authoritative snapshot. Select the bank by animation, not that
       // independent flag: guard/reaction clips belong to M_FGT1, not MOTION.
       const walking=view.moving&&!["guard","hit","defeated"].includes(view.pose);
-      const selection=action?{bank:view.tag==="AKIR"?"free":"fight",name:view.tag==="AKIR"?action.playerAnimation:action.enemyAnimation,loop:false}
+      return action?{bank:view.tag==="AKIR"?"free":"fight",name:view.tag==="AKIR"?action.playerAnimation:action.enemyAnimation,loop:false}
         :{bank:walking?"free":"fight",name:view.pose==="defeated"?PLAYER_COMBAT_CONFIG.reactions.defeated:view.pose==="hit"?PLAYER_COMBAT_CONFIG.reactions.hit:
           view.pose==="guard"?PLAYER_COMBAT_CONFIG.guard:walking?"AKI_AKI_WALK_LP":PLAYER_COMBAT_CONFIG.stance,loop:!["hit","defeated"].includes(view.pose)};
-      if(!this.motionRuntime.applyNamed(this.actors.activeActor(view.tag)?.model,selection,view.poseMs/1000+age))return false;
-      // These actors are borrowed from gameplay, so its usual post-pose pass
-      // is suspended. Keep cloth/hair on the same shared native update path.
-      updateNativeCharacterSecondaryMotion(this.actors.activeActor(view.tag)?.model, deltaSeconds);
-    }
+    }}))return false;
     const controller=this.getController();controller.updateCamera(Math.max(.01,deltaSeconds));
     if(!owner.view.ready)return true;
     owner.poll+=deltaSeconds;

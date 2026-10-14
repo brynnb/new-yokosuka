@@ -49,8 +49,13 @@ guard and nighttime Right flashlight QTE now connect that clue to a saved
 Old Warehouse District arrival. Real browser checks cover waiting at the gate,
 wrong input/retry, original motion, ground support, control restoration and
 reload. Original CHRS default entry 0 is used inside the district, rather than
-entry 2 at its exit door. Guard avoidance, Master Chen and the later storyline
-remain unimplemented.
+entry 2 at its exit door. Guard avoidance now continues that entry through
+server-controlled movement, original collision walls, three authored patrols,
+stationary cover and real door use. Rendered cancellation/reload, actual
+capture, next-morning recovery, waiting/re-entry and saved MS08 arrival pass;
+compiler/database checks prove interruption and per-character isolation too.
+Guard AI, detection balance and camera framing are explicit adaptations.
+Master Chen and the later storyline remain unimplemented.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative
