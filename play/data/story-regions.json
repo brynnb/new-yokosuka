@@ -1,6 +1,10 @@
 {
   "schema": "new-yokosuka-story-regions-v1",
   "regions": [
+    {"id":"s1.mfsy.goro-encounter","area":"MFSY","actor":"AKIR","playMode":"story","openingCompleted":true,
+      "requiredFlags":["story.s1.harbor-arrival.completed"],"completedFlag":"story.s1.goro-harbor.completed",
+      "min":[113,-0.5,123],"max":[118,2,127],
+      "provenance":"Authored street approach beside original TBOX telephone-booth placement [119.1969,0,121.754], reached from the existing harbor bus arrival. This is not a recovered native trigger volume."},
     {"id":"s1.d000.harbor-bus","area":"D000","actor":"AKIR","trigger":"use","playMode":"story","openingCompleted":true,
       "requiredFlags":["story.s1.amihama-directory.completed"],"completedFlag":"story.s1.harbor-arrival.completed",
       "min":[-54,-1,1],"max":[-44,3,11],"provenance":"Authored boarding proximity around the existing BUS_ placement [-50.346893,0,5.975222]. Original bus timetable is not reconstructed."},

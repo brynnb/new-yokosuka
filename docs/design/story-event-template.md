@@ -221,9 +221,10 @@ Do not describe the first conversation as fully animation-faithful.
 | Gao Wen rescue / translator referral | Connected browser check verifies original-voiced cast, real three-opponent loss/retry/win, failed A-QTE attempt/retry, original kick/ball/hostage presentation, grandmother referral, notebook, restored controls and saved reload. Compiler/database gates, cancellation, stale input and personal isolation pass. Roadside staging/ball trajectory/basic AI are explicit adaptations. |
 | Xia Xiu Yu / Chinese-letter translation | Connected real-door entry, original TOKI actors/voices/cameras, cancellation/re-entry, natural ending, two notebook pages, restored arrival/camera/controls and saved reload verified. Compiler/database possession/presence/hours, stale acknowledgement, repeat and personal-isolation checks pass. Letter attachment/fold data is reused; complete hand/finger fidelity is not claimed. |
 | Telephone passwords / Warehouse No. 8 lead | Both real-phone clicks, original initial voice playback, wrong answer/leave, cancellation after the first correct answer, retry, saved warehouse notebook, restored controls, reload and no native fallback verified in the browser. All four reciprocal pair orientations, proximity, stale replies, shared once-only settlement and personal isolation pass compiler/database tests. Receiver/dial choreography remains approximate. |
-| Telephone directory / Amihama | Real TBK1 use, original successful 01TEL camera/body/voices, visibly textured open book, cancellation/re-entry, natural completion, saved Amihama page, restored book/player/controls, reload and repeat decline verified. Compiler/database proximity, stale acknowledgement, once-only settlement, personal isolation and legacy candidate-chain checks pass. Book hand binding/swap timing are explicit adaptations. Harbor progression remains missing. |
+| Telephone directory / Amihama | Real TBK1 use, original successful 01TEL camera/body/voices, visibly textured open book, cancellation/re-entry, natural completion, saved Amihama page, restored book/player/controls, reload and repeat decline verified. Compiler/database proximity, stale acknowledgement, once-only settlement, personal isolation and legacy candidate-chain checks pass. Book hand binding/swap timing are explicit adaptations. |
 | Bus / first harbor arrival | Original BUSS boarding connected to a physical bus click after the earned Amihama lead. Stay, cancellation/re-entry, natural boarding, atomic harbor location/milestone, controls and saved reload verified. Timetable, fare and original harbor arrival movie are not reproduced; existing browser spawn is reused. |
-| Harbor Goro / warehouses / Master Chen / Phoenix Mirror | Missing connected authored progression beyond the saved harbor arrival. |
+| Goro's first harbor encounter | Connected approach, original voiced cast, cancellation/re-entry, wrong input/retry, actual Left/A/B success, original winning motion, directions/notebook, controls and saved reload verified. Real compiler/database tests cover earned arrival gate, accepted bounds, stale input, cancellation after winning, once-only effects and personal isolation. Placement/cameras/held challenge poses are authored. |
+| Warehouses / Master Chen / Phoenix Mirror | Missing connected authored progression beyond Goro's directions. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
 | Shenmue II reuse and missing-input audit | Pending the connected S1 foundation. |
@@ -1207,3 +1208,45 @@ cover presentation-release ordering and failed load recovery. The broader
 store suite has a legacy arcade-import fixture failure, reproduced using the
 pre-change store code against the same isolated database; it is not weakened
 or counted as passing. No changes are deployed or assets published.
+
+## Goro's first harbor encounter
+
+Official import: `story-s1-goro-harbor-encounter`. After the earned bus arrival,
+approach the telephone booth in `MFSY`. The server checks the accepted player
+position and saved arrival milestone before starting this private encounter.
+Original E1046 dialogue identifies Goro (`GORO`) and Tetsuya Nagashima (`NGSM`)
+as the blackmailers, and Hiroshi Murai (`MURI`) as their victim; a walkthrough's
+ambiguous description must not reverse those roles.
+
+The shared authored-scene player stages those original character models near
+the extracted booth (`TBOX`, approximately `[119.20, 0, 121.75]`). Ten original
+voice lines introduce the confrontation. The existing server challenge accepts
+Left → A → B, matching the [GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf)
+(printed page 31). A wrong or late input allows retry or leaving, without a clue.
+Successful input then plays the original MGQB paired winning clips and nine
+original voice lines directing Ryo straight ahead and right toward Warehouse
+No. 8. Only completing that presentation settles `story.s1.goro-harbor.completed`
+and `notebook.s1.goro-directions`; no currency, HP, inventory, time or guessed
+native flag is changed.
+
+Cancellation releases staged actors, camera and controls and remains retryable,
+including after a successful QTE but before the directions finish. Stale input
+cannot settle another run. Reload retains the clue without replay; Free roam
+and other characters' progress are unaffected.
+
+`build:goro-story-assets` verifies the original MGQB archive/member hashes and
+selected complete motion records, preserving the full bank. The manifest records
+source identity and adaptation boundaries. `build_story_investigation.mjs`
+translates the reviewed Disc 2 dialogue into ordinary official Yarn and exports
+only this route's nineteen voices when `--voice-route goro-harbor-encounter`
+is supplied. Placement, cameras, held challenge poses and two-second input
+windows are authored approximations; native DYNAMICS choreography is not claimed.
+
+`NEW_YOKOSUKA_GORO_E2E=true` resumes an actually earned harbor checkpoint and
+walks into the approach region. It covers cancellation, wrong input/retry,
+real timed success, rendered winning motion/directions, saved notebook,
+restored controls and reload. Inspected captures show the original cast and
+the paired throw rather than an invisible or air-hitting opponent. The backend
+test uses the real Yarn compiler/PostgreSQL and proves that challenge success
+alone cannot grant the clue. Audio starts in-browser; listening fidelity was
+not assessed. Assets/imports remain local, not published or deployed.

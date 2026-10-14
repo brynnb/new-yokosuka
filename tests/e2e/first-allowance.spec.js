@@ -111,6 +111,11 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_GORO_E2E === "true") {
+      await verifyFirstGoro(page,testInfo,character);
+      expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+      return;
+    }
     if(process.env.NEW_YOKOSUKA_BUS_E2E === "true") {
       await verifyHarborBus(page,testInfo,character);
       expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
@@ -1461,6 +1466,49 @@ async function useStoryInspectable(page,{world,tag,position,expectedChoice='Call
   console.info('Story object pick',point);
   expect(point.tag).toBe(tag);await page.mouse.click(point.x,point.y);
   if(expectedChoice)await expect(page.getByRole('button',{name:expectedChoice,exact:true})).toBeVisible();
+}
+
+async function verifyFirstGoro(page,testInfo,character) {
+  expect(character.storyFlags['story.s1.harbor-arrival.completed']).toBe(true);
+  expect(character.storyFlags['story.s1.goro-harbor.completed']).not.toBe(true);
+  expect(character.worldId).toBe('mfsy');
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const noErrors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe('idle');expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);};
+  const approach=async()=>{
+    await page.evaluate(()=>{const life=window.storyProbe.lifecycle;life.resetPlayer(life.vectorFromArray([116,0,129]),Math.PI,{persist:false});life.getController().setFirstPerson(false);});
+    await page.waitForTimeout(300);await page.locator('#renderCanvas').focus();await page.keyboard.down('KeyW');
+    try{await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.scriptIdentity.scriptSlug==='story-s1-goro-harbor-encounter'||window.storyProbe.sceneErrors.length,null,{timeout:20_000});}finally{await page.keyboard.up('KeyW');}
+    await noErrors();
+    await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await noErrors();
+  };
+  const toChallenge=async()=>{
+    for(let i=0;i<40&&!await page.evaluate(()=>window.storyProbe.regions.controller.active?.challengePrompt||window.storyProbe.sceneErrors.length);i++){await page.keyboard.press('Space');await page.waitForTimeout(150);}
+    await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.ready||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await noErrors();
+  };
+  await approach();await page.screenshot({path:testInfo.outputPath('goro-original-cast-introduction.png')});
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel('test-cancel-goro-introduction'));await idle();
+  expect((await saved()).character.storyFlags['notebook.s1.goro-directions']).not.toBe(true);
+  await approach();await toChallenge();await page.screenshot({path:testInfo.outputPath('goro-left-a-b-prompt.png')});
+  await page.keyboard.press('ArrowRight');await expect(page.getByRole('button',{name:'Try again',exact:true})).toBeVisible();
+  expect((await saved()).character.storyFlags['notebook.s1.goro-directions']).not.toBe(true);
+  await page.getByRole('button',{name:'Try again',exact:true}).click();await toChallenge();
+  for(const [index,button,key]of [[0,'Left','ArrowLeft'],[1,'A','Enter'],[2,'B','Shift']]){
+    await page.waitForFunction(({index,button})=>{const p=window.storyProbe.regions.controller.active?.challengePrompt;return p?.ready&&p.index===index&&p.button===button;},{index,button});
+    await page.keyboard.press(key);
+  }
+  await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==='s1.mfsy.goro-success'||window.storyProbe.sceneErrors.length,null,{timeout:20_000});await noErrors();
+  await page.waitForTimeout(900);await page.screenshot({path:testInfo.outputPath('goro-original-winning-motion.png')});
+  await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==='s1.mfsy.goro-aftermath'||window.storyProbe.sceneErrors.length,null,{timeout:20_000});await noErrors();
+  await page.screenshot({path:testInfo.outputPath('goro-original-warehouse-directions.png')});
+  for(let i=0;i<30&&!await page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.['notebook.s1.goro-directions']);i++){await page.keyboard.press('Space');await page.waitForTimeout(150);await noErrors();}
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.['notebook.s1.goro-directions'])).toBe(true);await idle();
+  const state=await saved();expect(state.character.yen).toBe(character.yen);expect(state.character.currentHp).toBe(character.currentHp);expect(state.character.worldId).toBe('mfsy');
+  await page.locator('button').filter({hasText:/^Notebook$/}).click();for(let i=0;i<80&&await page.locator('#journal-next').isEnabled();i++)await page.locator('#journal-next').click();
+  await expect(page.getByText(/Goro gave me directions/)).toBeVisible();await page.screenshot({path:testInfo.outputPath('goro-saved-notebook.png')});await page.locator('#journal-close').click();
+  await page.reload();await page.keyboard.press('Enter');await page.locator('.account-entry-actions button').filter({hasText:'Quick Play'}).click();await page.locator('.character-slot-button:not(.empty)').first().click();
+  await page.locator('button').filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready,null,{timeout:120_000});await expect(page.locator('#loading')).toHaveClass(/\bhidden\b/);
+  expect((await saved()).character.storyFlags['notebook.s1.goro-directions']).toBe(true);expect(await page.evaluate(()=>window.storyProbe.starts.includes('story-s1-goro-harbor-encounter'))).toBe(false);
 }
 
 async function verifyHarborBus(page,testInfo,character) {

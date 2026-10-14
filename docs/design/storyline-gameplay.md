@@ -36,7 +36,11 @@ boarding now connects that earned lead to a saved New Yokosuka Harbor arrival,
 with rendered stay/cancel/retry/completion and reload checks. Named Story travel
 settles the destination with its milestone and fences stale location writers.
 Timetable, fare and the original harbor-arrival movie remain adaptations or
-unimplemented. Goro and the later harbor storyline remain unimplemented.
+unimplemented. Goro's first harbor encounter now connects the arrival to his
+warehouse directions: original voices/cast, failed QTE/retry, actual Left/A/B
+success, original winning motion, saved notebook and reload are rendered and
+full-stack verified. Placement, cameras and held challenge poses are authored.
+Warehouse entry and the later harbor storyline remain unimplemented.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

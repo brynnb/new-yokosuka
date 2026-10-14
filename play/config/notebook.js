@@ -91,6 +91,7 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.translated-letter",page:Object.freeze({id:"story-letter-passwords",text:"On the back of the letter:\nFather's Heaven · Nine Dragons\nMother's Earth · Comrades\n\nMaster Chen: 0468-61-5647\nCall from a telephone to find the next lead."})},
   {flag:"notebook.s1.warehouse-eight-phone",page:Object.freeze({id:"story-warehouse-eight-phone",text:"The words in the letter were telephone passwords.\n\nFather's Heaven ↔ Nine Dragons\nMother's Earth ↔ Comrades\n\nThe man said Warehouse No. 8. Look up the number's 61 prefix in the telephone directory near the tobacco shop in Dobuita."})},
   {flag:"notebook.s1.amihama",page:Object.freeze({id:"story-amihama",text:"The telephone directory lists the 61 prefix in Amihama.\n\nLook for Warehouse No. 8 in New Yokosuka Harbor. Take the bus near the tobacco shop in Dobuita."})},
+  {flag:"notebook.s1.goro-directions",page:Object.freeze({id:"story-goro-harbor",text:"Goro gave me directions to Warehouse No. 8.\n\nFollow the street into the New Warehouse District, then turn right."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

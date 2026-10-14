@@ -20,6 +20,14 @@
     {"kind":"activity","policy":"closed"}
   ],
   "capabilities": [
+    {"kind":"bounds","identifier":"s1.mfsy.goro-encounter","description":"Authored phone-booth approach, validated against accepted server presence."},
+    {"kind":"challenge","identifier":"s1.mfsy.goro","description":"Server-validated Left/A/B sequence for the first harbor confrontation."},
+    {"kind":"sequence","identifier":"s1.mfsy.goro-introduction.start","description":"Original cast and voiced blackmail dialogue, authored staging."},
+    {"kind":"sequence","identifier":"s1.mfsy.goro-introduction.finish","description":"Release introduction on cancellation, failure or before the winning motion."},
+    {"kind":"sequence","identifier":"s1.mfsy.goro-success.start","description":"Original paired winning motion, only after genuine QTE success."},
+    {"kind":"sequence","identifier":"s1.mfsy.goro-success.finish","description":"Release winning motion before the warehouse clue."},
+    {"kind":"sequence","identifier":"s1.mfsy.goro-aftermath.start","description":"Original voiced Warehouse No. 8 directions with Goro."},
+    {"kind":"sequence","identifier":"s1.mfsy.goro-aftermath.finish","description":"Restore gameplay before atomic milestone/notebook settlement."},
     {"kind":"bounds","identifier":"s1.d000.harbor-bus","description":"Server-accepted proximity to the Dobuita bus."},
     {"kind":"activity","identifier":"s1.d000.harbor-bus.boarding","description":"Original boarding movie inside the authored Story travel event."},
     {"kind":"story-destination","identifier":"s1.harbor.bus-arrival","description":"Reviewed New Yokosuka Harbor arrival; no browser-selected coordinates."},

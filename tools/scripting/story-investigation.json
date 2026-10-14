@@ -3,6 +3,18 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"goro-harbor-encounter","disc":2,"actor":"GORO","participants":["GORO","NGSM","MURI"],"presentActors":[],"area":"MFSY","trigger":"enter","priority":210,
+      "title":"Goro's first harbor encounter","bounds":"s1.mfsy.goro-encounter",
+      "requiredFlags":["story.s1.harbor-arrival.completed"],"completedFlag":"story.s1.goro-harbor.completed","effects":["notebook.s1.goro-directions"],
+      "staging":"s1.mfsy.goro-introduction","challenge":"s1.mfsy.goro","successStaging":"s1.mfsy.goro-success","aftermathStaging":"s1.mfsy.goro-aftermath",
+      "leadInVoiceIds":["E1046B001","E1046B002","E1046C001","E1046A002","E1046A003","E1046D001","E1046B004","E1046D002","E1046A004","E1046D003"],
+      "voiceIds":["E1046D009","E1046A005","E1046D011","E1046A006","E1046D013","E1046D014","E1046A007","E1046D012","E1046D015"],
+      "dialogueArchive":{"path":"data/SCENE/02/STREAM/E1046.AFS","sha256":"05d7bd7c928241a923a1f2b4be64a7c2c756b6568cf0b963354d3c0d3e93c013"},
+      "nativeSources":[{"role":"motion-archive","locator":"disc2/SCENE/02/MFSY/MGQB.PKS#M_MGQB.MOTN","sha256":"01b474e199a9c029bdb547ea5de32b94aba67739455248d8c9bb463ffceebd5c"}],
+      "provenance":"Original E1046 identifies Goro and Nagashima as blackmailers and Murai as victim. Original MGQB clips and current character inventory models; authored phone-booth placement/cameras and condensed dialogue. Walkthrough printed p31 corroborates Left/A/B and warehouse directions. Three server-validated inputs gate the winning paired motion and notebook; original DYNAMICS branching is not reconstructed.",
+      "activityResults":{"s1.mfsy.goro":"success"}
+    },
+    {
       "id":"harbor-bus","actor":"AKIR","presentActors":[],"area":"D000","trigger":"use","object":"BUS_","priority":210,
       "title":"Bus to New Yokosuka Harbor","bounds":"s1.d000.harbor-bus",
       "requiredFlags":["story.s1.amihama-directory.completed"],"completedFlag":"story.s1.harbor-arrival.completed","effects":[],

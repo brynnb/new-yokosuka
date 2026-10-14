@@ -1,7 +1,42 @@
 {
   "schema":"new-yokosuka-authored-story-scenes-v1",
-  "motionBanks":{"koji":"play/assets/sakuragaoka/gao-wen/M_KOJI.MOTN"},
+  "motionBanks":{"koji":"play/assets/sakuragaoka/gao-wen/M_KOJI.MOTN","mgqb":"play/assets/harbor/goro-encounter/M_MGQB.MOTN"},
   "scenes":[{
+    "id":"s1.mfsy.goro-introduction","area":"MFSY","worldId":"mfsy",
+    "provenance":"Original E1046 speaker tags and MGQB motions. Model mappings use the existing character inventory (GORO/KMB_L, NGSM/YAB_L, MURI/FSC_L). Positions and camera are authored beside original TBOX, not recovered DYNAMICS transforms.",
+    "actorDefinitions":[
+      {"actorCode":"GORO","label":"Goro Mihashi","modelCode":"KMB_L","activityOnly":true},
+      {"actorCode":"NGSM","label":"Tetsuya Nagashima","modelCode":"YAB_L","activityOnly":true},
+      {"actorCode":"MURI","label":"Hiroshi Murai","modelCode":"FSC_L","activityOnly":true}
+    ],
+    "actors":[
+      {"tag":"AKIR","pose":{"x":-116,"y":0,"z":125,"rotationX":0,"rotationY":0,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"GORO","pose":{"x":-116,"y":0,"z":122.5,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"mgqb","name":"OTH_THO_TALK_STAND_YANKII_LP_F","loop":true}},
+      {"tag":"NGSM","pose":{"x":-117.5,"y":0,"z":122.7,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"MURI","pose":{"x":-118.2,"y":0,"z":121.9,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"mgqb","name":"OTH_MAN_BIBIRU_LP_QTE","loop":true}}
+    ],
+    "camera":{"positionX":-112.7,"positionY":1.8,"positionZ":125.8,"targetX":-116.8,"targetY":1.1,"targetZ":123.4,"roll":0,"perspective":65}
+  },{
+    "id":"s1.mfsy.goro-success","area":"MFSY","worldId":"mfsy","actorDefinitions":[],"waitForMotions":true,
+    "provenance":"Original paired AKI_SEIKOU_W3QTE / OTH_TKA_SEIKOU_W3QTE winning clips after real Left/A/B. Pair placement and shot are authored; original per-button dynamics/cameras are not reproduced.",
+    "actors":[
+      {"tag":"AKIR","pose":{"x":-116,"y":0,"z":124,"rotationX":0,"rotationY":0,"rotationZ":0},"motion":{"bank":"mgqb","name":"AKI_SEIKOU_W3QTE","loop":false}},
+      {"tag":"GORO","pose":{"x":-116,"y":0,"z":122.5,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"mgqb","name":"OTH_TKA_SEIKOU_W3QTE","loop":false}},
+      {"tag":"NGSM","presented":false,"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":false}},
+      {"tag":"MURI","presented":false,"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":false}}
+    ],
+    "camera":{"positionX":-112.7,"positionY":1.8,"positionZ":125.8,"targetX":-116,"targetY":1.1,"targetZ":123.2,"roll":0,"perspective":65}
+  },{
+    "id":"s1.mfsy.goro-aftermath","area":"MFSY","worldId":"mfsy","actorDefinitions":[],
+    "provenance":"Original E1046 Warehouse No. 8 directions. Authored held talk pose and camera, restored after dialogue.",
+    "actors":[
+      {"tag":"AKIR","pose":{"x":-116,"y":0,"z":124,"rotationX":0,"rotationY":0,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"GORO","pose":{"x":-116,"y":0,"z":122.5,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"mgqb","name":"OTH_THO_TALK_STAND_YANKII_LP_F","loop":true}},
+      {"tag":"NGSM","presented":false,"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"MURI","presented":false,"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}
+    ],
+    "camera":{"positionX":-113.5,"positionY":1.8,"positionZ":125.8,"targetX":-116,"targetY":1.1,"targetZ":123.2,"roll":0,"perspective":65}
+  },{
     "id":"s1.d000.master-chen-phone","area":"D000","worldId":"dobuita",
     "provenance":"Original telephone placement supplies the location. The held phone gesture and camera are authored; receiver pickup, dial pad and hangup choreography are not reconstructed. Original E1032 dialogue/choices and durable effects are server-owned.",
     "actorDefinitions":[],

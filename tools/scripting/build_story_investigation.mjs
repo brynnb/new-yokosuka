@@ -21,6 +21,8 @@ if (voiceRouteIds.some(id=>!spec.routes.some(route=>route.id===id))) throw new E
 const exportedVoices = new Set();
 const triggerPriorities = new Map();
 for (const route of spec.routes) {
+  const disc=route.disc ?? 1;
+  if(![1,2,3].includes(disc))throw Error(`Invalid Shenmue I source disc in ${route.id}`);
   // The server rejects equal-priority candidates before running their gates.
   // Distinct bounds/flags do not disambiguate an otherwise identical selector.
   const key = [route.trigger || "talk", route.area, route.object || (route.trigger ? "" : route.actor), route.priority ?? 200].join(":");
@@ -29,20 +31,21 @@ for (const route of spec.routes) {
 }
 for (const route of spec.routes) {
   const participants = [route.actor, ...(route.participants || [])];
+  const disc=route.disc ?? 1;
   if (route.unidentifiedVoiceSpeaker && !NATIVE_DIALOGUE_SPEAKER_LABELS[route.unidentifiedVoiceSpeaker]) throw new Error(`Unknown neutral voice role in ${route.id}`);
   let source;
   if (route.dialogueArchive || route.dialogueArchives) {
     const archiveSources=[];
     const messages=[];
     for(const archive of route.dialogueArchives || [route.dialogueArchive]) {
-    const filename = path.join(process.env.SHENMUE_DISC1_EXTRACTED_ROOT || path.join(root, "extracted_files"), archive.path);
+    const filename = path.join(process.env[`SHENMUE_DISC${disc}_EXTRACTED_ROOT`] || path.join(root, disc===1?"extracted_files":`extracted_disc${disc}_v2`), archive.path);
     const bytes = fs.readFileSync(filename);
     if (createHash("sha256").update(bytes).digest("hex") !== archive.sha256) throw new Error(`Changed archive for ${route.id}`);
     const members = afsMembers(bytes, route.id);
     const speech = members.filter(member => /\.str$/i.test(member.name));
     const records = parseNativeSrfRecords(members.find(member => /\.srf$/i.test(member.name)).bytes);
     if (speech.length !== records.length) throw new Error(`Unmatched voice/subtitle records for ${route.id}`);
-    archiveSources.push({archive:`disc1/${archive.path}`,sha256:archive.sha256});
+    archiveSources.push({archive:`disc${disc}/${archive.path}`,sha256:archive.sha256});
     messages.push(...records.map((record, index) => {
         const member = speech[index], voiceId = member.name.replace(/\.str$/i, "");
         streamVoices.set(voiceId, { voiceId, actorCodes: [record.speakerId], variants: [{
@@ -133,7 +136,11 @@ for (const route of spec.routes) {
     if (!route.staging || !leadIn.length) throw new Error(`Challenge ${route.id} needs reviewed staging and lead-in`);
     const challengeStage=route.challengeStaging||route.staging;
     const leadInBody=`<<play_sequence "${route.staging}.start">>\n${leadIn.join("\n")}${route.challengeStaging?`\n<<play_sequence "${route.staging}.finish">>\n<<play_sequence "${challengeStage}.start">>`:""}`;
-    body = `<<jump Attempt>>\n===\ntitle: Attempt\n---\n${leadInBody}\n<<start_challenge "${route.challenge}">>\n<<if challenge_result("${route.challenge}") != "success">>\n<<play_sequence "${challengeStage}.finish">>\n-> Try again\n    <<jump Attempt>>\n-> Leave it for now\n    <<complete>>\n<<else>>\n${lines.join("\n")}\n<<play_sequence "${challengeStage}.finish">>\n${effects.join("\n")}\n<<complete>>\n<<endif>>`;
+    const success=route.successStaging
+      ? `<<play_sequence "${challengeStage}.finish">>\n<<play_sequence "${route.successStaging}.start">>\n<<play_sequence "${route.successStaging}.finish">>\n<<play_sequence "${route.aftermathStaging}.start">>\n${lines.join("\n")}\n<<play_sequence "${route.aftermathStaging}.finish">>`
+      : `${lines.join("\n")}\n<<play_sequence "${challengeStage}.finish">>`;
+    if(route.successStaging && !route.aftermathStaging)throw Error(`Missing challenge aftermath ${route.id}`);
+    body = `<<jump Attempt>>\n===\ntitle: Attempt\n---\n${leadInBody}\n<<start_challenge "${route.challenge}">>\n<<if challenge_result("${route.challenge}") != "success">>\n<<play_sequence "${challengeStage}.finish">>\n-> Try again\n    <<jump Attempt>>\n-> Leave it for now\n    <<complete>>\n<<else>>\n${success}\n${effects.join("\n")}\n<<complete>>\n<<endif>>`;
   } else if (route.activities) {
     // A noninteractive original cinematic is presentation inside the same
     // Yarn transaction, not another writable/native progression authority.
@@ -152,7 +159,7 @@ for (const route of spec.routes) {
   }
   // complete requests durable settlement; it does not short-circuit Yarn.
   // Conditional early endings jump to an actual terminal node instead.
-  const sourceText = `title: Start\ntags: adaptation story disc1 ${route.area} ${route.actor}\n---\n<<if ${gates.join(" || ")}>>\n    <<pass_trigger>>\n<<endif>>\n${body}\n===\n${route.combat?"title: Done\n---\n<<complete>>\n===\n":""}`;
+  const sourceText = `title: Start\ntags: adaptation story disc${disc} ${route.area} ${route.actor}\n---\n<<if ${gates.join(" || ")}>>\n    <<pass_trigger>>\n<<endif>>\n${body}\n===\n${route.combat?"title: Done\n---\n<<complete>>\n===\n":""}`;
   imports.push({ Slug: `story-s1-${route.id}`, Title: route.title,
     Description: route.provenance || spec.provenance, Summary: route.combat?"Original introduction, server-controlled fight, original clue dialogue. No movie-completion victory or currency/item reward.":route.challenge ? "Personal voiced encounter; explicit server-validated QTE before clue settlement. Authored staging; no item or currency reward." : route.activities ? "Original noninteractive presentation; completion or explicit skip settles the personal milestone/notebook through Yarn. Cancellation or preparation failure settles nothing." : "Personal investigation conversation; original voiced lines, authored sequence, existing NPC facing and gameplay camera. No item or currency reward.",
     NativeSources: [...(source.archiveSources||[source.generatedFrom]).map(info=>({role:"dialogue",locator:`${info.archive}#${route.actor}/${route.id}`,sha256:info.sha256})), ...(route.nativeSources || [])],
@@ -168,6 +175,7 @@ for (const route of spec.routes) {
       ...(route.bounds?{actorBounds:{AKIR:{[route.bounds]:true}}}:{}),
       ...(route.optionSelections?{optionSelections:route.optionSelections}:{}),
       ...(route.randomIntegers?{randomIntegers:route.randomIntegers}:{}),
+      ...(route.activityResults?{activityResults:route.activityResults}:{}),
     } }],
   });
 }
