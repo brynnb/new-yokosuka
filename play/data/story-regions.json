@@ -1,6 +1,12 @@
 {
   "schema": "new-yokosuka-story-regions-v1",
   "regions": [
+    {"id":"s1.mfsy.warehouse-eight-front","area":"MFSY","actor":"AKIR","playMode":"story","openingCompleted":true,
+      "requiredFlags":["story.s1.goro-harbor.completed"],"completedFlag":"story.s1.warehouse-eight-refusal.completed",
+      "min":[-9,-0.5,130],"max":[-3,2,135],"provenance":"Authored outside approach to original OTC8 front shutter [-7.3,0,135.14]; not a reconstructed native trigger."},
+    {"id":"s1.mfsy.warehouse-eight-window","area":"MFSY","actor":"AKIR","playMode":"story","openingCompleted":true,
+      "requiredFlags":["story.s1.warehouse-eight-refusal.completed"],"completedFlag":"story.s1.warehouse-eight-window.completed",
+      "min":[-21,-0.5,154],"max":[-16,2,160],"provenance":"Authored ground approach below original MFSY return entry 5 [-18.5,3.6,153.6]. 8MAD's origin is between its two windows, not the climbing point. Simplified climb interaction, no crate physics."},
     {"id":"s1.mfsy.goro-encounter","area":"MFSY","actor":"AKIR","playMode":"story","openingCompleted":true,
       "requiredFlags":["story.s1.harbor-arrival.completed"],"completedFlag":"story.s1.goro-harbor.completed",
       "min":[113,-0.5,123],"max":[118,2,127],

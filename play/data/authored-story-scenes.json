@@ -1,7 +1,31 @@
 {
   "schema":"new-yokosuka-authored-story-scenes-v1",
-  "motionBanks":{"koji":"play/assets/sakuragaoka/gao-wen/M_KOJI.MOTN","mgqb":"play/assets/harbor/goro-encounter/M_MGQB.MOTN"},
+  "motionBanks":{"koji":"play/assets/sakuragaoka/gao-wen/M_KOJI.MOTN","mgqb":"play/assets/harbor/goro-encounter/M_MGQB.MOTN","mbui":"play/assets/harbor/warehouse-eight/M_0153A.MOTN"},
   "scenes":[{
+    "id":"s1.mfsy.warehouse-eight-refusal","area":"MFSY","worldId":"mfsy",
+    "provenance":"Original guard model/tag and SA1035 voices. Authored poses and camera beside original OTC8 front shutter.",
+    "actorDefinitions":[{"actorCode":"KEBG","label":"Shozo Kuga","modelCode":"KVG_L","activityOnly":true}],
+    "actors":[
+      {"tag":"AKIR","pose":{"x":5,"y":0,"z":132,"rotationX":0,"rotationY":225,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"KEBG","pose":{"x":6.5,"y":0,"z":133.5,"rotationX":0,"rotationY":45,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}
+    ],
+    "camera":{"positionX":1,"positionY":1.8,"positionZ":131,"targetX":5.8,"targetY":1.1,"targetZ":133,"roll":0,"perspective":65}
+  },{
+    "id":"s1.mfsy.warehouse-eight-window-inspect","area":"MFSY","worldId":"mfsy","actorDefinitions":[],
+    "provenance":"Authored rear-window inspection shot; original 8MAD world window retained.",
+    "actors":[{"tag":"AKIR","pose":{"x":18.5,"y":0,"z":157,"rotationX":0,"rotationY":45,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}],
+    "camera":{"positionX":24,"positionY":3,"positionZ":160,"targetX":18,"targetY":3,"targetZ":153,"roll":0,"perspective":65}
+  },{
+    "id":"s1.mfsy.warehouse-eight-climb","area":"MFSY","worldId":"mfsy","actorDefinitions":[],"waitForMotions":true,
+    "provenance":"Original MBUI entering-window motion at original MFSY return entry 5 [18.5,3.6,153.6], facing reversed to enter. 8MAD contains two separated windows: its object origin is not the climb point. Static shot and platform alignment are authored; crate movement/incremental climb are not reproduced.",
+    "actors":[{"tag":"AKIR","pose":{"x":18.5,"y":3.5999999046325684,"z":153.60000610351562,"rotationX":0,"rotationY":45,"rotationZ":0},"motion":{"bank":"mbui","name":"AKI_HAIRU_MADO_SOUKO_0153","loop":false}}],
+    "camera":{"positionX":24,"positionY":6,"positionZ":158,"targetX":18,"targetY":5,"targetZ":153,"roll":0,"perspective":65}
+  },{
+    "id":"s1.ms8s.warehouse-eight-overheard","area":"MS8S","worldId":"ms8s","actorDefinitions":[],
+    "provenance":"Original E1009B workers' voices remain offscreen. Authored listening shot at the original MS8S CHRS arrival; upper-walkway search is condensed.",
+    "actors":[{"tag":"AKIR","pose":{"x":17,"y":4.275000095367432,"z":152.24000549316406,"rotationX":0,"rotationY":31,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}],
+    "camera":{"positionX":20,"positionY":6,"positionZ":151,"targetX":17,"targetY":5.4,"targetZ":152.24,"roll":0,"perspective":65}
+  },{
     "id":"s1.mfsy.goro-introduction","area":"MFSY","worldId":"mfsy",
     "provenance":"Original E1046 speaker tags and MGQB motions. Model mappings use the existing character inventory (GORO/KMB_L, NGSM/YAB_L, MURI/FSC_L). Positions and camera are authored beside original TBOX, not recovered DYNAMICS transforms.",
     "actorDefinitions":[

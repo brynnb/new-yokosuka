@@ -20,6 +20,17 @@
     {"kind":"activity","policy":"closed"}
   ],
   "capabilities": [
+    {"kind":"bounds","identifier":"s1.mfsy.warehouse-eight-front","description":"Accepted outside approach to Warehouse No.8 front shutter."},
+    {"kind":"bounds","identifier":"s1.mfsy.warehouse-eight-window","description":"Accepted rear-window approach after the refusal."},
+    {"kind":"sequence","identifier":"s1.mfsy.warehouse-eight-refusal.start","description":"Original voiced guard refusal, authored staging."},
+    {"kind":"sequence","identifier":"s1.mfsy.warehouse-eight-refusal.finish","description":"Release guard/player/camera."},
+    {"kind":"sequence","identifier":"s1.mfsy.warehouse-eight-window-inspect.start","description":"Original Ryo thought beside rear window."},
+    {"kind":"sequence","identifier":"s1.mfsy.warehouse-eight-window-inspect.finish","description":"Release inspection before choice."},
+    {"kind":"sequence","identifier":"s1.mfsy.warehouse-eight-climb.start","description":"Original entering-window motion, simplified alignment."},
+    {"kind":"sequence","identifier":"s1.mfsy.warehouse-eight-climb.finish","description":"Release motion before authoritative office arrival."},
+    {"kind":"sequence","identifier":"s1.ms8s.warehouse-eight-overheard.start","description":"Listen to original offscreen invoice dialogue."},
+    {"kind":"sequence","identifier":"s1.ms8s.warehouse-eight-overheard.finish","description":"Restore office exploration before clue settlement."},
+    {"kind":"story-destination","identifier":"s1.harbor.warehouse-eight-office","description":"Original MS8S default entry 0; reviewed server-owned arrival."},
     {"kind":"bounds","identifier":"s1.mfsy.goro-encounter","description":"Authored phone-booth approach, validated against accepted server presence."},
     {"kind":"challenge","identifier":"s1.mfsy.goro","description":"Server-validated Left/A/B sequence for the first harbor confrontation."},
     {"kind":"sequence","identifier":"s1.mfsy.goro-introduction.start","description":"Original cast and voiced blackmail dialogue, authored staging."},

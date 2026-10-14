@@ -116,6 +116,11 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
       return;
     }
+    if(process.env.NEW_YOKOSUKA_WAREHOUSE_E2E === "true") {
+      await verifyWarehouseEight(page,testInfo,character);
+      expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+      return;
+    }
     if(process.env.NEW_YOKOSUKA_BUS_E2E === "true") {
       await verifyHarborBus(page,testInfo,character);
       expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
@@ -1466,6 +1471,45 @@ async function useStoryInspectable(page,{world,tag,position,expectedChoice='Call
   console.info('Story object pick',point);
   expect(point.tag).toBe(tag);await page.mouse.click(point.x,point.y);
   if(expectedChoice)await expect(page.getByRole('button',{name:expectedChoice,exact:true})).toBeVisible();
+}
+
+async function verifyWarehouseEight(page,testInfo,character) {
+  expect(character.storyFlags['story.s1.goro-harbor.completed']).toBe(true);
+  expect(character.storyFlags['story.s1.warehouse-eight-refusal.completed']).not.toBe(true);
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const noErrors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe('idle');expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);};
+  const advanceUntil=async(flag)=>{for(let i=0;i<35&&!await page.evaluate(flag=>window.storyProbe.regions.getCharacter()?.storyFlags?.[flag]||window.storyProbe.sceneErrors.length,flag);i++){await page.keyboard.press('Space');await page.waitForTimeout(150);}await noErrors();await expect.poll(()=>page.evaluate(flag=>window.storyProbe.regions.getCharacter()?.storyFlags?.[flag],flag)).toBe(true);await idle();};
+  const approach=async(position,yaw,slug)=>{
+    await page.evaluate(({position,yaw})=>{const l=window.storyProbe.lifecycle;l.resetPlayer(l.vectorFromArray(position),yaw,{persist:false});l.getController().setFirstPerson(false);},{position,yaw});
+    await page.waitForTimeout(300);await page.locator('#renderCanvas').focus();await page.keyboard.down('KeyW');
+    try{await page.waitForFunction(slug=>window.storyProbe.regions.controller.active?.scriptIdentity.scriptSlug===slug||window.storyProbe.sceneErrors.length,slug,{timeout:20_000});}finally{await page.keyboard.up('KeyW');}
+    await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0||window.storyProbe.sceneErrors.length,null,{timeout:30_000});await noErrors();
+  };
+  await approach([-6,0,128],0,'story-s1-warehouse-eight-refusal');
+  await page.screenshot({path:testInfo.outputPath('warehouse-front-guard.png')});
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel('test-cancel-warehouse-refusal'));await idle();
+  expect((await saved()).character.storyFlags['notebook.s1.warehouse-eight-rear']).not.toBe(true);
+  await approach([-6,0,128],0,'story-s1-warehouse-eight-refusal');await advanceUntil('notebook.s1.warehouse-eight-rear');
+  const windowChoice=async()=>{await approach([-18.5,0,162],Math.PI,'story-s1-warehouse-eight-window');await page.keyboard.press('Space');await expect(page.getByRole('button',{name:'Climb through the rear window',exact:true})).toBeVisible();};
+  await windowChoice();await page.screenshot({path:testInfo.outputPath('warehouse-rear-window-choice.png')});
+  await page.getByRole('button',{name:'Leave it for now',exact:true}).click();await idle();
+  expect((await saved()).character.worldId).toBe('mfsy');expect((await saved()).character.storyFlags['story.s1.warehouse-eight-window.completed']).not.toBe(true);
+  await windowChoice();await page.getByRole('button',{name:'Climb through the rear window',exact:true}).click();
+  await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==='s1.mfsy.warehouse-eight-climb'||window.storyProbe.sceneErrors.length);await noErrors();
+  await page.waitForTimeout(3_000);await page.screenshot({path:testInfo.outputPath('warehouse-original-window-motion.png')});
+  await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==='s1.ms8s.warehouse-eight-overheard'||window.storyProbe.sceneErrors.length,null,{timeout:90_000});await noErrors();
+  await expect(page.locator('#loading')).toBeHidden({timeout:90_000});
+  await page.screenshot({path:testInfo.outputPath('warehouse-overheard-office.png')});
+  expect((await saved()).character.worldId).toBe('ms8s');
+  expect((await saved()).character.storyFlags['notebook.s1.old-warehouse-eight']).not.toBe(true);
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel('test-cancel-overheard'));await idle();
+  await page.reload();await page.keyboard.press('Enter');await page.locator('.account-entry-actions button').filter({hasText:'Quick Play'}).click();await page.locator('.character-slot-button:not(:disabled)').filter({hasText:character.name}).click();await page.locator('button').filter({hasText:/^Enter World$/}).click();
+  await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==='s1.ms8s.warehouse-eight-overheard'||window.storyProbe.sceneErrors.length,null,{timeout:90_000});await noErrors();
+  await advanceUntil('notebook.s1.old-warehouse-eight');
+  const final=await saved();expect(final.character.yen).toBe(character.yen);expect(final.character.currentHp).toBe(character.currentHp);expect(final.character.worldId).toBe('ms8s');
+  await page.locator('button').filter({hasText:/^Notebook$/}).click();for(let i=0;i<80&&await page.locator('#journal-next').isEnabled();i++)await page.locator('#journal-next').click();
+  await expect(page.getByText(/There are two Warehouse No. 8s/)).toBeVisible();await page.screenshot({path:testInfo.outputPath('warehouse-old-district-notebook.png')});await page.locator('#journal-close').click();
 }
 
 async function verifyFirstGoro(page,testInfo,character) {

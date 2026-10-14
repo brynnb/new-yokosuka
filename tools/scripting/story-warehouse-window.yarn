@@ -1,0 +1,15 @@
+<<play_sequence "{{staging}}.start">>
+{{voice:E1009BA001}}
+<<play_sequence "{{staging}}.finish">>
+-> Climb through the rear window
+    <<jump Climb>>
+-> Leave it for now
+    <<complete>>
+===
+title: Climb
+---
+<<play_sequence "s1.mfsy.warehouse-eight-climb.start">>
+<<play_sequence "s1.mfsy.warehouse-eight-climb.finish">>
+<<travel_story "s1.harbor.warehouse-eight-office">>
+{{effects}}
+<<complete>>

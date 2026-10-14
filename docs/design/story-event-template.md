@@ -224,7 +224,8 @@ Do not describe the first conversation as fully animation-faithful.
 | Telephone directory / Amihama | Real TBK1 use, original successful 01TEL camera/body/voices, visibly textured open book, cancellation/re-entry, natural completion, saved Amihama page, restored book/player/controls, reload and repeat decline verified. Compiler/database proximity, stale acknowledgement, once-only settlement, personal isolation and legacy candidate-chain checks pass. Book hand binding/swap timing are explicit adaptations. |
 | Bus / first harbor arrival | Original BUSS boarding connected to a physical bus click after the earned Amihama lead. Stay, cancellation/re-entry, natural boarding, atomic harbor location/milestone, controls and saved reload verified. Timetable, fare and original harbor arrival movie are not reproduced; existing browser spawn is reused. |
 | Goro's first harbor encounter | Connected approach, original voiced cast, cancellation/re-entry, wrong input/retry, actual Left/A/B success, original winning motion, directions/notebook, controls and saved reload verified. Real compiler/database tests cover earned arrival gate, accepted bounds, stale input, cancellation after winning, once-only effects and personal isolation. Placement/cameras/held challenge poses are authored. |
-| Warehouses / Master Chen / Phoenix Mirror | Missing connected authored progression beyond Goro's directions. |
+| New Warehouse No. 8: refusal → rear window → overheard clue | Connected rendered approach, original voiced guard, cancellation/re-entry, climb decline/retry, correctly aligned original entering-window motion, exact office arrival, cancelled conversation/reload, saved Old Warehouse District notebook and restored controls verified. Real compiler/database tests cover bounds, stale acknowledgement, cancelled/declined climb without travel, atomic original arrival, once-only effects and personal isolation. Crate physics and walkway search are condensed. |
+| Old Warehouse District / Master Chen / Phoenix Mirror | Missing connected authored progression beyond the saved Old Warehouse No. 8 clue. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
 | Shenmue II reuse and missing-input audit | Pending the connected S1 foundation. |
@@ -1250,3 +1251,50 @@ the paired throw rather than an invisible or air-hitting opponent. The backend
 test uses the real Yarn compiler/PostgreSQL and proves that challenge success
 alone cannot grant the clue. Audio starts in-browser; listening fidelity was
 not assessed. Assets/imports remain local, not published or deployed.
+
+## New Warehouse No. 8: refusal, window and invoice
+
+Three ordinary official Yarn imports continue Goro's directions. They use the
+existing scene player and atomic travel/flag settlement, not a warehouse engine.
+
+| Event | Trigger and result |
+| --- | --- |
+| `story-s1-warehouse-eight-refusal` | Approach original `OTC8` front shutter after Goro. Original Shozo Kuga (`KEBG/KVG_L`) and five SA1035 voice lines turn Ryo away; save the alternative-entrance notebook page. |
+| `story-s1-warehouse-eight-window` | Approach the rear after the refusal. Original E1009BA001 thought, then choose climb or leave. Leaving/cancellation saves no entrance or destination. Completing original MBUI entering-window motion atomically saves the entrance milestone and original `MS8S` arrival. |
+| `story-s1-warehouse-eight-overheard` | Automatically continue after earned office entry. Nine original E1009B lines discuss the wrongly addressed invoice and second Warehouse No. 8. Save the Old Warehouse District clue only after that conversation finishes. |
+
+The [GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf)
+(printed pages 31–33) establishes refusal → rear crates/window → overheard
+conversation. SA1035's original speaker tag identifies the refusing guard;
+E1009B identifies offscreen workers `TMHN` and `TKSA`. Neither requires copying
+their ambient schedules into a new story controller.
+
+`build:warehouse-story-assets` verifies the original MBUI archive/member hashes
+and complete `AKI_HAIRU_MADO_SOUKO_0153` clip, retaining its motion bank. The
+entering pose uses the original MFSY return entry 5 `[-18.5,3.6,153.6]`, with
+facing reversed to enter. The `8MAD` object's origin lies between two separated
+windows: it is not a valid climb alignment. A first rendered pass exposed that
+mistake; the corrected capture shows Ryo climbing through the actual window.
+The destination is the original MS8S default CHRS player placement at
+`[-17,4.275,152.24]`, already used by the ordinary exploration door route.
+
+Cameras and held conversation poses are authored. The climb choice replaces
+pushable-crate/incremental-climbing mechanics; Ryo is aligned onto the existing
+platform for the entering animation. The invoice conversation starts at the
+upper arrival rather than requiring the original walkway search. Staff voices
+are offscreen. Environment, personal date/time, currency, inventory and HP are
+preserved; no guessed native flag or reward is added.
+
+Each unfinished event remains retryable; stale acknowledgements cannot settle
+a new run, and completed events decline. The real compiler/PostgreSQL test
+earns all three outcomes from one earlier Goro prerequisite, proving cancelled
+or declined entry never moves the player and that office travel/milestone settle
+together. The other character receives no clue.
+
+`NEW_YOKOSUKA_WAREHOUSE_E2E=true` resumes the genuinely earned Goro checkpoint.
+It walks into each authored approach, cancels/retries the guard, declines/retries
+the window, waits for the original motion and actual office load, cancels the
+overheard conversation and reloads its saved office continuation, then earns
+the notebook clue with restored controls/economy. Inspected captures confirm
+the guard, aligned climb, upper walkway and notebook. Audio starts in-browser;
+listening fidelity was not assessed. No assets or scripts are deployed publicly.

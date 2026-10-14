@@ -40,7 +40,12 @@ unimplemented. Goro's first harbor encounter now connects the arrival to his
 warehouse directions: original voices/cast, failed QTE/retry, actual Left/A/B
 success, original winning motion, saved notebook and reload are rendered and
 full-stack verified. Placement, cameras and held challenge poses are authored.
-Warehouse entry and the later harbor storyline remain unimplemented.
+Warehouse No. 8 now connects the guard refusal, rear-window climb choice,
+original entering-window motion and office arrival to the overheard invoice
+conversation. Rendered cancellation/retry, declining the climb, saved travel,
+office reload and the Old Warehouse District notebook clue pass. Crate physics
+and the upper-walkway search are deliberately condensed. Old-district stealth,
+Master Chen and the later storyline remain unimplemented.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

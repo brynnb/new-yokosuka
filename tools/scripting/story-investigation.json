@@ -3,6 +3,33 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"warehouse-eight-refusal","disc":2,"actor":"KEBG","presentActors":[],"area":"MFSY","trigger":"enter","priority":211,
+      "title":"Warehouse No. 8 — front entrance refused","bounds":"s1.mfsy.warehouse-eight-front",
+      "requiredFlags":["story.s1.goro-harbor.completed"],"completedFlag":"story.s1.warehouse-eight-refusal.completed","effects":["notebook.s1.warehouse-eight-rear"],
+      "staging":"s1.mfsy.warehouse-eight-refusal",
+      "voiceIds":["SA1035B001","SA1035B003","SA1035B004","SA1035B005","SA1035A001"],
+      "dialogueArchive":{"path":"data/SCENE/02/STREAM/SA1035.AFS","sha256":"dee7142cb2edd33a4b0e46c653c25aa1f8ac855b10e5f28c039f664448f79b2c"},
+      "provenance":"Original SA1035 KEBG guard refusal and Ryo's alternative-entry thought, corroborated by guide printed p31. Authored approach/staging beside original OTC8 [-7.3,0,135.14]. No native guard controller or guessed flag. The front door remains unavailable; seek the rear window."
+    },
+    {
+      "id":"warehouse-eight-window","disc":2,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":212,
+      "title":"Warehouse No. 8 — rear window","bounds":"s1.mfsy.warehouse-eight-window",
+      "requiredFlags":["story.s1.warehouse-eight-refusal.completed"],"completedFlag":"story.s1.warehouse-eight-window.completed","effects":[],
+      "staging":"s1.mfsy.warehouse-eight-window-inspect","yarnTemplate":"story-warehouse-window.yarn","voiceIds":[],"optionSelections":[0],
+      "dialogueArchive":{"path":"data/SCENE/02/STREAM/E1009B.AFS","sha256":"8ea1d64e2c5ee20f563d2203cb7ca506480c0de845674f7a23771ffff47b9e6a"},
+      "nativeSources":[{"role":"motion-archive","locator":"disc2/SCENE/02/MFSY/MBUI.PKS#M_0153A.MOTN","sha256":"2bca65f726a8b939a7a0bb8c8b0fbb4b2bd49faab64000150ee42f8ecf9193b3"}],
+      "provenance":"Guide printed p31-32: rear crates/open window lead to upstairs offices. Original 8MAD window and MBUI entering-window motion; explicit simplified climb confirmation instead of pushable-crate physics. Reviewed MS8S entry 0 is its original CHRS default player placement, not a made-up entrance. No clue is granted by merely inspecting or declining."
+    },
+    {
+      "id":"warehouse-eight-overheard","disc":2,"actor":"AKIR","participants":["TMHN","TKSA"],"presentActors":[],"area":"MS8S","trigger":"automatic","priority":210,
+      "title":"Warehouse No. 8 — overheard invoice","requiredFlags":["story.s1.warehouse-eight-window.completed"],
+      "completedFlag":"story.s1.warehouse-eight-overheard.completed","effects":["notebook.s1.old-warehouse-eight"],
+      "staging":"s1.ms8s.warehouse-eight-overheard",
+      "voiceIds":["E1009BA013","E1009BB001","E1009BC001","E1009BC002","E1009BB002","E1009BB003","E1009BC004","E1009BA014","E1009BA015"],
+      "dialogueArchive":{"path":"data/SCENE/02/STREAM/E1009B.AFS","sha256":"8ea1d64e2c5ee20f563d2203cb7ca506480c0de845674f7a23771ffff47b9e6a"},
+      "provenance":"Original E1009B voices identify TMHN/TKSA discussing a misaddressed invoice and Old Warehouse No.8; guide printed p32-33 confirms this clue. Authored listening shot near original MS8S entrance; staff voices are offscreen. Automatic arrival presentation condenses the original upper-walkway approach. No reward or guessed native flag."
+    },
+    {
       "id":"goro-harbor-encounter","disc":2,"actor":"GORO","participants":["GORO","NGSM","MURI"],"presentActors":[],"area":"MFSY","trigger":"enter","priority":210,
       "title":"Goro's first harbor encounter","bounds":"s1.mfsy.goro-encounter",
       "requiredFlags":["story.s1.harbor-arrival.completed"],"completedFlag":"story.s1.goro-harbor.completed","effects":["notebook.s1.goro-directions"],
