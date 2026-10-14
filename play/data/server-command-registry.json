@@ -19,6 +19,8 @@
     {"kind":"activity","policy":"closed"}
   ],
   "capabilities": [
+    {"kind":"bounds","identifier":"s1.d000.amihama-directory","description":"Server-accepted proximity to the Dobuita telephone directory."},
+    {"kind":"activity","identifier":"s1.d000.amihama-directory.scene","description":"Original successful directory presentation; no client-owned durable effects."},
     {"kind":"bounds","identifier":"s1.d000.master-chen-phone","description":"Server-accepted Dobuita telephone proximity, use-only."},
     {"kind":"bounds","identifier":"s1.jomo.master-chen-phone","description":"Server-accepted Hazuki foyer telephone proximity, use-only."},
     {"kind":"sequence","identifier":"s1.d000.master-chen-phone.start","description":"Authored telephone presentation; no durable effects."},

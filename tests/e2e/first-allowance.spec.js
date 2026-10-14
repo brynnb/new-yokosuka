@@ -110,6 +110,11 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_DIRECTORY_E2E === "true") {
+      await verifyAmihamaDirectory(page,testInfo,character);
+      expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+      return;
+    }
     if(process.env.NEW_YOKOSUKA_PHONE_E2E === "true") {
       await verifyMasterChenPhone(page,testInfo,character);
       expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
@@ -1405,13 +1410,13 @@ async function verifyXiaTranslation(page,testInfo,character) {
   expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
 }
 
-async function useTelephone(page,{world,tag,position,expectCall=true}) {
+async function useStoryInspectable(page,{world,tag,position,expectedChoice='Call 0468-61-5647'}) {
   await page.evaluate(async({world,tag,position})=>{
     const life=window.storyProbe.lifecycle;
     if(life.worldRuntime.activeWorld.id!==world)await life.travelToWorld(world);
     life.resetPlayer(life.vectorFromArray(position),0,{persist:false});
     const target=life.scene.meshes.find(mesh=>mesh.metadata?.interactiveInspectable?.objectTag===tag)?.metadata.interactiveInspectable;
-    if(!target)throw Error(`Missing physical telephone ${world}/${tag}`);
+    if(!target)throw Error(`Missing physical story object ${world}/${tag}`);
     const bounds=target.root.getHierarchyBoundingVectors(true),center=bounds.min.add(bounds.max).scale(.5),controller=life.getController();
     controller.setFirstPerson(true);controller.cameraYaw=Math.atan2(position[0]-center.x,position[2]-center.z);
     controller.cameraPitch=Math.atan2(position[1]+controller.options.firstPersonHeadHeight-center.y,Math.hypot(center.x-position[0],center.z-position[2]));
@@ -1444,9 +1449,9 @@ async function useTelephone(page,{world,tag,position,expectCall=true}) {
     }
     return{tag:null,center:center.asArray(),camera:camera.position.asArray(),meshes:meshes.map(m=>({name:m.name,pickable:m.isPickable,enabled:m.isEnabled(),visible:m.isVisible}))};
   },tag);
-  console.info('Telephone pick',point);
+  console.info('Story object pick',point);
   expect(point.tag).toBe(tag);await page.mouse.click(point.x,point.y);
-  if(expectCall)await expect(page.getByRole('button',{name:'Call 0468-61-5647',exact:true})).toBeVisible();
+  if(expectedChoice)await expect(page.getByRole('button',{name:expectedChoice,exact:true})).toBeVisible();
 }
 
 async function verifyMasterChenPhone(page,testInfo,character) {
@@ -1466,9 +1471,9 @@ async function verifyMasterChenPhone(page,testInfo,character) {
     await expect(page.locator('#dialogue-options .dialogue-option')).toHaveCount(4);
   };
   const dobuita={world:'dobuita',tag:'TEL0',position:[-37.4,0,10.2]},home={world:'interior',tag:'TEL_',position:[-15.1,0,2.7]};
-  await useTelephone(page,dobuita);await page.evaluate(()=>window.storyProbe.regions.controller.cancel('test-cancel-dial'));await idle();
+  await useStoryInspectable(page,dobuita);await page.evaluate(()=>window.storyProbe.regions.controller.cancel('test-cancel-dial'));await idle();
   expect((await saved()).character.storyFlags['notebook.s1.warehouse-eight-phone']).not.toBe(true);
-  await useTelephone(page,dobuita);await page.getByRole('button',{name:'Call 0468-61-5647',exact:true}).click();
+  await useStoryInspectable(page,dobuita);await page.getByRole('button',{name:'Call 0468-61-5647',exact:true}).click();
   await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0||window.storyProbe.sceneErrors.length,null,{timeout:25_000});await noErrors();
   await page.screenshot({path:testInfo.outputPath('chen-phone-dobuita-original-voice.png')});
   await fourChoices();await page.screenshot({path:testInfo.outputPath('chen-phone-password-options.png')});
@@ -1477,11 +1482,11 @@ async function verifyMasterChenPhone(page,testInfo,character) {
   await expect(page.getByRole('button',{name:'Try again',exact:true})).toBeVisible();
   expect((await saved()).character.storyFlags['notebook.s1.warehouse-eight-phone']).not.toBe(true);
   await page.getByRole('button',{name:'Leave the telephone',exact:true}).click();await idle();
-  await useTelephone(page,home);await page.getByRole('button',{name:'Call 0468-61-5647',exact:true}).click();await fourChoices();
+  await useStoryInspectable(page,home);await page.getByRole('button',{name:'Call 0468-61-5647',exact:true}).click();await fourChoices();
   await page.locator('#dialogue-options .dialogue-option').first().click();await fourChoices();
   await page.evaluate(()=>window.storyProbe.regions.controller.cancel('test-cancel-after-password'));await idle();
   expect((await saved()).character.storyFlags['notebook.s1.warehouse-eight-phone']).not.toBe(true);
-  await useTelephone(page,home);await page.getByRole('button',{name:'Call 0468-61-5647',exact:true}).click();await fourChoices();
+  await useStoryInspectable(page,home);await page.getByRole('button',{name:'Call 0468-61-5647',exact:true}).click();await fourChoices();
   await page.locator('#dialogue-options .dialogue-option').first().click();await fourChoices();
   await page.screenshot({path:testInfo.outputPath('chen-phone-home-second-password.png')});
   await page.locator('#dialogue-options .dialogue-option').first().click();
@@ -1500,6 +1505,66 @@ async function verifyMasterChenPhone(page,testInfo,character) {
   await page.evaluate(()=>window.storyProbe.lifecycle.getController().setFirstPerson(true));
   const before=await page.evaluate(()=>window.storyProbe.nativeStarts.length);
   // A completed translated object declines, and cannot re-enter native state.
-  await useTelephone(page,{...home,expectCall:false});
+  await useStoryInspectable(page,{...home,expectedChoice:null});
   await idle();expect(await page.evaluate(()=>window.storyProbe.nativeStarts.length)).toBe(before);
+}
+
+async function verifyAmihamaDirectory(page,testInfo,character) {
+  expect(character.storyFlags['story.s1.master-chen-phone.completed']).toBe(true);
+  expect(character.storyFlags['story.s1.amihama-directory.completed']).not.toBe(true);
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const book={world:'dobuita',tag:'TBK1',position:[-37.4,0,10.2],expectedChoice:null};
+  const scene=async()=>{
+    await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==='story-s1-amihama-directory'||window.storyProbe.sceneErrors.length,null,{timeout:45_000});
+    expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  };
+  const idle=async()=>{
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe('idle');
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+    expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+  };
+  await useStoryInspectable(page,book);await scene();
+  await page.waitForFunction(()=>[...(window.storyProbe.director?.activeCutscene?.packageRuntime.audio.active?.elements||[])]
+    .some(r=>r.kind==='voice'&&r.command.audio.voiceId.startsWith('01TEL')&&r.audio.currentTime>0&&!r.audio.paused),null,{timeout:30_000});
+  await page.screenshot({path:testInfo.outputPath('directory-original-reading-before-cancel.png')});
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel('test-cancel-directory'));await idle();
+  expect((await saved()).character.storyFlags['notebook.s1.amihama']).not.toBe(true);
+  await useStoryInspectable(page,book);await scene();
+  await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.packageRuntime.presentation?.active?.currentFrame>500||window.storyProbe.sceneErrors.length,null,{timeout:30_000});
+  expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  const opened=await page.evaluate(()=>{
+    const runtime=window.storyProbe.director.activeCutscene.packageRuntime;
+    const root=runtime.attachedObjects.objects.get('TBK3').root;
+    const meshes=root.getChildMeshes().filter(m=>m.getTotalVertices()>0);
+    return{enabled:root.isEnabled(),meshes:meshes.length,textured:meshes.every(m=>!!m.material?.diffuseTexture),
+      minimumY:root.getHierarchyBoundingVectors(true).min.y,
+      counterY:runtime.sceneObjects.objects.get('TBK1').explorationSnapshot.position[1]};
+  });
+  expect(opened.enabled).toBe(true);expect(opened.meshes).toBeGreaterThan(0);expect(opened.textured).toBe(true);
+  // Reusing the standalone LOOK loop's left-hand binding placed the movie's
+  // book under the counter. Its presence/material checks still passed.
+  expect(opened.minimumY).toBeGreaterThan(opened.counterY);
+  await page.screenshot({path:testInfo.outputPath('directory-original-open-book.png')});
+  await page.waitForFunction(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.['notebook.s1.amihama']||window.storyProbe.sceneErrors.length,null,{timeout:40_000});
+  expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);await idle();
+  const state=await saved();expect(state.character.storyFlags['story.s1.amihama-directory.completed']).toBe(true);
+  expect(state.character.yen).toBe(character.yen);expect(state.character.currentHp).toBe(character.currentHp);
+  expect(state.inventory.filter(i=>i.key==='chinese_letter').map(i=>i.quantity)).toEqual([1]);
+  expect(state.character.worldId).toBe('dobuita');expect(state.character.avatarId).toBe('ryo');
+  const restored=await page.evaluate(()=>{
+    const root=window.storyProbe.lifecycle.scene.meshes.find(m=>m.metadata?.interactiveInspectable?.objectTag==='TBK1')?.metadata.interactiveInspectable.root;
+    return{enabled:root?.isEnabled(),pickable:root?.getChildMeshes().some(m=>m.isPickable)};
+  });
+  expect(restored.enabled).toBe(true);expect(restored.pickable).toBe(true);
+  await page.locator('button').filter({hasText:/^Notebook$/}).click();
+  for(let i=0;i<60&&await page.locator('#journal-next').isEnabled();i++)await page.locator('#journal-next').click();
+  await expect(page.getByText(/The telephone directory lists the 61 prefix in Amihama/)).toBeVisible();
+  await page.screenshot({path:testInfo.outputPath('directory-amihama-notebook.png')});await page.locator('#journal-close').click();
+  await page.reload();await page.keyboard.press('Enter');await page.locator('.account-entry-actions button').filter({hasText:'Quick Play'}).click();
+  await page.locator('.character-slot-button:not(.empty)').first().click();await page.locator('button').filter({hasText:/^Enter World$/}).click();
+  await page.waitForFunction(()=>window.storyProbe.ready,null,{timeout:120_000});await idle();
+  const starts=await page.evaluate(()=>window.storyProbe.nativeStarts.length);
+  await useStoryInspectable(page,book);await idle();
+  expect(await page.evaluate(()=>window.storyProbe.nativeStarts.length)).toBe(starts);
+  expect((await saved()).character.storyFlags['notebook.s1.amihama']).toBe(true);
 }

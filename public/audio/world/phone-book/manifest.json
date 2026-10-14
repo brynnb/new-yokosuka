@@ -1,0 +1,342 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_phone_book_audio_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/STREAM/01TEL.AFS",
+      "sha256": "211aab675b0b65ded671d7b5bda0d583fc5382061c4618ca0311522d3668b398"
+    },
+    "soundBank": {
+      "disc": 1,
+      "path": "extracted_files/data/SCENE/01/SOUND/A1_TELP.SND",
+      "sha256": "70b37d84b73c8823bbbaaac641ee34bb462d52783c989aca35df410cc4f786d6"
+    },
+    "authManifest": "play/assets/dobuita/phone-book/manifest.json",
+    "resourceBindingEvidence": "tools/evidence/d000-phone-book-audio.json"
+  },
+  "voices": [
+    {
+      "voiceId": "01TELA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TEL/SOUND/01TELA001.aiff",
+      "nativeMember": "01TELA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 24576,
+      "nativeSha256": "0b160100cf67808684f9d6110086a39a13eb94a2d9891f8e1e24f8e4dee8f7c7",
+      "speakerId": "AKIR",
+      "sourceText": "61=@61=@",
+      "displayText": "61...61...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 37
+          },
+          {
+            "shape": 2,
+            "durationTicks": 19
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/phone-book/voice/01TELA001.wav",
+      "byteLength": 98092,
+      "sha256": "28d618c5654aebe4ba211c7f53535e2dacbcbdb899f050353578d6aaea4fc39b"
+    },
+    {
+      "voiceId": "01TELA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TEL/SOUND/01TELA002.aiff",
+      "nativeMember": "01TELA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 4096,
+      "nativeSha256": "d490b7cc68dc6503e0f8851dab4c3a003fc4144e1fa6467429dda2ac8ab3fff2",
+      "speakerId": "AKIR",
+      "sourceText": "=@got it!",
+      "displayText": "...got it!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/phone-book/voice/01TELA002.wav",
+      "byteLength": 16172,
+      "sha256": "d4c3efff3242363527f7882ce91caef140a5c1f84833a1cfc1c7e895548d328d"
+    },
+    {
+      "voiceId": "01TELA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TEL/SOUND/01TELA003.aiff",
+      "nativeMember": "01TELA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 14336,
+      "nativeSha256": "603f4b4261a191394d3c0f40c2f03b627a6cd1d28b999ebb90bfab5ff42a60f2",
+      "speakerId": "AKIR",
+      "sourceText": "61=@it's in Amihama=@",
+      "displayText": "61...it's in Amihama...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/phone-book/voice/01TELA003.wav",
+      "byteLength": 57132,
+      "sha256": "197262830053477284c3a3d7c927d4123badd9f430284dc0a467b18ff870d2c6"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TEL/SE/smallobject/book1.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/phone-book/sfx/a9040000.wav",
+      "byteLength": 27220,
+      "sha256": "f3a371ad2898fa7c1f2dac50e08de912fd965ec67fd4b9014c0de871815eafa0"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TEL/SE/smallobject/bookcl.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 14000,
+      "asset": "public/audio/world/phone-book/sfx/a9040100.wav",
+      "byteLength": 18236,
+      "sha256": "150b903b612bb301a57d002ade5efba61c85567d0e320f9d852cbf2a6e4de104"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TEL/SE/smallobject/paper3eq.aiff",
+      "playbackId": 7,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/phone-book/sfx/a9040700.wav",
+      "byteLength": 23556,
+      "sha256": "12b564f0fe93107fc27ced1b9842ce3dcbdcefee227c26f79c32f7594f677a10"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TEL/SE/smallobject/paper4eq.aiff",
+      "playbackId": 8,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/phone-book/sfx/a9040800.wav",
+      "byteLength": 18300,
+      "sha256": "cc0df85987615370ed138b58acaa011b2c0b837be3a636a51603e3b8969bd152"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TEL/SE/smallobject/paper6eq.aiff",
+      "playbackId": 10,
+      "sampleId": 11,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/phone-book/sfx/a9040a00.wav",
+      "byteLength": 34340,
+      "sha256": "1ac73460286bd6d8ea698bc7719694920b90846dbed1d1f30563820d8bb41e98"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TEL/SE/smallobject/paper7eq.aiff",
+      "playbackId": 11,
+      "sampleId": 12,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/phone-book/sfx/a9040b00.wav",
+      "byteLength": 19492,
+      "sha256": "059f88ec05885dabe043ed1cddcb4211181b802b52e64ad5f2127958424c8a36"
+    }
+  ]
+}

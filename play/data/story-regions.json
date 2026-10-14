@@ -1,6 +1,10 @@
 {
   "schema": "new-yokosuka-story-regions-v1",
   "regions": [
+    {"id":"s1.d000.amihama-directory","area":"D000","actor":"AKIR","trigger":"use","playMode":"story","openingCompleted":true,
+      "requiredFlags":["story.s1.master-chen-phone.completed"],"completedFlag":"story.s1.amihama-directory.completed",
+      "min":[-41,-0.5,7],"max":[-35,2,13],
+      "provenance":"Use-only proximity around original TBK1 [-38.161098,1.002,10.1892]; accepted server presence is required. No automatic lookup on approach."},
     {"id":"s1.d000.master-chen-phone","area":"D000","actor":"AKIR","trigger":"use","playMode":"story","openingCompleted":true,
       "requiredFlags":["story.s1.xia-letter-translation.completed"],"completedFlag":"story.s1.master-chen-phone.completed",
       "min":[-41,-0.5,7],"max":[-35,2,13],

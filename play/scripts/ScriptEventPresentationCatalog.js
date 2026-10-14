@@ -33,6 +33,11 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ["s1.d000.amihama-directory.scene", {
+    kind:"native-cutscene",area:"D000",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:"story-s1-amihama-directory",packageId:"phone-book",worldId:"dobuita",storyPresentation:true,
+      activity:{slot:0,binding:{kind:"map-embedded-slot",activityId:"01TEL/SEQDATA0.AUTH"}}},
+  }],
   ["s1.drsa.xia-letter-translation.scene", {
     kind:"native-cutscene",area:"DRSA",durableEffects:"forbidden",returnPlayerState:true,
     // TOKI is the original cinematic resource, DRSA the normal shop area.

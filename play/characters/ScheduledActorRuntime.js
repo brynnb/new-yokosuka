@@ -407,6 +407,15 @@ export function pickScheduledActorSelection(
     directPick?.pickedMesh,
   );
   if (directSelection) return directSelection;
+  // A real interactive surface is a stronger target than the invisible NPC
+  // selection proxy behind it. Otherwise a merchant's generous proxy steals
+  // clicks on the book/phone on their counter. Keep the proxy fallback for
+  // noninteractive wall overlays and bind-pose character pieces.
+  for (let node = directPick?.pickedMesh; node; node = node.parent) {
+    if (Object.keys(node.metadata || {}).some(key => (
+      key.startsWith("interactive") && node.metadata[key]
+    ))) return null;
+  }
   // POINTERPICK reports only the nearest general-purpose hit. Re-pick against
   // the actor proxy so a wall overlay or bind-pose character piece cannot
   // steal the interaction.

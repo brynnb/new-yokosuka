@@ -220,7 +220,8 @@ Do not describe the first conversation as fully animation-faithful.
 | Fuku-san at the gate | Connected rendered walk-in, cancellation/re-entry, original voices/body/camera, natural ending and saved reload verified. Requires the saved Chinese letter and actual possession; no duplicate handoff. Shared prop-frame repair and presentation verification are described below. |
 | Gao Wen rescue / translator referral | Connected browser check verifies original-voiced cast, real three-opponent loss/retry/win, failed A-QTE attempt/retry, original kick/ball/hostage presentation, grandmother referral, notebook, restored controls and saved reload. Compiler/database gates, cancellation, stale input and personal isolation pass. Roadside staging/ball trajectory/basic AI are explicit adaptations. |
 | Xia Xiu Yu / Chinese-letter translation | Connected real-door entry, original TOKI actors/voices/cameras, cancellation/re-entry, natural ending, two notebook pages, restored arrival/camera/controls and saved reload verified. Compiler/database possession/presence/hours, stale acknowledgement, repeat and personal-isolation checks pass. Letter attachment/fold data is reused; complete hand/finger fidelity is not claimed. |
-| Telephone passwords / Warehouse No. 8 lead | Both real-phone clicks, original initial voice playback, wrong answer/leave, cancellation after the first correct answer, retry, saved warehouse notebook, restored controls, reload and no native fallback verified in the browser. All four reciprocal pair orientations, proximity, stale replies, shared once-only settlement and personal isolation pass compiler/database tests. Receiver/dial choreography remains approximate; phone-book/harbor progression is missing. |
+| Telephone passwords / Warehouse No. 8 lead | Both real-phone clicks, original initial voice playback, wrong answer/leave, cancellation after the first correct answer, retry, saved warehouse notebook, restored controls, reload and no native fallback verified in the browser. All four reciprocal pair orientations, proximity, stale replies, shared once-only settlement and personal isolation pass compiler/database tests. Receiver/dial choreography remains approximate. |
+| Telephone directory / Amihama | Real TBK1 use, original successful 01TEL camera/body/voices, visibly textured open book, cancellation/re-entry, natural completion, saved Amihama page, restored book/player/controls, reload and repeat decline verified. Compiler/database proximity, stale acknowledgement, once-only settlement, personal isolation and legacy candidate-chain checks pass. Book hand binding/swap timing are explicit adaptations. Harbor progression remains missing. |
 | Harbor warehouses / Master Chen / Phoenix Mirror | Missing connected authored progression. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
@@ -982,8 +983,8 @@ is a wrist and must not be described as a foot.
 
 The new asset catalogs reproduce byte-for-byte through the canonical producers.
 New model/voice assets are local and registered, not published to R2.
-The password telephone call is connected below; the subsequent phone-book and
-harbor sequence remains unimplemented.
+The password telephone call and directory lookup are connected below; the
+subsequent harbor sequence remains unimplemented.
 
 ## Xia Xiu Yu translates the letter
 
@@ -1078,8 +1079,8 @@ Telephone** is intentionally neutral, not a guessed character identity.
 
 The number-selection menu, held gesture/camera and free public call are explicit
 prototype adaptations. This is not a reconstructed dial pad or complete original
-telephone animation. The successful phone-book lookup and travel to Amihama
-remain the next connected steps. `--voices --voice-route <route-id>` on the
+telephone animation. The successful phone-book lookup is connected below;
+travel to Amihama remains the next step. `--voices --voice-route <route-id>` on the
 investigation producer exports just the newly required voices while regenerating
 the complete official catalog, avoiding repeated encoding of earlier chapters.
 
@@ -1094,3 +1095,54 @@ the phone-choice interface; the Dobuita shot was adjusted out of a wall after
 inspection. Its placed phone currently renders flat white, so material fidelity
 is not established. Complete handset animation is not claimed. Local original
 voice files are registered and hash-checked, not published to R2.
+
+## Telephone directory: Amihama
+
+Official import: `story-s1-amihama-directory`. This borrows the successful
+original `01TEL/SEQDATA0.AUTH` presentation, not the SA1071 unsuccessful lookup
+used by the separate recovered room-owner activity. No native selector/room
+controller is needed to decide this authored Story result.
+
+| Field | Implementation |
+| --- | --- |
+| Location | Dobuita tobacco-shop counter, original physical `TBK1` directory. |
+| Prerequisites | Story Ryo, opening complete, actual saved successful telephone-call milestone; directory milestone unfinished. |
+| Trigger | Click the book, with accepted server presence inside its use-only proximity bounds. No automatic scene on approach. |
+| Player setup | Existing native-cutscene ownership stages the original AUTH player pose; save the previous player position/facing/camera for return. |
+| Characters | Ryo (`AKIR`) only. The merchant and other players remain in their shared world; this scene does not change their durable state. |
+| Props | Borrow the world book, use the original opened `DENS502G` and AUTH.PKF textures. Reuse the recovered local attachment transforms, but bind the open book to this whole movie's right reading hand (control 18), not the standalone LOOK loop's left hand (control 12). This hand binding and open/closed cues at sound frames 59/189/856 are explicit adaptations, not recovered controller timing. |
+| Action sequence | Original pickup/read/page-turn presentation → find prefix 61 → identify Amihama → return the book and restore gameplay. |
+| Dialogue | Original `01TELA001`–`A003` voice/subtitle cues. No fabricated source line IDs. |
+| Timing | Original AUTH 890-frame command track with its original movement/camera duration (about 30 seconds). No arbitrary success timer or interactive challenge. |
+| Camera shots | Original AUTH camera track, rather than another manually staged shot. |
+| Weather and lighting | Keep the current personal Dobuita environment, with no forced date/weather jump. |
+| Audio | All three original voices and six unique original sound references from `A1_TELP.SND`. |
+| Interactive challenge | None. The prior telephone passwords are the challenge; looking up the known prefix is a presentation. |
+| Completion effects | Atomically save `story.s1.amihama-directory.completed` and `notebook.s1.amihama`; one stable harbor/bus lead page. No money, HP, inventory, calendar or guessed native-bank mutation. |
+| Exit behavior | Stay in Dobuita at the previous arrival pose/camera with controls restored and the book returned to exploration. No forced harbor travel. |
+| Skip, failure and replay | Natural completion or explicit cinematic skip saves the same outcome once. Cancellation/loading failure saves nothing; the same book remains reusable. Stale acknowledgements cannot settle a retry. A completed use declines without native fallback; reload retains the lead. |
+
+Canonical producers are `build:phone-book-activity` and
+`build:phone-book-audio`. The source AUTH.PKS SHA-256 is
+`41a3323364259c806467b49be3cb7e1fdbf031517efb7b2e7c57527aed1e8b7c`;
+the original 01TEL.AFS is
+`211aab675b0b65ded671d7b5bda0d583fc5382061c4618ca0311522d3668b398`.
+Source/output hashes and the prop-timing adaptation live in the generated
+manifest. The [GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf)
+(printed page 30) corroborates the lookup result and next bus objective.
+
+Two shared boundaries are important: an NPC's invisible selection proxy must
+not override a real hit on an interactive counter object, and borrowed props
+must regain their original visibility/picking state when their presentation
+owner releases them. Focused tests cover both. The real-browser continuation
+(`NEW_YOKOSUKA_DIRECTORY_E2E=true`) verifies original voice playback,
+cancellation/re-entry, natural completion, the notebook page, restored book
+picking/player/controls, reload and completed-use decline. Captures were
+inspected: the open book is textured and visible above the counter during the
+reading shot. The initial standalone left-hand binding put it below the
+counter; mesh-enabled/material assertions alone did not detect that failure.
+
+The real server candidate-chain test also imports both directory scripts:
+Story uses the authored event, while the legacy SA1071 lookup is now Free
+roam-only. Passing a completed Story event cannot launch the legacy scene.
+Assets/imports are local, not published to production or R2.

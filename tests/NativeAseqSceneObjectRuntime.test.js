@@ -6,6 +6,31 @@ import {
   NativeAseqSceneObjectRuntime,
 } from "../play/events/NativeAseqSceneObjectRuntime.js";
 
+test("borrowed interactive props return their visibility, picking and frozen transforms",async t=>{
+  const engine=new BABYLON.NullEngine(),scene=new BABYLON.Scene(engine);
+  t.after(()=>{scene.dispose();engine.dispose();});
+  const book=new BABYLON.TransformNode("book",scene);book._filename="BOOK.CHRM";book.position.set(1,2,3);
+  const page=BABYLON.MeshBuilder.CreateBox("page",{},scene);page.parent=book;
+  book.metadata={interactiveInspectable:{objectTag:"TBK1",root:book}};
+  page.metadata={interactiveInspectable:book.metadata.interactiveInspectable};page.isPickable=true;page.checkCollisions=true;
+  page.computeWorldMatrix(true);page.freezeWorldMatrix();const metadata=page.metadata;
+  const runtime=new NativeAseqSceneObjectRuntime({definitions:{TBK1:{model:"BOOK",browserFilename:book._filename}}});
+  for(const ending of ["complete","cancelled"]){
+    await runtime.load([book]);assert.equal(book.isEnabled(),false);assert.equal(page.isPickable,false);
+    const owner={};runtime.begin(owner,["TBK1"]);runtime.activate(owner,"TBK1");book.position.set(9,8,7);
+    runtime.end(owner,ending);runtime.clear();
+    assert.equal(book.isEnabled(),true);assert.deepEqual(book.position.asArray(),[1,2,3]);
+    assert.equal(page.isPickable,true);assert.equal(page.checkCollisions,true);assert.equal(page.isWorldMatrixFrozen,true);
+    assert.equal(page.metadata,metadata);assert.equal(page.metadata.nativeAseqSceneObject,undefined);
+  }
+  await runtime.load([book]);
+  assert.equal(runtime.restoreExplorationObjects(),true);assert.equal(book.isEnabled(),true);assert.equal(page.isPickable,true);
+  book.position.set(4,5,6); // Exploration can change a warm package's target.
+  runtime.prepareActivity({activityId:"again"});assert.equal(book.isEnabled(),false);assert.equal(page.isPickable,false);
+  book.position.set(9,9,9);runtime.restoreExplorationObjects();assert.deepEqual(book.position.asArray(),[4,5,6]);
+  assert.equal(page.isPickable,true);runtime.clear();assert.equal(book.isEnabled(),true);
+});
+
 test("explicit transform-only references are owned and disposed without borrowing world geometry", async () => {
   const engine = new BABYLON.NullEngine(), scene = new BABYLON.Scene(engine);
   try {

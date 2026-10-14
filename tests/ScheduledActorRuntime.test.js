@@ -470,6 +470,14 @@ test("scheduled actor selection exposes its actor root for interaction", () => {
   assert.equal(selection.root, actorRoot);
 });
 
+test("NPC proxy fallback cannot steal a direct world interaction",()=>{
+  for(const key of ["interactiveInspectable","interactiveDrawer","interactiveVendingMachine","interactiveMapTransition"]){
+    let repicks=0;const root={metadata:{[key]:{}},parent:null};
+    const result=pickScheduledActorSelection({pick(){repicks++;throw Error("proxy stole the object");}},null,10,20,{hit:true,pickedMesh:{parent:root}});
+    assert.equal(result,null);assert.equal(repicks,0);
+  }
+});
+
 test("scheduled actor debug boxes follow animated rig bounds", () => {
   const proxy = {
     position: BABYLON.Vector3.Zero(),

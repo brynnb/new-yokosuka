@@ -3,6 +3,15 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"amihama-directory","actor":"AKIR","presentActors":[],"area":"D000","trigger":"use","object":"TBK1","priority":210,
+      "title":"Telephone directory — Amihama","bounds":"s1.d000.amihama-directory",
+      "requiredFlags":["story.s1.master-chen-phone.completed"],"completedFlag":"story.s1.amihama-directory.completed","effects":["notebook.s1.amihama"],
+      "activities":["s1.d000.amihama-directory.scene"],"voiceIds":[],
+      "dialogueArchive":{"path":"data/SCENE/01/STREAM/01TEL.AFS","sha256":"211aab675b0b65ded671d7b5bda0d583fc5382061c4618ca0311522d3668b398"},
+      "nativeSources":[{"role":"presentation-archive","locator":"disc1/SCENE/01/D000/AUTH.PKS#01TEL/SEQDATA0.AUTH","sha256":"41a3323364259c806467b49be3cb7e1fdbf031517efb7b2e7c57527aed1e8b7c"}],
+      "provenance":"Original successful 01TEL AUTH body/motion/camera/voices/sounds and book textures. Guide printed p30 corroborates the 61-prefix lookup and Amihama result. Original local attachment transforms with an authored right-hand binding for this whole movie and authored open/closed transition cues; no room-controller reconstruction. One server-owned notebook settlement after presentation or explicit skip; cancellation settles nothing."
+    },
+    {
       "id":"master-chen-phone-dobuita","actor":"AKIR","presentActors":[],"area":"D000","trigger":"use","object":"TEL0","priority":210,
       "title":"Master Chen's telephone passwords — Dobuita","bounds":"s1.d000.master-chen-phone",
       "requiredFlags":["story.s1.xia-letter-translation.completed"],"requiredItems":[{"key":"chinese_letter","quantity":1}],

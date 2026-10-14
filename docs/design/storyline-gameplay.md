@@ -28,7 +28,11 @@ notebook pages, restored arrival/camera/controls and reload verified. The
 telephone/password call is now connected for Dobuita and the Hazuki foyer;
 rendered choices, wrong answer/cancellation, notebook settlement, control
 restoration and reload pass. Receiver/dial choreography remains approximate. The
-phone-book/harbor lead and later storyline remain unimplemented.
+original phone-book lookup now continues that lead into a saved Amihama notebook
+page, with rendered book/voice playback, cancellation/re-entry, natural ending,
+restored controls/book picking and reload/repeat decline verified. Its hand
+binding and open/closed timing remain documented adaptations. Harbor travel and
+the later storyline remain unimplemented.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

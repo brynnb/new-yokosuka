@@ -73,6 +73,20 @@ function restoreRoot(root, snapshot) {
   root.computeWorldMatrix?.(true);
 }
 
+function captureExploration(root) {
+  return {
+    ...captureRoot(root),
+    leased: true,
+    nodes: [root, ...root.getDescendants(false)].map(node => ({
+      node,
+      metadata: node.metadata,
+      isPickable: node.isPickable,
+      checkCollisions: node.checkCollisions,
+      frozen: Boolean(node.isWorldMatrixFrozen),
+    })),
+  };
+}
+
 function prepareRoot(root, actorTag) {
   for (const node of [root, ...root.getDescendants(false)]) {
     markWorldMeshDynamic(node);
@@ -195,10 +209,10 @@ export class NativeAseqSceneObjectRuntime {
         );
       }
       const root = matches[0];
-      // Borrowed travel targets belong to exploration outside this package.
-      // Capture before prepareRoot hides them for authored presentation.
-      const explorationSnapshot = root.metadata?.interactiveMapTransition
-        && !this.ownedRoots.has(root) ? captureRoot(root) : null;
+      // Any borrowed interaction belongs to exploration, not this package.
+      // Returning only travel targets leaves a used book hidden/unpickable.
+      const explorationSnapshot = Object.keys(root.metadata || {}).some(key => key.startsWith("interactive"))
+        && !this.ownedRoots.has(root) ? captureExploration(root) : null;
       prepareRoot(root, actorTag);
       this.objects.set(actorTag, Object.freeze({
         actorCode: actorTag,
@@ -214,6 +228,12 @@ export class NativeAseqSceneObjectRuntime {
   prepareActivity(activity) {
     if (this.active) {
       throw new Error("AUTH scene-object state cannot change during ownership");
+    }
+    for (const [actorTag, record] of this.objects) {
+      if (record.explorationSnapshot && !record.explorationSnapshot.leased) {
+        Object.assign(record.explorationSnapshot, captureExploration(record.root));
+        prepareRoot(record.root, actorTag);
+      }
     }
     if (this.persistentActorTags.size === 0) return true;
     if (!activity?.activityId || !Array.isArray(activity.nativeSceneObjectStates)) {
@@ -375,12 +395,32 @@ export class NativeAseqSceneObjectRuntime {
     return true;
   }
 
+  restoreExplorationObjects() {
+    // Continuous room programs retain their props across AUTH subleases.
+    // Ordinary scenes release the borrow without discarding cached assets.
+    if (this.active || this.program) return false;
+    for (const record of this.objects.values()) {
+      const snapshot = record.explorationSnapshot;
+      if (!snapshot?.leased) continue;
+      restoreRoot(record.root, snapshot);
+      for (const state of snapshot.nodes) {
+        state.node.metadata = state.metadata;
+        state.node.isPickable = state.isPickable;
+        state.node.checkCollisions = state.checkCollisions;
+        state.node.computeWorldMatrix?.(true);
+        if (state.frozen) state.node.freezeWorldMatrix?.();
+      }
+      snapshot.leased = false;
+    }
+    return true;
+  }
+
   clear() {
     if (this.active) this.end(this.active.owner);
     if (this.program) this.endProgram(this.program.owner);
+    this.restoreExplorationObjects();
     for (const record of this.objects.values()) {
-      if (record.explorationSnapshot) restoreRoot(record.root, record.explorationSnapshot);
-      else record.root.setEnabled(false);
+      if (!record.explorationSnapshot) record.root.setEnabled(false);
     }
     this.objects.clear();
     for (const root of this.ownedRoots) root.dispose?.();
