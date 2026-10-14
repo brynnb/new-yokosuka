@@ -220,6 +220,7 @@ Do not describe the first conversation as fully animation-faithful.
 | Fuku-san at the gate | Connected rendered walk-in, cancellation/re-entry, original voices/body/camera, natural ending and saved reload verified. Requires the saved Chinese letter and actual possession; no duplicate handoff. Shared prop-frame repair and presentation verification are described below. |
 | Gao Wen rescue / translator referral | Connected browser check verifies original-voiced cast, real three-opponent loss/retry/win, failed A-QTE attempt/retry, original kick/ball/hostage presentation, grandmother referral, notebook, restored controls and saved reload. Compiler/database gates, cancellation, stale input and personal isolation pass. Roadside staging/ball trajectory/basic AI are explicit adaptations. |
 | Xia Xiu Yu / Chinese-letter translation | Connected real-door entry, original TOKI actors/voices/cameras, cancellation/re-entry, natural ending, two notebook pages, restored arrival/camera/controls and saved reload verified. Compiler/database possession/presence/hours, stale acknowledgement, repeat and personal-isolation checks pass. Letter attachment/fold data is reused; complete hand/finger fidelity is not claimed. |
+| Telephone passwords / Warehouse No. 8 lead | Both real-phone clicks, original initial voice playback, wrong answer/leave, cancellation after the first correct answer, retry, saved warehouse notebook, restored controls, reload and no native fallback verified in the browser. All four reciprocal pair orientations, proximity, stale replies, shared once-only settlement and personal isolation pass compiler/database tests. Receiver/dial choreography remains approximate; phone-book/harbor progression is missing. |
 | Harbor warehouses / Master Chen / Phoenix Mirror | Missing connected authored progression. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
@@ -981,7 +982,8 @@ is a wrist and must not be described as a foot.
 
 The new asset catalogs reproduce byte-for-byte through the canonical producers.
 New model/voice assets are local and registered, not published to R2.
-The subsequent telephone/harbor sequence remains unimplemented.
+The password telephone call is connected below; the subsequent phone-book and
+harbor sequence remains unimplemented.
 
 ## Xia Xiu Yu translates the letter
 
@@ -1042,3 +1044,53 @@ to ordinary placements too, using the same authoritative transition catalog and
 access rules. This avoids sending a real shop entrance through unrelated legacy
 dispatcher-number closed checks. The repeated-door-model test helper also uses
 physical selectors rather than assuming filenames identify unique placements.
+
+## Telephone passwords: Warehouse No. 8
+
+Official imports: `story-s1-master-chen-phone-dobuita` and
+`story-s1-master-chen-phone-home`. Both use the same reviewed Yarn template,
+not separate quest logic. The original `E1032.AFS` provides the selected
+subtitles/voices; its SHA-256 is
+`d896882c41c36aa48881e806cf3932badc87563a99a5007b7ef511cbc82e7180`.
+The [GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf)
+(printed page 29) confirms both phones, reciprocal passwords and the warehouse
+lead. Remote SRF voices have no actor tag: the subtitle role **Voice on
+Telephone** is intentionally neutral, not a guessed character identity.
+
+| Field | Implementation |
+| --- | --- |
+| Location | Dobuita tobacco-shop phone (`D000/TEL0`) or Hazuki foyer phone (`JOMO/TEL_`), at their original placed-object locations. |
+| Prerequisites | Story Ryo, opening and Xia translation completed, actual `chinese_letter` possession, call milestone unfinished. |
+| Trigger | Click the physical telephone. Use-only bounds validate server-accepted player presence; walking nearby never starts a call. |
+| Player setup | Lock interaction/movement ownership, then stage Ryo beside the chosen phone after the player chooses the number. |
+| Characters | Ryo only; the remote voice is not a physical NPC or a new scheduled actor. Other players' views are unchanged. |
+| Props | Existing placed telephone. Original receiver pickup/dial/hangup choreography is not yet reproduced. |
+| Action sequence | Choose the known number → original greeting → first password pair → second pair → warehouse lead; a wrong reply offers retry or leaving. |
+| Dialogue | Fifteen original E1032 voice IDs, resolved against the pinned original archive. Native Yarn choices select actual replies. No fabricated original line IDs. |
+| Timing | Voice completion or Space advances lines; choices wait for the player. Both pair orientations use server-owned random draws. No timer implies a successful answer. |
+| Camera shots | Authored held shot for each real phone location, using the shared scene staging runtime. |
+| Weather and lighting | Preserve the current personal environment; no forced date, season or weather. |
+| Audio | Original selected E1032 voices through the shared voice manifest. Original dial-tone/coin sounds are not added or claimed. |
+| Interactive challenge | Two real password choices, not a timed QTE: Heaven ↔ Nine Dragons, Earth ↔ Comrades. Wrong replies save no clue. |
+| Completion effects | Atomically save `story.s1.master-chen-phone.completed` and `notebook.s1.warehouse-eight-phone`; one stable warehouse/directory lead page regardless of which phone was used. No guessed native flag, coin charge, HP change, item consumption or calendar jump. |
+| Exit behavior | Restore the prior player pose/camera and controls in the same zone; no forced harbor travel. |
+| Skip, failure and replay | Space cannot answer a password. Leaving, cancellation, loading failure or expiry saves no clue; retry is safe. Completion at one phone prevents duplicate completion at the other. Reload preserves the earned lead. |
+
+The number-selection menu, held gesture/camera and free public call are explicit
+prototype adaptations. This is not a reconstructed dial pad or complete original
+telephone animation. The successful phone-book lookup and travel to Amihama
+remain the next connected steps. `--voices --voice-route <route-id>` on the
+investigation producer exports just the newly required voices while regenerating
+the complete official catalog, avoiding repeated encoding of earlier chapters.
+
+`NEW_YOKOSUKA_PHONE_E2E=true` resumes the genuinely earned Xia checkpoint in
+the isolated database. It travels normally between the two zones but shortens
+the approach near each physical phone, picks an actual visible surface, and
+uses ordinary menu/keyboard responses rather than injecting success. The
+check passed through cancellation, wrong answer/leaving, retry, the saved
+warehouse notebook page, restored player ownership and reload. A completed
+phone click does not invoke the native object fallback. Captures show Ryo and
+the phone-choice interface; the Dobuita shot was adjusted out of a wall after
+inspection. Its placed phone currently renders flat white, so material fidelity
+is not established. Complete handset animation is not claimed. Local original
+voice files are registered and hash-checked, not published to R2.

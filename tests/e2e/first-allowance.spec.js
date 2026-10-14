@@ -54,6 +54,11 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     ["dialogue/NativeDialogueOverlayRuntime", `window.nativeDialogueHookInstalled = true;
       const probeNativeStart = NativeDialogueOverlayRuntime.prototype.start;
       NativeDialogueOverlayRuntime.prototype.start = function(options,...args) { window.storyProbe.nativeStarts.push(options.actorCode); return probeNativeStart.call(this,options,...args); };`],
+    ["interactions/ScriptedInteractionRuntime", `const probeNativeObject = ScriptedInteractionRuntime.prototype.startNativeObject;
+      ScriptedInteractionRuntime.prototype.startNativeObject = function(inspectable,objectTag,...args) {
+        window.storyProbe.nativeStarts.push('object:' + objectTag);
+        return probeNativeObject.call(this,inspectable,objectTag,...args);
+      };`],
     ["scripts/ScriptEventDialoguePresenter", `const probeShow = ScriptEventDialoguePresenter.prototype.show;
       ScriptEventDialoguePresenter.prototype.show = function(...args) { window.storyProbe.dialogue = this; return probeShow.apply(this,args); };`],
     ["world/PlayWorldLifecycle", `const probeInitialize = PlayWorldLifecycle.prototype.initialize;
@@ -105,6 +110,11 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_PHONE_E2E === "true") {
+      await verifyMasterChenPhone(page,testInfo,character);
+      expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+      return;
+    }
     if(process.env.NEW_YOKOSUKA_XIA_E2E === "true") {
       await verifyXiaTranslation(page,testInfo,character);
       expect(errors).toEqual([]);
@@ -652,7 +662,7 @@ async function enterInteriorDoor(page,{world,filename,doorSelector,position,yaw=
       const viewProjection=life.scene.activeCamera.getViewMatrix(true).multiply(life.scene.activeCamera.getProjectionMatrix(true));
       const screen = center.constructor.Project(center, viewProjection.constructor.Identity(), viewProjection,
         life.scene.activeCamera.viewport.toGlobal(life.engine.getRenderWidth(), life.engine.getRenderHeight()));
-      const pick=life.scene.pick(screen.x,screen.y,mesh=>Object.keys(mesh.metadata||{}).some(key=>key.startsWith('interactive')),false,life.scene.activeCamera);
+      const pick=life.scene.pick(screen.x*rect.width/life.engine.getRenderWidth(),screen.y*rect.height/life.engine.getRenderHeight(),mesh=>Object.keys(mesh.metadata||{}).some(key=>key.startsWith('interactive')),false,life.scene.activeCamera);
       return { x: rect.x + screen.x * rect.width / life.engine.getRenderWidth(), y: rect.y + screen.y * rect.height / life.engine.getRenderHeight(),
         depth:screen.z,doorCenter:center.asArray(),playerPosition:life.getController().collider.position.asArray(),
         filename:door.root._filename,selector:door.doorSelector,type:door.type,state:door.state,
@@ -1393,4 +1403,103 @@ async function verifyXiaTranslation(page,testInfo,character) {
   expect(await page.evaluate(()=>window.storyProbe.starts.includes('story-s1-xia-letter-translation'))).toBe(false);
   expect((await saved()).character.storyFlags['notebook.s1.translated-letter']).toBe(true);
   expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+}
+
+async function useTelephone(page,{world,tag,position,expectCall=true}) {
+  await page.evaluate(async({world,tag,position})=>{
+    const life=window.storyProbe.lifecycle;
+    if(life.worldRuntime.activeWorld.id!==world)await life.travelToWorld(world);
+    life.resetPlayer(life.vectorFromArray(position),0,{persist:false});
+    const target=life.scene.meshes.find(mesh=>mesh.metadata?.interactiveInspectable?.objectTag===tag)?.metadata.interactiveInspectable;
+    if(!target)throw Error(`Missing physical telephone ${world}/${tag}`);
+    const bounds=target.root.getHierarchyBoundingVectors(true),center=bounds.min.add(bounds.max).scale(.5),controller=life.getController();
+    controller.setFirstPerson(true);controller.cameraYaw=Math.atan2(position[0]-center.x,position[2]-center.z);
+    controller.cameraPitch=Math.atan2(position[1]+controller.options.firstPersonHeadHeight-center.y,Math.hypot(center.x-position[0],center.z-position[2]));
+    controller.updateCamera(1);
+  },{world,tag,position});
+  await page.waitForTimeout(500);
+  const point=await page.evaluate(tag=>{
+    const life=window.storyProbe.lifecycle,root=life.scene.meshes.find(mesh=>mesh.metadata?.interactiveInspectable?.objectTag===tag).metadata.interactiveInspectable.root;
+    const bounds=root.getHierarchyBoundingVectors(true),center=bounds.min.add(bounds.max).scale(.5),canvas=life.engine.getRenderingCanvas(),rect=canvas.getBoundingClientRect();
+    const camera=life.scene.activeCamera,viewProjection=camera.getViewMatrix(true).multiply(camera.getProjectionMatrix(true));
+    const candidates=[center],meshes=root.getChildMeshes().filter(m=>m.getTotalVertices()>0);
+    // Hollow props need a point on a real surface, not the empty center of
+    // their bounding box. Project actual triangle centers and validate the pick.
+    for(const mesh of meshes){
+      const positions=mesh.getVerticesData('position'),indices=mesh.getIndices();
+      if(!positions||!indices)continue;
+      for(let i=0;i<indices.length;i+=3){
+        const p=[0,0,0];for(let j=0;j<3;j++)for(let axis=0;axis<3;axis++)p[axis]+=positions[indices[i+j]*3+axis]/3;
+        candidates.push(center.constructor.TransformCoordinates(new center.constructor(...p),mesh.getWorldMatrix()));
+      }
+    }
+    for(const candidate of candidates){
+      const screen=center.constructor.Project(candidate,viewProjection.constructor.Identity(),viewProjection,camera.viewport.toGlobal(life.engine.getRenderWidth(),life.engine.getRenderHeight()));
+      const x=rect.x+screen.x*rect.width/life.engine.getRenderWidth(),y=rect.y+screen.y*rect.height/life.engine.getRenderHeight();
+      if(screen.z<0||screen.z>1||x<280||x>1025||y<0||y>720)continue;
+      // Babylon accepts canvas CSS coordinates, not internal render pixels.
+      // Adaptive resolution can change that ratio between two interactions.
+      const pick=life.scene.pick(x-rect.x,y-rect.y,mesh=>!!mesh.metadata?.interactiveInspectable,false,camera);
+      if(pick?.pickedMesh?.metadata?.interactiveInspectable?.objectTag===tag)return{x,y,tag};
+    }
+    return{tag:null,center:center.asArray(),camera:camera.position.asArray(),meshes:meshes.map(m=>({name:m.name,pickable:m.isPickable,enabled:m.isEnabled(),visible:m.isVisible}))};
+  },tag);
+  console.info('Telephone pick',point);
+  expect(point.tag).toBe(tag);await page.mouse.click(point.x,point.y);
+  if(expectCall)await expect(page.getByRole('button',{name:'Call 0468-61-5647',exact:true})).toBeVisible();
+}
+
+async function verifyMasterChenPhone(page,testInfo,character) {
+  expect(character.storyFlags['story.s1.xia-letter-translation.completed']).toBe(true);
+  expect(character.storyFlags['story.s1.master-chen-phone.completed']).not.toBe(true);
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const noErrors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  const idle=async()=>{
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe('idle');
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+    expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+  };
+  const fourChoices=async()=>{
+    for(let i=0;i<16&&!await page.evaluate(()=>window.storyProbe.regions.controller.active?.optionIds?.size===4);i++){
+      await page.keyboard.press('Space');await page.waitForTimeout(200);await noErrors();
+    }
+    await expect(page.locator('#dialogue-options .dialogue-option')).toHaveCount(4);
+  };
+  const dobuita={world:'dobuita',tag:'TEL0',position:[-37.4,0,10.2]},home={world:'interior',tag:'TEL_',position:[-15.1,0,2.7]};
+  await useTelephone(page,dobuita);await page.evaluate(()=>window.storyProbe.regions.controller.cancel('test-cancel-dial'));await idle();
+  expect((await saved()).character.storyFlags['notebook.s1.warehouse-eight-phone']).not.toBe(true);
+  await useTelephone(page,dobuita);await page.getByRole('button',{name:'Call 0468-61-5647',exact:true}).click();
+  await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0||window.storyProbe.sceneErrors.length,null,{timeout:25_000});await noErrors();
+  await page.screenshot({path:testInfo.outputPath('chen-phone-dobuita-original-voice.png')});
+  await fourChoices();await page.screenshot({path:testInfo.outputPath('chen-phone-password-options.png')});
+  await page.locator('#dialogue-options .dialogue-option').nth(1).click();
+  for(let i=0;i<10&&!await page.getByRole('button',{name:'Try again',exact:true}).isVisible();i++){await page.keyboard.press('Space');await page.waitForTimeout(200);}
+  await expect(page.getByRole('button',{name:'Try again',exact:true})).toBeVisible();
+  expect((await saved()).character.storyFlags['notebook.s1.warehouse-eight-phone']).not.toBe(true);
+  await page.getByRole('button',{name:'Leave the telephone',exact:true}).click();await idle();
+  await useTelephone(page,home);await page.getByRole('button',{name:'Call 0468-61-5647',exact:true}).click();await fourChoices();
+  await page.locator('#dialogue-options .dialogue-option').first().click();await fourChoices();
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel('test-cancel-after-password'));await idle();
+  expect((await saved()).character.storyFlags['notebook.s1.warehouse-eight-phone']).not.toBe(true);
+  await useTelephone(page,home);await page.getByRole('button',{name:'Call 0468-61-5647',exact:true}).click();await fourChoices();
+  await page.locator('#dialogue-options .dialogue-option').first().click();await fourChoices();
+  await page.screenshot({path:testInfo.outputPath('chen-phone-home-second-password.png')});
+  await page.locator('#dialogue-options .dialogue-option').first().click();
+  for(let i=0;i<16&&!await page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.['notebook.s1.warehouse-eight-phone']);i++){await page.keyboard.press('Space');await page.waitForTimeout(200);await noErrors();}
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.['notebook.s1.warehouse-eight-phone'])).toBe(true);await idle();
+  const state=await saved();expect(state.character.yen).toBe(character.yen);expect(state.character.currentHp).toBe(character.currentHp);
+  expect(state.inventory.filter(i=>i.key==='chinese_letter').map(i=>i.quantity)).toEqual([1]);
+  expect(state.character.worldId).toBe('interior');expect(state.character.avatarId).toBe('ryo');
+  await page.locator('button').filter({hasText:/^Notebook$/}).click();
+  for(let i=0;i<60&&await page.locator('#journal-next').isEnabled();i++)await page.locator('#journal-next').click();
+  await expect(page.getByText(/The man said Warehouse No. 8/)).toBeVisible();await page.screenshot({path:testInfo.outputPath('chen-phone-notebook.png')});
+  await page.locator('#journal-close').click();await page.reload();await page.keyboard.press('Enter');
+  await page.locator('.account-entry-actions button').filter({hasText:'Quick Play'}).click();await page.locator('.character-slot-button:not(.empty)').first().click();
+  await page.locator('button').filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready,null,{timeout:120_000});await idle();
+  expect((await saved()).character.storyFlags['story.s1.master-chen-phone.completed']).toBe(true);
+  await page.evaluate(()=>window.storyProbe.lifecycle.getController().setFirstPerson(true));
+  const before=await page.evaluate(()=>window.storyProbe.nativeStarts.length);
+  // A completed translated object declines, and cannot re-enter native state.
+  await useTelephone(page,{...home,expectCall:false});
+  await idle();expect(await page.evaluate(()=>window.storyProbe.nativeStarts.length)).toBe(before);
 }

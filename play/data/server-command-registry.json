@@ -19,6 +19,12 @@
     {"kind":"activity","policy":"closed"}
   ],
   "capabilities": [
+    {"kind":"bounds","identifier":"s1.d000.master-chen-phone","description":"Server-accepted Dobuita telephone proximity, use-only."},
+    {"kind":"bounds","identifier":"s1.jomo.master-chen-phone","description":"Server-accepted Hazuki foyer telephone proximity, use-only."},
+    {"kind":"sequence","identifier":"s1.d000.master-chen-phone.start","description":"Authored telephone presentation; no durable effects."},
+    {"kind":"sequence","identifier":"s1.d000.master-chen-phone.finish","description":"Restore Dobuita phone presentation."},
+    {"kind":"sequence","identifier":"s1.jomo.master-chen-phone.start","description":"Authored foyer telephone presentation; no durable effects."},
+    {"kind":"sequence","identifier":"s1.jomo.master-chen-phone.finish","description":"Restore Hazuki phone presentation."},
     {"kind":"combat","identifier":"s1.jd00.gao-rescue","description":"Real three-opponent rescue fight; victory is required before the separate A QTE."},
     {"kind":"challenge","identifier":"s1.jd00.gao-ball","description":"Server-validated A soccer-ball QTE after the rescue fight."},
     {"kind":"sequence","identifier":"s1.jd00.gao-introduction.start","description":"Original cast/voices with authored roadside staging."},

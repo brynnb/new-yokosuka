@@ -1,0 +1,98 @@
+// Reviewed template: the producer resolves original SRF voice references,
+// shared scene identifiers and effects before the ordinary Yarn compiler runs.
+-> Call 0468-61-5647
+    <<jump Dial>>
+-> Leave the telephone
+    <<jump Done>>
+===
+title: Dial
+---
+<<play_sequence "{{staging}}.start">>
+{{voice:E1032A034}}
+{{voice:E1032H001}}
+<<set $heaven = random_integer(0, 1)>>
+<<if $heaven == 0>>
+    {{voice:E1032H009}}
+    -> Nine Dragons
+        {{voice:E1032A040}}
+        <<jump Earth>>
+    -> Comrades
+        {{voice:E1032A041}}
+        <<jump Wrong>>
+    -> Mother's Earth
+        {{voice:E1032A042}}
+        <<jump Wrong>>
+    -> Father's Heaven
+        {{voice:E1032A043}}
+        <<jump Wrong>>
+<<else>>
+    {{voice:E1032H004}}
+    -> Father's Heaven
+        {{voice:E1032A043}}
+        <<jump Earth>>
+    -> Comrades
+        {{voice:E1032A041}}
+        <<jump Wrong>>
+    -> Mother's Earth
+        {{voice:E1032A042}}
+        <<jump Wrong>>
+    -> Nine Dragons
+        {{voice:E1032A040}}
+        <<jump Wrong>>
+<<endif>>
+===
+title: Earth
+---
+<<set $earth = random_integer(0, 1)>>
+<<if $earth == 0>>
+    {{voice:E1032H005}}
+    -> Comrades
+        {{voice:E1032A041}}
+        <<jump Success>>
+    -> Nine Dragons
+        {{voice:E1032A040}}
+        <<jump Wrong>>
+    -> Father's Heaven
+        {{voice:E1032A043}}
+        <<jump Wrong>>
+    -> Mother's Earth
+        {{voice:E1032A042}}
+        <<jump Wrong>>
+<<else>>
+    {{voice:E1032H006}}
+    -> Mother's Earth
+        {{voice:E1032A042}}
+        <<jump Success>>
+    -> Nine Dragons
+        {{voice:E1032A040}}
+        <<jump Wrong>>
+    -> Father's Heaven
+        {{voice:E1032A043}}
+        <<jump Wrong>>
+    -> Comrades
+        {{voice:E1032A041}}
+        <<jump Wrong>>
+<<endif>>
+===
+title: Wrong
+---
+{{voice:E1032H008}}
+{{voice:E1032A045}}
+<<play_sequence "{{staging}}.finish">>
+-> Try again
+    <<jump Dial>>
+-> Leave the telephone
+    <<jump Done>>
+===
+title: Success
+---
+{{voice:E1032H007}}
+{{voice:E1032A048}}
+{{voice:E1032A051}}
+<<play_sequence "{{staging}}.finish">>
+{{effects}}
+<<complete>>
+===
+title: Done
+---
+<<complete>>

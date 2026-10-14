@@ -46,6 +46,21 @@ test("database-declined object scripts fall back to native interaction", async (
   assert.equal(harness.fallbackCount(), 1);
 });
 
+test("translated Story objects never fall back on declined, missing or offline authority", async()=>{
+  for(const setup of [{result:{outcome:"declined"}},
+    {result:{outcome:"rejected",error:{code:"no_script"}}},
+    {error:Object.assign(Error("offline"),{code:"connection_unavailable"})}]){
+    for(const [area,objectSelector] of [["D000","TEL0"],["JOMO","TEL_"]]){
+      const h=createHarness({...setup,area,playMode:"story"});
+      await h.runtime.startObject({objectSelector,objectTag:objectSelector,root:{},fallback:h.fallback});
+      assert.equal(h.fallbackCount(),0);assert.equal(h.notices.length,1);
+    }
+  }
+  const h=createHarness({result:{outcome:"declined"},playMode:"free_roam"});
+  await h.runtime.startObject({objectSelector:"TEL0",objectTag:"TEL0",root:{},fallback:h.fallback});
+  assert.equal(h.fallbackCount(),1);
+});
+
 test("an unavailable connection falls back without showing an error", async () => {
   const error = Object.assign(new Error("offline"), {
     code: "connection_unavailable",

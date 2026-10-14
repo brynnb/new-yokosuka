@@ -2,6 +2,16 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { StoryRegionRuntime } from "../play/scripts/StoryRegionRuntime.js";
 
+test("use-only proximity bounds do not automatically call a telephone",()=>{
+  let starts=0;
+  const character={id:1,modeRevision:0,playMode:"story",openingCompleted:true,
+    storyFlags:{"story.s1.xia-letter-translation.completed":true}};
+  const runtime=new StoryRegionRuntime({controller:{status:"idle",start:async()=>starts++},getCharacter:()=>character,publishPresence(){}});
+  assert.equal(runtime.update({area:"D000",playerPosition:[-38,0,10],enabled:true}),false);
+  assert.equal(runtime.update({area:"JOMO",playerPosition:[-15.5,0,2],enabled:true}),false);
+  assert.equal(starts,0);
+});
+
 test("dojo entry waits for the previous milestone even when already inside", () => {
   const character = { id: 1, modeRevision: 0, playMode: "story", openingCompleted: true, storyFlags: {} };
   let starts = 0;

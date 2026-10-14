@@ -1,6 +1,14 @@
 {
   "schema": "new-yokosuka-story-regions-v1",
   "regions": [
+    {"id":"s1.d000.master-chen-phone","area":"D000","actor":"AKIR","trigger":"use","playMode":"story","openingCompleted":true,
+      "requiredFlags":["story.s1.xia-letter-translation.completed"],"completedFlag":"story.s1.master-chen-phone.completed",
+      "min":[-41,-0.5,7],"max":[-35,2,13],
+      "provenance":"Authored use-only proximity around the original D000 TEL0 placement [-38.533001,0.97,9.521]. Accepted server presence authorizes use; entering the volume does not call automatically."},
+    {"id":"s1.jomo.master-chen-phone","area":"JOMO","actor":"AKIR","trigger":"use","playMode":"story","openingCompleted":true,
+      "requiredFlags":["story.s1.xia-letter-translation.completed"],"completedFlag":"story.s1.master-chen-phone.completed",
+      "min":[-18,-0.5,0],"max":[-13,1.7,5],
+      "provenance":"Authored use-only proximity around the original Hazuki foyer TEL_ placement [-15.96217,0.5988,2.13451]. This is not a recovered original trigger volume."},
     {"id":"s1.jhd0.fuku-letter-gate","area":"JHD0","actor":"AKIR","playMode":"story","openingCompleted":true,
       "requiredFlags":["story.s1.chinese-letter.completed"],"completedFlag":"story.s1.fuku-letter-gate.completed",
       "min":[-0.2,-0.5,2],"max":[1.8,1.5,4],

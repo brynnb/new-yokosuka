@@ -3,6 +3,26 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"master-chen-phone-dobuita","actor":"AKIR","presentActors":[],"area":"D000","trigger":"use","object":"TEL0","priority":210,
+      "title":"Master Chen's telephone passwords — Dobuita","bounds":"s1.d000.master-chen-phone",
+      "requiredFlags":["story.s1.xia-letter-translation.completed"],"requiredItems":[{"key":"chinese_letter","quantity":1}],
+      "completedFlag":"story.s1.master-chen-phone.completed","effects":["notebook.s1.warehouse-eight-phone"],
+      "dialogueArchive":{"path":"data/SCENE/01/STREAM/E1032.AFS","sha256":"d896882c41c36aa48881e806cf3932badc87563a99a5007b7ef511cbc82e7180"},
+      "voiceIds":[],"unidentifiedVoiceSpeaker":"PHON","yarnTemplate":"story-master-chen-phone.yarn","staging":"s1.d000.master-chen-phone",
+      "optionSelections":[0,0,0],"randomIntegers":[0,0],
+      "provenance":"Original E1032 telephone subtitles/voices; GameSpot guide printed p29 confirms both reciprocal password pairs and Warehouse No. 8. Authoritative random orientation, number selection and staging are authored. Remote SRF speaker is untagged: neutral phone-voice role, no guessed actor. No dial-pad controller reconstruction or coin charge; original receiver pickup/dial/hangup choreography is not yet reproduced."
+    },
+    {
+      "id":"master-chen-phone-home","actor":"AKIR","presentActors":[],"area":"JOMO","trigger":"use","object":"TEL_","priority":210,
+      "title":"Master Chen's telephone passwords — Hazuki home","bounds":"s1.jomo.master-chen-phone",
+      "requiredFlags":["story.s1.xia-letter-translation.completed"],"requiredItems":[{"key":"chinese_letter","quantity":1}],
+      "completedFlag":"story.s1.master-chen-phone.completed","effects":["notebook.s1.warehouse-eight-phone"],
+      "dialogueArchive":{"path":"data/SCENE/01/STREAM/E1032.AFS","sha256":"d896882c41c36aa48881e806cf3932badc87563a99a5007b7ef511cbc82e7180"},
+      "voiceIds":[],"unidentifiedVoiceSpeaker":"PHON","yarnTemplate":"story-master-chen-phone.yarn","staging":"s1.jomo.master-chen-phone",
+      "optionSelections":[0,0,0],"randomIntegers":[0,0],
+      "provenance":"Same original E1032 dialogue and shared authored Yarn call as Dobuita; guide printed p29 also permits the Hazuki foyer phone. Personal progression is shared across both phones, not duplicated. Source telephone remains in the world; complete original receiver/dial choreography is not claimed."
+    },
+    {
       "id":"xia-letter-translation","actor":"ASDA","area":"DRSA","trigger":"automatic","blockNativeTalk":true,"priority":210,
       "title":"Xia Xiu Yu — translate the Chinese letter","hours":[8.5,21],
       "requiredFlags":["story.s1.gao-rescue.completed"],"requiredItems":[{"key":"chinese_letter","quantity":1}],

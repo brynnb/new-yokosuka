@@ -24,6 +24,9 @@ export class StoryRegionRuntime {
     if (!character || character.playMode !== "story" || !character.openingCompleted || !enabled
       || !position || position.length !== 3 || !position.every(Number.isFinite)) return false;
     for (const region of this.regions) {
+      // Use-only bounds authorize a selected world object on the server; merely
+      // walking nearby must not start its interaction or consume entry dispatch.
+      if (region.trigger === "use") continue;
       if (region.area !== area) continue;
       const inside = position.every((value, axis) => value >= region.min[axis] && value <= region.max[axis]);
       if (!inside) { this.inside.delete(region.id); continue; }

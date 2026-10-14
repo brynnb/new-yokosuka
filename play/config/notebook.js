@@ -89,6 +89,7 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.russiya-translator",page:Object.freeze({id:"story-russiya-translator",text:"Gao Wen's grandmother, Xia Xiu Yu, can read Chinese.\n\nVisit her at Russiya China Shop in Dobuita, near the fortune teller."})},
   {flag:"notebook.s1.translated-letter",page:Object.freeze({id:"story-translated-letter",text:"Xia-san read the reversed Chinese characters.\n\nBeware of those who pursue the mirror. If I need help, seek Master Chen.\n\nSigned: Zhu Yuan Da."})},
   {flag:"notebook.s1.translated-letter",page:Object.freeze({id:"story-letter-passwords",text:"On the back of the letter:\nFather's Heaven · Nine Dragons\nMother's Earth · Comrades\n\nMaster Chen: 0468-61-5647\nCall from a telephone to find the next lead."})},
+  {flag:"notebook.s1.warehouse-eight-phone",page:Object.freeze({id:"story-warehouse-eight-phone",text:"The words in the letter were telephone passwords.\n\nFather's Heaven ↔ Nine Dragons\nMother's Earth ↔ Comrades\n\nThe man said Warehouse No. 8. Look up the number's 61 prefix in the telephone directory near the tobacco shop in Dobuita."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

@@ -4,6 +4,7 @@ import { playerWorldInteractionAllowed } from "./PlayerWorldInteractionPolicy.js
 import authoredStoryTalks from "../data/authored-story-talks.json" with { type: "json" };
 
 const SERVER_OWNED_STORY_TALKS = new Set(authoredStoryTalks.talks.map(talk => `${talk.area}:${talk.actor}`));
+const SERVER_OWNED_STORY_OBJECTS = new Set(authoredStoryTalks.objects.map(object => `${object.area}:${object.object}`));
 
 const FALLBACK_SCRIPT_CODES = new Set([
   "no_script",
@@ -236,6 +237,8 @@ export class ScriptedInteractionRuntime {
       return;
     }
     this.getMultiplayerClient()?.forcePresence();
+    const serverOwnedStoryObject = this.accountSession.character?.playMode === "story"
+      && SERVER_OWNED_STORY_OBJECTS.has(`${this.getWorld().nativeArea}:${objectSelector}`);
     const context = {
       area: this.getWorld().nativeArea,
       objectTag,
@@ -252,13 +255,19 @@ export class ScriptedInteractionRuntime {
         result.outcome === "declined"
         || (result.outcome === "rejected"
           && FALLBACK_SCRIPT_CODES.has(result.error.code))
-      ) fallback();
+      ) {
+        if (serverOwnedStoryObject) this.transientNotice.show("This story interaction is not available right now. Check your notebook for the next lead.");
+        else fallback();
+      }
       else if (result.outcome === "rejected") {
         this.transientNotice.show(result.error.message);
       }
     } catch (error) {
       if (!this.canStart()) return;
-      if (error?.code === "connection_unavailable") fallback();
+      if (error?.code === "connection_unavailable") {
+        if (serverOwnedStoryObject) this.transientNotice.show("This story interaction is unavailable. Please try again when connected.");
+        else fallback();
+      }
       else if (![
         "start_cancelled",
         "start_interrupted",

@@ -2,6 +2,18 @@
   "schema":"new-yokosuka-authored-story-scenes-v1",
   "motionBanks":{"koji":"play/assets/sakuragaoka/gao-wen/M_KOJI.MOTN"},
   "scenes":[{
+    "id":"s1.d000.master-chen-phone","area":"D000","worldId":"dobuita",
+    "provenance":"Original telephone placement supplies the location. The held phone gesture and camera are authored; receiver pickup, dial pad and hangup choreography are not reconstructed. Original E1032 dialogue/choices and durable effects are server-owned.",
+    "actorDefinitions":[],
+    "actors":[{"tag":"AKIR","pose":{"x":38.12,"y":0,"z":9.82,"rotationX":0,"rotationY":-90,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_DENWA_LP","loop":true}}],
+    "camera":{"positionX":37.4,"positionY":1.75,"positionZ":10.2,"targetX":38.3,"targetY":1.2,"targetZ":9.7,"roll":0,"perspective":80}
+  },{
+    "id":"s1.jomo.master-chen-phone","area":"JOMO","worldId":"interior",
+    "provenance":"Original TEL_ foyer placement supplies the location; reuse the same held phone gesture as Dobuita with an authored interior camera. Original complete receiver/dial/hangup choreography is not claimed.",
+    "actorDefinitions":[],
+    "actors":[{"tag":"AKIR","pose":{"x":15.4,"y":0,"z":2.2,"rotationX":0,"rotationY":-90,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_DENWA_LP","loop":true}}],
+    "camera":{"positionX":14.1,"positionY":1.6,"positionZ":3.4,"targetX":15.8,"targetY":1.1,"targetZ":2.2,"roll":0,"perspective":55}
+  },{
     "id":"s1.jd00.gao-introduction","area":"JD00","worldId":"sakuragaoka",
     "provenance":"Original E1049 cast and KOJI CHRT CHRL/BIK_L binding. Gang identities/models from the Shenmue-Mods character inventory; original JD00 EN_HAMA/EN_HATA/EN_RYOU files support the three fighter identities. Positions/camera are authored around the existing walkable Sakuragaoka entry, rather than claimed recovered construction-lot transforms. Original path into the lot is not reproduced.",
     "actorDefinitions":[

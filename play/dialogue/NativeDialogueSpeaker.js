@@ -5,7 +5,8 @@ import {
 // Canonical names for authored subtitle participants that are not represented
 // by a labeled scheduled-actor resource. These identities are corroborated by
 // their Japanese speaker labels and conversation context in the extracted SRF
-// subtitles.
+// subtitles. PHON is a neutral authored role for untagged original telephone
+// voices, not a recovered actor identity or a claim about who answered.
 export const NATIVE_DIALOGUE_SPEAKER_LABELS = Object.freeze({
   CHRL: "Charlie",
   AKIR: "Ryo Hazuki",
@@ -26,6 +27,7 @@ export const NATIVE_DIALOGUE_SPEAKER_LABELS = Object.freeze({
   SMTH: "Smith Bradley",
   JONZ: "Jones Henders",
   DOOR: "Voice Behind Door",
+  PHON: "Voice on Telephone",
 });
 
 const GENERIC_JAPANESE_SPEAKER_LABELS = Object.freeze({
