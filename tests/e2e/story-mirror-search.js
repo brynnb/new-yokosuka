@@ -1,6 +1,68 @@
 import {expect} from "@playwright/test";
 import nativeMapTransitions from "../../play/data/native-map-transitions.json" with {type:"json"};
 
+export async function verifyGuiZhangEncounter(page,testInfo,character){
+  expect(character.storyFlags["story.s1.bunkado-handguard.completed"]).toBe(true);
+  expect(character.storyFlags["story.s1.gui-zhang-street.completed"]).not.toBe(true);
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const noErrors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);};
+  await page.evaluate(async()=>window.storyProbe.lifecycle.travelToWorld("sakuragaoka"));
+  await expect(page.locator("#loading")).toBeHidden({timeout:90_000});
+  const approach=async()=>{
+    // Shorten walking to the source-backed street approach, not the outcome.
+    await page.evaluate(()=>{const l=window.storyProbe.lifecycle;l.resetPlayer(l.vectorFromArray([7.76,0,18.7]),0,{persist:false});l.getController().setFirstPerson(false);});
+    await page.waitForTimeout(250);await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+    try{await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-gui-zhang-introduction"||window.storyProbe.sceneErrors.length,null,{timeout:60_000});}
+    finally{await page.keyboard.up("KeyW");}
+    await noErrors();
+  };
+  const combatReady=async()=>{await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view.ready||window.storyProbe.sceneErrors.length,null,{timeout:75_000});await noErrors();};
+  await approach();await page.waitForTimeout(2500);
+  await page.screenshot({path:testInfo.outputPath("gui-zhang-original-introduction.png")});
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-cancel-gui-introduction"));await idle();
+  expect((await saved()).character.storyFlags["notebook.s1.gui-zhang-bodyguard"]).not.toBe(true);
+  await approach();await combatReady();
+  expect(await page.evaluate(()=>window.storyProbe.combatRuntime.active.view.id)).toBe("s1.jd00.gui-zhang-first");
+  expect(await page.evaluate(()=>window.storyProbe.combatRuntime.active.definition.actorDefinitions[0].modelCode)).toBe("KIS_M");
+  await page.screenshot({path:testInfo.outputPath("gui-zhang-combat-ready.png")});
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-cancel-gui-combat"));await idle();
+  expect((await saved()).character.storyFlags["story.s1.gui-zhang-street.completed"]).not.toBe(true);
+  await approach();
+  // The preceding attempt proved natural introduction-to-combat handoff.
+  // Explicit movie skip on retry must still require the real timed encounter.
+  await page.keyboard.press("KeyX");await combatReady();
+  await page.locator("#renderCanvas").focus();
+  const bindings=await page.evaluate(()=>window.storyProbe.combatRuntime.active.input.getBindings());
+  await page.keyboard.down(bindings.guard);
+  try{
+    for(let i=0;i<70&&await page.evaluate(()=>!!window.storyProbe.combatRuntime?.active);i++){
+      await page.keyboard.press(bindings.leg);await page.waitForTimeout(500);
+    }
+  }finally{await page.keyboard.up(bindings.guard);}
+  await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-gui-zhang-bodyguard"||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await noErrors();
+  expect(await page.evaluate(()=>window.storyProbe.combatIntents.some(i=>i.action==="leg"))).toBe(true);
+  expect((await saved()).character.storyFlags["notebook.s1.gui-zhang-bodyguard"]).not.toBe(true);
+  await page.waitForTimeout(9000);await page.screenshot({path:testInfo.outputPath("gui-zhang-bodyguard-explanation.png")});
+  await page.waitForFunction(()=>[...(window.storyProbe.director?.activeCutscene?.packageRuntime.audio.active?.elements||[])]
+    .some(r=>r.kind==="voice"&&r.command.audio.voiceId==="A0167C001"&&r.audio.currentTime>0&&!r.audio.paused),null,{timeout:75_000});
+  await page.screenshot({path:testInfo.outputPath("gui-zhang-chai-rooftop.png")});
+  await expect.poll(async()=>(await saved()).character.storyFlags["notebook.s1.gui-zhang-bodyguard"],{timeout:30_000,intervals:[1000]}).toBe(true);
+  await idle();await noErrors();
+  const after=await saved();
+  expect(after.character.worldId).toBe("sakuragaoka");expect(after.character.avatarId).toBe("ryo");
+  expect(after.character.yen).toBe(character.yen);expect(after.character.currentHp).toBe(character.currentHp);
+  expect(after.inventory.filter(i=>i.key==="sword_handguard")).toMatchObject([{quantity:1}]);
+  expect(after.character.storyFlags["story.s1.phoenix-mirror.completed"]).not.toBe(true);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().firstPerson)).toBe(false);
+  await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");await page.waitForTimeout(500);await page.keyboard.up("KeyW");
+  await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();
+  await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();
+  await page.waitForFunction(()=>window.storyProbe.ready,null,{timeout:90_000});await idle();await noErrors();
+  expect((await saved()).character.storyFlags["story.s1.gui-zhang-street.completed"]).toBe(true);
+  expect(await page.evaluate(()=>window.storyProbe.director?.activeCutscene)).toBeFalsy();
+}
+
 export async function verifyBunkadoHandguard(page,testInfo,character,enterInteriorDoor){
   expect(character.storyFlags["story.s1.family-mirror-lead.completed"]).toBe(true);
   expect(character.storyFlags["story.s1.bunkado-handguard.completed"]).not.toBe(true);

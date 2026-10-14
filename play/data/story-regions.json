@@ -1,6 +1,9 @@
 {
   "schema": "new-yokosuka-story-regions-v1",
   "regions": [
+    {"id":"s1.jd00.gui-zhang-street","area":"JD00","actor":"AKIR","playMode":"story","openingCompleted":true,
+      "requiredFlags":["story.s1.bunkado-handguard.completed"],"completedFlag":"story.s1.gui-zhang-street.completed",
+      "min":[6,-0.5,20],"max":[10,2,24],"provenance":"Authored Sakuragaoka street approach around original KSBT0 AKIR [7.759566,0,22.92654]. Original cinematic presentation surrounds server-timed combat, not a reconstructed native trigger."},
     {"id":"s1.jhd0.family-mirror-lead","area":"JHD0","actor":"AKIR","playMode":"story","openingCompleted":true,
       "requiredFlags":["story.s1.master-chen.completed"],"completedFlag":"story.s1.family-mirror-lead.completed",
       "min":[-5,-0.5,-26],"max":[-1,2,-22],"provenance":"Authored courtyard approach around original SORA0 Ryo [-3.086535,0,-23.527935], leading toward Fuku by the tree. Original SORA/INEK presentation, not a reconstructed native trigger."},

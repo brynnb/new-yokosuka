@@ -3,6 +3,17 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"gui-zhang-street","disc":2,"actor":"AKIR","participants":["KISY","CHAI"],"presentActors":[],"area":"JD00","trigger":"enter","priority":230,
+      "title":"Gui Zhang — the bodyguard","bounds":"s1.jd00.gui-zhang-street",
+      "requiredFlags":["story.s1.bunkado-handguard.completed"],"requiredItems":[{"key":"sword_handguard","quantity":1}],
+      "completedFlag":"story.s1.gui-zhang-street.completed","effects":["notebook.s1.gui-zhang-bodyguard"],
+      "introductionActivities":["s1.jd00.gui-zhang.introduction"],"combat":"s1.jd00.gui-zhang-first","combatCompletion":"practiced",
+      "completionActivities":["s1.jd00.gui-zhang.bodyguard"],"voiceIds":[],
+      "dialogueArchive":{"path":"data/SCENE/02/STREAM/A0167.AFS","sha256":"9866e5b011c0db4602f6fb92cebb22c3a19623a704152088e7cd4b7cac3ad079"},
+      "nativeSources":[{"role":"original-cinematic","locator":"disc2/SCENE/02/JD00/KSBT.PKS#SEQDATA0/1.AUTH","sha256":"11182ddb5fa24e4342a548ffee18646cafc20dd37dd7f5f13ba05c6a62a6a33a"}],
+      "provenance":"GameSpot guide printed p37: after Bunkado, encounter Gui Zhang on the way home, fight briefly without losing, then hear his bodyguard explanation and see an eavesdropper. Original KSBT cast/body/camera/voices; actual server-timed nonlethal combat between movies. Approach volume, basic AI and music-start timing are authored. No room-controller prerequisite, item/yen/HP reward or calendar jump. Cancellation saves no bodyguard milestone."
+    },
+    {
       "id":"bunkado-handguard","disc":2,"actor":"OISI","presentActors":[],"area":"DKTY","trigger":"automatic","blockNativeTalk":true,"priority":210,
       "title":"Bunkado Antiques — the sword handguard","requiredFlags":["story.s1.family-mirror-lead.completed"],
       "completedFlag":"story.s1.bunkado-handguard.completed","effects":["notebook.s1.sword-handguard"],"items":[{"key":"sword_handguard","quantity":1}],"voiceIds":[],

@@ -26,6 +26,12 @@ export class StoryRegionRuntime {
     if (key !== this.contextKey) { this.reset(); this.contextKey = key; }
     if (!character || character.playMode !== "story" || !character.openingCompleted || !enabled
       || !position || position.length !== 3 || !position.every(Number.isFinite)) return false;
+    // Cinematics/combat temporarily move the render actor away from the
+    // gameplay approach. Updating occupancy from those poses manufactured an
+    // exit/re-entry and immediately replayed a cancelled encounter. Preserve
+    // the entry latch until gameplay ownership returns; context changes above
+    // still reset it on world, character or mode changes.
+    if(this.controller.status!=="idle")return false;
     for (const region of this.regions) {
       // Use-only bounds authorize a selected world object on the server; merely
       // walking nearby must not start its interaction or consume entry dispatch.
@@ -44,8 +50,7 @@ export class StoryRegionRuntime {
       const inside = position.every((value, axis) => value >= region.min[axis] && value <= region.max[axis]);
       if (!inside) { this.inside.delete(region.id); continue; }
       if (this.inside.has(region.id) || character.storyFlags?.[region.completedFlag]
-        || (region.requiredFlags || []).some(flag => character.storyFlags?.[flag] !== true)
-        || this.controller.status !== "idle") continue;
+        || (region.requiredFlags || []).some(flag => character.storyFlags?.[flag] !== true)) continue;
       this.inside.add(region.id);
       this.publishPresence();
       const generation = this.generation;

@@ -59,6 +59,9 @@ import familyIneManifest from "../assets/hazuki/family-ine/manifest.json";
 import familyIneAudio from "../../public/audio/world/family-ine/manifest.json";
 import bunkadoHandguardManifest from "../assets/dobuita/bunkado-handguard/manifest.json";
 import bunkadoHandguardAudio from "../../public/audio/world/bunkado-handguard/manifest.json";
+import guiZhangManifest from "../assets/sakuragaoka/gui-zhang/manifest.json";
+import guiZhangIntroductionAudio from "../../public/audio/world/gui-zhang/introduction/manifest.json";
+import guiZhangBodyguardAudio from "../../public/audio/world/gui-zhang/bodyguard/manifest.json";
 import kkyaActivityManifest from "../assets/hazuki/kkya/manifest.json";
 import kkybActivityManifest from "../assets/hazuki/kkyb/manifest.json";
 import kkycActivityManifest from "../assets/hazuki/kkyc/manifest.json";
@@ -106,6 +109,7 @@ const bundledMasterChenAssets = runtimeAssetGroup("play/assets/harbor/master-che
 const bundledFamilyFukuAssets = runtimeAssetGroup("play/assets/hazuki/family-fuku/*.{AUTH,MOTN}");
 const bundledFamilyIneAssets = runtimeAssetGroup("play/assets/hazuki/family-ine/*.{AUTH,MOTN}");
 const bundledBunkadoHandguardAssets = runtimeAssetGroup("play/assets/dobuita/bunkado-handguard/*.{AUTH,MOTN,CHRM,bin}");
+const bundledGuiZhangAssets = runtimeAssetGroup("play/assets/sakuragaoka/gui-zhang/*.{AUTH,MOTN}");
 const bundledKkyaAssets = runtimeAssetGroup("play/assets/hazuki/kkya/*.{AUTH,MOTN,CHRM,MAPM}");
 const bundledKkybAssets = runtimeAssetGroup("play/assets/hazuki/kkyb/*.{AUTH,MOTN,CHRM,MAPM}");
 const bundledKkycAssets = runtimeAssetGroup("play/assets/hazuki/kkyc/*.{AUTH,MOTN,CHRM,MAPM}");
@@ -339,6 +343,24 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     environment:Object.freeze({packageActors:bunkadoHandguardManifest.packageActors,sceneObjects:bunkadoHandguardManifest.sceneObjects}),
     playback:Object.freeze({manifest:bunkadoHandguardManifest,audioManifest:bunkadoHandguardAudio}),
     music:Object.freeze({cues:Object.freeze([Object.freeze({startActivity:true,trackId:"bgm052",loop:true})]),gain:1}),
+  }),
+  Object.freeze({
+    id:"gui-zhang-street",worldId:"sakuragaoka",
+    actorDefinitions:Object.freeze([
+      Object.freeze({actorCode:"KISY",label:"Chen Gui Zhang",modelCode:"KIS_M",activityOnly:true}),
+      Object.freeze({actorCode:"CHAI",label:"Chai",modelCode:"CHA_M",activityOnly:true}),
+    ]),
+    actorTags:Object.freeze(guiZhangManifest.actorTags),
+    assets:Object.freeze({...sourceAssetMap(bundledGuiZhangAssets),...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets}),
+    presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR})}),
+    playback:Object.freeze({manifest:guiZhangManifest,audioManifests:Object.freeze([
+      Object.freeze({activitySlot:0,manifest:guiZhangIntroductionAudio}),
+      Object.freeze({activitySlot:1,manifest:guiZhangBodyguardAudio}),
+    ])}),
+    music:Object.freeze({cues:Object.freeze([
+      Object.freeze({activitySlot:0,trackId:"bgm116",loop:true}),
+      Object.freeze({activitySlot:1,trackId:"bgm024",loop:true}),
+    ]),gain:1}),
   }),
   ...[
     ["family-fuku",familyFukuManifest,familyFukuAudio,bundledFamilyFukuAssets,"FUKU","bgm085"],

@@ -1,0 +1,1328 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_gui_zhang_encounter_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/STREAM/A0167.AFS",
+      "sha256": "9866e5b011c0db4602f6fb92cebb22c3a19623a704152088e7cd4b7cac3ad079"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/A1_BDYGD.SND",
+      "sha256": "ae9e22ee9098efc2a11837fc33cf70f2791dadd6c8074615770ccdb6c896e2ad"
+    },
+    "authManifest": "play/assets/sakuragaoka/gui-zhang/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-event-template.md#gui-zhangs-street-encounter"
+  },
+  "voices": [
+    {
+      "voiceId": "A0167A003",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SOUND/A0167A003.aiff",
+      "nativeMember": "A0167A003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 8192,
+      "nativeSha256": "33418b6bea391f7cb952f590c693b22cdf6fa1c69330773536d07fc52f39a86f",
+      "speakerId": "AKIR",
+      "sourceText": "A bodyguard?",
+      "displayText": "A bodyguard?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-zhang/bodyguard/voice/A0167A003.wav",
+      "byteLength": 32556,
+      "sha256": "c07969314e189596b69d548bc4052a20de19148d861fff5677912dc837e61092"
+    },
+    {
+      "voiceId": "A0167A004",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SOUND/A0167A004.aiff",
+      "nativeMember": "A0167A004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 4096,
+      "nativeSha256": "9352bb12b71d381876238e3434d278b71d4e3026dc5a6aec3f07f5a48a4354e6",
+      "speakerId": "AKIR",
+      "sourceText": "What?!",
+      "displayText": "What?!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-zhang/bodyguard/voice/A0167A004.wav",
+      "byteLength": 16172,
+      "sha256": "c29f94e164fd1093d7fcf73c016ff527a943ec009a1bc592a7e03bacf1363164"
+    },
+    {
+      "voiceId": "A0167A005",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SOUND/A0167A005.aiff",
+      "nativeMember": "A0167A005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 6144,
+      "nativeSha256": "58a8d1870902b795ea4233c300d77a5738a942b36beb7d0d25349dfe5116cafb",
+      "speakerId": "AKIR",
+      "sourceText": "Whatcha' mean?",
+      "displayText": "Whatcha' mean?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-zhang/bodyguard/voice/A0167A005.wav",
+      "byteLength": 24364,
+      "sha256": "efcbf6d84a2ee7fcf30ef86230a2c8c4e37e64f667dcfc46b13c58585d0194f8"
+    },
+    {
+      "voiceId": "A0167B003",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SOUND/A0167B003.aiff",
+      "nativeMember": "A0167B003.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 22528,
+      "nativeSha256": "4f3da519b609458b952564b25d965439d266798c5d0406e464d1dc8d1fd18662",
+      "speakerId": "KISY",
+      "sourceText": "If I continue, then I'll fail＆as your bodyguard.",
+      "displayText": "If I continue, then I'll fail\nas your bodyguard.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 41
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-zhang/bodyguard/voice/A0167B003.wav",
+      "byteLength": 89900,
+      "sha256": "cae90ec2df6a27e080ea7bcdf027caa3c95f965e7eae3928748907c8adcb7c20"
+    },
+    {
+      "voiceId": "A0167B004",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SOUND/A0167B004.aiff",
+      "nativeMember": "A0167B004.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 10240,
+      "nativeSha256": "f0c81a18b542231c1d7c25ab7552c22e9d19f25b7d2af2b176136f1bebc816d2",
+      "speakerId": "KISY",
+      "sourceText": "Father told me to guard you=@",
+      "displayText": "Father told me to guard you...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-zhang/bodyguard/voice/A0167B004.wav",
+      "byteLength": 40748,
+      "sha256": "9ce71b233df73d37b298e6c811bea7d39301998694f625a12b15859e2edd75b1"
+    },
+    {
+      "voiceId": "A0167B005",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SOUND/A0167B005.aiff",
+      "nativeMember": "A0167B005.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 8192,
+      "nativeSha256": "ba5f609a9a49f2aa6a5b6f31555db813ad4c5ff5f221b510066a1feb49e364d4",
+      "speakerId": "KISY",
+      "sourceText": "Calm down.",
+      "displayText": "Calm down.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-zhang/bodyguard/voice/A0167B005.wav",
+      "byteLength": 32556,
+      "sha256": "b2a34fbfd60f394f6d222d2944f1675e477add4b38d511df4d0b23dde5a57cde"
+    },
+    {
+      "voiceId": "A0167B006",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SOUND/A0167B006.aiff",
+      "nativeMember": "A0167B006.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 18432,
+      "nativeSha256": "d8bea0257ca57c9d508546fcdce31dd464f917b1c9cac7eaab657dc394af49d7",
+      "speakerId": "KISY",
+      "sourceText": "If you don't live,＆it'll be a problem for us.",
+      "displayText": "If you don't live,\nit'll be a problem for us.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-zhang/bodyguard/voice/A0167B006.wav",
+      "byteLength": 73516,
+      "sha256": "dfb9578e73ba9d3fa126e88dbd2cfb8e23fd7826806b1c299c069a6d838b377b"
+    },
+    {
+      "voiceId": "A0167B007",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SOUND/A0167B007.aiff",
+      "nativeMember": "A0167B007.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 22528,
+      "nativeSha256": "747c0abc766a6e226ba6c65439b4a754fe14065a6c5ad946f01e8a8b452f632a",
+      "speakerId": "KISY",
+      "sourceText": "You still don't realize＆your role, do you?",
+      "displayText": "You still don't realize\nyour role, do you?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 15
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-zhang/bodyguard/voice/A0167B007.wav",
+      "byteLength": 89900,
+      "sha256": "aa86fc18bf8c257df51861f55adac399000f0142b25a992c9403ae0b610d4286"
+    },
+    {
+      "voiceId": "A0167B008",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SOUND/A0167B008.aiff",
+      "nativeMember": "A0167B008.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 12288,
+      "nativeSha256": "fc13499e14c2c720ebd9fc3789bdf5ad795af388270a6385d7814d223528d8fc",
+      "speakerId": "KISY",
+      "sourceText": "If Lan Di gets that mirror=@",
+      "displayText": "If Lan Di gets that mirror...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-zhang/bodyguard/voice/A0167B008.wav",
+      "byteLength": 48940,
+      "sha256": "85e3c3dff948b152e7e11dbf492cc65293dbf4dd3a7ac6dcbb630feacd999513"
+    },
+    {
+      "voiceId": "A0167B009",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SOUND/A0167B009.aiff",
+      "nativeMember": "A0167B009.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 10240,
+      "nativeSha256": "a53e3b706c83cc98640e14f051e880f94aeed2ca93a6b2d1e698bb2509af13ac",
+      "speakerId": "KISY",
+      "sourceText": "No one can stop him.",
+      "displayText": "No one can stop him.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-zhang/bodyguard/voice/A0167B009.wav",
+      "byteLength": 40748,
+      "sha256": "52c6fb0ee1c3b3ef7ba228efe49d915d9ce67cae26a3f0d4c7b5583f857ca4d4"
+    },
+    {
+      "voiceId": "A0167B010",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SOUND/A0167B010.aiff",
+      "nativeMember": "A0167B010.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 12288,
+      "nativeSha256": "efbdabbf627bc228bc9de7a5b56c3010e4a50b01bf835ef08c6c5aa1e752fc4a",
+      "speakerId": "KISY",
+      "sourceText": "Hurry and find that mirror=@",
+      "displayText": "Hurry and find that mirror...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-zhang/bodyguard/voice/A0167B010.wav",
+      "byteLength": 48940,
+      "sha256": "eda77a5cfb201c0eea616dce7ef636cdf34502929879970f0fde428e53c2ffd7"
+    },
+    {
+      "voiceId": "A0167B011",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SOUND/A0167B011.aiff",
+      "nativeMember": "A0167B011.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 10240,
+      "nativeSha256": "3762565e6eaaa055e872fd659fa55a61312682aa1964d5b87c7598177ca10f77",
+      "speakerId": "KISY",
+      "sourceText": "before they suspect anything.",
+      "displayText": "before they suspect anything.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-zhang/bodyguard/voice/A0167B011.wav",
+      "byteLength": 40748,
+      "sha256": "7acf6e3a3feccbf330c18d83d3242e3e8e7050e16f7dab154fe4110da7ba5c9b"
+    },
+    {
+      "voiceId": "A0167C001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SOUND/A0167C001.aiff",
+      "nativeMember": "A0167C001.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 63488,
+      "nativeSha256": "0bd69973ca6315416047e3c182f92a0d1b5102e11c2cf11ba2023ebc68ac6bc4",
+      "speakerId": "CHAI",
+      "sourceText": "Heeggh. Lan Di-sama=@the Phoenix Mirror?",
+      "displayText": "Heeggh. Lan Di-sama...the Phoenix Mirror?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 15
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 23
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 19
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 35
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-zhang/bodyguard/voice/A0167C001.wav",
+      "byteLength": 253740,
+      "sha256": "5d727468e4803f2baa7c3766b7f95214532a49aa14da8ff47c5e4e8c9479b7cb"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SE/cloths2/furimuki_f01.aiff",
+      "playbackId": 0,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/gui-zhang/bodyguard/sfx/a9040000.wav",
+      "byteLength": 9348,
+      "sha256": "2026b716ba3115748b89ec3ac3b6041824b6ddbba78ee708f62af1fb8dc3756a"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 1,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/gui-zhang/bodyguard/sfx/a9040100.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SE/foot2/RYOASHIKONKURI_1.aiff",
+      "playbackId": 2,
+      "sampleId": 4,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/gui-zhang/bodyguard/sfx/a9040200.wav",
+      "byteLength": 7948,
+      "sha256": "4b8a1601cb8ab62c33b155c5b1db1f94d5826870310533644e52bb0acc7ad84a"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SE/foot2/RYOASHIKONKURI_2.aiff",
+      "playbackId": 3,
+      "sampleId": 5,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/gui-zhang/bodyguard/sfx/a9040300.wav",
+      "byteLength": 7396,
+      "sha256": "c30fec3c0b6c42bdd52350dea3a4168d6bce37af777c236a12e251d89ca3cc8b"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SE/foot2/RYOASHIKONKURI_3.aiff",
+      "playbackId": 4,
+      "sampleId": 6,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/gui-zhang/bodyguard/sfx/a9040400.wav",
+      "byteLength": 8708,
+      "sha256": "871e77161b2a20cd3546e79c2bfbbe70c866d186c049b07d3fd846a1a4141a37"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SE/foot2/RYOASHIKONKURI_4.aiff",
+      "playbackId": 5,
+      "sampleId": 7,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/gui-zhang/bodyguard/sfx/a9040500.wav",
+      "byteLength": 6324,
+      "sha256": "e2f3f48fa7bcc0a93421bb5fcd8081f624aa2ffd6f3ca38d7c6d99118155592d"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 6,
+      "sampleId": 8,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/gui-zhang/bodyguard/sfx/a9040600.wav",
+      "byteLength": 8884,
+      "sha256": "27aa134eef996134d098d0fcfa13980993588765970ac2f8b1ab6b87a03e6bcf"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 7,
+      "sampleId": 9,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/gui-zhang/bodyguard/sfx/a9040700.wav",
+      "byteLength": 8116,
+      "sha256": "55dfb6fd189f5fc6351ee5e21bcc4080e9ffb89caf23307b184fcdd68ac62273"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SE/cloths2/cloths02.aiff",
+      "playbackId": 8,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/gui-zhang/bodyguard/sfx/a9040800.wav",
+      "byteLength": 18260,
+      "sha256": "6eb5936ad7d4db5d50b4e6cbe7b0d3e66b430fef83e3a8dd6158e7f29c85480b"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 9,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/gui-zhang/bodyguard/sfx/a9040900.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SE/swing/swing03.aiff",
+      "playbackId": 10,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/gui-zhang/bodyguard/sfx/a9040a00.wav",
+      "byteLength": 33644,
+      "sha256": "413a08d07fd75774be0f172cee9b9bb40069fee1712acf9d9581400894008ef2"
+    }
+  ]
+}

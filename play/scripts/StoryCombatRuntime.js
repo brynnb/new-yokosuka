@@ -37,6 +37,13 @@ export class StoryCombatRuntime {
       this.actors.begin(owner,definition.actors.map(actor=>actor.tag));owner.actorsBegun=true;
       const controller=this.getController();controller.setFirstPerson(false);
       controller.cameraDistance=Math.max(4,controller.cameraDistance);controller.cameraPitch=.24;
+      // The approach camera can put the opponent under a sidebar or behind
+      // the player. Frame the nearest opponent at acquisition; subsequent
+      // orbiting remains player-controlled, and finish restores the snapshot.
+      const player=view.actors.find(actor=>actor.tag==="AKIR");
+      const nearest=view.actors.filter(actor=>actor.tag!=="AKIR").reduce((best,actor)=>
+        !best||Math.hypot(actor.x-player.x,actor.z-player.z)<Math.hypot(best.x-player.x,best.z-player.z)?actor:best,null);
+      if(nearest)controller.cameraYaw=Math.atan2(player.x-nearest.x,player.z-nearest.z);
       owner.input=new CombatInput({target:this.target,enableToggle:false,getBindings:()=>({
         controls:this.getBinding("cancel"),hand:this.getBinding("combatHand"),leg:this.getBinding("combatLeg"),
         throw:this.getBinding("combatThrow"),guard:this.getBinding("combatGuard"),run:this.getBinding("run"),

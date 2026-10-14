@@ -118,6 +118,16 @@ test("Bunkado handover owns original presentation, not inventory settlement",()=
   }
 });
 
+test("Gui Zhang's movies cannot award combat completion",()=>{
+  const catalog=createScriptEventPresentationCatalog();
+  for(const [part,slot] of [["introduction",0],["bodyguard",1]]){
+    const activity=catalog.activity(`s1.jd00.gui-zhang.${part}`);
+    assert.equal(activity.area,"JD00");assert.equal(activity.durableEffects,"forbidden");
+    assert.equal(activity.returnPlayerState,true);assert.equal(activity.cutscene.packageId,"gui-zhang-street");
+    assert.deepEqual(activity.cutscene.activity,{slot,binding:{primaryPointer:0,secondaryPointer:0}});
+  }
+});
+
 test("runtime dispatches Hato commands through an owned transaction", async () => {
   const { runtime, calls } = harness();
   runtime.begin({ area: "D000", actorCode: "HATO" });

@@ -86,3 +86,22 @@ test("a failed scene can retry after re-entry or reconnect without dispatching e
   await new Promise(resolve => setTimeout(resolve, 0));
   assert.equal(attempts, 2);
 });
+
+test("owned actor staging cannot create a fake exit and replay after cancellation",()=>{
+  let starts=0;
+  const character={id:1,modeRevision:0,playMode:"story",openingCompleted:true};
+  const controller={status:"idle",start:async()=>{starts++;controller.status="running";}};
+  const region={id:"encounter",area:"TEST",min:[0,0,0],max:[2,2,2]};
+  const runtime=new StoryRegionRuntime({controller,getCharacter:()=>character,publishPresence(){},regions:[region]});
+  const frame={area:"TEST",playerPosition:[1,1,1],enabled:true};
+  assert.equal(runtime.update(frame),true);
+  assert.equal(runtime.update({...frame,playerPosition:[9,1,9]}),false); // Private combat/camera pose.
+  assert.equal(runtime.inside.has(region.id),true);
+  controller.status="idle";
+  assert.equal(runtime.update(frame),false); // Restored approach is not a new entry.
+  assert.equal(starts,1);
+  runtime.update({...frame,playerPosition:[9,1,9]}); // Real gameplay movement.
+  assert.equal(runtime.update(frame),true);assert.equal(starts,2);
+  controller.status="running";character.modeRevision++;
+  runtime.update(frame);assert.equal(runtime.inside.size,0); // Real context changes still fence ownership.
+});

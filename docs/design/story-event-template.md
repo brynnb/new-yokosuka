@@ -230,7 +230,8 @@ Do not describe the first conversation as fully animation-faithful.
 | Master Chen's first meeting | Connected four-segment original presentation, plate confirmation and atomic notebook/next-morning home return verified. Real compiler/database checks cover prerequisites, decline, cancellation at every segment and stale acknowledgements. Rendered approach, decline, live cancellation, natural completion, original Chen/Gui Zhang/body/camera presentation, saved home return and reload pass. |
 | Family lead to the antique shop | Connected optional original-voiced Ine-san hint and original SORA/INEK sequence. Compiler/database cancellation and atomic-clue checks pass. Rendered hint/approach, live cancellation/retry, natural completion, saved clue, restored movement and reload without replay pass. |
 | Bunkado sword handguard | Connected original TUBA handover with authoritative once-only possession and notebook settlement. Compiler/database cancellation/item checks and rendered real-door entry, live cancellation/re-entry, natural completion, owned inventory display, restored controls and reload without replay pass. Detailed hand poses remain rough. |
-| Phoenix Mirror search | Missing Gui Zhang's street encounter, return-home investigation, dojo puzzle and mirror recovery. |
+| Gui Zhang's street encounter | Connected original introduction, server-timed nonlethal fight, bodyguard explanation and rooftop Chai shot. Rendered cancellation/re-entry, physical combat inputs, natural ending, notebook and reload pass. Approach bounds, AI/balance and music-start timing are authored. |
+| Phoenix Mirror search | Missing return-home investigation, dojo puzzle and mirror recovery. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
 | Shenmue II reuse and missing-input audit | Pending the connected S1 foundation. |
@@ -1532,3 +1533,42 @@ reloads without replay or duplication. This check passes. Inspected shots show
 Oishi-san, the handguard and the owned inventory; detailed finger fidelity is
 not claimed. A saved unfinished shop arrival is allowed to start its automatic
 event rather than being interrupted by artificial test travel.
+
+## Gui Zhang's street encounter
+
+Official import: `story-s1-gui-zhang-street`. The
+[contemporary GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf),
+printed page 37, places the encounter on the way home after Bunkado. It describes
+a brief fight that cannot be lost, Gui Zhang's explanation and a rooftop
+eavesdropper. Original KSBT cast, movements, cameras and A0167 voices corroborate
+the presentation; the authored Yarn event owns its progression.
+
+| Field | Authored integration |
+| --- | --- |
+| Location / trigger | Enter `s1.jd00.gui-zhang-street` in Sakuragaoka, near the original introduction's Ryo anchor. The approach volume is authored. |
+| Prerequisites | Personal Story Ryo, completed opening, earned Bunkado handover and actual sword_handguard possession. No guessed public-calendar or weather gate. |
+| Actors / props | Original AKIR, KISY / KIS_M (Chen Gui Zhang), and CHAI / CHA_M. Package-owned actors use the existing HUMANS models; they do not become shared street NPCs. |
+| Sequence / timing | KSBT SEQDATA0 (~32 s), thirty seconds of actual server-timed nonlethal fighting, then SEQDATA1 (~69 s). Shared combat moves/basic AI are adaptations. Original final voice and rooftop camera show Chai; a movie acknowledgement cannot substitute for the fight. |
+| Effects | Atomically save the encounter milestone and bodyguard notebook page. No item, yen, persistent HP/XP, calendar or destination change. |
+| Exit / retry | Cancelled or interrupted attempts remain retryable; cancelled presentations grant no clue. Shared cleanup restores avatar, location, camera and controls. Committed reload does not replay the encounter. |
+
+`build:gui-zhang-encounter` pins KSBT.PKS, JD00 MAPINFO, A0167.AFS,
+A1_TAIKE.SND and A1_BDYGD.SND. The shared producers recover both AUTH members,
+M_0167.MOTN, eighteen voices and eighteen sound identities. MAPINFO-associated
+BGM116 / BGM024 reuse existing hash-pinned viewer renders; starting and looping
+them with each scene is an authored timing choice. Borrowed AUTH ordinals have
+explicit zero pointer bindings, not a claim of native-owner reconstruction.
+Local runtime registration is complete; these assets are not published to R2.
+Detailed hands, facial/cloth fidelity and exact battle choreography are not
+claimed.
+
+Compiler/PostgreSQL checks cover missing milestone/item, bounds, cancelled
+introduction and combat, interrupted input, fresh retry tokens, stale readiness
+and scene acknowledgements, cross-character isolation, once-only completion
+and unchanged inventory/calendar/economy. The connected browser check continues
+the earned handguard save, walks into the region, cancels/re-enters, sends real
+combat inputs, naturally finishes the original explanation, then reloads the
+saved clue. Inspected shots show Gui Zhang and rooftop Chai. Initial combat
+camera acquisition faces the nearest opponent without locking subsequent
+orbiting. Region occupancy remains latched while a presentation owns the
+avatar, so private staging poses cannot manufacture a new approach on cancel.

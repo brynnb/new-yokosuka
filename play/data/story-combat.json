@@ -2,6 +2,95 @@
   "schema": "new-yokosuka-authored-story-combat-v1",
   "encounters": [
     {
+      "id": "s1.jd00.gui-zhang-first",
+      "label": "Face Gui Zhang",
+      "area": "JD00",
+      "worldId": "sakuragaoka",
+      "provenance": "Original KSBT introduction's ending positions and exact KISY/KIS_M mapping from chars.csv/HUMANS. Contemporary GameSpot guide p37: brief free battle that cannot be lost. Thirty seconds of server-timed nonlethal fighting, shared moves/basic AI, arena padding and health/speed are authored adaptations. Outcome is practiced, not a defeat or a movie-completion victory.",
+      "sourceActivity": "play/assets/sakuragaoka/gui-zhang/SEQDATA0.AUTH",
+      "sha256": "146b689bcb27206dfcbd4648e34096dfcad5a4b304ba841d58685d264c06c516",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": 9.221811294555664,
+          "y": 0,
+          "z": 25.10110855102539,
+          "health": 100
+        },
+        {
+          "tag": "KISY",
+          "x": 5.160873889923096,
+          "y": 0,
+          "z": 22.554590225219727,
+          "health": 100
+        }
+      ],
+      "actions": [
+        {
+          "input": "hand",
+          "id": "tigerKnuckle",
+          "label": "Tiger Knuckle",
+          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
+          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
+          "durationMs": 634,
+          "startupMs": 134,
+          "range": 1.25,
+          "arcDegrees": 70,
+          "damage": 5,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "leg",
+          "id": "crescentKick",
+          "label": "Crescent Kick",
+          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
+          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
+          "durationMs": 800,
+          "startupMs": 234,
+          "range": 1.55,
+          "arcDegrees": 70,
+          "damage": 6,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "throw",
+          "id": "overthrow",
+          "label": "Overthrow",
+          "playerAnimation": "AKI_AKI_NGS_SEOI",
+          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
+          "durationMs": 1667,
+          "startupMs": 367,
+          "range": 0.9,
+          "arcDegrees": 55,
+          "damage": 12,
+          "guardDamage": 0,
+          "hitStunMs": 1000
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "KISY",
+          "label": "Chen Gui Zhang",
+          "modelCode": "KIS_M",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": 3.360873889923096,
+        "maxX": 11.021811294555665,
+        "minZ": 20.754590225219726,
+        "maxZ": 26.90110855102539
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 1.6,
+      "maxAttackers": 1,
+      "timeoutMs": 120000,
+      "practiceDurationMs": 30000,
+      "inputBufferMs": 400
+    },
+    {
       "id": "s1.jd00.gao-rescue",
       "label": "Save Gao Wen",
       "area": "JD00",

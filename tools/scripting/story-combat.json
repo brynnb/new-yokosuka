@@ -1,6 +1,13 @@
 {
   "schema":"new-yokosuka-authored-story-combat-v1",
   "encounters":[{
+    "id":"s1.jd00.gui-zhang-first","label":"Face Gui Zhang","area":"JD00","worldId":"sakuragaoka",
+    "sourceActivity":"play/assets/sakuragaoka/gui-zhang/SEQDATA0.AUTH","sha256":"146b689bcb27206dfcbd4648e34096dfcad5a4b304ba841d58685d264c06c516","sourceTime":"end",
+    "provenance":"Original KSBT introduction's ending positions and exact KISY/KIS_M mapping from chars.csv/HUMANS. Contemporary GameSpot guide p37: brief free battle that cannot be lost. Thirty seconds of server-timed nonlethal fighting, shared moves/basic AI, arena padding and health/speed are authored adaptations. Outcome is practiced, not a defeat or a movie-completion victory.",
+    "actorDefinitions":[{"actorCode":"KISY","label":"Chen Gui Zhang","modelCode":"KIS_M","activityOnly":true}],
+    "health":{"AKIR":100,"KISY":100},"playerSpeed":2.4,"enemySpeed":1.6,"maxAttackers":1,"timeoutMs":120000,"practiceDurationMs":30000,"arenaPadding":1.8,
+    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+  },{
     "id":"s1.jd00.gao-rescue","label":"Save Gao Wen","area":"JD00","worldId":"sakuragaoka","sourceScene":"s1.jd00.gao-introduction",
     "provenance":"Three opponents and subsequent A QTE: GameSpot Dreamcast guide. Fighter models from original Disc 1 full MT5s, identities corroborated by the character inventory and JD00 EN_HAMA/EN_HATA/EN_RYOU files. Authored roadside poses, rectangular arena, health/speed/basic AI are adaptations, not recovered construction-lot transforms or the native free-battle engine.",
     "health":{"AKIR":100,"TDSI":36,"HTNK":32,"OKYS":28},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":3,"timeoutMs":180000,"arenaPadding":1.5,

@@ -66,8 +66,13 @@ and atomic item/notebook settlement are connected and rendered: real-door
 entry, live cancellation/re-entry, natural completion, owned inventory display,
 restored controls and saved reload pass. Detailed hand poses remain rough.
 Inventory now reads actual saved possessions.
-Gui Zhang's street encounter, the dojo puzzle, Phoenix Mirror recovery and
-later storyline remain unimplemented.
+Gui Zhang's street encounter now connects the handguard to the original
+introduction, a real server-timed nonlethal fight and the original bodyguard /
+rooftop Chai explanation. Rendered cancellation/re-entry, physical combat
+inputs, natural ending, saved notebook and reload pass. Combat balance, entry
+volume and music-start timing are authored adaptations. The return-home
+investigation, dojo puzzle, Phoenix Mirror recovery and later storyline remain
+unimplemented.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

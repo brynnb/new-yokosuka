@@ -33,6 +33,11 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ...[["introduction",0],["bodyguard",1]].map(([part,slot])=>[`s1.jd00.gui-zhang.${part}`,{
+    kind:"native-cutscene",area:"JD00",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:`story-s1-gui-zhang-${part}`,packageId:"gui-zhang-street",worldId:"sakuragaoka",storyPresentation:true,
+      activity:{slot,binding:{primaryPointer:0,secondaryPointer:0}}},
+  }]),
   ...[["arrival",0],["remembrance",1],["phoenix-question",2]].map(([part,slot])=>[`s1.dkty.handguard.${part}`,{
     kind:"native-cutscene",area:"DKTY",durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:`story-s1-bunkado-handguard-${part}`,packageId:"bunkado-handguard",worldId:"dkty",storyPresentation:true,

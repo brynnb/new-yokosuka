@@ -1,0 +1,384 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_gui_zhang_encounter_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/STREAM/A0167.AFS",
+      "sha256": "9866e5b011c0db4602f6fb92cebb22c3a19623a704152088e7cd4b7cac3ad079"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/A1_TAIKE.SND",
+      "sha256": "797b73c37b9e6fa48d125ea15dca8b7f90ee162ce3be61653e4ec3cf22b9ff0c"
+    },
+    "authManifest": "play/assets/sakuragaoka/gui-zhang/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-event-template.md#gui-zhangs-street-encounter"
+  },
+  "voices": [
+    {
+      "voiceId": "A0167A001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SOUND/A0167A001.aiff",
+      "nativeMember": "A0167A001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 18432,
+      "nativeSha256": "294f0943eddae8dc27a4924bb54b338f496e9932a0468ab284d97fd331c133d3",
+      "speakerId": "AKIR",
+      "sourceText": "No way=@you're working with Lan Di?",
+      "displayText": "No way...you're working with Lan Di?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 21
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 17
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-zhang/introduction/voice/A0167A001.wav",
+      "byteLength": 73516,
+      "sha256": "3fdabbc3f406f545e5fbbf6e5ee3968313fbfe3cead96da5b50480b3df33d55a"
+    },
+    {
+      "voiceId": "A0167A002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SOUND/A0167A002.aiff",
+      "nativeMember": "A0167A002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 10240,
+      "nativeSha256": "a5e12365bc13dddc1e03f2ff23b56ecac2191838d73ef843e95ab9bee6e16caa",
+      "speakerId": "AKIR",
+      "sourceText": "Why you!",
+      "displayText": "Why you!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-zhang/introduction/voice/A0167A002.wav",
+      "byteLength": 40748,
+      "sha256": "04b1dbd18d60e567364ba23772e3965398a82c2eea5bbebaadbdf071ce592146"
+    },
+    {
+      "voiceId": "A0167A006",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SOUND/A0167A006.aiff",
+      "nativeMember": "A0167A006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 4096,
+      "nativeSha256": "08f3b5c112c6673a53ff5b30b86099849e4938ef417020046be6cc4fd6429a41",
+      "speakerId": "AKIR",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-zhang/introduction/voice/A0167A006.wav",
+      "byteLength": 16172,
+      "sha256": "bc45082815bae8f60d1231b5746ee5414207f2f55dd48f1193f41333398e9637"
+    },
+    {
+      "voiceId": "A0167B001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SOUND/A0167B001.aiff",
+      "nativeMember": "A0167B001.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 8192,
+      "nativeSha256": "bb3d9d10336b4c4c468ea0c1dbabfee922a60fe2d2e83e900bc9f6e0345093e7",
+      "speakerId": "KISY",
+      "sourceText": "If I was?",
+      "displayText": "If I was?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-zhang/introduction/voice/A0167B001.wav",
+      "byteLength": 32556,
+      "sha256": "2a2bcda240feb947d331882c99fc588fc7a54cef018fefa898ddaa310a248550"
+    },
+    {
+      "voiceId": "A0167B002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SOUND/A0167B002.aiff",
+      "nativeMember": "A0167B002.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 6144,
+      "nativeSha256": "2108821b24ff548582a8c965609338c1d45f400db274c6afcecc93420c4a2911",
+      "speakerId": "KISY",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 34
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-zhang/introduction/voice/A0167B002.wav",
+      "byteLength": 24364,
+      "sha256": "5dd2461bae5d4714993f94d3aff6d167e471ea85a23df8f753586f7a4d039d3c"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SE/cloths2/friction2.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/gui-zhang/introduction/sfx/a9040000.wav",
+      "byteLength": 28780,
+      "sha256": "e448b2a00a9b2cf09a0fc0f937dcd8cfee1b12d8e8fe4c622dd132ffefe12828"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SE/foot2/RYOASHIKONKURI_1.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/gui-zhang/introduction/sfx/a9040100.wav",
+      "byteLength": 7948,
+      "sha256": "4b8a1601cb8ab62c33b155c5b1db1f94d5826870310533644e52bb0acc7ad84a"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SE/foot2/RYOASHIKONKURI_2.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/gui-zhang/introduction/sfx/a9040200.wav",
+      "byteLength": 7396,
+      "sha256": "c30fec3c0b6c42bdd52350dea3a4168d6bce37af777c236a12e251d89ca3cc8b"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SE/foot2/RYOASHIKONKURI_4.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/gui-zhang/introduction/sfx/a9040300.wav",
+      "byteLength": 6324,
+      "sha256": "e2f3f48fa7bcc0a93421bb5fcd8081f624aa2ffd6f3ca38d7c6d99118155592d"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/gui-zhang/introduction/sfx/a9040400.wav",
+      "byteLength": 8884,
+      "sha256": "27aa134eef996134d098d0fcfa13980993588765970ac2f8b1ab6b87a03e6bcf"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/gui-zhang/introduction/sfx/a9040500.wav",
+      "byteLength": 8116,
+      "sha256": "55dfb6fd189f5fc6351ee5e21bcc4080e9ffb89caf23307b184fcdd68ac62273"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/0167/SE/foot2/syueisuriashi2.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 14000,
+      "asset": "public/audio/world/gui-zhang/introduction/sfx/a9040600.wav",
+      "byteLength": 8004,
+      "sha256": "d2e5bb440675d2c3cf8a6fa84810d8713682b46921739a97ff58de5fd87f3be1"
+    }
+  ]
+}

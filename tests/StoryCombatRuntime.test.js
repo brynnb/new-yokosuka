@@ -18,7 +18,7 @@ function harness() {
   const definition=catalog.encounters.find(d=>d.id==="s1.d000.parking-lot");
   const view={id:definition.id,token:"a".repeat(32),ready:false,sequence:0,
     actors:definition.actors.map(actor=>({...actor,yaw:0,maxHealth:actor.health,pose:"stance",poseMs:0}))};
-  return {runtime,view,calls,transaction:{area:"D000"},setPrepare:fn=>{prepare=fn;},advance:()=>{now+=100;}};
+  return {runtime,view,calls,controller,transaction:{area:"D000"},setPrepare:fn=>{prepare=fn;},advance:()=>{now+=100;}};
 }
 
 test("combat presentation sends only bounded intents and restores its owned pose",async()=>{
@@ -31,6 +31,15 @@ test("combat presentation sends only bounded intents and restores its owned pose
   assert.equal(input.action,"leg");assert.ok(Math.hypot(input.moveX,input.moveZ)<=1.00001);
   assert.equal("health" in input,false);assert.equal("position" in input,false);assert.equal("success" in input,false);
   h.runtime.finish(h.transaction);assert.equal(h.runtime.active,null);assert.equal(h.calls.at(-1),"snapshot");
+});
+
+test("combat acquisition initially faces the nearest opponent without locking camera orbit",async()=>{
+  const h=harness(),player=h.view.actors[0];
+  const nearest=h.view.actors.slice(1).sort((a,b)=>Math.hypot(a.x-player.x,a.z-player.z)-Math.hypot(b.x-player.x,b.z-player.z))[0];
+  await h.runtime.show(h.view,h.transaction);
+  assert.equal(h.controller.cameraYaw,Math.atan2(player.x-nearest.x,player.z-nearest.z));
+  h.controller.cameraYaw=.75;h.runtime.update(h.transaction,.1);
+  assert.equal(h.controller.cameraYaw,.75);h.runtime.finish(h.transaction);
 });
 
 test("cancelled actor preparation cannot acquire beneath a newer combat",async()=>{

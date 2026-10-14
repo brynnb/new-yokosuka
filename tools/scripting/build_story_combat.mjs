@@ -25,7 +25,10 @@ const encounters = spec.encounters.map(input => {
     if(createHash("sha256").update(bytes).digest("hex")!==input.sha256)throw new Error(`Changed staging ${input.id}`);
     const track = parseAuthMovement(bytes);
     poses=track.actors.map(actor=>({tag:actor.tag,...evaluateAuthActor(actor,input.sourceTime==="start"?0:actor.duration)}));
-    definitions=nativeActors[input.worldId];
+    // A new authored encounter can borrow an original activity's placement
+    // while introducing a reviewed private cast not present in street schedules.
+    // Keep those definitions on the encounter, not in a global shadow NPC list.
+    definitions=input.actorDefinitions||nativeActors[input.worldId];
   }
   if(poses.length!==Object.keys(input.health).length||poses[0]?.tag!=="AKIR")throw new Error(`Incomplete combat cast ${input.id}`);
   const actors = poses.map(pose => {

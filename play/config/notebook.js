@@ -101,6 +101,7 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.fuku-looking",page:Object.freeze({id:"story-fuku-looking",text:"Ine-san says Fuku-san is looking for me.\n\nLook for him around the dojo."})},
   {flag:"notebook.s1.antique-shop-lead",page:Object.freeze({id:"story-antique-shop-lead",text:"Fuku-san told Ine-san what happened. He doesn't know about the Phoenix Mirror.\n\nDad left something important at an antique shop in Dobuita. Could it be the mirror? Visit Bunkado Antiques."})},
   {flag:"notebook.s1.sword-handguard",page:Object.freeze({id:"story-sword-handguard",text:"Oishi-san at Bunkado Antiques gave me the Hazuki family sword handguard.\n\nDad asked him to polish and keep it safe. It is passed down to the family heir at eighteen.\n\nHe doesn't have the Phoenix Mirror. Return home and ask Fuku-san and Ine-san about the handguard."})},
+  {flag:"notebook.s1.gui-zhang-bodyguard",page:Object.freeze({id:"story-gui-zhang-bodyguard",text:"Gui Zhang confronted me on the way home.\n\nMaster Chen asked him to protect me. He warned me not to rush into danger. Someone was watching us from a rooftop.\n\nReturn home and ask about the sword handguard."})},
 ]);
 
 export function notebookPagesForCharacter(character) {
