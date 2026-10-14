@@ -31,8 +31,12 @@ restoration and reload pass. Receiver/dial choreography remains approximate. The
 original phone-book lookup now continues that lead into a saved Amihama notebook
 page, with rendered book/voice playback, cancellation/re-entry, natural ending,
 restored controls/book picking and reload/repeat decline verified. Its hand
-binding and open/closed timing remain documented adaptations. Harbor travel and
-the later storyline remain unimplemented.
+binding and open/closed timing remain documented adaptations. Original bus
+boarding now connects that earned lead to a saved New Yokosuka Harbor arrival,
+with rendered stay/cancel/retry/completion and reload checks. Named Story travel
+settles the destination with its milestone and fences stale location writers.
+Timetable, fare and the original harbor-arrival movie remain adaptations or
+unimplemented. Goro and the later harbor storyline remain unimplemented.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

@@ -33,6 +33,12 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ["s1.d000.harbor-bus.boarding", {
+    kind:"native-cutscene",area:"D000",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:"story-s1-harbor-bus",packageId:"buss",worldId:"dobuita",storyPresentation:true,
+      // BUSS retains its original pointer binding (unlike normalized 01TEL).
+      activity:{slot:16,binding:{primaryPointer:716815,secondaryPointer:716828}}},
+  }],
   ["s1.d000.amihama-directory.scene", {
     kind:"native-cutscene",area:"D000",durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:"story-s1-amihama-directory",packageId:"phone-book",worldId:"dobuita",storyPresentation:true,

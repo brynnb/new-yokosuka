@@ -158,7 +158,10 @@ export class WorldRuntime {
         await this.load(world, signal, {
           // S1 transitions explicitly carry the native scene/area/entry. S2
           // has a different source contract, so do not infer S1 scene globals.
-          nativeArrival: Number.isInteger(transition?.destination?.scene)
+          // Explicit entry:null marks a reviewed browser-only edge (bus and
+          // manually connected returns). It cannot supply an original entry
+          // word. Missing/malformed fields on a claimed native edge still fail.
+          nativeArrival: Number.isInteger(transition?.destination?.scene) && transition.destination.entry !== null
             ? transition.destination : null,
         });
         this.ensureLoadActive(signal);
@@ -183,6 +186,7 @@ export class WorldRuntime {
         return true;
       },
       onError: (error) => {
+        this.ready = false;
         console.error(error);
         this.showLoadingError("This area couldn’t be loaded.\nPlease try again.");
       },

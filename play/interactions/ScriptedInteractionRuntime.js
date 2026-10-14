@@ -277,4 +277,12 @@ export class ScriptedInteractionRuntime {
       }
     }
   }
+
+  startMapTransition({ transition, root }) {
+    const objectTag = transition?.source?.objectTag;
+    if (this.accountSession.character?.playMode !== "story"
+      || !SERVER_OWNED_STORY_OBJECTS.has(`${this.getWorld().nativeArea}:${objectTag}`)) return false;
+    void this.startObject({ objectSelector:objectTag, objectTag, root, fallback:()=>{} });
+    return true;
+  }
 }

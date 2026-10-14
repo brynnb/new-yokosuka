@@ -3,6 +3,15 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"harbor-bus","actor":"AKIR","presentActors":[],"area":"D000","trigger":"use","object":"BUS_","priority":210,
+      "title":"Bus to New Yokosuka Harbor","bounds":"s1.d000.harbor-bus",
+      "requiredFlags":["story.s1.amihama-directory.completed"],"completedFlag":"story.s1.harbor-arrival.completed","effects":[],
+      "activities":["s1.d000.harbor-bus.boarding"],"voiceIds":[],"destination":"s1.harbor.bus-arrival",
+      "confirmation":{"accept":"Board the bus to Amihama","decline":"Stay in Dobuita"},"optionSelections":[0],
+      "nativeSources":[{"role":"presentation-archive","locator":"disc1/SCENE/01/D000/BUSS.PKS#SEQDATA1.AUTH","sha256":"9a2dfb19a2f7d134ee0b046cfaa6802861590e3918e30fa918eff6809a5be323"}],
+      "provenance":"Guide printed pages 30-31: catch the bus near the tobacco shop after identifying Amihama. Original BUSS boarding variant A, bus/driver/door/body/camera/audio assets; no reconstructed bus timetable. Explicit confirmation and existing browser harbor spawn are exploration adaptations. Destination and personal arrival milestone settle atomically; cancellation saves neither."
+    },
+    {
       "id":"amihama-directory","actor":"AKIR","presentActors":[],"area":"D000","trigger":"use","object":"TBK1","priority":210,
       "title":"Telephone directory — Amihama","bounds":"s1.d000.amihama-directory",
       "requiredFlags":["story.s1.master-chen-phone.completed"],"completedFlag":"story.s1.amihama-directory.completed","effects":["notebook.s1.amihama"],

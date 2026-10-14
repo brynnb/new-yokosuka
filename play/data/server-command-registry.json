@@ -2,6 +2,7 @@
   "schema": "new-yokosuka-command-registry-v1",
   "version": "new-yokosuka-commands-v1",
   "identifierKinds": [
+    {"kind":"story-destination","policy":"closed"},
     {"kind":"combat","policy":"closed"},
     {"kind":"challenge","policy":"closed"},
     {"kind":"story-time","policy":"closed"},
@@ -19,6 +20,9 @@
     {"kind":"activity","policy":"closed"}
   ],
   "capabilities": [
+    {"kind":"bounds","identifier":"s1.d000.harbor-bus","description":"Server-accepted proximity to the Dobuita bus."},
+    {"kind":"activity","identifier":"s1.d000.harbor-bus.boarding","description":"Original boarding movie inside the authored Story travel event."},
+    {"kind":"story-destination","identifier":"s1.harbor.bus-arrival","description":"Reviewed New Yokosuka Harbor arrival; no browser-selected coordinates."},
     {"kind":"bounds","identifier":"s1.d000.amihama-directory","description":"Server-accepted proximity to the Dobuita telephone directory."},
     {"kind":"activity","identifier":"s1.d000.amihama-directory.scene","description":"Original successful directory presentation; no client-owned durable effects."},
     {"kind":"bounds","identifier":"s1.d000.master-chen-phone","description":"Server-accepted Dobuita telephone proximity, use-only."},
@@ -107,6 +111,7 @@
     {"kind":"activity","identifier":"d000.telephone-book.native","description":"Recovered D000 telephone-book specialized activity."}
   ],
   "entries": [
+    {"name":"travel_story","kind":"command","description":"Stages a reviewed personal Story destination in the ordinary atomic event settlement.","parameters":[{"name":"destination","type":"string","identifierKind":"story-destination"}],"authority":"server","wait":"none","cleanup":"transactional","sideEffects":["location"],"dependencies":[]},
     {"name":"start_combat","kind":"command","description":"Begins an ephemeral server-controlled fight and yields validated snapshots until a terminal result.","parameters":[{"name":"combat","type":"string","identifierKind":"combat"}],"authority":"server","wait":"none","cleanup":"event-owned","sideEffects":["player-control"],"dependencies":[]},
     {"name":"combat_result","kind":"function","description":"Reads only the server-computed fight outcome for this event run.","parameters":[{"name":"combat","type":"string","identifierKind":"combat"}],"returnType":"string","authority":"server","wait":"none","cleanup":"none","dependencies":[]},
     {"name":"start_challenge","kind":"command","description":"Starts a registered server-validated timed-input challenge.","parameters":[{"name":"challenge","type":"string","identifierKind":"challenge"}],"authority":"server","wait":"none","cleanup":"event-owned","sideEffects":["player-control"],"dependencies":[]},

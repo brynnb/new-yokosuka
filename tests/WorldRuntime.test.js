@@ -74,6 +74,14 @@ test("world loading carries exact door arrivals, including re-entry into the sam
   assert.deepEqual(arrivals.at(-1), destination);
   await runtime.select(world("next"), { transition: { destination: { disc: 2, area: "AK00" } } });
   assert.equal(arrivals.at(-1), null, "S2 disc metadata must not be reinterpreted as an S1 arrival");
+  await runtime.select(world("bus"), { transition: { destination: {scene:2,area:"MFSY",entry:null,browserSpawn:{position:[130.5,0,140.6],yaw:Math.PI}} } });
+  assert.equal(arrivals.at(-1),null,"explicit browser-only travel must not invent a native entry word");
+});
+
+test("failed world reveal cannot remain ready for gameplay",async()=>{
+  const {runtime}=createRuntime({finishLoading:async()=>{throw Error("reveal failed");}});
+  assert.equal(await runtime.select(world("next")),false);
+  assert.equal(runtime.ready,false);
 });
 
 test("world selection owns clear-load-initialize-reveal ordering and state", async () => {

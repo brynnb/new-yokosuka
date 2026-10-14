@@ -62,9 +62,13 @@ test("server state ownership is prepared before dispatch and released after pres
   await new Promise(resolve => setImmediate(resolve));
   await h.controller.handleYield(yieldMessage("request-1", {type:"line"}, {line:{text:"Hello"}}));
   await started;
+  let ended=false;
+  const runEnded=h.controller.waitForRunEnd(h.controller.active.runId).then(()=>{ended=true;});
+  await Promise.resolve();assert.equal(ended,false);
   h.presentation.commit = () => order.push("cleanup");
   h.controller.advanceLine();
   await h.controller.handleYield(yieldMessage("request-2", {type:"complete"}));
+  await runEnded;assert.equal(ended,true);
   assert.deepEqual(order, ["cleanup", "release"]);
 });
 

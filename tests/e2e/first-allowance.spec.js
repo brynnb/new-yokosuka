@@ -9,6 +9,7 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   test.setTimeout(process.env.NEW_YOKOSUKA_INVESTIGATION_E2E === "true" ? 900_000 : process.env.NEW_YOKOSUKA_KITTEN_E2E === "true" ? 600_000 : freshOpening ? 480_000 : 240_000);
   const errors = [];
   page.on("pageerror", error => errors.push(error.message));
+  if(process.env.NEW_YOKOSUKA_BUS_E2E === "true")page.on("console",message=>{if(message.type()==="error")console.info("Story travel browser error:",message.text());});
   const guestToken = resumeId ? process.env.NEW_YOKOSUKA_STORY_RESUME_TOKEN : randomUUID();
   expect(guestToken).toBeTruthy();
   const auth = await page.request.post("/api/auth/guest", { data: { guestToken } });
@@ -110,6 +111,11 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_BUS_E2E === "true") {
+      await verifyHarborBus(page,testInfo,character);
+      expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+      return;
+    }
     if(process.env.NEW_YOKOSUKA_DIRECTORY_E2E === "true") {
       await verifyAmihamaDirectory(page,testInfo,character);
       expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
@@ -1415,7 +1421,8 @@ async function useStoryInspectable(page,{world,tag,position,expectedChoice='Call
     const life=window.storyProbe.lifecycle;
     if(life.worldRuntime.activeWorld.id!==world)await life.travelToWorld(world);
     life.resetPlayer(life.vectorFromArray(position),0,{persist:false});
-    const target=life.scene.meshes.find(mesh=>mesh.metadata?.interactiveInspectable?.objectTag===tag)?.metadata.interactiveInspectable;
+    const target=life.scene.meshes.map(mesh=>mesh.metadata?.interactiveInspectable || mesh.metadata?.interactiveMapTransition)
+      .find(value=>value?.objectTag===tag || value?.transition?.source.objectTag===tag);
     if(!target)throw Error(`Missing physical story object ${world}/${tag}`);
     const bounds=target.root.getHierarchyBoundingVectors(true),center=bounds.min.add(bounds.max).scale(.5),controller=life.getController();
     controller.setFirstPerson(true);controller.cameraYaw=Math.atan2(position[0]-center.x,position[2]-center.z);
@@ -1424,7 +1431,8 @@ async function useStoryInspectable(page,{world,tag,position,expectedChoice='Call
   },{world,tag,position});
   await page.waitForTimeout(500);
   const point=await page.evaluate(tag=>{
-    const life=window.storyProbe.lifecycle,root=life.scene.meshes.find(mesh=>mesh.metadata?.interactiveInspectable?.objectTag===tag).metadata.interactiveInspectable.root;
+    const life=window.storyProbe.lifecycle,root=life.scene.meshes.map(mesh=>mesh.metadata?.interactiveInspectable || mesh.metadata?.interactiveMapTransition)
+      .find(value=>value?.objectTag===tag || value?.transition?.source.objectTag===tag).root;
     const bounds=root.getHierarchyBoundingVectors(true),center=bounds.min.add(bounds.max).scale(.5),canvas=life.engine.getRenderingCanvas(),rect=canvas.getBoundingClientRect();
     const camera=life.scene.activeCamera,viewProjection=camera.getViewMatrix(true).multiply(camera.getProjectionMatrix(true));
     const candidates=[center],meshes=root.getChildMeshes().filter(m=>m.getTotalVertices()>0);
@@ -1444,14 +1452,51 @@ async function useStoryInspectable(page,{world,tag,position,expectedChoice='Call
       if(screen.z<0||screen.z>1||x<280||x>1025||y<0||y>720)continue;
       // Babylon accepts canvas CSS coordinates, not internal render pixels.
       // Adaptive resolution can change that ratio between two interactions.
-      const pick=life.scene.pick(x-rect.x,y-rect.y,mesh=>!!mesh.metadata?.interactiveInspectable,false,camera);
-      if(pick?.pickedMesh?.metadata?.interactiveInspectable?.objectTag===tag)return{x,y,tag};
+      const pick=life.scene.pick(x-rect.x,y-rect.y,mesh=>!!(mesh.metadata?.interactiveInspectable||mesh.metadata?.interactiveMapTransition),false,camera);
+      const selected=pick?.pickedMesh?.metadata;
+      if(selected?.interactiveInspectable?.objectTag===tag||selected?.interactiveMapTransition?.transition.source.objectTag===tag)return{x,y,tag};
     }
     return{tag:null,center:center.asArray(),camera:camera.position.asArray(),meshes:meshes.map(m=>({name:m.name,pickable:m.isPickable,enabled:m.isEnabled(),visible:m.isVisible}))};
   },tag);
   console.info('Story object pick',point);
   expect(point.tag).toBe(tag);await page.mouse.click(point.x,point.y);
   if(expectedChoice)await expect(page.getByRole('button',{name:expectedChoice,exact:true})).toBeVisible();
+}
+
+async function verifyHarborBus(page,testInfo,character) {
+  expect(character.storyFlags['story.s1.amihama-directory.completed']).toBe(true);
+  expect(character.storyFlags['story.s1.harbor-arrival.completed']).not.toBe(true);
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const bus={world:'dobuita',tag:'BUS_',position:[-47,0,8],expectedChoice:'Board the bus to Amihama'};
+  const idle=()=>expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe('idle');
+  await useStoryInspectable(page,bus);
+  await page.getByRole('button',{name:'Stay in Dobuita',exact:true}).click();await idle();
+  expect((await saved()).character.storyFlags['story.s1.harbor-arrival.completed']).not.toBe(true);
+  await useStoryInspectable(page,bus);await page.getByRole('button',{name:bus.expectedChoice,exact:true}).click();
+  await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==='story-s1-harbor-bus'||window.storyProbe.sceneErrors.length);
+  expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  await page.waitForTimeout(1800);await page.screenshot({path:testInfo.outputPath('harbor-bus-original-boarding.png')});
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel('test-cancel-bus'));await idle();
+  expect((await saved()).character.storyFlags['story.s1.harbor-arrival.completed']).not.toBe(true);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  await useStoryInspectable(page,bus);await page.getByRole('button',{name:bus.expectedChoice,exact:true}).click();
+  await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id==='mfsy'&&window.storyProbe.ready||window.storyProbe.sceneErrors.length,null,{timeout:120_000});
+  expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);await idle();
+  await expect(page.locator('#loading')).toHaveClass(/\bhidden\b/);
+  await page.waitForTimeout(1500);await page.screenshot({path:testInfo.outputPath('harbor-bus-saved-arrival.png')});
+  await expect(page.locator('#loading-error')).not.toBeVisible();
+  const arrival=await saved();expect(arrival.character.worldId).toBe('mfsy');
+  expect(arrival.character.storyFlags['story.s1.harbor-arrival.completed']).toBe(true);
+  expect(arrival.character.yen).toBe(character.yen);expect(arrival.character.currentHp).toBe(character.currentHp);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.actorRoot.position.y)).toBeGreaterThan(-1);
+  await page.reload();await page.keyboard.press('Enter');
+  await page.locator('.account-entry-actions button').filter({hasText:'Quick Play'}).click();await page.locator('.character-slot-button:not(.empty)').first().click();
+  await page.locator('button').filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready,null,{timeout:120_000});
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id)).toBe('mfsy');
+  await expect(page.locator('#loading')).toHaveClass(/\bhidden\b/);
+  expect((await saved()).character.storyFlags['story.s1.harbor-arrival.completed']).toBe(true);
+  expect(await page.evaluate(()=>window.storyProbe.starts.includes('story-s1-harbor-bus'))).toBe(false);
 }
 
 async function verifyMasterChenPhone(page,testInfo,character) {

@@ -53,6 +53,7 @@ export class ScriptEventController {
     this.pendingStart = null;
     this.active = null;
     this.processing = Promise.resolve();
+    this.runEndWaiters = new Map();
   }
 
   get status() {
@@ -445,6 +446,20 @@ export class ScriptEventController {
 
   emitState() {
     this.onStateChanged(this.status);
+    for (const [runId, waiters] of this.runEndWaiters) {
+      if (this.active?.runId === runId) continue;
+      this.runEndWaiters.delete(runId);
+      for (const resolve of waiters) resolve();
+    }
+  }
+
+  waitForRunEnd(runId) {
+    if (this.active?.runId !== runId) return Promise.resolve();
+    return new Promise(resolve => {
+      const waiters = this.runEndWaiters.get(runId) || [];
+      waiters.push(resolve);
+      this.runEndWaiters.set(runId, waiters);
+    });
   }
 }
 

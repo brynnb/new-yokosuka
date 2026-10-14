@@ -52,6 +52,36 @@ function createAdapter(overrides = {}) {
   return { adapter, calls };
 }
 
+test("Story destination waits for scene cleanup and ignores duplicate/stale receipts", async()=>{
+  let release;
+  const ended=new Promise(resolve=>{release=resolve;}),loaded=[],character={id:12,modeRevision:7,scriptStateRevision:4};
+  const {adapter}=createAdapter({worlds:{mfsy:{id:'mfsy'}},
+    accountSession:{character,applyWelcome:value=>Object.assign(character,value)},
+    scriptEventController:{waitForRunEnd:()=>ended},
+    playerRuntime:{controller:{setMovementLocked(){}}},
+    worldRuntime:{select:async(world,options)=>{loaded.push([world,options]);return true;}}});
+  const message={characterId:12,modeRevision:7,runId:99,state:{revision:4,destination:{id:'s1.harbor.bus-arrival',worldId:'mfsy',position:[130.5,0,140.6],yaw:Math.PI}}};
+  const pending=adapter.applyStoryDestination(message);await Promise.resolve();assert.equal(loaded.length,0);
+  release();assert.equal(await pending,true);assert.equal(loaded[0][1].serverDepartureCommitted,true);
+  assert.deepEqual(loaded[0][1].transition.destination.browserSpawn.position,[130.5,0,140.6]);
+  assert.equal(await adapter.applyStoryDestination(message),false);assert.equal(loaded.length,1);
+  character.modeRevision=8;
+  assert.equal(await adapter.applyStoryDestination({...message,state:{...message.state,revision:5}}),false);
+  assert.equal(loaded.length,1);
+});
+
+test("failed Story world loading keeps the committed destination for reload",async()=>{
+  const character={id:12,modeRevision:7,scriptStateRevision:4},locks=[];
+  const {adapter}=createAdapter({worlds:{mfsy:{id:'mfsy'}},
+    accountSession:{character,applyWelcome:value=>Object.assign(character,value)},
+    scriptEventController:{waitForRunEnd:async()=>{}},
+    playerRuntime:{controller:{setMovementLocked:value=>locks.push(value)}},
+    worldRuntime:{select:async()=>false}});
+  await assert.rejects(adapter.applyStoryDestination({characterId:12,modeRevision:7,runId:9,
+    state:{revision:4,destination:{id:'s1.harbor.bus-arrival',worldId:'mfsy',position:[130.5,0,140.6],yaw:Math.PI}}}),/interrupted/);
+  assert.equal(character.worldId,'mfsy');assert.deepEqual(locks,[true,false]);
+});
+
 test("multiplayer adapter owns presence animation revision", () => {
   const { adapter, calls } = createAdapter();
 

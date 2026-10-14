@@ -53,6 +53,10 @@ for (const route of spec.routes) {
       }));
     }
     source={generatedFrom:archiveSources[0],archiveSources,messages};
+  } else if (route.activities && !route.voiceIds.length && route.nativeSources?.length) {
+    // Silent presentations carry their archive provenance directly. Do not
+    // invent a dialogue resource for the player's AKIR tag.
+    source = {archiveSources:[],messages:[]};
   } else {
     ({ NATIVE_DIALOGUE_MESSAGE_RESOURCE: source } = await import(pathToFileURL(path.join(root, "play/data/dialogue/messages", `${route.actor}.generated.js`))));
   }
@@ -134,7 +138,13 @@ for (const route of spec.routes) {
     // A noninteractive original cinematic is presentation inside the same
     // Yarn transaction, not another writable/native progression authority.
     if (!route.activities.length || lines.length || route.staging) throw new Error(`Invalid presentation-only route ${route.id}`);
-    body = `${route.activities.map(id => `<<start_activity "${id}">>`).join("\n")}\n${effects.join("\n")}\n<<complete>>`;
+    if (route.destination && !/^s1\.[a-z0-9.-]+$/.test(route.destination)) throw new Error(`Invalid Story destination ${route.id}`);
+    body = `${route.activities.map(id => `<<start_activity "${id}">>`).join("\n")}\n${route.destination ? `<<travel_story "${route.destination}">>\n` : ""}${effects.join("\n")}\n<<complete>>`;
+    if (route.confirmation) {
+      const { accept, decline } = route.confirmation;
+      if (![accept,decline].every(label=>typeof label==='string' && /^[A-Za-z0-9 .,!?'-]+$/.test(label))) throw new Error(`Invalid confirmation ${route.id}`);
+      body = `-> ${accept}\n    <<jump Present>>\n-> ${decline}\n    <<complete>>\n===\ntitle: Present\n---\n${body}`;
+    }
   } else {
     const begin=route.staging?`<<play_sequence "${route.staging}.start">>`:participants.map(actor=>`<<look_at_actor "${actor}" "AKIR">>`).join("\n");
     const finish=route.staging?`<<play_sequence "${route.staging}.finish">>`:participants.map(actor=>`<<clear_actor_look "${actor}">>`).join("\n");

@@ -1686,6 +1686,7 @@ function createPlayRuntime() {
     vectorFromArray: values => BABYLON.Vector3.FromArray(values),
   });
   multiplayerAdapter = new PlayMultiplayerAdapter({
+    worlds: WORLDS,
     multiplayerRuntime,
     worldRuntime,
     worldLifecycle,

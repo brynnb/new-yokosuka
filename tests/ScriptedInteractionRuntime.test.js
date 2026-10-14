@@ -46,6 +46,15 @@ test("database-declined object scripts fall back to native interaction", async (
   assert.equal(harness.fallbackCount(), 1);
 });
 
+test("translated Story bus clicks are claimed; Free roam retains ordinary travel",async()=>{
+  const target={root:{},transition:{source:{objectTag:'BUS_'}}};
+  const story=createHarness({playMode:'story',result:{outcome:'declined'}});
+  assert.equal(story.runtime.startMapTransition(target),true);
+  await new Promise(resolve=>setImmediate(resolve));assert.equal(story.notices.length,1);
+  const free=createHarness({playMode:'free_roam'});
+  assert.equal(free.runtime.startMapTransition(target),false);
+});
+
 test("translated Story objects never fall back on declined, missing or offline authority", async()=>{
   for(const setup of [{result:{outcome:"declined"}},
     {result:{outcome:"rejected",error:{code:"no_script"}}},

@@ -1,6 +1,9 @@
 {
   "schema": "new-yokosuka-story-regions-v1",
   "regions": [
+    {"id":"s1.d000.harbor-bus","area":"D000","actor":"AKIR","trigger":"use","playMode":"story","openingCompleted":true,
+      "requiredFlags":["story.s1.amihama-directory.completed"],"completedFlag":"story.s1.harbor-arrival.completed",
+      "min":[-54,-1,1],"max":[-44,3,11],"provenance":"Authored boarding proximity around the existing BUS_ placement [-50.346893,0,5.975222]. Original bus timetable is not reconstructed."},
     {"id":"s1.d000.amihama-directory","area":"D000","actor":"AKIR","trigger":"use","playMode":"story","openingCompleted":true,
       "requiredFlags":["story.s1.master-chen-phone.completed"],"completedFlag":"story.s1.amihama-directory.completed",
       "min":[-41,-0.5,7],"max":[-35,2,13],

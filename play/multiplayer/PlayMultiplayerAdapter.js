@@ -1,3 +1,5 @@
+import storyDestinations from "../data/story-destinations.json" with { type:"json" };
+
 export class PlayMultiplayerAdapter {
   constructor({
     multiplayerRuntime,
@@ -20,6 +22,7 @@ export class PlayMultiplayerAdapter {
     refreshLoadingDateTime,
     vectorFromArray,
     arcadeWorldId,
+    worlds,
   }) {
     Object.assign(this, {
       multiplayerRuntime,
@@ -42,6 +45,7 @@ export class PlayMultiplayerAdapter {
       refreshLoadingDateTime,
       vectorFromArray,
       arcadeWorldId,
+      worlds,
     });
     this.animationRevision = 0;
   }
@@ -140,6 +144,12 @@ export class PlayMultiplayerAdapter {
           this.accountSession.applyWelcome({ yen: state.yen, storyFlags: state.flags,
             scriptStateRevision: state.revision,
             ...(Number.isSafeInteger(state.storyTimeMs) ? { storyTimeMs:state.storyTimeMs } : {}) }, this.accountSession.inventory);
+          if (state.destination) {
+            void this.applyStoryDestination(message).catch(error => {
+              console.error("Committed Story destination could not be loaded:",error);
+              this.multiplayerRuntime.chat?.addSystem("Your Story arrival is saved. Reload to continue at the destination.");
+            });
+          }
         }
       },
       onScriptEventRejected: message => (
@@ -195,6 +205,13 @@ export class PlayMultiplayerAdapter {
   }
 
   onConnected(reconnected) {
+    const character = this.accountSession.character;
+    if (reconnected && character?.playMode === "story" && this.worlds?.[character.worldId]
+      && character.worldId !== this.worldRuntime.activeWorld.id) {
+      // A receipt lost with the socket is recovered from the persisted welcome.
+      void this.loadStoryArrival({worldId:character.worldId,position:[character.x,character.y,character.z],yaw:character.yaw},false)
+        .catch(error=>console.error("Saved Story arrival could not be restored:",error));
+    }
     if (!reconnected || this.worldRuntime.activeWorld.id !== this.arcadeWorldId) {
       return;
     }
@@ -214,5 +231,38 @@ export class PlayMultiplayerAdapter {
     this.forkliftAssembly.network.syncVisibility();
     this.forkliftAssembly.cargo.handleDisconnect();
     this.scheduledActorNetworkState.clear();
+  }
+
+  async applyStoryDestination(message) {
+    const identity = `${message.characterId}:${message.modeRevision}:${message.state.revision}`;
+    if (this.storyDestinationReceipt === identity) return false;
+    const destination = storyDestinations.destinations.find(value=>value.id===message.state.destination.id);
+    if (!destination || JSON.stringify([destination.worldId,destination.position,destination.yaw])
+      !== JSON.stringify([message.state.destination.worldId,message.state.destination.position,message.state.destination.yaw])) {
+      throw new Error("Unrecognized Story destination receipt");
+    }
+    this.storyDestinationReceipt = identity;
+    await this.scriptEventController.waitForRunEnd(message.runId);
+    const character = this.accountSession.character;
+    if (!character || character.id !== message.characterId || character.modeRevision !== message.modeRevision
+      || character.scriptStateRevision !== message.state.revision) return false;
+    this.accountSession.applyWelcome({worldId:destination.worldId,x:destination.position[0],y:destination.position[1],z:destination.position[2],yaw:destination.yaw});
+    return this.loadStoryArrival(destination,true);
+  }
+
+  async loadStoryArrival(destination,serverDepartureCommitted) {
+    const world = this.worlds[destination.worldId];
+    if (!world) throw new Error(`Unknown Story arrival world ${destination.worldId}`);
+    this.playerRuntime.controller?.setMovementLocked(true);
+    try {
+      const loaded = await this.worldRuntime.select(world,{
+        serverDepartureCommitted,persistLocation:false,
+        transition:{destination:{worldId:destination.worldId,scene:destination.scene,area:destination.area,entry:destination.entry,
+          browserSpawn:{position:destination.position,yaw:destination.yaw}}},
+      });
+      if (!loaded) throw new Error("Story destination load was interrupted");
+      this.multiplayerRuntime.publishPresence(true);
+      return true;
+    } finally { this.playerRuntime.controller?.setMovementLocked(false); }
   }
 }

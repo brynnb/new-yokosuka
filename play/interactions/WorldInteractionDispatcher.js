@@ -309,6 +309,7 @@ export class WorldInteractionDispatcher {
     if (horizontalDistance(this.getActorPosition(), position)
       > INTERACTION_DISTANCE) return;
     if (targets.mapTransition) {
+      if (this.scriptedInteractions.startMapTransition?.(targets.mapTransition)) return;
       if (targets.door) {
         this.travelTransitions.beginDoor(
           targets.door,

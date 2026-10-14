@@ -222,7 +222,8 @@ Do not describe the first conversation as fully animation-faithful.
 | Xia Xiu Yu / Chinese-letter translation | Connected real-door entry, original TOKI actors/voices/cameras, cancellation/re-entry, natural ending, two notebook pages, restored arrival/camera/controls and saved reload verified. Compiler/database possession/presence/hours, stale acknowledgement, repeat and personal-isolation checks pass. Letter attachment/fold data is reused; complete hand/finger fidelity is not claimed. |
 | Telephone passwords / Warehouse No. 8 lead | Both real-phone clicks, original initial voice playback, wrong answer/leave, cancellation after the first correct answer, retry, saved warehouse notebook, restored controls, reload and no native fallback verified in the browser. All four reciprocal pair orientations, proximity, stale replies, shared once-only settlement and personal isolation pass compiler/database tests. Receiver/dial choreography remains approximate. |
 | Telephone directory / Amihama | Real TBK1 use, original successful 01TEL camera/body/voices, visibly textured open book, cancellation/re-entry, natural completion, saved Amihama page, restored book/player/controls, reload and repeat decline verified. Compiler/database proximity, stale acknowledgement, once-only settlement, personal isolation and legacy candidate-chain checks pass. Book hand binding/swap timing are explicit adaptations. Harbor progression remains missing. |
-| Harbor warehouses / Master Chen / Phoenix Mirror | Missing connected authored progression. |
+| Bus / first harbor arrival | Original BUSS boarding connected to a physical bus click after the earned Amihama lead. Stay, cancellation/re-entry, natural boarding, atomic harbor location/milestone, controls and saved reload verified. Timetable, fare and original harbor arrival movie are not reproduced; existing browser spawn is reused. |
+| Harbor Goro / warehouses / Master Chen / Phoenix Mirror | Missing connected authored progression beyond the saved harbor arrival. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
 | Shenmue II reuse and missing-input audit | Pending the connected S1 foundation. |
@@ -983,8 +984,8 @@ is a wrist and must not be described as a foot.
 
 The new asset catalogs reproduce byte-for-byte through the canonical producers.
 New model/voice assets are local and registered, not published to R2.
-The password telephone call and directory lookup are connected below; the
-subsequent harbor sequence remains unimplemented.
+The telephone call, directory lookup and bus boarding are connected below;
+subsequent harbor encounters remain unimplemented.
 
 ## Xia Xiu Yu translates the letter
 
@@ -1080,7 +1081,7 @@ Telephone** is intentionally neutral, not a guessed character identity.
 The number-selection menu, held gesture/camera and free public call are explicit
 prototype adaptations. This is not a reconstructed dial pad or complete original
 telephone animation. The successful phone-book lookup is connected below;
-travel to Amihama remains the next step. `--voices --voice-route <route-id>` on the
+travel to Amihama is connected below. `--voices --voice-route <route-id>` on the
 investigation producer exports just the newly required voices while regenerating
 the complete official catalog, avoiding repeated encoding of earlier chapters.
 
@@ -1146,3 +1147,63 @@ The real server candidate-chain test also imports both directory scripts:
 Story uses the authored event, while the legacy SA1071 lookup is now Free
 roam-only. Passing a completed Story event cannot launch the legacy scene.
 Assets/imports are local, not published to production or R2.
+
+## Bus to New Yokosuka Harbor
+
+Official import: `story-s1-harbor-bus`. The [GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf)
+(printed pages 30–31) places this after identifying Amihama, before the first
+harbor encounter with Goro. The original BUSS boarding presentation already
+exists; this connects it to authored progression, not its native bus controller.
+
+| Field | Implementation |
+| --- | --- |
+| Location | Existing Dobuita `BUS_` at the roadside bus stop near the tobacco shop. |
+| Prerequisites | Story Ryo, opening complete, saved directory result; first harbor-arrival milestone unfinished. |
+| Trigger | Click the visible bus inside a server-accepted boarding proximity region. |
+| Player setup | Confirm boarding; the existing cinematic owner stages original Ryo and bus poses. |
+| Characters | Ryo and the original bus-driver package actor. Other players are not moved. |
+| Props | Existing world bus, with original moving-door cues. Borrowed visibility/picking/door state is restored on cancellation. |
+| Action sequence | Board or stay → original boarding movie → one authoritative harbor arrival → load the shared harbor. |
+| Dialogue | Authored confirmation labels; the chosen original boarding movie contains sound rather than spoken dialogue. |
+| Timing | Original 325-frame BUSS variant A. No inferred timetable or pretend wait for a scheduled bus. |
+| Camera shots | Original boarding camera. Harbor exploration starts at the established browser bus destination. |
+| Weather and lighting | Preserve personal date/time and current environment policy; no forced calendar or weather jump. |
+| Audio | Existing BUSS original sound pack. No new voice lines or invented music. |
+| Interactive challenge | Boarding confirmation, not a QTE. Staying leaves progression unchanged. |
+| Completion effects | Atomically save `story.s1.harbor-arrival.completed` and the reviewed `mfsy` arrival pose. No reward, fare, inventory or native-bank mutation. |
+| Exit behavior | Shared New Yokosuka Harbor at `[130.5, 0, 140.6]`, yaw π, restored control. This spawn is an existing exploration adaptation, not an extracted original arrival shot. |
+| Skip, failure and replay | Cancelled/failed boarding remains retryable. A completed/explicitly skipped movie settles once. Loading failure after settlement retains the harbor save for reload. Completed boarding does not repeat. |
+
+The named `travel_story` effect uses the existing Yarn transaction, not a
+second travel save. The reviewed destination catalog supplies server-owned
+coordinates; the browser cannot select a replacement destination. Script
+revision fencing rejects older periodic location flushes. The live connection
+reserves its first arrival, rejects stale/foreign-room packets and publishes
+the reviewed pose. Reconnect rejects an old room's first presence and restores
+the location from the authoritative welcome. Mode switching preserves separate
+Story and Free roam contexts.
+
+The browser waits until the event's presentation releases ownership before
+loading the committed destination. `entry:null` explicitly distinguishes a
+browser-only transition from an exact original scene/area/entry request. Missing
+fields on a claimed native transition still fail; no original entry number is
+invented. Failed world loading cannot leave the world ready for gameplay.
+
+`NEW_YOKOSUKA_BUS_E2E=true` resumes the genuinely earned directory checkpoint.
+It covers real bus picking, staying, cancellation/re-entry, natural boarding,
+saved location/flag/balance, unlocked control and reload without replay.
+Inspected captures show Ryo inside the original bus and the rendered harbor.
+The test now waits for the loading cover to disappear: an earlier ready-only
+check incorrectly passed while the loading UI displayed an error.
+
+Compiler/database tests cover proximity, cancellation, stale acknowledgements,
+atomic settlement, late position writes and mode round trips. The PostgreSQL
+race test confirms a location writer is blocked on the specific character row,
+commits a newer destination/revision under that lock, then proves the writer
+rechecks the revision after waking rather than using its older SQL snapshot.
+An ordinary movement write at the current revision still succeeds. Live-hub tests
+cover duplicate receipts and reserved/reconnected arrival fencing. Client tests
+cover presentation-release ordering and failed load recovery. The broader
+store suite has a legacy arcade-import fixture failure, reproduced using the
+pre-change store code against the same isolated database; it is not weakened
+or counted as passing. No changes are deployed or assets published.
