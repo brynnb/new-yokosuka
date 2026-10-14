@@ -59,9 +59,9 @@ for (const route of spec.routes) {
       }));
     }
     source={generatedFrom:archiveSources[0],archiveSources,messages};
-  } else if (route.activities && !route.voiceIds.length && route.nativeSources?.length) {
-    // Silent presentations carry their archive provenance directly. Do not
-    // invent a dialogue resource for the player's AKIR tag.
+  } else if ((route.activities || route.yarnTemplate) && !route.voiceIds.length && !route.leadInVoiceIds?.length && route.nativeSources?.length) {
+    // Silent presentation and explicitly authored text carry their reviewed
+    // source provenance directly. Do not invent an AKIR voice resource.
     source = {archiveSources:[],messages:[]};
   } else {
     ({ NATIVE_DIALOGUE_MESSAGE_RESOURCE: source } = await import(pathToFileURL(path.join(root, "play/data/dialogue/messages", `${route.actor}.generated.js`))));
@@ -110,6 +110,11 @@ for (const route of spec.routes) {
     if (!/^story-[a-z0-9-]+\.yarn$/.test(route.yarnTemplate) || lines.length || !route.staging) throw new Error(`Invalid authored Yarn template ${route.id}`);
     body = fs.readFileSync(path.join(import.meta.dirname, route.yarnTemplate), "utf8")
       .replace(/\{\{voice:([A-Z0-9]+)\}\}/g, (_, id) => dialogueLines([id])[0])
+      .replace(/\{\{text:([a-z]+)\}\}/g, (_, key) => {
+        const text=route.authoredText?.[key];
+        if(typeof text!=="string"||!text.trim()||/[\n\r<>#\[\]{}]/.test(text))throw Error(`Missing or unsafe authored text ${route.id}/${key}`);
+        return text;
+      })
       .replaceAll("{{staging}}", route.staging)
       .replaceAll("{{effects}}", effects.join("\n"));
     if (body.includes("{{")) throw new Error(`Unresolved Yarn template reference ${route.id}`);
@@ -165,7 +170,7 @@ for (const route of spec.routes) {
   // Conditional early endings jump to an actual terminal node instead.
   const sourceText = `title: Start\ntags: adaptation story disc${disc} ${route.area} ${route.actor}\n---\n<<if ${gates.join(" || ")}>>\n    <<pass_trigger>>\n<<endif>>\n${body}\n===\n${route.combat?"title: Done\n---\n<<complete>>\n===\n":""}`;
   imports.push({ Slug: `story-s1-${route.id}`, Title: route.title,
-    Description: route.provenance || spec.provenance, Summary: route.navigation?"Original district geometry, actors and voices; authored server-controlled patrol avoidance. Real door use settles arrival; capture advances the personal calendar and returns to the gate.":route.combat?"Original introduction, server-controlled fight, original clue dialogue. No movie-completion victory or currency/item reward.":route.challenge ? "Personal voiced encounter; explicit server-validated QTE before clue settlement. Authored staging; no item or currency reward." : route.activities ? "Original noninteractive presentation; completion or explicit skip settles the personal milestone/notebook through Yarn. Cancellation or preparation failure settles nothing." : "Personal investigation conversation; original voiced lines, authored sequence, existing NPC facing and gameplay camera. No item or currency reward.",
+    Description: route.provenance || spec.provenance, Summary: route.authoredText ? "Original object use with authored unvoiced captions and inspection staging. Explicit choice and final acknowledgement settle personal inventory/notebook through Yarn; cancellation grants nothing." : route.navigation?"Original district geometry, actors and voices; authored server-controlled patrol avoidance. Real door use settles arrival; capture advances the personal calendar and returns to the gate.":route.combat?"Original introduction, server-controlled fight, original clue dialogue. No movie-completion victory or currency/item reward.":route.challenge ? "Personal voiced encounter; explicit server-validated QTE before clue settlement. Authored staging; no item or currency reward." : route.activities ? "Original noninteractive presentation; completion or explicit skip settles the personal milestone/notebook through Yarn. Cancellation or preparation failure settles nothing." : "Personal investigation conversation; original voiced lines, authored sequence, existing NPC facing and gameplay camera. No item or currency reward.",
     NativeSources: [...(source.archiveSources||[source.generatedFrom]).map(info=>({role:"dialogue",locator:`${info.archive}#${route.actor}/${route.id}`,sha256:info.sha256})), ...(route.nativeSources || [])],
     SourceText: sourceText, Triggers: [{ nodeId: "Start", kind: route.trigger || "talk", area: route.area, ...(route.object ? {object:route.object} : route.trigger ? {} : { actor: route.actor }), priority: route.priority ?? 200 }],
     TestFixtures: [{ Name: "Eligible personal investigation", StartNode: "Start", Fixture: {
@@ -191,7 +196,7 @@ fs.writeFileSync(path.join(root, "play/data/authored-story-talks.json"), JSON.st
   talks: [...new Map(spec.routes.filter(route => !route.trigger || route.blockNativeTalk)
     .map(({ area, actor }) => [`${area}:${actor}`,{area,actor}])).values()],
   objects: [...new Map(spec.routes.filter(route => route.trigger === "use")
-    .map(({area,object})=>[`${area}:${object}`,{area,object}])).values()],
+    .map(({area,object,objectLabel})=>[`${area}:${object}`,{area,object,...(objectLabel?{label:objectLabel}:{})}])).values()],
 }, null, 2) + "\n");
 if (process.argv.includes("--voices")) {
   // The voice pack CLI interprets no --voice-id arguments as the full corpus.

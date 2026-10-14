@@ -1,6 +1,12 @@
 {
   "schema": "new-yokosuka-story-regions-v1",
   "regions": [
+    {"id":"s1.jomo.iwao-key","area":"JOMO","actor":"AKIR","trigger":"use","playMode":"story","openingCompleted":true,
+      "requiredFlags":[],"completedFlag":"story.s1.iwao-key.completed","min":[0.4,-0.5,-2],"max":[3.6,2,1.1],
+      "provenance":"Use-only proximity around original IWWH drawer and ihko/KAGI case [2.088,0.27,-0.4905]. Existing contained-object picking requires opening the drawer. Key can be obtained early; no invented crest prerequisite."},
+    {"id":"s1.jhd0.sword-case","area":"JHD0","actor":"AKIR","trigger":"use","playMode":"story","openingCompleted":true,
+      "requiredFlags":[],"completedFlag":"story.s1.dojo-sword-case.completed","min":[8.7,0,-27.1],"max":[12,3,-23.3],
+      "provenance":"Use-only proximity around original KHKS [10.46,1.0576,-25.20]; requires the actual saved mysterious key. No automatic unlock on entering the dojo."},
     {"id":"s1.jomo.ine-family-crest","area":"JOMO","actor":"AKIR","playMode":"story","openingCompleted":true,
       "requiredFlags":["story.s1.fuku-handguard-home.completed"],"completedFlag":"story.s1.ine-family-crest.completed",
       "min":[-6,-0.5,-3],"max":[-2.5,2,1],"provenance":"Authored altar-room approach around original A01136 Ryo [-4.025378,0.013748,-1.656779]. Original embedded family-crest presentation, not a recovered native trigger."},

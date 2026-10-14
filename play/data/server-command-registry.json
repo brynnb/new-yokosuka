@@ -20,6 +20,12 @@
     {"kind":"activity","policy":"closed"}
   ],
   "capabilities": [
+    {"kind":"bounds","identifier":"s1.jomo.iwao-key","description":"Accepted Iwao-room key-case proximity, use-only."},
+    {"kind":"sequence","identifier":"s1.jomo.iwao-key.start","description":"Authored original-room key inspection; no item settlement."},
+    {"kind":"sequence","identifier":"s1.jomo.iwao-key.finish","description":"Restore the player's key-case approach."},
+    {"kind":"bounds","identifier":"s1.jhd0.sword-case","description":"Accepted original dojo sword-case proximity, use-only."},
+    {"kind":"sequence","identifier":"s1.jhd0.sword-case.start","description":"Authored original dojo sword inspection; no item settlement."},
+    {"kind":"sequence","identifier":"s1.jhd0.sword-case.finish","description":"Restore the player's sword-case approach."},
     {"kind":"sequence","identifier":"s1.jomo.fuku-handguard-home.start","description":"Authored private foyer cast for the original handguard referral."},
     {"kind":"sequence","identifier":"s1.jomo.fuku-handguard-home.finish","description":"Restore handguard referral presentation and player controls."},
     {"kind":"bounds","identifier":"s1.jomo.ine-family-crest","description":"Accepted altar-room approach after Fuku's handguard referral."},

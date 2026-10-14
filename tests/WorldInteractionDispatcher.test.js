@@ -107,6 +107,16 @@ test("dispatcher owns its pointer observer lifecycle", () => {
   assert.equal(harness.observable.removed, observer);
 });
 
+test("a contained prop cannot steal a closed drawer's interaction ray",()=>{
+  const h=createHarness(),drawer={state:"closed"};
+  const parent={metadata:{interactiveDrawer:drawer}},root={parent};
+  const content={metadata:{interactiveInspectable:{root}}};
+  assert.equal(h.dispatcher.isInteractiveMesh(content),false);
+  assert.equal(h.dispatcher.isInteractiveMesh(parent),true);
+  drawer.state="opening";assert.equal(h.dispatcher.isInteractiveMesh(content),false);
+  drawer.state="open";assert.equal(h.dispatcher.isInteractiveMesh(content),true);
+});
+
 test("an NPC pick takes precedence over world-object routing", () => {
   const harness = createHarness();
   const npc = {

@@ -2,6 +2,7 @@ import { hasNativeDialogueSelector } from "../dialogue/NativeDialogueSelector.js
 import { isWithinDialogueRange } from "../dialogue/DialogueProximity.js";
 import { playerWorldInteractionAllowed } from "./PlayerWorldInteractionPolicy.js";
 import authoredStoryTalks from "../data/authored-story-talks.json" with { type: "json" };
+import {containerInteractionAllowed} from "../../src/JomoContainerOwnership.js";
 
 const SERVER_OWNED_STORY_TALKS = new Set(authoredStoryTalks.talks.map(talk => `${talk.area}:${talk.actor}`));
 const SERVER_OWNED_STORY_OBJECTS = new Set(authoredStoryTalks.objects.map(object => `${object.area}:${object.object}`));
@@ -232,6 +233,12 @@ export class ScriptedInteractionRuntime {
 
   async startObject({ objectSelector, objectTag, root, fallback }) {
     if (!this.canStart()) return;
+    // Contained objects may be picked through an opaque drawer by an
+    // interaction-only ray. Keep normal inspection behind its actual opening;
+    // do not change native room state or grant a quest item from this check.
+    if(!containerInteractionAllowed(root)){
+      this.transientNotice.show("Open the drawer first.");return;
+    }
     if (this.scriptEventController.status !== "idle") {
       this.transientNotice.show("Finish the current interaction first.");
       return;

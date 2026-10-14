@@ -77,8 +77,14 @@ rendered cancellation/re-entry, real altar-room door use and walking, natural
 scene completion, saved independent notebook pages, restored controls and
 reload pass. Fuku's held gestures/close-up and detailed handguard handling remain
 adaptations. Shared sliding collision now binds the moving leaf independently.
-The room/key investigation, dojo puzzle, Phoenix Mirror recovery and later
-storyline remain unimplemented.
+Iwao's key and the dojo sword case now have original-object use and independent
+saved possessions through shared authored pickup choices. Connected rendered
+drawer/case use, leave/cancel/retry, inventory/notebook settlement, unlocked
+controls and reload without duplicate grants pass, alongside compiler/database
+checks. Their captions/cameras are authored and detailed lid/hand choreography
+is omitted. The scroll/switch puzzle,
+basement investigation, Phoenix Mirror recovery and later storyline remain
+unimplemented.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

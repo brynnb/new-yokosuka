@@ -1,6 +1,10 @@
 import { DRAWER_OPEN_DISTANCE } from "./RuntimeObjectAnimation.js";
 import { JOMO_POSITION_X_PAIRS } from "./generated/JomoObjectActionBindings.js";
 import { oldWarehouseDoorRole } from "./OldWarehouseDoors.js";
+import authoredStoryObjects from "../play/data/authored-story-talks.json" with {type:"json"};
+
+const STORY_OBJECT_LABELS = new Map(authoredStoryObjects.objects.filter(object=>object.label)
+  .map(object=>[`${object.area}:${object.object}`,object.label]));
 
 // The native selector trace proves that these paired leaves translate on X.
 // The SCN3 action-route number is not an MT5 node flag, so pair it with the
@@ -426,6 +430,12 @@ export function jomoObjectBehavior(model, objectTag, evidence = {}) {
       label: INSPECT_LABEL_BY_TAG[objectTag] || "Examine",
     };
   }
+  // Ordinary authored object use shares this classifier with gameplay and
+  // scenery preparation, so a quest prop stays individually pickable rather
+  // than being silently baked into static scenery. Its Yarn route owns state.
+  const sourceArea=/^S[1-3]_([A-Z0-9]{4})_/.exec(model)?.[1];
+  const storyLabel=STORY_OBJECT_LABELS.get(`${sourceArea}:${objectTag}`);
+  if(storyLabel)return {kind:"inspect",label:storyLabel,evidence:"authored-story-talks.json"};
   // Every live JOMO TASK tag identifies an authored scene object even when
   // its exact story-state callback has not yet been decoded. Keep those
   // objects clickable without inventing mechanical motion. This is

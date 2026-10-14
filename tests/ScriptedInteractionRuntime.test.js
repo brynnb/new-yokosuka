@@ -46,6 +46,17 @@ test("database-declined object scripts fall back to native interaction", async (
   assert.equal(harness.fallbackCount(), 1);
 });
 
+test("contained objects require their drawer to be open before any script or fallback",async()=>{
+  const h=createHarness({result:{outcome:"declined"}});
+  const drawer={state:"closed"},root={parent:{metadata:{interactiveDrawer:drawer}}};
+  await h.runtime.startObject({objectSelector:"ihko",root,fallback:h.fallback});
+  assert.equal(h.fallbackCount(),0);assert.deepEqual(h.notices,["Open the drawer first."]);
+  drawer.state="opening";await h.runtime.startObject({objectSelector:"ihko",root,fallback:h.fallback});
+  assert.equal(h.fallbackCount(),0);
+  drawer.state="open";await h.runtime.startObject({objectSelector:"ihko",root,fallback:h.fallback});
+  assert.equal(h.fallbackCount(),1);
+});
+
 test("translated Story bus clicks are claimed; Free roam retains ordinary travel",async()=>{
   const target={root:{},transition:{source:{objectTag:'BUS_'}}};
   const story=createHarness({playMode:'story',result:{outcome:'declined'}});

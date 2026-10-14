@@ -104,6 +104,8 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.gui-zhang-bodyguard",page:Object.freeze({id:"story-gui-zhang-bodyguard",text:"Gui Zhang confronted me on the way home.\n\nMaster Chen asked him to protect me. He warned me not to rush into danger. Someone was watching us from a rooftop.\n\nReturn home and ask about the sword handguard."})},
   {flag:"notebook.s1.ine-handguard",page:Object.freeze({id:"story-ine-handguard",text:"Fuku-san doesn't recognize the sword handguard.\n\nHe suggested asking Ine-san in the altar room."})},
   {flag:"notebook.s1.hazuki-family-crest",page:Object.freeze({id:"story-hazuki-family-crest",text:"Snow ring, two stars, one sword — the Hazuki family crest.\n\nIne-san thinks Dad may have left a clue connecting the handguard and the mirror. Search his room and the dojo."})},
+  {flag:"notebook.s1.mysterious-key",page:Object.freeze({id:"story-mysterious-key",text:"Found a small key inside the gray case in Dad's drawer.\n\nCould it open the long locked case in the dojo?"})},
+  {flag:"notebook.s1.dojo-sword",page:Object.freeze({id:"story-dojo-sword",text:"The mysterious key opened the long sword case in the dojo.\n\nA sword and the family handguard. Look behind the two hanging scrolls opposite the dojo entrance."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

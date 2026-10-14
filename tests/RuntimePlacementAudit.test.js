@@ -5,7 +5,18 @@ import {
   auditRuntimePlacementRoots,
   inspectRuntimePlacementRoot,
   summarizeRuntimePlacementAudit,
+  runtimePlacementBounds,
 } from "../src/RuntimePlacementAudit.js";
+
+test("geometry-only bounds exclude empty control nodes and report empty hierarchies",()=>{
+  const engine=new BABYLON.NullEngine(),scene=new BABYLON.Scene(engine);
+  const control=new BABYLON.Mesh("empty-control",scene);
+  assert.equal(runtimePlacementBounds(control),null);
+  const body=BABYLON.MeshBuilder.CreateBox("body",{},scene);body.parent=control;body.position.set(5,2,6);
+  const bounds=runtimePlacementBounds(control);
+  assert.deepEqual(bounds.min.asArray(),[4.5,1.5,5.5]);assert.deepEqual(bounds.max.asArray(),[5.5,2.5,6.5]);
+  scene.dispose();engine.dispose();
+});
 
 function fixturePlacement() {
   return {

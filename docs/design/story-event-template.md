@@ -232,7 +232,8 @@ Do not describe the first conversation as fully animation-faithful.
 | Bunkado sword handguard | Connected original TUBA handover with authoritative once-only possession and notebook settlement. Compiler/database cancellation/item checks and rendered real-door entry, live cancellation/re-entry, natural completion, owned inventory display, restored controls and reload without replay pass. Detailed hand poses remain rough. |
 | Gui Zhang's street encounter | Connected original introduction, server-timed nonlethal fight, bodyguard explanation and rooftop Chai shot. Rendered cancellation/re-entry, physical combat inputs, natural ending, notebook and reload pass. Approach bounds, AI/balance and music-start timing are authored. |
 | Return-home handguard / family crest | Connected original voiced Fuku referral, physical altar-room door/approach and embedded Ine-san presentation. Rendered cancellation/re-entry, natural scene ending, independent notebook settlement, restored controls and reload pass. Held Fuku gestures, close-up and handguard handling are adaptations. |
-| Phoenix Mirror search | Missing the room/key investigation, dojo puzzle and mirror recovery. |
+| Iwao's key / dojo sword case | Connected real drawer/case picking, explicit leave/pickup choices, live cancellation/retry, saved inventory/notebook and reload without duplicate grants pass in the browser. Compiler/database proximity, key prerequisite, stale acknowledgement and character isolation checks pass. Captions/cameras are authored; detailed lid/hand choreography remains omitted. |
+| Phoenix Mirror search | Missing scroll/switch puzzle, basement investigation and mirror recovery. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
 | Shenmue II reuse and missing-input audit | Pending the connected S1 foundation. |
@@ -1614,3 +1615,44 @@ Opening a door does not make its entire model width passable: the player must
 walk through the vacated strip, with clearance for the player cylinder.
 The fresh opening-to-allowance browser regression also passes after this shared
 collision change.
+
+## Iwao's key and the dojo sword
+
+Official imports: `story-s1-iwao-mysterious-key` and
+`story-s1-dojo-sword-case`. The
+[contemporary GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf),
+printed pages 12–13 and 37–38, describes these pickups both early and during the
+mirror search. Do not invent a family-crest prerequisite for the key or sword.
+
+| Field | Authored integration |
+| --- | --- |
+| Location / trigger | Use the original ihko gray case inside IWWH in Iwao's room (`JOMO`), then the original KHKS long case in the dojo (`JHD0`). Both are use-only, with server-validated proximity; entering a region does not collect anything. |
+| Prerequisites | Personal Story Ryo with completed opening. The sword case requires actual mysterious_key possession, not a client acknowledgement or notebook flag. |
+| Sequence / choice | Normal drawer opening and contained-object picking, an explicit open/leave choice, a bounded owned inspection, then acknowledgement. One shared ordinary Yarn template expresses both pickups. |
+| Presentation / timing | Original models and room placement. Newly authored, unvoiced inspection captions, held Ryo poses and close-up cameras; detailed lid/hand/pickup animation is not reconstructed. Dialogue uses the shared Space/X controls. Preserve personal weather/date; no forced music or time jump. |
+| Effects | Migration 010 defines two non-usable, non-stackable quest possessions. Atomically grant mysterious_key or dojo_sword and its independent notebook/milestone. The sword possession represents personal access to the dojo sword, not physically carrying it throughout the shared world. Retain the key. No money, HP or mirror grant. |
+| Failure / replay | Leave, cancellation, failed preparation and stale acknowledgements grant nothing. Restore the prior approach, avatar, camera and controls; saved completion prevents repeat grants. |
+
+Authored use labels are generated from the route source and consumed by the
+existing object classifier, which gameplay and scenery preparation share.
+Quest props therefore retain picking ownership without a second registry or
+quest-state store. Native drawer/door mechanics take precedence. Contained
+objects cannot start ordinary interactions through a closed/opening drawer;
+that local presentation check does not claim server-authoritative drawer state.
+
+The source receipts pin original JOMO/JHD0 MAPINFO and retain the object tags.
+Compiler/PostgreSQL checks exercise proximity, leaving, cancellation during
+inspection, stale acknowledgement, actual key possession, independent
+once-only inventory/notebook settlement and character isolation. A connected
+rendered check clicks the real drawer, then its contained case and the dojo
+sword case; it verifies leaving, live cancellation/retry, owned inventory,
+reload, duplicate prevention and restored controls. Inspected captures show
+the original cases and the key in Iwao's open drawer. The sword's inventory
+slot currently has no artwork; this is not a claim of detailed pickup animation.
+
+Empty control meshes are excluded from placement bounds. Including Babylon's
+default zero-size box for these nodes shifts drawer bounds toward the world
+origin, despite the rendered drawer being correctly placed. Both placement
+auditing and containment now use the shared geometry-only bounds helper.
+Picking excludes contained props while their drawer is closed/opening, using
+the same availability rule as interaction dispatch.

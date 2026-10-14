@@ -10,6 +10,7 @@ import { pickArcadeInteraction } from "../arcade/ArcadePicking.js";
 import { isDirectShenmue2DoorPick } from "../world/Shenmue2NativeDoors.js";
 import { isNativeLayerDoorBlocker } from "../world/TimedTransitionAccess.js";
 import { logicalDoorScriptObject } from "./DoorInteractions.js";
+import {containerInteractionAllowed} from "../../src/JomoContainerOwnership.js";
 
 const INTERACTION_DISTANCE = 10;
 
@@ -206,6 +207,7 @@ export class WorldInteractionDispatcher {
 
   isInteractiveMesh(mesh) {
     const metadata = mesh.metadata;
+    if(metadata?.interactiveInspectable && !containerInteractionAllowed(metadata.interactiveInspectable.root))return false;
     return Boolean(
       metadata?.interactiveDrawer
       || metadata?.interactiveDoor

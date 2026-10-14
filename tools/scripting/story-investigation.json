@@ -3,6 +3,24 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"iwao-mysterious-key","actor":"AKIR","presentActors":[],"area":"JOMO","trigger":"use","object":"ihko","objectLabel":"Gray key case","priority":220,
+      "title":"Iwao's room — the mysterious key","bounds":"s1.jomo.iwao-key","requiredFlags":[],
+      "completedFlag":"story.s1.iwao-key.completed","effects":["notebook.s1.mysterious-key"],"items":[{"key":"mysterious_key","quantity":1}],
+      "staging":"s1.jomo.iwao-key","yarnTemplate":"story-item-pickup.yarn","voiceIds":[],"optionSelections":[0],
+      "authoredText":{"prompt":"There is a small gray case in this drawer.","confirm":"Open the gray case","receipt":"A small key. I wonder what it opens."},
+      "nativeSources":[{"role":"original-object-placement","locator":"disc1/SCENE/01/JOMO/MAPINFO.BIN#IWWH/ihko/KAGI","sha256":"4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9"}],
+      "provenance":"GameSpot guide printed p12 and p37-38: open Iwao's top drawer, open the gray case and obtain the mysterious key; this can be done early. Original IWWH, ihko and KAGI models/placement; existing drawer animation and containment/picking. Explicit unvoiced text, Ryo pose/camera and omitted detailed case/hand choreography are authored. Server validates proximity and explicit choice, then settles one possession/notebook; no calendar, HP or currency change."
+    },
+    {
+      "id":"dojo-sword-case","actor":"AKIR","presentActors":[],"area":"JHD0","trigger":"use","object":"KHKS","objectLabel":"Sword case","priority":220,
+      "title":"Hazuki dojo — the sword case","bounds":"s1.jhd0.sword-case","requiredFlags":[],"requiredItems":[{"key":"mysterious_key","quantity":1}],
+      "completedFlag":"story.s1.dojo-sword-case.completed","effects":["notebook.s1.dojo-sword"],"items":[{"key":"dojo_sword","quantity":1}],
+      "staging":"s1.jhd0.sword-case","yarnTemplate":"story-item-pickup.yarn","voiceIds":[],"optionSelections":[0],
+      "authoredText":{"prompt":"A locked sword case. The key I found might fit.","confirm":"Unlock the sword case","receipt":"A sword. It may be another part of Dad's clue."},
+      "nativeSources":[{"role":"original-object-placement","locator":"disc1/SCENE/01/JHD0/MAPINFO.BIN#KHKS/PONK/PONS","sha256":"e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca"}],
+      "provenance":"GameSpot guide printed p13 and p38: use the mysterious key on the long case in the dojo, obtain the sword; this can be done before the mirror clue. Original KHKS/PONK/PONS placement and models. Explicit unvoiced choice/text and held Ryo pose/camera are adaptations; no recovered lid/hand choreography. Inventory represents personal access to the dojo sword rather than physically carrying it everywhere. One server-owned sword/notebook settlement, retaining the key; no currency, HP or calendar change."
+    },
+    {
       "id":"fuku-handguard-home","actor":"FUKU","presentActors":[],"area":"JOMO","trigger":"automatic","priority":220,
       "title":"Fuku-san — ask Ine-san about the handguard","requiredFlags":["story.s1.gui-zhang-street.completed"],"requiredItems":[{"key":"sword_handguard","quantity":1}],
       "completedFlag":"story.s1.fuku-handguard-home.completed","effects":["notebook.s1.ine-handguard"],"staging":"s1.jomo.fuku-handguard-home",

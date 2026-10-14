@@ -1,0 +1,13 @@
+Ryo Hazuki: {{text:prompt}} #speaker:AKIR
+-> {{text:confirm}}
+    <<jump TakeItem>>
+-> Leave it for now
+    <<complete>>
+===
+title: TakeItem
+---
+<<play_sequence "{{staging}}.start">>
+Ryo Hazuki: {{text:receipt}} #speaker:AKIR
+<<play_sequence "{{staging}}.finish">>
+{{effects}}
+<<complete>>

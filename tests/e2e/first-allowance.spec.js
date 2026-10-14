@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 import { randomUUID } from "node:crypto";
 import {verifyOldDistrictEntry,verifyOldDistrictStealth,verifyFirstChenMeeting} from "./story-harbor.js";
-import {verifyFamilyMirrorLead,verifyBunkadoHandguard,verifyGuiZhangEncounter,verifyHandguardFamily} from "./story-mirror-search.js";
+import {verifyFamilyMirrorLead,verifyBunkadoHandguard,verifyGuiZhangEncounter,verifyHandguardFamily,verifyDojoItems} from "./story-mirror-search.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
 
@@ -41,6 +41,8 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   for (const [file, hook] of [
     ["scripts/ScriptEventController", `const probeFailure = ScriptEventController.prototype.fail;
       ScriptEventController.prototype.fail = function(error,...args) { window.storyProbe.sceneErrors.push(error.message); return probeFailure.call(this,error,...args); };`],
+    ["interactions/WorldInteractionDispatcher", `const probeDispatcherStart = WorldInteractionDispatcher.prototype.start;
+      WorldInteractionDispatcher.prototype.start = function(...args) { window.storyProbe.interactions=this; return probeDispatcherStart.apply(this,args); };`],
     ["scripts/StoryCombatRuntime", `const probeCombatShow = StoryCombatRuntime.prototype.show;
       StoryCombatRuntime.prototype.show = function(...args) {
         window.storyProbe.combatRuntime = this;
@@ -115,6 +117,10 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_DOJO_ITEMS_E2E === "true"){
+      await verifyDojoItems(page,testInfo,character);
+      expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return;
+    }
     if(process.env.NEW_YOKOSUKA_HANDGUARD_FAMILY_E2E === "true"){
       await verifyHandguardFamily(page,testInfo,character);
       expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return;

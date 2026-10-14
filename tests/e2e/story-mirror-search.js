@@ -2,6 +2,75 @@ import {expect} from "@playwright/test";
 import nativeMapTransitions from "../../play/data/native-map-transitions.json" with {type:"json"};
 import jomoPlacements from "../../play/data/jomo-runtime-placements.json" with {type:"json"};
 
+export async function verifyDojoItems(page,testInfo,character){
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const noErrors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);};
+  expect((await saved()).inventory.some(i=>["mysterious_key","dojo_sword"].includes(i.key))).toBe(false);
+  const travel=async world=>{if(await page.evaluate(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id)!==world)await page.evaluate(async world=>window.storyProbe.lifecycle.travelToWorld(world),world);await expect(page.locator("#loading")).toBeHidden({timeout:90_000});await idle();};
+  const point=async(tag,kind,position)=>{
+    await page.evaluate(async({tag,kind,position})=>{
+      const {runtimePlacementBounds}=await import("/src/RuntimePlacementAudit.js");
+      const l=window.storyProbe.lifecycle;l.resetPlayer(l.vectorFromArray(position),0,{persist:false});
+      const entry=l.scene.meshes.find(m=>m.metadata?.[kind]?.objectTag===tag)?.metadata[kind];
+      if(!entry)throw Error(`Missing real ${kind} ${tag}`);
+      const b=runtimePlacementBounds(entry.root),p=b.min.add(b.max).scale(.5),c=l.getController();
+      c.setFirstPerson(true);c.cameraYaw=Math.atan2(-(p.x-c.collider.position.x),-(p.z-c.collider.position.z));
+      c.cameraPitch=Math.atan2(c.collider.position.y+c.options.firstPersonHeadHeight-p.y,Math.hypot(p.x-c.collider.position.x,p.z-c.collider.position.z));c.updateCamera(1);
+    },{tag,kind,position});
+    await page.waitForTimeout(400);
+    return page.evaluate(async({tag,kind})=>{
+      const {runtimePlacementBounds}=await import("/src/RuntimePlacementAudit.js");
+      const l=window.storyProbe.lifecycle,entry=l.scene.meshes.find(m=>m.metadata?.[kind]?.objectTag===tag)?.metadata[kind];
+      const b=runtimePlacementBounds(entry.root),p=b.min.add(b.max).scale(.5),rect=l.engine.getRenderingCanvas().getBoundingClientRect();
+      const v=l.scene.activeCamera.getViewMatrix(true).multiply(l.scene.activeCamera.getProjectionMatrix(true));
+      const s=p.constructor.Project(p,v.constructor.Identity(),v,l.scene.activeCamera.viewport.toGlobal(l.engine.getRenderWidth(),l.engine.getRenderHeight()));
+      const pick=l.scene.pick(s.x*rect.width/l.engine.getRenderWidth(),s.y*rect.height/l.engine.getRenderHeight(),m=>window.storyProbe.interactions.isInteractiveMesh(m),false,l.scene.activeCamera);
+      return {x:rect.x+s.x*rect.width/l.engine.getRenderWidth(),y:rect.y+s.y*rect.height/l.engine.getRenderHeight(),target:p.asArray(),player:l.getController().collider.position.asArray(),handle:!!entry.handleNode,container:entry.root._runtimeContainerObjectTag,state:entry.state,
+        pickedDrawer:pick?.pickedMesh?.metadata?.interactiveDrawer?.objectTag,pickedInspectable:pick?.pickedMesh?.metadata?.interactiveInspectable?.objectTag};
+    },{tag,kind});
+  };
+  const click=async(...args)=>{const p=await point(...args);await page.mouse.click(p.x,p.y);return p;};
+  await travel("interior");
+  const drawer=await point("IWWH","interactiveDrawer",[.5,0,-.49]);console.info("Iwao drawer pick",drawer);
+  expect(drawer.pickedDrawer).toBe("IWWH");
+  if(drawer.state==="closed")await page.mouse.click(drawer.x,drawer.y);
+  await page.waitForFunction(()=>window.storyProbe.lifecycle.scene.meshes.find(m=>m.metadata?.interactiveDrawer?.objectTag==="IWWH")?.metadata.interactiveDrawer.state==="open");
+  const casePoint=await point("ihko","interactiveInspectable",[.5,0,-.49]);expect(casePoint.container).toBe("IWWH");
+  const begin=async(tag,position)=>{
+    await click(tag,"interactiveInspectable",position);
+    await page.waitForFunction(()=>window.storyProbe.dialogue?.active||window.storyProbe.sceneErrors.length,null,{timeout:15_000});await noErrors();
+    await page.keyboard.press("Space");
+  };
+  await begin("ihko",[.5,0,-.49]);await page.getByRole("button",{name:"Leave it for now",exact:true}).click();await idle();
+  expect((await saved()).inventory.some(i=>i.key==="mysterious_key")).toBe(false);
+  for(const pickup of [{tag:"ihko",position:[.5,0,-.49],choice:"Open the gray case",scene:"s1.jomo.iwao-key",item:"mysterious_key",flag:"notebook.s1.mysterious-key"},
+    {tag:"KHKS",position:[9.2,1.05,-24.5],choice:"Unlock the sword case",scene:"s1.jhd0.sword-case",item:"dojo_sword",flag:"notebook.s1.dojo-sword"}]){
+    if(pickup.item==="dojo_sword")await travel("exterior");
+    await begin(pickup.tag,pickup.position);await page.getByRole("button",{name:pickup.choice,exact:true}).click();
+    await page.waitForFunction(scene=>window.storyProbe.authoredScene?.active?.scene.id===scene||window.storyProbe.sceneErrors.length,pickup.scene,{timeout:20_000});await noErrors();
+    await page.waitForTimeout(1200);await page.screenshot({path:testInfo.outputPath(`${pickup.item}-inspection.png`)});
+    await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-cancel-quest-pickup"));await idle();
+    expect((await saved()).inventory.some(i=>i.key===pickup.item)).toBe(false);
+    await begin(pickup.tag,pickup.position);await page.getByRole("button",{name:pickup.choice,exact:true}).click();
+    await page.waitForFunction(()=>window.storyProbe.dialogue?.active&&window.storyProbe.authoredScene?.active,null,{timeout:20_000});
+    await page.keyboard.press("Space");
+    await expect.poll(async()=>(await saved()).character.storyFlags[pickup.flag]).toBe(true);await idle();await noErrors();
+    expect((await saved()).inventory.filter(i=>i.key===pickup.item)).toMatchObject([{quantity:1,category:"key_item",usable:false}]);
+  }
+  const after=await saved();expect(after.character.yen).toBe(character.yen);expect(after.character.currentHp).toBe(character.currentHp);
+  expect(after.character.storyFlags["story.s1.phoenix-mirror.completed"]).not.toBe(true);
+  await page.locator("#inventory-button").click();const dialog=page.getByRole("dialog",{name:"Inventory",exact:true});
+  await expect(dialog.getByText("Mysterious Key",{exact:true})).toBeVisible();await expect(dialog.getByText("Hazuki Sword",{exact:true})).toBeVisible();
+  await page.screenshot({path:testInfo.outputPath("dojo-owned-quest-items.png")});await dialog.getByRole("button",{name:"Close inventory"}).click();
+  await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();
+  await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();
+  await page.waitForFunction(()=>window.storyProbe.ready,null,{timeout:90_000});await idle();await noErrors();
+  for(const item of ["mysterious_key","dojo_sword"])expect((await saved()).inventory.filter(i=>i.key===item)).toMatchObject([{quantity:1}]);
+  await click("KHKS","interactiveInspectable",[9.2,1.05,-24.5]);await page.waitForTimeout(800);await idle();
+  expect((await saved()).inventory.filter(i=>i.key==="dojo_sword")).toMatchObject([{quantity:1}]);
+}
+
 export async function verifyHandguardFamily(page,testInfo,character){
   expect(character.storyFlags["story.s1.gui-zhang-street.completed"]).toBe(true);
   expect(character.storyFlags["story.s1.ine-family-crest.completed"]).not.toBe(true);
